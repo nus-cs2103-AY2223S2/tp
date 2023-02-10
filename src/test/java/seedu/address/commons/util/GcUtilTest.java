@@ -1,11 +1,14 @@
 package seedu.address.commons.util;
 
-import com.google.api.services.calendar.model.Event;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import com.google.api.services.calendar.model.Event;
 
 class GcUtilTest {
 
