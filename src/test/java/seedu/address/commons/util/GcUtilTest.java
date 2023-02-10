@@ -7,13 +7,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GCUtilTest {
+class GcUtilTest {
 
     @Test
     void getEvents() {
         List<Event> events;
         try {
-            events = GCUtil.getEvents();
+            events = GcUtil.getEvents();
         } catch (Exception e) {
             fail("Exception thrown: \n\t" + e);
             return;
@@ -25,7 +25,7 @@ class GCUtilTest {
     void eventsToString() {
         String eventsString = null;
         try {
-            eventsString = GCUtil.eventsToString();
+            eventsString = GcUtil.eventsToString();
         } catch (Exception e) {
             fail("Exception thrown: \n\t" + e);
         }
