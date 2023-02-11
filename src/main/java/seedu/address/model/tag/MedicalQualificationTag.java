@@ -7,7 +7,7 @@ import java.time.LocalDate;
  *
  * @author wz2k
  */
-public class MedicalQualification extends Tag{
+public class MedicalQualificationTag extends Tag{
     /* Level of training attained */
     private SkillLevel qualificationLevel;
 
@@ -21,7 +21,7 @@ public class MedicalQualification extends Tag{
      * @param qualificationLevel How qualified it is.
      * @param expiryDate Validity end date.
      */
-    public MedicalQualification(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
+    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
         super(tagName);
         this.qualificationLevel = qualificationLevel;
         this.expiryDate = expiryDate;
@@ -79,10 +79,12 @@ public class MedicalQualification extends Tag{
      *
      * @return Full details.
      */
-    public String getFullString() {
+    public String toFullString() {
         String qualificationLevelString = qualificationLevel.name();
         String expiryDateString = expiryDate.toString();
+        StringBuilder fullString = new StringBuilder(super.toString()).append(" ")
+                .append(qualificationLevelString).append(" ").append(expiryDateString);
 
-        return super.toString() + qualificationLevelString + expiryDateString;
+        return fullString.toString();
     }
 }

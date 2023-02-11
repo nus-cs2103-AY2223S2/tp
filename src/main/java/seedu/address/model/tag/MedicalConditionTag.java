@@ -5,7 +5,7 @@ package seedu.address.model.tag;
  *
  * @author wz2k
  */
-public class MedicalCondition extends Tag {
+public class MedicalConditionTag extends Tag {
     /* Additional description of the condition */
     private String notes;
 
@@ -16,14 +16,14 @@ public class MedicalCondition extends Tag {
     private Priority priority;
 
     /**
-     * Constructs a {@code MedicalCondition}
+     * Constructs a {@code MedicalConditionTag}
      *
      * @param tagName A valid tag name.
      * @param notes Additional description.
      * @param requiresAttention Whether attention is needed.
      * @param priority Importance level.
      */
-    public MedicalCondition(String tagName, String notes, boolean requiresAttention, Priority priority) {
+    public MedicalConditionTag(String tagName, String notes, boolean requiresAttention, Priority priority) {
         super(tagName);
         this.notes = notes;
         this.requiresAttention = requiresAttention;
@@ -99,11 +99,13 @@ public class MedicalCondition extends Tag {
      *
      * @return Full details.
      */
-    public String getFullString() {
+    public String toFullString() {
         String requiresAttentionString = String.valueOf(requiresAttention);
         String priorityString = priority.name();
+        StringBuilder fullString = new StringBuilder(super.toString()).append(" ")
+                .append(requiresAttentionString).append(" ").append(priorityString).append(" ")
+                .append(notes);
 
-        return super.toString() + " " + requiresAttentionString + " "
-                + priorityString + " " + notes;
+        return fullString.toString();
     }
 }
