@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Julio Harjo
 
 <img src="images/johndoe.png" width="200px">
 
