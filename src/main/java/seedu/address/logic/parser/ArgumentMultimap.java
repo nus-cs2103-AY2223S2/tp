@@ -57,4 +57,11 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    @Override
+    public String toString() {
+        return "ArgumentMultimap{"
+                + "argMultimap=" + argMultimap
+                + '}';
+    }
 }
