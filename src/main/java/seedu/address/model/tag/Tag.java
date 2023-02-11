@@ -15,7 +15,7 @@ public class Tag {
     public final String tagName;
 
     /**
-     * .
+     * Constructs a {@code Tag}.
      *
      * @param tagName A valid tag name.
      */
