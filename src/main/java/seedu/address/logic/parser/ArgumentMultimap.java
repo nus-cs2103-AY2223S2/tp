@@ -60,8 +60,7 @@ public class ArgumentMultimap {
 
     @Override
     public String toString() {
-        return "ArgumentMultimap{"
-                + "argMultimap=" + argMultimap
-                + '}';
+        return "ArgumentMultimap"
+                + argMultimap;
     }
 }
