@@ -19,41 +19,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Vigneshwar Hariharan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vignesh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/vigonometry)]
+[[portfolio](team/vignesh.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Amos Hung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/amos.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Krishnamoorthi Praveen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/praveen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/praveenkrishna0512)]
+[[portfolio](team/praveen.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Owen Yap Yuhan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/owen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/owen-yap)]
+[[portfolio](team/owen.md)]
 
 * Role: Developer
 * Responsibilities: UI
