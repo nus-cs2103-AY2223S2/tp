@@ -38,13 +38,13 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
         JsonFriendlyLinkStorage addressBookStorage =
-                new JsonFriendlyLinkStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonFriendlyLinkStorage(temporaryFolder.resolve("friendlylink.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -72,7 +72,7 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonFriendlyLinkStorage addressBookStorage =
-                new JsonFriendlyLinkIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonFriendlyLinkIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);

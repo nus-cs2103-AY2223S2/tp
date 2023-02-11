@@ -25,7 +25,7 @@ public class JsonSerializableFriendlyLinkTest {
         JsonSerializableFriendlyLink dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableFriendlyLink.class).get();
         FriendlyLink friendlyLinkFromFile = dataFromFile.toModelType();
-        FriendlyLink typicalPersonsFriendlyLink = TypicalPersons.getTypicalAddressBook();
+        FriendlyLink typicalPersonsFriendlyLink = TypicalPersons.getTypicalFriendlyLink();
         assertEquals(friendlyLinkFromFile, typicalPersonsFriendlyLink);
     }
 

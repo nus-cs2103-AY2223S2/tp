@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static FriendlyLink getTypicalAddressBook() {
+    public static FriendlyLink getTypicalFriendlyLink() {
         FriendlyLink ab = new FriendlyLink();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
