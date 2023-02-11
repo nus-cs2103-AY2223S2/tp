@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,6 +96,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPair(null));
+    }
+
+    @Test
+    public void hasPair_pairNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairInAddressBook_returnsTrue() {
+        modelManager.addPair(PAIR1);
+        assertTrue(modelManager.hasPair(PAIR1));
+    }
+
+    @Test
+    public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
+        // todo
+        //assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPairList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
@@ -116,13 +140,24 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different filteredPersonList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
+        // different filteredPairList -> returns false
+        // todo
+        /*String[] keywords = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPairList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+         */
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // resets modelManager to initial state for upcoming tests
+        // todo
+        //modelManager.updateFilteredPairList(PREDICATE_SHOW_ALL_PAIRS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

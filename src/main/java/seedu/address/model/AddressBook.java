@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePairList pairs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        pairs = new UniquePairList();
     }
 
     public AddressBook() {}
@@ -91,6 +95,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// pair-level operations
+
+    /**
+     * Returns true if a pair with the same identity as {@code pair} exists in the address book.
+     */
+    public boolean hasPair(Pair pair) {
+        requireNonNull(pair);
+        return pairs.contains(pair);
+    }
+
+    /**
+     * Adds a pair to the address book.
+     * The pair must not already exist in the address book.
+     */
+    public void addPair(Pair p) {
+        pairs.add(p);
+    }
+
+    /**
+     * Replaces the given pair {@code target} in the list with {@code editedPair}.
+     * {@code target} must exist in the address book.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in the address book.
+     */
+    public void setPair(Pair target, Pair editedPair) {
+        requireNonNull(editedPair);
+        pairs.setPair(target, editedPair);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removePair(Pair key) {
+        pairs.remove(key);
     }
 
     //// util methods

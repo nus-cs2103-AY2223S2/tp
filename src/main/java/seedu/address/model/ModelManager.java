@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 
 /**
@@ -111,6 +112,33 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasPair(Pair pair) {
+        requireNonNull(pair);
+        return addressBook.hasPair(pair);
+    }
+
+    @Override
+    public void deletePair(Pair target) {
+        // todo
+        //addressBook.removePair(target);
+    }
+
+    @Override
+    public void addPair(Pair pair) {
+        addressBook.addPair(pair);
+        // todo
+        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+    }
+
+    @Override
+    public void setPair(Pair target, Pair editedPair) {
+        requireAllNonNull(target, editedPair);
+
+        // todo
+        //addressBook.setPair(target, editedPair);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +154,26 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Pair List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Pair} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Pair> getFilteredPairList() {
+        // todo
+        return null;
+        //return filteredPairs;
+    }
+
+    @Override
+    public void updateFilteredPairList(Predicate<Pair> predicate) {
+        requireNonNull(predicate);
+        // todo
+        //filteredPairs.setPredicate(predicate);
     }
 
     @Override

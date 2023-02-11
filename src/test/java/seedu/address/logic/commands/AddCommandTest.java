@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -139,12 +140,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPair(Pair pair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPair(Pair pair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePair(Pair target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPair(Pair target, Pair editedPair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Pair> getFilteredPairList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPairList(Predicate<Pair> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
