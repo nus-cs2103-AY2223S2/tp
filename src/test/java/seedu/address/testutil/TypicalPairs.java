@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.pair.Pair;

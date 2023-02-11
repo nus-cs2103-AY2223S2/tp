@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -18,8 +19,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -29,6 +32,8 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        // todo (yong jing)
+        //assertEquals(Collections.emptyList(), addressBook.getPairList());
     }
 
     @Test
@@ -41,6 +46,7 @@ public class AddressBookTest {
         AddressBook newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
+        // todo (yong jing): check for reset data with pair list.
     }
 
     @Test
@@ -52,6 +58,7 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        // todo (yong jing): check that duplicate pairs throws exceptions.
     }
 
     @Test
@@ -83,11 +90,42 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void hasPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPair(null));
+    }
+
+    @Test
+    public void hasPair_pairNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairInAddressBook_returnsTrue() {
+        addressBook.addPair(PAIR1);
+        assertTrue(addressBook.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairWithSameElderlyAndVolunteer_returnsTrue() {
+        addressBook.addPair(PAIR1);
+        Pair editedPair = new PairBuilder(PAIR1).build();
+        assertTrue(addressBook.hasPair(editedPair));
+    }
+
+    @Test
+    public void getPairList_modifyList_throwsUnsupportedOperationException() {
+        // todo: (yong jing)
+        //assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+    }
+
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Pair> pairs = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +134,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Pair> getPairList() {
+            return pairs;
         }
     }
 

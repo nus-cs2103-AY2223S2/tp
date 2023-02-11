@@ -59,25 +59,25 @@ public class UniquePairListTest {
 
     @Test
     public void setPair_nullTargetPair_throwsNullPointerException() {
-        // todo
+        // todo (yong jing)
         //assertThrows(NullPointerException.class, () -> uniquePairList.setPair(null, PAIR1));
     }
 
     @Test
     public void setPair_nullEditedPair_throwsNullPointerException() {
-        // todo
+        // todo (yong jing)
         //assertThrows(NullPointerException.class, () -> uniquePairList.setPair(PAIR1, null));
     }
 
     @Test
     public void setPair_targetPairNotInList_throwsPairNotFoundException() {
-        // todo
+        // todo (yong jing)
         //assertThrows(PairNotFoundException.class, () -> uniquePairList.setPair(ALICE, ALICE));
     }
 
     @Test
     public void setPair_editedPairIsSamePair_success() {
-        // todo
+        // todo (yong jing)
         /*
         uniquePairList.add(PAIR1);
         uniquePairList.setPair(PAIR1, PAIR1);
@@ -89,7 +89,7 @@ public class UniquePairListTest {
 
     @Test
     public void setPair_editedPairHasSameIdentity_success() {
-        // todo
+        // todo (yong jing)
         /*
         uniquePairList.add(PAIR1);
         Pair editedPair1 = new PairBuilder(PAIR1).build();
@@ -102,7 +102,7 @@ public class UniquePairListTest {
 
     @Test
     public void setPair_editedPairHasDifferentIdentity_success() {
-        // todo
+        // todo (yong jing)
         uniquePairList.add(PAIR1);
         uniquePairList.setPair(PAIR1, PAIR2);
         UniquePairList expectedUniquePairList = new UniquePairList();
@@ -156,7 +156,7 @@ public class UniquePairListTest {
 
     @Test
     public void setPairs_list_replacesOwnListWithProvidedList() {
-        // todo
+        // todo (yong jing)
         /*
         uniquePairList.add(PAIR1);
         List<Pair> pairList = Collections.singletonList(PAIR2);

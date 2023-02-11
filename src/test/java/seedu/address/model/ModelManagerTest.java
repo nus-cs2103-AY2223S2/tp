@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -113,7 +112,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
-        // todo
+        // todo (yong jing)
         //assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPairList().remove(0));
     }
 
@@ -146,7 +145,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // different filteredPairList -> returns false
-        // todo
+        // todo (yong jing)
         /*String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPairList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
@@ -156,7 +155,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // resets modelManager to initial state for upcoming tests
-        // todo
+        // todo (yong jing)
         //modelManager.updateFilteredPairList(PREDICATE_SHOW_ALL_PAIRS);
 
         // different userPrefs -> returns false

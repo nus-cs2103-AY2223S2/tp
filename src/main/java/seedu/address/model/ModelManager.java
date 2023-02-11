@@ -120,14 +120,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePair(Pair target) {
-        // todo
+        // todo (yong jing)
         //addressBook.removePair(target);
     }
 
     @Override
     public void addPair(Pair pair) {
         addressBook.addPair(pair);
-        // todo
+        // todo (yong jing)
         //updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
@@ -135,7 +135,7 @@ public class ModelManager implements Model {
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
 
-        // todo
+        // todo (yong jing)
         //addressBook.setPair(target, editedPair);
     }
 
@@ -164,7 +164,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Pair> getFilteredPairList() {
-        // todo
+        // todo (yong jing)
         return null;
         //return filteredPairs;
     }
@@ -172,7 +172,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPairList(Predicate<Pair> predicate) {
         requireNonNull(predicate);
-        // todo
+        // todo (yong jing)
         //filteredPairs.setPredicate(predicate);
     }
 

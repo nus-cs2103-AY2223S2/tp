@@ -147,14 +147,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Pair> getPairList() {
+        // todo (yong jing)
+        return null;
+        //return pairs.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons));
+        // todo (yong jing)
+                //&& pairs.equals(((AddressBook) other).pairs));
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
+        // todo (yong jing)
+        //return Objects.hash(persons, pairs);
     }
 }
