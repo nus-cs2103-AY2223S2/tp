@@ -148,9 +148,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Pair> getPairList() {
-        // todo (yong jing)
-        return null;
-        //return pairs.asUnmodifiableObservableList();
+        return pairs.asUnmodifiableObservableList();
     }
 
     @Override
