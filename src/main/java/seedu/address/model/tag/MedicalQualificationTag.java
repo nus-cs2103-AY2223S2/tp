@@ -7,7 +7,7 @@ import java.time.LocalDate;
  *
  * @author wz2k
  */
-public class MedicalQualificationTag extends Tag{
+public class MedicalQualificationTag extends Tag {
     /* Level of training attained */
     private SkillLevel qualificationLevel;
 
