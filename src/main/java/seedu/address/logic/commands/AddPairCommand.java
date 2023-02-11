@@ -13,7 +13,7 @@ import seedu.address.model.pair.Pair;
  */
 public class AddPairCommand extends Command {
 
-    public static final String COMMAND_WORD = "addPair";
+    public static final String COMMAND_WORD = "add_pair";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in the address book. "
             + "Parameters: "
