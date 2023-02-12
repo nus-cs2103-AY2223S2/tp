@@ -8,6 +8,15 @@ import java.time.LocalDate;
  * @author wz2k
  */
 public class MedicalQualificationTag extends Tag {
+    /**
+     * Represents the different skill level a person can have.
+     */
+    public enum SkillLevel {
+        BASIC,
+        INTERMEDIATE,
+        ADVANCED
+    }
+
     /* Level of training attained */
     private SkillLevel qualificationLevel;
 

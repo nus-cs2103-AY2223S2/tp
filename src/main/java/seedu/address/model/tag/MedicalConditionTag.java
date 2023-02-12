@@ -6,6 +6,15 @@ package seedu.address.model.tag;
  * @author wz2k
  */
 public class MedicalConditionTag extends Tag {
+    /**
+     * Represents the level of importance.
+     */
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+
     /* Additional description of the condition */
     private String notes;
 
