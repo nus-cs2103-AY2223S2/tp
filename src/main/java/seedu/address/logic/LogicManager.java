@@ -60,11 +60,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
     public Path getFriendlyLinkFilePath() {
         return model.getFriendlyLinkFilePath();
     }
@@ -78,4 +73,17 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    // --- The following are directly appended to the UI.
+
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
+    public ObservableList<Person> getFilteredElderlyList() { return model.getFilteredElderlyList(); }
+    public ObservableList<Person> getFilteredVolunteerList() {
+        return model.getFilteredVolunteerList();
+    }
+
+
 }

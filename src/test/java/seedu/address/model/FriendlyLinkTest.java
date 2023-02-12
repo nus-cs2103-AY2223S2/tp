@@ -88,6 +88,8 @@ public class FriendlyLinkTest {
      */
     private static class FriendlyLinkStub implements ReadOnlyFriendlyLink {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Person> elderly = FXCollections.observableArrayList();
+        private final ObservableList<Person> volunteers = FXCollections.observableArrayList();
 
         FriendlyLinkStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +98,16 @@ public class FriendlyLinkTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Person> getElderlyList() {
+            return elderly;
+        }
+
+        @Override
+        public ObservableList<Person> getVolunteerList() {
+            return volunteers;
         }
     }
 

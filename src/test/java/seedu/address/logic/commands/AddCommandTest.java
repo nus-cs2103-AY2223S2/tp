@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -58,26 +57,26 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(1, addAliceCommand);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addAliceCommand, addBobCommand);
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -138,6 +137,98 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
+         *
+         * @param elderly
+         */
+        @Override
+        public boolean hasElderly(Person elderly) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Deletes the given elderly.
+         * The elderly must exist in the friendly link database.
+         *
+         * @param target
+         */
+        @Override
+        public void deleteElderly(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Adds the given elderly.
+         * {@code elderly} must not already exist in the friendly link database.
+         *
+         * @param elderly
+         */
+        @Override
+        public void addElderly(Person elderly) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces the given elderly {@code target} with {@code editedPerson}.
+         * {@code target} must exist in the friendly link database.
+         * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the
+         * friendly link database.
+         *
+         * @param target
+         * @param editedPerson
+         */
+        @Override
+        public void setElderly(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
+         *
+         * @param volunteer
+         */
+        @Override
+        public boolean hasVolunteer(Person volunteer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Deletes the given volunteer.
+         * The volunteer must exist in the friendly link database.
+         *
+         * @param target
+         */
+        @Override
+        public void deleteVolunteer(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Adds the given volunteer.
+         * {@code volunteer} must not already exist in the friendly link database.
+         *
+         * @param volunteer
+         */
+        @Override
+        public void addVolunteer(Person volunteer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces the given volunteer {@code target} with {@code editedPerson}.
+         * {@code target} must exist in the friendly link database.
+         * The volunteer identity of {@code editedPerson} must not be the same as another existing volunteer in the
+         * friendly link database.
+         *
+         * @param target
+         * @param editedPerson
+         */
+        @Override
+        public void setVolunteer(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
@@ -147,12 +238,50 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        /**
+         * Returns an unmodifiable view of the filtered elderly list
+         */
+        @Override
+        public ObservableList<Person> getFilteredElderlyList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Updates the filter of the filtered elderly list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredElderlyList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered volunteers list
+         */
+        @Override
+        public ObservableList<Person> getFilteredVolunteerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -170,7 +299,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
