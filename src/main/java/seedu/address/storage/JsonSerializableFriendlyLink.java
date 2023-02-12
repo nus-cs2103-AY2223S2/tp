@@ -18,17 +18,23 @@ import seedu.address.model.person.Person;
  */
 @JsonRootName(value = "friendlylink")
 class JsonSerializableFriendlyLink {
-
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPerson> elderly = new ArrayList<>();
+    private final List<JsonAdaptedPerson> volunteers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFriendlyLink} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableFriendlyLink(
+            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("elderly") List<JsonAdaptedPerson> elderly,
+            @JsonProperty("volunteers") List<JsonAdaptedPerson> volunteers) {
+        serializeEntities(this.persons, persons);
+        serializeEntities(this.elderly, elderly);
+        serializeEntities(this.volunteers, volunteers);
     }
 
     /**
@@ -37,7 +43,13 @@ class JsonSerializableFriendlyLink {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriendlyLink}.
      */
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(persons, source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(elderly, source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(volunteers, source.getVolunteerList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    }
+
+    private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
+        entities.addAll(source);
     }
 
     /**
@@ -47,14 +59,22 @@ class JsonSerializableFriendlyLink {
      */
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+
+        unserializeEntities(persons, friendlyLink);
+        unserializeEntities(elderly, friendlyLink);
+        unserializeEntities(volunteers, friendlyLink);
+
+        return friendlyLink;
+    }
+
+    private void unserializeEntities(List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedPerson jsonAdaptedPerson : entity) {
             Person person = jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             friendlyLink.addPerson(person);
         }
-        return friendlyLink;
     }
 
 }

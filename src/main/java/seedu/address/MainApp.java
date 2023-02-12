@@ -53,18 +53,19 @@ public class MainApp extends Application {
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
+        initLogging(config);
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
+
+        initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage);
+    }
+
+    private void initializeAppManagers(UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage) {
         storage = new StorageManager(friendlyLinkStorage, userPrefsStorage);
-
-        initLogging(config);
-
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
     }
 
@@ -78,7 +79,7 @@ public class MainApp extends Application {
         ReadOnlyFriendlyLink initialData;
         try {
             addressBookOptional = storage.readFriendlyLink();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);

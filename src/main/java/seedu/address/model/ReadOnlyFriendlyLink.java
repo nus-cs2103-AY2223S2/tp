@@ -14,4 +14,7 @@ public interface ReadOnlyFriendlyLink {
      */
     ObservableList<Person> getPersonList();
 
+    // TODO: Update the return type of the following methods to their corresponding classes
+    ObservableList<Person> getElderlyList();
+    ObservableList<Person> getVolunteerList();
 }

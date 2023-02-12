@@ -77,7 +77,57 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
+     */
+    boolean hasElderly(Person elderly);
+
+    /**
+     * Deletes the given elderly.
+     * The elderly must exist in the friendly link database.
+     */
+    void deleteElderly(Person target);
+
+    /**
+     * Adds the given elderly.
+     * {@code elderly} must not already exist in the friendly link database.
+     */
+    void addElderly(Person elderly);
+
+    /**
+     * Replaces the given elderly {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the friendly link database.
+     * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the
+     * friendly link database.
+     */
+    void setElderly(Person target, Person editedPerson);
+
+    /**
+     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
+     */
+    boolean hasVolunteer(Person volunteer);
+
+    /**
+     * Deletes the given volunteer.
+     * The volunteer must exist in the friendly link database.
+     */
+    void deleteVolunteer(Person target);
+
+    /**
+     * Adds the given volunteer.
+     * {@code volunteer} must not already exist in the friendly link database.
+     */
+    void addVolunteer(Person volunteer);
+
+    /**
+     * Replaces the given volunteer {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the friendly link database.
+     * The volunteer identity of {@code editedPerson} must not be the same as another existing volunteer in the
+     * friendly link database.
+     */
+    void setVolunteer(Person target, Person editedPerson);
+
+    /** Returns an unmodifiable view of the filtered persons list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -85,4 +135,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /** Returns an unmodifiable view of the filtered elderly list */
+    ObservableList<Person> getFilteredElderlyList();
+
+    /**
+     * Updates the filter of the filtered elderly list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredElderlyList(Predicate<Person> predicate);
+
+
+    /** Returns an unmodifiable view of the filtered volunteers list */
+    ObservableList<Person> getFilteredVolunteerList();
+
+    /**
+     * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Person> predicate);
 }

@@ -10,6 +10,15 @@ import seedu.address.model.ReadOnlyFriendlyLink;
 
 /**
  * Represents a storage for {@link FriendlyLink}.
+ * <p>
+ * Data will be saved in the following format.
+ * <code>
+ *     {
+ *         elderly: [],
+ *         volunteers: [],
+ *         pairs: []
+ *     }
+ * <code/>
  */
 public interface FriendlyLinkStorage {
 
