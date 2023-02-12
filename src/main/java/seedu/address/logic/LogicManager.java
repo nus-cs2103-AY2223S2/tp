@@ -80,7 +80,9 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
-    public ObservableList<Person> getFilteredElderlyList() { return model.getFilteredElderlyList(); }
+    public ObservableList<Person> getFilteredElderlyList() {
+        return model.getFilteredElderlyList();
+    }
     public ObservableList<Person> getFilteredVolunteerList() {
         return model.getFilteredVolunteerList();
     }

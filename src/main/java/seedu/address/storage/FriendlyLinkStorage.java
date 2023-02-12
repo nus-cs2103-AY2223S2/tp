@@ -18,7 +18,7 @@ import seedu.address.model.ReadOnlyFriendlyLink;
  *         volunteers: [],
  *         pairs: []
  *     }
- * <code/>
+ * </code>
  */
 public interface FriendlyLinkStorage {
 

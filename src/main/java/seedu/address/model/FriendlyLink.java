@@ -54,7 +54,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * Replaces the contents of the elderly list with {@code elderly}.
      * {@code elderly} must not contain duplicate elderly.
      */
-    public void setElderly(List<Person> elderly) {
+    public void setAllElderly(List<Person> elderly) {
         this.elderly.setPersons(elderly);
     }
 
@@ -74,7 +74,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setElderly(newData.getElderlyList());
+        setAllElderly(newData.getElderlyList());
         setVolunteers(newData.getVolunteerList());
     }
 
@@ -130,7 +130,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the friendlyLink cache.
+     * The person identity of {@code editedPerson} must not be the same as
+     * another existing person in the friendlyLink cache.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -140,7 +141,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the given elderly {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
-     * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the friendlyLink cache.
+     * The elderly identity of {@code editedPerson} must not be the same as
+     * another existing elderly in the friendlyLink cache.
      */
     public void setElderly(Person target, Person editedElderly) {
         requireNonNull(editedElderly);
@@ -150,7 +152,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the given volunteer {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
-     * The volunteer identity of {@code editedPerson} must not be the same as another existing volunteer in the friendlyLink cache.
+     * The volunteer identity of {@code editedPerson} must not be the same as
+     * another existing volunteer in the friendlyLink cache.
      */
     public void setVolunteer(Person target, Person editedPerson) {
         requireNonNull(editedPerson);

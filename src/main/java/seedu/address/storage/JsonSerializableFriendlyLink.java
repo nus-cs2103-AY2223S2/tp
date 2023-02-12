@@ -43,9 +43,12 @@ class JsonSerializableFriendlyLink {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriendlyLink}.
      */
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
-        serializeEntities(persons, source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        serializeEntities(elderly, source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        serializeEntities(volunteers, source.getVolunteerList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(persons,
+                source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(elderly,
+                source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(volunteers,
+                source.getVolunteerList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
@@ -67,7 +70,8 @@ class JsonSerializableFriendlyLink {
         return friendlyLink;
     }
 
-    private void unserializeEntities(List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
+    private void unserializeEntities(
+            List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
         for (JsonAdaptedPerson jsonAdaptedPerson : entity) {
             Person person = jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasPerson(person)) {

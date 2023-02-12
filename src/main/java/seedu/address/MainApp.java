@@ -62,7 +62,8 @@ public class MainApp extends Application {
         initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage);
     }
 
-    private void initializeAppManagers(UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage) {
+    private void initializeAppManagers(
+            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage) {
         storage = new StorageManager(friendlyLinkStorage, userPrefsStorage);
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
