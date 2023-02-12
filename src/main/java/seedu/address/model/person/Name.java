@@ -38,6 +38,10 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static boolean isValidRemark(String test) {
+        return true;
+    }
+
 
     @Override
     public String toString() {
