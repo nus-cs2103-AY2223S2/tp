@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.RiskLevel;
+import seedu.address.model.person.information.NRIC;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +96,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    public static NRIC parseNRIC(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmednric = nric.trim();
+        if (!NRIC.isValidNRIC(nric)) {
+            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        }
+        return new NRIC(trimmednric);
+    }
+
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        String trimmedage = age.trim();
+        if (!Age.isValidAge(age)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(trimmedage);
+    }
+
+    public static RiskLevel parseRiskLevel(String risklevel) throws ParseException {
+        requireNonNull(risklevel);
+        String trimmedrisk = risklevel.trim();
+        if (!RiskLevel.isValidRisk(risklevel)) {
+            throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new RiskLevel(trimmedrisk);
     }
 
     /**
