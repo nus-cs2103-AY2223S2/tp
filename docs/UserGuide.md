@@ -69,7 +69,7 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.jpg)
+![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -91,7 +91,7 @@ Phone Number: 12345678
 
 
 Expected outcome for GUI:
-![result for 'user' GUI](images/userResultGui.jpg)
+![result for 'user' GUI](images/userResultGui.png)
 
 ### Listing all persons : `list`
 
@@ -204,7 +204,7 @@ Name: John Street
 
 Description of outcome: Assuming you have 4 friends, then there are 3 of them who are doing common modules as you, they will be sorted by decreasing number of similarity in the modules.
 Hence, Ben Tan will be the first name on top as he has the most number of modules in common with the user, followed by Jane Lane and John Street with 2 and 1 common modules respectively. The 4th friend, Penny Lane, does not have any common modules with the user (John Doe) and hence is omitted.
-_______________________________________________________________________________________________________________________
+
 ## FAQ
 
 **Q**: Can I add multiple module tags to a user
