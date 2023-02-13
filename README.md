@@ -1,7 +1,10 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-T09-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T09-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T09-3/tp/branch/master/graph/badge.svg?token=JCKBOH0UD8)](https://codecov.io/gh/AY2223S2-CS2103T-T09-3/tp)
 
 # LoyaltyLift
 ### Manage. Reward. Grow. LoyaltyLift.
+
+LoyaltyLift is a CRM application for to help small business owners manage customers and their orders to boost customer satisfaction and retention rate.
 
 ## Description
 
