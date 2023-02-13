@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VOLUNTEER;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
+import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pair.Pair;
@@ -32,7 +32,7 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ELDERLY, PREFIX_VOLUNTEER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ELDERLY, PREFIX_VOLUNTEER)
+        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_ELDERLY, PREFIX_VOLUNTEER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
@@ -48,14 +48,6 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
                 new Person(volunteer, phone, email, address, tagList));
 
         return new AddPairCommand(pair);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
