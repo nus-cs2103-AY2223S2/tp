@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Pair> filteredPairs;
@@ -28,19 +28,19 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFriendlyLink addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.friendlyLink = new FriendlyLink(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredPairs = new FilteredList<>(this.addressBook.getPairList());
+        filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
+        filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FriendlyLink(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,42 +68,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getFriendlyLinkFilePath() {
+        return userPrefs.getFriendlyLinkFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setFriendlyLinkFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setFriendlyLinkFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFriendlyLink(ReadOnlyFriendlyLink addressBook) {
+        this.friendlyLink.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyFriendlyLink getFriendlyLink() {
+        return friendlyLink;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return friendlyLink.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        friendlyLink.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        friendlyLink.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -111,34 +111,30 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        friendlyLink.setPerson(target, editedPerson);
     }
 
     @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
-        return addressBook.hasPair(pair);
+        return friendlyLink.hasPair(pair);
     }
 
     @Override
     public void deletePair(Pair target) {
-        // todo (yong jing)
-        //addressBook.removePair(target);
+        // TODO: implement addressBook.removePair(target);
     }
 
     @Override
     public void addPair(Pair pair) {
-        addressBook.addPair(pair);
-        // todo (yong jing)
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+        friendlyLink.addPair(pair);
+        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
     @Override
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
-
-        // todo (yong jing)
-        //addressBook.setPair(target, editedPair);
+        // TODO: implement addressBook.setPair(target, editedPair);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -172,8 +168,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPairList(Predicate<Pair> predicate) {
         requireNonNull(predicate);
-        // todo (yong jing)
-        //filteredPairs.setPredicate(predicate);
+        // TODO: implement filteredPairs.setPredicate(predicate);
     }
 
     @Override
@@ -190,7 +185,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return friendlyLink.equals(other.friendlyLink)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
 
 /**
@@ -29,12 +29,12 @@ public class TypicalPairs {
     /**
      * Returns an {@code AddressBook} with all the typical pairs.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static FriendlyLink getTypicalFriendlyLink() {
+        FriendlyLink fl = new FriendlyLink();
         for (Pair pair : getTypicalPairs()) {
-            ab.addPair(pair);
+            fl.addPair(pair);
         }
-        return ab;
+        return fl;
     }
 
     public static List<Pair> getTypicalPairs() {

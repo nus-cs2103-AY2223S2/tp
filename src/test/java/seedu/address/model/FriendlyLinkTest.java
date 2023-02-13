@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalFriendlyLink;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,28 +25,27 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class FriendlyLinkTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final FriendlyLink friendlyLink = new FriendlyLink();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
-        // todo (yong jing)
-        //assertEquals(Collections.emptyList(), addressBook.getPairList());
+        assertEquals(Collections.emptyList(), friendlyLink.getPersonList());
+        // TODO: implement assertEquals(Collections.emptyList(), addressBook.getPairList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
-        // todo (yong jing): check for reset data with pair list.
+        FriendlyLink newData = getTypicalFriendlyLink();
+        friendlyLink.resetData(newData);
+        assertEquals(newData, friendlyLink);
+        // TODO: check if reset data resets the pair list.
     }
 
     @Test
@@ -55,79 +54,78 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        FriendlyLinkStub newData = new FriendlyLinkStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
-        // todo (yong jing): check that duplicate pairs throws exceptions.
+        assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetData(newData));
+        // TODO: check that duplicate pairs throws exceptions.
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(friendlyLink.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        friendlyLink.addPerson(ALICE);
+        assertTrue(friendlyLink.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        friendlyLink.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(friendlyLink.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPersonList().remove(0));
     }
 
     @Test
     public void hasPair_nullPair_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPair(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasPair(null));
     }
 
     @Test
     public void hasPair_pairNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPair(PAIR1));
+        assertFalse(friendlyLink.hasPair(PAIR1));
     }
 
     @Test
     public void hasPair_pairInAddressBook_returnsTrue() {
-        addressBook.addPair(PAIR1);
-        assertTrue(addressBook.hasPair(PAIR1));
+        friendlyLink.addPair(PAIR1);
+        assertTrue(friendlyLink.hasPair(PAIR1));
     }
 
     @Test
     public void hasPair_pairWithSameElderlyAndVolunteer_returnsTrue() {
-        addressBook.addPair(PAIR1);
+        friendlyLink.addPair(PAIR1);
         Pair editedPair = new PairBuilder(PAIR1).build();
-        assertTrue(addressBook.hasPair(editedPair));
+        assertTrue(friendlyLink.hasPair(editedPair));
     }
 
     @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
-        // todo: (yong jing)
-        //assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+        // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
     }
 
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class FriendlyLinkStub implements ReadOnlyFriendlyLink {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Pair> pairs = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        FriendlyLinkStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

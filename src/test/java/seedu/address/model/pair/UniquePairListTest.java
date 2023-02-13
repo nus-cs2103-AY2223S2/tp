@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -59,50 +60,40 @@ public class UniquePairListTest {
 
     @Test
     public void setPair_nullTargetPair_throwsNullPointerException() {
-        // todo (yong jing)
-        //assertThrows(NullPointerException.class, () -> uniquePairList.setPair(null, PAIR1));
+        assertThrows(NullPointerException.class, () -> uniquePairList.setPair(null, PAIR1));
     }
 
     @Test
     public void setPair_nullEditedPair_throwsNullPointerException() {
-        // todo (yong jing)
-        //assertThrows(NullPointerException.class, () -> uniquePairList.setPair(PAIR1, null));
+        assertThrows(NullPointerException.class, () -> uniquePairList.setPair(PAIR1, null));
     }
 
     @Test
     public void setPair_targetPairNotInList_throwsPairNotFoundException() {
-        // todo (yong jing)
-        //assertThrows(PairNotFoundException.class, () -> uniquePairList.setPair(ALICE, ALICE));
+        assertThrows(PairNotFoundException.class, () -> uniquePairList.setPair(PAIR1, PAIR1));
     }
 
     @Test
     public void setPair_editedPairIsSamePair_success() {
-        // todo (yong jing)
-        /*
         uniquePairList.add(PAIR1);
         uniquePairList.setPair(PAIR1, PAIR1);
         UniquePairList expectedUniquePairList = new UniquePairList();
         expectedUniquePairList.add(PAIR1);
         assertEquals(expectedUniquePairList, uniquePairList);
-         */
     }
 
     @Test
     public void setPair_editedPairHasSameIdentity_success() {
-        // todo (yong jing)
-        /*
         uniquePairList.add(PAIR1);
         Pair editedPair1 = new PairBuilder(PAIR1).build();
         uniquePairList.setPair(PAIR1, editedPair1);
         UniquePairList expectedUniquePairList = new UniquePairList();
         expectedUniquePairList.add(editedPair1);
         assertEquals(expectedUniquePairList, uniquePairList);
-         */
     }
 
     @Test
     public void setPair_editedPairHasDifferentIdentity_success() {
-        // todo (yong jing)
         uniquePairList.add(PAIR1);
         uniquePairList.setPair(PAIR1, PAIR2);
         UniquePairList expectedUniquePairList = new UniquePairList();
@@ -156,15 +147,12 @@ public class UniquePairListTest {
 
     @Test
     public void setPairs_list_replacesOwnListWithProvidedList() {
-        // todo (yong jing)
-        /*
         uniquePairList.add(PAIR1);
         List<Pair> pairList = Collections.singletonList(PAIR2);
         uniquePairList.setPairs(pairList);
         UniquePairList expectedUniquePairList = new UniquePairList();
         expectedUniquePairList.add(PAIR2);
         assertEquals(expectedUniquePairList, uniquePairList);
-        */
     }
 
     @Test

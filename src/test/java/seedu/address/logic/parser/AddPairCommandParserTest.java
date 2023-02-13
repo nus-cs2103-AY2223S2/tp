@@ -16,23 +16,7 @@ public class AddPairCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // todo (yong jing)
-        /*
-        Person amy = new PersonBuilder().withName("Amy").build();
-        Pair expectedPair = new PairBuilder(PAIR1).withElderly(amy).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ELDERLY_DESC_AMY + VOLUNTEER_DESC_BOB,
-                new AddPairCommand(expectedPair));
-
-        // multiple elderly - last elderly accepted
-        assertParseSuccess(parser, ELDERLY_DESC_BOB + ELDERLY_DESC_AMY + VOLUNTEER_DESC_BOB,
-                new AddPairCommand(expectedPair));
-
-        // multiple volunteers - last volunteer accepted
-        assertParseSuccess(parser, ELDERLY_DESC_AMY + VOLUNTEER_DESC_AMY + VOLUNTEER_DESC_BOB,
-                new AddPairCommand(expectedPair));
-         */
+        // TODO: test with the same format as AddCommandParserTest::parse_allFieldsPresent_success()
     }
 
     @Test
@@ -54,11 +38,6 @@ public class AddPairCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // todo (yong jing)
-        // invalid elderly
-        //assertParseFailure(parser, INVALID_ELDERLY_DESC + VOLUNTEER_DESC_BOB);
-
-        // invalid volunteer
-        //assertParseFailure(parser, ELDERLY_DESC_AMY + INVALID_VOLUNTEER_DESC);
+        // TODO: Check for invalid elderly or volunteer
     }
 }
