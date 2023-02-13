@@ -1,5 +1,5 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-
+[![CI Status](https://github.com/AY2223S2-CS2103-W16-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Codecov](https://codecov.io/gh/AY2223S2-CS2103-W16-1/tp/branch/master/graph/badge.svg?token=PCRN843XDW)](https://codecov.io/gh/AY2223S2-CS2103-W16-1/tp)
 # Bookopedia
 
 ![Ui](docs/images/Ui.png)
