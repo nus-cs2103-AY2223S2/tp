@@ -22,6 +22,7 @@ src/test/data/sandbox/
 docs/_site/
 
 # Compiled class file
+/bin/
 *.class
 
 # Log file
