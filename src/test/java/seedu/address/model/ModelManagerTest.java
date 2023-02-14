@@ -90,8 +90,20 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, ALICE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPersonList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPersonList(null));
     }
 
     @Test
@@ -110,9 +122,22 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasPair(PAIR1));
     }
 
+
+    @Test
+    public void setPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(PAIR1, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(null, PAIR1));
+    }
+
     @Test
     public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPairList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPairList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPairList(null));
     }
 
     @Test

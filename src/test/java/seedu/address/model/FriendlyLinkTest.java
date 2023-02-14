@@ -113,6 +113,13 @@ public class FriendlyLinkTest {
     }
 
     @Test
+    public void setPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(null, null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(PAIR1, null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(null, PAIR1));
+    }
+
+    @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
         // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
     }
