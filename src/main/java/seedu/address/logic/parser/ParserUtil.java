@@ -98,6 +98,12 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String nric} into an {@code NRIC}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
     public static NRIC parseNRIC(String nric) throws ParseException {
         requireNonNull(nric);
         String trimmednric = nric.trim();
@@ -107,6 +113,12 @@ public class ParserUtil {
         return new NRIC(trimmednric);
     }
 
+    /**
+     * Parses a {@code String age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
         String trimmedage = age.trim();
@@ -116,13 +128,20 @@ public class ParserUtil {
         return new Age(trimmedage);
     }
 
+    /**
+     * Parses a {@code String risk} into an {@code Risk}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code risk} is invalid.
+     */
     public static RiskLevel parseRiskLevel(String risklevel) throws ParseException {
         requireNonNull(risklevel);
         String trimmedrisk = risklevel.trim();
-        if (!RiskLevel.isValidRisk(risklevel)) {
+        String upperrisk = trimmedrisk.toUpperCase();
+        if (!RiskLevel.isValidRisk(upperrisk)) {
             throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
         }
-        return new RiskLevel(trimmedrisk);
+        return new RiskLevel(upperrisk);
     }
 
     /**

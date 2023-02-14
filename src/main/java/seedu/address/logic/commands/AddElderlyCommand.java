@@ -1,15 +1,26 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 
 
+/**
+ * Adds an elderly to the database.
+ */
 public class AddElderlyCommand extends Command {
 
     // later find ways to make this "add elderly"
@@ -41,6 +52,9 @@ public class AddElderlyCommand extends Command {
 
     private final Elderly toAdd;
 
+    /**
+     * Creates an AddElderlyCommand to add to the specified {@code Elderly}
+     */
     public AddElderlyCommand(Elderly elderly) {
         requireNonNull(elderly);
         toAdd = elderly;

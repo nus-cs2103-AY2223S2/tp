@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import java.util.Set;
 
-import seedu.address.model.*;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
@@ -12,6 +11,10 @@ import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.person.information.NRIC;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents an Elderly in the database.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Elderly extends Person {
 
     private final NRIC nric;
@@ -23,6 +26,9 @@ public class Elderly extends Person {
 
     // private final Community community;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Elderly(Name name, Phone phone, Email email,
                    Address address, NRIC nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
         super(name, phone, email, address, tags);
@@ -43,6 +49,12 @@ public class Elderly extends Person {
         return riskLevel;
     }
 
+    /**
+     * Returns true if both elderly have the same name and NRIC.
+     * This defines a weaker notion of equality between two elderly.
+     * Used to detect if the new elderly is "Duplicate" of existing ones
+     * in the database. If duplicate, cannot add.
+     */
     // Two elderly are the same if same name and age
     public boolean isSamePerson(Elderly otherPerson) {
         if (otherPerson == this) {
@@ -51,9 +63,14 @@ public class Elderly extends Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getAge().equals(getAge());
+                && otherPerson.getNric().equals(getNric());
     }
 
+    /**
+     * Returns true if both elderly have the same identity and data fields.
+     * This defines a stronger notion of equality between two elderly.
+     * But is currently not used anywhere.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

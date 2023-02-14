@@ -3,18 +3,30 @@ package seedu.address.model.person.information;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Elderly's age in the database.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
+ */
 public class Age {
     public static final String MESSAGE_CONSTRAINTS =
             "Age should only contain numbers, and it should be 2-3 digits long";
     public static final String VALIDATION_REGEX = "\\d{2,3}";
     public final String value;
 
+    /**
+     * Constructs an {@code Age}.
+     *
+     * @param age A valid age.
+     */
     public Age(String age) {
         requireNonNull(age);
         checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
         value = age;
     }
 
+    /**
+     * Returns true if a given string is a valid age.
+     */
     public static boolean isValidAge(String test) {
         return test.matches(VALIDATION_REGEX);
     }

@@ -5,6 +5,10 @@ import java.util.HashSet;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.information.RiskLevel.Risk.LOW;
 
+/**
+ * Represents an Elderly's risk level in the database.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRisk(String)}
+ */
 public class RiskLevel {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -23,11 +27,19 @@ public class RiskLevel {
         this.riskStatus = risk;
     }
 
+    /**
+     * Constructs an {@code RiskLevel}.
+     *
+     * @param risk A valid risk level.
+     */
     public RiskLevel(String risk) {
         requireNonNull(risk);
         this.riskStatus = Risk.valueOf(risk);
     }
 
+    /**
+     * Returns true if a given string is a valid risk level.
+     */
     public static boolean isValidRisk(String risk) {
         HashSet<String> set = new HashSet<>();
         for (Risk riskSet: Risk.values()) {
@@ -38,17 +50,7 @@ public class RiskLevel {
 
     @Override
     public String toString() {
-        switch (riskStatus) {
-        case LOW:
-            return "low";
-        case MEDIUM:
-            return "medium";
-        case HIGH:
-            return "high";
-        default:
-            return "invalid";
-        }
-
+        return riskStatus.toString().toLowerCase();
     }
 
     @Override
