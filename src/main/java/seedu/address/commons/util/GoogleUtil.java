@@ -27,7 +27,7 @@ import com.google.api.services.calendar.model.Events;
 /**
  * Utility class for Google Calendar API
  */
-public class GcUtil {
+public class GoogleUtil {
 
     private static final String APPLICATION_NAME = "Calidr Google Calendar API";
     /**
@@ -58,7 +58,7 @@ public class GcUtil {
      */
     private static Credential getCredentials(final NetHttpTransport httpTransport) throws IOException {
         // Load client secrets.
-        InputStream in = GcUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = GoogleUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -97,7 +97,7 @@ public class GcUtil {
             String calendarId, Integer limit, DateTime endsAfter,
             String order, Boolean expandRecure)
             throws IOException, GeneralSecurityException {
-        Events events = GcUtil.getService()
+        Events events = GoogleUtil.getService()
                 .events()
                 .list(calendarId)
                 .setMaxResults(limit)
@@ -111,7 +111,7 @@ public class GcUtil {
     public static List<Event> getEvents() throws IOException, GeneralSecurityException {
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
-        return getEvents(GcUtil.calendarId, 10, now, "startTime", true);
+        return getEvents(GoogleUtil.calendarId, 10, now, "startTime", true);
     }
 
     /**
