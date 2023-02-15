@@ -1,9 +1,8 @@
 package seedu.address.model.person.information;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.HashSet;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.person.information.RiskLevel.Risk.LOW;
 
 /**
  * Represents an Elderly's risk level in the database.
@@ -16,15 +15,13 @@ public class RiskLevel {
 
     public final Risk riskStatus;
 
+    /**
+     * The enum for Risk levels: low, medium or high.
+     */
     public enum Risk {
         LOW,
         MEDIUM,
         HIGH;
-    }
-
-    public RiskLevel(Risk risk) {
-        requireNonNull(risk);
-        this.riskStatus = risk;
     }
 
     /**

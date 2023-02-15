@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Elderly's NRIC in the database.
- * Guarantees: immutable; is valid as declared in {@link #isValidNRIC(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
-public class NRIC {
+public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should follow the valid format, and should be 9 characters long";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{9}$";
@@ -18,16 +18,16 @@ public class NRIC {
      *
      * @param nric A valid NRIC.
      */
-    public NRIC(String nric) {
+    public Nric(String nric) {
         requireNonNull(nric);
-        checkArgument(isValidNRIC(nric), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
         value = nric;
     }
 
     /**
      * Returns true if a given string is a valid NRIC.
      */
-    public static boolean isValidNRIC(String test) {
+    public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -39,8 +39,8 @@ public class NRIC {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NRIC // instanceof handles nulls
-                && value.equals(((NRIC) other).value)); // state check
+                || (other instanceof Nric // instanceof handles nulls
+                && value.equals(((Nric) other).value)); // state check
     }
 
     @Override

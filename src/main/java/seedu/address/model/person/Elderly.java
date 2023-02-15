@@ -6,9 +6,9 @@ import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.RiskLevel;
-import seedu.address.model.person.information.NRIC;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Elderly extends Person {
 
-    private final NRIC nric;
+    private final Nric nric;
     private final Age age;
 
     private final RiskLevel riskLevel;
@@ -30,14 +30,14 @@ public class Elderly extends Person {
      * Every field must be present and not null.
      */
     public Elderly(Name name, Phone phone, Email email,
-                   Address address, NRIC nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
+                   Address address, Nric nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.nric = nric;
         this.age = age;
         this.riskLevel = riskLevel;
     }
 
-    public NRIC getNric() {
+    public Nric getNric() {
         return nric;
     }
 

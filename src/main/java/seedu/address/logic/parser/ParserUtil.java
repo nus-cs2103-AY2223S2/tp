@@ -10,12 +10,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.RiskLevel;
-import seedu.address.model.person.information.NRIC;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,13 +104,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code nric} is invalid.
      */
-    public static NRIC parseNRIC(String nric) throws ParseException {
+    public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
         String trimmednric = nric.trim();
-        if (!NRIC.isValidNRIC(nric)) {
-            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new NRIC(trimmednric);
+        return new Nric(trimmednric);
     }
 
     /**

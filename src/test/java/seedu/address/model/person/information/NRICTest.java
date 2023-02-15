@@ -9,29 +9,29 @@ import org.junit.jupiter.api.Test;
 class NRICTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new NRIC(null));
+        assertThrows(NullPointerException.class, () -> new Nric(null));
     }
 
     @Test
     public void constructor_invalidAge_throwsIllegalArgumentException() {
         String invalidNRIC = "";
-        assertThrows(IllegalArgumentException.class, () -> new NRIC(invalidNRIC));
+        assertThrows(IllegalArgumentException.class, () -> new Nric(invalidNRIC));
     }
 
     @Test
     public void isValidNRIC() {
         // null address
-        assertThrows(NullPointerException.class, () -> NRIC.isValidNRIC(null));
+        assertThrows(NullPointerException.class, () -> Nric.isValidNric(null));
 
         // invalid NRIC
-        assertFalse(NRIC.isValidNRIC("")); // empty string
-        assertFalse(NRIC.isValidNRIC(" ")); // spaces only
-        assertFalse(NRIC.isValidNRIC("hello")); // too little characters
-        assertFalse(NRIC.isValidNRIC("hellokitty123")); // too much characters
+        assertFalse(Nric.isValidNric("")); // empty string
+        assertFalse(Nric.isValidNric(" ")); // spaces only
+        assertFalse(Nric.isValidNric("hello")); // too little characters
+        assertFalse(Nric.isValidNric("hellokitty123")); // too much characters
 
         // valid NRIC
-        assertTrue(NRIC.isValidNRIC("T1234567C"));
-        assertTrue(NRIC.isValidNRIC("S2345678B")); // 9 characters
+        assertTrue(Nric.isValidNric("T1234567C"));
+        assertTrue(Nric.isValidNric("S2345678B")); // 9 characters
     }
 
 }
