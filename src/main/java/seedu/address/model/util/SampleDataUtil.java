@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.information.Name;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
