@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-class NRICTest {
+class NricTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Nric(null));
@@ -14,12 +14,12 @@ class NRICTest {
 
     @Test
     public void constructor_invalidAge_throwsIllegalArgumentException() {
-        String invalidNRIC = "";
-        assertThrows(IllegalArgumentException.class, () -> new Nric(invalidNRIC));
+        String invalidNric = "";
+        assertThrows(IllegalArgumentException.class, () -> new Nric(invalidNric));
     }
 
     @Test
-    public void isValidNRIC() {
+    public void isValidNric() {
         // null address
         assertThrows(NullPointerException.class, () -> Nric.isValidNric(null));
 
