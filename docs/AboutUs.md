@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shirshajit Sen Gupta
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/people/shirsho.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](https://shirsho-12.github.io)]
+[[github](https://github.com/shirsho-12)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: 
+* Responsibilities:
 
-### Jane Doe
+### Shi Wen Hong
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jinbesan)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
 
-### Johnny Doe
+### Randall Ng Hong Rong
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/randallnhr)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Nicholas Lee Jun Yi
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/nicleejy)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: 
+* Responsibilities: 
 
-### James Doe
+### Isaac Chai Han Jie
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/gitsac)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
