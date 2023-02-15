@@ -21,5 +21,3 @@ src/test/data/sandbox/
 .DS_Store
 docs/_site/
 /*.env
-/src/main/resources/credentials.json
-/tokens/
