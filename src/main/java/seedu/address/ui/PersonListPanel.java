@@ -23,19 +23,28 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PersonListViewCell(panel));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    static class PersonListViewCell extends ListCell<Person> {
+        private final PersonDetailPanel personDetailPanel;
+
+        public PersonListViewCell(PersonDetailPanel panel) {
+            personDetailPanel = panel;
+        }
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
+            super.setOnMouseClicked(event -> {
+                personDetailPanel.setPerson(person, getIndex() + 1);
+            });
 
             if (empty || person == null) {
                 setGraphic(null);
@@ -44,6 +53,8 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
+
+
     }
 
 }
