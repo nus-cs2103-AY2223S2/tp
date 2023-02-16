@@ -74,19 +74,22 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a Rizz-ipe: `add`
 
-Adds a person to the address book.
+Come up with a new innovative recipe and want to store it for future reference,
+and want to classify it by ingredients? Simply run the `add` command!
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/RIZZIPE_NAME [i/INGREDIENT1, i/INGREDIENT2]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+>  A Rizz-ipe can have any number of Ingredients!
+>  :bulb: Tip: It is okay to not add a list of ingredients when you first upload
+>  your rizz-ipe (you can add them later!).
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add /nHoney Chicken Rice`
+* `add n/Lemon-Infused Salmon Fillet, i/Lemon, i/Salmon`
+
+
 
 ### Listing all ***RIZZ***ipes : `list`
 
