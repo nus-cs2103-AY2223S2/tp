@@ -18,7 +18,6 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 - Ranking the roles
 - Viewing details for a role: 'view'
 - Save data
-
 - ....
   (role means internship role)
 
@@ -50,7 +49,6 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-|----------|---------------------------------------------|
 | Action   | Format, Examples                            |
 |----------|---------------------------------------------|
 | add      |add roleID (e.g. add 221574)                 |
