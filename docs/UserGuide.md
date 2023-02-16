@@ -118,20 +118,21 @@ Ingredients:
 . ......
 ```
 
-### Deleting a person : `delete`
+### Deleting a **_RIZZ_**ipes: `Delete`
+No longer like a certain recipe? Simply delete it from the database by its index!
 
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
+Format: `delete [index]`
+- Deletes the dish at the specified `INDEX`.
 - The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example of usage:
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+`delete 1`
+
+Expected output:
+```
+Deleted dish: Egg Fried Rice.
+```
 
 ### Clearing all entries : `clear`
 
