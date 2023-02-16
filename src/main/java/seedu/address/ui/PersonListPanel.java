@@ -42,9 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-            super.setOnMouseClicked(event -> {
-                personDetailPanel.setPerson(person, getIndex() + 1);
-            });
+            super.setOnMouseClicked(event -> personDetailPanel.setPerson(person, getIndex() + 1));
 
             if (empty || person == null) {
                 setGraphic(null);
@@ -53,8 +51,6 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
-
-
     }
 
 }

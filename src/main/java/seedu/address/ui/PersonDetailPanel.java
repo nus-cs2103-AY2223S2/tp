@@ -37,7 +37,11 @@ public class PersonDetailPanel extends UiPart<Region> {
 
     public void setPerson(Person person, int displayedIndex) {
         clearPerson();
-        id.setText(displayedIndex + ". ");
+        if (person == null) {
+            return;
+        }
+
+        id.setText(displayedIndex + ".");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
