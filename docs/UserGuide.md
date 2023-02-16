@@ -21,6 +21,8 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 - ....
   (role means internship role)
+
+
 ### Adding a role:
 Adds a role to the current list of roles
 FORMAT: add roleID
@@ -28,8 +30,6 @@ FORMAT: add roleID
 ### Deleting a role:
 Deletes the role from the current list of roles.
 FORMAT: delete roleID
-
-
 
 ### Ranking the roles
 Rank the roles based on the priority chosen by the user.
@@ -43,13 +43,13 @@ FORMAT: list
 Saves data to a text file whenever there is a command that changes the role and gets the data when the program is run again.
 FORMAT: bye
 
-
 ## FAQ
 Q: How do I transfer my data to another Computer?
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
 
 
 ## Command Summary
+
 |----------|---------------------------------------------|
 | Action   | Format, Examples                            |
 |----------|---------------------------------------------|
