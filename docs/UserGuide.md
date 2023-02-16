@@ -88,11 +88,40 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all ***RIZZ***ipes : `list`
 
-Shows a list of all persons in the address book.
+Lists all ***RIZZ***ipes in the current cook book.
 
-Format: `list`
+Ever forget how many recipes you have in your storage? Want to view 'em all? Or
+simply want to pick a recipe at random? Just run the `list` command.
+
+**Example of usage**:
+
+```shell
+list
+```
+
+**Expected output**:
+
+```shell
+| 1. Aglio e Olio                      |
+|    Feeds 3-4          Tags:  Italian |
+|    ~ 15 mins                         |
+|    Ingredients:                      |
+|    .....                             |
+|--------------------------------------|
+| 2. Egg Fried Rice                    |
+|    Feeds 3-4          Tags:  Asian   |
+|    ~ 10 mins                         |
+|    Ingredients:                      |
+|    .....                             |
+|--------------------------------------|
+|             ....                     |
+```
+
+Lists all recipes that are in the storage, in the chronological order they were
+added. Depending on the size of the window, may add multiple columns to display
+more ***RIZZ***ipes.
 
 ### Editing a person : `edit`
 
