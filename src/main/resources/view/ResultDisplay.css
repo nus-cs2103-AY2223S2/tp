@@ -1,5 +1,6 @@
 #resultDisplay .content {
     -fx-background-color: transparent;
+    -fx-cursor: none;
 }
 
 #resultDisplay {
