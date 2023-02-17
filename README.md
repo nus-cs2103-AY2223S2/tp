@@ -1,5 +1,5 @@
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T15-2/tp/branch/master/graph/badge.svg?token=4KRK8YBI9X)](https://codecov.io/gh/AY2223S2-CS2103T-T15-2/tp)
-
+![Java CI](https://github.com/AY2223S2-CS2103T-T15-2/tp/actions/workflows/gradle.yml/badge.svg)
 ![Ui](docs/images/Ui.png)
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * This is **a sample project for Software Engineering (SE) students**.<br>
