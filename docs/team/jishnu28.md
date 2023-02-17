@@ -5,7 +5,7 @@ title: Jishnu's Project Portfolio Page
 
 ### Project: Wingman
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
 
 Given below are my contributions to the project.
 
