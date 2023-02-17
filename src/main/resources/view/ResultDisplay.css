@@ -1,0 +1,27 @@
+#resultDisplay .content {
+    -fx-background-color: transparent;
+}
+
+#resultDisplay {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4F46E5;
+    -fx-font-family: "Inter Light";
+    -fx-font-style: italic;
+    -fx-font-size: 12pt;
+}
+
+#resultDisplay .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+#resultDisplay .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+#resultDisplay .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.pane {
+    -fx-background-color: transparent;
+}
