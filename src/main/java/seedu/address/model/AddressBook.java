@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private Person user;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        user = SampleDataUtil.getSampleUser();
     }
 
     public AddressBook() {}
@@ -48,12 +51,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sets the user of the Address Book.
+     */
+    public void setUser(Person user) {
+        requireNonNull(user);
+
+        this.user = user;
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setUser(newData.getUser());
     }
 
     //// person-level operations
@@ -107,14 +120,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public Person getUser() {
+        return user;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && user.equals(((AddressBook) other).user));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return persons.hashCode() + user.hashCode();
     }
 }

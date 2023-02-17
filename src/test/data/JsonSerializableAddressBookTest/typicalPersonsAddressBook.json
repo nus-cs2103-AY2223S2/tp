@@ -42,5 +42,12 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
-  } ]
+  } ],
+  "user" : {
+    "name" : "Ida Mueller",
+    "phone" : "8482131",
+    "email" : "hans@example.com",
+    "address" : "chicago ave",
+    "tagged" : [ ]
+  }
 }
