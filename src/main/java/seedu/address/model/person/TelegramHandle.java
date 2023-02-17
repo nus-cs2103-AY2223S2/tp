@@ -17,7 +17,7 @@ public class TelegramHandle {
      * otherwise " " (a blank string) becomes a valid input.
      * The first character should be "@" followed by alphanumeric characters.
      */
-    public static final String VALIDATION_REGEX = "^@[\\p{Alnum}]";
+    public static final String VALIDATION_REGEX = "^@[\\p{Alnum}]+";
 
     public final String telegramHandle;
 
