@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/joyngjr.png" width="200px">
 
-[[github](http://github.com/joyngjr.png)]
+[[github](http://github.com/joyngjr)]
 [[portfolio](team/joyngjr.md)]
 
 * Role: tbc
