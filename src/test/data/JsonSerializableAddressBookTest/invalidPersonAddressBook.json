@@ -6,10 +6,12 @@
     "address": "4th street"
   } ],
   "user" : {
-    "name" : "Ida Mueller",
-    "phone" : "8482131",
-    "email" : "hans@example.com",
-    "address" : "chicago ave",
-    "tagged" : [ ]
+    "name" : "Linus Richards",
+    "phone" : "90102030",
+    "email" : "linusrichards@gmail.com",
+    "address" : "National University of Singapore",
+    "telegram": "@linusrichards",
+    "tagged" : [ "User" ],
+    "moduleTags" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
   }
 }
