@@ -1,12 +1,95 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+### PowerConnect Developer Guide
+
+PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
+
+##### Table of Contents
+1. [Quick Start](#quickstart)
+2. [Features](#features)
+    1. [Student Features](#student)
+        1. [Add student: `add`](#addstudent)
+        2. [Add students' grade: `grade`](#gradestudent)
+        3. [Add comments to students: `comment`](#commentstudent)
+        4. [Listing all students in a particular class: `list`](#liststudent)
+        5. [Editing a student's particulars: `edit`](#editstudent)
+        6. [Searching students: `find`](#findstudent)
+        7. [Deleting a student: `delete`](#deletestudent)
+    2. [Parent Features](#parent)
+        1. [Add parent/guardian: `add`](#addparent)
+        2. [Listing all parents: `list`](#listparent)
+        3. [Delete a parent/ parent information: `delete`](#deleteparent)
+3. [Viewing help: `help`](#help)
+4. [Exiting program: `exit`](#exit)
+5. [FAQ](#faq)
+6. [Command Summary](#summary)
+
+--------------------------------------------------------------------------------------------------------------------
+## **Target User Profile**
+
+* This product mainly targets secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
+
+## **Value Proposition**
+
+* Have many students in different classes / co-curricular activities (CCAs) that have different phone number that needs to be kept track of
+* Need to keep track of students’ parents / next-of-kins’ contact details for consent forms
+* Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students)
+* Keep track of homework given and deadline
+* Streamline administration processes because they have a lot of stuff to keep track of (eg. Attendance, assignments, grades, contact details)
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **User Stories**
+
+| As a...  | I want to... | So that I can... | Notes | Priority
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| Teacher  | Have an application that can be used CLI instead of GUI  | Make use of my fast typing speed to sort out all the admin work | Too Vague | NA|
+| Busy Teacher | Be able to easily manage my schedule | Spend more time on other things | Out of scope | NA
+Busy Teacher | Know which tasks to prioritise | Ensure that all of my responsibilities are taken care of in a timely and efficient manner.|| NA |
+|Teacher| Record student’s attendance |Know that my student is present in class (in school). | | High|
+|Teacher|Record students’ assessment and test grades.|Manage my students’ performance| |High|
+|Teacher| Have an efficient way to view and track my students’ attendance.|Easier time managing my students’ attendance over the year| | High|
+|Caring Teacher| Have a way to provide comments for each student|Keep track of students who need meaningful feedback and support.|(comments section on each student)|Medium|
+|Teacher| Track the date and time of the classes that I have |Be on time and teach the correct module for the particular lesson slot.| |Out of scope| NA |
+|Teacher| Amend date and time of certain lesson timings | Change easily when lessons shift | | NA|
+|Teacher / teacher assistant| Have an efficient way to retrieve my students’ contact details. | Contact them easily| Assumption: student details are known to teachers / TAs| Medium |
+|Teacher| Keep track of students who have submitted assignment|Know which student missed the deadline for their work| |Medium |
+|Teacher| Use an application with a reminder system |Track the things I have to do | | NA|
+|Teacher| Efficiently and effectively assign assessments and assignments |Better assess my students’ learning and progress| | NA|
+|Teacher | Resources to aid me in managing students’ behaviours and actions| Promote a safe and productive learning space for all | |NA|
+|Teacher| Document students’ progress |Easily record the students’ performance| | High|
+|Teacher| Add individual feedback to students |Provide feedback to parents/guardians effectively| Duplicate point to Point 7| NA|
+|Teacher| Access my students contacts conveniently|Build a closer relationship with my students and their next of kin|Too vague| NA|
+|Busy Teacher| Keep track of my teaching feedback| Keep improving my teaching practices | Hard to get school admin team on board|NA|
+|Efficient Teacher| Integrate technology into my teaching| Enrich my student learning| Vague| NA|
+|Responsible Teacher| Access student records, such as grades and attendance| Make informed decisions about student progress| Summary of all students grades for a particular test / class| Low |
+|Busy teacher| Have a todo list| Keep track of what to do | | Low/NA|
+|Teacher assistant| Retrieve my students contact | Look them up easily| Duplicate Point to Point 10| NA|
+|Motivational teacher| Sort my students by overall grades| Foster a positive and supportive learning environment| |Medium|
+|Teacher| Organise my students by class | Identify which class they belong to| Determine whether to create separate classes: “class” class and “student” class or merge| High|
+|Teacher| Have the ability to recognise my students from different classes| Know what my students look like| Long setup process for user as they need to manually input images for individual student| Keeping separate file / folder for images| Medium|
+|Teacher| Track the date and time of my classes| Be on time for my classes| | NA|
+|Teacher| Have the option to leave some details empty| Still key in my students’ information when there’s missing information| | High|
+|Forgetful teacher| Record attendance| Keep track of my students| Duplicate to Point 5| NA|
+|Teacher| Identify weaker students| Give them more attention in class|Duplicate to Point 20|NA
+|Non tech-savvy teacher| Learn about new commands | Use the application effectively and save unnecessary time and effort in recording students’ particulars and searching for it.| Provide User Guide that is easy to understand |High |
+|Teacher| Use an application that is easy to navigate about and has a nice interface.| Save unnecessary time and effort in recording students’ particulars and searching for it.|Issue under designs|Low|
+|Teacher| Be able to manage my consultation timings| Organise my schedule| | NA|
+|Teacher| Set reminders for my consultation timings| Ensure I am not late for consultations | |NA|
+|Teacher| Have an application that marks my students’ assignments automatically| Use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning| Difficult to implement Autograder| NA|
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Use Cases**
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Non-functional requirements**
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -224,13 +307,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -338,15 +421,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -355,16 +438,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -372,6 +455,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
