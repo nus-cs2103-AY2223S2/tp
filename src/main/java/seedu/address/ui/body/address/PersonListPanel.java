@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -27,23 +28,24 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell(panel));
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setFocusTraversable(false);
+        personListView.setOnMouseClicked(event -> {
+            MultipleSelectionModel<Person> selectionModel = personListView.getSelectionModel();
+            Person selectedPerson = selectionModel.getSelectedItem();
+            int selectedIndex = selectionModel.getSelectedIndex();
+            logger.warning(selectedIndex + " : " + selectedPerson);
+            panel.setPerson(selectedPerson, selectedIndex + 1);
+        });
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListViewCell extends ListCell<Person> {
-        private final PersonDetailPanel panel;
-
-        public PersonListViewCell(PersonDetailPanel panel) {
-            this.panel = panel;
-        }
-
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-            super.setOnMouseClicked(event -> panel.setPerson(person, getIndex() + 1));
 
             if (empty || person == null) {
                 setGraphic(null);
