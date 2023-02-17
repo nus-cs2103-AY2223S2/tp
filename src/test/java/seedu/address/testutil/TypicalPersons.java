@@ -67,10 +67,19 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.setUser(getTypicalUser());
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Gets a typical user as a Person object.
+     * @return A typical user.
+     */
+    public static Person getTypicalUser() {
+        return IDA;
     }
 }

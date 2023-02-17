@@ -14,4 +14,10 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns a view of the user object.
+     * This will always be non-null.
+     */
+    Person getUser();
+
 }
