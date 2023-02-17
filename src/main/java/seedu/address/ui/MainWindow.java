@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private PersonDetailPanel personDetailPanel;
+    private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane personDetailPanelPlaceholder;
+    private StackPane detailPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,10 +114,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personDetailPanel = new PersonDetailPanel();
-        personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
+        detailPanel = new DetailPanel();
+        detailPanelPlaceholder.getChildren().add(detailPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), personDetailPanel);
+        personListPanel = new PersonListPanel(
+                logic.getFilteredPersonList(),
+                detailPanel.getPersonDetailPanel()
+        );
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -198,6 +201,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            /*
+             * Currently, it is impractical to determine the nature of the command
+             * and update PersonDetailPane accordingly, so it is reset instead to
+             * reduce the chance of bugs.
+             */
+            detailPanel.getPersonDetailPanel().clearPerson();
         }
     }
 }

@@ -3,15 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<VBox id="cardPane" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <padding>
-        <Insets top="10" bottom="10" left="10" right="10" />
-    </padding>
+<VBox spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="id" styleClass="label-bright" />
-    <Label fx:id="name" text="\$first" styleClass="label-header" />
+    <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" />
     <FlowPane fx:id="tags" />
-    <Label fx:id="phone" styleClass="label-bright" text="\$phone" />
-    <Label fx:id="address" styleClass="label-bright" text="\$address" />
-    <Label fx:id="email" styleClass="label-bright" text="\$email" />
+    <Label fx:id="phone" styleClass="label-bright" text="\$phone" wrapText="true" />
+    <Label fx:id="address" styleClass="label-bright" text="\$address" wrapText="true" />
+    <Label fx:id="email" styleClass="label-bright" text="\$email" wrapText="true" />
 </VBox>

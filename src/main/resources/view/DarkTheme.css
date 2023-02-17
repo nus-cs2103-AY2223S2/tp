@@ -307,6 +307,37 @@
     -fx-padding: 8 1 8 1;
 }
 
+.tab-pane .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 5 0 0 0;
+}
+
+.tab-pane .tab-content-area {
+    -fx-padding: 10 10 10 10;
+    -fx-background-color: #1d1d1d;
+    -fx-background-radius: 10;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #c0c0c0;
+}
+
+.tab .tab-label {
+    -fx-text-fill: white;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: black;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
