@@ -2,7 +2,10 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
@@ -18,6 +21,16 @@ public class ResultDisplay extends UiPart<Region> {
 
     public ResultDisplay() {
         super(FXML);
+
+        // Resolves blurriness of content displayed in text area
+        Platform.runLater(() -> {
+            resultDisplay.setCache(false);
+            ScrollPane sp = (ScrollPane) resultDisplay.getChildrenUnmodifiable().get(0);
+            sp.setCache(false);
+            for (Node n : sp.getChildrenUnmodifiable()) {
+                n.setCache(false);
+            }
+        });
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
