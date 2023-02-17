@@ -207,8 +207,8 @@ Hence, Ben Tan will be the first name on top as he has the most number of module
 
 ## FAQ
 
-**Q**: Can I add multiple module tags to a user
-**A**: Yes, you can add multiple tags to a single user by using the "Module Tagging" feature multiple times.
+**Q**: Can I add multiple module groupTags to a user
+**A**: Yes, you can add multiple groupTags to a single user by using the "Module Tagging" feature multiple times.
 
 **Q**: Can I edit my own profile?
 **A**: It will not be in v1.02 but it may be possible for future iterations.
