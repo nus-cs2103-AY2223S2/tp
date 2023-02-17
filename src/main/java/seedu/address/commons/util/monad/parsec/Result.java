@@ -1,4 +1,4 @@
-package seedu.address.logic.parsec;
+package seedu.address.commons.util.monad.parsec;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
