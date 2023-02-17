@@ -1,16 +1,34 @@
----
-layout: page
-title: User Guide
----
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# PowerConnect User Guide
 
-* Table of Contents
-{:toc}
 
+PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
+
+##### Table of Contents
+1. [Quick Start](#quickstart)
+2. [Features](#features)
+    1. [Student Features](#student)
+        1. [Add student: `add`](#addstudent)
+        2. [Add students' grade: `grade`](#gradestudent)
+        3. [Add comments to students: `comment`](#commentstudent)
+        4. [Listing all students in a particular class: `list`](#liststudent)
+        5. [Editing a student's particulars: `edit`](#editstudent)
+        6. [Searching students: `find`](#findstudent)
+        7. [Deleting a student: `delete`](#deletestudent)
+    2. [Parent Features](#parent)
+        1. [Add parent/guardian: `add`](#addparent)
+        2. [Listing all parents: `list`](#listparent)
+        3. [Delete a parent/ parent information: `delete`](#deleteparent)
+3. [Viewing help: `help`](#help)
+4. [Exiting program: `exit`](#exit)
+5. [FAQ](#faq)
+6. [Command Summary](#summary)
+
+
+<a name="quickstart"/>
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -25,18 +43,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
-
+   <a name="features"/>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -45,25 +63,240 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Command lines supplied by the user are not case sensitive as the application will auto translate it into `UPPER_CASE`. <br>
+  E.g. in the list feature, user can call it via either methods:
+    1. student 5A list
+    2. STUDENT 5A LIST
+    3. Student 5A LiSt
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Items in `<>` brackets are the values that the user should field
+  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`. <br>
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+In the case of COMPULSORY parameters, there’s no need to type `XX/YY` where `XX` is the particular category and `YY` is the actual information for the `XX` category. <br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+Compulsory parameters are not bounded by square brackets
+
+
+* All items in the square brackets are OPTIONAL.
+  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
+
+* In the user guide, all optional parameters are denoted by ..opt/.. meaning that any zero or more of the optional particulars specified above can be used
+  Eg. ..add..[..opt/..] means user can do …add..c/<CCA>..img/<IMG>..
+
+* General Particulars:
+    - Name <**NAME**>
+        - String value of student's name
+    - Class <**CLASS**>
+        - String value of student's class
+    - Index Number <**INDEX_NUMBER**>
+        - Numbers (integer)
+    - Sex <**SEX**>
+        - M / m means male while F / f means female
+* Optional:
+    - Image [**IMG**]
+        - String value of absolute path to image
+    - Age [**AGE**]
+        - Numbers (integer)
+    - Email [**EM**]
+        - String value of email address
+    - Phone number [**PH**]
+        - String value of phone address
+* Student Particulars:
+    - Academics
+        - Test <**TEST_NAME**>
+            - String value of test name
+        - Attendance <**ATTENDANCE**>
+            - Mark as present/ not present
+        - Homework <**HOMEWORK**>
+            - String value of homework name
+        - Grade <**GRADE**>
+            - String value of grade results
+    - Parents/ Next-of-kin <**NOK**>
+      -String value of parent's name
+* Optional:
+    - CCA [**CCA**]
+    - Comments [**com**]
+* Parent/ Guardians Particulars:
+    - Relationship <**nok**>
+
 
 </div>
+<a name="student"/>
+
+## General Command for student related features
+
+* For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
+  <a name="addstudent"/>
+
+### Adding a person: `add`
+
+Adds a student to the database
+
+Format: `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `student 1A add TanAhCow 03 m TanAhNiu` <br>
+  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
+* `student 1B add Mary Goh 23 f Goh Siew Mai age/15 img/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg em/marygoh@gmail.com ph/65656565 cca/Chess Club`
+
+* Note:
+  User is able to leave the following categories unfilled by simply leaving a space <br>
+  1. Age <br>
+  2. Absolute path to image <br>
+  3. Email Address <br>
+  4. Phone Number <br>
+  5. CCA <br>
+
+<a name="gradestudent"/>
+
+### Adding a grade for student : `grade`
+
+Adds a test grade for the student corresponding to the INDEX_NUMBER in the CLASS
+
+Format: `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
+
+Examples:
+* `student 3A grade 25 test/Mid-Terms gde/A`
+
+<a name = 'commentstudent'/>
+
+### Adding comments for student : `comment`
+
+Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+
+Format: `comment <INDEX_NUMBER> note/<COMMENT>`
+
+Examples:
+
+* `student 3A comment 25 note/Quiet person, needs to interact more with classmates`
+
+*Note: <br>
+If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
+<a name = "liststudent"/>
+
+### Listing all students in the selected class: `list`
+
+Shows a list of all students in the selected class in the database
+
+Format: `list`
+
+**Expected Outcome:**
+* `<student Name> <id> <image> <nok name> <nok email> <nok number>`
+* `ChanAhKow 21 ChanAhKow.png ChanMaiWoon chanmaiwoon@gmail.com 91234567`
+  <a name = "editstudent" />
+
+### Edit Student:  `edit`
+
+Edits personal details of students
+
+Format: `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]   `
+
+Examples:
+* `student 3B edit 23 cca/badminton`
+* `student 3B edit 23 cca/soccer att/2023-01-01 y`
+
+**Expected Outcome:**
+* Edited Student: Jennifer Lim cca: badminton
+* Edited Student: Justina Lee attendance: cca:soccer 2023-01-01 y
+
+<a name = "findstudent"/>
+
+### Locating persons by name:  `find`
+
+Finds student by student id
+
+Format: `find <INDEX_NUMBER>  `
+
+Examples:
+* `student 3B find 26`
+* `student 3B find 27`
+
+**Expected Outcome:**
+* Student found: Russel Ong class:3B cca: swimming grade: [sci:A, maths:B] id:26 age:14 email:ro@outlook.com ph:85349633 attendance: 2023-01-01 [y] hw: ip [x] notes:extroverted nok: David Ong
+* Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan
+
+<a name = "deletestudent"/>
+
+### Deleting student particulars: `delete`
+
+Deleting student/ student information from the database
+
+Format: `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
+
+Examples:
+* `student 1A delete TanAhCow 03 M a/14 p/ c/ nok/TanAhNiu`
+  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
+* `student 1B delete Mary Goh 23 F a/15 p/ c/Chess Club nok/Goh Siew Mai`
+
+* Throws:
+    * WrongParticularException
+        - The description field does not exist
+        - Description is invalid (eg. age is not a number..)
+* User should follow the same format
+* If no descriptions are given, the whole student will be removed from the database
+
+<a name = "parent" />
+
+## General Command for parent related features
+
+* For all following features that are related to `parent`, start first by typing `parent <CLASS>`  before adding the respective command for the feature.
+
+* Note that it is possible to have multiple students with the same parent so specifying the class is necessary
+
+<a name="addparent"/>
+
+### Adding a parent: `add`
+
+Adds a parent to the database
+
+Format: `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `
+
+Examples:
+* `parent 1A add 03 TanAhCow TanBoonSeng Father`
+* `parent 1B add 23 Mary Goh GohAhBoon Father a/41`
+
+<a name = "listparent" />
+
+### Listing all parents : `list`
+
+Shows a list of all parent in the database
+
+Format: `list`
+
+Examples:
+* `parent 1A list` <br>
+  Sample output: <parent name> <parent phone number> <parent email>
+* `parent 401 list`
+
+<a name = "deleteparent" />
+
+### Deleting parent particulars: `delete`
+
+Deleting parent/ specified parent information from the database
+
+Format: `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`
+
+Examples:
+* `parent 1A 03 delete TanAhCow Mother` <br>
+  Deletes TanAhCow’s relationship of Mother with <Index number of student>
+* `parent 1B 23 delete MaryGoh` <br>
+  Deletes the whole of MaryGoh particulars
+* Throws:
+    * WrongParticularException
+        - The description field does not exist
+        - Description is invalid (eg. age is not a number..)
+* User should follow the same format
+* `Warning:` If no descriptions are given, the whole parent will be removed from the database
+
+<a name = "help"/>
 
 ### Viewing help : `help`
 
@@ -73,81 +306,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+<a name = "exit"/>
 
 ### Exiting the program : `exit`
 
@@ -167,11 +326,13 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "faq" />
 
 ## FAQ
 
@@ -179,15 +340,24 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "summary" />
 
-## Command summary
+## Command summary Student `student <CLASS>`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add** | `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`
+**Grade** | `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
+**Comment** | `comment <INDEX_NUMBER> note/<COMMENT>`
 **List** | `list`
-**Help** | `help`
+**Edit** | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]`
+**Find** | `find <INDEX_NUMBER> `
+**Delete** | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
+
+## Command summary Parent `parent <CLASS>`
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `
+**List** | `list`
+**Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`   
