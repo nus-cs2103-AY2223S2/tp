@@ -106,7 +106,7 @@
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #4e4e4e;
+    -fx-background-color: #333333;
 }
 
 .list-cell:filled:selected {
@@ -159,6 +159,12 @@
 
 .pane-with-rounded-corner-light {
       -fx-background-color: white;
+      -fx-background-radius: 10;
+      -fx-padding: 10;
+}
+
+.pane-with-rounded-corner-dark {
+      -fx-background-color: #333333;
       -fx-background-radius: 10;
       -fx-padding: 10;
 }
