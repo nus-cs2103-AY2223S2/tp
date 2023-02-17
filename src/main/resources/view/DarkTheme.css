@@ -156,6 +156,12 @@
      -fx-padding: 10;
 }
 
+.pane-with-rounded-corner-light {
+      -fx-background-color: white;
+      -fx-background-radius: 10;
+      -fx-padding: 10;
+}
+
 .pane-with-padding {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-padding: 10;

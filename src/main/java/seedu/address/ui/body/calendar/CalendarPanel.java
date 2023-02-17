@@ -1,6 +1,6 @@
 package seedu.address.ui.body.calendar;
 
-import com.calendarfx.view.DetailedDayView;
+import com.calendarfx.view.DetailedWeekView;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
@@ -22,6 +22,6 @@ public class CalendarPanel extends UiPart<Region> {
     public CalendarPanel() {
         super(FXML);
 
-        calendarPlaceholder.getChildren().add(new DetailedDayView());
+        calendarPlaceholder.getChildren().add(new DetailedWeekView());
     }
 }
