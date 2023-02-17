@@ -89,14 +89,16 @@
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
+    -fx-background-insets: 0 10 10 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0 10 10 0;
 }
 
 .list-cell:filled:even {
@@ -104,7 +106,7 @@
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #4e4e4e;
 }
 
 .list-cell:filled:selected {
@@ -113,7 +115,6 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -146,7 +147,7 @@
      -fx-background-color: transparent;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-radius: 10;
-     -fx-border-top-width: 1px;
+     -fx-border-width: 2;
      -fx-padding: 5;
 }
 

@@ -34,7 +34,6 @@ public class PersonListPanel extends UiPart<Region> {
             MultipleSelectionModel<Person> selectionModel = personListView.getSelectionModel();
             Person selectedPerson = selectionModel.getSelectedItem();
             int selectedIndex = selectionModel.getSelectedIndex();
-            logger.warning(selectedIndex + " : " + selectedPerson);
             panel.setPerson(selectedPerson, selectedIndex + 1);
         });
     }
