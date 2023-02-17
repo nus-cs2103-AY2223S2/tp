@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class EduMate implements ReadOnlyEduMate {
 
     private final UniquePersonList persons;
     private User user;
@@ -32,12 +32,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         user = SampleDataUtil.getSampleUser();
     }
 
-    public AddressBook() {}
+    public EduMate() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an EduMate using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public EduMate(ReadOnlyEduMate toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -62,9 +62,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code EduMate} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyEduMate newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -101,7 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code EduMate}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -129,9 +129,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && user.equals(((AddressBook) other).user));
+                || (other instanceof EduMate // instanceof handles nulls
+                && persons.equals(((EduMate) other).persons)
+                && user.equals(((EduMate) other).user));
     }
 
     @Override

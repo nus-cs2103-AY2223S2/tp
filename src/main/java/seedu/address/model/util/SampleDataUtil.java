@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.EduMate;
+import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -18,7 +18,7 @@ import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code EduMate} with sample data.
  */
 public class SampleDataUtil {
     public static User getSampleUser() {
@@ -542,8 +542,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyEduMate getSampleEduMate() {
+        EduMate sampleAb = new EduMate();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
