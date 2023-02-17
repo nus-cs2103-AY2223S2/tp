@@ -336,6 +336,8 @@
 
 .tab-pane .tab:selected {
     -fx-background-color: #c0c0c0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .tab .tab-label {
@@ -344,6 +346,12 @@
 
 .tab:selected .tab-label {
     -fx-text-fill: black;
+}
+
+.command-box {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-radius: 10;
+    -fx-padding: 5;
 }
 
 #cardPane {
