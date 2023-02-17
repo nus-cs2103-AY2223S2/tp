@@ -19,8 +19,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class AddressBookTest {
 
@@ -49,8 +51,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        Person validUser = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        User validUser = TypicalPersons.getTypicalUser();
         AddressBookStub newData = new AddressBookStub(newPersons, validUser);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
@@ -90,9 +91,9 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private Person user;
+        private User user;
 
-        AddressBookStub(Collection<Person> persons, Person user) {
+        AddressBookStub(Collection<Person> persons, User user) {
             this.persons.setAll(persons);
             this.user = user;
         }
@@ -103,7 +104,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public Person getUser() {
+        public User getUser() {
             return user;
         }
     }
