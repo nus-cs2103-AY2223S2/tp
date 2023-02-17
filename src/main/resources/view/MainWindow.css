@@ -1,0 +1,125 @@
+.root {
+    -fx-background-color: #F3F4F6;
+    -fx-font-family: "Inter";
+}
+
+/* MENU BAR */
+
+.menu-bar {
+    -fx-background-color: #F3F4F6;
+    -fx-selection-bar: transparent;
+}
+
+.menu-bar .label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Inter Light";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: #F3F4F6;
+}
+
+.menu:hover > .label {
+    -fx-text-fill: #4F46E5;
+}
+
+.menu-item .label {
+    -fx-font-family: "Inter Light";
+}
+
+.menu-item:focused .label, .menu-item:hover .label {
+    -fx-text-fill: #4F46E5;
+}
+
+.menu-item:focused, menu-item:hover  {
+    -fx-background-color: transparent;
+}
+
+.context-menu {
+    -fx-border-color: #F3F4F6;
+    -fx-background-color: #F3F4F6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 1, 0.8, 0.0, 2);
+}
+
+
+/* SCROLL BAR */
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: black;
+    -fx-opacity: 20%;
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 5 1 5;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 5 1 5 1;
+}
+
+/* Removing split pane border */
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+
+/* Tab Pane */
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-header-area {
+    -fx-padding: 15 0 15 0px;
+}
+
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: transparent;
+}
+
+.tab:hover .tab-label {
+    -fx-text-fill: black;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #9A988A;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-background-insets: 5;
+    -fx-cursor: hand;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+}
