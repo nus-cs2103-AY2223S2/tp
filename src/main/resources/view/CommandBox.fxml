@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane stylesheets="@CommandBox.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField id="commandTextField" fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="75.0" promptText="Enter command here..." stylesheets="@CommandBox.css" />
+  <TextField id="commandTextField" fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="50.0" promptText="Enter command here..." stylesheets="@CommandBox.css" />
 </StackPane>

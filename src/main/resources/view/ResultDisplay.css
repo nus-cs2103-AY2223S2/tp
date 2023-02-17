@@ -8,7 +8,7 @@
     -fx-text-fill: #4F46E5;
     -fx-font-family: "Inter Light";
     -fx-font-style: italic;
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
 }
 
 #resultDisplay .scroll-pane {
