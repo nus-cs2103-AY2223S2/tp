@@ -12,7 +12,7 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 <img src="images/aibo.png" width="200px">
 
 [[github](https://github.com/BoAi01)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/BoAi01.md)]
 
 * Role: Team Lead
 
@@ -21,7 +21,7 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 <img src="images/celeste.png" width="200px">
 
 [[github](https://github.com/cetigerlily)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/cetigerlily.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
@@ -31,7 +31,7 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 <img src="images/jishnu.png" width="200px">
 
 [[github](https://github.com/jishnu28)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jishnu28.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines & Scheduling and tracking
@@ -41,7 +41,7 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 <img src="images/xiuxuan.png" width="200px">
 
 [[github](https://github.com/wxxedu)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/wxxedu.md)]
 
 * Role: Developer
 * Responsibilities: Testing + Integration
@@ -50,8 +50,8 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 
 <img src="images/yuanyuan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tangyuantyy)]
+[[portfolio](team/tangyuantyy.md)]
 
 * Role: Developer
 * Responsibilities: UI
