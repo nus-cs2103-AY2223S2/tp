@@ -3,7 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="10" styleClass="pane-with-rounded-corner"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="id" styleClass="label-bright" />
     <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" />
     <FlowPane fx:id="tags" />

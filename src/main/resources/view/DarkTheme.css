@@ -143,11 +143,22 @@
 }
 
 .pane-with-rounded-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: transparent;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-radius: 10;
      -fx-border-top-width: 1px;
      -fx-padding: 5;
+}
+
+.pane-with-rounded-corner {
+     -fx-background-color: derive(#1d1d1d, 40%);
+     -fx-background-radius: 10;
+     -fx-padding: 10;
+}
+
+.pane-with-padding {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 10;
 }
 
 .status-bar {
@@ -320,13 +331,7 @@
 }
 
 .tab-pane .tab-header-area {
-    -fx-padding: 5 0 0 0;
-}
-
-.tab-pane .tab-content-area {
-    -fx-padding: 10 10 10 10;
-    -fx-background-color: #1d1d1d;
-    -fx-background-radius: 10;
+    -fx-padding: 10 0 0 0;
 }
 
 .tab {
@@ -334,7 +339,7 @@
     -fx-background-radius: 5;
 }
 
-.tab-pane .tab:selected {
+.tab:selected {
     -fx-background-color: #c0c0c0;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -350,8 +355,7 @@
 
 .command-box {
     -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-background-radius: 10;
-    -fx-padding: 5;
+    -fx-background-radius: 10 10 0 0;
 }
 
 #cardPane {
