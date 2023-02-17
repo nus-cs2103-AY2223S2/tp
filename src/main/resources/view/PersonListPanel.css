@@ -24,3 +24,8 @@
 .list-cell .label {
     -fx-text-fill: black;
 }
+
+.list-cell:empty {
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+}
