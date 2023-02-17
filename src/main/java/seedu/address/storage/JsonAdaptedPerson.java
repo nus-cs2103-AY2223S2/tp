@@ -24,11 +24,11 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    protected final String name;
+    protected final String phone;
+    protected final String email;
+    protected final String address;
+    protected final List<JsonAdaptedGroupTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,7 +36,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedGroupTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getGroupTags().stream()
-                .map(JsonAdaptedTag::new)
+                .map(JsonAdaptedGroupTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -66,7 +66,7 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<GroupTag> personGroupTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedGroupTag tag : tagged) {
             personGroupTags.add(tag.toModelType());
         }
 
