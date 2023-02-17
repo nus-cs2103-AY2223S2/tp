@@ -9,7 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
@@ -33,13 +32,7 @@
           </Menu>
         </MenuBar>
 
-        <HBox VBox.vgrow="ALWAYS">
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-          <StackPane fx:id="detailPanelPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
-        </HBox>
-
+        <StackPane fx:id="bodyPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">

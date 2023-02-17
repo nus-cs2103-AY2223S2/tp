@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.body.address;
 
 import java.util.logging.Logger;
 
@@ -9,12 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of persons.
  */
 public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "body/address/PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
@@ -23,7 +24,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, DetailPanel panel) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell(panel));
@@ -33,19 +34,16 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListViewCell extends ListCell<Person> {
-        private final DetailPanel detailPanel;
+        private final PersonDetailPanel panel;
 
-        public PersonListViewCell(DetailPanel panel) {
-            detailPanel = panel;
+        public PersonListViewCell(PersonDetailPanel panel) {
+            this.panel = panel;
         }
 
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-            super.setOnMouseClicked(event -> {
-                detailPanel.getPersonDetailPanel().setPerson(person, getIndex() + 1);
-                detailPanel.selectTab(DetailPanel.TabType.CONTACT_DETAILS);
-            });
+            super.setOnMouseClicked(event -> panel.setPerson(person, getIndex() + 1));
 
             if (empty || person == null) {
                 setGraphic(null);

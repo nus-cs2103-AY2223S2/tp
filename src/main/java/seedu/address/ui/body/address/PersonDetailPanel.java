@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.body.address;
 
 import java.util.Comparator;
 
@@ -7,12 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays detailed information of a {@code Person}.
  */
 public class PersonDetailPanel extends UiPart<Region> {
-    private static final String FXML = "PersonDetailPanel.fxml";
+    private static final String FXML = "body/address/PersonDetailPanel.fxml";
 
     @FXML
     private Label name;

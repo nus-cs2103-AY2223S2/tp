@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.body.BodyPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,12 +28,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private DetailPanel detailPanel;
+    private BodyPanel bodyPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,10 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane detailPanelPlaceholder;
+    private StackPane bodyPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,11 +111,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        detailPanel = new DetailPanel();
-        detailPanelPlaceholder.getChildren().add(detailPanel.getRoot());
-
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), detailPanel);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        bodyPanel = new BodyPanel(logic);
+        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -170,10 +164,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -204,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
              * and update PersonDetailPane accordingly, so it is reset instead to
              * reduce the chance of bugs.
              */
-            detailPanel.getPersonDetailPanel().clearPerson();
+            bodyPanel.selectTab(BodyPanel.TabType.ADDRESS_BOOK);
         }
     }
 }
