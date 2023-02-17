@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S2/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/nus-cs2103-AY2223S2/tp)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T15-2/tp/branch/master/graph/badge.svg?token=4KRK8YBI9X)](https://codecov.io/gh/AY2223S2-CS2103T-T15-2/tp)
 
 ![Ui](docs/images/Ui.png)
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
