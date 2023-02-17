@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,25 +24,25 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
-public class AddressBookTest {
+public class EduMateTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final EduMate eduMate = new EduMate();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), eduMate.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> eduMate.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyEduMate_replacesData() {
+        EduMate newData = getTypicalEduMate();
+        eduMate.resetData(newData);
+        assertEquals(newData, eduMate);
     }
 
     @Test
@@ -52,48 +52,48 @@ public class AddressBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         User validUser = TypicalPersons.getTypicalUser();
-        AddressBookStub newData = new AddressBookStub(newPersons, validUser);
+        EduMateStub newData = new EduMateStub(newPersons, validUser);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> eduMate.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> eduMate.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInEduMate_returnsFalse() {
+        assertFalse(eduMate.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInEduMate_returnsTrue() {
+        eduMate.addPerson(ALICE);
+        assertTrue(eduMate.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInEduMate_returnsTrue() {
+        eduMate.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(eduMate.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> eduMate.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list or user can violate interface constraints.
+     * A stub ReadOnlyEduMate whose persons list or user can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class EduMateStub implements ReadOnlyEduMate {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private User user;
 
-        AddressBookStub(Collection<Person> persons, User user) {
+        EduMateStub(Collection<Person> persons, User user) {
             this.persons.setAll(persons);
             this.user = user;
         }

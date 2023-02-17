@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduMate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -85,10 +85,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code EduMate} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static EduMate getTypicalEduMate() {
+        EduMate ab = new EduMate();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
