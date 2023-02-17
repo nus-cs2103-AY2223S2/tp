@@ -12,7 +12,7 @@ You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlab
 <img src="images/aibo.png" width="200px">
 
 [[github](https://github.com/BoAi01)]
-[[portfolio](team/BoAi01.md)]
+[[portfolio](team/boai01.md)]
 
 * Role: Team Lead
 
