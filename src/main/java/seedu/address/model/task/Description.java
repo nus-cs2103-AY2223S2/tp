@@ -12,7 +12,6 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Description must contain at least one character";
-    public static final String VALIDATION_REGEX = ".*";
     public final String value;
 
     /**
@@ -30,7 +29,7 @@ public class Description {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidDescription(String test) {
-        return !test.isEmpty();
+        return !test.trim().isEmpty();
     }
 
     @Override
