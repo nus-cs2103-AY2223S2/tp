@@ -5,8 +5,19 @@ title: User Guide
 
 RIZZipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching** features in mind so you can always find the recipe you need! Make use of RIZZipe's many features to achieve your **culinary rizz**.
 
-- Table of Contents
-  {:toc}
+## Table of Contents
+1. [Features](#features)
+   1. [Adding a rizzipe](#adding-a-rizz-ipe--add)
+   2. [Listing rizzipes](#listing-all-rizz-ipes--list)
+   3. [Viewing rizzipes](#viewing-rizz-ipes--view)
+   4. [Deleting a rizzipe](#deleting-a-rizz-ipe--delete)
+   5. [Exiting the program](#exiting-the-program--exit)
+2. [Managing Data](#managing-the-data)
+   1. [Saving the data](#saving-the-data)
+   2. [Editing the data file](#editing-the-data-file)
+   3. [Archiving data files](#archiving-data-files-coming-in-v20)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 ---
 
@@ -178,6 +189,8 @@ Expected output:
 ```text
 We hope you have attained that ~chef RIZZ :) See you later (with rizz)
 ```
+
+## Managing the Data 
 
 ### Saving the data
 
