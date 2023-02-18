@@ -93,7 +93,6 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (telegramHandle == null) {
-            System.out.println(name);
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
