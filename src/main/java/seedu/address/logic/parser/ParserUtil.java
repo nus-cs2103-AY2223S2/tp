@@ -13,7 +13,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +98,72 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String handle} into an {@code TelegramHandle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code handle} is invalid.
+     */
+    public static TelegramHandle parseTelegramHandle(String handle) throws ParseException {
+        requireNonNull(handle);
+        String trimmedTelegramHandle = handle.trim();
+        if (!TelegramHandle.isValidTelegramHandle(trimmedTelegramHandle)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramHandle(trimmedTelegramHandle);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code GroupTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static GroupTag parseTag(String tag) throws ParseException {
+    public static GroupTag parseGroupTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!GroupTag.isValidTagName(trimmedTag)) {
+            System.out.println(tag);
             throw new ParseException(GroupTag.MESSAGE_CONSTRAINTS);
         }
         return new GroupTag(trimmedTag);
     }
 
     /**
+     * Parses a {@code String tag} into a {@code GroupTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static ModuleTag parseModuleTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!ModuleTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleTag(trimmedTag);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<GroupTag>}.
      */
-    public static Set<GroupTag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<GroupTag> parseGroupTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<GroupTag> groupTagSet = new HashSet<>();
         for (String tagName : tags) {
-            groupTagSet.add(parseTag(tagName));
+            groupTagSet.add(parseGroupTag(tagName));
         }
         return groupTagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<ModuleTag>}.
+     */
+    public static Set<ModuleTag> parseModuleTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<ModuleTag> moduleTagSet = new HashSet<>();
+        for (String tagName : tags) {
+            moduleTagSet.add(parseModuleTag(tagName));
+        }
+        return moduleTagSet;
     }
 }

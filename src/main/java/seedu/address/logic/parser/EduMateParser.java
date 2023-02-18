@@ -48,6 +48,8 @@ public class EduMateParser {
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            System.out.println("EDIITTTPARSER");
+            System.out.println(arguments);
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:

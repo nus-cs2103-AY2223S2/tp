@@ -3,7 +3,10 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "telegram": "@hansMuster",
+    "groups" : [ "User" ],
+    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
   } ],
   "user" : {
     "name" : "Linus Richards",
@@ -11,7 +14,7 @@
     "email" : "linusrichards@gmail.com",
     "address" : "National University of Singapore",
     "telegram": "@linusrichards",
-    "tagged" : [ "User" ],
-    "moduleTags" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
+    "groups" : [ "User" ],
+    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
   }
 }

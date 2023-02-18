@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Represents a Person in the address book.
@@ -19,21 +20,26 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final TelegramHandle telegramHandle;
 
     // Data fields
     private final Address address;
     private final Set<GroupTag> groupTags = new HashSet<>();
+    private final Set<ModuleTag> moduleTags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<GroupTag> groupTags) {
+    public Person(Name name, Phone phone, Email email, Address address, TelegramHandle telegramHandle,
+                  Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
         requireAllNonNull(name, phone, email, address, groupTags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.telegramHandle = telegramHandle;
         this.groupTags.addAll(groupTags);
+        this.moduleTags.addAll(moduleTags);
     }
 
     public Name getName() {
@@ -58,6 +64,14 @@ public class Person {
      */
     public Set<GroupTag> getGroupTags() {
         return Collections.unmodifiableSet(groupTags);
+    }
+
+    public TelegramHandle getTelegramHandle() {
+        return telegramHandle;
+    }
+
+    public Set<ModuleTag> getModuleTags() {
+        return Collections.unmodifiableSet(moduleTags);
     }
 
     /**
@@ -92,13 +106,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getGroupTags().equals(getGroupTags());
+                && otherPerson.getGroupTags().equals(getGroupTags())
+                && otherPerson.getTelegramHandle().equals(getTelegramHandle())
+                && otherPerson.getModuleTags().equals(getModuleTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, groupTags);
+        return Objects.hash(name, phone, email, address, telegramHandle, groupTags, moduleTags);
     }
 
     @Override
@@ -110,12 +126,19 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Telegram: ")
+                .append(getTelegramHandle());
 
         Set<GroupTag> groupTags = getGroupTags();
         if (!groupTags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Group Tags: ");
             groupTags.forEach(builder::append);
+        }
+        Set<ModuleTag> moduleTags = getModuleTags();
+        if (!moduleTags.isEmpty()) {
+            builder.append("; Modules Enrolled: ");
+            moduleTags.forEach(builder::append);
         }
         return builder.toString();
     }

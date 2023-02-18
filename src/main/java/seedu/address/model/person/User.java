@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,27 +13,24 @@ import seedu.address.model.tag.ModuleTag;
  */
 public class User extends Person {
 
-    //Data Fields
-    private TelegramHandle telegramHandle;
-    private Set<ModuleTag> moduleTags = new HashSet<>();
+    // Singleton Object
+    private static final User USER = null;
 
     /**
      * Every field must be present and not null.
      */
-    public User(Name name, Phone phone, Email email, Address address,
-                TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
-        super(name, phone, email, address, groupTags);
+    protected User(Name name, Phone phone, Email email, Address address,
+                   TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
+        super(name, phone, email, address, telegramHandle, groupTags, moduleTags);
         requireAllNonNull(telegramHandle, moduleTags);
-        this.telegramHandle = telegramHandle;
-        this.moduleTags.addAll(moduleTags);
     }
 
-    public TelegramHandle getTelegramHandle() {
-        return telegramHandle;
-    }
-
-    public Set<ModuleTag> getModuleTags() {
-        return Collections.unmodifiableSet(moduleTags);
+    public static User getSingletonUser(Name name, Phone phone, Email email, Address address,
+        TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
+        if (USER == null) {
+            return new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
+        }
+        return USER;
     }
 
     @Override
@@ -46,15 +41,13 @@ public class User extends Person {
                 super.getEmail(),
                 super.getAddress(),
                 super.getGroupTags(),
-                telegramHandle, moduleTags);
+                super.getTelegramHandle(),
+                super.getModuleTags());
     }
 
     @Override
     public String toString() {
         String basicInformation = super.toString();
-        String extraInformation = "User{"
-                + "telegramHandle= " + telegramHandle
-                + ", moduleTags= " + moduleTags + '}';
-        return String.format("%s\n%s", basicInformation, extraInformation);
+        return String.format("%s\n%s", "USER: ", basicInformation);
     }
 }

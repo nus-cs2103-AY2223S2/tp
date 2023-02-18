@@ -112,8 +112,7 @@ public class EduMate implements ReadOnlyEduMate {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return persons.asUnmodifiableObservableList().toString() + " persons";
     }
 
     @Override
