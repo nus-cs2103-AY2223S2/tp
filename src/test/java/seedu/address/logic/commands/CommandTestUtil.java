@@ -13,6 +13,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -27,6 +28,13 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final HashMap<String, String> LINUS = new HashMap<>() {{
+            put("name", "Linus Richards");
+            put("phone", "11111111");
+            put("email", "linusrichards@gmail.com");
+            put("address", "National University of Singapore");
+            put("telegramHandle", "@linusrichards");
+        }};
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

@@ -1,0 +1,37 @@
+{
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "National University of Singapore",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105"
+    ]
+  },
+  "persons": [
+    {
+      "name": "Goon Se-Rang",
+      "email": "chenglim@gmail.com",
+      "telegramHandle": "@chenglim",
+      "address": "5 Anchorvale Street",
+      "groups": [],
+      "phone": "87306590",
+      "modules": [
+        "CS3216",
+        "CE3115",
+        "CS3217",
+        "CS1010J",
+        "CS1231"
+      ]
+    }
+  ]
+}

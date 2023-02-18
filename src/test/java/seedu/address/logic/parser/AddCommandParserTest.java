@@ -70,8 +70,6 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withGroupTags().build();
-        System.out.println(expectedPerson);
-        System.out.println(new AddCommand(expectedPerson).toString());
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                         + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY

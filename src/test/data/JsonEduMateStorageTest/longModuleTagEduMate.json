@@ -1,0 +1,36 @@
+{
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "National University of Singapore",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105"
+    ]
+  },
+  "persons": [
+    {
+      "name": "Ford Canning",
+      "email": "fordcanning@gmail.com",
+      "telegramHandle": "@fordcanning",
+      "address": "170 River Valley Road",
+      "groups": [
+        "TA"
+      ],
+      "phone": "98954484",
+      "modules": [
+        "CS2100",
+        "DSAI1101"
+      ]
+    }
+  ]
+}

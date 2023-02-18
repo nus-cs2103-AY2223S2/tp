@@ -61,15 +61,16 @@ public class PersonUtil {
         if (descriptor.getGroupTags().isPresent()) {
             Set<GroupTag> groupTags = descriptor.getGroupTags().get();
             if (groupTags.isEmpty()) {
-                //sb.append(PREFIX_GROUP_TAG);
+                sb.append(PREFIX_GROUP_TAG);
             } else {
                 groupTags.forEach(s -> sb.append(PREFIX_GROUP_TAG).append(s.tagName).append(" "));
             }
         }
+        sb.append(" ");
         if (descriptor.getModuleTags().isPresent()) {
             Set<ModuleTag> moduleTags = descriptor.getModuleTags().get();
             if (moduleTags.isEmpty()) {
-                //sb.append(PREFIX_MODULE_TAG);
+                sb.append(PREFIX_MODULE_TAG);
             } else {
                 moduleTags.forEach(s -> sb.append(PREFIX_MODULE_TAG).append(s.tagName).append(" "));
             }

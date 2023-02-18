@@ -83,9 +83,6 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + TELEGRAM_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withGroupTags().build();
-        System.out.println("HIIIIII");
-        System.out.println(addCommand);
-        System.out.println(expectedPerson);
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
