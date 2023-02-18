@@ -42,9 +42,9 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALBERT);
-        Person editedAlice = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniquePersonList.contains(editedAlbert));
     }
 
     @Test
@@ -85,11 +85,11 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALBERT);
-        Person editedAlice = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(ALBERT, editedAlice);
+        uniquePersonList.setPerson(ALBERT, editedAlbert);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
+        expectedUniquePersonList.add(editedAlbert);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 

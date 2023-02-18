@@ -48,9 +48,9 @@ public class EduMateTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALBERT, editedAlice);
+        List<Person> newPersons = Arrays.asList(ALBERT, editedAlbert);
         User validUser = TypicalUser.getTypicalUser();
         EduMateStub newData = new EduMateStub(newPersons, validUser);
 
@@ -76,9 +76,9 @@ public class EduMateTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInEduMate_returnsTrue() {
         eduMate.addPerson(ALBERT);
-        Person editedAlice = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(eduMate.hasPerson(editedAlice));
+        assertTrue(eduMate.hasPerson(editedAlbert));
     }
 
     @Test
