@@ -4,39 +4,39 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditTaskDescriptor objects.
  */
 public class EditTaskDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditTaskDescriptor descriptor;
 
     public EditTaskDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditTaskDescriptor();
     }
 
-    public EditTaskDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditTaskDescriptorBuilder(EditTaskDescriptor descriptor) {
+        this.descriptor = new EditTaskDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code task}'s details
+     * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details
      */
     public EditTaskDescriptorBuilder(Task task) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
         descriptor.setDescription(task.getDescription());
         descriptor.setTags(task.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -44,7 +44,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
@@ -52,7 +52,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
      * that we are building.
      */
     public EditTaskDescriptorBuilder withTags(String... tags) {
@@ -61,7 +61,7 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditTaskDescriptor build() {
         return descriptor;
     }
 }

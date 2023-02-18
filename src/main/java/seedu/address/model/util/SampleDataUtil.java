@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new Name("Alex Yeoh"), new Description("Alex's description"),
                 getTagSet("friends")),
@@ -35,8 +35,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Task sampleTask : getSamplePersons()) {
-            sampleAb.addPerson(sampleTask);
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }

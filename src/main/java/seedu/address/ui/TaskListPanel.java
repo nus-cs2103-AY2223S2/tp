@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<Task> personListView;
+    private ListView<Task> taskListView;
 
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-        personListView.setItems(taskList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        taskListView.setItems(taskList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
-    class PersonListViewCell extends ListCell<Task> {
+    class TaskListViewCell extends ListCell<Task> {
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
