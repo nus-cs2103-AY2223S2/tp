@@ -36,46 +36,70 @@ RIZZipe is a **command-based recipe database** that was designed with **versatil
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ### Adding a Rizz-ipe: `add`
 
 Come up with a new innovative recipe and want to store it for future reference,
 and want to classify it by ingredients? Simply run the `add` command!
 
-Format: `add n/RIZZIPE_NAME [i/INGREDIENT1, i/INGREDIENT2]...`
+Format: 
+```text
+add /n RIZZIPE_NAME \ 
+    /t time /p people served [/g tag1 /g tag2...] \
+    [/i INGREDIENT1 -q QUANTITY1, /i INGREDIENT2 -q QUANTITY2...] \
+    [/s-1 STEP 1 /s-2 STEP 2...`
+```
 
 > A Rizz-ipe can have any number of Ingredients!
 > :bulb: Tip: It is okay to not add a list of ingredients when you first upload
 > your rizz-ipe (you can add them later!).
+> We do however recommend you add quantity when you add ingredients
+> The same applies for steps.
 
-Examples:
+**Example(s) of usage**:
 
-- `add /nHoney Chicken Rice`
-- `add n/Lemon-Infused Salmon Fillet, i/Lemon, i/Salmon`
+```text
+add /n Honey Chicken Rice /t 15 minutes /p 3-4 /g Thai 
 
-### Listing all **_RIZZ_**ipes : `list`
+OR:
 
-Lists all **_RIZZ_**ipes in the current cook book.
+add /n Lemon-Infused Salmon Fillet \
+    /t 1 hour /p 3-4 /g Western \
+    /i Lemon -q 2, i/Salmon -q 3 150g fillet \
+    /s-1 De-scale and remove...`
+ ```
+
+**Expected Output**:
+
+```text
+Got it. I've added the recipe(s):
+| 1. Honey Chicken Rice   | 2. Lemon-Infused Salmon Fillet       |
+|    Feeds 3-4 Tags: Thai |    Feeds 3-4          Tags:  Western |
+|    ~ 15 mins            |    ~ 15 mins                         |
+|                         |    Ingredients:                      |
+|    No Ingredients are   |    2 Lemon(s)                        |
+|    added yet. Add some! |    3 150g Salmon fillet(s)           |
+|    [Add Here - /a_i]    |    ...                               |
+|                         |    Steps:                            |
+|    No Steps are ...     |    1. De-scale and remove the ...    |
+```
+
+### Listing all ***RIZZ***ipes : `list`
+
+Lists all ***RIZZ***ipes in the current cook book.
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
 simply want to pick a recipe at random? Just run the `list` command.
 
 **Example of usage**:
 
-```shell
+```text
 list
 ```
 
 **Expected output**:
 
-```shell
+```text
 | 1. Aglio e Olio                      |
 |    Feeds 3-4          Tags:  Italian |
 |    ~ 15 mins                         |
@@ -93,24 +117,25 @@ list
 
 Lists all recipes that are in the storage, in the chronological order they were
 added. Depending on the size of the window, may add multiple columns to display
-more **_RIZZ_**ipes.
+more ***RIZZ***ipes.
 
-### Viewing **_RIZZ_**ipes: `view`
+### Viewing ***RIZZ***ipes: `view`
 
-View a selected Rizz-pie based on specified index on current list. Current list may
+View a selected recipe based on specified index on current list. Current list may
 change when using find or filter(coming soon).
 
-Example of usage:\
-`view 2`
+Example of usage:
 
-Expected outcome:\
-Rizz-pie descriptions are returned, which consist of its ingredients and steps
-to cook it.
-
+```text
+view 2
 ```
-Curry Chicken d
+
+Expected outcome:
+
+```text
+Curry Chicken
 Ingredients:
- Curry paste 8 oz. or 250 g,
+ Curry paste 8 oz./250 g
  ......
  Directions:
 1. Cut the chicken into pieces......
@@ -118,7 +143,10 @@ Ingredients:
 . ......
 ```
 
-### Deleting a **_RIZZ_**ipes: `Delete`
+Recipe descriptions are returned, which consist of its ingredients and steps
+to cook it.
+
+### Deleting a ***RIZZ***ipe: `Delete`
 No longer like a certain recipe? Simply delete it from the database by its index!
 
 Format: `delete [index]`
@@ -134,28 +162,31 @@ Expected output:
 Deleted dish: Egg Fried Rice.
 ```
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Example of usage: 
+
+```text
+exit
+```
+
+Expected output:
+```text
+We hope you have attained that ~chef RIZZ :) See you later (with rizz)
+```
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+***RIZZ***ipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+***RIZZ***ipe data are saved as a JSON file `[JAR file location]/data/rizzipe.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -167,7 +198,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ***RIZZ***ipe home folder.
 
 ---
 
@@ -175,13 +206,11 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| **Add**    | `add /n NAME /t TIME /p PEOPLE_SERVED [/g TAG][/i INGREDIENT -q QUANTITY][/s-INDEX STEP]…​` <br> e.g., `add /n Lemon-Infused Salmon Fillet /t 1 hour /p 3-4 /g Western /i Lemon -q 2, i/Salmon -q 3 150g fillet /s-1 De-scale and remove...` |                                                                                                                                                             |            |                                      |
+| **List**   | `list`                               |                                                                                                                                                                                                                                                                                                                             |            |                                      |
+| **View**   | `view INDEX`<br/> e.g., `view 2`     |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`  |                                                                                                                                                                          |            |                                      |
+| **Exit**   | `exit`                               |     
 
 ```
 
