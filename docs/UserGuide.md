@@ -17,19 +17,19 @@ RIZZipe is a **command-based recipe database** that was designed with **versatil
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Honey Chicken`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [g/TAG]` can be used as `n/Honey Chicken g/Thai` or as `n/Honey Chicken`.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[g/TAG]…​` can be used as ` ` (i.e. 0 times), `g/Asian`, `g/Fusion g/Malay` etc.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PERSONS_SERVED`, `p/PERSONS_SERVED n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/3-4 p/5-6`, only `p/5-6` will be taken.
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -44,10 +44,10 @@ and want to classify it by ingredients? Simply run the `add` command!
 
 Format: 
 ```text
-add /n RIZZIPE_NAME \ 
-    /t time /p people served [/g tag1 /g tag2...] \
-    [/i INGREDIENT1 -q QUANTITY1, /i INGREDIENT2 -q QUANTITY2...] \
-    [/s-1 STEP 1 /s-2 STEP 2...`
+add n/RIZZIPE_NAME \ 
+    t/time p/people served [g/tag1 g/tag2...] \
+    [i/INGREDIENT1 -q QUANTITY1, i/INGREDIENT2 -q QUANTITY2...] \
+    [s-1/STEP 1 s-2/STEP 2...`
 ```
 
 > A Rizz-ipe can have any number of Ingredients!
@@ -59,14 +59,14 @@ add /n RIZZIPE_NAME \
 **Example(s) of usage**:
 
 ```text
-add /n Honey Chicken Rice /t 15 minutes /p 3-4 /g Thai 
+add n/Honey Chicken Rice t/15 minutes p/3-4 g/Thai 
 
 OR:
 
-add /n Lemon-Infused Salmon Fillet \
-    /t 1 hour /p 3-4 /g Western \
-    /i Lemon -q 2, i/Salmon -q 3 150g fillet \
-    /s-1 De-scale and remove...`
+add n/Lemon-Infused Salmon Fillet \
+    t/1 hour p/3-4 g/Western \
+    i/Lemon -q 2, i/Salmon -q 3 150g fillet \
+    s-1/De-scale and remove...`
  ```
 
 **Expected Output**:
@@ -133,17 +133,19 @@ view 2
 Expected outcome:
 
 ```text
-Curry Chicken
-Ingredients:
- Curry paste 8 oz./250 g
- ......
- Directions:
-1. Cut the chicken into pieces......
-. ......
-. ......
+| 2. Curry Chicken                  |
+|    Feeds 3-4         Tags: Indian |
+|    ~ 1 hour                       |
+|    Ingredients:                   |
+|    Curry paste 8 oz./250 g        |
+| ......                            |
+| Steps:                            |
+| 1. Cut the chicken into pieces... |
+| ......                            |
+| ......                            |
 ```
 
-Recipe descriptions are returned, which consist of its ingredients and steps
+Recipe descriptions are returned, which display mainly its ingredients and lists the steps
 to cook it.
 
 ### Deleting a ***RIZZ***ipe: `Delete`
@@ -206,7 +208,7 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add /n NAME /t TIME /p PEOPLE_SERVED [/g TAG][/i INGREDIENT -q QUANTITY][/s-INDEX STEP]…​` <br> e.g., `add /n Lemon-Infused Salmon Fillet /t 1 hour /p 3-4 /g Western /i Lemon -q 2, i/Salmon -q 3 150g fillet /s-1 De-scale and remove...` |                                                                                                                                                             |            |                                      |
+| **Add**    | `add n/NAME t/TIME p/PEOPLE_SERVED [g/TAG...][i/INGREDIENT -q QUANTITY...][s-INDEX/STEP...]…​` <br> e.g., `add n/Lemon-Infused Salmon Fillet t/1 hour p/3-4 g/Western i/Lemon -q 2, i/Salmon -q 3 150g fillet s-1/De-scale and remove...` |                                                                                                                                                             |            |                                      |
 | **List**   | `list`                               |                                                                                                                                                                                                                                                                                                                             |            |                                      |
 | **View**   | `view INDEX`<br/> e.g., `view 2`     |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`  |                                                                                                                                                                          |            |                                      |
