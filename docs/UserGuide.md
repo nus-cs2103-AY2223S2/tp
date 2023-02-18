@@ -45,14 +45,7 @@ and want to classify it by ingredients? Simply run the `add` command, and follow
 
 Format: 
 ```text
-<<<<<<< HEAD
 add RECIPE_NAME
-=======
-add n/recipe_NAME \ 
-    t/time p/people served [g/tag1 g/tag2...] \
-    [i/INGREDIENT1 -q QUANTITY1, i/INGREDIENT2 -q QUANTITY2...] \
-    [s-1/STEP 1 s-2/STEP 2...`
->>>>>>> 6ce8da3fe0bf65b2bcf230d126a30bf0c450a13f
 ```
 
 > A recipe can have any number of Ingredients!
