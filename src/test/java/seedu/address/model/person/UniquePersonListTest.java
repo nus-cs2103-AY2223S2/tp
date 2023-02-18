@@ -3,11 +3,11 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.BEN;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALBERT);
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlbert));
     }
@@ -85,7 +85,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALBERT);
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         uniquePersonList.setPerson(ALBERT, editedAlbert);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -96,17 +96,17 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALBERT);
-        uniquePersonList.setPerson(ALBERT, BOB);
+        uniquePersonList.setPerson(ALBERT, BEN);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(BEN);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALBERT);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALBERT, BOB));
+        uniquePersonList.add(BEN);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALBERT, BEN));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class UniquePersonListTest {
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
         uniquePersonList.add(ALBERT);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(BEN);
         uniquePersonList.setPersons(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -149,10 +149,10 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniquePersonList.add(ALBERT);
-        List<Person> personList = Collections.singletonList(BOB);
+        List<Person> personList = Collections.singletonList(BEN);
         uniquePersonList.setPersons(personList);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(BEN);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
