@@ -3,41 +3,26 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching** 
+features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your 
+**culinary rizz**.
 
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+1. [Features](#features)
+   1. [Adding a recipe](#adding-a-recipe--add)
+   2. [Listing recipes](#listing-all-recipes--list)
+   3. [Viewing recipes](#viewing-recipes--view)
+   4. [Deleting a recipe](#deleting-a-recipe--delete)
+   5. [Exiting the program](#exiting-the-program--exit)
+2. [Managing Data](#managing-the-data)
+   1. [Saving the data](#saving-the-data)
+   2. [Editing the data file](#editing-the-data-file)
+   3. [Archiving data files](#archiving-data-files-coming-in-v20)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -46,148 +31,222 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add Grilled Salmon`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Adding a recipe: `add`
 
-Shows a message explaning how to access the help page.
+Come up with a new innovative recipe and want to store it for future reference,
+and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
 
-![help message](images/helpMessage.png)
+Format: 
+```text
+add RECIPE_NAME
+```
 
-Format: `help`
+> A recipe can have any number of Ingredients!
+> :bulb: Tip: It is okay to not add a list of ingredients when you first upload
+> your recipe (you can add them later!).
+> We do however recommend you add quantity when you add ingredients
+> The same applies for steps.
 
+**Example(s) of usage**:
 
-### Adding a person: `add`
+```text
+add Honey Chicken Rice
+```
 
-Adds a person to the address book.
+**Expected Output**:
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+```text
+>>> RECIPE NAME: Honey Chicken Rice
+>>> Got it. How many people does it feed?
+3-4
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+>>> Got it. What is the recipe duration?
+1 hour
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+>>> Would you like to add any tags? 
+>>> You can add multiple (separate them with a "|").
+>>> Enter `-SKIP` to skip, and once done enter `-DONE`.
+Thai | Fusion
 
-### Listing all persons : `list`
+>>> I've added these tags: "Thai", "Fusion". Would you like to add more?
+-DONE
 
-Shows a list of all persons in the address book.
+>>> INGREDIENTS
+>>> Add some ingredients! 
+>>> You can add multiple (separate them with a "|").
+>>> To skip, enter `-SKIP`. Once done, enter `-DONE`.
+1 Whole Chicken
 
-Format: `list`
+>>> Added: 1 Whole Chicken
+>>> Any more?
+2 cups rice | 4 tbsp honey | 2 stalks lemongrass -DONE
 
-### Editing a person : `edit`
+>>> Added: "2 cups rice", "4 tbsp honey", "2 stalks lemongrass"
 
-Edits an existing person in the address book.
+>>> STEPS
+>>> Would you like to add some steps? To skip, enter `-SKIP`. Once done, enter `-DONE`.
+>>> Add Step #1:
+Soak the rice in water.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+>>> `Step #1: Soak the rice in water` added.  
+>>> Add Step #2:
+-SKIP
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+>>> Got it. I've added the recipe:
+|---------------------------------|
+| 1. Honey Chicken Rice           |
+|    Feeds 3-4 Tags: Thai, Fusion |
+|    ~ 15 mins                    |
+|                                 |
+|    Ingredients:                 |
+|    1 Whole Chicken              |
+|    2 cups rice                  |
+|    ...                          |
+|    Steps:                       |
+|    1. Soak the rice in water.   |
+|    ...                          |
+|---------------------------------|
+>>> You may always come back to add/delete/edit steps, tags or ingredients.
+```
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### Listing all recipes : `list`
 
-### Locating persons by name: `find`
+Lists all recipes in the current cook book.
 
-Finds persons whose names contain any of the given keywords.
+Ever forget how many recipes you have in your storage? Want to view 'em all? Or
+simply want to pick a recipe at random? Just run the `list` command.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Example of usage**:
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+```text
+list
+```
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+**Expected output**:
 
-### Deleting a person : `delete`
+```text
+| 1. Aglio e Olio                      |
+|    Feeds 3-4          Tags:  Italian |
+|    ~ 15 mins                         |
+|    Ingredients:                      |
+|    .....                             |
+|--------------------------------------|
+| 2. Egg Fried Rice                    |
+|    Feeds 3-4          Tags:  Asian   |
+|    ~ 10 mins                         |
+|    Ingredients:                      |
+|    .....                             |
+|--------------------------------------|
+|             ....                     |
+```
 
-Deletes the specified person from the address book.
+Lists all recipes that are in the storage, in the chronological order they were
+added. Depending on the size of the window, may add multiple columns to display
+more recipes.
 
-Format: `delete INDEX`
+### Viewing recipes: `view`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+View a selected recipe based on specified index on current list. Current list may
+change when using find or filter(coming soon).
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example of usage:
 
-### Clearing all entries : `clear`
+```text
+view 2
+```
 
-Clears all entries from the address book.
+Expected outcome:
 
-Format: `clear`
+```text
+| 2. Curry Chicken                  |
+|    Feeds 3-4         Tags: Indian |
+|    ~ 1 hour                       |
+|    Ingredients:                   |
+|    Curry paste 8 oz./250 g        |
+| ......                            |
+| Steps:                            |
+| 1. Cut the chicken into pieces... |
+| ......                            |
+| ......                            |
+```
+
+Recipe descriptions are returned, which display mainly its ingredients and lists the steps
+to cook it.
+
+### Deleting a recipe: `Delete`
+
+No longer like a certain recipe? Simply delete it from the database by its index!
+
+Format: `delete [index]`
+- Deletes the dish at the specified `INDEX`.
+- The index **must be a positive integer** 1, 2, 3, …
+
+Example of usage:
+
+`delete 1`
+
+Expected output:
+```
+Deleted recipe: Egg Fried Rice.
+```
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program and closes the window. 
 
-Format: `exit`
+Example of usage: 
+
+```text
+exit
+```
+
+Expected output:
+```text
+We hope you have attained that ~chef RIZZ :) See you later (with rizz)
+```
+
+## Managing the Data 
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Recipe data are saved as a JSON file `[JAR file location]/data/recipes.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous recipe home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                           |
+|------------|--------------------------------------------|
+| **Add**    | `add NAME`<br/> e.g., `add Grilled Salmon` |                                                                                                                                                             |            |                                      |
+| **List**   | `list`                                     |                                                                                                                                                                                                                                                                                                                             |            |                                      |
+| **View**   | `view INDEX`<br/> e.g., `view 2`           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`        |                                                                                                                                                                          |            |                                      |
+| **Exit**   | `exit`                                     |   
+
+
