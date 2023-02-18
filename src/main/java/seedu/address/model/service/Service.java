@@ -1,22 +1,24 @@
 package seedu.address.model.service;
 
-import seedu.address.model.Vehicle;
-import seedu.address.model.entity.person.Technician;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import seedu.address.model.Vehicle;
+import seedu.address.model.entity.person.Technician;
+
+/**
+ * The Service class contains information about what task to be performed on the vehicle.
+ */
 public class Service {
     private static int incrementalID = 0;
     private int id;
     private LocalDate entryDate;
     private ArrayList<Part> parts;
     private Vehicle vehicle;
-    public String description;
-    public LocalDate estimatedFinishDate;
-    public ArrayList<Technician> assignedTo;
-    public boolean isComplete = false;
-
+    private String description;
+    private LocalDate estimatedFinishDate;
+    private ArrayList<Technician> assignedTo;
+    private boolean isComplete = false;
     /**
      *  This method is the constructor for a Service.
      *
@@ -111,5 +113,41 @@ public class Service {
      */
     public int bill() {
         return parts.stream().mapToInt( i -> i.getCost()).sum();
+    }
+
+    /**
+     *
+     * @param parts
+     */
+    public void setParts(ArrayList<Part> parts) {
+        this.parts = parts;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Technician> getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(ArrayList<Technician> assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 }
