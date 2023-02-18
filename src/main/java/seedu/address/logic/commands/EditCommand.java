@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -24,7 +24,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -41,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_GROUP_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -97,9 +99,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<GroupTag> updatedGroupTags = editPersonDescriptor.getTags().orElse(personToEdit.getGroupTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGroupTags);
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
+                .orElse(personToEdit.getTelegramHandle());
+        Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
+                .orElse(personToEdit.getGroupTags());
+        Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
+                .orElse(personToEdit.getModuleTags());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
+                updatedGroupTags, updatedModuleTags);
     }
 
     @Override
@@ -116,6 +123,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
+        System.out.println(editPersonDescriptor.equals(e.editPersonDescriptor));
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
@@ -129,27 +137,32 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private TelegramHandle telegramHandle;
         private Set<GroupTag> groupTags;
+        private Set<ModuleTag> moduleTags;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code groupTags} is used internally.
+         * A defensive copy of {@code groupTags} and {@code moduleTags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.groupTags);
+            System.out.println(toCopy.telegramHandle);
+            setTelegramHandle(toCopy.telegramHandle);
+            setGroupTags(toCopy.groupTags);
+            setModuleTags(toCopy.moduleTags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, groupTags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, groupTags, moduleTags, telegramHandle);
         }
 
         public void setName(Name name) {
@@ -184,12 +197,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setTelegramHandle(TelegramHandle telegramHandle) {
+            this.telegramHandle = telegramHandle;
+        }
+
+        public Optional<TelegramHandle> getTelegramHandle() {
+            return Optional.ofNullable(telegramHandle);
+        }
+
         /**
          * Sets {@code groupTags} to this object's {@code groupTags}.
          * A defensive copy of {@code groupTags} is used internally.
          */
-        public void setTags(Set<GroupTag> groupTags) {
+        public void setGroupTags(Set<GroupTag> groupTags) {
             this.groupTags = (groupTags != null) ? new HashSet<>(groupTags) : null;
+        }
+
+        /**
+         * Sets {@code moduleTags} to this object's {@code moduleTags}.
+         * A defensive copy of {@code moduleTags} is used internally.
+         */
+        public void setModuleTags(Set<ModuleTag> moduleTags) {
+            this.moduleTags = (moduleTags != null) ? new HashSet<>(moduleTags) : null;
         }
 
         /**
@@ -197,8 +226,17 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code groupTags} is null.
          */
-        public Optional<Set<GroupTag>> getTags() {
+        public Optional<Set<GroupTag>> getGroupTags() {
             return (groupTags != null) ? Optional.of(Collections.unmodifiableSet(groupTags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code moduleTags} is null.
+         */
+        public Optional<Set<ModuleTag>> getModuleTags() {
+            return (moduleTags != null) ? Optional.of(Collections.unmodifiableSet(moduleTags)) : Optional.empty();
         }
 
         @Override
@@ -215,12 +253,15 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
-
+            System.out.println(getModuleTags());
+            System.out.println(e.getModuleTags());
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTelegramHandle().equals(e.getTelegramHandle())
+                    && getGroupTags().equals(e.getGroupTags())
+                    && getModuleTags().equals(e.getModuleTags());
         }
     }
 }

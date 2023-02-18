@@ -15,7 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -28,7 +30,9 @@ class JsonAdaptedPerson {
     protected final String phone;
     protected final String email;
     protected final String address;
-    protected final List<JsonAdaptedGroupTag> tagged = new ArrayList<>();
+    protected final String telegramHandle;
+    protected final List<JsonAdaptedGroupTag> groups = new ArrayList<>();
+    protected final List<JsonAdaptedModuleTag> modules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +40,19 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedGroupTag> tagged) {
+            @JsonProperty("telegramHandle") String telegramHandle,
+            @JsonProperty("groups") List<JsonAdaptedGroupTag> groups,
+            @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.telegramHandle = telegramHandle;
+        if (groups != null) {
+            this.groups.addAll(groups);
+        }
+        if (modules != null) {
+            this.modules.addAll(modules);
         }
     }
 
@@ -54,8 +64,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getGroupTags().stream()
+        telegramHandle = source.getTelegramHandle().telegramHandle;
+        groups.addAll(source.getGroupTags().stream()
                 .map(JsonAdaptedGroupTag::new)
+                .collect(Collectors.toList()));
+        modules.addAll(source.getModuleTags().stream()
+                .map(JsonAdaptedModuleTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -66,10 +80,13 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<GroupTag> personGroupTags = new ArrayList<>();
-        for (JsonAdaptedGroupTag tag : tagged) {
+        for (JsonAdaptedGroupTag tag : groups) {
             personGroupTags.add(tag.toModelType());
         }
-
+        final List<ModuleTag> personModuleTags = new ArrayList<>();
+        for (JsonAdaptedModuleTag tag : modules) {
+            personModuleTags.add(tag.toModelType());
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -101,9 +118,18 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+        if (telegramHandle == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TelegramHandle.class.getSimpleName()));
+        }
+        if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
+            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
         final Set<GroupTag> modelGroupTags = new HashSet<>(personGroupTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGroupTags);
+        final Set<ModuleTag> modelModuleTags = new HashSet<>(personModuleTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTelegramHandle, modelGroupTags, modelModuleTags);
     }
 
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +22,6 @@ import seedu.address.model.tag.ModuleTag;
  * Jackson-friendly version of {@link User}.
  */
 public class JsonAdaptedUser extends JsonAdaptedPerson {
-    private final String telegramHandle;
-    private final List<JsonAdaptedModuleTag> moduleTags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -32,12 +29,10 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("telegram") String telegramHandle,
-                             @JsonProperty("tagged") List<JsonAdaptedGroupTag> tagged,
-                             @JsonProperty("moduleTags") List<JsonAdaptedModuleTag> modules) {
-        super(name, phone, email, address, tagged);
-        this.telegramHandle = telegramHandle;
-        this.moduleTags.addAll(modules);
+                             @JsonProperty("telegramHandle") String telegramHandle,
+                             @JsonProperty("groups") List<JsonAdaptedGroupTag> tagged,
+                             @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
+        super(name, phone, email, address, telegramHandle, tagged, modules);
     }
 
     /**
@@ -45,10 +40,6 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
      */
     public JsonAdaptedUser(User source) {
         super(source);
-        telegramHandle = source.getTelegramHandle().telegramHandle;
-        moduleTags.addAll(source.getModuleTags().stream()
-                .map(JsonAdaptedModuleTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -58,12 +49,12 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
      */
     public User toModelType() throws IllegalValueException {
         final List<GroupTag> userGroupTags = new ArrayList<>();
-        for (JsonAdaptedGroupTag tag : tagged) {
+        for (JsonAdaptedGroupTag tag : groups) {
             userGroupTags.add(tag.toModelType());
         }
 
         final List<ModuleTag> userModuleTags = new ArrayList<>();
-        for (JsonAdaptedModuleTag tag : moduleTags) {
+        for (JsonAdaptedModuleTag tag : modules) {
             userModuleTags.add(tag.toModelType());
         }
 
@@ -102,6 +93,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (telegramHandle == null) {
+            System.out.println(name);
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
@@ -112,12 +104,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
 
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
-        return new User(modelName,
-                modelPhone,
-                modelEmail,
-                modelAddress,
-                modelTelegramHandle,
-                modelGroupTags,
-                modelModuleTags);
+        return User.getSingletonUser(modelName, modelPhone, modelEmail,
+                modelAddress, modelTelegramHandle, modelGroupTags, modelModuleTags);
     }
 }

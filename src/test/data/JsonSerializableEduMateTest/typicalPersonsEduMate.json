@@ -5,51 +5,57 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "telegramHandle": "@amyFarrahFowler",
+    "groups" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "telegramHandle": "@bensonMeier",
+    "groups" : [ "owesMoney", "friends" ],
+    "modules" : ["CS2101", "MA1101T"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "telegramHandle": "@amyFarrahFowler",
+    "groups" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "telegramHandle": "@amyFarrahFowler",
+    "groups" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "telegramHandle": "@amyFarrahFowler"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "telegramHandle": "@amyFarrahFowler",
+    "modules" : ["ST2334"]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "telegramHandle": "@amyFarrahFowler"
   } ],
   "user" : {
     "name" : "Linus Richards",
     "phone" : "90102030",
     "email" : "linusrichards@gmail.com",
     "address" : "National University of Singapore",
-    "telegram" : "@linusrichards",
-    "tagged" : [ "User" ],
-    "moduleTags" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
+    "telegramHandle" : "@linusrichards",
+    "groups" : [ "User" ],
+    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
   }
 }

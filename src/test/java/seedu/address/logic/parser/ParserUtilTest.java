@@ -150,45 +150,45 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGroupTag(null));
     }
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTag(INVALID_TAG));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
         GroupTag expectedGroupTag = new GroupTag(VALID_TAG_1);
-        assertEquals(expectedGroupTag, ParserUtil.parseTag(VALID_TAG_1));
+        assertEquals(expectedGroupTag, ParserUtil.parseGroupTag(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         GroupTag expectedGroupTag = new GroupTag(VALID_TAG_1);
-        assertEquals(expectedGroupTag, ParserUtil.parseTag(tagWithWhitespace));
+        assertEquals(expectedGroupTag, ParserUtil.parseGroupTag(tagWithWhitespace));
     }
 
     @Test
     public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGroupTags(null));
     }
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseGroupTags(Collections.emptyList()).isEmpty());
     }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<GroupTag> actualGroupTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<GroupTag> actualGroupTagSet = ParserUtil.parseGroupTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Set<GroupTag> expectedGroupTagSet = new HashSet<GroupTag>(Arrays.asList(new GroupTag(VALID_TAG_1),
                 new GroupTag(VALID_TAG_2)));
 

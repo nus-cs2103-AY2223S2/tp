@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalUser;
 
 public class EduMateTest {
 
@@ -48,10 +48,10 @@ public class EduMateTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        User validUser = TypicalPersons.getTypicalUser();
+        User validUser = TypicalUser.getTypicalUser();
         EduMateStub newData = new EduMateStub(newPersons, validUser);
 
         assertThrows(DuplicatePersonException.class, () -> eduMate.resetData(newData));
@@ -76,7 +76,7 @@ public class EduMateTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInEduMate_returnsTrue() {
         eduMate.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(eduMate.hasPerson(editedAlice));
     }
