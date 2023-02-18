@@ -112,7 +112,12 @@ public class EduMate implements ReadOnlyEduMate {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().toString() + " persons";
+        StringBuilder sb = new StringBuilder();
+        persons.asUnmodifiableObservableList().forEach(person -> {
+            sb.append(person);
+            sb.append("\n");
+        });
+        return sb.toString();
     }
 
     @Override
