@@ -63,6 +63,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTelegramHandle(ParserUtil
                     .parseTelegramHandle(argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get()));
         }
+        System.out.println(argMultimap.getAllValues(PREFIX_GROUP_TAG));
         parseGroupTagsForEdit(argMultimap.getAllValues(PREFIX_GROUP_TAG))
                 .ifPresent(editPersonDescriptor::setGroupTags);
         parseModuleTagsForEdit(argMultimap.getAllValues(PREFIX_MODULE_TAG))
