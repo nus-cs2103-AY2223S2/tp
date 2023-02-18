@@ -2,9 +2,11 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * A utility class for Person.
@@ -34,8 +37,12 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_TELEGRAM_HANDLE + person.getTelegramHandle().telegramHandle + " ");
         person.getGroupTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_GROUP_TAG + s.tagName + " ")
+        );
+        person.getModuleTags().stream().forEach(
+                s -> sb.append(PREFIX_MODULE_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -49,12 +56,22 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<GroupTag> groupTags = descriptor.getTags().get();
+        descriptor.getTelegramHandle().ifPresent(telegramHandle -> sb.append(PREFIX_TELEGRAM_HANDLE)
+                .append(telegramHandle.telegramHandle).append(" "));
+        if (descriptor.getGroupTags().isPresent()) {
+            Set<GroupTag> groupTags = descriptor.getGroupTags().get();
             if (groupTags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                //sb.append(PREFIX_GROUP_TAG);
             } else {
-                groupTags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                groupTags.forEach(s -> sb.append(PREFIX_GROUP_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getModuleTags().isPresent()) {
+            Set<ModuleTag> moduleTags = descriptor.getModuleTags().get();
+            if (moduleTags.isEmpty()) {
+                //sb.append(PREFIX_MODULE_TAG);
+            } else {
+                moduleTags.forEach(s -> sb.append(PREFIX_MODULE_TAG).append(s.tagName).append(" "));
             }
         }
         return sb.toString();

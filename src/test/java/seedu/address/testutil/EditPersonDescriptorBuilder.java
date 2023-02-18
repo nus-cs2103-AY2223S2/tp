@@ -10,7 +10,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +38,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getGroupTags());
+        descriptor.setGroupTags(person.getGroupTags());
+        System.out.println(person.getGroupTags());
+        descriptor.setTelegramHandle(person.getTelegramHandle());
+        descriptor.setModuleTags(person.getModuleTags());
     }
 
     /**
@@ -72,12 +77,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code TelegramHandle} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTelegramHandle(String telegramHandle) {
+        descriptor.setTelegramHandle(new TelegramHandle(telegramHandle));
+        return this;
+    }
+
+    /**
      * Parses the {@code groupTags} into a {@code Set<GroupTag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... groupTags) {
+    public EditPersonDescriptorBuilder withGroupTags(String... groupTags) {
         Set<GroupTag> groupTagSet = Stream.of(groupTags).map(GroupTag::new).collect(Collectors.toSet());
-        descriptor.setTags(groupTagSet);
+        descriptor.setGroupTags(groupTagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code groupTags} into a {@code Set<ModuleTag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModuleTags(String... moduleTags) {
+        Set<ModuleTag> moduleTagSet = Stream.of(moduleTags).map(ModuleTag::new).collect(Collectors.toSet());
+        descriptor.setModuleTags(moduleTagSet);
         return this;
     }
 
