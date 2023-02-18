@@ -1,7 +1,0 @@
-{
-  "tasks": [ {
-    "name": "Task with invalid name field: Ha!ns Mu@ster",
-    "description": "Invalid name Task's description",
-    "address": "4th street"
-  } ]
-}

@@ -1,0 +1,32 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "tasks" : [ {
+    "name" : "Alice Pauline",
+    "description" : "Alice's description",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "description" : "Benson's description",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "description" : "Carl's description",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "description" : "Daniel's description",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "description" : "Elle's description",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "description" : "Fiona's description",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "description" : "George's description",
+    "tagged" : [ ]
+  } ]
+}
