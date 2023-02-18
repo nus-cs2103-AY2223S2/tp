@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-RIZZipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching** features in mind so you can always find the recipe you need! Make use of RIZZipe's many features to achieve your **culinary rizz**.
+***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching** 
+features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your 
+**culinary rizz**.
 
 - Table of Contents
   {:toc}
@@ -16,38 +18,22 @@ RIZZipe is a **command-based recipe database** that was designed with **versatil
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Honey Chicken`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add Grilled Salmon`.
 
-- Items in square brackets are optional.<br>
-  e.g `n/NAME [g/TAG]` can be used as `n/Honey Chicken g/Thai` or as `n/Honey Chicken`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[g/TAG]…​` can be used as ` ` (i.e. 0 times), `g/Asian`, `g/Fusion g/Malay` etc.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PERSONS_SERVED`, `p/PERSONS_SERVED n/NAME` is also acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/3-4 p/5-6`, only `p/5-6` will be taken.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-
 ### Adding a Rizz-ipe: `add`
 
 Come up with a new innovative recipe and want to store it for future reference,
-and want to classify it by ingredients? Simply run the `add` command!
+and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
 
 Format: 
 ```text
-add n/RIZZIPE_NAME \ 
-    t/time p/people served [g/tag1 g/tag2...] \
-    [i/INGREDIENT1 -q QUANTITY1, i/INGREDIENT2 -q QUANTITY2...] \
-    [s-1/STEP 1 s-2/STEP 2...`
+add RECIPE_NAME
 ```
 
 > A Rizz-ipe can have any number of Ingredients!
@@ -59,34 +45,68 @@ add n/RIZZIPE_NAME \
 **Example(s) of usage**:
 
 ```text
-add n/Honey Chicken Rice t/15 minutes p/3-4 g/Thai 
-
-OR:
-
-add n/Lemon-Infused Salmon Fillet \
-    t/1 hour p/3-4 g/Western \
-    i/Lemon -q 2, i/Salmon -q 3 150g fillet \
-    s-1/De-scale and remove...`
- ```
+add Honey Chicken Rice
+```
 
 **Expected Output**:
 
 ```text
-Got it. I've added the recipe(s):
-| 1. Honey Chicken Rice   | 2. Lemon-Infused Salmon Fillet       |
-|    Feeds 3-4 Tags: Thai |    Feeds 3-4          Tags:  Western |
-|    ~ 15 mins            |    ~ 15 mins                         |
-|                         |    Ingredients:                      |
-|    No Ingredients are   |    2 Lemon(s)                        |
-|    added yet. Add some! |    3 150g Salmon fillet(s)           |
-|    [Add Here - /a_i]    |    ...                               |
-|                         |    Steps:                            |
-|    No Steps are ...     |    1. De-scale and remove the ...    |
+>>> RECIPE NAME: Honey Chicken Rice
+>>> Got it. How many people does it feed?
+3-4
+
+>>> Got it. What is the recipe duration?
+1 hour
+
+>>> Would you like to add any tags? 
+>>> You can add multiple (separate them with a "|").
+>>> Enter `-SKIP` to skip, and once done enter `-DONE`.
+Thai | Fusion
+
+>>> I've added these tags: "Thai", "Fusion". Would you like to add more?
+-DONE
+
+>>> INGREDIENTS
+>>> Add some ingredients! 
+>>> You can add multiple (separate them with a "|").
+>>> To skip, enter `-SKIP`. Once done, enter `-DONE`.
+1 Whole Chicken
+
+>>> Added: 1 Whole Chicken
+>>> Any more?
+2 cups rice | 4 tbsp honey | 2 stalks lemongrass -DONE
+
+>>> Added: "2 cups rice", "4 tbsp honey", "2 stalks lemongrass"
+
+>>> STEPS
+>>> Would you like to add some steps? To skip, enter `-SKIP`. Once done, enter `-DONE`.
+>>> Add Step #1:
+Soak the rice in water.
+
+>>> `Step #1: Soak the rice in water` added.  
+>>> Add Step #2:
+-SKIP
+
+>>> Got it. I've added the recipe:
+|---------------------------------|
+| 1. Honey Chicken Rice           |
+|    Feeds 3-4 Tags: Thai, Fusion |
+|    ~ 15 mins                    |
+|                                 |
+|    Ingredients:                 |
+|    1 Whole Chicken              |
+|    2 cups rice                  |
+|    ...                          |
+|    Steps:                       |
+|    1. Soak the rice in water.   |
+|    ...                          |
+|---------------------------------|
+>>> You may always come back to add/delete/edit steps, tags or ingredients.
 ```
 
-### Listing all ***RIZZ***ipes : `list`
+### Listing all Recipes : `list`
 
-Lists all ***RIZZ***ipes in the current cook book.
+Lists all Recipes in the current cook book.
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
 simply want to pick a recipe at random? Just run the `list` command.
@@ -117,9 +137,9 @@ list
 
 Lists all recipes that are in the storage, in the chronological order they were
 added. Depending on the size of the window, may add multiple columns to display
-more ***RIZZ***ipes.
+more Recipes.
 
-### Viewing ***RIZZ***ipes: `view`
+### Viewing Recipes: `view`
 
 View a selected recipe based on specified index on current list. Current list may
 change when using find or filter(coming soon).
@@ -148,12 +168,12 @@ Expected outcome:
 Recipe descriptions are returned, which display mainly its ingredients and lists the steps
 to cook it.
 
-### Deleting a ***RIZZ***ipe: `Delete`
+### Deleting a Recipe: `Delete`
 No longer like a certain recipe? Simply delete it from the database by its index!
 
 Format: `delete [index]`
 - Deletes the dish at the specified `INDEX`.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …
 
 Example of usage:
 
@@ -161,7 +181,7 @@ Example of usage:
 
 Expected output:
 ```
-Deleted dish: Egg Fried Rice.
+Deleted recipe: Egg Fried Rice.
 ```
 
 ### Exiting the program : `exit`
@@ -181,11 +201,11 @@ We hope you have attained that ~chef RIZZ :) See you later (with rizz)
 
 ### Saving the data
 
-***RIZZ***ipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-***RIZZ***ipe data are saved as a JSON file `[JAR file location]/data/rizzipe.json`. Advanced users are welcome to update data directly by editing that data file.
+Recipe data are saved as a JSON file `[JAR file location]/data/rizzipe.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
@@ -206,11 +226,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME t/TIME p/PEOPLE_SERVED [g/TAG...][i/INGREDIENT -q QUANTITY...][s-INDEX/STEP...]…​` <br> e.g., `add n/Lemon-Infused Salmon Fillet t/1 hour p/3-4 g/Western i/Lemon -q 2, i/Salmon -q 3 150g fillet s-1/De-scale and remove...` |                                                                                                                                                             |            |                                      |
-| **List**   | `list`                               |                                                                                                                                                                                                                                                                                                                             |            |                                      |
-| **View**   | `view INDEX`<br/> e.g., `view 2`     |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`  |                                                                                                                                                                          |            |                                      |
-| **Exit**   | `exit`                               |     
+| Action     | Format, Examples                          |
+|------------|-------------------------------------------|
+| **Add**    | `add NAME`<br/> e.g., `add Grilled Salmon` |                                                                                                                                                             |            |                                      |
+| **List**   | `list`                                    |                                                                                                                                                                                                                                                                                                                             |            |                                      |
+| **View**   | `view INDEX`<br/> e.g., `view 2`          |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`       |                                                                                                                                                                          |            |                                      |
+| **Exit**   | `exit`                                    |   
+
 
