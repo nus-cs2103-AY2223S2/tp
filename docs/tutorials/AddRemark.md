@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of task data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the task’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a task.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of task data. We achieve that by working with the `Task` model. Each field in a Task is implemented as a separate class (e.g. a `Name` object represents the task’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a task.
 
 ### Add a new `Remark` class
 
@@ -244,7 +244,7 @@ Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get 
 
 Simply add the following to [`seedu.address.ui.TaskCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
-**`PersonCard.java`:**
+**`TaskCard.java`:**
 
 ``` java
 @FXML
@@ -254,9 +254,9 @@ private Label remark;
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
-Then insert the following into [`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
+Then insert the following into [`main/resources/view/TaskListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
-**`PersonListCard.fxml`:**
+**`TaskListCard.fxml`:**
 
 ``` xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
@@ -266,21 +266,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Task` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `TaskCard` displays data from a `Task`, we need to update `Task` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Task`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Task` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Task`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Task` will cause other commands to break, you will have to modify these commands to use the updated `Task`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Task` class to find these commands.
 
 </div>
 
@@ -289,7 +289,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+AddressBook stores data by serializing `JsonAdaptedTask` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedTask` to work with our new `Task`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
@@ -304,14 +304,14 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Task` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
-**`PersonCard.java`:**
+**`TaskCard.java`:**
 
 ``` java
-public PersonCard(Person task, int displayedIndex) {
+public TaskCard(Task task, int displayedIndex) {
     //...
     remark.setText(task.getRemark().value);
 }
@@ -325,31 +325,31 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Task`. Since all fields in a `Task` are immutable, we create a new instance of a `Task` with the values that we want and
+save it with `Model#setTask()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Task: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Task: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_Task_DISPLAYED_INDEX);
         }
 
-        Person taskToEdit = lastShownList.get(index.getZeroBased());
-        Person editedTask = new Person(
+        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = new Task(
                 taskToEdit.getName(), taskToEdit.getPhone(), taskToEdit.getEmail(),
                 taskToEdit.getAddress(), remark, taskToEdit.getTags());
 
-        model.setPerson(taskToEdit, editedTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TaskS);
 
         return new CommandResult(generateSuccessMessage(editedTask));
     }
@@ -359,7 +359,7 @@ save it with `Model#setPerson()`.
      * the remark is added to or removed from
      * {@code taskToEdit}.
      */
-    private String generateSuccessMessage(Person taskToEdit) {
+    private String generateSuccessMessage(Task taskToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, taskToEdit);
     }
