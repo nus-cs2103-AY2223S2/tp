@@ -19,14 +19,14 @@
   },
   "persons": [
     {
-      "name": "Ford Canning",
-      "email": "fordcanning@gmail.com",
-      "telegramHandle": "@fordcanning",
-      "address": "170 River Valley Road",
+      "name": "Melania Walker",
+      "email": "melaniawalker@gmail.com",
+      "telegramHandle": "@melaniawalker",
+      "address": "Millenia Walk",
       "groups": [
-        "TA"
+        "Enemy"
       ],
-      "phone": "98954484",
+      "phone": "82724009",
       "modules": [
         "CS2100",
         "DSAI1101"

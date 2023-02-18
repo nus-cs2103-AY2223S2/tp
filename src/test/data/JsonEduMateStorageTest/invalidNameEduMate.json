@@ -20,17 +20,20 @@
   "persons": [
     {
       "name": "Goon Se-Rang",
-      "email": "chenglim@gmail.com",
-      "telegramHandle": "@chenglim",
-      "address": "5 Anchorvale Street",
-      "groups": [],
-      "phone": "87306590",
+      "email": "jubileeang@gmail.com",
+      "telegramHandle": "@jubileeang",
+      "address": "2450 Ang Mo Kio Avenue 8",
+      "groups": [
+        "NS"
+      ],
+      "phone": "91803854",
       "modules": [
-        "CS3216",
-        "CE3115",
+        "BT1101",
+        "CS3230",
+        "IS3261",
+        "IS3251",
         "CS3217",
-        "CS1010J",
-        "CS1231"
+        "CS2107"
       ]
     }
   ]

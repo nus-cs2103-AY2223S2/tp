@@ -20,20 +20,20 @@
   "persons": [
     {
       "name": "Goon Se-Rang",
-      "email": "khadijahaljunied@gmail.com",
-      "telegramHandle": "@khadijahaljunied",
-      "address": "81 Lorong 25 Geylang",
+      "email": "maysee@gmail.com",
+      "telegramHandle": "@maysee",
+      "address": "30 Simei Street 3",
       "groups": [
         "Groupmate"
       ],
-      "phone": "98790580",
+      "phone": "96306065",
       "modules": [
-        "CS2103",
-        "CS2030",
-        "BT2102",
-        "CS1010J",
-        "CS1101S",
-        "CS2107"
+        "BT1101",
+        "CS2101",
+        "CS2105",
+        "IS3251",
+        "CS3210",
+        "CS2104"
       ]
     }
   ]

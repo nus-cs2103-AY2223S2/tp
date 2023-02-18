@@ -19,21 +19,23 @@
   },
   "persons": [
     {
-      "name": "Keat Hong",
-      "email": "keathong@gmail.com",
-      "telegramHandle": "@keathong",
-      "address": "30 Choa Chu Kang Way",
+      "name": "Pearl Outram",
+      "email": "pearloutram@gmail.com",
+      "telegramHandle": "@pearloutram",
+      "address": "10 Outram Road",
       "groups": [
-        "JC"
+        "Groupmate",
+        "Study",
+        "NUS"
       ],
       "phone": "3895as4665",
       "modules": [
-        "CS1010X",
-        "CS3242",
-        "CS3241",
-        "CS2105",
-        "IS3251",
-        "CE2409"
+        "IS2103",
+        "CS3235",
+        "CE2407",
+        "IS2102",
+        "CE2409",
+        "CS3241R"
       ]
     }
   ]

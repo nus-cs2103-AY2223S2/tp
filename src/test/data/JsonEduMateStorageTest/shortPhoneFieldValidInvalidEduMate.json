@@ -19,19 +19,20 @@
   },
   "persons": [
     {
-      "name": "Teck Lee",
-      "email": "tecklee@gmail.com",
-      "telegramHandle": "@tecklee",
-      "address": "101 Ponggol Seventeenth Avenue",
-      "groups": [],
+      "name": "Glenn Napier",
+      "email": "glennnapier@gmail.com",
+      "telegramHandle": "@glennnapier",
+      "address": "2 Napier Road",
+      "groups": [
+        "Study"
+      ],
       "phone": "23",
       "modules": [
-        "CS3242",
-        "CE1102",
-        "BT3101",
-        "CS2103",
-        "CS1020",
-        "CS3247"
+        "BT3102",
+        "CS1010E",
+        "IS2102",
+        "CS2107",
+        "CS2104"
       ]
     }
   ]

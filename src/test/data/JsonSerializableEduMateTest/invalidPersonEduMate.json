@@ -1,20 +1,42 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street",
-    "telegram": "@hansMuster",
-    "groups" : [ "User" ],
-    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
-  } ],
-  "user" : {
-    "name" : "Linus Richards",
-    "phone" : "90102030",
-    "email" : "linusrichards@gmail.com",
-    "address" : "National University of Singapore",
-    "telegram": "@linusrichards",
-    "groups" : [ "User" ],
-    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
-  }
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "National University of Singapore",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105"
+    ]
+  },
+  "persons": [
+    {
+      "name": "Pearl Outram",
+      "email": "pearloutram@gmail.com",
+      "telegramHandle": "@pearloutram",
+      "address": "10 Outram Road",
+      "groups": [
+        "Groupmate",
+        "Study",
+        "NUS"
+      ],
+      "phone": "3895as4665",
+      "modules": [
+        "IS2103",
+        "CS3235",
+        "CE2407",
+        "IS2102",
+        "CE2409",
+        "CS3241R"
+      ]
+    }
+  ]
 }

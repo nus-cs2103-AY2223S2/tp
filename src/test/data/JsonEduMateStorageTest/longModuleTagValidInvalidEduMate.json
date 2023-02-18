@@ -19,14 +19,14 @@
   },
   "persons": [
     {
-      "name": "Zhang Yi",
-      "email": "zhangyi@gmail.com",
-      "telegramHandle": "@zhangyi",
-      "address": "Changi Airport",
+      "name": "Eusoff Richards",
+      "email": "eusoffrichards@gmail.com",
+      "telegramHandle": "@eusoffrichards",
+      "address": "301 South Buona Vista Road",
       "groups": [
-        "Enemy"
+        "CCA"
       ],
-      "phone": "84581372",
+      "phone": "86795172",
       "modules": [
         "CS2100",
         "DSAI1101"

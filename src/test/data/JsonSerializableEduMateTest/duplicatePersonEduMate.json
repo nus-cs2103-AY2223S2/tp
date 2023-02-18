@@ -1,28 +1,56 @@
 {
-  "_comment": "EduMate save file which contains the same Person values as in TypicalPersons#getTypicalEduMate()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "telegramHandle": "@amyFarrahFowler",
-    "groups" : [ "friends" ]
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "National University of Singapore",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105"
+    ]
   },
+  "persons": [
     {
-      "name" : "Alice Pauline",
-      "phone" : "94351253",
-      "email" : "alice@example.com",
-      "address" : "123, Jurong West Ave 6, #08-111",
-      "telegramHandle": "@amyFarrahFowler",
-      "groups" : [ "friends" ]
-    }],
-  "user" : {
-    "name" : "Linus Richards",
-    "phone" : "90102030",
-    "email" : "linusrichards@gmail.com",
-    "address" : "National University of Singapore",
-    "telegramHandle" : "@linusrichards",
-    "groups" : [ "User" ],
-    "modules" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
-  }
+      "name": "Nurul Khatibah Abdul Ibrahim",
+      "email": "nurulkhatibahabdulibrahim@gmail.com",
+      "telegramHandle": "@nurulkhatibahabdulibrahim",
+      "address": "201 Yishun Avenue 2",
+      "groups": [
+        "NS"
+      ],
+      "phone": "93395405",
+      "modules": [
+        "CS2106",
+        "CS1010X",
+        "CS1010E",
+        "CS2040C",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Nurul Khatibah Abdul Ibrahim",
+      "email": "nurulkhatibahabdulibrahim@gmail.com",
+      "telegramHandle": "@nurulkhatibahabdulibrahim",
+      "address": "201 Yishun Avenue 2",
+      "groups": [
+        "NS"
+      ],
+      "phone": "93395405",
+      "modules": [
+        "CS2106",
+        "CS1010X",
+        "CS1010E",
+        "CS2040C",
+        "CS2113"
+      ]
+    }
+  ]
 }

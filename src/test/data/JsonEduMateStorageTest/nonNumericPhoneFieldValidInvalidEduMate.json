@@ -19,21 +19,19 @@
   },
   "persons": [
     {
-      "name": "Ang Mei Hua",
-      "email": "angmeihua@gmail.com",
-      "telegramHandle": "@angmeihua",
-      "address": "91 Ang Mo Kio Avenue 4",
-      "groups": [
-        "Study"
-      ],
+      "name": "Khoo Pang",
+      "email": "khoopang@gmail.com",
+      "telegramHandle": "@khoopang",
+      "address": "60 Fernvale Street",
+      "groups": [],
       "phone": "3895as4665",
       "modules": [
-        "IS3221",
+        "IS3150",
+        "CS1010",
+        "CS3223",
+        "CS2108",
         "CS3211",
-        "CS1101S",
-        "CS3234",
-        "CS1231",
-        "CE3116"
+        "CS2107"
       ]
     }
   ]

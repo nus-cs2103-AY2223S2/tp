@@ -19,21 +19,21 @@
   },
   "persons": [
     {
-      "name": "Yew Tee",
-      "email": "yewtee@gmail.com",
-      "telegramHandle": "@yewtee",
-      "address": "61 Choa Chu Kang Drive",
+      "name": "Gwon Se Rang",
+      "email": "gwonserang@gmail.com",
+      "telegramHandle": "@gwonserang",
+      "address": "600 Upper Serangoon Road",
       "groups": [
-        "NS"
+        "CCA",
+        "NUS"
       ],
       "phone": "23",
       "modules": [
-        "CS3216",
-        "CS3233R",
-        "CS2040C",
-        "CS2103T",
-        "CE3116",
-        "CE3102"
+        "CE2112",
+        "CE3132",
+        "CS2108",
+        "IS2101",
+        "CS3281"
       ]
     }
   ]
