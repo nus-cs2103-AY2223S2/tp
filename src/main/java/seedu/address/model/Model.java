@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduMateFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduMateFilePath(Path eduMateFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduMate}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduMate(ReadOnlyEduMate eduMate);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduMate */
+    ReadOnlyEduMate getEduMate();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

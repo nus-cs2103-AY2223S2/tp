@@ -13,10 +13,19 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduMate;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -55,22 +64,47 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final User LINUS = new User(new Name("Linus Richards"),
+            new Phone("90102030"),
+            new Email("linusrichards@gmail.com"),
+            new Address("National University of Singapore"),
+            new TelegramHandle("@linusrichards"),
+            new HashSet<>() {{
+                add(new GroupTag("User"));
+            }},
+            new HashSet<>() {{
+                add(new ModuleTag("CS2101"));
+                add(new ModuleTag("CS2102"));
+                add(new ModuleTag("CS2103T"));
+                add(new ModuleTag("CS2105"));
+                add(new ModuleTag("CS2106"));
+            }});
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code EduMate} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static EduMate getTypicalEduMate() {
+        EduMate ab = new EduMate();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.setUser(getTypicalUser());
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Gets a typical user as a Person object.
+     * @return A typical user.
+     */
+    public static User getTypicalUser() {
+        return LINUS;
     }
 }

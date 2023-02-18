@@ -1,0 +1,17 @@
+{
+  "persons": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ],
+  "user" : {
+    "name" : "Linus Richards",
+    "phone" : "90102030",
+    "email" : "linusrichards@gmail.com",
+    "address" : "National University of Singapore",
+    "telegram": "@linusrichards",
+    "tagged" : [ "User" ],
+    "moduleTags" : [ "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106" ]
+  }
+}

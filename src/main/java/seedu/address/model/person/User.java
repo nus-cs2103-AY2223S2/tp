@@ -17,7 +17,7 @@ public class User extends Person {
 
     //Data Fields
     private TelegramHandle telegramHandle;
-    private Set<ModuleTag> moduleTags = new HashSet<ModuleTag>();
+    private Set<ModuleTag> moduleTags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
