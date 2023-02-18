@@ -18,6 +18,7 @@ public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
     private final Stage studentInfoPageStage;
+    private final Stage studentTasksPageStage;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +43,10 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Button view;
+    private Button viewProfileButton;
+    @FXML
+    private Button viewSchoolTasksButton;
+
 
     private final Student student;
 
@@ -53,6 +57,7 @@ public class StudentCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         this.studentInfoPageStage = new Stage();
+        this.studentTasksPageStage = new Stage();
 
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
@@ -62,14 +67,15 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        view.setOnAction(event -> handleViewClick());
+        viewProfileButton.setOnAction(event -> handleViewProfileClick());
+        viewSchoolTasksButton.setOnAction(event -> handleViewTasksClick());
     }
 
     /**
-     * Handles the view button click event.
+     * Handles the view profile button click event.
      */
     @FXML
-    private void handleViewClick() {
+    private void handleViewProfileClick() {
         StudentInfoPage infoPage = new StudentInfoPage(student, studentInfoPageStage);
 
         if (!infoPage.isShowing()) {
@@ -79,6 +85,18 @@ public class StudentCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the view school tasks button click event.
+     */
+    private void handleViewTasksClick() {
+        StudentTasksPage tasksPage = new StudentTasksPage(student, studentTasksPageStage);
+
+        if (!tasksPage.isShowing()) {
+            tasksPage.show();
+        } else {
+            tasksPage.focus();
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

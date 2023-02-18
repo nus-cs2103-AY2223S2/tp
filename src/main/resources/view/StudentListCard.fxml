@@ -36,9 +36,26 @@
     </VBox>
     <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="5" />
+        <Insets right="0"/>
       </padding>
-      <Button fx:id="view" text="VIEW" />
+      <minWidth>
+        <!-- Ensures that the label text is never truncated -->
+        <Region fx:constant="USE_PREF_SIZE" />
+      </minWidth>
+      <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="viewProfileButton" text="VIEW PROFILE" />
+    </HBox>
+
+    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
+      <padding>
+        <Insets left ="25" right="10"/>
+      </padding>
+      <minWidth>
+        <!-- Ensures that the label text is never truncated -->
+        <Region fx:constant="USE_PREF_SIZE" />
+      </minWidth>
+      <Region HBox.hgrow="ALWAYS" />
+      <Button fx:id="viewSchoolTasksButton" text="VIEW TASKS" />
     </HBox>
   </GridPane>
 </HBox>
