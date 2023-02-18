@@ -212,6 +212,3 @@ _Details coming soon ..._
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`  |                                                                                                                                                                          |            |                                      |
 | **Exit**   | `exit`                               |     
 
-```
-
-```
