@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -46,6 +48,23 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+    
+    /**
+     * Adds a tag to a person
+     * The person must already exist in the list
+     */
+    public void addTag(Person toAdd, Tag tagToAdd) {
+        requireNonNull(toAdd);
+        requireNonNull(tagToAdd);
+        findPerson(toAdd).addTag(tagToAdd);
+    }
+
+    /**
+     * Finds the person
+     */
+    public Person findPerson(Person toFind) {
+        return internalList.filtered(person -> person.equals(toFind)).get(0);
     }
 
     /**
