@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddElderlyCommand;
+import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -50,6 +51,9 @@ public class FriendLinkParser {
 
         case AddElderlyCommand.COMMAND_WORD:
             return new AddElderlyCommandParser().parse(arguments);
+
+        case AddVolunteerCommand.COMMAND_WORD:
+            return new AddVolunteerCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
