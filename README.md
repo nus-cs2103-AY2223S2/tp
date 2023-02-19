@@ -12,3 +12,5 @@ of a **Graphical User Interface (GUI)**
 For experienced typists,this app lets you be more productive, than other applications.
 
 For the detailed documentation of this project, see the **[Address Book Product Website](https://ay2223s2-cs2103t-t14-2.github.io/tp/)**.
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
