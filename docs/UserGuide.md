@@ -3,10 +3,14 @@ layout: page
 title: User Guide
 ---
 
-PetPal (AB3) is a **desktop app for managing pets details for staff of pet care centres and owners of pets, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+PetPal is a **desktop app for managing pet details, optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI).
+
+PetPal is the all-in-one app for managing all the pets in your daycare center or in your shelter
 
 * Table of Contents
-{:toc}
+  * [Quick Start](#Quick-Start)
+  * [Features](#Features)
 
 --------------------------------------------------------------------------------------------------------------------
 
