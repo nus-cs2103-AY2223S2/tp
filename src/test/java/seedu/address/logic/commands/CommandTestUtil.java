@@ -37,17 +37,17 @@ public class CommandTestUtil {
         }};
 
     public static final String NAME_ALEX = "Alex Quentin";
-    public static final String NAME_BEN = "Bart Choo";
-    public static final String PHONE_ALEX = "11111111";
-    public static final String PHONE_BEN = "22222222";
-    public static final String EMAIL_ALEX = "amy@example.com";
-    public static final String EMAIL_BEN = "bob@example.com";
-    public static final String ADDRESS_ALEX = "Block 312, Amy Street 1";
-    public static final String ADDRESS_BEN = "Block 123, Bobby Street 3";
-    public static final String TELEGRAM_HANDLE_ALEX = "@amyfarrahFowler";
-    public static final String TELEGRAM_HANDLE_BEN = "@BobLovesAliceButHatesEve";
-    public static final String VALID_GROUP_1 = "husband";
-    public static final String VALID_GROUP_2 = "friend";
+    public static final String NAME_BEN = "Benjamin DeMeer";
+    public static final String PHONE_ALEX = "81121128";
+    public static final String PHONE_BEN = "87965051";
+    public static final String EMAIL_ALEX = "alexquentin@gmail.com";
+    public static final String EMAIL_BEN = "benjamindemeer@gmail.com";
+    public static final String ADDRESS_ALEX = "301 Commonwealth Avenue";
+    public static final String ADDRESS_BEN = "11 Kallang Bahru";
+    public static final String TELEGRAM_HANDLE_ALEX = "@alexquentin";
+    public static final String TELEGRAM_HANDLE_BEN = "@benjamindemeer";
+    public static final String VALID_GROUP_1 = "Groupmate";
+    public static final String VALID_GROUP_2 = "TA";
     public static final String VALID_MODULE_1 = "CS1101S";
     public static final String VALID_MODULE_2 = "GEA1000";
 
