@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
