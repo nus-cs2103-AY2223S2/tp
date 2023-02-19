@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
+import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +96,52 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String nric} into an {@code NRIC}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmednric = nric.trim();
+        if (!Nric.isValidNric(nric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmednric);
+    }
+
+    /**
+     * Parses a {@code String age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        String trimmedage = age.trim();
+        if (!Age.isValidAge(age)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(trimmedage);
+    }
+
+    /**
+     * Parses a {@code String risk} into an {@code Risk}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code risk} is invalid.
+     */
+    public static RiskLevel parseRiskLevel(String risklevel) throws ParseException {
+        requireNonNull(risklevel);
+        String trimmedrisk = risklevel.trim();
+        String upperrisk = trimmedrisk.toUpperCase();
+        if (!RiskLevel.isValidRisk(upperrisk)) {
+            throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new RiskLevel(upperrisk);
     }
 
     /**
