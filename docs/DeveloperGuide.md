@@ -270,14 +270,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                  |
+| `* * *`  | computing student                          | delete an item               | remove entries that I no longer need |             
+| `* * *`  | computing student                          | edit an item                  |                                    |
+| `* * *`  | computing student                                        | see all my lectures, deadlines, and tutorials          |                 |
+| `* *`    | TBD                                       | TBD   | TDB             |
+| `*`      | TBD | TBD          | TBD                                                |
 
 *{More to be added}*
 
