@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * Highlights: TBC
   * Credits: *TBC
 
-* **Code contributed**: [https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=programmerhao&breakdown=true]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=programmerhao&breakdown=true)
 
 * **Project management**:
   * TBC
