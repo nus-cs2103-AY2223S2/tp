@@ -14,14 +14,16 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.logic.commands.AddCommand;
+import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.AddressBook;
+import seedu.vms.model.Model;
+import seedu.vms.model.ReadOnlyAddressBook;
+import seedu.vms.model.ReadOnlyUserPrefs;
+import seedu.vms.model.person.Person;
 
 public class AddCommandTest {
 

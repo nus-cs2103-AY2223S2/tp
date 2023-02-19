@@ -7,11 +7,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.vms.logic.commands.AddCommand;
+import seedu.vms.model.Model;
+import seedu.vms.model.ModelManager;
+import seedu.vms.model.UserPrefs;
+import seedu.vms.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
