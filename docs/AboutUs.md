@@ -43,7 +43,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 <img src="images/daniel-kur.png.jpg" width="200px">
 
 [[github](http://github.com/daniel-kur)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniel-kur_portfolio.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
