@@ -5,7 +5,7 @@ title: Darius Ng's Project Portfolio Page
 
 ### Project: FitBook
 
-FitBook - to be added
+FitBook - to be added later 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
