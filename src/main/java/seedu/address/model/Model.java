@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 
 /**
@@ -77,6 +78,31 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a pair with the same identity as {@code pair} exists in the address book.
+     */
+    boolean hasPair(Pair pair);
+
+    /**
+     * Deletes the given pair.
+     * The pair must exist in the address book.
+     */
+    void deletePair(Pair target);
+
+    /**
+     * Adds the given pair.
+     * {@code pair} must not already exist in the address book.
+     */
+    void addPair(Pair pair);
+
+    /**
+     * Replaces the given pair {@code target} with {@code editedPair}.
+     * {@code target} must exist in the address book.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in the address book.
+     */
+    void setPair(Pair target, Pair editedPair);
+
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -85,4 +111,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered pair list */
+    ObservableList<Pair> getFilteredPairList();
+
+    /**
+     * Updates the filter of the filtered pair list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPairList(Predicate<Pair> predicate);
+
 }
