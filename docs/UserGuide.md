@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Wingman is a **modal** manager for managing airplanes, pilots, crews, flights, 
-and locations. It seeks to provide a highly efficient way of resource 
+Wingman is a **modal** manager for managing airplanes, pilots, crews, flights,
+and locations. It seeks to provide a highly efficient way of resource
 management for airline managers.
 
 * Table of Contents
@@ -14,26 +14,26 @@ management for airline managers.
 
 ## Modal Editing
 
-In Wingman, there are 5 different modes underwhich the app is operating: 
+In Wingman, there are 5 different modes underwhich the app is operating:
 
-- `location` mode: the mode in which an airline manager manages the 
+- `location` mode: the mode in which an airline manager manages the
   locations that the company is operating at.
-- `plane` mode: the mode in which an airline manager manages the planes 
+- `plane` mode: the mode in which an airline manager manages the planes
   that the company is operating.
-- `flight` mode: the mode in which the airline manager manages the flights 
+- `flight` mode: the mode in which the airline manager manages the flights
   that the company will carry out.
 - `pilot` mode: the mode in which the airline manager manages its pilots.
 - `crew` mode: the mode in which the airline manager manages its crews.
 
-Different modes offer similar APIs, with differences catered to the subject 
-that the mode is managing. Users can switch to different modes by typing the 
+Different modes offer similar APIs, with differences catered to the subject
+that the mode is managing. Users can switch to different modes by typing the
 corresponding mode name in the very beginning. For example:
 
 ```
 plane
 ```
 
-would switch the user to the plane mode. 
+would switch the user to the plane mode.
 
 ## Shared Commands
 
@@ -46,8 +46,8 @@ in different modes are different.
 
 #### Add a `location`
 
-To add a `location` to the locations on which the airline is currently 
-operating, the user will need to ensure that he is in the `location` mode. 
+To add a `location` to the locations on which the airline is currently
+operating, the user will need to ensure that he is in the `location` mode.
 
 Params:
 
@@ -109,7 +109,7 @@ Params:
 
 Optional Params:
 
-- `/rank`: the rank of the pilot. Possible values: 
+- `/rank`: the rank of the pilot. Possible values:
   - `1`: Training Captain,
   - `2`: Captain,
   - `3`: Senior,
@@ -126,7 +126,7 @@ Optional Params:
 Examples:
 
 ```
-add /name Len Beong /rank 1 
+add /name Len Beong /rank 1
 add /name Hartin Menz /rank 2 /age 39 /gender male /fh 5000
 ```
 
@@ -165,7 +165,7 @@ Then the plane would be removed from the fleet.
 > This part is beyond the scope of v1.2, and we will update this once we build
 > features related to this part.
 
-## Application Commands 
+## Application Commands
 
 ### `exit`
 
@@ -177,8 +177,9 @@ Ask us questions so that we can have a FAQ.
 
 ## Command Summary
 
-| **Action** | **Format**                               | **Examples**    | 
+| **Action** | **Format**                               | **Examples**    |
 | ---------- | ---------------------------------------- | --------------- |
 | Add        | `add [{parameter_type} {parameter_val}]` | `add /name Bob` |
 | Delete     | `delete {index}`                         | `delete 1`      |
 | Exit       | `exit`                                   | `exit`          |
+
