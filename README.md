@@ -1,4 +1,4 @@
-[![CI Status](https://app.codecov.io/gh/AY2223S2-CS2103T-T13-4/tp/settings/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T13-4/tp/branch/master/graph/badge.svg?token=BR0O1FQK5K)](https://codecov.io/gh/AY2223S2-CS2103T-T13-4/tp)
 
 ![Ui](docs/images/Ui.png)
 
