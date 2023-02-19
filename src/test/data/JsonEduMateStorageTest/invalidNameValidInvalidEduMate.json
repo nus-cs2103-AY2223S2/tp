@@ -19,23 +19,21 @@
   },
   "persons": [
     {
-      "name": "Pearl Outram",
-      "email": "pearloutram@gmail.com",
-      "telegramHandle": "@pearloutram",
-      "address": "10 Outram Road",
+      "name": "Goon Se-Rang",
+      "email": "maysee@gmail.com",
+      "telegramHandle": "@maysee",
+      "address": "30 Simei Street 3",
       "groups": [
-        "Groupmate",
-        "Study",
-        "NUS"
+        "Groupmate"
       ],
-      "phone": "3895as4665",
+      "phone": "96306065",
       "modules": [
-        "IS2103",
-        "CS3235",
-        "CE2407",
-        "IS2102",
-        "CE2409",
-        "CS3241R"
+        "BT1101",
+        "CS2101",
+        "CS2105",
+        "IS3251",
+        "CS3210",
+        "CS2104"
       ]
     }
   ]

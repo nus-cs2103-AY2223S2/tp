@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BART;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,23 +26,23 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MODULE_TAG = "M11";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_TELEGRAM_HANDLE = BENSON.getTelegramHandle().toString();
-    private static final List<JsonAdaptedGroupTag> VALID_TAGS = BENSON.getGroupTags().stream()
+    private static final String VALID_NAME = BART.getName().toString();
+    private static final String VALID_PHONE = BART.getPhone().toString();
+    private static final String VALID_EMAIL = BART.getEmail().toString();
+    private static final String VALID_ADDRESS = BART.getAddress().toString();
+    private static final String VALID_TELEGRAM_HANDLE = BART.getTelegramHandle().toString();
+    private static final List<JsonAdaptedGroupTag> VALID_TAGS = BART.getGroupTags().stream()
             .map(JsonAdaptedGroupTag::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedModuleTag> VALID_MODULE_TAGS =
-            BENSON.getModuleTags().stream()
+            BART.getModuleTags().stream()
             .map(JsonAdaptedModuleTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(BART);
+        assertEquals(BART, person.toModelType());
     }
 
     @Test

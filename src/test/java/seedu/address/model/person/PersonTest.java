@@ -2,14 +2,14 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.BEN;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,66 +26,66 @@ public class PersonTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALBERT.isSamePerson(ALBERT));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALBERT.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Person editedAlbert = new PersonBuilder(ALBERT).withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
+                .withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1).build();
+        assertTrue(ALBERT.isSamePerson(editedAlbert));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedAlbert = new PersonBuilder(ALBERT).withName(NAME_BEN).build();
+        assertFalse(ALBERT.isSamePerson(editedAlbert));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Person editedBart = new PersonBuilder(BEN).withName(NAME_BEN.toLowerCase()).build();
+        assertFalse(BEN.isSamePerson(editedBart));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = NAME_BEN + " ";
+        editedBart = new PersonBuilder(BEN).withName(nameWithTrailingSpaces).build();
+        assertFalse(BEN.isSamePerson(editedBart));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Person aliceCopy = new PersonBuilder(ALBERT).build();
+        assertTrue(ALBERT.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(ALBERT.equals(ALBERT));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(ALBERT.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(ALBERT.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(ALBERT.equals(BEN));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Person editedAlbert = new PersonBuilder(ALBERT).withName(NAME_BEN).build();
+        assertFalse(ALBERT.equals(editedAlbert));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlbert = new PersonBuilder(ALBERT).withPhone(PHONE_BEN).build();
+        assertFalse(ALBERT.equals(editedAlbert));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlbert = new PersonBuilder(ALBERT).withEmail(EMAIL_BEN).build();
+        assertFalse(ALBERT.equals(editedAlbert));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).build();
+        assertFalse(ALBERT.equals(editedAlbert));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withGroupTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlbert = new PersonBuilder(ALBERT).withGroupTags(VALID_GROUP_1).build();
+        assertFalse(ALBERT.equals(editedAlbert));
     }
 }

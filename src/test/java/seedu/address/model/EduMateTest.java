@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
@@ -48,9 +48,9 @@ public class EduMateTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        List<Person> newPersons = Arrays.asList(ALBERT, editedAlbert);
         User validUser = TypicalUser.getTypicalUser();
         EduMateStub newData = new EduMateStub(newPersons, validUser);
 
@@ -64,21 +64,21 @@ public class EduMateTest {
 
     @Test
     public void hasPerson_personNotInEduMate_returnsFalse() {
-        assertFalse(eduMate.hasPerson(ALICE));
+        assertFalse(eduMate.hasPerson(ALBERT));
     }
 
     @Test
     public void hasPerson_personInEduMate_returnsTrue() {
-        eduMate.addPerson(ALICE);
-        assertTrue(eduMate.hasPerson(ALICE));
+        eduMate.addPerson(ALBERT);
+        assertTrue(eduMate.hasPerson(ALBERT));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInEduMate_returnsTrue() {
-        eduMate.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withGroupTags(VALID_TAG_HUSBAND)
+        eduMate.addPerson(ALBERT);
+        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
-        assertTrue(eduMate.hasPerson(editedAlice));
+        assertTrue(eduMate.hasPerson(editedAlbert));
     }
 
     @Test

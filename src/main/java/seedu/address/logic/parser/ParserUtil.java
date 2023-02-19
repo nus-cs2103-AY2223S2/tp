@@ -122,7 +122,6 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!GroupTag.isValidTagName(trimmedTag)) {
-            System.out.println(tag);
             throw new ParseException(GroupTag.MESSAGE_CONSTRAINTS);
         }
         return new GroupTag(trimmedTag);

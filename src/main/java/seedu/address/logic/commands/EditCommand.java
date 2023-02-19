@@ -123,7 +123,6 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        System.out.println(editPersonDescriptor.equals(e.editPersonDescriptor));
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
@@ -152,7 +151,6 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            System.out.println(toCopy.telegramHandle);
             setTelegramHandle(toCopy.telegramHandle);
             setGroupTags(toCopy.groupTags);
             setModuleTags(toCopy.moduleTags);
@@ -253,8 +251,6 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
-            System.out.println(getModuleTags());
-            System.out.println(e.getModuleTags());
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())

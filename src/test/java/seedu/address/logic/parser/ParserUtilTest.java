@@ -18,21 +18,29 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 public class ParserUtilTest {
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TELEGRAM = "hellothere";
+    private static final String INVALID_GROUP = "#friend";
+    private static final String INVALID_MODULE = "CS50";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TELEGRAM = "@rachelwalker";
+    private static final String VALID_GROUP_1 = "friend";
+    private static final String VALID_GROUP_2 = "neighbour";
+    private static final String VALID_MODULE_1 = "CS2103T";
+    private static final String VALID_MODULE_2 = "CFG2002";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -149,49 +157,121 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
+    public void parseTelegramHandle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegramHandle((String) null));
+    }
+
+    @Test
+    public void parseTelegramHandle_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegramHandle(INVALID_TELEGRAM));
+    }
+
+    @Test
+    public void parseTelegramHandle_validValueWithoutWhitespace_returnsTelegramHandle() throws Exception {
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAM);
+        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(VALID_TELEGRAM));
+    }
+
+    @Test
+    public void parseTelegramHandle_validValueWithWhitespace_returnsTrimmedTelegramHandle() throws Exception {
+        String telegramHandleWithWhitespace = WHITESPACE + VALID_TELEGRAM + WHITESPACE;
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAM);
+        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(telegramHandleWithWhitespace));
+    }
+
+    @Test
+    public void parseGroupTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGroupTag(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTag(INVALID_TAG));
+    public void parseGroupTag_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTag(INVALID_GROUP));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        GroupTag expectedGroupTag = new GroupTag(VALID_TAG_1);
-        assertEquals(expectedGroupTag, ParserUtil.parseGroupTag(VALID_TAG_1));
+    public void parseGroupTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+        GroupTag expectedGroupTag = new GroupTag(VALID_GROUP_1);
+        assertEquals(expectedGroupTag, ParserUtil.parseGroupTag(VALID_GROUP_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        GroupTag expectedGroupTag = new GroupTag(VALID_TAG_1);
+    public void parseGroupTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_GROUP_1 + WHITESPACE;
+        GroupTag expectedGroupTag = new GroupTag(VALID_GROUP_1);
         assertEquals(expectedGroupTag, ParserUtil.parseGroupTag(tagWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
+    public void parseGroupTags_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGroupTags(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseGroupTags_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroupTags(
+                Arrays.asList(VALID_GROUP_1, INVALID_GROUP)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+    public void parseGroupTags_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseGroupTags(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<GroupTag> actualGroupTagSet = ParserUtil.parseGroupTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<GroupTag> expectedGroupTagSet = new HashSet<GroupTag>(Arrays.asList(new GroupTag(VALID_TAG_1),
-                new GroupTag(VALID_TAG_2)));
+    public void parseGroupTags_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<GroupTag> actualGroupTagSet = ParserUtil.parseGroupTags(Arrays.asList(VALID_GROUP_1, VALID_GROUP_2));
+        Set<GroupTag> expectedGroupTagSet = new HashSet<GroupTag>(Arrays.asList(new GroupTag(VALID_GROUP_1),
+                new GroupTag(VALID_GROUP_2)));
 
         assertEquals(expectedGroupTagSet, actualGroupTagSet);
+    }
+
+    @Test
+    public void parseModuleTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleTag(null));
+    }
+
+    @Test
+    public void parseModuleTag_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleTag(INVALID_GROUP));
+    }
+
+    @Test
+    public void parseModuleTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+        ModuleTag expectedModuleTag = new ModuleTag(VALID_MODULE_1);
+        assertEquals(expectedModuleTag, ParserUtil.parseModuleTag(VALID_MODULE_1));
+    }
+
+    @Test
+    public void parseModuleTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_MODULE_1 + WHITESPACE;
+        ModuleTag expectedModuleTag = new ModuleTag(VALID_MODULE_1);
+        assertEquals(expectedModuleTag, ParserUtil.parseModuleTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseModuleTags_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleTags(null));
+    }
+
+    @Test
+    public void parseModuleTags_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleTags(
+                Arrays.asList(VALID_MODULE_1, INVALID_MODULE)));
+    }
+
+    @Test
+    public void parseModuleTags_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseModuleTags(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseModuleTags_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<ModuleTag> actualModuleTagSet = ParserUtil.parseModuleTags(Arrays.asList(VALID_MODULE_1, VALID_MODULE_2));
+        Set<ModuleTag> expectedModuleTagSet = new HashSet<ModuleTag>(Arrays.asList(new ModuleTag(VALID_MODULE_1),
+                new ModuleTag(VALID_MODULE_2)));
+
+        assertEquals(expectedModuleTagSet, actualModuleTagSet);
     }
 }

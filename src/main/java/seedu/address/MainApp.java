@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!eduMateOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EduMate");
             }
-            initialData = eduMateOptional.orElseGet(SampleDataUtil::getSampleEduMate);
+            initialData = eduMateOptional.orElseGet(() -> SampleDataUtil.getSampleEduMate(25));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty EduMate");
             initialData = new EduMate();

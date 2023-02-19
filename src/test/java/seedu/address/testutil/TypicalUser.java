@@ -23,11 +23,12 @@ public class TypicalUser {
                 add(new GroupTag("User"));
             }},
             new HashSet<>() {{
+                add(new ModuleTag("CS2100"));
                 add(new ModuleTag("CS2101"));
                 add(new ModuleTag("CS2102"));
-                add(new ModuleTag("CS2103T"));
+                add(new ModuleTag("CS2103"));
+                add(new ModuleTag("CS2104"));
                 add(new ModuleTag("CS2105"));
-                add(new ModuleTag("CS2106"));
             }});
 
     /**

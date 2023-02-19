@@ -1,0 +1,1826 @@
+{
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "National University of Singapore",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105"
+    ]
+  },
+  "persons": [
+    {
+      "name": "Bee Shan",
+      "email": "beeshan@gmail.com",
+      "telegramHandle": "@beeshan",
+      "address": "200 Bishan Road",
+      "groups": [
+        "NS",
+        "CCA"
+      ],
+      "phone": "81121128",
+      "modules": [
+        "CS3242",
+        "BT3101",
+        "CS1010E",
+        "CS3219",
+        "CE3165"
+      ]
+    },
+    {
+      "name": "Cheng Lim",
+      "email": "chenglim@gmail.com",
+      "telegramHandle": "@chenglim",
+      "address": "5 Anchorvale Street",
+      "groups": [],
+      "phone": "81140586",
+      "modules": [
+        "CE3132",
+        "CE3155",
+        "CS2103T",
+        "CS2010",
+        "CS3282",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Khoo Pang",
+      "email": "khoopang@gmail.com",
+      "telegramHandle": "@khoopang",
+      "address": "60 Fernvale Street",
+      "groups": [],
+      "phone": "81384381",
+      "modules": [
+        "IS3150",
+        "CS1010",
+        "CS3223",
+        "CS2108",
+        "CS3211",
+        "CS2107"
+      ]
+    },
+    {
+      "name": "Chun Ye",
+      "email": "chunye@gmail.com",
+      "telegramHandle": "@chunye",
+      "address": "825 Upper Thomson Road",
+      "groups": [
+        "Study"
+      ],
+      "phone": "81516079",
+      "modules": [
+        "BT1101",
+        "CS2106",
+        "CE3166",
+        "BT2010",
+        "CS3243",
+        "CE3165"
+      ]
+    },
+    {
+      "name": "Maxwell Neal",
+      "email": "maxwellneal@gmail.com",
+      "telegramHandle": "@maxwellneal",
+      "address": "50 Neil Road",
+      "groups": [
+        "Study"
+      ],
+      "phone": "82103515",
+      "modules": [
+        "CS3216",
+        "CS1010",
+        "CS3223",
+        "CS3245",
+        "CS3281",
+        "CS2113T"
+      ]
+    },
+    {
+      "name": "Clark Kee",
+      "email": "clarkkee@gmail.com",
+      "telegramHandle": "@clarkkee",
+      "address": "10 Eu Tong Sen Street",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "82269070",
+      "modules": [
+        "CS1010X",
+        "CS2108",
+        "CS3243",
+        "CS3103",
+        "CS2104",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Ang Djit Sun",
+      "email": "angdjitsun@gmail.com",
+      "telegramHandle": "@angdjitsun",
+      "address": "2450 Ang Mo Kio Avenue 8",
+      "groups": [
+        "NS"
+      ],
+      "phone": "82386142",
+      "modules": [
+        "CS2101",
+        "CS3233",
+        "CS2309",
+        "CS3219",
+        "CS1231",
+        "CS2107"
+      ]
+    },
+    {
+      "name": "Melania Walker",
+      "email": "melaniawalker@gmail.com",
+      "telegramHandle": "@melaniawalker",
+      "address": "Millenia Walk",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "82724009",
+      "modules": [
+        "BT1101",
+        "IS2103",
+        "CS2108",
+        "BT2101",
+        "CS2102",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Kevin Ho",
+      "email": "kevinho@gmail.com",
+      "telegramHandle": "@kevinho",
+      "address": "900 Upper Serangoon Road",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "82784944",
+      "modules": [
+        "CS3217",
+        "CS2040",
+        "CS2102",
+        "CS3210",
+        "CS1101S",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Albert Blackmore",
+      "email": "albertblackmore@gmail.com",
+      "telegramHandle": "@albertblackmore",
+      "address": "2 Blackmore Drive",
+      "groups": [
+        "TA"
+      ],
+      "phone": "83218989",
+      "modules": [
+        "CS3235",
+        "IS1103",
+        "CS3242",
+        "CE3132",
+        "CS2103",
+        "BT3101"
+      ]
+    },
+    {
+      "name": "Pearl Outram",
+      "email": "pearloutram@gmail.com",
+      "telegramHandle": "@pearloutram",
+      "address": "10 Outram Road",
+      "groups": [
+        "Groupmate",
+        "Study",
+        "NUS"
+      ],
+      "phone": "83340122",
+      "modules": [
+        "IS2103",
+        "CS3235",
+        "CE2407",
+        "IS2102",
+        "CE2409",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Zhang Yi",
+      "email": "zhangyi@gmail.com",
+      "telegramHandle": "@zhangyi",
+      "address": "Changi Airport",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "83518074",
+      "modules": [
+        "CS1010XCP",
+        "CS2108",
+        "BT3103",
+        "BT2102",
+        "CS3249"
+      ]
+    },
+    {
+      "name": "Yew Tee",
+      "email": "yewtee@gmail.com",
+      "telegramHandle": "@yewtee",
+      "address": "61 Choa Chu Kang Drive",
+      "groups": [
+        "NS"
+      ],
+      "phone": "83606286",
+      "modules": [
+        "CE2134",
+        "CS3216",
+        "CS1010",
+        "BT2101",
+        "IS3103",
+        "CS3219"
+      ]
+    },
+    {
+      "name": "Kent Richards",
+      "email": "kentrichards@gmail.com",
+      "telegramHandle": "@kentrichards",
+      "address": "301 South Buona Vista Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "83803769",
+      "modules": [
+        "BT2102",
+        "CS3203",
+        "CS2010",
+        "CS1231",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Boon Lay",
+      "email": "boonlay@gmail.com",
+      "telegramHandle": "@boonlay",
+      "address": "301 Boon Lay Way",
+      "groups": [
+        "Groupmate",
+        "JC"
+      ],
+      "phone": "83974417",
+      "modules": [
+        "CE1101",
+        "CE2112",
+        "IS3261",
+        "CS3249",
+        "CE2409"
+      ]
+    },
+    {
+      "name": "Nicole Hai Wei Ting",
+      "email": "nicolehaiweiting@gmail.com",
+      "telegramHandle": "@nicolehaiweiting",
+      "address": "20 Republic Avenue",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "83997021",
+      "modules": [
+        "CS3282",
+        "CS1010X",
+        "CS2100",
+        "CS3219",
+        "CS1101S",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Ford Canning",
+      "email": "fordcanning@gmail.com",
+      "telegramHandle": "@fordcanning",
+      "address": "170 River Valley Road",
+      "groups": [
+        "TA"
+      ],
+      "phone": "84058785",
+      "modules": [
+        "CS2101",
+        "CS1020",
+        "CS1010J",
+        "CS3203",
+        "CS2010",
+        "CS3281"
+      ]
+    },
+    {
+      "name": "Victoria Raffles",
+      "email": "victoriaraffles@gmail.com",
+      "telegramHandle": "@victoriaraffles",
+      "address": "5 Raffles Place",
+      "groups": [
+        "Groupmate",
+        "NS"
+      ],
+      "phone": "84119168",
+      "modules": [
+        "CS2106",
+        "CS3242",
+        "CS3241",
+        "IS3261",
+        "CS2100",
+        "CE2409"
+      ]
+    },
+    {
+      "name": "Keat Hong",
+      "email": "keathong@gmail.com",
+      "telegramHandle": "@keathong",
+      "address": "30 Choa Chu Kang Way",
+      "groups": [
+        "JC"
+      ],
+      "phone": "84158902",
+      "modules": [
+        "CE3101",
+        "CS3240",
+        "CS2101",
+        "IS3150",
+        "BT3103",
+        "CE2409"
+      ]
+    },
+    {
+      "name": "Ritchie Thomson",
+      "email": "ritchiethomson@gmail.com",
+      "telegramHandle": "@ritchiethomson",
+      "address": "1 Jalan Keli",
+      "groups": [
+        "Study"
+      ],
+      "phone": "84194348",
+      "modules": [
+        "CS1010R",
+        "CS3223",
+        "CS1010X",
+        "CE3132",
+        "CE2112"
+      ]
+    },
+    {
+      "name": "George Richards",
+      "email": "georgerichards@gmail.com",
+      "telegramHandle": "@georgerichards",
+      "address": "301 South Buona Vista Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "84578541",
+      "modules": [
+        "CE3101",
+        "BT3101",
+        "IS3261",
+        "CS2040C",
+        "CS2103T",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Amirah Tan",
+      "email": "amirahtan@gmail.com",
+      "telegramHandle": "@amirahtan",
+      "address": "920 New Upper Changi Road",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "84583242",
+      "modules": [
+        "IS3261",
+        "BT3103",
+        "CE3155",
+        "CS3211",
+        "CS2030",
+        "CE3116"
+      ]
+    },
+    {
+      "name": "Vernon Lee",
+      "email": "vernonlee@gmail.com",
+      "telegramHandle": "@vernonlee",
+      "address": "90 Bartley Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "84584193",
+      "modules": [
+        "CS3245",
+        "CS2103",
+        "CS1010S",
+        "CS3249",
+        "CS1101S",
+        "CS1231"
+      ]
+    },
+    {
+      "name": "Albert Park",
+      "email": "albertpark@gmail.com",
+      "telegramHandle": "@albertpark",
+      "address": "2 Blackmore Drive",
+      "groups": [
+        "TA"
+      ],
+      "phone": "84784797",
+      "modules": [
+        "CS1010E",
+        "BT2101",
+        "CS2040",
+        "IS3240",
+        "CS2040C"
+      ]
+    },
+    {
+      "name": "Wang Kok",
+      "email": "wangkok@gmail.com",
+      "telegramHandle": "@wangkok",
+      "address": "10 Sengkang Central",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "84845775",
+      "modules": [
+        "CE3155",
+        "CS1101S",
+        "CS1020",
+        "CS3203",
+        "CE3165",
+        "CS3234"
+      ]
+    },
+    {
+      "name": "Benjamin Coolen",
+      "email": "benjamincoolen@gmail.com",
+      "telegramHandle": "@benjamincoolen",
+      "address": "31 Bencoolen Street",
+      "groups": [
+        "TA"
+      ],
+      "phone": "85251110",
+      "modules": [
+        "CS2106",
+        "CS1010R",
+        "CS3242",
+        "CS2040",
+        "CS1101S",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Soon Teck",
+      "email": "soonteck@gmail.com",
+      "telegramHandle": "@soonteck",
+      "address": "Suntec City",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "85371271",
+      "modules": [
+        "BT1101",
+        "CS1010XCP",
+        "CS1020",
+        "CE3165",
+        "IS2101",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Zhang Yi",
+      "email": "zhangyi@gmail.com",
+      "telegramHandle": "@zhangyi",
+      "address": "70 Airport Boulevard",
+      "groups": [],
+      "phone": "86392515",
+      "modules": [
+        "CS3230",
+        "CS3233",
+        "BT3102",
+        "CS1101S",
+        "CE3116"
+      ]
+    },
+    {
+      "name": "Sallim Mattar",
+      "email": "sallimmattar@gmail.com",
+      "telegramHandle": "@sallimmattar",
+      "address": "60 Merpati Road",
+      "groups": [
+        "TA"
+      ],
+      "phone": "86428763",
+      "modules": [
+        "IS1103",
+        "CS3223",
+        "CS2105",
+        "CS3245R",
+        "CS1010S",
+        "CS3243"
+      ]
+    },
+    {
+      "name": "Gwon Se Rang",
+      "email": "gwonserang@gmail.com",
+      "telegramHandle": "@gwonserang",
+      "address": "600 Upper Serangoon Road",
+      "groups": [
+        "CCA",
+        "NUS"
+      ],
+      "phone": "86543689",
+      "modules": [
+        "CE2112",
+        "CE3132",
+        "CS2108",
+        "IS2101",
+        "CS3281"
+      ]
+    },
+    {
+      "name": "Joo Rong",
+      "email": "joorong@gmail.com",
+      "telegramHandle": "@joorong",
+      "address": "10 Jurong East Street 12",
+      "groups": [
+        "NS"
+      ],
+      "phone": "86548446",
+      "modules": [
+        "CS3244",
+        "CS2103",
+        "CE3155",
+        "IS3240",
+        "CS1020"
+      ]
+    },
+    {
+      "name": "Yunus Abdul Razak",
+      "email": "yunusabdulrazak@gmail.com",
+      "telegramHandle": "@yunusabdulrazak",
+      "address": "30 Eunos Crescent",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "86592920",
+      "modules": [
+        "BT1101",
+        "CE3101",
+        "IS2103",
+        "IS2102",
+        "CS2010",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Teck Whye",
+      "email": "teckwhye@gmail.com",
+      "telegramHandle": "@teckwhye",
+      "address": "10 Choa Chu Kang Way",
+      "groups": [
+        "JC"
+      ],
+      "phone": "86696473",
+      "modules": [
+        "IS2103",
+        "CE3132",
+        "BT2010",
+        "CS2113T",
+        "CS2040C",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Eusoff Richards",
+      "email": "eusoffrichards@gmail.com",
+      "telegramHandle": "@eusoffrichards",
+      "address": "301 South Buona Vista Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "86795172",
+      "modules": [
+        "CE2407",
+        "BT3103",
+        "CS3244R",
+        "IS3103",
+        "CS2040C",
+        "CE3102"
+      ]
+    },
+    {
+      "name": "Isaac Newton",
+      "email": "isaacnewton@gmail.com",
+      "telegramHandle": "@isaacnewton",
+      "address": "49 Scotts Road",
+      "groups": [
+        "TA",
+        "NS"
+      ],
+      "phone": "86845614",
+      "modules": [
+        "CS1010X",
+        "IS1103",
+        "CS3233",
+        "IS3251",
+        "CS3236R"
+      ]
+    },
+    {
+      "name": "Brad Toh",
+      "email": "bradtoh@gmail.com",
+      "telegramHandle": "@bradtoh",
+      "address": "377 Lorong 1 Toa Payoh",
+      "groups": [
+        "NS"
+      ],
+      "phone": "86980537",
+      "modules": [
+        "CS3230",
+        "IS3150",
+        "CS1010R",
+        "CS1010S",
+        "CS3230R",
+        "CS3210"
+      ]
+    },
+    {
+      "name": "Nicole Tan Bin",
+      "email": "nicoletanbin@gmail.com",
+      "telegramHandle": "@nicoletanbin",
+      "address": "20 Tampines Central 1",
+      "groups": [
+        "TA",
+        "Groupmate"
+      ],
+      "phone": "87025627",
+      "modules": [
+        "CE3101",
+        "IS1103",
+        "CE2112",
+        "BT3102",
+        "CS3236",
+        "CS3230R"
+      ]
+    },
+    {
+      "name": "Wen Li",
+      "email": "wenli@gmail.com",
+      "telegramHandle": "@wenli",
+      "address": "301 Boon Lay Way",
+      "groups": [
+        "Groupmate",
+        "JC"
+      ],
+      "phone": "87045701",
+      "modules": [
+        "CS2101",
+        "CE3132",
+        "IS3221",
+        "IS3103",
+        "CS3281",
+        "CS2113T"
+      ]
+    },
+    {
+      "name": "Mary Thomson",
+      "email": "marythomson@gmail.com",
+      "telegramHandle": "@marythomson",
+      "address": "60 Marymount Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "87194593",
+      "modules": [
+        "CS3244",
+        "BT2101",
+        "CS3244R",
+        "CS2040",
+        "CS2040C",
+        "CS3234"
+      ]
+    },
+    {
+      "name": "Clement Tee",
+      "email": "clementtee@gmail.com",
+      "telegramHandle": "@clementtee",
+      "address": "3150 Commonwealth Avenue West",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "87371107",
+      "modules": [
+        "CS3244",
+        "CS3236",
+        "CS2040C",
+        "IS2101",
+        "CS2010",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Marcy Ling",
+      "email": "marcyling@gmail.com",
+      "telegramHandle": "@marcyling",
+      "address": "71 Woodlands Avenue 3",
+      "groups": [
+        "NS"
+      ],
+      "phone": "87953312",
+      "modules": [
+        "CE2183",
+        "CS2101",
+        "CE3121",
+        "BT3102",
+        "BT3103",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Benjamin DeMeer",
+      "email": "benjamindemeer@gmail.com",
+      "telegramHandle": "@benjamindemeer",
+      "address": "11 Kallang Bahru",
+      "groups": [
+        "TA"
+      ],
+      "phone": "87965051",
+      "modules": [
+        "CS3240",
+        "IS2103",
+        "CS3235",
+        "CS3233",
+        "CS1010E",
+        "IS2102"
+      ]
+    },
+    {
+      "name": "Granger Summers",
+      "email": "grangersummers@gmail.com",
+      "telegramHandle": "@grangersummers",
+      "address": "1 Somerset Road",
+      "groups": [
+        "NS"
+      ],
+      "phone": "88048223",
+      "modules": [
+        "CS3236R",
+        "BT3102",
+        "BT2101",
+        "CS1020",
+        "CS2040C",
+        "IS2101"
+      ]
+    },
+    {
+      "name": "Yio Chu Kang",
+      "email": "yiochukang@gmail.com",
+      "telegramHandle": "@yiochukang",
+      "address": "3000 Ang Mo Kio Avenue 8",
+      "groups": [
+        "NS"
+      ],
+      "phone": "88175384",
+      "modules": [
+        "IS1103",
+        "CS3211",
+        "IS3240",
+        "CS2030",
+        "IS3103",
+        "CS2010"
+      ]
+    },
+    {
+      "name": "Novena Thomson",
+      "email": "novenathomson@gmail.com",
+      "telegramHandle": "@novenathomson",
+      "address": "250 Thomson Road",
+      "groups": [
+        "NS"
+      ],
+      "phone": "88255530",
+      "modules": [
+        "CE2155",
+        "CS1010R",
+        "IS3221",
+        "IS3251",
+        "CE3165",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Steven Tan",
+      "email": "steventan@gmail.com",
+      "telegramHandle": "@steventan",
+      "address": "92 Stevens Road",
+      "groups": [
+        "TA",
+        "Study"
+      ],
+      "phone": "88474114",
+      "modules": [
+        "CS3240",
+        "CS2101",
+        "CS3245R",
+        "CS3234",
+        "CS2010",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Ang Mo Kio",
+      "email": "angmokio@gmail.com",
+      "telegramHandle": "@angmokio",
+      "address": "2450 Ang Mo Kio Avenue 8",
+      "groups": [
+        "NS"
+      ],
+      "phone": "88491592",
+      "modules": [
+        "CE2183",
+        "CS3241",
+        "BT2010",
+        "IS3103",
+        "CS3234",
+        "IS2101"
+      ]
+    },
+    {
+      "name": "Illyas Alhaq",
+      "email": "illyasalhaq@gmail.com",
+      "telegramHandle": "@illyasalhaq",
+      "address": "Elias Mall",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "88713629",
+      "modules": [
+        "CS2106",
+        "CS1010X",
+        "CS1010",
+        "BT2010",
+        "CS3219",
+        "CS3210"
+      ]
+    },
+    {
+      "name": "Lavender Crawford",
+      "email": "lavendercrawford@gmail.com",
+      "telegramHandle": "@lavendercrawford",
+      "address": "50 Kallang Road",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "88746621",
+      "modules": [
+        "CE2155",
+        "CE3166",
+        "CS3245R",
+        "CS3233R",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Ferra Park",
+      "email": "ferrapark@gmail.com",
+      "telegramHandle": "@ferrapark",
+      "address": "250 Race Course Road",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "88898954",
+      "modules": [
+        "CE2155",
+        "IS3150",
+        "CS1010XCP",
+        "CS2105",
+        "CS1010R",
+        "CS3243"
+      ]
+    },
+    {
+      "name": "Hong Shan",
+      "email": "hongshan@gmail.com",
+      "telegramHandle": "@hongshan",
+      "address": "920 Tiong Bahru Road",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "89241249",
+      "modules": [
+        "CS3233",
+        "CS3236",
+        "CS1010E",
+        "CS2040C",
+        "CE3165"
+      ]
+    },
+    {
+      "name": "Jing Kai Xiu",
+      "email": "jingkaixiu@gmail.com",
+      "telegramHandle": "@jingkaixiu",
+      "address": "1 Cashew Road",
+      "groups": [
+        "TA"
+      ],
+      "phone": "89275577",
+      "modules": [
+        "CE2183",
+        "IS2103",
+        "CS2102",
+        "CS2040C",
+        "CS3103",
+        "CE2409"
+      ]
+    },
+    {
+      "name": "Marina Wan",
+      "email": "marinawan@gmail.com",
+      "telegramHandle": "@marinawan",
+      "address": "Marina One",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "89514701",
+      "modules": [
+        "CE2134",
+        "CE2112",
+        "BT2010",
+        "CS2100",
+        "IS3103",
+        "CS1101S"
+      ]
+    },
+    {
+      "name": "Joo Koon",
+      "email": "jookoon@gmail.com",
+      "telegramHandle": "@jookoon",
+      "address": "91 Joo Koon Circle",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "89795173",
+      "modules": [
+        "CS3233",
+        "CS3211",
+        "CS3217",
+        "BT2102",
+        "CS3241R",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Ewan MacPherson",
+      "email": "ewanmacpherson@gmail.com",
+      "telegramHandle": "@ewanmacpherson",
+      "address": "171 Paya Lebar Road",
+      "groups": [
+        "TA",
+        "CCA"
+      ],
+      "phone": "89811264",
+      "modules": [
+        "CE2183",
+        "CS3216",
+        "IS3106",
+        "CS2309",
+        "BT3103",
+        "CS3282"
+      ]
+    },
+    {
+      "name": "Soo Teck",
+      "email": "sooteck@gmail.com",
+      "telegramHandle": "@sooteck",
+      "address": "21 Punggol Way",
+      "groups": [],
+      "phone": "89974126",
+      "modules": [
+        "CS3230",
+        "CS3235",
+        "CS1010S",
+        "CS3244R",
+        "CS1020",
+        "CS3236R"
+      ]
+    },
+    {
+      "name": "Leedon Holland",
+      "email": "leedonholland@gmail.com",
+      "telegramHandle": "@leedonholland",
+      "address": "200 Holland Avenue",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "91345121",
+      "modules": [
+        "CS3241",
+        "CS3233",
+        "CS3217",
+        "CS2040",
+        "CS3249",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Bart Lee",
+      "email": "bartlee@gmail.com",
+      "telegramHandle": "@bartlee",
+      "address": "90 Bartley Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "91527695",
+      "modules": [
+        "CE3101",
+        "CS1010XCP",
+        "CS1010R",
+        "CS1010X",
+        "IS3103",
+        "CS1101S"
+      ]
+    },
+    {
+      "name": "Jubilee Ang",
+      "email": "jubileeang@gmail.com",
+      "telegramHandle": "@jubileeang",
+      "address": "2450 Ang Mo Kio Avenue 8",
+      "groups": [
+        "NS"
+      ],
+      "phone": "91803854",
+      "modules": [
+        "BT1101",
+        "CS3230",
+        "IS3261",
+        "IS3251",
+        "CS3217",
+        "CS2107"
+      ]
+    },
+    {
+      "name": "Marina Bay",
+      "email": "marinabay@gmail.com",
+      "telegramHandle": "@marinabay",
+      "address": "21 Park Street",
+      "groups": [
+        "NS",
+        "Study"
+      ],
+      "phone": "91821364",
+      "modules": [
+        "BT2010",
+        "IS3261",
+        "CE3155",
+        "CS3249",
+        "CS2010",
+        "CS2107"
+      ]
+    },
+    {
+      "name": "Travis Scott",
+      "email": "travisscott@gmail.com",
+      "telegramHandle": "@travisscott",
+      "address": 123456,
+      "groups": [],
+      "phone": "91926625",
+      "modules": [
+        "BT1101",
+        "CS2220",
+        "CS3211",
+        "IS3103",
+        "CS3243",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Nee Soon",
+      "email": "neesoon@gmail.com",
+      "telegramHandle": "@neesoon",
+      "address": "301 Yishun Avenue 2",
+      "groups": [
+        "NS"
+      ],
+      "phone": "92209070",
+      "modules": [
+        "CS3241R",
+        "CE3132",
+        "CS1231",
+        "CS1010E",
+        "CS2010",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Scott Newton",
+      "email": "scottnewton@gmail.com",
+      "telegramHandle": "@scottnewton",
+      "address": "49 Scotts Road",
+      "groups": [
+        "TA",
+        "NS"
+      ],
+      "phone": "92711938",
+      "modules": [
+        "CS1010XCP",
+        "CS3233",
+        "BT3102",
+        "CS2108",
+        "CS2309",
+        "CE3116"
+      ]
+    },
+    {
+      "name": "Tim Holland",
+      "email": "timholland@gmail.com",
+      "telegramHandle": "@timholland",
+      "address": "200 Holland Avenue",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "92811677",
+      "modules": [
+        "CE3101",
+        "CS1010X",
+        "IS2102",
+        "CS2030",
+        "CS1101S",
+        "CE3165"
+      ]
+    },
+    {
+      "name": "Low Wong Chuan",
+      "email": "lowwongchuan@gmail.com",
+      "telegramHandle": "@lowwongchuan",
+      "address": "150 Serangoon Avenue 3",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "92819708",
+      "modules": [
+        "CS3245",
+        "CE3132",
+        "CS3230R",
+        "CS3249",
+        "CS3203"
+      ]
+    },
+    {
+      "name": "Mary Caldecott",
+      "email": "marycaldecott@gmail.com",
+      "telegramHandle": "@marycaldecott",
+      "address": "38 Toa Payoh Rise",
+      "groups": [
+        "Study",
+        "CCA"
+      ],
+      "phone": "93330400",
+      "modules": [
+        "IS1103",
+        "CS3223",
+        "CS3241",
+        "BT3101",
+        "CS2102",
+        "CS1010J"
+      ]
+    },
+    {
+      "name": "Nurul Khatibah Abdul Ibrahim",
+      "email": "nurulkhatibahabdulibrahim@gmail.com",
+      "telegramHandle": "@nurulkhatibahabdulibrahim",
+      "address": "201 Yishun Avenue 2",
+      "groups": [
+        "NS"
+      ],
+      "phone": "93395405",
+      "modules": [
+        "CS2106",
+        "CS1010X",
+        "CS1010E",
+        "CS2040C",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Khadijah Al Junied",
+      "email": "khadijahaljunied@gmail.com",
+      "telegramHandle": "@khadijahaljunied",
+      "address": "81 Lorong 25 Geylang",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "93562949",
+      "modules": [
+        "IS3106",
+        "CS1010",
+        "CS2102",
+        "CS3219",
+        "CS3282",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Glenn Napier",
+      "email": "glennnapier@gmail.com",
+      "telegramHandle": "@glennnapier",
+      "address": "2 Napier Road",
+      "groups": [
+        "Study"
+      ],
+      "phone": "93637999",
+      "modules": [
+        "BT3102",
+        "CS1010E",
+        "IS2102",
+        "CS2107",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Sam Kee",
+      "email": "samkee@gmail.com",
+      "telegramHandle": "@samkee",
+      "address": "10 Sentul Crescent",
+      "groups": [],
+      "phone": "93786094",
+      "modules": [
+        "CS2105",
+        "CS1010",
+        "CS2100",
+        "CS3249",
+        "CS3203"
+      ]
+    },
+    {
+      "name": "Juan Fullerton",
+      "email": "juanfullerton@gmail.com",
+      "telegramHandle": "@juanfullerton",
+      "address": "One Fullerton",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "94185466",
+      "modules": [
+        "CE3101",
+        "CS2100",
+        "CS2102",
+        "CS2030",
+        "CS2107",
+        "CS3241R"
+      ]
+    },
+    {
+      "name": "Edward Anson",
+      "email": "edwardanson@gmail.com",
+      "telegramHandle": "@edwardanson",
+      "address": "80 Shenton Way",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "94761978",
+      "modules": [
+        "CS2106",
+        "CS1010XCP",
+        "CS1010X",
+        "CS3223",
+        "BT2101",
+        "CS3282"
+      ]
+    },
+    {
+      "name": "Teck Lee",
+      "email": "tecklee@gmail.com",
+      "telegramHandle": "@tecklee",
+      "address": "101 Ponggol Seventeenth Avenue",
+      "groups": [],
+      "phone": "94896602",
+      "modules": [
+        "IS3106",
+        "CS3241",
+        "CS3242",
+        "CS3245R",
+        "CS3281",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "San Gi Chim",
+      "email": "sangichim@gmail.com",
+      "telegramHandle": "@sangichim",
+      "address": "10 Bukit Batok Central",
+      "groups": [
+        "NS"
+      ],
+      "phone": "95112329",
+      "modules": [
+        "CS2220",
+        "CE3121",
+        "CE3132",
+        "IS3240",
+        "IS3103",
+        "CS1101S"
+      ]
+    },
+    {
+      "name": "Edward Richards",
+      "email": "edwardrichards@gmail.com",
+      "telegramHandle": "@edwardrichards",
+      "address": "301 South Buona Vista Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "95214524",
+      "modules": [
+        "CS3235",
+        "CS2103",
+        "BT3101",
+        "CS1101S",
+        "CE3165",
+        "CS2010"
+      ]
+    },
+    {
+      "name": "Steven Whitley",
+      "email": "stevenwhitley@gmail.com",
+      "telegramHandle": "@stevenwhitley",
+      "address": "92 Stevens Road",
+      "groups": [
+        "TA",
+        "Study"
+      ],
+      "phone": "95513831",
+      "modules": [
+        "IS3150",
+        "BT2010",
+        "BT3103",
+        "IS2102",
+        "CS3234",
+        "CS2107"
+      ]
+    },
+    {
+      "name": "Amirah Tee",
+      "email": "amirahtee@gmail.com",
+      "telegramHandle": "@amirahtee",
+      "address": "70 Woodlands Avenue 7",
+      "groups": [
+        "NS"
+      ],
+      "phone": "95556298",
+      "modules": [
+        "CE3121",
+        "CS1010",
+        "CS3223",
+        "CE2112",
+        "CS3241",
+        "BT3101"
+      ]
+    },
+    {
+      "name": "Ang Mei Hua",
+      "email": "angmeihua@gmail.com",
+      "telegramHandle": "@angmeihua",
+      "address": "91 Ang Mo Kio Avenue 4",
+      "groups": [
+        "Study"
+      ],
+      "phone": "95658596",
+      "modules": [
+        "CS2105",
+        "CE2407",
+        "CE1102",
+        "BT2101",
+        "CE3165",
+        "CS2103T"
+      ]
+    },
+    {
+      "name": "Wisteria Chung",
+      "email": "wisteriachung@gmail.com",
+      "telegramHandle": "@wisteriachung",
+      "address": "Wisteria Mall",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "95954770",
+      "modules": [
+        "CE2155",
+        "IS3150",
+        "CS2103",
+        "BT3103",
+        "CS3103",
+        "CS2113T"
+      ]
+    },
+    {
+      "name": "Seth Summers",
+      "email": "sethsummers@gmail.com",
+      "telegramHandle": "@sethsummers",
+      "address": "1 Somerset Road",
+      "groups": [
+        "NS"
+      ],
+      "phone": "96040331",
+      "modules": [
+        "IS1103",
+        "CE3121",
+        "BT3103",
+        "CS2102",
+        "CS1020",
+        "CS3210"
+      ]
+    },
+    {
+      "name": "Maya Takashi",
+      "email": "mayatakashi@gmail.com",
+      "telegramHandle": "@mayatakashi",
+      "address": "Ngee Ann City",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "96146775",
+      "modules": [
+        "IS3150",
+        "CS1010R",
+        "CS2040",
+        "CS2030",
+        "CS3210",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "May See",
+      "email": "maysee@gmail.com",
+      "telegramHandle": "@maysee",
+      "address": "30 Simei Street 3",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "96306065",
+      "modules": [
+        "BT1101",
+        "CS2101",
+        "CS2105",
+        "IS3251",
+        "CS3210",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Choa Chu Kang",
+      "email": "choachukang@gmail.com",
+      "telegramHandle": "@choachukang",
+      "address": "10 Choa Chu Kang Avenue 4",
+      "groups": [
+        "NS",
+        "JC"
+      ],
+      "phone": "96363171",
+      "modules": [
+        "CE2183",
+        "IS2103",
+        "CS2309",
+        "CS2040",
+        "CS3245",
+        "CE3102"
+      ]
+    },
+    {
+      "name": "Dong Yu Lang",
+      "email": "dongyulang@gmail.com",
+      "telegramHandle": "@dongyulang",
+      "address": "10 Jurong East Street 12",
+      "groups": [
+        "NS"
+      ],
+      "phone": "97099012",
+      "modules": [
+        "BT1101",
+        "IS3150",
+        "CS2105",
+        "BT2010",
+        "IS3103",
+        "CE3116"
+      ]
+    },
+    {
+      "name": "Dakota Windsor",
+      "email": "dakotawindsor@gmail.com",
+      "telegramHandle": "@dakotawindsor",
+      "address": "201 Old Airport Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "97464766",
+      "modules": [
+        "CS2101",
+        "CE1101",
+        "CS1010X",
+        "CE2112",
+        "CS3241",
+        "CS2040C"
+      ]
+    },
+    {
+      "name": "Thomas Nakayama",
+      "email": "thomasnakayama@gmail.com",
+      "telegramHandle": "@thomasnakayama",
+      "address": "Zhongshan Mall",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "97530782",
+      "modules": [
+        "IS2103",
+        "CS2102",
+        "CS2040C",
+        "CS3282",
+        "CS3281",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Nicholas Tan Bin",
+      "email": "nicholastanbin@gmail.com",
+      "telegramHandle": "@nicholastanbin",
+      "address": "20 Tampines Central 1",
+      "groups": [
+        "TA",
+        "Groupmate"
+      ],
+      "phone": "97689351",
+      "modules": [
+        "IS3106",
+        "CS2105",
+        "BT3103",
+        "CE3115",
+        "CS3211",
+        "CE3116"
+      ]
+    },
+    {
+      "name": "Nicole Windsor",
+      "email": "nicolewindsor@gmail.com",
+      "telegramHandle": "@nicolewindsor",
+      "address": "20 Republic Avenue",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "97728343",
+      "modules": [
+        "CS3249",
+        "CS1010S",
+        "IS3261",
+        "BT2101",
+        "IS3240",
+        "CS1010J"
+      ]
+    },
+    {
+      "name": "Syed Alwi Mustafa",
+      "email": "syedalwimustafa@gmail.com",
+      "telegramHandle": "@syedalwimustafa",
+      "address": "Mustafa Centre",
+      "groups": [
+        "Enemy"
+      ],
+      "phone": "98151962",
+      "modules": [
+        "CS3240",
+        "CS2309",
+        "CS3243",
+        "CS2104",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Shannon Wei",
+      "email": "shannonwei@gmail.com",
+      "telegramHandle": "@shannonwei",
+      "address": "2 Park Street",
+      "groups": [
+        "Study"
+      ],
+      "phone": "98238477",
+      "modules": [
+        "CS3230",
+        "CS3244",
+        "CS1010S",
+        "CS1010E",
+        "CS3217",
+        "BT2102"
+      ]
+    },
+    {
+      "name": "Mary Meng",
+      "email": "marymeng@gmail.com",
+      "telegramHandle": "@marymeng",
+      "address": "60 Marymount Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "98249798",
+      "modules": [
+        "CS2106",
+        "CS1010X",
+        "CS3241",
+        "CS3233R",
+        "CS3219",
+        "CS2010"
+      ]
+    },
+    {
+      "name": "Alex Quentin",
+      "email": "alexquentin@gmail.com",
+      "telegramHandle": "@alexquentin",
+      "address": "301 Commonwealth Avenue",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "98308491",
+      "modules": [
+        "CS3242",
+        "CS3244R",
+        "BT2102",
+        "CS3219",
+        "CS2104",
+        "CS3247"
+      ]
+    },
+    {
+      "name": "Maxwell Smith",
+      "email": "maxwellsmith@gmail.com",
+      "telegramHandle": "@maxwellsmith",
+      "address": "50 Neil Road",
+      "groups": [
+        "Study"
+      ],
+      "phone": "98350898",
+      "modules": [
+        "CS3240",
+        "IS1103",
+        "CS2040C",
+        "CE3116",
+        "CS3281",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Shun Yi",
+      "email": "shunyi@gmail.com",
+      "telegramHandle": "@shunyi",
+      "address": "301 Yishun Avenue 2",
+      "groups": [
+        "NS"
+      ],
+      "phone": "98433716",
+      "modules": [
+        "IS3106",
+        "CS1010",
+        "CS3230R",
+        "CS3233R",
+        "CS2040C",
+        "CS1231"
+      ]
+    },
+    {
+      "name": "Boon Kheng",
+      "email": "boonkheng@gmail.com",
+      "telegramHandle": "@boonkheng",
+      "address": "900 Serangoon Road",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "98524413",
+      "modules": [
+        "CS2101",
+        "CS2105",
+        "BT3103",
+        "CS3233R",
+        "CS3236R",
+        "CS2113"
+      ]
+    },
+    {
+      "name": "Komyo San",
+      "email": "komyosan@gmail.com",
+      "telegramHandle": "@komyosan",
+      "address": "100 Sin Ming Avenue",
+      "groups": [
+        "Study"
+      ],
+      "phone": "98722761",
+      "modules": [
+        "CE3101",
+        "CS3230",
+        "CS2106",
+        "CS2220",
+        "CS1010S",
+        "CE2409"
+      ]
+    },
+    {
+      "name": "Charles Windsor",
+      "email": "charleswindsor@gmail.com",
+      "telegramHandle": "@charleswindsor",
+      "address": "301 Mountbatten Road",
+      "groups": [
+        "CCA"
+      ],
+      "phone": "98998964",
+      "modules": [
+        "CS3230",
+        "CS3235",
+        "CE2112",
+        "CS3223",
+        "CS2030",
+        "CE3102"
+      ]
+    },
+    {
+      "name": "Dawson Quentin",
+      "email": "dawsonquentin@gmail.com",
+      "telegramHandle": "@dawsonquentin",
+      "address": "301 Commonwealth Avenue",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "99059092",
+      "modules": [
+        "CE1102",
+        "CS2309",
+        "CE3115",
+        "IS3251",
+        "IS3240",
+        "CS2040C"
+      ]
+    },
+    {
+      "name": "Tan Kah Kee",
+      "email": "tankahkee@gmail.com",
+      "telegramHandle": "@tankahkee",
+      "address": "651 Bukit Timah Road",
+      "groups": [
+        "TA"
+      ],
+      "phone": "99142777",
+      "modules": [
+        "CS3245R",
+        "BT3102",
+        "CS2102",
+        "CS3210",
+        "CS3203",
+        "CS2104"
+      ]
+    },
+    {
+      "name": "Wen Qing",
+      "email": "wenqing@gmail.com",
+      "telegramHandle": "@wenqing",
+      "address": "900 Serangoon Road",
+      "groups": [
+        "NUS"
+      ],
+      "phone": "99316723",
+      "modules": [
+        "IS3251",
+        "BT2101",
+        "IS3103",
+        "CS2040C",
+        "CS3282",
+        "CS3281"
+      ]
+    },
+    {
+      "name": "Sim Ga Rang",
+      "email": "simgarang@gmail.com",
+      "telegramHandle": "@simgarang",
+      "address": "5 Sims Avenue",
+      "groups": [
+        "Groupmate"
+      ],
+      "phone": "99910747",
+      "modules": [
+        "CS3235",
+        "IS3150",
+        "CE2407",
+        "CE3115",
+        "CS3217",
+        "IS2102"
+      ]
+    }
+  ]
+}

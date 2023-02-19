@@ -19,23 +19,21 @@
   },
   "persons": [
     {
-      "name": "Pearl Outram",
-      "email": "pearloutram@gmail.com",
-      "telegramHandle": "@pearloutram",
-      "address": "10 Outram Road",
+      "name": "Gwon Se Rang",
+      "email": "gwonserang@gmail.com",
+      "telegramHandle": "@gwonserang",
+      "address": "600 Upper Serangoon Road",
       "groups": [
-        "Groupmate",
-        "Study",
+        "CCA",
         "NUS"
       ],
-      "phone": "3895as4665",
+      "phone": "23",
       "modules": [
-        "IS2103",
-        "CS3235",
-        "CE2407",
-        "IS2102",
-        "CE2409",
-        "CS3241R"
+        "CE2112",
+        "CE3132",
+        "CS2108",
+        "IS2101",
+        "CS3281"
       ]
     }
   ]

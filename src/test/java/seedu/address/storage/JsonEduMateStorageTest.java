@@ -3,9 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.CLARK;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.io.IOException;
@@ -51,13 +50,47 @@ public class JsonEduMateStorageTest {
     }
 
     @Test
-    public void readEduMate_invalidPersonEduMate_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readEduMate("invalidPersonEduMate.json"));
+    public void readEduMate_shortPhoneFieldEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate("shortPhoneFieldEduMate.json"));
     }
 
     @Test
-    public void readEduMate_invalidAndValidPersonEduMate_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readEduMate("invalidAndValidPersonEduMate.json"));
+    public void readEduMate_nonNumericFieldEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate("nonNumericPhoneFieldEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_invalidNameEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate("invalidNameEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_longModuleTagEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate("longModuleTagEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_shortPhoneFieldValidInvalidEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate(
+                "shortPhoneFieldValidInvalidEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_nonNumericFieldValidInvalidEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate(
+                "nonNumericPhoneFieldValidInvalidEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_invalidNameValidInvalidEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate(
+                "invalidNameValidInvalidEduMate.json"));
+    }
+
+    @Test
+    public void readEduMate_longModuleTagValidInvalidEduMate_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readEduMate(
+                "longModuleTagValidInvalidEduMate.json"));
     }
 
     @Test
@@ -72,14 +105,14 @@ public class JsonEduMateStorageTest {
         assertEquals(original, new EduMate(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.removePerson(ALBERT);
+        original.removePerson(CLARK);
         jsonEduMateStorage.saveEduMate(original, filePath);
         readBack = jsonEduMateStorage.readEduMate(filePath).get();
         assertEquals(original, new EduMate(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addPerson(CLARK);
         jsonEduMateStorage.saveEduMate(original); // file path not specified
         readBack = jsonEduMateStorage.readEduMate().get(); // file path not specified
         assertEquals(original, new EduMate(readBack));

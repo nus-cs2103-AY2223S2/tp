@@ -19,23 +19,20 @@
   },
   "persons": [
     {
-      "name": "Pearl Outram",
-      "email": "pearloutram@gmail.com",
-      "telegramHandle": "@pearloutram",
-      "address": "10 Outram Road",
+      "name": "Glenn Napier",
+      "email": "glennnapier@gmail.com",
+      "telegramHandle": "@glennnapier",
+      "address": "2 Napier Road",
       "groups": [
-        "Groupmate",
-        "Study",
-        "NUS"
+        "Study"
       ],
-      "phone": "3895as4665",
+      "phone": "23",
       "modules": [
-        "IS2103",
-        "CS3235",
-        "CE2407",
+        "BT3102",
+        "CS1010E",
         "IS2102",
-        "CE2409",
-        "CS3241R"
+        "CS2107",
+        "CS2104"
       ]
     }
   ]

@@ -6,41 +6,40 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class GroupTagTest {
+public class ModuleTagTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new GroupTag(null));
+        assertThrows(NullPointerException.class, () -> new ModuleTag(null));
     }
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
         String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new GroupTag(invalidTagName));
+        assertThrows(IllegalArgumentException.class, () -> new ModuleTag(invalidTagName));
     }
 
     @Test
     public void isValidTagName_null_throwsNullPointerException() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> GroupTag.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> ModuleTag.isValidTagName(null));
     }
 
     @Test
     public void isValidTagName_validTagName_true() {
-        String validTagName = "Friend";
-        assertTrue(GroupTag.isValidTagName(validTagName));
+        String validTagName = "CS2103T";
+        assertTrue(ModuleTag.isValidTagName(validTagName));
 
-        validTagName = "NUS";
-        assertTrue(GroupTag.isValidTagName(validTagName));
+        validTagName = "ACC2101GTX";
+        assertTrue(ModuleTag.isValidTagName(validTagName));
     }
 
     @Test
     public void isValidTagName_invalidTagName_false() {
-        String invalidTagName = "NUS Friend";
-        assertFalse(GroupTag.isValidTagName(invalidTagName));
+        String invalidTagName = "CS50";
+        assertFalse(ModuleTag.isValidTagName(invalidTagName));
 
-        invalidTagName = "";
-        assertFalse(GroupTag.isValidTagName(invalidTagName));
+        invalidTagName = "C2100";
+        assertFalse(ModuleTag.isValidTagName(invalidTagName));
     }
-
 }

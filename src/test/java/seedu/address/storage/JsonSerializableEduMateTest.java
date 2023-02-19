@@ -25,9 +25,7 @@ public class JsonSerializableEduMateTest {
         JsonSerializableEduMate dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableEduMate.class).get();
         EduMate eduMateFromFile = dataFromFile.toModelType();
-        System.out.println(eduMateFromFile.toString());
         EduMate typicalPersonsEduMate = TypicalPersons.getTypicalEduMate();
-        System.out.println(typicalPersonsEduMate.toString());
         assertEquals(eduMateFromFile, typicalPersonsEduMate);
     }
 

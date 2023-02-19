@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 public class ModuleTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NUS Modules should have 2 - 3 letter prefix, followed by 4 digits and optional 1 alphabet";
-    public static final String VALIDATION_REGEX = "[A-Z]{2,3}[0-9]{4}[A-Z]?";
+            "NUS Modules should have 2 - 3 letter prefix, followed by 4 digits and optional 1 - 3 alphabets";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,3}[0-9]{4}[A-Z]{0,3}";
 
     /**
      * Constructs a {@code ModuleTag}.
