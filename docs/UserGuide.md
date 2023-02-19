@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Contact nUS is a **desktop app for managing NUS student's schedule, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Contact nUS can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,32 +14,34 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ContactnUS.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). [coming soon]
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ContactnUS.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   Some example commands you can try: [all coming soon]
 
-   * `list` : Lists all contacts.
+   * `list` : Shows all the items inside the address book.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add lecture CS2103T /date Friday 10am ` : Adds a lecture named `CS2103T` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd item shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `edit 1 m/CS2103T i/Tutorial d/22 Feb 2023` : Edits the module name, item type and date of the 1st item to be CS2103T, Tutorial and 22 Fev 2022 respectively.
 
-   * `exit` : Exits the app.
+<!--    * `clear` : Deletes all items.
+
+   * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Features [Coming soon]
 
 <div markdown="block" class="alert alert-info">
 
@@ -51,67 +53,68 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+<!-- * Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. -->
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+<!-- * Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. -->
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+<!-- * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. -->
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+<!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
 
 </div>
 
-### Viewing help : `help`
+<!-- ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help` -->
 
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds an item to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add ITEMTYPE ITEMNAME [DETAILS] [d/DATE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+* ITEMTYPE is either one of the three:  lecture, tutorial, or deadline
+
+<!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
-</div>
+</div> -->
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add lecture CS2103T /date Friday 10am`
+* `add tutorial CS2103T /date Tuesday 10am`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all items in the address book.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing item in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit Index [m/MODULE_NAME] [i/ITEM_TYPE] [d/DATE] [t/TIME]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 m/CS2103T i/Tutorial d/22 Feb 2023 ` Edits the module name, item type and date of the 1st item to be CS2103T, Tutorial and 22 Fev 2022 respectively..
+*  `edit 2 m/CS2103T i/Lecture` Edits the module name and item type of the 2nd item.
 
-### Locating persons by name: `find`
+<!-- ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -127,11 +130,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResult.png) -->
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified item from the address book.
 
 Format: `delete INDEX`
 
@@ -141,9 +144,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+<!-- ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
@@ -165,13 +167,13 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+</div> -->
 
-### Archiving data files `[coming in v2.0]`
+<!-- ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon ..._ -->
 
---------------------------------------------------------------------------------------------------------------------
+<!-- --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
@@ -179,15 +181,17 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
+ -->
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Help** | `help`
+
+
+<!-- **Clear** | `clear` -->
+<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
+<!-- **Help** | `help` -->
