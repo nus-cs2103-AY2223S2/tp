@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Volunteer;
