@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### The Myth
 
-<img src="images/Tariq-droid.png" width="200px">
+<img src="images/damith.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/damithch]
+[[github](https://github.com/damithch)]
 [[portfolio](team/damithch.md)]
 
 * Role: Project Advisor
@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Hee Jia Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayhee3.png" width="200px">
 
 [[github](http://github.com/jayhee3)]
 [[portfolio](team/jayhee3.md)]
