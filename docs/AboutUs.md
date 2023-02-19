@@ -15,7 +15,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/YuanXun9834)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yuanxun_portfolio.md)]
 
 * Role: Project Advisor
 
