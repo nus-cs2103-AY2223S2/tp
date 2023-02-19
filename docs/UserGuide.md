@@ -3,191 +3,183 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Wingman is a **modal** manager for managing airplanes, pilots, crews, flights,
+and locations. It seeks to provide a highly efficient way of resource
+management for airline managers.
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-## Quick start
+## Modal Editing
 
-1. Ensure you have Java `11` or above installed in your Computer.
+In Wingman, there are 5 different modes underwhich the app is operating:
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+- `location` mode: the mode in which an airline manager manages the
+  locations that the company is operating at.
+- `plane` mode: the mode in which an airline manager manages the planes
+  that the company is operating.
+- `flight` mode: the mode in which the airline manager manages the flights
+  that the company will carry out.
+- `pilot` mode: the mode in which the airline manager manages its pilots.
+- `crew` mode: the mode in which the airline manager manages its crews.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+Different modes offer similar APIs, with differences catered to the subject
+that the mode is managing. Users can switch to different modes by typing the
+corresponding mode name in the very beginning. For example:
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+```
+plane
+```
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+would switch the user to the plane mode.
 
-   * `list` : Lists all contacts.
+## Shared Commands
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+### `add [{param_type} {param_val}]`
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+This commands adds an entity of the current mode to the database. For example,
+if the user is currently in the `plane` mode, then this command will add a new
+`plane` to the database. It shall be noted, however, that the params passed in
+in different modes are different.
 
-   * `clear` : Deletes all contacts.
+#### Add a `location`
 
-   * `exit` : Exits the app.
+To add a `location` to the locations on which the airline is currently
+operating, the user will need to ensure that he is in the `location` mode.
 
-1. Refer to the [Features](#features) below for details of each command.
+Params:
 
---------------------------------------------------------------------------------------------------------------------
+- `/name`: the name of the location.
 
-## Features
+Example:
 
-<div markdown="block" class="alert alert-info">
+```
+add /name SIN
+add /name ZRH
+add /name KUL
+add /name PVG
+add /name NKG
+```
 
-**:information_source: Notes about the command format:**<br>
+#### Add a `plane`
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+To add a `plane` to the fleet, the user will need to ensure that he is in the
+`plane` mode.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Params:
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+- `/model`: the model of the plane.
+- `/mdate`: the date that this plane was manufactured. This should be of the
+  format `YYYY-MM-DD`, i.e. `2023-01-01`.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+```
+add /model B737 /mdate 2023-01-01
+add /model A380 /mdate 2012-07-21
+```
 
-Shows a list of all persons in the address book.
+#### Add a `flight`
 
-Format: `list`
+To add a `flight` to the fleet, the user will need to ensure that the software
+is in the `flight` mode.
 
-### Editing a person : `edit`
+Params:
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+- `/num`: the flight number of the flight.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+```
+add /num SQ830
+add /num LX200
+add /num NH802
+```
 
-Finds persons whose names contain any of the given keywords.
+#### Add a `pilot`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+To add a `pilot` to the fleet, the user will need to ensure that the software
+is in the `pilot` mode.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Params:
+
+- `/name`: the name of the pilot.
+
+Optional Params:
+
+- `/rank`: the rank of the pilot. Possible values:
+  - `1`: Training Captain,
+  - `2`: Captain,
+  - `3`: Senior,
+  - `4`: First Officer,
+  - `5`: Second Officer,
+  - `6`: Cadet.
+- `/age`: the age of the captain.
+- `/gender`: the gender of the pilot. Possible values:
+  - `male`
+  - `female`
+  - `other`
+- `/fh`: the flight hours of the pilot.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+```
+add /name Len Beong /rank 1
+add /name Hartin Menz /rank 2 /age 39 /gender male /fh 5000
+```
 
-Deletes the specified person from the address book.
+#### Add a `crew`
 
-Format: `delete INDEX`
+TO add a `crew` to the fleet, the user will need to ensure that the software is
+in the `crew` mode.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Params:
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `/name`: the name of the crew
 
-### Clearing all entries : `clear`
+Optional Params:
 
-Clears all entries from the address book.
+- `/age`: the age of the crew
+- `/gender`: the gender of the crew. Possible values:
+  - `male`
+  - `female`
+  - `other`
 
-Format: `clear`
+### `delete {index}`
 
-### Exiting the program : `exit`
+This command will delete the corresponding model from the database. For
+example, if the user wishes to delete the first plane, then he will need to
+make sure that the software is in the `plane` mode, and then he will need to
+type the command:
 
-Exits the program.
+```
+delete 1
+```
 
-Format: `exit`
+Then the plane would be removed from the fleet.
 
-### Saving the data
+## Mode-specific Commands 
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+> This part is beyond the scope of v1.2, and we will update this once we build
+> features related to this part.
 
-### Editing the data file
+## Application Commands
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+### `exit`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
+This will exit the program.
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Ask us questions so that we can have a FAQ.
 
---------------------------------------------------------------------------------------------------------------------
+## Command Summary
 
-## Command summary
+| **Action** | **Format**                               | **Examples**    |
+| ---------- | ---------------------------------------- | --------------- |
+| Add        | `add [{parameter_type} {parameter_val}]` | `add /name Bob` |
+| Delete     | `delete {index}`                         | `delete 1`      |
+| Exit       | `exit`                                   | `exit`          |
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
