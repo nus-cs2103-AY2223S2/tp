@@ -45,7 +45,7 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String
                     .format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddElderlyCommand.MESSAGE_USAGE));
+                            AddVolunteerCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
