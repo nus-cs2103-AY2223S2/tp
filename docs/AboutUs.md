@@ -39,12 +39,12 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### slackernoob
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/slackernoob.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/slackernoob)]
+[[portfolio](team/slackernoob.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
