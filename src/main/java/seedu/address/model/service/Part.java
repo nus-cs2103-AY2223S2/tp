@@ -1,8 +1,11 @@
 package seedu.address.model.service;
 
 import seedu.address.model.entity.Entity;
-import seedu.address.model.service.exception.insufficientPart;
+import seedu.address.model.service.exception.InsufficientPart;
 
+/**
+ * This class represents a vehicle part.
+ */
 public class Part {
 
     private static int incrementalID = 0;
@@ -12,9 +15,12 @@ public class Part {
     private String description;
     private Entity purchasedFrom;
     private int cost;
-    private partType type;
+    private PartType type;
 
-    public enum partType {
+    /**
+     * This represents the various types of vehicle parts.
+     */
+    public enum PartType {
         WHEELS, SUSPENSION, FRAME, GEARBOX, BOLT, HEADLAMP, LIGHT, HORN, STEERING
     }
 
@@ -26,7 +32,7 @@ public class Part {
      * @param cost The cost of the vehicle part.
      * @param quantity How many in stock.
      */
-    public Part(String name, partType type, int cost, int quantity){
+    public Part(String name, PartType type, int cost, int quantity) {
         id = ++incrementalID;
         this.name = name;
         this.type = type;
@@ -41,7 +47,7 @@ public class Part {
      * @param type The type of the vehicle part.
      * @param cost The cost of the vehicle part.
      */
-    public Part(String name, partType type, int cost){
+    public Part(String name, PartType type, int cost) {
         this(name, type, cost, 0);
     }
 
@@ -74,11 +80,11 @@ public class Part {
     /**
      * This method decrements the quantity of this part.
      *
-     * @throws insufficientPart
+     * @throws InsufficientPart
      */
-    public void useStock() throws insufficientPart {
+    public void useStock() throws InsufficientPart {
         if (stockLeft < 1) {
-            throw new insufficientPart(this);
+            throw new InsufficientPart(this);
         }
         stockLeft--;
     }

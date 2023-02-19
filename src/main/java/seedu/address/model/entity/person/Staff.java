@@ -1,10 +1,14 @@
 package seedu.address.model.entity.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 
-public class Staff extends Person {
+import seedu.address.model.tag.Tag;
+
+/**
+ * This class represents a staff.
+ * There may be different types of staff.
+ */
+public abstract class Staff extends Person {
     /**
      * {@inheritDoc}
      */

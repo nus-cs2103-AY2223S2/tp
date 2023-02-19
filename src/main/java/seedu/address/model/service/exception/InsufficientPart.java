@@ -2,7 +2,10 @@ package seedu.address.model.service.exception;
 
 import seedu.address.model.service.Part;
 
-public class insufficientPart extends RuntimeException {
+/**
+ * This exception is raised when there is insufficient parts.
+ */
+public class InsufficientPart extends RuntimeException {
     /**
      * Constructs a new runtime exception with the specified part
      * The cause is not initialized, and may subsequently be initialized by a
@@ -11,7 +14,7 @@ public class insufficientPart extends RuntimeException {
      * @param part the part. The detail message is saved for
      *             later retrieval by the {@link #getMessage()} method.
      */
-    public insufficientPart(Part part) {
+    public InsufficientPart(Part part) {
         super("Insufficient part " + part.getId() + " : " + part.getName());
     }
 }

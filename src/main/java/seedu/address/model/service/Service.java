@@ -11,8 +11,8 @@ import seedu.address.model.entity.person.Technician;
  */
 public class Service {
     private static int incrementalID = 0;
-    private int id;
-    private LocalDate entryDate;
+    private final int id;
+    private final LocalDate entryDate;
     private ArrayList<Part> parts;
     private Vehicle vehicle;
     private String description;
@@ -64,7 +64,7 @@ public class Service {
     /**
      * This method sets the estimated finish date.
      *
-     * @return The estimated finish date.
+     * @param estimatedFinishDate The estimated finish date.
      */
     public void setEstimatedFinishDate(LocalDate estimatedFinishDate) {
         this.estimatedFinishDate = estimatedFinishDate;
@@ -93,7 +93,7 @@ public class Service {
      *
      * @param part The part to be removed.
      */
-    public void removePart(Part part){
+    public void removePart(Part part) {
         parts.remove(part);
     }
 
@@ -112,41 +112,93 @@ public class Service {
      * @return The cost of this service.
      */
     public int bill() {
-        return parts.stream().mapToInt( i -> i.getCost()).sum();
+        return parts.stream().mapToInt(i -> i.getCost()).sum();
     }
 
     /**
+     * This method adds a part needed for this service.
      *
-     * @param parts
+     * @param part The part needed to be added.
      */
-    public void setParts(ArrayList<Part> parts) {
-        this.parts = parts;
+    public void addParts(Part part) {
+        parts.add(part);
     }
 
+    /**
+     * This method removes a part that was added to this service.
+     * @param part The part to be removed.
+     */
+    public void removeParts(Part part) {
+        parts.remove(part);
+    }
+
+    /**
+     * This method assigns a particular vehicle to this service.
+     * @param vehicle The vehicle needed for this service.
+     */
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
 
+    /**
+     * This method returns the description of this service.
+     *
+     * @return the description of this service.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * This method sets the description of this service.
+     *
+     * @param description the new description of this service.
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public ArrayList<Technician> getAssignedTo() {
+    /**
+     * This method returns the list of technicians assigned to this task.
+     *
+     * @return the list of technicians assigned to this task.
+     */
+    public ArrayList<Technician> isAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(ArrayList<Technician> assignedTo) {
-        this.assignedTo = assignedTo;
+    /**
+     * This method adds a technician to this service.
+     *
+     * @param technician The technician assigned to this service.
+     */
+    public void assignTechnician(Technician technician) {
+        assignedTo.add(technician);
     }
 
+    /**
+     * This method removes a technician from this service.
+     *
+     * @param technician The technician to be removed from this service.
+     */
+    public void removeTechnician(Technician technician) {
+        assignedTo.remove(technician);
+    }
+
+    /**
+     * This method returns whether this task is completed or not.
+     *
+     * @return whether this task is completed or not.
+     */
     public boolean isComplete() {
         return isComplete;
     }
 
+    /**
+     * This method sets whether this task is completed or not.
+     *
+     * @param complete the value to set this task to.
+     */
     public void setComplete(boolean complete) {
         isComplete = complete;
     }
