@@ -30,11 +30,11 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### nusE0726844
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nusE0726844.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nusE0726844)] [[portfolio](team/nusE0726844.md)]
 
 * Role: Developer
 * Responsibilities: Data
