@@ -257,27 +257,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of assignments/tasks.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage tasks faster than a typical mouse/GUI driven app and has convenient features bundled in.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new task               |                                                                        |
-| `* * *`  | user                                       | delete a task                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a task by name          | locate details of tasks without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many tasks in the address book | sort tasks by name           | locate a task easily                                                 |
+| Priority | As a …​         | I want to …​                                  | So that I can…​                                |
+|----------|-----------------|-----------------------------------------------|------------------------------------------------|
+| `* * *`  | user            | add a task                                    |                                                |
+| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added         |
+| `* * *`  | user            | find a task                                   | perform queries more efficiently               |
+| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                  |
+| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner   |
+| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task       |
+| `* *`    | user            | have a project folder                         | look at only my projects at a glance           |
+| `* *`    | organized user  | add tags to tasks                             | organize them better                           |
+| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it |
+| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                      |
+| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                           |
+| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                           |
+| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                    |
+| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries             |
+| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration    |
+| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance           |
 
 *{More to be added}*
 

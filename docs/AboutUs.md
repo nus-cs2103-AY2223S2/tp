@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Yu Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huggenguggen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.yuhenglee.com)]
+[[github](https://github.com/Huggenguggen)]
+[[portfolio](team/huggenguggen.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: TBC
 
 ### Jane Doe
 
