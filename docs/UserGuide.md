@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vaccination Management System (VMS) is a **desktop app for managing vaccination appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, VMS can get your appointments sorted out with great efficiency.
 
 * Table of Contents
 {:toc}
@@ -25,7 +25,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+<!--    * `list` : Lists all contacts.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -33,161 +33,166 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+   * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Command format
+
+The syntax of commands will take on the following format:
+
+```text
+{feature} {feature command}[ --{flag name}[ {flag parameter}]?]...
+```
+
+* Words enclosed in braces, `{` and `}`, are the names parameters to be supplied by the user.
+* Words in square brackets, `[` and `]`, are optional.
+* Items with `?` after them can be used zero or one time.
+* Items with `...` after them can be used zero or more times.
+
+### Types
+
+#### `<string>`
+
+Strings can take on any character sequence that do not contain `--` or new line characters.
+
+#### `<integer>`
+
+An integer value.
+
+#### `<date>`
+
+The supported date formats are:
+
+* `yyyy-mm-ddThh:mm`
+    eg. 2023-05-03T04:45
+* `yyyy-m-d hhmm` - single and double digit day and months are supported.
+    eg. 2023-5-3 0455
+    * The following formats are also acceptable:
+    * `yyyy-mm-d hhmm`
+    * `yyyy-mm-dd hhmm`
+    * `yyyy-m-dd hhmm`
+
+#### `<phone-number>`
+
+Only 8 digit Singapore numbers are allowed.
+
 ## Features
 
-<div markdown="block" class="alert alert-info">
+The following are the features that VMS supports.
 
-**:information_source: Notes about the command format:**<br>
+* [Basic](#basic)
+* [Patient](#patient---patient)
+* [Appointment](#appointment---appointment)
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+Only the `basic` feature need not be specified when entering the commands.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+### Basic - `basic`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+The basic features of the application.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+#### Exit the program - `exit`
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+Exits the application
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+```text
+exit
+```
 
-</div>
+### Patient - `patient`
 
-### Viewing help : `help`
+The patient feature manages patient's information such as their contact information and medical records.
 
-Shows a message explaning how to access the help page.
+#### Add a patient - `add`
 
-![help message](images/helpMessage.png)
+Adds a person to the system.
 
-Format: `help`
+```text
+patient add --name <string> [--phone <phone-number>] [--email <string>]
+```
 
+Example:
 
-### Adding a person: `add`
+* `patient add --name John Doe --phone 98765432 --email johnd@example.com`
 
-Adds a person to the address book.
+#### Delete a patient - `delete`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Deletes a patient. The patient will no long show up in systems, however, its records will still be contained in hard disk.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+```text
+patient delete --index <integer>
+```
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
 
-### Listing all persons : `list`
+* `patent delete --index 5`
 
-Shows a list of all persons in the address book.
+#### Locate a patient - `find`
 
-Format: `list`
+Finds patients whose names contain any of the given keywords.
 
-### Editing a person : `edit`
+```text
+patient find --name <string>
+```
 
-Edits an existing person in the address book.
+Example:
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+* `patient find --name john`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+#### List all patients - `list`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Shows all patients contained in the system.
 
-### Locating persons by name: `find`
+```text
+patient list
+```
 
-Finds persons whose names contain any of the given keywords.
+### Appointment - `appointment`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+The appointment feature manages patient's vaccination appointments.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+#### Add an appointment - `add`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Adds an appointment.
 
-### Deleting a person : `delete`
+```text
+appointment add --patient <integer> --start <date> --end <date>
+```
 
-Deletes the specified person from the address book.
+Example:
 
-Format: `delete INDEX`
+* `appointment add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Delete an appointment - `delete`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Deletes an appointment.
 
-### Clearing all entries : `clear`
+```text
+appointment delete --index <integer>
+```
 
-Clears all entries from the address book.
+Example:
 
-Format: `clear`
+* `appointment delete --index 5`
 
-### Exiting the program : `exit`
+#### List all appointments - `list`
 
-Exits the program.
+Shows all appointments contained in the system.
 
-Format: `exit`
+```text
+appointment list
+```
 
-### Saving the data
+## Advance
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Locations:
+1. `[JAR file location]/data/patientlist.json`
+2. `[JAR file location]/data/appointmentlist.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
