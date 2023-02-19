@@ -270,14 +270,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                           | I want to …​                                                                                | So that I can…​                                                                    |
+| -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *`  | Receptionist that prefers typing | be able to access all features through CLI                                                 | improve my productivity                                                           |
+| `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
+| `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
+| `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
+| `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |
+| `* * *`  | Receptionist                     | be able to key in people with the same name                                                | save the data of people with the same name.                                       |
+| `* * *`  | Potato PC user                   | my data to be save automatically                                                           | do not lose data when my computer crash.                                          |
+| `* * *`  | User                             | delete patients/appointments                                                               | remove mistakes                                                                   |
+| `* * *`  | Receptionist                     | add an appointment                                                                         |                                                                                   |
+| `* *`    | Junior receptionist              | view a quick start guide easily                                                            | learn the basic features of the system quickly                                    |
+| `* *`    | Receptionist                     | update the status of a patient                                                             | they can be tracked and not go missing                                            |
+| `* *`    | Potential user exploring the app | see the app populated with sample data                                                     | use it as a tutorial for how the app will work                                    |
+| `* *`    | Expert user                      | enter arguments in masses (MassOps)                                                        | type less                                                                         |
+| `* *`    | Receptionist                     | check what is the next free appointment slot                                               | choose the best time for the patient                                              |
+| `* *`    | New user wanting to use the app  | purge all the current data                                                                 | get rid of sample/experiment data                                                 |
+| `* *`    | Expert user                      | enter shorterned command names to perform the same command                                 | type less                                                                         |
+| `*`      | Receptionist                     | check the appointment schedule                                                             | see when an open slot is                                                          |
+| `*`      | Receptionist                     | check the status of patients                                                               | know when to let the next waiting in line in                                      |
+| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next person in quicker                                    |
+| `*`      | Receptionist                     | view the appointments made for the day                                                     | roughly know how many patients to expect that day to allocate enough vaccinations |
+| `*`      | Receptionist                     | see the status of all patients                                                             | know where they are                                                               |
+| `*`      | Receptionist                     | check the list of patients                                                                 | prepare the correct number of vaccinations                                        |
+| `*`      | New user                         | view the user guide easily                                                                 |                                                                                   |
+| `*`      | Forgetful user                   | see what commands there are                                                                | know what commands I can use                                                      |
+| `*`      | Forgetful user                   | see the syntax of commands                                                                 | know how to use the command                                                       |
+| `*`      | Stock checker                    | see what vaccinations are expiring                                                         | know what I need to dispose                                                       |
+| `*`      | Expert user                      | use bash script to generate reports                                                        | automate the process                                                              |
+| `*`      | Receptionist                     | view the error occurred due to typographical errors                                        | understand exactly what went wrong                                                |
+| `*`      | Receptionist                     | check if a patient is compatible with a vaccination                                        | am able to tell if he can take that vaccination                                   |
+| `*`      | Receptionist                     | know which patients are done with the 30 min monitoring after vaccinate (to check allergy) | tell them to go home                                                              |
+| `*`      | Receptionist                     | rely on the system to verify that the patient has done the order of vaccinations correctly | verify that they can be safe                                                      |
+| `*`      | Forgetful receptionist           | view a list of commands entered into the application                                       | verify that the entries are correct                                               |
+| `*`      | Receptionist                     | find patients who did not come                                                             | send them a reminder to take their vaccination                                    |
+| `*`      | Receptionist                     | archive/hide unused data                                                                   | am not distracted by irrelevant data                                              |
+| `*`      | Receptionist                     | undo my latest action                                                                      | do not accidentally nuke all data                                                 |
 
 *{More to be added}*
 
@@ -285,14 +314,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add patient.
+2.  VMS adds the patient.
+
+    Use case ends.
+    
+**Use case: Read patient list**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  VMS shows a the list of patients with their corresponding IDs.
+
+    Use case ends.
+
+      
+**Use case: Update a patient**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  VMS shows a the list of patients with their corresponding IDs.
+3.  User requests to update a specific patient in the list with the args.
+4.  VMS updates the patients
 
     Use case ends.
 
@@ -302,11 +350,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given ID is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. VMS shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  VMS shows a the list of patients with their corresponding IDs.
+3.  User requests to delete a specific patient in the list.
+4.  VMS soft deletes the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given ID is invalid.
+
+    * 3a1. VMS shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: Add an appointment**
+
+1. User request to add an appointment.
+2. User enters the start and end timing of the appointment, and the associated patient.
+3. VMS adds the appointment.
+    
+    Use case ends.
+    
+**Extensions**
+
+* 2a. timing format or patient ID is invalid.
+
+    * 2a1. VMS shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Read Appointment List**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  VMS shows a list of appointments.
+
+    Use case ends.
+
+**Use case: Update an appointment**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  VMS shows a list of appointments.
+3.  User requests to update a specific appointment in the list using the ID with the args.
+4.  VMS update the appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given ID is invalid.
+
+    * 3a1. VMS shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: Delete an appointment**
+
+**MSS**
+
+1.  User requests to list appointments.
+2.  VMS shows a list of appointments.
+3.  User requests to delete a specific appointment in the list.
+4.  VMS deletes the appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given ID is invalid.
+
+    * 3a1. VMS shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -320,8 +463,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **VMS**: Vaccination Management System
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private patient detail**: A patient detail that is not meant to be shared with others
+* **Feature**: Group of feature commands
+* **Vaccination**: The Covid-19 vaccine
+* **Patient**: Someone receiving the vaccine
+* **Receptionist**: The user of VMS
+* **Command parameter**: Arguments that affect how the command work
 
 --------------------------------------------------------------------------------------------------------------------
 
