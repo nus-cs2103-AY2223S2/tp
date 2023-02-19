@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,11 +38,11 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
     public AddElderlyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC, PREFIX_AGE, PREFIX_RISK,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_RISK,
                         PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NRIC, PREFIX_AGE, PREFIX_RISK)
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_RISK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String
                     .format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -53,7 +53,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
