@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jun Da
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jundatan.png" width="200px">
 
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jundatan)]
+[[portfolio](team/jundatan.md)]
 
 * Role: to be added urself
 * Responsiblities: to be added urself
