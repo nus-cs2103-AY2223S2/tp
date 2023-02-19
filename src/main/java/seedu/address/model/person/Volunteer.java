@@ -6,7 +6,6 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
-import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
 import java.util.Set;
