@@ -11,11 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### The Myth
 
-<img src="images/damith.png" width="200px">
+<img src="images/damithc.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/damithch)]
-[[portfolio](team/damithch.md)]
+[[github](https://github.com/damithc)]
+[[portfolio](team/damithc.md)]
 
 * Role: Project Advisor
 
