@@ -1,25 +1,31 @@
-# Overview
+---
+layout: page
+title: Lim Zhe Rui's Project Portfolio Page
+---
+
+### Project: Artistic AddressBook
+
 `to be added soon`
 
-# Summary of Contribution
+Given below are my contributions to the project.
 
-## Code contributed
-`to be added soon`
+* **New Feature**: `to be added soon`
+  * `to be added soon`
 
-## Enhancements Implemented
-`to be added soon`
+* **Code contributed**: [RepoSense link]()
 
-## Contributions to the UG
-`to be added soon`
+* **Project management**:
+  * `to be added soon`
 
-## Contributions to the DG
-`to be added soon`
+* **Enhancements to existing features**:
+  * `to be added soon`
 
-## Contributions to team-based tasks
-`to be added soon`
+* **Documentation**:
+  * `to be added soon`
+    * `to be added soon`
 
-## Review/mentoring contributions
-`to be added soon`
+* **Community**:
+  * `to be added soon`
 
-## Contributions beyond the project team
-`to be added soon`
+* **Tools**:
+  * `to be added soon`
