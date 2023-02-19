@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### The Myth
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Tariq-droid.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/damithch]
+[[portfolio](team/damithch.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Bahatheq Tariq Ahmed S
+
+<img src="images/Tariq-droid.png" width="200px">
+
+[[github](http://github.com/Tariq-droid)]
+[[portfolio](team/Tariq-droid.md)]
+
+* Role: TBA
+* Responsibilities: TBA
+
+### Jamie Leow Hui Lin
+<img src="images/jamieeeleow.png" width="200px">
+
+[[github](http://github.com/jamieeeleow)] 
+[[portfolio](team/jamieeeleow.md)]
+
+* Role: TBA
+* Responsibilities: TBA
+
+### Chew Ting Yi
+
+<img src="images/tingyic.png" width="200px">
+
+[[github](http://github.com/tingyic)]
+[[portfolio](team/tingyic.md)]
+
+* Role: TBA
+* Responsibilities: TBA
+
+### Hee Jia Yuan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jayhee3)]
+[[portfolio](team/jayhee3.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: TBA
+* Responsibilities: TBA
