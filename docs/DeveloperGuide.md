@@ -273,12 +273,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *` | artist with many ongoing commissioned projects to keep track of | view my current commissioned projects in order of deadline recency | not miss any deadlines |
+| `*` | artist inexperienced in command line commands | use commands that are closer to natural language | better understand and more effectively use commands |
+| `* * *` | user | add a deadline to a project | record when a project needs to be done |
+| `*` | artist working with commissions | import a list of clients from a CSV file | use an editable format |
+| `* *` | first-time user of the application | view a guide on how to use the app | learn how to use the app |
+| `*` | artist who wants to increase my earnings | add a large number of commissioned projects at any time | increase my income |
+| `*` | expert in using the application | setup shortcuts for commands I often use | execute them quickly |
+| `* *` | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have | deliver for my clients |
+| `* *` | user | tag projects in the list | filter by the tags if necessary |
+| `* *` | user | see projects by their deadlines | finish work on time |
+| `*` | inexperienced user | undo commands | remedy mistakes |
+| `* *` | first-time user of the application | see sample data in the application | understand what the application can do |
+| `* * *` | artist | add clients to the application | keep track of all of my clients |
+| `* * *` | user | remove clients from my list | keep the list accurate |
+| `* *` | user | edit client info | keep client info up to date in case of changes |
+| `* *` | user | edit project info | keep project info up to date in case of changes |
+| `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
+| `* *` | artist | search for clients using keywords | find specific clients quickly |
+| `* *` | user | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
+| `* *` | artist | sort clients by the number of times they have commissioned me before | know if a given client and I have a long-standing relationship |
+| `* * *`| artist | add contact info to clients | know how to reach them if needed |
+| `*` | artist | blacklist certain clients | know who to avoid |
+| `* *` | artist | add projects to clients | know what projects are for what clients |
+| `* *` | artist | get asked if I am sure I want to delete an ongoing project | be prevented from accidentally deleting an ongoing project |
+| `* * *`| artist | mark a certain project as done | know it is no longer ongoing |
+| `*` | user | easily generate text to share client information | send it to someone else if required |
+| `* * *` | user | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
+| `*` | artist | add dates in different formats without being asked to give it in a certain format | not have to memorize providing dates in a certain format |
+| `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
+| `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
 
 *{More to be added}*
 
