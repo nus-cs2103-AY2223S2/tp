@@ -15,7 +15,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/YuanXun9834)]
-[[portfolio](team/yuanxun_portfolio.md)]
+[[portfolio](team/yuanxun9834_portfolio.md)]
 
 * Role: Project Advisor
 
@@ -24,7 +24,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 <img src="images/wengkit1.png.jpg" width="200px">
 
 [[github](http://github.com/wengkit1)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/wengkit1_portfolio.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
