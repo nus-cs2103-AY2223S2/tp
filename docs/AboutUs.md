@@ -33,7 +33,8 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 <img src="images/shuimeihe.png.jpg" width="200px">
 
-[[github](http://github.com/shuimeihe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/shuimeihe)]
+[[portfolio](team/shuimeihe_portfolio.md)]
 
 * Role: Developer
 * Responsibilities: Data
