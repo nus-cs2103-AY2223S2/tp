@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * @param remark The remark given by the user
+     * @return The remark object that encapsulates the string that's given in the input
+     * @throws ParseException An error that arises during parsing
+     */
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
