@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yuan Xun's Project Portfolio Page
+title: Daniel Iwan Kurniawan's Project Portfolio Page
 ---
 
 ### Project: PetPal
