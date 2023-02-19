@@ -30,7 +30,7 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### nusE0726844
 
 <img src="images/nusE0726844.png" width="200px">
 
