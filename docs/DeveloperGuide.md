@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The details are missing
-    *2a1. PetPal prompts owner/staff to add missing petname.
+    * 2a1. PetPal prompts owner/staff to add missing petname.
 
   Use case ends.
 
