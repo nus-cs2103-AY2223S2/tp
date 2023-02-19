@@ -6,7 +6,7 @@ package seedu.address.commons.exceptions;
 public class DuplicateObjectException extends RuntimeException {
 
     /**
-     * Constructs a new duplicate person exception.
+     * Constructs a new duplicate object exception.
      *
      * @param pluralNoun Plural form of the object that is duplicated.
      */
