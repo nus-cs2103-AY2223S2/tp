@@ -7,8 +7,6 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.commons.util.FileUtil;
-import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.testutil.SerializableTestClass;
 import seedu.vms.testutil.TestUtil;
 

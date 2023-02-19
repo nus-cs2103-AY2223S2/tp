@@ -6,7 +6,6 @@ import static seedu.vms.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.commons.core.Version;
 
 public class VersionTest {
 

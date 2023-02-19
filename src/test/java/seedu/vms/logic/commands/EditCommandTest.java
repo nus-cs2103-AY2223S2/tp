@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
-import seedu.vms.logic.commands.ClearCommand;
-import seedu.vms.logic.commands.EditCommand;
 import seedu.vms.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;

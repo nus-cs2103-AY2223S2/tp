@@ -13,7 +13,6 @@ import static seedu.vms.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.model.person.Person;
 import seedu.vms.testutil.PersonBuilder;
 
 public class PersonTest {

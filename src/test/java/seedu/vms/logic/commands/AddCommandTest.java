@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.logic.commands.AddCommand;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;

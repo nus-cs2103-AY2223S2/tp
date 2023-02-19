@@ -32,7 +32,6 @@ import static seedu.vms.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.AddCommand;
-import seedu.vms.logic.parser.AddCommandParser;
 import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;
 import seedu.vms.model.person.Name;

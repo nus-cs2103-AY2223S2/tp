@@ -16,8 +16,6 @@ import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;
 import seedu.vms.model.person.Name;
 import seedu.vms.model.person.Phone;
-import seedu.vms.storage.JsonAdaptedPerson;
-import seedu.vms.storage.JsonAdaptedTag;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

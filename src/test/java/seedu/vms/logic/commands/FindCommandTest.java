@@ -15,7 +15,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.FindCommand;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;

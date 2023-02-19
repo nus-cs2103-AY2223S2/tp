@@ -5,8 +5,6 @@ import static seedu.vms.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.ExitCommand;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 

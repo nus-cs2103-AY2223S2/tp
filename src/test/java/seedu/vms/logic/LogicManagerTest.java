@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.vms.logic.Logic;
-import seedu.vms.logic.LogicManager;
 import seedu.vms.logic.commands.AddCommand;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.ListCommand;

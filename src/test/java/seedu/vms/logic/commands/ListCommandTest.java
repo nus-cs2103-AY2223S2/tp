@@ -8,7 +8,6 @@ import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.ListCommand;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;

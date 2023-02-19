@@ -5,8 +5,6 @@ import static seedu.vms.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.HelpCommand;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 

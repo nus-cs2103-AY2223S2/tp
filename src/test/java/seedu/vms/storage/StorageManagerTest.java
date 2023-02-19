@@ -14,9 +14,6 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.storage.JsonAddressBookStorage;
-import seedu.vms.storage.JsonUserPrefsStorage;
-import seedu.vms.storage.StorageManager;
 
 public class StorageManagerTest {
 

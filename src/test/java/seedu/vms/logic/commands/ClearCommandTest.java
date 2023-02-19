@@ -5,7 +5,6 @@ import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.ClearCommand;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;

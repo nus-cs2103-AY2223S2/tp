@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
-import seedu.vms.logic.commands.DeleteCommand;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;

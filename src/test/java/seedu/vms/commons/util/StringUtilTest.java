@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.commons.util.StringUtil;
 
 public class StringUtilTest {
 

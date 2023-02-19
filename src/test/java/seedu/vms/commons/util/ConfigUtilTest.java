@@ -15,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.core.Config;
 import seedu.vms.commons.exceptions.DataConversionException;
-import seedu.vms.commons.util.ConfigUtil;
 
 public class ConfigUtilTest {
 

@@ -15,9 +15,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.model.AddressBook;
-import seedu.vms.model.ModelManager;
-import seedu.vms.model.UserPrefs;
 import seedu.vms.model.person.NameContainsKeywordsPredicate;
 import seedu.vms.testutil.AddressBookBuilder;
 

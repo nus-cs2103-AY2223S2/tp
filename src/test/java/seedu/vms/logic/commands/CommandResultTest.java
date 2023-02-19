@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.CommandResult;
 
 public class CommandResultTest {
     @Test

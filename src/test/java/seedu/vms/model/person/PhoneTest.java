@@ -6,7 +6,6 @@ import static seedu.vms.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.model.person.Phone;
 
 public class PhoneTest {
 

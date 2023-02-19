@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.AddressBook;
-import seedu.vms.storage.JsonSerializableAddressBook;
 import seedu.vms.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {

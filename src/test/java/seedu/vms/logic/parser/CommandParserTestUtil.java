@@ -3,7 +3,6 @@ package seedu.vms.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 /**

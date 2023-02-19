@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.EditCommand;
 import seedu.vms.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.vms.logic.parser.EditCommandParser;
 import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;
 import seedu.vms.model.person.Name;

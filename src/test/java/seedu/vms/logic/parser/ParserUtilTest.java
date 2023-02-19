@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;

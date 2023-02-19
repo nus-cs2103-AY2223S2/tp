@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.commons.util.CollectionUtil;
 
 public class CollectionUtilTest {
     @Test

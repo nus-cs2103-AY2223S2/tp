@@ -14,9 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.vms.commons.core.index.Index;
-import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.EditCommand;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;
