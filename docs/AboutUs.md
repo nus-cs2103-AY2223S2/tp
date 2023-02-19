@@ -20,14 +20,14 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 * Role: Team Lead
 * Responsibilities: NOT UI
 
-### Jane Doe
+### daitenshionyan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daitenshionyan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/daitenshionyan)]
+[[portfolio](team/daitenshionyan.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
