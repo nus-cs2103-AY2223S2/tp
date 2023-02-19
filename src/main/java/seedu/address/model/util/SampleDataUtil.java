@@ -96,7 +96,7 @@ public class SampleDataUtil {
      * Returns a sample array of Persons.
      */
     public static Set<Person> getSamplePersons() throws FileNotFoundException {
-        File sampleDataFile = new File("sampleData.txt");
+        File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
         Set<Person> personSet = new HashSet<>();
         while (scanner.hasNextLine()) {
