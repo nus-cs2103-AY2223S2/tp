@@ -10,6 +10,15 @@ import org.junit.jupiter.api.Test;
 public class IndexTest {
 
     @Test
+    public void modifyIndex() {
+        Index check = Index.fromZeroBased(5);
+        check.modifyIndex(-4);
+        assertEquals(1, check.getZeroBased());
+        check.modifyIndex(1);
+        assertEquals(2, check.getZeroBased());
+    }
+
+    @Test
     public void createOneBasedIndex() {
         // invalid index
         assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));

@@ -32,7 +32,7 @@ public class IndexList {
      * @param lastIndex invalid index value
      * @throws CommandException invalid index detected
      */
-    public void checkValidIndex(int lastIndex) throws CommandException {
+    public boolean isValidIndex(int lastIndex) throws CommandException {
         int n = this.indexList.size();
 
         for (int i = 0; i < n; i++) {
@@ -40,6 +40,8 @@ public class IndexList {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
         }
+
+        return true;
     }
 
     /**

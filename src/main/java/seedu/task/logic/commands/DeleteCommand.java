@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        targetList.checkValidIndex(lastShownList.size());
+        targetList.isValidIndex(lastShownList.size());
         targetList.modifyForDelete();
         String output = MESSAGE_DELETE_TASK_SUCCESS;
         int n = targetList.size();

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.task.testutil.Assert.assertThrows;
-import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK_INT;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
+import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK_INT;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
