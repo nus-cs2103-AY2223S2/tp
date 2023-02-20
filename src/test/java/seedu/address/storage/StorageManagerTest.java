@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.PersonUtil;
 
 public class StorageManagerTest {
 
@@ -57,7 +59,9 @@ public class StorageManagerTest {
         EduMate original = getTypicalEduMate();
         storageManager.saveEduMate(original);
         ReadOnlyEduMate retrieved = storageManager.readEduMate().get();
-        assertEquals(original, new EduMate(retrieved));
+        ReadOnlyEduMate pushed = new EduMate(retrieved);
+        assertEquals(original.getPersonList(), pushed.getPersonList());
+        assertTrue(PersonUtil.isSameUserAndUserStub(pushed.getUser(), original.getUser()));
     }
 
     @Test
