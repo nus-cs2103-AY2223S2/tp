@@ -190,7 +190,7 @@ public class EditCommand extends Command {
         public void setParentPhone(Phone parentPhone) {
             this.parentPhone = parentPhone;
         }
-    
+
         public Optional<Phone> getParentPhone() {
             return Optional.ofNullable(parentPhone);
         }
