@@ -27,19 +27,21 @@ public class ModuleTagTest {
 
     @Test
     public void isValidTagName_validTagName_true() {
-        String validTagName = "CS2103T";
-        assertTrue(ModuleTag.isValidTagName(validTagName));
-
-        validTagName = "ACC2101GTX";
-        assertTrue(ModuleTag.isValidTagName(validTagName));
+        assertTrue(ModuleTag.isValidTagName("CS2101")); // standard module code
+        assertTrue(ModuleTag.isValidTagName("CS2103T")); // module code with suffix
+        assertTrue(ModuleTag.isValidTagName("DSA1101")); // long module code
+        assertTrue(ModuleTag.isValidTagName("ACC2101GTX")); // module code with long prefix and suffix
     }
 
     @Test
     public void isValidTagName_invalidTagName_false() {
-        String invalidTagName = "CS50";
-        assertFalse(ModuleTag.isValidTagName(invalidTagName));
-
-        invalidTagName = "C2100";
-        assertFalse(ModuleTag.isValidTagName(invalidTagName));
+        assertFalse(ModuleTag.isValidTagName("CS50")); // short module number
+        assertFalse(ModuleTag.isValidTagName("C2100")); // short module prefix
+        assertFalse(ModuleTag.isValidTagName("DSAI2100")); // long module prefix
+        assertFalse(ModuleTag.isValidTagName("DSA2100GTFO")); // long module suffix
+        assertFalse(ModuleTag.isValidTagName("CS 2100")); // space in between
+        assertFalse(ModuleTag.isValidTagName("CS2103/T")); // non-alphanumeric character
+        assertFalse(ModuleTag.isValidTagName("23CSIT")); // numbers and letters are swapped
+        assertFalse(ModuleTag.isValidTagName("2100CS")); // wrong order of module details
     }
 }
