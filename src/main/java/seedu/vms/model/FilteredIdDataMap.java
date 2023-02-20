@@ -41,7 +41,7 @@ public class FilteredIdDataMap<T> {
         if (change.wasRemoved()) {
             internalMap.remove(change.getKey());
         }
-        if (predicate.test(change.getValueAdded().getValue())) {
+        if (change.wasAdded() && predicate.test(change.getValueAdded().getValue())) {
             internalMap.put(change.getKey(), change.getValueAdded());
         }
     }
