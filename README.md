@@ -8,7 +8,7 @@
 
 **LoyaltyLift** is an application for small business owners to manage customers and their orders to boost customer satisfaction and retention rate.
 
-It stores customers' profile, preferences and tracks ongoing and past orders. Furthermore, it provides a simple reward system to better engage youur customers. 
+It stores customers' profile, preferences and tracks ongoing and past orders. Furthermore, it provides a simple reward system to better engage youur customers.
 
 It is optimised for use via the _Command Line Interface (CLI)_ while being complimented by an intuitive _Graphical User Interface (GUI)_.
 
@@ -19,7 +19,7 @@ For detailed information on how to use LoyaltyLift, do refer to the [User Guide]
 
 ## Developer Guide
 
-We welcome contributions to LoyaltyLift! To understand how you can do so, head over to the [Developer Guide](docs/DeveloperGuide.md)
+We welcome contributions to LoyaltyLift! To understand how you can do so, head over to the [Developer Guide](docs/DeveloperGuide.md).
 
 ## Acknowledgements
 
