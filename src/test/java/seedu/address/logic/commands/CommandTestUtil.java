@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ELDERLY_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VOLUNTEER_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -26,6 +26,7 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -77,10 +78,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String ELDERLY_DESC_AMY = " " + PREFIX_ELDERLY_NRIC + VALID_NAME_AMY;
-    public static final String ELDERLY_DESC_BOB = " " + PREFIX_ELDERLY_NRIC + VALID_NAME_BOB;
-    public static final String VOLUNTEER_DESC_AMY = " " + PREFIX_VOLUNTEER_NRIC + VALID_NAME_AMY;
-    public static final String VOLUNTEER_DESC_BOB = " " + PREFIX_VOLUNTEER_NRIC + VALID_NAME_BOB;
+    public static final String ELDERLY_DESC_AMY = " " + PREFIX_NRIC_ELDERLY + VALID_NAME_AMY;
+    public static final String ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NAME_BOB;
+    public static final String VOLUNTEER_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + VALID_NAME_AMY;
+    public static final String VOLUNTEER_DESC_BOB = " " + PREFIX_NRIC_VOLUNTEER + VALID_NAME_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -232,6 +233,36 @@ public class CommandTestUtil {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPair(Pair pair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPair(Pair pair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePair(Pair target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPair(Pair target, Pair editedPair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Pair> getFilteredPairList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPairList(Predicate<Pair> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
