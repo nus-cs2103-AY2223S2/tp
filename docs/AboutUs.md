@@ -28,14 +28,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: UI
 
-### Diat Bhin
+### Diat Bbin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/diatbbin.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Diatbbin)] 
+[[portfolio](team/diatbbin.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: code quality and model component
 
 ### Wen Jue
 
