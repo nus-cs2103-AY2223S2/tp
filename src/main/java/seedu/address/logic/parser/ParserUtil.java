@@ -4,15 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.fields.*;
+import seedu.address.model.person.fields.enums.Genders;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,7 +56,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
+        if (phone == null) {
+            return null;
+        }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -72,7 +73,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
+        if (address == null) {
+            return null;
+        }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -87,7 +90,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email == null) {
+            return null;
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -102,7 +107,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
+        if (tag == null) {
+            return null;
+        }
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -114,11 +121,79 @@ public class ParserUtil {
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+        if (tags.isEmpty()) {
+            return new HashSet<>();
+        }
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Favorite parseFavorite(String favorite) throws ParseException{
+        if (favorite == null) {
+            return null;
+        }
+        String trimmedFavorite = favorite.trim();
+        if (!Favorite.isValidFavorite(trimmedFavorite)) {
+            throw new ParseException(Favorite.MESSAGE_CONSTRAINTS);
+        }
+        return new Favorite(false);
+    }
+
+    public static Gender parseGender(String gender) throws ParseException {
+        if (gender == null) {
+            return null;
+        }
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(Genders.MALE);
+    }
+
+    public static Major parseMajor(String major) throws ParseException {
+        if (major == null) {
+            return null;
+        }
+        String trimmedMajor = major.trim();
+        if (!Major.isValidMajor(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+        }
+        return new Major(trimmedMajor);
+    }
+
+    public static Modules parseModules(Collection<String> modules) throws ParseException {
+        if (modules.isEmpty()) {
+            return new Modules(new HashSet<>());
+        }
+        final Set<NusMod> modulesSet = new HashSet<>();
+        for (String module : modules) {
+            modulesSet.add(parseModule(module));
+        }
+        return new Modules(modulesSet);
+    }
+
+    private static NusMod parseModule(String module) throws ParseException {
+        if (module == null) {
+            return null;
+        }
+        String trimmedTag = module.trim();
+        if (!NusMod.isValidModName(trimmedTag)) {
+            throw new ParseException(NusMod.MESSAGE_CONSTRAINTS);
+        }
+        return new NusMod(trimmedTag);
+    }
+
+    public static Race parseRace(String race) throws ParseException {
+        if (race == null) {
+            return null;
+        }
+        String trimmedRace = race.trim();
+        if (!Race.isValidRace(trimmedRace)) {
+            throw new ParseException(Race.MESSAGE_CONSTRAINTS);
+        }
+        return new Race(trimmedRace);
     }
 }

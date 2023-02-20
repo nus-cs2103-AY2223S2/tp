@@ -10,11 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.fields.*;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.fields.enums.Genders;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,10 +64,19 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+
+        Set<NusMod> mods = new HashSet<>();
+        mods.add(new NusMod("CS2103T"));
+        Favorite favorite = new Favorite(true);
+        Gender gender = new Gender(Genders.MALE);
+        Major major = new Major("Computer Science");
+        Modules modules = new Modules(mods);
+        Race race = new Race("Chinese");
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-
+        // Todo: Remove if nulls for phone, email and address.
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -103,7 +110,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,  favorite, gender, major, modules, race, modelTags);
     }
 
 }

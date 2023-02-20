@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.fields.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,11 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Favorite favorite;
+    private final Gender gender;
+    private final Major major;
+    private final Modules modules;
+    private final Race race;
 
     // Data fields
     private final Address address;
@@ -27,13 +33,19 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Favorite favorite, Gender gender,
+                  Major major, Modules modules, Race race, Set<Tag> tags) {
+        requireAllNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.favorite = favorite;
+        this.gender = gender;
+        this.major = major;
+        this.modules = modules;
+        this.race = race;
     }
 
     public Name getName() {
@@ -120,4 +132,23 @@ public class Person {
         return builder.toString();
     }
 
+    public Favorite getFavorite() {
+        return favorite;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public Modules getModules() {
+        return modules;
+    }
+
+    public Race getRace() {
+        return race;
+    }
 }
