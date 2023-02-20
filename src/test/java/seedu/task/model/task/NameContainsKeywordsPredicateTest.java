@@ -3,10 +3,6 @@ package seedu.task.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.task.testutil.TaskBuilder;
@@ -15,17 +11,17 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        String firstPredicateKeyword = "first";
+        String secondPredicateKeyword = "second";
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeyword);
+        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,34 +37,32 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Alice");
+        assertTrue(predicate.test(new TaskBuilder().withName("Alice").build()));
 
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        // keyphrase
+        predicate = new NameContainsKeywordsPredicate("Alice Bob");
         assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new NameContainsKeywordsPredicate("Carol");
         assertTrue(predicate.test(new TaskBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new NameContainsKeywordsPredicate("aLicE bOB");
         assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TaskBuilder().withName("Alice").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("");
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new NameContainsKeywordsPredicate("Carol");
         assertFalse(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
 
         // Keywords match description, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("likes", "to", "play"));
+        predicate = new NameContainsKeywordsPredicate("likes to play");
         assertFalse(predicate.test(new TaskBuilder()
                 .withName("Alice").withDescription("likes to play").build()));
     }

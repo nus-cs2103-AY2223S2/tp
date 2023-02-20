@@ -112,13 +112,15 @@ Examples:
 
 ### Locating tasks by name: `find`
 
-Finds tasks whose titles best match the user input string.
+Finds tasks whose attribute best match the user input string.
 
-Format: `find SUBSTRING`
+Format: `find n/{NAME}` OR `find d/{DESCRIPTION}` OR `find t/{TAG}...`
 
 * The search is case-insensitive. e.g `book` will match `Book`
-* Only the title is searched.
+* Use only 1 attribute at a time.
 * Substrings will be matched e.g. `book` will match `Books`
+* For tags, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+  * e.g. `find t/urgent t/important` will match with tags `t/urgent t/math t/hard` since it has `urgent`.
 
 Examples:
 * `find book` returns `read book` and `return books`
