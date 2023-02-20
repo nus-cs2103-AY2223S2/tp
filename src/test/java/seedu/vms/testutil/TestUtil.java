@@ -50,6 +50,6 @@ public class TestUtil {
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
     public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+        return model.getFilteredPersonList().get(index.getZeroBased()).getValue();
     }
 }

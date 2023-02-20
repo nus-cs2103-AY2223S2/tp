@@ -12,6 +12,8 @@ import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +21,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.person.NameContainsKeywordsPredicate;
+import seedu.vms.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -61,7 +64,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(true, model.getFilteredPersonList().isEmpty());
     }
 
     @Test
@@ -71,7 +74,14 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        List<Person> expectedPersons = Arrays.asList(CARL, ELLE, FIONA);
+        List<Person> actualPersons = model.getFilteredPersonList()
+                .values()
+                .stream()
+                .map(data -> data.getValue())
+                .collect(Collectors.toList());
+        assertEquals(expectedPersons.size(), actualPersons.size());
+        assertEquals(true, expectedPersons.containsAll(actualPersons));
     }
 
     /**
