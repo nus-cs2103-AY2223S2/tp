@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.vms.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.vms.logic.commands.patient.EditCommand.EditPersonDescriptor;
 import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;
 import seedu.vms.model.person.Name;

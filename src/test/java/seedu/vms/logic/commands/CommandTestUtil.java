@@ -14,6 +14,7 @@ import java.util.Map;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.model.AddressBook;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
