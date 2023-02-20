@@ -8,6 +8,12 @@ import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
 
 
+/**
+ * An encapsulation of an {@code ObservableMap} of ID - data pairs to provide
+ * a filtered view of a binded map.
+ *
+ * @param <T> - the type of value being stored.
+ */
 public class FilteredIdDataMap<T> {
     private final ObservableMap<Integer, IdData<T>> source;
     private final ObservableMap<Integer, IdData<T>> internalMap;
@@ -16,6 +22,11 @@ public class FilteredIdDataMap<T> {
     private Predicate<T> predicate = input -> true;
 
 
+    /**
+     * Constructs a {@code FilteredIdDataMap} that is binded to the given map.
+     *
+     * @param source - the map to bind to.
+     */
     public FilteredIdDataMap(ObservableMap<Integer, IdData<T>> source) {
         this.source = FXCollections.unmodifiableObservableMap(source);
         internalMap = FXCollections.observableHashMap();
@@ -36,6 +47,11 @@ public class FilteredIdDataMap<T> {
     }
 
 
+    /**
+     * Applies a filter.
+     *
+     * @param predicate - the filter function.
+     */
     public void filter(Predicate<T> predicate) {
         Objects.requireNonNull(predicate);
         this.predicate = predicate;
@@ -49,6 +65,11 @@ public class FilteredIdDataMap<T> {
     }
 
 
+    /**
+     * Returns an unmodifiable map view of the filtered map.
+     *
+     * @return an unmodifiable map view of the filtered map.
+     */
     public ObservableMap<Integer, IdData<T>> asUnmodifiableObservableMap() {
         return internalUnmodifiableMap;
     }
