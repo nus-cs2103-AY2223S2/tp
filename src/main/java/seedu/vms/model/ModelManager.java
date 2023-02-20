@@ -142,7 +142,13 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersonMap.equals(other.filteredPersonMap);
+                && filteredPersonMap.asUnmodifiableObservableMap()
+                        .equals(other.filteredPersonMap.asUnmodifiableObservableMap());
+    }
+
+    @Override
+    public String toString() {
+        return filteredPersonMap.asUnmodifiableObservableMap().toString();
     }
 
 }
