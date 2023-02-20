@@ -22,57 +22,61 @@ import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddPairCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPairCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        ModelStubAcceptingPairAdded modelStub = new ModelStubAcceptingPairAdded();
+        Pair validPair = new PairBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPairCommand(validPair).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddPairCommand.MESSAGE_SUCCESS, validPair), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPair), modelStub.pairsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicatePair_throwsCommandException() {
+        Pair validPair = new PairBuilder().build();
+        AddPairCommand addPairCommand = new AddPairCommand(validPair);
+        ModelStub modelStub = new ModelStubWithPair(validPair);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddPairCommand.MESSAGE_DUPLICATE_PAIR, () -> addPairCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Pair pair1 = new PairBuilder().withElderly(alice).build();
+        Pair pair2 = new PairBuilder().withElderly(bob).build();
+        AddPairCommand addPair1Command = new AddPairCommand(pair1);
+        AddPairCommand addPair2Command = new AddPairCommand(pair2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addPair1Command.equals(addPair1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddPairCommand addPair1CommandCopy = new AddPairCommand(pair1);
+        assertTrue(addPair1CommandCopy.equals(addPair1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addPair1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addPair1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addPair1Command.equals(addPair2Command));
     }
 
     /**
@@ -181,39 +185,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single pair.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithPair extends ModelStub {
+        private final Pair pair;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPair(Pair pair) {
+            requireNonNull(pair);
+            this.pair = pair;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasPair(Pair pair) {
+            requireNonNull(pair);
+            return this.pair.isSamePair(pair);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the pair being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPairAdded extends ModelStub {
+        final ArrayList<Pair> pairsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasPair(Pair pair) {
+            requireNonNull(pair);
+            return pairsAdded.stream().anyMatch(pair::isSamePair);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPair(Pair pair) {
+            requireNonNull(pair);
+            pairsAdded.add(pair);
         }
 
         @Override

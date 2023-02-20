@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalFriendlyLink;
 
@@ -18,8 +19,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class FriendlyLinkTest {
@@ -29,6 +32,7 @@ public class FriendlyLinkTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), friendlyLink.getPersonList());
+        // TODO: implement assertEquals(Collections.emptyList(), addressBook.getPairList());
     }
 
     @Test
@@ -41,6 +45,7 @@ public class FriendlyLinkTest {
         FriendlyLink newData = getTypicalFriendlyLink();
         friendlyLink.resetData(newData);
         assertEquals(newData, friendlyLink);
+        // TODO: check if reset data resets the pair list.
     }
 
     @Test
@@ -52,6 +57,7 @@ public class FriendlyLinkTest {
         FriendlyLinkStub newData = new FriendlyLinkStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetData(newData));
+        // TODO: check that duplicate pairs throws exceptions.
     }
 
     @Test
@@ -83,11 +89,48 @@ public class FriendlyLinkTest {
         assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPersonList().remove(0));
     }
 
+    @Test
+    public void hasPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasPair(null));
+    }
+
+    @Test
+    public void hasPair_pairNotInAddressBook_returnsFalse() {
+        assertFalse(friendlyLink.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairInAddressBook_returnsTrue() {
+        friendlyLink.addPair(PAIR1);
+        assertTrue(friendlyLink.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairWithSameElderlyAndVolunteer_returnsTrue() {
+        friendlyLink.addPair(PAIR1);
+        Pair editedPair = new PairBuilder(PAIR1).build();
+        assertTrue(friendlyLink.hasPair(editedPair));
+    }
+
+    @Test
+    public void setPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(null, null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(PAIR1, null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.setPair(null, PAIR1));
+    }
+
+    @Test
+    public void getPairList_modifyList_throwsUnsupportedOperationException() {
+        // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+    }
+
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class FriendlyLinkStub implements ReadOnlyFriendlyLink {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Pair> pairs = FXCollections.observableArrayList();
 
         FriendlyLinkStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +139,11 @@ public class FriendlyLinkTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Pair> getPairList() {
+            return pairs;
         }
     }
 
