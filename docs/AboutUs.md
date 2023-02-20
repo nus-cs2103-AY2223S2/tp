@@ -16,7 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/mayuanxin1234.md)]
 
 *  Role: Developer
-*  Responsibilities: Deliverables and deadlines, and Integration 
+*  Responsibilities: Deliverables and deadlines, and Integration
 
 ### Vincent
 
