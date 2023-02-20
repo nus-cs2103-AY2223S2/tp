@@ -85,22 +85,32 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, CommandTestUtil.NAME_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN,
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
                 expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN,
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
                 expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_BEN + CommandTestUtil.ADDRESS_DESC_BEN,
+                        + CommandTestUtil.EMAIL_BEN + CommandTestUtil.ADDRESS_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
                 expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_BEN,
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                expectedMessage);
+
+        // missing telegram prefix
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.ADDRESS_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_HANDLE_BEN,
                 expectedMessage);
 
         // all prefixes missing
