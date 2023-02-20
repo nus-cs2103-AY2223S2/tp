@@ -112,6 +112,18 @@ public class ModelManager implements Model {
         eduMate.setPerson(target, editedPerson);
     }
 
+    @Override
+    public User getUser() {
+        return eduMate.getUser();
+    }
+
+    @Override
+    public void setUser(User user) {
+        requireNonNull(user);
+
+        eduMate.setUser(user);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

@@ -77,6 +77,18 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns the user object.
+     * User will not be null.
+     */
+    User getUser();
+
+    /**
+     * Sets the user object to the EduMate object.
+     * @param user {@code User} must not be null.
+     */
+    void setUser(User user);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

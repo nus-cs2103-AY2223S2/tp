@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
 
         if (index == null) {
-            return editUser();
+            return editUser(model);
         }
 
         return editPerson(model);
@@ -109,11 +109,9 @@ public class EditCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    private CommandResult editUser() {
-        User user = User.getUser();
-        User editedUser = createEditedUser(user, editPersonDescriptor);
-        User.setUser(editedUser);
-
+    private CommandResult editUser(Model model) {
+        User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
+        model.setUser(editedUser);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedUser));
     }
 
@@ -139,25 +137,23 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code User} with the details of {@code user}
+     * Creates and returns a {@code User} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static User createEditedUser(User user, EditPersonDescriptor editPersonDescriptor) {
-        assert user != null;
-
-        System.out.println(user);
-        Name updatedName = editPersonDescriptor.getName().orElse(user.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(user.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(user.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(user.getAddress());
+    private static User createEditedUser(User userToEdit, EditPersonDescriptor editPersonDescriptor) {
+        Name updatedName = editPersonDescriptor.getName().orElse(userToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(userToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(userToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(userToEdit.getAddress());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
-                .orElse(user.getTelegramHandle());
+                .orElse(userToEdit.getTelegramHandle());
         Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
-                .orElse(user.getGroupTags());
+                .orElse(userToEdit.getGroupTags());
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
-                .orElse(user.getModuleTags());
-        return User.getSingletonUser(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
+                .orElse(userToEdit.getModuleTags());
+
+        return User.getSingletonUser(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
     }
 
     @Override
