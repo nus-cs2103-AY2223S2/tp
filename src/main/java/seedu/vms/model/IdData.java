@@ -31,4 +31,37 @@ public class IdData<T> {
     public T getValue() {
         return value;
     }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof IdData)) {
+            return false;
+        }
+
+        IdData<?> o = (IdData<?>) other;
+        return this.isActive == o.isActive && this.id == o.id
+                && this.value.equals(o.value);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 37 * result + ((isActive) ? 1 : 0);
+        result = 37 * result + id;
+        result = 37 * value.hashCode();
+
+        return result;
+    }
+
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }
