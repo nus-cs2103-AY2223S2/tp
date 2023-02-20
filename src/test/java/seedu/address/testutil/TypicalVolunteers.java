@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.FriendlyLink;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 
 /**
