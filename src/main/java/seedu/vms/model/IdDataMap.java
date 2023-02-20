@@ -16,10 +16,12 @@ import javafx.collections.ObservableMap;
  * @param <T> - type of data stored.
  */
 public class IdDataMap<T> {
+    private static final int STARTING_INDEX = 0;
+
     private final ObservableMap<Integer, IdData<T>> internalMap;
     private final ObservableMap<Integer, IdData<T>> internalUnmodifiableMap;
 
-    private int nextId = 0;
+    private int nextId = STARTING_INDEX;
 
 
     /** Constructs an empty {@code IdDataMap}. */
@@ -65,6 +67,7 @@ public class IdDataMap<T> {
      */
     public void set(int id, T value) {
         if (!internalMap.containsKey(id)) {
+            // TODO: this exception is unhandled by utilising methods.
             throw new NoSuchElementException(String.format("ID [%d] not found", id));
         }
         IdData<T> data = new IdData<>(id, value);
@@ -80,6 +83,7 @@ public class IdDataMap<T> {
      */
     public IdData<T> remove(int id) {
         if (!internalMap.containsKey(id)) {
+            // TODO: this exception is unhandled by utilising methods.
             throw new NoSuchElementException(String.format("ID [%d] not found", id));
         }
         return internalMap.remove(id);
@@ -106,7 +110,7 @@ public class IdDataMap<T> {
     public void setDatas(Collection<IdData<T>> datas) {
         // TODO: Check for duplicate ID
         internalMap.clear();
-        nextId = 0;
+        nextId = STARTING_INDEX;
         for (IdData<T> data : datas) {
             int id = data.getId();
             if (id >= nextId) {
@@ -126,7 +130,7 @@ public class IdDataMap<T> {
      */
     public void setValues(Collection<T> values) {
         internalMap.clear();
-        nextId = 0;
+        nextId = STARTING_INDEX;
         for (T value : values) {
             add(value);
         }
