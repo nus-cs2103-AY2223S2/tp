@@ -20,7 +20,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class PatientParser {
 
     /**
      * Used for initial separation of command word and args.

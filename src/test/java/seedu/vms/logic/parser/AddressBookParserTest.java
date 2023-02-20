@@ -31,7 +31,7 @@ import seedu.vms.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PatientParser parser = new PatientParser();
 
     @Test
     public void parseCommand_add() throws Exception {
