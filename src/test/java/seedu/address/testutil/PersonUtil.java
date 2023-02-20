@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -76,5 +77,19 @@ public class PersonUtil {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * Checks whether the users' information are the same.
+     * @param firstUser
+     * @param secondUser
+     * @return boolean.
+     */
+    public static boolean isSameUserAndUserStub(User firstUser, User secondUser) {
+        return firstUser.getName().equals(secondUser.getName())
+                && firstUser.getEmail().equals(secondUser.getEmail())
+                && firstUser.getPhone().equals(secondUser.getPhone())
+                && firstUser.getTelegramHandle().equals(secondUser.getTelegramHandle())
+                && firstUser.getModuleTags().equals(secondUser.getModuleTags());
     }
 }

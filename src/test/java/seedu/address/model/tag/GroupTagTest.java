@@ -27,20 +27,26 @@ public class GroupTagTest {
 
     @Test
     public void isValidTagName_validTagName_true() {
-        String validTagName = "Friend";
-        assertTrue(GroupTag.isValidTagName(validTagName));
-
-        validTagName = "NUS";
-        assertTrue(GroupTag.isValidTagName(validTagName));
+        assertTrue(GroupTag.isValidTagName(
+                "friend")); // standard format
+        assertTrue(GroupTag.isValidTagName(
+                "Friend")); // capitalized format
+        assertTrue(GroupTag.isValidTagName(
+                "FRIEND")); // all caps format
+        assertTrue(GroupTag.isValidTagName(
+                "Fr1end")); // contains numeric
+        assertTrue(GroupTag.isValidTagName(
+                "12345")); // full numeric
     }
 
     @Test
     public void isValidTagName_invalidTagName_false() {
-        String invalidTagName = "NUS Friend";
-        assertFalse(GroupTag.isValidTagName(invalidTagName));
-
-        invalidTagName = "";
-        assertFalse(GroupTag.isValidTagName(invalidTagName));
+        assertFalse(GroupTag.isValidTagName(
+                "NUS Friend")); // multiple tags at once
+        assertFalse(GroupTag.isValidTagName(
+                "")); // empty string
+        assertFalse(GroupTag.isValidTagName(
+                "!Friend")); // contains non-alphanumeric
     }
 
 }

@@ -103,8 +103,31 @@ Format: `list`
 
 Allow users to add a contact to the address book.
 Format: `add n/NAME m/mod1 mod2 mod3`
-Example of usage: `add n/John Doe m/CS2103T CS2101 CS2109S`
-{To be finished}
+Example of usage: `add n/Penny Lane m/DTK1234 HSH1000 HSS1000 MA1100 GEA1000`
+Context:
+There are 3 friends with the following information: 
+```
+Name: Ben Tan
+3 Common Modules: CS2103T | CS2101 | MA3252
+Name: Jane Lane
+2 Common Modules: CS2103T | CS2101
+Name: John Street
+1 Common Module: MA3252
+```
+
+Expected outcome for CLI:
+```
+Name: John Doe (User)
+Modules reading: CS2103T, CS2101, MA2104, MA3252, CFG1002
+Name: Ben Tan
+Modules reading: CS2103T, CS2101, MA3252, CS4230, CS2105
+Name: Jane Lane
+Modules reading: CS2103T, CS2101, CM1102, CS2102, CS2108
+Name: John Street
+Modules reading: MA3252, MA2104, ST2131, MA2101S
+Name: Penny Lane
+Modules reading: DTK1234, HSH1000, HSS1000, MA1100, GEA1000
+```
 
 ### Deleting a contact: `delete`
 
