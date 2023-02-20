@@ -14,8 +14,7 @@ import seedu.address.model.tag.ModuleTag;
 public class User extends Person {
 
     // Singleton Object
-    private static final User USER = null;
-
+    private static User USER = null;
     /**
      * Every field must be present and not null.
      */
@@ -26,9 +25,9 @@ public class User extends Person {
     }
 
     public static User getSingletonUser(Name name, Phone phone, Email email, Address address,
-        TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
+                                        TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
         if (USER == null) {
-            return new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
+            USER = new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
         }
         return USER;
     }
@@ -47,7 +46,19 @@ public class User extends Person {
 
     @Override
     public String toString() {
-        String basicInformation = super.toString();
-        return String.format("%s\n%s", "USER: ", basicInformation);
+        return String.format("Username: %s\nEmail: %s\nTelegram: %s\nModules: %s\nPhone Number: %s\n",
+                super.getName(),
+                super.getEmail(),
+                super.getTelegramHandle(),
+                super.getModuleTags(),
+                super.getPhone());
+    }
+
+    public static User getUser() {
+        return USER;
+    }
+
+    public static void setUser(User user) {
+        User.USER = user;
     }
 }

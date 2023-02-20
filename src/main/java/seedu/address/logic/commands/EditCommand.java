@@ -25,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -49,6 +50,7 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_USER_SUCCESS = "Edited User: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -60,7 +62,6 @@ public class EditCommand extends Command {
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
@@ -70,6 +71,21 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (index == null) {
+            return editUser();
+        }
+
+        return editPerson(model);
+    }
+
+    /**
+     * Edits person at the given index
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    private CommandResult editPerson(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -86,6 +102,19 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    /**
+     * Edits the user information
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    private CommandResult editUser() throws CommandException {
+        User user = User.getUser();
+        User editedUser = createEditedUser(user, editPersonDescriptor);
+        User.setUser(editedUser);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedUser));
     }
 
     /**
@@ -107,6 +136,27 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getModuleTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
                 updatedGroupTags, updatedModuleTags);
+    }
+
+    /**
+     * Creates and returns a {@code User} with the details of {@code user}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static User createEditedUser(User user, EditPersonDescriptor editPersonDescriptor) {
+        assert user != null;
+
+        Name updatedName = editPersonDescriptor.getName().orElse(user.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(user.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(user.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(user.getAddress());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
+                .orElse(user.getTelegramHandle());
+        Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
+                .orElse(user.getGroupTags());
+        Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
+                .orElse(user.getModuleTags());
+        return User.getSingletonUser(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
     }
 
     @Override
