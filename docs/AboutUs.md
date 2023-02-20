@@ -38,22 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Tabriz Pahlavi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tabriz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TabrizPlv)]
+[[portfolio](team/tabriz.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops + UI
