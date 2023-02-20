@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Thennant
+### Thennant Lim
 
 <img src="images/thennant.png" width="200px">
 
