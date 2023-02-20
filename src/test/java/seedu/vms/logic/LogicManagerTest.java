@@ -21,6 +21,7 @@ import seedu.vms.logic.commands.AddCommand;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.ListCommand;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.PatientParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
@@ -58,14 +59,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "patient delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess("patient " + listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,8 +80,13 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = String.join(" ",
+                PatientParser.FEATURE_NAME,
+                AddCommand.COMMAND_WORD,
+                NAME_DESC_AMY,
+                PHONE_DESC_AMY,
+                EMAIL_DESC_AMY,
+                ADDRESS_DESC_AMY);
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

@@ -18,7 +18,6 @@ import seedu.vms.logic.commands.ClearCommand;
 import seedu.vms.logic.commands.DeleteCommand;
 import seedu.vms.logic.commands.EditCommand;
 import seedu.vms.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.vms.logic.commands.ExitCommand;
 import seedu.vms.logic.commands.FindCommand;
 import seedu.vms.logic.commands.HelpCommand;
 import seedu.vms.logic.commands.ListCommand;
@@ -63,23 +62,11 @@ public class PatientParserTest {
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parse(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parse(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parse(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
