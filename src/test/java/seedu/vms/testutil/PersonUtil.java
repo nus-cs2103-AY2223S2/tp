@@ -8,8 +8,8 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.vms.logic.commands.AddCommand;
-import seedu.vms.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.vms.logic.commands.patient.AddCommand;
+import seedu.vms.logic.commands.patient.EditCommand.EditPersonDescriptor;
 import seedu.vms.model.person.Person;
 import seedu.vms.model.tag.Tag;
 
