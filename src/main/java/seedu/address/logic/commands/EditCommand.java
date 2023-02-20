@@ -109,7 +109,7 @@ public class EditCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    private CommandResult editUser() throws CommandException {
+    private CommandResult editUser() {
         User user = User.getUser();
         User editedUser = createEditedUser(user, editPersonDescriptor);
         User.setUser(editedUser);
@@ -145,6 +145,7 @@ public class EditCommand extends Command {
     private static User createEditedUser(User user, EditPersonDescriptor editPersonDescriptor) {
         assert user != null;
 
+        System.out.println(user);
         Name updatedName = editPersonDescriptor.getName().orElse(user.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(user.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(user.getEmail());
