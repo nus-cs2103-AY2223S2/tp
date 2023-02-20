@@ -14,7 +14,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 /**
  * Parses patient feature commands.
  */
-public class PatientParser extends FeatureArgumentParser {
+public class PatientParser extends FeatureParser {
 
     public static final String FEATURE_NAME = "patient";
 

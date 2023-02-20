@@ -9,37 +9,24 @@ import seedu.vms.logic.commands.HelpCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 
-/** Parsers user input.  */
-public class FeatureParser {
-    private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<featureName>\\S+)(?<arguments>.*)");
+/** A parser to parse the command of a feature. */
+public abstract class FeatureParser implements Parser<Command> {
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    private final BasicParser basicParser = new BasicParser();
-    private final PatientParser patientParser = new PatientParser();
 
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+    @Override
+    public Command parse(String commandInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(
-                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String featureName = matcher.group("featureName");
+        final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (featureName) {
 
-        case PatientParser.FEATURE_NAME:
-            return patientParser.parse(arguments);
-
-        default:
-            return basicParser.parse(userInput);
-        }
+        return parseCommand(commandWord, arguments);
     }
+
+
+    protected abstract Command parseCommand(String commandWord, String argument) throws ParseException;
 }

@@ -8,7 +8,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 
 
 /** Parser for base level commands. */
-public class BasicParser extends FeatureArgumentParser {
+public class BasicParser extends FeatureParser {
     @Override
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
