@@ -10,7 +10,7 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.logic.parser.PatientParser;
+import seedu.vms.logic.parser.FeatureParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyAddressBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final PatientParser addressBookParser;
+    private final FeatureParser featureParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new PatientParser();
+        featureParser = new FeatureParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = featureParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
