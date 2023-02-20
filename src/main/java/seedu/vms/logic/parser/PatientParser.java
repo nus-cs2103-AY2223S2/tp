@@ -12,7 +12,7 @@ import seedu.vms.logic.commands.ListCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses patient feature commands.
  */
 public class PatientParser extends FeatureArgumentParser {
 

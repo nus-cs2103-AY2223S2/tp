@@ -6,6 +6,8 @@ import seedu.vms.logic.commands.ExitCommand;
 import seedu.vms.logic.commands.HelpCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
+
+/** Parser for base level commands. */
 public class BasicParser extends FeatureArgumentParser {
     @Override
     public Command parseCommand(String commandWord, String arguments) throws ParseException {

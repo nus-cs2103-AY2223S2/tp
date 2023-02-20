@@ -9,6 +9,7 @@ import seedu.vms.logic.commands.HelpCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 
+/** A parser to parse the command of a feature argument. */
 public abstract class FeatureArgumentParser implements Parser<Command> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
