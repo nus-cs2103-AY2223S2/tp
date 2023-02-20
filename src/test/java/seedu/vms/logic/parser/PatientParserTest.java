@@ -29,7 +29,7 @@ import seedu.vms.testutil.EditPersonDescriptorBuilder;
 import seedu.vms.testutil.PersonBuilder;
 import seedu.vms.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class PatientParserTest {
 
     private final PatientParser parser = new PatientParser();
 
