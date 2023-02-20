@@ -1,6 +1,4 @@
-
 # PowerConnect User Guide
-
 
 PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
 
@@ -23,7 +21,6 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 4. [Exiting program: `exit`](#exit)
 5. [FAQ](#faq)
 6. [Command Summary](#summary)
-
 
 <a name="quickstart"/>
 --------------------------------------------------------------------------------------------------------------------
@@ -54,7 +51,9 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
     * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
    <a name="features"/>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -64,6 +63,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 **:information_source: Notes about the command format:**<br>
 
 * Command lines supplied by the user are not case sensitive as the application will auto translate it into `UPPER_CASE`. <br>
+
   E.g. in the list feature, user can call it via either methods:
     1. student 5A list
     2. STUDENT 5A LIST
@@ -82,6 +82,7 @@ Compulsory parameters are not bounded by square brackets
 
 
 * All items in the square brackets are OPTIONAL.
+
   e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
 
 * In the user guide, all optional parameters are denoted by ..opt/.. meaning that any zero or more of the optional particulars specified above can be used
@@ -144,6 +145,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `student 1A add TanAhCow 03 m TanAhNiu` <br>
+
   *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
 * `student 1B add Mary Goh 23 f Goh Siew Mai age/15 img/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg em/marygoh@gmail.com ph/65656565 cca/Chess Club`
 
@@ -186,9 +188,14 @@ If an existing comment is already available for the selected student, the new co
 
 Shows a list of all students in the selected class in the database
 
-Format: `list`
+Format: `find <INDEX_NUMBER>  `
+
+Examples:
+* `student 3B find 26`
+* `student 3B find 27`
 
 **Expected Outcome:**
+
 * `<student Name> <id> <image> <nok name> <nok email> <nok number>`
 * `ChanAhKow 21 ChanAhKow.png ChanMaiWoon chanmaiwoon@gmail.com 91234567`
   <a name = "editstudent" />
@@ -312,7 +319,7 @@ Format: `help`
 
 Exits the program.
 
-Format: `exit`
+Format: `exit`   
 
 ### Saving the data
 
@@ -325,7 +332,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
 
 ### Archiving data files `[coming in v2.0]`
 
