@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bahatheq Tariq Ahmed S
 
-<img src="images/Tariq-droid.png" width="200px">
+<img src="images/tariq-droid.png" width="200px">
 
 [[github](http://github.com/Tariq-droid)]
 [[portfolio](team/Tariq-droid.md)]
