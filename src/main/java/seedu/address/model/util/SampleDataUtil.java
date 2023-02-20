@@ -74,7 +74,7 @@ public class SampleDataUtil {
                 new Address("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
                 getGroupTagSet(),
-                getModuleTagSet("CS2101", "CS2102", "CS2103T", "CS2105", "CS2106")
+                getModuleTagSet("CS2100", "CS2101", "CS2102", "CS2103", "CS2104", "CS2105")
         );
     }
 

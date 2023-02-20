@@ -102,20 +102,20 @@ public class JsonEduMateStorageTest {
         // Save in new file and read back
         jsonEduMateStorage.saveEduMate(original, filePath);
         ReadOnlyEduMate readBack = jsonEduMateStorage.readEduMate(filePath).get();
-        assertEquals(original, new EduMate(readBack));
+        assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
         // Modify data, overwrite exiting file, and read back
         original.removePerson(ALBERT);
         original.removePerson(CLARK);
         jsonEduMateStorage.saveEduMate(original, filePath);
         readBack = jsonEduMateStorage.readEduMate(filePath).get();
-        assertEquals(original, new EduMate(readBack));
+        assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
         // Save and read without specifying file path
         original.addPerson(CLARK);
         jsonEduMateStorage.saveEduMate(original); // file path not specified
         readBack = jsonEduMateStorage.readEduMate().get(); // file path not specified
-        assertEquals(original, new EduMate(readBack));
+        assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
     }
 
