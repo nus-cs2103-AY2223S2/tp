@@ -1,6 +1,5 @@
 package seedu.task.model.task;
-
-import java.util.List;
+;
 import java.util.function.Predicate;
 
 import seedu.task.commons.util.StringUtil;
