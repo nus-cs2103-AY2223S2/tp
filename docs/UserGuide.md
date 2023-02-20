@@ -1,29 +1,26 @@
-
- # PowerConnect User Guide
-
+# PowerConnect User Guide
 
 PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
 
-##### Table of Contents  
-1. [Quick Start](#quickstart)  
+##### Table of Contents
+1. [Quick Start](#quickstart)
 2. [Features](#features)
-   1. [Student Features](#student)
-      1. [Add student: `add`](#addstudent)
-      2. [Add students' grade: `grade`](#gradestudent)
-      3. [Add comments to students: `comment`](#commentstudent)
-      4. [Listing all students in a particular class: `list`](#liststudent)
-      5. [Editing a student's particulars: `edit`](#editstudent)
-      6. [Searching students: `find`](#findstudent)
-      7. [Deleting a student: `delete`](#deletestudent)
-   2. [Parent Features](#parent)
-      1. [Add parent/guardian: `add`](#addparent)
-      2. [Listing all parents: `list`](#listparent)
-      3. [Delete a parent/ parent information: `delete`](#deleteparent)
- 3. [Viewing help: `help`](#help)
- 4. [Exiting program: `exit`](#exit)
- 5. [FAQ](#faq)
- 6. [Command Summary](#summary)
-    
+    1. [Student Features](#student)
+        1. [Add student: `add`](#addstudent)
+        2. [Add students' grade: `grade`](#gradestudent)
+        3. [Add comments to students: `comment`](#commentstudent)
+        4. [Listing all students in a particular class: `list`](#liststudent)
+        5. [Editing a student's particulars: `edit`](#editstudent)
+        6. [Searching students: `find`](#findstudent)
+        7. [Deleting a student: `delete`](#deletestudent)
+    2. [Parent Features](#parent)
+        1. [Add parent/guardian: `add`](#addparent)
+        2. [Listing all parents: `list`](#listparent)
+        3. [Delete a parent/ parent information: `delete`](#deleteparent)
+3. [Viewing help: `help`](#help)
+4. [Exiting program: `exit`](#exit)
+5. [FAQ](#faq)
+6. [Command Summary](#summary)
 
 <a name="quickstart"/>
 --------------------------------------------------------------------------------------------------------------------
@@ -43,18 +40,20 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
-<a name="features"/>
+
+   <a name="features"/>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -64,17 +63,18 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 **:information_source: Notes about the command format:**<br>
 
 * Command lines supplied by the user are not case sensitive as the application will auto translate it into `UPPER_CASE`. <br>
-E.g. in the list feature, user can call it via either methods:
-   1. student 5A list
-   2. STUDENT 5A LIST
-   3. Student 5A LiSt
+
+  E.g. in the list feature, user can call it via either methods:
+    1. student 5A list
+    2. STUDENT 5A LIST
+    3. Student 5A LiSt
 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
-e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
+  e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
 * Items in `<>` brackets are the values that the user should field
-e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`. <br> 
+  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`. <br>
 
 In the case of COMPULSORY parameters, there’s no need to type `XX/YY` where `XX` is the particular category and `YY` is the actual information for the `XX` category. <br>
 
@@ -82,56 +82,57 @@ Compulsory parameters are not bounded by square brackets
 
 
 * All items in the square brackets are OPTIONAL.
-e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
+
+  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
 
 * In the user guide, all optional parameters are denoted by ..opt/.. meaning that any zero or more of the optional particulars specified above can be used
-Eg. ..add..[..opt/..] means user can do …add..c/<CCA>..img/<IMG>..
+  Eg. ..add..[..opt/..] means user can do …add..c/<CCA>..img/<IMG>..
 
-* General Particulars: 
-   - Name <**NAME**>
-      - String value of student's name
-   - Class <**CLASS**>
-      - String value of student's class
-   - Index Number <**INDEX_NUMBER**>
-      - Numbers (integer)
-   - Sex <**SEX**>
-      - M / m means male while F / f means female
- * Optional:
-   - Image [**IMG**]
-      - String value of absolute path to image
-   - Age [**AGE**]
-      - Numbers (integer)
-   - Email [**EM**]
-      - String value of email address
-   - Phone number [**PH**]
-      - String value of phone address
- * Student Particulars:
-   - Academics
-      - Test <**TEST_NAME**>
-         - String value of test name
-      - Attendance <**ATTENDANCE**>
-         - Mark as present/ not present
-      - Homework <**HOMEWORK**>
-         - String value of homework name
-      - Grade <**GRADE**>
-         - String value of grade results
-   - Parents/ Next-of-kin <**NOK**>
+* General Particulars:
+    - Name <**NAME**>
+        - String value of student's name
+    - Class <**CLASS**>
+        - String value of student's class
+    - Index Number <**INDEX_NUMBER**>
+        - Numbers (integer)
+    - Sex <**SEX**>
+        - M / m means male while F / f means female
+* Optional:
+    - Image [**IMG**]
+        - String value of absolute path to image
+    - Age [**AGE**]
+        - Numbers (integer)
+    - Email [**EM**]
+        - String value of email address
+    - Phone number [**PH**]
+        - String value of phone address
+* Student Particulars:
+    - Academics
+        - Test <**TEST_NAME**>
+            - String value of test name
+        - Attendance <**ATTENDANCE**>
+            - Mark as present/ not present
+        - Homework <**HOMEWORK**>
+            - String value of homework name
+        - Grade <**GRADE**>
+            - String value of grade results
+    - Parents/ Next-of-kin <**NOK**>
       -String value of parent's name
- * Optional:
-   - CCA [**CCA**]
-   - Comments [**com**]
- * Parent/ Guardians Particulars:
-   - Relationship <**nok**>
-   
+* Optional:
+    - CCA [**CCA**]
+    - Comments [**com**]
+* Parent/ Guardians Particulars:
+    - Relationship <**nok**>
+
 
 </div>
 <a name="student"/>
-   
+
 ## General Command for student related features
 
 * For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
-<a name="addstudent"/>
-   
+  <a name="addstudent"/>
+
 ### Adding a person: `add`
 
 Adds a student to the database
@@ -144,30 +145,31 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `student 1A add TanAhCow 03 m TanAhNiu` <br>
-	*Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
+
+  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
 * `student 1B add Mary Goh 23 f Goh Siew Mai age/15 img/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg em/marygoh@gmail.com ph/65656565 cca/Chess Club`
-   
+
 * Note:
-   User is able to leave the following categories unfilled by simply leaving a space <br>
-         1. Age <br>
-         2. Absolute path to image <br>
-         3. Email Address <br>
-         4. Phone Number <br>
-         5. CCA <br>
+  User is able to leave the following categories unfilled by simply leaving a space <br>
+  1. Age <br>
+  2. Absolute path to image <br>
+  3. Email Address <br>
+  4. Phone Number <br>
+  5. CCA <br>
 
 <a name="gradestudent"/>
-   
+
 ### Adding a grade for student : `grade`
 
 Adds a test grade for the student corresponding to the INDEX_NUMBER in the CLASS
 
 Format: `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
-   
+
 Examples:
 * `student 3A grade 25 test/Mid-Terms gde/A`
 
 <a name = 'commentstudent'/>
-   
+
 ### Adding comments for student : `comment`
 
 Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
@@ -181,18 +183,23 @@ Examples:
 *Note: <br>
 If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
 <a name = "liststudent"/>
-   
+
 ### Listing all students in the selected class: `list`
 
 Shows a list of all students in the selected class in the database
 
-Format: `list`
+Format: `find <INDEX_NUMBER>  `
+
+Examples:
+* `student 3B find 26`
+* `student 3B find 27`
 
 **Expected Outcome:**
+
 * `<student Name> <id> <image> <nok name> <nok email> <nok number>`
 * `ChanAhKow 21 ChanAhKow.png ChanMaiWoon chanmaiwoon@gmail.com 91234567`
-<a name = "editstudent" />
-   
+  <a name = "editstudent" />
+
 ### Edit Student:  `edit`
 
 Edits personal details of students
@@ -206,9 +213,9 @@ Examples:
 **Expected Outcome:**
 * Edited Student: Jennifer Lim cca: badminton
 * Edited Student: Justina Lee attendance: cca:soccer 2023-01-01 y
-   
+
 <a name = "findstudent"/>
-   
+
 ### Locating persons by name:  `find`
 
 Finds student by student id
@@ -224,7 +231,7 @@ Examples:
 * Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan
 
 <a name = "deletestudent"/>
-   
+
 ### Deleting student particulars: `delete`
 
 Deleting student/ student information from the database
@@ -233,18 +240,18 @@ Format: `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<C
 
 Examples:
 * `student 1A delete TanAhCow 03 M a/14 p/ c/ nok/TanAhNiu`
-	*Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
+  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
 * `student 1B delete Mary Goh 23 F a/15 p/ c/Chess Club nok/Goh Siew Mai`
 
-* Throws: 
-   * WrongParticularException 
-      - The description field does not exist 
-      - Description is invalid (eg. age is not a number..) 
-* User should follow the same format 
+* Throws:
+    * WrongParticularException
+        - The description field does not exist
+        - Description is invalid (eg. age is not a number..)
+* User should follow the same format
 * If no descriptions are given, the whole student will be removed from the database
 
 <a name = "parent" />
-   
+
 ## General Command for parent related features
 
 * For all following features that are related to `parent`, start first by typing `parent <CLASS>`  before adding the respective command for the feature.
@@ -264,40 +271,40 @@ Examples:
 * `parent 1B add 23 Mary Goh GohAhBoon Father a/41`
 
 <a name = "listparent" />
-   
+
 ### Listing all parents : `list`
-   
+
 Shows a list of all parent in the database
 
 Format: `list`
 
 Examples:
 * `parent 1A list` <br>
-   Sample output: <parent name> <parent phone number> <parent email>
+  Sample output: <parent name> <parent phone number> <parent email>
 * `parent 401 list`
 
 <a name = "deleteparent" />
-   
+
 ### Deleting parent particulars: `delete`
-   
+
 Deleting parent/ specified parent information from the database
 
 Format: `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`
 
 Examples:
 * `parent 1A 03 delete TanAhCow Mother` <br>
-    Deletes TanAhCow’s relationship of Mother with <Index number of student>
+  Deletes TanAhCow’s relationship of Mother with <Index number of student>
 * `parent 1B 23 delete MaryGoh` <br>
-   Deletes the whole of MaryGoh particulars
-* Throws: 
-   * WrongParticularException 
-      - The description field does not exist 
-      - Description is invalid (eg. age is not a number..) 
-* User should follow the same format 
+  Deletes the whole of MaryGoh particulars
+* Throws:
+    * WrongParticularException
+        - The description field does not exist
+        - Description is invalid (eg. age is not a number..)
+* User should follow the same format
 * `Warning:` If no descriptions are given, the whole parent will be removed from the database
 
 <a name = "help"/>
-   
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -326,14 +333,13 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "faq" />
-   
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -341,7 +347,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "summary" />
-   
+
 ## Command summary Student `student <CLASS>`
 
 Action | Format, Examples
@@ -353,7 +359,7 @@ Action | Format, Examples
 **Edit** | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]`
 **Find** | `find <INDEX_NUMBER> `
 **Delete** | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
-   
+
 ## Command summary Parent `parent <CLASS>`
 
 Action | Format, Examples
