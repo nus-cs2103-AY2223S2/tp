@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Mandy Kaw
 
 <img src="images/mandykqh.png" width="200px">
@@ -38,15 +28,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Low Jian Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peanutbutters93.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peanutbutters93)]
+[[portfolio](team/peanutbutters93.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: TBD
 
 ### Stefanos Avraam
 
@@ -55,5 +45,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/StefanosAv)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+
+
