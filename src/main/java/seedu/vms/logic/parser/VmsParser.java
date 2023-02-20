@@ -5,8 +5,10 @@ import java.util.regex.Pattern;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.HelpCommand;
+import seedu.vms.logic.commands.basic.HelpCommand;
+import seedu.vms.logic.parser.basic.BasicParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.logic.parser.patient.PatientParser;
 
 
 /** Parsers user input.  */

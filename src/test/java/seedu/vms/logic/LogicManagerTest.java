@@ -17,12 +17,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.vms.logic.commands.AddCommand;
 import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.ListCommand;
 import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.logic.parser.PatientParser;
+import seedu.vms.logic.commands.patient.AddCommand;
+import seedu.vms.logic.commands.patient.ListCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyAddressBook;
