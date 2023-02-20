@@ -85,7 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return personIdMap.asUnmodifiableObservableMap().size() + " persons";
+        return personIdMap.asUnmodifiableObservableMap().toString();
         // TODO: refine later
     }
 
@@ -98,7 +98,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && personIdMap.equals(((AddressBook) other).personIdMap));
+                && personIdMap.asUnmodifiableObservableMap()
+                        .equals(((AddressBook) other).personIdMap.asUnmodifiableObservableMap()));
     }
 
     @Override
