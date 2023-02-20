@@ -19,6 +19,7 @@ public class FilteredIdDataMap<T> {
     public FilteredIdDataMap(ObservableMap<Integer, IdData<T>> source) {
         this.source = FXCollections.unmodifiableObservableMap(source);
         internalMap = FXCollections.observableHashMap();
+        internalMap.putAll(source);
         internalUnmodifiableMap = FXCollections.unmodifiableObservableMap(internalMap);
 
         source.addListener(this::handleChange);
@@ -28,7 +29,8 @@ public class FilteredIdDataMap<T> {
     private void handleChange(MapChangeListener.Change<? extends Integer, ? extends IdData<T>> change) {
         if (change.wasRemoved()) {
             internalMap.remove(change.getKey());
-        } else if (predicate.test(change.getValueAdded().getValue())) {
+        }
+        if (predicate.test(change.getValueAdded().getValue())) {
             internalMap.put(change.getKey(), change.getValueAdded());
         }
     }
