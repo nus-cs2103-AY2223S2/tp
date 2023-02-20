@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.vms.model.person.Person;
-import seedu.vms.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,18 +13,7 @@ import seedu.vms.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        persons = new UniquePersonList();
-    }
+    private final IdDataMap<Person> personIdMap = new IdDataMap<>();
 
     public AddressBook() {}
 
@@ -44,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.personIdMap.setValues(persons);
     }
 
     /**
@@ -53,17 +41,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        this.personIdMap.setDatas(newData.getPersonMap().values());
     }
 
     //// person-level operations
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean contains(int id) {
+        return personIdMap.containts(id);
     }
 
     /**
@@ -71,7 +55,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        personIdMap.add(p);
+    }
+
+    public void addPerson(IdData<Person> data) {
+        personIdMap.add(data);
     }
 
     /**
@@ -79,42 +67,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(int id, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        personIdMap.set(id, editedPerson);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removePerson(int id) {
+        personIdMap.remove(id);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return personIdMap.asUnmodifiableObservableMap().size() + " persons";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableMap<Integer, IdData<Person>> getPersonMap() {
+        return personIdMap.asUnmodifiableObservableMap();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && personIdMap.equals(((AddressBook) other).personIdMap));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return personIdMap.hashCode();
     }
 }

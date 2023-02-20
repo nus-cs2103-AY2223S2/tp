@@ -1,13 +1,15 @@
 package seedu.vms.ui;
 
-import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.model.IdData;
 import seedu.vms.model.person.Person;
 
 /**
@@ -15,33 +17,43 @@ import seedu.vms.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final ObservableMap<Integer, IdData<Person>> personList;
+    private final ObservableList<IdData<Person>> datas;
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<IdData<Person>> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableMap<Integer, IdData<Person>> dataMap) {
         super(FXML);
-        personListView.setItems(personList);
+        this.personList = FXCollections.unmodifiableObservableMap(dataMap);
+        datas = FXCollections.observableArrayList(dataMap.values());
+        personListView.setItems(datas);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        dataMap.addListener(this::handleChange);
     }
+
+    private void handleChange(MapChangeListener.Change<? extends Integer, ? extends IdData<Person>> change) {
+        datas.setAll(personList.values());
+    }
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<IdData<Person>> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(IdData<Person> data, boolean empty) {
+            super.updateItem(data, empty);
 
-            if (empty || person == null) {
+            if (empty || data == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(data.getValue(), getIndex() + 1).getRoot());
             }
         }
     }

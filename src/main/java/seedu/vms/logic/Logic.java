@@ -2,11 +2,12 @@ package seedu.vms.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.IdData;
 import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.person.Person;
 
@@ -31,7 +32,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableMap<Integer, IdData<Person>> getFilteredPersonMap();
 
     /**
      * Returns the user prefs' address book file path.

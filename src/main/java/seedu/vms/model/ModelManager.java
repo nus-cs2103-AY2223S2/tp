@@ -7,8 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.model.person.Person;
@@ -21,7 +20,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredIdDataMap<Person> filteredPersonMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +32,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersonMap = new FilteredIdDataMap<>(this.addressBook.getPersonMap());
     }
 
     public ModelManager() {
@@ -88,14 +87,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPerson(int id) {
+        return addressBook.contains(id);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deletePerson(int id) {
+        addressBook.removePerson(id);
     }
 
     @Override
@@ -105,10 +103,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(int id, Person editedPerson) {
+        requireAllNonNull(editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPerson(id, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +116,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableMap<Integer, IdData<Person>> getFilteredPersonList() {
+        return filteredPersonMap.asUnmodifiableObservableMap();
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPersonMap.filter(predicate);
     }
 
     @Override
@@ -144,7 +142,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersonMap.equals(other.filteredPersonMap);
     }
 
 }

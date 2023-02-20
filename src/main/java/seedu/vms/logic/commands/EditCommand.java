@@ -10,7 +10,7 @@ import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -18,6 +18,7 @@ import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.CollectionUtil;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.person.Address;
 import seedu.vms.model.person.Email;
@@ -68,20 +69,16 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        Map<Integer, IdData<Person>> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(index.getZeroBased()).getValue();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(index.getZeroBased(), editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

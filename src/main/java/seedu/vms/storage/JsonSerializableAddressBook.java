@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.AddressBook;
+import seedu.vms.model.IdData;
 import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.person.Person;
 
@@ -19,16 +20,16 @@ import seedu.vms.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String DUPLICATE_ID = "Persons list contains duplicate ID(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPersonData> datas = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("datas") List<JsonAdaptedPersonData> datas) {
+        this.datas.addAll(datas);
     }
 
     /**
@@ -37,7 +38,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        datas.addAll(source.getPersonMap().values().stream().map(JsonAdaptedPersonData::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedPersonData jsonAdaptedPersonData : datas) {
+            IdData<Person> personData = jsonAdaptedPersonData.toModelType();
+            if (addressBook.contains(personData.getId())) {
+                throw new IllegalValueException(DUPLICATE_ID);
             }
-            addressBook.addPerson(person);
+            addressBook.addPerson(personData);
         }
         return addressBook;
     }
