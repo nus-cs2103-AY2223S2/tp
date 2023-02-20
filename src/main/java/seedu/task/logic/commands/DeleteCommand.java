@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.task.commons.core.Messages;
-import seedu.task.commons.core.index.Index;
+import seedu.task.commons.core.index.IndexList;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.task.Task;
@@ -22,12 +21,12 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task:";
 
-    private final Index targetIndex;
+    private final IndexList targetList;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(IndexList targetList) {
+        this.targetList = targetList;
     }
 
     @Override
@@ -35,19 +34,26 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        targetList.checkValidIndex(lastShownList.size());
+        targetList.modifyForDelete();
+        String output = MESSAGE_DELETE_TASK_SUCCESS;
+        int n = targetList.size();
+
+        for (int i = 0; i < n; i++) {
+            Task taskToDelete = lastShownList.get(targetList.getZeroBasedIndex(i));
+            model.deleteTask(taskToDelete);
+            output = output + "\n" + taskToDelete;
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        System.out.println(output);
+
+        return new CommandResult(output);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetList.equals(((DeleteCommand) other).targetList)); // state check
     }
 }

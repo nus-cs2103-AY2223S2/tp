@@ -4,15 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.task.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndexList;
+import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
+import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_SECOND_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
+import seedu.task.commons.core.index.IndexList;
 import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
 import seedu.task.model.UserPrefs;
@@ -28,13 +29,18 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEXLIST_FIRST_TASK);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
         ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
-        expectedModel.deleteTask(taskToDelete);
+
+        int n = INDEXLIST_FIRST_TASK.size();
+
+        for (int i = 0; i < n; i++) {
+            Task taskToDelete = model.getFilteredTaskList().get(INDEXLIST_FIRST_TASK.getZeroBasedIndex(i));
+            expectedMessage = expectedMessage + "\n" + taskToDelete;
+            expectedModel.deleteTask(taskToDelete);
+        }
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -42,22 +48,30 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        IndexList il = new IndexList();
+        il.add(outOfBoundIndex);
 
+        DeleteCommand deleteCommand = new DeleteCommand(il);
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndexList(model, INDEXLIST_FIRST_TASK);
 
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
+        int n = INDEXLIST_FIRST_TASK.size();
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-
+        DeleteCommand deleteCommand = new DeleteCommand(INDEXLIST_FIRST_TASK);
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
-        expectedModel.deleteTask(taskToDelete);
+
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
+
+        for (int i = 0; i < n; i++) {
+            Task taskToDelete = model.getFilteredTaskList().get(INDEXLIST_FIRST_TASK.getZeroBasedIndex(i));
+            expectedMessage = expectedMessage + "\n" + taskToDelete;
+            expectedModel.deleteTask(taskToDelete);
+        }
+
         showNoTask(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -65,27 +79,32 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndexList(model, INDEXLIST_FIRST_TASK);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of task book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskBook().getTaskList().size());
+        IndexList outOfBoundIndexList = INDEXLIST_SECOND_TASK;
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        int n = outOfBoundIndexList.size();
+
+        for (int i = 0; i < n; i++) {
+            // ensures that outOfBoundIndexList is still in bounds of task book list
+            assertTrue(outOfBoundIndexList.getZeroBasedIndex(i) < model.getTaskBook().getTaskList().size());
+        }
+
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexList);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_TASK);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_TASK);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEXLIST_FIRST_TASK);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEXLIST_SECOND_TASK);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_TASK);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEXLIST_FIRST_TASK);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
