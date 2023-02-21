@@ -82,7 +82,7 @@ public class AddPairCommandTest {
     /**
      * A default model stub that have all the methods failing.
      */
-    public static class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -144,16 +144,6 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addPair(Pair pair) {
             throw new AssertionError("This method should not be called.");
         }
@@ -170,6 +160,16 @@ public class AddPairCommandTest {
 
         @Override
         public void setPair(Pair target, Pair editedPair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
