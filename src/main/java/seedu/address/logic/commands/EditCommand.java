@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -98,10 +99,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Weight updatedWeight = new Weight(""); //place holder
+        Weight updatedWeight = new Weight("2"); //place holder
+        Gender updatedGender = new Gender("M"); //place holder
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight,
+                updatedGender, updatedTags);
     }
 
     @Override
@@ -131,6 +134,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Weight weight;
+        private Gender gender;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -185,6 +190,21 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+        public void setWeight(Weight weight) {
+            this.weight = weight;
+        }
+
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
+        }
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -222,6 +242,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getWeight().equals(e.getWeight())
+                    && getGender().equals(e.getGender())
                     && getTags().equals(e.getTags());
         }
     }
