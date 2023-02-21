@@ -3,10 +3,23 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Duke Driver is a desktop app for optimizing and managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 * Table of Contents
-{:toc}
+   *	Feature Tracks (plan for v1.2)
+         * Delivery tasking management system: 
+            * View jobs
+            * Add jobs
+         * Route planning and generation:
+            * Generate sequence of jobs with total shortest distance
+            * Display map
+         * Direct messaging:
+            * Linked with contact list (dummy)
+            * Text messaging
+         * Stats dashboard:
+            * List all jobs
+            * Show total number of jobs
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,11 +27,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `dukeDriver.jar` from [here](https://github.com/).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dukeDriver.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
