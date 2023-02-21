@@ -23,20 +23,15 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = LocalDateTime.parse(date);
+        value = LocalDateTime.parse(formatDate(date));
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        String[] dateTime = test.trim().split(" ");
         try {
-            String date = dateTime[0];
-            String time = dateTime[1];
-            String hour = time.substring(0, 2);
-            String minute = time.substring(2, 4);
-            String toParse = date + "T" + hour + ":" + minute + ":00";
+            String toParse = formatDate(test);
             LocalDateTime.parse(toParse);
         } catch (DateTimeException | IndexOutOfBoundsException e) {
             return false;
@@ -44,15 +39,42 @@ public class Date {
         return true;
     }
 
+    /**
+     * Formats the String to be a parseable String for LocalDateTime.
+     * Only the first 4 numbers of the input String is parsed for time.
+     *
+     * @param input input String by user.
+     * @return String parseable by LocalDateTime.
+     * @Throw IndexOutOfBoundsException if input is not the right format.
+     */
+    public static String formatDate(String input) throws IndexOutOfBoundsException {
+        String[] dateTime = input.trim().split(" ");
+        String date = dateTime[0];
+        String time = dateTime[1];
+        String hour = time.substring(0, 2);
+        String minute = time.substring(2, 4);
+        return date + "T" + hour + ":" + minute + ":00";
+    }
+
+    /**
+     * The seconds field is ignored.
+     *
+     * @return String to be printed out.
+     */
     @Override
     public String toString() {
-        return value.toString();
+        String month = value.getMonth().toString().substring(0, 3);
+        int day = value.getDayOfMonth();
+        int year = value.getYear();
+        String hour = String.format("%02d", value.getHour());
+        String minute = String.format("%02d", value.getMinute());
+        return month + " " + day + " " + year + " " + hour + minute;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LocalDateTime // instanceof handles nulls
+                || (other instanceof Date // instanceof handles nulls
                 && value.equals(((Date) other).value)); // state check
     }
 
