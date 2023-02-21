@@ -269,34 +269,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 | Priority | As a …​   | I want to …​                                           | So that I can…​                              |
-|---------|-----------|--------------------------------------------------------|----------------------------------------------|
-| `* * *` | student   | view all my modules in one place                       | be more organised in my work                 |
-| `* * *` | user      | use this app quickly with the command line             | quickly plan my modules                      |
-| `* * *` | user      | view my personal information                           | share it to whoever needs it                 |
-| `* * *` | user      | update my profile                                      | personalise my experience                    |
-| `* * *` | user      | add module tags to new contacts                        | track what modules my friends are taking     |
-| `* * *` | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
-| `* * *` | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
-| `* *`   | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
+|------|-----------|--------------------------------------------------------|----------------------------------------------|
+| `***` | student   | view all my modules in one place                       | be more organised in my work                 |
+| `***` | user      | use this app quickly with the command line             | quickly plan my modules                      |
+| `***` | user      | view my personal information                           | share it to whoever needs it                 |
+| `***` | user      | update my profile                                      | personalise my experience                    |
+| `***` | user      | add module tags to new contacts                        | track what modules my friends are taking     |
+| `***` | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
+| `***` | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
+| `**` | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `EduMate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View the list of all contacts**
 
 **MSS**
 
-1.  User requests to add a person
-2.  User requests to delete a person
-3.  User requests to edit a person's information
-4.  User requests to edit user information
-5.  User requests to filter persons based on tag
-6.  User requests to sort persons based on number of shared modules
-7.  EduMate shows a list of persons
+1. User requests to list contacts.
+2. EduMate shows a list of all contacts.
 
     Use case ends.
 
@@ -304,15 +299,182 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC02 - Add a contact**
 
-    * 3a1. EduMate shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to add a person to the contact list with their details.
+2. EduMate shows the list of contacts with the newly added person.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details are invalid.
+    * 1a1. EduMate shows an error message.
+    
+    Use case resumes at step 1
+* 1b. The person already exists in the contact list.
+    * 1b1. EduMate shows an error message.
+    
+    Use case resumes at step 1
+
+**Use case: UC03 - Edit a contact**
+
+**MSS**
+
+1. User requests to edit a person's details with new information.
+2. EduMate edits the person's information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+    
+    Use case resumes at step 1.
+* 1b. The given details are invalid.
+    * 1b1. EduMate shows an error message.
+  
+    Use case resumes at step 1.
+
+**Use case: UC04 - Delete a contact**
+
+1. User requests to delete a person from the contact list.
+2. EduMate deletes the person from the contact list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC05 - Tag a module to a contact**
+
+1. User requests to add a module tag to a contact.
+2. EduMate tags the module to the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+    
+    Use case resumes at step 1.
+
+* 1b. The given details is invalid.
+    * 1b1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC06 - Untag a module from a contact**
+
+1. User requests to remove a module tag from a contact.
+2. EduMate untags the module from the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given details is invalid.
+    * 1b1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC07 - Tag a group to a contact**
+
+1. User requests to add a group tag to a contact.
+2. EduMate tags the group to the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given details is invalid.
+    * 1b1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC08 - Untag a group from a contact**
+
+1. User requests to remove a group tag from a contact.
+2. EduMate untags the group from the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given details is invalid.
+    * 1b1. EduMate shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: UC09 - Find contacts based on search criteria**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to find contacts based on search criteria.
+3. EduMate shows a list of contacts satisfying the search criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
+
+* 3a. The filtered list is empty.
+
+    Use case ends
+
+**Use case: UC10 - Sort contacts based on matching modules**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to sort contacts.
+3. EduMate shows a list of contacts sorted by their number of shared modules.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The sorted list is empty.
+
+    Use case ends.
+
+**Use case: UC11 - View user profile**
+
+1. User requests to view their user profile.
+2. EduMate shows the user information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User information is empty.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -343,40 +505,35 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    * 1a. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    * 2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    * 2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    * 1a. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+    * 1b. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+    * 1c. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    * 1d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
