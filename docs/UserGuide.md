@@ -151,9 +151,9 @@ Deletes the specified supplier from the contact list.
 
 Syntax: `delete_supplier INDEX`
 
-* Deletes the task at the specified INDEX.
+* Deletes the task at the specified `INDEX`
 * The index refers to the number shown in the task list displayed.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delete_supplier 2` deletes the first supplier.
@@ -165,9 +165,9 @@ Deletes the specified task from the task list.
 
 Syntax: `delete_task INDEX`
 
-* Deletes the task at the specified INDEX.
+* Deletes the task at the specified `INDEX`
 * The index refers to the number shown in the task list displayed.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delete_task 2` deletes the first task.
