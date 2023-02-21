@@ -39,8 +39,8 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, "1. "
-            + validTask + "\n"), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+            + validTask.get(0) + "\n"), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask.get(0)), modelStub.tasksAdded);
     }
 
     @Test
