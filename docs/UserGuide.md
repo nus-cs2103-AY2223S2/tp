@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Calidr is a **time-management and scheduling calendar application**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -14,160 +14,127 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `calindr.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Calindr.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar calindr.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## :mag: Definitions
+
+### Command definitions
 
 <div markdown="block" class="alert alert-info">
+🕮 This user guide uses a modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+ 1. We will use the word "**string**" to describe any general sequence of characters.
+ 1. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
+ 1. Words starting with a backslash `/` are interpreted as _compulsory_, _position-independent_ **options**.
+     `todo /by`
+ 1. Words bracketed with "<" and ">", or uppercase words, denote the position of **arguments**.
+ 1. All other words that do not follow the above conventions are interpreted as **commands** and **subcommands**.
+     `list`
+ 3. Options can have arguments specified after a whitespace. Together they are refered to as a **field**.
+     `todo /by <date>`
+ 1. An option's arguments, when bracketed by "<" and ">", can be **whitespace-containing** strings. They are terminated by a newline or a different option, matching *leftmost-first*.
+     `event /from <start> /to <end>`
+ 1. Else, if the arguments are in uppercase, they must be **strictly words** terminated by whitespace.
+     `delete TASK_INDEX`
+ 1. Some commands may accept a single *positional* argument string, known as a **main argument**, beginning after a whitespace following the command itself and terminating at a newline or the first option, matching *leftmost-first*.
+     `event <title> /from <start> /to <end>`
+ 1. Options (and arguments) bracketed with "\[" and  "\]" are **optional**.
+     `event /from <start> /to <end> [/desc <description>] [/loc <location>]`
+ 1. Use ellipsis "..." to specify that the argument (or field) to the left could be **repeated** multiple times:
+     `delete TASK_INDEX...`
+ 1. *All elements are required by default*, if not included in brackets "\[ \]". However, sometimes it is necessary to mark elements as **required** explicitly with parentheses "( )". For example, when you need to group mutually-inclusive elements (if *one* element is present, then *another* one is required):
+    `edit TASK_INDEX (OPTION <argument>)...`
 </div>
 
-### Viewing help : `help`
+### Data terminology
+
+ 1. Elements on a calendar are refered to as **Items**.
+ 1. Items must either be be **ToDos** or **Events**.
+    a. ToDos have a single associated date-time (e.g. a due date). ToDos also have an associated *status* (done or not done).
+    b. Events have *two* associated date-times.
+
+
+## :paperclip: Features
+
+#### View help: `help`
 
 Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+The help page provides information about how to use the application and its features.
 
 
-### Adding a person: `add`
+#### Adding items
 
-Adds a person to the address book.
+While adding an item, apart from the compulsory fields [specified above](#Data-terminology), you can add optional
+- *descriptions* to items to better describe it,
+- *locations*,
+- and *comments*.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+<!-- end of the list -->
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+- #### Adding a ToDo: `todo`
+  Adds a ToDo with the given title and date-time to the list of tasks.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+  Format: `todo <title> /by <date-time> [/desc <description>] [/loc <location>] [/cmt <comment>]`
 
-### Listing all persons : `list`
+- #### Adding an Event: `event`
+  Adds an event with the given title, start and end date-times to the list of events.
 
-Shows a list of all persons in the address book.
+  Format: `event <title> /from <start> /to <end> [/desc <description>] [/loc <location>] [/cmt <comment>]`
 
+#### Deleting a item: `delete`
+Deletes one or more items from the list of items.
+Format: `delete TASK_INDEX...`
+
+#### Listing items: `list`
+Lists all the items saved.
 Format: `list`
 
-### Editing a person : `edit`
+#### Editing task information: `edit`
+Edits information pertaining to a particular item.
+Format: `edit TASK_INDEX (OPTION <argument>)...`
 
-Edits an existing person in the address book.
+e.g. for a item which is a event of id 4:
+`edit 4 /from <start> /to <end>`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+## Command summary
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Action | Format, Examples
+--------|------------------
+**Add Todo** | `todo <title> /by <date-time> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g., `todo Do UG /by 2023-02-25 23:00 /desc Git is fun /loc Home /cmt Do as a team`
+**Add Event** | `event <title> /from <start> /to <end> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g. `event CS2103T Lecture /from 2023-02-25 22:00 /to 2023-02-25 23:00`
+**Delete** | `delete INDEX...`<br> e.g., `delete 1 2 3`
+**List** | `list`
+**Edit** | `edit INDEX (OPTION <argument>) ...`<br> e.g.,`edit 4 /from 2023-02-25 22:00 /to 2023-02-25 23:00`
+**Help** | `help`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Other
 
-Finds persons whose names contain any of the given keywords.
+#### Saving the data
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Calidr calendar information is saved in the hard disk automatically after any modification command. The data is stored as an [ics file](https://www.ical4j.org/).
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+#### Editing the data file
+The `cal.ics` save file is located in the directory the program resides in (i.e. `[root_directory]/cal.ics`). Advanced users are welcome to manipulate data directly by editing the save file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+    If your changes to the save file makes its format invalid, Calidr will discard all data and start with an empty data file the next time it's run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -176,18 +143,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Calindr home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
