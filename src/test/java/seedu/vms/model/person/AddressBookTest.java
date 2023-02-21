@@ -1,4 +1,4 @@
-package seedu.vms.model;
+package seedu.vms.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.vms.testutil.Assert.assertThrows;

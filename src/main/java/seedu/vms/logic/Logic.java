@@ -8,8 +8,8 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
-import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * API of the Logic component

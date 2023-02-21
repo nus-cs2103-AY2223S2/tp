@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;
+import seedu.vms.model.person.AddressBook;
 
 /**
  * Clears the address book.

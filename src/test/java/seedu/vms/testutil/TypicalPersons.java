@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.vms.model.AddressBook;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
 
 /**

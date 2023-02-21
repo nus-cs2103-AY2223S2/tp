@@ -1,6 +1,6 @@
 package seedu.vms.testutil;
 
-import seedu.vms.model.AddressBook;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
 
 /**

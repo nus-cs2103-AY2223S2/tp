@@ -1,6 +1,6 @@
-package seedu.vms.model;
+package seedu.vms.model.person;
 
-import seedu.vms.model.person.Person;
+import seedu.vms.model.ReadOnlyStorageModel;
 
 /**
  * A {@code ReadOnlyStorageModel} of {@code Person}.

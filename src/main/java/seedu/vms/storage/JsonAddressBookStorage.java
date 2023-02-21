@@ -12,7 +12,7 @@ import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
 import seedu.vms.commons.util.JsonUtil;
-import seedu.vms.model.ReadOnlyAddressBook;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
