@@ -146,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.edumate.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,15 +203,15 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoEduMate()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `eduMateStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `eduMateStateList.size() - 1`, pointing to the latest address book state, then there are no undone EduMate states to restore. The `redo` command uses `Model#canRedoEduMate()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `eduMateStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitEduMate()`, `Model#undoEduMate()` or `Model#redoEduMate()`. Thus, the `eduMateStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `eduMateStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitEduMate()`. Since the `currentStatePointer` is not pointing at the end of the `eduMateStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -262,37 +262,41 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is an NUS student
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help NUS students maintain both their social and academic life by lowering the barriers to meet up and make new friends within modules.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​   | I want to …​                                           | So that I can…​                              |
+|---------|-----------|--------------------------------------------------------|----------------------------------------------|
+| `* * *` | student   | view all my modules in one place                       | be more organised in my work                 |
+| `* * *` | user      | use this app quickly with the command line             | quickly plan my modules                      |
+| `* * *` | user      | view my personal information                           | share it to whoever needs it                 |
+| `* * *` | user      | update my profile                                      | personalise my experience                    |
+| `* * *` | user      | add module tags to new contacts                        | track what modules my friends are taking     |
+| `* * *` | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
+| `* * *` | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
+| `* *`   | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EduMate` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a person
+2.  User requests to delete a person
+3.  User requests to edit a person's information
+4.  User requests to edit user information
+5.  User requests to filter persons based on tag
+6.  User requests to sort persons based on number of shared modules
+7.  EduMate shows a list of persons
 
     Use case ends.
 
@@ -304,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. EduMate shows an error message.
 
       Use case resumes at step 2.
 
@@ -315,6 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should consistently execute commands within 1 second.
 
 *{More to be added}*
 
