@@ -112,7 +112,7 @@ public class EditCommand extends Command {
     private CommandResult editUser(Model model) {
         User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
         model.setUser(editedUser);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedUser));
+        return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser));
     }
 
     /**
