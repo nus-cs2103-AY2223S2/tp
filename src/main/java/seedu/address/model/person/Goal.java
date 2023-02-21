@@ -1,2 +1,4 @@
-package seedu.address.model.person;public class Goal {
+package seedu.address.model.person;
+
+public class Goal {
 }
