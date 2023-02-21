@@ -25,7 +25,6 @@ public class User extends Person {
         TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
 
         user = new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
-        System.out.println(user);
 
         return user;
     }
