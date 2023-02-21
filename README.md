@@ -15,12 +15,14 @@ efficiently exploit the application’s organisational capabilities.
 5. Saving of internship entries to a local data file (auto-saving included!)
 
 ## Getting Started
-1. Ensure that your computer has **Java 11** or above installed.
+1. Ensure that your computer has **Java 11** or above installed. Otherwise, you can download it
+   [here](https://www.oracle.com/java/technologies/downloads/#java11).
 2. Download the latest release of InternBuddy [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
 3. Copy the downloaded release to a folder that you want as the _home folder_ for InternBuddy.
 4. Open a command terminal and change directory into the folder you chose in step 3 using the `cd` command.
 5. Run the command `java -jar internbuddy.jar`. InternBuddy would then run, where you would see a window
    like this:
+
    ![Ui](docs/images/Ui.png)
 6. Enjoy tracking your internships using InternBuddy!
 ## Additional Information
