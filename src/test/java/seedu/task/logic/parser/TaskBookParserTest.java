@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK_INT;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,9 @@ import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.commands.HelpCommand;
 import seedu.task.logic.commands.ListCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
+import seedu.task.model.task.DescContainsKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
+import seedu.task.model.task.TagsContainsKeywordsPredicate;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
 import seedu.task.testutil.TaskBuilder;
@@ -72,10 +75,21 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String nameKeyphrase = "Alice";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + nameKeyphrase);
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeyphrase)), command);
+
+        String descriptionKeyphrase = "test";
+        FindCommand descriptionCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION + descriptionKeyphrase);
+        assertEquals(new FindCommand(new DescContainsKeywordsPredicate(descriptionKeyphrase)), descriptionCommand);
+
+        String[] tagKeyphrases = {"friend", "family"};
+        String tagKeyphrase = PREFIX_TAG + "friend " + PREFIX_TAG + "family";
+        FindCommand tagCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + tagKeyphrase);
+        assertEquals(new FindCommand(new TagsContainsKeywordsPredicate(Arrays.asList(tagKeyphrases))), tagCommand);
     }
 
     @Test

@@ -1,27 +1,35 @@
 package seedu.task.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.function.Predicate;
 
 import seedu.task.commons.core.Messages;
 import seedu.task.model.Model;
-import seedu.task.model.task.NameContainsKeywordsPredicate;
+import seedu.task.model.task.Task;
 
 /**
- * Finds and lists all tasks in task book whose name contains any of the argument keywords.
+ * Finds and lists all tasks in task book whose name/tag/description matches the argument.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose details contain "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: (Only use 1 prefix)\n"
+            + "[" + PREFIX_NAME + "NAME] OR "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] OR "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "books";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Task> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Task> predicate) {
         this.predicate = predicate;
     }
 

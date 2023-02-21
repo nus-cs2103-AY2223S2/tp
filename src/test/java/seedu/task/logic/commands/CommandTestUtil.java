@@ -8,7 +8,6 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.task.commons.core.index.Index;
@@ -108,8 +107,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String[] splitName = task.getName().fullName.split("\\s+");
-        model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTaskList(new NameContainsKeywordsPredicate(task.getName().fullName));
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
@@ -124,8 +122,7 @@ public class CommandTestUtil {
             assertTrue(targetIndices.getZeroBasedIndex(i) < model.getFilteredTaskList().size());
             int curr = targetIndices.getZeroBasedIndex(i);
             Task task = model.getFilteredTaskList().get(curr);
-            final String[] splitName = task.getName().fullName.split("\\s+");
-            model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+            model.updateFilteredTaskList(new NameContainsKeywordsPredicate(task.getName().fullName));
         }
 
         assertEquals(n, model.getFilteredTaskList().size());

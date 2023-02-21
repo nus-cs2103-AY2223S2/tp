@@ -10,7 +10,6 @@ import static seedu.task.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -117,8 +116,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTaskBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String keyphrase = ALICE.getName().fullName;
+        modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(keyphrase));
         assertFalse(modelManager.equals(new ModelManager(taskBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
