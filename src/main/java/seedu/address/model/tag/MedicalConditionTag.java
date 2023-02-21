@@ -111,8 +111,9 @@ public class MedicalConditionTag extends Tag {
         String requiresAttentionString = String.valueOf(requiresAttention);
         String priorityString = priority.name();
 
-        return super.toString() + " " +
-                requiresAttentionString + " " + priorityString + " " +
-                notes;
+        return super.toString() + " "
+                + requiresAttentionString + " "
+                + priorityString + " "
+                + notes;
     }
 }

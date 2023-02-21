@@ -241,7 +241,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     @Override
-    public ObservableList<Elderly> getElderlyList() { return elderly.asUnmodifiableObservableList(); }
+    public ObservableList<Elderly> getElderlyList() {
+        return elderly.asUnmodifiableObservableList();
+    }
 
     @Override
     public ObservableList<Person> getVolunteerList() {

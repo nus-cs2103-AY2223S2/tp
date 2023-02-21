@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
 /**
  * A default model stub that have all the methods failing.
  */
-  class ModelStub implements Model {
+class ModelStub implements Model {
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
