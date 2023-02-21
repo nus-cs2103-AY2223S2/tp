@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Liu Muchen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/liumc-sg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/LiuMC-SG)]
+[[portfolio](team/liumc-sg.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Chong Wei Guan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chongweiguan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chongweiguan)]
+[[portfolio](team/chongweiguan.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Deliverables & Deadlines
 
-### James Doe
+### Arkar Kyaw Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arkarsg.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/arkarsg)]
+[[portfolio](team/arkarsg.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation & Testing
+
+### Hmuu Myat Moe
+
+<img src="images/hmuumyatmoe.png" width="200px">
+
+[[github](https://github.com/HmuuMyatMoe)]
+[[portfolio](team/hmuumyatmoe.md)]
+
+* Role: Developer
+* Responsibilities: Documentation & Code Quality
+
+### Darren Chang WeiXiang
+
+<img src="images/chattygittyhub.png" width="200px">
+
+[[github](https://github.com/ChangGittyHub)]
+[[portfolio](team/chattygittyhub.md)]
+
+* Role: Developer
+* Responsibilities: Task Scheduling
