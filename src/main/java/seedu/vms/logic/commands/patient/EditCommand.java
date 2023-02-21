@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         Map<Integer, IdData<Person>> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (!lastShownList.containsKey(index.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 

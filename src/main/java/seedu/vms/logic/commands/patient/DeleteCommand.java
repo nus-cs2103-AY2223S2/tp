@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         Map<Integer, IdData<Person>> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (!lastShownList.containsKey(targetIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
