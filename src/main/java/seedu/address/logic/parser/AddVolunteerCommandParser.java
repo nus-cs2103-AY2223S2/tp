@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
+import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Volunteer;
@@ -39,7 +39,7 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
                         PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC_VOLUNTEER, PREFIX_AGE,
                         PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
+        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NRIC_VOLUNTEER, PREFIX_AGE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String
@@ -59,13 +59,4 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
 
         return new AddVolunteerCommand(volunteer);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
