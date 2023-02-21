@@ -2,6 +2,8 @@ package seedu.address.model.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -27,6 +29,7 @@ import seedu.address.model.tag.ModuleTag;
  * Contains utility methods for populating {@code EduMate} with sample data.
  */
 public class SampleDataUtil {
+    private static final Path SAMPLE_DATA_FOLDER = Paths.get("src", "main", "java", "seedu.address", "model", "util");
     private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);
 
     /**
