@@ -56,7 +56,7 @@ public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
      * Sets the {@code RiskLevel} of the {@code Elderly} that we are building.
      */
     public ElderlyBuilder withRiskLevel(String riskLevel) {
-        this.riskLevel = new RiskLevel(riskLevel);
+        this.riskLevel = new RiskLevel(riskLevel.toUpperCase());
         return this;
     }
 
