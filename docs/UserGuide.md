@@ -34,6 +34,7 @@ Calidr is a **time-management and scheduling calendar application**, optimized f
 
 <div markdown="block" class="alert alert-info">
 🕮 This user guide uses a modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
+</div>
 
  1. We will use the word "**string**" to describe any general sequence of characters.
  1. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
@@ -56,7 +57,6 @@ Calidr is a **time-management and scheduling calendar application**, optimized f
      `delete TASK_INDEX...`
  1. *All elements are required by default*, if not included in brackets "\[ \]". However, sometimes it is necessary to mark elements as **required** explicitly with parentheses "( )". For example, when you need to group mutually-inclusive elements (if *one* element is present, then *another* one is required):
     `edit TASK_INDEX (OPTION <argument>)...`
-</div>
 
 ### Data terminology
 
