@@ -11,26 +11,20 @@ It is written in Java and uses JavaFX to create GUI.
 Given below are my contributions to the project.
 
 * **New Feature**: 
-  * xxx
-  * xxx
-  * xxx
-
+  * to be added soon
 * **New Feature**: 
-  * xxx
-  * xxx
-* **Code contributed**: [Link]()
-
+  * to be added soon
+  * **Code contributed**: [Link]()
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
+  * to be added soon
 * **Enhancements to existing features**: 
-  * xxx
+  * to be added soon
 * **Documentation**:
-  * xxx 
+  * to be added soon
 * **Community**:
-  * xxx 
+  * to be added soon
 * **Tools**:
-    * xxx
-    * xxx
+  * to be added soon
+
 
 
