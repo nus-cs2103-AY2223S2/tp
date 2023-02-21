@@ -84,10 +84,10 @@ public class AddCommand extends Command {
      */
     public String formatAddedTasks(ArrayList<Task> toAdd) {
         String description = "";
-        int taskIndex = 1;
+        int index = 1;
         for (Task task: toAdd) {
-            description += taskIndex + ". " + task.toString() + "\n";
-            taskIndex += 1;
+            description += index + ". " + task.toString() + "\n";
+            index += 1;
         }
         return description;
     }

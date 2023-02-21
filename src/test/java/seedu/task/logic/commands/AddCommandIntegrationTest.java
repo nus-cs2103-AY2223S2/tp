@@ -29,13 +29,11 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newTask_success() {
-
         Task validTask = new TaskBuilder().build();
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.addTask(validTask);
-
         assertCommandSuccess(new AddCommand(validTask), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validTask), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, "1. " + validTask + "\n"), expectedModel);
     }
 
     @Test

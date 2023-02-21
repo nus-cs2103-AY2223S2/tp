@@ -2,6 +2,7 @@ package seedu.task.testutil;
 
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOTH;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -55,6 +56,18 @@ public class TypicalTasks {
     public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withDescription(VALID_DESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+    public static final Task BOB_BOTH = new TaskBuilder().withName(VALID_NAME_BOB)
+        .withDescription(VALID_DESCRIPTION_BOTH)
+        .withTags(VALID_TAG_FRIEND)
+        .build();
+    public static final Task AMY_BOTH = new TaskBuilder().withName(VALID_NAME_AMY)
+        .withDescription(VALID_DESCRIPTION_BOTH)
+        .withTags(VALID_TAG_FRIEND)
+        .build();
+
+
+
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
