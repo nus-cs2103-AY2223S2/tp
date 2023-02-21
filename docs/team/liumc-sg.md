@@ -5,15 +5,13 @@ title: Liu Muchen's Project Portfolio Page
 
 ### Project: AddressBook Level 3
 
-Trackr is a desktop tracking application used to keep track of order, suppliers and tasks. 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Trackr is a desktop tracking application used to keep track of order, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to delete and find tasks.
   * What it does: allows the user to delete tasks based on their index and find tasks based on their description.
-  * Justification: This feature improves the product significantly because it provides a convenient way to manage 
-    their tasks and find tasks based on their keywords.
+  * Justification: This feature improves the product significantly because it provides a convenient way to manage their tasks and find tasks based on their keywords.
   * Highlights: -
   * Credits: Code reused and adapted from AB3 for address book contacts into one for tasks*
 
@@ -38,5 +36,5 @@ Given below are my contributions to the project.
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
 
-* **Tools**
+* **Tools**:
   * Java 11 and JavaFX
