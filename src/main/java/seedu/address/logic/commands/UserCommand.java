@@ -10,9 +10,16 @@ import seedu.address.model.person.User;
 public class UserCommand extends Command {
 
     public static final String COMMAND_WORD = "user";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays your own information here. ";
-    public static final String SUCCESS_MESSAGE = "User information retrieved";
+
+    //public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays your own information here. ";
+    //public static final String SUCCESS_MESSAGE = "User information retrieved"; //todo remove
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows user profile.\n" +
+             "Example: " + COMMAND_WORD;
+
     public static final String UNREGISTERED_MESSAGE = "You have not input your profile yet to use this command! ";
+
+    public static final String SHOWING_USER_PROFILE_MESSAGE = "Opened user profile window.";
 
     private User user;
 
@@ -33,6 +40,7 @@ public class UserCommand extends Command {
         if (user == null) {
             throw new CommandException(UNREGISTERED_MESSAGE);
         }
-        return new CommandResult(String.format("%s\n%s", SUCCESS_MESSAGE, user));
+        //return new CommandResult(String.format("%s\n%s", SUCCESS_MESSAGE, user)); //todo remove
+        return new CommandResult(SHOWING_USER_PROFILE_MESSAGE, false,false,true);
     }
 }
