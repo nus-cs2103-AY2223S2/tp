@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -90,8 +91,54 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, ALICE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPersonList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPersonList(null));
+    }
+
+    @Test
+    public void hasPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPair(null));
+    }
+
+    @Test
+    public void hasPair_pairNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasPair(PAIR1));
+    }
+
+    @Test
+    public void hasPair_pairInAddressBook_returnsTrue() {
+        modelManager.addPair(PAIR1);
+        assertTrue(modelManager.hasPair(PAIR1));
+    }
+
+
+    @Test
+    public void setPair_nullPair_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(PAIR1, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPair(null, PAIR1));
+    }
+
+    @Test
+    public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPairList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPairList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPairList(null));
     }
 
     @Test
@@ -117,13 +164,17 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertNotEquals(modelManager, new ModelManager(differentFriendlyLink, userPrefs));
 
-        // different filteredList -> returns false
+        // different filteredPersonList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(friendlyLink, userPrefs));
 
+        // TODO: different filteredPairList -> returns false
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // TODO: resets modelManager to initial state for upcoming tests
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

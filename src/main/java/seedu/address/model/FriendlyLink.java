@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +18,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     private final UniquePersonList persons;
     private final UniquePersonList elderly;
     private final UniquePersonList volunteers;
+    private final UniquePairList pairs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     {
         persons = new UniquePersonList();
+        pairs = new UniquePairList();
         elderly = new UniquePersonList();
         volunteers = new UniquePersonList();
     }
@@ -168,6 +172,42 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         persons.remove(key);
     }
 
+    //// pair-level operations
+
+    /**
+     * Returns true if a pair with the same identity as {@code pair} exists in the address book.
+     */
+    public boolean hasPair(Pair pair) {
+        requireNonNull(pair);
+        return pairs.contains(pair);
+    }
+
+    /**
+     * Adds a pair to the address book.
+     * The pair must not already exist in the address book.
+     */
+    public void addPair(Pair p) {
+        pairs.add(p);
+    }
+
+    /**
+     * Replaces the given pair {@code target} in the list with {@code editedPair}.
+     * {@code target} must exist in the address book.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in the address book.
+     */
+    public void setPair(Pair target, Pair editedPair) {
+        requireNonNull(editedPair);
+        pairs.setPair(target, editedPair);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removePair(Pair key) {
+        pairs.remove(key);
+    }
+
     /**
      * Removes {@code key} from {@code FriendlyLink}.
      * {@code key} must exist in the elder's cache.
@@ -198,6 +238,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     @Override
+    public ObservableList<Pair> getPairList() {
+        return pairs.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Person> getElderlyList() {
         return elderly.asUnmodifiableObservableList();
     }
@@ -211,6 +256,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FriendlyLink // instanceof handles nulls
+                // TODO: check pairs equal other.pairs
                 && persons.equals(((FriendlyLink) other).persons)
                 && elderly.equals(((FriendlyLink) other).elderly)
                 && volunteers.equals(((FriendlyLink) other).volunteers));
@@ -218,6 +264,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     @Override
     public int hashCode() {
+        // TODO: return Objects.hash(persons, pairs);
         return persons.hashCode() + elderly.hashCode() + volunteers.hashCode();
     }
 }

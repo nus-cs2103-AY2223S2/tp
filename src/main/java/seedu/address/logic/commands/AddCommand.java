@@ -50,6 +50,8 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // hasPerson makes the judgement based on if same name
+        // in Elderly, criteria is same name and age
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

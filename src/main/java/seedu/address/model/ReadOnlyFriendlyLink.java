@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,4 +18,9 @@ public interface ReadOnlyFriendlyLink {
     // TODO: Update the return type of the following methods to their corresponding classes
     ObservableList<Person> getElderlyList();
     ObservableList<Person> getVolunteerList();
+    /**
+     * Returns an unmodifiable view of the pairs list.
+     * This list will not contain any duplicate pairs.
+     */
+    ObservableList<Pair> getPairList();
 }

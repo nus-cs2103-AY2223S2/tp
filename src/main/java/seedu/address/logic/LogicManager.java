@@ -14,6 +14,7 @@ import seedu.address.logic.parser.FriendLinkParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -57,6 +58,16 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyFriendlyLink getFriendlyLink() {
         return model.getFriendlyLink();
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Pair> getFilteredPairList() {
+        return model.getFilteredPairList();
     }
 
     @Override
