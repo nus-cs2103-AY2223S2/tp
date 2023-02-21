@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.task.commons.core.index.Index;
+import seedu.task.commons.core.index.IndexList;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.TaskBook;
@@ -62,7 +63,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -77,7 +78,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -110,5 +111,21 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the tasks at the given {@code targetIndex} in the
+     * {@code model}'s task book.
+     */
+    public static void showTaskAtIndexList(Model model, IndexList targetIndices) {
+        int n = targetIndices.size();
 
+        for (int i = 0; i < n; i++) {
+            assertTrue(targetIndices.getZeroBasedIndex(i) < model.getFilteredTaskList().size());
+            int curr = targetIndices.getZeroBasedIndex(i);
+            Task task = model.getFilteredTaskList().get(curr);
+            final String[] splitName = task.getName().fullName.split("\\s+");
+            model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        }
+
+        assertEquals(n, model.getFilteredTaskList().size());
+    }
 }

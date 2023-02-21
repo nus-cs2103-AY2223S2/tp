@@ -8,6 +8,8 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.testutil.Assert.assertThrows;
+import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
+import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK_INT;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
@@ -52,8 +54,8 @@ public class TaskBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEXLIST_FIRST_TASK_INT);
+        assertEquals(new DeleteCommand(INDEXLIST_FIRST_TASK), command);
     }
 
     @Test

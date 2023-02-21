@@ -129,11 +129,13 @@ Examples:
 
 Deletes the specified task from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX(S)`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If multiple indices are entered, they must be written in ascending order.
+* The command will reject all specified indices if one of them is invalid.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the address book.
