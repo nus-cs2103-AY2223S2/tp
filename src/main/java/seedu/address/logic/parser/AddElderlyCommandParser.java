@@ -49,13 +49,13 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
                             AddElderlyCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
-        RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).orElse(""));
+        Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).orElse(""));
+        RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Elderly person = new Elderly(name, phone, email, address, nric, age, risk, tagList);
