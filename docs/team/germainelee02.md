@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Germaine Lee's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3
@@ -10,11 +10,12 @@ It is written in Java and uses JavaFX to create GUI.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * to be added soon
-* **New Feature**: 
-  * to be added soon
-  * **Code contributed**: [Link]()
+* **New Feature**: Added the ability of list all the recipes.
+  * What it does: Allows the user to list all the recipes stored in CookHub. The recipes listed out will also be indexed starting from 1.
+  * Justification: This feature allows the user to be able to view clearly all his/her recipes in CookHub. The user will then also be able to know the index of each recipe in CookHub, and can perform subsequent operations easily.
+  * Highlights: This command is a fairy simple task. This is usually called before commands that require knowledge of the indexing of the recipes
+  * Credits: CS2103T ip
+* **Code contributed**: [Link]()
 * **Project management**:
   * to be added soon
 * **Enhancements to existing features**: 
