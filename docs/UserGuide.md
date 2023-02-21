@@ -105,7 +105,7 @@ Allow users to add a contact to the address book.
 Format: `add n/NAME m/mod1 mod2 mod3`
 Example of usage: `add n/Penny Lane m/DTK1234 HSH1000 HSS1000 MA1100 GEA1000`
 Context:
-There are 3 friends with the following information: 
+There are 3 friends with the following information:
 ```
 Name: Ben Tan
 3 Common Modules: CS2103T | CS2101 | MA3252
