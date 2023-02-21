@@ -14,6 +14,9 @@ public class Appointment {
     private final Person person;
     private LocalDateTime appointmentTime;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(Person person, LocalDateTime appointmentTime) {
         requireAllNonNull(person, appointmentTime);
         this.person = person;
@@ -74,8 +77,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return person +
-                " has an appointment at" +
-                appointmentTime;
+        return person
+                + " has an appointment at"
+                + appointmentTime;
     }
 }
