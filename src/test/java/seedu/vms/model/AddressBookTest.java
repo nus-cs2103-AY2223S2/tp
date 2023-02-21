@@ -14,7 +14,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        Map<?, ?> map = addressBook.getPersonMap();
+        Map<?, ?> map = addressBook.getMapView();
         assertEquals(true, map.isEmpty());
     }
 
@@ -32,7 +32,7 @@ public class AddressBookTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> getTypicalAddressBook().getPersonMap().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> getTypicalAddressBook().getMapView().remove(0));
     }
 
 }

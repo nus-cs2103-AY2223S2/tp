@@ -1,17 +1,11 @@
 package seedu.vms.model;
 
-import javafx.collections.ObservableMap;
 import seedu.vms.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * A {@code ReadOnlyStorageModel} of {@code Person}.
+ *
+ * <p>Interface does not add any new methods but acts as a marker of a read
+ * only person storage model.
  */
-public interface ReadOnlyAddressBook {
-
-    /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
-     */
-    public ObservableMap<Integer, IdData<Person>> getPersonMap();
-
-}
+public interface ReadOnlyAddressBook extends ReadOnlyStorageModel<Person> {}

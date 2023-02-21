@@ -38,7 +38,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        datas.addAll(source.getPersonMap()
+        datas.addAll(source.getMapView()
                 .values()
                 .stream()
                 .map(JsonAdaptedPersonData::new)
@@ -57,7 +57,7 @@ class JsonSerializableAddressBook {
             if (addressBook.contains(personData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
-            addressBook.addPerson(personData);
+            addressBook.add(personData);
         }
         return addressBook;
     }
