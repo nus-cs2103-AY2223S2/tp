@@ -2,13 +2,14 @@ package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Map;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.person.Person;
 
@@ -35,14 +36,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        Map<Integer, IdData<Person>> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased()).getValue();
+        model.deletePerson(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

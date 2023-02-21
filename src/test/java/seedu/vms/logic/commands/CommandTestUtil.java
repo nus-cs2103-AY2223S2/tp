@@ -9,14 +9,14 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.vms.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.model.AddressBook;
+import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.person.NameContainsKeywordsPredicate;
 import seedu.vms.model.person.Person;
@@ -106,7 +106,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        Map<Integer, IdData<Person>> expectedFilteredList = actualModel.getFilteredPersonList();
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
@@ -119,7 +119,7 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased()).getValue();
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

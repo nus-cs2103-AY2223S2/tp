@@ -1,6 +1,6 @@
 package seedu.vms.model;
 
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.vms.model.person.Person;
 
 /**
@@ -12,6 +12,6 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    public ObservableMap<Integer, IdData<Person>> getPersonMap();
 
 }
