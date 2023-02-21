@@ -33,6 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/dingchiyu.png" width="200px">
 
 [[github](http://github.com/Mr-Teal)]
+[[portfolio](team/mr-teal.md)]
 
 * Role: Developer
 * Responsibilities: Logic
@@ -51,6 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/germainelee.png" width="200px">
 
 [[github](http://github.com/germainelee02)]
+[[portfolio](team/germainelee02.md)]
 
 * Role: Developer
 * Responsibilities: Parser
@@ -60,6 +62,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/bernicetoh.png" width="200px">
 
 [[github](http://github.com/bernicetoh)]
+[[portfolio](team/bernicetoh.md)]
 
 * Role: Developer
 * Responsibilities: UI
