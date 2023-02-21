@@ -1,18 +1,21 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
+
+import seedu.address.model.person.Name;
 
 /**
  * Represents a Task in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTaskNameg(String)}
+ * Guarantees: immutable; fields are validated; details are present and not null;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS = "Task names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    // Identity field(s)
+    public final Name taskName;
 
-    public final String taskName;
+    // Data field(s)
     private boolean isDone;
 
     /**
@@ -20,17 +23,10 @@ public class Task {
      *
      * @param taskName A valid Task name.
      */
-    public Task(String taskName) {
+    public Task(Name taskName) {
         requireNonNull(taskName);
-        checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         this.taskName = taskName;
-    }
-
-    /**
-     * Returns true if a given string is a valid Task name.
-     */
-    public static boolean isValidTaskName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        isDone = false;
     }
 
     /**
@@ -47,11 +43,25 @@ public class Task {
         isDone = false;
     }
 
-    /**
-     * Return the done state of the task.
-     */
+    public Name getName() {
+        return taskName;
+    }
+
     public boolean getDone() {
         return isDone;
+    }
+
+    /**
+     * Returns true if both tasks have the same name.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName());
     }
 
     @Override
@@ -63,14 +73,19 @@ public class Task {
 
     @Override
     public int hashCode() {
-        return taskName.hashCode();
+        return Objects.hash(taskName, isDone);
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return taskName;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Done: ")
+                .append(getDone() ? "[X]" : "[]");
+
+        return builder.toString();
     }
 
 }
