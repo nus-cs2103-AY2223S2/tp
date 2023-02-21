@@ -12,6 +12,7 @@ import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK_INT;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -41,8 +42,10 @@ public class TaskBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Task task = new TaskBuilder().build();
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
-        assertEquals(new AddCommand(task), command);
+        assertEquals(new AddCommand(tasks), command);
     }
 
     @Test

@@ -4,6 +4,8 @@ import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +29,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newTask_success() {
-        Task validTask = new TaskBuilder().build();
 
+        Task validTask = new TaskBuilder().build();
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.addTask(validTask);
 
@@ -38,7 +40,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Task taskInList = model.getTaskBook().getTaskList().get(0);
+        ArrayList<Task> taskInList = new ArrayList<>();
+        taskInList.add(model.getTaskBook().getTaskList().get(0));
         assertCommandFailure(new AddCommand(taskInList), model, AddCommand.MESSAGE_DUPLICATE_TASK);
     }
 

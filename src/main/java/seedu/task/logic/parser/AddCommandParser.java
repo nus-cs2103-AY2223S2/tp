@@ -5,6 +5,8 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -35,12 +37,27 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Task task = new Task(name, description, tagList);
+        List<Task> taskList = addTasks(nameList, description, tagList);
 
-        return new AddCommand(task);
+        return new AddCommand(taskList);
+    }
+
+    /**
+     * Adds tasks to the task list
+     * @param nameList All the names of tasks
+     * @param description A single description belonging to all tasks
+     * @param tagList A single tag belonging to all tasks
+     * @return
+     */
+    public List<Task> addTasks(Set<Name> nameList, Description description, Set<Tag> tagList) {
+        List<Task> taskList = new ArrayList<>();
+        for (Name cur: nameList) {
+            taskList.add(new Task(cur, description, tagList));
+        }
+        return taskList;
     }
 
     /**
