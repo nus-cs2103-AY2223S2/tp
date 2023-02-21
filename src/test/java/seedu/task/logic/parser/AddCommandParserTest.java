@@ -3,6 +3,7 @@ package seedu.task.logic.parser;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOTH;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -19,7 +20,11 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.task.testutil.TypicalTasks.AMY;
+import static seedu.task.testutil.TypicalTasks.AMY_BOTH;
 import static seedu.task.testutil.TypicalTasks.BOB;
+import static seedu.task.testutil.TypicalTasks.BOB_BOTH;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +43,24 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
+        Task expectedBobBoth = new TaskBuilder(BOB_BOTH)
+                .withTags(VALID_TAG_FRIEND)
+                .build();
+        Task expectedAmyBoth = new TaskBuilder(AMY_BOTH)
+                .withTags(VALID_TAG_FRIEND)
+                .build();
+        ArrayList<Task> multiNameTasks = new ArrayList<>();
+        multiNameTasks.add(expectedAmyBoth);
+        multiNameTasks.add(expectedBobBoth);
+
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + DESCRIPTION_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + DESCRIPTION_DESC_BOTH
+                + TAG_DESC_FRIEND, new AddCommand(multiNameTasks));
 
         // multiple description - last description accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DESCRIPTION_DESC_AMY + DESCRIPTION_DESC_BOB
