@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,12 +44,12 @@ public interface Model {
     /**
      * Sets the user prefs' friendly link database file path.
      */
-    void setFriendlyLinkFilePath(Path addressBookFilePath);
+    void setFriendlyLinkFilePath(Path friendlyLinkFilePath);
 
     /**
-     * Replaces friendly link database data with the data in {@code addressBook}.
+     * Replaces friendly link database data with the data in {@code friendlyLink}.
      */
-    void setFriendlyLink(ReadOnlyFriendlyLink addressBook);
+    void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink);
 
     /** Returns the AddressBook */
     ReadOnlyFriendlyLink getFriendlyLink();
@@ -81,19 +82,19 @@ public interface Model {
     /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
      */
-    boolean hasElderly(Person elderly);
+    boolean hasElderly(Elderly elderly);
 
     /**
      * Deletes the given elderly.
      * The elderly must exist in the friendly link database.
      */
-    void deleteElderly(Person target);
+    void deleteElderly(Elderly target);
 
     /**
      * Adds the given elderly.
      * {@code elderly} must not already exist in the friendly link database.
      */
-    void addElderly(Person elderly);
+    void addElderly(Elderly elderly);
 
     /**
      * Replaces the given elderly {@code target} with {@code editedPerson}.
@@ -101,7 +102,7 @@ public interface Model {
      * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the
      * friendly link database.
      */
-    void setElderly(Person target, Person editedPerson);
+    void setElderly(Elderly target, Elderly editedPerson);
 
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
@@ -128,7 +129,6 @@ public interface Model {
      */
     void setVolunteer(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered persons list */
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
      */
@@ -165,7 +165,7 @@ public interface Model {
 
 
     /** Returns an unmodifiable view of the filtered elderly list */
-    ObservableList<Person> getFilteredElderlyList();
+    ObservableList<Elderly> getFilteredElderlyList();
 
     /**
      * Updates the filter of the filtered elderly list to filter by the given {@code predicate}.

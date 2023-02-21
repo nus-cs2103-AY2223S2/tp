@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +24,7 @@ public class ModelManager implements Model {
     private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Person> filteredElderly;
+    private final FilteredList<Elderly> filteredElderly;
     private final FilteredList<Person> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
 
@@ -93,7 +94,6 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Persons  ======================================================================
-
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -118,30 +118,28 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Elderly  ======================================================================
-
     @Override
-    public boolean hasElderly(Person e) {
+    public boolean hasElderly(Elderly e) {
         requireNonNull(e);
         return friendlyLink.hasElderly(e);
     }
 
     @Override
-    public void deleteElderly(Person target) {
+    public void deleteElderly(Elderly target) {
         friendlyLink.removeElderly(target);
     }
 
     @Override
-    public void addElderly(Person person) {
+    public void addElderly(Elderly person) {
         friendlyLink.addElderly(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setElderly(Person target, Person editedPerson) {
+    public void setElderly(Elderly target, Elderly editedPerson) {
         requireAllNonNull(target, editedPerson);
         friendlyLink.setElderly(target, editedPerson);
     }
-
 
     //=========== FriendlyLink Volunteers  ======================================================================
     @Override
@@ -214,7 +212,7 @@ public class ModelManager implements Model {
      * {@code versionedFriendlyLink}
      */
     @Override
-    public ObservableList<Person> getFilteredElderlyList() {
+    public ObservableList<Elderly> getFilteredElderlyList() {
         return filteredElderly;
     }
 
