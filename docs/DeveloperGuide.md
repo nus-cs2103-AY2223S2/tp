@@ -262,8 +262,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* delivery man with >50 deliveries in a day
+* drives constanly with a laptop in the van
+* lazy, doesn't like to micromanage
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to plan the most efficient delivery route
 
 
 ### User stories
@@ -273,10 +276,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add/delete jobs                |                                                                        |
+| `* * *`  | user                                       | mark/unmakr jobs               | keep track of completed jobs                                           |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | delivery men                               | see most efficient route       | travel lesser                                                          |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | user                                       | chat with my clients           | improve custormer relations                                            |
+| `* *`    | Gig employee                               | view my aggregated information | track my earnings                                                      |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
