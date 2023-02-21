@@ -19,41 +19,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Kang Yue Ran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangyueran.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kyueran)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Model
 
-### Johnny Doe
+### Ding Chiyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dingchiyu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Mr-Teal)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic
 
-### James Doe
+### Ryan Jansen
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ryanjansen)]
+
+* Role: Developer
+* Responsibilities: Storage
+
+### Germaine Lee
+
+<img src="images/germainelee.png" width="200px">
+
+[[github](http://github.com/germainelee02)]
+
+* Role: Developer
+* Responsibilities: Parser
+
+### Bernice Toh
+
+<img src="images/bernicetoh.png" width="200px">
+
+[[github](http://github.com/bernicetoh)]
 
 * Role: Developer
 * Responsibilities: UI
