@@ -91,9 +91,8 @@ public class MedicalQualificationTag extends Tag {
     public String toFullString() {
         String qualificationLevelString = qualificationLevel.name();
         String expiryDateString = expiryDate.toString();
-        StringBuilder fullString = new StringBuilder(super.toString()).append(" ")
-                .append(qualificationLevelString).append(" ").append(expiryDateString);
 
-        return fullString.toString();
+        return super.toString() + " " +
+                qualificationLevelString + " " + expiryDateString;
     }
 }

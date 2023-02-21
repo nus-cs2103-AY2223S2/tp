@@ -37,8 +37,8 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
 
-        Name elderly = ParserUtil.parseName(argMultimap.getValue(PREFIX_ELDERLY_NRIC).get());
-        Name volunteer = ParserUtil.parseName(argMultimap.getValue(PREFIX_VOLUNTEER_NRIC).get());
+        Name elderly = ParserUtil.parseName(argMultimap.getValue(PREFIX_ELDERLY_NRIC).orElse(""));
+        Name volunteer = ParserUtil.parseName(argMultimap.getValue(PREFIX_VOLUNTEER_NRIC).orElse(""));
         Phone phone = ParserUtil.parsePhone("88888888");
         Email email = ParserUtil.parseEmail("dummy@email.com");
         Address address = ParserUtil.parseAddress("dummy address");

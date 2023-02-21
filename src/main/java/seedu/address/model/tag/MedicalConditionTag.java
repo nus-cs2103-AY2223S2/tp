@@ -46,8 +46,7 @@ public class MedicalConditionTag extends Tag {
      */
     public String getNotes() {
         if (notes == null) {
-            String noNotesMessage = "No notes added.";
-            return noNotesMessage;
+            return "No notes added.";
         }
 
         return notes;
@@ -111,10 +110,9 @@ public class MedicalConditionTag extends Tag {
     public String toFullString() {
         String requiresAttentionString = String.valueOf(requiresAttention);
         String priorityString = priority.name();
-        StringBuilder fullString = new StringBuilder(super.toString()).append(" ")
-                .append(requiresAttentionString).append(" ").append(priorityString).append(" ")
-                .append(notes);
 
-        return fullString.toString();
+        return super.toString() + " " +
+                requiresAttentionString + " " + priorityString + " " +
+                notes;
     }
 }
