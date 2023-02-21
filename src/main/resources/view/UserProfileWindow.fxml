@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="User Profile" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="User Profile" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/user_icon.png" />
     </icons>
@@ -18,12 +18,15 @@
                 <URL value="@UserProfileWindow.css" />
             </stylesheets>
 
-            <HBox alignment="CENTER" fx:id="userProfileContainer">
+            <HBox fx:id="userProfileContainer" alignment="CENTER">
                 <children>
-                    <Label fx:id="userDetails" text="Label">
+                    <Label fx:id="userDetails" lineSpacing="4.0" text="Label" wrapText="true">
                         <HBox.margin>
-                            <Insets right="5.0" />
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </HBox.margin>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
                     </Label>
                 </children>
                 <opaqueInsets>
