@@ -17,8 +17,7 @@ Given below are my contributions to the project.
   * Highlights: -
   * Credits: Code reused and adapted from AB3 for address book contacts into one for tasks*
 
-* **New Feature**: Added delete and find command for new task tracking that enables users to delete tasks and find 
-  tasks by their keywords.
+* **New Feature**: Added delete and find command for new task tracking that enables users to delete tasks and find tasks by their keywords.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=liumc-sg&breakdown=true)
 
