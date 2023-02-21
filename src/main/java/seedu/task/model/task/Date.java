@@ -37,7 +37,6 @@ public class Date {
             String hour = time.substring(0, 2);
             String minute = time.substring(2, 4);
             String toParse = date + "T" + hour + ":" + minute + ":00";
-            System.out.println(toParse);
             LocalDateTime.parse(toParse);
         } catch (DateTimeException | IndexOutOfBoundsException e) {
             return false;
