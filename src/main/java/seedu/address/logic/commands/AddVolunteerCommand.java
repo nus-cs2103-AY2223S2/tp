@@ -5,63 +5,57 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
- * Adds an elderly to the database.
+ * Adds a volunteer to the database.
  */
-public class AddElderlyCommand extends Command {
+public class AddVolunteerCommand extends Command {
 
-    // later find ways to make this "add elderly"
-    public static final String COMMAND_WORD = "add_elderly";
+    public static final String COMMAND_WORD = "add_volunteer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a volunteer to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_NRIC_ELDERLY + "NRIC "
+            + PREFIX_NRIC_VOLUNTEER + "NRIC "
             + PREFIX_AGE + "AGE "
-            + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC_ELDERLY + "S1234567A "
-            + PREFIX_AGE + "69 "
-            + PREFIX_RISK + "LOW "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NRIC_VOLUNTEER + "S1234567A "
+            + PREFIX_AGE + "20 "
+            + PREFIX_TAG + "new "
+            + PREFIX_TAG + "undergradStudent";
 
-    public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This elderly already exists in the database";
+    public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This volunteer already exists in the database";
 
-    private final Elderly toAdd;
+    private final Volunteer toAdd;
 
     /**
-     * Creates an AddElderlyCommand to add to the specified {@code Elderly}
+     * Creates an AddVolunteerCommand to add to the specified {@code volunteer}
      */
-    public AddElderlyCommand(Elderly elderly) {
-        requireNonNull(elderly);
-        toAdd = elderly;
+    public AddVolunteerCommand(Volunteer volunteer) {
+        requireNonNull(volunteer);
+        toAdd = volunteer;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // hasPerson makes the judgement based on if same name
-        // in Elderly, criteria is same name and age
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
@@ -73,7 +67,7 @@ public class AddElderlyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddElderlyCommand // instanceof handles nulls
-                && toAdd.equals(((AddElderlyCommand) other).toAdd));
+                || (other instanceof AddVolunteerCommand // instanceof handles nulls
+                && toAdd.equals(((AddVolunteerCommand) other).toAdd));
     }
 }

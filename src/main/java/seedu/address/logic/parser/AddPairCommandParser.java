@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ELDERLY_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VOLUNTEER_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,15 +30,15 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
      */
     public AddPairCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ELDERLY_NRIC, PREFIX_VOLUNTEER_NRIC);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC_ELDERLY, PREFIX_NRIC_VOLUNTEER);
 
-        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_ELDERLY_NRIC, PREFIX_VOLUNTEER_NRIC)
+        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_NRIC_ELDERLY, PREFIX_NRIC_VOLUNTEER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
 
-        Name elderly = ParserUtil.parseName(argMultimap.getValue(PREFIX_ELDERLY_NRIC).get());
-        Name volunteer = ParserUtil.parseName(argMultimap.getValue(PREFIX_VOLUNTEER_NRIC).get());
+        Name elderly = ParserUtil.parseName(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
+        Name volunteer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).get());
         Phone phone = ParserUtil.parsePhone("88888888");
         Email email = ParserUtil.parseEmail("dummy@email.com");
         Address address = ParserUtil.parseAddress("dummy address");

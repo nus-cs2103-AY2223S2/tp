@@ -13,7 +13,7 @@ class NricTest {
     }
 
     @Test
-    public void constructor_invalidAge_throwsIllegalArgumentException() {
+    public void constructor_invalidNric_throwsIllegalArgumentException() {
         String invalidNric = "";
         assertThrows(IllegalArgumentException.class, () -> new Nric(invalidNric));
     }
