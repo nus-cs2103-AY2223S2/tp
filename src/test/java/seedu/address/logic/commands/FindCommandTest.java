@@ -3,10 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CLARK;
-import static seedu.address.testutil.TypicalPersons.EDWARD;
-import static seedu.address.testutil.TypicalPersons.FORD;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
+import static seedu.address.testutil.TypicalPersons.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -89,12 +87,46 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        ContainsKeywordsPredicate predicate = preparePredicate("Kee Edward Canning", CliSyntax.PREFIX_NAME);
+        create_multipleKeywords_multiplePersonsFound(
+                CliSyntax.PREFIX_NAME,
+                "Kee Edward Canning",
+                Arrays.asList(CLARK, EDWARD, FORD),
+                3
+        );
+        create_multipleKeywords_multiplePersonsFound(
+                CliSyntax.PREFIX_EMAIL,
+                "albertpark bartlee clarkkee",
+                Arrays.asList(ALBERT, BART, CLARK),
+                3
+        );
+        create_multipleKeywords_multiplePersonsFound(
+                CliSyntax.PREFIX_ADDRESS,
+                "91 Joo Koon Circle",
+                Arrays.asList(ANGMEIHUA, JOOKOON),
+                2
+        );
+        create_multipleKeywords_multiplePersonsFound(
+                CliSyntax.PREFIX_PHONE,
+                "92463693 88032666 83340546",
+                Arrays.asList(EDWARD, FORD, LAVENDER),
+                3
+        );
+        create_multipleKeywords_multiplePersonsFound(
+                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                "@kevinho @jookoon @isaacnewton",
+                Arrays.asList(ISAAC, JOOKOON, KEVIN),
+                3
+        );
+    }
+
+    public void create_multipleKeywords_multiplePersonsFound(
+            Prefix prefix, String userInput, List<Person> expectedOutput, int numOfPerson) {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, numOfPerson);
+        ContainsKeywordsPredicate predicate = preparePredicate(userInput, prefix);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CLARK, EDWARD, FORD), model.getFilteredPersonList());
+        assertEquals(expectedOutput, model.getFilteredPersonList());
     }
 
     /**
