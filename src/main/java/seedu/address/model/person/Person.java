@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,6 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Person in the address book.
@@ -24,6 +27,7 @@ public class Person {
     private final Address address;
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
+    private final TaskList taskList = new TaskList();
 
     /**
      * Every field must be present and not null.
@@ -77,6 +81,41 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.contains(task);
+    }
+
+    /**
+     * Adds a task to the list.
+     * The task must not already exist in the list.
+     */
+    public void addTask(Task t) {
+        taskList.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        taskList.setTask(target, editedTask);
+    }
+
+    /**
+     * Removes {@code key} from this {@code taskList}.
+     * {@code key} must exist in the list.
+     */
+    public void removeTask(Task key) {
+        taskList.remove(key);
     }
 
     /**
