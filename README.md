@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp/branch/master/graph/badge.svg?token=QRARKR82W7)](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp/branch/master/graph/badge.svg?token=U0HOMMQY33)](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp)
 
 ![Ui](docs/images/Ui.png)
 
