@@ -265,6 +265,40 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Policy Management (todo)
+### Adding a policy.
+
+Adds a policy to a specific client
+
+Format: `addPolicy n/NAME pn/POLICY-NAME d/START-DATE pr/PREMIUM fr/FREQUENCY`
+
+Examples: `addPolicy n/John Doe pn/Health d/28/05/2022 pr/300 fr/MONTHLY`
+
+### Listing all policies.
+
+Format: `listPolicy`
+
+### Editing a policy.
+
+Format: `editPolicy`
+
+### Locating policies by name.
+
+Format: `findPolicy`
+
+### Deleting a policy.
+
+Deletes the indexed policy from a specific client
+
+Format: `deletePolicy n/NAME INDEX`
+
+Examples: `deletePolicy n/John Doe 1`
+
+### Adding a claim.
+
+Format: `claimPolicy`
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
