@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Clyde Lhui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ClydeLhui.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/clydelhui)]
 
-* Role: Project Advisor
+* Roles: Documentation and Scheduling and Tracking
+* Responsibilities: Responsible for the quality of various project documents. 
+In charge of defining, assigning and tracking project tasks.
 
 ### Jane Doe
 
