@@ -46,8 +46,8 @@ record-keeping and hello to a more efficient and organised way of managing the v
 **:information_source: Notes about the command format:**<br>
 
 * Add personnel
-    * Add elderly
-    * Add volunteer
+  * Add elderly
+  * Add volunteer
 * Delete personnel
   * Delete elderly
   * Delete volunteer
