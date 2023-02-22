@@ -5,29 +5,34 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at these emails :
+* `e0773591[at]u.nus.edu` - Zhu Yufan
+* `[at]u.nus.edu`
+* `[at]u.nus.edu`
+* `[at]u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Zhu Yufan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yufan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://blog.zyf.ninja/)]
+[[github](https://github.com/Yufannnn)]
+[[portfolio](team/yufan.md)]
 
-* Role: Project Advisor
+* Role: 
+* Responsibilities: 
 
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/Yufannnn)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role:
+* Responsibilities: 
 
 ### Johnny Doe
 
@@ -35,8 +40,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: 
+* Responsibilities: 
 
 ### Jean Doe
 
@@ -45,15 +50,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: 
+* Responsibilities: 
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

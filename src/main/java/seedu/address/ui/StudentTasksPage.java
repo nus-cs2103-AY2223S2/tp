@@ -12,32 +12,23 @@ import seedu.address.model.student.Student;
 /**
  * An UI component that displays detailed information of a {@code Student}.
  */
-public class StudentInfoPage extends UiPart<Stage> {
-    private static final Logger logger = LogsCenter.getLogger(StudentInfoPage.class);
+public class StudentTasksPage extends UiPart<Stage> {
+    private static final Logger logger = LogsCenter.getLogger(StudentTasksPage.class);
 
-    private static final String FXML = "StudentInfoPage.fxml";
+    private static final String FXML = "StudentTasksPage.fxml";
     private Name studentName;
 
     @FXML
     private Label name;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
 
     /**
-     * Creates a {@code StudentInfoPage} with the given {@code Student}.
+     * Creates a {@code StudentTasksPage} with the given {@code Student}.
      */
-    public StudentInfoPage(Student student, Stage stage) {
+    public StudentTasksPage(Student student, Stage stage) {
         super(FXML, stage);
         studentName = student.getName();
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
-        phone.setText(String.format("Phone Number: %s", student.getPhone().value));
-        address.setText(String.format("Address: %s", student.getAddress().value));
-        email.setText(String.format("Email: %s", student.getEmail().value));
     }
 
     /**
@@ -80,9 +71,9 @@ public class StudentInfoPage extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine(String.format("Showing Profile for student %s", name.getText()));
+        logger.fine(String.format("Showing Tasks page for student %s", name.getText()));
         getRoot().show();
-        getRoot().setTitle(String.format("Profile of %s", studentName.fullName));
+        getRoot().setTitle(String.format("Tasks for %s", studentName.fullName));
         getRoot().centerOnScreen();
     }
 
@@ -92,11 +83,11 @@ public class StudentInfoPage extends UiPart<Stage> {
             return true;
         }
 
-        if (!(obj instanceof StudentInfoPage)) {
+        if (!(obj instanceof StudentTasksPage)) {
             return false;
         }
 
-        StudentInfoPage otherStudentInfoPage = (StudentInfoPage) obj;
-        return otherStudentInfoPage.getRoot().equals(getRoot());
+        StudentTasksPage otherStudentTasksPage = (StudentTasksPage) obj;
+        return otherStudentTasksPage.getRoot().equals(getRoot());
     }
 }

@@ -11,30 +11,27 @@
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/studentInfoPage.png" />
+        <Image url="@/images/studentTasksPage.png" />
     </icons>
     <scene>
         <Scene fill="#383838">
             <stylesheets>
-                <URL value="@StudentInfoPage.css" />
+                <URL value="@StudentTasksPage.css" />
             </stylesheets>
-            <VBox id="studentInfoContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
+            <VBox id="studentTasksContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
                 </padding>
 
                 <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Name" />
-                <Label fx:id="phone" alignment="TOP_LEFT" text="Phone" />
-                <Label fx:id="address" alignment="TOP_LEFT" text="Address" />
-                <Label fx:id="email" alignment="TOP_LEFT" text="Email" />
 
                 <VBox id="tagsContainer" spacing="5" />
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <cursor>
-               <Cursor fx:constant="OPEN_HAND" />
-            </cursor>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
             </VBox>
         </Scene>
     </scene>

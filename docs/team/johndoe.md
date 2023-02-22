@@ -1,46 +1,56 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Zhu Yufan's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: TutorPro
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+TutorPro is a desktop app designed to help private tutors manage their student information effectively. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimised for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Adds the ability to view a list of homework with the ability to filter by student name and homework status.
+    * What it does: Displays a list of homework with the ability to filter by student name and homework status.
+    * Justification: This feature allows users to quickly and easily view all homework or filter by specific students or status, making it easier to manage homework assignments.
+    * Highlights: This feature required changes to the existing codebase and implementation of filtering logic for student name and status.
+    * Credits: N/A
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Adds the ability to view a student's personal profile.
+    * What it does: Allows a user to view a student's home address and phone number by clicking on the "view profile" button next to a student or by clicking on a student's name.
+    * Justification: This feature allows users to quickly access a student's contact information, which can be essential for communication or other purposes.
+    * Highlights: This feature required changes to the existing codebase to add the "view profile" button and implement the functionality to display the student's contact information.
+    * Credits: N/A
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Adds the ability to view a student's upcoming assignments and exams.
+    * What it does: Allows a user to view a student's home address and phone number by clicking on the "view school task" button next to a student or by clicking on a student's name.
+    * Justification: This feature allows users to quickly access a student's assignments and exam, for better lesson planning.
+    * Highlights: This feature required changes to the existing codebase to add the "view school task"  button and implement the functionality to display the student's contact information.
+    * Credits: N/A
+
+* **Code contributed**:
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `delete` and `find` [\#72]
+    * Added documentation for the introduction and description
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
+  
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): )
+  * Contributed to forum discussions ()
+  * Reported bugs and suggestions for other teams in the class ()
+  * Some parts of the history feature I added was adopted by several other class mates ()
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  
+  * Set up Team Repo
 
-* _{you can add/remove categories in the list above}_
+  * Updated Workflow
+  
+  * Create PR to the upstream Repo
+  
+    
