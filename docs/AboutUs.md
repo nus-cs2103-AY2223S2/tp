@@ -5,9 +5,19 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
+
+
+### Pang Chin Kiat, Vincent
+
+<img src="images/vincent.png" width="200px">
+
+[[github](https://github.com/securespider)]
+
+* Role: Developer
+* Responsibilities: Scheduling and tracking
+
 
 ### Ma Yuanxin
 
@@ -19,34 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 *  Role: Developer
 *  Responsibilities: Deliverables and deadlines, and Integration
 
-### Pang Chin Kiat, Vincent
 
-<img src="images/vincent.png" width="200px">
-
-[[github](https://github.com/securespider)]
-
-* Role: Developer
-* Responsibility: Scheduling and tracking
-
-### Jane Doe
+### Diat Bhin
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Diat Bbin
-
-<img src="images/diatbbin.png" width="200px">
-
-[[github](https://github.com/Diatbbin)] 
-[[portfolio](team/diatbbin.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: code quality and model component
+* Responsibilities: Data
 
 ### Wen Jue
 
