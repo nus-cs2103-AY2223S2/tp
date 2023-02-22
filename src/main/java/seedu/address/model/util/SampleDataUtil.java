@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -37,14 +39,16 @@ public class SampleDataUtil {
      * @param size Size of the sample data to be returned.
      */
     public static ReadOnlyEduMate getSampleEduMate(int size) {
-        EduMate sampleAb = new EduMate();
+        EduMate sampleEm = new EduMate();
         try {
-            getSamplePersons().stream().limit(size).forEach(sampleAb::addPerson);
+            List<Person> samplePersons = getSamplePersons();
+            Collections.shuffle(samplePersons);
+            samplePersons.stream().limit(size).forEach(sampleEm::addPerson);
         } catch (FileNotFoundException fnfe) {
             logger.info("Sample Data not found: " + fnfe.getMessage());
         }
-        sampleAb.setUser(getSampleUser());
-        return sampleAb;
+        sampleEm.setUser(getSampleUser());
+        return sampleEm;
     }
 
     /**
@@ -101,13 +105,15 @@ public class SampleDataUtil {
     /**
      * Returns a sample array of Persons.
      */
-    public static Set<Person> getSamplePersons() throws FileNotFoundException {
+    public static List<Person> getSamplePersons() throws FileNotFoundException {
         File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
-        Set<Person> personSet = new HashSet<>();
+        List<Person> personSet = new ArrayList<>();
         while (scanner.hasNextLine()) {
-            personSet.add(getSamplePerson(scanner.nextLine()));
+            String nextLine = scanner.nextLine();
+            personSet.add(getSamplePerson(nextLine));
         }
         return personSet;
     }
 }
+
