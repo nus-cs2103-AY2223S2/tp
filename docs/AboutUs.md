@@ -31,21 +31,22 @@ We are a team based in the [School of Computing, National University of Singapor
 *  Responsibilities: Deliverables and deadlines, and Integration
 
 
-### Diat Bhin
+### Lim Diat Bhin
 
 <img src="./images/diatbbin.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Diatbbin)]
+[[portfolio](team/diatbbin.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code quality and Model component
 
 ### Wen Jue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wenjue.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/MrTwit99)]
+[[portfolio](team/wenjue.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing

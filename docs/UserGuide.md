@@ -65,28 +65,33 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 * Command lines supplied by the user are not case sensitive as the application will auto translate it into `UPPER_CASE`. <br>
 
   E.g. in the list feature, user can call it via either methods:
-    1. student 5A list
-    2. STUDENT 5A LIST
-    3. Student 5A LiSt
+     1. student 5A list
+     2. STUDENT 5A LIST
+     3. Student 5A LiSt
 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
   e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
+
 * Items in `<>` brackets are the values that the user should field
-  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`. <br>
+  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
 
-In the case of COMPULSORY parameters, there’s no need to type `XX/YY` where `XX` is the particular category and `YY` is the actual information for the `XX` category. <br>
 
-Compulsory parameters are not bounded by square brackets
+* In the case of **COMPULSORY** parameters, there’s no need to type `XX/YY` where `XX` is the particular category and `YY` is the actual information for the `XX` category. <br>
+
+
+* Compulsory parameters are not bounded by square brackets <br>
 
 
 * All items in the square brackets are OPTIONAL.
 
   e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
 
+
 * In the user guide, all optional parameters are denoted by ..opt/.. meaning that any zero or more of the optional particulars specified above can be used
   Eg. ..add..[..opt/..] means user can do …add..c/<CCA>..img/<IMG>..
+
 
 * General Particulars:
     - Name <**NAME**>
@@ -97,15 +102,17 @@ Compulsory parameters are not bounded by square brackets
         - Numbers (integer)
     - Sex <**SEX**>
         - M / m means male while F / f means female
-* Optional:
-    - Image [**IMG**]
-        - String value of absolute path to image
-    - Age [**AGE**]
-        - Numbers (integer)
-    - Email [**EM**]
-        - String value of email address
-    - Phone number [**PH**]
-        - String value of phone address
+  * Optional:
+      - Image [**IMG**]
+          - String value of absolute path to image
+      - Age [**AGE**]
+          - Numbers (integer)
+      - Email [**EM**]
+          - String value of email address
+      - Phone number [**PH**]
+          - String value of phone address
+
+
 * Student Particulars:
     - Academics
         - Test <**TEST_NAME**>
@@ -118,9 +125,11 @@ Compulsory parameters are not bounded by square brackets
             - String value of grade results
     - Parents/ Next-of-kin <**NOK**>
       -String value of parent's name
-* Optional:
-    - CCA [**CCA**]
-    - Comments [**com**]
+  * Optional:
+      - CCA [**CCA**]
+      - Comments [**com**]
+
+
 * Parent/ Guardians Particulars:
     - Relationship <**nok**>
 
@@ -128,7 +137,7 @@ Compulsory parameters are not bounded by square brackets
 </div>
 <a name="student"/>
 
-## General Command for student related features
+## General Command for Student Related features
 
 * For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
   <a name="addstudent"/>
@@ -149,13 +158,14 @@ Examples:
   *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
 * `student 1B add Mary Goh 23 f Goh Siew Mai age/15 img/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg em/marygoh@gmail.com ph/65656565 cca/Chess Club`
 
-* Note:
-  User is able to leave the following categories unfilled by simply leaving a space <br>
-  1. Age <br>
-  2. Absolute path to image <br>
-  3. Email Address <br>
-  4. Phone Number <br>
-  5. CCA <br>
+Note: <br>
+User is able to leave the following categories unfilled by simply leaving a space
+1. Age
+2. Absolute path to image
+3. Email Address
+4. Phone Number
+5. CCA <br><br>
+
 
 <a name="gradestudent"/>
 
@@ -166,7 +176,7 @@ Adds a test grade for the student corresponding to the INDEX_NUMBER in the CLASS
 Format: `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
 
 Examples:
-* `student 3A grade 25 test/Mid-Terms gde/A`
+* `student 3A grade 25 test/Mid-Terms gde/A` <br><br>
 
 <a name = 'commentstudent'/>
 
@@ -180,9 +190,9 @@ Examples:
 
 * `student 3A comment 25 note/Quiet person, needs to interact more with classmates`
 
-*Note: <br>
+Note: <br>
 If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
-<a name = "liststudent"/>
+<a name = "liststudent"/> <br><br>
 
 ### Listing all students in the selected class: `list`
 
@@ -198,7 +208,7 @@ Examples:
 
 * `<student Name> <id> <image> <nok name> <nok email> <nok number>`
 * `ChanAhKow 21 ChanAhKow.png ChanMaiWoon chanmaiwoon@gmail.com 91234567`
-  <a name = "editstudent" />
+  <a name = "editstudent" /> <br><br>
 
 ### Edit Student:  `edit`
 
@@ -212,7 +222,7 @@ Examples:
 
 **Expected Outcome:**
 * Edited Student: Jennifer Lim cca: badminton
-* Edited Student: Justina Lee attendance: cca:soccer 2023-01-01 y
+* Edited Student: Justina Lee attendance: cca:soccer 2023-01-01 y <br><br>
 
 <a name = "findstudent"/>
 
@@ -228,7 +238,7 @@ Examples:
 
 **Expected Outcome:**
 * Student found: Russel Ong class:3B cca: swimming grade: [sci:A, maths:B] id:26 age:14 email:ro@outlook.com ph:85349633 attendance: 2023-01-01 [y] hw: ip [x] notes:extroverted nok: David Ong
-* Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan
+* Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan <br><br>
 
 <a name = "deletestudent"/>
 
@@ -243,12 +253,13 @@ Examples:
   *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
 * `student 1B delete Mary Goh 23 F a/15 p/ c/Chess Club nok/Goh Siew Mai`
 
-* Throws:
-    * WrongParticularException
-        - The description field does not exist
-        - Description is invalid (eg. age is not a number..)
-* User should follow the same format
-* If no descriptions are given, the whole student will be removed from the database
+Throws:
+* WrongParticularException
+  - The description field does not exist
+  - Description is invalid (eg. age is not a number..)
+
+User should follow the same format<br>
+If no descriptions are given, the whole student will be removed from the database
 
 <a name = "parent" />
 
@@ -257,6 +268,7 @@ Examples:
 * For all following features that are related to `parent`, start first by typing `parent <CLASS>`  before adding the respective command for the feature.
 
 * Note that it is possible to have multiple students with the same parent so specifying the class is necessary
+
 
 <a name="addparent"/>
 
@@ -268,7 +280,8 @@ Format: `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE>
 
 Examples:
 * `parent 1A add 03 TanAhCow TanBoonSeng Father`
-* `parent 1B add 23 Mary Goh GohAhBoon Father a/41`
+* `parent 1B add 23 Mary Goh GohAhBoon Father a/41` <br><br>
+
 
 <a name = "listparent" />
 
@@ -281,7 +294,7 @@ Format: `list`
 Examples:
 * `parent 1A list` <br>
   Sample output: <parent name> <parent phone number> <parent email>
-* `parent 401 list`
+* `parent 401 list` <br><br>
 
 <a name = "deleteparent" />
 
@@ -296,12 +309,14 @@ Examples:
   Deletes TanAhCow’s relationship of Mother with <Index number of student>
 * `parent 1B 23 delete MaryGoh` <br>
   Deletes the whole of MaryGoh particulars
-* Throws:
-    * WrongParticularException
-        - The description field does not exist
-        - Description is invalid (eg. age is not a number..)
-* User should follow the same format
-* `Warning:` If no descriptions are given, the whole parent will be removed from the database
+
+Throws:
+* WrongParticularException 
+  - The description field does not exist 
+  - Description is invalid (eg. age is not a number..)
+
+User should follow the same format <br>
+`Warning:` If no descriptions are given, the whole parent will be removed from the database <br><br>
 
 <a name = "help"/>
 
@@ -311,7 +326,7 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help` <br><br>
 
 <a name = "exit"/>
 
@@ -319,18 +334,18 @@ Format: `help`
 
 Exits the program.
 
-Format: `exit`   
+Format: `exit` <br><br>
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PowerConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. <br><br>
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PowerConnect data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. <br><br>
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -348,7 +363,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 <a name = "summary" />
 
-## Command summary Student `student <CLASS>`
+## Command Summary Student `student <CLASS>`
 
 Action | Format, Examples
 --------|------------------
@@ -360,10 +375,10 @@ Action | Format, Examples
 **Find** | `find <INDEX_NUMBER> `
 **Delete** | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
 
-## Command summary Parent `parent <CLASS>`
+## Command Summary Parent `parent <CLASS>`
 
 Action | Format, Examples
 --------|------------------
 **Add** | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `
 **List** | `list`
-**Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`   
+**Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`
