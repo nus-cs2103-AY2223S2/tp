@@ -14,6 +14,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/vincent.png" width="200px">
 
 [[github](https://github.com/securespider)]
+[[portfolio](team/securespider.md)]
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking
