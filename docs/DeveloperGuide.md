@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`    | As a financial advisor           | input my clients' insurance and investment plans         | ensure they have adequate coverage and help them find more cost-effective options if needed  |
 | `***`    | As a financial advisor           | remove my client’s insurance and investment plans        | have a well-updated plan list                                                                |    
 
-### [Epic] As a financial advisor, I can create reminders for myself and clients
+#### [Epic] As a financial advisor, I can create reminders for myself and clients
 | Priority | As a …​                          | I can …​                                                        | So that I can…​                        |
 |----------|----------------------------------|-----------------------------------------------------------------|----------------------------------------|
 | `***`    | As a financial advisor           | set reminders for follow-up tasks and future advising sessions  | don't miss any important appointments  |    
