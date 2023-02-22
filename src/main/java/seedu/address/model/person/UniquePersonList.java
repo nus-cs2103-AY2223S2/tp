@@ -79,6 +79,23 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Retrieves one of the person with the given name from the list.
+     * The person with such a name must exist in the list.
+     *
+     * @param name Name of the person.
+     * @return Person with that name.
+     */
+    public Person get(Name name) {
+        requireNonNull(name);
+        for (Person person : this) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
