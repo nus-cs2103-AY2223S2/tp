@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ma Yuanxin
 
-<img src="images/mayuanxin1234.png" width="200px">
+<img src="./images/mayuanxin1234.png" width="200px">
 
 [[github](https://github.com/mayuanxin1234)]
 [[portfolio](team/mayuanxin1234.md)]
@@ -33,7 +33,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Diat Bhin
 
-<img src="images/johndoe.png" width="200px">
+<img src="./images/diatbbin.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
