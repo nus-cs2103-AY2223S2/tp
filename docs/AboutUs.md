@@ -15,25 +15,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
-[[portfolio](team/pangrwa.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ang Yuze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yzmunchmunch.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/pangrwa.md)]
+[[github](http://github.com/yzmunchmunch)]
+[[portfolio](team/yzmunchmunch.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Pang Rui Wei
 
 <img src="images/pangrwa.png" width="200px">
 
-[[github](https://github.com/pangrwa)] [[portfolio](team/pangrwa.md)]
+[[github](https://github.com/pangrwa)] 
+[[portfolio](team/pangrwa.md)]
 
 * Role: -To be Added soon- 
 * Responsibilities: -To be Added soon- 
@@ -43,17 +44,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/pangrwa.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Anunaya Joshi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anun.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/pangrwa.md)]
+[[github](http://github.com/anunayajoshi)]
+[[portfolio](team/anunayajoshi.md)]
 
 * Role: Developer
 * Responsibilities: UI
