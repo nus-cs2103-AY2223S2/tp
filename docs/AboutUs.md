@@ -29,21 +29,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Pang Rui Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pangrwa.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/yzmunchmunch.md)]
+[[github](https://github.com/pangrwa)] 
+[[portfolio](team/pangrwa.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: -To be Added soon- 
+* Responsibilities: -To be Added soon- 
 
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/yzmunchmunch.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
