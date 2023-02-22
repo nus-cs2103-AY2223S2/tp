@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -81,17 +81,40 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Retrieves one of the person with the given name from the list.
-     * The person with such a name must exist in the list.
+     * Retrieves one of the elderly with the given nric from the list.
+     * The elderly with such a nric must exist in the list.
      *
-     * @param name Name of the person.
-     * @return Person with that name.
+     * @param nric Nric of the elderly.
+     * @return Elderly with that name.
      */
-    public Person get(Name name) {
-        requireNonNull(name);
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
         for (Person person : this) {
-            if (person.getName().equals(name)) {
-                return person;
+            if (person instanceof Elderly) {
+                Elderly elderly = (Elderly) person;
+                if (elderly.getNric().equals(nric)) {
+                    return elderly;
+                }
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
+    /**
+     * Retrieves one of the volunteer with the given nric from the list.
+     * The volunteer with such a nric must exist in the list.
+     *
+     * @param nric Nric of the volunteer.
+     * @return volunteer with that name.
+     */
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        for (Person person : this) {
+            if (person instanceof Volunteer) {
+                Volunteer volunteer = (Volunteer) person;
+                if (volunteer.getNric().equals(nric)) {
+                    return volunteer;
+                }
             }
         }
         throw new PersonNotFoundException();

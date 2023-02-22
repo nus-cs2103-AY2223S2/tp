@@ -6,62 +6,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.information.Name;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Jackson-friendly version of {@link Pair}.
  */
 class JsonAdaptedPair {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pair's %s field is missing!";
+    public static final String MISSING_ELDERLY_FIELD_MESSAGE_FORMAT = "Pair's Elderly's %s field is missing!";
+    public static final String MISSING_VOLUNTEER_FIELD_MESSAGE_FORMAT = "Pair's Volunteer's %s field is missing!";
 
-    private final String elderlyName;
-    private final String volunteerName;
+    private final String elderlyNric;
+    private final String volunteerNric;
 
     /**
      * Constructs a {@code JsonAdaptedPair} with the given pair details.
      */
     @JsonCreator
-    public JsonAdaptedPair(@JsonProperty("elderlyName") String elderlyName,
-                           @JsonProperty("volunteerName") String volunteerName) {
-        this.elderlyName = elderlyName;
-        this.volunteerName = volunteerName;
+    public JsonAdaptedPair(@JsonProperty("elderlyNric") String elderlyNric,
+                           @JsonProperty("volunteerNric") String volunteerNric) {
+        this.elderlyNric = elderlyNric;
+        this.volunteerNric = volunteerNric;
     }
 
     /**
      * Converts a given {@code Pair} into this class for Jackson use.
      */
     public JsonAdaptedPair(Pair source) {
-        elderlyName = source.getElderly().getName().fullName;
-        volunteerName = source.getVolunteer().getName().fullName;
+        elderlyNric = source.getElderly().getNric().value;
+        volunteerNric = source.getVolunteer().getNric().value;
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted pair object into the model's {@code Pair} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted pair.
      */
     public Pair toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
-        if (elderlyName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (elderlyNric == null) {
+            throw new IllegalValueException(String.format(MISSING_ELDERLY_FIELD_MESSAGE_FORMAT,
+                    Nric.class.getSimpleName()));
         }
-        if (!Name.isValidName(elderlyName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (volunteerNric == null) {
+            throw new IllegalValueException(String.format(MISSING_VOLUNTEER_FIELD_MESSAGE_FORMAT,
+                    Nric.class.getSimpleName()));
         }
-        final Name modelElderlyName = new Name(elderlyName);
-        Person elderly = friendlyLink.getPerson(modelElderlyName);
+        if (!(Nric.isValidNric(elderlyNric) && Nric.isValidNric(volunteerNric))) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelElderlyNric = new Nric(elderlyNric);
+        Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
 
-
-        if (volunteerName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(volunteerName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelVolunteerName = new Name(volunteerName);
-        Person volunteer = friendlyLink.getPerson(modelVolunteerName);
-
+        final Nric modelVolunteerNric = new Nric(volunteerNric);
+        Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
 
         return new Pair(elderly, volunteer);
     }

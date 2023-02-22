@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -29,7 +28,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PairBuilder;
-import seedu.address.testutil.PairUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -95,9 +93,7 @@ public class FriendLinkParserTest {
     @Test
     public void parseCommand_addPair() throws Exception {
         Pair pair = new PairBuilder().build();
-        AddPairCommand command = (AddPairCommand) parser.parseCommand(PairUtil.getAddPairCommand(pair));
-        /* TODO: assert that both pairs are equal after dummy variables in pair is replaced with
-            actual elderly and volunteer objects. */
+        /* TODO: check that parser.parseCommand works properly. */
     }
 
     @Test

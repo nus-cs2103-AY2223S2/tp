@@ -12,7 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,6 +115,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         friendlyLink.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getElderly(nric);
+    }
+
+    @Override
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getVolunteer(nric);
     }
 
     @Override

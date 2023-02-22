@@ -60,7 +60,6 @@ public class Elderly extends Person {
         if (otherPerson == this) {
             return true;
         }
-
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getNric().equals(getNric());

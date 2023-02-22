@@ -1,20 +1,21 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalElderlys.AMY;
+import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * A utility class to help with building Pair objects.
  */
 public class PairBuilder {
 
-    public static final Person DEFAULT_ELDERLY = ALICE;
-    public static final Person DEFAULT_VOLUNTEER = BOB;
-    private Person elderly;
-    private Person volunteer;
+    public static final Elderly DEFAULT_ELDERLY = AMY;
+    public static final Volunteer DEFAULT_VOLUNTEER = BOB;
+    private Elderly elderly;
+    private Volunteer volunteer;
 
     /**
      * Creates a {@code PairBuilder} with the default details.
@@ -35,7 +36,7 @@ public class PairBuilder {
     /**
      * Sets the {@code Elderly} of the {@code pair} that we are building.
      */
-    public PairBuilder withElderly(Person elderly) {
+    public PairBuilder withElderly(Elderly elderly) {
         this.elderly = elderly;
         return this;
     }
@@ -43,7 +44,7 @@ public class PairBuilder {
     /**
      * Sets the {@code Volunteer} of the {@code pair} that we are building.
      */
-    public PairBuilder withVolunteer(Person volunteer) {
+    public PairBuilder withVolunteer(Volunteer volunteer) {
         this.volunteer = volunteer;
         return this;
     }

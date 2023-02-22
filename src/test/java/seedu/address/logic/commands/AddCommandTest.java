@@ -21,7 +21,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -136,6 +139,16 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Volunteer getVolunteer(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Elderly getElderly(Nric nric) {
             throw new AssertionError("This method should not be called.");
         }
 

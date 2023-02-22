@@ -6,7 +6,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * The API of the Model component.
@@ -77,6 +80,24 @@ public interface Model {
      * friendly link database.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Retrieves the elderly with the given Nric.
+     * Elderly of that Nric must exist in the friendly link database.
+     *
+     * @param nric Nric of the elderly.
+     * @return Elderly with that Nric.
+     */
+    Elderly getElderly(Nric nric);
+
+    /**
+     * Retrieves the volunteer with the given Nric.
+     * Volunteer of that Nric must exist in the friendly link database.
+     *
+     * @param nric Nric of the volunteer.
+     * @return Volunteer with that Nric.
+     */
+    Volunteer getVolunteer(Nric nric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
