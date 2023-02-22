@@ -33,11 +33,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/pangrwa.png" width="200px">
 
-[[github](https://github.com/pangrwa)] 
+[[github](https://github.com/pangrwa)]
 [[portfolio](team/pangrwa.md)]
 
-* Role: -To be Added soon- 
-* Responsibilities: -To be Added soon- 
+* Role: -To be Added soon-
+* Responsibilities: -To be Added soon-
 
 ### Lu Chenyu
 
