@@ -5,19 +5,22 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tan Wei Zhe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wz2k.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/wz2k)]
+[[portfolio](team/wz2k.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities:
+  * Documentation (week 10)
+  * Code Quality (week 11)
+  * Team Lead (week 9)
+  * Integration (week 1, week 12)
+  * Deliverables and Deadlines (week 8, week 13)
 
 ### Jane Doe
 
