@@ -149,6 +149,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setWeight(toCopy.weight);
+            setGender(toCopy.gender);
             setTags(toCopy.tags);
         }
 
