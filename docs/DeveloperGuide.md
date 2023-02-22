@@ -39,47 +39,78 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 ## **User Stories**
 
-| As a...  | I want to... | So that I can... | Notes | Priority
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| Teacher  | Have an application that can be used CLI instead of GUI  | Make use of my fast typing speed to sort out all the admin work | Too Vague | NA|
-| Busy Teacher | Be able to easily manage my schedule | Spend more time on other things | Out of scope | NA
-Busy Teacher | Know which tasks to prioritise | Ensure that all of my responsibilities are taken care of in a timely and efficient manner.|| NA |
-|Teacher| Record student’s attendance |Know that my student is present in class (in school). | | High|
-|Teacher|Record students’ assessment and test grades.|Manage my students’ performance| |High|
-|Teacher| Have an efficient way to view and track my students’ attendance.|Easier time managing my students’ attendance over the year| | High|
-|Caring Teacher| Have a way to provide comments for each student|Keep track of students who need meaningful feedback and support.|(comments section on each student)|Medium|
-|Teacher| Track the date and time of the classes that I have |Be on time and teach the correct module for the particular lesson slot.| |Out of scope| NA |
-|Teacher| Amend date and time of certain lesson timings | Change easily when lessons shift | | NA|
-|Teacher / teacher assistant| Have an efficient way to retrieve my students’ contact details. | Contact them easily| Assumption: student details are known to teachers / TAs| Medium |
-|Teacher| Keep track of students who have submitted assignment|Know which student missed the deadline for their work| |Medium |
-|Teacher| Use an application with a reminder system |Track the things I have to do | | NA|
-|Teacher| Efficiently and effectively assign assessments and assignments |Better assess my students’ learning and progress| | NA|
-|Teacher | Resources to aid me in managing students’ behaviours and actions| Promote a safe and productive learning space for all | |NA|
-|Teacher| Document students’ progress |Easily record the students’ performance| | High|
-|Teacher| Add individual feedback to students |Provide feedback to parents/guardians effectively| Duplicate point to Point 7| NA|
-|Teacher| Access my students contacts conveniently|Build a closer relationship with my students and their next of kin|Too vague| NA|
-|Busy Teacher| Keep track of my teaching feedback| Keep improving my teaching practices | Hard to get school admin team on board|NA|
-|Efficient Teacher| Integrate technology into my teaching| Enrich my student learning| Vague| NA|
-|Responsible Teacher| Access student records, such as grades and attendance| Make informed decisions about student progress| Summary of all students grades for a particular test / class| Low |
-|Busy teacher| Have a todo list| Keep track of what to do | | Low/NA|
-|Teacher assistant| Retrieve my students contact | Look them up easily| Duplicate Point to Point 10| NA|
-|Motivational teacher| Sort my students by overall grades| Foster a positive and supportive learning environment| |Medium|
-|Teacher| Organise my students by class | Identify which class they belong to| Determine whether to create separate classes: “class” class and “student” class or merge| High|
-|Teacher| Have the ability to recognise my students from different classes| Know what my students look like| Long setup process for user as they need to manually input images for individual student| Keeping separate file / folder for images| Medium|
-|Teacher| Track the date and time of my classes| Be on time for my classes| | NA|
-|Teacher| Have the option to leave some details empty| Still key in my students’ information when there’s missing information| | High|
-|Forgetful teacher| Record attendance| Keep track of my students| Duplicate to Point 5| NA|
-|Teacher| Identify weaker students| Give them more attention in class|Duplicate to Point 20|NA
-|Non tech-savvy teacher| Learn about new commands | Use the application effectively and save unnecessary time and effort in recording students’ particulars and searching for it.| Provide User Guide that is easy to understand |High |
-|Teacher| Use an application that is easy to navigate about and has a nice interface.| Save unnecessary time and effort in recording students’ particulars and searching for it.|Issue under designs|Low|
-|Teacher| Be able to manage my consultation timings| Organise my schedule| | NA|
-|Teacher| Set reminders for my consultation timings| Ensure I am not late for consultations | |NA|
-|Teacher| Have an application that marks my students’ assignments automatically| Use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning| Difficult to implement Autograder| NA|
+| No  | As a...                                                                     | I want to... | So that I can... | Notes | Priority |
+|-----|-----------------------------------------------------------------------------| ------------- | ------------- | ------------- | ------------- |
+| 1   | Teacher                                                                     | Have an application that can be used CLI instead of GUI  | Make use of my fast typing speed to sort out all the admin work | Too Vague | NA|
+| 2   | Busy Teacher                                                                | Be able to easily manage my schedule | Spend more time on other things | Out of scope | NA
+| 3   |  Busy Teacher                                                               | Know which tasks to prioritise | Ensure that all of my responsibilities are taken care of in a timely and efficient manner.|| NA |
+| 4   | Teacher                     | Record student’s attendance                                                 |Know that my student is present in class (in school). | | High|
+| 5   | Teacher                     | Record students’ assessment and test grades.                                |Manage my students’ performance| |High|
+| 6   | Teacher                     | Have an efficient way to view and track my students’ attendance.            |Easier time managing my students’ attendance over the year| | High|
+| 7   | Caring Teacher              | Have a way to provide comments for each student                             |Keep track of students who need meaningful feedback and support.|(comments section on each student)|Medium|
+| 8   | Teacher                     | Track the date and time of the classes that I have                          |Be on time and teach the correct module for the particular lesson slot.| |Out of scope| NA |
+| 9   | Teacher                     | Amend date and time of certain lesson timings                               | Change easily when lessons shift | | NA|
+| 10  | Teacher / teacher assistant | Have an efficient way to retrieve my students’ contact details.             | Contact them easily| Assumption: student details are known to teachers / TAs| Medium |
+| 11  | Teacher                | Keep track of students who have submitted assignment                        |Know which student missed the deadline for their work| |Medium |
+| 12  | Teacher                | Use an application with a reminder system                                   |Track the things I have to do | | NA|
+| 13  | Teacher                | Efficiently and effectively assign assessments and assignments              |Better assess my students’ learning and progress| | NA|
+| 14  | Teacher                | Resources to aid me in managing students’ behaviours and actions            | Promote a safe and productive learning space for all | |NA|
+| 15  | Teacher                | Document students’ progress                                                 |Easily record the students’ performance| | High|
+| 16  | Teacher                | Add individual feedback to students                                         |Provide feedback to parents/guardians effectively| Duplicate point to Point 7| NA|
+| 17  | Teacher                | Access my students contacts conveniently                                    |Build a closer relationship with my students and their next of kin|Too vague| NA|
+| 18  | Busy Teacher           | Keep track of my teaching feedback                                          | Keep improving my teaching practices | Hard to get school admin team on board|NA|
+| 19  | Efficient Teacher      | Integrate technology into my teaching                                       | Enrich my student learning| Vague| NA|
+| 20  | Responsible Teacher    | Access student records, such as grades and attendance                       | Make informed decisions about student progress| Summary of all students grades for a particular test / class| Low |
+| 21  | Busy teacher           | Have a todo list                                                            | Keep track of what to do | | Low/NA|
+| 22  | Teacher assistant      | Retrieve my students contact                                                | Look them up easily| Duplicate Point to Point 10| NA|
+| 23  | Motivational teacher   | Sort my students by overall grades                                          | Foster a positive and supportive learning environment| |Medium|
+| 24  | Teacher                | Organise my students by class                                               | Identify which class they belong to| Determine whether to create separate classes: “class” class and “student” class or merge| High|
+| 25  | Teacher                | Have the ability to recognise my students from different classes            | Know what my students look like| Long setup process for user as they need to manually input images for individual student| Keeping separate file / folder for images| Medium|
+| 26  | Teacher                | Track the date and time of my classes                                       | Be on time for my classes| | NA|
+| 27  | Teacher                | Have the option to leave some details empty                                 | Still key in my students’ information when there’s missing information| | High|
+| 28  | Forgetful teacher      | Record attendance                                                           | Keep track of my students| Duplicate to Point 5| NA|
+| 29  | Teacher                | Identify weaker students                                                    | Give them more attention in class|Duplicate to Point 20|NA
+| 30  | Non tech-savvy teacher | Learn about new commands                                                    | Use the application effectively and save unnecessary time and effort in recording students’ particulars and searching for it.| Provide User Guide that is easy to understand |High |
+| 31  | Teacher | Use an application that is easy to navigate about and has a nice interface. | Save unnecessary time and effort in recording students’ particulars and searching for it.|Issue under designs|Low|
+| 32  | Teacher | Be able to manage my consultation timings                                   | Organise my schedule| | NA|
+| 33  | Teacher | Set reminders for my consultation timings                                   | Ensure I am not late for consultations | |NA|
+| 34  | Teacher | Have an application that marks my students’ assignments automatically       | Use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning| Difficult to implement Autograder| NA|
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Use Cases**
+***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
+
+**Use Case: UC01 - Adding `grade` for a `student`**
+
+**Preconditions:** User knows `index number` of the `student` he/she wishes add `grade` for
+
+**MSS:**
+1. User keys in the `test` name, `index number` of student and corresponding `grade`
+2. PowerConnect displays feedback to the user that grade has been successfully added for the student
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition. 
+  + 1a1. PowerConnect displays error message indicating index number is invalid.
+  + 1a2. System output of all students particulars in his/her class.
+  + 1a3. User checks for the index number of the student and keys into the system.
+   
+    Use case resumes at step 2.
++ 1b. Test name is invalid.
+  + 1b1. PowerConnect displays error message indicating wrong test name.
+  + 1b2. User adds a new test name.
+  
+    Use Case resumes at step 2.
++ 1c. User gave a `Grade` value that is not of an integer.
+  + 1c1. PowerConnect displays error message indicating wrong grade given.
+  + 1c2. User checks and adds the grade input again.
+
+    Use case resumes at step 2.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
