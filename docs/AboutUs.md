@@ -21,7 +21,7 @@ In charge of defining, assigning and tracking project tasks.
 
 ### Lyndon Lim Liang Hng
 
-<img src="images/lyndonlimlianghng.png" width="200px">
+<img src="images/lyndonlim27.png" width="200px">
 
 [[github](http://github.com/lyndonlim27)]
 
