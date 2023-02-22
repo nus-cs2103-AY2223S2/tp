@@ -69,14 +69,51 @@ public class EduMateParserTest {
     }
 
     @Test
-    public void parseCommand_findName() throws Exception {
-        List<String> keywords = Arrays.asList("n/Richard", "Komyo", "Eusoff");
-        List<String> keywordsWithoutPrefix = Arrays.asList("Richard", "Komyo", "Eusoff");
+    public void parseCommand_find() throws Exception {
+        create_parseCommand_find(
+                CliSyntax.PREFIX_NAME,
+                Arrays.asList("n/Richard", "Komyo", "Eusoff"),
+                Arrays.asList("Richard", "Komyo", "Eusoff")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_PHONE,
+                Arrays.asList("p/89760441", "92752656", "82630347"),
+                Arrays.asList("89760441", "92752656", "82630347")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_ADDRESS,
+                Arrays.asList("a/91", "Ang", "Mo", "Kio", "Avenue", "4"),
+                Arrays.asList("91", "Ang", "Mo", "Kio", "Avenue", "4")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_EMAIL,
+                Arrays.asList("e/angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com"),
+                Arrays.asList("angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Arrays.asList("t/@albertpark", "@angmeihua", "@bartlee"),
+                Arrays.asList("@albertpark", "@angmeihua", "@bartlee")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_GROUP_TAG,
+                Arrays.asList("g/CCA", "TA", "Study"),
+                Arrays.asList("CCA", "TA", "Study")
+        );
+        create_parseCommand_find(
+                CliSyntax.PREFIX_MODULE_TAG,
+                Arrays.asList("m/CS3233", "CS3245", "CS3211"),
+                Arrays.asList("CS3233", "CS3245", "CS3211")
+        );
+    }
+
+    public void create_parseCommand_find(
+            Prefix prefix, List<String> keywords, List<String> keywordsWithoutPrefix) throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(
                 new FindCommand(
-                        new ContainsKeywordsPredicate(keywordsWithoutPrefix, CliSyntax.PREFIX_NAME)), command);
+                        new ContainsKeywordsPredicate(keywordsWithoutPrefix, prefix)), command);
     }
 
     @Test
