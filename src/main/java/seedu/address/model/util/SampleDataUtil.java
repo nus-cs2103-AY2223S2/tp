@@ -2,10 +2,13 @@ package seedu.address.model.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -26,6 +29,7 @@ import seedu.address.model.tag.ModuleTag;
  * Contains utility methods for populating {@code EduMate} with sample data.
  */
 public class SampleDataUtil {
+    private static final Path SAMPLE_DATA_FOLDER = Paths.get("src", "main", "java", "seedu.address", "model", "util");
     private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);
 
     /**
@@ -48,6 +52,7 @@ public class SampleDataUtil {
      */
     public static Set<GroupTag> getGroupTagSet(String... strings) {
         return Arrays.stream(strings)
+                .filter(Predicate.not(String::isEmpty))
                 .map(GroupTag::new)
                 .collect(Collectors.toSet());
     }
@@ -57,6 +62,7 @@ public class SampleDataUtil {
      */
     public static Set<ModuleTag> getModuleTagSet(String... strings) {
         return Arrays.stream(strings)
+                .filter(Predicate.not(String::isEmpty))
                 .map(ModuleTag::new)
                 .collect(Collectors.toSet());
     }
@@ -71,7 +77,7 @@ public class SampleDataUtil {
                 new Address("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
                 getGroupTagSet(),
-                getModuleTagSet("CS2101", "CS2102", "CS2103T", "CS2105", "CS2106")
+                getModuleTagSet("CS2100", "CS2101", "CS2102", "CS2103", "CS2104", "CS2105")
         );
     }
 
@@ -80,7 +86,7 @@ public class SampleDataUtil {
      * @param personData String representing the person data in the text file.
      */
     private static Person getSamplePerson(String personData) {
-        String[] personDataAsArray = personData.split("|");
+        String[] personDataAsArray = personData.split("\\|");
         Name name = new Name(personDataAsArray[0]);
         Phone phone = new Phone(personDataAsArray[1]);
         Email email = new Email(personDataAsArray[2]);
@@ -96,7 +102,7 @@ public class SampleDataUtil {
      * Returns a sample array of Persons.
      */
     public static Set<Person> getSamplePersons() throws FileNotFoundException {
-        File sampleDataFile = new File("sampleData.txt");
+        File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
         Set<Person> personSet = new HashSet<>();
         while (scanner.hasNextLine()) {

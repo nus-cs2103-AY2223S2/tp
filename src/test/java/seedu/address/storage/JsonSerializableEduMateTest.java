@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.EduMate;
+import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableEduMateTest {
@@ -26,7 +28,9 @@ public class JsonSerializableEduMateTest {
                 JsonSerializableEduMate.class).get();
         EduMate eduMateFromFile = dataFromFile.toModelType();
         EduMate typicalPersonsEduMate = TypicalPersons.getTypicalEduMate();
-        assertEquals(eduMateFromFile, typicalPersonsEduMate);
+        assertTrue(PersonUtil.isSameUserAndUserStub(eduMateFromFile.getUser(),
+                typicalPersonsEduMate.getUser()));
+        assertEquals(eduMateFromFile.getPersonList(), typicalPersonsEduMate.getPersonList());
     }
 
     @Test
