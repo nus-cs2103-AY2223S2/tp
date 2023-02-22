@@ -20,6 +20,16 @@ import seedu.address.model.common.exceptions.ItemNotFoundException;
 public class UniqueList<T extends Identifiable> implements Iterable<T> {
 
     /**
+     * The internal list responsible for holding the items.
+     */
+    private final ObservableList<T> internalList;
+
+    /**
+     * The unmodifiable view of the {@code internalList}.
+     */
+    private final ObservableList<T> internalUnmodifiableList;
+
+    /**
      * Creates a {@code UniqueList} from the given list of items. Please make
      * sure that the items in the list are unique.
      *
@@ -57,18 +67,6 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
         }
         return new UniqueList<>(internalList);
     }
-
-    /**
-     * The internal list responsible for holding the items.
-     */
-    private final ObservableList<T> internalList;
-
-
-    /**
-     * The unmodifiable view of the {@code internalList}.
-     */
-    private final ObservableList<T> internalUnmodifiableList;
-
 
     /**
      * Returns true if the list contains an equivalent {@code T} as the given

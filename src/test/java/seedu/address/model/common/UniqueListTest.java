@@ -45,8 +45,8 @@ public class UniqueListTest {
                 new IdentifiableStub("a"),
                 new IdentifiableStub("a")
         );
-        assertThrows(ItemDuplicateException.class,
-                () -> UniqueList.fromObservableList(observableList));
+        assertThrows(ItemDuplicateException.class, () ->
+                UniqueList.fromObservableList(observableList));
         try {
             UniqueList.fromObservableList(observableList);
         } catch (ItemDuplicateException e) {
@@ -65,8 +65,8 @@ public class UniqueListTest {
                 new IdentifiableStub("a"),
                 null
         );
-        assertThrows(NullPointerException.class,
-                () -> UniqueList.fromObservableList(observableList));
+        assertThrows(NullPointerException.class, () ->
+                UniqueList.fromObservableList(observableList));
     }
 
     @Test
@@ -78,8 +78,8 @@ public class UniqueListTest {
     @Test
     void add_duplicatedItem_shouldThrowItemDuplicateException() {
         this.list.add(new IdentifiableStub("a"));
-        assertThrows(ItemDuplicateException.class,
-                () -> this.list.add(new IdentifiableStub("a")));
+        assertThrows(ItemDuplicateException.class, () ->
+                this.list.add(new IdentifiableStub("a")));
         try {
             this.list.add(new IdentifiableStub("a"));
         } catch (ItemDuplicateException e) {
