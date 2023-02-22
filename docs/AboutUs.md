@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Responsible for the quality of various project documents. 
 In charge of defining, assigning and tracking project tasks.
 
-### Jane Doe
+### Lyndon Lim Liang Hng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lyndonlimlianghng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lyndonlim27)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead and Testing
+* Responsibilities: Resposible for overall project coordination and ensure testing of project is done properly and on time.
 
 ### Johnny Doe
 
