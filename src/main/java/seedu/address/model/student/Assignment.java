@@ -3,8 +3,11 @@ package seedu.address.model.student;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Represents a Student's assignment in the TutorPro.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Assignment {
-
     private final String description;
     private final LocalDateTime deadline;
 
@@ -31,8 +34,14 @@ public class Assignment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Assignment)) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Assignment)) {
+            return false;
+        }
+
         Assignment that = (Assignment) o;
         return getDescription().equals(that.getDescription()) && getDeadline().equals(that.getDeadline());
     }
