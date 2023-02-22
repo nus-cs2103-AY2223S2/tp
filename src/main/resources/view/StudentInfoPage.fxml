@@ -18,7 +18,7 @@
             <stylesheets>
                 <URL value="@StudentInfoPage.css" />
             </stylesheets>
-            <VBox id="studentInfoContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
+            <VBox id="studentInfoContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="350.0">
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
                 </padding>
