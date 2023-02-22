@@ -71,11 +71,12 @@ public final class UserStub extends User {
 
     @Override
     public String toString() {
-        String basicInformation = super.toString();
-        String extraInformation = "UserStub{"
-                + "telegramHandle= " + telegramHandle
-                + ", moduleTags= " + moduleTags + '}';
-        return String.format("%s\n%s", basicInformation, extraInformation);
+        return String.format("Username: %s\nEmail: %s\nTelegram: %s\nModules: %s\nPhone Number: %s\n",
+                super.getName(),
+                super.getEmail(),
+                super.getTelegramHandle(),
+                super.getModuleTags(),
+                super.getPhone());
     }
 }
 

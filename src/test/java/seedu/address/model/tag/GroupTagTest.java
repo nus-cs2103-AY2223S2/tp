@@ -1,5 +1,6 @@
 package seedu.address.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -47,6 +48,35 @@ public class GroupTagTest {
                 "")); // empty string
         assertFalse(GroupTag.isValidTagName(
                 "!Friend")); // contains non-alphanumeric
+    }
+
+    @Test
+    public void isValidTagName_validTagValidTarget_true() {
+        GroupTag groupTag = new GroupTag("Friend");
+        assertTrue(groupTag.isValidTagName("Friend", "Friend"));
+    }
+
+    @Test
+    public void equals() {
+        GroupTag groupTag = new GroupTag("Friend");
+        GroupTag otherGroupTag = new GroupTag("Friend");
+
+        assertEquals(groupTag, groupTag);
+        assertEquals(groupTag, otherGroupTag);
+    }
+
+    @Test
+    public void hashCode_validTag_success() {
+        String tagName = "Friend";
+        GroupTag groupTag = new GroupTag(tagName);
+        assertEquals(tagName.hashCode(), groupTag.hashCode());
+    }
+
+    @Test
+    public void toString_validTag_success() {
+        String tagName = "Friend";
+        GroupTag groupTag = new GroupTag(tagName);
+        assertEquals(String.format("[%s]", tagName), groupTag.toString());
     }
 
 }

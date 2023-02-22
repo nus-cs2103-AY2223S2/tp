@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -92,6 +93,28 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getEduMate_validEduMate_success() {
+        ReadOnlyEduMate eduMate = logic.getEduMate();
+        ReadOnlyEduMate otherEduMate = logic.getEduMate();
+        assertEquals(eduMate, otherEduMate);
+    }
+
+    @Test
+    public void getEduMateFilePath_validEduMate_success() {
+        Path eduMateFilePath = logic.getEduMateFilePath();
+        Path otherEduMateFilePath = logic.getEduMateFilePath();
+        assertEquals(eduMateFilePath, otherEduMateFilePath);
+    }
+
+    @Test
+    public void getGuiSettings_validGuiSettings_success() {
+        GuiSettings guiSettings = logic.getGuiSettings();
+        logic.setGuiSettings(guiSettings);
+        GuiSettings otherGuiSettings = logic.getGuiSettings();
+        assertEquals(guiSettings, otherGuiSettings);
     }
 
     /**
