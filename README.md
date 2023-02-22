@@ -17,4 +17,3 @@
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 This project uses Icon by [Raj Dev](https://freeicons.io/profile/714) on [freeicons.io](https://freeicons.io)
-                                
