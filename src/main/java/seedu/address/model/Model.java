@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 
 /**
  * The API of the Model component.
@@ -75,6 +76,18 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the user object.
+     * User will not be null.
+     */
+    User getUser();
+
+    /**
+     * Sets the user object to the EduMate object.
+     * @param user {@code User} must not be null.
+     */
+    void setUser(User user);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

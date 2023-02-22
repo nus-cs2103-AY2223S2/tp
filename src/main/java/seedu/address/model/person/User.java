@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,15 +19,13 @@ public class User extends Person {
     protected User(Name name, Phone phone, Email email, Address address,
                    TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
         super(name, phone, email, address, telegramHandle, groupTags, moduleTags);
-        requireAllNonNull(telegramHandle, moduleTags);
     }
 
     public static User getSingletonUser(Name name, Phone phone, Email email, Address address,
         TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
 
-        if (user == null) {
-            user = new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
-        }
+        user = new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
+
         return user;
     }
 
