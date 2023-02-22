@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/russelltankaimin.png" width="200px">
 
-[[github](https://github.com/russeltankaimin)]
+[[github](https://github.com/russelltankaimin)]
 [[portfolio](team/russelltankaimin.md)]
 
 * Role: Team Lead
