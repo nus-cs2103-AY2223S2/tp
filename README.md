@@ -5,7 +5,7 @@
 
 * This is **a product for private Math tuition teachers**.<br>
   Example usages:
-  * as an application to manage their students contacts and performance
+  * as an application to manage their students' contacts and performances.
 * The project simulates an ongoing software project for a desktop application (called _MATHTUTORING_) used for managing students contacts and performance
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base based on the original project **AB3**.
   * It comes with a **reasonable level of user and developer documentation**.
