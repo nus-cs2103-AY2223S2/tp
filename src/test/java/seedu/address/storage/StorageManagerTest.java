@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage addressBookStorage = new JsonFriendlyLinkStorage(getTempFilePath("ab"));
+        JsonFriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(friendlyLinkStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,11 +48,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void friendlyLinkReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonFriendlyLinkStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonFriendlyLinkStorageTest} class.
          */
         FriendlyLink original = getTypicalFriendlyLink();
         storageManager.saveFriendlyLink(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getFriendlyLinkFilePath() {
         assertNotNull(storageManager.getFriendlyLinkFilePath());
     }
 

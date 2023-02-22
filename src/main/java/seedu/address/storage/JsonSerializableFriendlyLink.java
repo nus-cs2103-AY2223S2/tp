@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,15 +21,20 @@ import seedu.address.model.person.Person;
 class JsonSerializableFriendlyLink {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PAIR = "Persons list contains duplicate pair(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+
+    private final List<JsonAdaptedPair> pairs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFriendlyLink} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("pairs") List<JsonAdaptedPair> pairs) {
         this.persons.addAll(persons);
+        this.pairs.addAll(pairs);
     }
 
     /**
@@ -38,6 +44,7 @@ class JsonSerializableFriendlyLink {
      */
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        pairs.addAll(source.getPairList().stream().map(JsonAdaptedPair::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableFriendlyLink {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             friendlyLink.addPerson(person);
+        }
+        for (JsonAdaptedPair jsonAdaptedPair : pairs) {
+            Pair pair = jsonAdaptedPair.toModelType(friendlyLink);
+            if (friendlyLink.hasPair(pair)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PAIR);
+            }
+            friendlyLink.addPair(pair);
         }
         return friendlyLink;
     }

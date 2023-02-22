@@ -26,14 +26,14 @@ public class ModelManager implements Model {
     private final FilteredList<Pair> filteredPairs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given friendlyLink and userPrefs.
      */
-    public ModelManager(ReadOnlyFriendlyLink addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(friendlyLink, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + friendlyLink + " and user prefs " + userPrefs);
 
-        this.friendlyLink = new FriendlyLink(addressBook);
+        this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
         filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
@@ -73,16 +73,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFriendlyLinkFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setFriendlyLinkFilePath(addressBookFilePath);
+    public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
+        requireNonNull(friendlyLinkFilePath);
+        userPrefs.setFriendlyLinkFilePath(friendlyLinkFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FriendlyLink ================================================================================
 
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink addressBook) {
-        this.friendlyLink.resetData(addressBook);
+    public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
+        this.friendlyLink.resetData(friendlyLink);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePair(Pair target) {
-        // TODO: implement addressBook.removePair(target);
+        // TODO: implement friendlyLink.removePair(target);
     }
 
     @Override
@@ -134,14 +134,14 @@ public class ModelManager implements Model {
     @Override
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
-        // TODO: implement addressBook.setPair(target, editedPair);
+        // TODO: implement friendlyLink.setPair(target, editedPair);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFriendlyLink}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -158,7 +158,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Pair} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFriendlyLink}
      */
     @Override
     public ObservableList<Pair> getFilteredPairList() {

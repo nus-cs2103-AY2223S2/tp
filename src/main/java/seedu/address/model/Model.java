@@ -43,14 +43,14 @@ public interface Model {
     /**
      * Sets the user prefs' friendly link database file path.
      */
-    void setFriendlyLinkFilePath(Path addressBookFilePath);
+    void setFriendlyLinkFilePath(Path friendlyLinkFilePath);
 
     /**
-     * Replaces friendly link database data with the data in {@code addressBook}.
+     * Replaces friendly link database data with the data in {@code friendlyLink}.
      */
-    void setFriendlyLink(ReadOnlyFriendlyLink addressBook);
+    void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink);
 
-    /** Returns the AddressBook */
+    /** Returns the FriendlyLink */
     ReadOnlyFriendlyLink getFriendlyLink();
 
     /**

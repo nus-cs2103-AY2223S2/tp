@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FriendlyLink data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FriendlyLinkStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(FriendlyLinkStorage friendlyLinkStorage, UserPrefsStorage userPrefsStorage) {
         this.friendlyLinkStorage = friendlyLinkStorage;
@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ FriendlyLink methods ==============================
 
     @Override
     public Path getFriendlyLinkFilePath() {
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveFriendlyLink(ReadOnlyFriendlyLink addressBook) throws IOException {
-        saveFriendlyLink(addressBook, friendlyLinkStorage.getFriendlyLinkFilePath());
+    public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink) throws IOException {
+        saveFriendlyLink(friendlyLink, friendlyLinkStorage.getFriendlyLinkFilePath());
     }
 
     @Override
-    public void saveFriendlyLink(ReadOnlyFriendlyLink addressBook, Path filePath) throws IOException {
+    public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        friendlyLinkStorage.saveFriendlyLink(addressBook, filePath);
+        friendlyLinkStorage.saveFriendlyLink(friendlyLink, filePath);
     }
 
 }

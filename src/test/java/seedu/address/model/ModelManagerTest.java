@@ -62,12 +62,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFriendlyLinkFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFriendlyLinkFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setFriendlyLinkFilePath_validPath_setsFriendlyLinkFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setFriendlyLinkFilePath(path);
         assertEquals(path, modelManager.getFriendlyLinkFilePath());
@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInFriendlyLink_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInFriendlyLink_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -112,12 +112,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPair_pairNotInAddressBook_returnsFalse() {
+    public void hasPair_pairNotInFriendlyLink_returnsFalse() {
         assertFalse(modelManager.hasPair(PAIR1));
     }
 
     @Test
-    public void hasPair_pairInAddressBook_returnsTrue() {
+    public void hasPair_pairInFriendlyLink_returnsTrue() {
         modelManager.addPair(PAIR1);
         assertTrue(modelManager.hasPair(PAIR1));
     }
@@ -160,7 +160,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different friendlyLink -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentFriendlyLink, userPrefs)));
 
         // different filteredPersonList -> returns false

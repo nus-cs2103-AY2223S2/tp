@@ -20,17 +20,17 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
 
 public class JsonFriendlyLinkStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFriendlyLinkStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readFriendlyLink_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readFriendlyLink(null));
     }
 
-    private java.util.Optional<ReadOnlyFriendlyLink> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyFriendlyLink> readFriendlyLink(String filePath) throws Exception {
         return new JsonFriendlyLinkStorage(Paths.get(filePath)).readFriendlyLink(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,69 +42,69 @@ public class JsonFriendlyLinkStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readFriendlyLink("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readFriendlyLink("notJsonFormatFriendlyLink.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readFriendlyLink_invalidPersonFriendlyLink_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFriendlyLink("invalidPersonFriendlyLink.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readFriendlyLink_invalidAndValidPersonFriendlyLink_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFriendlyLink("invalidAndValidPersonFriendlyLink.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveFriendlyLink_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempFriendlyLink.json");
         FriendlyLink original = getTypicalFriendlyLink();
-        JsonFriendlyLinkStorage jsonAddressBookStorage = new JsonFriendlyLinkStorage(filePath);
+        JsonFriendlyLinkStorage jsonFriendlyLinkStorage = new JsonFriendlyLinkStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveFriendlyLink(original, filePath);
-        ReadOnlyFriendlyLink readBack = jsonAddressBookStorage.readFriendlyLink(filePath).get();
+        jsonFriendlyLinkStorage.saveFriendlyLink(original, filePath);
+        ReadOnlyFriendlyLink readBack = jsonFriendlyLinkStorage.readFriendlyLink(filePath).get();
         assertEquals(original, new FriendlyLink(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveFriendlyLink(original, filePath);
-        readBack = jsonAddressBookStorage.readFriendlyLink(filePath).get();
+        jsonFriendlyLinkStorage.saveFriendlyLink(original, filePath);
+        readBack = jsonFriendlyLinkStorage.readFriendlyLink(filePath).get();
         assertEquals(original, new FriendlyLink(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveFriendlyLink(original); // file path not specified
-        readBack = jsonAddressBookStorage.readFriendlyLink().get(); // file path not specified
+        jsonFriendlyLinkStorage.saveFriendlyLink(original); // file path not specified
+        readBack = jsonFriendlyLinkStorage.readFriendlyLink().get(); // file path not specified
         assertEquals(original, new FriendlyLink(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveFriendlyLink_nullFriendlyLink_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFriendlyLink(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code friendlyLink} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyFriendlyLink addressBook, String filePath) {
+    private void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, String filePath) {
         try {
             new JsonFriendlyLinkStorage(Paths.get(filePath))
-                    .saveFriendlyLink(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveFriendlyLink(friendlyLink, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new FriendlyLink(), null));
+    public void saveFriendlyLink_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFriendlyLink(new FriendlyLink(), null));
     }
 }

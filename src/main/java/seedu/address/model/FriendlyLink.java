@@ -9,6 +9,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.information.Name;
 
 /**
  * Wraps all data at the address-book level
@@ -52,12 +53,21 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
+     * Replaces the contents of the pair list with {@code pairs}.
+     * {@code pairs} must not contain duplicate pairs.
+     */
+    public void setPairs(List<Pair> pairs) {
+        this.pairs.setPairs((pairs));
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setPairs(newData.getPairList());
     }
 
     //// person-level operations
@@ -85,8 +95,19 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Retrieves the person with the given name.
+     * The person with such a name must exist in the address book.
+     *
+     * @param name Name of the person.
+     * @return The person with the name.
+     */
+    public Person getPerson(Name name) {
+        requireNonNull(name);
+        return persons.get(name);
     }
 
     /**

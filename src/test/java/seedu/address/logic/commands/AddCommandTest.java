@@ -105,7 +105,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFriendlyLinkFilePath(Path addressBookFilePath) {
+        public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

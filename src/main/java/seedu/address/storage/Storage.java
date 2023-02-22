@@ -27,6 +27,6 @@ public interface Storage extends FriendlyLinkStorage, UserPrefsStorage {
     Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException;
 
     @Override
-    void saveFriendlyLink(ReadOnlyFriendlyLink addressBook) throws IOException;
+    void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink) throws IOException;
 
 }
