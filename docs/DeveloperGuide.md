@@ -94,16 +94,16 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 **Extensions:**
 
-+ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition. 
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
   + 1a1. System displays an error message indicating `index number` is invalid.
   + 1a2. System output of all `students` particulars in his/her class.
   + 1a3. User checks for the `index number` of the `student` and keys into the system.
-   
+
     Use case resumes at step 2.
 + 1b. Test name is invalid.
   + 1b1. System displays an error message indicating wrong test name.
   + 1b2. User adds a new test name.
-  
+
     Use case resumes at step 2.
 + 1c. User gave a `Grade` value that is not of an integer.
   + 1c1. System displays an error message indicating the wrong grade given.

@@ -311,8 +311,8 @@ Examples:
   Deletes the whole of MaryGoh particulars
 
 Throws:
-* WrongParticularException 
-  - The description field does not exist 
+* WrongParticularException
+  - The description field does not exist
   - Description is invalid (eg. age is not a number..)
 
 User should follow the same format <br>
