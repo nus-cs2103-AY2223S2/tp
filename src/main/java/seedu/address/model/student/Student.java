@@ -24,7 +24,7 @@ public class Student {
 
     // Data fields
     private final Address address;
-    private final List<Assignment> assignments = new ArrayList<>();
+    private final List<Homework> homeworkList = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
 
 
@@ -68,8 +68,22 @@ public class Student {
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Assignment> getAssignments() {
-        return Collections.unmodifiableList(assignments);
+    public List<Homework> getAssignments() {
+        return Collections.unmodifiableList(homeworkList);
+    }
+
+    /**
+     * Adds an homework to the student.
+     */
+    public void addHomework(Homework homework) {
+        // check for duplicate homework
+        for (Homework hw : this.homeworkList) {
+            if (hw.equals(homework)) {
+                return;
+            }
+        }
+
+        this.homeworkList.add(homework);
     }
 
     /**
@@ -111,7 +125,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, assignments);
+        return Objects.hash(name, phone, email, address, tags, homeworkList);
     }
 
     @Override

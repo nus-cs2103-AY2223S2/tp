@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,21 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    //@@author Yufannn-reused
+    //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
+    //with minor modification, it is a pretty good way to organise and extend the acceptable date format.
+    private static final String[] ACCEPTABLE_DATETIME_FORMATS = {
+        "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
+        "yyyy-MM-dd'T'HH:mm", "dd/MM/yyyy HHmm",
+        "dd/MM/yyyy HH:mm", "yyyy/MM/dd HHmm",
+        "yyyy/MM/dd HH:mm", "yyyy/MM/dd'T'HHmm",
+        "yyyy/MM/dd'T'HH:mm", "yyyy-MM-dd HHmm",
+        "yyyy-MM-dd HH:mm", "dd MMM yyyy HHmm",
+        "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm",
+        "MMM dd, yyyy HH:mm", "dd-mm-yyyy HHmm"
+    };
+    //@@author
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -121,4 +138,30 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    //@@author Yufannnn-reused
+    //Reused from https://github.com/wweqg/ip/blob/master/src/main/java/duke/parser/Parser.java
+    //with minor modification, it is a pretty clean and concise regular expression for general instructions
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     * in {@link #ACCEPTABLE_DATETIME_FORMATS}.
+     *
+     * @param date The date string to be parsed
+     * @return The parsed LocalDateTime object
+     * @throws ParseException if the date string does not match any of the acceptable date time formats
+     */
+    public static LocalDateTime parseDeadline(String date) throws ParseException {
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(date,
+                        DateTimeFormatter.ofPattern(dateTimeFormat));
+            } catch (Exception e) {
+                // Go to the next dateTimeFormat
+            }
+        }
+
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+                + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
+    }
+    //@@author
 }

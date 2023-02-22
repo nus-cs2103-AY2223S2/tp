@@ -1,5 +1,6 @@
 package seedu.address.model.student;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,21 +8,25 @@ import java.util.Objects;
  * Represents a Student's assignment in the TutorPro.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment {
+public class Homework {
     private final String description;
     private final LocalDateTime deadline;
+    private boolean isDone;
 
     /**
-     * Creates a new Assignment with the given description and deadline.
+     * Creates a new Homework with the given description and deadline.
      *
      * @param description The description of the assignment.
      * @param deadline The deadline of the assignment.
+     * @throws ParseException if the deadline is in the past.
      */
-    public Assignment(String description, LocalDateTime deadline) {
+    public Homework(String description, LocalDateTime deadline) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(deadline);
+
         this.description = description;
         this.deadline = deadline;
+        this.isDone = false;
     }
 
     public String getDescription() {
@@ -32,18 +37,35 @@ public class Assignment {
         return deadline;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    public void markAsNotDone() {
+        isDone = false;
+    }
+
+    public String getStatusTag() {
+        return isDone ? "[X]" : "[ ]";
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (other == this) {
             return true;
         }
 
-        if (!(o instanceof Assignment)) {
+        if (!(other instanceof Homework)) {
             return false;
         }
 
-        Assignment that = (Assignment) o;
-        return getDescription().equals(that.getDescription()) && getDeadline().equals(that.getDeadline());
+        Homework otherHomework = (Homework) other;
+        return otherHomework.getDescription().equals(getDescription())
+                && otherHomework.getDeadline().equals(getDeadline());
     }
 
     @Override
@@ -53,6 +75,6 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return String.format("Assignment{description='%s', deadline=%s}", description, deadline);
+        return String.format("Status: %s, Description: %s, Deadline: %s", getStatusTag(), description, deadline);
     }
 }

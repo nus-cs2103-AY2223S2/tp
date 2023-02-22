@@ -4,8 +4,10 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.Homework;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -16,10 +18,15 @@ public class StudentTasksPage extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(StudentTasksPage.class);
 
     private static final String FXML = "StudentTasksPage.fxml";
-    private Name studentName;
+    private final Name studentName;
 
     @FXML
     private Label name;
+    @FXML
+    private Label listName;
+
+    @FXML
+    private ListView<Homework> homeworkList;
 
     /**
      * Creates a {@code StudentTasksPage} with the given {@code Student}.
@@ -29,6 +36,8 @@ public class StudentTasksPage extends UiPart<Stage> {
         studentName = student.getName();
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
+        listName.setText("Student Tasks List: ");
+        homeworkList.getItems().addAll(student.getAssignments());
     }
 
     /**
