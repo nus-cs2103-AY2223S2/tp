@@ -56,7 +56,8 @@ public class EduMateParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         String commandString = EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor);
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor);
         EditCommand command = (EditCommand) parser.parseCommand(commandString);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
@@ -73,7 +74,9 @@ public class EduMateParserTest {
         List<String> keywordsWithoutPrefix = Arrays.asList("Richard", "Komyo", "Eusoff");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new ContainsKeywordsPredicate(keywordsWithoutPrefix, CliSyntax.PREFIX_NAME)), command);
+        assertEquals(
+                new FindCommand(
+                        new ContainsKeywordsPredicate(keywordsWithoutPrefix, CliSyntax.PREFIX_NAME)), command);
     }
 
     @Test
@@ -96,6 +99,7 @@ public class EduMateParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(
+                ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

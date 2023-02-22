@@ -4,7 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.ANGMEIHUA;
+import static seedu.address.testutil.TypicalPersons.BART;
+import static seedu.address.testutil.TypicalPersons.CLARK;
+import static seedu.address.testutil.TypicalPersons.EDWARD;
+import static seedu.address.testutil.TypicalPersons.FORD;
+import static seedu.address.testutil.TypicalPersons.ISAAC;
+import static seedu.address.testutil.TypicalPersons.JOOKOON;
+import static seedu.address.testutil.TypicalPersons.KEVIN;
+import static seedu.address.testutil.TypicalPersons.LAVENDER;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
 import java.util.Collections;
