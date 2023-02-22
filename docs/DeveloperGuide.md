@@ -274,16 +274,56 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+#### [Epic] As a financial advisor, I can easily find my client
+| Priority | As a …​                          | I can …​                                                | So that I can…​                                      |
+|----------|----------------------------------|---------------------------------------------------------|------------------------------------------------------|
+| `***`    | As a financial advisor           | easily search for clients by name or other criteria     | quickly access their information                     |    
 
-*{More to be added}*
+#### [Epic] As a financial advisor, I can manage my client’s financial goals
+| Priority | As a …​                          | I can …​                                                 | So that I can…​                                      |
+|----------|----------------------------------|----------------------------------------------------------|------------------------------------------------------|
+| `***`    | As a financial advisor           | create and store client profiles                         | easily access their information                      |    
+| `***`    | As a financial advisor           | view all my clients' financial information in one place  | make comparisons and analyze their financial status  |
+| `***`    | As a financial advisor           | add and update client financial goals                    | have a clear understanding of their objectives       |    
+| `***`    | As a financial advisor           | remove client’s information from my client list          | have a well-updated contact list                     |    
+| `**`     | As a financial advisor           | track my client interactions and notes                   | have a clear history of my advising sessions         |    
+
+
+#### [Epic] As a financial advisor, I can manage my client investment and insurance plans
+| Priority | As a …​                          | I can …​                                                 | So that I can…​                                                                              |
+|----------|----------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | keep track of my clients' investment and insurance plans | provide relevant advice                                                                      |    
+| `***`    | As a financial advisor           | input my clients' insurance and investment plans         | ensure they have adequate coverage and help them find more cost-effective options if needed  |
+| `***`    | As a financial advisor           | remove my client’s insurance and investment plans        | have a well-updated plan list                                                                |    
+
+### [Epic] As a financial advisor, I can create reminders for myself and clients
+| Priority | As a …​                          | I can …​                                                        | So that I can…​                        |
+|----------|----------------------------------|-----------------------------------------------------------------|----------------------------------------|
+| `***`    | As a financial advisor           | set reminders for follow-up tasks and future advising sessions  | don't miss any important appointments  |    
+| `***`    | As a financial advisor           | send automated reminders to clients about their financial goals | stay on track.                         |
+
+### **General**
+| Priority | As a …​                          | I can …​                                                | So that I can…​                                                             |
+|----------|----------------------------------|---------------------------------------------------------|-----------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | generate reports on client financial information        | analyze trends and make informed decisions                                  |    
+| `***`    | As a financial advisor           | share client information with colleagues                | collaborate and provide the best advice.                                    |
+| `***`    | As a financial advisor           | store client financial documents securely               | ensure their sensitive information is protected                             |    
+| `***`    | As a financial advisor           | access the platform on any device                       | manage my clients' information even when I am on-the-go                     |
+| `***`    | As a financial advisor           | create custom categories for client information         | I can organize and categorize their data in a way that makes sense to me    |    
+| `***`    | As a financial advisor           | view a summary of my clients' overall financial health  | I can quickly assess their current situation and make recommendations       |
+| `***`    | As a financial advisor           | access real-time market data                            | make informed recommendations and stay up-to-date on current market trends. |    
+
+### **Novice**
+| Priority | As a …​                          | I can …​                                                   | So that I can…​                                                                       |
+|----------|----------------------------------|------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | view clients' information in a visual and intuitive format | quickly understand their financial situation and recommend a plan of action           |    
+| `***`    | As a financial advisor           | have access to a library of pre-written financial plans    | provide my clients with best-practices advice and recommendations                     |
+| `***`    | As a financial advisor           | track my clients' investment performance                   | monitor the success of my advice and identify areas for improvement.                  |    
+
+### **Expert**
+| Priority | As a …​                          | I can …​                                                                            | So that I can…​                                                          |
+|----------|----------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice                            |    
 
 ### Use cases
 
