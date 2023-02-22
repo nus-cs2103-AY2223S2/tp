@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FriendlyLink **streamlines volunteer and elderly management** for single administrators of small NPOs. 
-With its easy-to-use text-based interface and contact management features, say goodbye to manual 
+FriendlyLink **streamlines volunteer and elderly management** for single administrators of small NPOs.
+With its easy-to-use text-based interface and contact management features, say goodbye to manual
 record-keeping and hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
 
 * Table of Contents

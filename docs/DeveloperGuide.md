@@ -43,8 +43,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: FriendlyLink streamlines volunteer and elderly management for single administrators of small NPOs. 
-With its easy-to-use text-based interface and contact management features, say goodbye to manual record-keeping and hello 
+**Value proposition**: FriendlyLink streamlines volunteer and elderly management for single administrators of small NPOs.
+With its easy-to-use text-based interface and contact management features, say goodbye to manual record-keeping and hello
 to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
 
 
