@@ -285,3 +285,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add a Policy** | `addPolicy n/NAME pn/POLICY-NAME d/START-DATE pr/PREMIUM fr/FREQUENCY` <br> e.g., `addPolicy n/John Doe pn/Health d/28/05/2022 pr/300 fr/MONTHLY`
+**Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`
