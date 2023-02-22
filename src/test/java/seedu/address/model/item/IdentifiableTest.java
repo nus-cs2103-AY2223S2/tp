@@ -1,4 +1,4 @@
-package seedu.address.model.common;
+package seedu.address.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

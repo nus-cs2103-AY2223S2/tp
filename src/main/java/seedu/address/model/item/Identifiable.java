@@ -1,4 +1,4 @@
-package seedu.address.model.common;
+package seedu.address.model.item;
 
 /**
  * The interface for objects that are identifiable by a unique ID.

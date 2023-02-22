@@ -1,4 +1,4 @@
-package seedu.address.model.common.exceptions;
+package seedu.address.model.item.exceptions;
 
 /**
  * The exception thrown when an operation would result in duplicate objects.

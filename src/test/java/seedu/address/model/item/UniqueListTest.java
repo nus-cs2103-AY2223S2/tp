@@ -1,4 +1,4 @@
-package seedu.address.model.common;
+package seedu.address.model.item;
 
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.common.exceptions.ItemDuplicateException;
-import seedu.address.model.common.exceptions.ItemNotFoundException;
+import seedu.address.model.item.exceptions.ItemDuplicateException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 public class UniqueListTest {
     private UniqueList<IdentifiableStub> list;

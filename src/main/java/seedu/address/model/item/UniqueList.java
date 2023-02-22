@@ -1,4 +1,4 @@
-package seedu.address.model.common;
+package seedu.address.model.item;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -7,8 +7,8 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.common.exceptions.ItemDuplicateException;
-import seedu.address.model.common.exceptions.ItemNotFoundException;
+import seedu.address.model.item.exceptions.ItemDuplicateException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 /**
  * The class that resembles a list of items that are unique.
