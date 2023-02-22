@@ -8,6 +8,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
+
+### Pang Chin Kiat, Vincent
+
+<img src="images/vincent.png" width="200px">
+
+[[github](https://github.com/securespider)]
+[[portfolio](team/securespider.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling and tracking
+
+
 ### Ma Yuanxin
 
 <img src="images/mayuanxin1234.png" width="200px">
@@ -18,25 +30,15 @@ We are a team based in the [School of Computing, National University of Singapor
 *  Role: Developer
 *  Responsibilities: Deliverables and deadlines, and Integration
 
-### Vincent
+
+### Diat Bhin
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Diat Bbin
-
-<img src="images/diatbbin.png" width="200px">
-
-[[github](https://github.com/Diatbbin)] 
-[[portfolio](team/diatbbin.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: code quality and model component
+* Responsibilities: Data
 
 ### Wen Jue
 
