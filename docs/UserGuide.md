@@ -1,12 +1,30 @@
 ---
-layout: page
-title: User Guide
----
+## User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+Advis.io (AIO) is a desktop app for managing clients information, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AIO can get your contact management tasks done faster than traditional GUI apps.
+
+#### Table of Contents
+  1. Quick Start 
+  2. Features
+     1. General Management
+        1. Viewing help : `help `
+        3. Exiting the program : `exit`
+        4. Saving the data 
+        5. Editing the data file
+     2. Client Managment
+        1. Adding a client: `add `
+        2. Listing all clients : `list `
+        3. Editing a client : `edit `
+        4. Locating clients by name: `find `
+        5. Deleting a client : `delete`
+     3. Policy Management
+        1. Adding a policy : `addPolicy`
+        2. Delete a policy : `deletePolicy`
+  3. FAQ
+  4. Command Summary
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,24 +32,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `Advisio.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar advisio.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all client profiles.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to all client profiles.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd client shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all client.
 
    * `exit` : Exits the app.
 
@@ -43,7 +61,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+#####Notes about the command format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.

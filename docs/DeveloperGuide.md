@@ -257,13 +257,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* For student financial advisors managing a growing client base
+* Needs to keep track of individual client information
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* Provide a way to view all clients records easily and compare and analyze their financial information.
+* Keep track of client information such as financial goals, current financial status, and investment plans purchased.
+* Make it easier to remind financial advisors on follow-up tasks and future advising sessions.
+* Personalized recommendations: propose personalized financial advice and recommendations tailored to the student’s unique needs and circumstances
+
 
 
 ### User stories
