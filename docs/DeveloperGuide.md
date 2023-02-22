@@ -257,27 +257,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* private math tuition teachers
+* has a need to manage a number of students' contacts and performance
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+Tutors tend to use multiple applications to keep track of their schedule/progress work. MATHUTORING comes in to centralise the features into a single application with a contact management system to track the students’ progress report which subsequently allows the tutors to plan their lesson plan for future lessons and overall view of their schedule for ease of planning.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                 | So that I can…​                                                                                    |
+|----------|---------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `* * *`  | user    | see a list of my students                                    | know who my students are and how many students I have                                              |
+| `* * *`  | user    | purge all current data                                       | get rid of sample/experimental data I used for exploring the app                                   |
+| `* * *`  | user    | create my student contacts                                   | add new students into my contact list.                                                             |
+| `* * *`  | user    | filter my student contacts                                   | look up on a single student/ students of the same level instead of reading through a list.         |
+| `* * *`  | user    | edit my student contacts                                     | My contact list is more extensive/flexible.minimize chance of someone else seeing them by accident |
+| `* * *`  | user    | delete my student contacts                                   | remove student’s contact of students that I don’t teach anymore.                                   |
+| `* * *`  | user    | use the help section                                         | learn the available commands in the application.                                                   |
+| `* * *`  | user    | import my data                                               | backup data and open on another device.                                                            |
+| `* * *`  | user    | export my data                                               | load data into a new device.                                                                       |
+| `* * *`  | user    | have a secure delete of my data                              | not accidentally delete information. (Need to type password to delete).                            |
+| `* * `   | user    | create progress report                                       | create tasks to keep track of the student’s progress.                                              |
+| `* * `   | user    | check the student’s taskings                                 | understand how good that student is doing.                                                         |
+| `* * `   | user    | edit the student’s tasking                                   | edit the incorrect data.                                                                           |
+| `* * `   | user    | delete / mark student’s tasking(s)                           | identify what taskings are done/obsolete.                                                          |
+| `* * `   | user    | see a calendar                                               | view on which day I have classes.                                                                  |
+| `* * `   | user    | extract students' progress report                            | show the parents their kids' performance.                                                          |
+| `* `     | user    | note down a more detailed class description                  | know what I need to do for a certain class.                                                        |
+|  `* `    | user    | filter calendar                                              | see clearly how many classes I have within a period of time (week/month, etc.)                     |
+|  `* `    | user    | wildcard search                                              | know what I can do on the app if I forgot the exact command I want to execute.                     |
+|  `* `    | user    | add the payment                                              | know whether the students do the payment or not.                                                   |
+|  `* `    | user    | export my data to the cloud                                  | save my data online.                                                                               |
+|  `* `    | user    | export calendar data                                         | backup calendar data and open it on a calendar app.                                                |
+|  `* `    | user    | have a reminder                                              | remember what classes I have for tomorrow.                                                         |
+|  `* `    | user    | auto send the email to the student to confirm the attendance | know if the student will attend or not, so I can decide whether to conduct the class.              |
+|  `* `    | user    | note down if the student attends the class                   | know if the student missed the class.                                                              |
+|  `* `    | user    | auto Send the payment reminder                               | not forget to charge them.                                                                         |
 
 *{More to be added}*
 
