@@ -287,32 +287,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Advis.io` and the **Actor** is the `user (Financial Advisor)`, unless 
+specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Manage client’s personal information**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Actor inputs client’s personal information 
+2. System confirms and creates the client profile
+3. Use case ends
 
-    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The financial advisor input the wrong format for the client’s information and tags
+* 1b. The system requests for the actor to input the correct data.
+* 1c. Steps 1a-1b are repeated until the data entered are correct.
+* 1d. Use case resumes from step 2.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: Manage client’s policy**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. Actor inputs client’s personal information
+2. System confirms and creates the client profile
+3. Use case ends
 
-*{More to be added}*
+**Use case: Create Reminder**
+
+**MSS**
+
+1. The financial advisor selects the client for whom they want to create a reminder. 
+2. The system requests for the type of reminder and the date and time it should be set for. 
+3. The financial advisor enters the details of the reminder. 
+4. The system saves the reminder and confirms the creation of the reminder. 
+5. Use case ends.
+
+**Extensions**
+
+* 3a. The financial advisor enters an invalid type of reminder or an invalid date and time.
+* 3a1. The system requests for the correct data.
+* 3a2. The financial advisor enters the correct data.
+* 3a3. Steps 3a1-3a2 are repeated until the data entered are correct.
+* 3a4. Use case resumes from step 4.
+
+
+**Use case: Find Client**
+
+**MSS**
+
+1. The financial advisor enters the name, account number, or any other relevant information of the client they want to 
+find.
+2. The system searches for the client based on the entered information.
+3. The system displays a list of clients matching the entered information.
+4. The financial advisor selects the desired client from the list.
+5. The system displays the client's information and account details.
+6. Use case ends.
+
+
+**Extensions**
+
+* 2a. The system does not find any clients matching the entered information.
+* 2a1. The system displays a message indicating that no clients were found and prompts the financial advisor to enter 
+  different information.
+* 2a2. Use case resumes from step 1.
+
+
+
 
 ### Non-Functional Requirements
 
