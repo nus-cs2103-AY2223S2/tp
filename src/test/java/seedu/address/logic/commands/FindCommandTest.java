@@ -10,10 +10,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,10 +30,22 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
+        List<String> firstKeyword = Collections.singletonList("first");
+        List<String> secondKeyword = Collections.singletonList("second");
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_NAME);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_PHONE);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_EMAIL);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_TELEGRAM_HANDLE);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_ADDRESS);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_MODULE_TAG);
+        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_GROUP_TAG);
+    }
+
+    public void create_equals(List<String> firstKeyword, List<String> secondKeyword, Prefix prefix) {
         ContainsKeywordsPredicate firstPredicate =
-                new ContainsKeywordsPredicate(Collections.singletonList("first"), CliSyntax.PREFIX_NAME);
+                new ContainsKeywordsPredicate(firstKeyword, prefix);
         ContainsKeywordsPredicate secondPredicate =
-                new ContainsKeywordsPredicate(Collections.singletonList("second"), CliSyntax.PREFIX_NAME);
+                new ContainsKeywordsPredicate(secondKeyword, prefix);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,8 +69,18 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_NAME);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_ADDRESS);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_EMAIL);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_PHONE);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_GROUP_TAG);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_MODULE_TAG);
+        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_TELEGRAM_HANDLE);
+    }
+
+    public void create_zeroKeywords_noPersonFound(Prefix prefix) {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        ContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ContainsKeywordsPredicate predicate = preparePredicate(" ", prefix);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +90,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        ContainsKeywordsPredicate predicate = preparePredicate("Kee Edward Canning");
+        ContainsKeywordsPredicate predicate = preparePredicate("Kee Edward Canning", CliSyntax.PREFIX_NAME);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,8 +100,8 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code ContainsKeywordsPredicate}.
      */
-    private ContainsKeywordsPredicate preparePredicate(String userInput) {
+    private ContainsKeywordsPredicate preparePredicate(String userInput, Prefix prefix) {
         return new ContainsKeywordsPredicate(
-                Arrays.asList(userInput.split("\\s+")), CliSyntax.PREFIX_NAME);
+                Arrays.asList(userInput.split("\\s+")), prefix);
     }
 }
