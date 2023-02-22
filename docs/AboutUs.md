@@ -5,9 +5,9 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
+
 
 ### Pang Chin Kiat, Vincent
 
@@ -15,19 +15,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/securespider)]
 
-* Role: Scheduling and tracking
+* Role: Developer
+* Responsibilities: Scheduling and tracking
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Ma Yuanxin
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/mayuanxin1234.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/mayuanxin1234)]
+[[portfolio](team/mayuanxin1234.md)]
 
-### Johnny Doe
+*  Role: Developer
+*  Responsibilities: Deliverables and deadlines, and Integration
+
+
+### Diat Bhin
 
 <img src="images/johndoe.png" width="200px">
 
@@ -36,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Wen Jue
 
 <img src="images/johndoe.png" width="200px">
 
@@ -45,13 +48,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
