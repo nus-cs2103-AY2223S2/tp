@@ -65,6 +65,83 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+
+## Client Management 
+
+### Adding a client: `add`
+
+Adds a client to the list of client profiles.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+Examples:
+
+- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+
+### Listing all clients: `list`
+
+Shows a list of all client profiles.
+
+Format: `list`
+
+### Editing a client : `edit`
+
+Edits an existing client in the list of client profiles.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client 
+  list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+
+- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567 
+and johndoe@example.com respectively.
+- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
+
+### Locating clients by name: find
+
+Finds clients whose names contain any of the given keywords.
+
+Format: `find KEYWORD \[MORE_KEYWORDS\]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+-   `find John` returns `john` and `John Doe`
+
+-   `find alex david` returns `Alex Yeoh, David Li`
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a client : `delete`
+
+Deletes the specified client from the list of client profiles.
+
+Format: `delete INDEX`
+
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
