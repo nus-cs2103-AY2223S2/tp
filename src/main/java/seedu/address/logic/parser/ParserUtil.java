@@ -96,6 +96,12 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+    /**
+     * Parses a {@code String Weight} into an {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
+     */
     public static Weight parseWeight(String weight) throws ParseException {
         requireNonNull(weight);
         String trimmedAddress = weight.trim();
@@ -104,6 +110,12 @@ public class ParserUtil {
         }
         return new Weight(trimmedAddress);
     }
+    /**
+     * Parses a {@code String Gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedAddress = gender.trim();

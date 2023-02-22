@@ -110,14 +110,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        if(weight == null) {
+        if (weight == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
         }
         if (!Weight.isValidWeight(weight)) {
             throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
         }
         final Weight modelWeight = new Weight(weight);
-        if(gender == null) {
+        if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
         if (!Gender.isValidGender(gender)) {
