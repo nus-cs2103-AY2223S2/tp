@@ -79,7 +79,7 @@ public class AddCommand extends Command {
 
     /**
      * Formats the added tasks to be printed out by UI
-     * @param toAdd The arraylist of tasks
+     * @param toAdd The arraylist of tasks to add
      * @return The formatted description of tasks
      */
     public String formatAddedTasks(ArrayList<Task> toAdd) {
