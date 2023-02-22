@@ -8,7 +8,7 @@ title: MATHUTORING
 
 ![Ui](images/Ui.png)
 
-**MATHUTORING is a desktop application for Private Math Tuition Teachers to manage their students contacts and performance.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**MATHUTORING is a desktop application for Private Math Tuition Teachers to manage their students' contacts and performances.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using MATHUTORING, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing MATHUTORING, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
