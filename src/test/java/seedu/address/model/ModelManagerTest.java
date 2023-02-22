@@ -117,7 +117,8 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALBERT.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new ContainsKeywordsPredicate(Arrays.asList(keywords), CliSyntax.PREFIX_NAME));
+        modelManager.updateFilteredPersonList(
+                new ContainsKeywordsPredicate(Arrays.asList(keywords), CliSyntax.PREFIX_NAME));
         assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
