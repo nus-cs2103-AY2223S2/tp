@@ -143,6 +143,80 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Creating a group : `group create`
+
+Create a group in the address book.
+
+Format: `group create g/GROUP_NAME`
+
+* Creates a group with the specified group name `GROUP_NAME`.
+* The group name cannot be empty
+
+Examples:
+* `group create g/CS2103T`
+* `group create g/CS2101`
+
+### Deleting a group : `group delete`
+
+Deletes an existing group from the address book.
+
+Format: `group delete g/GROUP_NAME`
+
+* Deletes a group with the specified group name `GROUP_NAME`.
+* The group name cannot be empty and must be an existing group
+
+Examples:
+* `group delete g/CS2103T`
+* `group delete g/CS2101`
+
+
+### Adding a person to a group : `group add`
+
+Adds a person to an existing group from the address book.
+
+Format: `group add n/NAME g/GROUP_NAME`
+
+* Adds a person with given name `NAME` into a group with the specified group name `GROUP_NAME`.
+* The group name cannot be empty and must be an existing group
+* The person name cannot be empty and must be an existing contact
+
+Examples:
+* `group add n/Lyndon Lim g/CS2103T`
+* `group add n/Lyndon Lim g/CS2101`
+
+### Removing a person from a group : `group remove`
+
+Removes a person from an existing group from the address book.
+
+Format: `group remove n/NAME g/GROUP_NAME`
+
+* Removes a person with given name `NAME` from a group with the specified group name `GROUP_PNAME`.
+* The group name cannot be empty and must be an existing group
+* The person name cannot be empty and must be an existing contact
+
+Examples:
+* `group remove n/Lyndon Lim g/CS2103T`
+* `group remove n/Lyndon Lim g/CS2101`
+
+
+### List all groups: `group list`
+
+Shows a list of all existing groups' name in the address book.
+
+Format: `group list`
+
+### Find a group: `group find`
+
+Finds group by name and list everyone in that group
+
+Format: `group find g/GROUP_NAME`
+
+* The group name cannot be empty and must be an existing group
+
+Examples:
+* `group find CS2103T'
+* `group find CS2101'
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -191,3 +265,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Group create** | `group create g/GROUP_NAME`
+**Group delete** | `group delete g/GROUP_NAME`
+**Group add** | `group add n/NAME g/GROUP_NAME`
+**Group remove** | `group remove n/NAME g/GROUP_NAME`
+**Group list** | `group list`
+**Group find** | `group find g/GROUP_NAME'
