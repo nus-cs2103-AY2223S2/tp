@@ -19,14 +19,24 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Person> personListView;
+    @FXML
+    private ListView<Person> drugListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
+
+        // PERSON LIST
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        // DRUG LIST
+        drugListView.setItems(personList);
+        drugListView.setCellFactory(listView -> new PersonListViewCell());
+        //  drugListView.setItems(drugList); // to be passed in as arg
+        //  drugListView.setCellFactory(listView -> new DrugListViewCell()); // the class to be created ltr
     }
 
     /**
