@@ -4,13 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Relationship;
 import seedu.address.model.shared.Id;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Task implements Relationship<Task> {
 
     // Identity fields
     private final Id id;
@@ -65,7 +66,8 @@ public class Task {
      * Returns true if both tasks have the same subject.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSameTask(Task otherTask) {
+    @Override
+    public boolean isSame(Task otherTask) {
         if (otherTask == this) {
             return true;
         }

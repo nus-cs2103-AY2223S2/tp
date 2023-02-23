@@ -4,12 +4,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Relationship;
 import seedu.address.model.shared.Id;
 
 /**
  * A many-to-many relationship mapping for task and person
+ * Take note that both personId and taskId must refer to a
+ * valid Object.
+ * TODO BUT THIS CODE HAS NOT IMPLEMENT THE LOGIC TO VERIFY THE TIGHT BOUND OF VALID RELATIONSHIP
  */
-public class PersonTask {
+public class PersonTask implements Relationship<PersonTask> {
     private final Id personId;
     private final Id taskId;
 
@@ -50,4 +54,8 @@ public class PersonTask {
         return Objects.hash(personId, taskId);
     }
 
+    @Override
+    public boolean isSame(PersonTask obj) {
+        return equals(obj);
+    }
 }

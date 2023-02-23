@@ -17,7 +17,7 @@ public class Content {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Content}.
@@ -28,6 +28,10 @@ public class Content {
         requireNonNull(value);
         checkArgument(isValidContent(value), MESSAGE_CONSTRAINTS);
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     /**

@@ -7,7 +7,14 @@ import java.util.Objects;
  * Guarantees: immutable;
  */
 public class Status {
-    public final boolean value;
+    /*
+     * Must be valid boolean representation
+     */
+    public static final String VALIDATION_REGEX = "(?i)(true|false)";
+
+    public static final String MESSAGE_CONSTRAINTS =
+        "Status is true or false value";
+    private final boolean value;
 
     /**
      * Constructs a {@code Status}.
@@ -18,7 +25,15 @@ public class Status {
         this.value = value;
     }
 
-
+    public boolean isValue() {
+        return value;
+    }
+    /**
+     * Returns true if a given string is a valid status.
+     */
+    public static boolean isValidStatus(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     @Override
     public String toString() {
 
