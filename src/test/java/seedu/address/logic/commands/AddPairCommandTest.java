@@ -113,5 +113,4 @@ public class AddPairCommandTest {
             return new FriendlyLink();
         }
     }
-
 }

@@ -134,14 +134,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code risk} is invalid.
      */
-    public static RiskLevel parseRiskLevel(String risklevel) throws ParseException {
-        requireNonNull(risklevel);
-        String trimmedrisk = risklevel.trim();
-        String upperrisk = trimmedrisk.toUpperCase();
-        if (!RiskLevel.isValidRisk(upperrisk)) {
+    public static RiskLevel parseRiskLevel(String riskLevel) throws ParseException {
+        requireNonNull(riskLevel);
+        String trimmedRisk = riskLevel.trim();
+        String upperRisk = trimmedRisk.toUpperCase();
+        if (!RiskLevel.isValidRisk(upperRisk)) {
             throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
         }
-        return new RiskLevel(upperrisk);
+        return new RiskLevel(upperRisk);
     }
 
     /**

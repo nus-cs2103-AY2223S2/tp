@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -28,7 +28,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_NRIC + "NRIC "
+            + PREFIX_NRIC_ELDERLY + "NRIC "
             + PREFIX_AGE + "AGE "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -37,7 +37,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC + "S1234567A "
+            + PREFIX_NRIC_ELDERLY + "S1234567A "
             + PREFIX_AGE + "69 "
             + PREFIX_RISK + "LOW "
             + PREFIX_TAG + "friends "
