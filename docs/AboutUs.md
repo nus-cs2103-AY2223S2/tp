@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tseng Chen-Yu
 
-<img src="images/cy.png" width="200px">
+<img src="images/cydtseng.png" width="200px">
 
 [[github](http://github.com/cydtseng)]
 [[portfolio](team/johndoe.md)]
