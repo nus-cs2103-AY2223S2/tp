@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <u>list all patients(UC03)</u>
+1.  User <ins>list all patients(UC03)</ins>
 3.  User enters NRIC or index to delete a specific person in the list
 4.  CareFlow deletes the person from the system
 5.  Careflow show the upddated patient list
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <u>lists all drugs(UC06)</u>
+1.  User <ins>lists all drugs(UC06)</ins>
 3.  User enters drug's trade name or index to delete a specific drug in the list
 4.  CareFlow deletes the drug from the system
 5.  Careflow show the updated drug list
