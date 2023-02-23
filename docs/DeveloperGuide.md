@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `GP receptionist`, unless specified otherwise)
 
-**Use case: Add a patient**
+**Use case: UC01 - Add a patient**
 
 **Precondition: The GP receptionist is logged into the system**
 
@@ -294,76 +294,144 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to add a new patient to the system.
-2. The system prompts the user for the patient information.
-3. The user enters these parameters and submits the form
-4. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
-5. The system creates the new user account
+2. The user enters patient details 
+   1. The following are required information:
+         - Patient name
+         - NRIC
+         - Phone Number
+         - Email
+         - Address
+   2. The following are non-required information:
+         - Drug Allergy
+         - Emergency contact
+3. The system creates the new user account
+4. The system show the new created user in the patient list
 
     Use case ends.
 
 **Extensions**
-* 2a. The following are required information:
-      - Patient name
-	   - NRIC
-	   - Phone Number
-	   - Email
-	   - Address
+* 2a. If any of the required fields are not completed
+
+    * 2a1. the user is informed which required fields are missing
 
  Use case resume at step 2.
 
-* 2b. The following are non-required information:
-      - Drug Allergy
-	   - Emergency contact
+* 2b. If the username is already in use
 
- Use case resume at step 2.
-
-* 3a. If any of the required fields are not completed
-
-    * 3a1. the user is informed which required fields are missing
-
- Use case resume at step 2.
-
-* 3b. If the username is already in use
-
-    * 3a1. the user is informed that he or she must choose a different name
+    * 2b1. the user is informed that he or she must choose a different name
    
  Use case resume at step 2.
 
-* 3c. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
+* 2c. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
 
-    * 7a1. If the NRIC is invalid, the user is informed of this, and valid naming criteria is displayed.
+    * 2c1. If the NRIC is invalid, the user is informed of this, and valid naming criteria is displayed.
 
-	 * 7a2. If the phone number is invalid, the user is informed of this, and valid naming criteria is displayed.
+	 * 2c2. If the phone number is invalid, the user is informed of this, and valid naming criteria is displayed.
 
-	 * 7a3. If the email is invalid, the user is informed of this, and valid naming criteria is displayed.
+	 * 2c3. If the email is invalid, the user is informed of this, and valid naming criteria is displayed.
 
-	 * 7a4. If the address is invalid, the user is informed of this, and valid naming criteria is displayed.
+	 * 2c4. If the address is invalid, the user is informed of this, and valid naming criteria is displayed.
 
  Use case resume at step 2.
 
+**Use case: UC02 - Delete a person**
 
-**Use case: Delete a person**
+**Precondition: The GP receptionist is logged into the system**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User <u>list all patients(UC03)</u>
+3.  User enters NRIC or index to delete a specific person in the list
+4.  CareFlow deletes the person from the system
+5.  Careflow show the upddated patient list
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given NRIC is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. CareFlow shows an error message.
 
       Use case resumes at step 2.
+
+* 2b. The given index is invalid.
+
+    * 2b1. CareFlow shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case:  UC03 - List all patients**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**MSS**
+
+1.  User requests to list all patients
+2.  CareFlow shows a list of patients
+
+    Use case ends.
+
+**Use case:  UC04 - Add a drug**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**Guarantee: A new user account is created on the system with**
+
+**MSS**
+
+1. User request to add a new drug to the system
+2. The user enters drug details
+3. The system creates the new user account
+4. The system show the new created drug in the drug list 
+
+    Use case ends.
+
+**Use case:  UC05 - Delete a drug**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**MSS**
+
+1.  User <u>lists all drugs(UC06)</u>
+3.  User enters drug's trade name or index to delete a specific drug in the list
+4.  CareFlow deletes the drug from the system
+5.  Careflow show the updated drug list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given trade name is invalid.
+
+    * 2a1. CareFlow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given index is invalid.
+
+    * 2b1. CareFlow shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case:  UC06 - List all drugs**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**MSS**
+
+1.  User requests to list all drugs
+2.  CareFlow shows a list of drugs
+
+    Use case ends.
 
 *{More to be added}*
 
