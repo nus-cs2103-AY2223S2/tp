@@ -5,19 +5,19 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Li Xintong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/emrysil.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](https://ay2223s2-cs2103t-w09-3.github.io/tp/)]
+[[github](https://github.com/Emrysil)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: develop drug inventory sub-system
+* Contact: e0772646@u.nus.edu
 
 ### Jane Doe
 
