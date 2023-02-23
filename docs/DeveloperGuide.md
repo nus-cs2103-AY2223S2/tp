@@ -273,8 +273,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | add a new patient              |                                                                        |
+| `* * *`  | user                                       | delete a patient               | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
@@ -283,7 +283,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `GP receptionist`, unless specified otherwise)
+
+**Use case: Add a patient**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**Guarantee: A new user account is created on the system with at least a name, NRIC, phone, email, and address**
+
+**MSS**
+
+1. User request to add a new patient to the system.
+2. The system prompts the user for the patient information.
+3. The user enters these parameters and submits the form
+4. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
+5. The system creates the new user account
+
+    Use case ends.
+
+**Extensions**
+* 2a. The following are required information:
+      - Patient name
+	   - NRIC
+	   - Phone Number
+	   - Email
+	   - Address
+
+ Use case resume at step 2.
+
+* 2b. The following are non-required information:
+      - Drug Allergy
+	   - Emergency contact
+
+ Use case resume at step 2.
+
+* 3a. If any of the required fields are not completed
+
+    * 3a1. the user is informed which required fields are missing
+
+ Use case resume at step 2.
+
+* 3b. If the username is already in use
+
+    * 3a1. the user is informed that he or she must choose a different name
+   
+ Use case resume at step 2.
+
+* 3c. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
+
+    * 7a1. If the NRIC is invalid, the user is informed of this, and valid naming criteria is displayed.
+
+	 * 7a2. If the phone number is invalid, the user is informed of this, and valid naming criteria is displayed.
+
+	 * 7a3. If the email is invalid, the user is informed of this, and valid naming criteria is displayed.
+
+	 * 7a4. If the address is invalid, the user is informed of this, and valid naming criteria is displayed.
+
+ Use case resume at step 2.
+
 
 **Use case: Delete a person**
 
@@ -322,6 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GP receptionist**: General practitioners receptionist
 
 --------------------------------------------------------------------------------------------------------------------
 
