@@ -1,6 +1,5 @@
 package seedu.address.model.student;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -11,14 +10,20 @@ import java.util.Objects;
 public class Homework {
     private final String description;
     private final LocalDateTime deadline;
-    private boolean isDone;
+    private Status status;
+
+    /**
+     * The status of the homework.
+     */
+    public enum Status {
+        COMPLETED, PENDING;
+    };
 
     /**
      * Creates a new Homework with the given description and deadline.
      *
      * @param description The description of the assignment.
      * @param deadline The deadline of the assignment.
-     * @throws ParseException if the deadline is in the past.
      */
     public Homework(String description, LocalDateTime deadline) {
         Objects.requireNonNull(description);
@@ -26,7 +31,7 @@ public class Homework {
 
         this.description = description;
         this.deadline = deadline;
-        this.isDone = false;
+        this.status = Status.PENDING;
     }
 
     public String getDescription() {
@@ -37,20 +42,31 @@ public class Homework {
         return deadline;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean isCompleted() {
+        return status == Status.COMPLETED;
     }
 
+    /**
+     * Marks the homework as completed.
+     */
     public void markAsDone() {
-        isDone = true;
+        status = Status.COMPLETED;
     }
 
+    /**
+     * Marks the homework as not completed.
+     */
     public void markAsNotDone() {
-        isDone = false;
+        status = Status.PENDING;
     }
 
+    /**
+     * Returns a tag to indicate whether the homework is completed or not.
+     *
+     * @return A tag to indicate whether the homework is completed or not.
+     */
     public String getStatusTag() {
-        return isDone ? "[X]" : "[ ]";
+        return status == Status.COMPLETED ? "[X]" : "[ ]";
     }
 
     @Override

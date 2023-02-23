@@ -37,7 +37,7 @@ public class StudentTasksPage extends UiPart<Stage> {
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
         listName.setText("Student Tasks List: ");
-        homeworkList.getItems().addAll(student.getAssignments());
+        homeworkList.getItems().addAll(student.getHomeworkList());
     }
 
     /**

@@ -67,8 +67,14 @@ public class CreateHomeworkCommand extends Command {
             student.addHomework(homework);
         }
 
+        StringBuilder sb = new StringBuilder();
+        for (Student student : studentList) {
+            sb.append(student.getName().fullName);
+            sb.append("\n");
+        }
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_HOMEWORK_ADDED_SUCCESS, homework, model.getFilteredStudentList()));
+                String.format(Messages.MESSAGE_HOMEWORK_ADDED_SUCCESS, homework, sb));
     }
 
 

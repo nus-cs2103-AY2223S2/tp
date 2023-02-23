@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
@@ -59,6 +60,8 @@ public class Student {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return set of tags
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -67,13 +70,68 @@ public class Student {
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return list of homework
      */
-    public List<Homework> getAssignments() {
+    public List<Homework> getHomeworkList() {
         return Collections.unmodifiableList(homeworkList);
     }
 
     /**
-     * Adds an homework to the student.
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of completed homework
+     */
+    public List<Homework> getCompletedHomeworkList() {
+        List<Homework> completedHomeworkList = new ArrayList<>();
+        for (Homework hw : homeworkList) {
+            if (hw.isCompleted()) {
+                completedHomeworkList.add(hw);
+            }
+        }
+        return Collections.unmodifiableList(completedHomeworkList);
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of pending homework
+     */
+    public List<Homework> getPendingHomeworkList() {
+        List<Homework> pendingHomeworkList = new ArrayList<>();
+        for (Homework hw : homeworkList) {
+            if (!hw.isCompleted()) {
+                pendingHomeworkList.add(hw);
+            }
+        }
+        return Collections.unmodifiableList(pendingHomeworkList);
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public List<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
+        List<Homework> filteredHomeworkList = new ArrayList<>();
+
+        // filter homework list
+        for (Homework hw : homeworkList) {
+            if (predicate.test(hw)) {
+                filteredHomeworkList.add(hw);
+            }
+        }
+
+        return Collections.unmodifiableList(filteredHomeworkList);
+    }
+
+    /**
+     * Adds a homework to the homework list.
+     *
+     * @param homework homework to be added
      */
     public void addHomework(Homework homework) {
         // check for duplicate homework
@@ -89,6 +147,9 @@ public class Student {
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
+     *
+     * @param otherPerson other person to compare to
+     * @return boolean
      */
     public boolean isSamePerson(Student otherPerson) {
         if (otherPerson == this) {
@@ -119,7 +180,7 @@ public class Student {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAssignments().equals(getAssignments());
+                && otherPerson.getHomeworkList().equals(getHomeworkList());
     }
 
     @Override
@@ -139,7 +200,7 @@ public class Student {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Assignments: ")
-                .append(getAssignments());
+                .append(getHomeworkList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

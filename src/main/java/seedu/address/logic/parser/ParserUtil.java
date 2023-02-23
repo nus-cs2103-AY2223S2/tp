@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.Homework;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
@@ -163,5 +164,21 @@ public class ParserUtil {
         throw new ParseException("Invalid date format. Please use one of the following formats:\n"
                 + String.join("\n", ACCEPTABLE_DATETIME_FORMATS));
     }
-    //@@author
+
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     *
+     * @param status The status string to be parsed
+     * @return The parsed Boolean object
+     * @throws ParseException if the status string does not match any of the acceptable status
+     */
+    public static Boolean parseStatus(String status) throws ParseException {
+        if (status.equalsIgnoreCase(Homework.Status.COMPLETED.toString())) {
+            return true;
+        } else if (status.equalsIgnoreCase(Homework.Status.PENDING.toString())) {
+            return false;
+        } else {
+            throw new ParseException("Invalid status. Please use either 'completed' or 'pending'.");
+        }
+    }
 }
