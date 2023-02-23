@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-EZ-Shedule is a **desktop application for managing and scheduling of events, optimized for use via a Command Line Interface (CLI)** while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
+EZ-Schedule is a **desktop application for managing and scheduling of events, optimized for use via a Command Line Interface (CLI)** while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
