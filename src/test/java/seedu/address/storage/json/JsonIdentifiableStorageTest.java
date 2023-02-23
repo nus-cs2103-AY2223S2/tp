@@ -18,8 +18,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileHelper;
 import seedu.address.commons.util.JsonHelper;
 import seedu.address.model.IdentifiableManager;
-import seedu.address.model.ReadOnlyIdentifiableManager;
-import seedu.address.model.item.Identifiable;
+import seedu.address.storage.stubs.JsonIdentifiableManagerStub;
+import seedu.address.storage.stubs.JsonIdentifiableStorageStub;
 
 @ExtendWith(MockitoExtension.class)
 public class JsonIdentifiableStorageTest {
@@ -45,11 +45,15 @@ public class JsonIdentifiableStorageTest {
 
         filePath = Path.of("test", "path");
 
-        storage = new JsonIdentifiableStorageStub(filePath);
+        storage = new JsonIdentifiableStorageStub(
+                filePath, jsonHelper, fileHelper, logger);
 
-        Mockito.lenient().when(jsonManager.toModelType()).thenReturn(new IdentifiableManager<>());
+        Mockito.lenient()
+                .when(jsonManager.toModelType())
+                .thenReturn(new IdentifiableManager<>());
 
-        Mockito.lenient().when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
+        Mockito.lenient()
+                .when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
                 .thenReturn(Optional.of(jsonManager));
     }
 
@@ -122,62 +126,4 @@ public class JsonIdentifiableStorageTest {
                 .createIfMissing(filePath);
     }
 
-
-    private static class IdentifiableStub implements Identifiable {
-        private final String id;
-
-        IdentifiableStub(String id) {
-            this.id = id;
-        }
-
-        @Override
-        public String getId() {
-            return id;
-        }
-    }
-
-    private static class JsonAdaptedIdentifiableStub implements JsonAdaptedModel<IdentifiableStub> {
-        private final String id;
-
-        JsonAdaptedIdentifiableStub(String id) {
-            this.id = id;
-        }
-
-        @Override
-        public IdentifiableStub toModelType() throws IllegalValueException {
-            return new IdentifiableStub(this.id);
-        }
-    }
-
-    private static class JsonIdentifiableManagerStub extends
-            JsonIdentifiableManager<IdentifiableStub, JsonAdaptedIdentifiableStub> {
-
-        @Override
-        protected JsonAdaptedIdentifiableStub getJsonAdaptedModel(IdentifiableStub item) {
-            return new JsonAdaptedIdentifiableStub(item.getId());
-        }
-    }
-
-    private class JsonIdentifiableStorageStub extends
-            JsonIdentifiableStorage<IdentifiableStub,
-                                           JsonAdaptedIdentifiableStub,
-                                           JsonIdentifiableManagerStub> {
-        public JsonIdentifiableStorageStub(Path filePath) {
-            super(filePath, jsonHelper, fileHelper, logger);
-        }
-
-        @Override
-        protected Class<JsonIdentifiableManagerStub> getManagerClass() {
-            return JsonIdentifiableManagerStub.class;
-        }
-
-        @Override
-        protected JsonIdentifiableManagerStub createManager(
-                ReadOnlyIdentifiableManager<IdentifiableStub> modelManager) {
-            final JsonIdentifiableManagerStub res =
-                    new JsonIdentifiableManagerStub();
-            res.readFromManager(modelManager);
-            return res;
-        }
-    }
 }

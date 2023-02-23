@@ -13,7 +13,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.IdentifiableManager;
 import seedu.address.model.ReadOnlyIdentifiableManager;
-import seedu.address.model.item.Identifiable;
+import seedu.address.storage.stubs.IdentifiableStub;
+import seedu.address.storage.stubs.JsonAdaptedIdentifiableStub;
+import seedu.address.storage.stubs.JsonIdentifiableManagerStub;
 
 @ExtendWith(MockitoExtension.class)
 public class JsonIdentifiableManagerTest {
@@ -21,10 +23,10 @@ public class JsonIdentifiableManagerTest {
     private IdentifiableStub model;
 
     @Mock
-    private JsonAdaptedModelStub jsonModel;
+    private JsonAdaptedIdentifiableStub jsonModel;
 
     @Mock
-    private ReadOnlyIdentifiableManagerStub manager;
+    private ReadOnlyIdentifiableManager<IdentifiableStub> manager;
 
     private JsonIdentifiableManagerStub jsonManager;
 
@@ -72,55 +74,11 @@ public class JsonIdentifiableManagerTest {
     @Test
     void toModelType_whenDuplicate_shouldThrowIllegalValueException() throws IllegalValueException {
         // Arrange
-        jsonManager.items.add(new JsonAdaptedModelStub("test"));
-        jsonManager.items.add(new JsonAdaptedModelStub("test"));
+        jsonManager.items.add(new JsonAdaptedIdentifiableStub("test"));
+        jsonManager.items.add(new JsonAdaptedIdentifiableStub("test"));
         // Assert
         Assertions.assertThrows(
                 IllegalValueException.class, () -> jsonManager.toModelType());
     }
 
-
-    private static class IdentifiableStub implements Identifiable {
-        private final String id;
-
-        public IdentifiableStub(String id) {
-            this.id = id;
-        }
-
-        @Override
-        public String getId() {
-            return id;
-        }
-    }
-
-    private abstract static class ReadOnlyIdentifiableManagerStub
-            implements ReadOnlyIdentifiableManager<IdentifiableStub> {
-
-    }
-
-    private static class JsonAdaptedModelStub implements
-            JsonAdaptedModel<IdentifiableStub> {
-        private final String id;
-
-        public JsonAdaptedModelStub(String id) {
-            this.id = id;
-        }
-
-        @Override
-        public IdentifiableStub toModelType() throws IllegalValueException {
-            return new IdentifiableStub(id);
-        }
-    }
-
-    private static class JsonIdentifiableManagerStub extends
-            JsonIdentifiableManager<IdentifiableStub, JsonAdaptedModelStub> {
-        public JsonIdentifiableManagerStub() {
-            super();
-        }
-
-        @Override
-        protected JsonAdaptedModelStub getJsonAdaptedModel(IdentifiableStub item) {
-            return new JsonAdaptedModelStub(item.getId());
-        }
-    }
 }
