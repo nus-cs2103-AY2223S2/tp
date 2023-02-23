@@ -17,7 +17,7 @@ public class Drug {
     private final ActiveIngredient activeIngredient;
     private final Direction direction;
     private final ExpiryDate expiryDate;
-    private final Purpose purpose;
+    private final Set<Purpose> purposes;
     private final Set<SideEffect> sideEffects;
     private final StorageCount storageCount;
 
@@ -25,13 +25,13 @@ public class Drug {
      * Every field must be present and not null.
      */
     public Drug(TradeName tradeName, ActiveIngredient activeIngredient, Direction direction,
-                ExpiryDate expiryDate, Purpose purpose, Set<SideEffect> sideEffects, StorageCount storageCount) {
-        requireAllNonNull(tradeName, activeIngredient, direction, expiryDate, purpose, sideEffects, storageCount);
+                ExpiryDate expiryDate, Set<Purpose> purposes, Set<SideEffect> sideEffects, StorageCount storageCount) {
+        requireAllNonNull(tradeName, activeIngredient, direction, expiryDate, purposes, sideEffects, storageCount);
         this.tradeName = tradeName;
         this.activeIngredient = activeIngredient;
         this.direction = direction;
         this.expiryDate = expiryDate;
-        this.purpose = purpose;
+        this.purposes = purposes;
         this.sideEffects = sideEffects;
         this.storageCount = storageCount;
     }
@@ -52,8 +52,8 @@ public class Drug {
         return expiryDate;
     }
 
-    public Purpose getPurpose() {
-        return purpose;
+    public Set<Purpose> getPurposes() {
+        return Collections.unmodifiableSet(purposes);
     }
 
     public StorageCount getStorageCount() {
@@ -93,7 +93,7 @@ public class Drug {
                 && getActiveIngredient().equals(otherDrug.getActiveIngredient())
                 && getDirection().equals(otherDrug.getDirection())
                 && getExpiryDate().equals(otherDrug.getExpiryDate())
-                && getPurpose().equals(otherDrug.getPurpose())
+                && getPurposes().equals(otherDrug.getPurposes())
                 && getSideEffects().equals(otherDrug.getSideEffects())
                 && getStorageCount().equals(otherDrug.getStorageCount());
     }
@@ -101,7 +101,7 @@ public class Drug {
     @Override
     public int hashCode() {
         return Objects.hash(tradeName, activeIngredient, direction, expiryDate,
-                purpose, sideEffects, storageCount);
+                purposes, sideEffects, storageCount);
     }
 
     @Override
@@ -114,11 +114,14 @@ public class Drug {
                 .append(getDirection())
                 .append("; Expiry Date: ")
                 .append(getExpiryDate())
-                .append("; Purpose: ")
-                .append(getPurpose())
                 .append("; Storage Count: ")
                 .append(getStorageCount());
 
+        Set<Purpose> purposes = getPurposes();
+        if (!purposes.isEmpty()) {
+            builder.append("; Purposes: ");
+            purposes.forEach(builder::append);
+        }
         Set<SideEffect> sideEffects = getSideEffects();
         if (!sideEffects.isEmpty()) {
             builder.append("; Side Effects: ");
