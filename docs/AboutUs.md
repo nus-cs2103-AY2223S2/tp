@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lu Chenyu
 
-<img src="images/profile_chenyu.png" width="200px">
+<img src="images/chenyu.png" width="200px">
 
 [[github](http://github.com/adam07018)]
 [[portfolio](team/adam07018.md)]
