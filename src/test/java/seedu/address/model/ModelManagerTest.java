@@ -120,24 +120,24 @@ public class ModelManagerTest {
         assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs));
 
         // different filteredList -> returns false
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_NAME, ALBERT.getName().fullName.split("\\s+"), eduMate, userPrefs);
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_EMAIL, ALBERT.getEmail().value.split("\\s+"), eduMate, userPrefs);
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_PHONE, ALBERT.getPhone().value.split("\\s+"), eduMate, userPrefs);
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_ADDRESS, ALBERT.getAddress().value.split("\\s+"), eduMate, userPrefs);
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_TELEGRAM_HANDLE, ALBERT.getTelegramHandle().telegramHandle.split("\\s+"),
                 eduMate, userPrefs);
 
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_MODULE_TAG,
                 ALBERT.getModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
 
-        create_equals_filteredList(
+        createEqualsFilteredList(
                 CliSyntax.PREFIX_GROUP_TAG,
                 ALBERT.getGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
@@ -151,7 +151,7 @@ public class ModelManagerTest {
         assertNotEquals(modelManager, new ModelManager(eduMate, differentUserPrefs));
     }
 
-    public void create_equals_filteredList(Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs) {
+    public void createEqualsFilteredList(Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs) {
         modelManager.updateFilteredPersonList(
                 new ContainsKeywordsPredicate(Arrays.asList(keywords), prefix));
         assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs));

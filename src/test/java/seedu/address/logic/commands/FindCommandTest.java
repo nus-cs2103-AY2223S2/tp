@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
-import static seedu.address.testutil.TypicalPersons.ANGMEIHUA;
+import static seedu.address.testutil.TypicalPersons.ANG;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.CLARK;
 import static seedu.address.testutil.TypicalPersons.EDWARD;
@@ -41,16 +41,16 @@ public class FindCommandTest {
     public void equals() {
         List<String> firstKeyword = Collections.singletonList("first");
         List<String> secondKeyword = Collections.singletonList("second");
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_NAME);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_PHONE);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_EMAIL);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_TELEGRAM_HANDLE);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_ADDRESS);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_MODULE_TAG);
-        create_equals(firstKeyword, secondKeyword, CliSyntax.PREFIX_GROUP_TAG);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_NAME);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_PHONE);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_EMAIL);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_TELEGRAM_HANDLE);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_ADDRESS);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_MODULE_TAG);
+        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_GROUP_TAG);
     }
 
-    public void create_equals(List<String> firstKeyword, List<String> secondKeyword, Prefix prefix) {
+    public void createEquals(List<String> firstKeyword, List<String> secondKeyword, Prefix prefix) {
         ContainsKeywordsPredicate firstPredicate =
                 new ContainsKeywordsPredicate(firstKeyword, prefix);
         ContainsKeywordsPredicate secondPredicate =
@@ -78,16 +78,16 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_NAME);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_ADDRESS);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_EMAIL);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_PHONE);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_GROUP_TAG);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_MODULE_TAG);
-        create_zeroKeywords_noPersonFound(CliSyntax.PREFIX_TELEGRAM_HANDLE);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_NAME);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_ADDRESS);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_EMAIL);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_PHONE);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_GROUP_TAG);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_MODULE_TAG);
+        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_TELEGRAM_HANDLE);
     }
 
-    public void create_zeroKeywords_noPersonFound(Prefix prefix) {
+    public void createZeroKeywordsNoPersonFound(Prefix prefix) {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ContainsKeywordsPredicate predicate = preparePredicate(" ", prefix);
         FindCommand command = new FindCommand(predicate);
@@ -98,31 +98,31 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        create_multipleKeywords_multiplePersonsFound(
+        createMultipleKeywordsMultiplePersonsFound(
                 CliSyntax.PREFIX_NAME,
                 "Kee Edward Canning",
                 Arrays.asList(CLARK, EDWARD, FORD),
                 3
         );
-        create_multipleKeywords_multiplePersonsFound(
+        createMultipleKeywordsMultiplePersonsFound(
                 CliSyntax.PREFIX_EMAIL,
                 "albertpark bartlee clarkkee",
                 Arrays.asList(ALBERT, BART, CLARK),
                 3
         );
-        create_multipleKeywords_multiplePersonsFound(
+        createMultipleKeywordsMultiplePersonsFound(
                 CliSyntax.PREFIX_ADDRESS,
                 "91 Joo Koon Circle",
-                Arrays.asList(ANGMEIHUA, JOOKOON),
+                Arrays.asList(ANG, JOOKOON),
                 2
         );
-        create_multipleKeywords_multiplePersonsFound(
+        createMultipleKeywordsMultiplePersonsFound(
                 CliSyntax.PREFIX_PHONE,
                 "92463693 88032666 83340546",
                 Arrays.asList(EDWARD, FORD, LAVENDER),
                 3
         );
-        create_multipleKeywords_multiplePersonsFound(
+        createMultipleKeywordsMultiplePersonsFound(
                 CliSyntax.PREFIX_TELEGRAM_HANDLE,
                 "@kevinho @jookoon @isaacnewton",
                 Arrays.asList(ISAAC, JOOKOON, KEVIN),
@@ -130,7 +130,7 @@ public class FindCommandTest {
         );
     }
 
-    public void create_multipleKeywords_multiplePersonsFound(
+    public void createMultipleKeywordsMultiplePersonsFound(
             Prefix prefix, String userInput, List<Person> expectedOutput, int numOfPerson) {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, numOfPerson);
         ContainsKeywordsPredicate predicate = preparePredicate(userInput, prefix);

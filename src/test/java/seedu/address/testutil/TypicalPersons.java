@@ -31,7 +31,7 @@ public class TypicalPersons {
             .withGroupTags("TA")
             .withModuleTags("CS2113T", "CE3115", "IS3221", "CS3241", "BT2102", "CE3116").build();
 
-    public static final Person ANGMEIHUA = new PersonBuilder().withName("Ang Mei Hua")
+    public static final Person ANG = new PersonBuilder().withName("Ang Mei Hua")
             .withAddress("91 Ang Mo Kio Avenue 4").withEmail("angmeihua@gmail.com")
             .withPhone("92752656").withTelegramHandle("@angmeihua")
             .withGroupTags("Study", "Mayflower")
@@ -141,7 +141,7 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALBERT, ANGMEIHUA, BART, CLARK,
+        return new ArrayList<>(Arrays.asList(ALBERT, ANG, BART, CLARK,
                 DAWSON, EDWARD, FORD, GEORGE, HONG, ISAAC, JOOKOON, KEVIN, LAVENDER, MARY, NICOLE));
     }
 

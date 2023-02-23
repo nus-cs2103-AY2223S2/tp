@@ -22,44 +22,44 @@ public class ContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_NAME,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_ADDRESS,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_EMAIL,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_TELEGRAM_HANDLE,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_PHONE,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_MODULE_TAG,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
-        create_equals(
+        createEquals(
                 CliSyntax.PREFIX_GROUP_TAG,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
     }
 
-    public void create_equals(
+    public void createEquals(
             Prefix prefix,
             List<String> firstPredicateKeywordList,
             List<String> secondPredicateKeywordList) {
@@ -88,7 +88,7 @@ public class ContainsKeywordsPredicateTest {
 
     @Test
     public void test_containsKeywords_returnsTrue() {
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_NAME,
                 new PersonBuilder().withName("Albert Bart").build(),
                 Collections.singletonList("Albert"),
@@ -97,7 +97,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("alBert", "bArT")
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_PHONE,
                 new PersonBuilder().withPhone("89760441").build(),
                 Collections.singletonList("89760441"), // Full number
@@ -106,7 +106,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("8976", "0441") // Mixed case keywords does not apply for numbers
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_EMAIL,
                 new PersonBuilder().withEmail("albertpark@gmail.com").build(),
                 Collections.singletonList("albertpark@gmail.com"),
@@ -115,7 +115,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("aLberTPark@GmaIL.com")
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_ADDRESS,
                 new PersonBuilder().withAddress("2 Blackmore Drive").build(),
                 Collections.singletonList("Blackmore"),
@@ -124,7 +124,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("2", "bLackMore", "drIve")
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_TELEGRAM_HANDLE,
                 new PersonBuilder().withTelegramHandle("@albertpark").build(),
                 Collections.singletonList("@albertpark"),
@@ -133,7 +133,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("@albErtParK")
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_GROUP_TAG,
                 new PersonBuilder().withGroupTags("TA", "CCA").build(),
                 Collections.singletonList("TA"),
@@ -142,7 +142,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("tA", "cCa")
         );
 
-        create_containsKeywords_returnsTrue(
+        createContainsKeywordsReturnsTrue(
                 CliSyntax.PREFIX_MODULE_TAG,
                 new PersonBuilder().withModuleTags("CE2183", "CS1010R").build(),
                 Collections.singletonList("CE2183"),
@@ -152,7 +152,7 @@ public class ContainsKeywordsPredicateTest {
         );
     }
 
-    public void create_containsKeywords_returnsTrue(
+    public void createContainsKeywordsReturnsTrue(
             Prefix prefix, Person person, List<String> oneKeyword, List<String> multiKeyword,
             List<String> oneMatchKeyword, List<String> mixedCaseKeyword) {
         // One keyword
@@ -180,7 +180,7 @@ public class ContainsKeywordsPredicateTest {
                 .withAddress("Main Street").withTelegramHandle("@albertpark")
                 .withModuleTags("CS2030S", "CS2103T", "CS2101").withGroupTags("TA", "CCA").build();
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_NAME,
                 person,
                 emptyList,
@@ -188,7 +188,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("12345", "alice@email.com", "Main", "Street")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_TELEGRAM_HANDLE,
                 person,
                 emptyList,
@@ -196,7 +196,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("12345", "alice@email.com", "Main", "Street")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_EMAIL,
                 person,
                 emptyList,
@@ -204,7 +204,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("Albert", "12345", "Main", "Street")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_ADDRESS,
                 person,
                 emptyList,
@@ -212,7 +212,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("Albert", "12345", "@albertpark", "TA")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_PHONE,
                 person,
                 emptyList,
@@ -220,7 +220,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("Albert", "alice@email.com", "@albertpark", "CS2030S")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_MODULE_TAG,
                 person,
                 emptyList,
@@ -228,7 +228,7 @@ public class ContainsKeywordsPredicateTest {
                 Arrays.asList("Albert", "alice@email.com", "@albertpark", "TA")
         );
 
-        create_doesNotContainKeywords_returnsFalse(
+        createDoesNotContainKeywordsReturnsFalse(
                 CliSyntax.PREFIX_GROUP_TAG,
                 person,
                 emptyList,
@@ -237,7 +237,7 @@ public class ContainsKeywordsPredicateTest {
         );
     }
 
-    public void create_doesNotContainKeywords_returnsFalse(
+    public void createDoesNotContainKeywordsReturnsFalse(
             Prefix prefix, Person person, List<String> emptyList, List<String> wrongKeyword, List<String> wrongFields) {
         // Zero keywords
         ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(emptyList, prefix);
