@@ -5,6 +5,9 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
+You can reach us at any one of the following emails:
+* tweizhe@gmail.com
+* to be added...
 ## Project team
 
 ### Tan Wei Zhe
