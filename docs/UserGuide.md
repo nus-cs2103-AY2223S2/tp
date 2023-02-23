@@ -3,9 +3,19 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+The Intern’s Ship (TinS) is a **desktop app for managing internships application, optimized for use via a Command Line 
+Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can 
+help you manage and keep track of your internship applications faster than traditional GUI apps.
 
-* Table of Contents
+* Features (v1.2)
+  * Adding an internship application: add
+  * Listing all the company and position of the application : list
+  * Locating internship by name: view
+  * Deleting an internship : delete
+  * Saving the data
+
+-----------------
+## Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -88,11 +98,32 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Viewing Details of internship : `view`
 
-Shows a list of all persons in the address book.
+View details of the internship selected by ID.
 
-Format: `list`
+Format: `view ID`
+
+* `ID`: Identification number of the Internship.
+* After keying in the `VIEW` command, the program will return the details of the selected internship.
+
+Example: <br>
+After keying in the `view` command followed by an existing `ID`, TinS will output 
+all information of the internship with the specified `ID`, including position, company 
+name, application status and contact info.
+
+~~~
+// input
+view SE_G1
+~~~
+~~~
+//output
+INTERNSHIP ID: SE_G1
+POSITION: SOFTWARE ENGINEER
+COMPANY NAME: GOOGLE
+APPLICATION STATUS: APPLIED
+CONTACT: BOBTHEMANAGER@GMAIL.COM
+~~~
 
 ### Editing a person : `edit`
 
