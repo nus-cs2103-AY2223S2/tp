@@ -14,7 +14,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 <img src="images/timothy.png" width="200px">
 
 [[github](https://github.com/TimothyLawSongEn)]
-[[portfolio](team/timothy.md)]
+[[portfolio](team/timothylawsongen.md)]
 
 * Role: Project Advisor
 
@@ -23,7 +23,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 <img src="images/bryan.png" width="200px">
 
 [[github](http://github.com/bryanongjx)]
-[[portfolio](team/bryan.md)]
+[[portfolio](team/bryanongjx.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -32,7 +32,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 <img src="images/ryan.png" width="200px">
 
-[[github](http://github.com/ryanchua00)] [[portfolio](team/ryan.md)]
+[[github](http://github.com/ryanchua00)] [[portfolio](team/ryanchua00.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -42,7 +42,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 <img src="images/bokuan.png" width="200px">
 
 [[github](http://github.com/bokuanT)]
-[[portfolio](team/bokuan.md)]
+[[portfolio](team/bokuant.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -52,7 +52,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/Diamondroxxx)]
-[[portfolio](team/avery.md)]
+[[portfolio](team/diamondroxxx.md)]
 
 * Role: Developer
 * Responsibilities: UI
