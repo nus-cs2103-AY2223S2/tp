@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,10 +24,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private LocalDateTime time = null;
 
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags, time);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+    }
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -50,6 +62,12 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public LocalDateTime getTime() {return time;}
+
+    public boolean hasTime() {
+        return this.time != null;
     }
 
     /**

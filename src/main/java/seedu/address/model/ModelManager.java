@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TimeComparator;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +24,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -125,6 +128,17 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateScheduledList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        FilteredList<Person> newFilteredList = new FilteredList<>(addressBook.getPersonList());
+        newFilteredList.setPredicate(predicate);
+        SortedList<Person> newSortedList = new SortedList<>(newFilteredList, new TimeComparator());
+        System.out.println(newSortedList);
+        filteredPersons = new FilteredList<>(newSortedList);
         filteredPersons.setPredicate(predicate);
     }
 
