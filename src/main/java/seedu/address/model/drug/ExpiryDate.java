@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents a drug's expiry date in the drug inventory
  */
 public class ExpiryDate {
+
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should follow the DD-MM-YYYY format and only have"
             + "numerical digits separated by - as inputs";
 
