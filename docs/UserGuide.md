@@ -16,7 +16,7 @@ record-keeping and hello to a more efficient and organised way of managing the v
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `friendly.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-1/tp/releases).
+1. Download the latest `friendlyLink.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your FriendlyLink.
 
@@ -41,23 +41,42 @@ record-keeping and hello to a more efficient and organised way of managing the v
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
+### Feature List
 * Add personnel
-  * Add elderly
-  * Add volunteer
+    * Add elderly
+    * Add volunteer
 * Delete personnel
-  * Delete elderly
-  * Delete volunteer
+    * Delete elderly
+    * Delete volunteer
 * Add pairing of elderly and volunteer
 * Delete pairing of elderly and volunteer
 * View pairing list of elderly and volunteer
 * View personnel list
-  * View volunteer list
-  * View elderly list
+    * View volunteer list
+    * View elderly list
 
+<div markdown="block" class="alert alert-info">
+
+[//]: # (person in charge of command format will change this)
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -165,6 +184,11 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendlyLink home folder.
 
 ## Command summary
 
