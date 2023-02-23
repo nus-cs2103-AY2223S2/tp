@@ -21,21 +21,21 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tseng Chen-Yu
 
-<img src="images/cy.png" width="200px">
+<img src="images/cydtseng.png" width="200px">
 
 [[github](http://github.com/cydtseng)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer 
+* Role: Developer
 * Responsibilities: Working on Patient subsystem
 
 ### Chen Shuwen
 
-<img src="images/cshuwen.jpg" width="200px">
+<img src="images/cshuwen.png" width="200px">
 
 [[github](https://github.com/CShuwen)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer 
+* Role: Developer
 * Responsibilities: Working on Patient Subsystem
 
 ### Jiayan Lim
@@ -45,8 +45,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/Jiayan-Lim)]
 [[portfolio](team/jiayan-lim.md)]
 
-* Role: Developer 
-* Responsibilities: Working on Patient Subsystem 
+* Role: Developer
+* Responsibilities: Working on Patient Subsystem
 
 ### Nevin Lim
 
