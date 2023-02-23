@@ -88,37 +88,129 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 **MSS:**
 1. User keys in the `test` name, `index number` of student and corresponding `grade`
-2. PowerConnect displays feedback to the user that grade has been successfully added for the student
+2. System displays feedback to the user that grade has been successfully added for the student
 
    Use case ends.
 
 **Extensions:**
 
-+ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition. 
-  + 1a1. PowerConnect displays error message indicating index number is invalid.
-  + 1a2. System output of all students particulars in his/her class.
-  + 1a3. User checks for the index number of the student and keys into the system.
-   
-    Use case resumes at step 2.
-+ 1b. Test name is invalid.
-  + 1b1. PowerConnect displays error message indicating wrong test name.
-  + 1b2. User adds a new test name.
-  
-    Use Case resumes at step 2.
-+ 1c. User gave a `Grade` value that is not of an integer.
-  + 1c1. PowerConnect displays error message indicating wrong grade given.
-  + 1c2. User checks and adds the grade input again.
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
+  + 1a1. System displays an error message indicating `index number` is invalid.
+  + 1a2. System output of all `students` particulars in his/her class.
+  + 1a3. User checks for the `index number` of the `student` and keys into the system.
 
     Use case resumes at step 2.
++ 1b. Test name is invalid.
+  + 1b1. System displays an error message indicating wrong test name.
+  + 1b2. User adds a new test name.
+
+    Use case resumes at step 2.
++ 1c. User gave a `Grade` value that is not of an integer.
+  + 1c1. System displays an error message indicating the wrong grade given.
+  + 1c2. User checks and adds the `grade` input again.
+
+    Use case resumes at step 2. <br><br>
+
+**Use Case: UC02 - Adding `comment` for a `student`**
+
+**Preconditions: User knows `index number` of the `student` he/she wishes add `comment` for**
+
+**MSS:**
+1. User keys in the `index number` of student and the corresponding `comment` for the student 
+2. If the student has an existing `comment`, the system will request the user to confirm the change of comments. Otherwise, skip to step 3. 
+3. System displays feedback to the user that the comment has been successfully added for the `student`.
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
+  + 1a1. System displays an error message indicating the `index number` is invalid.
+  + 1a2. System output of all `students` particulars in his/her class.
+  + 1a3. User checks for the index number of the `student` and keys into the system.
+  
+    Use case resumes at step 2.
+  
++ 2a. User informs the system to **NOT** change the existing comment for the `student`.
+  + 2a1. System displays an error message indicating the current process of adding a new comment for the `student` has 
+  ended.
+    
+    Use case ends. <br><br>
+
+**Use Case: UC03 - Adding a new `student` to an existing `class`**
+
+**Preconditions: User knows the `index number` for the `student` and the `class` the student belongs to has already been created**
+
+**MSS:**
+1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details as part of student’s particulars
+2. System displays feedback to the user that the `student` has been successfully been created and added to the respective `class`
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+  + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `student`.
+
+    Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+  + 1b11. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
+  + 1b12. User keys the same information for the student's `name` and NOK’s `name`.
+  + 1b13. User keys in `age` or `phone number` that are not of an integer.
+  + 1b14. User keys in invalid path to `image`.
+  + 1b2. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
+    
+    Use case ends.
+    
++ 2a. User is trying to create a new `student` whose index number belongs to an existing `student` in the class.
+  + 2a1. System displays an error message to the user indicating that a `student` with the same `index number` already exists in the `class`.
+  
+    Use case ends. <br><br>
+
+**Use Case: UC04 - Listing all `students` in the selected `class`**
+
+**MSS:**
+1. User keys in the command to view the list of all `students` in the selected `class`
+2. System displays all `students` particulars in the `class`
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User keys in an invalid `class`.
+  + 1a1. System displays an error message to the user informing him/her the `class` is invalid.
+
+    Use case ends.
+
++ 2a. Selected `class` does not have any `students`
+  + 2a1. System displays an empty list.
+
+    Use case ends.
+
+*{More to be added}* <br><br>
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Non-functional requirements**
+1. Should work on any mainstream OS as long as it has Java `11` or above installed.
+2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
+3. PowerConnect should be able to work without any internet access.
+4. PowerConnect should only be used by a single user per installation and not by multiple users.
+5. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish the majority of the tasks faster using CLI commands than using the mouse.
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Glossary**
+**Attributes**: Information of a student / parent. <br> For example, name, phone number, email address etc <br><br>
+**CLI**: Command Line Interface <br><br>
+**Mainstream OS**: Windows, Linux, Unix, OS-X <br><br>
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
