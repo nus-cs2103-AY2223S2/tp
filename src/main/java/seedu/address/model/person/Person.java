@@ -24,9 +24,20 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Comment comment;
+
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Comment comment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.comment = comment;
+    }
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -34,6 +45,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.comment = new Comment();
     }
 
     public Name getName() {
@@ -50,6 +62,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     /**
