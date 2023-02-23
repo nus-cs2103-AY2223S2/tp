@@ -1,4 +1,7 @@
 package seedu.address.logic.parser.patientparser;
 
-public class PatientParser {
+/**
+ * Represents a Parser that is able to parse user input.
+ */
+public interface PatientParser {
 }

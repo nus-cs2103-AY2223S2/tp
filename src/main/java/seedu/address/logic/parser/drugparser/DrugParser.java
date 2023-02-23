@@ -1,4 +1,7 @@
 package seedu.address.logic.parser.drugparser;
 
-public class DrugParser {
+/**
+ * Represents a Parser that is able to parse user input.
+ */
+public interface DrugParser {
 }

@@ -1,4 +1,7 @@
 package seedu.address.logic.parser;
 
-public class CareFlowParser {
+/**
+ * Represents a Parser that is able to parse user input.
+ */
+public interface CareFlowParser {
 }
