@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Shuwen
 
-<img src="images/cshuwen.jpg" width="200px">
+<img src="images/cshuwen.png" width="200px">
 
 [[github](https://github.com/CShuwen)] [[portfolio](team/johndoe.md)]
 
