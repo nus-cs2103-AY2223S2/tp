@@ -2,7 +2,7 @@
 ![Ui](docs/images/Ui.png)
 
 * This is **our team Project  for Software Engineering (SE) students of CS2103T-W09-3**.<br>
-* It is named `CareFlow` 
+* It is named `CareFlow`
 * `CareFlow` aims to be an efficient patient and drug inventory management application for medical clinic receptionists.
 
 * The user (receptionist) can interact with the system via commands _[user input]_ and view the response _[system response]_
