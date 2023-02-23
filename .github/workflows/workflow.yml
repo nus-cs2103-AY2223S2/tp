@@ -1,2 +1,0 @@
-- name: tp
-  uses: codecov/codecov-action@v3
