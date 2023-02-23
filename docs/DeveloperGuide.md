@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of applicants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
 
 
 ### User stories
@@ -272,18 +272,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | Hiring Manager | view all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
+| `* * *`  | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
+| `* * *`  | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
+| `* * *`  | Hiring Manager | add applicants into each specific application status | I can quickly add the user to the tracking system |
+| `* * *`  | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
+| `* * *`  | Busy Hiring Manager | search for applicants on a specific interview date | I can view the interviews on a specific date |
+| `* * *`  | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
+| `* *`  | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
 **Use case: Delete a person**
 
