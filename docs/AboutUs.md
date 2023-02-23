@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Jiayan Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jiayan-lim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Jiayan-Lim)]
+[[portfolio](team/jiayan-lim.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer 
+* Responsibilities: Working on Patient Subsystem 
 
 ### James Doe
 
