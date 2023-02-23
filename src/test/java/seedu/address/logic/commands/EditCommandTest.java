@@ -35,6 +35,8 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
+    private static final EditPersonDescriptor EDIT_PERSON_DESCRIPTOR = new EditPersonDescriptor();
+
     private Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     @Test
@@ -189,20 +191,17 @@ public class EditCommandTest {
 
     @Test
     public void equals_sameObject_true() {
-        final EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        assertEquals(editPersonDescriptor, editPersonDescriptor);
+        assertEquals(EDIT_PERSON_DESCRIPTOR, EDIT_PERSON_DESCRIPTOR);
     }
 
     @Test
     public void equals_notEditCommand_false() {
-        final EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        assertNotEquals(editPersonDescriptor, 34);
+        assertNotEquals(EDIT_PERSON_DESCRIPTOR, 34);
     }
 
     @Test
     public void isAnyFieldEdited_noneEdited_false() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        assertFalse(editPersonDescriptor.isAnyFieldEdited());
+        assertFalse(EDIT_PERSON_DESCRIPTOR.isAnyFieldEdited());
     }
 
 }

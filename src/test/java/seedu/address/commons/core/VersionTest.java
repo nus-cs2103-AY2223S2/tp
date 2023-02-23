@@ -9,6 +9,12 @@ import org.junit.jupiter.api.Test;
 
 public class VersionTest {
 
+    private static final int MAJOR = 5;
+    private static final int MINOR = 3;
+    private static final int PATCH = 10;
+    private static final boolean IS_EARLY_ACCESS = true;
+    private static final Version VERSION = new Version(MAJOR, MINOR, PATCH, IS_EARLY_ACCESS);
+
     @Test
     public void versionParsing_acceptableVersionString_parsedVersionCorrectly() {
         verifyVersionParsedCorrectly("V0.0.0ea", 0, 0, 0, true);
@@ -131,62 +137,32 @@ public class VersionTest {
 
     @Test
     public void getMajor_validMajor_success() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = true;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertEquals(major, version.getMajor());
+        assertEquals(MAJOR, VERSION.getMajor());
     }
 
     @Test
     public void getMinor_validMinor_success() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = true;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertEquals(minor, version.getMinor());
+        assertEquals(MINOR, VERSION.getMinor());
     }
 
     @Test
     public void getPatch_validPatch_success() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = true;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertEquals(patch, version.getPatch());
+        assertEquals(PATCH, VERSION.getPatch());
     }
 
     @Test
     public void getIsEarlyAccess_validIsEarlyAccess_success() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = true;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertEquals(isEarlyAccess, version.isEarlyAccess());
+        assertEquals(IS_EARLY_ACCESS, VERSION.isEarlyAccess());
     }
 
     @Test
     public void equals_null_false() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = false;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertNotEquals(version, null);
+        assertNotEquals(VERSION, null);
     }
 
     @Test
     public void equals_notVersion_false() {
-        int major = 3;
-        int minor = 4;
-        int patch = 5;
-        boolean isEarlyAccess = false;
-        Version version = new Version(major, minor, patch, isEarlyAccess);
-        assertNotEquals(version, 2);
+        assertNotEquals(VERSION, 2);
     }
 
     private void verifyVersionParsedCorrectly(String versionString,

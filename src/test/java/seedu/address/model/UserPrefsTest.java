@@ -10,35 +10,32 @@ import org.junit.jupiter.api.Test;
 
 public class UserPrefsTest {
 
+    private static final UserPrefs USER_PREFS = new UserPrefs();
+
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
-        UserPrefs userPref = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPref.setGuiSettings(null));
+        assertThrows(NullPointerException.class, () -> USER_PREFS.setGuiSettings(null));
     }
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setEduMateFilePath(null));
+        assertThrows(NullPointerException.class, () -> USER_PREFS.setEduMateFilePath(null));
     }
 
     @Test
     public void hashCode_validUserPrefs_success() {
-        UserPrefs userPrefs = new UserPrefs();
-        assertEquals(userPrefs.hashCode(), Objects.hash(userPrefs.getGuiSettings(),
-                userPrefs.getEduMateFilePath()));
+        assertEquals(USER_PREFS.hashCode(), Objects.hash(USER_PREFS.getGuiSettings(),
+                USER_PREFS.getEduMateFilePath()));
     }
 
     @Test
     public void equals_sameObject_true() {
-        UserPrefs userPrefs = new UserPrefs();
-        assertEquals(userPrefs, userPrefs);
+        assertEquals(USER_PREFS, USER_PREFS);
     }
 
     @Test
     public void equals_notUserPrefs_false() {
-        UserPrefs userPrefs = new UserPrefs();
-        assertNotEquals(userPrefs, 3);
+        assertNotEquals(USER_PREFS, 3);
     }
 
 }
