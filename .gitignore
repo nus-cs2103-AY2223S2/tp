@@ -1,3 +1,6 @@
+# Generated output files
+bin/
+
 # Gradle build files
 /.gradle/
 /build/
