@@ -24,7 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final AddressBook addressBook = new AddressBook(persons);
 
     @Test
     public void constructor() {

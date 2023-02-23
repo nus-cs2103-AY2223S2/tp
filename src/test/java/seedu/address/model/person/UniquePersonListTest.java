@@ -21,7 +21,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniquePersonList uniquePersonList = new UniquePersonList(personComparatorByName);
 
     @Test
     public void contains_nullPerson_throwsNullPointerException() {
@@ -77,7 +77,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonIsSamePerson_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         expectedUniquePersonList.add(ALICE);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -88,7 +88,7 @@ public class UniquePersonListTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -97,7 +97,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -123,7 +123,7 @@ public class UniquePersonListTest {
     public void remove_existingPerson_removesPerson() {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
@@ -135,7 +135,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
         uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         expectedUniquePersonList.add(BOB);
         uniquePersonList.setPersons(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -151,7 +151,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         List<Person> personList = Collections.singletonList(BOB);
         uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniquePersonList expectedUniquePersonList = new UniquePersonList(personComparatorByName);
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
