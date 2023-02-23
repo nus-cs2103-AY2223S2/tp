@@ -30,7 +30,7 @@ public class SideEffect {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid side effect.
      */
     public static boolean isValidSideEffect(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -30,7 +30,7 @@ public class Purpose {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid purpose.
      */
     public static boolean isValidPurpose(String test) {
         return test.matches(VALIDATION_REGEX);

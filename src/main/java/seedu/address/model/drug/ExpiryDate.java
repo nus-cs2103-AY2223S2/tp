@@ -1,5 +1,8 @@
 package seedu.address.model.drug;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -17,7 +20,7 @@ public class ExpiryDate {
      */
     public static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
-    public final String expiryDate;
+    public final LocalDate expiryDate;
 
     /**
      * Constructs an {@code ExpiryDate}.
@@ -27,11 +30,11 @@ public class ExpiryDate {
     public ExpiryDate(String expiryDate) {
         requireNonNull(expiryDate);
         checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
-        this.expiryDate = expiryDate;
+        this.expiryDate = LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid expiry date.
      */
     public static boolean isValidExpiryDate(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -39,7 +42,7 @@ public class ExpiryDate {
 
     @Override
     public String toString() {
-        return expiryDate;
+        return expiryDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
     @Override
