@@ -11,7 +11,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 ### Timothy
 
-<img src="images/timothy.png" width="200px">
+<img src="images/timothylawsongen.png" width="200px">
 
 [[github](https://github.com/TimothyLawSongEn)]
 [[portfolio](team/timothylawsongen.md)]
@@ -20,7 +20,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 ### Bryan
 
-<img src="images/bryan.png" width="200px">
+<img src="images/bryanongjx.png" width="200px">
 
 [[github](http://github.com/bryanongjx)]
 [[portfolio](team/bryanongjx.md)]
@@ -30,7 +30,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 ### Ryan
 
-<img src="images/ryan.png" width="200px">
+<img src="images/ryanchua00.png" width="200px">
 
 [[github](http://github.com/ryanchua00)] [[portfolio](team/ryanchua00.md)]
 
@@ -39,7 +39,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 ### Bo Kuan
 
-<img src="images/bokuan.png" width="200px">
+<img src="images/bokuant.png" width="200px">
 
 [[github](http://github.com/bokuanT)]
 [[portfolio](team/bokuant.md)]
