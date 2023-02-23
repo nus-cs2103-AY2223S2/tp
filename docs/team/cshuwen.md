@@ -6,7 +6,9 @@ title: Chen Shuwen's Project Portfolio Page
 To be added soon.
 
 ### Overview
+Careflow is a desktop application for patient and drug inventory management, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+Careflow can get your patient and drugs management tasks done faster than traditional applications.
 
 ### Summary of Contributions
 - Code Contributed:
