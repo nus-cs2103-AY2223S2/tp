@@ -287,14 +287,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Add a applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a specific applicant in the list
+2.  HMHero adds the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given details is insufficient.
+
+    * 2a1. HMHero shows an error message.
+
+      Use case ends.
+
+
+**Use case: Delete an applicant**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to delete a specific applicant in the list
+4.  HMHero deletes the applicant
 
     Use case ends.
 
@@ -304,11 +323,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given applicant is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HMHero shows an error message.
 
       Use case resumes at step 2.
+      
+      
+**Use case: Advance an applicant’s status**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to advance the status of a specific applicant in the list
+4.  HMHero advances the applicant’s status.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given applicant is invalid.
+
+    * 3a1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given applicant’s status is already “Accepted”.
+
+    * 4a1. HMHero shows an error message.
+
+      Use case ends.
+
+* 4b. The given applicant’s status is already “Rejected”.
+
+    * 4b1. HMHero shows an error message.
+
+      Use case ends.
+
+
+**Use case: Reject an applicant’s status**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to reject a specific applicant in the list
+4.  HMHero sets the applicant’s status as “rejected”.
+
+    Use case ends.
+
+**Extensions**
+
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given applicant is invalid.
+
+    * 3a1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given applicant is already accepted
+
+    * 3b1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Viewing help**
+
+**MSS**
+
+1.  User requests to show for the commands available.
+2.  HMHero shows the table of commands.
+
+    Use case ends.
+
 
 *{More to be added}*
 
