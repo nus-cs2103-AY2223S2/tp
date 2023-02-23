@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,27 +258,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-savvy small home-based bakery business owners
+* < 40 years old — receptive to using digital platforms 
+* Owns E-commerce businesses that:
+  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products 
+  * Lack manpower/time to track logistics
+  * Has < 5 employees
+  * Has < 200 customers per month 
+  * Restocks from suppliers seasonally
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+Our application:
+* allows for consolidation of contacts & tasks information which makes it easier to manage them. (no real-time automation)
+* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
+* enables faster contact management compared to a typical mouse/GUI driven app
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                                 | I want to …​                                       | So that I can…​                                                         |
+| -------- |-------------------------------------------------------------------------|----------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app             | so that I can refer to the instructions when learning how to use the app |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application | easily find them in a single place                                      |
+| `* * *`  | a home bakery owner                                                     | easily add orders into my order list               | efficiently keep track of my orders                          |
+| `* * *`  | a familiar user                                                         | delete existing supplier information               | ensure that the supplier contacts keyed in are correct |
+| `* *`    | user                                                                    | hide private contact details                       | minimize chance of someone else seeing them by accident                 |
+| `*`      | user with many persons in the address book                              | sort persons by name                               | locate a person easily                                                  |
 
 *{More to be added}*
 
