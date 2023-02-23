@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,8 +77,18 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      *         argument.
      */
     public boolean contains(T toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch((val) -> Identifiable.isSame(val, toCheck));
+        return this.contains(toCheck.getId());
+    }
+
+    /**
+     * Returns true if the list contains an item with the given ID.
+     *
+     * @param id the ID to check
+     * @return true if the list contains an item with the given ID.
+     */
+    public boolean contains(String id) {
+        requireNonNull(id);
+        return internalList.stream().anyMatch((val) -> val.getId().equals(id));
     }
 
     /**
@@ -119,9 +130,17 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      * The {@code T} must exist in the list.
      */
     public void remove(T toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new ItemNotFoundException(toRemove);
+        this.remove(toRemove.getId());
+    }
+
+    /**
+     * Removes the item with the given ID from the list.
+     * The item with the given ID must exist in the list.
+     */
+    public void remove(String id) {
+        requireNonNull(id);
+        if (!internalList.removeIf((val) -> val.getId().equals(id))) {
+            throw new ItemNotFoundException(id);
         }
     }
 
@@ -130,7 +149,7 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      *
      * @param replacement the replacement list.
      */
-    public void setItems(ObservableList<T> replacement) {
+    public void setItems(List<T> replacement) {
         requireNonNull(replacement);
         if (UniqueList.itemsHaveDuplicate(replacement)) {
             throw new ItemDuplicateException(replacement.get(0).getClass());
@@ -146,6 +165,15 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      */
     public void setItems(UniqueList<T> replacement) {
         setItems(replacement.internalList);
+    }
+
+    /**
+     * The size of the list.
+     *
+     * @return the size of the list.
+     */
+    public int size() {
+        return internalList.size();
     }
 
     /**
@@ -182,7 +210,7 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      *
      * @param items the list of items to be checked.
      */
-    public static <T extends Identifiable> boolean itemsHaveDuplicate(ObservableList<T> items) {
+    public static <T extends Identifiable> boolean itemsHaveDuplicate(List<T> items) {
         for (int i = 0; i < items.size() - 1; i++) {
             for (int j = i + 1; j < items.size(); j++) {
                 if (Identifiable.isSame(items.get(i), items.get(j))) {

@@ -101,7 +101,7 @@ public class UniqueListTest {
 
     @Test
     void contains_nullItem_shouldThrowNullPointerException() {
-        assertThrows(NullPointerException.class, () -> this.list.contains(null));
+        assertThrows(NullPointerException.class, () -> this.list.contains((IdentifiableStub) null));
     }
 
     @Test
@@ -166,7 +166,7 @@ public class UniqueListTest {
 
     @Test
     void remove_nullItem_shouldThrowNullPointerException() {
-        assertThrows(NullPointerException.class, () -> this.list.remove(null));
+        assertThrows(NullPointerException.class, () -> this.list.remove((IdentifiableStub) null));
     }
 
     @Test
