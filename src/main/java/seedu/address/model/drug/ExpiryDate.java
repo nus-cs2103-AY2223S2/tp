@@ -7,8 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a drug's expiry date in the drug inventory
  */
 public class ExpiryDate {
-    public static final String MESSAGE_CONSTRAINTS = "Expiry dates should follow the DD-MM-YYYY format and only have" +
-            "numerical digits separated by - as inputs";
+    public static final String MESSAGE_CONSTRAINTS = "Expiry dates should follow the DD-MM-YYYY format and only have"
+            + "numerical digits separated by - as inputs";
 
     /*
      * the format of "dd-mm-yyyy", where "dd" represents the day,

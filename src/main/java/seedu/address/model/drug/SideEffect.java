@@ -1,5 +1,4 @@
 package seedu.address.model.drug;
-import javafx.geometry.Side;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,8 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a drug's possible side effects in the drug inventory
  */
 public class SideEffect {
-    public static final String MESSAGE_CONSTRAINTS = "Side effects should start with at least 3 alphabets " +
-            "and only contain alphabets or whitespace";
+    public static final String MESSAGE_CONSTRAINTS = "Side effects should start with at least 3 alphabets "
+            + "and only contain alphabets or whitespace";
 
     /*
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,

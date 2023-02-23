@@ -7,8 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a drug's purpose in the drug inventory
  */
 public class Purpose {
-    public static final String MESSAGE_CONSTRAINTS = "Purposes should start with at least 3 alphabets " +
-            "and only contain alphabets or whitespace";
+    public static final String MESSAGE_CONSTRAINTS = "Purposes should start with at least 3 alphabets "
+            + "and only contain alphabets or whitespace";
 
     /*
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,
