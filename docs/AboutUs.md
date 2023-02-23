@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryan Jansen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanjansen.png" width="200px">
 
 [[github](http://github.com/ryanjansen)]
 
