@@ -425,7 +425,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Applicant status**:
+    1. Applied (default)
+    2. Shortlisted
+    3. Accepted
+    4. Rejected
+* **Application stage**: 
+![Application Stage](images/application_stage.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
