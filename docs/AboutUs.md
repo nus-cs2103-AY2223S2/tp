@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Pang Chin Kiat, Vincent
 
-<img src="images/vincent.png" width="200px">
+<img src="images/securespider.png" width="200px">
 
 [[github](https://github.com/securespider)]
 [[portfolio](team/securespider.md)]
@@ -41,12 +41,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Code quality and Model component
 
-### Wen Jue
+### Yeo Wen Jue
 
-<img src="images/wenjue.png" width="200px">
+<img src="images/mrtwit99.png" width="200px">
 
 [[github](https://github.com/MrTwit99)]
-[[portfolio](team/wenjue.md)]
+[[portfolio](team/mrtwit99.md)]
 
 * Role: Developer
 * Responsibilities: Testing
