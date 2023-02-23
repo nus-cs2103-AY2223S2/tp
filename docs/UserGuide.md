@@ -1,10 +1,11 @@
 ---
 layout: page
-title: User Guide
+title: CareFlow User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Careflow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 
+If you are a receptionist for a GP clinic and you can type fast, Careflow can get your patient and drugs management tasks done faster than traditional applications.
 * Table of Contents
 {:toc}
 
