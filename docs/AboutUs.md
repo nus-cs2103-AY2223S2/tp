@@ -48,12 +48,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer 
 * Responsibilities: Working on Patient Subsystem 
 
-### James Doe
+### Nevin Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nevinlim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nevinlim)]
+[[portfolio](team/nevinlim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Drug Inventory Subsystem
