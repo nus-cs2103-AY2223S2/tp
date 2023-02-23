@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shan Hng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shanhng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Links: [[github]](https://github.com/shanhng)
+[[portfolio]](team/shanhng.md)
 
-* Role: Project Advisor
+* Role: to be added soon...
+* Responsibilities: to be added soon...
 
 ### Jane Doe
 
