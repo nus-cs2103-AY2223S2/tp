@@ -12,25 +12,25 @@ Given below are my contributions to the project.
 * **User Profile Window**
   * What it does: allows the user to view their personal information in a separate window.
   * Justification: To be added.
-  * Highlights: To be added.  
+  * Highlights: To be added.
 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zichen-3974&breakdown=true)  
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zichen-3974&breakdown=true)
 
 
 * **Enhancements to existing issues**:
-  * To be added.  
+  * To be added.
 
 
 * **Community**:
-  * To be added.  
+  * To be added.
 
 
 * **Documentation**:
     * User Guide:
         * To be added.
     * Developer Guide:
-        * To be added.  
+        * To be added.
 
 
 * **Tools**:
