@@ -18,15 +18,15 @@ import seedu.address.model.item.Identifiable;
 @ExtendWith(MockitoExtension.class)
 public class JsonIdentifiableManagerTest {
 
-    IdentifiableStub model;
+    private IdentifiableStub model;
 
     @Mock
-    JsonAdaptedModelStub jsonModel;
+    private JsonAdaptedModelStub jsonModel;
 
     @Mock
-    ReadOnlyIdentifiableManagerStub manager;
+    private ReadOnlyIdentifiableManagerStub manager;
 
-    JsonIdentifiableManagerStub jsonManager;
+    private JsonIdentifiableManagerStub jsonManager;
 
     @BeforeEach
     void setUp() {
@@ -70,7 +70,7 @@ public class JsonIdentifiableManagerTest {
     }
 
     @Test
-    void toModelType_whenDuplicate_shouldThrowIllegalValueException() throws  IllegalValueException {
+    void toModelType_whenDuplicate_shouldThrowIllegalValueException() throws IllegalValueException {
         // Arrange
         jsonManager.items.add(new JsonAdaptedModelStub("test"));
         jsonManager.items.add(new JsonAdaptedModelStub("test"));
@@ -93,7 +93,7 @@ public class JsonIdentifiableManagerTest {
         }
     }
 
-    private static abstract class ReadOnlyIdentifiableManagerStub
+    private abstract static class ReadOnlyIdentifiableManagerStub
             implements ReadOnlyIdentifiableManager<IdentifiableStub> {
 
     }
