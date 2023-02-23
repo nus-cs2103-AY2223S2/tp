@@ -34,7 +34,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     /**
      * The logger to be used by this class.
      */
-    private static final Logger logger = LogsCenter.getLogger(JsonIdentifiableStorage.class);
+    private final Logger logger;
 
     private final Path filePath;
 
@@ -56,7 +56,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
      * @param filePath the path to the file to be read from and written to.
      */
     public JsonIdentifiableStorage(Path filePath) {
-        this(filePath, JsonHelper.INSTANCE, FileHelper.INSTANCE);
+        this(filePath, JsonHelper.INSTANCE, FileHelper.INSTANCE, LogsCenter.getLogger(JsonIdentifiableStorage.class));
     }
 
     /**
@@ -66,11 +66,12 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
      * @param jsonHelper the JsonHelper to be used.
      * @param fileHelper the FileHelper to be used.
      */
-    public JsonIdentifiableStorage(Path filePath, JsonHelper jsonHelper,
-                                   FileHelper fileHelper) {
-        this.filePath = null;
+    protected JsonIdentifiableStorage(Path filePath, JsonHelper jsonHelper,
+                                      FileHelper fileHelper, Logger logger) {
+        this.filePath = filePath;
         this.jsonHelper = jsonHelper;
         this.fileHelper = fileHelper;
+        this.logger = logger;
     }
 
     /**
