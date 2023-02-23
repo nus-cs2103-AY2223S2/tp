@@ -116,7 +116,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
         try {
             return Optional.of(jsonManager.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": "
+            logger.warning("Illegal values found in " + filePath + ": "
                                 + ive.getMessage());
             throw new DataConversionException(ive);
         }

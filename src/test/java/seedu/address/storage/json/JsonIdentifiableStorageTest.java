@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,9 +47,9 @@ public class JsonIdentifiableStorageTest {
 
         storage = new JsonIdentifiableStorageStub(filePath);
 
-        Mockito.when(jsonManager.toModelType()).thenReturn(new IdentifiableManager<>());
+        Mockito.lenient().when(jsonManager.toModelType()).thenReturn(new IdentifiableManager<>());
 
-        Mockito.when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
+        Mockito.lenient().when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
                 .thenReturn(Optional.of(jsonManager));
     }
 
@@ -70,6 +71,57 @@ public class JsonIdentifiableStorageTest {
         Mockito.verify(jsonHelper, Mockito.never())
                 .readJsonFile(filePath, JsonIdentifiableManagerStub.class);
     }
+
+    @Test
+    void read_fileEmpty_shouldReturnOptionalEmpty()
+            throws DataConversionException, IOException {
+        Mockito.when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
+                .thenReturn(Optional.empty());
+        assert storage.read().isEmpty();
+    }
+
+    @Test
+    void read_modelCannotConvert_throwDataConversionException()
+            throws DataConversionException, IOException, IllegalValueException {
+        Mockito.when(jsonManager.toModelType()).thenThrow(new IllegalValueException("Test"));
+        Assertions.assertThrows(DataConversionException.class, () -> storage.read());
+    }
+
+    @Test
+    void read_modelCannotConvert_shouldWriteWarningToLogger()
+            throws DataConversionException, IOException, IllegalValueException {
+        Mockito.when(jsonManager.toModelType()).thenThrow(new IllegalValueException("Test"));
+        try {
+            storage.read();
+        } catch (DataConversionException e) {
+            Mockito.verify(logger, Mockito.times(1))
+                    .warning(Mockito.anyString());
+        }
+    }
+
+    @Test
+    void save_noPath_shouldCallWithDefaultPath() throws IOException {
+        storage.save(new IdentifiableManager<>());
+        Mockito.verify(jsonHelper, Mockito.times(1))
+                .saveJsonFile(Mockito.any(), Mockito.eq(filePath));
+        Mockito.verify(fileHelper, Mockito.times(1))
+                .createIfMissing(filePath);
+    }
+
+    @Test
+    void save_withPath_shouldCallWithPathProvided() throws IOException {
+        final Path newPath = Path.of("Hello", "World");
+        storage.save(new IdentifiableManager<>(), newPath);
+        Mockito.verify(jsonHelper, Mockito.times(1))
+                .saveJsonFile(Mockito.any(), Mockito.eq(newPath));
+        Mockito.verify(fileHelper, Mockito.times(1))
+                .createIfMissing(newPath);
+        Mockito.verify(jsonHelper, Mockito.never())
+                .saveJsonFile(Mockito.any(), Mockito.eq(filePath));
+        Mockito.verify(fileHelper, Mockito.never())
+                .createIfMissing(filePath);
+    }
+
 
     private static class IdentifiableStub implements Identifiable {
         private final String id;
@@ -107,8 +159,9 @@ public class JsonIdentifiableStorageTest {
     }
 
     private class JsonIdentifiableStorageStub extends
-            JsonIdentifiableStorage<IdentifiableStub, JsonAdaptedIdentifiableStub, JsonIdentifiableManagerStub> {
-
+            JsonIdentifiableStorage<IdentifiableStub,
+                                           JsonAdaptedIdentifiableStub,
+                                           JsonIdentifiableManagerStub> {
         public JsonIdentifiableStorageStub(Path filePath) {
             super(filePath, jsonHelper, fileHelper, logger);
         }
@@ -119,7 +172,8 @@ public class JsonIdentifiableStorageTest {
         }
 
         @Override
-        protected JsonIdentifiableManagerStub createManager(ReadOnlyIdentifiableManager<IdentifiableStub> modelManager) {
+        protected JsonIdentifiableManagerStub createManager(
+                ReadOnlyIdentifiableManager<IdentifiableStub> modelManager) {
             final JsonIdentifiableManagerStub res =
                     new JsonIdentifiableManagerStub();
             res.readFromManager(modelManager);
