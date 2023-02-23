@@ -14,15 +14,15 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `eduMate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).
+2. Download the latest `eduMate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).  
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.  
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eduMate.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eduMate.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>  
+   ![Ui](images/Ui.png)  
+   <br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `user` : View personal profile.
@@ -35,7 +35,8 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 
    * `sort` : Sorts contact.
 
-1. Refer to the [Features](#features) below for details of each command.
+   <br>
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +50,7 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -57,7 +58,7 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -67,7 +68,7 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -187,7 +188,7 @@ Description of outcome: CS2103T is removed from John Doe's list of modules. Assu
 
 ### Filtering Modules : `filter`
 
-Filters contacts who have the specified module tag.
+Filters all contacts who have the specified module tag.
 Format: `filter m/MODULE_TAG`
 Example of usage: `filter m/CS2103T`
 Expected outcome:
@@ -198,7 +199,7 @@ Description of outcome: Assuming that John Doe, Jane Lane, John Street has CS210
 
 ### Sorting Contacts : `sort`
 
-Sorts contacts by number of common modules, with contacts with most common modules at the top.
+Sorts all contacts by number of common modules, with contacts with most common modules at the top.
 Format: `sort`
 Example of usage: `sort`
 Context:
@@ -234,7 +235,7 @@ Hence, Ben Tan will be the first name on top as he has the most number of module
 **A**: Yes, you can add multiple groupTags to a single user by using the "Module Tagging" feature multiple times.
 
 **Q**: Can I edit my own profile?
-**A**: It will not be in v1.02 but it may be possible for future iterations.
+**A**: It will not be in v1.02, but it may be possible for future iterations.
 
 
 ## Command summary
