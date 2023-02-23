@@ -13,12 +13,13 @@ public class Pilot implements Identifiable {
     private final String id;
 
     /**
-     * Returns the rank of the pilot.
+     * Creates a Pilot with the given name, phone, email and address and a
+     * random {@code UUID} as the id.
      *
-     * @return the rank of the pilot.
+     * @param rank the rank of the pilot.
      */
-    public PilotRank getRank() {
-        return rank;
+    public Pilot(PilotRank rank) {
+        this(UUID.randomUUID().toString(), rank);
     }
 
     /**
@@ -33,14 +34,14 @@ public class Pilot implements Identifiable {
     }
 
     /**
-     * Creates a Pilot with the given name, phone, email and address and a
-     * random {@code UUID} as the id.
+     * Returns the rank of the pilot.
      *
-     * @param rank the rank of the pilot.
+     * @return the rank of the pilot.
      */
-    public Pilot(PilotRank rank) {
-        this(UUID.randomUUID().toString(), rank);
+    public PilotRank getRank() {
+        return rank;
     }
+
 
     @Override
     public String getId() {

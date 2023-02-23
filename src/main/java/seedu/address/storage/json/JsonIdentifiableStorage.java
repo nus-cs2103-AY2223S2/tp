@@ -27,7 +27,8 @@ import seedu.address.storage.IdentifiableStorage;
  * @param <M> the type of the {@link JsonIdentifiableManager} to be stored.
  */
 public abstract class JsonIdentifiableStorage<T extends Identifiable,
-        F extends JsonAdaptedModel<T>, M extends JsonIdentifiableManager<T, F>>
+                                                     F extends JsonAdaptedModel<T>,
+                                                     M extends JsonIdentifiableManager<T, F>>
         implements IdentifiableStorage<T> {
 
     /**
@@ -37,10 +38,6 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
 
     private final Path filePath;
 
-    protected abstract Class<M> getManagerClass();
-
-    protected abstract M createManager(ReadOnlyIdentifiableManager<T> modelManager);
-
     /**
      * Creates a new JsonIdentifiableStorage object.
      *
@@ -49,6 +46,26 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     public JsonIdentifiableStorage(Path filePath) {
         this.filePath = filePath;
     }
+
+    /**
+     * Gets the class of the {@link JsonIdentifiableManager} that was used, i
+     * .e. gets the class of the {@code M} type parameter. This is needed
+     * because the information about the type parameter is erased at runtime.
+     *
+     * @return the class of the {@link JsonIdentifiableManager} that was used.
+     */
+    protected abstract Class<M> getManagerClass();
+
+    /**
+     * Creates a new {@link JsonIdentifiableManager} from the given
+     * {@link ReadOnlyIdentifiableManager}. This is needed because we cannot
+     * specify a constructor for the {@code M} type parameter.
+     *
+     * @param modelManager the {@link ReadOnlyIdentifiableManager} to be used
+     *                     to create the new {@link JsonIdentifiableManager}.
+     * @return a new {@link JsonIdentifiableManager} created from the given
+     */
+    protected abstract M createManager(ReadOnlyIdentifiableManager<T> modelManager);
 
     @Override
     public Path getPath() {
@@ -73,7 +90,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
             return Optional.of(jsonManager.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": "
-                    + ive.getMessage());
+                                + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }

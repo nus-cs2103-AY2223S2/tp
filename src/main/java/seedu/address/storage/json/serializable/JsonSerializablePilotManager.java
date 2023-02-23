@@ -16,19 +16,12 @@ import seedu.address.storage.json.adapted.JsonAdaptedPilot;
 @JsonRootName(value = "pilotmanager")
 public class JsonSerializablePilotManager extends JsonIdentifiableManager<Pilot, JsonAdaptedPilot> {
 
+
     /**
-     * Creates a new JsonSerializablePilotManager from the given manager.
-     *
-     * @param manager the manager to create the JsonSerializablePilotManager
-     *                from, it should be a ReadOnlyIdentifiableManager<Pilot>
-     * @return a new JsonSerializablePilotManager
+     * Creates a new JsonSerializablePilotManager. This will be used by the
+     * factory method {@link #from(ReadOnlyIdentifiableManager)}.
      */
-    public static JsonSerializablePilotManager
-    from(ReadOnlyIdentifiableManager<Pilot> manager) {
-        final JsonSerializablePilotManager res =
-                new JsonSerializablePilotManager();
-        res.readFromManager(manager);
-        return res;
+    private JsonSerializablePilotManager() {
     }
 
     /**
@@ -38,17 +31,25 @@ public class JsonSerializablePilotManager extends JsonIdentifiableManager<Pilot,
      * @param pilots the list of pilots to create the
      *               JsonSerializablePilotManager from.
      */
-    public JsonSerializablePilotManager
-    (@JsonProperty("pilots") List<JsonAdaptedPilot> pilots) {
+    public JsonSerializablePilotManager(
+            @JsonProperty("pilots") List<JsonAdaptedPilot> pilots) {
         this.items.addAll(pilots);
     }
 
     /**
-     * Creates a new JsonSerializablePilotManager. This will be used by the
-     * factory method {@link #from(ReadOnlyIdentifiableManager)}.
+     * Creates a new JsonSerializablePilotManager from the given manager.
+     *
+     * @param manager the manager to create the JsonSerializablePilotManager
+     *                from, it should be a ReadOnlyIdentifiableManager
+     *                &lt;Pilot&gt;
+     * @return a new JsonSerializablePilotManager
      */
-    private JsonSerializablePilotManager() {
-
+    public static JsonSerializablePilotManager from(
+            ReadOnlyIdentifiableManager<Pilot> manager) {
+        final JsonSerializablePilotManager res =
+                new JsonSerializablePilotManager();
+        res.readFromManager(manager);
+        return res;
     }
 
     @Override
