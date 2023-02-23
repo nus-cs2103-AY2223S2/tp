@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/Shuwen.jpg" width="200px">
 
-[[github](https://github.com/CShuwen] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/CShuwen)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer 
 * Responsibilities: Working on Patient Subsystem
