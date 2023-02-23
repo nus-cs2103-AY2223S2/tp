@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Branson Lam
+### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/bransonlj)]
-[[portfolio](team/bransonlj.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: to be added soon...
-* Responsibilities: to be added soon...
+* Role: Team Lead
+* Responsibilities: UI
 
 ### Johnny Doe
 
