@@ -65,4 +65,11 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     *
+     */
+    public static String makeStringCaseInsensitive(String s) {
+        return s.toLowerCase();
+    }
 }
