@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Muhammad Arshad Shaik
 
 <img src="images/Arshad.jpg" width="200px">
 
