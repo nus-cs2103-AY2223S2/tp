@@ -272,14 +272,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Hiring Manager | view all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
+| `* * *`  | Hiring Manager | list out all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
 | `* * *`  | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
 | `* * *`  | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
-| `* * *`  | Hiring Manager | add applicants into each specific application status | I can quickly add the user to the tracking system |
+| `* * *`  | Hiring Manager | add applicants into HMHero | I can quickly add the user to the tracking system |
 | `* * *`  | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
-| `* * *`  | Busy Hiring Manager | search for applicants on a specific interview date | I can view the interviews on a specific date |
-| `* * *`  | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
-| `* *`  | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
+| `* * *`  | Busy Hiring Manager | search for applicants  | I can view details of specific applicants |
+| `* * `  | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
+| `* * `  | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
 
 *{More to be added}*
 
