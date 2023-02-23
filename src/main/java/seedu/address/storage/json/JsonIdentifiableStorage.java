@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileHelper;
 import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonHelper;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.item.Identifiable;
@@ -39,12 +41,38 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     private final Path filePath;
 
     /**
+     * The dependency to handle JSON operations, this is just so that we can
+     * have better separation of concerns in unit testing.
+     */
+    private final JsonHelper jsonHelper;
+
+    /**
+     * The dependency to handle file operations, this is just so that we can
+     * have better separation of concerns in unit testing.
+     */
+    private final FileHelper fileHelper;
+
+    /**
      * Creates a new JsonIdentifiableStorage object.
      *
      * @param filePath the path to the file to be read from and written to.
      */
     public JsonIdentifiableStorage(Path filePath) {
-        this.filePath = filePath;
+        this(filePath, JsonHelper.INSTANCE, FileHelper.INSTANCE);
+    }
+
+    /**
+     * Creates a new JsonIdentifiableStorage object.
+     *
+     * @param filePath   the path to the file to be read from and written to.
+     * @param jsonHelper the JsonHelper to be used.
+     * @param fileHelper the FileHelper to be used.
+     */
+    public JsonIdentifiableStorage(Path filePath, JsonHelper jsonHelper,
+                                   FileHelper fileHelper) {
+        this.filePath = null;
+        this.jsonHelper = jsonHelper;
+        this.fileHelper = fileHelper;
     }
 
     /**
@@ -82,7 +110,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     public Optional<? extends ReadOnlyIdentifiableManager<T>> read(Path filePath)
             throws DataConversionException, IOException {
         requireNonNull(filePath);
-        Optional<M> jsonManager = JsonUtil.readJsonFile(filePath, getManagerClass());
+        Optional<M> jsonManager = jsonHelper.readJsonFile(filePath, getManagerClass());
         if (jsonManager.isEmpty()) {
             return Optional.empty();
         }
@@ -105,7 +133,7 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     public void save(ReadOnlyIdentifiableManager<T> identifiableManager,
                      Path filePath) throws IOException {
         requireAllNonNull(identifiableManager, filePath);
-        FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(createManager(identifiableManager), filePath);
+        fileHelper.createIfMissing(filePath);
+        jsonHelper.saveJsonFile(createManager(identifiableManager), filePath);
     }
 }
