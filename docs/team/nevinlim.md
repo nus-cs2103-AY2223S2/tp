@@ -9,11 +9,11 @@
 * Give a link to your code on tP Code Dashboard. The link is available in the Project List Page -- linked to the  icon under your profile picture.
 
 [Coming soon]
-##<u>Enhancements implemented: </u> 
+##<u>Enhancements implemented: </u>
 * A summary of the enhancements you implemented.
 
 [Coming soon]
-##<u>Contributions to the UG: </U> 
+##<u>Contributions to the UG: </U>
 * Which sections did you contribute to the UG?
 
 [Coming soon]
