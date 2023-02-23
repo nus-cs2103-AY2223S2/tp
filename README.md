@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is a product for Hiring Managers.**.<br>
+* This is a product for **Hiring Managers.**.<br>
   Example usages:
   * as an application to easily track the statuses of candidates' applications
 * The project simulates an ongoing software project for a desktop application (called HMHero) used for managing details and status for  applicants.
