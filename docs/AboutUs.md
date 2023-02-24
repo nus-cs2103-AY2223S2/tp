@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 
-### Chong Wei Guan
+### Darren Chang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/changgittyhub.png" width="200px">
 
-[[github](https://github.com/chongweiguan)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ChangGittyHub)]
+[[portfolio](team/changgittyhub.md)]
 
-* Role: Developer
-* Responsibilities: Deliverables & Deadlines
+* Role: Software Developer
+* Responsibilities: Scheduling and tracking   
 
 ### Arkar Kyaw Aung
 
@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation & Code Quality
 
-### Darren Chang WeiXiang
+### Chong Wei Guan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/ChangGittyHub)]
+[[github](https://github.com/chongweiguan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Task Scheduling
+* Responsibilities: Deliverables & Deadlines

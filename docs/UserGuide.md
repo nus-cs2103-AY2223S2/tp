@@ -73,75 +73,51 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding an order: `add_order / add_o`
 
-### Adding a person: `add`
+Adds an order into the list of orders.
 
-Adds a person to the address book.
+Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]...`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* An order can have any number of remarks.
+* Either customer phone number or email address must be provided
+Status available for setting are: Open, Preparing, Ready, Delivering, Delivered
+* If no status is provided, it is defaulted to Open
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
+* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
-### Locating persons by name: `find`
+### Editing an order : `edit_order / edit_o`
 
-Finds persons whose names contain any of the given keywords.
+Edits an order that is present in the order list.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, … 
+* User is required to key in at least one of the optional fields 
+* Existing values will be replaced with the input values 
+* When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative)
+* User can remove the remarks by typing r/ without specifying any remarks after it
+
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+*  `edit_order 1 p/91234567 d/2023-05-05 ` Edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 
-### Deleting a person : `delete`
+*  `edit_o 3 q/20 r/` Edits the quantity of food for the 3rd order to 20 and clears all remarks
 
-Deletes the specified person from the address book.
+###Deleting a task: `delete_task / delete_t`
 
-Format: `delete INDEX`
+Syntax: `delete_order INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the order at the specified `INDEX`.
+* The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
+* `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
+ 
 
 ### Clearing all entries : `clear`
 
