@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Hmuu Myat Moe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hmuumyatmoe.png" width="200px">
 
 [[github](https://github.com/HmuuMyatMoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hmuumyatmoe.md)]
 
 * Role: Developer
 * Responsibilities: Documentation & Code Quality
