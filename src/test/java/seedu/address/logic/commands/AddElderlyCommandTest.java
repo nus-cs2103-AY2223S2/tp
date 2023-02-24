@@ -21,12 +21,12 @@ import seedu.address.testutil.ElderlyBuilder;
 public class AddElderlyCommandTest {
 
     @Test
-    public void constructor_nullVolunteer_throwsNullPointerException() {
+    public void constructor_nullElderly_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddElderlyCommand(null));
     }
 
     @Test
-    public void execute_volunteerAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_elderlyAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Elderly validElderly = new ElderlyBuilder().build();
 
@@ -77,13 +77,13 @@ public class AddElderlyCommandTest {
     private class ModelStubWithElderly extends ModelStub {
         private final Person person;
 
-        ModelStubWithElderly(Person person) {
+        ModelStubWithElderly(Elderly person) {
             requireNonNull(person);
             this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasElderly(Elderly person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -96,13 +96,13 @@ public class AddElderlyCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasElderly(Elderly person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addElderly(Elderly person) {
             requireNonNull(person);
             personsAdded.add(person);
         }
