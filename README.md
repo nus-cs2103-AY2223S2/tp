@@ -5,15 +5,21 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+Hi there,
 
-This project uses Icon by [Raj Dev](https://freeicons.io/profile/714) on [freeicons.io](https://freeicons.io)
+Welcome to Where Got Time - a perfect desktop app dedicate to managing your events and plan out your
+meetings with your friends and family. It is developed for university student, who can type fast to efficiently keep track of all of their events and their
+friends' events via a Command Line Interface.
+
+We are sure that as a university student, you have struggled to find a date that all your friends are free to meet. 
+Fret not because _Where Got Time_ got your back! This desktop app aims to **automate the process** for you, saving you all the 
+pain and "scratching head moment" you face when trying to find a time that all of you are free! 
+
+Not just that, Where Got Time allows you to **keep track of all your events** such as your weekly tutorials, lectures and 
+cca timings. No more digging through your pinned messages or photo album to find your timetale
+anymore! 
+
+Useful links: 
+- [User Guide](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md) to start your journey with Where Got Time 
+- [Developer Guide](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md) 
+- [About us](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/AboutUs.md)
