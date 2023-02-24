@@ -36,15 +36,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Huang Zhizhou
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huangzz125.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/huangzz125)]
+[[portfolio](team/huangzz125.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Integration
 
 ### James Doe
 
