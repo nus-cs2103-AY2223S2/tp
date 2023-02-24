@@ -259,12 +259,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Tech-savvy small home-based bakery business owners
-* < 40 years old — receptive to using digital platforms 
+* < 40 years old — receptive to using digital platforms
 * Owns E-commerce businesses that:
-  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products 
+  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products
   * Lack manpower/time to track logistics
   * Has < 5 employees
-  * Has < 200 customers per month 
+  * Has < 200 customers per month
   * Restocks from suppliers seasonally
 * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types

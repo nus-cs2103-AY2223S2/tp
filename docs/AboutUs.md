@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
-* Responsibilities: Scheduling & Tracking   
+* Responsibilities: Scheduling & Tracking
 
 ### Arkar Kyaw Aung
 

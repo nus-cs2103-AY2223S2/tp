@@ -11,7 +11,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add tasks to a task list and edit existing tasks.
-    * What it does: 
+    * What it does:
       * Allows the user to add tasks with task description, deadline of task and completion status (DONE / NOT DONE) of task.
       * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
     * Justification: This feature improves the product significantly because home business owners has a lot of tasks (such as ordering supplies, making deliveries) to deal with
