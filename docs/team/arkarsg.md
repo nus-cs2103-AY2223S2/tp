@@ -9,7 +9,7 @@ Trackr is a desktop application used to keep track of order, suppliers and tasks
 
 Given below are my contributions to the project.
 
-* **New Feature**: Refactor `Person` as `Supplier` 
+* **New Feature**: Refactor `Person` to support `Supplier` 
   * What it does: allows the user store `Supplier` and their relevant fields.
   * Justification: This feat improves the product significantly because the differentiation of customers and suppliers reflect user's mental models.
   * Highlights: Supports all pre-existing commands on Person
