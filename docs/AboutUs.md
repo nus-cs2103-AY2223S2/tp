@@ -11,12 +11,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Clyde Lhui
 
-<img src="images/ClydeLhui.png" width="200px">
+<img src="images/clydelhui.png" width="200px">
 
 [[Github](https://github.com/clydelhui)]
 
 * Roles: Documentation and Scheduling and Tracking
-* Responsibilities: Responsible for the quality of various project documents. 
+* Responsibilities: Responsible for the quality of various project documents.
 In charge of defining, assigning and tracking project tasks.
 
 ### Lyndon Lim Liang Hng
@@ -28,14 +28,15 @@ In charge of defining, assigning and tracking project tasks.
 * Role: Team Lead and Testing
 * Responsibilities: Resposible for overall project coordination and ensure testing of project is done properly and on time.
 
-### Johnny Doe
+### Du Jiahua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/edures888.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/edures888)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration
+* Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of
+  the software to create a whole.
 
 ### Jean Doe
 
