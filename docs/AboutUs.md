@@ -33,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/lennox.png" width="200px">
 
-[[github](http://github.com/lennoxtr)] [[portfolio](team/lennox.md)]
+[[github](http://github.com/lennoxtr)]
+[[portfolio](team/lennox.md)]
 
 * Role: Developer
 * Responsibilities: In charge of Storage
