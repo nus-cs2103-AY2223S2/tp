@@ -25,7 +25,7 @@ public class Student {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Homework> homeworkList = new ArrayList<>();
+    private final UniqueHomeworkList homeworkList = new UniqueHomeworkList();
 
     /**
      * Every field must be present and not null.
@@ -49,7 +49,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.homeworkList.addAll(homeworkList);
+        this.homeworkList.setHomeworks(homeworkList);
     }
 
     public Name getName() {
@@ -85,7 +85,7 @@ public class Student {
      * @return list of homework
      */
     public List<Homework> getHomeworkList() {
-        return Collections.unmodifiableList(homeworkList);
+        return homeworkList.asUnmodifiableObservableList();
     }
 
     /**
@@ -159,13 +159,22 @@ public class Student {
     }
 
     /**
+     * Deletes a homework from the homework list.
+     *
+     * @param homework homework to be deleted
+     */
+    public void deleteHomework(Homework homework) {
+        this.homeworkList.remove(homework);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      *
      * @param otherPerson other person to compare to
      * @return boolean
      */
-    public boolean isSamePerson(Student otherPerson) {
+    public boolean isSameStudent(Student otherPerson) {
         if (otherPerson == this) {
             return true;
         }

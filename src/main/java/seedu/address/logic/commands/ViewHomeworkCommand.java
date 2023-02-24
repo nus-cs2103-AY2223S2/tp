@@ -80,8 +80,8 @@ public class ViewHomeworkCommand extends Command {
             List<Homework> homeworkList = student.getFilteredHomeworkList(homeworkStatusPredicate);
             numberOfHomework += homeworkList.size();
 
-            for (Homework homework : homeworkList) {
-                sb.append(homework).append("\n");
+            for (int i = 0; i < homeworkList.size(); i++) {
+                sb.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
             }
 
             sb.append("--------------------\n");

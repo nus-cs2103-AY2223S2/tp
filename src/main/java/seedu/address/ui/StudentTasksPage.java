@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -26,7 +29,7 @@ public class StudentTasksPage extends UiPart<Stage> {
     private Label listName;
 
     @FXML
-    private ListView<Homework> homeworkList;
+    private ListView<String> homeworkList;
 
     /**
      * Creates a {@code StudentTasksPage} with the given {@code Student}.
@@ -37,7 +40,16 @@ public class StudentTasksPage extends UiPart<Stage> {
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
         listName.setText("Student Tasks List: ");
-        homeworkList.getItems().addAll(student.getHomeworkList());
+
+        ObservableList<String> homeworkItems = FXCollections.observableArrayList();
+        List<Homework> studentHomeworkList = student.getHomeworkList();
+        for (int i = 0; i < studentHomeworkList.size(); i++) {
+            Homework homework = studentHomeworkList.get(i);
+            String homeworkString = String.format("%d. %s", i + 1, homework.toString());
+            homeworkItems.add(homeworkString);
+        }
+
+        homeworkList.setItems(homeworkItems);
     }
 
     /**
