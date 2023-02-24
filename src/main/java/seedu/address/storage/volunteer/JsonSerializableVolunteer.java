@@ -17,9 +17,9 @@ import seedu.address.storage.JsonAdaptedPerson;
 /**
  * An Immutable Volunteer that is serializable to JSON format.
  */
-@JsonRootName(value = "volunteer")
+@JsonRootName(value = "volunteers")
 public class JsonSerializableVolunteer {
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_VOLUNTEER = "Volunteer list contains duplicate volunteer(s).";
 
     private final List<JsonAdaptedPerson> volunteer = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class JsonSerializableVolunteer {
      * Constructs a {@code JsonSerializableVolunteer} with the given volunteer.
      */
     @JsonCreator
-    public JsonSerializableVolunteer(@JsonProperty("volunteer") List<JsonAdaptedPerson> volunteer) {
+    public JsonSerializableVolunteer(@JsonProperty("volunteers") List<JsonAdaptedPerson> volunteer) {
         serializeEntities(this.volunteer, volunteer);
     }
 
@@ -62,7 +62,7 @@ public class JsonSerializableVolunteer {
             // TODO: Check if there is a need to cast
             Volunteer volunteer = (Volunteer) jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasVolunteer(volunteer)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_VOLUNTEER);
             }
             friendlyLink.addVolunteer(volunteer);
         }

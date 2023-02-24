@@ -17,9 +17,9 @@ import seedu.address.storage.JsonAdaptedPerson;
 /**
  * An Immutable Elderly that is serializable to JSON format.
  */
-@JsonRootName(value = "elderly")
+@JsonRootName(value = "elderlies")
 public class JsonSerializableElderly {
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ELDERLY = "Elderly list contains duplicate elderly.";
 
     private final List<JsonAdaptedPerson> elderly = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class JsonSerializableElderly {
      * Constructs a {@code JsonSerializableElderly} with the given elderly.
      */
     @JsonCreator
-    public JsonSerializableElderly(@JsonProperty("elderly") List<JsonAdaptedPerson> elderly) {
+    public JsonSerializableElderly(@JsonProperty("elderlies") List<JsonAdaptedPerson> elderly) {
         serializeEntities(this.elderly, elderly);
     }
 
@@ -46,7 +46,7 @@ public class JsonSerializableElderly {
     }
 
     /**
-     * Converts this address book into the model's {@code Elderly} object.
+     * Converts this elderly list into the model's {@code Elderly} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -62,7 +62,7 @@ public class JsonSerializableElderly {
             // TODO: Check if there is a need to cast
             Elderly elderly = (Elderly) jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasElderly(elderly)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ELDERLY);
             }
             friendlyLink.addElderly(elderly);
         }

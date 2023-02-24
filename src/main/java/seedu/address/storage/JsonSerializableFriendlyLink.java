@@ -56,8 +56,8 @@ class JsonSerializableFriendlyLink {
     }
 
     private void unserializeEntities(
-            List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedPerson jsonAdaptedPerson : entity) {
+            List<JsonAdaptedPerson> entities, FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedPerson jsonAdaptedPerson : entities) {
             Person person = jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
