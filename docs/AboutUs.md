@@ -39,7 +39,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Data
 
 ### Shen Chenzi
-![shenchenzi](https://user-images.githubusercontent.com/97273558/221214109-8b56b97e-6aaa-40a2-8fd1-665ec7020ec0.jpg)
+
+![shenchenzi](https://user-images.githubusercontent.com/97273558/221214608-eb068c29-fd79-4f91-a662-bea989ac9f0b.jpg)
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
