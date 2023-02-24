@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shen Chenzi
 
-<img src="images/johndoe.png" width="200px">
+![微信图片_20230201115055](https://user-images.githubusercontent.com/97273558/221212201-a1251961-bf35-4f41-ab27-2214e79d7b3d.jpg)
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
