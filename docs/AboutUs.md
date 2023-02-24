@@ -40,9 +40,10 @@ Jia Hui Liao - `to be added`
 
 ### Jia Hui Liao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jiahui.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/OliviaJHL)]
+[[portfolio](team/OliviaJHL.md)]
 
 * Role: Tester and UI
 * Responsiblities: Testing, Deals with UI, Dev Ops
