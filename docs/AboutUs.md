@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Xiao Yan
 
-<img src="images/xiaoyan_photo.png" width="200px" height="200px">
+<img src="images/xiaoyan_photo.png" width="220px" height="200px">
 
 [[github](http://github.com/windycall)]
 [[portfolio](team/johndoe.md)]
