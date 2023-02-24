@@ -270,14 +270,14 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
-* Is reasonably comfortable using CLI apps
+* Is reasonably comfortable using _CLI_ apps
 
 **Value proposition**:
 
 Our application:
 * allows for consolidation of contacts & tasks information which makes it easier to manage them. (no real-time automation)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
-* enables faster contact management compared to a typical mouse/GUI driven app
+* enables faster contact management compared to a typical mouse/_GUI_ driven app
 
 
 
@@ -285,14 +285,22 @@ Our application:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                 | I want to …​                                       | So that I can…​                                                         |
-| -------- |-------------------------------------------------------------------------|----------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app             | so that I can refer to the instructions when learning how to use the app |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application | easily find them in a single place                                      |
-| `* * *`  | a home bakery owner                                                     | easily add orders into my order list               | efficiently keep track of my orders                          |
-| `* * *`  | a familiar user                                                         | delete existing supplier information               | ensure that the supplier contacts keyed in are correct |
-| `* *`    | user                                                                    | hide private contact details                       | minimize chance of someone else seeing them by accident                 |
-| `*`      | user with many persons in the address book                              | sort persons by name                               | locate a person easily                                                  |
+| Priority | As a …​                                                                 | I want to …​                                                                         | So that I can…​                                                          |
+|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                               | so that I can refer to the instructions when learning how to use the app |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                                       |
+| `* * *`  | a home bakery owner                                                     | easily add orders into my _order_ list                                               | efficiently keep track of my orders                                      |
+| `* * *`  | a home bakery owner who has lots of deadlines to meet                   | add _tasks_, such as ordering ingredients                                            | so that I can keep track of my to-do list                                |
+| `* * *`  | a familiar user                                                         | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct                   |
+| `* * *`  | a familiar user                                                         | delete orders from my order list                                                     | clear my order list of orders that are not required anymore              |
+| `* * *`  | a familiar user                                                         | delete tasks from my task list                                                       | remove tasks that I no longer need to complete                           |
+| `* *`    | an expert user                                                          | easily update supplier information                                                   | keep my records accurate and up-to-date                                  |
+| `* *`    | an expert user                                                          | edit existing information about orders                                               | keep my order details accurate and up-to-date                            |
+| `* *`    | an expert user                                                          | edit existing task information                                                       | easily correct any wrong information keyed in  |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything  |
+| `* *`    | a business owner on a time crunch                                       | mark my tasks as Done or Not Done (Task status)                                      | keep track of my deadlines and plan my time well  |
+| `* *`    | a forgetful business owner                                              | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
 
 *{More to be added}*
 
@@ -573,7 +581,13 @@ MSS
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command-Line Interface
+* **GUI**: Graphical User Interface
+* **Supplier**: Supplier refers to someone who the home bakery owner seasonally or frequently orders goods from
+* **Order**: Order refers to the customers' orders the home bakery owner accepts
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -592,16 +606,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+   3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -609,16 +623,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -626,4 +640,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
