@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jedidiah Cheng
 
-<img src="images/jedidiah-c.png" width="200px">
+<img src="images/jedidiahc.png" width="200px">
 
 [[github](https://github.com/jedidiahC)]
 [[portfolio](team/jedidiah.md)]
