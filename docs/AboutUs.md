@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://leeshaowee.netlify.app/)]
 [[github](https://github.com/shaowi)]
-[[portfolio](team/shaowee.md)]
+[[portfolio](team/shaowi.md)]
 
 - Role: Developer
 - Responsibilities: Deliverables, deadlines, scheduling and tracking
