@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jiahui.png" width="200px">
 
 [[github](https://github.com/OliviaJHL)]
-[[portfolio](team/jiahui.md)]
+[[portfolio](team/OliviaJHL.md)]
 
 * Role: to be added urself
 * Responsiblities: to be added urself
