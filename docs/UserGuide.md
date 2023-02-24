@@ -76,19 +76,34 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an internship : `add`
 
-Adds a person to the address book.
+Adds an internship and its details to TinS
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add POSITION`
+```
+add software engineer
+INPUT COMPANY_NAME: COMPANY_NAME
+INPUT APPLICATION STATUS: APPLICATION_STATUS
+INPUT CONTACT DETAILS: [CONTACT_DETAILS]
+```
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* `POSITION`: Name of Internship Position
+* `COMPANY NAME` : Name of hiring company
+* `APPLICATION_STATUS` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`)
+* `CONTACT DETAILS` : Contact details of hiring manager (optional)
+* After keying in the  add command, the user will be prompted with these fields:
+    * `COMPANY_NAME`
+    * `APPLICATION_STATUS`
+    * `CONTACT_DETAILS (optional)`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
+```
+add software engineer
+INPUT COMPANY_NAME: Google
+INPUT APPLICATION STATUS: applied
+INPUT CONTACT DETAILS: BobTheManager@gmail.com
+```
 
 ### Listing all internships : `list`
 
@@ -151,23 +166,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
