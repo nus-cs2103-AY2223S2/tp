@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Ang Jun Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Irminrics.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Irminrics)]
+[[portfolio](team/Irminrics.md)]
 
-* Role: Project Advisor
+- Role: Team Lead
+- Responsibilites: Pull request approver
 
-### Jane Doe
+### Jerome Neo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerome-neo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jerome-neo)]
+[[portfolio](team/jerome-neo.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Documentation, Testing
 
-### Johnny Doe
+### Lim Jia Yi Venus
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/venuslimm.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/venuslimm)]
+[[portfolio](team/venuslimm.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Documentation Quality, Integration
 
-### Jean Doe
+### Lin Weilin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weilin1202.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/weilin1202)]
+[[portfolio](team/weilin1202.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Testing, Code Quality
 
-### James Doe
+### Song Yi, Ina
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/inas0ng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/inas0ng)]
+[[portfolio](team/inas0ng.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Testing, Deliverables and Deadline
