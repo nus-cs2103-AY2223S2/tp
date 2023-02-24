@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -157,12 +158,23 @@ public class Student {
     }
 
     /**
+     * Returns a homework from the homework list.
+     *
+     * @param index index of homework to be returned
+     * @return homework
+     */
+    public Homework getHomework(Index index) {
+        return this.homeworkList.getHomework(index.getZeroBased());
+    }
+
+    /**
      * Deletes a homework from the homework list.
      *
-     * @param homework homework to be deleted
+     * @param index index of homework to be deleted
      */
-    public void deleteHomework(Homework homework) {
-        this.homeworkList.remove(homework);
+    public void deleteHomework(Index index) {
+        Homework homeworkToDelete = this.homeworkList.getHomework(index.getZeroBased());
+        this.homeworkList.remove(homeworkToDelete);
     }
 
     /**
@@ -230,5 +242,4 @@ public class Student {
         }
         return builder.toString();
     }
-
 }

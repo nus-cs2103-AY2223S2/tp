@@ -31,6 +31,9 @@ public class UniqueHomeworkList implements Iterable<Homework> {
 
     /**
      * Returns true if the list contains an equivalent homework as the given argument.
+     *
+     * @param toCheck the homework to be checked
+     * @return true if the list contains the homework
      */
     public boolean contains(Homework toCheck) {
         requireNonNull(toCheck);
@@ -40,6 +43,8 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     /**
      * Adds a homework to the list.
      * The homework must not already exist in the list.
+     *
+     * @param toAdd the homework to be added
      */
     public void add(Homework toAdd) {
         requireNonNull(toAdd);
@@ -72,6 +77,8 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     /**
      * Removes the equivalent homework from the list.
      * The homework must exist in the list.
+     *
+     * @param toRemove the homework to be removed
      */
     public void remove(Homework toRemove) {
         requireNonNull(toRemove);
@@ -80,6 +87,12 @@ public class UniqueHomeworkList implements Iterable<Homework> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code homeworks}.
+     * {@code homeworks} must not contain duplicate homeworks.
+     *
+     * @param replacement the homeworks to be added to the list
+     */
     public void setHomeworks(UniqueHomeworkList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -88,6 +101,8 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     /**
      * Replaces the contents of this list with {@code homeworks}.
      * {@code homeworks} must not contain duplicate homeworks.
+     *
+     * @param homeworks the homeworks to be added to the list
      */
     public void setHomeworks(List<Homework> homeworks) {
         requireAllNonNull(homeworks);
@@ -100,11 +115,28 @@ public class UniqueHomeworkList implements Iterable<Homework> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @param index of the homework to be returned
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public Homework getHomework(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Homework> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
     @Override
     public Iterator<Homework> iterator() {
         return internalList.iterator();
@@ -112,6 +144,9 @@ public class UniqueHomeworkList implements Iterable<Homework> {
 
     /**
      * Returns true if {@code homeworks} contains only unique homeworks.
+     *
+     * @param homeworks the homeworks to be checked
+     * @return true if {@code homeworks} contains only unique homeworks
      */
     private boolean homeworksAreUnique(List<Homework> homeworks) {
         for (int i = 0; i < homeworks.size() - 1; i++) {

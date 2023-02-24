@@ -73,6 +73,7 @@ public class ViewHomeworkCommand extends Command {
         int numberOfStudents = studentList.size();
         int numberOfHomework = 0;
         StringBuilder sb = new StringBuilder();
+        sb.append("--------------------------------------------------\n");
 
         // Loop through each student and add their homework to the string builder
         for (Student student : studentList) {
@@ -84,7 +85,7 @@ public class ViewHomeworkCommand extends Command {
                 sb.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
             }
 
-            sb.append("--------------------\n");
+            sb.append("--------------------------------------------------\n");
         }
 
         // If no homework is found, throw an exception
