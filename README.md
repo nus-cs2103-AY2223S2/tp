@@ -1,41 +1,28 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
+![Ui](docs/images/Ui.png)
+
 # The Intern's Ship
 
-The Intern’s Ship (TinS) is a desktop app for managing internships application, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can help you manage and keep track of your internship applications faster than traditional GUI apps.
+**The Intern’s Ship** (TinS) is an **internship management application** built for Computing students to track and update the progress, status and information of all their internship applications in an organised and efficient manner.
+
+Optimized for quick inputs using a Command Line Interface (CLI) while still having the clarity of a Graphical User Interface (GUI), if you can type fast, TinS can help you manage your internship applications more effectively than traditional apps.
 
 ### Features (v1.2)
-* Adding an internship application: add
-* Listing all the company and position of the application : list
-* Locating internship by name: view
-* Deleting an internship : delete
-* Saving the data
+* Add and Delete Internship applications
+* List out key information of all applications
+* View detailed information of applications
+* Automatic saving of data
 
-### Adding an internship : `add`
+*Many More features to come!*
 
-Adds an internship and its details to TinS
+# Links
 
-Format: `add POSITION`
-```
-add software engineer
-INPUT COMPANY_NAME: COMPANY_NAME
-INPUT APPLICATION STATUS: APPLICATION_STATUS
-INPUT CONTACT DETAILS: [CONTACT_DETAILS]
-```
+- [About Us](https://github.com/AY2223S2-CS2103T-T11-2/tp/blob/master/docs/AboutUs.md)
+- [Developer Guide](https://github.com/AY2223S2-CS2103T-T11-2/tp/blob/master/docs/DeveloperGuide.md)
+- [User Guide](https://github.com/AY2223S2-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md)
 
-* `POSITION`: Name of Internship Position
-* `COMPANY NAME` : Name of hiring company
-* `APPLICATION_STATUS` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`)
-* `CONTACT DETAILS` : Contact details of hiring manager (optional)
-* After keying in the  add command, the user will be prompted with these fields:
-  * `COMPANY_NAME`
-  * `APPLICATION_STATUS`
-  * `CONTACT_DETAILS (optional)`
+# Acknowledgements
 
-Example:
-```
-add software engineer
-INPUT COMPANY_NAME: Google
-INPUT APPLICATION STATUS: applied
-INPUT CONTACT DETAILS: BobTheManager@gmail.com
-```
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
+
