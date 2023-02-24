@@ -171,17 +171,18 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes an internship along with its details.
 
-Format: `delete INDEX`
+Format: `delete ID`
+* Deletes the person at the specified `ID`.
+* The ID the  Auto-Generated ID created by TInS.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+> Note: After keying in the  delete command, the user will be asked to confirm their action by typing in `YES` or `NO`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+`delete SE_G1`  
+`ARE YOU SURE YOU WANT TO DELETE SOFTWARE ENGINEER, GOOGLE` : `YES`
 
 ### Clearing all entries : `clear`
 
@@ -197,7 +198,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
