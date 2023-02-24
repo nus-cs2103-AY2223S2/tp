@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Pan Zai Ming
+
+<img src="images/pzaiming.png" width="200px">
+
+[[github](https://github.com/pzaiming)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Development + Documentation
+
 ### Dylan Sng Jie An
 
 <img src="images/dsja612.png" width="200px">
@@ -18,16 +28,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Development + Documentation
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Adriel Kee
 
