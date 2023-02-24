@@ -49,10 +49,15 @@ public class LogicManagerTest {
     public void setUp() {
         JsonFriendlyLinkStorage friendLinkStorage =
                 new JsonFriendlyLinkStorage(temporaryFolder.resolve("friendlylink.json"));
-        JsonElderlyStorage elderlyStorage = new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
-        JsonVolunteerStorage volunteerStorage = new JsonVolunteerStorage(temporaryFolder.resolve("volunteer.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+        JsonElderlyStorage elderlyStorage =
+                new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
+        JsonVolunteerStorage volunteerStorage =
+                new JsonVolunteerStorage(temporaryFolder.resolve("volunteer.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage =
+                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
     }
 
@@ -85,7 +90,8 @@ public class LogicManagerTest {
                 new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+        StorageManager storage =
+                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

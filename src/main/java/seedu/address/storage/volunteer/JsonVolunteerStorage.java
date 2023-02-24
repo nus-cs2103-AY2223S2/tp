@@ -19,7 +19,8 @@ import seedu.address.model.ReadOnlyVolunteer;
  */
 public class JsonVolunteerStorage implements VolunteerStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(seedu.address.storage.volunteer.JsonVolunteerStorage.class);
+    private static final Logger logger =
+            LogsCenter.getLogger(seedu.address.storage.volunteer.JsonVolunteerStorage.class);
 
     private final Path filePath;
 

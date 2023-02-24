@@ -7,6 +7,9 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyVolunteer;
 
+/**
+ * Storage class for serializing and unserializing of the volunteer entity.
+ */
 public interface VolunteerStorage {
     /**
      * Returns the file path of the data file.

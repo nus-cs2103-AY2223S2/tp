@@ -7,6 +7,9 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyElderly;
 
+/**
+ * Storage class for handling serializing and unserializing of the elderly entity
+ */
 public interface ElderlyStorage {
     /**
      * Returns the file path of the data file.

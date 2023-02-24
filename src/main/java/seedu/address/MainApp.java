@@ -76,7 +76,7 @@ public class MainApp extends Application {
             UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage,
             ElderlyStorage elderlyStorage, VolunteerStorage volunteerStorage) {
 
-        storage = new StorageManager(friendlyLinkStorage,elderlyStorage, volunteerStorage, userPrefsStorage);
+        storage = new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
