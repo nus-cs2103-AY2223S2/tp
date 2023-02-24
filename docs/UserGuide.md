@@ -71,7 +71,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding an order: `add_order / add_o`
+### Adding an order: `add_order` / `add_o`
 
 Adds an order into the list of orders.
 
@@ -86,7 +86,7 @@ Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
 * `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
-### Editing an order : `edit_order / edit_o`
+### Editing an order : `edit_order` / `edit_o`
 
 Edits an order that is present in the order list.
 
@@ -153,7 +153,7 @@ Examples:
 * `delete_supplier 2` deletes the first supplier.
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`.
 
-### Deleting a task: `delete_order / delete_o`
+### Deleting an order: `delete_order` / `delete_o`
 
 Syntax: `delete_order INDEX`
 
