@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,47 +14,50 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Volunteer;
+import seedu.address.testutil.VolunteerBuilder;
 
-public class AddCommandTest {
+public class AddVolunteerCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullVolunteer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddVolunteerCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_volunteerAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Volunteer validVolunteer = new VolunteerBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddVolunteerCommand(validVolunteer).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Collections.singletonList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddVolunteerCommand.MESSAGE_SUCCESS, validVolunteer),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validVolunteer), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Volunteer validVolunteer = new VolunteerBuilder().build();
+        AddVolunteerCommand addCommand = new AddVolunteerCommand(validVolunteer);
+        ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddVolunteerCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Volunteer alice = new VolunteerBuilder().withName("Alice").build();
+        Volunteer bob = new VolunteerBuilder().withName("Bob").build();
+        AddVolunteerCommand addAliceCommand = new AddVolunteerCommand(alice);
+        AddVolunteerCommand addBobCommand = new AddVolunteerCommand(bob);
 
         // same object -> returns true
         assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddVolunteerCommand addAliceCommandCopy = new AddVolunteerCommand(alice);
         assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
@@ -70,16 +73,16 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private static class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithVolunteer extends ModelStub {
         private final Person person;
 
-        ModelStubWithPerson(Person person) {
+        ModelStubWithVolunteer(Volunteer person) {
             requireNonNull(person);
             this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasVolunteer(Volunteer person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -92,13 +95,13 @@ public class AddCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasVolunteer(Volunteer person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addVolunteer(Volunteer person) {
             requireNonNull(person);
             personsAdded.add(person);
         }
@@ -108,5 +111,4 @@ public class AddCommandTest {
             return new FriendlyLink();
         }
     }
-
 }

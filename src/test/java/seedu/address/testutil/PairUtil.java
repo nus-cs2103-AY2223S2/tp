@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ELDERLY_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VOLUNTEER_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.model.pair.Pair;
@@ -22,8 +22,8 @@ public class PairUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPairDetails(Pair pair) {
-        String sb = PREFIX_ELDERLY_NRIC + pair.getElderly().getName().fullName + " "
-                + PREFIX_VOLUNTEER_NRIC + pair.getVolunteer().getName().fullName + " ";
+        String sb = PREFIX_NRIC_ELDERLY + pair.getElderly().getName().fullName + " "
+                + PREFIX_NRIC_VOLUNTEER + pair.getVolunteer().getName().fullName + " ";
         return sb;
     }
 }

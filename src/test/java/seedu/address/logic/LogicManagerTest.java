@@ -24,12 +24,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonFriendlyLinkStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.volunteer.JsonVolunteerStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -43,10 +47,17 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage addressBookStorage =
+        JsonFriendlyLinkStorage friendLinkStorage =
                 new JsonFriendlyLinkStorage(temporaryFolder.resolve("friendlylink.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonElderlyStorage elderlyStorage =
+                new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
+        JsonVolunteerStorage volunteerStorage =
+                new JsonVolunteerStorage(temporaryFolder.resolve("volunteer.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage =
+                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
     }
 
@@ -71,11 +82,16 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonFriendlyLinkStorage addressBookStorage =
+        JsonFriendlyLinkStorage friendLinkStorage =
                 new JsonFriendlyLinkIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
+        JsonElderlyStorage elderlyStorage =
+                new JsonElderlyStorage(temporaryFolder.resolve("ioExceptionElderly.json"));
+        JsonVolunteerStorage volunteerStorage =
+                new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage =
+                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -156,6 +172,35 @@ public class LogicManagerTest {
 
         @Override
         public void saveFriendlyLink(ReadOnlyFriendlyLink addressBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonElderlyIoExceptionThrowingStub extends JsonElderlyStorage {
+        private JsonElderlyIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveElderly(ReadOnlyElderly elderly, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonVolunteerIoExceptionThrowingStub extends JsonVolunteerStorage {
+        public JsonVolunteerIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveVolunteer(ReadOnlyVolunteer volunteer, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

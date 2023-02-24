@@ -12,10 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the friendly link data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -23,19 +25,23 @@ public class ModelManager implements Model {
     private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Elderly> filteredElderly;
+    private final FilteredList<Person> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given friendlyLink and userPrefs.
      */
-    public ModelManager(ReadOnlyFriendlyLink addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(friendlyLink, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with friendly link: " + friendlyLink + " and user prefs " + userPrefs);
 
-        this.friendlyLink = new FriendlyLink(addressBook);
+        this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
+        filteredElderly = new FilteredList<>(this.friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(this.friendlyLink.getVolunteerList());
         filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
     }
 
@@ -73,16 +79,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFriendlyLinkFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setFriendlyLinkFilePath(addressBookFilePath);
+    public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
+        requireNonNull(friendlyLinkFilePath);
+        userPrefs.setFriendlyLinkFilePath(friendlyLinkFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink addressBook) {
-        this.friendlyLink.resetData(addressBook);
+    public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
+        this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
@@ -90,6 +94,7 @@ public class ModelManager implements Model {
         return friendlyLink;
     }
 
+    //=========== FriendlyLink Persons  ======================================================================
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -110,8 +115,55 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         friendlyLink.setPerson(target, editedPerson);
+    }
+
+    //=========== FriendlyLink Elderly  ======================================================================
+    @Override
+    public boolean hasElderly(Elderly e) {
+        requireNonNull(e);
+        return friendlyLink.hasElderly(e);
+    }
+
+    @Override
+    public void deleteElderly(Elderly target) {
+        friendlyLink.removeElderly(target);
+    }
+
+    @Override
+    public void addElderly(Elderly person) {
+        friendlyLink.addElderly(person);
+        updateFilteredElderlyList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setElderly(Elderly target, Elderly editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        friendlyLink.setElderly(target, editedPerson);
+    }
+
+    //=========== FriendlyLink Volunteers  ======================================================================
+    @Override
+    public boolean hasVolunteer(Volunteer person) {
+        requireNonNull(person);
+        return friendlyLink.hasVolunteer(person);
+    }
+
+    @Override
+    public void deleteVolunteer(Volunteer target) {
+        friendlyLink.removeVolunteer(target);
+    }
+
+    @Override
+    public void addVolunteer(Volunteer person) {
+        friendlyLink.addVolunteer(person);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+        friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
     @Override
@@ -141,7 +193,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFriendlyLink}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -150,6 +202,40 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Elderly List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Elderly} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Elderly> getFilteredElderlyList() {
+        return filteredElderly;
+    }
+
+    @Override
+    public void updateFilteredElderlyList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Volunteer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Person> getFilteredVolunteerList() {
+        return filteredVolunteers;
+    }
+
+    @Override
+    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

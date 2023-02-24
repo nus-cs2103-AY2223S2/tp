@@ -15,6 +15,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path friendlyLinkFilePath = Paths.get("data" , "friendlylink.json");
+    private final Path elderlyFilePath = Paths.get("data" , "elderly.json");
+    private final Path volunteerFilePath = Paths.get("data" , "volunteer.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -49,6 +51,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getFriendlyLinkFilePath() {
         return friendlyLinkFilePath;
+    }
+
+    public Path getElderlyFilePath() {
+        return elderlyFilePath;
+    }
+
+    public Path getVolunteerFilePath() {
+        return volunteerFilePath;
     }
 
     public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {

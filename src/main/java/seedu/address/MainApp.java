@@ -28,6 +28,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.elderly.ElderlyStorage;
+import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.volunteer.JsonVolunteerStorage;
+import seedu.address.storage.volunteer.VolunteerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -48,23 +52,33 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
+
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
-
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
-        storage = new StorageManager(friendlyLinkStorage, userPrefsStorage);
-
         initLogging(config);
 
+        // load user preferences/configurations
+        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+
+        // load storage data
+        FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
+        ElderlyStorage elderlyStorage = new JsonElderlyStorage(userPrefs.getElderlyFilePath());
+        VolunteerStorage volunteerStorage = new JsonVolunteerStorage(userPrefs.getVolunteerFilePath());
+
+        initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage, elderlyStorage, volunteerStorage);
+    }
+
+    private void initializeAppManagers(
+            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage,
+            ElderlyStorage elderlyStorage, VolunteerStorage volunteerStorage) {
+
+        storage = new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
     }
 
@@ -78,7 +92,7 @@ public class MainApp extends Application {
         ReadOnlyFriendlyLink initialData;
         try {
             addressBookOptional = storage.readFriendlyLink();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);

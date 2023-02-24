@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ELDERLY_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VOLUNTEER_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,11 +17,11 @@ public class AddPairCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in the address book. "
             + "Parameters: "
-            + PREFIX_ELDERLY_NRIC + "ELDERLY ID "
-            + PREFIX_VOLUNTEER_NRIC + "VOLUNTEER ID "
+            + PREFIX_NRIC_ELDERLY + "ELDERLY ID "
+            + PREFIX_NRIC_VOLUNTEER + "VOLUNTEER ID "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ELDERLY_NRIC + "1234 "
-            + PREFIX_VOLUNTEER_NRIC + "5678 ";
+            + PREFIX_NRIC_ELDERLY + "1234 "
+            + PREFIX_NRIC_VOLUNTEER + "5678 ";
 
     public static final String MESSAGE_SUCCESS = "New pair added: %1$s";
 
