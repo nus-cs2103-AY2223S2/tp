@@ -322,6 +322,7 @@
 
 .scroll-bar {
     -fx-background-color: transparent;
+    -fx-padding: 0 0 0 2;
 }
 
 .scroll-bar .thumb {
