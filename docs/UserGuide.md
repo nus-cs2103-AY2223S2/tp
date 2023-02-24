@@ -1,161 +1,106 @@
----
-layout: page
-title: User Guide
----
+# User Guide
 
-EZ-Schedule is a **desktop application for managing and scheduling of events, optimized for use via a Command Line Interface (CLI)** while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
+EZ-Schedule is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
+Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
-* Table of Contents
-{:toc}
+## Index
 
---------------------------------------------------------------------------------------------------------------------
+* [Quick start](#quick-start)
+* [Features](#features)
+    * [Viewing help: `help`](#help)
+    * [Adding a event: `add`](#add)
+    * [Deleting a event: `delete`](#delete)
+    * [Listing all events: `list`](#list)
+    * [Retrieving next event: `next`](#next)
+    * [Locating all events by keyword: `find`](#find)
+    * [Exits the application: `exit`](#exit)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
-## Quick start
+## <div id="quick-start"> Quick start </div>
 
 1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `EzSchedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-3/tp/releases).
+3. Copy the file to the folder you want to use as the *home folder* for your EzSchedule.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EzSchedule.jar` command
+   to run the application.
 
-1. Download the latest `EzSchedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-1/tp/releases).
+## <div id="features"> Features </div>
 
-1. Copy the file to the folder you want to use as the _home folder_ for your EzSchedule.
+### <div id="help"> Viewing help: `help` (coming soon) </div>
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EzSchedule.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
---------------------------------------------------------------------------------------------------------------------
-
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows the user a list of instructions available.
 
 Format: `help`
 
+Example: `help`<br><br>
 
-### Adding a person: `add`
+### <div id="add"> Adding a event: `add` (coming soon)</div>
 
-Adds a person to the address book.
+Adds an event into the Scheduler.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add <event> /<start time> /<end time>`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Example:
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add booked tennis court /2023-02-01 /2023-02-02`<br><br>
 
-### Listing all persons : `list`
+### <div id="delete"> Deleting a event: `delete` (coming soon)</div>
 
-Shows a list of all persons in the address book.
+Deletes an event in the Scheduler.
+
+Format: `delete <event>`
+
+Example:
+
+* `delete booked tennis court `<br><br>
+
+### <div id="list"> Listing all events: `list` (coming soon)</div>
+
+Displays all events currently saved in the Scheduler.
 
 Format: `list`
 
+Example: `list`<br><br>
 
-### Locating persons by name: `find`
+### <div id="next"> Retrieving next event: `next` (coming soon)</div>
 
-Finds persons whose names contain any of the given keywords.
+Searches the Scheduler and returns the next upcoming event start time.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `next event`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Example: `next event`<br><br>
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+### <div id="find"> Locating all events by keyword: `find` (coming soon)</div>
 
-### Deleting a person : `delete`
+Finds the Scheduler for the task, returns all events containing the relevant keyword.
 
-Deletes the specified person from the address book.
+Format: `find <event>`
 
-Format: `delete INDEX`
+Example: `find booked tennis court`<br><br>
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+### <div id="exit"> Exits the application `exit` (coming soon)</div>
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Requesting next event : `next event`
-
-Returns the upcoming event based on priority or time of event.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
+Exits the application.
 
 Format: `exit`
 
-### Saving the data
+Example: `exit`<br><br>
 
-EzSchedule data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+## <div id="faq"> FAQ </div>
 
-### Editing the data file
+**Q:** On a scale of 1 to 10, how awesome is this product?
 
-EzSchedule data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+**A:** 10<br><br>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+## <div id="command-summary"> Command summary </div>
 
-### Archiving data files `[coming in v1.2]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action         | Format, Examples                                                                                                                                                      |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Next Event** | `next event`                                                                                                                                                          |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**       | `list`                                                                                                                                                                |
-| **Help**       | `help`                                                                                                                                                                |
-| **Exit**       | `exit`                                                                                                                                                                |
+Action |      Format      |                                              Example |
+:----- |:----------------:|-----------------------------------------------------:|
+Help   |      `help`      |                                               `help` |
+Add    |  `add <event>`   |     `add booked tennis court /2023-02-01 /2023-02-0` |
+Delete | `delete <event>` |                         `delete booked tennis court` |
+List   |      `list`      |                                               `list` |
+Next   |   `next event`   |                                         `next event` |
+Find   |  `find <event>`  |                           `find booked tennis court` |
+Exit   |      `exit`      |                                               `exit` |
