@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
  * Represents the in-memory model of the friendly link data.
@@ -85,7 +86,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
-        this.friendlyLink.resetData(friendlyLink);
+        this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
@@ -132,7 +133,7 @@ public class ModelManager implements Model {
     @Override
     public void addElderly(Elderly person) {
         friendlyLink.addElderly(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredElderlyList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -143,26 +144,26 @@ public class ModelManager implements Model {
 
     //=========== FriendlyLink Volunteers  ======================================================================
     @Override
-    public boolean hasVolunteer(Person person) {
+    public boolean hasVolunteer(Volunteer person) {
         requireNonNull(person);
         return friendlyLink.hasVolunteer(person);
     }
 
     @Override
-    public void deleteVolunteer(Person target) {
+    public void deleteVolunteer(Volunteer target) {
         friendlyLink.removeVolunteer(target);
     }
 
     @Override
-    public void addVolunteer(Person person) {
+    public void addVolunteer(Volunteer person) {
         friendlyLink.addVolunteer(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setVolunteer(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        friendlyLink.setVolunteer(target, editedPerson);
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+        friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
     @Override

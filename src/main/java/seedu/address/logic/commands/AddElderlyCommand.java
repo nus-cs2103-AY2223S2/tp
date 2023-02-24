@@ -19,7 +19,7 @@ import seedu.address.model.person.Elderly;
  */
 public class AddElderlyCommand extends Command {
 
-    // later find ways to make this "add elderly"
+    // TODO: later find ways to make this "add elderly"
     public static final String COMMAND_WORD = "add_elderly";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database. "

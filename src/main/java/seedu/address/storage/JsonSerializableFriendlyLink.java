@@ -21,20 +21,13 @@ class JsonSerializableFriendlyLink {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonAdaptedPerson> elderly = new ArrayList<>();
-    private final List<JsonAdaptedPerson> volunteers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFriendlyLink} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableFriendlyLink(
-            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
-            @JsonProperty("elderly") List<JsonAdaptedPerson> elderly,
-            @JsonProperty("volunteers") List<JsonAdaptedPerson> volunteers) {
+    public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         serializeEntities(this.persons, persons);
-        serializeEntities(this.elderly, elderly);
-        serializeEntities(this.volunteers, volunteers);
     }
 
     /**
@@ -45,10 +38,6 @@ class JsonSerializableFriendlyLink {
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
         serializeEntities(persons,
                 source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        serializeEntities(elderly,
-                source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        serializeEntities(volunteers,
-                source.getVolunteerList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
@@ -62,11 +51,7 @@ class JsonSerializableFriendlyLink {
      */
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
-
         unserializeEntities(persons, friendlyLink);
-        unserializeEntities(elderly, friendlyLink);
-        unserializeEntities(volunteers, friendlyLink);
-
         return friendlyLink;
     }
 

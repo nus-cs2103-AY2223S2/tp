@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
  * A default model stub that have all the methods failing.
@@ -117,22 +118,22 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasVolunteer(Person volunteer) {
+    public boolean hasVolunteer(Volunteer volunteer) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void deleteVolunteer(Person target) {
+    public void deleteVolunteer(Volunteer target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addVolunteer(Person volunteer) {
+    public void addVolunteer(Volunteer volunteer) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setVolunteer(Person target, Person editedPerson) {
+    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
         throw new AssertionError("This method should not be called.");
     }
 

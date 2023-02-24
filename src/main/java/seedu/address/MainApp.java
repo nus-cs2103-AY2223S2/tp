@@ -28,6 +28,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.elderly.ElderlyStorage;
+import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.volunteer.JsonVolunteerStorage;
+import seedu.address.storage.volunteer.VolunteerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -48,6 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
+
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
@@ -55,16 +60,23 @@ public class MainApp extends Application {
         config = initConfig(appParameters.getConfigPath());
         initLogging(config);
 
+        // load user preferences/configurations
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
 
-        initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage);
+        // load storage data
+        FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
+        ElderlyStorage elderlyStorage = new JsonElderlyStorage(userPrefs.getElderlyFilePath());
+        VolunteerStorage volunteerStorage = new JsonVolunteerStorage(userPrefs.getVolunteerFilePath());
+
+        initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage, elderlyStorage, volunteerStorage);
     }
 
     private void initializeAppManagers(
-            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage) {
-        storage = new StorageManager(friendlyLinkStorage, userPrefsStorage);
+            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage,
+            ElderlyStorage elderlyStorage, VolunteerStorage volunteerStorage) {
+
+        storage = new StorageManager(friendlyLinkStorage,elderlyStorage, volunteerStorage, userPrefsStorage);
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
