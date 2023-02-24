@@ -9,54 +9,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shan Hng
+
+<img src="images/shanhng.png" width="200px">
+
+[[github](https://github.com/shanhng)]
+[[portfolio](team/shanhng.md)]
+
+* Role: to be added soon...
+* Responsibilities: to be added soon...
+
+### Branson Lam
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bransonlj)]
+[[portfolio](team/bransonlj.md)]
 
-* Role: Project Advisor
+* Role: to be added soon
+* Responsibilities: to be added soon
 
-### Jane Doe
+### Anshumaan Tyagi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anshumaantgi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/anshumaantgi)] [[portfolio](team/anshumaantgi.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: to be added soon
+* Responsibilities: to be added soon
 
-### Johnny Doe
+### Karen Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/karen-lam.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Karen-Lam)]
+[[portfolio](team/karen-lam.md)]
 
 * Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: to be added soon
 
 ### Sarthak Saxena
 
@@ -66,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/sarthak181.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: to be added soon
