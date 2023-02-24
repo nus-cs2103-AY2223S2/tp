@@ -29,14 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality + Integration
 
-### Johnny Doe
+### Khang Tran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lennoxtr.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lennoxtr)]
+[[portfolio](team/lennoxtr.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: File I/O
 
 ### Joy Tan QiaoTong
 
