@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
 
 /**
- * The API of the Model component.
+ * The API of the Model component. Contains the data of the application in-memory.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */

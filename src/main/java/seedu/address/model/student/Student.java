@@ -17,7 +17,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -85,6 +84,8 @@ public class Student {
      */
     public List<Homework> getCompletedHomeworkList() {
         List<Homework> completedHomeworkList = new ArrayList<>();
+
+        // filter homework list for completed homework
         for (Homework hw : homeworkList) {
             if (hw.isCompleted()) {
                 completedHomeworkList.add(hw);
@@ -95,12 +96,13 @@ public class Student {
 
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
      *
      * @return list of pending homework
      */
     public List<Homework> getPendingHomeworkList() {
         List<Homework> pendingHomeworkList = new ArrayList<>();
+
+        // filter homework list for pending homework
         for (Homework hw : homeworkList) {
             if (!hw.isCompleted()) {
                 pendingHomeworkList.add(hw);
@@ -118,7 +120,7 @@ public class Student {
     public List<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
         List<Homework> filteredHomeworkList = new ArrayList<>();
 
-        // filter homework list
+        // filter homework list for homework that matches predicate
         for (Homework hw : homeworkList) {
             if (predicate.test(hw)) {
                 filteredHomeworkList.add(hw);
@@ -174,6 +176,7 @@ public class Student {
             return false;
         }
 
+        // state check
         Student otherPerson = (Student) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
@@ -183,12 +186,23 @@ public class Student {
                 && otherPerson.getHomeworkList().equals(getHomeworkList());
     }
 
+    /**
+     * Returns a hash code for the person.
+     *
+     * @return hash code
+     */
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags, homeworkList);
     }
 
+    /**
+     * Returns a string representation of the person.
+     * Format: name; phone; email; address; tags; assignments
+     *
+     * @return string representation of the person
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
