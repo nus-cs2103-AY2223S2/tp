@@ -29,24 +29,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Adriel Kee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Adriel.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/amoonguss1)] 
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Coding, UI
 * Responsibilities: Data
 
 ### Ryan Qiu
 
 <img src="images/ryanqiu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ryanqiu1)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Coding + UI
+* Responsibilities: Coding, UI
 
 ### UnwilledTangent / Sean Tin
 
