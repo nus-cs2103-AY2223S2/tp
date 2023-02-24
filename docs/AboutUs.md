@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Dylan Sng Jie An
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dsja612.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/dsja612)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Development + Documentation
 
 ### Jane Doe
 
@@ -29,31 +29,32 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
 ### Adriel Kee
 
 <img src="images/Adriel.png" width="200px">
 
-[[github](http://github.com/amoonguss1)]
+[[github](http://github.com/amoonguss1)] 
+[[portfolio](team/johndoe.md)]
+
+* Role: Coding, UI
+* Responsibilities: Data
+
+### Ryan Qiu
+
+<img src="images/ryanqiu.png" width="200px">
+
+[[github](http://github.com/ryanqiu1)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Coding, UI
 
-### James Doe
+### UnwilledTangent / Sean Tin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seantin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/UnwilledTangent)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Software Developer
 * Responsibilities: UI
