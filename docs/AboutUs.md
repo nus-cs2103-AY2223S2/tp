@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Sarthak Saxena
+
+<img src="images/sarthak181.png" width="200px">
+
+[[github](http://github.com/sarthak181)]
+[[portfolio](team/sarthak181.md)]
+
+* Role: Developer
+* Responsibilities: UI
