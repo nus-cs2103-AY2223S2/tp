@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class PayRate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Pay Rate should be a non-negative integer, representing pay per hour.";
+    public static final String MESSAGE_CONSTRAINTS = "Pay Rate should be a non-negative integer, "
+        + "representing pay per hour.";
     public static final String VALIDATION_REGEX = "^[0-9]+$";
 
     public final String value;
