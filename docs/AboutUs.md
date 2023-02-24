@@ -20,41 +20,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Deliverables, deadlines, scheduling and tracking
 
-### Jane Doe
+### Hing Zi Yang Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hingen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Team Lead
-- Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/hingen)]
+[[portfolio](team/hingen.md)]
 
 - Role: Developer
-- Responsibilities: Data
+- Responsibilities: Code Quality + Integration
 
-### Jean Doe
+### Khang Tran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lennoxtr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lennoxtr)]
+[[portfolio](team/lennoxtr.md)]
 
 - Role: Developer
-- Responsibilities: Dev Ops + Threading
+- Responsibilities: File I/O
 
-### James Doe
+### Joy Tan QiaoTong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joytqt-1202.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/joytqt-1202)]
+[[portfolio](team/joytqt-1202.md)]
+
+- Role: Developer
+- Responsibilities: Documentation + Testing
+
+### Jedidiah Cheng
+
+<img src="images/jedidiahc.png" width="200px">
+
+[[github](https://github.com/jedidiahC)]
+[[portfolio](team/jedidiah.md)]
 
 - Role: Developer
 - Responsibilities: UI
