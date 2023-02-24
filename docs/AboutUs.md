@@ -16,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LiuMC-SG)]
 [[portfolio](team/liumc-sg.md)]
 
-* Role: Team Lead
+* Role: Software Developer
+* Responsibilities: Team Lead
 
 ### Darren Chang
 
@@ -26,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
-* Responsibilities: Scheduling and tracking   
+* Responsibilities: Scheduling & Tracking   
 
 ### Arkar Kyaw Aung
 
