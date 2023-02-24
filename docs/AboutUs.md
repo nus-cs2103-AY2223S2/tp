@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: to be added soon
 * Responsibilities: to be added soon
 
-### Johnny Doe
+### Anshumaan Tyagi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anshumaantgi.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/anshumaantgi)] [[portfolio](team/anshumaantgi.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: to be added soon
+* Responsibilities: to be added soon
 
 ### Jean Doe
 
