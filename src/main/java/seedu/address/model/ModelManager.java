@@ -100,7 +100,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Student person) {
-        addressBook.addPerson(person);
+        addressBook.addStudent(person);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

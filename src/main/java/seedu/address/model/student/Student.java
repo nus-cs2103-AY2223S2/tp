@@ -25,9 +25,8 @@ public class Student {
 
     // Data fields
     private final Address address;
-    private final List<Homework> homeworkList = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
-
+    private final List<Homework> homeworkList = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -39,6 +38,19 @@ public class Student {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList) {
+        requireAllNonNull(name, phone, email, address, tags, homeworkList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.homeworkList.addAll(homeworkList);
     }
 
     public Name getName() {
