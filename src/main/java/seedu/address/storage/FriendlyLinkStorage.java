@@ -42,5 +42,4 @@ public interface FriendlyLinkStorage {
      * @see #saveFriendlyLink(ReadOnlyFriendlyLink)
      */
     void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, Path filePath) throws IOException;
-
 }

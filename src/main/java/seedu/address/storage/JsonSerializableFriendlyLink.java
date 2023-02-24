@@ -18,7 +18,6 @@ import seedu.address.model.person.Person;
  */
 @JsonRootName(value = "friendlylink")
 class JsonSerializableFriendlyLink {
-
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
@@ -28,7 +27,7 @@ class JsonSerializableFriendlyLink {
      */
     @JsonCreator
     public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+        serializeEntities(this.persons, persons);
     }
 
     /**
@@ -37,7 +36,12 @@ class JsonSerializableFriendlyLink {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriendlyLink}.
      */
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(persons,
+                source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    }
+
+    private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
+        entities.addAll(source);
     }
 
     /**
@@ -47,14 +51,19 @@ class JsonSerializableFriendlyLink {
      */
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+        unserializeEntities(persons, friendlyLink);
+        return friendlyLink;
+    }
+
+    private void unserializeEntities(
+            List<JsonAdaptedPerson> entities, FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedPerson jsonAdaptedPerson : entities) {
             Person person = jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             friendlyLink.addPerson(person);
         }
-        return friendlyLink;
     }
 
 }
