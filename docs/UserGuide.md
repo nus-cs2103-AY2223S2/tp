@@ -88,6 +88,20 @@ Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
 * `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
+### Adding a task: `add_task` / `add_t`
+
+Adds a task to the list of tasks.
+
+Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
+
+* Status available for setting are: `N` (Not done), `D` (Done)
+* If no status is provided, it is defaulted to `N` (Not done)
+
+Examples:
+* `add_task d/Buy cookie cutter d/2022-12-22`
+* `add_t d/Buy a card d/2023-12-23 s/D`
+
+
 ### Editing an order : `edit_order / edit_o`
 
 Edits an order that is present in the order list.
@@ -118,6 +132,20 @@ Examples:
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
 * `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
  
+### Editing a task : `edit_task` / `edit_t`
+
+Edits a task present in the task list.
+
+Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
+
+* Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
+* User is required to key in at least one of the optional fields
+* Existing values will be replaced with the input values
+* When editing status, the existing status of the order will be removed and replaced with the given status
+
+Examples:
+* `edit_task 1 d/Get creamer` Edits the 1st task description to be get creamer
+* `edit_t 3 d/2023-12-31 s/N` Edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
 ### Clearing all entries : `clear`
 
@@ -158,12 +186,5 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action | Format, Examples |
+|--------|------------------|
