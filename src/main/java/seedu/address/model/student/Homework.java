@@ -1,6 +1,7 @@
 package seedu.address.model.student;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Homework {
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final String description;
     private final LocalDateTime deadline;
     private Status status;
@@ -40,6 +42,10 @@ public class Homework {
 
     public LocalDateTime getDeadline() {
         return deadline;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public boolean isCompleted() {
@@ -91,6 +97,7 @@ public class Homework {
 
     @Override
     public String toString() {
-        return String.format("Status: %s, Description: %s, Deadline: %s", getStatusTag(), description, deadline);
+        return String.format("Status: %s, Description: %s, Deadline: %s", getStatusTag(), description,
+                deadline.format(formatter));
     }
 }
