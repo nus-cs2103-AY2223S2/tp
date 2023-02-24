@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Khang Tran
 
-<img src="images/lennox.png" width="200px">
+<img src="images/lennoxtr.png" width="200px">
 
 [[github](http://github.com/lennoxtr)]
-[[portfolio](team/lennox.md)]
+[[portfolio](team/lennoxtr.md)]
 
 * Role: Developer
 * Responsibilities: File I/O
