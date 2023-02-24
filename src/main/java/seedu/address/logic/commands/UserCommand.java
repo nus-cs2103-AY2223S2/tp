@@ -18,13 +18,6 @@ public class UserCommand extends Command {
 
     public static final String SHOWING_USER_PROFILE_MESSAGE = "Opened user profile window.";
 
-    private User user;
-
-
-    public UserCommand() {
-        user = User.getUser();
-    }
-
     /**
      * Executes the command and returns the result message.
      *
@@ -34,6 +27,7 @@ public class UserCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        User user = model.getUser();
         if (user == null) {
             throw new CommandException(UNREGISTERED_MESSAGE);
         }
