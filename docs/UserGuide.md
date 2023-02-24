@@ -86,7 +86,20 @@ Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
 * `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
-### Editing an order : `edit_order` / `edit_o`
+### Adding a task: `add_task` / `add_t`
+
+Adds a task to the list of tasks.
+
+Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
+
+* Status available for setting are: `N` (Not done), `D` (Done)
+* If no status is provided, it is defaulted to `N` (Not done)
+
+Examples:
+* `add_task d/Buy cookie cutter d/2022-12-22`
+* `add_t d/Buy a card d/2023-12-23 s/D`
+
+### Editing an order : `edit_order / edit_o`
 
 Edits an order that is present in the order list.
 
@@ -98,10 +111,24 @@ Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_P
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative)
 * User can remove the remarks by typing r/ without specifying any remarks after it
 
-
 Examples:
 *  `edit_order 1 p/91234567 d/2023-05-05 ` Edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 *  `edit_o 3 q/20 r/` Edits the quantity of food for the 3rd order to 20 and clears all remarks
+
+### Editing a task : `edit_task` / `edit_t`
+
+Edits a task present in the task list.
+
+Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
+
+* Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
+* User is required to key in at least one of the optional fields
+* Existing values will be replaced with the input values
+* When editing status, the existing status of the order will be removed and replaced with the given status
+
+Examples:
+* `edit_task 1 d/Get creamer` Edits the 1st task description to be get creamer
+* `edit_t 3 d/2023-12-31 s/N` Edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
 ### Finding a supplier : `find_supplier` / `find_s`
 
@@ -215,7 +242,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 * Highlight overdue orders.
 * View list of all orders and tasks to prioritise your workload.
 * View sales (tabulated or GUI) to track your business’s growth.
-
 
 --------------------------------------------------------------------------------------------------------------------
 

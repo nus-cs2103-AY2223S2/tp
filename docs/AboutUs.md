@@ -9,53 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Liu Muchen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/liumc-sg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/LiuMC-SG)]
+[[portfolio](team/liumc-sg.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
 
 ### Darren Chang
 
 <img src="images/changgittyhub.png" width="200px">
 
 [[github](http://github.com/ChangGittyHub)]
-
 [[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
-* Responsibilities:
-  * Scheduling and tracking   
+* Responsibilities: Scheduling and tracking   
 
-### Johnny Doe
+### Arkar Kyaw Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arkarsg.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/arkarsg)]
+[[portfolio](team/arkarsg.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation & Testing
 
-### Jean Doe
+### Hmuu Myat Moe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/HmuuMyatMoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation & Code Quality
 
-### James Doe
+### Chong Wei Guan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/chongweiguan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables & Deadlines
