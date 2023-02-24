@@ -73,6 +73,20 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding an order: `add_order / add_o`
+
+Adds an order into the list of orders.
+
+Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]...`
+
+* An order can have any number of remarks.
+* Either customer phone number or email address must be provided
+Status available for setting are: Open, Preparing, Ready, Delivering, Delivered
+* If no status is provided, it is defaulted to Open
+
+Examples:
+* `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
+* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
 ### Adding a task: `add_task` / `add_t`
 
@@ -87,12 +101,37 @@ Examples:
 * `add_task d/Buy cookie cutter d/2022-12-22`
 * `add_t d/Buy a card d/2023-12-23 s/D`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+### Editing an order : `edit_order / edit_o`
 
-Format: `list`
+Edits an order that is present in the order list.
 
+Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]...`
+
+* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, … 
+* User is required to key in at least one of the optional fields 
+* Existing values will be replaced with the input values 
+* When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative)
+* User can remove the remarks by typing r/ without specifying any remarks after it
+
+
+Examples:
+*  `edit_order 1 p/91234567 d/2023-05-05 ` Edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
+
+*  `edit_o 3 q/20 r/` Edits the quantity of food for the 3rd order to 20 and clears all remarks
+
+###Deleting a task: `delete_task / delete_t`
+
+Syntax: `delete_order INDEX`
+
+* Deletes the order at the specified `INDEX`.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
+* `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
+ 
 ### Editing a task : `edit_task` / `edit_t`
 
 Edits a task present in the task list.
@@ -107,39 +146,6 @@ Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 Examples:
 * `edit_task 1 d/Get creamer` Edits the 1st task description to be get creamer
 * `edit_t 3 d/2023-12-31 s/N` Edits the 3rd task deadline to 2023-12-31 and sets the status as not done
-
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
