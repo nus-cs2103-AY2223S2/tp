@@ -24,10 +24,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hansstanley.png" width="200px">
 
 [[github](http://github.com/hansstanley)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hansstanley.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Roles:
+  * Integration
+  * Scheduling and tracking
+  * Git expert
+* Responsibilities:
+  * In charge of UI
 
 ### Johnny Doe
 
