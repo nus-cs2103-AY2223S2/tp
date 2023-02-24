@@ -1,5 +1,6 @@
 ---
-Darren Chang's Project Portfolio Page
+layout: page
+title: Darren Chang's Project Portfolio Page
 ---
 
 ### Project: Trackr
