@@ -109,7 +109,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Finding a supplier : `find_supplier / find_s`
+### Finding a supplier : `find_supplier` / `find_s`
 
 Find suppliers whose information matches with any of the given parameters.
 
@@ -127,7 +127,7 @@ Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
-### Finding a task : `find_task / find_t`
+### Finding a task : `find_task` / `find_t`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -145,7 +145,7 @@ Examples:
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
 * `find_t s/N` returns all tasks not done.
 
-### Deleting a supplier: `delete_supplier / delete_s`
+### Deleting a supplier: `delete_supplier` / `delete_s`
 
 Deletes the specified supplier from the contact list.
 
@@ -159,7 +159,7 @@ Examples:
 * `delete_supplier 2` deletes the first supplier.
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`.
 
-### Deleting a task: `delete_task / delete_t`
+### Deleting a task: `delete_task` / `delete_t`
 
 Deletes the specified task from the task list.
 
