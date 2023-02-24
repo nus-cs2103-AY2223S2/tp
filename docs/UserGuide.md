@@ -46,22 +46,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add JOBNAME`, `JOBNAME` is a parameter which can be used as `add Software Engineer`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `[CONTACT_DETAILS]` meansthat the user input is optional. User can press the enter key to skip the input.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Question prompts are written in red.<br>
+  e.g. in `INPUT COMPANY NAME: COMPANY_NAME`, `INPUT COMPANY NAME:` is a question prompt by the program. Users are 
+  required to input the necessary information after the prompt.
 
 </div>
 
@@ -88,11 +80,24 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all internships : `list`
 
-Shows a list of all persons in the address book.
+List all the internships (auto-generated ID, position, company name) in TinS.
 
 Format: `list`
+
+* After keying in the `list` command, TinS returns the list of internships in the form of 
+  `1. (<ID>) <POSITION>, <COMPANY NAME>` 
+   * `ID` refers to the auto-generated ID created by TinS for this particular internship
+
+Example: TinS should display a similar list to the one below, after the `list` command:
+
+~~~
+1. (SE_G1) SOFTWARE ENGINEER, GOOGLE
+2. (DA_S1) DATA ANALYST, SHOPBACK
+3. (SE_G2) SOFTWARE ENGINEER, GRAB
+4. (DS_A1) DATA SCIENTIST, ARTEFACT
+~~~
 
 ### Editing a person : `edit`
 
@@ -184,10 +189,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add** | `add JOBNAME` (input other details when prompted) <br> e.g., `add software engineer`
+**Delete** | `delete ID`<br> e.g., `delete SE_G1`
 **List** | `list`
-**Help** | `help`
+**View** | `view ID`<br> e.g., `view SE_G1`
