@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joy Tan QiaoTong
 
-<img src="images/joytan.png" width="200px">
+<img src="images/joytqt-1202.png" width="200px">
 
 [[github](http://github.com/joytqt-1202)]
-[[portfolio](team/joytan.md)]
+[[portfolio](team/joytqt-1202.md)]
 
 * Role: Developer
 * Responsibilities: Documentation + Testing
