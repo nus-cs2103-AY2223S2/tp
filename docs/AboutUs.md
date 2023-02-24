@@ -40,13 +40,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shen Chenzi
 
-![shenchenzi](https://user-images.githubusercontent.com/97273558/221214608-eb068c29-fd79-4f91-a662-bea989ac9f0b.jpg)
+![docs/images/shenchenzi.png](https://user-images.githubusercontent.com/97273558/221216937-eecda515-93e0-47b0-9b74-d0f08ac43253.jpg)
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/shenchenzizoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Year 2 NUS Computer Science Student
+* Sleep >= 12 hours per day
 
 ### Xiao Yan
 
