@@ -3,7 +3,7 @@ layout: page
 title: Arkar's Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: Trackr
 
 Trackr is a desktop application used to keep track of order, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
