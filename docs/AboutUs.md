@@ -21,11 +21,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Darren Chang
 
-<img src="images/darrenchang.png" width="200px">
+<img src="images/changgittyhub.png" width="200px">
 
 [[github](http://github.com/ChangGittyHub)]
 
-[[portfolio](team/darrenchang.md)]
+[[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
 * Responsibilities:
