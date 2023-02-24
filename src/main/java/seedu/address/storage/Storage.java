@@ -8,11 +8,13 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.elderly.ElderlyStorage;
+import seedu.address.storage.volunteer.VolunteerStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends FriendlyLinkStorage, UserPrefsStorage {
+public interface Storage extends FriendlyLinkStorage, VolunteerStorage, ElderlyStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,6 +24,12 @@ public interface Storage extends FriendlyLinkStorage, UserPrefsStorage {
 
     @Override
     Path getFriendlyLinkFilePath();
+
+    @Override
+    Path getElderlyFilePath();
+
+    @Override
+    Path getVolunteerFilePath();
 
     @Override
     Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException;

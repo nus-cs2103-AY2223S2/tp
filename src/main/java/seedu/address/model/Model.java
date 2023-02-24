@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
  * The API of the Model component.
@@ -107,27 +108,27 @@ public interface Model {
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
      */
-    boolean hasVolunteer(Person volunteer);
+    boolean hasVolunteer(Volunteer volunteer);
 
     /**
      * Deletes the given volunteer.
      * The volunteer must exist in the friendly link database.
      */
-    void deleteVolunteer(Person target);
+    void deleteVolunteer(Volunteer target);
 
     /**
      * Adds the given volunteer.
      * {@code volunteer} must not already exist in the friendly link database.
      */
-    void addVolunteer(Person volunteer);
+    void addVolunteer(Volunteer volunteer);
 
     /**
-     * Replaces the given volunteer {@code target} with {@code editedPerson}.
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
      * {@code target} must exist in the friendly link database.
-     * The volunteer identity of {@code editedPerson} must not be the same as another existing volunteer in the
+     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the
      * friendly link database.
      */
-    void setVolunteer(Person target, Person editedPerson);
+    void setVolunteer(Volunteer target, Volunteer editedPerson);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.

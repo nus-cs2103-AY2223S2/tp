@@ -15,7 +15,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the friendly-link level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class FriendlyLink implements ReadOnlyFriendlyLink {
+public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, ReadOnlyVolunteer {
     // TODO: update generic to volunteer and remove person list
     private final UniquePersonList<Person> persons;
     private final UniquePersonList<Elderly> elderly;
@@ -43,7 +43,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public FriendlyLink(ReadOnlyFriendlyLink toBeCopied) {
         this();
-        resetData(toBeCopied);
+        resetFriendlyLinkData(toBeCopied);
     }
 
     //// list overwrite operations
@@ -76,11 +76,25 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
      */
-    public void resetData(ReadOnlyFriendlyLink newData) {
+    public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+    }
+
+    /**
+     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     */
+    public void resetElderlyData(ReadOnlyElderly newData) {
+        requireNonNull(newData);
         setAllElderly(newData.getElderlyList());
+    }
+
+
+    /**
+     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     */
+    public void resetVolunteerData(ReadOnlyVolunteer newData) {
+        requireNonNull(newData);
         setVolunteers(newData.getVolunteerList());
     }
 

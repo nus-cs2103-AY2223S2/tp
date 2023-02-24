@@ -38,13 +38,13 @@ public class FriendlyLinkTest {
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> friendlyLink.resetData(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.resetFriendlyLinkData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyFriendlyLink_replacesData() {
         FriendlyLink newData = getTypicalFriendlyLink();
-        friendlyLink.resetData(newData);
+        friendlyLink.resetFriendlyLinkData(newData);
         assertEquals(newData, friendlyLink);
         // TODO: check if reset data resets the pair list.
     }
@@ -57,7 +57,7 @@ public class FriendlyLinkTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         FriendlyLinkStub newData = new FriendlyLinkStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetFriendlyLinkData(newData));
         // TODO: check that duplicate pairs throws exceptions.
     }
 
@@ -67,18 +67,18 @@ public class FriendlyLinkTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInFriendlyLink_returnsFalse() {
         assertFalse(friendlyLink.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInFriendlyLink_returnsTrue() {
         friendlyLink.addPerson(ALICE);
         assertTrue(friendlyLink.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInFriendlyLink_returnsTrue() {
         friendlyLink.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -96,12 +96,12 @@ public class FriendlyLinkTest {
     }
 
     @Test
-    public void hasPair_pairNotInAddressBook_returnsFalse() {
+    public void hasPair_pairNotInFriendlyLink_returnsFalse() {
         assertFalse(friendlyLink.hasPair(PAIR1));
     }
 
     @Test
-    public void hasPair_pairInAddressBook_returnsTrue() {
+    public void hasPair_pairInFriendlyLink_returnsTrue() {
         friendlyLink.addPair(PAIR1);
         assertTrue(friendlyLink.hasPair(PAIR1));
     }
@@ -127,9 +127,9 @@ public class FriendlyLinkTest {
 
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyFriendlyLink whose persons list can violate interface constraints.
      */
-    private static class FriendlyLinkStub implements ReadOnlyFriendlyLink {
+    private static class FriendlyLinkStub implements ReadOnlyFriendlyLink, ReadOnlyVolunteer, ReadOnlyElderly {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Elderly> elderly = FXCollections.observableArrayList();
         private final ObservableList<Person> volunteers = FXCollections.observableArrayList();
