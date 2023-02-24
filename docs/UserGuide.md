@@ -214,8 +214,8 @@ Format: `group find g/GROUP_NAME`
 * The group name cannot be empty and must be an existing group
 
 Examples:
-* `group find CS2103T'
-* `group find CS2101'
+* `group find g/CS2103T`
+* `group find g/CS2101`
 
 ### Clearing all entries : `clear`
 
