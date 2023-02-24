@@ -9,9 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.ListView?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         minWidth="300" minHeight="200">
     <icons>
-        <Image url="@/images/studentTasksPage.png" />
+        <Image url="@/images/StudentTasksPage.png" />
     </icons>
     <scene>
         <Scene fill="#383838">
@@ -23,9 +25,11 @@
                     <Insets bottom="15" left="15" right="15" top="15" />
                 </padding>
 
-                <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Name" />
+                <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Full Name" />
+                <Label fx:id="listName" alignment="TOP_LEFT" text="List Name" />
 
-                <VBox id="tagsContainer" spacing="5" />
+                <ListView fx:id="homeworkList" id="homeworkList" prefHeight="250.0" prefWidth="300.0" />
+
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
