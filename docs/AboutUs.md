@@ -9,25 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Shao Wee
+
+<img src="images/shaowee.png" width="200px">
+
+[[homepage](https://leeshaowee.netlify.app/)]
+[[github](https://github.com/shaowi)]
+[[portfolio](team/shaowee.md)]
+
+- Role: Developer
+- Responsibilities: Deliverables, deadlines, scheduling and tracking
+
+### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
-
-### Hing Zi Yang Benedict
-
-<img src="images/hingen.png" width="200px">
-
-[[github](http://github.com/hingen)]
-[[portfolio](team/hingen.md)]
-
-* Role: Developer
-* Responsibilities: Code Quality + Integration
+- Role: Team Lead
+- Responsibilities: UI
 
 ### Johnny Doe
 
@@ -35,25 +36,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
-### Joy Tan QiaoTong
+### Jean Doe
 
-<img src="images/joytqt-1202.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/joytqt-1202)]
-[[portfolio](team/joytqt-1202.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Documentation + Testing
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
-### Jedidiah Cheng
+### James Doe
 
-<img src="images/jedidiahc.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/jedidiahC)]
-[[portfolio](team/jedidiah.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
