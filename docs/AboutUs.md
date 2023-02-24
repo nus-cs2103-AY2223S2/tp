@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Adriel Kee
 
-<img src="images/Adriel.png" width="200px">
+<img src="images/amoonguss1.png" width="200px">
 
 [[github](http://github.com/amoonguss1)] 
 [[portfolio](team/johndoe.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ryan Qiu
 
-<img src="images/ryanqiu.png" width="200px">
+<img src="images/ryanqiu1.png" width="200px">
 
 [[github](http://github.com/ryanqiu1)]
 [[portfolio](team/johndoe.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### UnwilledTangent / Sean Tin
 
-<img src="images/seantin.png" width="200px">
+<img src="images/unwilledtangent.png" width="200px">
 
 [[github](https://github.com/UnwilledTangent)]
 [[portfolio](team/johndoe.md)]
