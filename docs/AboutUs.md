@@ -30,10 +30,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Arkar Kyaw Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arkarsg.png" width="200px">
 
 [[github](https://github.com/arkarsg)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/arkarsg.md)]
 
 * Role: Developer
 * Responsibilities: Documentation & Testing
