@@ -9,7 +9,7 @@ Trackr is a desktop application used to keep track of order, suppliers and tasks
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the `Add Order Command` Feature 
+* **New Feature**: Added the `Add Order Command` Feature
   * What it does: allows the user to add new orders into their order list
   * Justification: This feature allows users to keep track of new orders by adding them into a list
 
@@ -35,3 +35,4 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * _To be updated_
+  
