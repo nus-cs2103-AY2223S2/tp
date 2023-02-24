@@ -74,19 +74,34 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an internship : `add`
 
-Adds a person to the address book.
+Adds an internship and its details to TinS
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add POSITION`
+```
+add software engineer
+INPUT COMPANY_NAME: COMPANY_NAME
+INPUT APPLICATION STATUS: APPLICATION_STATUS
+INPUT CONTACT DETAILS: [CONTACT_DETAILS]
+```
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* `POSITION`: Name of Internship Position
+* `COMPANY NAME` : Name of hiring company
+* `APPLICATION_STATUS` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`)
+* `CONTACT DETAILS` : Contact details of hiring manager (optional)
+* After keying in the  add command, the user will be prompted with these fields:
+    * `COMPANY_NAME`
+    * `APPLICATION_STATUS`
+    * `CONTACT_DETAILS (optional)`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
+```
+add software engineer
+INPUT COMPANY_NAME: Google
+INPUT APPLICATION STATUS: applied
+INPUT CONTACT DETAILS: BobTheManager@gmail.com
+```
 
 ### Listing all persons : `list`
 

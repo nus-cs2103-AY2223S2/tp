@@ -11,31 +11,4 @@ The Intern’s Ship (TinS) is a desktop app for managing internships application
 * Deleting an internship : delete
 * Saving the data
 
-### Adding an internship : `add`
-
-Adds an internship and its details to TinS
-
-Format: `add POSITION`
-```
-add software engineer
-INPUT COMPANY_NAME: COMPANY_NAME
-INPUT APPLICATION STATUS: APPLICATION_STATUS
-INPUT CONTACT DETAILS: [CONTACT_DETAILS]
-```
-
-* `POSITION`: Name of Internship Position
-* `COMPANY NAME` : Name of hiring company
-* `APPLICATION_STATUS` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`)
-* `CONTACT DETAILS` : Contact details of hiring manager (optional)
-* After keying in the  add command, the user will be prompted with these fields:
-  * `COMPANY_NAME`
-  * `APPLICATION_STATUS`
-  * `CONTACT_DETAILS (optional)`
-
-Example:
-```
-add software engineer
-INPUT COMPANY_NAME: Google
-INPUT APPLICATION STATUS: applied
-INPUT CONTACT DETAILS: BobTheManager@gmail.com
-```
+*Many More features to come!*
