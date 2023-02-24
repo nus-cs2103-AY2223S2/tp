@@ -9,6 +9,6 @@
         <Label fx:id="id" styleClass="label-bright" />
         <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
         <FlowPane fx:id="tags" />
-        <VBox fx:id="dataContainer" spacing="8" />
+        <VBox fx:id="dataContainer" spacing="10" />
     </VBox>
 </ScrollPane>

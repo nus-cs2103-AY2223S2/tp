@@ -2,8 +2,11 @@ package seedu.address.ui.body.address;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
@@ -21,6 +24,8 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Person> personListView;
+    @FXML
+    private Label count;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -36,6 +41,12 @@ public class PersonListPanel extends UiPart<Region> {
             int selectedIndex = selectionModel.getSelectedIndex();
             panel.setPerson(selectedPerson, selectedIndex + 1);
         });
+
+        count.textProperty().bind(getCountProperty(personList));
+    }
+
+    private StringBinding getCountProperty(ObservableList<Person> list) {
+        return Bindings.createStringBinding(() -> String.format("%d contact(s)", list.size()), list);
     }
 
     /**
@@ -54,5 +65,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
