@@ -3,10 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" styleClass="pane-with-rounded-corner"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="id" styleClass="label-bright" />
-    <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
-    <FlowPane fx:id="tags" />
-    <ListView fx:id="dataList" VBox.vgrow="NEVER" />
-</VBox>
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="pane-with-rounded-corner"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox spacing="10">
+        <Label fx:id="id" styleClass="label-bright" />
+        <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
+        <FlowPane fx:id="tags" />
+        <VBox fx:id="dataContainer" spacing="8" />
+    </VBox>
+</ScrollPane>

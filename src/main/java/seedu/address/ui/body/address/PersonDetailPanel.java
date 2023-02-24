@@ -1,16 +1,15 @@
 package seedu.address.ui.body.address;
 
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 
@@ -27,7 +26,7 @@ public class PersonDetailPanel extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private ListView<PersonDetailCard.DetailCardData> dataList;
+    private VBox dataContainer;
 
     /**
      * Creates a blank {@code PersonDetailPanel}.
@@ -46,29 +45,8 @@ public class PersonDetailPanel extends UiPart<Region> {
 
         id.setText(displayedIndex + ".");
         name.setText(person.getName().toString());
-        person.getTags()
-                .stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        ObservableList<PersonDetailCard.DetailCardData> detailCardDataList = FXCollections.observableArrayList(
-                new PersonDetailCard.DetailCardData("Phone", person.getPhone().toString()),
-                new PersonDetailCard.DetailCardData("Address", person.getAddress().toString()),
-                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString())
-        );
-        dataList.setItems(detailCardDataList);
-        dataList.setCellFactory(listView -> {
-            DataListViewCell cell = new DataListViewCell();
-
-            /*
-             * @@author hansstanley-reused
-             * Reused from https://stackoverflow.com/questions/37130122 with minor modifications.
-             * This restricts the width of the cells so the horizontal scroll bar does not appear.
-             */
-            cell.prefWidthProperty().bind(dataList.widthProperty().subtract(20));
-            cell.setMaxWidth(Control.USE_PREF_SIZE);
-            return cell;
-        });
+        tags.getChildren().addAll(getTagLabels(person));
+        dataContainer.getChildren().addAll(getDataCardCollection(person));
     }
 
     /**
@@ -78,23 +56,24 @@ public class PersonDetailPanel extends UiPart<Region> {
         id.setText("Select a contact.");
         name.setText(null);
         tags.getChildren().clear();
+        dataContainer.getChildren().clear();
     }
 
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code PersonDetailCard.DetailCardData}
-     * using a {@code PersonDetailCard}.
-     */
-    static class DataListViewCell extends ListCell<PersonDetailCard.DetailCardData> {
-        @Override
-        protected void updateItem(PersonDetailCard.DetailCardData data, boolean empty) {
-            super.updateItem(data, empty);
+    private Collection<Label> getTagLabels(Person person) {
+        return person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .map(tag -> tag.tagName)
+                .map(Label::new)
+                .collect(Collectors.toList());
+    }
 
-            if (empty || data == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PersonDetailCard(data).getRoot());
-            }
-        }
+    private Collection<Region> getDataCardCollection(Person person) {
+        return Stream.of(
+                new PersonDetailCard.DetailCardData("Phone", person.getPhone().toString()),
+                new PersonDetailCard.DetailCardData("Address", person.getAddress().toString()),
+                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()))
+                .map(PersonDetailCard::new)
+                .map(PersonDetailCard::getRoot)
+                .collect(Collectors.toList());
     }
 }
