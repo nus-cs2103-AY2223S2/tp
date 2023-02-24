@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hingen)]
 [[portfolio](team/hingen.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: Code Quality + Integration
 
 ### Johnny Doe
