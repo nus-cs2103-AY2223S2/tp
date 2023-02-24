@@ -75,6 +75,22 @@ public class Homework {
         return status == Status.COMPLETED ? "[X]" : "[ ]";
     }
 
+    /**
+     * Returns true if both homework have the same description.
+     * This defines a weaker notion of equality between two homework.
+     *
+     * @param otherHomework The other homework to compare with.
+     * @return True if both homework have the same description.
+     */
+    public boolean isSameHomework(Homework otherHomework) {
+        if (otherHomework == this) {
+            return true;
+        }
+
+        return otherHomework != null
+                && otherHomework.getDescription().equals(getDescription());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

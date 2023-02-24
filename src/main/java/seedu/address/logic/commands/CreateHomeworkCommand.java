@@ -29,9 +29,6 @@ public class CreateHomeworkCommand extends Command {
             + "as/Math Homework "
             + "d/2023-03-01T12:00";
 
-    public static final String MESSAGE_SUCCESS = "New homework added: %1$s";
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "The specified student cannot be found in the address book";
-
     private final String homeworkName;
     private final LocalDateTime deadline;
     private final NameContainsKeywordsPredicate predicate;
@@ -76,7 +73,6 @@ public class CreateHomeworkCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_HOMEWORK_ADDED_SUCCESS, homework, sb));
     }
-
 
     @Override
     public boolean equals(Object other) {
