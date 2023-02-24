@@ -32,7 +32,7 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 
 ### nusE0726844
 
-<img src="images/nusE0726844.png" width="200px">
+<img src="images/nuse0726844.png" width="200px">
 
 [[github](http://github.com/nusE0726844)] [[portfolio](team/nusE0726844.md)]
 
