@@ -33,9 +33,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * to be added
+        * Updated the feature list for v1.2
+        * Updated the command summary for v1.2
     * Developer Guide:
-        * to be added
+        * Updated the user stories for v1.2
+        * Updated the use cases for v1.2
 
 * **Community**:
     * to be added
