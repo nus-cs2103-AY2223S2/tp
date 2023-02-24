@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    private static final CommandResult COMMAND_RESULT = new CommandResult("feedback", true, true, true);
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
@@ -61,19 +63,16 @@ public class CommandResultTest {
 
     @Test
     public void isShowHelp_true_true() {
-        CommandResult commandResult = new CommandResult("feedback", true, true, true);
-        assertTrue(commandResult.isShowHelp());
+        assertTrue(COMMAND_RESULT.isShowHelp());
     }
 
     @Test
     public void isExit_true_true() {
-        CommandResult commandResult = new CommandResult("feedback", true, true, true);
-        assertTrue(commandResult.isExit());
+        assertTrue(COMMAND_RESULT.isExit());
     }
 
     @Test
     public void isShowUserProfile_true_true() {
-        CommandResult commandResult = new CommandResult("feedback", true, true, true);
-        assertTrue(commandResult.isShowUserProfile());
+        assertTrue(COMMAND_RESULT.isShowUserProfile());
     }
 }

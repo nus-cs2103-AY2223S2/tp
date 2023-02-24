@@ -8,7 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BEN;
+import static seedu.address.testutil.TypicalPersons.ISAAC;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -166,5 +168,22 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_validLength_success() {
+        List<Person> personList = new ArrayList<>();
+        uniquePersonList.iterator().forEachRemaining(personList::add);
+
+        int size = personList.size();
+
+        uniquePersonList.add(ISAAC);
+
+        List<Person> newPersonList = new ArrayList<>();
+        uniquePersonList.iterator().forEachRemaining(newPersonList::add);
+
+        int newSize = newPersonList.size();
+
+        assertEquals(size + 1, newSize);
     }
 }
