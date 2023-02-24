@@ -6,14 +6,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
+import seedu.address.model.item.Identifiable;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Identifiable {
+
+    private final String id;
 
     // Identity fields
     private final Name name;
@@ -25,10 +29,41 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Creates a Person with the given id, name, phone, email and address.
+     *
+     * @param id      the id of the person.
+     * @param name    the name of the person.
+     * @param phone   the phone number of the person.
+     * @param email   the email of the person.
+     * @param address the address of the person.
+     * @param tags    the tags of the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(String id, Name name, Phone phone, Email email,
+                  Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Creates a Person with the given name, phone, email and address and a
+     * random {@code UUID} as the id.
+     *
+     * @param name    the name of the person.
+     * @param phone   the phone number of the person.
+     * @param email   the email of the person.
+     * @param address the address of the person.
+     * @param tags    the tags of the person.
+     * @see Person#Person(String, Name, Phone, Email, Address, Set)
+     */
+    public Person(Name name, Phone phone, Email email,
+                  Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -97,8 +132,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override
@@ -120,4 +154,8 @@ public class Person {
         return builder.toString();
     }
 
+    @Override
+    public String getId() {
+        return this.id;
+    }
 }
