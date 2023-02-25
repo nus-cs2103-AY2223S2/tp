@@ -3,57 +3,54 @@ layout: page
 title: About Us
 ---
 
+<br>
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+<br>
 
-### John Doe
+## Project Team
 
-<img src="images/johndoe.png" width="200px">
+### Srinivasan Aarnav
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/flash161203.png" width="200px">
 
-* Role: Project Advisor
+[[GitHub](https://github.com/Flash161203)]
+[[Portfolio](team/flash161203.md)]
 
-### Jane Doe
+* Role: `undecided`
 
-<img src="images/johndoe.png" width="200px">
+<br>
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Chandrasekaran Akash
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/enigmatrix.png" width="200px">
 
-### Johnny Doe
+[[GitHub](https://github.com/Enigmatrix)]
+[[Portfolio](team/enigmatrix.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: `undecided`
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<br>
 
-* Role: Developer
-* Responsibilities: Data
+### Wang Jiefan
 
-### Jean Doe
+<img src="images/nafeij.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[GitHub](https://github.com/Nafeij)]
+[[Portfolio](team/nafeij.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: `undecided`
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<br>
 
-### James Doe
+### Suresh Vaidyanaath
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vaidyanaath.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](https://github.com/vaidyanaath)]
+[[Portfolio](team/vaidyanaath.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: `undecided`
