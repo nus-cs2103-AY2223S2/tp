@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Jia Yi
+
+<img src="images/gremmyz.png" width="200px">
+
+[[github](https://github.com/gremmyz)]
+[[portfolio](team/gremmyz.md)]
+
+* Role: 
+* Responsibilities: 
+
+### Lavanya Mishra
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/Lava-Iris)]
+[[portfolio](team/lava-iris.md)]
+
+* Role: 
+* Responsibilities: 
+
+### Zhan Jie
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](https://github.com/salty-flower)] 
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: 
+* Responsibilities: 
 
-### Jane Doe
+### Samarth Verma
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/vsamarth)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
+### Saha Manasij
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Saha9616)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
