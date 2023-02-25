@@ -138,19 +138,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an application : `delete` `[coming in v1.2]`
 
-Deletes the specified person from the address book.
+Deletes the specified application from the internship book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the application at the specified `INDEX`.
+* The index refers to the index number shown in the displayed application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd application in the internship book.
+* `find Google` followed by `delete 1` deletes the 1st application in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
