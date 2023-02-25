@@ -270,10 +270,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                         | So that I can…​         |
-| -------- |--------------------------------------------|--------------------------------------------------------------------------------------| ----------------------- |
-| `* * *`  | intermediate user                          | sort my internship by desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
-| `*`      | user with many persons in the address book | sort persons by name                                                                 | locate a person easily  |
+| Priority | As a …​                                    | I want to …​                                                                                            | So that I can…​         |
+| -------- |--------------------------------------------|---------------------------------------------------------------------------------------------------------| ----------------------- |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
+| `*`      | user with many persons in the address book | sort persons by name                                                                                    | locate a person easily  |
 
 *{More to be added}*
 
@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list internships 
+1. User requests to list sorted internships 
 2. System prompts user to choose a criteria to list internship by
 3. User inputs desired criteria
 4. System displays list of all internships sorted in order based on chosen 
