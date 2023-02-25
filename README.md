@@ -1,6 +1,7 @@
 # FriendlyLink
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CodeFactor](https://www.codefactor.io/repository/github/ay2223s2-cs2103t-w12-1/tp/badge)](https://www.codefactor.io/repository/github/ay2223s2-cs2103t-w12-1/tp)
 
 ![Ui](docs/images/Ui.png)
 
