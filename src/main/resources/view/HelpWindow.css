@@ -4,10 +4,11 @@
 
 #copyButton {
     -fx-background-color: dimgray;
+    transition: 350ms all ease;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #add8e6;
 }
 
 #copyButton:armed {
