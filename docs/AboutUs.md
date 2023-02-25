@@ -41,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Samarth Verma
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vsamarth.png" width="200px">
 
 [[github](https://github.com/vsamarth)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/vsamarth.md)]
 
 * Role: 
 * Responsibilities: 
