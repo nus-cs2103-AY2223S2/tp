@@ -38,6 +38,22 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Syntax
+
+`[ACTION VERB] [options]`
+
+`<Required argument> [optional argument]`
+
+All commands case insensitive
+
+## Prefixes
+
+1. `name/` -> name: name 
+2. `email/` -> email: valid email 
+3. `phone/` -> phone: valid phone 
+4. `deadline/` -> deadline: valid date / date-time 
+5. `client/` -> client: index of the client in the client list
+
 
 ## Features
 
@@ -79,6 +95,12 @@ Examples:
 * `add client name/Bob phone/12345678 email/bob@gmail.com`
 * `add client name/Alice`
 * `add client name/Clary phone/87654321 email/clary@gmail.com`
+
+### List all clients: `add client`
+
+List out all clients.
+
+Format: `list client`
 
 ### Adding a project: `add project`
 
