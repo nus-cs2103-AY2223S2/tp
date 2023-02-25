@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: `to be added`
 
-### Jane Doe
+### Warren Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/verydaftpunk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/verydaftpunk)]
+[[portfolio](team/verydaftpunk.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and deadlines, scheduling and tracking
+* Responsibilities: 'to be added'
 
 ### Johnny Doe
 
