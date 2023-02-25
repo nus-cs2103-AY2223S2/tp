@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Shao Wee
 
-<img src="images/shaowee.png" width="200px">
+<img src="images/shaowi.png" width="200px">
 
 [[homepage](https://leeshaowee.netlify.app/)]
 [[github](https://github.com/shaowi)]
