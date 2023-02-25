@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the user experience as he/she uses the app, as this extensive help window removes the need to go online and scour through all the documentation pages (which are not written for the user's use, anyway.) 
   * Highlights: This enhancement gives the user a bird's eye view of the ways a command can be used in a digestable (TreeView, hierarchical like manner) that is intuitive and not stressful on the fingers of a slow typer.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: To be added.
 
 * **Code contributed**: [RepoSense link]()
 
@@ -36,5 +36,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * To be added.
-
-* _{you can add/remove categories in the list above}_
