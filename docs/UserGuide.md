@@ -22,7 +22,7 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
   - [Editing of data](#editing-the-data-file)
   - [Archiving of data](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
