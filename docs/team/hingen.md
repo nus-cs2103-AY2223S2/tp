@@ -31,10 +31,10 @@ to be added soon
 to be added soon
 
 #### Team-Based Tasks
-* Create GitHub organisation
-* Create team repository
-* Create Week 7 GitHub issues and milestones
-* Updating project site-wide settings
+* Created GitHub organisation
+* Created team repository
+* Created Week 7 GitHub issues and milestones
+* Updated project site-wide settings
 
 #### Review/Mentoring
 to be added soon
