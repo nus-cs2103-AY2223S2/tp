@@ -368,8 +368,25 @@ Use case ends.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The final product should be a result of evolving/enhancing/morphing the given code base. 
+5. The product should be targeting users who can type fast and prefer typing over other means of input. 
+6. The product should be for a single user i.e. (not a multi-user product). 
+7. The product needs to be developed in a breadth-first incremental manner over the project duration. 
+8. The data should be stored locally and should be in a human-editable text file. 
+9. Do not use a DBMS to store data. 
+10. The software should follow the Object-oriented paradigm primarily 
+11. The software should work on the Windows, Linux, and OS-X platforms. 
+12. The software should work on a computer that has version 11 of Java 
+13. The software should work without requiring an installer. 
+14. The software should not depend on your own remote server. 
+15. The use of third-party frameworks/libraries/services is allowed but only if they are free, open-source (this doesn't apply to services), have permissive license terms, do not require any installation by the user of your software and do not violate other constraints. 
+16. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125% 
+17. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
+18. Everything needs to be packaged into a single JAR file. 
+19. The file sizes of the product should be reasonable and not exceed the limit of 100MB 
+20. The DG and UG should be PDF-friendly. Don't use expandable panels, embedded videos, animated GIFs etc. 
+22. The product should be testable
 
-*{More to be added}*
 
 ### Glossary
 
