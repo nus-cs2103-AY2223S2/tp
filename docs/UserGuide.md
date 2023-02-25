@@ -66,28 +66,35 @@ Refer to the [Features](#features) below for details of each command.
 
 </div>
 
-### Viewing help : `help`
+### Add a Module
+Adds a module to Le Tracker
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add-module {module_code} [/name {module_name}]`
+- `module_code` has to be unique
+- If the name argument is not specified, the module will have no name
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add-module CS2040 /name Data Structures & Algorithms`
+
+### Add a Lecture
+Adds a lecture to a module
+
+Format: `add-lecture /module {module_code}`
+- `module_code` has to belong to an existing module
+
+Examples:
+- `add-lecture /module CS2040`
+
+### Add a Video
+Adds a video to a lecture
+Format: add-video /module {module_name} /lecture {lecture_index} /video {video_name}
+- `module_code` must belong to an existing module
+- `lecture_index` must belong to an existing lecture
+- `video_name` has to be unique
+
+Examples:
+- `add-video /module CS2040 /lecture 1 /video lecture-01-part-1`
 
 ### Listing all persons : `list`
 
