@@ -95,33 +95,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters the details of elderly and volunteer to be paired into the application.
 2. FL feedbacks the successful addition of the pair.
 3. The pair details appear in the joint list.
-        
+
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects that Elderly is not in the current database. 
+* 1a. FL detects that Elderly is not in the current database.
 
-  * 1a1. FL informs User that the Elderly has not been created. 
+  * 1a1. FL informs User that the Elderly has not been created.
+
+  Use case ends
+
+* 1b. FL detects that Volunteer is not in the current database.
+
+  * 1b1. FL informs User that the Volunteer has not been created.
 
   Use case ends
 
-* 1b. FL detects that Volunteer is not in the current database. 
-
-  * 1b1. FL informs User that the Volunteer has not been created. 
-
-  Use case ends
-  
 * 1c. FL detects missing arguments or an error in the entered data.
 
   * 1c1. FL feedbacks that entered data is in a wrong format
 
   Use case ends.
-    
+
 * 1d. FL detects duplicate pair records in the entered data.
 
-  * 1d1. FL feedbacks that it is a duplicate record, and rejects the data entry 
-  
+  * 1d1. FL feedbacks that it is a duplicate record, and rejects the data entry.
+
   Use case ends.
 
 *{More to be added}*

@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to pair up elderlies and volunteers.
     * What it does: Allows elderlies to be paired up with volunteers in the system
     * Justification: This feature allows the administrative staff to make sure each elderly member is taken care of and that the workload of volunteers is allocated evenly.
-    * Highlights: This feature checks if the members to be paired exists in FriendlyLink, and also prevents duplicate records from being added. 
+    * Highlights: This feature checks if the members to be paired exists in FriendlyLink, and also prevents duplicate records from being added.
 
 * **Code contributed**: [RepoSense link]()
 
