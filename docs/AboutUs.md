@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Navaneeth Ramapurath
 
 <img src="images/johndoe.png" width="200px">
 
@@ -17,36 +17,36 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
-### Jane Doe
+### Jerald Kiew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeraldkiew.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jeraldkiew)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Documentation
+- Responsibilities: Model
 
-### Johnny Doe
+### K Sunil Avinash
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
-### Jean Doe
+### Nicholas Arlin Halim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nichalim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/daytona65]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Integration and Testing
+- Responsibilities: Focusing on UI, integration and testing for the team.
 
 ### Sun Yitong
 
@@ -55,7 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/yitong241)]
 [[portfolio](team/yitong.md)]
 
-* Role: Developer
-* Code Focus Area: Logic
-* Primary Role: Deliverables and deadlines
-* Secondary Role: Scheduling and tracking
+- Role: Developer
+- Code Focus Area: Logic
+- Primary Role: Deliverables and deadlines
+- Secondary Role: Scheduling and tracking
+
