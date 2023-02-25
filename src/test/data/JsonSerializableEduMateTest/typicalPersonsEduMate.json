@@ -37,6 +37,25 @@
       ]
     },
     {
+      "name": "Ang Mei Hua",
+      "email": "angmeihua@gmail.com",
+      "telegramHandle": "@angmeihua",
+      "address": "91 Ang Mo Kio Avenue 4",
+      "groups": [
+        "Study",
+        "Mayflower"
+      ],
+      "phone": "92752656",
+      "modules": [
+        "CE3121",
+        "CS3219",
+        "CS3216",
+        "CE3115",
+        "CS3234",
+        "IS3261"
+      ]
+    },
+    {
       "name": "Bart Lee",
       "email": "bartlee@gmail.com",
       "telegramHandle": "@bartlee",
