@@ -2,17 +2,17 @@ package seedu.address.model.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.EduMate;
@@ -31,7 +31,6 @@ import seedu.address.model.tag.ModuleTag;
  * Contains utility methods for populating {@code EduMate} with sample data.
  */
 public class SampleDataUtil {
-    private static final Path SAMPLE_DATA_FOLDER = Paths.get("src", "main", "java", "seedu.address", "model", "util");
     private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);
 
     /**
@@ -43,7 +42,9 @@ public class SampleDataUtil {
         try {
             List<Person> samplePersons = getSamplePersons();
             Collections.shuffle(samplePersons);
-            samplePersons.stream().limit(size).forEach(sampleEm::addPerson);
+            samplePersons.stream()
+                    .filter(Objects::nonNull)
+                    .limit(size).forEach(sampleEm::addPerson);
         } catch (FileNotFoundException fnfe) {
             logger.info("Sample Data not found: " + fnfe.getMessage());
         }
@@ -57,8 +58,17 @@ public class SampleDataUtil {
     public static Set<GroupTag> getGroupTagSet(String... strings) {
         return Arrays.stream(strings)
                 .filter(Predicate.not(String::isEmpty))
+                .map(String::trim)
                 .map(GroupTag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a group tag set containing the list of strings given.
+     * Splits a string by space, and processes the tags as varargs.
+     */
+    public static Set<GroupTag> getGroupTagSetFromUnsplitted(String unsplittedString) {
+        return getGroupTagSet(unsplittedString.split(" "));
     }
 
     /**
@@ -67,8 +77,17 @@ public class SampleDataUtil {
     public static Set<ModuleTag> getModuleTagSet(String... strings) {
         return Arrays.stream(strings)
                 .filter(Predicate.not(String::isEmpty))
+                .map(String::trim)
                 .map(ModuleTag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a module tag set containing the list of strings given.
+     * Splits a string by space, and processes the tags as varargs.
+     */
+    public static Set<ModuleTag> getModuleTagSetFromUnsplitted(String unsplittedString) {
+        return getModuleTagSet(unsplittedString.split(" "));
     }
 
     /**
@@ -81,7 +100,7 @@ public class SampleDataUtil {
                 new Address("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
                 getGroupTagSet(),
-                getModuleTagSet("CS2100", "CS2101", "CS2102", "CS2103", "CS2104", "CS2105")
+                getModuleTagSetFromUnsplitted("CS2100 CS2101 CS2102 CS2103 CS2104 CS2105")
         );
     }
 
@@ -90,14 +109,23 @@ public class SampleDataUtil {
      * @param personData String representing the person data in the text file.
      */
     private static Person getSamplePerson(String personData) {
-        String[] personDataAsArray = personData.split("\\|");
-        Name name = new Name(personDataAsArray[0]);
-        Phone phone = new Phone(personDataAsArray[1]);
-        Email email = new Email(personDataAsArray[2]);
-        Address address = new Address(personDataAsArray[3]);
-        TelegramHandle telegramHandle = new TelegramHandle(personDataAsArray[4]);
-        Set<GroupTag> groupTagSet = getGroupTagSet(personDataAsArray[5].split(" "));
-        Set<ModuleTag> moduleTagSet = getModuleTagSet(personDataAsArray[6].split(" "));
+        List<String> personDataList = Stream.of(personData.split("\\|"))
+                .map(String::trim)
+                .limit(7) // Maximum of 7 fields
+                .collect(Collectors.toList());
+
+        if (personDataList.size() != 7) {
+            return null;
+        }
+
+        Name name = new Name(personDataList.get(0));
+        Phone phone = new Phone(personDataList.get(1));
+        Email email = new Email(personDataList.get(2));
+        Address address = new Address(personDataList.get(3));
+        TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
+        Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(6));
+
         return new Person(name, phone, email, address,
                 telegramHandle, groupTagSet, moduleTagSet);
     }
@@ -109,10 +137,12 @@ public class SampleDataUtil {
         File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
         List<Person> personSet = new ArrayList<>();
+
         while (scanner.hasNextLine()) {
             String nextLine = scanner.nextLine();
             personSet.add(getSamplePerson(nextLine));
         }
+
         return personSet;
     }
 }

@@ -13,7 +13,7 @@ public class SampleCommandParser implements Parser<SampleCommand> {
     public SampleCommand parse(String args) throws ParseException {
         try {
             int size = ParserUtil.parseInt(args);
-            if (size < 0 || size > 100) {
+            if (size < 0) {
                 throw new ParseException("Invalid size.");
             }
             return new SampleCommand(size);

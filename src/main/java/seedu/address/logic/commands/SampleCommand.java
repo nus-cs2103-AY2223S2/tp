@@ -9,6 +9,7 @@ import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Command for generating sample data in EduMate.
+ * It is used mainly for manual testing.
  */
 public class SampleCommand extends Command {
 
@@ -16,7 +17,7 @@ public class SampleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Populate the EduMate with "
             + "sample data of the given size.\n"
-            + "Parameters: SIZE (integer between 0 and 100 inclusive)\n"
+            + "Parameters: SIZE (non-negative integer)\n"
             + "Example: " + COMMAND_WORD + " 25";
 
     private final int size;
