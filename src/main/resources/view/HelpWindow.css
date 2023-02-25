@@ -4,7 +4,20 @@
 
 #copyButton {
     -fx-background-color: dimgray;
-    transition: 350ms all ease;
+}
+
+#treeView {
+    -fx-border-width: 8px;
+    -fx-border-radius: 6 6 6 6;
+    -fx-background-radius: 14 14 14 14;
+    -fx-border-color: dimgray;
+}
+
+#method__description {
+    -fx-border-width: 4px;
+    -fx-border-radius: 6 6 6 6;
+    -fx-background-radius: 14 14 14 14;
+    -fx-border-color: dimgray;
 }
 
 #copyButton:hover {

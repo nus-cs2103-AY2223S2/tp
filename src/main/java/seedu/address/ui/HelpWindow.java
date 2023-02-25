@@ -1,8 +1,11 @@
 package seedu.address.ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -13,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class HelpWindow extends UiPart<Stage> {
+public class HelpWindow extends UiPart<Stage> implements Initializable {
 
     public static final String USERGUIDE_URL = "\nhttps://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = "For more help, Refer to the user guide: " + USERGUIDE_URL;
@@ -35,6 +38,11 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 

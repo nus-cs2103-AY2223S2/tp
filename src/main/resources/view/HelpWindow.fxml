@@ -6,8 +6,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -56,44 +56,53 @@
                      </VBox>
                   </top>
                   <left>
-                      <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" >
-                          <TreeItem value = "User's Methods" expanded="true">
+                      <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <TreeItem expanded="true" value="User's Methods">
                               <children>
                                   <TreeItem value="Add methods">
                                       <children>
-                                          <TreeItem value="addperson"/>
-                                          <TreeItem value="addtask"/>
+                                          <TreeItem value="addperson" />
+                                          <TreeItem value="addtask" />
                                       </children>
                                   </TreeItem>
                                   <TreeItem value="Delete methods">
                                       <children>
-                                          <TreeItem value="deleteperson"/>
-                                          <TreeItem value="deletetask"/>
+                                          <TreeItem value="deleteperson" />
+                                          <TreeItem value="deletetask" />
                                       </children>
                                   </TreeItem>
                                   <TreeItem value="List methods">
                                       <children>
-                                          <TreeItem value="listperson"/>
-                                          <TreeItem value="listtask"/>
+                                          <TreeItem value="listperson" />
+                                          <TreeItem value="listtask" />
                                       </children>
                                   </TreeItem>
                                   <TreeItem value="Find methods">
                                       <children>
-                                          <TreeItem value="findperson"/>
-                                          <TreeItem value="findtask"/>
+                                          <TreeItem value="findperson" />
+                                          <TreeItem value="findtask" />
                                       </children>
                                   </TreeItem>
                                   <TreeItem value="Assign methods">
                                       <children>
-                                          <TreeItem value="assign"/>
+                                          <TreeItem value="assign" />
                                       </children>
                                   </TreeItem>
                               </children>
                           </TreeItem>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <BorderPane.margin>
+                           <Insets bottom="4.0" left="4.0" right="4.0" />
+                        </BorderPane.margin>
                       </TreeView>
                   </left>
                   <center>
-                     <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     <TextArea fx:id="method__description" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <BorderPane.margin>
+                           <Insets bottom="4.0" left="4.0" right="4.0" />
+                        </BorderPane.margin></TextArea>
                   </center>
                </BorderPane>
         </children>
