@@ -2,192 +2,230 @@
 layout: page
 title: User Guide
 ---
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+Patientist is a desktop app used for managing patients and staff within a medical facility. This application is optimised 
+for use via a Command Line Interface (CLI), while still having a Graphical User Interface (GUI) for users to fall back 
+on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more 
+reliably than traditional GUI based apps.
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+### To be updated
 
 --------------------------------------------------------------------------------------------------------------------
+# Patientist User Guide
+## Notes about formatting
+* Words in UPPER_CASE are user supplied parameters, e.g. `addpat n/NAME`: `NAME` is a parameter, and the command can be used as add `n/John Doe`
+* Items in square brackets are optional parameters, e.g. `addpat n/NAME [t/TAG]` can be used as `addpat n/John Doe t/urgent` or simply as `addpat n/John Doe`
+* Items with … after them can be specified 0 or more times, e.g. `[t/TAG]...` means it is valid to not include a tag, or you can chain 1 or more `t/TAG` expressions
+* Extraneous parameters for commands that take in exactly 0 parameters will be ignored
+# Features:
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+---
+##Viewing help: help
+Shows a popup explaining how to access the user guide, which is the help page.
 
 Format: `help`
 
+---
+##Adding a patient: addpat
+Adds a new patient to the system, and places them in the `WARD_NAME` assigned.
+Should `WARD_NAME` not be specified, the user is added into a default list of patients that has no ward assigned to them.
+Tags attached to a user are meant to be short notes that do not fit into any other category of patient details that can be added.
 
-### Adding a person: `add`
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`.
 
-Adds a person to the address book.
+###Format: `add n/PATIENT_NAME pid/PATIENT_ID_NUMBER [w/WARD_NAME] [t/TAG]...`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+`PATIENT_ID_NUMBER` should be unique to each patient. This is not case sensitive. A123456789B is identical to a123456789b.
+**This input will be capitalised automatically.**\
+`PATIENT_NAME` need not be unique.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+###Examples:
+`addpat n/Jonathan Lee pid/A12345679B`\
+`addpat n/Jonathan Lee pid/A12345679B w/block B ward 2`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+---
+##Adding prescriptions/instructions for patient: addpresc
+Adds `PRESCRIPTION_OR_INSTRUCTION` in the prescriptions and instructions field for the `PATIENT` specified.
+The patient can be specified by `PATIENT_ID_NUMBER`, the patient’s ID number.
+(Consider changing this in future iterations to not having to key in prescription in CLI, instead a new editpresc command opens a text editor for the patient’s txt prescription file)
 
-### Listing all persons : `list`
+###Format: `addpresc pid/PATIENT_ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION`
 
-Shows a list of all persons in the address book.
+###Examples:
+`addpresc pid/A0123456789B p/paracetamol 500mg`
 
-Format: `list`
+---
+##Adding a staff to a ward: addstf
+Assigns specified `STAFF_NAME` to the specified `WARD_NAME`.
+The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 
-### Editing a person : `edit`
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-Edits an existing person in the address book.
+###Format: `addstf n/STAFF_NAME w/WARD_NAME`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+###Examples:
+`addstf n/Dr. Mallory Wong  w/block B ward 2`\
+`addstf n/Nurse Joy w/block B ward 2`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+---
+##Adding a ward to the system: addward
+Creates an empty ward with the specified `WARD_NAME`.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Locating persons by name: `find`
+###Format: `addward n/WARD_NAME`
+`WARD_NAME` must be unique and cannot be the same as any existing name. This field is case sensitive.
 
-Finds persons whose names contain any of the given keywords.
+###Examples:
+`addward n/block B ward 2` will create a new empty ward called block B ward 2\
+`addward n/block C ward 1` will create a new empty ward called block C ward 1
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+---
+##Listing all patients: lspat
+Lists all the patients’ names and corresponding patient ID, displaying any tags attached to them and showing the ward they are in.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+###Format: `lspat [w/WARD_NAME]`
+`WARD_NAME` can be specified to only list patients in the specified ward. This field is case sensitive. This is an optional parameter.
 
-### Deleting a person : `delete`
+###Examples:
+`lspat` will list all patients in each ward on the GUI. Every ward will be displayed in order, with all patients in each ward.\
+`lspat block B ward 2` will display the list of patients that are assigned to block B ward 2 in the GUI
 
-Deletes the specified person from the address book.
+---
+##Viewing the details of a specific patient: view
+Lists the full detail of a specific patient, including their prescriptions/instructions, name, patient ID and tags in the main window.
 
-Format: `delete INDEX`
+###Format: `view pid/PATIENT_ID_NUMBER`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+###Examples:
+`view pid/A0123456789B` will display all the information associated with the patient with ID number A0123456789B on the GUI.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+---
+##Listing a patient’s prescriptions: lspresc
+Lists the prescriptions and instructions list for a patient in numbered list form for the patient specified by `PATIENT_ID_NUMBER`.
 
-### Clearing all entries : `clear`
+###Format: `lspresc pid/PATIENT_ID_NUMBER`
 
-Clears all entries from the address book.
+###Examples:
+`lspresc pid/A0123456789B` will display the list of tasks and prescriptions of patient with ID A0123456789B on the GUI
 
-Format: `clear`
+---
+##Listing staff members: lsstf
 
-### Exiting the program : `exit`
+Lists staff members’ names and the name of the ward they are assigned to.
 
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
+
+###Format: `lsstf [w/WARD_NAME]`
+`WARD_NAME` can be specified to only list staff in the specified ward. This is an optional parameter.
+
+###Examples:
+`lsstf` will list all staff assigned to each ward on the GUI. The lists will be grouped according to ward, and each staff
+can appear more than once if they are assigned to more than 1 ward.\
+`lsstf w/block A ward 1` will list all staff assigned to block A ward 1 on the GUI.
+
+---
+##Listing all wards: lsward
+Lists all existing wards on the GUI. Only ward names will be displayed.
+
+###Format: `lsward`
+
+---
+##Update patient particulars: editpat
+This overwrites the specified patient’s particulars with new particulars. The patient to be edited must exist, i.e. there must exist a
+patient with the given `PATIENT_ID_NUMBER`. **All existing information about the patient will be deleted, and replaced with
+the new information.**
+
+###Format: `editpat pid/PATIENT_ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`
+
+###Examples:
+`editpat pid/A0123456789B w/block B ward 2 p/81234567`\
+`editpat pid/A0123456789B kn/John Tan kp/91234567`
+
+---
+##Deleting a ward from the system: delward
+This deletes the `WARD_NAME` specified from the system. The ward being deleted must be empty for this command to be successfully executed.
+
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
+
+###Format: `delward n/WARD_NAME`
+
+###Examples:
+`delward n/block B ward 2` will remove block B ward 2 from the system. The ward must have been empty before deletion.
+
+---
+##Deleting a staff member from a ward: delstf
+This removes `STAFF_NAME` from the list of persons in charge of `WARD_NAME`. The staff must be currently assigned to the ward for this command to be successfully executed.
+
+**Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
+
+###Format: `delstf n/STAFF_NAME w/WARD_NAME`
+
+###Examples:
+`delstf n/Dr. Mallory Wong w/block B ward 2` will remove Dr. Mallory Wong from the list of staff attending to block B ward 2.
+
+---
+##Deleting an entry from a patient’s list of prescriptions: delpresc
+Deletes the list entry specified at `INDEX` on the patient’s list of prescriptions and instructions, for the patient
+specified by `PATIENT_ID_NUMBER`. The patient must currently exist and the value of `INDEX` must represent a valid entry
+on the list.
+
+###Format: `delpresc pid/PATIENT_ID_NUMBER idx/INDEX`
+
+###Example:
+`delpresc pid/A0123456789B idx/1` will delete the top item from the prescriptions and instructions list of patient with
+ID A0123456789B.
+
+---
+##Deleting a patient from the system: delpat
+This removes the patient from the system as specified by `PATIENT_ID_NUMBER`.
+The patient must currently exist for this command to be successfully executed.
+This will remove the patient from his or her assigned ward as well.
+
+###Format: `delpat pid/PATIENT_ID_NUMBER`
+
+###Examples:
+`delpat pid/A0123456789B` will delete all records of patient with ID number A0123456789B from the system.
+
+---
+##Exiting the program: exit
 Exits the program.
 
-Format: `exit`
+###Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add patient** | `add n/PATIENT_NAME pid/PATIENT_ID_NUMBER [w/WARD_NAME] [t/TAG]...` <br> e.g., `addpat n/Jonathan Lee pid/A12345679B w/block B ward 2`
+**Add prescription** | `addpresc pid/PATIENT_ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION` <br> e.g., `addpresc pid/A0123456789B p/paracetamol 500mg`
+**Add staff** | `addstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong w/block B ward 2`
+**Add ward** | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`
+**List Patients** | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`
+**View details of patient** | `view pid/PATIENT_ID_NUMBER`<br> e.g., `view pid/A0123456789B`
+**List patient's prescriptions** | `lspresc pid/PATIENT_ID_NUMBER`<br> e.g., `lspresc pid/A0123456789B`
+**List staff members** | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`
+**List all ward names** | `lsward`<br>
+**Edit patient particulars** | `editpat pid/PATIENT_ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat pid/A0123456789B w/block B ward 2 p/81234567`
+**Deleting ward** | `delward n/WARD_NAME`<br> e.g., `delward n/block B ward 2`
+**Deleting staff member** | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`
+**Deleting prescription entry** | `delpresc pid/PATIENT_ID_NUMBER idx/INDEX`<br> e.g., `delpresc pid/A0123456789B idx/1`
+**Deleting patient from system** | `delpat pid/PATIENT_ID_NUMBER`<br> e.g., `delpat pid/A0123456789B`
+**Exit** | `exit`<br>
+
+
+
