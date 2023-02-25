@@ -1,46 +1,39 @@
-<h1 align="center" id="top">Welcome to My Portfolio 👋</h1>
-
-![Portfolio Image](https://i.ibb.co/VDmrgCW/portfolio.jpg)
-
-### 🏠 [Live Site](https://leeshaowee.netlify.app/)
-
+---
+layout: page
+title: Shao Wee's Project Portfolio Page
 ---
 
-### Table of Contents
+### Project: LE TRACKER
 
-You're sections headers will be used to reference location of destination.
+LE TRACKER is a gamified tracking application that allows fast typist to easily log their lecture progress, search for lecture by mod code/ keywords/ topics for a stress-free learning environment. Unlike todo list applications, LE TRACKER is tailored to the needs of students; it provides additional information specific to lecture media such as watch progress and topics.
 
-- [Description](#description)
-- [Technologies](#technologies)
-- [Author Info](#author-info)
+Given below are my contributions to the project.
 
----
+**New Feature**: TBA
 
-## Description
+- TBA
 
-> This website conprises of information about myself, my works, skills and experiences.
+**Code contributed**: [Repo link](https://github.com/shaowi/tp)
 
-## Technologies
+**Project management**:
 
-1. SASS
-2. React JS
-3. Sanity (For CMS)
+- TBA
 
-[Back To The Top](#top)
+**Enhancements to existing features**:
 
----
+- TBA
 
-## Author Info
+**Documentation**:
 
-👤 **Lee Shao Wee**
+- User Guide:
+  - TBA
+- Developer Guide:
+  - TBA
 
-- Website: [URL](https://leeshaowee.netlify.app/)
-- Github: [@shaowi](https://github.com/shaowi)
+**Community**:
 
----
+- TBA
 
-## Show your support
+**Tools**:
 
-Give a ⭐️ if this project helped you!
-
-[Back To The Top](#top)
+- TBA
