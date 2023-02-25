@@ -52,17 +52,23 @@ to a more efficient and organised way of managing the volunteers’ and elderly�
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority         | As a …​                              | I want to …​                                                          | So that I can…​                               |
-|------------------|--------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------|
-| Shaun's part     |
-| `* *`            | single administrator of a small NPOs | view nursing / medical courses that volunteers have taken in the past | pair an elderly witha more suitable volunteer |
-| `*`              | single administrator of a small NPOs | see how long a volunteer has been with the program                    | assess their experience                       |
-| `*`              | single administrator of a small NPOs | track the befriending history of a volunteer                          | audit past involvements easily                |
+| Priority         | As a …​                              | I want to …​                                                          | So that I can…​                                                                 |
+|------------------|--------------------------------------|-----------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`          | single administrator of a small NPOs | list volunteers                                                       | see all the volunteers and their information                                    |
+| `* * *`          | single administrator of a small NPOs | add volunteer to the list of volunteers                               | include new volunteers in the application                                       |
+| `* *`            | single administrator of a small NPOs | delete volunteers                                                     | remove volunteers that have left                                                |
+| `* *`            | single administrator of a small NPOs | update volunteers & volunteer information                             | keep the volunteer information up-to-date                                       |
+| `* * `           | single administrator of a small NPOs | search for particular volunteers by keywords                          | quickly see the volunteer's details                                             |
+| `*`              | single administrator of a small NPOs | manage volunteers by region                                           | arrange the volunteers such that they can conveniently reach out to the elderly |
+| `*`              | single administrator of a small NPOs | manage the volunteers' available dates and time                       | efficiently find volunteers available for activities                            |
+| `* *`            | single administrator of a small NPOs | view nursing / medical courses that volunteers have taken in the past | pair an elderly with a more suitable volunteer                                  |
+| `*`              | single administrator of a small NPOs | see how long a volunteer has been with the program                    | assess their experience                                                         |
+| `*`              | single administrator of a small NPOs | track the befriending history of a volunteer                          | audit past involvements easily                                                  |
 | Heyi's part      |
-| `* * *`          | single administrator of a small NPOs | find and list unpaired elderlies                                      | pair new incoming volunteers easily           |
-| `* *`            | single administrator of a small NPOs | view the last visited time/date of the elderly                        | know when to plan the next visit              |
-| `* *`            | single administrator of a small NPOs | set up reminder system for elderlies                                  | plan volunteers to assist on those days       |
-| `*`              | single administrator of a small NPOs | track the befriending history of an elderly                           | audit past involvements easily                |
+| `* * *`          | single administrator of a small NPOs | find and list unpaired elderlies                                      | pair new incoming volunteers easily                                             |
+| `* *`            | single administrator of a small NPOs | view the last visited time/date of the elderly                        | know when to plan the next visit                                                |
+| `* *`            | single administrator of a small NPOs | set up reminder system for elderlies                                  | plan volunteers to assist on those days                                         |
+| `*`              | single administrator of a small NPOs | track the befriending history of an elderly                           | audit past involvements easily                                                  |
 | Yong Jing's part |
 | Zong Xun's part  |
 
