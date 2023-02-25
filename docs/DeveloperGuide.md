@@ -336,6 +336,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+Use case: UC06 - Delete Project
+Actor: User
+MSS:
+User enters command for deleting project of certain client.
+ArB deletes project for client.
+Use case ends.
+
+Extension:
+1a. User wants to remove a project of a client that is not found in the list.
+2a1. ARB tells user that the project of the client does not exist.
+Use case ends.
+
+
+Use case: UC05 - Edit Project
+Actor: User
+MSS:
+User enters command to editing project, including project ID and details to edit
+ArB edits project to use new details
+Use case ends.
+
+Extension:
+1a. ArB detects that the command is inaccurate/incomplete
+1a1. ArB tells user that the command is incorrect and displays the correct format
+Use case ends.
+1b. ArB detects that the project does not exist
+1b1. ArB tells user that the project does not exist
+Use case ends.
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
