@@ -50,10 +50,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sun Yitong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yitong241.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yitong241)]
+[[portfolio](team/yitong.md)]
 
 - Role: Developer
-- Responsibilities: UI
+- Code Focus Area: Logic
+- Primary Role: Deliverables and deadlines
+- Secondary Role: Scheduling and tracking
+
