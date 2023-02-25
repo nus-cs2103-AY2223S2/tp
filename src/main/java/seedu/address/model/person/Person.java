@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,6 +17,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -34,6 +36,21 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.id = new Id();
+    }
+
+    /**
+     * Every field must be present and not null.
+     * ID must be specific when loading from local storage
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
     }
 
     public Name getName() {
@@ -50,6 +67,9 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public Id getId() {
+        return id;
     }
 
     /**
