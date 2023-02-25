@@ -86,7 +86,8 @@ Examples:
 
 ### Add a Video
 Adds a video to a lecture
-Format: add-video /module {module_name} /lecture {lecture_index} /video {video_name}
+
+Format: `add-video /module {module_name} /lecture {lecture_index} /video {video_name}`
 - `module_code` must belong to an existing module
 - `lecture_index` must belong to an existing lecture
 - `video_name` has to be unique
