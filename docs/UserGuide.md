@@ -81,19 +81,22 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an application: `add`
 
-Adds a person to the address book.
+Adds an internship application to be tracked.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Job Description and Deadline are optional fields for an application.
+
+A application can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023`
+* `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/Applied j/Conversion to full time in 12 months`
+
 
 ### Listing all persons : `list`
 
