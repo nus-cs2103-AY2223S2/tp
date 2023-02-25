@@ -9,10 +9,10 @@ import seedu.address.model.application.Application;
 import seedu.address.model.application.UniqueApplicationList;
 
 /**
- * Wraps all data at the application-book level
+ * Wraps all data at the internship-book level
  * Duplicates are not allowed
  */
-public class ApplicationBook implements ReadOnlyApplicationBook {
+public class InternshipBook implements ReadOnlyInternshipBook {
 
     private final UniqueApplicationList applications;
 
@@ -27,12 +27,12 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
         applications = new UniqueApplicationList();
     }
 
-    public ApplicationBook() {}
+    public InternshipBook() {}
 
     /**
-     * Creates an ApplicationBook using the Applications in the {@code toBeCopied}
+     * Creates an InternshipBook using the Applications in the {@code toBeCopied}
      */
-    public ApplicationBook(ReadOnlyApplicationBook toBeCopied) {
+    public InternshipBook(ReadOnlyInternshipBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
-     * Resets the existing data of this {@code ApplicationBook} with {@code newData}.
+     * Resets the existing data of this {@code InternshipBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyApplicationBook newData) {
+    public void resetData(ReadOnlyInternshipBook newData) {
         requireNonNull(newData);
 
         setApplications(newData.getApplicationList());
@@ -59,7 +59,7 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     //// application-level operations
 
     /**
-     * Returns true if a duplicate Application exists in the application book.
+     * Returns true if a duplicate Application exists in the internship book.
      */
     public boolean hasApplication(Application application) {
         requireNonNull(application);
@@ -67,8 +67,8 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
-     * Adds an Application to the application book.
-     * The Application must not already exist in the application book.
+     * Adds an Application to the internship book.
+     * The Application must not already exist in the internship book.
      */
     public void addApplication(Application a) {
         applications.add(a);
@@ -76,8 +76,8 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
 
     /**
      * Replaces the given application {@code target} in the list with {@code editedApplication}.
-     * {@code target} must exist in the application book.
-     * {@code editedApplication} must not be the same as another existing Application in the application book.
+     * {@code target} must exist in the internship book.
+     * {@code editedApplication} must not be the same as another existing Application in the internship book.
      */
     public void setApplication(Application target, Application editedApplication) {
         requireNonNull(editedApplication);
@@ -86,8 +86,8 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ApplicationBook}.
-     * {@code key} must exist in the application book.
+     * Removes {@code key} from this {@code InternshipBook}.
+     * {@code key} must exist in the internship book.
      */
     public void removeApplication(Application key) {
         applications.remove(key);
@@ -109,8 +109,8 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ApplicationBook // instanceof handles nulls
-                && applications.equals(((ApplicationBook) other).applications));
+                || (other instanceof InternshipBook // instanceof handles nulls
+                && applications.equals(((InternshipBook) other).applications));
     }
 
     @Override

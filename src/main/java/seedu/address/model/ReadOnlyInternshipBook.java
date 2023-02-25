@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.application.Application;
 
 /**
- * Unmodifiable view of an application book
+ * Unmodifiable view of an internship book
  */
-public interface ReadOnlyApplicationBook {
+public interface ReadOnlyInternshipBook {
 
     /**
      * Returns an unmodifiable view of the applications list.
