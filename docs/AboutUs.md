@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
-* Responsibilities: Scheduling & Tracking   
+* Responsibilities: Scheduling & Tracking
 
 ### Arkar Kyaw Aung
 
@@ -51,10 +51,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chong Wei Guan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chongweiguan.jpg" width="200px">
 
 [[github](https://github.com/chongweiguan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chongweiguan.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables & Deadlines
