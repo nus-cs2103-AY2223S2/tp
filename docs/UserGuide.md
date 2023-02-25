@@ -23,7 +23,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `list /module`: Lists the names of all the recorded modules
   - `list /module /{module_code}`: Lists all the videos recorded in that module code
 - Add
-  - `add-module {module_code} [/name {module_name}]`: Adds a module to Le Tracker
+  - `add-module /code {module_code} [/name {module_name}]`: Adds a module to Le Tracker
   - `add-lecture /module {module_code}`: Adds a lecture to a module
   - `add-video /module {module_name} /lecture {lecture_index} /video {video_name}`: Adds a video to the module code
 - Mark/Unmark
@@ -67,13 +67,13 @@ Refer to the [Features](#features) below for details of each command.
 ### Add a Module
 Adds a module to Le Tracker
 
-Format: `add-module {module_code} [/name {module_name}]`
+Format: `add-module /code {module_code} [/name {module_name}]`
 - `module_code` has to be unique
 - If the name argument is not specified, the module will have no name
 
 Examples:
 
-- `add-module CS2040 /name Data Structures & Algorithms`
+- `add-module /code CS2040 /name Data Structures & Algorithms`
 
 ### Add a Lecture
 Adds a lecture to a module
@@ -119,6 +119,6 @@ If your changes to the data file makes its format invalid, Le Tracker will disca
 
 | Action               | Format, Examples                                                                                                                                         |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add a Module**     | `add-module {module_code} [/name {module_name}]` <br> e.g., `add-module CS2040 /name Data Structures & Algorithms`                                       |
+| **Add a Module**     | `add-module /code {module_code} [/name {module_name}]` <br> e.g., `add-module /code CS2040 /name Data Structures & Algorithms`                           |
 | **Add a Lecture**    | `add-lecture /module {module_code}` <br> e.g., `add-lecture /module CS2040`                                                                              |
 | **Add a Video**      | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` <br> e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
