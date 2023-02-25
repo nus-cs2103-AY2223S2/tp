@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,27 +258,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-savvy small home-based bakery business owners
+* < 40 years old — receptive to using digital platforms 
+* Owns E-commerce businesses that:
+  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products 
+  * Lack manpower/time to track logistics
+  * Has < 5 employees
+  * Has < 200 customers per month 
+  * Restocks from suppliers seasonally
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using _CLI_ apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+Our application:
+* allows for consolidation of contacts & tasks information which makes it easier to manage them. (no real-time automation)
+* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
+* enables faster contact management compared to a typical mouse/_GUI_ driven app
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                                 | I want to …​                                                                         | So that I can…​                                                          |
+|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                               | so that I can refer to the instructions when learning how to use the app |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                                       |
+| `* * *`  | a home bakery owner                                                     | easily add orders into my _order_ list                                               | efficiently keep track of my orders                                      |
+| `* * *`  | a home bakery owner who has lots of deadlines to meet                   | add _tasks_, such as ordering ingredients                                            | so that I can keep track of my to-do list                                |
+| `* * *`  | a familiar user                                                         | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct                   |
+| `* * *`  | a familiar user                                                         | delete orders from my order list                                                     | clear my order list of orders that are not required anymore              |
+| `* * *`  | a familiar user                                                         | delete tasks from my task list                                                       | remove tasks that I no longer need to complete                           |
+| `* *`    | an expert user                                                          | easily update supplier information                                                   | keep my records accurate and up-to-date                                  |
+| `* *`    | an expert user                                                          | edit existing information about orders                                               | keep my order details accurate and up-to-date                            |
+| `* *`    | an expert user                                                          | edit existing task information                                                       | easily correct any wrong information keyed in  |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything  |
+| `* *`    | a business owner on a time crunch                                       | mark my tasks as Done or Not Done (Task status)                                      | keep track of my deadlines and plan my time well  |
+| `* *`    | a forgetful business owner                                              | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
 
 *{More to be added}*
 
@@ -560,7 +583,13 @@ MSS
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command-Line Interface
+* **GUI**: Graphical User Interface
+* **Supplier**: Supplier refers to someone who the home bakery owner seasonally or frequently orders goods from
+* **Order**: Order refers to the customers' orders the home bakery owner accepts
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
 
 --------------------------------------------------------------------------------------------------------------------
 
