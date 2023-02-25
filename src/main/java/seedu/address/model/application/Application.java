@@ -1,11 +1,11 @@
 package seedu.address.model.application;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 /**
- * Represents an Application in the application book.
+ * Represents an Application in the internship book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Application {

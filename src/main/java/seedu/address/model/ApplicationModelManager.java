@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.application.Application;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -37,7 +36,7 @@ public class ApplicationModelManager implements ApplicationModel {
         filteredApplications = new FilteredList<>(this.internshipBook.getApplicationList());
     }
 
-    public ModelManager() {
+    public ApplicationModelManager() {
         this(new InternshipBook(), new UserPrefs());
     }
 

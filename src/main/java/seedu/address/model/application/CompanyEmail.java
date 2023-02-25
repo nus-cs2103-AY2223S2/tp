@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the company's email for an Application in the application book.
+ * Represents the company's email for an Application in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class CompanyEmail {

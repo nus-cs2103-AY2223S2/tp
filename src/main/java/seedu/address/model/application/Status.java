@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a status for an Application in the application book.
+ * Represents a status for an Application in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class Status {
+    /**
+     * Represents permitted values for the Status parameter.
+     */
     public enum StatusType {
         INTERESTED, APPLIED, OFFERED, REJECTED;
     }

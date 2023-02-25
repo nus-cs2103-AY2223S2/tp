@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the role for an Application in the address book.
+ * Represents the role for an Application in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class Role {
