@@ -17,12 +17,20 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
+    /**
+     * Text to be displayed when the user gets help.
+     */
     public static final String AB3_NAME = "AddressBook v1.2 2023\n";
-    public static final String OPTIONS = "Options: \n"
+    public static final String OPTIONS = "Usage: \n"
             + "  add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]              add a new contact\n"
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]      edit details of an existing contact\n"
             + "  find KEYWORD [MORE_KEYWORDS]                                     find contact by keyword\n"
             + "  delete INDEX                                                     delete contact by index\n"
+            + "  tag n/NAME t/TAG_NAME                                            add tag to a contact\n"
+            + "  delete n/NAME t/TAG_NAME                                         delete tag of a contact\n"
+            + "  filter t/TAG_NAME                                                show only contacts with tag\n"
+            + "  load f/FILENAME                                                  load from CSV file\n"
+            + "  export                                                           export to CSV file\n"
             + "  clear                                                            clear address book\n"
             + "  exit                                                             exit the program\n";
     public static final String EXAMPLE = "Example:   " +
