@@ -7,6 +7,8 @@ ExecutivePro (EP) is a desktop app for Human Resource managers to manage their e
 ###Contributions to the team:
 
 **Code Contributed:**
+https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yanlings&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
+
 TBA
 
 **New Feature:**
