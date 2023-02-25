@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Zhizhou's Project Portfolio Page
+title: Xinyang's Project Portfolio Page
 ---
 
 ### Project: sprINT
@@ -11,7 +11,7 @@ of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huangzz125&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=xyluschen&breakdown=true)
 
 * **Project management**:
     * to be added soon
