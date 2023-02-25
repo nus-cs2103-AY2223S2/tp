@@ -19,11 +19,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Guo Kecheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/guo-kecheng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/Guo-KeCheng)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
