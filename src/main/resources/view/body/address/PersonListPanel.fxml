@@ -9,5 +9,9 @@
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <Label fx:id="count" styleClass="label-bright, pa" />
   <Separator />
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+  <ListView fx:id="personListView" VBox.vgrow="ALWAYS">
+    <placeholder>
+      <Label text="No contacts." styleClass="label-bright" />
+    </placeholder>
+  </ListView>
 </VBox>
