@@ -334,29 +334,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
-
-Use case: UC06 - Delete Project
+**Use case: Use case - Delete Project**
 Actor: User
-MSS:
+**MSS**:
 User enters command for deleting project of certain client.
 ArB deletes project for client.
 Use case ends.
 
-Extension:
+**Extension**:
 1a. User wants to remove a project of a client that is not found in the list.
 2a1. ARB tells user that the project of the client does not exist.
 Use case ends.
 
 
-Use case: UC05 - Edit Project
+**Use case: Use case - Edit Project**
 Actor: User
-MSS:
+**MSS**:
 User enters command to editing project, including project ID and details to edit
 ArB edits project to use new details
 Use case ends.
 
-Extension:
+**Extension**:
 1a. ArB detects that the command is inaccurate/incomplete
 1a1. ArB tells user that the command is incorrect and displays the correct format
 Use case ends.
