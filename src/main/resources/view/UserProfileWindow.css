@@ -1,8 +1,0 @@
-#userProfileContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-#userDetails {
-    -fx-text-fill: white;
-    -fx-label-line-spacing: 10;
-}

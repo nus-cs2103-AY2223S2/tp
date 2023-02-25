@@ -24,7 +24,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -34,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private UserProfileWindow userProfileWindow;
+    private UserProfilePanel userProfilePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,7 +48,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
+
+    @FXML
+    private StackPane userProfilePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -67,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        userProfileWindow = new UserProfileWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -119,10 +120,13 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEduMateFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        userProfilePanel = new UserProfilePanel(logic);
+        userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
     }
 
     /**
@@ -149,18 +153,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the user profile window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleUserProfile() {
-        if (!userProfileWindow.isShowing()) {
-            userProfileWindow.show();
-        } else {
-            userProfileWindow.focus();
-        }
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -174,7 +166,6 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        userProfileWindow.hide();
         primaryStage.hide();
     }
 
@@ -195,10 +186,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isShowUserProfile()) {
-                handleUserProfile();
             }
 
             if (commandResult.isExit()) {
