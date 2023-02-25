@@ -62,6 +62,11 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (getIndex() == 0) {
+                    getStyleClass().add("first-cell");
+                } else {
+                    getStyleClass().remove("first-cell");
+                }
             }
         }
     }

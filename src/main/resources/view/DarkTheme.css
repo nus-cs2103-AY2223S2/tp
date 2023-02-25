@@ -97,15 +97,21 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-background-color: transparent;
+    -fx-padding: 0;
 }
 
 .list-cell {
-    -fx-background-insets: 10 0 0 0;
+    -fx-background-insets: 0 10 10 10;
     -fx-background-color: transparent;
     -fx-background-radius: 10;
-    -fx-label-padding: 0 0 0 0;
+    -fx-label-padding: 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 10 0 0 0;
+    -fx-padding: 0 0 10 0;
+}
+
+.first-cell {
+    -fx-background-insets: 10;
+    -fx-padding: 10 0 10 0;
 }
 
 .list-cell:filled:even {
@@ -144,6 +150,54 @@
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.pa { /* full padding */
+    -fx-padding: 10;
+}
+
+.pa-t { /* full padding except top */
+    -fx-padding: 0 10 10 10;
+}
+
+.pa-r { /* full padding except right */
+    -fx-padding: 10 0 10 10;
+}
+
+.pa-b { /* full padding except bottom */
+    -fx-padding: 10 10 0 10;
+}
+
+.pa-l { /* full padding except left */
+    -fx-padding: 10 10 10 0;
+}
+
+.ph { /* padding horizontal */
+    -fx-padding: 0 10 0 10;
+}
+
+.pv { /* padding vertical */
+    -fx-padding: 10 0 10 0;
+}
+
+.pt { /* padding top */
+    -fx-padding: 10 0 0 0;
+}
+
+.pr { /* padding right */
+    -fx-padding: 0 10 0 0;
+}
+
+.pb { /* padding bottom */
+    -fx-padding: 0 0 10 0;
+}
+
+.pl { /* padding left */
+    -fx-padding: 0 0 0 10;
+}
+
+.p0 {
+    -fx-padding: 0;
+}
+
 .pane-with-border {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
@@ -155,30 +209,21 @@
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-radius: 10;
      -fx-border-width: 2;
-     -fx-padding: 5;
 }
 
 .pane-with-rounded-corner {
      -fx-background-color: derive(#1d1d1d, 40%);
      -fx-background-radius: 10;
-     -fx-padding: 10;
 }
 
 .pane-with-rounded-corner-light {
       -fx-background-color: white;
       -fx-background-radius: 10;
-      -fx-padding: 10;
 }
 
 .pane-with-rounded-corner-dark {
       -fx-background-color: #333333;
       -fx-background-radius: 10;
-      -fx-padding: 10;
-}
-
-.pane-with-padding {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-padding: 10;
 }
 
 .status-bar {
