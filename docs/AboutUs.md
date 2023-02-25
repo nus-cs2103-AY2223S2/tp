@@ -34,7 +34,7 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 
 <img src="images/nuse0726844.png" width="200px">
 
-[[github](http://github.com/nusE0726844)] [[portfolio](team/nusE0726844.md)]
+[[github](http://github.com/nusE0726844)] [[portfolio](team/nuse0726844.md)]
 
 * Role: Developer
 * Responsibilities: Data
