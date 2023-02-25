@@ -61,7 +61,7 @@ public class JsonAdaptedHomework {
         if (status == Status.COMPLETED) {
             homework.markAsDone();
         } else {
-            homework.markAsNotDone();
+            homework.markAsUndone();
         }
         return homework;
     }

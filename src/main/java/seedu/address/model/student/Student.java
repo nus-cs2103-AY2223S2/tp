@@ -178,6 +178,26 @@ public class Student {
     }
 
     /**
+     * Marks a homework as done from the homework list.
+     *
+     * @param index index of homework to be marked as done
+     */
+    public void markHomeworkAsDone(Index index) {
+        Homework homeworkToMarkAsDone = this.homeworkList.getHomework(index.getZeroBased());
+        homeworkToMarkAsDone.markAsDone();
+    }
+
+    /**
+     * Marks a homework as undone from the homework list.
+     *
+     * @param index index of homework to be marked as undone
+     */
+    public void markHomeworkAsUndone(Index index) {
+        Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
+        homeworkToMarkAsUndone.markAsUndone();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      *

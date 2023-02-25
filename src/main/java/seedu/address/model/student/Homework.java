@@ -62,7 +62,7 @@ public class Homework {
     /**
      * Marks the homework as not completed.
      */
-    public void markAsNotDone() {
+    public void markAsUndone() {
         status = Status.PENDING;
     }
 
