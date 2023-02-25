@@ -1,19 +1,22 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Lee Kay Yen's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: OfficeConnect
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+OfficeConnect is a task management tool designed specifically for managerial role personnel at companies. The target users are individuals who are responsible for assigning tasks and overseeing the work of a team.
+
+The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual tasks like typing and sending emails.
+
+OfficeConnect offers a solution to these problems by providing better visibility into subordinates' workloads, allowing managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that emails are sent during working hours, so that subordinates will not be disturbed outside of work.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Modified help window, more extensive
+  * What it does: allows the user view help for each individual command that can be entered into OfficeConnect.
+  * Justification: This feature improves the user experience as he/she uses the app, as this extensive help window removes the need to go online and scour through all the documentation pages (which are not written for the user's use, anyway.) 
+  * Highlights: This enhancement gives the user a bird's eye view of the ways a command can be used in a digestable (TreeView, hierarchical like manner) that is intuitive and not stressful on the fingers of a slow typer.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
