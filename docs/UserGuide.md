@@ -19,7 +19,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
 - List
-  - `list /module`: Lists the names of all the recorded modules.
+  - `list /module`: Lists the names of all the recorded modules
   - `list /module /{module_code}`: Lists all the videos recorded in that module code
 - Add
   - `add-module {module_code} [/name {module_name}]`: Adds a module to Le Tracker
@@ -33,8 +33,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
   - `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
 - Tag
-  - `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`: Tag a module from Le Tracker
-  - `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`: Untag a module from Le Tracker
+  - `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`: Tags a module from Le Tracker
+  - `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`: Untags a module from Le Tracker
 
 Refer to the [Features](#features) below for details of each command.
 
