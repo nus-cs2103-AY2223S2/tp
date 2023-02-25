@@ -19,7 +19,7 @@ You can reach us at these emails :
 
 [[homepage](https://blog.zyf.ninja/)]
 [[github](https://github.com/Yufannnn)]
-[[portfolio](team/yufan.md)]
+[[portfolio](team/yufannnn.md)]
 
 * Role: 
 * Responsibilities: 
