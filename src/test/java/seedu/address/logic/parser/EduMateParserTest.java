@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -58,7 +57,8 @@ public class EduMateParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         String commandString = EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor);
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor);
         EditCommand command = (EditCommand) parser.parseCommand(commandString);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
@@ -71,10 +71,50 @@ public class EduMateParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        createParseCommandFind(
+                CliSyntax.PREFIX_NAME,
+                Arrays.asList("n/Richard", "Komyo", "Eusoff"),
+                Arrays.asList("Richard", "Komyo", "Eusoff")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_PHONE,
+                Arrays.asList("p/89760441", "92752656", "82630347"),
+                Arrays.asList("89760441", "92752656", "82630347")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_ADDRESS,
+                Arrays.asList("a/91", "Ang", "Mo", "Kio", "Avenue", "4"),
+                Arrays.asList("91", "Ang", "Mo", "Kio", "Avenue", "4")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_EMAIL,
+                Arrays.asList("e/angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com"),
+                Arrays.asList("angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Arrays.asList("t/@albertpark", "@angmeihua", "@bartlee"),
+                Arrays.asList("@albertpark", "@angmeihua", "@bartlee")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_GROUP_TAG,
+                Arrays.asList("g/CCA", "TA", "Study"),
+                Arrays.asList("CCA", "TA", "Study")
+        );
+        createParseCommandFind(
+                CliSyntax.PREFIX_MODULE_TAG,
+                Arrays.asList("m/CS3233", "CS3245", "CS3211"),
+                Arrays.asList("CS3233", "CS3245", "CS3211")
+        );
+    }
+
+    public void createParseCommandFind(
+            Prefix prefix, List<String> keywords, List<String> keywordsWithoutPrefix) throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+        assertEquals(
+                new FindCommand(
+                        new ContainsKeywordsPredicate(keywordsWithoutPrefix, prefix)), command);
     }
 
     @Test
@@ -103,6 +143,7 @@ public class EduMateParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(
+                ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

@@ -103,7 +103,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
 
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
-        return User.getSingletonUser(modelName, modelPhone, modelEmail,
+        return new User(modelName, modelPhone, modelEmail,
                 modelAddress, modelTelegramHandle, modelGroupTags, modelModuleTags);
     }
 }

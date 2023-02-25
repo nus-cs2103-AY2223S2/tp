@@ -11,22 +11,12 @@ import seedu.address.model.tag.ModuleTag;
  */
 public class User extends Person {
 
-    // Singleton Object
-    private static User user = null;
     /**
      * Every field must be present and not null.
      */
-    protected User(Name name, Phone phone, Email email, Address address,
+    public User(Name name, Phone phone, Email email, Address address,
                    TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
         super(name, phone, email, address, telegramHandle, groupTags, moduleTags);
-    }
-
-    public static User getSingletonUser(Name name, Phone phone, Email email, Address address,
-        TelegramHandle telegramHandle, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
-
-        user = new User(name, phone, email, address, telegramHandle, groupTags, moduleTags);
-
-        return user;
     }
 
     @Override
@@ -49,9 +39,5 @@ public class User extends Person {
                 super.getTelegramHandle(),
                 super.getModuleTags(),
                 super.getPhone());
-    }
-
-    public static User getUser() {
-        return user;
     }
 }

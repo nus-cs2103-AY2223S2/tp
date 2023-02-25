@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalUser;
+
 public class UserTest {
     @Test
-    public void getUser_getTwice_isTheSame() {
-        User user = User.getUser();
-        User other = User.getUser();
-        assertEquals(user, other);
+    public void equals_sameObject_true() {
+        assertEquals(TypicalUser.LINUS, TypicalUser.LINUS);
     }
 }

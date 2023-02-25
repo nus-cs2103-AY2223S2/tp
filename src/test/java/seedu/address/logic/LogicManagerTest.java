@@ -29,6 +29,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.storage.JsonEduMateStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -115,6 +116,13 @@ public class LogicManagerTest {
         logic.setGuiSettings(guiSettings);
         GuiSettings otherGuiSettings = logic.getGuiSettings();
         assertEquals(guiSettings, otherGuiSettings);
+    }
+
+    @Test
+    public void getUser_validUser_success() {
+        User user = logic.getUser();
+        User otherUser = logic.getUser();
+        assertEquals(user, otherUser);
     }
 
     /**

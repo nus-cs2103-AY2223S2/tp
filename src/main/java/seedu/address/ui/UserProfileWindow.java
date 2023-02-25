@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.User;
+import seedu.address.logic.Logic;
 
 /**
  * Controller for user profile page
@@ -16,6 +16,8 @@ public class UserProfileWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(UserProfileWindow.class);
     private static final String FXML = "UserProfileWindow.fxml";
 
+    private Logic logic;
+
     @FXML
     private Label userDetails;
 
@@ -24,16 +26,17 @@ public class UserProfileWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the UserProfileWindow.
      */
-    public UserProfileWindow(Stage root) {
+    public UserProfileWindow(Stage root, Logic logic) {
         super(FXML, root);
-        userDetails.setText(String.valueOf(User.getUser()));
+        this.logic = logic;
+        userDetails.setText(String.valueOf(logic.getUser()));
     }
 
     /**
      * Creates a new UserProfileWindow.
      */
-    public UserProfileWindow() {
-        this(new Stage());
+    public UserProfileWindow(Logic logic) {
+        this(new Stage(), logic);
     }
 
     /**

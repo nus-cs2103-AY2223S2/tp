@@ -152,7 +152,7 @@ public class EditCommand extends Command {
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
                 .orElse(userToEdit.getModuleTags());
 
-        return User.getSingletonUser(updatedName, updatedPhone, updatedEmail,
+        return new User(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
     }
 
