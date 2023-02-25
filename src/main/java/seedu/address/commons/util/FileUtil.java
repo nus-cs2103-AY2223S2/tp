@@ -1,14 +1,14 @@
 package seedu.address.commons.util;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
 
 /**
  * Writes and reads files
@@ -93,7 +93,7 @@ public class FileUtil {
         File file = fileChooser.getSelectedFile();
         FileFilter fileFilter = fileChooser.getFileFilter();
         if (fileFilter instanceof FileNameExtensionFilter) {
-            String[] extensions = ((FileNameExtensionFilter)fileFilter).getExtensions();
+            String[] extensions = ((FileNameExtensionFilter) fileFilter).getExtensions();
             String fileName = file.getName().toLowerCase();
             for (String ext : extensions) {
                 if (fileName.endsWith('.' + ext.toLowerCase())) {

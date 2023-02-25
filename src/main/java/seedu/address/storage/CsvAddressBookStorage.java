@@ -3,7 +3,6 @@ package seedu.address.storage;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.CsvUtil;
 import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 
 import java.io.IOException;
@@ -12,6 +11,9 @@ import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * A class to access or store AddressBook data stored as a csv file on the hard disk.
+ */
 public class CsvAddressBookStorage implements AddressBookStorage {
 
     private Path filePath;

@@ -55,8 +55,8 @@ class CsvSerializableAddressBook {
 
     @Override
     public String toString() {
-        return CSV_HEADERS + String.join("\n", persons.stream().
-                <String>map(person -> person.toString()).collect(Collectors.toList()));
+        return CSV_HEADERS + String.join("\n", persons.stream()
+                .<String>map(person -> person.toString()).collect(Collectors.toList()));
     }
 
 }
