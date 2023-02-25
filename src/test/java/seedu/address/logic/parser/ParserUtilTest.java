@@ -136,16 +136,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePayRate_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parsePayRate_validValueWithoutWhitespace_returnsPayRate() throws Exception {
         PayRate expectedPayRate = new PayRate(VALID_PAY_RATE);
         assertEquals(expectedPayRate, ParserUtil.parsePayRate(VALID_PAY_RATE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_PAY_RATE + WHITESPACE;
+    public void parsePayRate_validValueWithWhitespace_returnsTrimmedPayRate() throws Exception {
+        String payRateWithWhitespace = WHITESPACE + VALID_PAY_RATE + WHITESPACE;
         PayRate expectedPayRate = new PayRate(VALID_PAY_RATE);
-        assertEquals(expectedPayRate, ParserUtil.parsePayRate(emailWithWhitespace));
+        assertEquals(expectedPayRate, ParserUtil.parsePayRate(payRateWithWhitespace));
     }
 
     @Test

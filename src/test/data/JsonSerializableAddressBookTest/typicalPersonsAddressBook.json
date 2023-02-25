@@ -4,43 +4,43 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "pay rate" : "40",
+    "payRate" : "10",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "address" : "311, Clementi Ave 2, #02-25",
-    "pay rate" : "50",
+    "payRate" : "11",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "address" : "wall street",
-    "pay rate" : "60",
+    "payRate" : "12",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "address" : "10th street",
-    "pay rate" : "70",
+    "payRate" : "13",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "address" : "michegan ave",
-    "pay rate" : "80",
+    "payRate" : "14",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "address" : "little tokyo",
-    "pay rate" : "90",
+    "payRate" : "15",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "address" : "4th street",
-    "pay rate" : "100",
+    "payRate" : "16",
     "tagged" : [ ]
   } ]
 }

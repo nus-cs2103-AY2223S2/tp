@@ -3,11 +3,11 @@
     "name": "Valid Person",
     "phone": "9482424",
     "address": "4th street",
-    "pay rate": "30"
+    "payRate": "30"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "address": "4th street",
-    "pay rate": "10"
+    "payRate": "10"
   } ]
 }
