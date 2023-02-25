@@ -45,3 +45,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
+
+### Guo Kecheng
+
+<img src="images/guo-kecheng.png" width="200px">
+
+[[github](https://github.com/Guo-KeCheng)]
+[[portfolio](team/guokecheng.md)]
+
+* Role: Developer
+* Responsibilities: UI
