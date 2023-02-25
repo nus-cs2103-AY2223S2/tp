@@ -7,6 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at any one of the following emails:
 * tweizhe@gmail.com
+* zhacatomn@gmail.com
 * to be added...
 ## Project team
 
@@ -35,14 +36,19 @@ You can reach us at any one of the following emails:
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Quek Jia Zhi, Shaun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhacatomn.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhacatomn)] [[portfolio](team/zhacatomn.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
+  * Team Lead (week 8)
+  * Documentation (week 9)
+  * Code Quality (week 10)
+  * Integration (week 11)
+  * Deliverables and Deadlines (week 7, 12)
 
 ### Jean Doe
 
