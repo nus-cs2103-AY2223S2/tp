@@ -89,7 +89,6 @@ Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADL
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Job Description and Deadline are optional fields for an application.
-
 A application can have any number of tags (including 0).
 </div>
 
