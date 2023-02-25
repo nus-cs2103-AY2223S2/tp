@@ -256,15 +256,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* small business owner that has a need to manage a sizeable number of customers and orders
+* increase customer loyalty and retention rate
+* engage with their customers and build long-term relationships with customers by providing incentives
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI apps 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.                   
 
 ### User stories
 
@@ -272,14 +273,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | small business owner | create, view, update and delete basic profile information of my customers | - |
+| `* * *`  | small business owner |	view a centralized tab containing all customers |	view all the customers’ information. |
+| `* * *`  | small business owner |	save the addresses of my customers | provide an easier checkout experience to frequent customers |
+| `* * *`  | forgetful small business owner |	bookmark customers for required updates | remind myself to communicate with some customers |
+| `* * *`  | attentive business owner | track reward points given associated to my customers | determine who I should reward as part of the reward system |
+| `* * *`  | small business owner | create, view, update and delete basic profile information of my orders | - |
+| `* * *`  | small business owner | view a centralized tab containing all orders | view all the orders' information |
+| `* * *`  | small business owner |	set an order as paid for | - |
+| `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
+| `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
+| `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
+| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out | 
+| `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
+| `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
+| `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
+| `* *`  | small business owner | categorize my customers by a few metrics | - |
+| `* *`  | analytical small business owner | view some basic summary of my customer base | understand the demographics of my customers better |
+| `* *`  | attentive small business owner | add customised notes to each customer | track more specific details of each customer |
+| `* *`  | small business owner | include tags in my customer notes | view notes from multiple customers with a similar theme |
+| `* *`  | small business owner | sort customers by their reward points | determine who are my loyal customers |
+| `* *`  | small business owner | spend points for my customers | redeem rewards for them |
+| `* *`  | devoted small business owner | keep a list of rewards and its availability and points | know what rewards I have prepared to give away to loyal customers |
+| `* *`  | small business owner | add enterprise customers | include other companies in my list |
+| `* *`  | small business owner | filter between individual and enterprise customers | - |
+| `* *`  | small business owner | assign individuals to an enterprise | group individuals working in the enterprise |
+| `* *`  | small business owner | view an order timeline for each order | refer to it for future reference |
+| `* *`  | attentive small business owner | view what were my customers’ previous preferences for my product | can easily communicate with the customer about their previous preferences to provide a good service |
+| `* *`  | analytical small business owner | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell |
+| `* *`  | small business owner | tag an order to a specific customer | resolve conflicts regarding a particular order swiftly |
+| `* *`  | small business owner who wants to reduce costs | group orders with delivery addresses close to each other | order delivery can be done more efficiently |
+| `*`  | small business owner | search for customers using a keyword | easily find specific customers |
+| `*`  | small business owner | search for orders using a keyword | easily find specific orders |
+| `*`  | small business owner | save the customers and orders list | - |
 
 ### Use cases
 
@@ -321,7 +347,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business. 
+* **Enterprise customers**: companies that order a large amount of products, much more than individual customers
 
 --------------------------------------------------------------------------------------------------------------------
 
