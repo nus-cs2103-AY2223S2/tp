@@ -75,7 +75,7 @@ public class SampleDataUtil {
      * Returns a sample User singleton object.
      */
     public static User getSampleUser() {
-        return User.getSingletonUser(new Name("Linus Richards"),
+        return new User(new Name("Linus Richards"),
                 new Phone("90102030"),
                 new Email("linusrichards@gmail.com"),
                 new Address("National University of Singapore"),
