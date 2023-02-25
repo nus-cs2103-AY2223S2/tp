@@ -44,7 +44,7 @@ Trackr is a **desktop app for managing deliveries for your business, optimised f
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items in curly brackets need to have at least 1 item supplied.
   e.g. `{p/PHONE_NUMBER e/EMAIL}` can be used as `p/91234567` or `e/john@example.com` but cannot be left blank.
@@ -55,7 +55,7 @@ Trackr is a **desktop app for managing deliveries for your business, optimised f
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -71,11 +71,24 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Adding a supplier: `add_supplier` / `add_s`
+
+Adds a supplier to the address book.
+
+Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
+
+* A supplier can have any number of tags (including 0)
+
+Examples:
+* `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
+* `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
+
+
 ### Adding an order: `add_order` / `add_o`
 
 Adds an order into the list of orders.
 
-Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]...`
+Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]…​`
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided
@@ -99,6 +112,40 @@ Examples:
 * `add_task d/Buy cookie cutter d/2022-12-22`
 * `add_t d/Buy a card d/2023-12-23 s/D`
 
+### Adding tags to a supplier: `tag_supplier` / `tag_s`
+
+Add tags to an existing supplier entry
+
+Syntax: `tag_supplier INDEX t/TAG`
+
+* Tags the supplier at the specified `INDEX`.
+* The index refers to the number shown in the suppliers list displayed.
+* The index **must be a positive integer** 1, 2, 3, …​
+* More than one tag can be given, but at least one tag must be given
+
+Examples:
+`tag_supplier 1 t/Supplies Sugar t/100kg per order` adds the tags `Supplies Sugar` and `100kg per order` onto of the existing tags for the 1st supplier.
+`tag_s 4 t/Minimum 10kg per order` adds the tag `Minimum 10kg per order` onto of the existing tags of the 4th supplier.
+
+### Editing a supplier: `edit_supplier` / `edit_s`
+
+Edit an existing supplier’s information.
+
+Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the supplier at the specified `INDEX`.
+* The index refers to the number shown in the suppliers list displayed.
+* The index **must be a positive integer** 1, 2, 3, …​
+* User is required to key in at least one of the optional fields.
+* Existing values will be replaced with the new values given.
+* When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
+* Typing `t/` without any input will remove all the existing tags.
+
+Examples:
+`edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags.
+`edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
+
+
 ### Editing an order : `edit_order / edit_o`
 
 Edits an order that is present in the order list.
@@ -112,8 +159,8 @@ Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_P
 * User can remove the remarks by typing r/ without specifying any remarks after it
 
 Examples:
-*  `edit_order 1 p/91234567 d/2023-05-05 ` Edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
-*  `edit_o 3 q/20 r/` Edits the quantity of food for the 3rd order to 20 and clears all remarks
+*  `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
+*  `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
 ### Editing a task : `edit_task` / `edit_t`
 
@@ -127,8 +174,8 @@ Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 * When editing status, the existing status of the order will be removed and replaced with the given status
 
 Examples:
-* `edit_task 1 d/Get creamer` Edits the 1st task description to be get creamer
-* `edit_t 3 d/2023-12-31 s/N` Edits the 3rd task deadline to 2023-12-31 and sets the status as not done
+* `edit_task 1 d/Get creamer` edits the 1st task description to be get creamer
+* `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
 ### Finding a supplier : `find_supplier` / `find_s`
 
@@ -225,7 +272,7 @@ Format: `exit`
 
 ### Saving the data
 
-Saves changes after any command executed successfully. There is no need to save manually.
+Save changes after any command executed successfully. There is no need to save manually.
 
 ### Editing the data file
 
