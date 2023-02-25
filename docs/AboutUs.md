@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Xuan Zheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhengsterz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/zhengsterz)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: Undecided
 
 ### Johnny Doe
 
