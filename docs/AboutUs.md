@@ -7,15 +7,15 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### John Doe
+### Chen Xinyang (Xylus)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xyluschen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/xyluschen)]
+[[portfolio](team/xyluschen.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Code Quality
 
 ### Tan Hui Xuan
 
