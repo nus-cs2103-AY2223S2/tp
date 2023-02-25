@@ -8,7 +8,7 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at any one of the following emails:
 * [Tan Wei Zhe](mailto:tweizhe@gmail.com)
 * [Quek Jia Zhi, Shaun](mailto:zhacatomn@gmail.com)
-* [Goh Yong Jing](mailto:e0693145@u.nus.edu) 
+* [Goh Yong Jing](mailto:e0693145@u.nus.edu)
 * [Lee Zong Xun](mailto:lzongxun@u.nus.edu)
 
 ## Project team
@@ -50,7 +50,7 @@ You can reach us at any one of the following emails:
 [[github](http://github.com/zhacatomn)] [[portfolio](team/zhacatomn.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Team Lead (week 8)
   * Documentation (week 9)
   * Code Quality (week 10)
@@ -75,7 +75,7 @@ You can reach us at any one of the following emails:
 [[portfolio](team/Zxun2.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Team Lead (week 10)
   * Integration (week 8, 13)
   * Documentation (week 11)
