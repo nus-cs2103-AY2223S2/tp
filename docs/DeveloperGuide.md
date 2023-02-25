@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of commision clients
+* has a need to manage a significant number of projects
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage clients and ongoing projects faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -272,12 +273,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *` | artist with many ongoing commissioned projects to keep track of | view my current commissioned projects in order of deadline recency | not miss any deadlines |
+| `*` | artist inexperienced in command line commands | use commands that are closer to natural language | better understand and more effectively use commands |
+| `* * *` | user | add a deadline to a project | record when a project needs to be done |
+| `*` | artist working with commissions | import a list of clients from a CSV file | use an editable format |
+| `* *` | first-time user of the application | view a guide on how to use the app | learn how to use the app |
+| `*` | artist who wants to increase my earnings | add a large number of commissioned projects at any time | increase my income |
+| `*` | expert in using the application | setup shortcuts for commands I often use | execute them quickly |
+| `* *` | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have | deliver for my clients |
+| `* *` | user | tag projects in the list | filter by the tags if necessary |
+| `* *` | user | see projects by their deadlines | finish work on time |
+| `*` | inexperienced user | undo commands | remedy mistakes |
+| `* *` | first-time user of the application | see sample data in the application | understand what the application can do |
+| `* * *` | artist | add clients to the application | keep track of all of my clients |
+| `* * *` | user | remove clients from my list | keep the list accurate |
+| `* *` | user | edit client info | keep client info up to date in case of changes |
+| `* *` | user | edit project info | keep project info up to date in case of changes |
+| `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
+| `* *` | artist | search for clients using keywords | find specific clients quickly |
+| `* *` | user | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
+| `* *` | artist | sort clients by the number of times they have commissioned me before | know if a given client and I have a long-standing relationship |
+| `* * *`| artist | add contact info to clients | know how to reach them if needed |
+| `*` | artist | blacklist certain clients | know who to avoid |
+| `* *` | artist | add projects to clients | know what projects are for what clients |
+| `* *` | artist | get asked if I am sure I want to delete an ongoing project | be prevented from accidentally deleting an ongoing project |
+| `* * *`| artist | mark a certain project as done | know it is no longer ongoing |
+| `*` | user | easily generate text to share client information | send it to someone else if required |
+| `* * *` | user | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
+| `*` | artist | add dates in different formats without being asked to give it in a certain format | not have to memorize providing dates in a certain format |
+| `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
+| `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
 
 *{More to be added}*
 
@@ -308,15 +334,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Use case - Delete Project**
+Actor: User
+**MSS**:
+User enters command for deleting project of certain client.
+ArB deletes project for client.
+Use case ends.
+
+**Extension**:
+1a. User wants to remove a project of a client that is not found in the list.
+2a1. ARB tells user that the project of the client does not exist.
+Use case ends.
+
+
+**Use case: Use case - Edit Project**
+Actor: User
+**MSS**:
+User enters command to editing project, including project ID and details to edit
+ArB edits project to use new details
+Use case ends.
+
+**Extension**:
+1a. ArB detects that the command is inaccurate/incomplete
+1a1. ArB tells user that the command is incorrect and displays the correct format
+Use case ends.
+1b. ArB detects that the project does not exist
+1b1. ArB tells user that the project does not exist
+Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The final product should be a result of evolving/enhancing/morphing the given code base. 
+5. The product should be targeting users who can type fast and prefer typing over other means of input. 
+6. The product should be for a single user i.e. (not a multi-user product). 
+7. The product needs to be developed in a breadth-first incremental manner over the project duration. 
+8. The data should be stored locally and should be in a human-editable text file. 
+9. Do not use a DBMS to store data. 
+10. The software should follow the Object-oriented paradigm primarily 
+11. The software should work on the Windows, Linux, and OS-X platforms. 
+12. The software should work on a computer that has version 11 of Java 
+13. The software should work without requiring an installer. 
+14. The software should not depend on your own remote server. 
+15. The use of third-party frameworks/libraries/services is allowed but only if they are free, open-source (this doesn't apply to services), have permissive license terms, do not require any installation by the user of your software and do not violate other constraints. 
+16. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125% 
+17. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
+18. Everything needs to be packaged into a single JAR file. 
+19. The file sizes of the product should be reasonable and not exceed the limit of 100MB 
+20. The DG and UG should be PDF-friendly. Don't use expandable panels, embedded videos, animated GIFs etc. 
+22. The product should be testable
 
-*{More to be added}*
 
 ### Glossary
 
