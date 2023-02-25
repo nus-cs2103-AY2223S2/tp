@@ -49,7 +49,7 @@ You can reach us at the emails `e0725564@u.nus.edu`, `e0725569@u.nus.edu`, `e086
 
 ### Avery
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/diamondroxx.png" width="200px">
 
 [[github](http://github.com/Diamondroxxx)]
 [[portfolio](team/diamondroxxx.md)]
