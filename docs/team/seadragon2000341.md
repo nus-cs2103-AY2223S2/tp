@@ -3,7 +3,7 @@ layout: page
 title: Shawn's Project Portfolio Page
 ---
 
-### Project: Intern Buddy
+### Project: InternBuddy
 
 InternBuddy provides a 1-stop platform for Computing undergraduates to manage and track their internship applications. It is optimized for typing which Computing undergraduates are comfortable and proficient in, allowing them to fully and efficiently exploit the application’s organisational capabilities.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
