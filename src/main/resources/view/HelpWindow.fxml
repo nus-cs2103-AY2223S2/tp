@@ -59,33 +59,33 @@
                       <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <TreeItem expanded="true" value="User's Methods">
                               <children>
-                                  <TreeItem value="Add methods">
+                                  <TreeItem fx:id="addmethods" value="Add methods" >
                                       <children>
-                                          <TreeItem value="addperson" />
-                                          <TreeItem value="addtask" />
+                                          <TreeItem fx:id="addperson" value="addperson" />
+                                          <TreeItem fx:id="addtask" value="addtask" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem value="Delete methods">
+                                  <TreeItem fx:id="deletemethods" value="Delete methods">
                                       <children>
-                                          <TreeItem value="deleteperson" />
-                                          <TreeItem value="deletetask" />
+                                          <TreeItem fx:id="deleteperson" value="deleteperson" />
+                                          <TreeItem fx:id="deletetask" value="deletetask" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem value="List methods">
+                                  <TreeItem fx:id="listmethods" value="List methods">
                                       <children>
-                                          <TreeItem value="listperson" />
-                                          <TreeItem value="listtask" />
+                                          <TreeItem fx:id="listperson" value="listperson" />
+                                          <TreeItem fx:id="listtask" value="listtask" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem value="Find methods">
+                                  <TreeItem fx:id="findmethods" value="Find methods">
                                       <children>
-                                          <TreeItem value="findperson" />
-                                          <TreeItem value="findtask" />
+                                          <TreeItem fx:id="findperson" value="findperson" />
+                                          <TreeItem fx:id="findtask" value="findtask" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem value="Assign methods">
+                                  <TreeItem fx:id="assignmethods" value="Assign methods">
                                       <children>
-                                          <TreeItem value="assign" />
+                                          <TreeItem fx:id="assign" value="assign" />
                                       </children>
                                   </TreeItem>
                               </children>
@@ -99,7 +99,10 @@
                       </TreeView>
                   </left>
                   <center>
-                     <TextArea fx:id="method__description" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <TextArea fx:id="method__description"
+                               editable="false" prefHeight="200.0"
+                               prefWidth="200.0" BorderPane.alignment="CENTER"
+                               text="">
                         <BorderPane.margin>
                            <Insets bottom="4.0" left="4.0" right="4.0" />
                         </BorderPane.margin></TextArea>

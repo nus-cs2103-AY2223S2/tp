@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -23,6 +24,20 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    public TreeItem<String> addmethods;
+    public TreeItem<String> addperson;
+    public TreeItem<String> addtask;
+    public TreeItem<String> deletemethods;
+    public TreeItem<String> deleteperson;
+    public TreeItem<String> deletetask;
+    public TreeItem<String> listmethods;
+    public TreeItem<String> listperson;
+    public TreeItem<String> listtask;
+    public TreeItem<String> findmethods;
+    public TreeItem<String> findperson;
+    public TreeItem<String> findtask;
+    public TreeItem<String> assignmethods;
+    public TreeItem<String> assign;
 
     @FXML
     private Button copyButton;
@@ -42,7 +57,7 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        System.out.println(addmethods.getValue());
     }
 
 
