@@ -170,6 +170,39 @@ Format: `delete vnr/NRIC`
 Example:
 `delete_volunteer vnr/S8238658J` deletes the volunteer with NRIC `S8238658J`
 
+
+### Pair volunteer and elderly: `add_pair`
+
+Pairs up an existing elderly and volunteer.
+
+This allows you to track which elderly members are assigned to which volunteers.
+
+Format: `add_pair vnr/<VOLUNTEER_NRIC> enr/<ELDERLY_NRIC>`
+
+* After pairing, the newly added pairs appear in the pair list in the window.
+* Only elderly members and volunteers existing in FriendlyLink's data can be paired.
+* Duplicate pairs will fail to be added to FriendlyLink.
+* Alphabets in NRIC are case-insensitive.
+
+Examples
+`add_pair vnr/t0123423a enr/S2235243I` pairs up the volunteer with NRIC T0123423A with the elderly with NRIC S2235243I.
+`add_pair vnr/S0773423a enr/s1135243A` pairs up the volunteer with NRIC S0773423A with the elderly with NRIC S1135243A.
+
+### Unpair volunteer and elderly: `delete_pair`
+
+Unpairs an elderly from its assigned volunteer
+
+This deletes the pair while still keeping the information of the elderly member and volunteer.
+
+Format `delete_pair i/<id>`
+
+* After deleting, the pair is removed in the list of pairs in the window.
+* Alphabets in NRIC are case-insensitive.
+
+Examples
+`delete_pair vnr/t0123423a enr/S2235243I` unpairs the volunteer with NRIC T0123423A and the elderly with NRIC S2235243I.
+`delete_pair vnr/S0773423a enr/s1135243A` unpairs the volunteer with NRIC S0773423A and the elderly with NRIC S1135243A.
+
 ### Clearing all entries : `clear`
 
 Clears all data from FriendlyLink.
