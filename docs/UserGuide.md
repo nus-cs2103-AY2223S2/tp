@@ -105,9 +105,9 @@ Edits an order that is present in the order list.
 
 Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]...`
 
-* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, … 
-* User is required to key in at least one of the optional fields 
-* Existing values will be replaced with the input values 
+* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
+* User is required to key in at least one of the optional fields
+* Existing values will be replaced with the input values
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative)
 * User can remove the remarks by typing r/ without specifying any remarks after it
 
