@@ -10,7 +10,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Gender {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Gender should either be M or F (not case sensitive)";
     public static final String VALIDATION_REGEX = "(M|F|m|f)";
@@ -42,8 +41,8 @@ public class Gender {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Weight) other).value)); // state check
+                || (other instanceof Gender // instanceof handles nulls
+                && value.equals(((Gender) other).value)); // state check
     }
 
     @Override

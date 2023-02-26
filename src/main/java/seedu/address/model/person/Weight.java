@@ -27,7 +27,7 @@ public class Weight {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a weight.
      */
     public static boolean isValidWeight(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -41,7 +41,7 @@ public class Weight {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
+                || (other instanceof Weight // instanceof handles nulls
                 && value.equals(((Weight) other).value)); // state check
     }
 

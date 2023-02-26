@@ -30,7 +30,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Weight weight, Gender gender, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, weight);
+        requireAllNonNull(name, phone, email, address, tags, weight, gender);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -126,7 +126,9 @@ public class Person {
                 .append(getAddress())
                 .append("; Weight: ")
                 .append(getWeight())
-                .append(" Kg");
+                .append(" Kg")
+                .append(" Gender: ")
+                .append(getGender());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
