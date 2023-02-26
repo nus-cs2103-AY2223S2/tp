@@ -20,6 +20,7 @@ Given below are my contributions to the project.
   * to be added soon
 * **Enhancements to existing features**: 
   * to be added soon
+  * to be added soon
 * **Documentation**:
   * to be added soon
 * **Community**:
