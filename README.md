@@ -9,7 +9,7 @@
 * It is called `ExecutivePro`
 * `ExecutivePro` aims to be an *efficient* desktop application used for managing employee details for Human Resource(HR) managers.
 
-* The HR manager use the application via the command line to manage employee details as shown above in the UI mockup.
+* The HR manager use the desktop application via the command line to manage employee details as shown above in the UI mockup.
 ######
 * For the detailed documentation of this project, see the **[ExecutivePro Website](https://ay2223s2-cs2103t-w09-4.github.io/tp/)**.
 
