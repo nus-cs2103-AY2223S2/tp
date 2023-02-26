@@ -143,6 +143,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+### Listing all events : `listevent`
+
+Prints all the existing events in the address book.
+
+Format: `listevent`
+
+* Does not require any additional user arguments.
+* Follow strictly to the command `listevent`.
+
+Examples:
+* `listevent` usually used prior to deleting an event to check the `EVENTINDEX` of each event.
+
 ### Deleting an event : `delevent`
 
 Deletes the specified event from the event list and deletes all occurences of the event tied to persons in the address book, if any.
