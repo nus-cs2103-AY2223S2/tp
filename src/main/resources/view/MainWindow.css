@@ -1,0 +1,45 @@
+.my-command-pane {
+     -fx-text-fill: #212121;
+     -fx-padding:15 10 10 2;
+     -fx-background-color: transparent;
+     -fx-focus-color: transparent;
+}
+
+.my-command-content {
+     -fx-font-family: "SansSerif";
+     -fx-font-size: 12pt;
+     -fx-text-fill: #000000;
+     -fx-prompt-text-fill: #212121;
+     -fx-padding:10;
+     -fx-control-inner-background: rgba(255, 255, 255, 0.2);
+}
+
+.my-result-card {
+    -fx-background-color: transparent;
+    -fx-padding:5 10 10 2;
+    -fx-focus-color: transparent;
+}
+
+.my-result-content {
+     -fx-font-family: "SansSerif";
+     -fx-font-size: 13pt;
+     -fx-text-fill: #212121;
+     -fx-prompt-text-fill: #212121;
+     -fx-border-radius: 3;
+     -fx-control-inner-background: rgba(255, 255, 255, 0.2);
+}
+
+.background {
+    -fx-border-radius: 20;
+    -fx-background-image: url('../images/purple_bg.png');
+    -fx-background-color: #FFFFFF;
+    -fx-opacity: 0.85; /*reduce opacity of the bg image*/
+}
+
+.contacts-pane {
+    -fx-padding:5 10 10 2;
+    -fx-border-radius: 10;
+}
+
+
+

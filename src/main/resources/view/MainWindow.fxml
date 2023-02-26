@@ -19,11 +19,10 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@MainWindow.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox styleClass="background">
           <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
             <Menu mnemonicParsing="false" text="File">
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -35,29 +34,31 @@
 
           <HBox>
             <VBox>
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
 
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
 
-              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <VBox fx:id="personList" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="personListPanelPlaceholder" styleClass="contacts-pane" VBox.vgrow="ALWAYS" />
               </VBox>
+
               <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
+
             <VBox>
-              <StackPane fx:id="userProfilePlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS"/>
-              <StackPane styleClass="pane-with-border" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="userProfilePlaceholder" VBox.vgrow="NEVER"/>
+              <StackPane VBox.vgrow="ALWAYS"/>
             </VBox>
           </HBox>
 
