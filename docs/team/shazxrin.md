@@ -11,9 +11,9 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shazxrin&breakdown=true)
 
-* **New Feature**: _to be added soon_
-  * What it does: _to be added soon_
-  * Justification: _to be added soon_
+* **New Feature**: Added the ability to mark delivery with status
+  * What it does: Mark a delivery with a status.
+  * Justification: This feature assists the delivery rider in keeping track deliveries' statuses 
   * Highlights: _to be added soon_
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * _to be added soon_
+    * Added documentation for the features `mark` [#15](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/15)
     * _to be added soon_
   * Developer Guide:
     * _to be added soon_
