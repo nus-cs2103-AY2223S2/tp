@@ -76,17 +76,19 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the fitbook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT [app/APPOINTMENT_TIME]…​
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags, appointments and exercise routines (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe app/12-12-2030 cal/2300 g/Female  e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
