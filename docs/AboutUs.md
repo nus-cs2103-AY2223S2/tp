@@ -9,19 +9,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang ShaoFeng
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](https://www.linkedin.com/in/shaofeng-wang-468303197/)]
+[[github](https://github.com/SFCoding123)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
+* Reponsibilities: Backends
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/791654880285_.pic_hd.jpg)" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
