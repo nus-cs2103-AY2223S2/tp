@@ -8,7 +8,7 @@ import arb.commons.exceptions.DataConversionException;
 import arb.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link arb.model.AddressBook}.
  */
 public interface AddressBookStorage {
 
