@@ -154,7 +154,7 @@ Format: `listevent`
 * Follow strictly to the command `listevent`.
 
 Examples:
-* `listevent` usually used prior to deleting an event to check the `EVENTINDEX` of each event.
+* `listevent` prints a list of events.
 
 ### Deleting an event : `delevent`
 
