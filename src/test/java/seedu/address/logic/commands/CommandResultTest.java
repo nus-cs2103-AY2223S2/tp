@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    private static final CommandResult COMMAND_RESULT = new CommandResult("feedback", true, true, true);
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
@@ -50,5 +52,27 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+    }
+
+    @Test
+    public void getFeedbackToUser_validCommandResult_success() {
+        String feedbackToUser = "feedback";
+        CommandResult commandResult = new CommandResult(feedbackToUser);
+        assertEquals(feedbackToUser, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void isShowHelp_true_true() {
+        assertTrue(COMMAND_RESULT.isShowHelp());
+    }
+
+    @Test
+    public void isExit_true_true() {
+        assertTrue(COMMAND_RESULT.isExit());
+    }
+
+    @Test
+    public void isShowUserProfile_true_true() {
+        assertTrue(COMMAND_RESULT.isShowUserProfile());
     }
 }
