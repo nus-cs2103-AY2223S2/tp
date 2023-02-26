@@ -1,6 +1,6 @@
 package seedu.vms.testutil;
 
-import seedu.vms.model.AddressBook;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
 
 /**
@@ -24,7 +24,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+        addressBook.add(person);
         return this;
     }
 

@@ -10,7 +10,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersonMap = new FilteredIdDataMap<>(this.addressBook.getPersonMap());
+        filteredPersonMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
     }
 
     public ModelManager() {
@@ -93,12 +95,12 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(int id) {
-        addressBook.removePerson(id);
+        addressBook.remove(id);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        addressBook.add(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -106,7 +108,7 @@ public class ModelManager implements Model {
     public void setPerson(int id, Person editedPerson) {
         requireAllNonNull(editedPerson);
 
-        addressBook.setPerson(id, editedPerson);
+        addressBook.set(id, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================

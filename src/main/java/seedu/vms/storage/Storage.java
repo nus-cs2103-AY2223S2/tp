@@ -5,9 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.DataConversionException;
-import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * API of the Storage component

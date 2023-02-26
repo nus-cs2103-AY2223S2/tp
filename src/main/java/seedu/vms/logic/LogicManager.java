@@ -14,8 +14,8 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 import seedu.vms.storage.Storage;
 
 /**

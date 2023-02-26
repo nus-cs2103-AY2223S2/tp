@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.model.AddressBook;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.ReadOnlyUserPrefs;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 import seedu.vms.testutil.PersonBuilder;
 
 public class AddCommandTest {

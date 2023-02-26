@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.patient.EditCommand.EditPersonDescriptor;
-import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
 import seedu.vms.testutil.EditPersonDescriptorBuilder;
 import seedu.vms.testutil.PersonBuilder;
@@ -116,7 +116,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonMap().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getMapView().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.vms.model.AddressBook;
-import seedu.vms.model.ReadOnlyAddressBook;
 import seedu.vms.model.person.Address;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Email;
 import seedu.vms.model.person.Name;
 import seedu.vms.model.person.Person;
 import seedu.vms.model.person.Phone;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 import seedu.vms.model.tag.Tag;
 
 /**
@@ -43,7 +43,7 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleAb.add(samplePerson);
         }
         return sampleAb;
     }

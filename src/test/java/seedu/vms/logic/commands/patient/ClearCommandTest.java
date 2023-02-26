@@ -5,10 +5,10 @@ import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.model.AddressBook;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
+import seedu.vms.model.person.AddressBook;
 
 public class ClearCommandTest {
 

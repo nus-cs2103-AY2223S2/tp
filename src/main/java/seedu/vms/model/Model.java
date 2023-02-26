@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * The API of the Model component.

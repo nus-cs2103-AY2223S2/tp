@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.AddressBook;
 import seedu.vms.model.IdData;
-import seedu.vms.model.ReadOnlyAddressBook;
+import seedu.vms.model.person.AddressBook;
 import seedu.vms.model.person.Person;
+import seedu.vms.model.person.ReadOnlyAddressBook;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -38,7 +38,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        datas.addAll(source.getPersonMap()
+        datas.addAll(source.getMapView()
                 .values()
                 .stream()
                 .map(JsonAdaptedPersonData::new)
@@ -57,7 +57,7 @@ class JsonSerializableAddressBook {
             if (addressBook.contains(personData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
-            addressBook.addPerson(personData);
+            addressBook.add(personData);
         }
         return addressBook;
     }
