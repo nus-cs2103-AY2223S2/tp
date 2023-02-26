@@ -6,11 +6,11 @@ import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import arb.logic.commands.Command;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
 import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.client.ClearClientCommand;
-import arb.logic.commands.Command;
 import arb.logic.commands.client.DeleteClientCommand;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.FindClientCommand;

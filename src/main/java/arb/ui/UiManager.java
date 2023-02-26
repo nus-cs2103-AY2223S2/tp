@@ -3,14 +3,14 @@ package arb.ui;
 import java.util.logging.Logger;
 
 import arb.MainApp;
+import arb.commons.core.LogsCenter;
+import arb.commons.util.StringUtil;
+import arb.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import arb.commons.core.LogsCenter;
-import arb.commons.util.StringUtil;
-import arb.logic.Logic;
 
 /**
  * The manager of the UI component.

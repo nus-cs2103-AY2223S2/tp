@@ -1,9 +1,9 @@
 package arb.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static arb.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;

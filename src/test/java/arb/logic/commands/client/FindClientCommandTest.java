@@ -1,14 +1,14 @@
 package arb.logic.commands.client;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static arb.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.testutil.TypicalPersons.CARL;
 import static arb.testutil.TypicalPersons.ELLE;
 import static arb.testutil.TypicalPersons.FIONA;
 import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

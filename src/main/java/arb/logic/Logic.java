@@ -2,13 +2,13 @@ package arb.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import arb.commons.core.GuiSettings;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

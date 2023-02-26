@@ -1,13 +1,13 @@
 package arb.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static arb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalPersons.ALICE;
 import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,11 +16,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import arb.model.person.Person;
 import arb.model.person.exceptions.DuplicatePersonException;
 import arb.testutil.PersonBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AddressBookTest {
 

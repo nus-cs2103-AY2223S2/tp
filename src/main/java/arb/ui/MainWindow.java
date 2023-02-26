@@ -2,6 +2,12 @@ package arb.ui;
 
 import java.util.logging.Logger;
 
+import arb.commons.core.GuiSettings;
+import arb.commons.core.LogsCenter;
+import arb.logic.Logic;
+import arb.logic.commands.CommandResult;
+import arb.logic.commands.exceptions.CommandException;
+import arb.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,12 +16,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import arb.commons.core.GuiSettings;
-import arb.commons.core.LogsCenter;
-import arb.logic.Logic;
-import arb.logic.commands.CommandResult;
-import arb.logic.commands.exceptions.CommandException;
-import arb.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing

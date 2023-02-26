@@ -1,7 +1,7 @@
 package arb.logic.commands.client;
 
-import static java.util.Objects.requireNonNull;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;

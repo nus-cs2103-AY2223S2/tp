@@ -2,13 +2,13 @@ package arb.ui;
 
 import java.util.logging.Logger;
 
+import arb.commons.core.LogsCenter;
+import arb.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import arb.commons.core.LogsCenter;
-import arb.model.person.Person;
 
 /**
  * Panel containing the list of persons.

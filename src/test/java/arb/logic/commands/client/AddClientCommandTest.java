@@ -1,10 +1,10 @@
 package arb.logic.commands.client;
 
+import static arb.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static arb.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,9 +13,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import arb.logic.commands.CommandResult;
-import javafx.collections.ObservableList;
 import arb.commons.core.GuiSettings;
+import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.AddressBook;
 import arb.model.Model;
@@ -23,6 +22,7 @@ import arb.model.ReadOnlyAddressBook;
 import arb.model.ReadOnlyUserPrefs;
 import arb.model.person.Person;
 import arb.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddClientCommandTest {
 
@@ -48,7 +48,8 @@ public class AddClientCommandTest {
         AddClientCommand addClientCommand = new AddClientCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddClientCommand.MESSAGE_DUPLICATE_PERSON, () -> addClientCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddClientCommand.MESSAGE_DUPLICATE_PERSON, () -> addClientCommand.execute(modelStub));
     }
 
     @Test

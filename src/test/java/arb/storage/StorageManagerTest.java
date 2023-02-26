@@ -1,8 +1,8 @@
 package arb.storage;
 
+import static arb.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static arb.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 

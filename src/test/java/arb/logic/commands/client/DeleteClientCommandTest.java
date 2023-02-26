@@ -1,13 +1,13 @@
 package arb.logic.commands.client;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

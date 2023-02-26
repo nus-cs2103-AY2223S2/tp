@@ -1,12 +1,12 @@
 package arb.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalPersons.ALICE;
 import static arb.testutil.TypicalPersons.HOON;
 import static arb.testutil.TypicalPersons.IDA;
 import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;

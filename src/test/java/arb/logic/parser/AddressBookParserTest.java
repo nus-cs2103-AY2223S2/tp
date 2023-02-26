@@ -1,11 +1,11 @@
 package arb.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import arb.logic.commands.ExitCommand;
+import arb.logic.commands.HelpCommand;
 import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.client.ClearClientCommand;
 import arb.logic.commands.client.DeleteClientCommand;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.EditClientCommand.EditPersonDescriptor;
-import arb.logic.commands.ExitCommand;
 import arb.logic.commands.client.FindClientCommand;
-import arb.logic.commands.HelpCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.person.NameContainsKeywordsPredicate;

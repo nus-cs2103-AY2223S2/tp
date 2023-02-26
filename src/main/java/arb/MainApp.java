@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import arb.commons.core.Config;
 import arb.commons.core.LogsCenter;
 import arb.commons.core.Version;
@@ -30,6 +28,8 @@ import arb.storage.StorageManager;
 import arb.storage.UserPrefsStorage;
 import arb.ui.Ui;
 import arb.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

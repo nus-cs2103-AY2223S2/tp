@@ -1,11 +1,11 @@
 package arb.logic.commands.client;
 
-import static java.util.Objects.requireNonNull;
 import static arb.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;

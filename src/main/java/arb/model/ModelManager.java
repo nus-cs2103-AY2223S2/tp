@@ -1,17 +1,17 @@
 package arb.model;
 
-import static java.util.Objects.requireNonNull;
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.person.Person;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.

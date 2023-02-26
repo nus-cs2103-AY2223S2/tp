@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.logic.commands.Command;
@@ -16,6 +15,7 @@ import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.person.Person;
 import arb.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

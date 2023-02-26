@@ -1,8 +1,8 @@
 package arb.ui;
 
+import static arb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static arb.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;

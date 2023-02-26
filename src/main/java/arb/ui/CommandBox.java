@@ -1,12 +1,12 @@
 package arb.ui;
 
+import arb.logic.commands.CommandResult;
+import arb.logic.commands.exceptions.CommandException;
+import arb.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import arb.logic.commands.CommandResult;
-import arb.logic.commands.exceptions.CommandException;
-import arb.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

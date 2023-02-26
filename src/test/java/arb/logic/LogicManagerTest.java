@@ -1,6 +1,5 @@
 package arb.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static arb.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static arb.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +8,7 @@ import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,8 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.CommandResult;
+import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
