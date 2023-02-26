@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-###Lim Yan Ling 
+### Lim Yan Ling 
 
 <img src="images/yanling.png" width="200px">
 
