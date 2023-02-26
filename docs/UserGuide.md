@@ -217,6 +217,56 @@ Examples:
 * `group find g/CS2103T`
 * `group find g/CS2101`
 
+### Creating an event: `event create`
+Creates a weekly recurring event or a non-recurring event
+
+#### 1) Non-recurring Event
+Format: `event create e/EVENT_NAME f/START_DATE t/END_DATE`
+
+* Creates an event with the specified name `EVENT_NAME`
+* The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
+* `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
+
+#### 2) Weekly Recurring Event
+Format: `event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+
+* Creates a recurring event with the specified name `EVENT_NAME`
+* The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
+* The format of `START_TIME` and `END_TIME` would be in `HH:mm`
+* `EVENT_NAME`, `DAY_OF_WEEK`, `START_DATE` and `END_DATE` cannot be left empty
+
+Examples:
+* 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
+* 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
+
+### Delete an event: `event delete`
+
+Deletes an existing event from the address book.
+
+Format: `event delete e/EVENT_NAME`
+
+* Deletes an event with the specified event name `EVENT_NAME`
+* The event name cannot be empty and must be an existing event
+
+Examples:
+* event delete e/CS2103T Weekly Meeting
+* event delete e/CS2101 Presentation
+
+### List all events: `event list`  [coming soon]
+
+
+### Find an event: `event find`
+
+Find a specific event and list the details of the event.
+
+Format: `event find e/EVENT_NAME`
+* Finds an event with the specified event name `EVENT_NAME`
+* The event name cannot be empty and must be an existing event.
+
+Examples:
+* event find e/CS2103T Weekly Meeting
+* event find e/CS2101 Presentation
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -270,4 +320,8 @@ Action | Format, Examples
 **Group add** | `group add n/NAME g/GROUP_NAME`
 **Group remove** | `group remove n/NAME g/GROUP_NAME`
 **Group list** | `group list`
-**Group find** | `group find g/GROUP_NAME'
+**Group find** | `group find g/GROUP_NAME`
+**Event create** | `event create e/EVENT_NAME f/START_DATE t/END DATE`<br>`event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+**Event delete** | `event delete e/EVENT_NAME`
+**Event list**| [coming soon]
+**Event find**| `event find e/EVENT_NAME`
