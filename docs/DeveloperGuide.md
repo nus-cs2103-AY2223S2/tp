@@ -20,9 +20,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | airline manager                            | add new locations to the list of locations where we operate         | I can assign new departing locations and arrival locations |
-| `* * *`  | airline manager                            | list old locations from the locations where we were operating               |    I can view all the locations          |
-| `* * *`  | airline manager                            | remove old locations from the locations where we were operating            | I can update departing locations and arrival locations |
+| `* * *`  | airline manager    | add new locations to the list of locations where we operate         | I can assign new departing locations and arrival locations |
+| `* * *`  | airline manager    | list old locations from the locations where we were operating       |    I can view all the locations    |
+| `* * *`  | airline manager    | remove old locations from the locations where we were operating     | I can update departing locations and arrival locations |
 
 *{More to be added}*
 
@@ -38,20 +38,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Wingman shows a list of persons
 3.  User requests to delete a specific location in the list
 4.  Wingman deletes the location
+5.  User request to add a location
+6.  Wingman adds the location
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given location is invalid.
-
     * 3a1. AddressBook shows an error message.
-
       Use case resumes at step 2.
+  
+* 5b. The given location is a duplicate of an existing one
+   *  5b1. Wingman shows an error message.
+      Use case resumes at step 4. 
 
 *{More to be added}*
 
