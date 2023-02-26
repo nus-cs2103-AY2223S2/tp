@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Li Yixuan
+### Li Yuxuan
 
 <img src="images/carrieli1015.png" width="200px">
 
