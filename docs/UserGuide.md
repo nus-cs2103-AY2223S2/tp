@@ -237,7 +237,7 @@ Format: `event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TI
 
 Examples:
 * 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
-* 'event create recurring e/CS2103T Weekly Meeting f/23/02/2023 12:00 t/23/02/2023 14:00'
+* 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
 
 ### Delete an event: `event delete`
 
