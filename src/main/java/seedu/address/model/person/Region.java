@@ -3,7 +3,6 @@ package seedu.address.model.person;
 /**
  * Represents the region in which a person is located in.
  * Regions are immutable upon creation.
- * 
  * <p>
  * To create a region object, either call the base constructor with a
  * specific region selected from the {@code Regions} enum or, with a specific
@@ -64,7 +63,6 @@ public class Region {
      * Constructor for a new Region object.
      * <p>
      * Use {@code Regions} enum to select region
-     * 
      * @param region Region of this object
      */
     public Region(Regions region) {
@@ -77,7 +75,6 @@ public class Region {
      * https://va.ecitizen.gov.sg/CFP/CustomerPages/NEA_google/displayresult.aspx?MesId=1068932&Source=Google&url=va.ecitizen.gov.sg
      * <p>
      * Use {@code Towns} enum to select the town
-     * 
      * @param town Town selected from {@code Towns} enum
      * @return the region that the town is in
      */
@@ -87,7 +84,6 @@ public class Region {
 
     /**
      * Returns the region of this object
-     * 
      * @return a region defined by the {@code Regions} enum
      */
     public Regions getRegion() {
