@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W13-3/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 * This is **Clock-Work**.<br>
