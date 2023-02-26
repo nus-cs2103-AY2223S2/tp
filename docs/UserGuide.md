@@ -111,22 +111,56 @@ Examples:
 Shows a list of all elderly members in FriendlyLink.
 
 
-### Editing a person : `edit`
+### Adding a volunteer: `add_volunteer`
 
-Edits an existing person in the address book.
+Adds a volunteer to the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​`
+* Every volunteer must have a unique `NRIC`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A volunteer can have any number of tags (including 0)
+</div>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`
+* `add_volunteer n/Betsy Crowe t/graduate e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/27 vnr/S8959886I t/experienced`
+
+### Listing all persons : `list_volunteer`
+
+Shows a list of all volunteers in the application.
+
+
+
+Format: `list_volunteer`
+
+[//]: # (### Editing a person : `edit`)
+
+[//]: # ()
+[//]: # (Edits an existing person in the address book.)
+
+[//]: # ()
+[//]: # (Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`)
+
+[//]: # ()
+[//]: # (* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​)
+
+[//]: # (* At least one of the optional fields must be provided.)
+
+[//]: # (* Existing values will be updated to the input values.)
+
+[//]: # (* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.)
+
+[//]: # (* You can remove all the person’s tags by typing `t/` without)
+
+[//]: # (    specifying any tags after it.)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.)
+
+[//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
 
 ### Locating persons by name: `find`
 
@@ -156,6 +190,51 @@ Format: `delete enr/NRIC`
 
 Examples:
 * `delete_elderly enr/S8238657A` deletes the elderly with NRIC `S8238657A`
+
+
+### Deleting a volunteer : `delete_volunteer`
+
+Deletes the specified volunteer from the address book.
+
+Format: `delete vnr/NRIC`
+
+* Deletes the volunteer with NRIC `NRIC`
+
+Example:
+`delete_volunteer vnr/S8238658J` deletes the volunteer with NRIC `S8238658J`
+
+
+### Pair volunteer and elderly: `add_pair`
+
+Pairs up an existing elderly and volunteer.
+
+This allows you to track which elderly members are assigned to which volunteers.
+
+Format: `add_pair vnr/<VOLUNTEER_NRIC> enr/<ELDERLY_NRIC>`
+
+* After pairing, the newly added pairs appear in the pair list in the window.
+* Only elderly members and volunteers existing in FriendlyLink's data can be paired.
+* Duplicate pairs will fail to be added to FriendlyLink.
+* Alphabets in NRIC are case-insensitive.
+
+Examples
+`add_pair vnr/t0123423a enr/S2235243I` pairs up the volunteer with NRIC T0123423A with the elderly with NRIC S2235243I.
+`add_pair vnr/S0773423a enr/s1135243A` pairs up the volunteer with NRIC S0773423A with the elderly with NRIC S1135243A.
+
+### Unpair volunteer and elderly: `delete_pair`
+
+Unpairs an elderly from its assigned volunteer
+
+This deletes the pair while still keeping the information of the elderly member and volunteer.
+
+Format `delete_pair i/<id>`
+
+* After deleting, the pair is removed in the list of pairs in the window.
+* Alphabets in NRIC are case-insensitive.
+
+Examples
+`delete_pair vnr/t0123423a enr/S2235243I` unpairs the volunteer with NRIC T0123423A and the elderly with NRIC S2235243I.
+`delete_pair vnr/S0773423a enr/s1135243A` unpairs the volunteer with NRIC S0773423A and the elderly with NRIC S1135243A.
 
 ### Clearing all entries : `clear`
 
@@ -190,14 +269,16 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                               |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                          |
-| **Add Elderly**    | `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​` <br> e.g.,`add_elderly n/John Doe p/98765432 e/johnd@example.com a/John St, blk 123, #01-01 enr/S1234567C ag/68 r/HIGH` |
-| **Clear**          | `clear`                                                                                                                                                                                                        |
-| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                            |
-| **Delete Elderly** | `delete_elderly enr/NRIC`<br> e.g., `delete_elderly vnr/S8238655C`                                                                                                                                             |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                     |
-| **List**           | `list`                                                                                                                                                                                                         |
-| **Help**           | `help`                                                                                                                                                                                                         |
+| Action               | Format, Examples                                                                                                                                                                                               |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                          |
+| **Add Elderly**      | `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​` <br> e.g.,`add_elderly n/John Doe p/98765432 e/johnd@example.com a/John St, blk 123, #01-01 enr/S1234567C ag/68 r/HIGH` |
+| **Add Volunteer**    | `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​` <br> e.g.,`add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`     |
+| **Clear**            | `clear`                                                                                                                                                                                                        |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                            |
+| **Delete Elderly**   | `delete_elderly enr/NRIC`<br> e.g., `delete_elderly vnr/S8238655C`                                                                                                                                             |
+| **Delete Volunteer** | `delete_volunteer vnr/NRIC`<br> e.g., `delete_volunteer vnr/S8238658J`                                                                                                                                         |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                     |
+| **List**             | `list`                                                                                                                                                                                                         |
+| **Help**             | `help`                                                                                                                                                                                                         |
