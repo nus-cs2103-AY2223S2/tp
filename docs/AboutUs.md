@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: `to be added`
 
+### Rishi Chousalkar
+
+<img src="images/mmaimer33.png" width="200px">
+
+[[github](http://github.com/mmaimer33]
+[[portfolio](team/mmaimer33.md)]
+
+* Role: Team Member
+* Responsibilities: Documentation
+
 ### Warren Yang
 
 <img src="images/verydaftpunk.png" width="200px">
@@ -28,25 +38,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and deadlines, scheduling and tracking
 * Responsibilities: 'to be added'
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
