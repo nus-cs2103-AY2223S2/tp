@@ -261,28 +261,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
+- has a need to manage a significant number of contacts and events
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
+- does not have much storage space for multiple apps to support their work
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: efficient centralised platform for users to manage their event planning work through typing
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                 | I want to …​                                               | So that I can…​                                         |
+|-----|-------------------------|------------------------------------------------------------|---------------------------------------------------------|
+| `* * *` | event planner           | add my own event                                           | refer to instructions when I forget how to use the App  |
+| `* * *` | event planner           | view all my events                                         | track all the upcoming events I have                    |
+| `* * *` | event planner           | delete an existing event                                   | delete event that have ended                            |
+| `* * *` | event planner           | add an existing event to a new contact                     | -                                                       |
+| `* *` | event planner           | search for events via names                                | locate events easily  |
+| `* *` | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name  |
+| `* *` | new event planner       | sort upcoming events according to dates                                | prioritize events when I am planning  |
+| `* *` | event planner           | list all contacts from a particular event                                | know the people associated to this event  |
+| `* *` | event planner           | add overall-in-charge for every event                          | know who to approach for issues related to the event  |
+| `*` | event planner           | set up a checklist of customer’s requirements                             | account for every need  |
+| `*` | forgetful event planner | set reminders conveniently                                | be on track with things  |
+| `*` | forgetful event planner | receive reminders for upcoming events                                | avoid forgetting about the event  |
+| `*` | event planner           | archive old events                                | view and take reference from old events  |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -319,15 +326,18 @@ _{More to be added}_
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Support for a standard Gregorian calendar.
-5.  The system should be usable by a novice.
-6.  The system can only support ASCII characters (English letters and numbers).
-
-_{More to be added}_
+5.  Should be usable by a novice.
+6.  Should minimally support ASCII characters.
+7.  Must perform without failure in 95 percent of use cases during a month.
+8.  GUI color scheme should have high contrast and font size must not be too small, to aid those with vision impairments.
+9.  Application file size should not exceed (.jar/.zip) 100MB.
+10. Should only allow for 1 instance of the application running each time to ensure that data saved is consistent.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Gregorian Calendar**: Solar calendar with 12 months of 28-31 days each, used in most parts of the world
+- **ASCII Characters**: A 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters
 
 ---
 
