@@ -7,6 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at any one of the following emails:
 * [Tan Wei Zhe](mailto:tweizhe@gmail.com)
+* [Kong Heyi](mailto:kongheyi1014@gmail.com)
 * [Quek Jia Zhi, Shaun](mailto:zhacatomn@gmail.com)
 * [Goh Yong Jing](mailto:e0693145@u.nus.edu)
 * [Lee Zong Xun](mailto:lzongxun@u.nus.edu)
@@ -27,6 +28,21 @@ You can reach us at any one of the following emails:
   * Team Lead (week 9)
   * Integration (week 1, week 12)
   * Deliverables and Deadlines (week 8, week 13)
+
+### Kong Heyi
+
+<img src="images/heeeyi.png" width="300px">
+
+[[github](https://github.com/heeeyi)]
+[[portfolio](team/heeeyi.md)]
+
+* Role: Developer
+* Responsibilities:
+  * Documentation (week 7, week 12)
+  * Code Quality (week 8, week 13)
+  * Integration (week 9)
+  * Deliverables and Deadlines (week 10)
+  * Team Lead (week 11)
 
 ### Goh Yong Jing
 
