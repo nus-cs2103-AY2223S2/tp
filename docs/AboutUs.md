@@ -6,11 +6,12 @@ title: About Us
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at any one of the following emails:
-* tweizhe@gmail.com
-* kongheyi1014@gmail.com
-* zhacatomn@gmail.com
-* e0693145@u.nus.edu (@gohyongjing)
-* to be added...
+* [Tan Wei Zhe](mailto:tweizhe@gmail.com)
+* [Kong Heyi](mailto:kongheyi1014@gmail.com)
+* [Quek Jia Zhi, Shaun](mailto:zhacatomn@gmail.com)
+* [Goh Yong Jing](mailto:e0693145@u.nus.edu)
+* [Lee Zong Xun](mailto:lzongxun@u.nus.edu)
+
 ## Project team
 
 ### Tan Wei Zhe
@@ -30,7 +31,7 @@ You can reach us at any one of the following emails:
 
 ### Kong Heyi
 
-<img src="images/heeeyi.png" width="300px">
+<img src="images/heeeyi.png" width="200px">
 
 [[github](https://github.com/heeeyi)]
 [[portfolio](team/heeeyi.md)]
@@ -65,29 +66,24 @@ You can reach us at any one of the following emails:
 [[github](http://github.com/zhacatomn)] [[portfolio](team/zhacatomn.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Team Lead (week 8)
   * Documentation (week 9)
   * Code Quality (week 10)
   * Integration (week 11)
   * Deliverables and Deadlines (week 7, 12)
 
-### Jean Doe
+### Lee Zong Xun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Zxun2.png" width="200px" alt="Zxun2's image">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Zxun2)]
+[[portfolio](team/Zxun2.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Team Lead (week 10)
+  * Integration (week 8, 13)
+  * Documentation (week 11)
+  * Code Quality (week 7, 12)
+  * Deliverables and Deadlines (week 9)

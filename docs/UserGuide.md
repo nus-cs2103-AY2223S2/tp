@@ -210,7 +210,7 @@ Pairs up an existing elderly and volunteer.
 
 This allows you to track which elderly members are assigned to which volunteers.
 
-Format: `add_pair vnr/<VOLUNTEER_NRIC> enr/<ELDERLY_NRIC>`
+Format: `add_pair vnr/VOLUNTEER_NRIC enr/ELDERLY_NRIC`
 
 * After pairing, the newly added pairs appear in the pair list in the window.
 * Only elderly members and volunteers existing in FriendlyLink's data can be paired.
