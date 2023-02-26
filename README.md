@@ -6,7 +6,9 @@
 
 ![Ui](docs/images/Ui.png)
 
-Introducing FriendlyLink - the solution to a common problem faced by small NPOs. It can be challenging to keep track of volunteer and elderly contact information, which is why we've created a unique application that not only organizes these details but also matches volunteers with the elderly. With FriendlyLink, administrators can easily manage their database and pair volunteers with the elderly they want to help, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple, efficient, and effective, so that NPOs can focus on making a difference in their communities. Whether you're an administrator looking to streamline your operations or a volunteer eager to lend a helping hand, FriendlyLink is the perfect tool for you.
+## Introducing FriendlyLink - the solution to a common problem faced by small NPOs. 
+
+It can be challenging to keep track of volunteer and elderly contact information, which is why we've created a unique application that not only organizes these details but also matches volunteers with the elderly. With FriendlyLink, administrators can easily manage their database and pair volunteers with the elderly they want to help, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple, efficient, and effective, so that NPOs can focus on making a difference in their communities. Whether you're an administrator looking to streamline your operations or a volunteer eager to lend a helping hand, FriendlyLink is the perfect tool for you.
 
 * The project is an ongoing software project for a desktop application (called _FriendlyLink_) used for managing details of elderly members and volunteers for Non-Profit Organisations.
 * It is **written in OOP fashion** and comes with a **reasonable level of user and developer documentation**.
