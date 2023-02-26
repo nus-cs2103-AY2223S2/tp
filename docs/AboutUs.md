@@ -31,7 +31,7 @@ You can reach us at any one of the following emails:
 
 ### Kong Heyi
 
-<img src="images/heeeyi.png" width="300px">
+<img src="images/heeeyi.png" width="200px">
 
 [[github](https://github.com/heeeyi)]
 [[portfolio](team/heeeyi.md)]
@@ -72,16 +72,6 @@ You can reach us at any one of the following emails:
   * Code Quality (week 10)
   * Integration (week 11)
   * Deliverables and Deadlines (week 7, 12)
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Lee Zong Xun
 
