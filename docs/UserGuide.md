@@ -38,6 +38,22 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Syntax
+
+`[ACTION VERB] [options]`
+
+`<Required argument> [optional argument]`
+
+All commands case insensitive
+
+## Prefixes
+
+1. `name/` -> name: name 
+2. `email/` -> email: valid email 
+3. `phone/` -> phone: valid phone 
+4. `deadline/` -> deadline: valid date / date-time 
+5. `client/` -> client: index of the client in the client list
+
 
 ## Features
 
@@ -65,28 +81,46 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Adding a client: `add client`
 
-Shows a message explaning how to access the help page.
+Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client.
 
-![help message](images/helpMessage.png)
+Only the name of the client is compulsory. 
 
-Format: `help`
+The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add client name/Bob phone/12345678 email/bob@gmail.com`
+* `add client name/Alice`
+* `add client name/Clary phone/87654321 email/clary@gmail.com`
+
+### List all clients: `add client`
+
+List out all clients.
+
+Format: `list client`
+
+### Adding a project: `add project`
+
+Adds a project to the application with the supplied details. The details that can be supplied are the name and deadline of the client.
+
+Only the name of the project is compulsory. 
+
+The deadline must be in a valid date or date and time format.
+
+Format: `add project name/NAME [deadline/DEADLINE]`
+
+Examples:
+* `add project name/Background Commission deadline/2023-05-05`
+* `add project name/Oil Paintingg`
+
+### Listing all projects : `list project`
+
+Shows a list of all projects in the application.
+
+Format: `list project`
 
 ### Listing all persons : `list`
 
