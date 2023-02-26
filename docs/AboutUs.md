@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+###Lim Yan Ling 
 
 <img src="images/YanLing.png" width="200px">
 
 [[github](https://github.com/yanlings)]
 [[portfolio](team/yanling.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Develop ExecutivePro system
 
 ### Johnny Doe
 
