@@ -50,10 +50,10 @@ Jia Hui Liao - `to be added`
 
 ### Kalaris Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kalarisng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kalarisng)]
+[[portfolio](team/kalarisng.md)]
 
 * Role: Team lead
 * Responsiblities: Team lead, Deliverables and deadlines, Dev Ops
