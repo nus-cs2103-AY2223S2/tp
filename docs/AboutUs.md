@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ###Lim Yan Ling 
 
-<img src="images/YanLing.png" width="200px">
+<img src="images/yanling.png" width="200px">
 
 [[github](https://github.com/yanlings)]
 [[portfolio](team/yanling.md)]
