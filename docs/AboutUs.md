@@ -40,7 +40,7 @@ Jia Hui Liao - `to be added`
 
 ### Jia Hui Liao
 
-<img src="images/jiahui.png" width="200px">
+<img src="images/OliviaJHL.png" width="200px">
 
 [[github](https://github.com/OliviaJHL)]
 [[portfolio](team/OliviaJHL.md)]
