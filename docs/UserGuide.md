@@ -81,6 +81,23 @@ Show all deliveries and their respective details.
 
 Format: `list`
 
+### Mark delivery : `mark`
+
+Mark a delivery with a status.
+
+Format: `mark INDEX s/STATUS`
+
+* Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* `STATUS` must be of the following
+  * `otw` for in progress delivery
+  * `fail` for failed delivery
+  * `done` for done delivery
+
+Examples:
+* `mark 1 s/otw` Marks the 1st delivery as in progress.
+* `mark 1 s/fail` Marks the 1st delivery as failed.
+* `mark 1 s/done` Marks the 1st delivery as done.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
