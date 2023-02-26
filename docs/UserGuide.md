@@ -90,6 +90,27 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+### Adding an elderly: `add_elderly`
+
+Adds an elderly to FriendlyLink.
+
+Format: `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​`
+* Every elderly must have a unique `NRIC`
+* The `RISK` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An elderly can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 enr/S1234567C ag/68 r/HIGH`
+* `add_elderly n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 enr/T1234567D ag/75 r/LOW t/lonely`
+
+### Listing all elderly members : `list_elderly`
+
+Shows a list of all elderly members in FriendlyLink.
+
+
 ### Adding a volunteer: `add_volunteer`
 
 Adds a volunteer to the address book.
@@ -107,8 +128,8 @@ Examples:
 
 ### Listing all persons : `list_volunteer`
 
-
 Shows a list of all volunteers in the application.
+
 
 
 Format: `list_volunteer`
@@ -158,6 +179,18 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting an elderly : `delete_elderly`
+
+Deletes the specified elderly from FriendlyLink.
+
+Format: `delete enr/NRIC`
+
+* Deletes the elderly with the specific NRIC `NRIC`.
+
+Examples:
+* `delete_elderly enr/S8238657A` deletes the elderly with NRIC `S8238657A`
+
 
 ### Deleting a volunteer : `delete_volunteer`
 
@@ -236,12 +269,16 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                           |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Volunteer**    | `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​` <br> e.g.,`add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H` |
-| **Clear**            | `clear`                                                                                                                                                                                                    |
-| **Delete Volunteer** | `delete_volunteer vnr/NRIC`<br> e.g., `delete_volunteer vnr/S8238658J`                                                                                                                                     |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                 |
-| **List**             | `list`                                                                                                                                                                                                     |
-| **Help**             | `help`                                                                                                                                                                                                     |
+| Action               | Format, Examples                                                                                                                                                                                               |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                          |
+| **Add Elderly**      | `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​` <br> e.g.,`add_elderly n/John Doe p/98765432 e/johnd@example.com a/John St, blk 123, #01-01 enr/S1234567C ag/68 r/HIGH` |
+| **Add Volunteer**    | `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​` <br> e.g.,`add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`     |
+| **Clear**            | `clear`                                                                                                                                                                                                        |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                            |
+| **Delete Elderly**   | `delete_elderly enr/NRIC`<br> e.g., `delete_elderly vnr/S8238655C`                                                                                                                                             |
+| **Delete Volunteer** | `delete_volunteer vnr/NRIC`<br> e.g., `delete_volunteer vnr/S8238658J`                                                                                                                                         |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                     |
+| **List**             | `list`                                                                                                                                                                                                         |
+| **Help**             | `help`                                                                                                                                                                                                         |
