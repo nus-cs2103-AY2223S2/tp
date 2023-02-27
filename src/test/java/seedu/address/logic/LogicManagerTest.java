@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -28,6 +29,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.storage.JsonEduMateStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -92,6 +94,35 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getEduMate_validEduMate_success() {
+        ReadOnlyEduMate eduMate = logic.getEduMate();
+        ReadOnlyEduMate otherEduMate = logic.getEduMate();
+        assertEquals(eduMate, otherEduMate);
+    }
+
+    @Test
+    public void getEduMateFilePath_validEduMate_success() {
+        Path eduMateFilePath = logic.getEduMateFilePath();
+        Path otherEduMateFilePath = logic.getEduMateFilePath();
+        assertEquals(eduMateFilePath, otherEduMateFilePath);
+    }
+
+    @Test
+    public void getGuiSettings_validGuiSettings_success() {
+        GuiSettings guiSettings = logic.getGuiSettings();
+        logic.setGuiSettings(guiSettings);
+        GuiSettings otherGuiSettings = logic.getGuiSettings();
+        assertEquals(guiSettings, otherGuiSettings);
+    }
+
+    @Test
+    public void getUser_validUser_success() {
+        User user = logic.getUser();
+        User otherUser = logic.getUser();
+        assertEquals(user, otherUser);
     }
 
     /**

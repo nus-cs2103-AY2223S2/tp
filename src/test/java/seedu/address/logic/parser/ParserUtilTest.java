@@ -65,6 +65,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseIndex_empty_success() throws Exception {
+        assertEquals(null, ParserUtil.parseIndex(""));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }

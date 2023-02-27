@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BEN;
@@ -24,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -31,8 +34,9 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
+    private static final EditPersonDescriptor EDIT_PERSON_DESCRIPTOR = new EditPersonDescriptor();
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -79,6 +83,20 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_nullIndex_success() {
+        EditCommand editCommand = new EditCommand(null, new EditPersonDescriptor());
+        User originalUser = model.getUser();
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_USER_SUCCESS, originalUser);
+
+        Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs());
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        model.setUser(originalUser);
     }
 
     @Test
@@ -168,6 +186,21 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BEN)));
+    }
+
+    @Test
+    public void equals_sameObject_true() {
+        assertEquals(EDIT_PERSON_DESCRIPTOR, EDIT_PERSON_DESCRIPTOR);
+    }
+
+    @Test
+    public void equals_notEditCommand_false() {
+        assertNotEquals(EDIT_PERSON_DESCRIPTOR, 34);
+    }
+
+    @Test
+    public void isAnyFieldEdited_noneEdited_false() {
+        assertFalse(EDIT_PERSON_DESCRIPTOR.isAnyFieldEdited());
     }
 
 }

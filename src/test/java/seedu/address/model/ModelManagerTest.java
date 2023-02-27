@@ -92,8 +92,24 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deletePerson_personInEduMate_success() {
+        if (!modelManager.hasPerson(ALBERT)) {
+            modelManager.addPerson(ALBERT);
+        }
+        modelManager.deletePerson(ALBERT);
+        assertFalse(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void setEduMate() {
+        EduMate newEduMate = new EduMate(modelManager.getEduMate());
+        modelManager.setEduMate(newEduMate);
+        assertEquals(newEduMate, modelManager.getEduMate());
     }
 
     @Test
