@@ -2,10 +2,9 @@
 layout: page
 title: Darius Ng's Project Portfolio Page
 ---
-
 ### Project: FitBook
 
-FitBook - to be added later 
+FitBook - to be added later
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
@@ -16,14 +15,14 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]()) 
 
 * **Documentation**:
   * User Guide:
@@ -43,3 +42,4 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+* 
