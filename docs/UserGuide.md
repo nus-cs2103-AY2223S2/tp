@@ -95,6 +95,49 @@ Format: `add-video /module {module_name} /lecture {lecture_index} /video {video_
 Examples:
 - `add-video /module CS2040 /lecture 1 /video lecture-01-part-1`
 
+### Mark/Unmark a Video
+Marks/Unmarks a video as watched/unwatched in a lecture of its specified module
+
+Format: `mark /module {module_name} /lecture {lecture_index} /video {video_name}`
+
+Format: `unmark /module {module_name} /lecture {lecture_index} /video {video_name}`
+
+Examples:
+- `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
+- `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
+
+### Delete a Module
+Deletes the specified module and all its embodied content from the application
+
+Format: `delete-module CS2040`
+- Deletes the module of the specified `module_code`
+- If the module does not exist, nothing happens
+
+Examples: 
+- `delete-module CS2040`
+
+### Delete a Lecture
+
+Deletes the specified lecture from the specified module
+
+Format: `delete-lecture /module {module_code} /lecture {lecture_id}`
+- Deletes the lecture of the specified `lecture_id` from the specified `module_code`
+- The `lecture_id` **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+- `delete-lecture CS2040 /lecture 1` deletes the 1st lecture in the results of the `list /module CS2040` command
+
+### Delete a Video
+Deletes the specified video from the specified lecture from the specified module
+
+Format: `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`
+- Deletes the video of the specified `video_id` from the specified `lecture_id` of the specified `module_code`
+- `video_id` refers to the index number shown when listing the videos of the specified lecture using the `lecture_id` in the specified module using the `module_code`
+- the `video_id` **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+- `delete-video /module CS2040 /lecture 1 /video 3` deletes the 3rd video in the results of the `list /module CS2040 /lecture 1` command
+
 ### Saving the data
 
 Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
