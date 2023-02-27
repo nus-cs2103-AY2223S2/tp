@@ -39,6 +39,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * This is a sample project for Software Engineering (SE) students.
   * As a starting point of a course project (as opposed to writing everything from scratch)
   * As a case study
