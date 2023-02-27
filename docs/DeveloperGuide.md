@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list lectures of a specific module
 2.  Le Tracker shows a list of lectures of the specified module
-3.  User requests to delete a specific lecture in the list, while citing the correct module code
+3.  User requests to delete a specific lecture in the list, while citing the correct _module code_
 4.  Le Tracker deletes the lecture
 
     Use case ends.
@@ -320,6 +320,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use Case: Delete a lecture tag**
+
+**MSS**
+
+1. 
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -335,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module Code**: Unique code for each module
 
 --------------------------------------------------------------------------------------------------------------------
 
