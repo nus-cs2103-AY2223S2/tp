@@ -26,11 +26,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Code quality + Testing
 
-### Johnny Doe
+### Oskar Lew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/skeltons.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/skeltons)] 
+[[portfolio](team/skeltons.md)]
 
 * Role: Developer
 * Responsibilities: Data
