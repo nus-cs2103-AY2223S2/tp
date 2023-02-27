@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Markus Yeo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/markusyeo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/markusyeo)]
+[[portfolio](team/markusyeo.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sum Hung Yee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sumhungyee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sumhungyee)]
+[[portfolio](team/sumhungyee.md)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
+### Aeron Toh
+
+<img src="images/Tohtoroo.png" width="200px">
+
+[[github](http://github.com/Tohtoroo)]
+[[portfolio](team/Tohtoroo.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+### Valerie Tan
+
+<img src="images/valerietanhx.png" width="200px">
+
+[[github](http://github.com/valerietanhx)]
+[[portfolio](team/valerietanhx.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Samuel Murugasu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/axmszr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/axmszr)]
+[[portfolio](team/axmszr.md)]
 
 * Role: Developer
 * Responsibilities: UI
