@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FitBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -78,15 +78,17 @@ Format: `help`
 
 Adds a client to the FitBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+A client can have any number of tags, appointments and exercise routines (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe app/12-12-2030 cal/2300 g/Female  e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all clients : `list`
 
@@ -221,7 +223,7 @@ Examples:
 •	createRoutine n/Cardio Exercise
 
 9.	Saving exercise routines: saveExercise
-Saves an exercise routine to the fitbook.
+Saves an exercise routine to the FitBook.
 Format: saveExercise e/EXERCISE_NUMBER r/ROUTINE_NUMBER n/ROUTINE [t/DURATION_OR_REPS][s/SETS]
 
 Examples:
@@ -290,12 +292,12 @@ Example:
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                                                                                                                                          |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [app/APPOINTMENT_TIME]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague app/10-10-2023` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                   |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                               |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                |
+| **List**   | `list`                                                                                                                                                                                                                                                                                    |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                    |
