@@ -21,6 +21,7 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
   - [Saving of data](#saving-the-data)
   - [Editing of data](#editing-the-data-file)
   - [Archiving of data](#archiving-data-files-coming-in-v20)
+  - [View meetings](#view-meetings-coming-in-v20)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -186,6 +187,10 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 </div>
 
 ### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### View meetings `[coming in v2.0]`
 
 _Details coming soon ..._
 
