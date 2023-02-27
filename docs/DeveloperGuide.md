@@ -312,15 +312,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be for a single user i.e. (not a multi-user product).
+5. Should have its data stored locally.
+6. Should have its data be in a human editable text file.
+7. Should not use a Database Management System (DBMS) to store data.
+8. Should not depend on a remote server.
+9. Should not cause have its GUI cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
+10. Should be packaged into a single JAR file not exceeding 100MB.
+11. Should not have any hard-to-test features or features that make it hard-to-test.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: A command line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicators.
+* **JavaFX**: A Java library used for creating and delivering desktop applications.
+* **NUS**: National University of Singapore.
+* **SoC**: School of Computing, a computing school in NUS.
+* **CS2103T**: The module code for a Software Engineering module in NUS.
+* **CCA**: Co-curricular activities that students participate in.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------

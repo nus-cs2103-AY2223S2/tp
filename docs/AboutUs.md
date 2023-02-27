@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/gremmyz)]
 [[portfolio](team/gremmyz.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Team Lead
+* Responsibilities: Overall project coordination, documentation, UI
 
 ### Lavanya Mishra
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Lava-Iris)]
 [[portfolio](team/lava-iris.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Deliverables and deadlines, Model
 
 ### Zhan Jie
 
@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/salty-flower)] 
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Testing, Commons
 
 ### Samarth Verma
 
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/vsamarth)]
 [[portfolio](team/vsamarth.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Integration, Logic
 
 ### Saha Manasij
 
@@ -56,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Saha9616)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Code Quality, Storage
