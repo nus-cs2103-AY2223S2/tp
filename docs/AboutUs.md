@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img alt="kayyen" src="images/kayyen.png" width="200px"/>
 
 [[github](http://github.com/kayyenl)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/kayyenl.md)]
 
 * Role: Developer
 * Responsibilities: UI
