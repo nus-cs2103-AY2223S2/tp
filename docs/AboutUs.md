@@ -26,7 +26,7 @@ Jia Hui Liao - `e0775484@nus.edu.sg`
 [[portfolio](team/jundatan.md)]
 
 * Role: Integration
-* Responsiblities: Integration checking, scheduling and tracking, Dev OPs
+* Responsibilities: Integration checking, scheduling and tracking, Dev OPs
 
 ### Darius Ng
 
@@ -35,8 +35,8 @@ Jia Hui Liao - `e0775484@nus.edu.sg`
 [[github](http://github.com/dfordarius)]
 [[portfolio](team/dfordarius.md)]
 
-* Role: Docmentation
-* Responsiblities: Code quality, Dev ops, Docmentation checking
+* Role: Documentation
+* Responsibilities: Code quality, Dev ops, Documentation checking
 
 ### Jia Hui Liao
 
@@ -46,7 +46,7 @@ Jia Hui Liao - `e0775484@nus.edu.sg`
 [[portfolio](team/oliviajhl.md)]
 
 * Role: Tester and UI
-* Responsiblities: Testing, Deals with UI, Dev Ops
+* Responsibilities: Testing, Deals with UI, Dev Ops
 
 ### Kalaris Ng
 
@@ -56,6 +56,6 @@ Jia Hui Liao - `e0775484@nus.edu.sg`
 [[portfolio](team/kalarisng.md)]
 
 * Role: Team lead
-* Responsiblities: Team lead, Deliverables and deadlines, Dev Ops
+* Responsibilities: Team lead, Deliverables and deadlines, Dev Ops
 
 
