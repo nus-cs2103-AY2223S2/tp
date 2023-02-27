@@ -11,9 +11,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Jun How
 
-<img src="images/Jun-How.png" width="200px">
+<img src="images/jun-how.png" width="200px">
 
-[[github](https://github.com/Jun-How)]
+[[github](https://github.com/jun-how)]
 [[portfolio](team/jun-how.md)]
 
 * Role: Developer
