@@ -58,7 +58,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Cheong
 
-<img src = "images/nicholas.png" width = "200px">
+<img src = "images/nicklelodeon.png" width = "200px">
 
 [[github](https://github.com/Nicklelodeon)]
 [[portfolio](team/nicklelodeon.md)]
