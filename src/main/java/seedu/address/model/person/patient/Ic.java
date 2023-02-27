@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Ic {
     private static final String MESSAGE_CONSTRAINTS =
             "IC number should only contain alphanumeric characters,"
-                    + "and it should be exactly 8 digits and characters long";
+                    + " and it should be exactly 8 digits and characters long";
 
     private static final String VALIDATION_REGEX = "[a-zA-Z]\\d{7}[a-zA-Z]";
     private final String ic;
