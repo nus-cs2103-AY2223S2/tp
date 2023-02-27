@@ -3,14 +3,14 @@ layout: page
 title: Kalaris Ng's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: FitBook Level 3
 
 Fitbook is a desktop tracking book application used for tracking the progress and informations
 for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java.
 
 > Anything below are to be added soon. They are just placeholders.
-> 
+>
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
