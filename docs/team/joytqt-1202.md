@@ -15,10 +15,10 @@ Short overview of product
 ### Enhancements Implemented
 
 ### Contributions to UG
-extracts are optional
+(extracts are optional)
 
 ### Contributions to DG 
-extracts are optional
+(extracts are optional)
 
 ### Contributions to Team-Based Tasks
 
