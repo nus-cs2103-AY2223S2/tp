@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner-light, pa-b"
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml" />

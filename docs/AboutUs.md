@@ -9,25 +9,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Pierce Ng Wei Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/igezt.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/igezt)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: Model
 
-### Jane Doe
+### Stanley Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hansstanley.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hansstanley)]
+[[portfolio](team/hansstanley.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Roles:
+  * Integration
+  * Scheduling and tracking
+  * Git expert
+* Responsibilities:
+  * In charge of UI
 
 ### Johnny Doe
 
