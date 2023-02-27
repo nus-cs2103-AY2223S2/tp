@@ -257,13 +257,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage a significant amount of data
+  * this can be in the form of patients and staff, and tracking personnel assignment in wards
+* uses desktop/PC apps as a standard at the workplace
+* can type fast and are comfortable with CLI
+  * not necessarily a prerequisite to use the app
+  * users that are required to use the app on a daily basis will become familiar with commands and CLI quickly
+* has limited space for the PC
+  * mobile workstations used in hospitals have limited space and can be decluttered by removing need for a mouse
+* has a need to have access to both fine-grained detail and the big picture in the facility
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage patient and staff data more efficiently than GUI app, given constraints
+on workstation space. This app has a higher skill cap than GUI apps, but is more rewarding as users
+familiar with the system can work faster and eliminate the need for an unwieldly mouse that they have
+no space for.
 
 
 ### User stories
