@@ -17,7 +17,7 @@ Short overview of product
 ### Contributions to UG
 (extracts are optional)
 
-### Contributions to DG 
+### Contributions to DG
 (extracts are optional)
 
 ### Contributions to Team-Based Tasks
