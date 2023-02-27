@@ -1,7 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's phone number in the address book.
@@ -30,6 +32,9 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (Objects.equals(test, "")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
