@@ -26,12 +26,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Lee Kay Yen
+### Lee Kay Yen 
 
-<img alt="kayyen" src="images/kayyen.png" width="200px"/>
+<img alt="kayyenl" src="images/kayyen.png" width="200px"/>
 
 [[github](http://github.com/kayyenl)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/kayyenl.md)]
 
 * Role: Developer
 * Responsibilities: UI
