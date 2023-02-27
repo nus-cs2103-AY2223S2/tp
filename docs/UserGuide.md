@@ -12,6 +12,8 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
   * [View Contact List](#view-contact-list)
   * [Link Contact to Event](#link-contact-event)
   * [View Rate](#view-rate)
+  * [Marks event as done](#marks-event-as-done-:-mark)
+  * [Create a new event](#create-a-new-event-:-newevent)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -93,21 +95,20 @@ Example:
 newrate 2 100 adds the rate of 100 to thex 2nd event in the event list.
 
 
-Marks an event as done : mark
-Marks a specified event in the address book as done.
-Format: mark INDEX
-Marks the event at the specified INDEX as done.
-The event must not be marked as done beforehand.
-Example: 
-mark 2 marks the 2nd event as done.
+### Marks event as done : `mark`
+Marks a specified event in the address book as done.  
+Format: `mark INDEX`  
+Marks the event at the specified **INDEX** as done.  
+The event must not be marked as done beforehand.  
+Example:  
+- `mark 2` marks the 2nd event as done.
 
-Creating a new event : newevent
-Creates a new event
-Format: newevent
-Creates a new event with the specified event NAME
+### Create a new event : `newevent`
+Creates a new event  
+Format: `newevent`  
+Creates a new event with the specified event **NAME**  
 Example: 
-newevent Singing creates an event that has the name “Singing”.
-
+- `newevent Singing` creates an event that has the name “Singing”.
 
 Listing all events : listevent
 Shows a list of all events in the address book
@@ -141,3 +142,24 @@ Format: save
 Loading all events and contacts : load
 Loads all entries in Paidlancer from local storage if it exist
 Format: load
+
+### Saving the data
+
+Paidlancer data are saved in the hard disk automatically exiting the program. There is no need to save manually.
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?  
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskGenie home folder.
+
+## Command Summary
+|                   Commands                    |                     Command Format                      |                        Example Usage                          | 
+|:---------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------------:|
+| [Add a Contact](#add-a-contact) | | |  
+| [View Contact List](#view-contact-list) | | |  
+| [Link Contact to Event](#link-contact-event) | | |
+| [View Rate](#view-rate) | | |  
+| [Marks event as done](#marks-event-as-done-:-mark) | `mark INDEX` | `mark 2` |
+| [Create a new event](#create-a-new-event-:-newevent)  | `newevent` | `newevent` |
+
+[Back to top](#user-guide-for-taskgenie)
