@@ -8,6 +8,10 @@ import seedu.address.model.Model;
 public abstract class TaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "<task command word>\n"
+            + "Task commands: add, "
+            + "delete";
+
     /**
      * Executes the command and returns the result message.
      *

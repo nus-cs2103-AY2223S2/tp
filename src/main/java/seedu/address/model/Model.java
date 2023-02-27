@@ -5,12 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-<<<<<<< HEAD
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-=======
 import seedu.address.model.fish.Fish;
->>>>>>> master
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -106,4 +102,7 @@ public interface Model {
      * The Task must exist in the address book.
      */
     void deleteTask(Task task);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
 }

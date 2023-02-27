@@ -19,7 +19,7 @@ import seedu.address.model.fish.Fish;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_FISH = "fishes list contains duplicate fish(s).";
+    public static final String MESSAGE_DUPLICATE_FISH = "fishes list contains duplicate fish(es).";
 
     private final List<JsonAdaptedFish> fishes = new ArrayList<>();
 
