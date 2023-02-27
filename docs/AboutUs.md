@@ -65,3 +65,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking
+
+### Chu Yi Ting
+
+<image src="images/cyiting.png" width="200px">
+
+[[github](https://github.com/cyiting)]
+[[portfolio](team/cyiting.md)]
+
+* Role: Developer
+* Responsibilities: Model
