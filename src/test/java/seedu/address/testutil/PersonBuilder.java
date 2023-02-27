@@ -3,8 +3,16 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.fields.*;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -105,6 +113,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code person} object
+     */
     public Person build() {
         return new Person(name, phone, email, address, this.gender,
                 this.major, this.modules, this.race, this.tags, this.comms);
