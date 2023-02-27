@@ -9,6 +9,12 @@ public class VaccinationRecord implements Comparable<VaccinationRecord> {
     private final LocalDateTime timeTaken;
 
 
+    /**
+     * Constructs a {@code VaccinationRecord}.
+     *
+     * @param vaccination - the vaccination taken.
+     * @param timeTaken - the time the vaccination was taken.
+     */
     public VaccinationRecord(Vaccination vaccination, LocalDateTime timeTaken) {
         this.vaccination = vaccination;
         this.timeTaken = timeTaken;
