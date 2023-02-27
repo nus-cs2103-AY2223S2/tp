@@ -116,13 +116,24 @@ Examples:
 
 Deletes the specified person from MediConnect.
 
-Format: `delete NAME`
+Format: `delete name`
 
-* Deletes the person at the specified `name`
+* Shows a list of person with the specified `name`
+* User then enters the number assigned to the person to be deleted
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in MediConnect.
-* `find r/patient Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete John` shows a list of people name John in MediConnect.
+* MediConnet prompts: "Enter number to be deleted:"
+* User enters `number` to be deleted
+
+### Book appointment : `appointment`
+
+Set an appointment date to the patient and doctor
+
+Format: `appointment r/ROLE n/NAME d/Date`
+
+Examples:
+* `appointment patient John 2020-10-12` attaches the date 12 October 2020 to the patient John
 
 ### Clearing all entries : `clear`
 
