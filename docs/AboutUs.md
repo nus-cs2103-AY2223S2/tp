@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Jyothika
+
+<img src="images/cjyothika.png" width="200px">
+
+[[github](http://github.com/cjyothika)] [[portfolio](team/cjyothika.md)]
+
+* Role: Developer
+* Responsibilities: Testing and CI
+
 ### John Doe
 
 <img src="images/johndoe.png" width="200px">
