@@ -30,21 +30,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Develop ExecutivePro system
 
-### Johnny Doe
+### Guo Yulong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gyulong1.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gyulong1)] [[portfolio](team/gyulong1.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Develop ExecutivePro system
 
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gyulong1.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gyulong1.md)]
 
 * Role: Developer
 * Responsibilities: UI
