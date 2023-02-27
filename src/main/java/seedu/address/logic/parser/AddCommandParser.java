@@ -45,8 +45,6 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS);
 
-        //Todo: Remove prefixes present to only have name.
-        //, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
