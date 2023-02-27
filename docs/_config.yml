@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "Fast Army Internal Lookup System"
 theme: minima
 
 header_pages:
@@ -6,9 +6,9 @@ header_pages:
   - DeveloperGuide.md
   - AboutUs.md
 
-markdown: kramdown
+markdown: GFM
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103T-W10-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
