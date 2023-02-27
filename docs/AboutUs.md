@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Project Advisor
+* Role: Project Advisor
 
 ### Kim Young Jin
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jugheadjones10)]
 [[portfolio](team/jugheadjones10.md)]
 
-- Role: Developer
-- Responsibilities: Testing
+* Role: Developer
+* Responsibilities: Testing
 
 ### Johnny Doe
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: Data
+* Role: Developer
+* Responsibilities: Data
 
 ### Jean Doe
 
@@ -45,5 +45,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
+### James Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: UI
