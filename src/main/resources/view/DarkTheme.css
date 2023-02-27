@@ -97,21 +97,26 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-background-color: transparent;
-    -fx-padding: 0;
+    -fx-padding: 0; /* so that list cells do not disappear into list view padding */
 }
 
 .list-cell {
+    /* Horizontal inset and padding to separate from the parent list view,
+     * and bottom inset and padding to separate from the next list cell.
+     * Top inset and padding for the first list cell
+     * is applied programmatically as 'first-cell'.
+     */
+    -fx-padding: 0 0 10 0;
     -fx-background-insets: 0 10 10 10;
     -fx-background-color: transparent;
     -fx-background-radius: 10;
     -fx-label-padding: 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 10 0;
 }
 
 .first-cell {
-    -fx-background-insets: 10;
     -fx-padding: 10 0 10 0;
+    -fx-background-insets: 10;
 }
 
 .list-cell:filled:even {
