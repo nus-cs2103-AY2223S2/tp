@@ -287,8 +287,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Add a contact**
 
-**Preconditions:** SOCket is running.
-
 **MSS**
 
 1.  User requests to add a contact
@@ -307,8 +305,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 **Use case: UC02 - Edit a contact**
-
-**Preconditions:** SOCket is running.
 
 **MSS**
 
@@ -350,8 +346,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 **Use case: UC09 - Exit SOCket**
-
-**Preconditions:** SOCket is running.
 
 **MSS**
 
