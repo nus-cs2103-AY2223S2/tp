@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    * 2b1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 1.
 
 * 3a. The given index is invalid.
 
@@ -363,31 +363,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    * 2b1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 1.
 
 * 2c. There is no such module.
 
    * 2c1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 1.
 
 * 3a. The given index of the video is invalid.
 
    * 3a1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 2.
 
 * 3b. The given index of the lecture is invalid.
 
    * 3b1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 2.
 
 * 3c. The given index of the module is invalid.
 
    * 3c1. Le Tracker shows an error message.
 
-   Use case ends.
+      Use case resumes at step 2.
 
 
 _{More to be added}_
