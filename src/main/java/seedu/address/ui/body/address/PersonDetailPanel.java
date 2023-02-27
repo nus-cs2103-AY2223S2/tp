@@ -39,24 +39,38 @@ public class PersonDetailPanel extends UiPart<Region> {
         clearPerson();
     }
 
-    public void setPerson(Person person, int displayedIndex) {
+    public void setPerson(Person person) {
         clearPerson();
         if (person == null) {
-            clearPerson();
             return;
         }
 
-        id.setText("Index: " + displayedIndex);
         name.setText(person.getName().toString());
         tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
     }
 
     /**
+     * Sets the index of the {@code Person} to be displayed to the user.
+     * If the given {@code index} is less than 1, it is assumed that
+     * no {@code Person} is selected.
+     *
+     * @param index 1-based index of the corresponding {@code Person}.
+     */
+    public void setDisplayedIndex(int index) {
+        if (index < 1) {
+            id.setText("Select a contact.");
+        } else {
+            id.setText(String.format("Index no. %d", index));
+        }
+    }
+
+    /**
      * Empties the fields, resulting in a blank {@code PersonDetailPanel}.
      */
     public void clearPerson() {
-        id.setText("Select a contact.");
+        setDisplayedIndex(-1);
+
         name.setText(null);
         tags.getChildren().clear();
         dataContainer.getChildren().clear();

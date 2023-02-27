@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -37,9 +38,6 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         personListView.setFocusTraversable(false);
-        personListView.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> panel.setPerson(newValue, 0));
         personListView.setOnMouseClicked(event -> {
             Person clickedPerson = personListView.getSelectionModel().getSelectedItem();
             if (Objects.equals(clickedPerson, selectedPerson)) {
@@ -49,6 +47,14 @@ public class PersonListPanel extends UiPart<Region> {
                 selectedPerson = clickedPerson;
             }
         });
+
+        /* Updates PersonDetailPanel accordingly
+         * when the selected Person and index changes.
+         */
+        MultipleSelectionModel<Person> model = personListView.getSelectionModel();
+        model.selectedItemProperty().addListener((observable, oldValue, newValue) -> panel.setPerson(newValue));
+        model.selectedIndexProperty().addListener((observable, oldValue, newValue) -> panel
+                .setDisplayedIndex(newValue.intValue() + 1));
 
         count.textProperty().bind(getCountProperty(personList));
     }
