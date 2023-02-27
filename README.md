@@ -2,7 +2,7 @@
 ![Java CI](https://github.com/AY2223S2-CS2103T-T15-2/tp/actions/workflows/gradle.yml/badge.svg)
 ![Ui](docs/images/Ui.png)
 * This is **a project made by CS2103T-T15-2 group**.<br>
-* The project simulates an ongoing software project for a desktop application (called _Fitbook_) used by fitness instructors to keep track
+* The project simulates an ongoing software project for a desktop application (called _FitBook_) used by fitness instructors to keep track
 of their clients and respective details such as appointments and exercise routines.
   * It comes with **features such as adding clients details, editing, finding and many more which you can find in the user guide**.
   * It comes with a **reasonable level of user and developer documentation**.
