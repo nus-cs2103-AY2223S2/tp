@@ -255,29 +255,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: FitBook
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with 
+targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and 
+inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as 
+adding fitness routines to each client with checkboxes for easy access and to check if they have completed their 
+routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
+appointment dates and times they have with their clients.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new client               |                                                                        |
-| `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many clients in the FitBook | sort clients by name           | locate a client easily                                                 |
+
+=======
+| Priority | As a …​           | I can …​                                                             | So that …​                                                             |
+|----------|-------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user          | look at the list of clients                                          | I know who are my clients and their details                            |
+| `* * *`  | new user          | edit my client's routine                                             | the client's routine data is accurate                                  |
+| `* * *`  | new user          | edit my client's current routine                                     | so that the client's calorie intake is accurate                        |
+| `* * *`  | new user          | find a person by name                                                | locate details of persons without having to go through the entire list |
+| `* * *`  | new user          | hide private contact details                                         | minimize the chance of someone else seeing them by accident            |
+| `* * *`  | new user          | edit my client's weight data                                         | the client's weight data is accurate                                   |
+| `* * *`  | new user          | put my client's current weight                                       | I can see if they get closer to their targeted weight                  |
+| `* * *`  | new user          | set goal for each of my clients                                      | I can help my clients to make the most suitable plan                   |
+| `* * *`  | new user          | set a list of tasks for my client                                    | I can keep track of what i have asked my client to do                  |
+| `* * *`  | new user          | sort persons by name                                                 | I can locate a person easily                                           |
+| `* * *`  | new user          | search for clients through their names                               | I can find my client's data                                            |
+| `* * *`  | new user          | save exercise routines in a list                                     | I can match them with each client                                      |
+| `* * * ` | intermediate user | mark the exercise as incomplete                                      | I can manage my time properly next time                                |
+| `* * *`  | intermediate user | mark the exercise as complete                                        | I can teach my clients new exercises                                   |
+| `* * *`  | intermediate user | edit previous data                                                   | I can change my client's data                                          |
+| `* * *`  | intermediate user | add time to a client's appointment                                   | I can easily view my appointments for the week                         |
+| `* `     | intermediate user | search client's using their contact number                           | I can contact them when necessary                                      |
+| `*`      | intermediate user | filter clients by gender or exercise level                           | I can find my client easily                                            |
+| `*`      | Expert user       | link my clients under the same price package or classes              | I know who is under which class or price package                       |
+| `* *`    | Expert user  | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
+| `* *`    | Expert user  | download data collected in the address book                          | I can show results of my services to new potential clients             |
+| `* *`    | Expert user  | view reminder messages                                               | I remember the session I have with my clients for the day              |
+| `* *`    | Expert user  | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
+
+
 
 *{More to be added}*
 
