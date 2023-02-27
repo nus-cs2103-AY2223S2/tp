@@ -40,7 +40,7 @@ Jia Hui Liao - `to be added`
 
 ### Jia Hui Liao
 
-<img src="images/jiahui.png" width="200px">
+<img src="images/OliviaJHL.png" width="200px">
 
 [[github](https://github.com/OliviaJHL)]
 [[portfolio](team/OliviaJHL.md)]
@@ -50,10 +50,10 @@ Jia Hui Liao - `to be added`
 
 ### Kalaris Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kalarisng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kalarisng)]
+[[portfolio](team/kalarisng.md)]
 
 * Role: Team lead
 * Responsiblities: Team lead, Deliverables and deadlines, Dev Ops
