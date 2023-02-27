@@ -113,6 +113,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetPersons() {
+        eduMate.resetPersons();
+    }
+
+    @Override
     public User getUser() {
         return eduMate.getUser();
     }

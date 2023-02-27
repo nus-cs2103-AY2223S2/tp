@@ -64,10 +64,8 @@ public class Person {
     /**
      * Returns a copy of the person's group tags.
      */
-    public GroupTagSet getGroupTagsCopy() {
-        GroupTagSet groupTagSetCopy = new GroupTagSet();
-        groupTagSetCopy.addAll(groupTags);
-        return groupTagSetCopy;
+    public GroupTagSet getGroupTags() {
+        return groupTags;
     }
 
     /**
@@ -75,16 +73,14 @@ public class Person {
      * if modification is attempted.
      */
     public Set<GroupTag> getImmutableGroupTags() {
-        return Collections.unmodifiableSet(groupTags);
+        return groupTags.getImmutableGroups();
     }
 
     /**
      * Returns a copy of the person's module tags.
      */
-    public ModuleTagSet getModuleTagsCopy() {
-        ModuleTagSet moduleTagSetCopy = new ModuleTagSet();
-        moduleTagSetCopy.addAll(moduleTags);
-        return moduleTagSetCopy;
+    public ModuleTagSet getModuleTags() {
+        return moduleTags;
     }
 
     /**
@@ -92,7 +88,7 @@ public class Person {
      * if modification is attempted.
      */
     public Set<ModuleTag> getImmutableModuleTags() {
-        return Collections.unmodifiableSet(moduleTags);
+        return moduleTags.getImmutableModules();
     }
 
     /**
@@ -100,9 +96,12 @@ public class Person {
      * if modification is attempted.
      */
     public Set<ModuleTag> getImmutableCommonModuleTags() {
-        return Collections.unmodifiableSet(moduleTags.getCommonModules());
+        return Collections.unmodifiableSet(moduleTags.getImmutableCommonModules());
     }
 
+    /**
+     * Sets the common modules that the person has with the user.
+     */
     public void setCommonModules(Set<ModuleTag> userModules) {
         moduleTags.setCommonModules(userModules);
     }

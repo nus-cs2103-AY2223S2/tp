@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,6 +51,13 @@ public class EduMate implements ReadOnlyEduMate {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }
+
+    /**
+     * Replaces the contents of the person list with an empty list of persons.
+     */
+    public void resetPersons() {
+        this.persons.setPersons(new ArrayList<>());
     }
 
     /**

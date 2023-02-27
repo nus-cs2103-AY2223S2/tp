@@ -41,11 +41,13 @@ public class SortCommand extends Command {
         List<Person> sortedPersonList = new ArrayList<>(model.getFilteredPersonList());
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
         sortedPersonList.forEach(person -> person.setCommonModules(userModuleTags));
-        sortedPersonList.forEach(person -> System.out.println(person.getImmutableCommonModuleTags()));
         sortedPersonList.sort(comparator);
 
-        sortedPersonList.forEach(model::deletePerson);
+        // currently the only way to sort persons in the list
+        model.resetPersons();
         sortedPersonList.forEach(model::addPerson);
 
         return new CommandResult(
