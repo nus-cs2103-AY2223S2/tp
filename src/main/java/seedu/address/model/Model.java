@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.fish.Fish;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Fish> PREDICATE_SHOW_ALL_FISHES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a fish with the same identity as {@code fish} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasFish(Fish fish);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given fish.
+     * The fish must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteFish(Fish target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given fish.
+     * {@code fish} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addFish(Fish fish);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given fish {@code target} with {@code editedFish}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The fish identity of {@code editedFish} must not be the same as another existing fish in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setFish(Fish target, Fish editedFish);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered fish list */
+    ObservableList<Fish> getFilteredFishList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered fish list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredFishList(Predicate<Fish> predicate);
 }
