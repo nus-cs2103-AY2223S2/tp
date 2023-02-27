@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Lok Jian Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jianminglok.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jianminglok)]
+[[portfolio](team/jianminglok.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Add contact and edit status feature
