@@ -8,7 +8,7 @@
 ## About the Project
 * _ConnectUS_ is a desktop application that targets users can type fast, optimized for use via a Command Line Interface (CLI) while still having the visual benefits of a Graphical User Interface (GUI). <br>
   * This is a software engineering project for the module **CS2103T Software Engineering** by the National University of Singapore (NUS).
-  * It provides a **reasonably well-written** code base that is **written in OOP fashion**. 
+  * It provides a **reasonably well-written** code base that is **written in OOP fashion**.
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `ConnectUS` because it created to help NUS Computing students _connect_ with each other. Users can keep track of each others' contact information, modules, CCAs etc. at the tip of their fingers.
 * For the detailed documentation of this project, see the **[ConnectUS Product Website](https://ay2223s2-cs2103t-w15-1.github.io/tp/)**.

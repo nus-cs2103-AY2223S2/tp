@@ -101,7 +101,7 @@ Edits an existing person in the ConnectUS app.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
