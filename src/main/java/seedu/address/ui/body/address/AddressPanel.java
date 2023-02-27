@@ -35,4 +35,12 @@ public class AddressPanel extends UiPart<Region> {
         personListPanel = new PersonListPanel(personObservableList, personDetailPanel);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
+
+    public PersonDetailPanel getPersonDetailPanel() {
+        return personDetailPanel;
+    }
+
+    public PersonListPanel getPersonListPanel() {
+        return personListPanel;
+    }
 }

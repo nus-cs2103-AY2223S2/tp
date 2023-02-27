@@ -72,4 +72,12 @@ public class BodyPanel extends UiPart<Region> {
         default:
         }
     }
+
+    public AddressPanel getAddressPanel() {
+        return addressPanel;
+    }
+
+    public CalendarPanel getCalendarPanel() {
+        return calendarPanel;
+    }
 }

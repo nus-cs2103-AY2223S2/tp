@@ -189,12 +189,13 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } finally {
-            /*
-             * Currently, it is impractical to determine the nature of the command
-             * and update PersonDetailPane accordingly, so it is reset instead to
+            /* Currently, it is impractical to determine the nature of the command
+             * and update PersonDetailPanel accordingly, so it is reset instead to
              * reduce the chance of bugs.
              */
             bodyPanel.selectTab(BodyPanel.TabType.ADDRESS_BOOK);
+            bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
+            bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
         }
     }
 }

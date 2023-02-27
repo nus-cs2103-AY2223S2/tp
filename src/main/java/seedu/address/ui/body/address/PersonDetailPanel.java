@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,8 @@ import seedu.address.ui.UiPart;
 public class PersonDetailPanel extends UiPart<Region> {
     private static final String FXML = "body/address/PersonDetailPanel.fxml";
 
+    @FXML
+    private ScrollPane scrollContainer;
     @FXML
     private Label name;
     @FXML
@@ -43,7 +46,7 @@ public class PersonDetailPanel extends UiPart<Region> {
             return;
         }
 
-        id.setText(displayedIndex + ".");
+        id.setText("Index: " + displayedIndex);
         name.setText(person.getName().toString());
         tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
@@ -57,6 +60,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         name.setText(null);
         tags.getChildren().clear();
         dataContainer.getChildren().clear();
+        scrollContainer.setVvalue(0);
     }
 
     private Collection<Label> getTagLabels(Person person) {
