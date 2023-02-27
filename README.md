@@ -6,7 +6,7 @@
 of their clients and respective details such as appointments and exercise routines.
   * It comes with **features such as adding clients details, editing, finding and many more which you can find in the user guide**.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `FitBook` because it tracks the membership detail for Personal Training customers.
+* It is named `FitBook` because it tracks the details of its Personal Training clients.
 * * For the detailed documentation of FitBook, see the [FitBook Product Website](https://ay2223s2-cs2103t-t15-2.github.io/tp/)
 ## Adapted from AddressBook-Level3
 * For the detailed documentation of this project, see the [Address Book Product Website](https://se-education.org/addressbook-level3)
