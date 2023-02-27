@@ -9,9 +9,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Pierce Ng Wei Sheng
 
-<img src="images/Pierce_Ng_Picture.jpg" width="200px">
+<img src="images/igezt.png" width="200px">
 
 [[github](https://github.com/igezt)]
 
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
