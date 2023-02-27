@@ -304,11 +304,6 @@ Task added: Finish report
 2. Send email to team
 3. Call client
 
-> listtask
-1. Finish report
-2. Send email to team
-3. Call client
-
 > findtask report
 1. Finish report
 
@@ -332,16 +327,18 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OfficeConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Assign a task to a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list persons
+2. OfficeConnect shows a list of persons
+3. User requests to list tasks
+4. OfficeConnect shows a list of tasks
+5. User requests to assign a specific task to a specific person
+6. OfficeConnect assigns the task to the person
 
     Use case ends.
 
@@ -351,9 +348,13 @@ In the example above, the user story is clearly defined at the top, followed by 
 
   Use case ends.
 
+* 3a. The list is empty.
+
+  Use case ends
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. OfficeConnect shows an error message.
 
       Use case resumes at step 2.
 
