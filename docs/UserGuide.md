@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-mediConnect is a desktop app for managing patients, doctors and bills. 
+MediConnect is a desktop app for managing patients, doctors and bills. 
 It can be used with either a command line interface (CLI) or a graphical user interface (GUI). 
 Users experienced with the CLI may get your tasks done faster than traditional GUI apps.
 
@@ -17,11 +17,11 @@ Users experienced with the CLI may get your tasks done faster than traditional G
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `MediConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your MediConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MediConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -30,7 +30,7 @@ Users experienced with the CLI may get your tasks done faster than traditional G
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to MediConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -70,7 +70,7 @@ Users experienced with the CLI may get your tasks done faster than traditional G
 
 ### Adding a person: `add patient`, `add doctor`
 
-Adds a person (patient/doctor) to the address book.
+Adds a person (patient/doctor) to MediConnect.
 
 Format: `add r/ROLE n/NAME b/BILL p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -83,7 +83,7 @@ Examples:
 
 ### Retrieve person information : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in MediConnect.
 
 Format: `list`
 
@@ -114,14 +114,14 @@ Examples:
 
 ### Deleting a person by name : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from MediConnect.
 
 Format: `delete NAME`
 
 * Deletes the person at the specified `name`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in MediConnect.
 * `find r/patient Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
