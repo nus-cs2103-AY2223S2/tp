@@ -121,8 +121,36 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-
         helpMessage.setText(HELP_MESSAGE);
+    }
+
+    public String instructionMap(String treeItemValue) {
+        switch (treeItemValue) {
+            case "Add methods":
+                return ADDMETHODS_HELP;
+            case "addperson":
+                return ADDPERSON_HELP;
+            case "addtask":
+                return ADDTASK_HELP;
+            case "Delete methods":
+                return DELETEMETHODS_HELP;
+            case "deleteperson":
+                return DELETEPERSON_HELP;
+            case "deletetask":
+                return DELETETASK_HELP;
+            case "List methods":
+                return LISTMETHODS_HELP;
+            case "listperson":
+                return LISTPERSON_HELP;
+            case "listtask":
+                return LISTTASK_HELP;
+            case "Assign methods":
+                return ASSIGNMETHODS_HELP;
+            case "assign":
+                return ASSIGN_HELP;
+            default:
+                return "";
+        }
     }
 
     @Override
