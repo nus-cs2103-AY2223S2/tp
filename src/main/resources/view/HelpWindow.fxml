@@ -99,7 +99,7 @@
                       </TreeView>
                   </left>
                   <center>
-                     <TextArea fx:id="method__description"
+                     <TextArea fx:id="methodDescription"
                                editable="false" prefHeight="200.0"
                                prefWidth="200.0" BorderPane.alignment="CENTER"
                                text="">

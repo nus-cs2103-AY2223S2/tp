@@ -13,7 +13,7 @@
     -fx-border-color: dimgray;
 }
 
-#method__description {
+#methodDescription {
     -fx-border-width: 4px;
     -fx-border-radius: 6 6 6 6;
     -fx-background-radius: 14 14 14 14;
