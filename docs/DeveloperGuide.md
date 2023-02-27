@@ -283,16 +283,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Fitbook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Fitbook shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Fitbook deletes the person
 
     Use case ends.
 
@@ -304,17 +304,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Fitbook shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Add a person**
+
+**MSS**
+
+1. User requests to add a person
+2. Fitbook adds the person into the list.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The person added has missing compulsory fields.
+
+    * 1a1. Fitbook shows an error message for missing fields.
+    
+      Use case ends.
+
+* 1b. The person added has duplicate names.
+
+    * 1b1. Fitbook shows an error message for duplicate names.
+  
+      Use case ends.
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be usable by users even if they are not familiar with command lines.
+5. Should start up fast when starting the application.
+6. Should work on most screen resolutions.
+7. Should not consume too much battery or data usage on the user's device.
+8. Source code should be _open source_.
+9. JAR file should be less than 2GB.
 
 *{More to be added}*
 
@@ -322,6 +350,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Open source**: Programs that people can modify and share because its design is publicly accessible
+* **Ui**: User interface of the program where the user interacts with
 
 --------------------------------------------------------------------------------------------------------------------
 
