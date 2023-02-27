@@ -110,15 +110,14 @@ e.g. for a item which is a event of id 4:
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Todo** | `todo <title> /by <date-time> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g., `todo Do UG /by 2023-02-25 23:00 /desc Git is fun /loc Home /cmt Do as a team`
-**Add Event** | `event <title> /from <start> /to <end> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g. `event CS2103T Lecture /from 2023-02-25 22:00 /to 2023-02-25 23:00`
-**Delete** | `delete INDEX...`<br> e.g., `delete 1 2 3`
-**List** | `list`
-**Edit** | `edit INDEX (OPTION <argument>) ...`<br> e.g.,`edit 4 /from 2023-02-25 22:00 /to 2023-02-25 23:00`
-**Help** | `help`
-
+| Action        | Format, Examples                                                                                                                                                                  |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Todo**  | `todo <title> /by <date-time> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g., `todo Do UG /by 2023-02-25 23:00 /desc Git is fun /loc Home /cmt Do as a team` |
+| **Add Event** | `event <title> /from <start> /to <end> [/desc <description>] [/loc <location>] [/cmt <comment>]` <br> e.g. `event CS2103T Lecture /from 2023-02-25 22:00 /to 2023-02-25 23:00`    |
+| **Delete**    | `delete INDEX...`<br> e.g., `delete 1 2 3`                                                                                                                                        |
+| **List**      | `list`                                                                                                                                                                            |
+| **Edit**      | `edit INDEX (OPTION <argument>) ...`<br> e.g.,`edit 4 /from 2023-02-25 22:00 /to 2023-02-25 23:00`                                                                                |
+| **Help**      | `help`                                                                                                                                                                            |
 
 ### Other
 
