@@ -47,9 +47,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bryan Tan Zhong Kang
 
-<img src="images/EksdeeeX.png" width="200px">
+<img src="images/eksdeeex.png" width="200px">
 
-[[github](https://github.com/EksdeeeX)]
-[[portfolio](team/EksdeeeX.md)]
+[[github](https://github.com/eksdeeex)]
+[[portfolio](team/eksdeeex.md)]
 
 * Role: Code Quality, Team Lead
