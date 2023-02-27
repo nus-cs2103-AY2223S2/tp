@@ -89,7 +89,7 @@ Edits the application status.
 
 Format: `edit_status INDEX s/STATUS`
 - Edits the status of the specified `INDEX` to the specified `STATUS`.
-- The index refers to the index number shown in the displayed internship list. 	
+- The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
 - Available status: NA, PENDING, RECEIVED, REJECTED, NO
   - NA: Internship application is not submitted.
@@ -114,5 +114,5 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com `
+**Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
