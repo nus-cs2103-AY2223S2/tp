@@ -11,13 +11,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Qin Yao (Sean)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/extrashotlatte.png" width="200px">
 
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/extrashotlatte)]
+[[portfolio](team/extrashotlatte.md)]
 
-* Role: TBA
-* Responsibilities: TBA
+* Role: Deliverables and deadlines, Git Expert
 
 ### Bryan Ong
 
@@ -26,8 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/bryansendeavour)]
 [[portfolio](team/bryansendeavour.md)]
 
-* Role: TBA
-* Responsibilities: TBA
+* Role: Testing, JavaFX Expert
 
 ### Eng En Hui
 
@@ -36,8 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/engenhui1999)]
 [[portfolio](team/engenhui1999.md)]
 
-* Role: TBA
-* Responsibilities: TBA
+* Role: Integration, Documentation
 
 ### Gloria Zhang Xinhui
 
@@ -46,8 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/glozxi)]
 [[portfolio](team/glozxi.md)]
 
-* Role: TBA
-* Responsibilities: TBA
+* Role: Scheduling and Tracking, IntelliJ expert
 
 ### Bryan Tan Zhong Kang
 
@@ -56,5 +52,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/EksdeeeX)]
 [[portfolio](team/EksdeeeX.md)]
 
-* Role: TBA
-* Responsibilities: TBA
+* Role: Code Quality, Team Lead
