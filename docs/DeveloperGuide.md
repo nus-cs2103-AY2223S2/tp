@@ -283,28 +283,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a lecture**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list lectures of a specific module
+2.  Le Tracker shows a list of lectures of the specified module
+3.  User requests to delete a specific lecture in the list, while citing the correct module code
+4.  Le Tracker deletes the lecture
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. There is no lecture in the specified module.
 
   Use case ends.
 
+* 2b. There is no such module.
+
+   * 2b1. Le Tracker shows an error message.
+   
+   Use case ends.
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+   
+* 3b. The given module code is invalid.
+
+    * 3b1. Le Tracker shows an error message.
 
       Use case resumes at step 2.
 
