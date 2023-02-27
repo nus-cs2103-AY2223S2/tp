@@ -149,6 +149,17 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Sorting persons (by other fields) : `sort`
+
+Sorts and displays the persons according to the provided category. Sorts the list of persons by name if no argument is provided.
+
+Format: `sort [CATEGORY]`
+* If no category is provided, the persons are sorted by their names alphanumerically
+* If a category is provided, the persons are sorted by that category alphanumerically
+  * e.g. sort address will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -188,6 +199,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
