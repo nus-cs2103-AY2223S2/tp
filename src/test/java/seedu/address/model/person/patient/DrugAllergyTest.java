@@ -20,7 +20,7 @@ public class DrugAllergyTest {
 
     @Test
     public void isValidDrugAllergy() {
-        // null drug allergy description
+        // null
         assertThrows(NullPointerException.class, () -> DrugAllergy.isValidDrugAllergy(null));
 
         // blank drug allergy description

@@ -23,15 +23,26 @@ public class DateOfBirthTest {
         // null address
         assertThrows(NullPointerException.class, () -> DateOfBirth.isValidBirthDate(null));
 
-        // invalid date of birth
+        // empty string date
         assertFalse(DateOfBirth.isValidBirthDate("")); // empty string
         assertFalse(DateOfBirth.isValidBirthDate(" ")); // spaces only
-        assertFalse(DateOfBirth.isValidBirthDate("13/11/2023")); // Future date can't be birth date
+
+        // future date can't be birth date
+        assertFalse(DateOfBirth.isValidBirthDate("13/11/2023"));
         assertFalse(DateOfBirth.isValidBirthDate("13.11.2023"));
         assertFalse(DateOfBirth.isValidBirthDate("13-11-2023"));
         assertFalse(DateOfBirth.isValidBirthDate("13/11/23"));
         assertFalse(DateOfBirth.isValidBirthDate("13.11.23"));
         assertFalse(DateOfBirth.isValidBirthDate("13-11-23"));
+
+        // year before 1900 shouldn't be birth date
+        assertFalse(DateOfBirth.isValidBirthDate("13/11/1800"));
+        assertFalse(DateOfBirth.isValidBirthDate("13.11.1800"));
+        assertFalse(DateOfBirth.isValidBirthDate("13-11-1800"));
+
+        // invalid date format
+        assertFalse(DateOfBirth.isValidBirthDate("32-01-2022")); // invalid day
+        assertFalse(DateOfBirth.isValidBirthDate("13-13-2022")); // invalid month
 
         // valid date of birth
         assertTrue(DateOfBirth.isValidBirthDate("13/11/2022"));

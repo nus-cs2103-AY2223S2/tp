@@ -9,4 +9,6 @@ public class PatientTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Patient(null, null, null, null, null, null, null));
     }
+
+
 }
