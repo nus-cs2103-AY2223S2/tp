@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a lecture**
+**Use case: Delete a Lecture**
 
 **MSS**
 
@@ -320,11 +320,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: Delete a lecture tag**
+**Use case: Delete a Lecture Video**
 
 **MSS**
 
-1. 
+1.  User requests to list lecture videos of a specific lecture of a specific module
+2.  Le Tracker shows a list of lecture videos of such specifications
+3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id_
+4.  Le Tracker deletes the lecture video
+
+**Extensions**
+
+* 2a. There is no video in the specified module lecture.
+
+   Use case ends.
+
+* 2b. There is no such lecture in the module.
+
+   * 2b1. Le Tracker shows an error message.
+
+   Use case ends.
+
+* 2c. There is no such module.
+
+   * 2c1. Le Tracker shows an error message.
+
+   Use case ends.
+
+* 3a. The given index of the video is invalid.
+
+   * 3a1. Le Tracker shows an error message.
+
+   Use case ends.
+
+* 3b. The given index of the lecture is invalid.
+
+   * 3b1. Le Tracker shows an error message.
+
+   Use case ends.
+
+* 3c. The given index of the module is invalid.
+
+   * 3c1. Le Tracker shows an error message.
+
+   Use case ends.
+
 
 *{More to be added}*
 
