@@ -283,16 +283,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOCket` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a contact**
+
+**Preconditions:** SOCket is running.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact
+2.  SOCket adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no details provided.
+
+    * 1a1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+  Use case ends.
+
+**Use case: UC02 - Edit a contact**
+
+**Preconditions:** SOCket is running.
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SOCket shows a list of contacts
+3.  User requests to edit a specific contact's details in the list
+4.  SOCket edits the contact's details
 
     Use case ends.
 
@@ -304,9 +327,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SOCket shows an error message.
 
       Use case resumes at step 2.
+
+* 3b. There are no details provided.
+
+    * 3b1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. There are no tags provided.
+
+    * 3b1. SOCket removes all tags associated with the contact.
+
+      Use case ends.
+
+* 3d. There are tag(s) provided.
+
+    * 3b1. SOCket removes existing tags associated with the contact and adds the tag(s) provided.
+
+      Use case ends.
+
+**Use case: UC09 - Exit SOCket**
+
+**Preconditions:** SOCket is running.
+
+**MSS**
+
+1.  User requests to exit SOCket
+2.  SOCket exits
+
+    Use case ends.
 
 *{More to be added}*
 
