@@ -277,16 +277,34 @@ no space for.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                   | I want to …​                                                                            | So that I can…​                                                                                            |
+|----------|-------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                  | see usage instructions                                                                  | refer to instructions when I forget how to use the App                                                     |
+| `* * *`  | ward admin processing patients            | add and delete a patient                                                                | inpro and outpro the patients as they are hospitalised and discharged                                      |
+| `* * *`  | ward doctor attending to patient          | add and delete new instructions and prescriptions for a patient                         | have a convenient record to access when treating patient                                                   |
+| `* * *`  | ward admin recording manpower assignments | add and delete new doctor/nurse from the ward                                           | have a convenient record of which staff handles each ward                                                  |
+| `*`      | ward doctor getting ready for shift       | add and delete events from my personal duty schedule                                    | track my schedule from the centralised system and easily access records of patients as I check my schedule |
+| `*`      | lab assistant                             | add test results to a patient's information                                             | easily update the medical staff with the information they need for treatment                               |
+| `* * *`  | ward nurse/doctor                         | view and edit todo list for each patient                                                | have a reliable reference for tasks I need to facilitate for each patient                                  |
+| `* *`    | ward nurse/doctor administering medicine  | see a list of medical allergies of the patient on the patient's main page               | be reminded of which medicines cannot be prescribed at a glance                                            |
+| `* * *`  | user unfamiliar with the hospital         | list all patients the system                                                            | find a particular patient without knowing their full name or ID                                            |
+| `* * *`  | user                                      | list all patients in a particular ward                                                  | easily tell how many people and the identities of patients in a ward                                       |
+| `* *`    | user looking for a patient                | search for patient by name                                                              | look up a patient without knowing his/her ID number                                                        |
+| `* *`    | user looking for a patient                | search for patient by ID                                                                | look up a patient without knowing his/her name                                                             |
+| `* * *`  | pharmacist issuing medication             | view prescription of patients                                                           | dispense medication while knowing the most updated list of medicine                                        |
+| `* * *`  | ward nurse/doctor moving a patient        | view important notes about a patient, such as being a fall risk                         | be reminded about each patient's unique needs                                                              |
+| `*`      | ward doctor in an emergency               | view the patient's status code on the patient's main page                               | know at a glance during an emergency if the patient has a Do Not Resuscitate order                         |
+| `*`      | user liasing with family members          | update the patient's status code                                                        | update the treatment/resuscitation requirements as the patient or family instructs                         |
+| `* *`    | user                                      | view a patient's Next of Kin contacts                                                   | update the family members of the patient should issues arise                                               |
+| `* *`    | ward admin registering NOK's contact      | edit a patient's Next of Kin contacts                                                   | change the contact number to call in an emergency should there be a need                                   |
+| `* * *`  | user                                      | list all staff members                                                                  | have a high level view of manpower allocation                                                              |
+| `* * *`  | user unfamiliar with the hospital         | list all ward names                                                                     | have a high level view of the facility's wards                                                             |
+| `* * *`  | doctor treating a patient                 | update list of medical allergies of a patient                                           | have the most recent information in the system and be assured it is correct                                |
+| `* * *`  | ward admin                                | move patients between wards                                                             | keep the system up to date as patients get transferred around                                              |
+| `* * *`  | doctor treating a patient                 | view and edit the full status page of a patient                                         | keep record of a comprehensive description of the patient for reference when making complicated decisions  |
+| `* *`    | doctor treating a patient                 | view and edit the care priority status of each patient displayed on patient's main page | tell at a glance which patient needs more attention at a glance in emergencies                             |
 
-*{More to be added}*
+
 
 ### Use cases
 
