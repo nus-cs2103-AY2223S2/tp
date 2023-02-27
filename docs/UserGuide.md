@@ -3,11 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<<<<<<< HEAD
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
-=======
-FitBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
->>>>>>> master
 
 * Table of Contents
 {:toc}
