@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kim Young Jin
 
-<img src="images/jugheadjones10" width="200px">
+<img src="images/jugheadjones10.png" width="200px">
 
 [[github](http://github.com/jugheadjones10)]
 [[portfolio](team/jugheadjones10.md)]
