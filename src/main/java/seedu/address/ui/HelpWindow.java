@@ -35,11 +35,11 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
             "can use for deleting tasks, and people.";
     public static final String DELETEPERSON_HELP = "What it does: Deletes the person at the specified ID.\n\n" +
             "The index refers to the INDEX shown in the displayed person list." +
-            "The INDEX must be a positive integer (eg. 1, 2, 3...) \n" +
+            "The INDEX must be a positive integer (eg. 1, 2, 3...) \n\n" +
             "Format: deleteperson INDEX";
     public static final String DELETETASK_HELP = "What it does: Deletes the task at the specified INDEX.\n\n" +
             "The index refers to the INDEX shown in the displayed task list" +
-            "The INDEX must be a positive integer (eg. 1, 2, 3...) \n" +
+            "The INDEX must be a positive integer (eg. 1, 2, 3...) \n\n" +
             "Format: deletetask INDEX";
     public static final String LISTMETHODS_HELP = "Nested within are the commands related" +
             " to listing out persons, and tasks.";
@@ -53,11 +53,11 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
             "Format: findtask KEYWORD";
     public static final String FINDPERSON_HELP = "What it does: Returns a person whose" +
             " name matches the input keyword. \n\n" +
-            "The search is case-sensitive, and partial inputs are also accepted. \n" +
+            "The search is case-sensitive, and partial inputs are also accepted. \n\n" +
             "Format: findperson KEYWORD";
     public static final String ASSIGNMETHODS_HELP = "Nested within are the commands" +
             " related to the assigning of tasks," +
-            "to a person.";
+            " to a person.";
     public static final String ASSIGN_HELP = "What it does: Assigns the task at" +
             " specified index to person at specified" +
             "index. The index refers to the index number shown in the displayed persons/task list. \n\n" +
