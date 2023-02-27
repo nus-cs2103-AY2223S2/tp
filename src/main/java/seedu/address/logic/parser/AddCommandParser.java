@@ -27,7 +27,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                        PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS);
 
         //Todo: Remove prefixes present to only have name.
         //, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL
@@ -35,23 +37,18 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(null));
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(null));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(null));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(null));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        ArrayList<String> mods = new ArrayList<>();
-        mods.add("CS2103T");
-        Favorite favorite = ParserUtil.parseFavorite(argMultimap.getValue(PREFIX_FAVORITE).orElse(null));
-        Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).orElse(null));
-        Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).orElse(null));
-        Modules modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MAJOR));
-        Race race = ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).orElse(null));
+        Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).orElse(""));
+        Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).orElse(""));
+        Modules modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULES));
+        Race race = ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).orElse(""));
+        CommunicationChannel comms = ParserUtil.parseComms(argMultimap.getValue(PREFIX_COMMS).orElse(""));
 
-
-        Tag[] lmao = new Tag[]{new Tag("friends")};
-        Person person = new Person(name, phone, email, address, favorite, gender, major, modules, race, tagList);
+        Person person = new Person(name, phone, email, address, gender, major, modules, race, tagList, comms);
 
         return new AddCommand(person);
     }

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Favorite {
 
-    public static final String MESSAGE_CONSTRAINTS = "Stonks";
+    public static final String MESSAGE_CONSTRAINTS = "Fav";
     public final boolean isFavorite;
 
     public Favorite(boolean isFavorite) {
@@ -16,6 +16,9 @@ public class Favorite {
 
 
     public static boolean isValidFavorite(String trimmedFavorite) {
-        return Objects.equals(trimmedFavorite, "yes") || Objects.equals(trimmedFavorite, "no");
+        if (Objects.equals(trimmedFavorite, "")) {
+            return true;
+        }
+        return Objects.equals(trimmedFavorite, "T") || Objects.equals(trimmedFavorite, "F");
     }
 }

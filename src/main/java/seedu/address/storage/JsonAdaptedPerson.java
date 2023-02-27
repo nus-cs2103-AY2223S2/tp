@@ -1,9 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,6 +23,12 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String race;
+    private final String major;
+    private final String gender;
+    private final String comms;
+
+    private final List<JsonAdaptedNusMod> modules = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,14 +36,25 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("race") String race,
+                             @JsonProperty("major") String major, @JsonProperty("gender") String gender,
+                             @JsonProperty("comms") String comms, @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.race = race;
+        this.major = major;
+
+        this.gender = gender;
+        this.comms = comms;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (modules != null) {
+            this.modules.addAll(modules);
         }
     }
 
@@ -48,11 +62,18 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        this.name = source.getName().fullName;
+        this.phone = source.getPhone().value;
+        this.email = source.getEmail().value;
+        this.address = source.getAddress().value;
+        this.race  = source.getRace().race;
+        this.major = source.getMajor().majorName;
+        this.gender = source.getGender().gender.toString();
+        this.comms = source.getComms().nameOfCommunicationChannel;
+        this.modules.addAll(source.getModules().mods.stream()
+                .map(mod -> (new JsonAdaptedNusMod(mod.name)))
+                .collect(Collectors.toList()));
+        this.tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -65,18 +86,10 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
 
-        Set<NusMod> mods = new HashSet<>();
-        mods.add(new NusMod("CS2103T"));
-        Favorite favorite = new Favorite(true);
-        Gender gender = new Gender(Genders.MALE);
-        Major major = new Major("Computer Science");
-        Modules modules = new Modules(mods);
-        Race race = new Race("Chinese");
-
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-        // Todo: Remove if nulls for phone, email and address.
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -85,32 +98,60 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
+//        if (phone == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+//        }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
+//        if (email == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+//        }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
+//        if (address == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+//        }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
 
+
+        Race race = new Race("Chinese");
+
+
+        if (!Gender.isValidGender(this.gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(this.gender);
+
+        if (!Major.isValidMajor(this.major)) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+        }
+        final Major modelMajor = new Major(this.major);
+
+        if (!Race.isValidRace(address)) {
+            throw new IllegalValueException(Race.MESSAGE_CONSTRAINTS);
+        }
+        final Race modelRace = new Race(this.race);
+
+        Set<NusMod> personMods = new HashSet<>();
+        for (JsonAdaptedNusMod mod: this.modules) {
+            personMods.add(mod.toModelType());
+        }
+        Modules modelModules = new Modules(personMods);
+
+        CommunicationChannel modelComms = new CommunicationChannel(this.comms);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,  favorite, gender, major, modules, race, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
+                modelModules, modelRace, modelTags, modelComms);
     }
 
 }

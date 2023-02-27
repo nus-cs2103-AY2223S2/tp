@@ -20,11 +20,11 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Favorite favorite;
     private final Gender gender;
     private final Major major;
     private final Modules modules;
     private final Race race;
+    private final CommunicationChannel comms;
 
     // Data fields
     private final Address address;
@@ -33,19 +33,20 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Favorite favorite, Gender gender,
-                  Major major, Modules modules, Race race, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender,
+                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms) {
         requireAllNonNull(name);
         this.name = name;
+
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.favorite = favorite;
         this.gender = gender;
         this.major = major;
         this.modules = modules;
         this.race = race;
+        this.comms = comms;
     }
 
     public Name getName() {
@@ -132,9 +133,6 @@ public class Person {
         return builder.toString();
     }
 
-    public Favorite getFavorite() {
-        return favorite;
-    }
 
     public Gender getGender() {
         return gender;
@@ -150,5 +148,9 @@ public class Person {
 
     public Race getRace() {
         return race;
+    }
+
+    public CommunicationChannel getComms() {
+        return comms;
     }
 }

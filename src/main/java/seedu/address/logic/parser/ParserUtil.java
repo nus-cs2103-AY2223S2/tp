@@ -131,16 +131,16 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static Favorite parseFavorite(String favorite) throws ParseException{
-        if (favorite == null) {
-            return null;
-        }
-        String trimmedFavorite = favorite.trim();
-        if (!Favorite.isValidFavorite(trimmedFavorite)) {
-            throw new ParseException(Favorite.MESSAGE_CONSTRAINTS);
-        }
-        return new Favorite(false);
-    }
+//    public static Favorite parseFavorite(String favorite) throws ParseException{
+//        if (favorite == null) {
+//            return null;
+//        }
+//        String trimmedFavorite = favorite.trim();
+//        if (!Favorite.isValidFavorite(trimmedFavorite)) {
+//            throw new ParseException(Favorite.MESSAGE_CONSTRAINTS);
+//        }
+//        return new Favorite(false);
+//    }
 
     public static Gender parseGender(String gender) throws ParseException {
         if (gender == null) {
@@ -148,9 +148,9 @@ public class ParserUtil {
         }
         String trimmedGender = gender.trim();
         if (!Gender.isValidGender(trimmedGender)) {
-            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS + "123");
         }
-        return new Gender(Genders.MALE);
+        return new Gender(trimmedGender);
     }
 
     public static Major parseMajor(String major) throws ParseException {
@@ -195,5 +195,16 @@ public class ParserUtil {
             throw new ParseException(Race.MESSAGE_CONSTRAINTS);
         }
         return new Race(trimmedRace);
+    }
+
+    public static CommunicationChannel parseComms(String comms) throws ParseException {
+        if (comms == null) {
+            return null;
+        }
+        String trimmedComms = comms.trim();
+        if (!CommunicationChannel.isValidComms(trimmedComms)) {
+            throw new ParseException(CommunicationChannel.MESSAGE_CONSTRAINTS);
+        }
+        return new CommunicationChannel(comms);
     }
 }
