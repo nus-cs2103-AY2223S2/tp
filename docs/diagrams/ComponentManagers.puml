@@ -9,9 +9,9 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
-Class "<<interface>>\nModel" as Model
-Class ModelManager
+package FitBookModel{
+Class "<<interface>>\nFitBookModel" as FitBookModel
+Class FitBookModelManager
 }
 
 package Storage{
@@ -23,9 +23,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-ModelManager .up.|> Model
+FitBookModelManager .up.|> FitBookModel
 StorageManager .up.|> Storage
 
-LogicManager --> Model
+LogicManager --> FitBookModel
 LogicManager --> Storage
 @enduml

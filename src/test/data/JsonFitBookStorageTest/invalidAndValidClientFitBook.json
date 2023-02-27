@@ -1,0 +1,15 @@
+{
+  "clients": [ {
+    "name": "Valid Client",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "weight": "23",
+    "gender": "m"
+  }, {
+    "name": "Client With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "weight": "23",
+    "gender": "m"
+  } ]
+}
