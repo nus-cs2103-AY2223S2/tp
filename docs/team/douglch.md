@@ -5,15 +5,15 @@ title: John Doe's Project Portfolio Page
 
 # Mycelium - CS2103T Team Project
 
-## Overview: 
+## Overview:
 `to be added`
-## Summary of Contributions: 
+## Summary of Contributions:
 `to be added`
 ### Code contributed:
 `to be added`
-### Enhancements implemented: 
+### Enhancements implemented:
 `to be added`
-### Contributions to the UG/DG: 
+### Contributions to the UG/DG:
 `to be added`
 ### Contributions to team-based tasks:
 `to be added`
