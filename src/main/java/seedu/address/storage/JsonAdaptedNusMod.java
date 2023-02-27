@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.tag.Tag;
@@ -21,7 +22,7 @@ public class JsonAdaptedNusMod {
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedNusMod (NusMod source) {
+    public JsonAdaptedNusMod(NusMod source) {
         this.modName = source.name;
     }
 

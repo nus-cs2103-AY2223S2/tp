@@ -1,14 +1,14 @@
 package seedu.address.model.person.fields;
 
-import seedu.address.model.person.fields.enums.Genders;
-
 import java.util.Locale;
 import java.util.Objects;
 
+import seedu.address.model.person.fields.enums.Genders;
+
 public class Gender {
 
-    public static final String MESSAGE_CONSTRAINTS = "Gender must be either: " +
-            "Male, Female or DNS (i.e. Did not specify)";
+    public static final String MESSAGE_CONSTRAINTS = "Gender must be either: "
+            + "Male, Female or DNS (i.e. Did not specify)";
     public Genders gender;
 
     public Gender(String gender) {
@@ -28,6 +28,9 @@ public class Gender {
         }
     }
 
+    /**
+     * Returns if a given string is a valid gender.
+     */
     public static boolean isValidGender(String trimmedGender) {
         String lowerCaseGender = trimmedGender.toLowerCase(Locale.ROOT);
         return Objects.equals(lowerCaseGender, "male") || Objects.equals(lowerCaseGender, "female") ||

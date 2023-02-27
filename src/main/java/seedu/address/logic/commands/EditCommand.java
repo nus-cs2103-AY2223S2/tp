@@ -8,16 +8,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.fields.*;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.enums.Genders;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**

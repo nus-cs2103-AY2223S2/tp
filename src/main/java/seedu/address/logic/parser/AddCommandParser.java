@@ -1,18 +1,32 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.fields.*;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.enums.Genders;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -1,9 +1,9 @@
 package seedu.address.model.person.fields;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's phone number in the address book.

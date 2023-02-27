@@ -1,12 +1,8 @@
 package seedu.address.model.person.fields;
 
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
 import java.util.Set;
 
 public class Modules {
-
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
     public Set<NusMod> mods;

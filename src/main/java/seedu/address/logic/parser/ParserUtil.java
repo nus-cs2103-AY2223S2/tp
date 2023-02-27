@@ -4,14 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.fields.*;
-import seedu.address.model.person.fields.enums.Genders;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.NusMod;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -131,17 +138,23 @@ public class ParserUtil {
         return tagSet;
     }
 
-//    public static Favorite parseFavorite(String favorite) throws ParseException{
-//        if (favorite == null) {
-//            return null;
-//        }
-//        String trimmedFavorite = favorite.trim();
-//        if (!Favorite.isValidFavorite(trimmedFavorite)) {
-//            throw new ParseException(Favorite.MESSAGE_CONSTRAINTS);
-//        }
-//        return new Favorite(false);
-//    }
+    //    public static Favorite parseFavorite(String favorite) throws ParseException{
+    //        if (favorite == null) {
+    //            return null;
+    //        }
+    //        String trimmedFavorite = favorite.trim();
+    //        if (!Favorite.isValidFavorite(trimmedFavorite)) {
+    //            throw new ParseException(Favorite.MESSAGE_CONSTRAINTS);
+    //        }
+    //        return new Favorite(false);
+    //    }
 
+    /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
     public static Gender parseGender(String gender) throws ParseException {
         if (gender == null) {
             return null;
@@ -153,6 +166,12 @@ public class ParserUtil {
         return new Gender(trimmedGender);
     }
 
+    /**
+     * Parses a {@code String major} into an {@code Major}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code major} is invalid.
+     */
     public static Major parseMajor(String major) throws ParseException {
         if (major == null) {
             return null;
@@ -164,6 +183,9 @@ public class ParserUtil {
         return new Major(trimmedMajor);
     }
 
+    /**
+     * Parses {@code Collection<String> modules} into a {@code Modules}.
+     */
     public static Modules parseModules(Collection<String> modules) throws ParseException {
         if (modules.isEmpty()) {
             return new Modules(new HashSet<>());
@@ -175,6 +197,12 @@ public class ParserUtil {
         return new Modules(modulesSet);
     }
 
+    /**
+     * Parses a {@code String module} into an {@code NusMod}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
     private static NusMod parseModule(String module) throws ParseException {
         if (module == null) {
             return null;
@@ -186,6 +214,12 @@ public class ParserUtil {
         return new NusMod(trimmedTag);
     }
 
+    /**
+     * Parses a {@code String race} into an {@code Race}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code race} is invalid.
+     */
     public static Race parseRace(String race) throws ParseException {
         if (race == null) {
             return null;
@@ -197,6 +231,12 @@ public class ParserUtil {
         return new Race(trimmedRace);
     }
 
+    /**
+     * Parses a {@code String comms} into an {@code CommunicationChannel}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code comms} is invalid.
+     */
     public static CommunicationChannel parseComms(String comms) throws ParseException {
         if (comms == null) {
             return null;

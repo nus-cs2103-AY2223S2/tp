@@ -1,15 +1,26 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.fields.*;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.enums.Genders;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.NusMod;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,7 +50,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("race") String race,
                              @JsonProperty("major") String major, @JsonProperty("gender") String gender,
-                             @JsonProperty("comms") String comms, @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
+                             @JsonProperty("comms") String comms,
+                             @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -66,7 +78,7 @@ class JsonAdaptedPerson {
         this.phone = source.getPhone().value;
         this.email = source.getEmail().value;
         this.address = source.getAddress().value;
-        this.race  = source.getRace().race;
+        this.race = source.getRace().race;
         this.major = source.getMajor().majorName;
         this.gender = source.getGender().gender.toString();
         this.comms = source.getComms().nameOfCommunicationChannel;
@@ -98,33 +110,29 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-//        if (phone == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-//        }
+        //if (phone == null) {
+        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        //}
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
-//        if (email == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-//        }
+        //if (email == null) {
+        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        //}
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
 
-//        if (address == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-//        }
+        //if (address == null) {
+        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        //}
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
-
-        Race race = new Race("Chinese");
-
 
         if (!Gender.isValidGender(this.gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);

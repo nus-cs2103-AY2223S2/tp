@@ -7,7 +7,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.fields.*;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**

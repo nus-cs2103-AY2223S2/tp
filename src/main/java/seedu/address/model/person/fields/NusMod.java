@@ -1,7 +1,5 @@
 package seedu.address.model.person.fields;
 
-import java.util.ArrayList;
-
 public class NusMod {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";

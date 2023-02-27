@@ -1,9 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.model.person.fields.*;
-import seedu.address.model.person.fields.enums.Genders;
-
-import java.util.ArrayList;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
@@ -15,7 +11,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-//    public static final Prefix PREFIX_FAVORITE = new Prefix("f/");
+    //public static final Prefix PREFIX_FAVORITE = new Prefix("f/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_MAJOR = new Prefix("m/");
     public static final Prefix PREFIX_MODULES = new Prefix("mods/");
