@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/huanghao1998.png" width="200px">
 
 [[github](http://github.com/huanghao1998)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/huanghao1998.md)]
 
 * Role: Developer
 * Responsibilities: Data
