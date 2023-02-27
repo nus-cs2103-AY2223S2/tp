@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/Jun-How.png" width="200px">
 
 [[github](https://github.com/Jun-How)]
-[[portfolio](team/Jun-How.md)]
+[[portfolio](team/jun-how.md)]
 
 * Role: Developer
 * Responsibilities: Logic & Deliverables/Deadline
