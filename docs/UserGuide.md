@@ -86,11 +86,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-<<<<<<< HEAD
-A person can have any number of tags, appointments and exercise routines (including 0)
-=======
-A client can have any number of tags (including 0)
->>>>>>> master
+A client can have any number of tags, appointments and exercise routines (including 0)
 </div>
 
 Examples:
