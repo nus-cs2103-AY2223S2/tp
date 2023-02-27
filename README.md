@@ -6,7 +6,7 @@
 ![Ui](docs/images/Ui.png)
 
 ## About the Project
-* _ConnectUS_ is a desktop application that targets users can type fast, optimized for use via a Command Line Interface (CLI), while still having the visual benefits of a Graphical User Interface (GUI). <br>
+* _ConnectUS_ is a desktop application that targets users can type fast, optimized for use via a Command Line Interface (CLI) while still having the visual benefits of a Graphical User Interface (GUI). <br>
   * This is a software engineering project for the module **CS2103T Software Engineering** by the National University of Singapore (NUS).
   * It provides a **reasonably well-written** code base that is **written in OOP fashion**. 
   * It comes with a **reasonable level of user and developer documentation**.
