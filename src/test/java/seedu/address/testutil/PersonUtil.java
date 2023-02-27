@@ -39,10 +39,10 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_TELEGRAM_HANDLE + person.getTelegramHandle().telegramHandle + " ");
-        person.getGroupTags().stream().forEach(
+        person.getImmutableGroupTags().stream().forEach(
             s -> sb.append(PREFIX_GROUP_TAG + s.tagName + " ")
         );
-        person.getModuleTags().stream().forEach(
+        person.getImmutableModuleTags().stream().forEach(
                 s -> sb.append(PREFIX_MODULE_TAG + s.tagName + " ")
         );
         return sb.toString();
@@ -90,6 +90,6 @@ public class PersonUtil {
                 && firstUser.getEmail().equals(secondUser.getEmail())
                 && firstUser.getPhone().equals(secondUser.getPhone())
                 && firstUser.getTelegramHandle().equals(secondUser.getTelegramHandle())
-                && firstUser.getModuleTags().equals(secondUser.getModuleTags());
+                && firstUser.getImmutableModuleTags().equals(secondUser.getImmutableModuleTags());
     }
 }

@@ -57,7 +57,6 @@ public class EduMate implements ReadOnlyEduMate {
      */
     public void setUser(User user) {
         requireNonNull(user);
-
         this.user = user;
     }
 

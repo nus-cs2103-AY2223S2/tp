@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +7,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -33,13 +34,22 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label address;
+
+    @FXML
+    private Label telegramHandle;
+
     @FXML
     private Label email;
+
+    @FXML
+    private Label phone;
+
     @FXML
     private FlowPane groupTags;
+
+    @FXML
+    private FlowPane moduleTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,13 +58,17 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getGroupTags().stream()
-                .sorted(Comparator.comparing(groupTag -> groupTag.tagName))
+        telegramHandle.setText(person.getTelegramHandle().value);
+        address.setText(person.getAddress().value);
+        person.getImmutableGroupTags().stream()
+                .sorted(GroupTag::compareTo)
                 .forEach(groupTag -> groupTags.getChildren().add(new Label(groupTag.tagName)));
+        person.getImmutableModuleTags().stream()
+                .sorted(ModuleTag::compareTo)
+                .forEach(moduleTag -> moduleTags.getChildren().add(new Label(moduleTag.tagName)));
     }
 
     @Override

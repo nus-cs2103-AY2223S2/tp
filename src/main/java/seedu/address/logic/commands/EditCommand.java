@@ -129,9 +129,9 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(personToEdit.getTelegramHandle());
         Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
-                .orElse(personToEdit.getGroupTags());
+                .orElse(personToEdit.getImmutableGroupTags());
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
-                .orElse(personToEdit.getModuleTags());
+                .orElse(personToEdit.getImmutableModuleTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
                 updatedGroupTags, updatedModuleTags);
     }
@@ -148,9 +148,9 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(userToEdit.getTelegramHandle());
         Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
-                .orElse(userToEdit.getGroupTags());
+                .orElse(userToEdit.getImmutableGroupTags());
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
-                .orElse(userToEdit.getModuleTags());
+                .orElse(userToEdit.getImmutableModuleTags());
 
         return new User(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);

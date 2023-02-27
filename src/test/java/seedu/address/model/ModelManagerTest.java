@@ -121,7 +121,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         createEqualsFilteredList(
-                CliSyntax.PREFIX_NAME, ALBERT.getName().fullName.split("\\s+"), eduMate, userPrefs);
+                CliSyntax.PREFIX_NAME, ALBERT.getName().value.split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
                 CliSyntax.PREFIX_EMAIL, ALBERT.getEmail().value.split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
@@ -129,17 +129,17 @@ public class ModelManagerTest {
         createEqualsFilteredList(
                 CliSyntax.PREFIX_ADDRESS, ALBERT.getAddress().value.split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE, ALBERT.getTelegramHandle().telegramHandle.split("\\s+"),
+                CliSyntax.PREFIX_TELEGRAM_HANDLE, ALBERT.getTelegramHandle().value.split("\\s+"),
                 eduMate, userPrefs);
 
         createEqualsFilteredList(
                 CliSyntax.PREFIX_MODULE_TAG,
-                ALBERT.getModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
 
         createEqualsFilteredList(
                 CliSyntax.PREFIX_GROUP_TAG,
-                ALBERT.getGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
 
         // resets modelManager to initial state for upcoming tests

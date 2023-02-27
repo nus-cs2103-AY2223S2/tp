@@ -33,11 +33,11 @@ public class JsonAdaptedUserTest {
     private static final String VALID_EMAIL = BART.getEmail().toString();
     private static final String VALID_ADDRESS = BART.getAddress().toString();
     private static final String VALID_TELEGRAM_HANDLE = BART.getTelegramHandle().toString();
-    private static final List<JsonAdaptedGroupTag> VALID_TAGS = BART.getGroupTags().stream()
+    private static final List<JsonAdaptedGroupTag> VALID_TAGS = BART.getImmutableGroupTags().stream()
             .map(JsonAdaptedGroupTag::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedModuleTag> VALID_MODULE_TAGS =
-            BART.getModuleTags().stream()
+            BART.getImmutableModuleTags().stream()
                     .map(JsonAdaptedModuleTag::new)
                     .collect(Collectors.toList());
 

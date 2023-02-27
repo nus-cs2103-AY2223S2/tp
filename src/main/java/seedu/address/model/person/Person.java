@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,8 +23,8 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<GroupTag> groupTags = new HashSet<>();
-    private final Set<ModuleTag> moduleTags = new HashSet<>();
+    private final GroupTagSet groupTags = new GroupTagSet();
+    private final ModuleTagSet moduleTags = new ModuleTagSet();
 
     /**
      * Every field must be present and not null.
@@ -58,20 +57,54 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<GroupTag> getGroupTags() {
-        return Collections.unmodifiableSet(groupTags);
-    }
-
     public TelegramHandle getTelegramHandle() {
         return telegramHandle;
     }
 
-    public Set<ModuleTag> getModuleTags() {
+    /**
+     * Returns a copy of the person's group tags.
+     */
+    public GroupTagSet getGroupTagsCopy() {
+        GroupTagSet groupTagSetCopy = new GroupTagSet();
+        groupTagSetCopy.addAll(groupTags);
+        return groupTagSetCopy;
+    }
+
+    /**
+     * Returns an immutable group tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<GroupTag> getImmutableGroupTags() {
+        return Collections.unmodifiableSet(groupTags);
+    }
+
+    /**
+     * Returns a copy of the person's module tags.
+     */
+    public ModuleTagSet getModuleTagsCopy() {
+        ModuleTagSet moduleTagSetCopy = new ModuleTagSet();
+        moduleTagSetCopy.addAll(moduleTags);
+        return moduleTagSetCopy;
+    }
+
+    /**
+     * Returns an immutable module tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ModuleTag> getImmutableModuleTags() {
         return Collections.unmodifiableSet(moduleTags);
+    }
+
+    /**
+     * Returns an immutable module tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ModuleTag> getImmutableCommonModuleTags() {
+        return Collections.unmodifiableSet(moduleTags.getCommonModules());
+    }
+
+    public void setCommonModules(Set<ModuleTag> userModules) {
+        moduleTags.setCommonModules(userModules);
     }
 
     /**
@@ -106,9 +139,9 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getGroupTags().equals(getGroupTags())
+                && otherPerson.getImmutableGroupTags().equals(getImmutableGroupTags())
                 && otherPerson.getTelegramHandle().equals(getTelegramHandle())
-                && otherPerson.getModuleTags().equals(getModuleTags());
+                && otherPerson.getImmutableModuleTags().equals(getImmutableModuleTags());
     }
 
     @Override
@@ -121,25 +154,19 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append("; Telegram: ")
-                .append(getTelegramHandle());
+                .append("\nTelegram: ")
+                .append(getTelegramHandle())
+                .append("\nGroups: ")
+                .append(getImmutableGroupTags())
+                .append("\nModules: ")
+                .append(getImmutableModuleTags());
 
-        Set<GroupTag> groupTags = getGroupTags();
-        if (!groupTags.isEmpty()) {
-            builder.append("; Group Tags: ");
-            groupTags.forEach(builder::append);
-        }
-        Set<ModuleTag> moduleTags = getModuleTags();
-        if (!moduleTags.isEmpty()) {
-            builder.append("; Modules Enrolled: ");
-            moduleTags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

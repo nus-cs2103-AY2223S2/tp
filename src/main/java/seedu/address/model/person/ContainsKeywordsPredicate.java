@@ -42,7 +42,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         switch (prefix.getPrefix()) {
 
         case CliSyntax.PREFIX_NAME_STRING:
-            return person.getName().fullName;
+            return person.getName().value;
 
         case CliSyntax.PREFIX_PHONE_STRING:
             return person.getPhone().value;
@@ -54,13 +54,13 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
             return person.getAddress().value;
 
         case CliSyntax.PREFIX_TELEGRAM_HANDLE_STRING:
-            return person.getTelegramHandle().telegramHandle;
+            return person.getTelegramHandle().value;
 
         case CliSyntax.PREFIX_MODULE_TAG_STRING:
-            return person.getModuleTags().toString();
+            return person.getImmutableModuleTags().toString();
 
         case CliSyntax.PREFIX_GROUP_TAG_STRING:
-            return person.getGroupTags().toString();
+            return person.getImmutableGroupTags().toString();
 
         default:
             // Will not reach here

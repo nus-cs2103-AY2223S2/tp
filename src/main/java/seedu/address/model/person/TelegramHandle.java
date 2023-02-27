@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a User's telegram handle in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegramHandle(String)}
  */
-public class TelegramHandle {
+public class TelegramHandle implements Comparable<TelegramHandle> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram Handle should not be blank and should start with @ symbol";
@@ -19,7 +19,7 @@ public class TelegramHandle {
      */
     public static final String VALIDATION_REGEX = "^@[\\p{Alnum}]+";
 
-    public final String telegramHandle;
+    public final String value;
 
     /**
      * Constructs a {@code TelegramHandle}.
@@ -29,7 +29,7 @@ public class TelegramHandle {
     public TelegramHandle(String telegramHandle) {
         requireNonNull(telegramHandle);
         checkArgument(isValidTelegramHandle(telegramHandle), MESSAGE_CONSTRAINTS);
-        this.telegramHandle = telegramHandle;
+        value = telegramHandle;
     }
 
     /**
@@ -43,18 +43,23 @@ public class TelegramHandle {
 
     @Override
     public String toString() {
-        return this.telegramHandle;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TelegramHandle // instanceof handles nulls
-                && telegramHandle.equals(((TelegramHandle) other).telegramHandle)); // state check
+                && value.equals(((TelegramHandle) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return telegramHandle.hashCode();
+        return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(TelegramHandle otherTelegramHandle) {
+        return value.compareTo(otherTelegramHandle.value);
     }
 }

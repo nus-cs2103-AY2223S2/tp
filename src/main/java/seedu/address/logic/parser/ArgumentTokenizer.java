@@ -35,7 +35,7 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to find in the arguments string
      * @return           List of zero-based prefix positions in the given arguments string
      */
-    private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
+    public static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
         return Arrays.stream(prefixes)
                 .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
@@ -122,27 +122,6 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
-    }
-
-    /**
-     * Represents a prefix's position in an arguments string.
-     */
-    private static class PrefixPosition {
-        private int startPosition;
-        private final Prefix prefix;
-
-        PrefixPosition(Prefix prefix, int startPosition) {
-            this.prefix = prefix;
-            this.startPosition = startPosition;
-        }
-
-        int getStartPosition() {
-            return startPosition;
-        }
-
-        Prefix getPrefix() {
-            return prefix;
-        }
     }
 
 }
