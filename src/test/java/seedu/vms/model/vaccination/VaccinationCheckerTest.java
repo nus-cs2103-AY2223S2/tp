@@ -90,4 +90,15 @@ public class VaccinationCheckerTest {
                         VALID_SECOND_DOSE_REC,
                         TIME_SECOND_DOSE));
     }
+
+
+    @Test
+    public void check_missingDoseType_false() {
+        assertEquals(false,
+                VaccinationChecker.check(
+                        Vaccination.MODERNA_DOSE_3,
+                        MODERNA_VALID_AGE,
+                        VALID_SECOND_DOSE_REC,
+                        TIME_THIRD_DOSE));
+    }
 }
