@@ -1,5 +1,6 @@
 package seedu.address.ui.body.address;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -9,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -27,6 +27,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private Label count;
 
+    private Person selectedPerson;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -35,14 +37,35 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         personListView.setFocusTraversable(false);
+        personListView.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> panel.setPerson(newValue, 0));
         personListView.setOnMouseClicked(event -> {
-            MultipleSelectionModel<Person> selectionModel = personListView.getSelectionModel();
-            Person selectedPerson = selectionModel.getSelectedItem();
-            int selectedIndex = selectionModel.getSelectedIndex();
-            panel.setPerson(selectedPerson, selectedIndex + 1);
+            Person clickedPerson = personListView.getSelectionModel().getSelectedItem();
+            if (Objects.equals(clickedPerson, selectedPerson)) {
+                // the same Person was clicked on
+                clearSelection();
+            } else {
+                selectedPerson = clickedPerson;
+            }
         });
 
         count.textProperty().bind(getCountProperty(personList));
+    }
+
+    /**
+     * Scrolls the {@code ListView} of {@code Person}s to the top.
+     */
+    public void scrollToTop() {
+        personListView.scrollTo(0);
+    }
+
+    /**
+     * Clears the selection in the {@code ListView}.
+     */
+    public void clearSelection() {
+        personListView.getSelectionModel().clearSelection();
+        selectedPerson = null;
     }
 
     private StringBinding getCountProperty(ObservableList<Person> list) {

@@ -194,7 +194,8 @@ public class MainWindow extends UiPart<Stage> {
              * reduce the chance of bugs.
              */
             bodyPanel.selectTab(BodyPanel.TabType.ADDRESS_BOOK);
-            bodyPanel.getAddressPanel().getPersonDetailPanel().clearPerson();
+            bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
+            bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
         }
     }
 }
