@@ -61,7 +61,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         if (index < 1) {
             id.setText("Select a contact.");
         } else {
-            id.setText(String.format("Index no. %d", index));
+            id.setText(String.format("Index: %d", index));
         }
     }
 
