@@ -5,19 +5,18 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Goh Kang Yang Eric
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dangabit.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://dangabit.github.io/)]
+[[github](https://github.com/Dangabit)]
+[[portfolio](team/dangabit.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Models & Storage
 
 ### Jane Doe
 
