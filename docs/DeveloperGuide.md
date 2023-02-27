@@ -322,6 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GitHub profiles/repositories**: GitHub username e.g. `chia-yh` or repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
 
