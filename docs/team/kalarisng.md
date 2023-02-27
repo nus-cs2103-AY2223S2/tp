@@ -10,7 +10,7 @@ for the clients. The user interacts with it using a CLI, and it has a GUI create
 It is written in Java.
 
 > Anything below are to be added soon. They are just placeholders.
-> 
+>
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
