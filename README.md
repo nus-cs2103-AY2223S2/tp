@@ -8,4 +8,3 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* 
