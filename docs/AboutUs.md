@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Shao Wee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shaowi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://leeshaowee.netlify.app/)]
+[[github](https://github.com/shaowi)]
+[[portfolio](team/shaowi.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Deliverables, deadlines, scheduling and tracking
 
 ### Hing Zi Yang Benedict
 
@@ -26,8 +27,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hingen)]
 [[portfolio](team/hingen.md)]
 
-* Role: Developer
-* Responsibilities: Code Quality + Integration
+- Role: Developer
+- Responsibilities: Code Quality + Integration
 
 ### Khang Tran
 
@@ -36,8 +37,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/lennoxtr)]
 [[portfolio](team/lennoxtr.md)]
 
-* Role: Developer
-* Responsibilities: File I/O
+- Role: Developer
+- Responsibilities: File I/O
 
 ### Joy Tan QiaoTong
 
@@ -46,8 +47,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/joytqt-1202)]
 [[portfolio](team/joytqt-1202.md)]
 
-* Role: Developer
-* Responsibilities: Documentation + Testing
+- Role: Developer
+- Responsibilities: Documentation + Testing
 
 ### Jedidiah Cheng
 
@@ -56,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/jedidiahC)]
 [[portfolio](team/jedidiah.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
