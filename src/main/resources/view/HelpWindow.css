@@ -18,6 +18,8 @@
     -fx-border-radius: 6 6 6 6;
     -fx-background-radius: 14 14 14 14;
     -fx-border-color: dimgray;
+    -fx-font-size: 14px;
+    -fx-word-wrap: break-word;
 }
 
 #copyButton:hover {

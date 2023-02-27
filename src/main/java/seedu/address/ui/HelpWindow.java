@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,32 +27,32 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
 
     public static final String ADDMETHODS_HELP = "Nested within addmethods are the methods that you " +
             "can use for adding tasks, and people.";
-    public static final String ADDPERSON_HELP = "What it does: Adds a person to OfficeConnect. \n" +
+    public static final String ADDPERSON_HELP = "What it does: Adds a person to OfficeConnect. \n\n" +
             "Format: addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…";
-    public static final String ADDTASK_HELP = "What it does: Adds a task to OfficeConnect. \n" +
+    public static final String ADDTASK_HELP = "What it does: Adds a task to OfficeConnect. \n\n" +
             "Format: addtask n/NAME";
     public static final String DELETEMETHODS_HELP = "Nested within deletemethods are the methods that you " +
             "can use for deleting tasks, and people.";
-    public static final String DELETEPERSON_HELP = "What it does: Deletes the person at the specified ID.\n" +
+    public static final String DELETEPERSON_HELP = "What it does: Deletes the person at the specified ID.\n\n" +
             "The index refers to the INDEX shown in the displayed person list." +
             "The INDEX must be a positive integer (eg. 1, 2, 3...) \n" +
             "Format: deleteperson INDEX";
-    public static final String DELETETASK_HELP = "What it does: Deletes the task at the specified INDEX.\n" +
+    public static final String DELETETASK_HELP = "What it does: Deletes the task at the specified INDEX.\n\n" +
             "The index refers to the INDEX shown in the displayed task list" +
             "The INDEX must be a positive integer (eg. 1, 2, 3...) \n" +
             "Format: deletetask INDEX";
     public static final String LISTMETHODS_HELP = "Nested within are the commands related" +
             " to listing out persons, and tasks.";
-    public static final String LISTPERSON_HELP = "What it does: Lists all persons in OfficeConnect. \n" +
+    public static final String LISTPERSON_HELP = "What it does: Lists all persons in OfficeConnect. \n\n" +
             "Format: listpersons";
-    public static final String LISTTASK_HELP = "What it does: Lists all the tasks in OfficeConnect. \n" +
+    public static final String LISTTASK_HELP = "What it does: Lists all the tasks in OfficeConnect. \n\n" +
             "Format: listtask";
     public static final String FINDMETHODS_HELP = "Nested within are the commands related to" +
             " finding persons, and tasks.";
-    public static final String FINDTASK_HELP = "What it does: Finds the task based on given keyword. \n" +
+    public static final String FINDTASK_HELP = "What it does: Finds the task based on given keyword. \n\n" +
             "Format: findtask KEYWORD";
     public static final String FINDPERSON_HELP = "What it does: Returns a person whose" +
-            " name matches the input keyword. " +
+            " name matches the input keyword. \n\n" +
             "The search is case-sensitive, and partial inputs are also accepted. \n" +
             "Format: findperson KEYWORD";
     public static final String ASSIGNMETHODS_HELP = "Nested within are the commands" +
@@ -58,7 +60,7 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
             "to a person.";
     public static final String ASSIGN_HELP = "What it does: Assigns the task at" +
             " specified index to person at specified" +
-            "index. The index refers to the index number shown in the displayed persons/task list.\n" +
+            "index. The index refers to the index number shown in the displayed persons/task list. \n\n" +
             "Format: assign /task INDEX /person INDEX";
 
     @FXML
@@ -121,6 +123,17 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        method__description.setWrapText(true);
+        treeView
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener(new ChangeListener<TreeItem<String>>() {
+                    @Override
+                    public void changed(ObservableValue<? extends TreeItem<String>> observable, TreeItem<String> oldValue, TreeItem<String> newValue) {
+                        TreeItem<String> selectedTreeItem = (TreeItem<String>) newValue;
+                        method__description.setText(instructionMap(selectedTreeItem.getValue()));
+                    }
+                });
         helpMessage.setText(HELP_MESSAGE);
     }
 
@@ -142,8 +155,12 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
                 return LISTMETHODS_HELP;
             case "listperson":
                 return LISTPERSON_HELP;
-            case "listtask":
-                return LISTTASK_HELP;
+            case "Find methods":
+                return FINDMETHODS_HELP;
+            case "findperson":
+                return FINDPERSON_HELP;
+            case "findtask":
+                return FINDTASK_HELP;
             case "Assign methods":
                 return ASSIGNMETHODS_HELP;
             case "assign":
@@ -155,24 +172,6 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initTreeItemStrings();
-    }
-
-    public void initTreeItemStrings() {
-        addmethods.setValue(ADDMETHODS_HELP);
-        addperson.setValue(ADDPERSON_HELP);
-        addtask.setValue(ADDTASK_HELP);
-        deletemethods.setValue(DELETEMETHODS_HELP);
-        deleteperson.setValue(DELETEPERSON_HELP);
-        deletetask.setValue(DELETETASK_HELP);
-        listmethods.setValue(LISTMETHODS_HELP);
-        listperson.setValue(LISTPERSON_HELP);
-        listtask.setValue(LISTTASK_HELP);
-        findmethods.setValue(FINDMETHODS_HELP);
-        findperson.setValue(FINDPERSON_HELP);
-        findtask.setValue(FINDTASK_HELP);
-        assignmethods.setValue(ASSIGNMETHODS_HELP);
-        assign.setValue(ASSIGN_HELP);
     }
 
 
