@@ -43,7 +43,7 @@ public class PersonDetailPanel extends UiPart<Region> {
             return;
         }
 
-        id.setText(displayedIndex + ".");
+        id.setText("Index: " + displayedIndex);
         name.setText(person.getName().toString());
         tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
