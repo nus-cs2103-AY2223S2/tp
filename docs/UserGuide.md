@@ -74,25 +74,40 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a customer : `addc`
 
-Adds a person to the address book.
+Adds a customer to the current list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addc ind/ent n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+ind - Individuals
+ent - Enterprise
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
 
-### Listing all persons : `list`
+### Listing all customers : `listc`
 
-Shows a list of all persons in the address book.
+Shows a list of all customers.
 
-Format: `list`
+Format: `listc`
+
+### Deleting a customer : `deletec`
+
+Delete a customer from the list.
+
+Format: `deletec INDEX`
+
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
+* `findc Betsy` followed by `delete 1` deletes the 1st person in the results of the `findc` command.
 
 ### Editing a person : `edit`
 
