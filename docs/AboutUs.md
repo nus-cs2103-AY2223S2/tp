@@ -52,7 +52,7 @@ In charge of defining, assigning and tracking project tasks.
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gmengqi.md)]
 
 * Role: Developer
 * Responsibilities: UI
