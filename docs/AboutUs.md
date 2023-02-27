@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wong Qin Yao (Sean)
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: TBA
+* Responsibilities: TBA
 
-### Jane Doe
+### Bryan Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryansendeavour.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/bryansendeavour)]
+[[portfolio](team/bryansendeavour.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBA
+* Responsibilities: TBA
 
-### Johnny Doe
+### Eng En Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/engenhui1999.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/engenhui1999)]
+[[portfolio](team/engenhui1999.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: TBA
+* Responsibilities: TBA
 
-### Jean Doe
+### Gloria Zhang Xinhui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glozxi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/glozxi)]
+[[portfolio](team/glozxi.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: TBA
+* Responsibilities: TBA
 
-### James Doe
+### Bryan Tan Zhong Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/EksdeeeX.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/EksdeeeX)]
+[[portfolio](team/EksdeeeX.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: TBA
+* Responsibilities: TBA
