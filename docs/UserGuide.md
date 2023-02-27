@@ -98,6 +98,18 @@ Examples:
 * `mark 1 s/fail` Marks the 1st delivery as failed.
 * `mark 1 s/done` Marks the 1st delivery as done.
 
+### Viewing a delivery : `view`
+
+View more details about a delivery.
+
+Format: `view INDEX`
+
+* View more details about a delivery at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a **positive integer**.
+
+Examples:
+* `view 1` View more details about the 1st delivery in the list.
+* `view 2` View more details about the 2nd delivery in the list.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -189,6 +201,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/DELIVERY a/ADDRESS` <br> e.g., `add n/Shopee a/Yusof Ishak House, #04-420`
+**Mark** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/otw`
+**View** | `view INDEX` <br> e.g., `view 1`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
