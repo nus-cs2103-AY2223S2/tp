@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a Task with the same identity as {@code Task} exists in Fish Ahoy!.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Adds the given Task.
+     * {@code Task} must not already exist in Fish Ahoy!.
+     */
+    boolean addTask(Task task);
+
+    /**
+     * Deletes the given Task.
+     * The Task must exist in the address book.
+     */
+    void deleteTask(Task task);
 }
