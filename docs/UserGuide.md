@@ -6,8 +6,7 @@ title: User Guide
 <br>
 <img src="images/logo.png" width="200px"><br>
 
-ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI).
-The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
 
 ## Table of Contents
 
@@ -74,4 +73,16 @@ The following commands are available on the CLI:
 
 ## Command summary
 
-To be updated...
+Action | Format, Examples
+--------|------------------
+**Add** | `add /m <module code> /c <credits> /y <year-semester> (/g <grade>)` <br> e.g., `add /m CS2103T /c 4 /y y2s2`
+**Delete** | `delete <module code>` <br> e.g. `delete CS2100`
+**Edit** | `edit /m <existing module code> (/m <new module code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`<br> e.g., `edit /m ES2660 /m CS2101`
+**Clear** | `clear`
+**List** | `list`
+**Find** | `find`
+**Exit** | `exit`
+
+<br>**Notes:**
+- Arguments encapsulated in between brackets ('()') are optional.
+- For `edit`, at least one optional argument has to be specified.
