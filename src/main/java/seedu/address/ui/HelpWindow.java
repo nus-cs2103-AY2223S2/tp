@@ -129,7 +129,8 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
                 .selectedItemProperty()
                 .addListener(new ChangeListener<TreeItem<String>>() {
                     @Override
-                    public void changed(ObservableValue<? extends TreeItem<String>> observable, TreeItem<String> oldValue, TreeItem<String> newValue) {
+                    public void changed(ObservableValue<? extends TreeItem<String>> observable,
+                                        TreeItem<String> oldValue, TreeItem<String> newValue) {
                         TreeItem<String> selectedTreeItem = (TreeItem<String>) newValue;
                         method__description.setText(instructionMap(selectedTreeItem.getValue()));
                     }
@@ -155,6 +156,8 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
                 return LISTMETHODS_HELP;
             case "listperson":
                 return LISTPERSON_HELP;
+            case "listtask":
+                return LISTTASK_HELP;
             case "Find methods":
                 return FINDMETHODS_HELP;
             case "findperson":
