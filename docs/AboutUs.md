@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Stefan Lee
+### Lee Wei Chong Stefan
 
 <img src="images/rexcyrio.png" width="200px">
 
