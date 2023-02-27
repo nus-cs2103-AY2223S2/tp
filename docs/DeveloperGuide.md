@@ -264,7 +264,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage tasks and contacts faster than a typical mouse/GUI driven app
+* allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 
 ### User stories
@@ -284,9 +286,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | manager                                    | find a subordinate by name                  | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details                | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name                        | locate a person easily                                                 |
-# OfficeConnect
-
-As a **user**, I want to **be able to add a new task to my task list** so that **I can keep track of all the tasks I need to complete**.
 
 ## Acceptance Criteria
 
