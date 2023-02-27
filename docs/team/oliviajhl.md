@@ -3,7 +3,7 @@ layout: page
 title: Jiahui's Project Portfolio Page
 ---
 
-### Project: Fitbook
+### Project: FitBook
 
 Fitbook is a desktop tracking book application used for tracking the progress and informations
 for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
