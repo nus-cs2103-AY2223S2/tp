@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -257,33 +257,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts (peers, professors in NUS Computing)
+* has a need to group and manage groups of contacts
+* has a need to view the skills and proficiencies of contacts (programming languages, modules)
+* has a need to access the GitHub profiles/repositories of contacts
+* has a need to track deadlines and responsibilities associated with contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app, store information relevant to NUS Computing students (GitHub profile, repository, programming language proficiencies, modules taken), quickly find contacts that satisfy certain criteria (taken a particular module, in a group)
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                            | I can…​                                           | So that I can…​                                                               |
+|----------|------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | new user                           | see usage instructions                            | refer to instructions when I forget how to use the App                        |
+| `* * *`  | user                               | add a new person                                  |                                                                               |
+| `* * *`  | user                               | delete a person                                   | remove entries that I no longer need                                          |
+| `* * *`  | user                               | find a person by name                             | locate details of persons without having to go through the entire list        |
+| `* * *`  | student with many friends          | save my friend's details                          | easily contact them                                                           |
+| `* * *`  | student who likes to ask questions | save my professors' details                       | easily contact them to ask questions                                          |
+| `* * *`  | student with fast typing speed     | use command based inputs to search for contacts   | quickly pull out contacts without needing to spend time moving my mouse       |
+| `* *`    | user                               | hide private contact details                      | minimize the chance of someone else seeing them by accident                   |
+| `* *`    | student involved in project work   | search contacts belonging to a certain group      | contact my groupmates easily                                                  |
+| `* *`    | person with many assignments       | tag deadlines and responsibilities to my contacts | easily keep track of which tasks are more urgent and who is taking care of it |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
+| `* *`    | -                                  | -                                                 | -                                                                             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
