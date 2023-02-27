@@ -1,9 +1,12 @@
 package seedu.address.model.person.fields;
 
+/**
+ * Represents a Person's preferred communication channel in the address book.
+ */
 public class CommunicationChannel {
 
     public static final String MESSAGE_CONSTRAINTS = "Communication Channel can take any value";
-    public String nameOfCommunicationChannel;
+    public final String nameOfCommunicationChannel;
 
     public CommunicationChannel(String nameOfCommunicationChannel) {
         this.nameOfCommunicationChannel = nameOfCommunicationChannel;

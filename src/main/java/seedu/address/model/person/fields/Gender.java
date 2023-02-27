@@ -5,12 +5,20 @@ import java.util.Objects;
 
 import seedu.address.model.person.fields.enums.Genders;
 
+/**
+ * Represents a Person's gender in the address book.
+ */
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender must be either: "
             + "Male, Female or DNS (i.e. Did not specify)";
-    public Genders gender;
+    public final Genders gender;
 
+    /**
+     * Constructs a {@code Gender}.
+     *
+     * @param gender A valid name.
+     */
     public Gender(String gender) {
         switch (gender.toLowerCase(Locale.ROOT)) {
         case "male":
@@ -33,8 +41,8 @@ public class Gender {
      */
     public static boolean isValidGender(String trimmedGender) {
         String lowerCaseGender = trimmedGender.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseGender, "male") || Objects.equals(lowerCaseGender, "female") ||
-                Objects.equals(lowerCaseGender, "dns") || Objects.equals(lowerCaseGender, "");
+        return Objects.equals(lowerCaseGender, "male") || Objects.equals(lowerCaseGender, "female")
+                || Objects.equals(lowerCaseGender, "dns") || Objects.equals(lowerCaseGender, "");
     }
 
     @Override

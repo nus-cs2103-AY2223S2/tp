@@ -1,5 +1,8 @@
 package seedu.address.model.person.fields;
 
+/**
+ * Represents a Person's singular mod taken in the address book.
+ */
 public class NusMod {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";

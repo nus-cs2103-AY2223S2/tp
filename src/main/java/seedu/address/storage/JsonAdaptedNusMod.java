@@ -7,6 +7,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Jackson-friendly version of {@link NusMod}.
+ */
 public class JsonAdaptedNusMod {
 
     private final String modName;

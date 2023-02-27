@@ -1,9 +1,12 @@
 package seedu.address.model.person.fields;
 
+/**
+ * Represents a Person's race in the address book.
+ */
 public class Race {
 
     public static final String MESSAGE_CONSTRAINTS = "Race must be a string of alphabets";
-    public String race;
+    public final String race;
 
     public Race(String race) {
         this.race = race;

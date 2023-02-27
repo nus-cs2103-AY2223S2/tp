@@ -1,9 +1,12 @@
 package seedu.address.model.person.fields;
 
+/**
+ * Represents a Person's major in the address book.
+ */
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS = "Major";
-    public String majorName;
+    public final String majorName;
 
     public Major(String majorName) {
         this.majorName = majorName;
