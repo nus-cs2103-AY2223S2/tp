@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list lecture videos of a specific lecture of a specific module
 2.  Le Tracker shows a list of lecture videos of such specifications
-3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id_
+3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id
 4.  Le Tracker deletes the lecture video
 
 **Extensions**
