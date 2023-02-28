@@ -335,6 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **FTS**: Free Time Slot 
 * **WGT**: Where Got Time 
 * **UI**: User Interface 
+* **GUI**: Graphical User Interface
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
