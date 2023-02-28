@@ -89,7 +89,13 @@ public class PersonDetailPanel extends UiPart<Region> {
         return Stream.of(
                 new PersonDetailCard.DetailCardData("Phone", person.getPhone().toString()),
                 new PersonDetailCard.DetailCardData("Address", person.getAddress().toString()),
-                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()))
+                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()),
+                new PersonDetailCard.DetailCardData("Gender", person.getGender().toString()),
+                new PersonDetailCard.DetailCardData("Race", person.getRace().toString()),
+                new PersonDetailCard.DetailCardData("Communication channels", person.getComms().toString()),
+                new PersonDetailCard.DetailCardData("Major", person.getMajor().toString()),
+                new PersonDetailCard.DetailCardData("Modules", person.getModules().toString()))
+                .filter(PersonDetailCard.DetailCardData::hasBody)
                 .map(PersonDetailCard::new)
                 .map(PersonDetailCard::getRoot)
                 .collect(Collectors.toList());
