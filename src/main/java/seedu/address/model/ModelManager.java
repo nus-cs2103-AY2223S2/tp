@@ -18,7 +18,7 @@ import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Represents the in-memory model of the friendly link data.
+ * Represents the in-memory model of the FriendlyLink data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -35,9 +35,7 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(friendlyLink, userPrefs);
-
-        logger.fine("Initializing with friendly link: " + friendlyLink + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
         this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
@@ -84,6 +82,8 @@ public class ModelManager implements Model {
         requireNonNull(friendlyLinkFilePath);
         userPrefs.setFriendlyLinkFilePath(friendlyLinkFilePath);
     }
+
+    //=========== FriendlyLink ================================================================================
 
     @Override
     public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
@@ -167,10 +167,21 @@ public class ModelManager implements Model {
         friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
-    @Override
+
     public Volunteer getVolunteerByNric(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.getVolunteerByNric(nric);
+    }
+
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getElderly(nric);
+    }
+
+    @Override
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getVolunteer(nric);
     }
 
     @Override
@@ -181,7 +192,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePair(Pair target) {
-        // TODO: implement addressBook.removePair(target);
+        // TODO: implement friendlyLink.removePair(target);
     }
 
     @Override
@@ -193,7 +204,7 @@ public class ModelManager implements Model {
     @Override
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
-        // TODO: implement addressBook.setPair(target, editedPair);
+        // TODO: implement friendlyLink.setPair(target, editedPair);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -251,7 +262,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Pair} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFriendlyLink}
      */
     @Override
     public ObservableList<Pair> getFilteredPairList() {

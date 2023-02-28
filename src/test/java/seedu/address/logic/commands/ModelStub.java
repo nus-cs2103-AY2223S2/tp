@@ -99,6 +99,11 @@ class ModelStub implements Model {
     }
 
     @Override
+    public void addElderly(Elderly elderly) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasElderly(Elderly elderly) {
         throw new AssertionError("This method should not be called.");
     }
@@ -109,15 +114,19 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void addElderly(Elderly elderly) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setElderly(Elderly target, Elderly editedElderly) {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public Elderly getElderly(Nric nric) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addVolunteer(Volunteer volunteer) {
+        throw new AssertionError("This method should not be called.");
+    }
     @Override
     public boolean hasVolunteer(Volunteer volunteer) {
         throw new AssertionError("This method should not be called.");
@@ -129,12 +138,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void addVolunteer(Volunteer volunteer) {
+    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
+    public Volunteer getVolunteer(Nric nric) {
         throw new AssertionError("This method should not be called.");
     }
 

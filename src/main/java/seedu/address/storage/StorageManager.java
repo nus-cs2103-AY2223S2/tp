@@ -16,7 +16,7 @@ import seedu.address.storage.elderly.ElderlyStorage;
 import seedu.address.storage.volunteer.VolunteerStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FriendlyLink data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -27,7 +27,7 @@ public class StorageManager implements Storage {
     private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FriendlyLinkStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(FriendlyLinkStorage friendlyLinkStorage, ElderlyStorage elderlyStorage,
                           VolunteerStorage volunteerStorage, UserPrefsStorage userPrefsStorage) {

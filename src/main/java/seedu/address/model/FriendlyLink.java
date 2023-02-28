@@ -15,7 +15,7 @@ import seedu.address.model.person.information.Nric;
 
 /**
  * Wraps all data at the friendly-link level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSamePerson, .isSamePair comparison)
  */
 public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, ReadOnlyVolunteer {
     // TODO: update generic to volunteer and remove person list
@@ -59,6 +59,14 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
+     * Replaces the contents of the pair list with {@code pairs}.
+     * {@code pairs} must not contain duplicate pairs.
+     */
+    public void setPairs(List<Pair> pairs) {
+        this.pairs.setPairs((pairs));
+    }
+
+    /**
      * Replaces the contents of the elderly list with {@code elderly}.
      * {@code elderly} must not contain duplicate elderly.
      */
@@ -96,19 +104,19 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         setPersons(newData.getPersonList());
         setAllElderly(newData.getElderlyList());
         setVolunteers(newData.getVolunteerList());
+        setPairs(newData.getPairList());
     }
 
     /**
-     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     * Resets the existing elderly data of this {@code FriendlyLink} with {@code newData}.
      */
     public void resetElderlyData(ReadOnlyElderly newData) {
         requireNonNull(newData);
         setAllElderly(newData.getElderlyList());
     }
 
-
     /**
-     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     * Resets the existing volunteer data of this {@code FriendlyLink} with {@code newData}.
      */
     public void resetVolunteerData(ReadOnlyVolunteer newData) {
         requireNonNull(newData);
@@ -125,7 +133,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Returns true if a person with the same identity as {@code elderly} exists in the friendlyLink cache.
+     * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
      */
     public boolean hasElderly(Elderly e) {
         requireNonNull(e);
@@ -133,7 +141,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the friendlyLink cache.
+     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendlyLink cache.
      */
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
@@ -165,6 +173,30 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
+     * Retrieves the elderly with the given nric.
+     * The elderly with such a nric must exist in FriendlyLink.
+     *
+     * @param nric Nric of the elderly.
+     * @return The elderly with the name.
+     */
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        return persons.getElderly(nric);
+    }
+
+    /**
+     * Retrieves the volunteer with the given nric.
+     * The volunteer with such a nric must exist in FriendlyLink.
+     *
+     * @param nric Nric of the volunteer.
+     * @return The volunteer with the name.
+     */
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return persons.getVolunteer(nric);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
      * The person identity of {@code editedPerson} must not be the same as
@@ -178,7 +210,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     /**
      * Replaces the given elderly {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
-     * The elderly identity of {@code editedPerson} must not be the same as
+     * The elderly identity of {@code editedElderly} must not be the same as
      * another existing elderly in the friendlyLink cache.
      */
     public void setElderly(Elderly target, Elderly editedElderly) {
@@ -205,10 +237,26 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from {@code FriendlyLink}.
+     * {@code key} must exist in the elderly's list.
+     */
+    public void removeElderly(Elderly key) {
+        elderly.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from {@code FriendlyLink}.
+     * {@code key} must exist in the volunteer's list.
+     */
+    public void removeVolunteer(Person key) {
+        volunteers.remove(key);
+    }
+
     //// pair-level operations
 
     /**
-     * Returns true if a pair with the same identity as {@code pair} exists in the address book.
+     * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
      */
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
@@ -216,8 +264,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Adds a pair to the address book.
-     * The pair must not already exist in the address book.
+     * Adds a pair to FriendlyLink.
+     * The pair must not already exist in FriendlyLink.
      */
     public void addPair(Pair p) {
         pairs.add(p);
@@ -225,8 +273,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
 
     /**
      * Replaces the given pair {@code target} in the list with {@code editedPair}.
-     * {@code target} must exist in the address book.
-     * The pair identity of {@code editedPair} must not be the same as another existing pair in the address book.
+     * {@code target} must exist in FriendlyLink.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in FriendlyLink.
      */
     public void setPair(Pair target, Pair editedPair) {
         requireNonNull(editedPair);
@@ -235,7 +283,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in FriendlyLink.
      */
     public void removePair(Pair key) {
         pairs.remove(key);

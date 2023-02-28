@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalElderlys.AMY;
+import static seedu.address.testutil.TypicalElderlys.BOB;
+import static seedu.address.testutil.TypicalElderlys.CHARLIE;
+import static seedu.address.testutil.TypicalVolunteers.DANIEL;
+import static seedu.address.testutil.TypicalVolunteers.ELLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +18,12 @@ import seedu.address.model.pair.Pair;
  */
 public class TypicalPairs {
 
-    public static final Pair PAIR1 = new PairBuilder().withElderly(ALICE)
-            .withVolunteer(BOB).build();
-    public static final Pair PAIR2 = new PairBuilder().withElderly(CARL)
+    public static final Pair PAIR1 = new PairBuilder().withElderly(AMY)
+            .withVolunteer(ELLE).build();
+    public static final Pair PAIR2 = new PairBuilder().withElderly(CHARLIE)
             .withVolunteer(DANIEL).build();
-    public static final Pair PAIR3 = new PairBuilder().withElderly(ELLE)
-            .withVolunteer(BOB).build();
+    public static final Pair PAIR3 = new PairBuilder().withElderly(BOB)
+            .withVolunteer(ELLE).build();
     private TypicalPairs() {} // prevents instantiation
 
     /**
