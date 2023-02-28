@@ -260,28 +260,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
 
-**Value proposition**: 
-- Juggle between developing web applications and liaising with clients
-    - Manage clients and jobs, e.g. O2M relationship
-    - Keep client *preferences* (can be specific for web dev)
-        - e.g. choice of web hosting provider, preferred theme, preferred tech stack
-- Listings on multiple websites ([https://flexiple.com/developers/top-7-freelance-websites-to-hire-freelance-developers/](https://flexiple.com/developers/top-7-freelance-websites-to-hire-freelance-developers/))
-    - Need to keep track of clients, and jobs from different sources
-    - Works with multiple clients (individuals, contract with companies)
-    - Skills needed may vary between working on something recreational or professional
-- Keep track of payment *or contract*?
-    - Do clients pay a deposit or after work is done?
-    - Way to break down costs, e.g. hosting
-    - Log hours worked for the client
-        - Maybe categorize work hours (e.g. initial dev, maintenance, bug fixing)
-- Easily keep in contact for future *maintenance or updates*
-- Keep track of repo links for source codes
-- Used to terminal workflow
-- One-stop shop to consolidate projects and clients from multiple sites
-- Descriptive yet concise information of each client and their respective preferences
-    - Manage specs for web dev
-- Intuitive console-first interface (comfortable, efficient, and fast!!)
-
+**Value proposition**:
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 
 ### User stories
