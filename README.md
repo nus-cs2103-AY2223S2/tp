@@ -10,6 +10,8 @@
   * to export the case list to an external database
 
 * Example commands:
-  * ...
+  * find <keyword>: finds a case profile by provided keyword, and displays cases whose names contain the keyword
+  * add ...
+  * delete ...
 
 * The project is built on an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details, named `AddressBook Level 3` (`AB3` for short).
