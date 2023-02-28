@@ -46,3 +46,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Documentation, UI
+
+### Cheam Jia Wei
+
+<img src="images/cheamybunny.png" width="200px">
+
+[[github](https://github.com/Cheamybunny)]
+[[portfolio](team/cheamybunny.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality & Scheduling/Tracking
