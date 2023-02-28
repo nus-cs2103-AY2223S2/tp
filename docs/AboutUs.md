@@ -39,15 +39,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Develop ExecutivePro system
 
-### Jean Doe
+### Ang Ben Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/abenx162.png" width="200px">
 
 [[github](https://github.com/johndoe)]
 [[portfolio](team/gyulong1.md)]
 
+[[github](https://github.com/abenx162)]
+
+[[portfolio](team/abenx162.md)]
+
+
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Develop ExecutivePro
 
 ### James Doe
 
