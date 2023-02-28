@@ -28,13 +28,13 @@ public class ParserUtil {
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
         String trimmedIndices = oneBasedIndexList.trim();
-        String[] Indices = trimmedIndices.split(" ");
+        String[] indices = trimmedIndices.split(" ");
 
-        int num = Indices.length;
+        int num = indices.length;
         IndexList list = new IndexList();
 
         for (int i = 0; i < num; i++) {
-            list.add(parseIndex(Indices[i]));
+            list.add(parseIndex(indices[i]));
         }
 
         return list;
@@ -65,6 +65,18 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(parseName(name));
+        }
+        return nameSet;
     }
 
     /**

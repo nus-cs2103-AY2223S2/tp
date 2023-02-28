@@ -27,18 +27,20 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand((Task) null));
     }
 
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        Task validTask = new TaskBuilder().build();
+        ArrayList<Task> validTask = new ArrayList<>();
+        validTask.add(new TaskBuilder().build());
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, "1. "
+            + validTask.get(0) + "\n"), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask.get(0)), modelStub.tasksAdded);
     }
 
     @Test
@@ -46,7 +48,6 @@ public class AddCommandTest {
         Task validTask = new TaskBuilder().build();
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
-
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
     }
 
