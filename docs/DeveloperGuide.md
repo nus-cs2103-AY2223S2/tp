@@ -356,18 +356,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 7b2. `d` is given, indicating that the following modules at the specified indices will be deleted from the list.
     * 7b3. `u` is given, indicating that the module at the specified index will be updated to the new module.
 
-      Use case ends.
+      Use case resumes at step 8.
 
 * 7c. The given prefix is `w/`, indicating an edit to the work experiences.
     * No further prefix needed.
 
-      Use case ends.
+      Use case resumes at step 8.
 
 * 7d. The given prefix is `c/`, indicating an edit to the contact information.
     * 7d1. `g` is given, indicating that the GitHub link will be edited.
     * 7d2. `e` is given, indicating that the email will be edited.
 
-      Use case ends.
+      Use case resumes at step 8.
 
 **Use case: Find a person by attribute**
 
