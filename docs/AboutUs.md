@@ -22,13 +22,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shi Wen Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jinbesan.png" width="200px">
 
 [[github](http://github.com/jinbesan)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Feature Implementation
 
 ### Randall Ng Hong Rong
 
