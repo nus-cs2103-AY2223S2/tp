@@ -356,7 +356,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Fitbook shows an error message for duplicate names.
   
       Use case ends.
-    
+
+**Use case: List clients**
+
+**MSS**
+
+1. User requests to list clients.
+2. Fitbook displays a list of clients.
+
+   Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
