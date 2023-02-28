@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Afiq Zuhairi Bin Sahri
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/afiqzu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/afiqzu)]
+[[portfolio](team/afiq.md)]
 
-* Role: Project Advisor
+* Role: Integration
 
-### Jane Doe
+### Chong Yijing Isabel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/isabelchong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/IsabelChong)]
+[[portfolio](team/isabelChong.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation & Code Quality
 
-### Johnny Doe
+### Seow Wen Xuan, Kelvin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/swxk19.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/swxk19)] 
+[[portfolio](team/kevin.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Scheduling and Tracking
 
-### Jean Doe
+### Pearl Twe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peaol.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peaol)]
+[[portfolio](team/pearl.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
 
-### James Doe
+### Ting Yi Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tyx021.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tyx021)]
+[[portfolio](team/yixin.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Deliverables and deadlines
