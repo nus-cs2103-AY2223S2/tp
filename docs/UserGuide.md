@@ -5,10 +5,10 @@ title: sprINT User Guide
 
 Welcome to **sprINT's User Guide**. sprINT  is a **desktop application** for managing internship applications,
 optimized for use via a Command Line Interface (CLI) while still incorporating the benefits of a Graphical User
-Interface (GUI). 
+Interface (GUI).
 
 The app is optimized greatly for *fast typers*. If you can type fast, sprINT will be of great assistance in
-your internship hunt! 
+your internship hunt!
 
 * Table of Contents
 {:toc}
@@ -32,7 +32,7 @@ your internship hunt!
 
    * `list` : Lists all contacts.
 
-   * `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an 
+   * `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an
    application for Software Engineer Intern position @ Goggle that I'm interested in. Deadline of application is 1st of
    January.
 
