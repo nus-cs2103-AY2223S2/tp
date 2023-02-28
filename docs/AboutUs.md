@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/791654880285_.pic_hd.jpg)" width="200px">
 
 [[github](https://github.com/WeideTeo)]
-[[portfolio]((https://www.linkedin.com/in/weideteo/)]
+[[portfolio](https://www.linkedin.com/in/weideteo/)]
 
 * Role: Developer
 * Responsibilities: Functions
