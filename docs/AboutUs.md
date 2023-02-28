@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rubynguyen07.png" width="200px">
 
 [[github](http://github.com/RubyNguyen07)]
-[[portfolio](team/RubyNguyen07.md)]
+[[portfolio](team/rubynguyen07.md)]
 
 * Role: Developer
 * Responsibilities: UI for Clients view 
