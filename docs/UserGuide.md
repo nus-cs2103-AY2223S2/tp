@@ -22,9 +22,9 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
 4. Start the app by:
-    - Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+    - Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
       or
-    - Double-click on the downloaded `InternEase.jar` file.<br>
+    - Double-clicking the downloaded `InternEase.jar` file.<br>
    > **Note**<br>
    > You should see the app is running now. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -34,15 +34,15 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
     * `add n/TechCompany j/Software Engineer` : Adds an application for the `Software Engineer` role at `TechCompany`.
 
-    * `list` : Shows all the internships that the user has applied.
+    * `list` : Displays all the internships that the user has applied for.
 
-    * `delete 2` : Deletes the 2nd internship application in the list of applications.
+    * `delete 2` : Deletes the second internship application in the list of applications.
 
     * `find TechCompany` : Searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as `Google`
 
     * `edit_status 2 s/PENDING` : Changes the status of the 2nd application in the applications list to `Pending offer`.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the application.
 
 6. Refer to the [Features](#features) below for details of each command.
 
