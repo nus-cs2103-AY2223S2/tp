@@ -74,6 +74,16 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
+### Adding an application: `add`
+
+Adds an application to the internship tracker.
+
+Format: ` add n/COMPANY_NAME j/JOB_TITLE`
+
+Examples:
+* `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
+* `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+
 ### Adding contact details: `add_contact`
 
 Adds the contact details of a company to a specified application.
