@@ -102,6 +102,18 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+### Displaying list of internship applications:`list`
+
+Displays a list of applied internships
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the internships that the user has applied for with 1 indexing.
+* If there are no internships applied for at the moment,
+  "No applications at the moment" will be shown.
+
 ### Deleting an application of internship : `delete`
 
 Deletes the specified application from the list of internships applied
@@ -145,3 +157,4 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 2`                              
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit` 
+**List** |`list`
