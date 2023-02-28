@@ -18,12 +18,14 @@ and availability while optimizing their staff’s physical well-being.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | airline manager    | add new locations to the list of locations where we operate         | I can assign new departing locations and arrival locations |
-| `* * *`  | airline manager    | list old locations from the locations where we were operating       |    I can view all the locations    |
-| `* * *`  | airline manager    | remove old locations from the locations where we were operating     | I can update departing locations and arrival locations |
-
+| Priority | As a …​                                    | I want to …​                                                    | So that I can…​                                            |
+| -------- |--------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | airline manager    | add new locations to the list of locations where we operate     | I can assign new departing locations and arrival locations |
+| `* * *`  | airline manager    | list old locations from the locations where we were operating   | I can view all the locations                               |
+| `* * *`  | airline manager    | remove old locations from the locations where we were operating | I can update departing locations and arrival locations     |
+| `* * *`  | airline manager    | add new planes to our fleet                                     | I can assign them to flights                               |
+| `* * *`  | airline manager    | list planes from our fleet                                      | I can view all the planes in our fleet                     |
+| `* * *`  | airline manager    | remove old planes from our fleet                                | I can update planes which can be used for flights          |
 *{More to be added}*
 
 ### Use cases
@@ -51,10 +53,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given location is invalid.
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
-  
+
 * 5b. The given location is a duplicate of an existing one
-   *  5b1. Wingman shows an error message.
-      Use case resumes at step 4. 
+    *  5b1. Wingman shows an error message.
+       Use case resumes at step 4.
+
+**Use case: Delete a plane**
+
+**MSS**
+
+1.  User requests to list planes
+2.  Wingman shows a list of planes
+3.  User requests to delete a specific plane in the list
+4.  Wingman deletes the plane
+5.  User request to add a plane
+6.  Wingman adds the plane
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+* 3a. The given plane is invalid.
+  * 3a1. The AddressBook shows an error message. Use case resumes at step 2.
+* 5b. The given plane is a duplicate of an existing plane.
+  * 5b1. Wingman shows an error message. Use case resumes at step 4.
 
 *{More to be added}*
 
@@ -67,5 +90,5 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
-
+* **Plane**: A unit plane which can be assigned to flights.
 * **Location**: A unit place that flights may depart from or arrive at. 
