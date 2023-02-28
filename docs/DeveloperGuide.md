@@ -288,6 +288,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `InternEase` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: UC01 Help**
+
+**MSS**
+
+1. User requests for help.
+2. InternEase shows a list of available commands to the user.
+
+
 **Use case: UC02 Add contact details of a company to an internship application**
 
 **MSS**
