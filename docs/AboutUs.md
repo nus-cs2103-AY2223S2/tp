@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerald Kiew
 
-<img src="images/jeraldkiew.jpeg" width="200px">
+<img src="images/jeraldkiew.png" width="200px">
 
 [[github](http://github.com/jeraldkiew)]
 [[portfolio](team/johndoe.md)]
@@ -59,4 +59,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Code Focus Area: Logic
 - Primary Role: Deliverables and deadlines
 - Secondary Role: Scheduling and tracking
-
