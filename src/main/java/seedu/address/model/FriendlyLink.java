@@ -94,6 +94,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setAllElderly(newData.getElderlyList());
+        setVolunteers(newData.getVolunteerList());
     }
 
     /**

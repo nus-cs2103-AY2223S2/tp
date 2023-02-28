@@ -6,8 +6,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
  * A utility class for test cases.
@@ -51,5 +54,19 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static FriendlyLink getTypicalFriendlyLink() {
+        FriendlyLink ab = new FriendlyLink();
+        for (Volunteer volunteer : TypicalVolunteers.getTypicalVolunteers()) {
+            ab.addVolunteer(volunteer);
+        }
+        for (Elderly elderly : TypicalElderlys.getTypicalElderlys()) {
+            ab.addElderly(elderly);
+        }
+        return ab;
     }
 }

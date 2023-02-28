@@ -151,7 +151,7 @@ public class FriendlyLinkTest {
         }
 
         @Override
-        public List<Volunteer> getVolunteerList() {
+        public ObservableList<Volunteer> getVolunteerList() {
             return volunteers;
         }
 
