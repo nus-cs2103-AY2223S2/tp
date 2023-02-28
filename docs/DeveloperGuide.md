@@ -19,227 +19,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-### Architecture
-
-<img src="images/ArchitectureDiagram.png" width="280" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App.
-
-Given below is a quick overview of main components and how they interact with each other.
-
-**Main components of the architecture**
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-The rest of the App consists of four components.
-
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
-
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-Each of the four main components (also shown in the diagram above),
-
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
-
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
-
-<img src="images/ComponentManagers.png" width="300" />
-
-The sections below give more details of each component.
-
-### UI component
-
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
-
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
-
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
-
-The `UI` component,
-
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
-
-### Logic component
-
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
-Here's a (partial) class diagram of the `Logic` component:
-
-<img src="images/LogicClassDiagram.png" width="550"/>
-
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<img src="images/ParserClasses.png" width="600"/>
-
-How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-<img src="images/ModelClassDiagram.png" width="450" />
-
-
-The `Model` component,
-
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
-The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-
-### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -257,121 +37,281 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is an administrator of a small Non-Profit Organisation (NPO) who needs to track volunteers and their assigned buddy elderly.
+* works alone in managing volunteer and elerly information.
+* tech-savvy.
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: FriendlyLink streamlines volunteer and elderly management for single administrators of small NPOs.
+With its easy-to-use text-based interface and contact management features, say goodbye to manual record-keeping and hello
+to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority   | As a …​                                                                                    | I want to …​                                                                           | So that I can…​                                                                   |
+|------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`    | single administrator of small NPOs                                                         | list volunteers                                                                        | see all the volunteers and their information                                      |
+| `* * *`    | single administrator of small NPOs                                                         | add volunteer to the list of volunteers                                                | include new volunteers in the application                                         |
+| `* * *`    | single administrator of small NPOs                                                         | delete volunteers                                                                      | remove volunteers that have left                                                  |
+| `* * *`    | single administrator of small NPOs                                                         | remove all the pairs a volunteer is in                                                 | accurately keep track of which elderly are affected when a volunteer leaves       |
+| `* * *`    | single administrator of small NPOs                                                         | read the list of elderly members                                                       | have a clear view of existing elderly members in system                           |
+| `* * *`    | single administrator of small NPOs                                                         | add a new elderly member to the system                                                 |                                                                                   |
+| `* * *`    | single administrator of small NPOs                                                         | remove an existing elderly member from the system                                      |                                                                                   |
+| `* * *`    | single administrator of small NPOs                                                         | remove all the pairings an elderly member has when he / she is removed from the system | maintain accurate and error-free records of pairings                              |
+| `* * *`    | single administrator of small NPOs                                                         | find the particular elderly member by search of nric                                   | access the information of each elderly member conveniently                        |
+| `* * *`    | single administrator of small NPOs                                                         | edit the particulars of elderly members, such as names or addresses                    | manage elderly information in a more flexible manner                              |
+| `* * *`    | single administrator of small NPOs                                                         | add a pair of a volunteer to an elderly                                                | to make sure every elderly member is taken care of                                |
+| `* * *`    | single administrator of small NPOs                                                         | filter pairs by involved elderly members                                               | to quikcly find involved volunteers when elderly members are in need of attention |
+| `* * *`    | single administrator of small NPOs                                                         | find and list unpaired elderlies                                                       | pair new incoming volunteers easily                                               |
+| `* * *`    | single administrator of small NPOs                                                         | delete a pairing of a volunteer form an elderly                                        | to remove pairs that are no longer used                                           |
+| `* *`      | single administrator of small NPOs                                                         | update volunteers & volunteer information                                              | keep the volunteer information up-to-date                                         |
+| `* * `     | single administrator of small NPOs                                                         | search for particular volunteers by keywords                                           | quickly see the volunteer's details                                               |
+| `* *`      | single administrator of small NPOs                                                         | view nursing / medical courses that volunteers have taken in the past                  | pair an elderly witha more suitable volunteer                                     |
+| `* *`      | single administrator of small NPOs                                                         | filter and list elderly members by keyword search of name                              | increasing efficiency of finding elderly with certain names                       |
+| `* *`      | single administrator of small NPOs                                                         | filter and list elderly members by age group                                           | dedicate more attentions to older members                                         |
+| `* *`      | single administrator of small NPOs                                                         | filter and list elderly members by risk level                                          | dedicate more attentions to members with higher risks                             |
+| `* *`      | single administrator of small NPOs                                                         | filter and list elderly members by region and community                                | pair volunteers who can better reach out to elderly living close-by               |
+| `* *`      | single administrator of small NPOs                                                         | search elderly members by tags                                                         | access the information of elderly members with specific tags                      |
+| `* *`      | single administrator of small NPOs                                                         | rank elderly members in the order of their medical risk level                          | better pair volunteers with more medical knowledge with higher-risk elderly       |
+| `* *`      | single administrator of small NPOs                                                         | keep track of the region and community of the elderly members                          | reach out to the elderly members conveniently                                     |
+| `* *`      | single administrator of small NPOs                                                         | view the last visited time/date of the elderly                                         | know when to plan the next visit                                                  |
+| `* *`      | single administrator of small NPOs                                                         | set up reminder system for elderlies                                                   | plan volunteers to assist on those days                                           |
+| `* *`      | single administrator of small NPOs                                                         | find a pair by keyword                                                                 | to quickly look up important information when required                            |
+| `* *`      | single administrator of small NPOs                                                         | view overlapping pairs between the same volunteers or elderly members                  | to take note of overlapping work.                                                 |
+| `* *`      | single administrator of small NPOs                                                         | filter pairs by tags                                                                   | to quickly find certain groups of elderly members for events or routine checkups  |
+| `* *`      | single administrator of small NPOs                                                         | see summaries of number of elderly members assigned to each volunteer                  | to evenly distribute workload of volunteers                                       |
+| `* *`      | single administrator of small NPOs                                                         | see min, max and average number of elderly buddies per volunteer                       | to evenly distribute workload of volunteers or to request for more resources      |
+| `*`        | single administrator of small NPOs                                                         | filter volunteers by tags                                                              | access relevant groups of volunteers quickly                                      |
+| `*`        | single administrator of small NPOs                                                         | manage volunteers by region                                                            | arrange the volunteers such that they can conveniently reach out to the elderly   |
+| `*`        | single administrator of small NPOs                                                         | record the community information of volunteers, but not their specific address         | ensure that the volunteers' privacy is not compromised                            |
+| `*`        | single administrator of small NPOs                                                         | manage the volunteers' available dates and time                                        | efficiently find volunteers available for activities                              |
+| `*`        | single administrator of small NPOs                                                         | see how long a volunteer has been with the program                                     | assess their experience                                                           |
+| `*`        | single administrator of small NPOs                                                         | track the befriending history of a volunteer                                           | audit past involvements easily                                                    |
+| `*`        | single administrator of small NPOs                                                         | rank elderly members in the order of their loneliness situation                        | arrange more frequent volunteer visits for more lonely elderly                    |
+| `*`        | single administrator of small NPOs                                                         | track the befriending history of an elderly                                            | audit past involvements easily                                                    |
+| `*`        | single administrator of small NPOs                                                         | view past pairings                                                                     | to pair up members familiar with each other                                       |
+| `*`        | single administrator of small NPOs                                                         | making recurring pairings                                                              | to handle recurrent changes in pairs.                                             |
+| `*`        | single administrator of small NPOs                                                         | adjust frequency and period limit of pairings                                          | to facilitate regular swaps of volunteers and elderly members.                    |
+| `*`        | single administrator of small NPOs                                                         | track important dates                                                                  | to facilitate regular volunteer check ins on elderly members.                     |
+| `*`        | single administrator of small NPOs                                                         | set up reminders                                                                       | to remind volunteers of their commitments                                         |
+| `*`        | single administrator of small NPOs                                                         | set up version control of the application                                              | trace commands that are executed throughout the lifetime of the application       | 
+| `*`        | lazy single administrator of small NPOs                                                    | automatically pair up available volunteers to elderlies                                | quickly assign a volunteer to an elderly                                          | 
+| `*`        | efficient single administrator of small NPOs                                               | use natural language dates                                                             | quickly assign add a volunteer availability into the database                     | 
+| `*`        | forgetful single administrator of small NPOs                                               | autocomplete commands                                                                  | quickly complete the commands                                                     |  
+| `*`        | organized single administrator of small NPOs                                               | add tags to volunteer, elderly and pairs                                               | filter the entities by tags                                                       |  
+| `*`        | organized single administrator of small NPOs                                               | assign a random integer ID to each entry                                               | retrieve, modify and delete them directly without looking through the list        |  
+| `*`        | organized single administrator of small NPOs who have used the application for a long time | retrieve summary statistics of elderlies, volunteers, and pairs in the database        | have a better understanding of the organisation and it's clients                  |  
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FriendlyLink (FL)` and the **Actor** is the `Admin`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01- Pairs Volunteer and Elderly**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters the details of elderly and volunteer to be paired into the application.
+2.  FL adds the pair into the database, and feedbacks the successful addition of the pair.
+3.  User see the pair details appear in the joint list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. FL detects that the elderly is not in the current database.
+    * 1a1. FL informs User that the elderly has not been created.
+
+    Use case ends.
+
+* 1b. FL detects that volunteer is not in the current database.
+    * 1b1. FL informs User that the volunteer has not been created.
+
+    Use case ends.
+
+* 1c. FL detects missing arguments or an error in the entered data.
+    * 1c1. FL feedbacks that entered data is in a wrong format
+
+    Use case ends.
+
+* 1d. FL detects duplicate pair records in the entered data.
+
+    * 1d1. FL feedbacks that it is a duplicate record, and rejects the data entry
+
+    Use case ends.
+
+**Use case: UC02- Add Elderly**
+
+**MSS**
+
+1.  User enters the details of elderly to be added into the application.
+2.  FL adds the elderly into the database, and feedbacks the successful addition of the elderly.
+3.  User see the elderly details appear in the elderly list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered data.
+    * 1a1. FL requests for the correct data.
+    * 1a2. User enters new data.
+    
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+    
+    Use case ends.
+
+* 1b. FL detects duplicate elderly records in the entered data.
+
+    * 1b1. FL informs it is a duplicate record, requests for the new data.
+    * 1b2. User enters new data.
+
+    Steps 1b1-1b2 are repeated until the data entered are correct.
+
+    Use case ends.
+
+**Use case: UC03- Add Volunteer**
+
+**MSS**
+
+1.  User enters the details of volunteer to be added into the application.
+2.  FL adds the volunteer into the database, and feedbacks the successful addition of the volunteer.
+3.  User see the volunteer details appear in the volunteer list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered data.
+    * 1a1. FL requests for the correct data.
+    * 1a2. User enters new data.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. FL detects duplicate volunteer records in the entered data.
 
-    * 3a1. AddressBook shows an error message.
+    * 1b1. FL informs it is a duplicate record, requests for the new data.
+    * 1b2. User enters new data.
 
-      Use case resumes at step 2.
+  Steps 1b1-1b2 are repeated until the data entered are correct.
 
-*{More to be added}*
+  Use case ends.
+
+**Use case: UC04- Unpair Volunteer and Elderly**
+
+**MSS**
+
+1.  User enters the pair details (elderly & volunteer) to be deleted into FL.
+2.  FL deletes the pair from the database, and feedbacks the successful unpairing.
+3.  User see the pair details removed from the joint list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects that the pair is not in the current database.
+    * 1a1. FL informs User that the pair has not been created.
+
+  Use case ends.
+
+* 1b. FL detects missing arguments or an error in the entered data.
+    * 1b1. FL feedbacks that entered data is in a wrong format
+
+  Use case ends.
+
+**Use case: UC05- Delete Volunteer**
+
+**MSS**
+
+1.  User enters the NRIC of the volunteer to be deleted.
+2.  FL deletes the volunteer from the database, and feedbacks the successful deletion of the volunteer.
+3.  User see the volunteer details removed from the volunteer list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered data.
+    * 1a1. FL requests for the correct data.
+    * 1a2. User enters new data.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case ends.
+
+* 1b. FL detects that the volunteer is not inside the records.
+
+    * 1b1. FL informs that the volunteer does not exist, and requests for the new data.
+    * 1b2. User enters new data.
+
+  Steps 1b1-1b2 are repeated until the data entered are correct.
+
+  Use case ends.
+
+**Use case: UC06-  Delete Elderly**
+
+**MSS**
+
+1.  User enters the NRIC of the elderly to be deleted.
+2.  FL deletes the elderly from the database, and feedbacks the successful deletion of the elderly.
+3.  User see the elderly details removed from the elderly list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered data.
+    * 1a1. FL requests for the correct data.
+    * 1a2. User enters new data.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case ends.
+
+* 1b. FL detects that the elderly is not inside the records.
+
+    * 1b1. FL informs that the elderly does not exist, and requests for the new data.
+    * 1b2. User enters new data.
+
+  Steps 1b1-1b2 are repeated until the data entered are correct.
+
+  Use case ends.
+
+**Use case: UC07-  Exit application**
+
+**MSS**
+
+1.  User press the “X” button to exit the application.
+2.  FL closes the application.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  It is up to the user to ensure details of elderlies and volunteers entered into FriendlyLink is valid.
+5.  The user should be responsible for the security of the data stored in FriendlyLink.
+6.  FriendlyLink is only available in english
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+| Term         | Definition                                                                               |
+|--------------|------------------------------------------------------------------------------------------|
+| FriendlyLink | The name of the application                                                              |
+| Volunteer    | Volunteers who are willing to pair up with and accompany Elderly members                 |
+| Elderly      | Elderlies who need help from their buddies                                               |
+| Pair         | The pair of people that consists of an elderly and the volunteer assigned to the elderly |
+| NRIC         | A unique identifier given to all Singaporeans.                                           |
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -60,15 +61,7 @@ public class LogicManager implements Logic {
         return model.getFriendlyLink();
     }
 
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
 
-    @Override
-    public ObservableList<Pair> getFilteredPairList() {
-        return model.getFilteredPairList();
-    }
 
     @Override
     public Path getFriendlyLinkFilePath() {
@@ -84,4 +77,24 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    // --- The following are directly appended to the UI.
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
+    @Override
+    public ObservableList<Elderly> getFilteredElderlyList() {
+        return model.getFilteredElderlyList();
+    }
+    @Override
+    public ObservableList<Person> getFilteredVolunteerList() {
+        return model.getFilteredVolunteerList();
+    }
+    @Override
+    public ObservableList<Pair> getFilteredPairList() {
+        return model.getFilteredPairList();
+    }
+
+
 }

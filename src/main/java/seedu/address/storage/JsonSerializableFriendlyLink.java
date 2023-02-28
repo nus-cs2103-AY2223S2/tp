@@ -19,7 +19,6 @@ import seedu.address.model.person.Person;
  */
 @JsonRootName(value = "friendlylink")
 class JsonSerializableFriendlyLink {
-
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_PAIR = "Persons list contains duplicate pair(s).";
 
@@ -33,8 +32,8 @@ class JsonSerializableFriendlyLink {
     @JsonCreator
     public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
             @JsonProperty("pairs") List<JsonAdaptedPair> pairs) {
-        this.persons.addAll(persons);
-        this.pairs.addAll(pairs);
+        serializePairs(this.pairs, pairs);
+        serializePersons(this.persons, persons);
     }
 
     /**
@@ -43,8 +42,18 @@ class JsonSerializableFriendlyLink {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriendlyLink}.
      */
     public JsonSerializableFriendlyLink(ReadOnlyFriendlyLink source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        pairs.addAll(source.getPairList().stream().map(JsonAdaptedPair::new).collect(Collectors.toList()));
+        serializePairs(pairs,
+                source.getPairList().stream().map(JsonAdaptedPair::new).collect(Collectors.toList()));
+        serializePersons(persons,
+                source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    }
+
+    private void serializePersons(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
+        entities.addAll(source);
+    }
+
+    private void serializePairs(List<JsonAdaptedPair> entities, List<JsonAdaptedPair> source) {
+        entities.addAll(source);
     }
 
     /**
@@ -54,7 +63,13 @@ class JsonSerializableFriendlyLink {
      */
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+        unserializeEntities(persons, friendlyLink);
+        return friendlyLink;
+    }
+
+    private void unserializeEntities(
+            List<JsonAdaptedPerson> entities, FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedPerson jsonAdaptedPerson : entities) {
             Person person = jsonAdaptedPerson.toModelType();
             if (friendlyLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
@@ -68,7 +83,6 @@ class JsonSerializableFriendlyLink {
             }
             friendlyLink.addPair(pair);
         }
-        return friendlyLink;
     }
 
 }

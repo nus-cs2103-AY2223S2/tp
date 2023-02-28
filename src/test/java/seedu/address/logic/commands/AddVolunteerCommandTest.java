@@ -5,25 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class AddVolunteerCommandTest {
@@ -49,7 +40,7 @@ public class AddVolunteerCommandTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Volunteer validVolunteer = new VolunteerBuilder().build();
         AddVolunteerCommand addCommand = new AddVolunteerCommand(validVolunteer);
-        ModelStub modelStub = new ModelStubWithPerson(validVolunteer);
+        ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
         assertThrows(CommandException.class,
                 AddVolunteerCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
@@ -80,133 +71,18 @@ public class AddVolunteerCommandTest {
     }
 
     /**
-     * A default model stub that have all the methods failing.
-     */
-    private static class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getFriendlyLinkFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setFriendlyLinkFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setFriendlyLink(ReadOnlyFriendlyLink newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyFriendlyLink getFriendlyLink() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Elderly getElderly(Nric nric) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Volunteer getVolunteer(Nric nric) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPair(Pair pair) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPair(Pair pair) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePair(Pair target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPair(Pair target, Pair editedPair) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Pair> getFilteredPairList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPairList(Predicate<Pair> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    /**
      * A Model stub that contains a single person.
      */
-    private static class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithVolunteer extends ModelStub {
         private final Person person;
 
-        ModelStubWithPerson(Person person) {
+        ModelStubWithVolunteer(Volunteer person) {
             requireNonNull(person);
             this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasVolunteer(Volunteer person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -219,13 +95,13 @@ public class AddVolunteerCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasVolunteer(Volunteer person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addVolunteer(Volunteer person) {
             requireNonNull(person);
             personsAdded.add(person);
         }

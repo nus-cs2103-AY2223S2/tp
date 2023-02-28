@@ -18,7 +18,7 @@ import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FriendlyLink data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,6 +26,8 @@ public class ModelManager implements Model {
     private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Elderly> filteredElderly;
+    private final FilteredList<Person> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
 
     /**
@@ -33,12 +35,12 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(friendlyLink, userPrefs);
-
-        logger.fine("Initializing with address book: " + friendlyLink + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
         this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
+        filteredElderly = new FilteredList<>(this.friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(this.friendlyLink.getVolunteerList());
         filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
     }
 
@@ -85,7 +87,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
-        this.friendlyLink.resetData(friendlyLink);
+        this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
@@ -93,6 +95,7 @@ public class ModelManager implements Model {
         return friendlyLink;
     }
 
+    //=========== FriendlyLink Persons  ======================================================================
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -113,8 +116,55 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         friendlyLink.setPerson(target, editedPerson);
+    }
+
+    //=========== FriendlyLink Elderly  ======================================================================
+    @Override
+    public boolean hasElderly(Elderly e) {
+        requireNonNull(e);
+        return friendlyLink.hasElderly(e);
+    }
+
+    @Override
+    public void deleteElderly(Elderly target) {
+        friendlyLink.removeElderly(target);
+    }
+
+    @Override
+    public void addElderly(Elderly person) {
+        friendlyLink.addElderly(person);
+        updateFilteredElderlyList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setElderly(Elderly target, Elderly editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        friendlyLink.setElderly(target, editedPerson);
+    }
+
+    //=========== FriendlyLink Volunteers  ======================================================================
+    @Override
+    public boolean hasVolunteer(Volunteer person) {
+        requireNonNull(person);
+        return friendlyLink.hasVolunteer(person);
+    }
+
+    @Override
+    public void deleteVolunteer(Volunteer target) {
+        friendlyLink.removeVolunteer(target);
+    }
+
+    @Override
+    public void addVolunteer(Volunteer person) {
+        friendlyLink.addVolunteer(person);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+        friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
     @Override
@@ -165,6 +215,40 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Elderly List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Elderly} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Elderly> getFilteredElderlyList() {
+        return filteredElderly;
+    }
+
+    @Override
+    public void updateFilteredElderlyList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Volunteer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Person> getFilteredVolunteerList() {
+        return filteredVolunteers;
+    }
+
+    @Override
+    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

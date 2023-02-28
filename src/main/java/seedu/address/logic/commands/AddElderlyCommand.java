@@ -19,7 +19,7 @@ import seedu.address.model.person.Elderly;
  */
 public class AddElderlyCommand extends Command {
 
-    // later find ways to make this "add elderly"
+    // TODO: later find ways to make this "add elderly"
     public static final String COMMAND_WORD = "add_elderly";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database. "
@@ -62,11 +62,11 @@ public class AddElderlyCommand extends Command {
 
         // hasPerson makes the judgement based on if same name
         // in Elderly, criteria is same name and age
-        if (model.hasPerson(toAdd)) {
+        if (model.hasElderly(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addElderly(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

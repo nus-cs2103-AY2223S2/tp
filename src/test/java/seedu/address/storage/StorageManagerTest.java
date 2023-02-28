@@ -14,6 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.volunteer.JsonVolunteerStorage;
 
 public class StorageManagerTest {
 
@@ -24,9 +26,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(getTempFilePath("ab"));
+        JsonFriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(getTempFilePath("friendlylink"));
+        JsonElderlyStorage elderlyStorage = new JsonElderlyStorage(getTempFilePath("elderly"));
+        JsonVolunteerStorage volunteerStorage = new JsonVolunteerStorage(getTempFilePath("volunteer"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(friendlyLinkStorage, userPrefsStorage);
+        storageManager = new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

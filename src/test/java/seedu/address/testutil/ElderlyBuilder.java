@@ -9,10 +9,12 @@ import seedu.address.model.person.information.RiskLevel;
  * A utility class to help with building Elderly objects.
  */
 public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
-    public static final String DEFAULT_AGE = "20";
-    public static final String DEFAULT_NRIC = "T1234567I";
+    public static final String DEFAULT_AGE = "65";
+    public static final String DEFAULT_NRIC = "S1234567A";
+    public static final String DEFAULT_RISK = "LOW";
     private Age age;
     private Nric nric;
+    private RiskLevel riskLevel;
 
     /**
      * Creates a {@code ElderlyBuilder} with the default details.
@@ -21,6 +23,7 @@ public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
         super();
         this.age = new Age(DEFAULT_AGE);
         this.nric = new Nric(DEFAULT_NRIC);
+        this.riskLevel = new RiskLevel(DEFAULT_RISK);
     }
 
     /**
@@ -30,6 +33,7 @@ public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
         super(elderlyToCopy);
         age = elderlyToCopy.getAge();
         nric = elderlyToCopy.getNric();
+        riskLevel = elderlyToCopy.getRiskLevel();
     }
 
     /**
@@ -48,7 +52,19 @@ public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
         return this;
     }
 
+    /**
+     * Sets the {@code RiskLevel} of the {@code Elderly} that we are building.
+     */
+    public ElderlyBuilder withRiskLevel(String riskLevel) {
+        this.riskLevel = new RiskLevel(riskLevel.toUpperCase());
+        return this;
+    }
+
+    /**
+     * Build the elderly object.
+     */
     public Elderly build() {
-        return new Elderly(name, phone, email, address, nric, age, new RiskLevel("LOW"), tags);
+        return new Elderly(name, phone, email, address,
+                nric, age, riskLevel, tags);
     }
 }

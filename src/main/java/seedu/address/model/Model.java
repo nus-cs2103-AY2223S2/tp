@@ -100,6 +100,56 @@ public interface Model {
     Volunteer getVolunteer(Nric nric);
 
     /**
+     * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
+     */
+    boolean hasElderly(Elderly elderly);
+
+    /**
+     * Deletes the given elderly.
+     * The elderly must exist in the friendly link database.
+     */
+    void deleteElderly(Elderly target);
+
+    /**
+     * Adds the given elderly.
+     * {@code elderly} must not already exist in the friendly link database.
+     */
+    void addElderly(Elderly elderly);
+
+    /**
+     * Replaces the given elderly {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the friendly link database.
+     * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the
+     * friendly link database.
+     */
+    void setElderly(Elderly target, Elderly editedPerson);
+
+    /**
+     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
+     */
+    boolean hasVolunteer(Volunteer volunteer);
+
+    /**
+     * Deletes the given volunteer.
+     * The volunteer must exist in the friendly link database.
+     */
+    void deleteVolunteer(Volunteer target);
+
+    /**
+     * Adds the given volunteer.
+     * {@code volunteer} must not already exist in the friendly link database.
+     */
+    void addVolunteer(Volunteer volunteer);
+
+    /**
+     * Replaces the given volunteer {@code target} with {@code editedVolunteer}.
+     * {@code target} must exist in the friendly link database.
+     * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the
+     * friendly link database.
+     */
+    void setVolunteer(Volunteer target, Volunteer editedPerson);
+
+    /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
      */
     boolean hasPair(Pair pair);
@@ -132,6 +182,26 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /** Returns an unmodifiable view of the filtered elderly list */
+    ObservableList<Elderly> getFilteredElderlyList();
+
+    /**
+     * Updates the filter of the filtered elderly list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredElderlyList(Predicate<Person> predicate);
+
+
+    /** Returns an unmodifiable view of the filtered volunteers list */
+    ObservableList<Person> getFilteredVolunteerList();
+
+    /**
+     * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the filtered pair list */
     ObservableList<Pair> getFilteredPairList();
