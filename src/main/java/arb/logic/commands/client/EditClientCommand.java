@@ -20,9 +20,9 @@ import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.Model;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 

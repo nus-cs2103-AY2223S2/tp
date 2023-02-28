@@ -23,11 +23,11 @@ import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.client.Client;
-import arb.testutil.EditClientDescriptorBuilder;
+import arb.model.client.NameContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
+import arb.testutil.EditClientDescriptorBuilder;
 
 public class AddressBookParserTest {
 

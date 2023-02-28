@@ -3,9 +3,9 @@ package arb.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 import arb.model.util.SampleDataUtil;

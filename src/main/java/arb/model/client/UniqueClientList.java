@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.client.exceptions.ClientNotFoundException;
+import arb.model.client.exceptions.DuplicateClientException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

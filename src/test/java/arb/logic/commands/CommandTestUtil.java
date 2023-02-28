@@ -17,8 +17,8 @@ import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.AddressBook;
 import arb.model.Model;
-import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.client.Client;
+import arb.model.client.NameContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
 
 /**

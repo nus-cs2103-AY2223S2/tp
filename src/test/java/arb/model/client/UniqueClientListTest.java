@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.client.exceptions.ClientNotFoundException;
+import arb.model.client.exceptions.DuplicateClientException;
 import arb.testutil.ClientBuilder;
 
 public class UniqueClientListTest {

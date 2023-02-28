@@ -2,8 +2,8 @@ package arb.logic.commands.client;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

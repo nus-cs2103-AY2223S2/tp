@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import arb.commons.exceptions.IllegalValueException;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 

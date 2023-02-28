@@ -16,9 +16,9 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 

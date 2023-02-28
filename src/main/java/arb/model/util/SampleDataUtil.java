@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import arb.model.AddressBook;
 import arb.model.ReadOnlyAddressBook;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 

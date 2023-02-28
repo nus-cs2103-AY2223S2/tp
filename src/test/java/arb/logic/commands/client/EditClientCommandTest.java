@@ -8,9 +8,9 @@ import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
+import static arb.testutil.TypicalClients.getTypicalAddressBook;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,8 +24,8 @@ import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
 import arb.model.client.Client;
-import arb.testutil.EditClientDescriptorBuilder;
 import arb.testutil.ClientBuilder;
+import arb.testutil.EditClientDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditClientCommand.

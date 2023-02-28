@@ -28,9 +28,9 @@ import static arb.testutil.TypicalClients.BOB;
 import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.client.AddClientCommand;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
-import arb.model.client.Client;
 import arb.model.client.Phone;
 import arb.model.tag.Tag;
 import arb.testutil.ClientBuilder;
