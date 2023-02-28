@@ -276,16 +276,20 @@ timetables one by one. Where Got Time then helps students to easily find free ti
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​  | I want to …​                                                   | So that I can…​                                                       |
+|----------|----------|----------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the App                |
+| `* * *`  | user     | add a new friend                                               | store their events                                                    |
+| `* * *`  | user     | delete a friend                                                | remove entries that I no longer need                                  |
+| `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
+| `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
+| `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
+| `* * *`  | student  | find a free time slot within my group of friends               | know when my friends are free                      |
+| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better | 
+| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
+| `* *`    | user | be able to categorize my contact lists                         | easily find someone | 
+| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
+| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
 
 ### Use cases
 
