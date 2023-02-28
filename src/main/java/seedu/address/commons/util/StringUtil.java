@@ -54,10 +54,13 @@ public class StringUtil {
         checkArgument(!preppedString.isEmpty(), "String parameter cannot be empty");
         checkArgument(preppedString.split("\\s+").length == 1, "String parameter should be a single character");
 
-
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
     return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
+    }
+
+    public static boolean startsWithSubstringIgnoreCase(String sentence, String substring) {
+        return containsSubstringIgnoreCase(sentence, String.format("^%s", substring));
     }
 
     /**
