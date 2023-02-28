@@ -17,7 +17,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Project Advisor
+- Role: Team Lead
+- Code Focus Area: Logic, model
+- Primary Role: Scheduling and tracking
+- Secondary Role: Testing
 
 ### Jerald Kiew
 
