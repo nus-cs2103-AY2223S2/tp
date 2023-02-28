@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Douglas Chow
 
 <img src="images/douglch.png" width="200px">
 
