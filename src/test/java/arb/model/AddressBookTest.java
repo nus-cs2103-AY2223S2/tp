@@ -1,6 +1,5 @@
 package arb.model;
 
-import static arb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
@@ -46,7 +45,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newClients);
@@ -73,7 +72,7 @@ public class AddressBookTest {
     @Test
     public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasClient(editedAlice));
     }

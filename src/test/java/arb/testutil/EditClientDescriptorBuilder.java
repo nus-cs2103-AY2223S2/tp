@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
-import arb.model.client.Address;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Client;
@@ -35,7 +34,6 @@ public class EditClientDescriptorBuilder {
         descriptor.setName(client.getName());
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
-        descriptor.setAddress(client.getAddress());
         descriptor.setTags(client.getTags());
     }
 
@@ -60,14 +58,6 @@ public class EditClientDescriptorBuilder {
      */
     public EditClientDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditClientDescriptor} that we are building.
-     */
-    public EditClientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

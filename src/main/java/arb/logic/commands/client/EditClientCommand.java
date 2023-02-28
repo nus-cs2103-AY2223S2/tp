@@ -1,6 +1,5 @@
 package arb.logic.commands.client;
 
-import static arb.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,7 +20,6 @@ import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.Model;
-import arb.model.client.Address;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Client;
@@ -42,7 +40,6 @@ public class EditClientCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -98,10 +95,9 @@ public class EditClientCommand extends Command {
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -130,7 +126,6 @@ public class EditClientCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditClientDescriptor() {}
@@ -143,7 +138,6 @@ public class EditClientCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +145,7 @@ public class EditClientCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public void setName(Name name) {
@@ -176,14 +170,6 @@ public class EditClientCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -221,7 +207,6 @@ public class EditClientCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

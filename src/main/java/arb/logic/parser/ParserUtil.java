@@ -9,7 +9,6 @@ import java.util.Set;
 import arb.commons.core.index.Index;
 import arb.commons.util.StringUtil;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.client.Address;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
@@ -63,21 +62,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**

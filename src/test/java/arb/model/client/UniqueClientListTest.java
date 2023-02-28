@@ -1,6 +1,5 @@
 package arb.model.client;
 
-import static arb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
@@ -15,8 +14,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import arb.model.client.Client;
-import arb.model.client.UniqueClientList;
 import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.client.exceptions.ClientNotFoundException;
 import arb.testutil.ClientBuilder;
@@ -44,7 +41,7 @@ public class UniqueClientListTest {
     @Test
     public void contains_clientWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClientList.add(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueClientList.contains(editedAlice));
     }
@@ -87,7 +84,7 @@ public class UniqueClientListTest {
     @Test
     public void setClient_editedClientHasSameIdentity_success() {
         uniqueClientList.add(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueClientList.setClient(ALICE, editedAlice);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();

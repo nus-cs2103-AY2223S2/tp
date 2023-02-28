@@ -2,7 +2,6 @@ package arb.logic;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static arb.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -79,8 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add client command
-        String addClientCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addClientCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);
