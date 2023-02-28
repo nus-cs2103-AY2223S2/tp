@@ -291,14 +291,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `UniBook` and the **Actor** is the `coach`, unless specified otherwise)
 
+**Use case: Add a student**
+
+**MSS**
+
+1. Coach requests to add a new student in the list
+2. UniBook add the student
+
+    Use case ends.
+
 **Use case: Delete a student**
+
+**MSS**
+
+1. Coach requests to list students
+2. UniBook shows a list of students
+3. Coach requests to delete a specific student in the list
+4. UniBook deletes the student
+
+    Use case ends.
+
+**Use case: Edit a student**
 
 **MSS**
 
 1.  Coach requests to list students
 2.  UniBook shows a list of students
-3.  Coach requests to delete a specific student in the list
-4.  UniBook deletes the student
+3.  Coach requests to edit a specific student's profile attribute in the list
+4.  UniBook edit the student's attribute
 
     Use case ends.
 
