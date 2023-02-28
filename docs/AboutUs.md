@@ -1,59 +1,59 @@
----
-layout: page
-title: About Us
----
+# About Us
+
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ## Project team
 
-### John Doe
+### Ai Bo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aibo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/BoAi01)]
+[[portfolio](team/boai01.md)]
 
 * Role: Team Lead
+
+### Celeste Cheah
+
+<img src="images/celeste.png" width="200px">
+
+[[github](https://github.com/cetigerlily)] 
+[[portfolio](team/cetigerlily.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
+
+### Jishnu
+
+<img src="images/jishnu.png" width="200px">
+
+[[github](https://github.com/jishnu28)]
+[[portfolio](team/jishnu28.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines & Scheduling and tracking
+
+### Xiuxuan
+
+<img src="images/xiuxuan.png" width="200px">
+
+[[github](https://github.com/wxxedu)]
+[[portfolio](team/wxxedu.md)]
+
+* Role: Developer
+* Responsibilities: Testing + Integration
+
+### Yuanyuan
+
+<img src="images/yuanyuan.png" width="200px">
+
+[[github](http://github.com/tangyuantyy)]
+[[portfolio](team/tangyuantyy.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

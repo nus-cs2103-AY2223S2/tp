@@ -100,4 +100,5 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Location**: A unit place that flights may depart from or arrive at. 
+
 * **crew**: A unit person who can be added to or deleted from a flight.
