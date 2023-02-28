@@ -1,13 +1,12 @@
 ---
 # User guide
 
-MATHUTORING is a **centralised desktop application used for private Math tuition teachers** to manage their students' contacts and performances which subsequently allows the tutors to plan their lesson plan for future lessons and overall view of their schedule for ease of planning. While the user interacts is conducted through using a CLI, it is still having the benefits of a Graphical User Interface (GUI). If you can type fast, MATHUTORING can get your contact management tasks done faster than traditional GUI apps.  
-
+MATHUTORING is a **centralised desktop application used for private Math tuition teachers** to manage their students' contacts and performances which subsequently allows the tutors to plan their lesson plan for future lessons and overall view of their schedule for ease of planning. While the user interactions are conducted through using a CLI, it still has the benefits of a Graphical User Interface (GUI). If you can type fast, MATHUTORING can get your contact management tasks done faster than traditional GUI apps.
 ## Table of Contents
-*  **Quick start**
-*  **Features**
-*  **FAQ**
-*  **Command summary**
+*  **[Quick start](#quick-start)**
+*  **[Features](#features)**
+*  **[FAQ](#faq)**
+*  **[Command summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,9 +14,9 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `MATHUTORING.jar` (Stay in tune for our release!).
+2. Download the latest `MATHUTORING.jar` (Stay tuned for our release!).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING.
+3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MATHUTORING.jar` command to run the application.<br>
    <br>
@@ -27,9 +26,9 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `listStudents` : Lists all students in the student list.
 
-   * `add n/John p/86232384 a/Ang Mo Kio Ave 10 e/JOHN_08@gmail.com` : Adds a contact named `John` to the Address Book.
+   * `add n/John p/86232384 a/Ang Mo Kio Ave 10 e/JOHN_08@gmail.com c/98763928` : Adds a student named `John` to the student list in MATHUTORING.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
