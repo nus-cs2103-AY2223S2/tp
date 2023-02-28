@@ -3,6 +3,7 @@ package seedu.address.logic.commands.drugcommands;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CareFlowModel;
 import seedu.address.model.Model;
 import seedu.address.model.drug.Drug;
 
@@ -56,8 +57,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
-
+        return null;
     }
 }
