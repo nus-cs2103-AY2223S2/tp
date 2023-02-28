@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at these emails :
 * `e0773591[at]u.nus.edu` - Zhu Yufan
-* `[at]u.nus.edu`
+* `e0774823[at]u.nus.edu` - Niu Boqian
 * `[at]u.nus.edu`
 * `[at]u.nus.edu`
 
@@ -24,15 +24,15 @@ You can reach us at these emails :
 * Role: 
 * Responsibilities: 
 
-### Jane Doe
+### Niu Boqian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nbqian.png" width="200px">
 
-[[github](https://github.com/Yufannnn)]
+[[github](https://github.com/NBQian)]
 [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities: 
+* Role: coder
+* Responsibilities: code
 
 ### Johnny Doe
 
