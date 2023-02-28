@@ -74,6 +74,11 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
+### Viewing help: `help`
+Shows a user guide message on how to use the internship tracker.
+
+Format: help
+
 ### Adding contact details: `add_contact`
 
 Adds the contact details of a company to a specified application.
