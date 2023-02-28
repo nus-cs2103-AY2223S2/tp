@@ -366,6 +366,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+* 1a. Client list is empty use case.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
