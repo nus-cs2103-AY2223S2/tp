@@ -296,21 +296,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CoDoc` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a new person**
 
 **MSS**
 
 1. User requests to add a specific person to the list
-2. AddressBook displays the list of people with the newly added person and a success message
+2. CoDoc displays the list of people with the newly added person and a success message
 
    Use case ends.
 
 **Extensions**
 
 * 1a. The compulsory prefixes are missing.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. CoDoc shows an error message.
 
       Use case ends.
 
@@ -319,13 +319,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. AddressBook shows a list of all people
+2. CoDoc shows a list of all people
 3. User requests to view a specific person in the list
-4. AddressBook displays the information of that person in the right panel
+4. CoDoc displays the information of that person in the right panel
 5. User requests to view a specific attribute of the person in the right panel
-6. AddressBook displays the information of that attribute in the right panel
+6. CoDoc displays the information of that attribute in the right panel
 7. User requests to edit a specific attribute of the information
-8. AddressBook displays the changes and displays a success message
+8. CoDoc displays the changes and displays a success message
 
    Use case ends.
 
@@ -337,17 +337,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoDoc shows an error message.
 
       Use case resumes at step 2.
 
 * 5a. The given prefix is invalid.
-    * 5a1. AddressBook shows an error message.
+    * 5a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
 
 * 7a. The given prefix is invalid.
-    * 7a1. AddressBook shows an error message.
+    * 7a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
 
@@ -374,9 +374,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. CoDoc shows a list of persons
 3. User requests to find people in the list based on a given attribute
-4. AddressBook displays the list of filtered people
+4. CoDoc displays the list of filtered people
 
    Use case ends.
 
@@ -395,11 +395,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. The given prefix is invalid.
 
-    * 3b1. AddressBook shows an error message.
+    * 3b1. CoDoc shows an error message.
 
       Use case resumes at step 2.
 * 4a. There are no matches found based on the input
-    * 4a1. AddressBook shows an empty list.
+    * 4a1. CoDoc shows an empty list.
 
       Use case ends.
 
@@ -409,9 +409,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. CoDoc shows a list of persons
 3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+4. CoDoc deletes the person
 
    Use case ends.
 
@@ -423,7 +423,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoDoc shows an error message.
 
     * Use case resumes at step 2.
 
