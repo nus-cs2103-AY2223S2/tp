@@ -9,7 +9,7 @@ TechTrack is a powerful internship/job tracking application that combines the fl
 
 Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
 
 * **New Feature** [Coming soon]: Added the ability to ...
     * What it does: ...
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     * ..
 
 * **Enhancements to existing features** [Coming soon]:
-    * ..
+    * ...
 
 * **Documentation** [Coming soon]:
     * User Guide:
