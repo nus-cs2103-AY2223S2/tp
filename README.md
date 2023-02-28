@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a software engineering project done by Team W15-4 from CS2103T(AY2223S2)c**.<br>
+* This is **a software engineering project done by Team W15-4 from CS2103T(AY2223S2)**.<br>
   The aim of this project is to:
   * help Computer Science students to keep track of their internship applications
   * provide a flexible internship application management interface which includes CLI and GUI
