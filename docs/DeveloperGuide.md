@@ -262,6 +262,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a need to keep track of events happening in their life
+* has to manage different projects
+* needs a way view their friend's free time
+* wants to organise their contacts into groups
+* needs a method which is able to compile every group member's free time slots
 
 **Value proposition**: 
 
@@ -322,9 +327,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Compatibility: The system should be compatible for any _mainstream operating systems_ with Java `11` or above installed
+2.  Capacity: The system should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  Domain rules: The system should ideally be an NUS student.
+4.  Efficiency: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Performance: The system should respond to user commands within 2 seconds.
+6.  Maintainability: The system shall be designed to allow for easy maintenance and updates.
+7.  Domain rules: The system should ideally be an NUS student.
+8.  Notes about project scope: The product is not required to handle people with the same full name
 
 *{More to be added}*
 
