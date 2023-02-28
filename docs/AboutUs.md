@@ -56,6 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/gitsac)]
 [[portfolio](team/johndoe.md)]
-
 * Role: Deliverables
 * Responsibilities: Deliver deliverables
