@@ -346,6 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **WGT**: Where Got Time 
 * **UI**: User Interface 
 * **GUI**: Graphical User Interface
+* **MSS**: Main Success Scenario 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
