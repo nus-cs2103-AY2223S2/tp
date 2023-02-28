@@ -13,7 +13,7 @@ Examples:
 - teacher - students
 <br>
 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 GUI interactivity may be added in the future.
 It is written in Java.
 
