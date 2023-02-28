@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +37,27 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code substring}.
+     * Ignores case, and a full word match is not required.
+     * @param sentence cannot be null
+     * @param substring cannot be null
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String substring) {
+        Pattern pattern = Pattern.compile(substring, Pattern.CASE_INSENSITIVE);
+        requireNonNull(sentence);
+        requireNonNull(substring);
+        String preppedString = substring.trim();
+
+        checkArgument(!preppedString.isEmpty(), "String parameter cannot be empty");
+        checkArgument(preppedString.split("\\s+").length == 1, "String parameter should be a single character");
+
+
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
+
+    return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
     }
 
     /**
