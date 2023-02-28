@@ -9,9 +9,9 @@ Fast Army Internal Lookup System is a desktop address book application built to 
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
     * *to be added soon*
-    
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=minosx31&breakdown=true)
 
 * **Project management**:
@@ -31,4 +31,4 @@ Given below are my contributions to the project.
     * *to be added soon*
 
 * **Tools**:
-    * *to be added soon*
+  * *to be added soon*
