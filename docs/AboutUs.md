@@ -13,7 +13,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/clydelhui.png" width="200px">
 
-[[Github](https://github.com/clydelhui)]
+[[github](https://github.com/clydelhui)]
+[[portfolio](team/clydelhui.md)]
 
 * Roles: Documentation and Scheduling and Tracking
 * Responsibilities: Responsible for the quality of various project documents.
@@ -24,15 +25,17 @@ In charge of defining, assigning and tracking project tasks.
 <img src="images/lyndonlim27.png" width="200px">
 
 [[github](http://github.com/lyndonlim27)]
+[[portfolio](team/lyndonlim27.md)]
 
 * Role: Team Lead and Testing
-* Responsibilities: Resposible for overall project coordination and ensure testing of project is done properly and on time.
+* Responsibilities: Responsible for overall project coordination and ensure testing of project is done properly and on time.
 
 ### Du Jiahua
 
 <img src="images/edures888.png" width="200px">
 
 [[github](https://github.com/edures888)]
+[[portfolio](team/edures888.md)]
 
 * Role: Integration
 * Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of
@@ -43,16 +46,17 @@ In charge of defining, assigning and tracking project tasks.
 <img src="images/gmengqi.png" width="200px">
 
 [[github](https://github.com/gmengqi)]
+[[portfolio](team/gmengqi.md)]
 
 * Role: Deliverables & deadline
 * Responsibilities: Ensure project deliverables are done on time and in the right format 
 
-### James Doe
+### Kristen Chung Jia Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alvozyn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/gmengqi.md)]
+[[github](http://github.com/alvozyn)]
+[[portfolio](team/alvozyn.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Check if the code quality adherence to coding standard
