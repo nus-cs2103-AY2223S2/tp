@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
-import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
@@ -47,16 +46,16 @@ public class AddCommand extends Command {
         toAdd = person;
     }
     // @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
+//    public CommandResult execute(Model model) throws CommandException {
+//        requireNonNull(model);
+//
+//        if (model.hasPerson(toAdd)) {
+//            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+//        }
+//
+//        model.addPerson(toAdd);
+//        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+//    }
 
     @Override
     public boolean equals(Object other) {

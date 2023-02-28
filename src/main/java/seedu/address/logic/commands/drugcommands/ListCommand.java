@@ -4,7 +4,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
-import seedu.address.model.Model;
 
 /**
  * Lists all drugs in the drug inventory
