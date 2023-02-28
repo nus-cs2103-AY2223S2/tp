@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nguyen Hong Ngoc 
 
-<img src="images/RubyNguyen07.png" width="200px">
+<img src="images/rubynguyen07.png" width="200px">
 
 [[github](http://github.com/RubyNguyen07)]
 [[portfolio](team/RubyNguyen07.md)]
