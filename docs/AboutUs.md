@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yitong241.png" width="200px">
 
 [[github](http://github.com/yitong241)]
-[[portfolio](team/yitong.md)]
+[[portfolio](team/yitong241.md)]
 
 - Role: Developer
 - Code Focus Area: Logic
