@@ -11,15 +11,18 @@ import org.junit.jupiter.api.Test;
 
 
 public class VaccinationRecordTest {
-    private static final List<VaccinationRecord> ORDERED_LIST = List.of(
-            new VaccinationRecord(Vaccination.MODERNA_DOSE_1, LocalDateTime.of(2023, 3, 5, 4, 55)),
-            new VaccinationRecord(Vaccination.MODERNA_DOSE_2, LocalDateTime.of(2023, 3, 5, 4, 55)),
-            new VaccinationRecord(Vaccination.MODERNA_DOSE_1, LocalDateTime.of(2023, 3, 5, 4, 56)));
+    private static final VaxType TYPE_1 = VaxType.of("TYPE_1", 5, 6, 7, List.of());
+    private static final VaxType TYPE_2 = VaxType.of("TYPE_2", 5, 6, 7, List.of());
+
+    private static final List<VaxRecord> ORDERED_LIST = List.of(
+            new VaxRecord(TYPE_1, LocalDateTime.of(2023, 3, 5, 4, 55)),
+            new VaxRecord(TYPE_2, LocalDateTime.of(2023, 3, 5, 4, 55)),
+            new VaxRecord(TYPE_1, LocalDateTime.of(2023, 3, 5, 4, 56)));
 
 
     @Test
     public void compareToTest() {
-        ArrayList<VaccinationRecord> sortedList = new ArrayList<>(ORDERED_LIST);
+        ArrayList<VaxRecord> sortedList = new ArrayList<>(ORDERED_LIST);
         sortedList.sort(Comparator.naturalOrder());
         // if compareTo is implemented wrong, records will be rearranged
         assertEquals(ORDERED_LIST, sortedList);

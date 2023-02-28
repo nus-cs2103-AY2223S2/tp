@@ -4,24 +4,24 @@ import java.time.LocalDateTime;
 
 
 /** Represents a vaccination record of a person. */
-public class VaccinationRecord implements Comparable<VaccinationRecord> {
-    private final Vaccination vaccination;
+public class VaxRecord implements Comparable<VaxRecord> {
+    private final VaxType vaccination;
     private final LocalDateTime timeTaken;
 
 
     /**
-     * Constructs a {@code VaccinationRecord}.
+     * Constructs a {@code VaxRecord}.
      *
-     * @param vaccination - the vaccination taken.
+     * @param vaccination - the type of vaccination taken.
      * @param timeTaken - the time the vaccination was taken.
      */
-    public VaccinationRecord(Vaccination vaccination, LocalDateTime timeTaken) {
+    public VaxRecord(VaxType vaccination, LocalDateTime timeTaken) {
         this.vaccination = vaccination;
         this.timeTaken = timeTaken;
     }
 
 
-    public Vaccination getVaccination() {
+    public VaxType getVaccination() {
         return vaccination;
     }
 
@@ -32,10 +32,10 @@ public class VaccinationRecord implements Comparable<VaccinationRecord> {
 
 
     @Override
-    public int compareTo(VaccinationRecord other) {
+    public int compareTo(VaxRecord other) {
         int diff = timeTaken.compareTo(other.timeTaken);
         if (diff == 0) {
-            diff = vaccination.compareTo(other.vaccination);
+            diff = vaccination.getName().compareTo(other.vaccination.getName());
         }
         return diff;
     }
