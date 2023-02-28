@@ -9,7 +9,7 @@ You can reach us at the email:
 
 Tan Jun Da - `jundatan@hotmail.com`
 
-Darius Ng - `to be added`
+Darius Ng - `darius-ng@live.com`
 
 Kalaris Ng - `to be added`
 
