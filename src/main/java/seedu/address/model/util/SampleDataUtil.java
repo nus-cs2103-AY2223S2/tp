@@ -14,7 +14,7 @@ import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FriendlyLink} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFriendlyLink getSampleAddressBook() {
+    public static ReadOnlyFriendlyLink getSampleFriendlyLink() {
         FriendlyLink sampleAb = new FriendlyLink();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);

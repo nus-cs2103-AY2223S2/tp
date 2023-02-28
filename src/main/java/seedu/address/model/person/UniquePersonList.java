@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.information.Nric;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +78,46 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Retrieves one of the elderly with the given nric from the list.
+     * The elderly with such a nric must exist in the list.
+     *
+     * @param nric Nric of the elderly.
+     * @return Elderly with that name.
+     */
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        for (Person person : this) {
+            if (person instanceof Elderly) {
+                Elderly elderly = (Elderly) person;
+                if (elderly.getNric().equals(nric)) {
+                    return elderly;
+                }
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
+    /**
+     * Retrieves one of the volunteer with the given nric from the list.
+     * The volunteer with such a nric must exist in the list.
+     *
+     * @param nric Nric of the volunteer.
+     * @return volunteer with that name.
+     */
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        for (Person person : this) {
+            if (person instanceof Volunteer) {
+                Volunteer volunteer = (Volunteer) person;
+                if (volunteer.getNric().equals(nric)) {
+                    return volunteer;
+                }
+            }
+        }
+        throw new PersonNotFoundException();
     }
 
     public void setPersons(UniquePersonList<T> replacement) {

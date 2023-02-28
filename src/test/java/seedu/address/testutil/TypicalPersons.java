@@ -60,7 +60,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code FriendlyLink} with all the typical persons.
      */
     public static FriendlyLink getTypicalFriendlyLink() {
         FriendlyLink ab = new FriendlyLink();

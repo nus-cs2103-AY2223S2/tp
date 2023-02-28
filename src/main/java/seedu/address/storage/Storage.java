@@ -35,6 +35,6 @@ public interface Storage extends FriendlyLinkStorage, VolunteerStorage, ElderlyS
     Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException;
 
     @Override
-    void saveFriendlyLink(ReadOnlyFriendlyLink addressBook) throws IOException;
+    void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink) throws IOException;
 
 }

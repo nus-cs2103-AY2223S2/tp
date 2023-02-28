@@ -47,7 +47,7 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage friendLinkStorage =
+        JsonFriendlyLinkStorage friendlyLinkStorage =
                 new JsonFriendlyLinkStorage(temporaryFolder.resolve("friendlylink.json"));
         JsonElderlyStorage elderlyStorage =
                 new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
@@ -56,8 +56,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage =
-                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
-
+                new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -81,8 +80,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonFriendlyLinkStorage friendLinkStorage =
+        // Setup LogicManager with JsonFriendlyLinkIoExceptionThrowingStub
+        JsonFriendlyLinkStorage friendlyLinkStorage =
                 new JsonFriendlyLinkIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonElderlyStorage elderlyStorage =
                 new JsonElderlyStorage(temporaryFolder.resolve("ioExceptionElderly.json"));
@@ -91,7 +90,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage =
-                new StorageManager(friendLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+                new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -171,7 +170,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveFriendlyLink(ReadOnlyFriendlyLink addressBook, Path filePath) throws IOException {
+        public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

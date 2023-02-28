@@ -9,6 +9,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * The API of the Model component.
@@ -38,47 +39,65 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' friendly link database file path.
+     * Returns the user prefs' FriendlyLink database file path.
      */
     Path getFriendlyLinkFilePath();
 
     /**
-     * Sets the user prefs' friendly link database file path.
+     * Sets the user prefs' FriendlyLink database file path.
      */
     void setFriendlyLinkFilePath(Path friendlyLinkFilePath);
 
     /**
-     * Replaces friendly link database data with the data in {@code friendlyLink}.
+     * Replaces FriendlyLink database data with the data in {@code friendlyLink}.
      */
     void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink);
 
-    /** Returns the AddressBook */
+    /** Returns the FriendlyLink */
     ReadOnlyFriendlyLink getFriendlyLink();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the friendly link database.
+     * Returns true if a person with the same identity as {@code person} exists in the FriendlyLink database.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the friendly link database.
+     * The person must exist in the FriendlyLink database.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the friendly link database.
+     * {@code person} must not already exist in the FriendlyLink database.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the friendly link database.
+     * {@code target} must exist in the FriendlyLink database.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the
-     * friendly link database.
+     * FriendlyLink database.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Retrieves the elderly with the given Nric.
+     * Elderly of that Nric must exist in the FriendlyLink database.
+     *
+     * @param nric Nric of the elderly.
+     * @return Elderly with that Nric.
+     */
+    Elderly getElderly(Nric nric);
+
+    /**
+     * Retrieves the volunteer with the given Nric.
+     * Volunteer of that Nric must exist in the FriendlyLink database.
+     *
+     * @param nric Nric of the volunteer.
+     * @return Volunteer with that Nric.
+     */
+    Volunteer getVolunteer(Nric nric);
 
     /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
