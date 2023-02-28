@@ -263,7 +263,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Helps users to keep track of personal and friends timetable 
+* Students find it hard to find free time slot within their group of friends in NUS as they have to compare their 
+timetables one by one. Where Got Time then helps students to easily find free time slots within their friend groups
+* Students can keep track of group meetings across all modules
+
 
 
 ### User stories
