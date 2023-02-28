@@ -35,10 +35,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/people/randall.png" width="200px">
 
 [[github](http://github.com/randallnhr)] 
-[[portfolio](team/randall.md)]
+[[portfolio](team/randallnhr.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Logic
 
 ### Nicholas Lee Jun Yi
 
