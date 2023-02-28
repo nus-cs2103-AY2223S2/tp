@@ -32,7 +32,7 @@ class JsonSerializableFriendlyLink {
      */
     @JsonCreator
     public JsonSerializableFriendlyLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("pairs") List<JsonAdaptedPair> pairs) {
+            @JsonProperty("pairs") List<JsonAdaptedPair> pairs) {
         this.persons.addAll(persons);
         this.pairs.addAll(pairs);
     }

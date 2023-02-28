@@ -26,7 +26,7 @@ class JsonAdaptedPair {
      */
     @JsonCreator
     public JsonAdaptedPair(@JsonProperty("elderlyNric") String elderlyNric,
-                           @JsonProperty("volunteerNric") String volunteerNric) {
+            @JsonProperty("volunteerNric") String volunteerNric) {
         this.elderlyNric = elderlyNric;
         this.volunteerNric = volunteerNric;
     }
