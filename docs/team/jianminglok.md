@@ -5,7 +5,7 @@ title: Lok Jian Ming's Project Portfolio Page
 
 ### Project: InternEase
 
-InternEase is a powerful and innovative desktop app designed to streamline the internship application process for Computer Science undergraduates. The user interacts with it through an optimized combination of Command Line Interface (CLI) and Graphical User Interface (GUI) created with JavaFX. It is written in Java.
+InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. With its optimized **combination of a Command Line Interface (CLI) and Graphical User Interface (GUI)**, InternEase offers users the best of both worlds - the speed and efficiency of a CLI for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. InternEase is a good choice for you who wants to concentrate on your internship preparation by helping to manage your internship applications' data.
 
 Given below are my contributions to the project.
 
@@ -22,9 +22,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * To be added soon
+        * Added documentation for the features `add_contact` and `edit_status` in [#45](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/45).
     * Developer Guide:
-        * To be added soon
+        * To be added soon 
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): To be added soon
