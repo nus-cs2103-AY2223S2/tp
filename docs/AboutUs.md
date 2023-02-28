@@ -28,34 +28,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Logic & Deliverables/Deadline
 
-### Jane Doe
+### Jyothika
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cjyothika.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jmestxr.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/jmestxr.md)]
+[[github](http://github.com/cjyothika)] [[portfolio](team/cjyothika.md)]
 
 * Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jmestxr.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing and CI
 
 ### James Tan
 
