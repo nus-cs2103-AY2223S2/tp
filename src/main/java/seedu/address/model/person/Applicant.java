@@ -26,8 +26,8 @@ public class Applicant extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public Applicant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
+        super(name, phone, email, address, tags, remark);
         this.status = Status.APPLIED;
     }
 }
