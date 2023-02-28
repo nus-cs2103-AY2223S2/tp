@@ -23,11 +23,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/791654880285_.pic_hd.jpg)" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/WeideTeo)]
+[[portfolio]([team/johndoe.md](https://www.linkedin.com/in/weideteo/)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Functions
 
 ### Wang ShaoFeng
 
