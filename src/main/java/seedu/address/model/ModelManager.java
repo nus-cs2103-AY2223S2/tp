@@ -133,7 +133,7 @@ public class ModelManager implements Model {
     @Override
     public void addElderly(Elderly person) {
         friendlyLink.addElderly(person);
-        updateFilteredElderlyList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLYS);
     }
 
     @Override
@@ -218,9 +218,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredElderlyList(Predicate<Person> predicate) {
+    public void updateFilteredElderlyList(Predicate<Elderly> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredElderly.setPredicate(predicate);
     }
 
     //=========== Filtered Volunteer List Accessors =============================================================
