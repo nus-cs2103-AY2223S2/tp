@@ -36,22 +36,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Joshua Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joshua-tyh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/joshua-tyh)]
+[[portfolio](team/joshua-tyh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops + UI
