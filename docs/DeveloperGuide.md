@@ -3,13 +3,13 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Computer Science undergraduate
+* has a need to manage a number of internship applications
 * prefer desktop apps over other types
-* can type fast
+* able to type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage internship applications faster and more efficiently than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -274,16 +275,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- |--------------------------------------------|--------------------------------|------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App     |
 | `* * *`  | user                                       | add a new person               |                                                            |
+| `* * *`  | internship applicant | note down the contact details of the company I am applying to                 | conveninently contact the company for queries or setting up interviews |
 | `* * *`  | internship applicant                       | delete my submission           | remove wrong entries or application that I no longer need  |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | internship applicant                       | delete all my applications     | start fresh                 |
+| `* * *` | internship applicant | note down the status of my application                                        | identify which stage of the application I am in |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                     |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InternEase` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InternEase` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC02 Add contact details of a company to an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index. 
+4.  InternEase adds the contact details of the company to the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
 
 **Use case: UC05 Delete an internship application entry**
 
@@ -299,11 +333,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
     * 2a1. InternEase shows an alert message that there is no internship application in the list.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
+* 3a. The given index is invalid.
     * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
   
     * 3a2. User enters new internship application index.
@@ -329,6 +363,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: UC08 Edit the status of an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to edit the application status of a specific internship application in the list by specifying its respective index.
+4.  InternEase updates the application status of the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -339,6 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **CLI**: Command line interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
@@ -357,8 +424,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch of InternEase
 
-   1. Download the jar file and copy into an empty folder
-
+    1. Download the jar file and copy into an empty folder
    2. Launch the application by:
       1. Double-click the jar file.<br>
          or
@@ -367,9 +433,9 @@ testers are expected to do more *exploratory* testing.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 3. Shutdown of InternEase
@@ -384,16 +450,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -401,6 +467,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
