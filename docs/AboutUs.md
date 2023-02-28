@@ -42,13 +42,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Lee Jun Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/people/nicleejy.jpg" width="200px">
 
 [[github](http://github.com/nicleejy)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nicleejy.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: UI
 
 ### Isaac Chai Han Jie
 
