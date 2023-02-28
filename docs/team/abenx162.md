@@ -14,9 +14,9 @@ ExecutivePro (EP) is a desktop app for Human Resource managers to manage their e
 * **Project management**: [Coming Soon]
 
 * **Enhancements to existing features**: [Coming Soon]
-    
+
 * **Documentation**: [Coming Soon]
-    
+
 * **Community**: [Coming Soon]
-    
+
 * **Tools**: [Coming Soon]

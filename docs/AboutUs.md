@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Develop ExecutivePro system
 
-### Lim Yan Ling 
+### Lim Yan Ling
 
 <img src="images/yanling.png" width="200px">
 
@@ -30,22 +30,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Develop ExecutivePro system
 
-### Johnny Doe
+### Guo Yulong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gyulong1.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gyulong1)] [[portfolio](team/gyulong1.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Develop ExecutivePro system
 
 ### Ang Ben Xuan
 
 <img src="images/abenx162.png" width="200px">
 
+[[github](https://github.com/johndoe)]
+[[portfolio](team/gyulong1.md)]
+
 [[github](https://github.com/abenx162)]
 
 [[portfolio](team/abenx162.md)]
+
 
 * Role: Developer
 * Responsibilities: Develop ExecutivePro
@@ -55,7 +59,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gyulong1.md)]
 
 * Role: Developer
 * Responsibilities: UI
