@@ -72,9 +72,11 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Displays a comprehensive window detailing the outline of executable commands by user. 
 
-![help message](images/helpMessage.png)
+A ***TreeView*** on the left window lists the hierarchical ordering of commands, with the description of the command on the right in a ***TextArea***.
+
+![help interface pic](https://user-images.githubusercontent.com/99934242/221747645-0bbdf6c7-91f3-4adc-b4b7-b6c70c7de540.jpg)
 
 Format: `help`
 
