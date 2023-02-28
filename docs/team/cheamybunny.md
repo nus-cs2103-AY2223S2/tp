@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dangabit's Project Portfolio Page
+title: Cheamybunny's Project Portfolio Page
 ---
 
 ### Project: ModTrek
@@ -10,18 +10,18 @@ The app is provides a convenient platform for students to easily access and upda
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Feature**: to be updated
 
 * **Code contributed**: [RepoSense link]()
 
-* **Project management**:
+* **Project management**: to be updated
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: to be updated
 
 * **Documentation**:
-  * User Guide:
-  * Developer Guide:
+    * User Guide:
+    * Developer Guide:
 
-* **Community**:
+* **Community**: to be updated
 
-* **Tools**:
+* **Tools**: to be updated
