@@ -20,7 +20,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Student#isSamePerson(Student)
+ * @see Student#isSameStudent(Student)
  */
 public class UniqueStudentList implements Iterable<Student> {
 
@@ -33,7 +33,7 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameStudent);
     }
 
     /**
@@ -49,23 +49,23 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the person {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedStudent} must not be the same as another existing person in the list.
      */
-    public void setPerson(Student target, Student editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new StudentNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
             throw new DuplicateStudentException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedStudent);
     }
 
     /**
@@ -79,22 +79,22 @@ public class UniqueStudentList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniqueStudentList replacement) {
+    public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setStudents(List<Student> students) {
+        requireAllNonNull(students);
+        if (!studentsAreUnique(students)) {
             throw new DuplicateStudentException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(students);
     }
 
     /**
@@ -122,12 +122,12 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code students} contains only unique students.
      */
-    private boolean personsAreUnique(List<Student> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean studentsAreUnique(List<Student> students) {
+        for (int i = 0; i < students.size() - 1; i++) {
+            for (int j = i + 1; j < students.size(); j++) {
+                if (students.get(i).isSameStudent(students.get(j))) {
                     return false;
                 }
             }

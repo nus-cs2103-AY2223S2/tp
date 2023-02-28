@@ -1,11 +1,16 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.Homework;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -16,10 +21,15 @@ public class StudentTasksPage extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(StudentTasksPage.class);
 
     private static final String FXML = "StudentTasksPage.fxml";
-    private Name studentName;
+    private final Name studentName;
 
     @FXML
     private Label name;
+    @FXML
+    private Label listName;
+
+    @FXML
+    private ListView<String> homeworkList;
 
     /**
      * Creates a {@code StudentTasksPage} with the given {@code Student}.
@@ -29,6 +39,17 @@ public class StudentTasksPage extends UiPart<Stage> {
         studentName = student.getName();
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
+        listName.setText("Student Tasks List: ");
+
+        ObservableList<String> homeworkItems = FXCollections.observableArrayList();
+        List<Homework> studentHomeworkList = student.getHomeworkList();
+        for (int i = 0; i < studentHomeworkList.size(); i++) {
+            Homework homework = studentHomeworkList.get(i);
+            String homeworkString = String.format("%d. %s", i + 1, homework.toString());
+            homeworkItems.add(homeworkString);
+        }
+
+        homeworkList.setItems(homeworkItems);
     }
 
     /**
