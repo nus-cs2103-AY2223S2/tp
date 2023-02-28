@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Douglch's Project Portfolio Page
 ---
 
 # Mycelium - CS2103T Team Project
