@@ -2,17 +2,17 @@
 
 ![Ui](docs/images/Ui.png)
 
-# 🧑‍💻 Codoc
+# 🧑‍💻 CoDoc
 
 CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
 
 ## 🚀 Installation
 To install CoDoc, follow these steps:
 
-1. Ensure that you have downloaded the latest version of Codoc under Releases in GitHub.
+1. Ensure that you have downloaded the latest version of CoDoc under Releases in GitHub.
 2. Copy the jar file into an empty folder.
 3. Open a command window in that folder.
-4. Run the command java -jar Codoc-{version}.jar e.g., java -jar Codoc-v1.2.jar (i.e., run the command in the same folder as the jar file).
+4. Run the command java -jar CoDoc-{version}.jar e.g., java -jar CoDoc-v1.2.jar (i.e., run the command in the same folder as the jar file).
 
 ## 🕹️ Usage
 Use the available commands to manage your contacts and connect with students in SoC.
@@ -39,7 +39,7 @@ Help | `help`
 - Parameters can be in any order.<br />e.g. if the command specifies `n/NAME y/YEAR c/COURSE`, `y/YEAR c/COURSE n/NAME` is also acceptable.
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br />e.g. if you specify `c/com eng c/bza`, only `c/com eng` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `list`, `clear`, `help` and `exit`) will be ignored.<br />e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-- 💾 Codoc data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+- 💾 CoDoc data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 For more detailed usage instructions, check out our [User Guide](https://ay2223s2-cs2103t-f12-2.github.io/tp/UserGuide.html).
 
