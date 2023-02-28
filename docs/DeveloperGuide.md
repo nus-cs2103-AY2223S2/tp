@@ -266,13 +266,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * has to manage different projects
 * needs a way view their friend's free time
 * wants to organise their contacts into groups
-* needs a method which is able to compile every group member's free time slots
+* needs a method which is able to compile every group member's FTS
 
 **Value proposition**: 
 
 * Helps users to keep track of personal and friends timetable 
-* Students find it hard to find free time slot within their group of friends in NUS as they have to compare their 
-timetables one by one. Where Got Time then helps students to easily find free time slots within their friend groups
+* Students find it hard to find FTS within their group of friends in NUS as they have to compare their 
+timetables one by one. WGT then helps students to easily find FTS within their friend groups
 * Students can keep track of group meetings across all modules
 
 
@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
 | `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
 | `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
-| `* * *`  | student  | find a free time slot within my group of friends               | know when my friends are free                      |
+| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
 | `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better | 
 | `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
 | `* *`    | user | be able to categorize my contact lists                         | easily find someone | 
@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
@@ -323,7 +323,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use Case: UC02 - Add an event**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to add an event to a specific person in the list
+4. WGT adds event to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+    
+    Use case ends.
+
+* 3a. The given index is invalid
+
+  * 3a1. WGT shows an error message.
+
+    Use case resumes at step 2.
+
+**Use Case: UC03 - Find FTS**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to find FTS with a specific person in the list
+4. WGT lists the common FTS
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index is invalid
+
+    * 3a1. WGT shows an error message.
+
+      Use case resumes at step 2.
+
+**Use Case: UC04 - Make Group**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User creates group with several specific people in the list
+    Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. One of the given indices is invalid
+
+    * 3a1. WGT shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Group name given is not unique
+
+    * 3b1.  WGT shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
