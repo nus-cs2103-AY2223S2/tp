@@ -77,7 +77,8 @@ Format: `help`
 
 Adds a task to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/TASKNAME d/DESCRIPTION t/TAGS [t/TAG]…​`
+Alternative Format to Add Multiple Tasks With the Same Descriptions and Tags:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION t/TAGS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of tags (including 0)
