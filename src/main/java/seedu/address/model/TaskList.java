@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-import seedu.address.model.person.UniquePersonList;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -85,5 +85,29 @@ public class TaskList implements ReadOnlyTaskList {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+    }
+
+    //// util methods
+
+    @Override
+    public String toString() {
+        return tasks.asUnmodifiableObservableList().size() + " tasks";
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && tasks.equals(((TaskList) other).tasks));
+    }
+
+    @Override
+    public int hashCode() {
+        return tasks.hashCode();
     }
 }

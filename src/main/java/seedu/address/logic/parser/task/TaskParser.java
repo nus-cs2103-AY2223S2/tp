@@ -16,9 +16,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class TaskParser {
 
     /**
-     * Used for separation of subcommand word and args.
+     * Used for separation of task command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<subCommandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<taskCommandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into {@code Task} command for execution.
@@ -33,9 +33,9 @@ public class TaskParser {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
         }
 
-        final String subCommandWord = matcher.group("taskCommandWord");
+        final String taskCommandWord = matcher.group("taskCommandWord");
         final String arguments = matcher.group("arguments");
-        switch (subCommandWord) {
+        switch (taskCommandWord) {
         case TaskAddCommand.TASK_COMMAND_WORD:
             return new TaskAddCommandParser().parse(arguments);
 

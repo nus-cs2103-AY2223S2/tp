@@ -45,6 +45,10 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    Path getTaskListFilePath();
+
+    void setTaskListFilePath(Path TaskListFilePath);
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -86,6 +90,11 @@ public interface Model {
      */
     void updateFilteredFishList(Predicate<Fish> predicate);
 
+    //=========== TaskList =============================================================
+    void setTaskList(ReadOnlyTaskList TaskList);
+
+    ReadOnlyTaskList getTaskList();
+
     /**
      * Returns true if a Task with the same identity as {@code Task} exists in Fish Ahoy!.
      */
@@ -95,7 +104,7 @@ public interface Model {
      * Adds the given Task.
      * {@code Task} must not already exist in Fish Ahoy!.
      */
-    boolean addTask(Task task);
+    void addTask(Task task);
 
     /**
      * Deletes the given Task.
@@ -103,6 +112,10 @@ public interface Model {
      */
     void deleteTask(Task task);
 
+    void setTask(Task target, Task editedTask);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }
