@@ -22,7 +22,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
 4. Start the app by:
-    - Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the application.<br>
+    - Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
       or
     - Double-click on the downloaded `InternEase.jar` file.<br>
    > **Note**<br>
@@ -85,8 +85,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+`delete 2` Deletes the 2nd internship application in the list of applications.
 
 ### Clearing all entries : `clear`
 
