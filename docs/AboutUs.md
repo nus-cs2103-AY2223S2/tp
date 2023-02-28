@@ -11,14 +11,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shirshajit Sen Gupta
 
-<img src="images/people/shirsho.jpg" width="200px">
+<img src="images/people/shirsho-12.png" width="200px">
 
 [[homepage](https://shirsho-12.github.io)]
 [[github](https://github.com/shirsho-12)]
 [[portfolio](team/gitsac.md)]
 
-* Role: 
-* Responsibilities:
+* Role: Manage the repository, implement features, perform testing
+* Responsibilities: Project Management, Feature Implementation, Test Management
 
 ### Shi Wen Hong
 
@@ -56,5 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/gitsac)]
 [[portfolio](team/gitsac.md)]
+
 * Role: Deliverables
 * Responsibilities: Deliver deliverables
+
