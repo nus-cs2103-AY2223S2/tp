@@ -32,13 +32,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Randall Ng Hong Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/people/randall.png" width="200px">
 
 [[github](http://github.com/randallnhr)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/randallnhr.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Logic 
 
 ### Nicholas Lee Jun Yi
 
