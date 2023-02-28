@@ -253,33 +253,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product scope 🔍️
 
-**Target user profile**:
+**Target user profile** 🧑:
 
+There is no platform for students of Computing to easily identify people of similar interest and skills to aid them in
+their study and career. The product aims to help students organize and easily identify potential study/project/career
+partners that they have encountered over the course of their study and provide necessary contact information for
+networking opportunities.
+
+Following are characteristics of people who can benefit from our product:
+
+* has difficulties tracking peers met over the course of study
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* wants to find project partners of similar background
+* prefers a full desktop application over other data management
+* able to type fast
+* comfortable with CLI (command-line interface)
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition** 🔥:
+
+CoDoc is not only able to help users manage large contact database fast through CLI, it is also able to display
+relevant contact information through a comprehensive UI. Furthermore, users can utilize the powerful filtering system
+to effectively sort/filter contacts to easily identify people of interest, such as study or project partners.
 
 
-### User stories
+### User stories 📝
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                                   | I want to …​                                         | So that I can…​                                                               |
+|---------|---------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *` | user                                                                      | add/remove contacts of peers                         | save/manage them                                                              |
+| `* * *` | user                                                                      | edit the details of the contacts                     | update my contacts to be accurate and relevant                                |
+| `* * `  | student who is interested in joining various coding or programming events | search contacts by skill sets                        | identify potential team members for projects                                  |
+| `* * *` | user                                                                      | find a person by name                                | locate a particular person without scrolling the entire list of contacts      |
+| `*`     | student                                                                   | find people who have taken a specific module         | I can ask for help related to the module such as upcoming topics to study for |
+| `*`     | student                                                                   | find people who are currently taking the same module | work together (discuss questions, find project members, teach each other)     |
 
 *{More to be added}*
+
 
 ### Use cases
 
