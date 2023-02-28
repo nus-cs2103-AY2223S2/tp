@@ -257,63 +257,129 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of students from different classes
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage their students’ particulars, grades and class attendance, in one centralised platform.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                                                                          | So that I can…​                                                                          |
+|----------|----------------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | user           | add new students with their particulars                                               | create a new profile for a student                                                                |
+| `* * *`  | user           | remove students from my class                                                         | update my class list if anyone needs to be removed                                                |
+| `* * *`  | user           | list out all students in a particular class                                           | retrieve a list with all of my students’ names and their particulars                              |
+| `* * *`  | user           | list all students being taught by me in the semester                                  | memorize my students' name                                                                        |
+| `* * *`  | user           | view personal information for a particular student                                    | easily locate particulars for a single student                                                    |
+| `* * *`  | user           | edit students' information easily                                                     | update the new information easily for viewing                                                     |
+| `* * *`  | user           | filter students based on data such as results or class                                | find and compare student data                                                                     |
+| `* *`    | user           | remove all students from a class                                                      | save time and don’t have to delete them one by one                                                |
+| `* *`    | user           | leave a note under a student's profile                                                | keep track of additional information of students                                                  |
+| `* *`    | returning user | familiarise myself with the app‘s UI again with a quick refresher                     | use the app again without needing to re-learn the whole UI                                        |
+| `* *`    | forgetful user | see photos of the student associated with their name                                  | remember their names better and refer to the correct student during class                         |
+| `* *`    | user           | be able to leave a note under a student's profile                                     | keep track of additional information of students                                                  |
+| `* *`    | user           | have a list of all emails of my students from the same class                          | contact my students from that class                                                               |
+| `* *`    | user           | Group and view certain students                                                       | keep track of their grades for group project                                                      |
+| `* *`    | new user       | see the app populated with sample data                                                | get a sense how the app work when it is in use                                                    |
+| `* *`    | new user       | learn more about the available features through tooltips                              | gain proficiency at using the program                                                             |
+| `*`      | user           | toggle the app between light and dark mode                                            | change the application environment to suit the current light settings for less strain on the eyes |
+| `*`      | user           | have a chart / graph of the assessments grades for every student                      | view students that may require more help                                                          |
+| `*`      | user           | keep track of class materials such as slides                                          | share these materials with my students                                                            |
+| `*`      | user           | save my most used commands                                                            | save time and don’t have to type them out again                                                   |
+| `*`      | user           | see notifications/alert of upcoming events                                            | be reminded of assignments that are due soon                                                      |
+| `*`      | expert user    | see a graph with the students’ performances from this semester and previous semesters | compare the overall performance of my students from this semester and last semester               |
+| `*`      | expert user    | have an export function that allows me to export data from the app to an excel sheet  | easily transfer student data from the app to excel sheet if my higher ups require it              |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CLIpboard` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Edit a student's information**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  CLIpboard shows a list of students
+3.  User requests to edit a specific student in the list
+4.  CLIpboard updates the particulars of the student
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The student does not exist in the list
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CLipboard shows an error message.
+      
+      Use case resumes at step 2.
+
+**Use case: Delete a student**
+
+**MSS**
+
+1.  User requests to list students
+2.  CLIpboard shows a list of students
+3.  User requests to delete a specific student in the list
+4.  CLIpboard deletes the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index is invalid
+
+    * 3a1. CLIpboard shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Leave a note under a student's profile**
+
+**MSS**
+
+1.  User requests to list students
+2.  CLIpboard shows a list of students
+3.  User requests to add a note under a specific student in the list
+4.  CLIpboard updates the particulars of the student to include the note
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The student does not exist in the list
+
+    * 3a1. CLipboard shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -321,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Personal information**: Student particulars including `name`, `student id`, `email`, `class`, and can include additional notes.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -353,15 +419,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
