@@ -1,6 +1,6 @@
 package arb.model;
 
-import arb.model.person.Person;
+import arb.model.client.Client;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the clients list.
+     * This list will not contain any duplicate clients.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Client> getClientList();
 
 }

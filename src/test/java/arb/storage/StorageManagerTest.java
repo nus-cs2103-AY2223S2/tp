@@ -1,6 +1,6 @@
 package arb.storage;
 
-import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static arb.testutil.TypicalClients.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

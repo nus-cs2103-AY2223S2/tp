@@ -2,7 +2,7 @@ package arb.logic.commands.client;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static arb.testutil.TypicalClients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
-import arb.model.person.Person;
-import arb.testutil.PersonBuilder;
+import arb.model.client.Client;
+import arb.testutil.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddClientCommand}.
@@ -26,20 +26,20 @@ public class AddClientCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newClient_success() {
+        Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddClientCommand(validPerson), model,
-                String.format(AddClientCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddClientCommand(validClient), model,
+                String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddClientCommand(personInList), model, AddClientCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateClient_throwsCommandException() {
+        Client clientInList = model.getAddressBook().getClientList().get(0);
+        assertCommandFailure(new AddClientCommand(clientInList), model, AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
 }

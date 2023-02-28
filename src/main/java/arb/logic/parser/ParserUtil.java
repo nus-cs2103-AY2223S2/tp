@@ -9,10 +9,10 @@ import java.util.Set;
 import arb.commons.core.index.Index;
 import arb.commons.util.StringUtil;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.person.Address;
-import arb.model.person.Email;
-import arb.model.person.Name;
-import arb.model.person.Phone;
+import arb.model.client.Address;
+import arb.model.client.Email;
+import arb.model.client.Name;
+import arb.model.client.Phone;
 import arb.model.tag.Tag;
 
 /**

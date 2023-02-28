@@ -13,7 +13,7 @@ import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
-import arb.model.person.Person;
+import arb.model.client.Client;
 import arb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
     }
 
     @Override

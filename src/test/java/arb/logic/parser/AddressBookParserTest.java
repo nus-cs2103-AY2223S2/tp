@@ -3,7 +3,7 @@ package arb.logic.parser;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static arb.testutil.Assert.assertThrows;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,15 +19,15 @@ import arb.logic.commands.client.AddClientCommand;
 import arb.logic.commands.client.ClearClientCommand;
 import arb.logic.commands.client.DeleteClientCommand;
 import arb.logic.commands.client.EditClientCommand;
-import arb.logic.commands.client.EditClientCommand.EditPersonDescriptor;
+import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.person.NameContainsKeywordsPredicate;
-import arb.model.person.Person;
-import arb.testutil.EditPersonDescriptorBuilder;
-import arb.testutil.PersonBuilder;
-import arb.testutil.PersonUtil;
+import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.Client;
+import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.ClientBuilder;
+import arb.testutil.ClientUtil;
 
 public class AddressBookParserTest {
 
@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddClientCommand command = (AddClientCommand) parser.parseCommand(PersonUtil.getAddClientCommand(person));
-        assertEquals(new AddClientCommand(person), command);
+        Client client = new ClientBuilder().build();
+        AddClientCommand command = (AddClientCommand) parser.parseCommand(ClientUtil.getAddClientCommand(client));
+        assertEquals(new AddClientCommand(client), command);
     }
 
     @Test
@@ -49,17 +49,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
-                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteClientCommand(INDEX_FIRST_PERSON), command);
+                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new DeleteClientCommand(INDEX_FIRST_CLIENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Client client = new ClientBuilder().build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditClientCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test

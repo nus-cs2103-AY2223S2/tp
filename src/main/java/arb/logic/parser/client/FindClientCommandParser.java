@@ -7,7 +7,7 @@ import java.util.Arrays;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.parser.Parser;
 import arb.logic.parser.exceptions.ParseException;
-import arb.model.person.NameContainsKeywordsPredicate;
+import arb.model.client.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
