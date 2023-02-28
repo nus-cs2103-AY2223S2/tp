@@ -7,15 +7,15 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### John Doe
+### Chen Xinyang (Xylus)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xyluschen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/xyluschen)]
+[[portfolio](team/xyluschen.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Code Quality
 
 ### Tan Hui Xuan
 
@@ -27,24 +27,25 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Deliverables and Scheduling
 
-### Johnny Doe
+### Cai Xinjie Noah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/noahxinjie.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/noahxinjie)]
+[[portfolio](team/noahxinjie.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
+
+### Huang Zhizhou
+
+<img src="images/huangzz125.png" width="200px">
+
+[[github](http://github.com/huangzz125)]
+[[portfolio](team/huangzz125.md)]
+
+* Role: Developer
+* Responsibilities: Code Integration
 
 ### James Doe
 
