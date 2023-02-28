@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of applicants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
 
 
 ### User stories
@@ -271,28 +271,50 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| ------ | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | Hiring Manager | list out all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
+| `* * *` | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
+| `* * *` | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
+| `* * *` | Hiring Manager | add applicants into HMHero | I can quickly add the user to the tracking system |
+| `* * *` | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
+| `* * *` | Busy Hiring Manager | search for applicants  | I can view details of specific applicants |
+| `* * ` | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
+| `* * ` | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
+| `* `  | Clumsy Hiring Manager | get a confirmation message when deleting an applicant | prevent accidental deletions of applicants |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Add a applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a specific applicant in the list
+2.  HMHero adds the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given details is insufficient.
+
+    * 2a1. HMHero shows an error message.
+
+      Use case ends.
+
+
+**Use case: Delete an applicant**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to delete a specific applicant in the list
+4.  HMHero deletes the applicant
 
     Use case ends.
 
@@ -302,11 +324,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given applicant is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HMHero shows an error message.
 
       Use case resumes at step 2.
+      
+      
+**Use case: Advance an applicant’s status**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to advance the status of a specific applicant in the list
+4.  HMHero advances the applicant’s status.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given applicant is invalid.
+
+    * 3a1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given applicant’s status is already “Accepted”.
+
+    * 4a1. HMHero shows an error message.
+
+      Use case ends.
+
+* 4b. The given applicant’s status is already “Rejected”.
+
+    * 4b1. HMHero shows an error message.
+
+      Use case ends.
+
+
+**Use case: Reject an applicant’s status**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  HMHero shows a list of applicants
+3.  User requests to reject a specific applicant in the list
+4.  HMHero sets the applicant’s status as “rejected”.
+
+    Use case ends.
+
+**Extensions**
+
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given applicant is invalid.
+
+    * 3a1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given applicant is already accepted
+
+    * 3b1. HMHero shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Viewing help**
+
+**MSS**
+
+1.  User requests to show for the commands available.
+2.  HMHero shows the table of commands.
+
+    Use case ends.
+
 
 *{More to be added}*
 
@@ -315,13 +415,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should respond within 1 second for any command.
+5.  Should be usable by a novice who has never used managed applicants on HMHero before.
+6.  HMHero does not prompt user for upcoming interview dates
+7.  HMHero does not sync applicants data across the team.
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Applicant status**:
+    1. Applied (default)
+    2. Shortlisted
+    3. Accepted
+    4. Rejected
+* **Application stage**: 
+    * All applicants added are at the Applied status by default. From there, hiring managers can advance their
+    application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
+![Application Stage](images/application_stage.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
