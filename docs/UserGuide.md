@@ -69,17 +69,17 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified employee from the ExecutivePro database.
 
-Format: `delete INDEX`
+Format: `delete EMPLOYEE_ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the details of the employee with the specific `EMPLOYEE_ID`.
+* The  EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
+* The EMPLOYEE_ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+`delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
+
 
 ### Exiting the program : `exit`
 
@@ -98,3 +98,28 @@ ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepr
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ExecutivePro will discard all data and start with an empty data file at the next run.
 </div>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete EMPLOYEE_ID`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list`
+**Help** | `help`
