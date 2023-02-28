@@ -1,17 +1,20 @@
-# Overview
+---
+layout: page
+title: Li Junyi's Project Portfolio Page
+---
 
-# Summary of Contributions
+### Project: Mycelium
 
-## Code Contributed
+* **New Feature**: `to be added`
 
-## Enhancements Implemented
+* **Code contributed**: `to be added`
 
-## Contributions to the UG
+* **Project management**: `to be added`
 
-## Contributions to the DG
+* **Enhancements to existing features**: `to be added`
 
-## Contributions to team-based tasks
+* **Documentation**:
+  * **Contributions to UG**: `to be added`
+  * **Contributions to DG**: `to be added`
 
-## Review/mentoring contributions
-
-## Contributions beyond the project team
+* **Community**: `to be added`
