@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/afiqzu.png" width="200px">
 
 [[github](https://github.com/afiqzu)]
-[[portfolio](team/afiq.md)]
+[[portfolio](team/afiqzu.md)]
 
 * Role: Integration
 
@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/isabelchong.png" width="200px">
 
 [[github](http://github.com/IsabelChong)]
-[[portfolio](team/isabelChong.md)]
+[[portfolio](team/isabelchong.md)]
 
 * Role: Documentation & Code Quality
 
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/swxk19.png" width="200px">
 
 [[github](http://github.com/swxk19)] 
-[[portfolio](team/kevin.md)]
+[[portfolio](team/swxk19.md)]
 
 * Role: Scheduling and Tracking
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/peaol.png" width="200px">
 
 [[github](http://github.com/peaol)]
-[[portfolio](team/pearl.md)]
+[[portfolio](team/peaol.md)]
 
 * Role: Testing
 
@@ -50,6 +50,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tyx021.png" width="200px">
 
 [[github](http://github.com/tyx021)]
-[[portfolio](team/yixin.md)]
+[[portfolio](team/tyx021.md)]
 
 * Role: Deliverables and deadlines
