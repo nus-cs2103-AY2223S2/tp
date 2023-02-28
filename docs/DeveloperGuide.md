@@ -256,14 +256,12 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+**Freelance Devs**
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 
 ### User stories
