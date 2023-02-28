@@ -431,6 +431,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     3. Accepted
     4. Rejected
 * **Application stage**: 
+    * All applicants added are at the Applied status by default. From there, hiring managers can advance their
+    application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 ![Application Stage](images/application_stage.png)
 
 --------------------------------------------------------------------------------------------------------------------
