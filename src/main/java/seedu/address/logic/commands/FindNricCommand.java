@@ -7,6 +7,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NricMatchesKeywordsPredicate;
 
 // The current format: find_nric S1234567A
+/**
+ * Finds and lists all (elderly) in friendlylink whose nric matches the input nric.
+ * Keyword matching is case insensitive.
+ */
 public class FindNricCommand extends Command {
     public static final String COMMAND_WORD = "find_nric";
 

@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 /**
  * Now temporarily make this Elderly, because NRIC not put in Person yet
- * Later this should actually be Predicate<Person>
+ * Later this should actually be Predicate Person
  */
 public class NricMatchesKeywordsPredicate implements Predicate<Elderly> {
     private final String keywords;
