@@ -127,6 +127,17 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
 
+### Search for an application : `find`
+Searches the list of internships applied by keyword (status, role, company)
+
+Format: `find KEYWORD`
+
+Searches for the application with the specified `KEYWORD`.
+The keyword refers to the status, role or company that the user intends to look for.
+
+Examples:
+`find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the internship tracker.
