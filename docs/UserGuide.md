@@ -8,7 +8,7 @@ and locations. It seeks to provide a highly efficient way of resource
 management for airline managers.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 -------------------------------------------------------------------------------
 
@@ -110,17 +110,17 @@ Params:
 Optional Params:
 
 - `/rank`: the rank of the pilot. Possible values:
-  - `1`: Training Captain,
-  - `2`: Captain,
-  - `3`: Senior,
-  - `4`: First Officer,
-  - `5`: Second Officer,
-  - `6`: Cadet.
+    - `1`: Training Captain,
+    - `2`: Captain,
+    - `3`: Senior,
+    - `4`: First Officer,
+    - `5`: Second Officer,
+    - `6`: Cadet.
 - `/age`: the age of the captain.
 - `/gender`: the gender of the pilot. Possible values:
-  - `male`
-  - `female`
-  - `other`
+    - `male`
+    - `female`
+    - `other`
 - `/fh`: the flight hours of the pilot.
 
 Examples:
@@ -143,9 +143,9 @@ Optional Params:
 
 - `/age`: the age of the crew
 - `/gender`: the gender of the crew. Possible values:
-  - `male`
-  - `female`
-  - `other`
+    - `male`
+    - `female`
+    - `other`
 
 ### `delete {index}`
 
@@ -160,7 +160,7 @@ delete 1
 
 Then the plane would be removed from the fleet.
 
-## Mode-specific Commands 
+## Mode-specific Commands
 
 > This part is beyond the scope of v1.2, and we will update this once we build
 > features related to this part.
@@ -178,7 +178,7 @@ Ask us questions so that we can have a FAQ.
 ## Command Summary
 
 | **Action** | **Format**                               | **Examples**    |
-| ---------- | ---------------------------------------- | --------------- |
+|------------|------------------------------------------|-----------------|
 | Add        | `add [{parameter_type} {parameter_val}]` | `add /name Bob` |
 | Delete     | `delete {index}`                         | `delete 1`      |
 | Exit       | `exit`                                   | `exit`          |
