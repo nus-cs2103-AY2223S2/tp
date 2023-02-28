@@ -57,7 +57,7 @@ public class ClientUtil {
         if (descriptor.getAppointments().isPresent()) {
             Set<Appointment> appointments = descriptor.getAppointments().get();
             if (appointments.isEmpty()) {
-                sb.append(PREFIX_APPOINTMENT);
+                sb.append(PREFIX_APPOINTMENT).append(" ");
             } else {
                 appointments.forEach(s -> sb.append(PREFIX_APPOINTMENT).append(s.appointmentTime).append(" "));
             }

@@ -29,7 +29,7 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedAppointment> appointment = new ArrayList<>();
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,14 +38,14 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("appointment") List<JsonAdaptedAppointment> appointment,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (appointment != null) {
-            this.appointment.addAll(appointment);
+        if (appointments != null) {
+            this.appointments.addAll(appointments);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -60,7 +60,7 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        appointment.addAll(source.getAppointments().stream()
+        appointments.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
@@ -75,7 +75,10 @@ class JsonAdaptedClient {
      */
     public Client toFitBookModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
-        final List<Appointment> personAppointments = new ArrayList<>();
+        final List<Appointment> clientAppointments = new ArrayList<>();
+        for (JsonAdaptedAppointment appointment : appointments) {
+            clientAppointments.add(appointment.toFitBookModelType());
+        }
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toFitBookModelType());
         }
@@ -112,9 +115,9 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Appointment> modelAppointment = new HashSet<>(personAppointments);
+        final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment, modelTags);
     }
 
 }

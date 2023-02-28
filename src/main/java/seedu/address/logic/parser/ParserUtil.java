@@ -112,7 +112,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> appointments} into a {@code Set<Appointment>}.
      */
     public static Set<Appointment> parseAppointments(Collection<String> appointments) throws ParseException {
         requireNonNull(appointments);

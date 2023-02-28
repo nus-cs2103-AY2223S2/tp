@@ -34,7 +34,7 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return "[" + appointmentTime + "]";
+        return '[' + appointmentTime + ']';
     }
 
     @Override

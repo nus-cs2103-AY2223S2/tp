@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Appointment;
 
@@ -37,7 +38,7 @@ class JsonAdaptedAppointment {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
-    public Appointment toModelType() throws IllegalValueException {
+    public Appointment toFitBookModelType() throws IllegalValueException {
         if (!Appointment.isValidAppointment(appointmentName)) {
             throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }
