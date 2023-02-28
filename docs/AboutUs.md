@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Benjamin Wee 
 
-<img src="images/benjaminwee.png" width="200px">
+<img src="images/benjamin-wee.png" width="200px">
 
-[[github](http://github.com/benjamin-wee)] [[portfolio](team/benjaminwee.md)]
+[[github](http://github.com/benjamin-wee)] [[portfolio](team/benjamin-wee.md)]
 
 * Role: Developer
 * Responsibilities: `list` feature
