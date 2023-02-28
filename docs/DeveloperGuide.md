@@ -296,8 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 
-> addtask n/Finish report
-Task added: Finish report
+> addtask n/Finish report 
+- Task added: Finish report
 
 > listtask
 1. Finish report
@@ -308,17 +308,14 @@ Task added: Finish report
 1. Finish report
 
 > deletetask 1
-Task deleted: Finish report
+- Task deleted: Finish report
 
 > listtask
 1. Send email to team
 2. Call client
 
-> quit
-
-Are you sure you want to quit? (Y/N)
-> Y
-Goodbye!
+> bye
+- Goodbye!
 
 
 In the example above, the user story is clearly defined at the top, followed by the acceptance criteria for the feature. Below that, we have a series of example usages, shown in a code editor block to provide clarity and context for how the feature would work in practice.
@@ -331,42 +328,44 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 **Use case: Assign a task to a person**
 
-**MSS**
+# Main Success Scenario (MSS)
 
-1. User requests to list persons
-2. OfficeConnect shows a list of persons
-3. User requests to list tasks
-4. OfficeConnect shows a list of tasks
-5. User requests to assign a specific task to a specific person
-6. OfficeConnect assigns the task to the person
+1. User opens OfficeConnect.
+2. System list persons
+3. User inputs one of the options.
+4. System executes the selected option.
+5. If the inputs option is to add a person or task, the system prompts the user to enter the necessary information.
+6. If the inputs option is to list persons or tasks, the system displays a list of persons or tasks.
+7. If the inputs option is to find a person or task, the system prompts the user to enter a keyword to search for and displays a list of persons or tasks that match the keyword.
+8. If the inputs option is to assign a task, the system prompts the user to select a person and a task from a list of persons and tasks, respectively, and assigns the task to the selected person.
+9. If the inputs option is to delete a person or task, the system prompts the user to select a person or task from a list of persons or tasks, respectively, and deletes the selected person or task.
+10. If the inputs option is to clear the screen, the system clears the screen.
+11. If the inputs option is to quit the application, the system saves the data and exits.
 
-    Use case ends.
+## Extensions
 
-**Extensions**
+2a. If the user inputs an invalid option, the system displays an error message and displays the main menu again.
 
-* 2a. The list is empty.
+5a. If the user enters invalid information when adding a person or task, the system displays an error message and prompts the user to re-enter the information.
 
-  Use case ends.
+6a. If there are no persons or tasks to list, the system displays a message indicating that there are no persons or tasks to list.
 
-* 3a. The list is empty.
+7a. If there are no persons or tasks that match the keyword, the system displays a message indicating that there are no persons or tasks that match the keyword.
 
-  Use case ends
+8a. If the user inputs an invalid person or task when assigning a task, the system displays an error message and prompts the user to re-select.
 
-* 3a. The given index is invalid.
+9a. If the user inputs an invalid person or task when deleting a person or task, the system displays an error message and prompts the user to re-select.
 
-    * 3a1. OfficeConnect shows an error message.
+11a. If the system is unable to save the data, the system displays an error message and exits without saving.
 
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
+1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
+2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation and modular architecture.
+3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux).
+4. Interoperability: The system shall be able to exchange data with other systems using standard formats and protocols.
+5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more than 2 hours for a new user.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
