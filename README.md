@@ -1,14 +1,115 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+## Table of contents
 
-![Ui](docs/images/Ui.png)
+1. Overview
+2. How to use this guide
+3. Getting started
+4. Feature list
+5. Command summary
+6. Trouble shooting/FAQ
+7. Additional information
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info. 
+---
+
+## Overview
+
+HMHero is a tool that helps Hiring Managers easily track the statuses of candidates' applications.
+
+In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
+
+---
+
+## How to use this Guide
+
+---
+
+## Getting started
+
+1. Ensure you have `Java 11` or above installed in your computer
+2. Download the latest `HMHero` from [here]()
+3. Copy the file to the folder you want to use as the home folder for HMHero.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hmhero.jar` command to run the application.
+5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+
+---
+
+## Features
+
+| Note                                                                                                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Words in UPPER_CASE are the parameters to be supplied by the user.<br>e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                           |
+| Items in square brackets are optional.<br>e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.                                                                                                           |
+| Items with `…​` after them can be used multiple times including zero times.<br>e.g. `[t/TAG]…​` can be used as ` `, `t/friend`, `t/friend t/family` etc.                                                                           |
+| Parameters can be in any order.<br>e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.                                                                                              |
+| If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. |
+| Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>e.g. if the command specifies `help 123`, it will be interpreted as `help`.                     |
+
+---
+
+### **Command**
+
+### 1. Viewing help: `help`
+
+- Format: `help`
+
+### 2. Adding a person: `add`
+
+- Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]`
+
+- Examples: `add n/Jack Dill p/91234567 e/jackdill@example.com a/John Street, block 123 #01-01`
+
+### 3. List applicant: `list`
+
+- Format: `list`
+
+### 4. Delete applicants: `delete`
+
+- Format: `delete n/NAME p/PHONE_NUMBER`
+
+- Examples:
+  - `delete n/Jack Dill p/PHONE_NUMBER`
+
+### 5. Advancing an applicant's status: `advance`
+
+- Applied -> Shortlisted
+- Shortlisted -> Accepted
+
+Shortlists a candidate
+
+- Format: `advance n/NAME p/PHONE_NUMBER`
+
+- Examples:
+  - `advance n/Jack Dill p/91234567`
+
+### 6. Rejecting an applicant: `reject`
+
+- Shortlisted -> Rejected
+- Applied -> Rejected
+
+Rejects a candidate or interviewee
+
+- Format: `reject n/NAME p/PHONE_NUMBER`
+
+- Examples:
+
+  - `reject n/Jack Dill p/91234567`
+
+---
+
+## Command Summary
+
+| Action  | Format, Examples                                                                                                                                                        |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Add     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]…`<br>Example: `add n/James Ho p/91234567 e/jamesho@example.com a/123, Clementi Rd, 1234665 note/Entrepreneur` |
+| Delete  | `delete n/NAME p/PHONE_NUMBER`<br>Example: `delete n/James Ho p/91234567`                                                                                               |
+| Edit    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br>Example: `edit 2 n/James Lee e/jameslee@example.com`                                           |
+| List    | `list`                                                                                                                                                                  |
+| Help    | `help`                                                                                                                                                                  |
+| Advance | `advance n/NAME p/PHONE_NUMBER`<br>Example: `advance n/James Ho p/91234567`                                                                                             |
+
+---
+
+## Trouble shooting / FAQ
+
+---
+
+## Additional information(Glossary, Product specs)
