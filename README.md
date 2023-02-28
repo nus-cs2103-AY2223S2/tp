@@ -10,6 +10,7 @@
   * to export the case list to an external database
 
 * Example commands:
-  * ...
+  * find n/<name>: finds a case by the name
+  * add p/<Postal code> n/: adds 
 
 * The project is built on an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details, named `AddressBook Level 3` (`AB3` for short).
