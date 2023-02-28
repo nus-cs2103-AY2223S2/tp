@@ -345,6 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
+
 * 1a. The client added has missing compulsory fields.
 
     * 1a1. Fitbook shows an error message for missing fields.
@@ -367,6 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
+
 * 1a. Client list is empty use case.
 
   Use case ends.
