@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/randallnhr.md)]
 
 * Role: Developer
-* Responsibilities: Logic
+* Responsibilities: Logic 
 
 ### Nicholas Lee Jun Yi
 
