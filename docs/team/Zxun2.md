@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Heyi's Project Portfolio Page
+title: Lee Zong Xun's Project Portfolio Page
 ---
 
 ### Project: FriendlyLink

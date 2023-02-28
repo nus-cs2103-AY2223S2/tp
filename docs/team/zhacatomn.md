@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Heyi's Project Portfolio Page
+title: Shaun Quek's Project Portfolio Page
 ---
 
 ### Project: FriendlyLink
