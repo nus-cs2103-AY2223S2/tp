@@ -7,13 +7,13 @@ title: Anthony's Project Portfolio Page
 
 EZ-Schedule is an application that allows for a high-level overview of all events for a particular administrator.
 <br><br>
-Examples: 
-- company manager - employee schedules 
+Examples:
+- company manager - employee schedules
 - badminton court manager - badminton court bookings
 - teacher - students
 <br>
 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 GUI interactivity may be added in the future.
 It is written in Java.
 

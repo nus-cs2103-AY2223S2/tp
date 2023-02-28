@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The event already exist.
-    
+
     * 1a1. System shows an error message.
 
       Use case ends.
