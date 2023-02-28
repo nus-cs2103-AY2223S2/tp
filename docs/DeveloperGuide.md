@@ -354,6 +354,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
+**Use case: UC06 Find an application by its field**
+
+**MSS**
+
+1.  User enters keyword of field for the application.
+2.  InternEase shows a list of application whose company name or description fulfill the matching keyword.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
 **Use case: UC07 Clear all internship application entries**
 
 **MSS**
