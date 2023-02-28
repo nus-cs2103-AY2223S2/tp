@@ -10,7 +10,7 @@ The app is provides a convenient platform for students to easily access and upda
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be updated 
+* **New Feature**: to be updated
 
 * **Code contributed**: [RepoSense link]()
 
