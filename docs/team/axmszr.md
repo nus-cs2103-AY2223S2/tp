@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **Contributions to the DG:**
   * to be added soon
 
-  
+
 * **Contributions to the team-based tasks:**
   * to be added soon
 
@@ -34,3 +34,5 @@ Given below are my contributions to the project.
 
 * **Contributions beyond the project team:**
   * to be added soon
+
+Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=axmszr)

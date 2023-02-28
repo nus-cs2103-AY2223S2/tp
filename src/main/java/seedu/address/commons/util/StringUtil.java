@@ -56,7 +56,7 @@ public class StringUtil {
 
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
-    return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
+        return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
     }
 
     public static boolean startsWithSubstringIgnoreCase(String sentence, String substring) {

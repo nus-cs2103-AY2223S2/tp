@@ -17,8 +17,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        Predicate<String> containsName = keyword -> StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword);
-        Predicate<String> containsPostal = keynum -> StringUtil.startsWithSubstringIgnoreCase(person.getPostal().value, keynum);
+        Predicate<String> containsName =
+                keyword -> StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword);
+        Predicate<String> containsPostal =
+                keynum -> StringUtil.startsWithSubstringIgnoreCase(person.getPostal().value, keynum);
         Predicate<String> containsPostalOrName = containsPostal.or(containsName);
         return keywords.stream()
                 .anyMatch(containsPostalOrName);
