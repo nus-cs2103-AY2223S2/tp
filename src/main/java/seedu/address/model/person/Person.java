@@ -123,6 +123,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Remark: ")
+                .append(getRemark());
+
         return builder.toString();
     }
 
