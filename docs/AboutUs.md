@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: `clear`, `delete` and `exit` feature
 
-### Johnny Doe
+### Benjamin Wee 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benjamin-wee.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/laihuiqi.md)]
+[[github](http://github.com/benjamin-wee)] [[portfolio](team/benjamin-wee.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: `list` feature
 
 ### Jean Doe
 
