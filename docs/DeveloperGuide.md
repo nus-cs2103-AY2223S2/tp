@@ -271,15 +271,16 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Hiring Manager | list out all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
-| `* * *`  | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
-| `* * *`  | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
-| `* * *`  | Hiring Manager | add applicants into HMHero | I can quickly add the user to the tracking system |
-| `* * *`  | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
-| `* * *`  | Busy Hiring Manager | search for applicants  | I can view details of specific applicants |
-| `* * `  | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
-| `* * `  | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
+| ------ | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | Hiring Manager | list out all existing applicants | I can have a glance of the status of the application cycle of all applicants. |
+| `* * *` | Hiring Manager | view the number of applicants in each stage | I can have a glance of the status at each application stage |
+| `* * *` | Hiring Manager | advance the application statuses of applicants | I can follow the flow of hiring process |
+| `* * *` | Hiring Manager | add applicants into HMHero | I can quickly add the user to the tracking system |
+| `* * *` | Hiring Manager | delete single applicant| I can stop tracking applicants that withdrew to not consider them further |
+| `* * *` | Busy Hiring Manager | search for applicants  | I can view details of specific applicants |
+| `* * ` | Busy Hiring Manager | view the dates of interviews for all shortlisted applicants | I can better plan my future working days |
+| `* * ` | Senior Hiring Manager | filter out repeated applications | I do not have to potentially go through applicants who have been previously considered |
+| `* `  | Clumsy Hiring Manager | get a confirmation message when deleting an applicant | prevent accidental deletions of applicants |
 
 *{More to be added}*
 
