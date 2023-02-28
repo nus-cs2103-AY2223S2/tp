@@ -144,11 +144,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all persons or tags : `clear [t/TAG]`
 
-Clears all entries from the address book.
+Clears all persons' entries from the SOCket based on the given tags; if tag is not included, clears all persons in SOCket.
 
-Format: `clear`
+Format: `clear [t/TAG]...`
+
+* Removes all the persons related to the specific tags.
+* Tag included is **case-insensitive**.
+  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
+* The tags **must be an existing tag** in SOCket.
+* If tags are provided, only remove existing tags.
+  * e.g. `clear t/cs2103t t/cs2103` will only remove the persons associated with `t/cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
+* If no tag is provided, remove all the persons in SOCket.
+* A confirmation prompt will be asked before removal of persons.
+
+
+### Sorting persons (by other fields) : `sort`
+
+Sorts and displays the persons according to the provided category. Sorts the list of persons by name if no argument is provided.
+
+Format: `sort [CATEGORY]`
+* If no category is provided, the persons are sorted by their names alphanumerically
+* If a category is provided, the persons are sorted by that category alphanumerically
+  * e.g. sort address will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
+
 
 ### Exiting the program : `exit`
 
@@ -189,6 +209,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
