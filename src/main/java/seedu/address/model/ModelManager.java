@@ -15,6 +15,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Represents the in-memory model of the friendly link data.
@@ -26,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Elderly> filteredElderly;
-    private final FilteredList<Person> filteredVolunteers;
+    private final FilteredList<Volunteer> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
 
     /**
@@ -167,6 +168,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Volunteer getVolunteerByNric(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getVolunteerByNric(nric);
+    }
+
+    @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
         return friendlyLink.hasPair(pair);
@@ -230,7 +237,7 @@ public class ModelManager implements Model {
      * {@code versionedFriendlyLink}
      */
     @Override
-    public ObservableList<Person> getFilteredVolunteerList() {
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
         return filteredVolunteers;
     }
 

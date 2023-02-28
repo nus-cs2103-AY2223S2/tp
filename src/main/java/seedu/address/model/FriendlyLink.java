@@ -10,6 +10,8 @@ import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Wraps all data at the friendly-link level
@@ -19,7 +21,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     // TODO: update generic to volunteer and remove person list
     private final UniquePersonList<Person> persons;
     private final UniquePersonList<Elderly> elderly;
-    private final UniquePersonList<Person> volunteers;
+    private final UniquePersonList<Volunteer> volunteers;
     private final UniquePairList pairs;
 
     /*
@@ -69,8 +71,21 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Replaces the contents of the volunteer list with {@code volunteers}.
      * {@code volunteers} must not contain duplicate volunteers.
      */
-    public void setVolunteers(List<Person> volunteers) {
+    public void setVolunteers(List<Volunteer> volunteers) {
         this.volunteers.setPersons(volunteers);
+    }
+
+    /**
+     * Returns the volunteer with the given NRIC, or null otherwise.
+     * @param nric The given NRIC.
+     * @return A Volunteer with the matching NRIC< or null if no volunteer has that NRIC.
+     */
+    public Volunteer getVolunteerByNric(Nric nric) {
+        List<Volunteer> filteredVolunteers = this.volunteers.filter(volunteer -> volunteer.getNric().equals(nric));
+        if (filteredVolunteers.size() == 0) {
+            return null;
+        }
+        return filteredVolunteers.get(0);
     }
 
     /**
@@ -118,7 +133,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     /**
      * Returns true if a person with the same identity as {@code person} exists in the friendlyLink cache.
      */
-    public boolean hasVolunteer(Person volunteer) {
+    public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
     }
@@ -143,7 +158,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Adds a volunteer to the friendlyLink cache.
      * The volunteer must not already exist in the friendlyLink cache.
      */
-    public void addVolunteer(Person p) {
+    public void addVolunteer(Volunteer p) {
         volunteers.add(p);
     }
 
@@ -175,7 +190,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * The volunteer identity of {@code editedPerson} must not be the same as
      * another existing volunteer in the friendlyLink cache.
      */
-    public void setVolunteer(Person target, Person editedPerson) {
+    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
         requireNonNull(editedPerson);
         volunteers.setPerson(target, editedPerson);
     }
@@ -236,7 +251,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Removes {@code key} from {@code FriendlyLink}.
      * {@code key} must exist in the volunteer's list.
      */
-    public void removeVolunteer(Person key) {
+    public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);
     }
 
@@ -260,7 +275,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     @Override
-    public ObservableList<Person> getVolunteerList() {
+    public ObservableList<Volunteer> getVolunteerList() {
         return volunteers.asUnmodifiableObservableList();
     }
 

@@ -9,6 +9,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * The API of the Model component.
@@ -131,6 +132,13 @@ public interface Model {
     void setVolunteer(Volunteer target, Volunteer editedPerson);
 
     /**
+     * Returns the volunteer with the given NRIC, or null otherwise.
+     * @param nric The given NRIC.
+     * @return A Volunteer with the matching NRIC< or null if no volunteer has that NRIC.
+     */
+    Volunteer getVolunteerByNric(Nric nric);
+
+    /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
      */
     boolean hasPair(Pair pair);
@@ -176,7 +184,7 @@ public interface Model {
 
 
     /** Returns an unmodifiable view of the filtered volunteers list */
-    ObservableList<Person> getFilteredVolunteerList();
+    ObservableList<Volunteer> getFilteredVolunteerList();
 
     /**
      * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.

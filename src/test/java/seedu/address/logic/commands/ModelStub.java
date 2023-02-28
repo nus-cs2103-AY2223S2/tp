@@ -12,6 +12,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * A default model stub that have all the methods failing.
@@ -138,6 +139,11 @@ class ModelStub implements Model {
     }
 
     @Override
+    public Volunteer getVolunteerByNric(Nric nric) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -174,7 +180,7 @@ class ModelStub implements Model {
      * Returns an unmodifiable view of the filtered volunteers list
      */
     @Override
-    public ObservableList<Person> getFilteredVolunteerList() {
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
         throw new AssertionError("This method should not be called.");
     }
 
