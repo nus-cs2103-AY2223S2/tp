@@ -181,7 +181,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return persons.getElderly(nric);
+        return elderly.getElderly(nric);
     }
 
     /**
@@ -193,7 +193,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return persons.getVolunteer(nric);
+        return volunteers.getVolunteer(nric);
     }
 
     /**
@@ -249,7 +249,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Removes {@code key} from {@code FriendlyLink}.
      * {@code key} must exist in the volunteer's list.
      */
-    public void removeVolunteer(Person key) {
+    public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);
     }
 
@@ -279,30 +279,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public void setPair(Pair target, Pair editedPair) {
         requireNonNull(editedPair);
         pairs.setPair(target, editedPair);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in FriendlyLink.
-     */
-    public void removePair(Pair key) {
-        pairs.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the elderly's list.
-     */
-    public void removeElderly(Elderly key) {
-        elderly.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the volunteer's list.
-     */
-    public void removeVolunteer(Volunteer key) {
-        volunteers.remove(key);
     }
 
     //// util methods

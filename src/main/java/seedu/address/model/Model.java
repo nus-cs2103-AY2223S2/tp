@@ -150,13 +150,6 @@ public interface Model {
     void setVolunteer(Volunteer target, Volunteer editedPerson);
 
     /**
-     * Returns the volunteer with the given NRIC, or null otherwise.
-     * @param nric The given NRIC.
-     * @return A Volunteer with the matching NRIC< or null if no volunteer has that NRIC.
-     */
-    Volunteer getVolunteerByNric(Nric nric);
-
-    /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
      */
     boolean hasPair(Pair pair);

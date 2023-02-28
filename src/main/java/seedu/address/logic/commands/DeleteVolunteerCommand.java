@@ -6,6 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -30,13 +31,14 @@ public class DeleteVolunteerCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        Volunteer volunteerToDelete = model.getVolunteerByNric(targetNric);
-        if (volunteerToDelete == null) {
+        try {
+            requireNonNull(model);
+            Volunteer volunteerToDelete = model.getVolunteer(targetNric);
+            model.deleteVolunteer(volunteerToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, volunteerToDelete));
+        } catch (PersonNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_NRIC);
         }
-        model.deleteVolunteer(volunteerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, volunteerToDelete));
     }
 
     @Override

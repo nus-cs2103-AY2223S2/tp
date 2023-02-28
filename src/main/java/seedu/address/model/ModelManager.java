@@ -167,12 +167,6 @@ public class ModelManager implements Model {
         friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
-
-    public Volunteer getVolunteerByNric(Nric nric) {
-        requireNonNull(nric);
-        return friendlyLink.getVolunteerByNric(nric);
-    }
-
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.getElderly(nric);
