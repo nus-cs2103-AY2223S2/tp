@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CareFlowModel;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -45,8 +46,7 @@ public class AddCommand extends Command {
         requireNonNull(person);
         toAdd = person;
     }
-
-    @Override
+    // @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
@@ -63,5 +63,10 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    @Override
+    public CommandResult execute(CareFlowModel model) throws CommandException {
+        return null;
     }
 }

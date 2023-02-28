@@ -25,8 +25,10 @@ public class Drug {
      * Every field must be present and not null.
      */
     public Drug(TradeName tradeName, ActiveIngredient activeIngredient, Direction direction,
-                ExpiryDate expiryDate, Set<Purpose> purposes, Set<SideEffect> sideEffects, StorageCount storageCount) {
-        requireAllNonNull(tradeName, activeIngredient, direction, expiryDate, purposes, sideEffects, storageCount);
+                ExpiryDate expiryDate, Set<Purpose> purposes, Set<SideEffect> sideEffects,
+                StorageCount storageCount) {
+        requireAllNonNull(tradeName, activeIngredient, direction, expiryDate, purposes, sideEffects,
+                storageCount);
         this.tradeName = tradeName;
         this.activeIngredient = activeIngredient;
         this.direction = direction;
@@ -77,7 +79,8 @@ public class Drug {
             return true;
         }
         return otherDrug != null
-                && otherDrug.getTradeName().equals(getTradeName());
+                && otherDrug.getTradeName().equals(getTradeName())
+                && otherDrug.getExpiryDate().equals(getExpiryDate());
     }
 
     @Override

@@ -18,6 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CareFlowModel;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -65,7 +66,7 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
-    @Override
+//    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -118,6 +119,11 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
+    }
+
+    @Override
+    public CommandResult execute(CareFlowModel model) throws CommandException {
+        return null;
     }
 
     /**

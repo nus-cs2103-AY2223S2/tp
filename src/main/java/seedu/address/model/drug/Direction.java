@@ -8,9 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Direction {
     public static final String MESSAGE_CONSTRAINTS =
-            "Direction should only contain alphanumeric characters, commas, full stops and spaces, and it should not "
-                    + "be blank";
-    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9 ,.]*";
+            "Direction should be in sentence form and it should not be blank";
+    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9: ,.-]*";
     public final String value;
 
     /**
