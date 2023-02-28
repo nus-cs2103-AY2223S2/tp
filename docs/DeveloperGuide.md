@@ -262,6 +262,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a need to keep track of events happening in their life
+* has to manage different projects
+* needs a way view their friend's free time
+* wants to organise their contacts into groups
+* needs a method which is able to compile every group member's free time slots
 
 **Value proposition**: 
 
