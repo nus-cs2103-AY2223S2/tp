@@ -10,13 +10,13 @@ Unibook is a desktop address book application used for coaching student athletes
 Given below are my contributions to the project.
 
 
-* **New Feature**: 
+* **New Feature**:
     * What it does:
     * Justification:
     * Highlights:
     * Credits:
 
-* **New Feature**: 
+* **New Feature**:
 
 * **Code contributed**: [RepoSense link]()
 
@@ -38,3 +38,4 @@ Given below are my contributions to the project.
     * Integrated a third party library * to the project ([\#42]())
 
 * _{you can add/remove categories in the list above}_
+
