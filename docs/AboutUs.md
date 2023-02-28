@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Nguyen Hong Ngoc 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/RubyNguyen07.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/RubyNguyen07)]
+[[portfolio](team/RubyNguyen07.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI for Clients view 
 
 ### Douglas Chow
 
