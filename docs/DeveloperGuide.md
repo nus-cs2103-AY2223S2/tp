@@ -257,7 +257,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS Computing Students who are more tech savvy than the general population and are also fast typists
+* computing students would have to refer to these details regularly throughout the course of the semester as they may not be able to remember them
+* has a need to manage a significant number of lecture
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,14 +272,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                  |
+| `* * *`  | computing student                          | delete an item               | remove entries that I no longer need |             
+| `* * *`  | computing student                          | edit an item                  |                                    |
+| `* * *`  | computing student                                        | see all my lectures, deadlines, and tutorials          |                 |
+| `* *`    | TBD                                       | TBD   | TDB             |
+| `*`      | TBD | TBD          | TBD                                                |
 
 *{More to be added}*
 
@@ -289,10 +291,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list items
+2.  Contact nUS shows a list of items such as lectures
+3.  User requests to delete a specific lecture in the list
+4.  Contact nUS deletes the person
 
     Use case ends.
 
@@ -304,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Contact nUS shows an error message.
 
       Use case resumes at step 2.
 
@@ -315,6 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Only language supported is English
 
 *{More to be added}*
 
