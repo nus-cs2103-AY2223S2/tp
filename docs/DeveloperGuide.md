@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
     
       Use case ends.
-
+    
 
 **Use case: UC02 Add contact details of a company to an internship application**
 
