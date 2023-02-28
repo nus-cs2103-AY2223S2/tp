@@ -5,9 +5,28 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
+
+### Goh Kang Yang Eric
+
+<img src="images/dangabit.png" width="200px">
+
+[[homepage](https://dangabit.github.io/)]
+[[github](https://github.com/Dangabit)]
+[[portfolio](team/dangabit.md)]
+
+* Role: Team Lead
+* Responsibilities: Models & Storage
+
+### Goh Jun How
+
+<img src="images/jun-how.png" width="200px">
+
+[[github](https://github.com/jun-how)]
+[[portfolio](team/jun-how.md)]
+
+* Role: Developer
+* Responsibilities: Logic & Deliverables/Deadline
 
 ### Jyothika
 
@@ -18,51 +37,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing and CI
 
-### John Doe
+### James Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jmestxr.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jmestxr)]
+[[portfolio](team/jmestxr.md)]
 
 * Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation, UI
