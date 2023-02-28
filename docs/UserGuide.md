@@ -12,30 +12,39 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+> **Note**<br>
+> This is a desktop app.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Have Java `11` or above installed in local laptop or Computer.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+2. Download the latest version (InternEase v0.0) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
+
+4. Start the app by:
+    - Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+      or
+    - Double-click on the downloaded `InternEase.jar` file.<br>
+   > **Note**<br>
+   > You should see the app is running now. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `add n/TechCompany j/Software Engineer` : Adds an application for the `Software Engineer` role at `TechCompany`.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `list` : Shows all the internships that the user has applied.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 2` : Deletes the 2nd internship application in the list of applications.
 
-    * `clear` : Deletes all contacts.
+    * `find TechCompany` : Searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as `Google`
+
+    * `edit_status 2 s/PENDING` : Changes the status of the 2nd application in the applications list to `Pending offer`.
 
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,14 +74,6 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Adding contact details: `add_contact`
 
 Adds the contact details of a company to a specified application.
@@ -101,6 +102,31 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+### Deleting an application of internship : `delete`
+
+Deletes the specified application from the list of internships applied
+
+Format: `delete INDEX`
+
+* Deletes the application of internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 2` Deletes the 2nd internship application in the list of applications.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the internship tracker.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -115,4 +141,7 @@ Examples:
 Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com`
+**Clear**  | `clear`                             
+**Delete** | `delete INDEX`<br> e.g., `delete 2`                              
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
+**Exit**   | `exit` 
