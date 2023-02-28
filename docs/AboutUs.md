@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://shirsho-12.github.io)]
 [[github](https://github.com/shirsho-12)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gitsac.md)]
 
 * Role: Manage the repository, implement features, perform testing
 * Responsibilities: Project Management, Feature Implementation, Test Management
@@ -25,26 +25,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/jinbesan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gitsac.md)]
 
 * Role: 
 * Responsibilities: 
 
 ### Randall Ng Hong Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/people/randall.png" width="200px">
 
 [[github](http://github.com/randallnhr)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/randallnhr.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Logic 
 
 ### Nicholas Lee Jun Yi
 
 <img src="images/people/nicleejy.png" width="200px">
 
 [[github](http://github.com/nicleejy)]
+
 [[portfolio](team/nicleejy.md)]
 
 * Role: Developer
@@ -52,10 +53,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Isaac Chai Han Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gitsac.png" width="200px">
 
 [[github](http://github.com/gitsac)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gitsac.md)]
 
-* Role: 
-* Responsibilities:
+* Role: Deliverables
+* Responsibilities: Deliver deliverables
+
