@@ -303,6 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
     
       Use case ends.
+    
 
 **Use case: UC02 Add contact details of a company to an internship application**
 
@@ -370,6 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
+
 **Use case: UC07 Clear all internship application entries**
 
 **MSS**
@@ -410,6 +412,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters a new command.
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+    
+
+**Use case: UC09 Help**
+
+**MSS**
+
+1. User requests for help.
+2. InternEase shows a list of available commands to the user.
+
 
 ### Non-Functional Requirements
 
