@@ -267,16 +267,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                          | So that I can…​                                |
+| Priority | As a …​ | I want to …​                          | So that I can…​                      |
 |---------|---------|---------------------------------------|------------------------------------------------|
-| `* * *` | user    | be able to create weekly tasks        | have a record of my tasks throughout the week. |
+| `* * *` | user    | be able to create weekly tasks        | have a record of my tasks throughout the week |
 | `* * *` | user    | keep track of the individual tanks    | so that I can manage them in the future        |
 | `* * *` | user    | access a local fish database          | know more about my fish                        |
-| `* * *` | user    | delete my fish from the system easily | get rid of dead fishes                         |
+| `* * *` | user    | delete my fish from the system easily | get rid of dead fish                           |
 | `* * *` | user    | delete a task                         | check off completed tasks                      |
 | `* * *` | user    | delete a tank                         | keep my tank status updated if I retire a tank |
-| `* * *` | user    | view all my fishes at a glance                          |  keep track of their numbers.                                              |
-| `* * *`  | user    | view my weekly tasks I need to fulfill for each of my fish tanks                                                        | not miss any tasks throughout the week.                                                                           |
+| `* * *` | user    | view all my fishes at a glance                          |  keep track of their numbers |
+| `* * *` | user    | view my weekly tasks I need to fulfill for each of my fish tanks | not miss any tasks throughout the week |
+| `* * *` | user    | transfer my data from one system to another | change my systems |
+| `* * *` | fish keeper | delete fish from a tank | move them to different tanks |
+| `* * *` | fish keeper | know which food can be fed to each fish | keep them well fed |
+| `* * *` | owner of multiple fish tanks | know the number and type of fish in each tank | monitor their condition |
+| `* *` | fish keeper | know the number of fish for each species | know if any species requires help |
+| `* *` | fish keeper | know the health conditions of my fish | be updated on their conditions |
+| `* *` | fish keeper | attach a picture to the fish's entry | identify it and track it's growth |
+| `*` | expert user | customize my entries fields | suit the app to my use |
+| `*` | inexperienced fish keeper | know what are the required equipment for keeping fish | my fish won't die |
+| `*` | inexperienced fish keeper | know what equipment is compatible with my tanks | |
+| `*` | fish keeper | know the conditions of my equipment | maintain them |
+| `*` | fish keeper | know ammonia levels in fish tanks | adjust the amount at the end of every week |
+| `*` | fish keeper | know nitrate levels in fish tanks | adjust the amount at the end of every week |
 
 
 *{More to be added}*
@@ -302,6 +315,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends.
 
+**Use case: Add a tank**
+
+**MSS**
+
+1. User adds a tank
+2. Tank is added to Fish Ahoy!
+
+  Use case ends.
+
+
 **Use case: Add a task**
 
 **MSS**
@@ -324,7 +347,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. `deadline` task is created. 
 
     Use case ends.
-  
+
+* 1c. User specifies if the task includes a `fish`.
+
+    * 1b1. task is created and `fish` is tagged to it.
+
+      Use case ends.
 
     *{More to be added}*
 
@@ -333,6 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 fish, tanks and tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user with average experience of CLI should be able to use the system.
 
 *{More to be added}*
 
@@ -341,6 +370,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Fish**: A fish owned by the user to be added to Fish Ahoy!
+* **Tank**: A fish tank owned by the user to house fish to be added to Fish Ahoy!
+* **Task**: A weekly task of the user regarding fish-keeping to be added to Fish Ahoy!
 
 --------------------------------------------------------------------------------------------------------------------
 

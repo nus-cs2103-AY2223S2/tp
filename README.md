@@ -11,7 +11,7 @@ With Fish Ahoy!, users can:
 * Keep track of their fish tanks
 * Keep track of fish maintenance tasks
   
-See our documentation: **[Fish Ahoy! Product Website](https://nus-cs2103-ay2223s2.github.io/tp/)**.
+See our documentation: **[Fish Ahoy! Product Website](https://ay2223s2-cs2103t-t17-4.github.io/tp/)**.
 
 ## Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
