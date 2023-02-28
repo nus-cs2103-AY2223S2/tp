@@ -18,6 +18,16 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: Models & Storage
 
+### Goh Jun How
+
+<img src="images/jun-how.png" width="200px">
+
+[[github](https://github.com/jun-how)]
+[[portfolio](team/jun-how.md)]
+
+* Role: Developer
+* Responsibilities: Logic & Deliverables/Deadline
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
