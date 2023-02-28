@@ -75,7 +75,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in friendly link.
+     * Returns true if a person with the same identity as {@code person} exists in FriendlyLink.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -83,8 +83,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Adds a person to friendly link.
-     * The person must not already exist in friendly link.
+     * Adds a person to FriendlyLink.
+     * The person must not already exist in FriendlyLink.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -92,8 +92,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in friendly link.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in friendly link.
+     * {@code target} must exist in FriendlyLink.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in FriendlyLink.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -102,7 +102,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Retrieves the elderly with the given nric.
-     * The elderly with such a nric must exist in friendly link.
+     * The elderly with such a nric must exist in FriendlyLink.
      *
      * @param nric Nric of the elderly.
      * @return The elderly with the name.
@@ -114,7 +114,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Retrieves the volunteer with the given nric.
-     * The volunteer with such a nric must exist in friendly link.
+     * The volunteer with such a nric must exist in FriendlyLink.
      *
      * @param nric Nric of the volunteer.
      * @return The volunteer with the name.
@@ -125,7 +125,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
     /**
      * Removes {@code key} from this {@code FriendlyLink}.
-     * {@code key} must exist in friendly link.
+     * {@code key} must exist in FriendlyLink.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -134,7 +134,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     //// pair-level operations
 
     /**
-     * Returns true if a pair with the same identity as {@code pair} exists in friendly link.
+     * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
      */
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
@@ -142,8 +142,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Adds a pair to friendly link.
-     * The pair must not already exist in friendly link.
+     * Adds a pair to FriendlyLink.
+     * The pair must not already exist in FriendlyLink.
      */
     public void addPair(Pair p) {
         pairs.add(p);
@@ -151,8 +151,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Replaces the given pair {@code target} in the list with {@code editedPair}.
-     * {@code target} must exist in friendly link.
-     * The pair identity of {@code editedPair} must not be the same as another existing pair in friendly link.
+     * {@code target} must exist in FriendlyLink.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in FriendlyLink.
      */
     public void setPair(Pair target, Pair editedPair) {
         requireNonNull(editedPair);
@@ -161,7 +161,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in friendly link.
+     * {@code key} must exist in FriendlyLink.
      */
     public void removePair(Pair key) {
         pairs.remove(key);

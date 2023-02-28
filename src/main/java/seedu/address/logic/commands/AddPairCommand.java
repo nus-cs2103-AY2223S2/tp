@@ -14,13 +14,13 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Adds a person to friendly link.
+ * Adds a person to FriendlyLink.
  */
 public class AddPairCommand extends Command {
 
     public static final String COMMAND_WORD = "add_pair";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in friendly link. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in FriendlyLink. "
             + "Parameters: "
             + PREFIX_NRIC_ELDERLY + "ELDERLY ID "
             + PREFIX_NRIC_VOLUNTEER + "VOLUNTEER ID "
@@ -30,13 +30,13 @@ public class AddPairCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New pair added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_PAIR = "This pair already exists in friendly link";
+    public static final String MESSAGE_DUPLICATE_PAIR = "This pair already exists in FriendlyLink";
 
     public static final String MESSAGE_ELDERLY_NOT_FOUND =
-            "The elderly with the specified NRIC does not exist in friendly link";
+            "The elderly with the specified NRIC does not exist in FriendlyLink";
 
     public static final String MESSAGE_VOLUNTEER_NOT_FOUND =
-            "The volunteer with the specified NRIC does not exist in friendly link";
+            "The volunteer with the specified NRIC does not exist in FriendlyLink";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;
