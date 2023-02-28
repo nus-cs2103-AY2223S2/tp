@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                            |
 | -------- |--------------------------------------------|--------------------------------|------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App     |
-| `* * *`  | user                                       | add a new person               |                                                            |
+| `* * *`  | user                                       | add a new internship application entry               |                                                            |
 | `* * *`  | internship applicant | note down the contact details of the company I am applying to                 | conveninently contact the company for queries or setting up interviews |
 | `* * *`  | internship applicant                       | delete my submission           | remove wrong entries or application that I no longer need  |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
@@ -287,6 +287,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `InternEase` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 Add an internship application entry**
+
+**MSS**
+
+1.  User requests to add an internship applications.
+2.  InternEase adds the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command format is invalid.
+    * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    
+      Use case ends.
+    
 
 **Use case: UC02 Add contact details of a company to an internship application**
 
@@ -409,12 +426,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters a new command.
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+    
+
+**Use case: UC09 Help**
+
+**MSS**
+
+1. User requests for help.
+2. InternEase shows a list of available commands to the user.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. InternEase doesn't support storing resume function. User can only include link to their resume used for a particular application. 
+5. InternEase is unable to remind user through platform outside of the application.
 
 *{More to be added}*
 
