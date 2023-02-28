@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 ### Summary of Contributions
 
-* **New Feature**: MAGIC.
+* **New Feature**: MAGIC to be added soon.
   * What it does:  
   * Justification:  
   * Highlights:  
