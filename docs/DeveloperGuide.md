@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                            |
 | -------- |--------------------------------------------|--------------------------------|------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App     |
-| `* * *`  | user                                       | add a new person               |                                                            |
+| `* * *`  | user                                       | add a new internship application entry               |                                                            |
 | `* * *`  | internship applicant | note down the contact details of the company I am applying to                 | conveninently contact the company for queries or setting up interviews |
 | `* * *`  | internship applicant                       | delete my submission           | remove wrong entries or application that I no longer need  |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
