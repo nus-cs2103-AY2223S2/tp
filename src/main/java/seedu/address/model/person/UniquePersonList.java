@@ -5,11 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.information.Nric;
@@ -49,16 +47,6 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
-    }
-
-    /**
-     * Returns a filtered list of unique persons using a given predicate.
-     * @param predicate The given predicate.
-     * @return The filtered list of persons.
-     */
-    public FilteredList<T> filter(Predicate<T> predicate) {
-        requireNonNull(predicate);
-        return internalList.filtered(predicate);
     }
 
     /**

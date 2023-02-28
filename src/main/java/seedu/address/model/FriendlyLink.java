@@ -84,19 +84,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Returns the volunteer with the given NRIC, or null otherwise.
-     * @param nric The given NRIC.
-     * @return A Volunteer with the matching NRIC< or null if no volunteer has that NRIC.
-     */
-    public Volunteer getVolunteerByNric(Nric nric) {
-        List<Volunteer> filteredVolunteers = this.volunteers.filter(volunteer -> volunteer.getNric().equals(nric));
-        if (filteredVolunteers.size() == 0) {
-            return null;
-        }
-        return filteredVolunteers.get(0);
-    }
-
-    /**
      * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
      */
     public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
