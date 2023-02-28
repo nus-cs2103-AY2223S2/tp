@@ -9,11 +9,11 @@ You can reach us at the email:
 
 Tan Jun Da - `jundatan@hotmail.com`
 
-Darius Ng - `to be added`
+Darius Ng - `darius-ng@live.com`
 
 Kalaris Ng - `to be added`
 
-Jia Hui Liao - `to be added`
+Jia Hui Liao - `e0775484@nus.edu.sg`
 
 
 ## Project team
@@ -40,9 +40,9 @@ Jia Hui Liao - `to be added`
 
 ### Jia Hui Liao
 
-<img src="images/OliviaJHL.png" width="200px">
+<img src="images/oliviajhl.png" width="200px">
 
-[[github](https://github.com/OliviaJHL)]
+[[github](https://github.com/oliviajhl)]
 [[portfolio](team/oliviajhl.md)]
 
 * Role: Tester and UI
