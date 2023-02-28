@@ -8,7 +8,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.task.TaskCommand;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
@@ -46,9 +45,9 @@ public class TaskDeleteCommand extends TaskCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task TaskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(TaskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, TaskToDelete));
+        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTask(taskToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
     @Override

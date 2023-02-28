@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.task;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.task.TaskAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -10,11 +12,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
+/**
+ * Parses input arguments and creates a new TaskAddCommand object
+ */
 public class TaskAddCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code TaskAddCommand}

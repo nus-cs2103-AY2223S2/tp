@@ -1,14 +1,16 @@
 package seedu.address.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
-
+/**
+ * Parses input arguments and creates a new TaskAddCommand object
+ */
 public class TaskAddCommand extends TaskCommand {
     public static final String TASK_COMMAND_WORD = "add";
 
@@ -26,9 +28,9 @@ public class TaskAddCommand extends TaskCommand {
     /**
      * Constructs a {@code TaskAddCommand} with the {@code Task} to be added to the {@code TaskList}.
      */
-    public TaskAddCommand(Task Task) {
-        requireNonNull(Task);
-        toAdd = Task;
+    public TaskAddCommand(Task task) {
+        requireNonNull(task);
+        toAdd = task;
     }
 
     @Override
