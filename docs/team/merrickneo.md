@@ -7,7 +7,7 @@ title: <Merrick Neo> Project Portfolio Page
 
 ### What should be included
 
-- [x] Code contirbuted
+- [x] Code contributed
 - [x] Enhancements implemented
 - [x] Contributions to the UG (Optional)
 - [x] Contributions to the DG (Optional)
