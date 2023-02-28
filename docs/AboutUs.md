@@ -13,7 +13,7 @@ Darius Ng - `to be added`
 
 Kalaris Ng - `to be added`
 
-Jia Hui Liao - `to be added`
+Jia Hui Liao - `e0775484@nus.edu.sg`
 
 
 ## Project team
@@ -26,7 +26,7 @@ Jia Hui Liao - `to be added`
 [[portfolio](team/jundatan.md)]
 
 * Role: Integration
-* Responsiblities: Integration checking, scheduling and tracking, Dev OPs
+* Responsibilities: Integration checking, scheduling and tracking, Dev OPs
 
 ### Darius Ng
 
@@ -35,27 +35,27 @@ Jia Hui Liao - `to be added`
 [[github](http://github.com/dfordarius)]
 [[portfolio](team/dfordarius.md)]
 
-* Role: Docmentation
-* Responsiblities: Code quality, Dev ops, Docmentation checking
+* Role: Documentation
+* Responsibilities: Code quality, Dev ops, Documentation checking
 
 ### Jia Hui Liao
 
-<img src="images/jiahui.png" width="200px">
+<img src="images/oliviajhl.png" width="200px">
 
-[[github](https://github.com/OliviaJHL)]
-[[portfolio](team/OliviaJHL.md)]
+[[github](https://github.com/oliviajhl)]
+[[portfolio](team/oliviajhl.md)]
 
 * Role: Tester and UI
-* Responsiblities: Testing, Deals with UI, Dev Ops
+* Responsibilities: Testing, Deals with UI, Dev Ops
 
 ### Kalaris Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kalarisng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kalarisng)]
+[[portfolio](team/kalarisng.md)]
 
 * Role: Team lead
-* Responsiblities: Team lead, Deliverables and deadlines, Dev Ops
+* Responsibilities: Team lead, Deliverables and deadlines, Dev Ops
 
 
