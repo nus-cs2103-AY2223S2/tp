@@ -3,9 +3,9 @@ layout: page
 title: Leon Lim's Project Portfolio Page
 ---
 
-### Project: Unibook
+### Project: SportSync
 
-Unibook is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+SportSync is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
 

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Unibook is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Unibook can get your training management tasks done faster than traditional GUI apps.
+SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ Unibook is a **desktop app for managing training sessions and athletes, optimize
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `unibook.jar` from [here](https://github.com/se-edu/unibook/releases).
+1. Download the latest `sportsync.jar` from [here](https://github.com/se-edu/SportSync/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Unibook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SportSync.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar unibook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +27,7 @@ Unibook is a **desktop app for managing training sessions and athletes, optimize
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/6` : Adds athlete `John Doe` to Unibook.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/6` : Adds athlete `John Doe` to SportSync.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,7 +76,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to Unibook.
+Adds a person to SportSync.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/PAY_RATE [t/TAG]…​`
 
@@ -157,14 +157,14 @@ Format: `exit`
 
 ### Saving the data
 
-Unibook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Unibook data are saved as a JSON file `[JAR file location]/data/unibook.json`. Advanced users are welcome to update data directly by editing that data file.
+SportSync data are saved as a JSON file `[JAR file location]/data/sportsync.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Unibook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Sort `[coming in v2.0]`
@@ -180,7 +180,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Unibook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SportSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
