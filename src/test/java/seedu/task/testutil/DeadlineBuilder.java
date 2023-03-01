@@ -40,7 +40,7 @@ public class DeadlineBuilder {
         name = taskToCopy.getName();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
-        deadline =  taskToCopy.getDeadline();
+        deadline = taskToCopy.getDeadline();
     }
 
     /**

@@ -43,7 +43,7 @@ public class EventBuilder {
         name = taskToCopy.getName();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
-        from =  taskToCopy.getFrom();
+        from = taskToCopy.getFrom();
         to = taskToCopy.getTo();
     }
 

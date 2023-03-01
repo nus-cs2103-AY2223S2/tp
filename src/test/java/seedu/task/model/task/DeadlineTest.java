@@ -3,8 +3,8 @@ package seedu.task.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.testutil.Assert.assertThrows;
-import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
+import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 
 import org.junit.jupiter.api.Test;
 

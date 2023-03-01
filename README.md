@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W13-3/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/Ui_02.png)
 * This is **Clock-Work**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
