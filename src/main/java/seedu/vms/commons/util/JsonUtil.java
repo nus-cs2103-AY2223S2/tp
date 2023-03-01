@@ -2,6 +2,7 @@ package seedu.vms.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -88,6 +89,17 @@ public class JsonUtil {
         requireNonNull(jsonFile);
 
         serializeObjectToJsonFile(filePath, jsonFile);
+    }
+
+
+    /**
+     * Deserializes a JSON file in the resource folder.
+     */
+    public static <T> T deserializeFromResource(String pathString, Class<T> valueType)
+                throws IOException {
+        try (BufferedReader reader = FileUtil.getResourceFileReader(pathString)) {
+            return objectMapper.readValue(reader, valueType);
+        }
     }
 
 
