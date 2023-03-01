@@ -90,9 +90,16 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Lists all persons in SOCket based on tag.
 
-Format: `list`
+Format: `list [t/TAG]`
+
+* The search for a tag is case insensitive 
+* If no tag is given, all persons are displayed
+* Tags given are specific, e.g. `list t/school` will only list out persons tagged with school and not those tagged with `school friend`
+* Each person is accompanied by an index number in the list 
+* The index is a positive integer starting from 1
+* The list by default is sorted by time added  i.e most recently added person being last in the list
 
 ### Editing a person : `edit`
 
@@ -222,5 +229,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
-**List** | `list`
+**List** | `list [t/tag]`
 **Help** | `help`
