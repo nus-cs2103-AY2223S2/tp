@@ -1,0 +1,16 @@
+{
+  "types": [
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "requirements": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 1"]
+        }
+      ]
+    }
+  ]
+}
