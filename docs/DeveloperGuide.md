@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,7 +299,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOCket` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Add a contact**
+
+**MSS**
+
+1.  User requests to add a contact
+2.  SOCket adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no details provided.
+
+    * 1a1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. There is no name provided.
+
+    * 1b1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC02 - Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SOCket shows a list of contacts
+3.  User requests to edit a specific contact's details in the list
+4.  SOCket edits the contact's details
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. There are no details provided.
+
+    * 3b1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. There are no tags provided.
+
+    * 3b1. SOCket removes all tags associated with the contact.
+
+      Use case ends.
+
+* 3d. There are tag(s) provided.
+
+    * 3b1. SOCket removes existing tags associated with the contact and adds the tag(s) provided.
+
+      Use case ends.
 
 **Use case: UC03 Delete a contact**
 
@@ -342,9 +404,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given category is invalid.
-  * 3a1. SOCket shows an error message. 
-  
-    Use case resumes at step 2.
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
 
 * 3b. No category is given
   * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
@@ -378,6 +440,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case ends. 
 
+**Use case: UC09 - Exit SOCket**
+
+**MSS**
+
+1.  User requests to exit SOCket
+2.  SOCket exits
+
+    Use case ends.
+    
 **Use case: UC10 Hide contact details**
 
 **MSS**
@@ -405,6 +476,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2. 
 
+**Use case: UC09 - Exit SOCket**
+
+**MSS**
+
+1.  User requests to exit SOCket
+2.  SOCket exits
+
+    Use case ends.
+
 **Use case: UC12 Access peer GitHub information**
 
 **MSS**
@@ -426,14 +506,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
    Use case resumes at step 2.
 
-
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should work on 64-bit environments. 
+3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -441,6 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GitHub profiles/repositories**: GitHub username e.g. `chia-yh` or repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
 
