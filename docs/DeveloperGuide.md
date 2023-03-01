@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -257,42 +257,120 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts (peers, professors in NUS Computing)
+* has a need to group and manage groups of contacts
+* has a need to view the skills and proficiencies of contacts (programming languages, modules)
+* has a need to access the GitHub profiles/repositories of contacts
+* has a need to track deadlines and responsibilities associated with contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app, store information relevant to NUS Computing students (GitHub profile, repository, programming language proficiencies, modules taken), quickly find contacts that satisfy certain criteria (taken a particular module, in a group)
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                          | I can…​                                                    | So that I can…​                                                                           |
+|----------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                                         | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                                             | add a new person                                           |                                                                                           |
+| `* * *`  | user                                                             | delete a person                                            | remove entries that I no longer need                                                      |
+| `* * *`  | user                                                             | find a person by name                                      | locate details of persons without having to go through the entire list                    |
+| `* * *`  | student with many friends                                        | save my friend's details                                   | easily contact them                                                                       |
+| `* * *`  | student who likes to ask questions                               | save my professors' details                                | easily contact them to ask questions                                                      |
+| `* * *`  | student with fast typing speed                                   | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
+| `* *`    | user                                                             | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
+| `* *`    | student involved in project work                                 | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
+| `* *`    | student with many assignments                                    | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
+| `* *`    | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
+| `* *`    | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
+| `* *`    | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
+| `* *`    | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
+| `* *`    | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
+| `* *`    | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
+| `* *`    | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
+| `* *`    | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
+| `* *`    | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
+| `* *`    | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOCket` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact
+2.  SOCket adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no details provided.
+
+    * 1a1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. There is no name provided.
+
+    * 1b1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC02 - Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SOCket shows a list of contacts
+3.  User requests to edit a specific contact's details in the list
+4.  SOCket edits the contact's details
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. There are no details provided.
+
+    * 3b1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. There are no tags provided.
+
+    * 3b1. SOCket removes all tags associated with the contact.
+
+      Use case ends.
+
+* 3d. There are tag(s) provided.
+
+    * 3b1. SOCket removes existing tags associated with the contact and adds the tag(s) provided.
+
+      Use case ends.
+
+**Use case: UC03 Delete a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SOCket shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  SOCket deletes the contact
 
     Use case ends.
 
@@ -304,17 +382,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SOCket shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC04 Sort contacts**
+
+**MSS**
+
+1.  User requests to list contact
+2.  SOCket shows a list of contacts
+3.  User requests to sort the list by a category
+4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given category is invalid.
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. No category is given
+    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
+
+      Use case ends
+
+**Use case: UC09 - Exit SOCket**
+
+**MSS**
+
+1.  User requests to exit SOCket
+2.  SOCket exits
+
+    Use case ends.
+
+**Use case: UC12 Access peer GitHub information**
+
+**MSS**
+
+1.  User requests to list contact
+2.  SOCket shows a list of contacts
+3.  User requests to view a specific contact's github information.
+4.  SOCket opens the contact's github profile in a browser
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The contact does not have github information.
+    
+   Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should work on 64-bit environments. 
+3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -322,6 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GitHub profiles/repositories**: GitHub username e.g. `chia-yh` or repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
 

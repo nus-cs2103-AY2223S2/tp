@@ -17,36 +17,37 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/cmang12.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities: Development
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Chia Yu Hong
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/chia-yh.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/chia-yh)]
+[[portfolio](team/chia-yh.md)]
 
-### Johnny Doe
+* Role: Developer
+* Responsibilities: Development
 
-<img src="images/johndoe.png" width="200px">
+### Dillon Goh
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/dillongoh.png" width="200px">
+
+[[github](http://github.com/dillongoh)] [[portfolio](team/dillongoh.md)]
+
+* Role: Developer
+* Responsibilities: Development
+
+### Huang Hao
+
+<img src="images/huanghao1998.png" width="200px">
+
+[[github](http://github.com/huanghao1998)]
+[[portfolio](team/huanghao1998.md)]
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
