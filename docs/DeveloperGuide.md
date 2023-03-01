@@ -283,24 +283,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InternBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an internship entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters internship entry
+2.  InternBuddy adds an internship entry
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
+* 1a.  InternBuddy detects one or more fields are missing .
+  * 1a1. InternBuddy requests for internship entry with correct format
+  * 1a2. User enters corrected internship entry.
+  * Steps 1a1-1a2 are repeated until the internship entry entered is of the correct format.
+ 
+    Use case ends.
 
 * 3a. The given index is invalid.
 
