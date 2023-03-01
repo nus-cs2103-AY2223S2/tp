@@ -105,8 +105,8 @@ class CsvAdaptedPerson {
     @Override
     public String toString() {
         return String.join(",", name, phone, email, address,
-                String.join(",", tagged.stream().
-                        <String>map(tag -> tag.toString()).collect(Collectors.toList())));
+                String.join(",", tagged.stream()
+                        .<String>map(tag -> tag.toString()).collect(Collectors.toList())));
     }
 
 }
