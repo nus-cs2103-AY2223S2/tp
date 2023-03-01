@@ -2,12 +2,19 @@ package seedu.address.model;
 
 import java.util.LinkedList;
 
-public class VersionedAddressBook extends AddressBook{
+/**
+ * Stores a addressBookStateList which holds history of AddressBook
+ */
+public class VersionedAddressBook extends AddressBook {
     private LinkedList<AddressBook> addressBookStateList = new LinkedList<>();
     private int currentStatePointer;
 
-    public VersionedAddressBook(){}
+    public VersionedAddressBook() {}
 
+    /**
+     * Constructs a VersionedAddressBook.
+     * @param ab
+     */
     public VersionedAddressBook(AddressBook ab) {
         addressBookStateList.add(ab.clone());
         currentStatePointer = addressBookStateList.size() - 1;

@@ -117,7 +117,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Versioned Address Book =====================================================================
-    public void commit(){
+    public void commit() {
         versionedAddressBook.commit(addressBook);
     }
 
