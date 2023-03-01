@@ -29,14 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Member
 * Responsibilities: Undecided
 
-### Johnny Doe
+### Pawan Kishor Patil
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pawan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/zhengsterz.md)]
+[[github](http://github.com/PawanPatil19)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: TBD
+
 
 ### Jean Doe
 
