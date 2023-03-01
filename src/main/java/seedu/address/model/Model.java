@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -43,6 +44,10 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    Path getTaskListFilePath();
+
+    void setTaskListFilePath(Path TaskListFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -84,4 +89,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFishList(Predicate<Fish> predicate);
+
+    //=========== TaskList =============================================================
+    void setTaskList(ReadOnlyTaskList TaskList);
+
+    ReadOnlyTaskList getTaskList();
+
+    /**
+     * Returns true if a Task with the same identity as {@code Task} exists in Fish Ahoy!.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Adds the given Task.
+     * {@code Task} must not already exist in Fish Ahoy!.
+     */
+    void addTask(Task task);
+
+    /**
+     * Deletes the given Task.
+     * The Task must exist in the address book.
+     */
+    void deleteTask(Task task);
+
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }

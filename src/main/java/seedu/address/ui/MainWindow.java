@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private FishListPanel fishListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TaskListPanel taskListPanel;
+    private MainContent mainContent;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane fishListPanelPlaceholder;
+    private StackPane mainContentPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -86,7 +88,7 @@ public class MainWindow extends UiPart<Stage> {
         menuItem.setAccelerator(keyCombination);
 
         /*
-         * TODO: the code below can be removed once the bug reported here
+         * task: the code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
          * is fixed in later version of SDK.
          *
@@ -112,9 +114,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        ObservableList<Fish> filteredFishList = logic.getFilteredFishList();
-        fishListPanel = new FishListPanel(filteredFishList);
-        fishListPanelPlaceholder.getChildren().add(fishListPanel.getRoot());
+        fishListPanel = new FishListPanel(logic.getFilteredFishList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        mainContent = new MainContent(fishListPanel, taskListPanel);
+        mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
