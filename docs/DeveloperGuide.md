@@ -285,30 +285,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add an Internship Listing**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to Add
+2. System asks the user for Internship Position
+3. User inputs the Internship Position
+4. System asks the user for Company Name
+5. User inputs the Company Name
+6. System asks the user for application status
+7. User inputs the Status
+8. System Confirms Internship Addition
+9. User confirms addition
+10. System adds the internship listing
 
-    Use case ends.
+Use Case ends.
+
+**Extensions**
+* 7.a System asks User to add addition information
+
+    * 7.a1 System ask User for Application Link
+    
+    * 7.a2 User inputs Application link
+    
+    * 7.a3 System ask User for Contact details of Hiring Manager
+    
+    * 7.a3 User inputs Contact details of Hiring Manager
+
+* 8a. User denies the addition of the listing
+
+    Use Case ends.
+
+**Use Case: Delete Internship Listing**  
+
+**MSS**
+
+1. User requests to list internships inputted
+2. System shows a list all the inputted internships
+3. User requests to delete an internship listing
+4. System Confirms the listing User wants to delete
+5. User confirms the listing to be deleted
+6. System deletes the internship listing
+
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 4a. User decides to not delete the listing  
+Use Case Ends.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
