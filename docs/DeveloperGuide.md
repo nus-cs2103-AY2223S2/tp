@@ -308,31 +308,117 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Patientist` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: See usage instructions**
+
+**Actor: New user**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests for instructions
+2.  Patientist lists down instructions of how to use Patientist
+
+    Use case ends.
+___
+**Use case: Add a patient**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1.  Ward admin chooses to add a patient.
+2.  Patientist requests for details of the patient to be added.
+3.  Ward admin enters the requested details.
+4.  Patientist requests for confirmation.
+5.  Ward admin confirms.
+6.  Patientist adds the patient and displays the details of the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Any of the requested details are missing.
+    * 2a1. Patientist requests for the missing details.
+    * 2a2. Ward admin enters the requested details.
+    Steps 2a1-2a2 are repeated until all details are collected.  
+    Use case resumes from step 4.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Any of the requested details are in wrong format.
+    * 3a1. Patientist shows an error message indicating the details with wrong format.
+    * 3a2. Patientist requests for the corrected details.
+    * 3a3. Ward admin enters the requested details.
+    Steps 3a1-3a3 are repeated until all details have correct format.  
+    Use case resumes from step 4.
 
-    * 3a1. AddressBook shows an error message.
+      Use case ends
+  
+* *a. At any time, Ward admin chooses to cancel the addition of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
 
-      Use case resumes at step 2.
+      Use case ends.
+___
+**Use case: Delete a patient**
 
+**Actor: Ward admin**
+
+**MSS**
+
+1.  Ward admin chooses to delete a patient.
+2.  Patientist requests for the name of the patient to be deleted.
+3.  Ward admin enters the name of the patient to be deleted.
+4.  Patientist shows the list of patients with the entered name.
+5.  Ward admin enters the index number of the patient to be deleted.
+6.  Patientist requests for confirmation.
+7.  Ward admin confirms.
+8.  Patientist deletes the patient and shows a message indicating deletion.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The patient with the entered name does not exist.  
+      Use case ends.
+
+* *a. At any time, Ward admin chooses to cancel the deletion of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
+
+      Use case ends.
+___
+**Use case: Add a new instruction or prescription to a patient**
+
+**Actor: Ward doctor**
+
+**MSS**
+
+1.  Ward doctor <u>searches for a patient</u>.
+2.  Patientist shows the details of the patient.
+3.  Ward doctor chooses to add instruction or prescription to the selected patient.
+4.  Patientist requests for the content of the instruction or prescription.
+5.  Ward doctor enters an instruction or prescription.
+6.  Patientist adds the instruction or prescription to the details of the patient.
+
+    Use case ends.
+___
+**Use case: Delete an instructions or a prescription of a patient**
+
+**Actor: Ward doctor**
+
+**MSS**
+
+1.  Ward doctor <u>searches for a patient</u>. 
+2.  Patientist shows the details of the patient.
+3.  Ward doctor chooses an instruction or a prescription to be deleted.
+4.  Patientist requests to confirm the deletion.
+5.  Ward doctor confirms the deletion.
+6.  Patientist deletes the instruction or prescription from the details of the patient.
+
+    Use case ends.
+___
 *{More to be added}*
 
 ### Non-Functional Requirements
