@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kang Yue Ran
 
-<img src="images/kangyueran.png" width="200px">
+<img src="images/kyueran.png" width="200px">
 
 [[github](http://github.com/kyueran)]
 
@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ding Chiyu
 
-<img src="images/dingchiyu.png" width="200px">
+<img src="images/Mr-Teal.png" width="200px">
 
 [[github](http://github.com/Mr-Teal)]
 [[portfolio](team/mr-teal.md)]
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Germaine Lee
 
-<img src="images/germainelee.png" width="200px">
+<img src="images/germainelee02.png" width="200px">
 
 [[github](http://github.com/germainelee02)]
 [[portfolio](team/germainelee02.md)]
