@@ -350,6 +350,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
     
      Use case ends
+     
+**Use case: UC07 List contacts**
+
+**MSS**
+
+1. User requests to list contacts 
+2. SOCket shows a list of contacts
+3. User requests to list contacts by tag
+4. SOCket shows a list of contacts with given tag
+
+   Use case ends.
+   
+**Extensions**
+
+* 3a. The given tag is invalid.
+  * 3a1. SOCket shows an error message. 
+    
+    Use case ends.
+
+**Use case: UC08 Access Help page**
+
+**MSS**
+
+1. User requests for help 
+2. SOCket shows the help page 
+   
+   Use case ends. 
+
+**Use case: UC10 Hide contact details**
+
+**MSS**
+
+1. User requests to list contact
+2. SOCket shows a list of contacts
+3. 
+
+
 
 **Use case: UC12 Access peer GitHub information**
 
