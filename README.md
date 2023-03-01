@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/AY2223S2-CS2103T-T12-2/tp/blob/master/.github/workflows/gradle.yml)](https://github.com/AY2223S2-CS2103T-T12-2/tp/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-T12-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-T12-2/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
