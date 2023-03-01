@@ -285,7 +285,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
-**Use case: Delete a recipe**
+#### **Use case: List all recipes**
+
+**MSS (Main Success Scenario)**
+
+1.  Chef requests to list recipes
+2.  Book shows a list of ***all*** recipes
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. The storage file is invalid.
+
+    * 2b1. Book shows an error message, with a button that displays "file fixed" to check again if the file is valid.
+    * 2b2. Chef rectifies/fixes error with the file.
+    * 2b3. Chef clicks the "file fixed" button
+
+      Use case resumes at step 2.
+
+#### **Use case: Delete a recipe**
 
 **MSS**
 
@@ -313,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
