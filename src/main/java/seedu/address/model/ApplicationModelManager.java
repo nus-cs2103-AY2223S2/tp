@@ -15,6 +15,7 @@ import seedu.address.model.application.Application;
 
 /**
  * Represents the in-memory model of the address book data.
+ * This class should replace (i.e. be renamed to) ModelManager eventually.
  */
 public class ApplicationModelManager implements ApplicationModel {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

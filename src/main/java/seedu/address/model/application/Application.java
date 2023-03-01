@@ -76,7 +76,7 @@ public class Application {
                 .append(getCompanyName())
                 .append("; Company's email: ")
                 .append(getCompanyEmail())
-                .append("; Status: ")
+                .append("; Application status: ")
                 .append(getStatus());
 
         return builder.toString();
