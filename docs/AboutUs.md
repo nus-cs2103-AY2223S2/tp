@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/yaojiaxin.md)]
 
 * Role: Developer
-* Responsibilities: Testin
+* Responsibilities: Testing
