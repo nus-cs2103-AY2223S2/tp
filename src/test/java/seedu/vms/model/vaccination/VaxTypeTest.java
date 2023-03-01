@@ -1,7 +1,6 @@
 package seedu.vms.model.vaccination;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.vms.model.vaccination.VaxTestingUtil.assertVaxType;
 
 import java.util.HashSet;
