@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Intern Buddy
+title: AddressBook Level-3
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
@@ -8,7 +8,7 @@ title: Intern Buddy
 
 ![Ui](images/Ui.png)
 
-**InternBuddy is a desktop application for for Computing undergraduates to manage and track their internship applications.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
