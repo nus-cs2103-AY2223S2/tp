@@ -1,6 +1,6 @@
 # Docedex
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-F12-1/tp/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-F12-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-F12-1/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
