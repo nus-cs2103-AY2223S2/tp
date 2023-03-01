@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Applicant;
 import seedu.address.model.person.Person;
 
 
@@ -57,11 +56,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        if (person instanceof Applicant) {
-            status.setText(((Applicant) person).getStatus().name());
-        } else {
-            status.setText("Not applicant");
-        }
+        status.setText(person.getStatus().name());
         person.getNotes().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

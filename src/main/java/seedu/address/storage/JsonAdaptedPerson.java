@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Applicant;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -58,11 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        if (source instanceof Applicant) {
-            status = ((Applicant) source).getStatus().name();
-        } else {
-            status = "Not applicant";
-        }
+        status = source.getStatus().name();
         tagged.addAll(source.getNotes().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -120,7 +115,7 @@ class JsonAdaptedPerson {
         final Status modelStatus = Status.valueOf(status);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Applicant(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelTags);
     }
 
 }
