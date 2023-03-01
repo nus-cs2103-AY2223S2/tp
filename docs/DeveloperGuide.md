@@ -270,14 +270,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                          | I want to …​                                               | So that I can…​                                                                           |
+|----------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* * *`  | -                                                                | -                                                          | -                                                                                         |
+| `* *`    | -                                                                | -                                                          | -                                                                                         |
+| `* *`    | -                                                                | -                                                          | -                                                                                         |
+| `* *`    | -                                                                | -                                                          | -                                                                                         |
+| `* *`    | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
+| `* *`    | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
+| `* *`    | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
+| `* *`    | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
+| `* *`    | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
+| `* *`    | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
+| `* *`    | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
+| `* *`    | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
+| `* *`    | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
+| `* *`    | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
 
 *{More to be added}*
 
