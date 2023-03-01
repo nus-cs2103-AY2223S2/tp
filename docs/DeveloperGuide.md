@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### [Epic] As a financial advisor, I can easily find my client
 | Priority | As a …​                          | I can …​                                                | So that I can…​                                      |
 |----------|----------------------------------|---------------------------------------------------------|------------------------------------------------------|
-| `***`    | As a financial advisor           | easily search for clients by name or other criteria     | quickly access their information                     | 
+| `***`    | As a financial advisor           | easily search for clients by name or other criteria     | quickly access their information                     |
 
 #### [Epic] As a financial advisor, I can manage my client’s financial goals
 | Priority | As a …​                          | I can …​                                                 | So that I can…​                                      |
