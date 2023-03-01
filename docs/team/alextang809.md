@@ -9,7 +9,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=alextang809&breakdown=true)
 
 * **Enhancements implemented**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
