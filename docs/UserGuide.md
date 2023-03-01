@@ -21,7 +21,8 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
   - [Saving of data](#saving-the-data)
   - [Editing of data](#editing-the-data-file)
   - [Archiving of data](#archiving-data-files-coming-in-v20)
-  - [View meetings](#view-meetings-coming-in-v20)
+  - [View meetings](#view-all-meetings-coming-in-v20)
+  - [Schedule meetings](#schedule-meetings-coming-soon)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -191,13 +192,18 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 _Details coming soon ..._
 
 ### View all meetings `[coming in v2.0]`
+_Details coming soon ..._
 
-### Create meetings
+### Create meetings `[Coming Soon]`
+_Details coming soon ..._
 
-### Delete meetings
+### Delete meetings `[Coming Soon]`
+_Details coming soon ..._
 
-### Edit meetings
+### Edit meetings `[Coming Soon]`
+_Details coming soon ..._
 
+### Schedule meetings `[Coming Soon]`
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
@@ -211,12 +217,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
