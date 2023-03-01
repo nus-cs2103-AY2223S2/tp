@@ -134,7 +134,9 @@ public class ModelManager implements Model {
         this.addressBook.resetData(addressBook.clone());
     }
 
-    public boolean canRedo() {return false;}
+    public boolean canRedo() {
+        return versionedAddressBook.canRedo();
+    }
 
     //
     public void undo(){
@@ -143,7 +145,10 @@ public class ModelManager implements Model {
     }
 
     // todo
-    public void redo(){}
+    public void redo(){
+        AddressBook ab = versionedAddressBook.redo();
+        setAddressBook(ab);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

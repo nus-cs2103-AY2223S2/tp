@@ -37,17 +37,24 @@ public class VersionedAddressBook extends AddressBook{
      */
     public AddressBook undo() {
         currentStatePointer--;
-
         return addressBookStateList.get(currentStatePointer);
     }
 
-    //todo
-    public void redo() {
+    public AddressBook redo() {
+        currentStatePointer++;
+        return addressBookStateList.get(currentStatePointer);
     }
 
     //=============== helper function ===========================================================
     public boolean canUndo() {
-        if(currentStatePointer == 0) {
+        if (currentStatePointer == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean canRedo() {
+        if (currentStatePointer == addressBookStateList.size() - 1) {
             return false;
         }
         return true;
