@@ -125,6 +125,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
@@ -134,6 +140,12 @@ public class ParserUtil {
         return new Subject(trimmedSubject);
     }
 
+    /**
+     * Parses a {@code String content} into an {@code Content}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code content} is invalid.
+     */
     public static Content parseContent(String content) throws ParseException {
         requireNonNull(content);
         String trimmedContent = content.trim();
@@ -143,6 +155,12 @@ public class ParserUtil {
         return new Content(trimmedContent);
     }
 
+    /**
+     * Parses a {@code String status} into an {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
