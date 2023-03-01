@@ -10,8 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
+* --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -257,27 +256,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of books and library users
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage users and books faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​       | I want to …​                                      | So that I can…​                                                    |
+|----------|---------------|---------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | user          | add a new book that has not been added in the app | track the status of the new book                                   
+| `* * *`  | user          | edit the details of a specific book               | in case there are any changes to the book.                         |
+| `* * *`  | user          | delete a book                                     | if the book is no longer in the library                            |
+| `* * *`  | user          | exit the program                                  | stop using the program                                             |
+| `* * *`  | user          | have the data automatically saved in harddrive    | refer to the data in the future                                    |
+| `* *`    | user          | be able to keep a record of all the people who have borrowed books | better manage the library                                          |
+| `* *`    | user          | add the book to the contact details of the person who borrowed them | rent the book out while keeping track of the book and the due date |
+| `* *`    | user          | remove a book from a student contact if the student has returned the book | allow the book to be borrowed by other students                    |
+| `*`      | advanced user | edit the data file                                | adjust the data to suit my needs                                   |
+
 
 *{More to be added}*
 
