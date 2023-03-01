@@ -141,8 +141,33 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `listStudents` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Adding a task for a student: `addTask`
+
+Adds a task to a specific student.
+
+Format: `addTask INDEX t/TITLE `
+
+Examples:
+
+* `addTask 2 t/finish Math Paper 1`
+
+### Deleting all tasks of a student: `deleteTasks`
+
+Deletes all tasks of a student.
+
+Format: `deleteTasks INDEX`
+
+* Deletes all tasks of a student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `listStudents` followed by `deleteTasks 2` deletes all tasks of the 2nd student in the student list.
+* `find Betsy` followed by `deleteTasks 1` deletes all tasks of the 1st student in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
