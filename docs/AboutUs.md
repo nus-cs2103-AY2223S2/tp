@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/carmen-ang.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/cmang12)]
 [[portfolio](team/carmen-ang.md)]
 
