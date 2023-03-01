@@ -1,11 +1,8 @@
 package seedu.address.model.applicant;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-
 import java.util.Objects;
-import java.util.Set;
+
+import seedu.address.model.person.Name;
 
 /**
  * Represents an Applicant in the address book.
