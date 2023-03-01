@@ -25,7 +25,7 @@ public class PatientRecord implements ReadOnlyPatientRecord {
     }
 
     public void setPatients(List<Patient> patients) {
-//        this.patients.setPatients(patients);
+        this.patients.setPatients(patients);
     }
 
     /**
@@ -41,8 +41,7 @@ public class PatientRecord implements ReadOnlyPatientRecord {
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
-//        return patients.contains(patient);
-        return true; // to be removed when method is ready
+        return patients.contains(patient);
     }
 
     /**
@@ -50,7 +49,7 @@ public class PatientRecord implements ReadOnlyPatientRecord {
      * The patient must not already exist in the patient record.
      */
     public void addPatient(Patient p) {
-//        patients.add(p);
+        patients.add(p);
     }
 
     /**
@@ -59,10 +58,9 @@ public class PatientRecord implements ReadOnlyPatientRecord {
      * The patient identity of {@code editedPatient} must not be the same as another existing patient in the patient
      * record.
      */
-    public void setPatient(Person target, Person editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
-
-//        patients.setPatient(target, editedPatient);
+        patients.setPatient(target, editedPatient);
     }
 
     /**
@@ -70,18 +68,16 @@ public class PatientRecord implements ReadOnlyPatientRecord {
      * {@code key} must exist in the patient record.
      */
     public void removePatient(Patient key) {
-//        patients.remove(key);
+        patients.remove(key);
     }
 
     @Override
     public String toString() {
-//        return patients.asUnmodifiableObservableList().size() + " patients";
-        return "";
+        return patients.asUnmodifiableObservableList().size() + " patients";
     }
 
     public ObservableList<Patient> getPatientList() {
-//        return patients.asUnmodifiableObservableList();
-        return null;
+        return patients.asUnmodifiableObservableList();
     }
 
     @Override

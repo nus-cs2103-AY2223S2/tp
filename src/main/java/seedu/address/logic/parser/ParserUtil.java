@@ -9,10 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
+import seedu.address.model.person.patient.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +118,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static DateOfBirth parseDateOfBirth(String birthDate) throws ParseException {
+        requireNonNull(birthDate);
+        String trimmedBirthDate = birthDate.trim();
+        if (!DateOfBirth.isValidBirthDate(trimmedBirthDate)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedBirthDate);
+    }
+
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    public static Ic parseIc(String icNumber) throws ParseException {
+        requireNonNull(icNumber);
+        String trimmedIcNumber = icNumber.trim();
+        if (!Ic.isValidIc(trimmedIcNumber)) {
+            throw new ParseException(Ic.MESSAGE_CONSTRAINTS);
+        }
+        return new Ic(trimmedIcNumber);
+    }
+
+    public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
+        requireNonNull(drugAllergy);
+        String trimmedDrugAllergy = drugAllergy.trim();
+        if (!DrugAllergy.isValidDrugAllergy(trimmedDrugAllergy)) {
+            throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
+        }
+        return new DrugAllergy(trimmedDrugAllergy);
+    }
+
+    public static EmergencyContact parseEmergencyContact(Person emergencyContactPerson,
+                                                         String emergencyContactRelationship) {
+        requireNonNull(emergencyContactPerson, emergencyContactRelationship);
+
+        //TODO: checker for relationship?
+        String trimmedEmergencyContactRelationship = emergencyContactRelationship.trim();
+        return new EmergencyContact(emergencyContactPerson, trimmedEmergencyContactRelationship);
     }
 }

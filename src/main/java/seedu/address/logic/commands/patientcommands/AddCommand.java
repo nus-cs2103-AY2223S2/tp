@@ -22,20 +22,24 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DOB + "DOB "
-            + PREFIX_DRUG_ALLERGY + "DRUG ALLERGY "
-            + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT "
             + PREFIX_GENDER + "GENDER "
-            + PREFIX_IC + "IC\n"
+            + PREFIX_IC + "IC"
+            + PREFIX_DRUG_ALLERGY + "DRUG ALLERGY "
+            + PREFIX_EMERGENCY_CONTACT_NAME + "EMERGENCY CONTACT "
+            + PREFIX_EMERGENCY_CONTACT_PHONE + "EMERGENCY CONTACT PHONE "
+            + PREFIX_EMERGENCY_CONTACT_RELATIONSHIP + "EMERGENCY CONTACT RELATIONSHIP\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tom Smith "
             + PREFIX_PHONE + "84356788 "
             + PREFIX_EMAIL + "tsmith@gmail.com "
             + PREFIX_ADDRESS + "969 Lock Street #04-32 "
             + PREFIX_DOB + "2001-05-28 "
-            + PREFIX_DRUG_ALLERGY + "Aspirin "
-            + PREFIX_EMERGENCY_CONTACT + "92861792 "
             + PREFIX_GENDER + "MALE "
-            + PREFIX_IC + "T0278234M ";
+            + PREFIX_IC + "T0278234M "
+            + PREFIX_DRUG_ALLERGY + "Aspirin "
+            + PREFIX_EMERGENCY_CONTACT_NAME + "Jade Smith "
+            + PREFIX_EMERGENCY_CONTACT_PHONE + "93746552"
+            + PREFIX_EMERGENCY_CONTACT_RELATIONSHIP + "Wife";
 
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
