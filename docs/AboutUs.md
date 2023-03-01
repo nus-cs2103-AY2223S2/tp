@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: TBC
 
-### James Doe
+### Zhou Yuxin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhoyx.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhoyx)]
+[[portfolio](team/zhoyx.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Backend work
