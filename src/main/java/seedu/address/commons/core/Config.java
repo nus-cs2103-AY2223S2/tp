@@ -44,7 +44,7 @@ public class Config {
         Config o = (Config) other;
 
         return Objects.equals(logLevel, o.logLevel)
-                && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
+                && Objects.equals(userPrefsFilePath.toAbsolutePath(), o.userPrefsFilePath.toAbsolutePath());
     }
 
     @Override
@@ -54,10 +54,7 @@ public class Config {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Current log level : " + logLevel);
-        sb.append("\nPreference file Location : " + userPrefsFilePath);
-        return sb.toString();
+        return "Current log level : " + logLevel + "\nPreference file Location : " + userPrefsFilePath;
     }
 
 }
