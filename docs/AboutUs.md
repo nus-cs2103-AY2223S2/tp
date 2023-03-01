@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Jia Xin
+
+<img src="images/jxleejiaxin.png" width="200px">
+
+[[github](http://github.com/jxleejiaxin)][[portfolio](team/jxleejiaxin.md)]
+
+* Role: Developer
+* Responsibilities: Merge PRs, In charge of Model component
+
 ### Merrick Neo
 
 <img src="images/merrickneo.png" width="200px">
@@ -16,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/merrickneo)][[portfolio](team/merrickneo.md)]
 
 * Role: Developer
-* Responsibilities: Documentation, Testing
+* Responsibilities: Code Quality, In charge of Command component
 
 ### Frederic Chow
 
@@ -25,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/fredericchow00)][[portfolio](team/fredericchow00.md)]
 
 * Role: Developer
-* Responsibilities: Data, Deliverables and Deadline
+* Responsibilities: Testing, Deliverables and Deadline, In charge of UI component
 
 ### Bo Feng
 
@@ -34,16 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bofeng1999)][[portfolio](team/bofeng1999.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### Jia Xin
-
-<img src="images/jxleejiaxin.png" width="200px">
-
-[[github](http://github.com/jxleejiaxin)][[portfolio](team/jxleejiaxin.md)]
-
-* Role: Developer
-* Responsibilities: Code Quality + Testing
+* Responsibilities: Integration, In charge of Parser component
 
 ### Dun Liang
 
@@ -52,4 +52,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/dunliang0513)][[portfolio](team/dunliang0513.md)]
 
 * Role: Developer
-* Responsibilities: Integration, Documentation
+* Responsibilities: Documentation, In charge of Storage component
