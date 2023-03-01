@@ -166,7 +166,7 @@ Format: `deleteTasks INDEX`
 
 Examples:
 
-* `list` followed by `deleteTasks 2` deletes all tasks of the 2nd student in the student list.
+* `listStudents` followed by `deleteTasks 2` deletes all tasks of the 2nd student in the student list.
 * `find Betsy` followed by `deleteTasks 1` deletes all tasks of the 1st student in the results of the `find` command.
 
 ### Clearing all entries : `clear`
