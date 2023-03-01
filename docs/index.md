@@ -14,5 +14,5 @@ title: HMHero
     * It is **written in OOP fashion**. It provides a **reasonably well-written** code based **bigger** on the original project AB3.
     * It comes with a **reasonable level of user and developer documentation**.
 * It is named `HMHero v1.1` because it was initially created as a part of a series of `HMHero` projects (`v1.1`, `v1.2`, `v1.3` ...).
-* For the detailed documentation of this project, see the **[HMHero Product Website](https://nus-cs2103-ay2223s2.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[HMHero Product Website](https://ay2223s2-cs2103t-w14-4.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project create
