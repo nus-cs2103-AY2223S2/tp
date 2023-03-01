@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Jane Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jane.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/sembcorpp)] [[portfolio](team/jane.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Group Member
+* Responsibilities: Developer
 
 ### Jean Doe
 
