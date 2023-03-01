@@ -257,11 +257,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* cooks frequently
+* needs assistance in managing their leftover ingredients
+* has a significant number of recipes they want to cook
+* enjoys categorizing their recipes
+* can type fast and prefers typing to mouse interactions
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
