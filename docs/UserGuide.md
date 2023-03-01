@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+InternEase is a powerful and innovative desktop app designed to streamline the internship application process for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. Whether you're a seasoned CLI user or a first-time applicant, InternEase makes it easy to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
 
 * Table of Contents
   {:toc}
@@ -74,6 +74,34 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+### Adding contact details: `add_contact`
+
+Adds the contact details of a company to a specified application.
+
+Format: `add_contact INDEX p/PHONE NUMBER e/EMAIL`
+
+Examples:
+* `add_contact INDEX p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the application specified by the `INDEX` in the list of applications.
+* `add_contact INDEX e/someemail@gmail.com` adds the email `someemail@gmail.com` to the application specified by the `INDEX` in the list of applications.
+
+### Edit application status : `edit_status`
+
+Edits the application status.
+
+Format: `edit_status INDEX s/STATUS`
+- Edits the status of the specified `INDEX` to the specified `STATUS`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- Available status: NA, PENDING, RECEIVED, REJECTED, NO
+    - NA: Internship application is not submitted.
+    - PENDING: Internship application submitted, outcome has not been released.
+    - RECEIVED: Offer received.
+    - REJECTED: Offer rejected.
+    - NO: Application rejected.
+
+Examples:
+* `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
+
 ### Deleting an application of internship : `delete`
 
 Deletes the specified application from the list of internships applied
@@ -85,7 +113,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-`delete 2` Deletes the 2nd internship application in the list of applications.
+* `delete 2` Deletes the 2nd internship application in the list of applications.
 
 ### Clearing all entries : `clear`
 
@@ -110,8 +138,10 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                    |
-|------------|-------------------------------------|
-| **Clear**  | `clear`                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2` |
-| **Exit**   | `exit`                              |
+Action | Format, Examples
+--------|------------------
+**Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com`
+**Clear**  | `clear`                             
+**Delete** | `delete INDEX`<br> e.g., `delete 2`                              
+**Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
+**Exit**   | `exit` 
