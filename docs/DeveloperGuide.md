@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
   * 3a1. Book shows an error message.
   
-    Use case ends.
+    Use case resumes at step 2.
 
 *{More to be added}*
 
