@@ -81,4 +81,11 @@ public class VaxRequirement {
 
         return result;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("{isExclusion=%s, %s}",
+                isExclusion, grpSet.toString());
+    }
 }
