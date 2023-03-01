@@ -78,7 +78,7 @@ public abstract class VaxType {
 
 
     public HashSet<String> getGroups() {
-        return groups;
+        return new HashSet<>(groups);
     }
 
 
@@ -98,7 +98,9 @@ public abstract class VaxType {
 
 
     public List<VaxRequirement> getRequirements() {
-        return requirements;
+        return requirements.stream()
+                .map(req -> req.copy())
+                .collect(Collectors.toList());
     }
 
 
