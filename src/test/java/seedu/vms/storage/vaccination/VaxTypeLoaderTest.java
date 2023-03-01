@@ -11,7 +11,7 @@ import seedu.vms.model.vaccination.VaxRequirement;
 import seedu.vms.model.vaccination.VaxType;
 
 
-public class JsonAdaptedVaxTypeListTest {
+public class VaxTypeLoaderTest {
     private static final String TYPE_1_NAME = "Dose 1 (Pfizer)";
     private static final HashSet<String> TYPE_1_GROUPS = new HashSet<>(List.of("DOSE 1", "Pfizer", "Vaccination"));
     private static final int TYPE_1_MIN_AGE = 5;
@@ -23,7 +23,7 @@ public class JsonAdaptedVaxTypeListTest {
 
     @Test
     public void loadTest() throws Exception {
-        JsonAdaptedVaxTypeList.load();
+        VaxTypeLoader.load();
         assertVaxType(VaxType.get(TYPE_1_NAME),
                 TYPE_1_NAME,
                 TYPE_1_GROUPS,

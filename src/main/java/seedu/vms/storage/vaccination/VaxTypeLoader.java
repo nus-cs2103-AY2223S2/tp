@@ -11,15 +11,15 @@ import seedu.vms.commons.util.JsonUtil;
 
 
 /** A JSON file loader of {@code VaxType}. */
-public class JsonAdaptedVaxTypeList {
+public class VaxTypeLoader {
     private static final String JSON_FILE_PATH = "/data/vaxTypes.json";
 
     private final List<JsonAdaptedVaxType> types;
 
 
-    /** Constructs a {@code JsonAdaptedVaxTypeList}. */
+    /** Constructs a {@code VaxTypeLoader}. */
     @JsonCreator
-    public JsonAdaptedVaxTypeList(@JsonProperty("types") List<JsonAdaptedVaxType> types) {
+    public VaxTypeLoader(@JsonProperty("types") List<JsonAdaptedVaxType> types) {
         this.types = types;
     }
 
@@ -33,8 +33,8 @@ public class JsonAdaptedVaxTypeList {
      * @throws IOException if an I/O error occurs.
      */
     public static void load() throws IllegalValueException, IOException {
-        JsonAdaptedVaxTypeList adaptedList = JsonUtil
-                .deserializeFromResource(JSON_FILE_PATH, JsonAdaptedVaxTypeList.class);
+        VaxTypeLoader adaptedList = JsonUtil
+                .deserializeFromResource(JSON_FILE_PATH, VaxTypeLoader.class);
         for (JsonAdaptedVaxType adapted : adaptedList.types) {
             adapted.toModelType();
         }
