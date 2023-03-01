@@ -1,6 +1,9 @@
-[![CI Status](https://app.codecov.io/gh/AY2223S2-CS2103-W16-4/tp/settings/badge)](https://app.codecov.io/gh/AY2223S2-CS2103-W16-4/tp/settings/badge)
-
+# SalesPUNCH - manage your contacts better than ever
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+
+The CRM you've been waiting for - absolutely free, absolutely fast.  
+Not just a force, but a PUNCH - punch in your hours and your cheques when you can manage
+your contacts more efficiently than before.
 
 ![Ui](docs/images/Ui.png)
 
