@@ -426,8 +426,16 @@ ___
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A first time user should be able to easily find help to learn how to use the app.
+5.  Should not take longer than a second to retrieve patient information.
+6.  Should be lightweight and be able to run on any computer with decently recent hardware.
+7.  Should be reliable and able to perform without failure in the majority of use cases during a month.
+8.  Should be available to be accessed by medical staff 24/7/365.
+9.  Should be easily troubleshot in the event of a failure.
+10. Comply with all data protection laws of Singapore (PDPA).
+11. Should follow Singapore localisation.
+12. Should be easily scaled with different number of users.
+13. Patient data should be secure from unauthorised users.
 
 ### Glossary
 
