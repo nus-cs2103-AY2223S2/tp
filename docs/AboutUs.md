@@ -11,19 +11,19 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Leon Lim
 
-<img src="images/Tempura-Person.png" width="200px">
+<img src="images/tempura-person.png" width="200px">
 
-[[github](http://github.com/Tempura-Person)]
-[[portfolio](team/Tempura-Person.md)]
+[[github](http://github.com/tempura-person)]
+[[portfolio](team/tempura-person.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
 ### Oliver Loo
 
-<img src="images/Oliverloo0909.png" width="200px">
+<img src="images/oliverloo0909.png" width="200px">
 
-[[github](http://github.com/Oliverloo0909)] [[portfolio](team/Oliverloo0909.md)]
+[[github](http://github.com/oliverloo0909)] [[portfolio](team/Oliverloo0909.md)]
 
 * Role: Developer
 * Responsibilities: Data
