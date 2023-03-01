@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Arlin Halim
 
-<img src="images/nichalim.png" width="200px">
+<img src="images/daytona65.png" width="200px">
 
 [[github](http://github.com/daytona65]
 [[portfolio](team/johndoe.md)]
