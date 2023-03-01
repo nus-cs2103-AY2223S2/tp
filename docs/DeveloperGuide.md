@@ -255,7 +255,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: FitBook
+**Target user profile**:
+* has a need to manage a significant number of clients
+* has a need to manage details of each client
+* has a need to store exercises routines for each client
+* has a need to mark done or not done for each exercises
+* prefers desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
 
 **Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
 targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
@@ -263,7 +271,6 @@ inefficient. So, our product aims to help solve this by combining the addressboo
 adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
-
 
 ### User stories
 
@@ -338,6 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
+
 * 1a. The client added has missing compulsory fields.
 
     * 1a1. Fitbook shows an error message for missing fields.
@@ -349,6 +357,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Fitbook shows an error message for duplicate names.
 
       Use case ends.
+
+
+**Use case: List clients**
+
+**MSS**
+
+1. User requests to list clients.
+2. Fitbook displays a list of clients.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Client list is empty use case.
+
+  Use case ends.
 
 *{More to be added}*
 
