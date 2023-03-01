@@ -1,19 +1,22 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A list of Tasks .
+ *
+ * Supports a minimal set of list operations.
+ */
 public class UniqueTaskList implements Iterable<Task> {
-    
     public final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     private final ObservableList<Task> internalUnmodifiableList =
@@ -79,13 +82,13 @@ public class UniqueTaskList implements Iterable<Task> {
      * Replaces the contents of this list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
-    public void setTasks(List<Task> Tasks) {
-        requireAllNonNull(Tasks);
-        if (!tasksAreUnique(Tasks)) {
+    public void setTasks(List<Task> tasks) {
+        requireAllNonNull(tasks);
+        if (!tasksAreUnique(tasks)) {
             throw new DuplicateTaskException();
         }
 
-        internalList.setAll(Tasks);
+        internalList.setAll(tasks);
     }
 
     /**
@@ -115,10 +118,10 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Returns true if {@code Tasks} contains only unique Tasks.
      */
-    private boolean tasksAreUnique(List<Task> Tasks) {
-        for (int i = 0; i < Tasks.size() - 1; i++) {
-            for (int j = i + 1; j < Tasks.size(); j++) {
-                if (Tasks.get(i).equals(Tasks.get(j))) {
+    private boolean tasksAreUnique(List<Task> tasks) {
+        for (int i = 0; i < tasks.size() - 1; i++) {
+            for (int j = i + 1; j < tasks.size(); j++) {
+                if (tasks.get(i).equals(tasks.get(j))) {
                     return false;
                 }
             }

@@ -3,6 +3,9 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
 
+/**
+ * Unmodifiable view of a Task List
+ */
 public interface ReadOnlyTaskList {
     /**
      * Returns an unmodifiable view of the persons list.

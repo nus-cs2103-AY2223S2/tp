@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 
 /**
@@ -65,8 +64,8 @@ public class JsonTaskListStorage implements TaskListStorage {
     }
 
     @Override
-    public void saveTaskList(ReadOnlyTaskList TaskList) throws IOException {
-        saveTaskList(TaskList, filePath);
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList, filePath);
     }
 
     /**
@@ -75,11 +74,11 @@ public class JsonTaskListStorage implements TaskListStorage {
      * @param filePath Location of the data. Cannot be null.
      */
     @Override
-    public void saveTaskList(ReadOnlyTaskList TaskList, Path filePath) throws IOException {
-        requireAllNonNull(TaskList, filePath);
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
+        requireAllNonNull(taskList, filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaskList(TaskList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), filePath);
     }
 
 }

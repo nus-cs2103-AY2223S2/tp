@@ -1,22 +1,18 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
-import seedu.address.model.fish.Fish;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
+/**
+ * Contains utility methods for populating Fish Ahoy! with sample data.
+ */
 public class SampleTaskUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(
-                        new Description("clean tank")
-                ),
-                new Task(
-                        new Description("feed fish")
-                )
+            new Task(new Description("clean tank")),
+            new Task(new Description("feed fish"))
         };
     }
 

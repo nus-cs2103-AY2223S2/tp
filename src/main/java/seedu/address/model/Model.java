@@ -47,7 +47,7 @@ public interface Model {
 
     Path getTaskListFilePath();
 
-    void setTaskListFilePath(Path TaskListFilePath);
+    void setTaskListFilePath(Path taskListFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -91,7 +91,7 @@ public interface Model {
     void updateFilteredFishList(Predicate<Fish> predicate);
 
     //=========== TaskList =============================================================
-    void setTaskList(ReadOnlyTaskList TaskList);
+    void setTaskList(ReadOnlyTaskList taskList);
 
     ReadOnlyTaskList getTaskList();
 
