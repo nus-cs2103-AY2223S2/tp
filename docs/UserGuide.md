@@ -144,6 +144,15 @@ Examples:
 * `listStudents` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Listing tasks of a student : listTasks
+
+Lists the tasks of the specified student from the student list.
+
+Format: `listTasks INDEX`
+
+Examples: 
+* `listTasks 1`
+
 ### Adding a task for a student: `addTask`
 
 Adds a task to a specific student.
