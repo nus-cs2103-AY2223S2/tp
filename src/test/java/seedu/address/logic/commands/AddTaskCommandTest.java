@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -35,16 +36,29 @@ class AddTaskCommandTest {
 
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
-        OfficeConnectModelStubAcceptingTaskAdded officeConnectStub =
-                new OfficeConnectModelStubAcceptingTaskAdded();
+        RepositoryModelManagerStub repoModelManagerStub = new RepositoryModelManagerStub();
+        OfficeConnectModel testModel = new OfficeConnectModel(repoModelManagerStub,
+                new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), officeConnectStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), testModel);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), officeConnectStub.getTaskModelManager().returnList());
+        assertEquals(Arrays.asList(validTask), repoModelManagerStub.tasksAdded);
     }
 
+    @Test
+    public void execute_duplicateTask_throwsCommandException() {
+        Task validTask = new TaskBuilder().build();
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask);
+        RepositoryModelManagerStubWithTask repositoryModelManagerStubWithTask =
+                new RepositoryModelManagerStubWithTask(validTask);
+        OfficeConnectModel testModel = new OfficeConnectModel(repositoryModelManagerStubWithTask,
+                new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
+
+        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK, () ->
+                addTaskCommand.execute(new ModelStub(), testModel));
+    }
     @Test
     public void equals() {
         Task taskEat = new TaskBuilder().withSubject("Eat food").build();
@@ -68,32 +82,38 @@ class AddTaskCommandTest {
         // different person -> returns false
         assertFalse(addTaskEatCommand.equals(addTaskDrinkCommand));
     }
-    private class OfficeConnectModelStubAcceptingTaskAdded extends OfficeConnectModel {
-        public OfficeConnectModelStubAcceptingTaskAdded() {
-            super(new RepositoryModelManager<Task>(new Repository<Task>()) {
-                final ArrayList<Task> tasksAdded = new ArrayList<>();
 
-                @Override
-                public boolean hasItem(Task task) {
-                    requireNonNull(task);
-                    return tasksAdded.stream().anyMatch(task::isSame);
-                }
+    private class RepositoryModelManagerStub extends RepositoryModelManager<Task> {
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
+        RepositoryModelManagerStub() {
+            super(new Repository<Task>());
+        }
+        @Override
+        public boolean hasItem(Task task) {
+            requireNonNull(task);
+            return tasksAdded.stream().anyMatch(task::isSame);
+        }
 
-                @Override
-                public void addItem(Task task) {
-                    requireNonNull(task);
-                    tasksAdded.add(task);
-                }
-
-                @Override
-                public ArrayList<Task> returnList() {
-                    return tasksAdded;
-                }
-                },
-                    new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
+        @Override
+        public void addItem(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
         }
     }
 
+    private class RepositoryModelManagerStubWithTask extends RepositoryModelManager<Task> {
+        private final Task task;
+        RepositoryModelManagerStubWithTask(Task task) {
+            super(new Repository<Task>());
+            requireNonNull(task);
+            this.task = task;
+        }
+        @Override
+        public boolean hasItem(Task task) {
+            requireNonNull(task);
+            return this.task.isSame(task);
+        }
+    }
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {

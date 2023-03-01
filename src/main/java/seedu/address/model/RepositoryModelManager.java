@@ -3,14 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the repository data.
@@ -98,9 +96,6 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         updateFilteredItemList(x -> true);
     }
 
-    public ArrayList<Task> returnList() {
-        return new ArrayList<>();
-    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
