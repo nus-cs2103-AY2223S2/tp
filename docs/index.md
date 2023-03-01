@@ -4,7 +4,7 @@ title: RIZZ-ipe
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions)
-[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S2/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/nus-cs2103-AY2223S2/tp)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp/branch/master/graph/badge.svg?token=7VWU83CQOT)](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp)
 
 ![Ui](images/Ui.png)
 
