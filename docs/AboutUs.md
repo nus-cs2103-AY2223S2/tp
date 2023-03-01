@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Cyrus Krispin Vijikumar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyrus-krispin.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cyrus-krispin)]
+[[portfolio](team/cyrus-krispin.md)]
 
 * Role: Project Advisor
 
@@ -24,36 +24,36 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhengsterz.png" width="200px">
 
 [[github](http://github.com/zhengsterz)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zhengsterz.md)]
 
 * Role: Team Member
 * Responsibilities: Undecided
 
-### Jerome Seet
+### Johnny Doe
 
-<img src="images/yaladah.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/Yaladah)] [[portfolio](team/yaladah.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/zhengsterz.md)]
 
-* Role: Team member
-* Responsibilities: To be decided
+* Role: Developer
+* Responsibilities: Data
 
-### Pawan Kishor Patil
+### Jean Doe
 
-<img src="images/pawan.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/PawanPatil19)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/zhengsterz.md)]
 
-* Role: Team Member
-* Responsibilities: TBD
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zhengsterz.md)]
 
 * Role: Developer
 * Responsibilities: UI
