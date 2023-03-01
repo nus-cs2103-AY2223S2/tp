@@ -1,19 +1,18 @@
 package seedu.address.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.drug.Drug;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-/**
- * API of the Logic component
- */
-public interface Logic {
+import java.nio.file.Path;
+
+public interface CareFlowLogic {
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
@@ -24,19 +23,30 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
+     * Returns the PatientRecord
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ReadOnlyPatientRecord getPatientRecord();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the DrugInventory
      */
-    Path getAddressBookFilePath();
+    ReadOnlyDrugInventory getDrugInventory();
+
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /** Returns an unmodifiable view of the filtered list of drugs */
+    ObservableList<Drug> getFilteredDrugList();
+
+    /**
+     * Returns the user prefs' patient record file path.
+     */
+    Path getPatientRecordFilePath();
+
+    /**
+     * Returns the user prefs' drug inventory file path.
+     */
+    Path getDrugInventoryFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +57,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

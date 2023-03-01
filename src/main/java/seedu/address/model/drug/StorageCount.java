@@ -8,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StorageCount {
     public static final String MESSAGE_CONSTRAINTS =
-            "Storage Count should only contain numbers, and it should be at least 1 digit long";
+            "Storage Count should only contain positive integers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "[\\d][\\d]*";
 
-    public final String count;
+    public Integer count;
 
     /**
      * Constructs a {@code StorageCount}.
@@ -21,7 +21,7 @@ public class StorageCount {
     public StorageCount(String count) {
         requireNonNull(count);
         checkArgument(isValidStorageCount(count), MESSAGE_CONSTRAINTS);
-        this.count = count;
+        this.count = Integer.parseInt(count);
     }
 
     /**
@@ -31,16 +31,28 @@ public class StorageCount {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public void decrStorage(Integer amount) {
+        if(amount > count) {
+            count = 0;
+        } else {
+            count -= amount;
+        }
+    }
+
+    public void incStorage(Integer amount) {
+        count += amount;
+    }
+
     @Override
     public String toString() {
-        return count;
+        return count.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof StorageCount // instanceof handles nulls
-                && count.equals(((StorageCount) other).count)); // state check
+                && count == (((StorageCount) other).count)); // state check
     }
 
     @Override

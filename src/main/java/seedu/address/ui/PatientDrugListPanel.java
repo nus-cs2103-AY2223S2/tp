@@ -8,35 +8,35 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.drug.Drug;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class PatientDrugListPanel extends UiPart<Region> {
+    private static final String FXML = "PatientDrugListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(PatientDrugListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Patient> patientListView;
     @FXML
-    private ListView<Person> drugListView;
+    private ListView<Drug> drugListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PatientDrugListPanel(ObservableList<Patient> patientList, ObservableList<Drug> drugList) {
         super(FXML);
 
         // PERSON LIST
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        patientListView.setItems(patientList);
+//        drugListView.setCellFactory(listView -> new PatientListViewCell());
 
         // DRUG LIST
-        drugListView.setItems(personList);
-        drugListView.setCellFactory(listView -> new PersonListViewCell());
-        //  drugListView.setItems(drugList); // to be passed in as arg
-        //  drugListView.setCellFactory(listView -> new DrugListViewCell()); // the class to be created ltr
+        drugListView.setItems(drugList);
+//        drugListView.setCellFactory(listView -> new DrugListViewCell());
     }
 
     /**

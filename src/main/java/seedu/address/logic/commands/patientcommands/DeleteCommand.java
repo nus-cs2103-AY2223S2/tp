@@ -3,7 +3,7 @@ package seedu.address.logic.commands.patientcommands;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+import seedu.address.model.CareFlowModel;
 
 /**
  * Deletes a patient from the patient records
@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(CareFlowModel model) throws CommandException {
         return null;
     }
 }

@@ -7,14 +7,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a drug's possible side effects in the drug inventory
  */
 public class SideEffect {
-    public static final String MESSAGE_CONSTRAINTS = "Side effects should start with at least 3 alphabets "
+    public static final String MESSAGE_CONSTRAINTS = "Side effects should be in phrase form "
             + "and only contain alphabets or whitespace";
 
     /*
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,
-     * followed by 0 or more alphabetical or whitespace characters.
+     * followed by 0 or more alphabetical, whitespace characters or commas.
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z]{3,}[A-Za-z\\s]*";
+    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s,]*";
 
     public final String sideEffect;
 
