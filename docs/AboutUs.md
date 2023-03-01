@@ -23,6 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/pzhengze.png" width="200px">
 
 [[github](http://github.com/pzhengze)]
+[[portfolio](team/pzhengze.md)]
 
 * Role: Team member
 * Responsibilities: ??
