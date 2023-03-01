@@ -9,9 +9,6 @@ InternBuddy is a one-stop and simple platform for **Computing undergraduates** t
 internship applications. It is a desktop application that is optimised for **fast typists** where interactions
 primarily revolve around text input, although it does provide a graphical user interface for users.
 
-Implementation-wise, InternBuddy is created using **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
-[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries. It
-is adapted from the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ## Project Contributions
 Given below are my contributions to InternBuddy:
