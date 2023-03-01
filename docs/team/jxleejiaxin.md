@@ -1,13 +1,13 @@
 ---
 layout: page
-title: <Merrick Neo> Project Portfolio Page
+title: <Lee Jia Xin> Project Portfolio Page
 ---
 
 ### Project: HMHero
 
 ### What should be included
 
-- [x] Code contributed
+- [x] Code contirbuted
 - [x] Enhancements implemented
 - [x] Contributions to the UG (Optional)
 - [x] Contributions to the DG (Optional)
@@ -21,25 +21,7 @@ title: <Merrick Neo> Project Portfolio Page
 
 (**Summary of Contributions**)
 
-- Implemented `delete` feature to remove applicants that should no longer be tracked in HMHero
-
-Example Input: `delete 1`
-
->Original List:
-```
-Here are the list of all applicants:
-1. John Doe (Applied)
-2. Jane Doe (Shortlisted)
-3. Joe Doe (Accepted)
-```
-Example Output:
-```
-John Doe is deleted from HRHero.
-
-Here are the list of all applicants:
-1. Jane Doe (Shortlisted)
-2. Joe Doe (Accepted)
-```
+- To be added soon.
 
 (**This part can change according to your contributions**)
 
@@ -51,7 +33,7 @@ Example
 
 Example
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=merrickneo&breakdown=true)
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jxleejiaxin&breakdown=true)
 
 - **Project management**:
 
@@ -65,10 +47,7 @@ Example
 
 - **Documentation**:
 
-  - User Guide
-    - Added documentation for the feature `add`
-  - Developer Guide
-    - Added non-functional requirements for the project.
+  - to be added soon
 
 - **Community**:
 
