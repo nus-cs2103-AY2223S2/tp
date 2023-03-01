@@ -1,0 +1,44 @@
+package seedu.address.model;
+
+import java.util.LinkedList;
+
+public class VersionedAddressBook extends AddressBook{
+    private LinkedList<AddressBook> addressBookStateList = new LinkedList<>();
+    private int currentStatePointer;
+
+    public VersionedAddressBook(){}
+
+    public VersionedAddressBook(AddressBook ab) {
+        addressBookStateList.add(ab.clone());
+        currentStatePointer = addressBookStateList.size() - 1;
+    }
+
+    /**
+     * Insert node (address book) after currentStatePointer
+     * 1. Delete the following node at currentStatePointer
+     * 2. Add node
+     * 3. Reset currentStatePointer
+     * @param ab
+     */
+    public void commit(AddressBook ab) {
+        // Step 1. Delete the following nodes at currentStatePointer
+        for (int i = currentStatePointer + 1; i < addressBookStateList.size(); i++) {
+            addressBookStateList.remove(i);
+        }
+        // Step 2. Add node
+        addressBookStateList.add(ab);
+        // Step 3. Increment currentStatePointer by 1
+        currentStatePointer = addressBookStateList.size() - 1;
+    }
+
+    /**
+     * Move currentStatePointer one before
+     */
+    public void undo() {
+        currentStatePointer--;
+    }
+
+    //todo
+    public void redo() {
+    }
+}

@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final VersionedAddressBook versionedAddressBook;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        versionedAddressBook = new VersionedAddressBook(this.addressBook);
     }
 
     public ModelManager() {
@@ -80,6 +82,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        commit();
     }
 
     @Override
@@ -96,20 +99,32 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        commit();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        commit();
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        commit();
     }
+
+    //=========== Versioned Address Book =====================================================================
+    public void commit(){
+        versionedAddressBook.commit(addressBook);
+    }
+
+    //todo
+    public void undo(){}
+
+    public void redo(){}
 
     //=========== Filtered Person List Accessors =============================================================
 

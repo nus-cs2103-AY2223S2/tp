@@ -4,9 +4,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 public class UndoCommand extends Command{
-    
+    public static final String COMMAND_WORD = "undo";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        return new CommandResult("Hello from undo");
     }
+
+
 }
