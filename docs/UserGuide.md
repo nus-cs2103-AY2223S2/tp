@@ -16,7 +16,7 @@ Add a contact image for each contact
 Format: `add-image INDEX [NAME-OF-IMAGE]`
 * Adds an image to the contact at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3,... 
+* The index **must be a positive integer** 1, 2, 3,...
 * The image must be placed in a specific folder for BookFace to locate
 * If the image cannot be found or user did not specify a contact image, a default image will be used
 
