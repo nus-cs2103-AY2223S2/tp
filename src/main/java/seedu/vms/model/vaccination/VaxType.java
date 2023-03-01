@@ -110,11 +110,11 @@ public abstract class VaxType {
      * editing of {@code VaxType}.
      */
     public static class Builder {
-        private static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
-        private static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
-        private static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
-        private static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
-        private static final List<VaxRequirement> DEFAULT_REQUIREMENTS = List.of();
+        public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
+        public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
+        public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
+        public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
+        public static final List<VaxRequirement> DEFAULT_REQUIREMENTS = List.of();
 
         private final Optional<String> originalName;
         private final String name;
