@@ -37,4 +37,3 @@ Given below are my contributions to the project.
 * **Tools**:
   * Coming soon!
 
-* _{you can add/remove categories in the list above}_
