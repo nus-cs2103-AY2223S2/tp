@@ -16,29 +16,47 @@ public class VaccinationCheckerTest {
     private static final int MAX_AGE = 60;
     private static final int MIN_SPACING = 7;
 
-    private static final VaxType TYPE_1_A = VaxType.of("TYPE_1_A",
-            new HashSet<>(List.of("TYPE_1")),
-            MIN_AGE, MAX_AGE, MIN_SPACING,
-            List.of());
-    private static final VaxType TYPE_1_B = VaxType.of("TYPE_1_B",
-            new HashSet<>(List.of("TYPE_1", "B")),
-            MIN_AGE, MAX_AGE, MIN_SPACING,
-            List.of(new VaxRequirement(true, new HashSet<>(List.of("TYPE_1")))));
-    private static final VaxType TYPE_2_A = VaxType.of("TYPE_2_A",
-            new HashSet<>(List.of("TYPE_2", "A")),
-            MIN_AGE, MAX_AGE, MIN_SPACING,
-            List.of(new VaxRequirement(false, new HashSet<>(List.of("TYPE_1"))),
-                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_2")))));
-    private static final VaxType TYPE_2_B = VaxType.of("TYPE_2_B",
-            new HashSet<>(List.of("TYPE_2", "B")),
-            MIN_AGE, MAX_AGE, MIN_SPACING,
-            List.of(new VaxRequirement(false, new HashSet<>(List.of("B", "TYPE_1"))),
-                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_2")))));
-    private static final VaxType TYPE_3 = VaxType.of("TYPE_3",
-            new HashSet<>(List.of("TYPE_3")),
-            MIN_AGE, MAX_AGE, MIN_SPACING,
-            List.of(new VaxRequirement(false, new HashSet<>(List.of("TYPE_2"))),
-                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_3")))));
+    private static final VaxType TYPE_1_A = VaxType.Builder.of("TYPE_1_A")
+            .setGroups("TYPE_1")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setRequirements()
+            .build();
+    private static final VaxType TYPE_1_B = VaxType.Builder.of("TYPE_1_B")
+            .setGroups("TYPE_1", "B")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setRequirements(new VaxRequirement(true, new HashSet<>(List.of("TYPE_1"))))
+            .build();
+    private static final VaxType TYPE_2_A = VaxType.Builder.of("TYPE_2_A")
+            .setGroups("TYPE_2", "A")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setRequirements(
+                    new VaxRequirement(false, new HashSet<>(List.of("TYPE_1"))),
+                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
+            .build();
+    private static final VaxType TYPE_2_B = VaxType.Builder.of("TYPE_2_B")
+            .setGroups("TYPE_2", "B")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setRequirements(
+                    new VaxRequirement(false, new HashSet<>(List.of("B", "TYPE_1"))),
+                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
+            .build();
+    private static final VaxType TYPE_3 = VaxType.Builder.of("TYPE_3")
+            .setGroups("TYPE_3")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setRequirements(
+                    new VaxRequirement(false, new HashSet<>(List.of("TYPE_2"))),
+                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_3"))))
+            .build();
 
     private static final LocalDateTime TIME_1_VALID = LocalDateTime.of(2023, 3, 5, 4, 55);
     private static final LocalDateTime TIME_2_VALID = TIME_1_VALID.plus(MIN_SPACING, ChronoUnit.DAYS);

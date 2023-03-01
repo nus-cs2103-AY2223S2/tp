@@ -21,7 +21,7 @@ public class VaxRequirement {
             throw new IllegalArgumentException("Empty substitution list");
         }
         this.isExclusion = isExclusion;
-        this.grpSet = grpSet;
+        this.grpSet = new HashSet<>(grpSet);
     }
 
 
@@ -43,5 +43,16 @@ public class VaxRequirement {
             }
         }
         return false;
+    }
+
+
+    /**
+     * Returns a copy of this requirement. Changes to one will not affect
+     * the other.
+     *
+     * @return a copy of this requirement.
+     */
+    public VaxRequirement copy() {
+        return new VaxRequirement(isExclusion, grpSet);
     }
 }
