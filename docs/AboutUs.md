@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yuan Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuanhao.jpg" width="200px">
 
 [[github](http://github.com/iapetusbob)]
 [[portfolio](team/yuanhao.md)]
