@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nramapurath.png" width="200px">
 
 [[github](https://github.com/nramapurath)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nramapurath.md)]
 
 - Role: Team Lead
 - Code Focus Area: Logic, model
