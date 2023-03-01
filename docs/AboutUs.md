@@ -26,19 +26,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jeraldkiew.png" width="200px">
 
 [[github](http://github.com/jeraldkiew)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jeraldkiew.md)]
 
 - Role: Documentation
 - Responsibilities: Model
 
 ### K Sunil Avinash
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ksunil2001.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ksunil2001)] 
+[[portfolio](team/ksunil2001.md)]
 
 - Role: Developer
-- Responsibilities: Data
+- Code Focus Area: Storage
+- Primary Role: Code Quality
+- Secondary Role: Documentation
 
 ### Nicholas Arlin Halim
 
