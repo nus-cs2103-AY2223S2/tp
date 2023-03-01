@@ -327,9 +327,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
 
-**Use Case: UC01 - Adding `grade` for a `student`**
+**Preconditions:** `class` and `index number` of the `student`
 
-**Preconditions:** User knows `index number` of the `student` he/she wishes add `grade` for
+**Use Case: UC01 - Adding `grade` for a `student`**
 
 **MSS:**
 1. User keys in the `test` name, `index number` of student and corresponding `grade`
@@ -358,8 +358,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Use Case: UC02 - Adding `comment` for a `student`**
 
-**Preconditions: User knows `index number` of the `student` he/she wishes add `comment` for**
-
 **MSS:**
 1. User keys in the `index number` of student and the corresponding `comment` for the student
 2. If the student has an existing `comment`, the system will request the user to confirm the change of comments. Otherwise, skip to step 3.
@@ -384,8 +382,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Use Case: UC03 - Adding a new `student` to an existing `class`**
 
-**Preconditions: User knows the `index number` for the `student` and the `class` the student belongs to has already been created**
-
 **MSS:**
 1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details as part of student’s particulars
 2. System displays feedback to the user that the `student` has been successfully been created and added to the respective `class`
@@ -400,11 +396,11 @@ _{Explain here how the data archiving feature will be implemented}_
       Use case ends.
 
 + 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
-    + 1b11. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
-    + 1b12. User keys the same information for the student's `name` and NOK’s `name`.
-    + 1b13. User keys in `age` or `phone number` that are not of an integer.
-    + 1b14. User keys in invalid path to `image`.
-    + 1b2. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
+    + 1b1. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
+    + 1b2. User keys the same information for the student's `name` and NOK’s `name`.
+    + 1b3. User keys in `age` or `phone number` that are not of an integer.
+    + 1b4. User keys in invalid path to `image`.
+    + 1b5. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
 
       Use case ends.
 
@@ -433,15 +429,77 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case ends.
 
+**Use Case: UC05 - Editing `personal details` of `students`**
+
+**MSS:**
+1. User enters the `type` of personal detail and corresponding `detail` to edit
+2. System displays that the personal detail of the student has been changed successfully
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+
+**Use Case: UC06 - Finding `student` by `student id`**
+
+**MSS:**
+1. User keys in the `class` and `index number` of the student he/she is finding
+2. System displays the student with all his/her corresponding personal details
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message.
+  
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+    
+**Use Case: UC07 - Deleting `student` or `student information` from the `database`**
+
+**MSS:**
+1. User keys in the command to delete a student or student information
+2. System displays that the student or student information has been deleted successfully
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message.
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+
 *{More to be added}* <br><br>
 
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
-3. PowerConnect should be able to work without any internet access.
-4. PowerConnect should only be used by a single user per installation and not by multiple users.
-5. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+3. Should package it as a JAR file that is smaller than 50mb
+4. Should store data in a txt/csv file
+5. PowerConnect should be able to work without any internet access.
+6. PowerConnect should only be used by a single user per installation and not by multiple users.
+7. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish the majority of the tasks faster using CLI commands than using the mouse.
 
 *{More to be added}*
