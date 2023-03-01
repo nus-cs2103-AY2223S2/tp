@@ -11,7 +11,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-1. [Features / Commands](#features)
+2. [Features / Commands](#features)
     1. Add a module: `Add`
    1. Remove a module: `Delete`
    1. Change module details: `Edit`
@@ -22,7 +22,8 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
    1. Exiting the program: `Exit`
    1. Saving the data
    1. Editing the data file
-1. [Frequently Asked Questions (FAQ)](#faq)
+3. [Frequently Asked Questions (FAQ)](#faq)
+4. [Command Summary](#command-summary) 
 
 
 
@@ -57,7 +58,7 @@ The following commands are available on the CLI:
 | -        | _Editing the data_<br><br>ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run. | -                                                                                                                                                                                                      |
 
 
-###Notes about command format:
+### Notes about command format:
 - Words enclosed by `<>` are the parameters to be supplied by the user.<br>
   - E.g. in `add /m <module code> /c <credits> /y <year-semester> /g <grade>`, `<module code>`, `<credits>`, `<year-semester>`, `<grade>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+`
 - Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.
@@ -71,7 +72,7 @@ The following commands are available on the CLI:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
