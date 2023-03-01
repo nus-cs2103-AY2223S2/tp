@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Pawan Kishor Patil
+### Jean Doe
 
-<img src="images/pawan.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/PawanPatil19)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Member
-* Responsibilities: TBD
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
