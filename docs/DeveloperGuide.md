@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: HospiSearch is a comprehensive hospital records management system designed to streamline administrative tasks and improve patient care. With our app, you can easily store, retrieve, and manage patient records, appointment schedules, and billing information all in one place
 
 
 ### User stories
@@ -272,40 +272,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | see the user guide      	    		  | know about all functions            |
+| `* * *`  | new user                                   | access a help menu              	  |  know about all commands            |
+| `* * *`  | admin                                      | add patients’ records             	  | keep track of their information     |
+| `* * *`  | admin                                      | edit patients’ records      	        | update their information  	    |
+| `* * *`  | admin                                      | delete patients’ records   		  |                			    |
+| `* *`    | admin          					  | import data files of different formats  |						    |
+| `* *`    | admin          					  | list all patients                       | have an overview			    |
+| `* *`    | admin          					  | search for a patient record 		  | find the needed information quickly |
+| `*`      | admin         					  | clear data                              | start the database from scratch     |
+| `*`      | admin         					  | save data                               | resume the same state next time     |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HospiSearch` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add patient to system**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Administrator types add command together with the patient details (NRIC, age, gender, medicine usage, health conditions).
+2.  HS adds the patient to the system.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. HS detects an error in the entered patient details or missing patient details.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+	1a1. HS requests for the correct data.
+	1a2. Administrator enters the new data.
+	Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
 *{More to be added}*
