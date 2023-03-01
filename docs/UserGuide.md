@@ -94,11 +94,11 @@ Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE`
 
 Examples:
 * `add n/Apple r/Software Engineer s/new d/2023-02-01` Adds a new internship entry with
-  company name _Apple_, role _Software Engineer_, status _New_ and deadline
-  of application _2023-02-01._
+  company name `Apple`, role `Software Engineer`, status `new` and deadline
+  of application `2023-02-01`.
 * `add n/Amazon r/Cloud Architect s/assessment d/2023-02-01` Adds a new internship entry
-  with company name _Amazon_, role _Cloud Architect_, status _Assessment_ and
-  date of technical assessment _2023-02-01._
+  with company name `Amazon`, role `Cloud Architect`, status `assessment` and
+  date of technical assessment `2023-02-01`.
 * `add n/Facebook s/new d/2023-02-01` Displays an error because the role is missing.
 
 ### Listing all persons : `list`
