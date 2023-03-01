@@ -10,13 +10,16 @@
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Airline managers will be able to take labor, welfare, and resource optimization 
-into consideration such that they can assign tasks to the most appropriate crew based on their location 
+**Value proposition**: Airline managers will be able to take labor, welfare, and
+resource optimization
+into consideration such that they can assign tasks to the most appropriate crew
+based on their location
 and availability while optimizing their staff’s physical well-being.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (
+unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
@@ -29,12 +32,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | airline manager    | add new planes to our fleet                                     | I can assign them to flights                               |
 | `* * *`  | airline manager    | list planes from our fleet                                      | I can view all the planes in our fleet                     |
 | `* * *`  | airline manager    | remove old planes from our fleet                                | I can update planes which can be used for flights          |
+| `* * *`  | airline manager    | add new pilots to the crew list                                 | I can assign flights to pilots                             |
+| `* * *`  | airline manager    | remove pilots from the locations                                | I can retire some pilots                                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Wingman` and the **Actor**
+is the `user`, unless specified otherwise)
 
 **Use case: Delete a location**
 
@@ -42,25 +48,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list locations
 2.  Wingman shows a list of locations
-3.  User requests to delete a specific location in the list
-4.  Wingman deletes the location
-5.  User request to add a location
-6.  Wingman adds the location
+3. User requests to delete a specific location in the list
+4. Wingman deletes the location
+5. User request to add a location
+6. Wingman adds the location
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-  Use case ends.
 
 * 3a. The given location is invalid.
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
 
 * 5b. The given location is a duplicate of an existing one
-   *  5b1. Wingman shows an error message.
-      Use case resumes at step 4. 
+    * 5b1. Wingman shows an error message.
+      Use case resumes at step 4.
       
 **Use case: Delete a crew**
 
@@ -72,6 +75,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Wingman deletes the crew
 5.  User request to add a crew
 6.  Wingman adds the crew
+
+    Use case ends.
 
 **Extensions**
 
@@ -99,7 +104,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  User request to add a plane
 6.  Wingman adds the plane
 
-
     Use case ends.
 
 **Extensions**
@@ -113,6 +117,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5b. The given plane is a duplicate of an existing plane.
   * 5b1. Wingman shows an error message. Use case resumes at step 4.
 
+**Use case: Add a pilot**
+
+**MSS**
+
+1. User requests to add a pilot
+2. User specifies the basic information of the pilot
+3. Wingman adds the pilot
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given pilot is invalid.
+    * 2a1. Wingman shows an error message.
+      Use case resumes at step 2.
+* 3a. The given pilot is a duplicate of an existing one
+    * 3a1. Wingman shows an error message.
+      Use case resumes at step 2.
+
+**Use case: Delete a pilot**
+
+**MSS**
+
+1. User requests to delete a specific pilot in the list
+2. Wingman deletes the pilot
+3. User request to add a pilot
+4. Wingman adds the pilot
+
+   Use case ends.
 
 *{More to be added}*
 
@@ -127,6 +160,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
+
+* **Location**: A unit place that flights may depart from or arrive at.
+* **Crew**: A unit person who can be added to or deleted from a flight.
+* **Pilot**: Someone that is certified to fly an aircraft.
 * **Plane**: A unit plane which can be assigned to flights.
-* **Location**: A unit place that flights may depart from or arrive at. 
-* **crew**: A unit person who can be added to or deleted from a flight.
+
+
