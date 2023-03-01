@@ -525,3 +525,16 @@
     -fx-background-radius: 5;
     -fx-font-size: 12;
 }
+
+#modules {
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+}
+
+#modules .label {
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-background-color: #ec5e45;
+    -fx-background-radius: 5;
+    -fx-padding: 2 4 2 4;
+}
