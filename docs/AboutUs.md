@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Edwin Lim
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](https://github.com/9fc70c892)]
+[[portfolio](team/edwin.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops
