@@ -38,6 +38,30 @@ class AddTaskCommandTest {
         assertEquals(Arrays.asList(validTask), OfficeConnectStub.getTaskModelManager().returnList());
     }
 
+    @Test
+    public void equals() {
+        Task taskEat = new TaskBuilder().withSubject("Eat food").build();
+        Task taskDrink = new TaskBuilder().withSubject("Drink water").build();
+        AddTaskCommand addTaskEatCommand = new AddTaskCommand(taskEat);
+        AddTaskCommand addTaskDrinkCommand = new AddTaskCommand(taskDrink);
+
+        // same object -> returns true
+        assertTrue(addTaskEatCommand.equals(addTaskEatCommand));
+
+        // same values -> returns true
+        AddTaskCommand addTaskEatCommandCopy = new AddTaskCommand(taskEat);
+        assertTrue(addTaskEatCommand.equals(addTaskEatCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addTaskEatCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addTaskEatCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addTaskEatCommand.equals(addTaskDrinkCommand));
+    }
+
     private class OfficeConnectModelStub extends OfficeConnectModel {
 
         public RepositoryModelManager<Task> getTaskModelManager() {

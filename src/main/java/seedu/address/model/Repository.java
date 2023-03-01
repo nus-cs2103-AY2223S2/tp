@@ -75,24 +75,24 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
         items.add(item);
     }
 
-    // /**
-    //  * Replaces the given item {@code target} in the list with {@code editedItem}.
-    //  * {@code target} must exist in the repository.
-    //  * The item identity of {@code editedItem} must not be the same as another existing task in the repository.
-    //  */
-    // public void setItem(T target, T editedItem) {
-    //     requireNonNull(editedItem);
-    //
-    //     items.setItem(target, editedItem);
-    // }
-    //
-    // /**
-    //  * Removes {@code key} from this {@code Repository}.
-    //  * {@code key} must exist in the repository.
-    //  */
-    // public void removeItem(T key) {
-    //     items.remove(key);
-    // }
+    /**
+     * Replaces the given item {@code target} in the list with {@code editedItem}.
+     * {@code target} must exist in the repository.
+     * The item identity of {@code editedItem} must not be the same as another existing task in the repository.
+     */
+    public void setItem(T target, T editedItem) {
+        requireNonNull(editedItem);
+
+        items.setItem(target, editedItem);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Repository}.
+     * {@code key} must exist in the repository.
+     */
+    public void removeItem(T key) {
+        items.remove(key);
+    }
 
     //// util methods
 

@@ -18,7 +18,7 @@ OfficeConnect is a task management tool designed specifically for managerial rol
 
 ## Getting Started
 
-- Check out our [OfficeConnect Website](https://nus-cs2103-ay2223s2.github.io/tp/)
+- Check out our [OfficeConnect Website](https://ay2223s2-cs2103-f10-1.github.io/tp/)
 - Download our latest release from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases)
 
 ## Usage

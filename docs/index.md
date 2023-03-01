@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: OfficeConnect
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103-F10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-F10-1/tp/actions)
@@ -8,10 +8,17 @@ title: AddressBook Level-3
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.** 
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+- The target users are individuals who are responsible for assigning tasks and overseeing the work of a team.
+
+- The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual tasks like typing and sending emails.
+
+- OfficeConnect offers a solution to these problems by providing better visibility into subordinates' workloads, allowing managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that emails are sent during working hours, so that subordinates will not be disturbed outside of work.
+
+**Try it out!**
+* If you are interested in using OfficeConnect, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing OfficeConnect, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

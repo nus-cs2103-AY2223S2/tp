@@ -25,6 +25,17 @@ public class TaskBuilder {
         status = new Status(DEFAULT_STATUS);
     }
 
+    public TaskBuilder(Task taskToCopy) {
+        subject = taskToCopy.getSubject();
+        content = taskToCopy.getContent();
+        status = taskToCopy.getStatus();
+    }
+
+    public TaskBuilder withSubject(String subject) {
+        this.subject = new Subject(subject);
+        return this;
+    }
+
     public Task build() {
         return new Task(subject, content, status);
     }

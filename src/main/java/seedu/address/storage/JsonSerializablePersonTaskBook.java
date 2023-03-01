@@ -20,15 +20,13 @@ import seedu.address.model.mapping.PersonTask;
 class JsonSerializablePersonTaskBook {
 
     public static final String MESSAGE_DUPLICATE = "PersonTask list contains duplicate personTask(s).";
-
-    @JsonProperty("person_task")
     private final List<JsonAdaptedPersonTask> personTasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePersonTaskBook} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializablePersonTaskBook(List<JsonAdaptedPersonTask> personTasks) {
+    public JsonSerializablePersonTaskBook(@JsonProperty("person_task") List<JsonAdaptedPersonTask> personTasks) {
         this.personTasks.addAll(personTasks);
     }
 

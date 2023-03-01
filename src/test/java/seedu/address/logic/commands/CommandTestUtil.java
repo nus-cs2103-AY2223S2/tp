@@ -2,11 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -57,6 +53,15 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String VALID_SUBJECT_SPORTS = "Sports";
+    public static final String VALID_CONTENT_SPORTS = "Ride bicycle";
+    public static final String VALID_STATUS_SPORTS = "False";
+
+    public static final String SUBJECT_DESC_SPORTS = " " + PREFIX_SUBJECT + VALID_SUBJECT_SPORTS;
+    public static final String CONTENT_DESC_SPORTS = " " + PREFIX_CONTENT + VALID_CONTENT_SPORTS;
+    public static final String STATUS_DESC_SPORTS = " " + PREFIX_STATUS + VALID_STATUS_SPORTS;
+
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;

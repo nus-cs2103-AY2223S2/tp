@@ -41,25 +41,25 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
         internalList.add(toAdd);
     }
 
-    // /**
-    //  * Replaces the task {@code target} in the list with {@code editedTask}.
-    //  * {@code target} must exist in the list.
-    //  * The task identity of {@code editedTask} must not be the same as another existing task in the list.
-    //  */
-    // public void setItem(T target, T editedItem) {
-    //     requireAllNonNull(target, editedItem);
-    //
-    //     int index = internalList.indexOf(target);
-    //     if (index == -1) {
-    //         throw new TaskNotFoundException();
-    //     }
-    //
-    //     if (!target.isSame(editedItem) && contains(editedItem)) {
-    //         throw new DuplicateTaskException();
-    //     }
-    //
-    //     internalList.set(index, editedItem);
-    // }
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setItem(T target, T editedItem) {
+        requireAllNonNull(target, editedItem);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSame(editedItem) && contains(editedItem)) {
+            throw new DuplicateTaskException();
+        }
+
+        internalList.set(index, editedItem);
+    }
 
     /**
      * Removes the equivalent task from the list.
