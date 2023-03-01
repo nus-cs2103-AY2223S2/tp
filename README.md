@@ -4,7 +4,7 @@
 
 * This is a product for **Hiring Managers**.<br>
   Example usages:
-  * as an application to easily track the statuses of applicants' applications
+  * as an application to easily track different statuses of the applicants' application.
 * The project simulates an ongoing software project for a desktop application (called HMHero) used for managing details and status for applicants.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code based **bigger** on the original project AB3.
   * It comes with a **reasonable level of user and developer documentation**.
