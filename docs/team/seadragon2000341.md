@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     * [To be added]
   * Developer Guide:
     * [To be added]
-    
+
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
