@@ -283,56 +283,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Rizzipe` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
+
+#### **Use case: List all recipes**
+
+**MSS (Main Success Scenario)**
+
+1.  Chef requests to list recipes
+2.  Book shows a list of ***all*** recipes
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. The storage file is invalid.
+
+    * 2b1. Book shows an error message, with a button that displays "file fixed" to check again if the file is valid.
+    * 2b2. Chef rectifies/fixes error with the file.
+    * 2b3. Chef clicks the "file fixed" button
+
+      Use case resumes at step 2.
 
 **Use case: Add a recipe**
 
 **MSS**
 
-1.  User requests to add a recipe
-2.  Rizzipe prompts the user for the name, ingredients and steps for the recipe
-3.  User keys in details for each section one at a time
-4.  Rizzipe adds recipe to a database
+1.  Chef requests to add a recipe
+2.  Book prompts the user for the name, ingredients and steps for the recipe
+3.  Chef keys in details for each section one at a time
+4.  Book adds the recipe to a database
+
+**Extensions**
+
+* 3a. The name, ingredients or steps typed by Cook are empty.
+    * 3a1. Book shows an error message.
+    * 3a2. Book requests for the correct entry or for the Cook to type "/exit" if he/she chooses not to continue.
+
+      Use case resumes from step 3.
+
+* 4a. The given recipe is a duplicate. The name, ingredients and steps coincide with another recipe
+    * 4a1. Book shows a message that states there already exist such recipe.
+    * 4a2. The recipe keyed is not added.
+
+      Use case ends.
+
+**Use case: Delete a recipe**
+
+**MSS**
+
+1. Chef requests to list recipes
+2. Book shows a list of ***all*** recipes
+3. Chef requests to delete a specific recipe in the list
+4. Book deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The name, ingredients or steps typed by users are empty.
-  * 3a1. Rizzipe shows an error message.
-  * 3a2. Rizzipe requests for the correct entry or for the user to type "/exit" if he/she chooses not to continue.
+* 2a. The list is empty.
 
-    Use case resumes from step 3.
+  Use case ends.
 
-* 4a. The given recipe is a duplicate. The name, ingredients and steps coincide with another recipe
-  * 4a1. Rizzipe shows a message that states there already exist such recipe.
-  * 4a2. The Rizzipe keyed is not added.
-  
-    Use case ends.
+* 3a. The given index is invalid.
+
+    * 3a1. Book shows an error message.
+
+      Use case resumes at step 2.
+
+
 
 **Use case: View a recipe**
 
 **MSS**
 
-1.  User requests to view a recipe with a specified index
-2.  Rizzipe search through the current list of recipe, and return the recipe at that particular index
 
+1. Chef requests to list recipes
+2. Book shows a list of ***all*** recipes
+3. Chef requests to view a specific recipe in the list
+4. Book return the specified recipe 
     Use case ends.
 
 **Extensions**
 
 * 1a. The current list is empty
-  * 1a1. Rizzipe shows a message stating the list is empty.
   
     Use case ends.
 
-* 1b. The specified index is not a valid number.
-  * 1b1. Rizzipe shows an error message.
+* 3a. The given index is invalid.
+  * 3a1. Book shows an error message.
   
-    Use case ends.
-* 2b. The specified index is greater than the current size of list.
-  * 2b1. Rizzipe shows an error message
-
     Use case ends.
 
 *{More to be added}*
