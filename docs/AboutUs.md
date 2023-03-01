@@ -19,25 +19,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Wong Jia Jun
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/Wong-Jia-Jun)]
-[[portfolio](team/Wong-Jia-Jun.md)]
-
-* Role: Developer
-* Responsibilities: TBC
-
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: UI
 
+### Wong Jia Jun
+
+<img src="images/Wong-Jia-Jun.png" width="200px">
+
+[[github](http://github.com/Wong-Jia-Jun)]
+[[portfolio](team/Wong-Jia-Jun.md)]
+
+* Role: Developer
+* Responsibilities: TBC
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
