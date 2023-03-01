@@ -11,10 +11,8 @@ import seedu.address.model.shared.Id;
  * Jackson-friendly version of {@link PersonTask}.
  */
 public class JsonAdaptedPersonTask {
-    @JsonProperty("person_id")
 
     private final String personId;
-    @JsonProperty("task_id")
 
     private final String taskId;
 
@@ -22,7 +20,7 @@ public class JsonAdaptedPersonTask {
      * Constructs a {@code JsonAdaptedPersonTask} with the given {@code personTask}.
      */
     @JsonCreator
-    public JsonAdaptedPersonTask(String personId, String taskId) {
+    public JsonAdaptedPersonTask(@JsonProperty("person_id") String personId, @JsonProperty("task_id") String taskId) {
 
         this.personId = personId;
         this.taskId = taskId;

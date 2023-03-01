@@ -22,14 +22,13 @@ class JsonSerializableTaskBook {
 
     public static final String MESSAGE_DUPLICATE = "Tasks list contains duplicate task(s).";
 
-    @JsonProperty("tasks")
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTaskBook} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableTaskBook(List<JsonAdaptedTask> tasks) {
+    public JsonSerializableTaskBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.tasks.addAll(tasks);
     }
 

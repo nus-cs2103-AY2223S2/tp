@@ -36,7 +36,8 @@ public class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(String id, String subject, String content, String status) {
+    public JsonAdaptedTask(@JsonProperty("id") String id, @JsonProperty("subject") String subject,
+                           @JsonProperty("content") String content, @JsonProperty("status") String status) {
         this.id = id;
         this.subject = subject;
         this.content = content;
