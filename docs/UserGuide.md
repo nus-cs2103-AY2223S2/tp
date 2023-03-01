@@ -190,7 +190,13 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 
 _Details coming soon ..._
 
-### View meetings `[coming in v2.0]`
+### View all meetings `[coming in v2.0]`
+
+### Create meetings
+
+### Delete meetings
+
+### Edit meetings
 
 _Details coming soon ..._
 
