@@ -92,9 +92,6 @@ Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE`
 | `offered`    | Date of Offer                |
 | `rejected`   | Date of Rejection            |
 
-
-  
-
 Examples:
 * `add n/Apple r/Software Engineer s/new d/2023-02-01` Adds a new internship entry with
   company name _Apple_, role _Software Engineer_, status _New_ and deadline
