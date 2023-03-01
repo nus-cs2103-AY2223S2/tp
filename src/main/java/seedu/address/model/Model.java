@@ -45,10 +45,6 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
-    Path getTaskListFilePath();
-
-    void setTaskListFilePath(Path taskListFilePath);
-
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -94,6 +90,10 @@ public interface Model {
     void setTaskList(ReadOnlyTaskList taskList);
 
     ReadOnlyTaskList getTaskList();
+
+    Path getTaskListFilePath();
+
+    void setTaskListFilePath(Path taskListFilePath);
 
     /**
      * Returns true if a Task with the same identity as {@code Task} exists in Fish Ahoy!.

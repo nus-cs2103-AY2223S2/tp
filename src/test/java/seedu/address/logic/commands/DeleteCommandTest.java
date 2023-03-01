@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showFishAtIndex;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FISH;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ import seedu.address.model.fish.Fish;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FISH_SUCCESS, fishToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList());
         expectedModel.deleteFish(fishToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FISH_SUCCESS, fishToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList());
         expectedModel.deleteFish(fishToDelete);
         showNoFish(expectedModel);
 
