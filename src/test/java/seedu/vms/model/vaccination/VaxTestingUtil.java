@@ -6,7 +6,19 @@ import java.util.HashSet;
 import java.util.List;
 
 
+/** Testing utility class for vaccinations. */
 public class VaxTestingUtil {
+    /**
+     * Asserts if the given vaccination type is of the expected state.
+     *
+     * @param vaxType - the {@code VaxType} to check.
+     * @param name - the expected name.
+     * @param groups - the expected groups.
+     * @param minAge - the expected min age.
+     * @param maxAge - the expected max age.
+     * @param minSpacing - the expected min spacing.
+     * @param requirements - the expected requirements.
+     */
     public static void assertVaxType(VaxType vaxType,
             String name, HashSet<String> groups, int minAge, int maxAge, int minSpacing,
             List<VaxRequirement> requirements) {

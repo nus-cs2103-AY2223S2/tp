@@ -11,6 +11,7 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.VaxType;
 
 
+/** A JSON friendly version of {@link VaxType}. */
 public class JsonAdaptedVaxType {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Vaccination type [%s] is missing";
 
@@ -22,6 +23,7 @@ public class JsonAdaptedVaxType {
     private final List<JsonAdaptedVaxRequirement> requirements;
 
 
+    /** Constructs a {@code JsonAdaptedVaxType}. */
     @JsonCreator
     public JsonAdaptedVaxType(
                 @JsonProperty("name") String name,
@@ -39,6 +41,12 @@ public class JsonAdaptedVaxType {
     }
 
 
+    /**
+     * Converts this JSON friendly version to an {@link VaxType} instance. The
+     * type is added in to the vaccination type map in the process.
+     *
+     * @throws IllegalValueException if name field is missing.
+     */
     public VaxType toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));

@@ -8,11 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.model.vaccination.VaxRequirement;
 
+
+/** JSON friendly version of {@link VaxRequirement} */
 public class JsonAdaptedVaxRequirement {
     private final boolean isExclusion;
     private final List<String> grpSet;
 
 
+    /** Constructs a {@code JsonAdaptedVaxRequirement}. */
     @JsonCreator
     public JsonAdaptedVaxRequirement(
                 @JsonProperty("isExclusion") boolean isExclusion,
@@ -22,6 +25,10 @@ public class JsonAdaptedVaxRequirement {
     }
 
 
+    /**
+     * Converts this JSON friendly version to an {@link VaxRequirement}
+     * instance.
+     */
     public VaxRequirement toModelType() {
         return new VaxRequirement(isExclusion, new HashSet<>(grpSet));
     }
