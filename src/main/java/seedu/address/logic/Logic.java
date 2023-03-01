@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 
 /**
  * API of the Logic component
@@ -40,7 +41,7 @@ public interface Logic {
     ObservableList<Elderly> getFilteredElderlyList();
 
     /** Returns an unmodifiable view of the filtered list of volunteers */
-    ObservableList<Person> getFilteredVolunteerList();
+    ObservableList<Volunteer> getFilteredVolunteerList();
 
     /** Returns an unmodifiable view of the filtered list of pairs */
     ObservableList<Pair> getFilteredPairList();

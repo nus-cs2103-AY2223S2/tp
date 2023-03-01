@@ -195,7 +195,7 @@ public interface Model {
 
 
     /** Returns an unmodifiable view of the filtered volunteers list */
-    ObservableList<Person> getFilteredVolunteerList();
+    ObservableList<Volunteer> getFilteredVolunteerList();
 
     /**
      * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.

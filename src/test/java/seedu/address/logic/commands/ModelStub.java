@@ -184,7 +184,7 @@ class ModelStub implements Model {
      * Returns an unmodifiable view of the filtered volunteers list
      */
     @Override
-    public ObservableList<Person> getFilteredVolunteerList() {
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
         throw new AssertionError("This method should not be called.");
     }
 

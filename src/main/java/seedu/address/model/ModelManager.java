@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Elderly> filteredElderly;
-    private final FilteredList<Person> filteredVolunteers;
+    private final FilteredList<Volunteer> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
 
     /**
@@ -167,7 +167,6 @@ public class ModelManager implements Model {
         friendlyLink.setVolunteer(target, editedVolunteer);
     }
 
-    @Override
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.getElderly(nric);
@@ -243,7 +242,7 @@ public class ModelManager implements Model {
      * {@code versionedFriendlyLink}
      */
     @Override
-    public ObservableList<Person> getFilteredVolunteerList() {
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
         return filteredVolunteers;
     }
 

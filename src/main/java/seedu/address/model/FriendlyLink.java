@@ -21,7 +21,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     // TODO: update generic to volunteer and remove person list
     private final UniquePersonList<Person> persons;
     private final UniquePersonList<Elderly> elderly;
-    private final UniquePersonList<Person> volunteers;
+    private final UniquePersonList<Volunteer> volunteers;
     private final UniquePairList pairs;
 
     /*
@@ -79,7 +79,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Replaces the contents of the volunteer list with {@code volunteers}.
      * {@code volunteers} must not contain duplicate volunteers.
      */
-    public void setVolunteers(List<Person> volunteers) {
+    public void setVolunteers(List<Volunteer> volunteers) {
         this.volunteers.setPersons(volunteers);
     }
 
@@ -89,6 +89,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setAllElderly(newData.getElderlyList());
+        setVolunteers(newData.getVolunteerList());
         setPairs(newData.getPairList());
     }
 
@@ -128,7 +130,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendlyLink cache.
      */
-    public boolean hasVolunteer(Person volunteer) {
+    public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
     }
@@ -153,7 +155,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Adds a volunteer to the friendlyLink cache.
      * The volunteer must not already exist in the friendlyLink cache.
      */
-    public void addVolunteer(Person p) {
+    public void addVolunteer(Volunteer p) {
         volunteers.add(p);
     }
 
@@ -166,7 +168,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return persons.getElderly(nric);
+        return elderly.getElderly(nric);
     }
 
     /**
@@ -178,7 +180,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return persons.getVolunteer(nric);
+        return volunteers.getVolunteer(nric);
     }
 
     /**
@@ -209,7 +211,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * The volunteer identity of {@code editedPerson} must not be the same as
      * another existing volunteer in the friendlyLink cache.
      */
-    public void setVolunteer(Person target, Person editedPerson) {
+    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
         requireNonNull(editedPerson);
         volunteers.setPerson(target, editedPerson);
     }
@@ -234,7 +236,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      * Removes {@code key} from {@code FriendlyLink}.
      * {@code key} must exist in the volunteer's list.
      */
-    public void removeVolunteer(Person key) {
+    public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);
     }
 
@@ -266,14 +268,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         pairs.setPair(target, editedPair);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in FriendlyLink.
-     */
-    public void removePair(Pair key) {
-        pairs.remove(key);
-    }
-
     //// util methods
     @Override
     public String toString() {
@@ -294,7 +288,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     @Override
-    public ObservableList<Person> getVolunteerList() {
+    public ObservableList<Volunteer> getVolunteerList() {
         return volunteers.asUnmodifiableObservableList();
     }
 
