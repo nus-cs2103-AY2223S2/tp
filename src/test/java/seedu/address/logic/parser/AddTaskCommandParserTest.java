@@ -1,11 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddTaskCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_SPORTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddTaskCommand;
 
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();

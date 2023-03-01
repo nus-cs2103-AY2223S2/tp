@@ -1,23 +1,30 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
-import seedu.address.model.mapping.PersonTask;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TaskBuilder;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Model;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Repository;
+import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 class AddTaskCommandTest {
 
@@ -27,15 +34,15 @@ class AddTaskCommandTest {
     }
 
     @Test
-    public void execute_TaskAcceptedByModel_addSuccessful() throws Exception {
-        AddTaskCommandTest.OfficeConnectModelStubAcceptingTaskAdded OfficeConnectStub =
-                new AddTaskCommandTest.OfficeConnectModelStubAcceptingTaskAdded();
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        OfficeConnectModelStubAcceptingTaskAdded officeConnectStub =
+                new OfficeConnectModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), OfficeConnectStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), officeConnectStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), OfficeConnectStub.getTaskModelManager().returnList());
+        assertEquals(Arrays.asList(validTask), officeConnectStub.getTaskModelManager().returnList());
     }
 
     @Test
@@ -61,43 +68,32 @@ class AddTaskCommandTest {
         // different person -> returns false
         assertFalse(addTaskEatCommand.equals(addTaskDrinkCommand));
     }
-
-    private class OfficeConnectModelStub extends OfficeConnectModel {
-
-        public RepositoryModelManager<Task> getTaskModelManager() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public RepositoryModelManager<PersonTask> getPersonTaskModelManager() {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
     private class OfficeConnectModelStubAcceptingTaskAdded extends OfficeConnectModel {
         public OfficeConnectModelStubAcceptingTaskAdded() {
-             super(new RepositoryModelManager<Task>(new Repository<Task>()) {
-                 final ArrayList<Task> tasksAdded = new ArrayList<>();
+            super(new RepositoryModelManager<Task>(new Repository<Task>()) {
+                final ArrayList<Task> tasksAdded = new ArrayList<>();
 
-                 @Override
-                 public boolean hasItem(Task task) {
-                     requireNonNull(task);
-                     return tasksAdded.stream().anyMatch(task::isSame);
-                 }
+                @Override
+                public boolean hasItem(Task task) {
+                    requireNonNull(task);
+                    return tasksAdded.stream().anyMatch(task::isSame);
+                }
 
-                 @Override
-                 public void addItem(Task task) {
-                     requireNonNull(task);
-                     tasksAdded.add(task);
-                 }
-                 @Override
-                 public ArrayList<Task> returnList() {
-                     return tasksAdded;
-                 }
-             },
-            new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
+                @Override
+                public void addItem(Task task) {
+                    requireNonNull(task);
+                    tasksAdded.add(task);
+                }
+
+                @Override
+                public ArrayList<Task> returnList() {
+                    return tasksAdded;
+                }
+                },
+                    new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
         }
     }
+
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
