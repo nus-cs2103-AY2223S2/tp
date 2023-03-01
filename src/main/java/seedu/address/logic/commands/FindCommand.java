@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -26,7 +27,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

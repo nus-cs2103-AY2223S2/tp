@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the repository data.
@@ -37,41 +41,43 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         return repo;
     }
 
-    // public boolean hasItem(T item) {
-    //     requireNonNull(item);
-    //     return repo.hasItem(item);
-    // }
+    public boolean hasItem(T item) {
+         requireNonNull(item);
+         return repo.hasItem(item);
+     }
 
-    // public void deleteItem(T target) {
-    //     repo.removeItem(target);
-    // }
-    //
-    // public void addItem(T item) {
-    //     repo.addItem(item);
-    //     showAllItems();
-    // }
-    //
-    // public void setItem(T target, T editedItem) {
-    //     requireAllNonNull(target, editedItem);
-    //
-    //     repo.setItem(target, editedItem);
-    // }
+     /*public void deleteItem(T target) {
+         repo.removeItem(target);
+     } */
+
+     public void addItem(T item) {
+         repo.addItem(item);
+     }
+
+     /*public void setItem(T target, T editedItem) {
+         requireAllNonNull(target, editedItem);
+
+         repo.setItem(target, editedItem);
+     } */
 
     //=========== Filtered Person List Accessors =============================================================
 
-    // public ObservableList<T> getFilteredItemList() {
-    //     return itemFilteredList;
-    // }
-    //
-    // public void updateFilteredItemList(Predicate<T> predicate) {
-    //     requireNonNull(predicate);
-    //     itemFilteredList.setPredicate(predicate);
-    // }
+     public ObservableList<T> getFilteredItemList() {
+         return itemFilteredList;
+     }
+
+     public void updateFilteredItemList(Predicate<T> predicate) {
+         requireNonNull(predicate);
+         itemFilteredList.setPredicate(predicate);
+     }
 
     // public void showAllItems() {
     //     updateFilteredItemList(x -> true);
     // }
 
+    public ArrayList<Task> returnList() {
+         return new ArrayList<>();
+    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
