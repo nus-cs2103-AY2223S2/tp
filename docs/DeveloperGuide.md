@@ -304,10 +304,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message and prompts to enter valid index.
+    * 3a1. MyLib shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Edit a bookmark**
+
+**MSS**
+
+1.  User requests to list bookmarks
+2.  MyLib shows a list of bookmarks
+3.  User requests to edit a specific bookmark in the list
+4.  MyLib edits the bookmark
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. Less than one field to edit provided.
+
+    * 3b1. MyLib shows an error message.
+    
+      Use case resumes at step 2
+
+* 3c. New value is invalid for any field.
+
+    * 3c1. MyLib shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: Add a bookmark**
+
+**MSS**
+
+1.  User requests to add a bookmark
+2.  MyLib adds a bookmark
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+      
+* 1b. Not all compulsory fields provided.
+
+    * 1b1. MyLib shows an error message.
+    
+      Use case resumes at step 2
+
+* 1c. Value is invalid for any field.
+
+    * 1c1. MyLib shows an error message.
+    
+      Use case resumes at step 2.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
