@@ -326,38 +326,97 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 (For all use cases below, the **System** is the `OfficeConnect` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Delete a person**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to list persons
+
+2. OfficeConnect shows a list of persons
+
+3. User requests to delete a specific person in the list
+
+4. OfficeConnect deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. OfficeConnect shows an error message. 
+  
+    Use case resumes at step 2.
+
+**Use case: Delete a task**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to list tasks
+
+2. OfficeConnect shows a list of tasks
+
+3. User requests to delete a specific task in the list
+
+4. OfficeConnect deletes the task
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Assign a task to a person**
 
-# Main Success Scenario (MSS)
+**Main Success Scenario (MSS)**
 
-1. User opens OfficeConnect.
-2. System list persons
-3. User inputs one of the options.
-4. System executes the selected option.
-5. If the inputs option is to add a person or task, the system prompts the user to enter the necessary information.
-6. If the inputs option is to list persons or tasks, the system displays a list of persons or tasks.
-7. If the inputs option is to find a person or task, the system prompts the user to enter a keyword to search for and displays a list of persons or tasks that match the keyword.
-8. If the inputs option is to assign a task, the system prompts the user to select a person and a task from a list of persons and tasks, respectively, and assigns the task to the selected person.
-9. If the inputs option is to delete a person or task, the system prompts the user to select a person or task from a list of persons or tasks, respectively, and deletes the selected person or task.
-10. If the inputs option is to clear the screen, the system clears the screen.
-11. If the inputs option is to quit the application, the system saves the data and exits.
+1. User requests to list persons
 
-## Extensions
+2. OfficeConnect shows a list of persons
 
-2a. If the user inputs an invalid option, the system displays an error message and displays the main menu again.
+3. User requests to list tasks
 
-5a. If the user enters invalid information when adding a person or task, the system displays an error message and prompts the user to re-enter the information.
+4. OfficeConnect shows a list of tasks
 
-6a. If there are no persons or tasks to list, the system displays a message indicating that there are no persons or tasks to list.
+5. User requests to assign a specific task to a specific person 
 
-7a. If there are no persons or tasks that match the keyword, the system displays a message indicating that there are no persons or tasks that match the keyword.
+6. OfficeConnect assigns the task to the person 
 
-8a. If the user inputs an invalid person or task when assigning a task, the system displays an error message and prompts the user to re-select.
+    Use case ends.
 
-9a. If the user inputs an invalid person or task when deleting a person or task, the system displays an error message and prompts the user to re-select.
+**Extensions**
 
-11a. If the system is unable to save the data, the system displays an error message and exits without saving.
+* 2a. The list is empty. 
 
+    Use case ends.
+
+* 4a. The list is empty.
+
+    Use case ends
+
+* 5a. The given person index is invalid.
+
+  * 5a1. OfficeConnect shows an error message. 
+  
+    Use case resumes at step 2.
+
+* 5b. The given task index is invalid.
+
+  * 5b1. OfficeConnect shows an error message.
+
+    Use case resumes at step 4.
 
 ### Non-Functional Requirements
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
