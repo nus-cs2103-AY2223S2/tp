@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: Coming soon!
   * Justification: Coming soon!
   * Highlights: Coming soon!
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Credits: *{Coming soon!}*
 
 * **New Feature**: Coming soon
 
