@@ -319,8 +319,8 @@
 .context-menu {
     -fx-background-color: derive(#1d1d1d, 50%);
     -fx-background-radius: 5;
-    -fx-background-insets: 5 0 0 0;
-    -fx-padding: 5 0 0 0;
+    -fx-background-insets: 10 0 0 0;
+    -fx-padding: 10 0 0 0;
 }
 
 .context-menu .label {
@@ -329,6 +329,7 @@
 
 .menu-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 5 10 5 10;
 }
 
 .menu-bar .label {
