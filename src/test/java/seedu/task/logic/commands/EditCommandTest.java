@@ -26,7 +26,7 @@ import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -37,7 +37,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
-        Task editedTask = new TaskBuilder().build();
+        Task editedTask = new SimpleTaskBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -53,7 +53,7 @@ public class EditCommandTest {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
-        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        SimpleTaskBuilder taskInList = new SimpleTaskBuilder(lastTask);
         Task editedTask = taskInList.withName(VALID_NAME_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
@@ -86,7 +86,7 @@ public class EditCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_BOB).build();
+        Task editedTask = new SimpleTaskBuilder(taskInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
 

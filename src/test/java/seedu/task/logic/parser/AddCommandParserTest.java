@@ -33,20 +33,20 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.Task;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB)
+        Task expectedTask = new SimpleTaskBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
-        Task expectedBobBoth = new TaskBuilder(BOB_BOTH)
+        Task expectedBobBoth = new SimpleTaskBuilder(BOB_BOTH)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
-        Task expectedAmyBoth = new TaskBuilder(AMY_BOTH)
+        Task expectedAmyBoth = new SimpleTaskBuilder(AMY_BOTH)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
         ArrayList<Task> multiNameTasks = new ArrayList<>();
@@ -67,7 +67,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new SimpleTaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + DESCRIPTION_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
@@ -76,7 +76,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        Task expectedTask = new SimpleTaskBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + DESCRIPTION_DESC_AMY,
                 new AddCommand(expectedTask));
     }

@@ -71,6 +71,18 @@ public class Date {
         return month + " " + day + " " + year + " " + hour + minute;
     }
 
+    /**
+     * Returns a full information String which can be parsed back into a DateTime.
+     */
+    public String getValue() {
+        String month = String.format("%02d", value.getMonthValue());
+        String day = String.format("%02d", value.getDayOfMonth());
+        int year = value.getYear();
+        String hour = String.format("%02d", value.getHour());
+        String minute = String.format("%02d", value.getMinute());
+        return year + "-" + month + "-" + day + " " + hour + minute;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

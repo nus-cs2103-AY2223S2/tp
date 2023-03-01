@@ -11,6 +11,7 @@ import seedu.task.commons.core.index.IndexList;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
 
@@ -92,6 +93,21 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(description);
+    }
+
+    /**
+     * Parses a {@code String Date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
     }
 
     /**

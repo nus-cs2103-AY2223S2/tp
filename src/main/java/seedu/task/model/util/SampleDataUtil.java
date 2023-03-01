@@ -9,6 +9,7 @@ import seedu.task.model.TaskBook;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
 
 
@@ -18,17 +19,17 @@ import seedu.task.model.task.Task;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Alex Yeoh"), new Description("Alex's description"),
+            new SimpleTask(new Name("Alex Yeoh"), new Description("Alex's description"),
                 getTagSet("friends")),
-            new Task(new Name("Bernice Yu"), new Description("Bernice's description"),
+            new SimpleTask(new Name("Bernice Yu"), new Description("Bernice's description"),
                 getTagSet("colleagues", "friends")),
-            new Task(new Name("Charlotte Oliveiro"), new Description("Charlotte's description"),
+            new SimpleTask(new Name("Charlotte Oliveiro"), new Description("Charlotte's description"),
                 getTagSet("neighbours")),
-            new Task(new Name("David Li"), new Description("David's description"),
+            new SimpleTask(new Name("David Li"), new Description("David's description"),
                 getTagSet("family")),
-            new Task(new Name("Irfan Ibrahim"), new Description("Irfan's description"),
+            new SimpleTask(new Name("Irfan Ibrahim"), new Description("Irfan's description"),
                 getTagSet("classmates")),
-            new Task(new Name("Roy Balakrishnan"), new Description("Roy's description"),
+            new SimpleTask(new Name("Roy Balakrishnan"), new Description("Roy's description"),
                 getTagSet("colleagues"))
         };
     }

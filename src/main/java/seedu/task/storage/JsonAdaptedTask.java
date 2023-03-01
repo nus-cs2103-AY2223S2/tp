@@ -11,8 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
 
 
@@ -26,17 +30,30 @@ class JsonAdaptedTask {
     private final String name;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private String deadline = "";
+    private String from = "";
+    private String to = "";
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("description") String description,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("deadline") String deadline,
+                           @JsonProperty("from") String from,
+                           @JsonProperty("to") String to) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (deadline != null) {
+            this.deadline = deadline;
+        }
+        if (from != null && to != null) {
+            this.from = from;
+            this.to = to;
         }
     }
 
@@ -49,6 +66,14 @@ class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        if (source instanceof Deadline) {
+            deadline = ((Deadline) source).getDeadline().getValue();
+        }
+        if (source instanceof Event) {
+            Event tmp = (Event) source;
+            from = tmp.getFrom().getValue();
+            to = tmp.getTo().getValue();
+        }
     }
 
     /**
@@ -80,7 +105,28 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDescription, modelTags);
+
+        if (!deadline.equals("") && !Date.isValidDate(deadline)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        // if either from or to are non-empty check formatting
+        if (!from.equals("") || !to.equals("")) {
+            // if either of them are empty AND
+            // either of them are invalid date formats (this will be true if either of them are empty)
+            if ((from.equals("") || to.equals("")) && (!Date.isValidDate(from) || !Date.isValidDate(to))) {
+                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            }
+        }
+        if (Date.isValidDate(deadline)) {
+            Date modelDeadline = new Date(deadline);
+            return new Deadline(modelName, modelDescription, modelTags, modelDeadline);
+        }
+        if (Date.isValidDate(from) && Date.isValidDate(to)) {
+            Date modelFrom = new Date(from);
+            Date modelTo = new Date(to);
+            return new Event(modelName, modelDescription, modelTags, modelFrom, modelTo);
+        }
+        return new SimpleTask(modelName, modelDescription, modelTags);
     }
 
 }

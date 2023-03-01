@@ -11,13 +11,13 @@ import static seedu.task.testutil.TypicalTasks.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class TaskTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Task task = new TaskBuilder().build();
+        Task task = new SimpleTaskBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
     }
 
@@ -30,28 +30,28 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB)
+        Task editedAlice = new SimpleTaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new SimpleTaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Task editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Task editedBob = new SimpleTaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TaskBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        editedBob = new SimpleTaskBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameTask(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Task aliceCopy = new TaskBuilder(ALICE).build();
+        Task aliceCopy = new SimpleTaskBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -67,15 +67,15 @@ public class TaskTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Task editedAlice = new SimpleTaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).build();
+        editedAlice = new SimpleTaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new SimpleTaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

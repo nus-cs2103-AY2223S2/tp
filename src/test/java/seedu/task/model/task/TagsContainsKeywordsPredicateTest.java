@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class TagsContainsKeywordsPredicateTest {
 
@@ -44,19 +44,19 @@ public class TagsContainsKeywordsPredicateTest {
         String[] tag = {"urgent", "important", "uRgEnT"};
         // One keyword
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[0]));
-        assertTrue(predicate.test(new TaskBuilder().withTags("urgent").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent").build()));
 
         // match 1
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[1]));
-        assertTrue(predicate.test(new TaskBuilder().withTags("urgent", "important").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent", "important").build()));
 
         // match at least 1
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag));
-        assertTrue(predicate.test(new TaskBuilder().withTags("sorta", "important").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("sorta", "important").build()));
 
         // Mixed-case keywords
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[2]));
-        assertTrue(predicate.test(new TaskBuilder().withTags("urgent").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent").build()));
     }
 
     @Test
@@ -64,11 +64,11 @@ public class TagsContainsKeywordsPredicateTest {
         DescContainsKeywordsPredicate predicate = new DescContainsKeywordsPredicate("legoes");
 
         // Non-matching keyword
-        assertFalse(predicate.test(new TaskBuilder().withDescription("read book").build()));
+        assertFalse(predicate.test(new SimpleTaskBuilder().withDescription("read book").build()));
 
         // Keywords match name, but does not match description
         predicate = new DescContainsKeywordsPredicate("Alice");
-        assertFalse(predicate.test(new TaskBuilder()
+        assertFalse(predicate.test(new SimpleTaskBuilder()
                 .withName("Alice").withDescription("likes to play").build()));
     }
 }
