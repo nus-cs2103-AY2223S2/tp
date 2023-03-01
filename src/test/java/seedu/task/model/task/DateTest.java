@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class DateTest {
 
+    public static final String VALID_DATE = "2023-01-01 1800";
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Date(null));
@@ -69,8 +71,14 @@ public class DateTest {
 
     @Test
     public void toString_test() {
-        Date dateTest = new Date("2023-01-01 1800");
+        Date dateTest = new Date(VALID_DATE);
         assertEquals(dateTest.toString(), "JAN 1 2023 1800");
+    }
+
+    @Test
+    public void getValue_test() {
+        Date dateTest = new Date(VALID_DATE);
+        assertEquals(dateTest.getValue(), VALID_DATE);
     }
 
     @Test

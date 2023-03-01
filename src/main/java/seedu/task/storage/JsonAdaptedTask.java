@@ -26,7 +26,7 @@ import seedu.task.model.task.Task;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-
+    public static final String DEADLINE_EVENT_OVERLAP = "You can only declare a deadline or an event!";
     private final String name;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -105,6 +105,9 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
+        if (!deadline.equals("") && (!from.equals("") || !to.equals(""))) {
+            throw new IllegalValueException(String.format(DEADLINE_EVENT_OVERLAP));
+        }
 
         if (!deadline.equals("") && !Date.isValidDate(deadline)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);

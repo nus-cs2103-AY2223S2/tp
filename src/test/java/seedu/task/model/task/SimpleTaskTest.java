@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.task.testutil.SimpleTaskBuilder;
 
-public class TaskTest {
+public class SimpleTaskTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {

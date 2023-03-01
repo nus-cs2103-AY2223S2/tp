@@ -1,6 +1,7 @@
 package seedu.task.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.task.storage.JsonAdaptedTask.DEADLINE_EVENT_OVERLAP;
 import static seedu.task.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalTasks.BENSON;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.task.commons.exceptions.IllegalValueException;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
 
@@ -64,6 +66,38 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, null, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDeadline_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, INVALID_DATE, EMPTY_DATE, EMPTY_DATE);
+        String expectedMessage =Date.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidFromDate_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, INVALID_DATE, EMPTY_DATE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidToDate_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, VALID_DATE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_deadlineAndEventOverlap_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, VALID_DATE, VALID_DATE, VALID_DATE);
+        String expectedMessage = DEADLINE_EVENT_OVERLAP;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
