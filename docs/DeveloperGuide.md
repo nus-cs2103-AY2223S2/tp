@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given tag is invalid.
   * 3a1. SOCket shows an error message. 
     
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC08 Access Help page**
 
@@ -384,9 +384,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list contact
 2. SOCket shows a list of contacts
-3. 
+3. User requests to hide a category of a specific contact 
+4. SOCket hides the specific category of that user 
 
+   Use case ends. 
+   
+**Extensions** 
 
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given category is invalid.
+  * 3a1. SOCket shows an error message. 
+    
+    Use case resumes at step 2.
+    
+* 3b. The contact does not have that category.
+  * 3b1. SOCket shows an error message. 
+    
+    Use case resumes at step 2. 
 
 **Use case: UC12 Access peer GitHub information**
 
