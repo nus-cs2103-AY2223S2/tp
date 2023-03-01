@@ -257,10 +257,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**: FitBook
 
-**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with 
-targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and 
-inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as 
-adding fitness routines to each client with checkboxes for easy access and to check if they have completed their 
+**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
+targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
+inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as
+adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
 
@@ -341,15 +341,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The client added has missing compulsory fields.
 
     * 1a1. Fitbook shows an error message for missing fields.
-    
+
       Use case ends.
 
 * 1b. The client added has duplicate names.
 
     * 1b1. Fitbook shows an error message for duplicate names.
-  
+
       Use case ends.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
