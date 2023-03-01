@@ -74,19 +74,19 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a bookmark: `add`
 
-Adds a person to the address book.
+Adds a bookmark to the library.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add t/TITLE a/AUTHOR p/PROGRESS [g/GENRE]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of genre (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add t/Hobbit a/J. R. R. Tolkien p/25`
+* `add t/The Odyssey a/Homer p/50 g/Epic poetry`
 
 ### Listing all persons : `list`
 
