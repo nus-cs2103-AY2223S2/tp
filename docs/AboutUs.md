@@ -29,15 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Wong Jia Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Wong-Jia-Jun.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Wong-Jia-Jun)]
+[[portfolio](team/Wong-Jia-Jun.md)]
 
 * Role: Developer
-* Responsibilities: Data
-
+* Responsibilities: TBC
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
