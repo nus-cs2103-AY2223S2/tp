@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import seedu.address.model.Model;
 import javafx.collections.ObservableList;
+import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 
@@ -15,9 +15,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static String MESSAGE_SUCCESS_FORMAT =
-            "Listed all applicants\nTotal Applicants: %d\nApplied: %d\n" +
-                    "Shortlisted: %d\nAccepted: %d\nRejected: %d";
+    public static final String MESSAGE_SUCCESS_FORMAT =
+            "Listed all applicants\nTotal Applicants: %d\nApplied: %d\n"
+                    + "Shortlisted: %d\nAccepted: %d\nRejected: %d";
 
     /**
      * Returns the list of all applicants in HMHero as well as the breakdown of
