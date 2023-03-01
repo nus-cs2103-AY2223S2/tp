@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,7 +20,7 @@ public class DeleteVolunteerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the volunteer identified by their NRIC.\n"
             + "Parameters: NRIC \n"
-            + "Example: " + COMMAND_WORD + " S1234567I";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC_VOLUNTEER + " S1234567I";
 
     public static final String MESSAGE_INVALID_NRIC_VOLUNTEER =
             String.format(Messages.MESSAGE_INVALID_NRIC, "volunteer");
