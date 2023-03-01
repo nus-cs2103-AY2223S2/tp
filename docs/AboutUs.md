@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/seriouslia0)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Chief Expresso Officer 
+* Role: Chief Expresso Officer
 * Responsibilities: UI
 
 ### Johnny Doe
