@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,7 +299,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOCket` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Add a contact**
+
+**MSS**
+
+1.  User requests to add a contact
+2.  SOCket adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no details provided.
+
+    * 1a1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. There is no name provided.
+
+    * 1b1. SOCket shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC02 - Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SOCket shows a list of contacts
+3.  User requests to edit a specific contact's details in the list
+4.  SOCket edits the contact's details
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. There are no details provided.
+
+    * 3b1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. There are no tags provided.
+
+    * 3b1. SOCket removes all tags associated with the contact.
+
+      Use case ends.
+
+* 3d. There are tag(s) provided.
+
+    * 3b1. SOCket removes existing tags associated with the contact and adds the tag(s) provided.
+
+      Use case ends.
 
 **Use case: UC03 Delete a contact**
 
@@ -342,14 +404,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given category is invalid.
-  * 3a1. SOCket shows an error message. 
-  
-    Use case resumes at step 2.
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
 
 * 3b. No category is given
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
-    
-     Use case ends
+    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
+
+      Use case ends
+
+**Use case: UC09 - Exit SOCket**
+
+**MSS**
+
+1.  User requests to exit SOCket
+2.  SOCket exits
+
+    Use case ends.
 
 **Use case: UC12 Access peer GitHub information**
 
@@ -371,7 +442,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The contact does not have github information.
     
    Use case resumes at step 2.
-
 
 *{More to be added}*
 
