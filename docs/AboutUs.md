@@ -11,12 +11,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Carmen Ang
 
-<img src="images/carmen-ang.jpg" width="200px">
+<img src="images/cmang12.png" width="200px">
 
 [[github](https://github.com/cmang12)]
-[[portfolio](team/carmen-ang.md)]
+[[portfolio](team/cmang12.md)]
 
 * Role: Developer
+* Responsibilities: 
 
 ### Jane Doe
 
