@@ -9,54 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Douglas Chow
 
 <img src="images/douglch.png" width="200px">
 
-[[github](http://github.com/douglch)] [[portfolio](team/douglch.md)]
+[[github](http://github.com/douglch)] 
+[[portfolio](team/douglch.md)]
 
 * Role: In charge of `Client`
 * Responsibilities: Writing and testing the class for Client Panel - Create, Delete.
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
 
 ### Li Junyi
 
@@ -65,5 +26,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/immanuelhume)]
 [[portfolio](team/immanuelhume.md)]
 
-Role: Developer
-Responsibilities: Project entity and CRUD
+* Role: Developer
+* Responsibilities: Project entity and CRUD
+
+### Stanley Neoh
+
+<img src="images/stanleyneoh.png" width="200px">
+
+[[github](https://github.com/StanleyNeoh)]
+[[portfolio](team/stanleyneoh.md)]
+
+* Role: Developer
+* Responsibilities: Writing and testing the GUI for the Project Panel
