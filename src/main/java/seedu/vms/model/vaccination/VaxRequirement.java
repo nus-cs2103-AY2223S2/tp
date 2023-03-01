@@ -55,4 +55,30 @@ public class VaxRequirement {
     public VaxRequirement copy() {
         return new VaxRequirement(isExclusion, grpSet);
     }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof VaxRequirement)) {
+            return false;
+        }
+
+        VaxRequirement casted = (VaxRequirement) other;
+        return isExclusion == casted.isExclusion && grpSet.equals(casted.grpSet);
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 37 * result + ((isExclusion) ? 1 : 0);
+        result = 37 * result + grpSet.hashCode();
+
+        return result;
+    }
 }
