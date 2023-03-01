@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ong Wei Jie
 
-<img src="images/oneweijie7.png" width="200px">
+<img src="images/ongweijie7.png" width="200px">
 
 [[github](http://github.com/ongweijie7)]
 
