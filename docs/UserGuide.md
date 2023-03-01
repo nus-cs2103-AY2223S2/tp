@@ -98,14 +98,14 @@ Format: `list`
 
 Edits an internship entry from the list of existing entries.
 
-Format: `edit INDEX [n/NAME] [r/ROLE] [s/STATUS ] [d/DATE]`
+Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE]`
 
-* The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the internship list displayed using `list` command. 
-* Items in square brackets are optional, but at least one of the optional fields must be provided.
+* The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the internship list displayed using the`list` command. 
+* At least one of the optional fields must be provided.
 * `STATUS` must have one of the following values: `new`, `applied`, `assessment`, `interview`, `offered` or `rejected`.
 
 Examples:
-*  `edit 2 s/assessment r/SoftWare Developer` Sets the status and role of the internship entry 2 as `assessment` and `Software Developer` respectively.
+*  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
 *  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 
 
