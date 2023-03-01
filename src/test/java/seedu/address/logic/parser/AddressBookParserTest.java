@@ -25,9 +25,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.NameContainsKeywordsPredicate;
 import seedu.address.model.internship.Internship;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
+import seedu.address.testutil.InternshipBuilder;
+import seedu.address.testutil.InternshipUtil;
 
 public class AddressBookParserTest {
 
@@ -35,8 +35,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Internship person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        Internship person = new InternshipBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(InternshipUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
@@ -55,10 +55,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Internship person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Internship person = new InternshipBuilder().build();
+        EditPersonDescriptor descriptor = new EditInternshipDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + InternshipUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

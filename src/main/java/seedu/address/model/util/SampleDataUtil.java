@@ -6,22 +6,22 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.internship.Address;
-import seedu.address.model.internship.Email;
-import seedu.address.model.internship.Name;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Internship[] getSamplePersons() {
+    public static Internship[] getSampleInternships() {
         return new Internship[] {
-            new Internship(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+            new Internship(new CompanyName("Apple"), new Role("iOS Developer"), new Status("applied"),
+                new Date("2023-02-01"),
+                getTagSet("front")),
             new Internship(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
@@ -42,8 +42,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Internship samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Internship sampleInternship : getSampleInternships()) {
+            sampleAb.addInternship(sampleInternship);
         }
         return sampleAb;
     }

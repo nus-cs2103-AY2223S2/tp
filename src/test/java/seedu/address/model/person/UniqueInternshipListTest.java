@@ -19,7 +19,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.UniqueInternshipList;
 import seedu.address.model.internship.exceptions.DuplicatePersonException;
 import seedu.address.model.internship.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.InternshipBuilder;
 
 public class UniqueInternshipListTest {
 
@@ -44,7 +44,7 @@ public class UniqueInternshipListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAlice));
     }
@@ -87,7 +87,7 @@ public class UniqueInternshipListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueInternshipList.setPerson(ALICE, editedAlice);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();

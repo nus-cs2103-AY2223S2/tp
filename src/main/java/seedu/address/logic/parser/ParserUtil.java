@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.Address;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Role;
@@ -79,24 +78,7 @@ public class ParserUtil {
         if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        switch (trimmedStatus) {
-        case "new":
-            return Status.NEW;
-        case "applied":
-            return Status.APPLIED;
-        case "assessment":
-            return Status.ASSESSMENT;
-        case "interview":
-            return Status.INTERVIEW;
-        case "offered":
-            return Status.OFFERED;
-        case "rejected":
-            return Status.REJECTED;
-        default:
-            //Should never reach here as if it was an invalid status, it would have been caught earlier
-            assert (false);
-            return null;
-        }
+        return new Status(status);
     }
 
     /**

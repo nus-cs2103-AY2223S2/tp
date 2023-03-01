@@ -45,7 +45,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditInternshipDescriptor editInternshipDescriptor = new EditCommand.EditInternshipDescriptor();
         if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
-            editInternshipDescriptor.setCompanyName(ParserUtil.parseName(argMultimap.getValue(
+            editInternshipDescriptor.setCompanyName(ParserUtil.parseCompanyName(argMultimap.getValue(
                     PREFIX_COMPANY_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {

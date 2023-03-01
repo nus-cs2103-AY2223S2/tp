@@ -1,29 +1,42 @@
 package seedu.address.model.internship;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 /**
  * Represents an Internship's status in InternBuddy
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
-public enum Status {
-    //Possible values for Status
-    NEW,
-    APPLIED,
-    ASSESSMENT,
-    INTERVIEW,
-    OFFERED,
-    REJECTED;
+public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It" +
                     "should not be blank too.";
 
-    //Initialise a set of valid statuses
+    //A set of valid statuses
     public static List<String> listOfValidStatuses =
             Arrays.asList("new", "applied", "assessment", "interview", "offered", "rejected");
     public static final HashSet<String> setOfValidStatuses = new HashSet<String>(listOfValidStatuses);
+
+    public final String fullStatus;
+
+    /**
+     * Constructs a {@code Status}.
+     *
+     * @param status A valid status to be associated with an Internship.
+     */
+    public Status(String status) {
+        requireNonNull(status);
+        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
+        this.fullStatus = status;
+    }
 
 
     /**
@@ -43,30 +56,31 @@ public enum Status {
      */
     @Override
     public String toString() {
-        switch (this) {
-        case NEW:
-            return "new";
+       return fullStatus;
+    }
 
-        case APPLIED:
-            return "applied";
 
-        case ASSESSMENT:
-            return "assessment";
+    /**
+     * Determines if another object is equal to this Status object.
+     *
+     * @param other The other object to compare with.
+     * @return true if the other object is a Status object with the same status string.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Status // instanceof handles nulls
+                && fullStatus.equals(((Status) other).fullStatus)); // state check
+    }
 
-        case INTERVIEW:
-            return "interview";
-
-        case OFFERED:
-            return "offered";
-
-        case REJECTED:
-            return "rejected";
-
-        default:
-            //Should never reach here as it must have been a valid status
-            assert (false);
-            return null;
-        }
+    /**
+     * Gets the hash code of the Status object.
+     *
+     * @return the hash code for the status represented by the Status object.
+     */
+    @Override
+    public int hashCode() {
+        return fullStatus.hashCode();
     }
 }
 
