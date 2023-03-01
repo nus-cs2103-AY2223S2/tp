@@ -16,8 +16,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Creates a {@code ResultDisplay} with placeholder text.
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setText("Enter command below");
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
