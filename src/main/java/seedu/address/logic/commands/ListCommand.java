@@ -5,7 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 
 /**
@@ -23,28 +23,29 @@ public class ListCommand extends Command {
      * Returns the list of all applicants in HMHero as well as the breakdown of
      * the number of applicants in each application stages.
      *
-     * @param updatedModel updated model of applicants
+     * @param model model of all applicants
      */
-    public String getSuccessMessage(Model updatedModel) {
-        return String.format(MESSAGE_SUCCESS_FORMAT, getNumApplicants(updatedModel), getNumApplied(updatedModel),
-                getNumShortlisted(updatedModel), getNumAccepted(updatedModel), getNumRejected(updatedModel)));
+    public String getSuccessMessage(Model model) {
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return String.format(MESSAGE_SUCCESS_FORMAT, getNumApplicants(model), getNumApplied(model),
+                getNumShortlisted(model), getNumAccepted(model), getNumRejected(model));
     }
 
     /**
      * Returns the number of applicants in total
      */
-    private int getNumApplicants(Model updatedModel) {
-        ObservableList<Applicant> applicants = updatedModel.getFilteredPersonList();
+    private int getNumApplicants(Model model) {
+        ObservableList<Person> applicants = model.getFilteredPersonList();
         return applicants.size();
     }
 
     /**
      * Returns the number of applicants whose status is "Applied"
      */
-    private int getNumApplied(Model updatedModel) {
-        ObservableList<Applicant> applicants = updatedModel.getFilteredPersonList();
+    private int getNumApplied(Model model) {
+        ObservableList<Person> applicants = model.getFilteredPersonList();
         int numApplied = 0;
-        for (Applicant applicant : applicants) {
+        for (Person applicant : applicants) {
             if (applicant.getStatus().equals(Status.APPLIED)) {
                 numApplied++;
             }
@@ -55,10 +56,10 @@ public class ListCommand extends Command {
     /**
      * Returns the number of applicants whose status is "Shortlisted"
      */
-    private int getNumShortlisted(Model updatedModel) {
-        ObservableList<Applicant> applicants = updatedModel.getFilteredPersonList();
+    private int getNumShortlisted(Model model) {
+        ObservableList<Person> applicants = model.getFilteredPersonList();
         int numShortlisted = 0;
-        for (Applicant applicant : applicants) {
+        for (Person applicant : applicants) {
             if (applicant.getStatus().equals(Status.SHORTLISTED)) {
                 numShortlisted++;
             }
@@ -69,21 +70,21 @@ public class ListCommand extends Command {
     /**
      * Returns the number of applicants whose status is "Accepted"
      */
-    private int getNumAccepted(Model updatedModel) {
-        ObservableList<Applicant> applicants = updatedModel.getFilteredPersonList();
+    private int getNumAccepted(Model model) {
+        ObservableList<Person> applicants = model.getFilteredPersonList();
         int numAccepted = 0;
-        for (Applicant applicant : applicants) {
-            if (applicant.getStatus().equals(Status.ACCCEPTED)) {
+        for (Person applicant : applicants) {
+            if (applicant.getStatus().equals(Status.ACCEPTED)) {
                 numAccepted++;
             }
         }
         return numAccepted;
     }
 
-    private int getNumRejected(Model updatedModel) {
-        ObservableList<Applicant> applicants = updatedModel.getFilteredPersonList();
+    private int getNumRejected(Model model) {
+        ObservableList<Person> applicants = model.getFilteredPersonList();
         int numRejected = 0;
-        for (Applicant applicant : applicants) {
+        for (Person applicant : applicants) {
             if (applicant.getStatus().equals(Status.REJECTED)) {
                 numRejected++;
             }
@@ -94,8 +95,6 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        String successMessage = getSuccessMessage(model);
-        return new CommandResult(successMessage);
+        return new CommandResult(getSuccessMessage(model));
     }
 }

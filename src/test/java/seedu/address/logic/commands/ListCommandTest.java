@@ -32,6 +32,9 @@ public class ListCommandTest {
         assertCommandSuccess(listCommand, model, listCommand.getSuccessMessage(model), expectedModel);
     }
 
+    /**
+     * ListCommand still shows every applicant after FindCommand is called
+     */
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
