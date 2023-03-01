@@ -119,7 +119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `MATHTUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
 
 **Use case: Delete a student**
----
+
 **MSS**
 
 1.  Tutor requests to list students
@@ -147,7 +147,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: Update a student**
----
+
 **MSS**
 
 1.  Tutor requests to list students
@@ -175,7 +175,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: Delete a task**
----
+
 **MSS**
 
 *{More to be added}*
@@ -185,7 +185,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 **Use case: Update a task**
----
+
 **MSS**
 
 *{More to be added}*
