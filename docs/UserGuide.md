@@ -89,7 +89,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/friend c/83927482 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### View students contacts as a list : `listStudents`
+### Viewing students contacts as a list : `listStudents`
 
 Lists all the students in the student list.
 
