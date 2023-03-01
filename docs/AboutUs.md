@@ -9,25 +9,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Carmen Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/carmen-ang.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cmang12)]
+[[portfolio](team/carmen-ang.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Chia Yu Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chia-yh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chia-yh)]
+[[portfolio](team/chia-yh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Development
 
 ### Dillon Goh
 
