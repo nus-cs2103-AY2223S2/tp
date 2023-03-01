@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
-
+/**
+ * Represents a Listing in GoodMatch.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Listing {
     // Compulsory fields
     private Title title;
