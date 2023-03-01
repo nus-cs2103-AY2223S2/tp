@@ -8,8 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class TitleTest {
-    private static String CHARACTER_LIMIT = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
-            + "Aenean commodo ligula eget dolor. Aenean ma";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -31,7 +29,8 @@ public class TitleTest {
         assertFalse(Title.isValidTitle("")); // empty string
         assertFalse(Title.isValidTitle(" ")); // spaces only
         assertFalse(Title.isValidTitle("^")); // only non-alphanumeric characters
-        assertFalse(Title.isValidTitle(CHARACTER_LIMIT)); // 101 characters fail
+        assertFalse(Title.isValidTitle("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
+                + "Aenean commodo ligula eget dolor. Aenean ma")); // 101 characters fail
         assertFalse(Title.isValidTitle("\nsomething")); // disallowed characters
         assertFalse(Title.isValidTitle("????")); // 4 or more consecutive special characters
 
