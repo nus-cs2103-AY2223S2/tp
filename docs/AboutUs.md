@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/salty-flower)] 
+[[github](https://github.com/salty-flower)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
