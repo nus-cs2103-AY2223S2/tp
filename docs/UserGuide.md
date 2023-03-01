@@ -65,7 +65,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a delivery: `add`
 
 Adds a delivery with its destination address.
 
@@ -87,7 +87,7 @@ Mark a delivery with a status.
 
 Format: `mark INDEX s/STATUS`
 
-* Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index **must be a positive integer** 1, 2, 3, …​
 * `STATUS` must be of the following
   * `otw` for in progress delivery
   * `fail` for failed delivery
@@ -104,7 +104,7 @@ View more details about a delivery.
 
 Format: `view INDEX`
 
-* View more details about a delivery at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a **positive integer**.
+* View more details about a delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index must be a **positive integer**.
 
 Examples:
 * `view 1` View more details about the 1st delivery in the list.
@@ -145,19 +145,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a delivery : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified delivery from the delivery list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the delivery at the specified `INDEX`.
+* The index refers to the index number shown in the displayed delivery list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd delivery in the task manager.
 
 ### Clearing all entries : `clear`
 
