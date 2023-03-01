@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import java.io.File;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
