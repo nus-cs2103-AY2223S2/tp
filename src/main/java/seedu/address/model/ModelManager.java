@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -148,10 +147,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    //=========== Events Accessors =============================================================
-    @Override
-    public void addEvent(Event event) {
-        addressBook.addEvent(event);
-        // To update filtered event list here
-    }
 }
