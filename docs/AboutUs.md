@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shirshajit Sen Gupta
 
-<img src="images/people/shirsho-12.png" width="200px">
+<img src="images/shirsho-12.png" width="200px">
 
 [[homepage](https://shirsho-12.github.io)]
 [[github](https://github.com/shirsho-12)]
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Lee Jun Yi
 
-<img src="images/people/nicleejy.png" width="200px">
+<img src="images/nicleejy.png" width="200px">
 
 [[github](http://github.com/nicleejy)]
 
