@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lau Zhan Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zm-l.png" width="200px">
 
 [[github](http://github.com/zm-l)]
 [[portfolio](team/zm-l.md)]
