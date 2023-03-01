@@ -13,10 +13,12 @@ public class Title {
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Validation regex
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_DISALLOWED_CHARACTERS = ".*[\\n\\r\\f].*";
+    public static final String VALIDATION_ALL_CAPS = "^[A-Z]*$";
+    public static final String VALIDATION_CONSEC_SPECIAL_CHARACTERS = ".*[!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/]{4,}.*";
+    public static final String VALIDATION_ALL_NON_ALPHANUM = "^[^a-zA-Z0-9]*$";
 
     public final String fullTitle;
 
@@ -27,6 +29,7 @@ public class Title {
      */
     public Title(String title) {
         requireNonNull(title);
+        title = title.strip();
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
         fullTitle = title;
     }
@@ -35,7 +38,33 @@ public class Title {
      * Returns true if a given string is a valid title.
      */
     public static boolean isValidTitle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // Check for disallowed characters
+        if (test.matches(VALIDATION_DISALLOWED_CHARACTERS)) {
+            return false;
+        }
+
+        // Check for maximum length
+        if (test.length() > 100) {
+            return false;
+        }
+
+        // Check for all caps
+        if (test.matches(VALIDATION_ALL_CAPS)) {
+            return false;
+        }
+
+        // Check for all non-alphanumeric characters
+        if (test.matches(VALIDATION_ALL_NON_ALPHANUM)) {
+            return false;
+        }
+
+        // Check for 4 or more consecutive special characters
+        if (test.matches(VALIDATION_CONSEC_SPECIAL_CHARACTERS)) {
+            return false;
+        }
+
+        // All checks passed, title is valid
+        return true;
     }
 
 

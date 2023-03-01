@@ -13,10 +13,10 @@ public class Description {
             "Descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Validation regex
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_ALL_CAPS = "^[A-Z]*$";
+    public static final String VALIDATION_ALL_NON_ALPHANUM = "^[^a-zA-Z0-9]*$";
 
     public final String fullDescription;
 
@@ -27,6 +27,7 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
+        description = description.strip();
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         fullDescription = description;
     }
@@ -35,7 +36,23 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // Check for maximum length
+        if (test.length() > 500) {
+            return false;
+        }
+
+        // Check for all caps
+        if (test.matches(VALIDATION_ALL_CAPS)) {
+            return false;
+        }
+
+        // Check for all non-alphanumeric characters
+        if (test.matches(VALIDATION_ALL_NON_ALPHANUM)) {
+            return false;
+        }
+
+        // All checks passed, description is valid
+        return true;
     }
 
 
