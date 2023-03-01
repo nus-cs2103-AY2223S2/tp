@@ -12,7 +12,7 @@ import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
- * A list of Tasks .
+ * A list of Tasks.
  *
  * Supports a minimal set of list operations.
  */
