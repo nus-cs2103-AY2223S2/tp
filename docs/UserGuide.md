@@ -72,7 +72,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 ### Viewing help : `help`
 
-Displays a comprehensive window detailing the outline of executable commands by user. 
+Displays a comprehensive window detailing the outline of executable commands by user.
 
 A ***TreeView*** on the left window lists the hierarchical ordering of commands, with the description of the command on the right in a ***TextArea***.
 
