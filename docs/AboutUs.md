@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lavanya Mishra
 
-<img src="images/Lavanya2.png" width="200px">
+<img src="images/lava-iris.png" width="200px">
 
 [[github](https://github.com/Lava-Iris)]
 [[portfolio](team/lava-iris.md)]
