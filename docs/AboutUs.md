@@ -7,7 +7,7 @@ We are team InternBuddy, and we are a team based in the [School of Computing, Na
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Project Team
 
 ### Christopher Tan Rui Yang
 
@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Testing
 
-### Eugene Tang Kangjie
+### Eugene Tang KangJie
 
 <img src="images/eugenetangkj.png" width="200px">
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kohkaixun.md)]
 
 * Role: Developer
-* Responsibilities: Code quality
+* Responsibilities: Code Quality
 
 ### Lim Hai Leong Shawn 
 
