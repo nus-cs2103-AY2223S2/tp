@@ -283,30 +283,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Rizzipe` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a recipe**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a recipe
+2.  Rizzipe prompts the user for the name, ingredients and steps for the recipe
+3.  User keys in details for each section one at a time
+4.  Rizzipe adds recipe to a database
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The name, ingredients or steps typed by users are empty.
+  * 3a1. Rizzipe shows an error message.
+  * 3a2. Rizzipe requests for the correct entry or for the user to type "/exit" if he/she chooses not to continue.
 
-  Use case ends.
+    Use case resumes from step 3.
 
-* 3a. The given index is invalid.
+* 4a. The given recipe is a duplicate. The name, ingredients and steps coincide with another recipe
+  * 4a1. Rizzipe shows a message that states there already exist such recipe.
+  * 4a2. The Rizzipe keyed is not added.
+  
+    Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: View a recipe**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User requests to view a recipe with a specified index
+2.  Rizzipe search through the current list of recipe, and return the recipe at that particular index
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The current list is empty
+  * 1a1. Rizzipe shows a message stating the list is empty.
+  
+    Use case ends.
+
+* 1b. The specified index is not a valid number.
+  * 1b1. Rizzipe shows an error message.
+  
+    Use case ends.
+* 2b. The specified index is greater than the current size of list.
+  * 2b1. Rizzipe shows an error message
+
+    Use case ends.
 
 *{More to be added}*
 
