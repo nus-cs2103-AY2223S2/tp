@@ -290,24 +290,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters internship entry
-2.  InternBuddy adds an internship entry
+2.  InternBuddy adds an internship entry and displays success message
 
     Use case ends.
 
 **Extensions**
 
-* 1a.  InternBuddy detects one or more fields are missing .
-  * 1a1. InternBuddy requests for internship entry with correct format
+* 1a.  InternBuddy detects one or more fields are missing.
+  * 1a1. InternBuddy requests for internship entry with correct format.
   * 1a2. User enters corrected internship entry.
   * Steps 1a1-1a2 are repeated until the internship entry entered is of the correct format.
  
     Use case ends.
 
-* 3a. The given index is invalid.
+* 1b.  InternBuddy detects one or more fields have invalid parameters.
+    * 1b1. InternBuddy requests for internship entry with correct format.
+    * 1b2. User enters corrected internship entry.
+    * Steps 1b1-1b2 are repeated until the internship entry entered is of the correct format.
 
-    * 3a1. AddressBook shows an error message.
+      Use case ends.
 
-      Use case resumes at step 2.
+**Use case: Exit InternBuddy**
+
+**MSS**
+
+1.  User requests to exit InternBuddy
+2.  InternBuddy displays exit message and closes the application
+
+    Use case ends.
 
 *{More to be added}*
 
