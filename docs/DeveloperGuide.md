@@ -303,12 +303,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  SOCket shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  SOCket deletes the contact
+1.  User requests to list contacts.
+2.  SOCket shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  SOCket deletes the contact.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -320,16 +320,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. SOCket shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 **Use case: UC04 Sort contacts**
 
 **MSS**
 
-1.  User requests to list contact
-2.  SOCket shows a list of contacts
-3.  User requests to sort the list by a category
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts
+1.  User requests to list contact.
+2.  SOCket shows a list of contacts.
+3.  User requests to sort the list by a category.
+4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
 
     Use case ends.
 
@@ -342,23 +342,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given category is invalid.
   * 3a1. SOCket shows an error message. 
   
-    Use case resumes at step 2.
+    Use case resumes from step 2.
 
 * 3b. No category is given
   * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
     
      Use case ends
 
+**Use case: UC06 Clear contacts/tag**
+
+**MSS**
+
+1. User chooses to clear off group of contacts
+2. SOCket requests for confirmation to delete the contacts
+3. User confirms.
+4. SOcket deletes all the contacts.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. All the given tags are present in SOCket.
+
+  * 1a1. SOCket request to delete all the contacts under the tags.
+
+* 1b. Some given tags are not present in SOCket.
+
+  * 1b1. SOCket shows an error message, listing all the wrong tags.
+
+  * 1b2. SOCket request to delete all the contacts under the correct tags
+    
+    Use case resumes from step 2.
+
+* 1c. All the given tag are not present in SOCket.
+
+    * 1c1. SOCket shows an error message, listing all the wrong tags.
+  
+    * 1c2. SOCket requests for correct tags. 
+  
+      Steps 1c1-1c2 are repeated until a tag is entered correctly.
+
+      Use case resumes from step 2.
+
+* 1d. No tag is provided.
+
+    * 1d1. SOCket request to delete all the contacts.
+
+      Use case resumes from step 2.
+  
+* *a. At any time, User choose to cancel the operation.
+
+    * *a1. SOCKet stop the operation.
+
+      Use case ends.
+
 **Use case: UC12 Access peer GitHub information**
 
 **MSS**
 
-1.  User requests to list contact
-2.  SOCket shows a list of contacts
+1.  User requests to list contact.
+2.  SOCket shows a list of contacts.
 3.  User requests to view a specific contact's github information.
-4.  SOCket opens the contact's github profile in a browser
+4.  SOCket opens the contact's github profile in a browser.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -368,7 +415,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The contact does not have github information.
     
-   Use case resumes at step 2.
+   Use case resumes from step 2.
+
+**Use case: UC13 Undo recent delete/clear operation**
+
+**MSS**
+
+1. User chooses to delete/clear contact(s).
+2. SOCket deletes respective contact(s).
+3. User regrets and requests to get back the recent deleted contact(s).
+4. SOCket undo and restored recent deleted contact(s).
+
+Use case ends.
+
+**Extensions**
+
+* 3a. SOCket detects user has not done any delete/clear operation before.
+
+    * 3a1. SOCket shows an error message, no data can be restored.
+
+      Use case ends.
+
+**Use case: UC15 Set deadlines & responsibilities**
+
+1. User has a team project and creates a event.
+2. SOCket creates the event.
+3. User request to groups all the team members contact under the event created.
+4. SOCket groups the contacts together.
+5. User enters a deadline date to each milestone of the project.
+6. SOCket allocates the date to respective milestone.
+7. User chooses to give role to each team members.
+8. SOCket assigned the given roles to respective team members.
+
+Use case ends.
+
+**Extensions**
+
+* 5a. SOCket detects a syntax error in the entered date.
+
+    * 5a1. SOCket shows an error message.
+  
+      Use case resume from 6 when the date entered are correct.
 
 
 *{More to be added}*
