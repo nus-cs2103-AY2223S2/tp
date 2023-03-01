@@ -21,6 +21,8 @@ public class DeleteVolunteerCommand extends Command {
             + "Parameters: NRIC \n"
             + "Example: " + COMMAND_WORD + " S1234567I";
 
+    public static final String MESSAGE_INVALID_NRIC_VOLUNTEER =
+            String.format(Messages.MESSAGE_INVALID_NRIC, "volunteer");
     public static final String MESSAGE_DELETE_SUCCESS = "Deleted Volunteer: %1$s";
 
     private final Nric targetNric;
@@ -37,7 +39,7 @@ public class DeleteVolunteerCommand extends Command {
             model.deleteVolunteer(volunteerToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, volunteerToDelete));
         } catch (PersonNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_NRIC);
+            throw new CommandException(MESSAGE_INVALID_NRIC_VOLUNTEER);
         }
     }
 

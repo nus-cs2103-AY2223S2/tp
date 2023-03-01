@@ -9,7 +9,6 @@ import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -38,7 +37,7 @@ public class DeleteVolunteerCommandTest {
         Nric invalidNric = new Nric("T9999999I");
         DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(invalidNric);
 
-        assertCommandFailure(deleteVolunteerCommand, model, Messages.MESSAGE_INVALID_VOLUNTEER_NRIC);
+        assertCommandFailure(deleteVolunteerCommand, model, DeleteVolunteerCommand.MESSAGE_INVALID_NRIC_VOLUNTEER);
     }
     @Test
     public void equals() {
