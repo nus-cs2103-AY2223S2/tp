@@ -1,4 +1,7 @@
-# Eugene Tang's Project Portfolio Page
+---
+layout: page
+title: Eugene Tang's Project Portfolio Page
+---
 
 ## About InternBuddy
 
@@ -30,8 +33,15 @@ _Coming Soon_
 
 ### Documentation
 **1. Update README for v1.1** [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13)
-* Create UI mockup for InternBuddy
-* Edit information of README, removing AB3-related content and adding InternBuddy-related content
+* Create UI mockup for InternBuddy.
+* Edit information of README, removing AB3-related content and adding InternBuddy-related content.
+
+**2. Draft User Guide for v1.1** (_Coming soon_)
+* Write the documentation for the `add` command.
+
+**3. Draft Developer Guide for v1.1** (_Coming soon_)
+* Write user stories for InternBuddy.
+
 
 ### Code Review
 _Coming soon_
