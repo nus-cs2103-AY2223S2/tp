@@ -54,6 +54,12 @@ public abstract class VaxType {
         return TYPE_MAP.remove(name);
     }
 
+
+    /** Clears all stored vaccination type. */
+    public static void clear() {
+        TYPE_MAP.clear();
+    }
+
     /**
      * Returns the vaccination type mapped to the specified name. If there are
      * no mappings to the name, {@code null} is returned.
