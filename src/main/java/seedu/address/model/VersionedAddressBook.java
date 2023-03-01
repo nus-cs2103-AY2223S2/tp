@@ -26,19 +26,30 @@ public class VersionedAddressBook extends AddressBook{
             addressBookStateList.remove(i);
         }
         // Step 2. Add node
-        addressBookStateList.add(ab);
+        addressBookStateList.add(ab.clone());
         // Step 3. Increment currentStatePointer by 1
         currentStatePointer = addressBookStateList.size() - 1;
     }
 
     /**
      * Move currentStatePointer one before
+     * Return the target AddressBook (Not clone yet)
      */
-    public void undo() {
+    public AddressBook undo() {
         currentStatePointer--;
+
+        return addressBookStateList.get(currentStatePointer);
     }
 
     //todo
     public void redo() {
+    }
+
+    //=============== helper function ===========================================================
+    public boolean canUndo() {
+        if(currentStatePointer == 0) {
+            return false;
+        }
+        return true;
     }
 }

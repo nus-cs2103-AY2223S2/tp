@@ -87,7 +87,11 @@ public interface Model {
 
     void commit();
 
+    boolean canUndo();
+
     void undo();
+
+    boolean canRedo();
 
     void redo();
 }
