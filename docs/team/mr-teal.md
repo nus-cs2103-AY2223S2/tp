@@ -20,5 +20,5 @@ The following are my contributions to this project:
 - **Enhancements to existing features**: xxx
 
 - **Documentation**:
-  - User Guide: xxx
+  - User Guide: Initial v1.1 skeleton
   - Developer Guide: xxx
