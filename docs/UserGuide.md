@@ -74,19 +74,32 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an internship entry: `add`
 
-Adds a person to the address book.
+Adds a new internship entry to the list of existing entries.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE`
+- The `STATUS` field  must have one of the following values: `new`, `applied`,
+  `assessment`, `interview`, `offered` or `rejected`.
+- The meaning of `DATE` would be interpreted with respect to the value of `STATUS`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+| Status       | Interpretation of Date       |
+|--------------|------------------------------|
+| `new`        | Deadline of Application      |
+| `applied`    | Date of Application          |
+| `assessment` | Date of Technical Assessment |
+| `interview`  | Date of Behavioral Interview |
+| `offered`    | Date of Offer                |
+| `rejected`   | Date of Rejection            |
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Apple r/Software Engineer s/new d/2023-02-01` Adds a new internship entry with
+  company name `Apple`, role `Software Engineer`, status `new` and deadline
+  of application `2023-02-01`.
+* `add n/Amazon r/Cloud Architect s/assessment d/2023-02-01` Adds a new internship entry
+  with company name `Amazon`, role `Cloud Architect`, status `assessment` and
+  date of technical assessment `2023-02-01`.
+* `add n/Facebook s/new d/2023-02-01` Displays an error because the role is missing.
 
 ### Listing all persons : `list`
 
