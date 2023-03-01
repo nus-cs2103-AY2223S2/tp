@@ -38,12 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Kimberly Barcelon Pontanares
 
-<img src="images/johndoe.png" width="200px" alt="">
+<img src="images/kimberlybp.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kimberlybp)]
+[[portfolio](team/kimberlybp.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
