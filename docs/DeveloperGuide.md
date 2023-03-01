@@ -264,7 +264,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * manage tasks and contacts faster than a typical mouse/GUI driven app
 * allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 
-> addtask n/Finish report 
+> addtask n/Finish report
 - Task added: Finish report
 
 > listtask

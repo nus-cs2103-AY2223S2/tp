@@ -8,7 +8,7 @@ title: OfficeConnect
 
 ![Ui](images/Ui.png)
 
-**OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.** 
+**OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.**
 
 - The target users are individuals who are responsible for assigning tasks and overseeing the work of a team.
 

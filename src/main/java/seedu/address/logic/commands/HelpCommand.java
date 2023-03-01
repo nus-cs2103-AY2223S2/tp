@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.model.OfficeConnectModel;
 
 /**
  * Format full help instructions for every command for display.
@@ -15,7 +16,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

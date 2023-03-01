@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Lee Kay Yen  
+### Lee Kay Yen
 
 <img alt="kayyenl" src="images/kayyenl.png" width="200px"/>
 

@@ -14,6 +14,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Content;
+import seedu.address.model.task.Status;
+import seedu.address.model.task.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +123,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String content} into an {@code Content}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code content} is invalid.
+     */
+    public static Content parseContent(String content) throws ParseException {
+        requireNonNull(content);
+        String trimmedContent = content.trim();
+        if (!Content.isValidContent(trimmedContent)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Content(trimmedContent);
+    }
+
+    /**
+     * Parses a {@code String status} into an {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(Boolean.parseBoolean(trimmedStatus));
     }
 }
