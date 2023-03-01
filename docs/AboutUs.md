@@ -17,15 +17,15 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Team Member
 
-### Jane Doe
+### Kannusami Saraan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ks2499.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ks2499)]
+[[portfolio](team/ks2499.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: To be added
 
 ### Johnny Doe
 
