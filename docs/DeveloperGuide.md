@@ -18,6 +18,26 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **User Profile**
+
+Business People on their computers most of their days who can type quickly and have many temporary contacts
+
+## **Value Proposition**
+ 
+- Quick Contacts provide business people with the tools to organise their contacts with ease
+- Business people have numerous contacts, many of which are temporary and save these contacts into their main contact book which will clutter it in no time.
+- With Quick Contacts, businesspeople can easily find the relevant contacts as Quick Contacts intelligently manage their contacts for them.
+
+## **User stories**
+<img src="images/UserStories1.png" width="280" />
+<img src="images/UserStories2.png" width="280" />
+
+## **Use Cases**
+User recieves an email for a meeting next week. He is already at his computer. He creates a meeting and sets the time to live of the meeting till next week. after the meeting he does not need to delete the meeting from his contacts any longer
+
+## **Non-Functional requirements**
+- create meeting object
+- create way for objects to kill themselves
 
 ## **Design**
 
