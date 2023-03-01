@@ -93,7 +93,14 @@ public class Listing {
         ArrayList<String> applicants = getApplicants();
         if (!applicants.isEmpty()) {
             builder.append("; Applicants: ");
-            applicants.forEach(builder::append);
+            for(int index = 0; index < applicants.size(); index++) {
+                String applicant = applicants.get(index);
+                //work on the element
+                if (index != applicants.size() - 1) {
+                    applicant += ", ";
+                }
+                builder.append(applicant);
+            }
         }
         return builder.toString();
     }

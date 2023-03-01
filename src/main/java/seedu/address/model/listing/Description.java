@@ -17,6 +17,7 @@ public class Description {
      */
     public static final String VALIDATION_ALL_CAPS = "^[A-Z]*$";
     public static final String VALIDATION_ALL_NON_ALPHANUM = "^[^a-zA-Z0-9]*$";
+    public static final int VALIDATION_CHAR_LIMIT = 500;
 
     public final String fullDescription;
 
@@ -37,7 +38,7 @@ public class Description {
      */
     public static boolean isValidDescription(String test) {
         // Check for maximum length
-        if (test.length() > 500) {
+        if (test.length() > VALIDATION_CHAR_LIMIT) {
             return false;
         }
 

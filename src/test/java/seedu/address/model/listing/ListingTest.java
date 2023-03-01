@@ -70,4 +70,10 @@ public class ListingTest {
         editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE).withApplicants(VALID_APPLICANTS).build();
         assertTrue(CHICKENRICEUNCLE.equals(editedChickenRiceUncle));
     }
+
+    @Test
+    public void stringTest() {
+        String expected = "Chicken Rice Uncle; Description: Make delicious chicken rice!; Applicants: Tom, Dick, Harry";
+        assertTrue(CHICKENRICEUNCLE.toString().equals(expected));
+    }
 }

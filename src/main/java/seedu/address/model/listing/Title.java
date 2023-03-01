@@ -19,6 +19,7 @@ public class Title {
     public static final String VALIDATION_ALL_CAPS = "^[A-Z]*$";
     public static final String VALIDATION_CONSEC_SPECIAL_CHARACTERS = ".*[!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/]{4,}.*";
     public static final String VALIDATION_ALL_NON_ALPHANUM = "^[^a-zA-Z0-9]*$";
+    public static final int VALIDATION_CHAR_LIMIT = 100;
 
     public final String fullTitle;
 
@@ -44,7 +45,7 @@ public class Title {
         }
 
         // Check for maximum length
-        if (test.length() > 100) {
+        if (test.length() > VALIDATION_CHAR_LIMIT) {
             return false;
         }
 
