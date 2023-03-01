@@ -5,13 +5,13 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `seer@comp.nus.edu.sg`
 
 ## Project team
 
 ### Alson
 
-<img src="images/alson001.png" width="200px">
+<img src="images/developers/alson.png" width="200px">
 
 [[homepage]()]
 [[github](https://github.com/alson001)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Filbert Phang
 
-<img src="images/filbert.png" width="200px">
+<img src="images/developers/filbert.png" width="200px">
 
 [[github](http://github.com/filbertphang)]
 [[portfolio](team/filbertphang.md)]
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### James Liu Zixin
 
-<img src="images/jamesliu.png" width="200px">
+<img src="images/developers/jamesliu.png" width="200px">
 
 [[github](http://github.com/jamesliuzx)] 
 [[portfolio](team/jamesliuzx.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ong Seeu Sim
 
-<img src="images/seeusim.png" width="200px">
+<img src="images/developers/seeusim.png" width="200px">
 
 [[github](http://github.com/SeeuSim)]
 [[portfolio](team/seeusim.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tang Zong Hao
 
-<img src="images/zhtang.png" width="200px">
+<img src="images/developers/zhtang.png" width="200px">
 
 [[github](http://github.com/zhtang29)]
 [[portfolio](team/zhtang29.md)]
