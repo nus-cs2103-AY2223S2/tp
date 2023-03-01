@@ -5,6 +5,7 @@ import seedu.address.model.application.Application;
 
 /**
  * Unmodifiable view of an internship book
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public interface ReadOnlyInternshipBook {
 

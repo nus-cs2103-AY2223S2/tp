@@ -20,6 +20,7 @@ import seedu.address.model.application.exceptions.DuplicateApplicationException;
  * Supports a minimal set of list operations.
  *
  * @see Application#equals(Object)
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class UniqueApplicationList implements Iterable<Application> {
     private final ObservableList<Application> internalList = FXCollections.observableArrayList();
