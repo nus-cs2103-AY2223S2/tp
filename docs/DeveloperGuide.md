@@ -270,43 +270,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                                                     | I want to …​                                                     | So that I can…​                                                                                     |
+|----------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | Computing undergraduate with many internship applications                                   | list out all the entries                                         | browse through my list of applications.                                                             |
+| `* * *`  | Computing undergraduate applying for many internships                                       | add a new entry                                                  | manage new applications using InternBuddy.                                                          |
+| `* * *`  | Computing undergraduate managing many concurrent internship applications                    | add a status to each entry                                       | track the status of each application.                                                               |
+| `* * *`  | Computing undergraduate who is planning to track internship applications in the long run    | delete entries                                                   | remove outdated or irrelevant entries from InternBuddy.                                             |
+| `* * *`  | Computing undergraduate who is planning to track internship applications in the long run    | store data                                                       | resume from where I left off in my previous run of InternBuddy.                                     |
+| `* * *`  | Computing undergraduate who is a new user of InternBuddy                                    | view the list of supported commands                              | refer to it when I am unsure about the usage of InternBuddy.                                        |
+| `* *`    | meticulous Computing undergraduate                                                          | be notified that InternBuddy is exiting                          | be rest assured that InternBuddy has successfully terminated when I exit it.                        |
+| `* *`    | careless Computing undergraduate                                                            | modify the details of an entry                                   | correct my typos without having to create a new entry from scratch.                                 |
+| `* *`    | careless Computing undergraduate                                                            | be prompted with a confirmation message before I delete an entry | avoid accidental deletes.                                                                           |
+| `* *`    | forgetful Computing undergraduate                                                           | rely on auto-saving of data                                      | avoid the problem of forgetting to save my entries when I make changes to them.                     |
+| `* *`    | Computing undergraduate applying for technical roles                                        | tag each entry with its associated tech stack                    | identify the technical requirements associated with each application.                               |
+| `* *`    | Computing undergraduate applying for technical roles                                        | filter internship entries by tags                                | narrow down the search to internship applications with the tech stack that I would like to work on. |
+| `* *`    | Computing undergraduate with many internship applications                                   | search an entry by name                                          | easily and swiftly locate the desired application entry.                                            |
+| `* *`    | Computing undergraduate who is not extremely proficient with the command line interface     | have intuitive and simple-to-pick-up commands                    | use InternBuddy without much technical difficulties.                                                |
+| `* * `   | detail-oriented Computing undergraduate                                                     | add custom remarks to each entry                                 | have the flexibility of documenting miscellaneous but relevant information.                         |
+| `*`      | Computing undergraduate who is slow in learning                                             | go through a step-by-step in-app tutorial                        | learn how to use InternBuddy in a guided and self-paced environment.                                |
+| `*`      | Computing undergraduate managing many concurrent internship applications                    | filter internship entries by date                                | identify the upcoming tasks or deadlines.                                                           |
+| `*`      | Computing undergraduate managing many concurrent internship applications                    | obtain reminders                                                 | avoid forgetting about upcoming tasks or deadlines.                                                 |
+| `*`      | analytical Computing undergraduate                                                          | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
+| `*`      | Computing undergraduate who is planning to track internship applications in the long run    | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
+| `*`      | Computing undergraduate who is experienced in using InternBuddy                             | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
+| `*`      | a non-Computing undergraduate who wants to use InternBuddy to track internship applications | customise the statuses that I can assign to each entry           | use InternBuddy according to the internship application process specific to my field of study.      |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InternBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an internship entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters internship entry
+2.  InternBuddy adds an internship entry and displays success message
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a.  InternBuddy detects one or more fields are missing.
+  * 1a1. InternBuddy requests for internship entry with correct format.
+  * 1a2. User enters corrected internship entry.
+  * Steps 1a1-1a2 are repeated until the internship entry entered is of the correct format.
+ 
+    Use case ends.
 
-  Use case ends.
+* 1b.  InternBuddy detects one or more fields have invalid parameters.
+    * 1b1. InternBuddy requests for internship entry with correct format.
+    * 1b2. User enters corrected internship entry.
+    * Steps 1b1-1b2 are repeated until the internship entry entered is of the correct format.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Exit InternBuddy**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User requests to exit InternBuddy
+2.  InternBuddy displays exit message and closes the application
+
+    Use case ends.
 
 *{More to be added}*
 

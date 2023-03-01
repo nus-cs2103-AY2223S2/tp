@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Shawn's Project Portfolio Page
+title: Christopher's Project Portfolio Page
 ---
 
 ### Project: InternBuddy
@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature**: [To be added]
 * **New Feature**: [To be added]
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=seadragon2000341&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=potty10&breakdown=true)
 
 * **Project management**:
   * [To be added]
@@ -26,9 +26,9 @@ Given below are my contributions to the project.
     * [To be added]
   * Developer Guide:
     * [To be added]
-
+    
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+  * PRs reviewed (with non-trivial review comments): [\#20](), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
