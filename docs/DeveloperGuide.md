@@ -256,14 +256,12 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+**Freelance Devs**
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 
 ### User stories
@@ -283,32 +281,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Mycelium` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Create a project**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters command and submits details for new project
+2. Mycelium creates the project
+3. User can view the new project listed in panel
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Required project details are not provided.
+   * 1a1. Mycelium shows an error message.
 
-  Use case ends.
+   Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+* 1b. Some projet details are invalid.
+   * 1b1. Mycelium shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+   Use case resumes at step 1.
 
-      Use case resumes at step 2.
+**Use case: Create a client**
 
-*{More to be added}*
+**MSS**
+
+1. User enters command and submits details for new client
+2. Mycelium creates the client
+3. User can view the new client listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Required client details are not provided.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+* 1b. Some project details are invalid.
+   * 1b1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+**Use case: Delete a project**
+
+**MSS**
+
+1. User enters command and submits name of project to delete
+2. Mycelium deletes the project
+3. User can no longer see project listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Project with submitted name does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+**Use case: Delete a client**
+
+**MSS**
+
+1. User enters command and submits email of client to delete
+2. Mycelium deletes the client
+3. User can no longer see client listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Client with submitted email does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
 
 ### Non-Functional Requirements
 

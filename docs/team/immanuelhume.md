@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Stanley Neoh's Project Portfolio Page
+title: Li Junyi's Project Portfolio Page
 ---
 
 ### Project: Mycelium

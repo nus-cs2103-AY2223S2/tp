@@ -9,6 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Douglas Chow
+
+<img src="images/douglch.png" width="200px">
+
+[[github](http://github.com/douglch)] 
+[[portfolio](team/douglch.md)]
+
+* Role: In charge of `Client`
+* Responsibilities: Writing and testing the class for Client Panel - Create, Delete.
+
+### Li Junyi
+
+<img src="images/immanuelhume.png" width="200px">
+
+[[github](http://github.com/immanuelhume)]
+[[portfolio](team/immanuelhume.md)]
+
+* Role: Developer
+* Responsibilities: Project entity and CRUD
+
 ### Stanley Neoh
 
 <img src="images/stanleyneoh.png" width="200px">

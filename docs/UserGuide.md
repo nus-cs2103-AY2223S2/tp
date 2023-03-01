@@ -3,191 +3,162 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Mycelium is a desktop application aimed at helping **freelance web developers manage clients and projects** from multiple online sources. All interactions with Mycelium are through text commands, allowing for efficient manipulation of data while benefiting from the ease of viewing offered by the Graphical User Interface.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Main View - Projects and Clients
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+### Projects Tab
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+The Projects tab lists all the projects you've created. Each project block contains the project’s
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+- Name
+- Status, which would be either **not started, in progress, or done**
+- Client
+- Source, e.g. Fiverr
+- Description
+- Accepted date
+- Deadline
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Clients Tab
 
-   * `list` : Lists all contacts.
+The Clients tab lists all the clients you've created. Each client block contains the client’s
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+- Name or username
+- Year of birth
+- Email
+- Phone number
+- List of associated platforms
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+--------------------------------------------------------------------------------------------------------------------
+## Command Layout
 
-   * `exit` : Exits the app.
+Commands in Mycelium take the general form of `command_name [arguments]`. Arguments may be compulsory or optional. For optional arguments, Mycelium uses sensible defaults in their place.
 
-1. Refer to the [Features](#features) below for details of each command.
+All arguments take the structure of `-arg arg_data`, and multiple arguments can be specified consecutively. Note that if `arg_data` consists of multiple white-space separated tokens, then it must be surrounded by single quotation marks.
+
+As an example, the command below creates a new project with the name *Mycelium Desktop*, for client *Spiderman*, and sourced from *fiverr.com*.
+
+```bash
+p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
+```
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Managing Clients 
 
-<div markdown="block" class="alert alert-info">
+### Creating a client contact: `c`
 
-**:information_source: Notes about the command format:**<br>
+Creates a new client contact.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+**Compulsory Arguments**
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- **`-cn client_name`**
+    - The client’s name.
+- **`-e email`**
+    - The client’s email. Must be unique in Mycelium.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+**Optional Arguments**
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- **`-y year_of_birth`**
+    - The client’s year of birth.
+    - **Default**: *null*
+- **`-src source`**
+    - The client’s digital service platform, e.g. Fiverr.
+    - **Default:** *null*
+- **`-mn mobile_number`**
+    - The client’s mobile number.
+    - **Default:** *null*
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+**Examples**
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+The following command creates a new client with name *Alice Baker*, whose email is *alice_baker@bakers.com*, born in the year *2000*.
 
-</div>
+```bash
+c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
+```
 
-### Viewing help : `help`
+### Deleting a client contact: `dc`
 
-Shows a message explaning how to access the help page.
+Deletes an *existing* client contact.
 
-![help message](images/helpMessage.png)
+**Compulsory Arguments**
 
-Format: `help`
+- **`-e email`**
+    - Email of the client to delete.
 
+**Examples**
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 --------------------------------------------------------------------------------------------------------------------
+## Managing Projects
 
-## FAQ
+### Creating a project: `p`
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Creates a new project.
+
+**Compulsory Arguments**
+
+- **`-pn project_name`**
+    - The project’s name, which must be *unique.*
+    - If another project with the same name already exists, then the command *overrides* the existing project with the new details.
+- **`-cn client_name`**
+    - The name of the client who submitted this project. Note that this client must have already been created in Mycelium.
+
+**Optional Arguments**
+
+- **`-s status`**
+    - The `status` should be set to either **`not_started` , `in_progress` , or `done` .**
+    - **Default:** **`not_started`**
+- **`-src source`**
+    - The platform the project is sourced from, such as Fiverr. This can be any arbitrary string.
+    - **Default:** *null*
+- **`-d description`**
+    - A short description of the project.
+    - **Default:** *null*
+- **`-ad accepted_date`**
+    - The date that the project was accepted.
+    - **Default**: the current date
+- **`-dd deadline_date`**
+    - The due date of the project.
+    - **Default:** *null*
+
+**Examples**
+
+The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman*from *fiverr.com*.
+
+```bash
+p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
+```
+
+### Deleting a project: `dp`
+
+Deletes an *existing* project.
+
+**Compulsory Arguments**
+
+- `-pn project_name`
+    - Name of the project to delete.
+
+**Examples**
+
+Running `dp -pn Mycelium` would delete the project with name *Mycelium*.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number <br> e.g., `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
+**Delete an existing client** | dc -e email <br> e.g., `dc -e alice_baker@bakers.com`
+**Create a project** | p -pn project_name -cn client_name -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com`
+**Delete a project** | dp -pn project_name <br> `e.g., dp -pn Mycelium`
