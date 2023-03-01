@@ -1,0 +1,52 @@
+{
+  "_comment": "AddressBook save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
+  "persons" : [ {
+    "companyName" : "Google",
+    "role" : "Software Engineer",
+    "status" : "applied",
+    "date" : "2023-02-01",
+    "tagged" : [ "golang" ]
+  }, {
+      "companyName" : "Amazon",
+      "role" : "Cloud Architect",
+      "status" : "new",
+      "date" : "2023-02-04",
+      "tagged" : [ "aws", "backend" ]
+  }, {
+    "companyName" : "Facebook",
+    "role" : "Backend Developer",
+    "status" : "rejected",
+    "date" : "2023-01-28",
+    "tagged" : [ "sql", "metaverse" ]
+  }, {
+    "companyName" : "Apple",
+    "role" : "Software Engineer",
+    "status" : "accepted",
+    "date" : "2023-01-30",
+    "tagged" : [ "iOS", "swift" ]
+  }, {
+    "companyName" : "Riot Games",
+    "role" : "Game Developer",
+    "status" : "assessment",
+    "date" : "2023-02-05",
+    "tagged" : [ "C#", "unreal" ]
+  }, {
+    "companyName" : "Twitter",
+    "role" : "Frontend Developer",
+    "status" : "interview",
+    "date" : "2023-02-07",
+    "tagged" : [ "React" ]
+  }, {
+    "companyName" : "Grab",
+    "role" : "Backend Developer",
+    "status" : "applied",
+    "date" : "2023-02-01",
+    "tagged" : [  ]
+  }, {
+    "companyName" : "Foodpanda",
+    "role" : "Software Engineer",
+    "status" : "new",
+    "date" : "2023-02-15",
+    "tagged" : [ "java" ]
+  } ]
+}

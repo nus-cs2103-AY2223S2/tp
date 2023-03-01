@@ -35,7 +35,7 @@ public class Role {
     /**
      * Returns true if a given string is a valid role.
      *
-     * @param test The regex to test whether a string is a valid role.
+     * @param test The string to test against the regex.
      * @return true if the given string corresponds to a valid string for a role, else returns false.
      */
     public static boolean isValidRole(String test) {

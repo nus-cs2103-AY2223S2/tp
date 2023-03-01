@@ -55,7 +55,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * The internship identity of {@code editedInternship} must not be the same as another existing internship in
      * the list.
      */
-    public void setPerson(Internship target, Internship editedInternship) {
+    public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
         int index = internalList.indexOf(target);
@@ -124,7 +124,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code internships} contains only unique internships.
      */
     private boolean internshipsAreUnique(List<Internship> internships) {
         for (int i = 0; i < internships.size() - 1; i++) {

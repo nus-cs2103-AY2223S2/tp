@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Internship> filteredPersons;
+    private final FilteredList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Internship person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasInternship(Internship internship) {
+        requireNonNull(internship);
+        return addressBook.hasInternship(internship);
     }
 
     @Override
-    public void deletePerson(Internship target) {
-        addressBook.removePerson(target);
+    public void deleteInternship(Internship target) {
+        addressBook.removeInternship(target);
     }
 
     @Override
-    public void addPerson(Internship person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addInternship(Internship internship) {
+        addressBook.addInternship(internship);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
     @Override
-    public void setPerson(Internship target, Internship editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setInternship(Internship target, Internship editedInternship) {
+        requireAllNonNull(target, editedInternship);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setInternship(target, editedInternship);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Internship> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Internship> getFilteredInternshipList() {
+        return filteredInternships;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Internship> predicate) {
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredInternships.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredInternships.equals(other.filteredInternships);
     }
 
 }

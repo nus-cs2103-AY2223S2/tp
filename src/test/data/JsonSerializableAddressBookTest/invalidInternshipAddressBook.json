@@ -1,0 +1,9 @@
+{
+  "persons": [ {
+    "companyName": "Google",
+    "role": "Software Engineer",
+    "status": "applied",
+    "date": "23rd January 2023",
+    "tagged": [ "Go" ]
+  } ]
+}

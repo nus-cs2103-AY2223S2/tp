@@ -12,7 +12,7 @@ import seedu.address.model.internship.Internship;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Internship> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,36 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an internship with the same identity as {@code Internship} exists in InternBuddy.
      */
-    boolean hasPerson(Internship person);
+    boolean hasInternship(Internship internship);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given internship.
+     * The internship must exist in the address book.
      */
-    void deletePerson(Internship target);
+    void deleteInternship(Internship target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given internship.
+     * {@code internship} must not already exist in InternBuddy.
      */
-    void addPerson(Internship person);
+    void addInternship(Internship internship);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given internship {@code target} with {@code editedInternship.
+     * {@code target} must exist in InternBuddy.
+     * The internship identity of {@code editedInternship} must not be the same as another existing internship in
+     * the address book.
      */
-    void setPerson(Internship target, Internship editedPerson);
+    void setInternship(Internship target, Internship editedInternship);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Internship> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered internship list */
+    ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Internship> predicate);
+    void updateFilteredInternshipList(Predicate<Internship> predicate);
 }
