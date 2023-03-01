@@ -18,7 +18,7 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It" +
-                    "should not be blank too.";
+                    " should not be blank too.";
 
     //A set of valid statuses
     public static List<String> listOfValidStatuses =

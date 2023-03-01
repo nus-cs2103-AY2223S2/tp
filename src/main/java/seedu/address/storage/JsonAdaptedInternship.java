@@ -93,31 +93,7 @@ class JsonAdaptedInternship {
         if (!Status.isValidStatus(status)) {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-        final Status modelStatus;
-        switch (status) {
-        case "new":
-            modelStatus = Status.NEW;
-            break;
-        case "applied":
-            modelStatus = Status.APPLIED;
-            break;
-        case "assessment":
-            modelStatus = Status.ASSESSMENT;
-            break;
-        case "interview":
-            modelStatus = Status.INTERVIEW;
-            break;
-        case "offered":
-            modelStatus = Status.OFFERED;
-            break;
-        case "rejected":
-            modelStatus = Status.REJECTED;
-            break;
-        default:
-            //Should never reach here as there is a check for valid statuses above
-            assert (false);
-            modelStatus = null;
-        }
+        final Status modelStatus = new Status(status);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));

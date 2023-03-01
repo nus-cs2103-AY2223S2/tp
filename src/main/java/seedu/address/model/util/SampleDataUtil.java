@@ -20,23 +20,17 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
             new Internship(new CompanyName("Apple"), new Role("iOS Developer"), new Status("applied"),
-                new Date("2023-02-01"),
-                getTagSet("front")),
-            new Internship(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Internship(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Internship(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Internship(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Internship(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                new Date("2023-02-01"), getTagSet("front")),
+            new Internship(new CompanyName("Amazon"), new Role("Cloud Architect"), new Status("new"),
+                new Date("2023-02-02"), getTagSet("aws", "cloud services")),
+            new Internship(new CompanyName("Google"), new Role("Software Engineer"), new Status("assessment"),
+                new Date("2023-02-03"), getTagSet("golang", "back-end")),
+            new Internship(new CompanyName("Samsung"), new Role("Android Developer"), new Status("interview"),
+                new Date("2023-02-02"), getTagSet("android", "mobile")),
+            new Internship(new CompanyName("Grab"), new Role("Front-end Designer"), new Status("offered"),
+                new Date("2023-02-02"), getTagSet("react", "css")),
+            new Internship(new CompanyName("Facebook"), new Role("Back-end Developer"), new Status("rejected"),
+                new Date("2023-02-02"), getTagSet("sql"))
         };
     }
 
