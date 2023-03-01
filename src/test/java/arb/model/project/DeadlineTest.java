@@ -1,7 +1,6 @@
 package arb.model.project;
 
 import static arb.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void constructor_valid_Deadline() {
+    public void constructor_valid_deadlineObject() {
         assertTrue(new Deadline("2023-03-05") instanceof Deadline);
     }
 

@@ -3,8 +3,9 @@ package arb.model.project;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import arb.testutil.ProjectBuilder;
 import org.junit.jupiter.api.Test;
+
+import arb.testutil.ProjectBuilder;
 
 public class ProjectTest {
 
