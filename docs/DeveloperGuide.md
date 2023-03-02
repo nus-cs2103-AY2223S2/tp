@@ -273,24 +273,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                        |
-| -------- |--------------------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                               |                                                                        |
-| `* * *`  | user                                       | delete a person                                                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                                   | minimize chance of someone else seeing them by accident                |
-| `* *`    | student                                    | be able to record where I met them                             | remember everyone I have met                                           |
-| `* *`    | student                                    | be able to save module information of my friend                | approach them in case of any doubts regarding the module               |
-| `* *`    | exco member of a CCA                       | be able to save the CCA of the people I meet                   | keep a look out for partnership opportunities with other CCAs          |
-| `* *`    | NUS student                                | be able to tag the school or company of the people I meet with | keep track of my network                                               |
-| `*`      | user with many persons in the address book | sort persons by name                                           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                         | So that I can…​                                                        |
+|----------| ------------------------------------------ |------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                     |                                                                        |
+| `* * *`  | user                                       | delete a person                                      | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                 | locate a person easily                                                 |
+| `***`    | user| add a new contact without adding their email         | add people when I don't know their email id                            |
+| `***`    | user| add a new contact without adding their phone number  | add people when I don't know their phone number                        |
+| `***`    | user| add a new contact without adding their telegram      | add people when I don't know their telegram                            |
+| `***`    | user| add a new contact without adding any tags            | add people who don't have a common CCA or module with me               |
+| `**`     |  user| open whatsapp directly from the CLI                  | message someone without having to find them on whatsapp                |
+| `**`     | user | open telegram directly from the CLI                  | message someone without having to find them on telegram                |
+| `*` | user | send short mesages on telegram directly from the app | message someone without having to juggle between apps                  |
+| `*` | user | send short mesages on whatsapp directly from the app | message someone without having to juggle between apps                  |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a contact**
+
+**MSS**
+
+1. User requests to add a contact by giving name and some contact information
+2. ConnectUS adds a new contact with given information
+3. Confirmation message is displayed
+4. The new contact is visible in the contacts list
+5. Use case ends
+
+**Extensions**
+
+* 1a. There is an error in the given information
+    * 1a1. Error is displayed
+    * 1s2. Use case ends
+* 4a. User requests to add more information to the contact
+  * 4a1. ConnectUS adds the given information to the contact
 
 **Use case: Delete a person**
 
@@ -371,11 +393,21 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact:
+1. Adding a contact with just name and email
+    1. Prerequisites: None
+   2. Test case: `add n/JohnDoe e/email@example.com`<br>
+   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list. 
+   3. Test case: `add n/ e/email@example.com`<br>
+   Expected: No contact is created. Error details shown in status message.
+   4. _{ more test cases …​ }_
 
-1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Deleting a contact
+
+1. Deleting a contact while all persons are being shown
+
+   1. Prerequisites: List all contact using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
