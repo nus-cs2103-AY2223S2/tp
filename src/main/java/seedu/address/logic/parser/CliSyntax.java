@@ -13,9 +13,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_DOB = new Prefix("-dob");
     public static final Prefix PREFIX_DRUG_ALLERGY = new Prefix("-da");
-    public static final Prefix PREFIX_EMERGENCY_CONTACT = new Prefix("-ec");
+//    public static final Prefix PREFIX_EMERGENCY_CONTACT = new Prefix("-ec");
     public static final Prefix PREFIX_GENDER = new Prefix("-g");
     public static final Prefix PREFIX_IC = new Prefix("-ic");
+    public static final Prefix PREFIX_EMERGENCY_CONTACT_NAME = new Prefix("-ecn");
+    public static final Prefix PREFIX_EMERGENCY_CONTACT_PHONE = new Prefix("-ecp");
+    public static final Prefix PREFIX_EMERGENCY_CONTACT_RELATIONSHIP = new Prefix("-ecr");
 
     /* Prefix definitions for drug*/
     public static final Prefix PREFIX_ACTIVE_INGREDIENT = new Prefix("-ai");

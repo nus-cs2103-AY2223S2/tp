@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a patient's IC in the patient record
  */
 public class Ic {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "IC number should only contain alphanumeric characters,"
                     + " and it should be exactly 8 digits and characters long";
 

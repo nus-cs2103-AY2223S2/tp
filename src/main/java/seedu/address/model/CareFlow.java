@@ -108,7 +108,7 @@ public class CareFlow {
      * The patient identity of {@code editedPatient} must not be the same as another existing patient in the patient
      * record.
      */
-    public void setPatient(Person target, Person editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) {
         patientRecord.setPatient(target, editedPatient);
     }
 

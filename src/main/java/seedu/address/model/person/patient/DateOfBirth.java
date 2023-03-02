@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * Represents a patient's date of birth in the patient record
  */
 public class DateOfBirth {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Date of birth should only contain numeric characters and spaces, "
                     + "and the date should fall between 01/01/1900 and current date";
     private static final DateTimeFormatter[] FORMATS =
