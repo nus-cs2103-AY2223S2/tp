@@ -5,7 +5,7 @@
 ![Ui](docs/images/Ui.png)
 
 ## Overview
-**MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. This will help them manage their own appointments and mitigate the need for a personal assistant or appointment manager, while also saving costs in the process.
+**MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. It helps them manage their own appointments and mitigates the need for a personal assistant or appointment manager, while also saving costs in the process.
 
 **MediMeet** is:
 * written in Java, in OOP fashion
