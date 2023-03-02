@@ -26,19 +26,15 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the features `delete` and `find` [link](https://docs.google.com/document/d/1MQun8t0bxWSTK7mvMVGaFhbeXMVMyw60-daNUtj52Lw/edit?usp=sharing)
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * To be added
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * to be added
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  * Integrated a Github plugin (CodeCov) to the team repo
 
 * _{you can add/remove categories in the list above}_
