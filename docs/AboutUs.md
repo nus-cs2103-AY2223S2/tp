@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/rachel.png" width="200px">
 
-[[github](http://github.com/rachtan27)] [[portfolio](team/rachel.md)]
+[[github](http://github.com/nich)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities:
@@ -55,7 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 ### Shane Duggan
->>>>>>> 9cb1eed223a37e2f7ccb2ab41d335c2282a4a73e
 
 <img src="images/ShaneDuggan.png" width="200px">
 
