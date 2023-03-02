@@ -308,8 +308,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-System: Contact and appointment tracker (MediMeet)
-
 **Use case: Set availability**
 
 **MSS:**
