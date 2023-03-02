@@ -64,3 +64,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+### Chua Wen Hong
+
+<img src="images/runoutofit.png" width="200px">
+
+[[github](https://github.com/runoutofit)]
+[[portfolio](team/runoutofit.md)]
+
+* Role: Developer
+* Responsibilities: UI, Code Quality, Documentations
