@@ -404,6 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given category is invalid.
+
     * 3a1. SOCket shows an error message.
 
       Use case resumes at step 2.
@@ -425,6 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 *  1a. No contact matches any of the given keyword and any of the given tag
+
   * 1a1. SOCket shows an empty list of contacts
 
     Use case ends.
@@ -514,9 +516,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 *  3a. Command bounded to the keyword is not valid
-  * 3a1. SOCket shows an error message
 
-    Use case ends.
+    * 3a1. SOCket shows an error message
+
+      Use case ends.
 
 **Use case: UC12 Access peer GitHub information**
 
