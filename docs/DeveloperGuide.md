@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list all internship applications with an upcoming deadline on a particular date.
 2.  System prompts user to key in a date. 
 3.  User inputs a date. 
-2.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
+4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
 
     Use case ends.
 
