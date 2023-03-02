@@ -111,11 +111,29 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Assign lead status: `status`
 
-Finds persons whose names contain any of the given keywords.
+Adds one or more statuses to a contact. Statuses allow you to search by tags.
+Tags must be a single word with no whitespaces.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+If no status is specified, lists the status associated with the contact.
+
+The lead status follows a set of rules, to be implemented in v1.3
+
+Format:   
+`status INDEX_NUMBER|NAME`   
+`status INDEX_NUMBER|NAME [STATUS …]`  
+
+Examples:
+`status 1` or `status David` Returns the status of ID `1` or the status of `David`
+`status David closed-won` Assigns the status of `David` to be `closed-won`.
+
+
+### Finding a contact: `search`
+
+Search for a contact based on a keyword, or by specifying its index number.
+
+Format: `search [INDEX or KEYWORD(S)]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -125,9 +143,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `search 1`  -  returns the contact with ID 1, `1 - David Tsao`
+* `search Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
+
 
 ### Deleting a person : `delete`
 
