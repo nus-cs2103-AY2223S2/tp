@@ -270,14 +270,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new bookmark             |   start tracking a book                                                |
+| `* * *`  | user                                       | delete a bookmark              | remove entries that I no longer need                                   |
+| `* * *`  | user with many bookmarks | find bookmarks by book title   | locate bookmarsk without having to go through the entire list |
+| `* * *`    | user                                       | edit a bookmark                 | update the information in my bookmark               |
+| `* *`  | user | view the details of a single bookmark | see information about a particular book I am tracking
+| `* *` | user with mostly unnecessary bookmarks | clear all bookmarks |  not delete each bookmark one by one |
+| `* *` | user with many bookmarks | find bookmarks by book type | view bookmarks of only a certain type|
+| `* *` | user with many bookmarks | find bookmarks by book genre | sview bookmarks of only a certain genre|
+| `* *` | user  | rate a book through its bookmark | remember how much I enjoyed the book|
+| `* *`      | user with many bookmarks | sort bookmarks by book title           | locate a bookmark easily             |
+| `* *` | user with many bookmarks | sort bookmarks by rating | locate bookmarks of books I enjoyed easily|
+| `* *` | user who likes detail | add tags to bookmark | give additional labels to a bookmark|
+| `* *` | user with many bookmarks | find bookmarks by their tags | view only bookmarks who have certain tags|
+| `* *` | user with many bookmarks | find bookmarks by book author | view bookmarks of books written by a specific author|
+| `* *` | user | add hyperlinks to bookmarks | link the website where I am reading the book's chapters from|
+| `*` | user | add book characters to a bookmark | store noteworthy characters which I remember the book by|
+| `* ` | user | find bookmarks using name of characters | locate books with certain characters easily|
+| `* *` | user with many bookmarks | sort bookmarks by date of creation | view bookmarks in order of creation |
+| `* *` | user with many bookmarks | find bookmarks by last modified date | view bookmarks in order of most recently updated|
+| `* *` | user  | add last read chapter to a bookmark | know where I last left off with a certain book|
+| `* *` | user | find bookmarks based on their status | view only bookmarks of a certain status easily|
 
 *{More to be added}*
 
