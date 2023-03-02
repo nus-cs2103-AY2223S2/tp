@@ -1,13 +1,14 @@
 package seedu.vms.storage.vaccination;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 
 
@@ -73,19 +74,22 @@ public class JsonAdaptedVaxType {
         }
 
         if (historyReqs != null) {
-            builder = builder.setHistoryReqs(historyReqs
-                    .stream()
-                    .map(adapted -> adapted.toModelType())
-                    .collect(Collectors.toList()));
+            builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
         if (allergyReqs != null) {
-            builder = builder.setAllergyReqs(allergyReqs
-                    .stream()
-                    .map(adapted -> adapted.toModelType())
-                    .collect(Collectors.toList()));
+            builder = builder.setAllergyReqs(toReqList(allergyReqs));
         }
 
         return builder.build();
+    }
+
+
+    private List<Requirement> toReqList(List<JsonAdaptedVaxRequirement> adaptedList) throws IllegalValueException {
+        ArrayList<Requirement> reqs = new ArrayList<>();
+        for (JsonAdaptedVaxRequirement adapted : adaptedList) {
+            reqs.add(adapted.toModelType());
+        }
+        return reqs;
     }
 }

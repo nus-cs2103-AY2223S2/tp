@@ -2,6 +2,7 @@ package seedu.vms.model.vaccination;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -52,15 +53,19 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkHistReq(List<VaxRequirement> reqs, List<VaxRecord> records) {
-        List<HashSet<String>> grpSets = records.stream()
-                .map(record -> record.getVaccination().getGroups())
-                .collect(Collectors.toList());
-        if (records.isEmpty()) {
-            grpSets.add(new HashSet<>());
-        }
+    private static boolean checkHistReq(List<Requirement> reqs, List<VaxRecord> records) {
+        List<HashSet<String>> grpSets = getHistGrpSet(records);
+        ArrayDeque<Requirement> pendingReqs = new ArrayDeque<>(reqs);
         for (HashSet<String> grpSet : grpSets) {
-            if (checkReq(reqs, grpSet)) {
+            ArrayDeque<Requirement> unsatisfiedReqs = new ArrayDeque<>();
+            while (!pendingReqs.isEmpty()) {
+                Requirement req = pendingReqs.pop();
+                if (!req.check(grpSet)) {
+                    unsatisfiedReqs.add(req);
+                }
+            }
+            pendingReqs = unsatisfiedReqs;
+            if (pendingReqs.isEmpty()) {
                 return true;
             }
         }
@@ -68,8 +73,19 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkReq(List<VaxRequirement> reqs, HashSet<String> set) {
-        for (VaxRequirement req : reqs) {
+    private static List<HashSet<String>> getHistGrpSet(List<VaxRecord> records) {
+        List<HashSet<String>> grpSets = records.stream()
+                .map(record -> record.getVaccination().getGroups())
+                .collect(Collectors.toList());
+        if (records.isEmpty()) {
+            grpSets.add(new HashSet<>());
+        }
+        return grpSets;
+    }
+
+
+    private static boolean checkReq(List<Requirement> reqs, HashSet<String> set) {
+        for (Requirement req : reqs) {
             if (!req.check(set)) {
                 return false;
             }

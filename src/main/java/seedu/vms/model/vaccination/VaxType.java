@@ -8,28 +8,29 @@ import java.util.Optional;
 
 /**
  * Represents a vaccination type.
- *
- * <p>Types created through either {@link #of(String, HashSet, int, int, int, List)}
- * or {@link #of(String, int, int, int, List)} methods are stored and can be
- * retrieved through the {@link #get(String)} method. During creation of a
- * type, if the name of the type already exists, the vaccination type mapping
- * to that name is replaced with the newly created type.
  */
 public abstract class VaxType {
     private static final HashMap<String, VaxType> TYPE_MAP = new HashMap<>();
+
+    public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
+    public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
+    public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
+    public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
+    public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
+    public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
     private final String name;
     private final HashSet<String> groups;
     private final int minAge;
     private final int maxAge;
     private final int minSpacing;
-    private final List<VaxRequirement> historyReqs;
-    private final List<VaxRequirement> allergyReqs;
+    private final List<Requirement> historyReqs;
+    private final List<Requirement> allergyReqs;
 
 
     private VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
+                List<Requirement> historyReqs, List<Requirement> allergyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
@@ -42,7 +43,7 @@ public abstract class VaxType {
 
     private static VaxType of(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
+                List<Requirement> historyReqs, List<Requirement> allergyReqs) {
         VaxType vaxType = new VaxType(name, groups,
                 minAge, maxAge, minSpacing,
                 historyReqs, allergyReqs) {};
@@ -98,13 +99,13 @@ public abstract class VaxType {
     }
 
 
-    public List<VaxRequirement> getHistoryReqs() {
-        return VaxRequirement.copy(historyReqs);
+    public List<Requirement> getHistoryReqs() {
+        return Requirement.copy(historyReqs);
     }
 
 
-    public List<VaxRequirement> getAllergyReqs() {
-        return VaxRequirement.copy(allergyReqs);
+    public List<Requirement> getAllergyReqs() {
+        return Requirement.copy(allergyReqs);
     }
 
 
@@ -126,8 +127,8 @@ public abstract class VaxType {
         public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
         public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
         public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
-        public static final List<VaxRequirement> DEFAULT_HISTORY_REQS = List.of();
-        public static final List<VaxRequirement> DEFAULT_ALLERGY_REQS = List.of();
+        public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
+        public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
         private final Optional<String> originalName;
         private final String name;
@@ -135,21 +136,21 @@ public abstract class VaxType {
         private final int minAge;
         private final int maxAge;
         private final int minSpacing;
-        private final List<VaxRequirement> historyReqs;
-        private final List<VaxRequirement> allergyReqs;
+        private final List<Requirement> historyReqs;
+        private final List<Requirement> allergyReqs;
 
 
         private Builder(Optional<String> originalName, String name, HashSet<String> groups,
                     int minAge, int maxAge, int minSpacing,
-                    List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
+                    List<Requirement> historyReqs, List<Requirement> allergyReqs) {
             this.originalName = originalName;
             this.name = name;
             this.groups = new HashSet<>(groups);
             this.minAge = minAge;
             this.maxAge = maxAge;
             this.minSpacing = minSpacing;
-            this.historyReqs = VaxRequirement.copy(historyReqs);
-            this.allergyReqs = VaxRequirement.copy(allergyReqs);
+            this.historyReqs = Requirement.copy(historyReqs);
+            this.allergyReqs = Requirement.copy(allergyReqs);
         }
 
 
@@ -170,8 +171,8 @@ public abstract class VaxType {
             int minAge = DEFAULT_MIN_AGE;
             int maxAge = DEFAULT_MAX_AGE;
             int minSpacing = DEFAULT_MIN_SPACING;
-            List<VaxRequirement> historyReqs = DEFAULT_HISTORY_REQS;
-            List<VaxRequirement> allergyReqs = DEFAULT_ALLERGY_REQS;
+            List<Requirement> historyReqs = DEFAULT_HISTORY_REQS;
+            List<Requirement> allergyReqs = DEFAULT_ALLERGY_REQS;
 
             VaxType vaxType = VaxType.get(name);
             if (vaxType != null) {
@@ -219,24 +220,24 @@ public abstract class VaxType {
         }
 
 
-        public Builder setHistoryReq(VaxRequirement ... reqs) {
-            List<VaxRequirement> historyReqs = List.of(reqs);
+        public Builder setHistoryReq(Requirement ... reqs) {
+            List<Requirement> historyReqs = List.of(reqs);
             return setHistoryReqs(historyReqs);
         }
 
 
-        public Builder setHistoryReqs(List<VaxRequirement> historyReqs) {
+        public Builder setHistoryReqs(List<Requirement> historyReqs) {
             return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
-        public Builder setAllergyReqs(VaxRequirement ... reqs) {
-            List<VaxRequirement> allergyReqs = List.of(reqs);
+        public Builder setAllergyReqs(Requirement ... reqs) {
+            List<Requirement> allergyReqs = List.of(reqs);
             return setAllergyReqs(allergyReqs);
         }
 
 
-        public Builder setAllergyReqs(List<VaxRequirement> allergyReqs) {
+        public Builder setAllergyReqs(List<Requirement> allergyReqs) {
             return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
