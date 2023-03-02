@@ -9,10 +9,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ang Jun Kang
 
-<img src="images/Irminrics.png" width="200px">
+<img src="images/irminrics.png" width="200px">
 
 [[github](https://github.com/Irminrics)]
-[[portfolio](team/Irminrics.md)]
+[[portfolio](team/irminrics.md)]
 
 - Role: Team Lead
 - Responsibilites: Pull request approver
