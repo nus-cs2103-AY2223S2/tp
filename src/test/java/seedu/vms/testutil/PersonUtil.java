@@ -1,10 +1,6 @@
 package seedu.vms.testutil;
 
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.vms.logic.parser.CliSyntax;
 
 import java.util.Set;
 
@@ -17,6 +13,11 @@ import seedu.vms.model.tag.Tag;
  * A utility class for Person.
  */
 public class PersonUtil {
+    private static final String PREFIX_ADDRESS = CliSyntax.DELIMITER + CliSyntax.PREFIX_ADDRESS + " ";
+    private static final String PREFIX_EMAIL = CliSyntax.DELIMITER + CliSyntax.PREFIX_EMAIL + " ";
+    private static final String PREFIX_NAME = CliSyntax.DELIMITER + CliSyntax.PREFIX_NAME + " ";
+    private static final String PREFIX_PHONE = CliSyntax.DELIMITER + CliSyntax.PREFIX_PHONE + " ";
+    private static final String PREFIX_TAG = CliSyntax.DELIMITER + CliSyntax.PREFIX_TAG + " ";
 
     /**
      * Returns an add command string for adding the {@code person}.
