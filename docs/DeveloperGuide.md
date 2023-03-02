@@ -256,15 +256,14 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* is a doctor, likely a General Practitioner (GPs) in a small clinic.
+* is a doctor, likely a General Practitioner (GP) in a small clinic.
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Medimeet enables doctors to effectively manage patient details and appointments,
-and saves costs by reducing the need for personal assistants or appointment managers.
+**Value proposition**: MediMeet enables doctors to effectively manage patient details and appointments, and saves costs by reducing the need for personal assistants or appointment managers.
 
 ### User stories
 
