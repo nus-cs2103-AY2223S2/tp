@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ding Chiyu
 
-<img src="images/Mr-Teal.png" width="200px">
+<img src="images/mr-teal.png" width="200px">
 
 [[github](http://github.com/Mr-Teal)]
 [[portfolio](team/mr-teal.md)]
