@@ -312,9 +312,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be easy to use and navigate, even for users who are not familiar with the NUS student community. This could include features such as clear labeling, intuitive interfaces, and helpful error messages.
+5. Should be accessible to users with disabilities, including those who use screen readers or other assistive technologies. The user interface should be highly readable for all users.
+6. Should provide fast response times and minimal resource usage, even when running on lower-end hardware.
+7. Should be able to handle errors and exceptions gracefully, without crashing or losing user data. This could include features such as error logging, fault tolerance mechanisms, and data backup options.
 
 *{More to be added}*
 
