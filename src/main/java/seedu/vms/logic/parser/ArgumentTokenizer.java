@@ -16,17 +16,22 @@ public class ArgumentTokenizer {
     private static final String DELIMITER_PATTERN = "\\s*" + CliSyntax.DELIMITER;
 
 
+    /**
+     * Parses an argument String to an {@link ArgumentMultimap}.
+     *
+     * @throws ParseException if a flag name is blank.
+     */
     public static ArgumentMultimap tokenize(String argString) throws ParseException {
-        argString = argString.strip();
+        argString = argString.strip() + " ";
 
         ArgumentMultimap argMap = new ArgumentMultimap();
         String[] args = argString.split(DELIMITER_PATTERN);
 
         // preamble
-        argMap.put(new Prefix(""), args[0]);
+        argMap.put(new Prefix(""), args[0].strip());
 
         for (int i = 1; i < args.length; i++) {
-            addArgument(args[i], argMap);
+            addArgument(args[i].strip(), argMap);
         }
 
         return argMap;

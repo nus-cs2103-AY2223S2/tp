@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.logic.parser.exceptions.ParseException;
+
 
 public class ArgumentTokenizerTest {
     @Test
@@ -68,12 +70,24 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void tokenize_multipleArgumentsAlienSpacing() {
-        String arg = "gomi--flag-1 value 1--flag-1         value 2       --flag-1--flag-2";
+        String arg = "gomi--flag-1 value 1--    flag-1         value 2       --flag-1--flag-2";
         ArgumentMultimap argMap = tokenizeSuccess(arg);
         assertPreamblePresent(argMap, "gomi");
         assertArgumentPresent(argMap, new Prefix("flag-1"), "value 1", "value 2", "");
         assertArgumentPresent(argMap, new Prefix("flag-2"), "");
         assertArgumentAbsent(argMap, new Prefix("flag-3"));
+    }
+
+
+    @Test
+    public void tokenize_blankFlag_exceptionThrown() {
+        String arg = "gomi--flag-1 value 1--flag-1         value 2       --flag-1--";
+        try {
+            ArgumentTokenizer.tokenize(arg);
+            fail("Exception not thrown");
+        } catch (ParseException parseEx) {
+            // expected exception thrown
+        }
     }
 
 
