@@ -25,7 +25,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/redHat-arko)]
 [[portfolio](team/redhat-arko.md)]
-=======
+
+* Role: Team Lead
+* Responsibilities: UI
+
 ### Jayanth Balasubramanian
 
 <img src="images/jayanth_placeholder.jpeg" width="200px">
