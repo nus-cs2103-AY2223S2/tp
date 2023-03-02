@@ -19,12 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Integration + Testing
 
-### Jane Doe
+### Arkobrata Chaudhuri
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/redhat-arko.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/redHat-arko)]
+[[portfolio](team/redhat-arko.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
