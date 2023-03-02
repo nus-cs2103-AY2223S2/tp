@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Jia Jun
 
-<img src="images/Wong-Jia-Jun.png" width="200px">
+<img src="images/wong-jia-jun.png" width="200px">
 
 [[github](http://github.com/Wong-Jia-Jun)]
-[[portfolio](team/Wong-Jia-Jun.md)]
+[[portfolio](team/wong-jia-jun.md)]
 
 * Role: Developer
 * Responsibilities: TBC
