@@ -88,9 +88,9 @@ Examples:
 * `add t/Hobbit a/J. R. R. Tolkien p/25`
 * `add t/The Odyssey a/Homer p/50 g/Epic poetry`
 
-### Listing all persons : `list`
+### Listing all bookmarks : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all bookmarks in the library.
 
 Format: `list`
 
