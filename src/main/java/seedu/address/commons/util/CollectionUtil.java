@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class CollectionUtil {
 
-    /** @see #requireAllNonNull(Collection) */
+    /** @seeget #requireAllNonNull(Collection) */
     public static void requireAllNonNull(Object... items) {
         requireNonNull(items);
         Stream.of(items).forEach(Objects::requireNonNull);
