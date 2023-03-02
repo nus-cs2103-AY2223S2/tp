@@ -19,6 +19,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Integration + Testing
 
+### Arkobrata Chaudhuri
+
+<img src="images/redhat-arko.png" width="200px">
+
+[[github](http://github.com/redHat-arko)]
+[[portfolio](team/redhat-arko.md)]
+=======
 ### Jayanth Balasubramanian
 
 <img src="images/jayanth_placeholder.jpeg" width="200px">
