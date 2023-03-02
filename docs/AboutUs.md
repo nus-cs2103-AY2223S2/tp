@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zm-l.md)]
 
 * Role: Developer
-* Responsibilities: Add internship applications entry
+* Responsibilities: `Add` internship applications entry
 
 ### Lok Jian Ming
 
