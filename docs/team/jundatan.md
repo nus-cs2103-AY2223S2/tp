@@ -37,7 +37,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `add` [\#62](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/62)
   * Developer Guide:
     * Added Use case for `add` [\#67](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/67)
-    * 
+    * Added Use case for `exit` and `clear`
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
