@@ -16,6 +16,17 @@ public class VaccinationCheckerTest {
     private static final int MAX_AGE = 60;
     private static final int MIN_SPACING = 7;
 
+    private static final HashSet<String> ALLERGIES_NONE = new HashSet<>();
+    private static final HashSet<String> ALLERGIES_ONE = new HashSet<>(List.of("BANANA1"));
+    private static final HashSet<String> ALLERGIES_MULTIPLE = new HashSet<>(
+            List.of("BANANA1", "BANANA2", "BANANA3"));
+    private static final HashSet<String> ALLERGIES_ONE_NONE = new HashSet<>(List.of("UNCHI1"));
+    private static final HashSet<String> ALLERGIES_MULTIPLE_NONE = new HashSet<>(
+            List.of("UNCHI1", "UNCHI2", "UNCHI3"));
+    private static final HashSet<String> ALLERGIES_MULTIPLE_SOME = new HashSet<>(
+            List.of("UNCHI1", "UNCHI2", "BANANA1"));
+
+    /** No allergies. */
     private static final VaxType TYPE_1_A = VaxType.Builder.of("TYPE_1_A")
             .setGroups("TYPE_1")
             .setMinAge(MIN_AGE)
@@ -23,13 +34,16 @@ public class VaccinationCheckerTest {
             .setMinSpacing(MIN_SPACING)
             .setHistoryReq()
             .build();
+    /** One allergy. */
     private static final VaxType TYPE_1_B = VaxType.Builder.of("TYPE_1_B")
             .setGroups("TYPE_1", "B")
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
             .setHistoryReq(new VaxRequirement(true, new HashSet<>(List.of("TYPE_1"))))
+            .setAllergyReqs(new VaxRequirement(true, ALLERGIES_ONE))
             .build();
+    /** One allergy not matching. */
     private static final VaxType TYPE_2_A = VaxType.Builder.of("TYPE_2_A")
             .setGroups("TYPE_2", "A")
             .setMinAge(MIN_AGE)
@@ -38,7 +52,9 @@ public class VaccinationCheckerTest {
             .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("TYPE_1"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
+            .setAllergyReqs(new VaxRequirement(true, ALLERGIES_ONE_NONE))
             .build();
+    /** Multiple allergies. */
     private static final VaxType TYPE_2_B = VaxType.Builder.of("TYPE_2_B")
             .setGroups("TYPE_2", "B")
             .setMinAge(MIN_AGE)
@@ -47,7 +63,9 @@ public class VaccinationCheckerTest {
             .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("B", "TYPE_1"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
+            .setAllergyReqs(new VaxRequirement(true, ALLERGIES_MULTIPLE))
             .build();
+    /** Multiple allergies none matching. */
     private static final VaxType TYPE_3 = VaxType.Builder.of("TYPE_3")
             .setGroups("TYPE_3")
             .setMinAge(MIN_AGE)
@@ -56,6 +74,18 @@ public class VaccinationCheckerTest {
             .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("TYPE_2"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_3"))))
+            .setAllergyReqs(new VaxRequirement(true, ALLERGIES_MULTIPLE_NONE))
+            .build();
+    /** Multiple allergies some matching. */
+    private static final VaxType TYPE_3_A = VaxType.Builder.of("TYPE_3_A")
+            .setGroups("TYPE_3")
+            .setMinAge(MIN_AGE)
+            .setMaxAge(MAX_AGE)
+            .setMinSpacing(MIN_SPACING)
+            .setHistoryReq(
+                    new VaxRequirement(false, new HashSet<>(List.of("TYPE_2"))),
+                    new VaxRequirement(true, new HashSet<>(List.of("TYPE_3"))))
+            .setAllergyReqs(new VaxRequirement(true, ALLERGIES_MULTIPLE_SOME))
             .build();
 
     private static final LocalDateTime TIME_1_VALID = LocalDateTime.of(2023, 3, 5, 4, 55);
@@ -70,8 +100,6 @@ public class VaccinationCheckerTest {
     private static final List<VaxRecord> RECORD_3 = List.of(
             new VaxRecord(TYPE_1_A, TIME_1_VALID),
             new VaxRecord(TYPE_2_A, TIME_2_VALID));
-
-    private static final HashSet<String> ALLERGIES_NONE = new HashSet<>();
 
 
     /*
@@ -97,7 +125,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_1_A,
                 MAX_AGE,
-                ALLERGIES_NONE,
+                ALLERGIES_MULTIPLE_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -108,7 +136,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_2_A,
                 MIN_AGE,
-                ALLERGIES_NONE,
+                ALLERGIES_MULTIPLE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -119,7 +147,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_2_B,
                 MIN_AGE,
-                ALLERGIES_NONE,
+                ALLERGIES_MULTIPLE_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -184,5 +212,45 @@ public class VaccinationCheckerTest {
                 ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_INVALID));
+    }
+
+
+    @Test
+    public void check_matchingAllergies_false() {
+        // PERSON 1 : VAX 1
+        assertFalse(VaxChecker.check(
+                TYPE_1_B,
+                MIN_AGE,
+                ALLERGIES_ONE,
+                RECORD_1,
+                TIME_1_VALID));
+        // PERSON MULTIPLE : VAX 1
+        assertFalse(VaxChecker.check(
+                TYPE_1_B,
+                MIN_AGE,
+                ALLERGIES_MULTIPLE,
+                RECORD_1,
+                TIME_1_VALID));
+        // PERSON 1 : VAX MULTIPLE
+        assertFalse(VaxChecker.check(
+                TYPE_2_B,
+                MIN_AGE,
+                ALLERGIES_ONE,
+                RECORD_1,
+                TIME_1_VALID));
+        // PERSON SOME : VAX MULTIPLE
+        assertFalse(VaxChecker.check(
+                TYPE_2_B,
+                MIN_AGE,
+                ALLERGIES_MULTIPLE_SOME,
+                RECORD_1,
+                TIME_1_VALID));
+        // PERSON MULTIPLE : VAX SOME
+        assertFalse(VaxChecker.check(
+                TYPE_3_A,
+                MIN_AGE,
+                ALLERGIES_MULTIPLE,
+                RECORD_1,
+                TIME_1_VALID));
     }
 }
