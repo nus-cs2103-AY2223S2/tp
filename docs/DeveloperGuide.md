@@ -256,30 +256,56 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
+* is a doctor, likely a General Practitioner (GPs) in a small clinic.
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: Medimeet enables doctors to effectively manage patient details and appointments,
+and saves costs by reducing the need for personal assistants or appointment managers.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+    Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                      | So that I can…​                                                       |
+|----------|---------|-------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | doctor  | view details about my patients                                    | I can see everything I need to know about them at a glance            |
+| `* * *`  | doctor  | add a new patient to the addressbook                              | I can have new patients                                               |
+| `* * *`  | doctor  | edit patients' details                                            | I can update patient details                                          |
+| `* * *`  | doctor  | find a particular patient's details                               | I can easily locate patients                                          |
+| `* * *`  | doctor  | keep records of a patient                                         | I can check their medical history                                     |
+| `* * *`  | doctor  | quickly add notes about a patient                                 | I can keep an accurate and up-to-date record of their medical history |
+| `* * *`  | doctor  | add patient appointments                                          | I can schedule and keep track of all my patient visits                |
+| `* * *`  | doctor  | view upcoming appointment                                         | I can see when my next appointment will be                            |
+| `* * *`  | doctor  | view the number of patients I have to see in a day                | I can gauge my workload                                               |
+| `* * *`  | doctor  | navigate the ui using keyboard commands                           | I work faster and more efficiently                                    |
+| `* * *`  | doctor  | mark appointments as done                                         | I can remove it from my calendar                                      |
+| `* * *`  | doctor  | access help guide                                                 | I can be assisted when I have trouble using MediMeet                  |
+| `* * *`  | doctor  | delete appointments                                               | I can remove patients who cancelled appointments                      |
+| `* * *`  | doctor  | save data to memory                                               | I can store the data after closing the application                    |
+| `* * *`  | doctor  | retrieve data from memory                                         | I can have my saved data after restarting the application             |
+| `* * *`  | doctor  | delete a patient from the address book                            | I can remove data for former patients                                 |
+| `* *`    | doctor  | automate appointment assignment                                   | I don't have to manually add appointments                             |
+| `* *`    | doctor  | access different templates for emailing different users           | I can quickly send standard emails to various users                   |
+| `* *`    | doctor  | send mass emails                                                  | I don't have to send them indivually if I can't make it that day      |
+| `* *`    | doctor  | set my availability                                               | I can block off time for tasks or meetings                            |
+| `* *`    | doctor  | view my appointments and patient information on any device        | I can access these details from anywhere                              |
+| `* *`    | doctor  | add sample data                                                   | I can test out MediMeet                                               |
+| `* *`    | doctor  | purge all data                                                    | I can remove sample or confidential data                              |
+| `* *`    | doctor  | filter my appointments by date, patient name, or appointment type | I can find the data I need quickly                                    |
+| `* *`    | doctor  | add billing info                                                  | I can manage patient financials centrally                             |
+| `* *`    | doctor  | add appointments to calendar                                      | I can view my schedule at a glance                                    |
+| `*`      | doctor  | share patient details with other doctors                          | other doctors can access the necessary details                        |
+| `*`      | doctor  | login to the system                                               | I can prevent malicious actors from accessing my data                 |
+| `*`      | doctor  | reset my password                                                 | I still have access to my account if I forget my password             |
+| `*`      | doctor  | delete my account                                                 | I can remove all my data when it is no longer needed                  |
+| `*`      | doctor  | can change my password if needed                                  | I can ensure the security of my account                               |
 
-*{More to be added}*
+
+
 
 ### Use cases
 
@@ -312,11 +338,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should load quickly and be responsive, even with a large amount of patient data.
+4. Should be reliable, with minimal errors that could impact the doctor's ability to manage their appointments and patient details.
+5. Should use clear and concise language, icons, and design elements to help the doctor understand the information presented and the actions they can take.
+6. Should provide clear and easily accessible help and documentation, including FAQs and tutorials, to assist the doctor in using the platform effectively.
+7. Should be designed to prevent errors and provide clear, actionable error messages if errors occur, so that the doctor can quickly correct any issues.
 
-*{More to be added}*
 
 ### Glossary
 
