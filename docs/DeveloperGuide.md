@@ -314,28 +314,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a contact by giving name and some contact information
-2. ConnectUS adds a new contact with given information
-3. Confirmation message is displayed
-4. The new contact is visible in the contacts list
-5. Use case ends
+1. User requests to add a contact by giving name and some contact information.
+2. ConnectUS adds a new contact with given information.
+3. Confirmation message is displayed.
+4. The new contact is visible in the contacts list.
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. There is an error in the given information
-    * 1a1. Error is displayed
-    * 1s2. Use case ends
-* 4a. User requests to add more information to the contact
-  * 4a1. ConnectUS adds the given information to the contact
+* 1a. There is an error in the given information.
+    * 1a1. ConnectUS shows an error message.
 
-**Use case: Delete a person**
+  Use case ends.
+
+* 4a. User requests to add more information to the contact.
+  * 4a1. ConnectUS adds the given information to the contact.
+
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list persons.
+2.  ConnectUS shows a list of persons.
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ConnectUS deletes the person.
 
     Use case ends.
 
@@ -346,10 +349,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. ConnectUS shows an error message.
       Use case resumes at step 2.
+
+**Use case: Edit a contact**
+
+**MSS**
+
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to edit a specific person's information from the list by giving the type of information to be updated, and the updated information.
+4. ConnectUS edits the person's information.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. ConnectUS shows an error message.
+      Use case resumes at step 2.
+
+* 3b. There is an error in the given information.
+    * 3b1. ConnectUS shows an error message.
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
