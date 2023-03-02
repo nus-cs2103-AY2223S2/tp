@@ -15,7 +15,7 @@ import seedu.address.ui.body.address.PersonDetailCard;
  */
 public class ResultDisplay extends UiPart<Region> {
 
-    private static final String FXML = "ResultDisplay.fxml";
+    private static final String FXML = "result/ResultDisplay.fxml";
 
     @FXML
     private VBox resultDisplayContainer;
