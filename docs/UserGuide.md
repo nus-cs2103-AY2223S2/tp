@@ -2,23 +2,23 @@
 layout: page
 title: User Guide
 ---
-# About CoDoc
-CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of
-their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the 
-benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management 
-tasks done faster than traditional GUI apps and networking with people can be easily done.
+# About
+<span style="font-family:Helvetica; font-size:1em;">
+CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
+</span>
+
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-   * Add
-   * View
-   * Edit
-   * Find
-   * List
-   * Delete
-   * Clear
-   * Help
+   * [Add](#add)
+   * [View](#view)
+   * [Edit](#edit)
+   * [Find](#find)
+   * [List](#list)
+   * [Delete](#delete)
+   * [Clear](#clear)
+   * [Help](#help)
    * Auto save to file
    * Automated bulk edit [coming soon]
    * Archiving data files [coming soon]
@@ -54,7 +54,6 @@ tasks done faster than traditional GUI apps and networking with people can be ea
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="features"></a>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -81,6 +80,65 @@ tasks done faster than traditional GUI apps and networking with people can be ea
 
 </div>
 
+<a name="add"></a>
+### Adding a person: `add`
+
+> _Adds a person to the address book._
+>> add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...
+> 
+> **Compulsory parameters:**
+> - n/NAME (eg. n/John Doe)
+> - e/EMAIL (eg. e/johndoe123@email.com)
+> - y/YEAR (eg. ay/3, ay/prof, ay/alum)
+> - c/COURSE (eg. c/Computer Science, c/Information Security)
+> 
+> **Optional parameters:**
+> - ct/CONTACT (eg.ct/Telegram: @Johndoe123)
+> - sn/STUDENT NUMBER (eg. sn/E1234568)
+> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
+> - job/WORK (eg. job/Google Software Engineer, job/ATAP)
+> - skill/SKILL (eg. skill/C++, skill/Rust)
+> - link//LINK (eg. link//github.com/johndoe123)
+> 
+> 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+> 
+> **Examples:**
+> - add n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe
+>add n/John Doe e/johnd@example.com y/2 c/Computer Science
+> - add n/John Doe e/johnd@example.com y/2 c/Computer Science
+> ![Add Example](images/UiAddContact.png)
+
+  
+
+
+<a name="view"></a>
+### Viewing contacts/tabs: `view`
+
+<a name="edit"></a>
+### Editing a person information: `edit`
+
+<a name="find"></a>
+### Finding something: `find`
+
+<a name="list"></a>
+### List all contacts: `list`
+
+<a name="delete"></a>
+### Delete a contact: `delete`
+
+<a name="clear"></a>
+### Clear all contacts: `clear`
+
+<a name="help"></a>
+### Viewing help : `help`
+
+
+
+### View details of contact : `view`
+Shows a message explaining how to access the help page.
+
+
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -89,16 +147,6 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -197,16 +245,16 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
-Action | Format, Examples
-| --- | --- |
-Add	| `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 t/python t/java`
-View contact | `view INDEX`<br />e.g., `view 3`
-View tab | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`
-Edit | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`
-Find	name | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`
-Find module | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`
-Find tags | `findt TAG [MORETAGS]`<br />e.g., `findt java python` 
-List | `view` the default list of all contacts
-Delete | `delete INDEX`<br />e.g., `delete 3`
-Clear all contacts | `clear`
-Help | `help`
+| Action             | Format, Examples                                                                                                                                                                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add	               | `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 t/python t/java` |
+| View contact       | `view INDEX`<br />e.g., `view 3`                                                                                                                                                                                                                       |
+| View tab           | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`                                                                                                                                                                                                 |
+| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                    |
+| Find	name          | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`                                                                                                                                                                                                 |
+| Find module        | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`                                                                                                                                                                               |
+| Find tags          | `findt TAG [MORETAGS]`<br />e.g., `findt java python`                                                                                                                                                                                                  |
+| List               | `view` the default list of all contacts                                                                                                                                                                                                                |
+| Delete             | `delete INDEX`<br />e.g., `delete 3`                                                                                                                                                                                                                   |
+| Clear all contacts | `clear`                                                                                                                                                                                                                                                |
+| Help               | `help`                                                                                                                                                                                                                                                 |
