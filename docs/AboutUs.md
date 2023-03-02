@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wong Qin Yao (Sean)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/extrashotlatte.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/extrashotlatte)]
+[[portfolio](team/extrashotlatte.md)]
 
-* Role: Project Advisor
+* Role: Deliverables and deadlines, Git Expert
 
-### Jane Doe
+### Bryan Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryansendeavour.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/bryansendeavour)]
+[[portfolio](team/bryansendeavour.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Testing, JavaFX Expert
 
-### Johnny Doe
+### Eng En Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/engenhui1999.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/engenhui1999)]
+[[portfolio](team/engenhui1999.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration, Documentation
 
-### Jean Doe
+### Gloria Zhang Xinhui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glozxi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/glozxi)]
+[[portfolio](team/glozxi.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Scheduling and Tracking, IntelliJ expert
 
-### James Doe
+### Bryan Tan Zhong Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eksdeeex.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eksdeeex)]
+[[portfolio](team/eksdeeex.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality, Team Lead
