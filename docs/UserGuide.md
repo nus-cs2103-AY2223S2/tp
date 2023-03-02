@@ -136,7 +136,7 @@ _Edits an existing person in the address book._
 > - You can remove all the person’s tags by typing t/ without specifying any tags after it
 > 
 > **Examples:**
-> - edit p/91234567 e/johndoe@example.com will Edits the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
+> - edit p/91234567 e/johndoe@example.com will edit the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
 > - edit n/Betsy Crower t/ Edits the name of the person to be Betsy Crower and clears all existing tags.
 
 <a name="find"></a>
