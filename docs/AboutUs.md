@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Integration + Testing
 
-### Jane Doe
+### Jayanth Balasubramanian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayanth_placeholder.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Jayanth-Balasubramanian)]
+[[portfolio](team/jayanth.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: UI, Git expert
 
 ### Johnny Doe
 
