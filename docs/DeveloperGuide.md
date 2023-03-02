@@ -312,9 +312,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
+2. System should respond within 0.1 second of the user providing an input.
+3. All systems must be able to access the _save file_ ie. Save file should be independent of the OS.
+4. Any information displayed should be concise and structured in a logical manner such that it is easily understandable.
+5. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
@@ -322,6 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
