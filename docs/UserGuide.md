@@ -31,11 +31,11 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `codoc.jar` from [here] (link to be added).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your CoDoc program.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codoc.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -44,7 +44,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CoDoc.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -83,7 +83,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
 <a name="add"></a>
 ### Adding a person: `add`
-_Adds a person to the address book._
+_Adds a person to CoDoc._
 >> add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...
 > 
 > **Compulsory parameters:**
@@ -126,7 +126,7 @@ _View more details of specific contact._
 
 <a name="edit"></a>
 ### Editing a person information: `edit`
-_Edits an existing person in the address book._
+_Edits an existing person in CoDoc._
 >> edit [n/NAME] [e/EMAIL] [y/YEAR] [c/COURSE] [OPTIONAL/PARAMETER]...
 > 
 > - Edits the person displayed in the view panel 
@@ -158,12 +158,12 @@ _Finds persons whose names contain any of the given keywords._
 
 <a name="list"></a>
 ### List all contacts: `list`
-_Shows a list of all persons in the address book._
+_Shows a list of all persons in CoDoc._
 >> `list`
 
 <a name="delete"></a>
 ### Delete a contact: `delete`
-_Deletes the specified person from the address book._
+_Deletes the specified person from CoDoc._
 >> delete INDEX
 > 
 > - Deletes the person at the specified INDEX. 
@@ -171,12 +171,12 @@ _Deletes the specified person from the address book._
 > - The index must be a positive integer 1, 2, 3, …​
 >
 > Examples:
-> - list followed by delete 2 deletes the 2nd person in the address book. 
+> - list followed by delete 2 deletes the 2nd person in CoDoc. 
 > - find Betsy followed by delete 1 deletes the 1st person in the results of the find command.
 
 <a name="clear"></a>
 ### Clear all contacts: `clear`
-_Clears all entries from the address book._
+_Clears all entries from CoDoc._
 >> clear
 
 <a name="exit"></a>
@@ -193,7 +193,7 @@ _Shows a message explaining how to access the help page._
 
 ### Automatically save to file
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CoDoc data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Automated bulk edits `[coming in v2.0]`
 _Details coming soon ..._
@@ -207,12 +207,12 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
 **Q**: Where is the data file stored?<br>
-**A**: AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+**A**: CoDoc data are saved as a JSON file `[JAR file location]/data/codoc.json`. Advanced users are welcome to update data directly by editing that data file.
 
-:warning: If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+:warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
