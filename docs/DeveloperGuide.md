@@ -275,27 +275,27 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                                          | I can…​                                                    | So that I can…​                                                                           |
-|----------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user                                                         | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                                             | add a new person                                           |                                                                                           |
-| `* * *`  | user                                                             | delete a person                                            | remove entries that I no longer need                                                      |
-| `* * *`  | user                                                             | find a person by name                                      | locate details of persons without having to go through the entire list                    |
-| `* * *`  | student with many friends                                        | save my friend's details                                   | easily contact them                                                                       |
-| `* * *`  | student who likes to ask questions                               | save my professors' details                                | easily contact them to ask questions                                                      |
-| `* * *`  | student with fast typing speed                                   | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
-| `* *`    | user                                                             | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
-| `* *`    | student involved in project work                                 | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
-| `* *`    | student with many assignments                                    | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
-| `* *`    | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
-| `* *`    | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
-| `* *`    | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
-| `* *`    | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
-| `* *`    | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
-| `* *`    | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
-| `* *`    | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
-| `* *`    | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
-| `* *`    | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
-| `* *`    | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
+|---------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *` | new user                                                         | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *` | user                                                             | add a new person                                           |                                                                                           |
+| `* * *` | user                                                             | delete a person                                            | remove entries that I no longer need                                                      |
+| `* * *` | user                                                             | find a person by name                                      | locate details of persons without having to go through the entire list                    |
+| `* * *` | student with many friends                                        | save my friend's details                                   | easily contact them                                                                       |
+| `* * *` | student who likes to ask questions                               | save my professors' details                                | easily contact them to ask questions                                                      |
+| `* * *` | student with fast typing speed                                   | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
+| `* *`   | user                                                             | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
+| `* *`   | student involved in project work                                 | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
+| `* *`   | student with many assignments                                    | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
+| `* *`   | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
+| `* *`   | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
+| `* *`   | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
+| `* *`   | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
+| `* *`   | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
+| `* *`   | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
+| `* *`   | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
+| `* *`   | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
+| `* *`   | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
+| `* *`   | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
 
 ### Use cases
 
@@ -303,14 +303,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Add a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to add a contact
-2.  SOCket adds the contact
+1.  User requests to add a contact.
+2.  SOCket adds the contact.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. There are no details provided.
 
@@ -326,14 +326,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC02 - Edit a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contacts
-2.  SOCket shows a list of contacts
-3.  User requests to edit a specific contact's details in the list
-4.  SOCket edits the contact's details
+1.  User requests to list contacts.
+2.  SOCket shows a list of contacts.
+3.  User requests to edit a specific contact's details in the list.
+4.  SOCket edits the contact's details.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -365,16 +365,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC03 Delete a contact**
 
-**MSS**
+**MSS:**
 
 1.  User requests to list contacts.
 2.  SOCket shows a list of contacts.
 3.  User requests to delete a specific contact in the list.
 4.  SOCket deletes the contact.
 
-Use case ends.
+    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -388,7 +388,7 @@ Use case ends.
 
 **Use case: UC04 Sort contacts**
 
-**MSS**
+**MSS:**
 
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
@@ -397,7 +397,7 @@ Use case ends.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -412,21 +412,25 @@ Use case ends.
 * 3b. No category is given.
 
     * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  
+* 3b. No category is given.
 
-      Use case ends.
+  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+    
+     Use case ends.
 
 **Use case: UC06 Clear contacts/tag**
 
-**MSS**
+**MSS:**
 
-1. User chooses to clear off group of contacts
-2. SOCket requests for confirmation to delete the contacts
+1. User chooses to clear off group of contacts.
+2. SOCket requests for confirmation to delete the contacts.
 3. User confirms.
 4. SOcket deletes all the contacts.
 
 Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. All the given tags are present in SOCket.
 
@@ -462,27 +466,86 @@ Use case ends.
 
       Use case ends.
 
+**Use case: UC07 List contacts**
+
+**MSS:**
+
+1. User requests to list contacts.
+2. SOCket shows a list of contacts.
+3. User requests to list contacts by tag.
+4. SOCket shows a list of contacts with given tag.
+
+   Use case ends.
+
+**Extensions:**
+
+* 3a. The given tag is invalid.
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 Access Help page**
+
+**MSS:**
+
+1. User requests for help.
+2. SOCket shows the help page.
+
+   Use case ends.
+
 **Use case: UC09 - Exit SOCket**
 
-**MSS**
+**MSS:**
 
 1.  User requests to exit SOCket
 2.  SOCket exits
 
     Use case ends.
 
+**Use case: UC10 Hide contact details**
+
+**MSS:**
+
+1. User requests to list contact.
+2. SOCket shows a list of contacts.
+3. User requests to hide a category of a specific contact.
+4. SOCket hides the specific category of that user.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given category is invalid.
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The contact does not have that category.
+
+    * 3b1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
+      Use case ends.
+
 **Use case: UC12 Access peer GitHub information**
 
-**MSS**
+**MSS:**
 
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to view a specific contact's github information.
 4.  SOCket opens the contact's github profile in a browser.
 
-Use case ends.
+    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -494,16 +557,16 @@ Use case ends.
 
 **Use case: UC13 Undo recent delete/clear operation**
 
-**MSS**
+**MSS:**
 
 1. User chooses to delete/clear contact(s).
 2. SOCket deletes respective contact(s).
 3. User requests to get back the recent deleted contact(s).
 4. SOCket undo and restored recent deleted contact(s).
 
-Use case ends.
+   Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 3a. SOCket detects user has not done any delete/clear operation before.
 
@@ -512,6 +575,8 @@ Use case ends.
       Use case ends.
 
 **Use case: UC15 Set deadlines & responsibilities**
+
+**MSS:**
 
 1. User has a team project and creates a event.
 2. SOCket creates the event.
@@ -522,16 +587,15 @@ Use case ends.
 7. User chooses to give role to each team members.
 8. SOCket assigned the given roles to respective team members.
 
-Use case ends.
+   Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 5a. SOCket detects a syntax error in the entered date.
 
     * 5a1. SOCket shows an error message.
   
       Use case resume from 6 when the date entered are correct.
-=======
 
    Use case resumes at step 2.
 
