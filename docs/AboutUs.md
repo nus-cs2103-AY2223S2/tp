@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/shni99.png" width="200px">
 
 [[github](http://github.com/shni99)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/shni99.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
