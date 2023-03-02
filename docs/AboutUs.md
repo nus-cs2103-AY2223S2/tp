@@ -13,37 +13,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/rexcyrio.png" width="200px">
 
-[[github](https://github.com/rexcyrio)]
-[[portfolio](team/rexcyrio.md)]
+\[[github](https://github.com/rexcyrio)\] \[[portfolio](team/rexcyrio.md)\]
 
-* Role: Team Lead
-* Responsibilities: Code Quality
+- Role: Team Lead
+- Responsibilities: Code Quality
 
 ### Kim Young Jin
 
 <img src="images/jugheadjones10.png" width="200px">
 
-[[github](http://github.com/jugheadjones10)]
-[[portfolio](team/jugheadjones10.md)]
+\[[github](http://github.com/jugheadjones10)\] \[[portfolio](team/jugheadjones10.md)\]
 
-* Role: Developer
-* Responsibilities: Testing
+- Role: Developer
+- Responsibilities: Testing
 
 ### Neo Ming Hao
 
 <img src="images/minosx31.png" width="200px">
 
-[[github](http://github.com/minosx31)] [[portfolio](team/minosx31.md)]
+\[[github](http://github.com/minosx31)\] \[[portfolio](team/minosx31.md)\]
 
-* Role: Developer
-* Responsibilities: Deliverables and deadlines
+- Role: Developer
+- Responsibilities: Deliverables and deadlines
 
 ### Fun Leon
 
 <img src="images/niekis.png" width="200px">
 
-[[github](http://github.com/niekis)]
-[[portfolio](team/niekis.md)]
+\[[github](http://github.com/niekis)\] \[[portfolio](team/niekis.md)\]
 
-* Role: Developer
-* Responsibilities: Documentation
+- Role: Developer
+- Responsibilities: Documentation
