@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: `list` feature
 
-### Jean Doe
+### Lau Zhan Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zm-l.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/laihuiqi.md)]
+[[github](http://github.com/zm-l)]
+[[portfolio](team/zm-l.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Add internship applications entry
 
 ### Lok Jian Ming
 
