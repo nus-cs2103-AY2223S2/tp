@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing
 
-### James Doe
+### Kynhan Tang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kynhan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kynhan)]
+[[portfolio](team/kynhan.md)]
 
 * Role: Developer
 * Responsibilities: UI
