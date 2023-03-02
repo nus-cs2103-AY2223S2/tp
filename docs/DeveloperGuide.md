@@ -270,14 +270,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                              | So that I can…​                                                        |
+|----------|--------------------------------------------|-------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                    | refer to instructions when I forget how to use the App                 |
+| `* * *`  | new user                                   | add a new student                         |                                                                        |
+| `* * *`  | new user                                   | delete a student                          | remove entries that I no longer need                                   |
+| `* * *`  | new user                                   | add a student's education level           | keep track of a student's education level                              |
+| `* * *`  | new user                                   | add a student's phone number              | Keep track of his contact information                                  |
+| `* * *`  | new user                                   | add a student's email address             | keep track of his contact information                                  |
+| `* * *`  | new user                                   | add additional notes                      | Store additional descriptive information about a student               |
+| `* * *`  | new user                                   | save my data when I close the application | store the data that I have input locally                               |
+| `* * *`  | new user                                   | view my list of students                  | see all the students that I am currently teaching                      |
+| `* * `   | user with some experience                  | find a student by name                    | locate details of persons without having to go through the entire list |
+| `* *`    | user with many persons in the address book | sort persons by name                      | locate a person easily                                                 |
+| `* `     | user                                       | hide private contact details              | minimize chance of someone else seeing them by accident                |
+
+
 
 *{More to be added}*
 
