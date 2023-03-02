@@ -336,7 +336,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. User requests to add more information to the contact.
   * 4a1. ConnectUS adds the given information to the contact.
-  * 4a2. ConnectUS 
+  * 4a2. ConnectUS displays confirmation message
+  * 4a3. Updated contact is visible in the contacts list
   
   Use case ends.
 
