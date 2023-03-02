@@ -501,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC011 Using shortcut command**
+**Use case: UC11 Using shortcut command**
 
 **MSS**
 
@@ -539,7 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 2.
 
-**Use case: UC014 Tagging a contact**
+**Use case: UC14 Tagging a contact**
 
 **MSS**
 
