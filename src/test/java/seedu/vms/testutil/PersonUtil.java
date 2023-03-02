@@ -1,11 +1,10 @@
 package seedu.vms.testutil;
 
-import seedu.vms.logic.parser.CliSyntax;
-
 import java.util.Set;
 
 import seedu.vms.logic.commands.patient.AddCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPersonDescriptor;
+import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.model.person.Person;
 import seedu.vms.model.tag.Tag;
 
