@@ -115,7 +115,7 @@ _View more details of specific contact._
 > 
 > Loads up the contact at INDEX to the right panel to view details
 > 
-> ![image](images/UiViewIndex.png)
+> ![image](images/UIViewIndex.png)
 
 >> view TAB
 > 
