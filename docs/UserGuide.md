@@ -73,6 +73,12 @@ Interface (GUI). If you can type fast, InternBuddy can efficiently track your in
   parameter `DATE`.
 </div>
 
+### Listing all internship entries : `list`
+
+Shows a list of all internship entries that have been added into InternBuddy.
+
+Format: `list`
+
 ### Adding an internship entry: `add`
 
 Adds a new internship entry to the list of existing entries.
@@ -101,11 +107,19 @@ Examples:
   date of technical assessment `2023-02-01`.
 * `add n/Facebook s/new d/2023-02-01` Displays an error because the role is missing.
 
-### Listing all internship entries : `list`
 
-Shows a list of all internship entries that have been added into InternBuddy.
+### Deleting an internship entry : `delete`
+Deletes the specified internship entry from InternBuddy.
 
-Format: `list`
+
+Format: `delete INDEX`
+
+* Deletes the internship entry at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship entries list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `list` followed by `delete 2` deletes the 2nd internship entry in InternBuddy.
 
 ### Editing an internship entry : `edit`
 
@@ -121,22 +135,12 @@ Examples:
 *  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
 *  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 
-### Deleting an internship entry : `delete`
 
-<<<<<<< HEAD
-### Deleting a person : `delete`
-Deletes the specified internship entry from InternBuddy.
+### Getting Help : `help`
 
+Displays the list of commands supported by InternBuddy.
 
-Format: `delete INDEX`
-
-* Deletes the internship entry at the specified `INDEX`.
-* The index refers to the index number shown in the displayed internship entries list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Example:
-* `list` followed by `delete 2` deletes the 2nd internship entry in InternBuddy.
-
+Format: `help`
 
 
 ### Exiting the program : `exit`
