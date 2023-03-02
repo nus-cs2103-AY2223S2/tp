@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:
   * In charge of UI
 
-### Rachel Tan
+
+### Nicholas Lim Jian Rong
 
 <img src="images/rachel.png" width="200px">
 
@@ -40,25 +41,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities:
-  * Testing
+
+
+### Tan Wei Xuan Rachel
+<img src="images/rachel.png" width="200px">
+
+[[github](http://github.com/rachtan27)]
+[[portfolio](team/rachel.md)]
+
+* Role: Testing
+* Responsibilities:
   * In charge of Commands
 
-### Nicholas Lim
 
-<img src="images/johndoe.png" width="200px">
+### Shane Duggan
+>>>>>>> 9cb1eed223a37e2f7ccb2ab41d335c2282a4a73e
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/ShaneDuggan.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/Shuggan)]
 
-### Shane 
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Storage
