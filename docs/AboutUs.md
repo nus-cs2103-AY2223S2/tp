@@ -29,12 +29,12 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeremykhoo-nus.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jeremykhoo-NUS)] [[portfolio](team/jeremykhoo-NUS.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: code
 
 ### Jean Doe
 
