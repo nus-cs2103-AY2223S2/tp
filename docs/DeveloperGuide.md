@@ -340,7 +340,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should allow use only for hospital admin staff.
+4.  Should mask the NRIC of patients when listing (e.g. XXXXX264G).
+5.  The product is not required to validate the medical records.
 
 *{More to be added}*
 
