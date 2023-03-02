@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
@@ -82,6 +83,14 @@ public class ClientTest {
 
         // different address -> returns false
         editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        //different weight -> returns false
+        editedAlice = new ClientBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        //different gender -> returns false
+        editedAlice = new ClientBuilder(ALICE).withGender("f").build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

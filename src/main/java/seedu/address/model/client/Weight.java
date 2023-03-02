@@ -11,7 +11,7 @@ public class Weight {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should only contain positive numbers";
+            "Weight should only contain positive numbers and cannot be 0";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
     public final String value;
 

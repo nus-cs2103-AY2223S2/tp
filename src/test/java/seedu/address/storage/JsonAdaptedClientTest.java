@@ -14,8 +14,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -107,6 +109,38 @@ public class JsonAdaptedClientTest {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
                 VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
+    }
+    @Test
+    public void toFitBookModelType_invalidWeight_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        INVALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+        String expectedMessage = Weight.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
+    }
+
+    @Test
+    public void toFitBookModelType_nullWeight_throwsIllegalValueException() {
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                null, VALID_GENDER, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
+    }
+    @Test
+    public void toFitBookModelType_invalidGender_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_WEIGHT, INVALID_GENDER, VALID_TAGS);
+        String expectedMessage = Gender.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
+    }
+
+    @Test
+    public void toFitBookModelType_nullGender_throwsIllegalValueException() {
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_WEIGHT, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
 
