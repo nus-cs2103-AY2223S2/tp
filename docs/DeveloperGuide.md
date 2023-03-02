@@ -316,26 +316,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a contact by giving name and some contact information
 2. ConnectUS adds a new contact with given information
-3. Confirmation message is displayed
+3. ConnectUS displays confirmation message
 4. The new contact is visible in the contacts list
 5. Use case ends
 
 **Extensions**
 
 * 1a. There is an error in the given information
-    * 1a1. Error is displayed
+    * 1a1. ConnectUS displays error
     * 1s2. Use case ends
 * 4a. User requests to add more information to the contact
   * 4a1. ConnectUS adds the given information to the contact
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list contacts
+2.  AddressBook shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  AddressBook deletes the contact
 
     Use case ends.
 
@@ -350,6 +350,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Find a contact**
+
+**MSS**
+
+1. User requests to find a contact by keywords
+2. ConnectUS displays confirmation message
+3. ConnectUS displays all contacts with keywords in name
+4. Use case ends
+
+**Extensions**
+
+* 1a. No keywords are provided
+    * 1a1. ConnectUS displays error message
+    * 1a2. Use case ends
+* 1b. User requests to find a contact by tag
+  * 1b1. ConnectUS displays confirmation message
+  * 1b2. ConnectUS displays all contacts with given tag
+  * 1b3. Use case ends
+* 1c. User requests to find a contact by contact information
+  * 1c1. ConnectUS displays confirmation message
+  * 1c2. ConnectUS displays all contacts with given confirmation message
+  * 1c3. Use case ends
+
+**Use case: List all contacts**
+
+**MSS**
+
+1. User requests to list all contacts
+2. ConnectUS displays confirmation message
+3. ConnectUS displays all contacts 
+4. Use case ends
+
+**Extensions**
+
+* 1a. There is an error in the request
+  * 1a1. ConnectUS displays error message
+  * 1a2. Use case ends
 
 *{More to be added}*
 
