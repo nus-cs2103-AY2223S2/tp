@@ -1,5 +1,6 @@
 ---
 layout: page
+<<<<<<< HEAD
 title: Chin Jun An's Project Portfolio Page
 ---
 
@@ -11,6 +12,18 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to generate sequence of jobs that give the shortest total distance.
   * to be added soon
+=======
+title: John Doe's Project Portfolio Page
+---
+
+### Project: AddressBook Level 3
+
+A contact management app that also serves to optimise delivery jobs for user.
+
+Given below are my contributions to the project.
+
+* **New Feature**: to be added soon
+>>>>>>> 77e43c51a95e9dfefcc45d79fd4406fee3147c76
 
 * **Code contributed**: [RepoSense link]()
 
