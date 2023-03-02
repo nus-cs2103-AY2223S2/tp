@@ -496,7 +496,7 @@ Use case ends.
 
 1. User chooses to delete/clear contact(s).
 2. SOCket deletes respective contact(s).
-3. User regrets and requests to get back the recent deleted contact(s).
+3. User requests to get back the recent deleted contact(s).
 4. SOCket undo and restored recent deleted contact(s).
 
 Use case ends.
