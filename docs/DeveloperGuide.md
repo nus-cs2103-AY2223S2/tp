@@ -502,10 +502,10 @@ Use case ends.
 
       Use case resumes at step 2.
 
-* 3b. No category is given
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
+* 3b. No category is given.
+  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
     
-     Use case ends
+     Use case ends.
 
 **Use case: UC08 Access Help page**
 
@@ -520,8 +520,8 @@ Use case ends.
 
 **MSS:**
 
-1.  User requests to exit SOCket
-2.  SOCket exits
+1.  User requests to exit SOCket.
+2.  SOCket exits.
 
     Use case ends.
 
@@ -560,17 +560,17 @@ Use case ends.
 
 **MSS**
 
-1.  User binds a command to a given keyword of their choice 
-2.  SOCket shows a message to confirm the keyword can now be used to call the command
-3.  User types the keyword bound to the command
-4.  SOCket will execute the command
+1.  User binds a command to a given keyword of their choice.
+2.  SOCket shows a message to confirm the keyword can now be used to call the command.
+3.  User types the keyword bound to the command.
+4.  SOCket will execute the command.
     Use case ends.
 
 **Extensions**
 
-*  3a. Command bounded to the keyword is not valid
+*  3a. Command bounded to the keyword is not valid.
 
-    * 3a1. SOCket shows an error message
+    * 3a1. SOCket shows an error message.
 
       Use case ends.
 
@@ -618,9 +618,9 @@ Use case ends.
 
 **MSS**
 
-1.  User <ins>find contact(s) (UC05)</ins> they wish to tag
-2.  User tags the list of contacts currently shown with a tag name
-3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user
+1.  User <ins>find contact(s) (UC05)</ins> they wish to tag.
+2.  User tags the list of contacts currently shown with a tag name.
+3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user.
 
     Use case ends.
 
