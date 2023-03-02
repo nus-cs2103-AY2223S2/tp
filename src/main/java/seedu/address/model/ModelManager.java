@@ -150,6 +150,12 @@ public class ModelManager implements Model {
 
     //=========== Events Accessors =============================================================
     @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
         // To update filtered event list here

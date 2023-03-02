@@ -87,6 +87,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Returns true if an event with the same date time information as {@code event} exists in the address book.
+     */
+    boolean hasEvent(Event event);
+
+    /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
