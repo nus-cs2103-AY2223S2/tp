@@ -129,8 +129,8 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_nullUniqueInternshipList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueInternshipList.setInternships((UniqueInternshipList) null));
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList
+                .setInternships((UniqueInternshipList) null));
     }
 
     @Test
@@ -160,8 +160,8 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternships_listWithDuplicateInternships_throwsDuplicateInternshipException() {
         List<Internship> listWithDuplicateInternships = Arrays.asList(APPLE, APPLE);
-        assertThrows(DuplicateInternshipException.class,
-                () -> uniqueInternshipList.setInternships(listWithDuplicateInternships));
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList
+                .setInternships(listWithDuplicateInternships));
     }
 
     @Test

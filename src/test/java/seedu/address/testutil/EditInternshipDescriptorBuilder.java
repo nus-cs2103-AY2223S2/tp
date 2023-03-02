@@ -59,28 +59,7 @@ public class EditInternshipDescriptorBuilder {
      * Sets the {@code Status} of the {@code EditInternshipDescriptor} that we are building.
      */
     public EditInternshipDescriptorBuilder withStatus(String status) {
-        switch (status) {
-        case "new":
-            descriptor.setStatus(Status.NEW);
-            break;
-        case "applied":
-            descriptor.setStatus(Status.APPLIED);
-            break;
-        case "assessment":
-            descriptor.setStatus(Status.ASSESSMENT);
-            break;
-        case "interview":
-            descriptor.setStatus(Status.INTERVIEW);
-            break;
-        case "offered":
-            descriptor.setStatus(Status.OFFERED);
-            break;
-        case "rejected":
-            descriptor.setStatus(Status.REJECTED);
-            break;
-        default:
-            descriptor.setStatus(null);
-        }
+        descriptor.setStatus(new Status(status));
         return this;
     }
 

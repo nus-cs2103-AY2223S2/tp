@@ -2,10 +2,10 @@ package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.APPLE;
@@ -54,39 +54,39 @@ public class InternshipTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Internship aliceCopy = new InternshipBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Internship appleCopy = new InternshipBuilder(APPLE).build();
+        assertTrue(APPLE.equals(appleCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(APPLE.equals(APPLE));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(APPLE.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(APPLE.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(APPLE.equals(GOOGLE));
 
         // different name -> returns false
-        Internship editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Internship editedApple = new InternshipBuilder(APPLE).withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
+        assertFalse(APPLE.equals(editedApple));
 
-        // different phone -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different role -> returns false
+        editedApple = new InternshipBuilder(APPLE).withRole(VALID_ROLE_GOOGLE).build();
+        assertFalse(APPLE.equals(editedApple));
 
-        // different email -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different status -> returns false
+        editedApple = new InternshipBuilder(APPLE).withStatus(VALID_STATUS_GOOGLE).build();
+        assertFalse(APPLE.equals(editedApple));
 
-        // different address -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different date -> returns false
+        editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).build();
+        assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedApple = new InternshipBuilder(APPLE).withTags(VALID_TAG_BACK).build();
+        assertFalse(APPLE.equals(editedApple));
     }
 }

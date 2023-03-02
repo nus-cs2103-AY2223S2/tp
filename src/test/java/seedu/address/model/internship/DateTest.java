@@ -27,11 +27,12 @@ public class DateTest {
         // invalid dates
         assertFalse(Date.isValidDate("")); // empty string
         assertFalse(Date.isValidDate(" ")); // spaces only
-        
+        assertFalse(Date.isValidDate("1st March 2023")); //invalid date format
+        assertFalse(Date.isValidDate("March 1st 2023")); //invalid date format
 
         // valid dates
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Address.isValidAddress("2023-03-01"));
+        assertTrue(Address.isValidAddress("2023-02-05"));
+        assertTrue(Address.isValidAddress("2023-03-05"));
     }
 }

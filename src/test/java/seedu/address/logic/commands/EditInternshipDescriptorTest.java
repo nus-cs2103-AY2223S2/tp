@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONT;
 
 import org.junit.jupiter.api.Test;

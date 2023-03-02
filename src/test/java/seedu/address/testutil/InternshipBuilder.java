@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.internship.Address;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -19,8 +18,8 @@ public class InternshipBuilder {
 
     public static final String DEFAULT_COMPANY_NAME = "Apple";
     public static final String DEFAULT_ROLE = "Mobile Developer";
-    public static final Status DEFAULT_STATUS = Status.INTERVIEW;
-    public static final String DEFAULT_DATE= "2023-02-01";
+    public static final String DEFAULT_STATUS = "interview";
+    public static final String DEFAULT_DATE = "2023-02-01";
 
     private CompanyName companyName;
     private Role role;
@@ -34,7 +33,7 @@ public class InternshipBuilder {
     public InternshipBuilder() {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         role = new Role(DEFAULT_ROLE);
-        status = DEFAULT_STATUS;
+        status = new Status(DEFAULT_STATUS);
         date = new Date(DEFAULT_DATE);
         tags = new HashSet<>();
     }
@@ -86,28 +85,7 @@ public class InternshipBuilder {
      * Sets the {@code Status} of the {@code Status} that we are building.
      */
     public InternshipBuilder withStatus(String status) {
-        switch (status) {
-        case "new":
-            this.status = Status.NEW;
-            break;
-        case "applied":
-            this.status = Status.APPLIED;
-            break;
-        case "assessment":
-            this.status = Status.ASSESSMENT;
-            break;
-        case "interview":
-            this.status = Status.INTERVIEW;
-            break;
-        case "offered":
-            this.status = Status.OFFERED;
-            break;
-        case "rejected":
-            this.status = Status.REJECTED;
-            break;
-        default:
-            this.status = null;
-        }
+        this.status = new Status(status);
         return this;
     }
 
