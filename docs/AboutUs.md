@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:
   * In charge of UI
 
-### Johnny Doe
+### Nicholas Lim Jian Rong
 
 <img src="images/johndoe.png" width="200px">
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Rachel Tan
 
 <img src="images/johndoe.png" width="200px">
 
@@ -51,12 +51,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Shane Duggan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ShaneDuggan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Shuggan)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Storage
