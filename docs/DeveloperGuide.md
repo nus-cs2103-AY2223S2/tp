@@ -421,13 +421,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all contacts
 2. ConnectUS displays confirmation message
 3. ConnectUS displays all contacts 
-4. Use case ends
+
+   Use case ends
 
 **Extensions**
 
 * 1a. There is an error in the request
   * 1a1. ConnectUS displays error message
-  * 1a2. Use case ends
+  Use case ends
 
 *{More to be added}*
 
