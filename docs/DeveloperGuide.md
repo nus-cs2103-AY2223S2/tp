@@ -307,45 +307,225 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new module.
+2. User specifies the name and code of the module.
+3. A new module is added into the list.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The module name or code is blank.
 
-  Use case ends.
+   - 2a1. LeTracker shows an error message.
 
-- 3a. The given index is invalid.
+      Use case resumes at step 1.
 
-  - 3a1. AddressBook shows an error message.
+- 2b. Module code already exists.
 
-    Use case resumes at step 2.
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Add a lecture**
+
+**Preconditions**: User has added a module
+
+**MSS**
+
+1. User requests to add a new lecture.
+2. User specifies a name for the lecture with reference to a module code.
+3. A new lecture is appended into the list in that module.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Lecture name is blank.
+
+  - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Module code does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Add a video**
+
+**Preconditions**: User has added a module and a lecture
+
+**MSS**
+
+1. User requests to add a new video.
+2. User specifies a name for the video with reference to a module code and that module lecture index number.
+3. A new video is appended into the list in that lecture residing in the module.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Video name is blank.
+
+   - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Module code does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture index does not exist.
+
+   - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Mark/Unmark a video**
+
+**Preconditions**: User has added a module and a lecture and a video
+
+**MSS**
+
+1. User requests to mark/unmark a video as watched.
+2. User specifies the module code, lecture index number and video index number to mark/unmark.
+3. Video shows a marked/unmarked indicator.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Module code does not exist.
+
+   - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Lecture index does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Video index does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a Lecture**
+
+**MSS**
+
+1.  User requests to list lectures of a specific module
+2.  Le Tracker shows a list of lectures of the specified module
+3.  User requests to delete a specific lecture in the list, while citing the correct _module code_
+4.  Le Tracker deletes the lecture
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no lecture in the specified module.
+
+   Use case ends.
+
+* 2b. There is no such module.
+
+   * 2b1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+   
+* 3b. The given module code is invalid.
+
+    * 3b1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a Lecture Video**
+
+**MSS**
+
+1.  User requests to list lecture videos of a specific lecture of a specific module
+2.  Le Tracker shows a list of lecture videos of such specifications
+3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id
+4.  Le Tracker deletes the lecture video
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no video in the specified module lecture.
+
+   Use case ends.
+
+* 2b. There is no such lecture in the module.
+
+   * 2b1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. There is no such module.
+
+   * 2c1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given index of the video is invalid.
+
+   * 3a1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index of the lecture is invalid.
+
+   * 3b1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given index of the module is invalid.
+
+   * 3c1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
 
 _{More to be added}_
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be easy to navigate through using commands.
+5.  Should be easy to pick up on how to use the application.
+6.  Should allow multiple users to use the application.
+7.  Will not be pulling data from any third party APIs.
 
 _{More to be added}_
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Module Code**: Unique code for each module
+* **Lecture Index**: Unique identifier for each lecture (Starting from 0)
+* **Video Index**: Unique identifier for each video (Starting from 0)
 
 ---
 
