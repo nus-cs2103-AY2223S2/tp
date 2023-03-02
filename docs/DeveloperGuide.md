@@ -266,7 +266,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * drives constanly with a laptop in the van
 * lazy, doesn't like to micromanage
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to plan the most efficient delivery route
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to plan the most efficient delivery route and retain customer relations.
 
 
 ### User stories
@@ -302,6 +302,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  AddressBook deletes the person
 
     Use case ends.
+
+**Use case: Chat with a client**
+
+**MSS**
+
+1. User go to job list/contact list
+2. User go to specific job/client
+3. User start chatting by clicking on "Chat" function
+4. Start typing and sending message by pressing Enter
+
+   Use case ends.
 
 **Extensions**
 
