@@ -354,18 +354,19 @@ Use case resumes at step 2.
 
 1. User requests to filter appointments.
 2. MediMeet asks the user to enter the criteria to filter appointments by.
-3. MediMeet shows the list of appointments that match the request.                                                                                 
+3. User enters the criteria to filter appointments by.
+4. MediMeet shows the list of appointments that match the request.                                                                                 
    Use case ends.
 
 **Extensions:**
 
-* 2a. MediMeet cannot find any patients that match the search request.
+* 3a. MediMeet cannot find any patients that match the search request.
 
-    * 2a1. MediMeet requests for a valid search request.
-    * 2a2. User provides a valid search request.
+    * 3a1. MediMeet requests for a valid search request.
+    * 3a2. User provides a valid search request.
 
-Steps 2a1-2a2 are repeated until a valid input is provided.
-Use case resumes at step 2.
+Steps 3a1-3a2 are repeated until a valid input is provided.
+Use case resumes at step 4.
 
 *{More to be added}*
 
