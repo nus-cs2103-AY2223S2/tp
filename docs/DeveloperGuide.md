@@ -421,14 +421,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC05 Find contact(s)**
 
-**MSS**
+**MSS:**
 
 1.  User request to find a contact with the given keywords and tags.
 2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. No contact matches any of the given keyword and any of the given tag.
 
@@ -559,15 +559,15 @@ Use case ends.
 
 **Use case: UC11 Using shortcut command**
 
-**MSS**
+**MSS:**
 
 1.  User binds a command to a given keyword of their choice.
-2.  SOCket shows a message to confirm the keyword can now be used to call the command.
+2.  SOCket shows a message to confirm shortcut key created.
 3.  User types the keyword bound to the command.
 4.  SOCket will execute the command.
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 *  3a. Command bounded to the keyword is not valid.
 
@@ -617,7 +617,7 @@ Use case ends.
 
 **Use case: UC14 Tagging a contact**
 
-**MSS**
+**MSS:**
 
 1.  User <ins>find contact(s) (UC05)</ins> they wish to tag.
 2.  User tags the list of contacts currently shown with a tag name.
