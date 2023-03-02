@@ -22,7 +22,7 @@ public class VaxTestingUtil {
      */
     public static void assertVaxType(VaxType vaxType,
             String name, HashSet<String> groups, int minAge, int maxAge, int minSpacing,
-            List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
+            List<Requirement> historyReqs, List<Requirement> allergyReqs) {
         assertEquals(name, vaxType.getName(), "Name");
         assertEquals(groups, vaxType.getGroups(), "Groups");
         assertEquals(minAge, vaxType.getMinAge(), "Min age");
