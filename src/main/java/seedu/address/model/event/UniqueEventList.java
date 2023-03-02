@@ -24,6 +24,14 @@ public class UniqueEventList implements Iterable<Event> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if the list contains an equivalent event as the given argument.
+     */
+    public boolean contains(Event toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameEvent);
+    }
+
+    /**
      * Adds an event to the list.
      * The person must not already exist in the list.
      */
