@@ -33,7 +33,7 @@ public class DeadlineTask extends Task {
      * @return LocalDate Object of specified time
      */
     public LocalDate getLocalDate(String date) {
-        String[] dateStr = date.split("/",3);
+        String[] dateStr = date.split("/", 3);
         if (dateStr.length < 3) {
             throw new RuntimeException("Specification of the EventTask date is incorrect\n");
         }
@@ -44,7 +44,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (Before: " + formattedDate  + ")";
+        return "[D]" + super.toString() + " (Before: " + formattedDate + ")";
     }
 
     /**
@@ -66,7 +66,7 @@ public class DeadlineTask extends Task {
         boolean isSameDate = this.date.equals(checkedObj.date);
         boolean isSame = isSameDescription && isSameDate;
 
-        if(isSame) {
+        if (isSame) {
             return true;
         }
 
