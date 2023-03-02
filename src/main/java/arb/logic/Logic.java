@@ -6,6 +6,7 @@ import arb.commons.core.GuiSettings;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.ProjectStub;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.person.Person;
 import javafx.collections.ObservableList;
@@ -32,6 +33,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<ProjectStub> getEmptyFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -12,6 +12,7 @@ import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.Model;
+import arb.model.ProjectStub;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.person.Person;
 import arb.storage.Storage;
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }    
+    
+    @Override
+    public ObservableList<ProjectStub> getEmptyFilteredPersonList() {
+        return model.getEmptyFilteredPersonList();
     }
 
     @Override

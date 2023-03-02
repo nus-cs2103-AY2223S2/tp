@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -111,7 +112,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        projectListPanel = new ProjectListPanel(logic.getEmptyFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -167,6 +169,16 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public void swapList() {
+        this.personListPanelPlaceholder.getChildren().clear();
+        this.personListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    }
+
+    public void swapBackToList() {
+        this.personListPanelPlaceholder.getChildren().clear();
+        this.personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -184,8 +196,15 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            } 
+            
+            if (commandResult.isSwapList()) {
+                logger.info("Swapped list");
+                swapList();
+            } else {
+                logger.info("Swap Back");
+                swapBackToList();//check whether to change list?
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

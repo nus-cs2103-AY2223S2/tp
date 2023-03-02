@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.person.Person;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<ProjectStub> emptyFilteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        ObservableList<ProjectStub> projectStubList = FXCollections.observableArrayList();
+        projectStubList.add(new ProjectStub());
+        this.emptyFilteredPersons = new FilteredList<ProjectStub>(projectStubList);
     }
 
     public ModelManager() {
@@ -120,6 +125,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<ProjectStub> getEmptyFilteredPersonList() {
+        return emptyFilteredPersons;
     }
 
     @Override
