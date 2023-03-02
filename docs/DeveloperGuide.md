@@ -307,10 +307,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User go to job list/contact list
-2. User go to specific job/client
-3. User start chatting by clicking on "Chat" function
-4. Start typing and sending message by pressing Enter
+1. User go to job list/contact list.
+2. User go to specific job/client.
+3. User start chatting by clicking on "Chat" function.
+4. Start typing and sending message by pressing Enter.
 
    Use case ends.
 
