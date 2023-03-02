@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalInternships.GOOGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 
 public class InternshipTest {
