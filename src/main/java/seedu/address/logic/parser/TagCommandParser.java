@@ -7,6 +7,9 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new TagCommand object
+ */
 public class TagCommandParser implements Parser<TagCommand> {
     private static final int INPUT_INDEX = 0;
     private static final int TAG_INDEX = 1;
