@@ -283,32 +283,391 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Delete a person**
+#### Use case: UC C1 - List Customers
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests list of customers.
+2.  LL displays list of customers.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Customer list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+#### Use case: UC C2 - View Customer
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to view a customer.
+3.  LL displays the customer information.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C3 - Delete Customer
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to delete a customer.
+3.  LL deletes the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C4 - Update Customer
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters new data for a customer.
+3.  LL updates the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C5 - Bookmark or Unbookmark Customer
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to bookmark or unbookmark a customer.
+3.  LL bookmarks or unbookmarks the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C6 - Assign Individual to Enterprise
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to assign an individual to an enterprise.
+3.  LL assigns the individual to the enterprise and displays the enterprise information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested individual or enterprise does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C7 - Create Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters note for a customer.
+3.  LL adds note to the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C8 - Delete Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User requests to delete a customer note.
+3.  LL deletes the note and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested note does not exist.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O1 - List Orders
+
+**MSS**
+
+1.  User requests list of orders.
+2.  LL displays list of orders.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Order list is empty.
+
+  Use case ends.
+
+#### Use case: UC O2 - View Order
+
+**MSS**
+
+1.  User gets <u>list of orders (UC O1)</u>.
+2.  User requests to view an order.
+3.  LL displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O3 - Delete Order
+
+**MSS**
+
+1.  User gets <u>list of orders (UC O1)</u>.
+2.  User requests to delete an order.
+3.  LL deletes the order.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O4 - Update Order
+
+**MSS**
+
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User enters new data for an order.
+3.  LL updates the order and displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O5 - Advance Order Status
+
+**MSS**
+
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User requests to advance an order's status.
+3.  LL updates the order's status and displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested order is already at last stage.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O6 - Tag Order to Customer
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User <u>gets list of orders (UC O1)</u>.
+3.  User requests to tag an order to a customer.
+4.  LL tags the order to the customer and displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Requested order does not exist.
+
+    * 3a1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+* 3b. Requested customer does not exist.
+
+    * 3b1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+#### Use case: UC R1 - List Rewards
+
+**MSS**
+
+1.  User requests list of rewards.
+2.  LL displays list of rewards.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Reward list is empty.
+
+  Use case ends.
+
+#### Use case: UC R2 - View Reward
+
+**MSS**
+
+1.  User gets <u>list of rewards (UC R1)</u>.
+2.  User requests to view a reward.
+3.  LL displays the reward information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R3 - Delete Reward
+
+**MSS**
+
+1.  User gets <u>list of rewards (UC R1)</u>.
+2.  User requests to delete a reward.
+3.  LL deletes the reward.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R4 - Update Reward
+
+**MSS**
+
+1.  User <u>gets list of rewards (UC R1)</u>.
+2.  User enters new data for a reward.
+3.  LL updates the reward and displays the reward information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R5 - Give Reward to Customer
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User <u>gets list of rewards (UC R1)</u>.
+3.  User requests to give a reward to a customer.
+4.  LL deducts points from the customer.
+5.  LL adds the reward to the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Requested reward does not exist.
+
+    * 3a1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+* 3b. Requested customer does not exist.
+
+    * 3b1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+* 4a. Customer does not have enough points.
+
+    * 4a1. LL shows an error message.
+
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
