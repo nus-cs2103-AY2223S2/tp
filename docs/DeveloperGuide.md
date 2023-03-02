@@ -325,6 +325,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: Edit an internship entry.**
+
+**MSS**
+
+1.  User edits an internship entry.
+2.  InternBuddy updates that particular internship entry.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. InternBuddy detects that index of internship entry given is not a number.
+  * 1a1. InternBuddy prompts user for a valid internship entry index.
+  
+    Use case resumes from Step (1).
+
+* 1b. InternBuddy detects that index of internship given is out of range.
+  * 1b1. InternBuddy prompts user for a valid internship entry index.  
+
+    Use case resumes from Step (1).
+
+* 1c. InternBuddy detects missing field
+  * 1c1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+* 1d. InternBuddy detects one or more fields has invalid parameters.
+  * 1d1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+***Use case: Display list of all internship applications on InternBuddy.***
+
+**MSS**
+
+1.  User requests for the list.
+2.  InternBuddy displays a list of all the internship entries.
+
+    Use case ends.
+
 **Use case: Exit InternBuddy**
 
 **MSS**
