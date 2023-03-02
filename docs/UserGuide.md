@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-###rachtan27_branch_addressbook_ug
+
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -87,11 +87,9 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-  ![AddCommand](images/userguide/AddCommand.png | width=100)  ![AddCommandOutcome](images/userguide/AddCommandOutcome.png | width=100)
-  Enter Add Command             |  Outcome
-
+ 
+ Enter Add Command             |  Outcome
   :-------------------------:|:-------------------------:
-
   <img src=images/userguide/AddCommand.png width="100" height="100">  |  <img src=images/userguide/AddCommandOutcome.png width="100" height="100">
 
 ### Listing all persons : `list`
