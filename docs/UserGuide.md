@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
 
 * Table of Contents
 {:toc}
@@ -12,30 +12,32 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Make sure that you have **Java 11 or above** installed on your computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Place the jar file into a new folder. This folder will be used as the home folder for the Docedex application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal within the home folder.
+
+5. Enter `java -jar docedex.jar` in the command terminal
+   1. You should notice the GUI of the application pop up.<br>
    ![Ui](images/Ui.png)
+   
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`list-doc`** and pressing Enter will display all doctors stored in Docedex.<br>
+   1. Some example commands you can try:
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+      * `help` : Opens up the help menu.
 
-   * `list` : Lists all contacts.
+      * `add-doc n/John Doe p/98765432` : Adds a doctor contact named `John Doe` to Docedex.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+      * `del-doc 3` : Deletes the doctor with the associated ID of 3.
+      
+      * `find-doc Gabriel` : Finds all doctors contacts that have the keyword 'Gabriel'
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+      * `exit` : Exits the app.
 
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,7 +62,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list-doc`, `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -143,51 +145,39 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+### Exiting the program
 
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Docedex data is saved automatically after any command that changes data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Docedex data is saved as a JSON file at this specified path: `[JAR file location]/data/docedex.json`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+DO NOT modify data directly, as it might result in the malfunction of the application. In the worst case scenario, all your data may be reset. Only modify data directly if you know what you are doing and accept the risks of such actions.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
+**Q**: How can I load data from another computer into Docedex installed on another computer?<br>
+**A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add Doctor** | `add-doc n/NAME p/PHONE_NUMBER` <br> E.g. `add-doc n/Gabriel p/81119666`
+**Delete Doctor** | `del-doc INDEX`<br> E.g. `del-doc 3`
+**Edit Doctor** | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`
+**Find Doctor** | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`
+**List Doctors** | `list-doc`
 **Help** | `help`
+**Exit** | `exit`
