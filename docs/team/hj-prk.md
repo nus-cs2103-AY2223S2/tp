@@ -11,7 +11,7 @@ PowerCards enable university students to input a pool of information (question-a
 Given below are my contributions to the project.
 
 * **New Feature**: (To be added)
-    * What it does: (To be added)
+    * What it does: (To be added )
     * Justification: (To be added)
     * Highlights: (To be added)
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
