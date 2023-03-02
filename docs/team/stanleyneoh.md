@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Douglch's Project Portfolio Page
+title: Stanley Neoh's Project Portfolio Page
 ---
 
 ### Project: Mycelium
