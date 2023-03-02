@@ -419,6 +419,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
      Use case ends.
 
+**Use case: UC05 Find contact(s)**
+
+**MSS:**
+
+1.  User request to find a contact with the given keywords and tags.
+2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags.
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. No contact matches any of the given keyword and any of the given tag.
+
+    * 1a1. SOCket shows an empty list of contacts. 
+      
+      Use case ends.
+
 **Use case: UC06 Clear contacts/tag**
 
 **MSS:**
@@ -485,6 +502,12 @@ Use case ends.
 
       Use case resumes at step 2.
 
+* 3b. No category is given.
+
+  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+    
+     Use case ends.
+
 **Use case: UC08 Access Help page**
 
 **MSS:**
@@ -498,8 +521,8 @@ Use case ends.
 
 **MSS:**
 
-1.  User requests to exit SOCket
-2.  SOCket exits
+1.  User requests to exit SOCket.
+2.  SOCket exits.
 
     Use case ends.
 
@@ -531,6 +554,24 @@ Use case ends.
     * 3b1. SOCket shows an error message.
 
       Use case resumes at step 2.
+
+      Use case ends.
+
+**Use case: UC11 Using shortcut command**
+
+**MSS:**
+
+1.  User binds a command to a given keyword of their choice.
+2.  SOCket shows a message to confirm shortcut key created.
+3.  User types the keyword bound to the command.
+4.  SOCket will execute the command.
+    Use case ends.
+
+**Extensions:**
+
+*  3a. Command bounded to the keyword is not valid.
+
+    * 3a1. SOCket shows an error message.
 
       Use case ends.
 
@@ -573,6 +614,16 @@ Use case ends.
     * 3a1. SOCket shows an error message, no data can be restored.
 
       Use case ends.
+
+**Use case: UC14 Tagging a contact**
+
+**MSS:**
+
+1.  User <ins>find contact(s) (UC05)</ins> they wish to tag.
+2.  User tags the list of contacts currently shown with a tag name.
+3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user.
+
+    Use case ends.
 
 **Use case: UC15 Set deadlines & responsibilities**
 
