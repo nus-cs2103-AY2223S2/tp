@@ -270,16 +270,67 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                                            | So that I can…​         |
-| -------- |--------------------------------------------|---------------------------------------------------------------------------------------------------------| ----------------------- |
+| Priority | As a/an …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
+| `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
 | `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
-| `*`      | user with many persons in the address book | sort persons by name                                                                                    | locate a person easily  |
+| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on 
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
+
+
+**Use case: List all internship applications**
+
+**MSS**
+
+1.  User requests to list all internship applications saved on System.
+2.  System displays a list of internships.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User requests to list all internship applications that have not received updates in a long time.
+  
+  * 1b1. System displays all internships that have not had a change in status in a week. 
+    
+    Use case ends. 
+
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+**Use case: List all internship applications with a deadline on a particular date**
+
+**MSS**
+
+1.  User requests to list all internship applications with an upcoming deadline on a particular date.
+2.  System prompts user to key in a date. 
+3.  User inputs a date. 
+4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The date given by user is in the future (i.e. later than today).
+  
+  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier. 
+
+    Use case resumes from step 2. 
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 4b. There are no internship applications with an upcoming deadline.
 
 **Use case: List internships by desired criteria**
 
@@ -301,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. TinS shows an error message.
 
-      Use case resumes at step 2.
+  Use case ends.   
 
 *{More to be added}*
 
