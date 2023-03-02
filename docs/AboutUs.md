@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Anunaya Joshi
 
-<img src="images/anun.png" width="200px">
+<img src="images/anunayajoshi.png" width="200px">
 
 [[github](http://github.com/anunayajoshi)]
 [[portfolio](team/anunayajoshi.md)]
