@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Saha Manasij
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/saha9616.png" width="200px">
 
 [[github](http://github.com/Saha9616)]
 [[portfolio](team/johndoe.md)]
