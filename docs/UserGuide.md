@@ -104,7 +104,7 @@ Shows a list of all internship applications.
 Format: `list`
 
 Example:
-* `find` Returns the current list of internship applications tracked by sprINT.
+* `list` Returns the current list of internship applications tracked by sprINT.
 
 ### Editing an internship : `edit`
 
