@@ -72,11 +72,11 @@ your internship hunt!
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` `[coming in v1.2]`
 
-Shows a message explaning how to access the help page.
+Shows a message with a link to the help page.
 
-![help message](images/helpMessage.png)
+<!--  ![help message](images/helpMessage.png)  -->
 
 Format: `help`
 
@@ -152,9 +152,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd application in the internship book.
 * `find Google` followed by `delete 1` deletes the 1st application in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear` `[coming soon]`
 
-Clears all entries from the address book.
+Clears all entries from the internship book.
 
 Format: `clear`
 
