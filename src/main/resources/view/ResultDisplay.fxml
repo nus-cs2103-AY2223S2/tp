@@ -6,11 +6,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-rounded-corner"
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <VBox>
     <Label text="Command result" styleClass="pa, label-h6" />
     <Separator />
-    <TextArea fx:id="resultDisplay" editable="false" wrapText="true" styleClass="result-display, label-bright" />
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="result-display, p0">
+      <VBox fx:id="resultDisplayContainer" spacing="10" styleClass="result-display, pa" />
+    </ScrollPane>
   </VBox>
 </StackPane>
