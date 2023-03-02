@@ -14,7 +14,7 @@ public class CliSyntax {
     //public static final Prefix PREFIX_FAVORITE = new Prefix("f/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_MAJOR = new Prefix("m/");
-    public static final Prefix PREFIX_MODULES = new Prefix("mods/");
+    public static final Prefix PREFIX_MODULES = new Prefix("mt/");
     public static final Prefix PREFIX_RACE = new Prefix("r/");
     public static final Prefix PREFIX_COMMS = new Prefix("c/");
 

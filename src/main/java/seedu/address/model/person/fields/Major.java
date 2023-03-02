@@ -15,4 +15,21 @@ public class Major {
     public static boolean isValidMajor(String trimmedMajor) {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return this.majorName;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Major // instanceof handles nulls
+                && this.majorName.equals(((Major) other).majorName)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.majorName.hashCode();
+    }
 }

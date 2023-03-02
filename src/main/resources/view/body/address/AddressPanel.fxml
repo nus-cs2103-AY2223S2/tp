@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml">
+    <StackPane fx:id="personListPanelPlaceholder" minWidth="320">
+        <padding>
+            <Insets right="10" />
+        </padding>
+    </StackPane>
+    <StackPane fx:id="personDetailPanelPlaceholder" HBox.hgrow="ALWAYS" />
+</HBox>

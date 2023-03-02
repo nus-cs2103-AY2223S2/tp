@@ -131,7 +131,15 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(this.getGender())
+                .append("; Major: ")
+                .append(this.getMajor())
+                .append("; Race: ")
+                .append(this.getRace())
+                .append("; Preferred Communication: ")
+                .append(this.getComms());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
