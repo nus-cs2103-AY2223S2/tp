@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/swxk19.png" width="200px">
 
-[[github](http://github.com/swxk19)] 
+[[github](http://github.com/swxk19)]
 [[portfolio](team/swxk19.md)]
 
 * Role: Scheduling and Tracking
