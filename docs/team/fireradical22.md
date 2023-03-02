@@ -3,7 +3,7 @@ layout: page
 title: FireRadical22's Project Portfolio Page
 ---
 
-### Project: FastTrack
+### Project: FAid
 
 FAid is designed for users who work as financial advisors and provides a platform for them to manage contacts, addresses, financial needs and plans of the clients, as well as meetings with clients.
 
