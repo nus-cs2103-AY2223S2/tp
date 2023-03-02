@@ -285,30 +285,96 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Bookopedia` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
+**Use case: UC1 - Add Delivery**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User requests to add delivery along with the relevant details of delivery name and address
+2. System adds the delivery
+
+    Use case ends
+
+**Extensions:**
+* 1a. User inputs invalid details/address.
+
+    * 1a1. System shows error message.
+
+        Use case resumes at step 1.
+
+**Use Case: UC2 - View Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User picks one delivery to view its remaining details
+4. System shows the remaining details of the chosen delivery
+    
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
     Use case ends.
+* 3a. The chosen delivery is invalid.
 
-**Extensions**
+    * 3a1. System shows error message.
+    
+      Use case resumes at step 3.
 
-* 2a. The list is empty.
+**Use Case: UC3 - Mark Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User request to mark a chosen delivery with the relevant status (i.e. In Progress, Done, Failed)
+4. System marks the delivery with user given status
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+    
+    Use case ends.
+* 3a. User inputs invalid delivery status.
+    * 3a1. System shows error message and list the valid statuses.
+        
+        Use case resumes at step 3.
+* 3b. User chose an invalid delivery.
+    * 3b1. System shows error message
+
+        Use case resumes at step 3.
+
+**Use Case: UC4 - Delete Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User choose a delivery to delete
+4. System deletes chosen delivery
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
   Use case ends.
+* 3a. User chose an invalid delivery.
+    * 3a1. System shows error message
 
-* 3a. The given index is invalid.
+        Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC5 - List All Deliveries**
 
-      Use case resumes at step 2.
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
 
-*{More to be added}*
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+    Use case ends
 
 ### Non-Functional Requirements
 
