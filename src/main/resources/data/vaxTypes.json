@@ -26,6 +26,103 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Dose 2 (Pfizer)",
+      "groups": ["DOSE 2", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 2"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 1"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["Pfizer"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tris(hydroxymethyl)aminoethane hydrochloride"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dose 3 (Pfizer)",
+      "groups": ["DOSE 3", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 3"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 2"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tris(hydroxymethyl)aminoethane hydrochloride"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dose 4 (Pfizer)",
+      "groups": ["DOSE 4", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 4"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 3"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tris(hydroxymethyl)aminoethane hydrochloride"
+          ]
+        }
+      ]
     }
   ]
 }
