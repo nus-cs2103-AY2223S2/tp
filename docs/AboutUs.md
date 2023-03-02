@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Muhammad Arshad Shaik
 
-<img src="images/Arshad.jpg" width="200px">
+<img src="images/Arshad.png" width="200px">
 
 [[github](http://github.com/FireRadical22)] [[portfolio](team/arshad.md)]
 
