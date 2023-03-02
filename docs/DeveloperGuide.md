@@ -43,7 +43,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
     * 2b2. Chef rectifies/fixes error with the file.
     * 2b3. Chef clicks the "file fixed" button
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 **Use case: Add a recipe**
 
@@ -89,7 +89,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
     * 3a1. Book shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 
 
@@ -113,7 +113,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 * 3a. The given index is invalid.
   * 3a1. Book shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes from step 2.
 
 *{More to be added}*
 
