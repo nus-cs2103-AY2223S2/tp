@@ -182,18 +182,6 @@ contains the data of your previous InternBuddy home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                             |
-|------------|--------------------------------------------------------------------------------------------------------------|
-| **List**   | `list`                                                                                                       |
-| **Add**    | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE​` <br> e.g., `add n/Apple r/Software Engineer s/new d/2023-02-01` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                          |
-| **Edit**   | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE]​`<br> e.g.,`edit 2 s/assessment r/Software Developer`      |
-| **Help**   | `help`                                                                                                       |
-| **Exit**   | `exit`                                                                                                       |
-
-
-## Command summary
-
 Action | Format, Examples
 --------|------------------
 **List** | `list`
