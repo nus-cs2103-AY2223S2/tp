@@ -2,12 +2,23 @@ package seedu.address.ui.result;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.ui.UiPart;
 
 /**
@@ -16,6 +27,10 @@ import seedu.address.ui.UiPart;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "result/ResultDisplay.fxml";
+    private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+            "Parameters", "Example");
 
     @FXML
     private VBox resultDisplayContainer;
@@ -33,21 +48,26 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         FeedbackExtractor extractor = new FeedbackExtractor(feedbackToUser);
-        String params = extractor.extractPart("parameters:");
-        String example = extractor.extractPart("example:");
 
-        resultDisplayLabel.setText(extractor.getLeftoverFeedback());
         ObservableList<Node> nodes = resultDisplayContainer.getChildren();
         nodes.clear();
         nodes.add(resultDisplayLabel);
-        if (params != null) {
-            ResultDisplayCard card = new ResultDisplayCard("Parameters", params);
-            nodes.add(card.getRoot());
+
+        Iterator<String> keywords = KEYWORDS.iterator();
+        Iterator<String> extractedStrings = KEYWORDS.stream()
+                .map(keyword -> keyword + ':')
+                .map(extractor::extractPart)
+                .iterator();
+
+        while (keywords.hasNext() && extractedStrings.hasNext()) {
+            String title = keywords.next();
+            String body = extractedStrings.next();
+            if (body != null) {
+                ResultDisplayCard card = new ResultDisplayCard(title, body);
+                nodes.add(card.getRoot());
+            }
         }
-        if (example != null) {
-            ResultDisplayCard card = new ResultDisplayCard("Example", example);
-            nodes.add(card.getRoot());
-        }
+        resultDisplayLabel.setText(extractor.getLeftoverFeedback());
     }
 
     /**
