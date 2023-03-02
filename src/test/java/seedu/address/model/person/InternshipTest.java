@@ -2,21 +2,21 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalInternships.APPLE;
+import static seedu.address.testutil.TypicalInternships.GOOGLE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 
-public class PersonTest {
+public class InternshipTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -27,28 +27,29 @@ public class PersonTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(APPLE.isSameInternship(APPLE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(APPLE.isSameInternship(null));
 
-        // same name, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same company name, all other attributes different -> returns true
+        Internship editedApple = new InternshipBuilder(APPLE).withRole(VALID_ROLE_GOOGLE)
+                .withStatus(VALID_STATUS_GOOGLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK).build();
+        assertTrue(APPLE.isSameInternship(editedApple));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        // different company name, all other attributes same -> returns false
+        editedApple = new InternshipBuilder(APPLE).withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
+        assertFalse(APPLE.isSameInternship(editedApple));
 
-        // name differs in case, all other attributes same -> returns false
-        Internship editedBob = new InternshipBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // company name differs in case, all other attributes same -> returns false
+        Internship editedGoogle = new InternshipBuilder(GOOGLE)
+                .withCompanyName(VALID_COMPANY_NAME_GOOGLE.toLowerCase()).build();
+        assertFalse(GOOGLE.isSameInternship(editedGoogle));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new InternshipBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // company name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_COMPANY_NAME_GOOGLE + " ";
+        editedGoogle = new InternshipBuilder(GOOGLE).withCompanyName(nameWithTrailingSpaces).build();
+        assertFalse(GOOGLE.isSameInternship(editedGoogle));
     }
 
     @Test

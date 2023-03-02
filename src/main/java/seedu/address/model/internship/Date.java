@@ -9,11 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
-
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-MM-dd";
-
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+
+    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-MM-dd";
 
     public final String fullDate;
 

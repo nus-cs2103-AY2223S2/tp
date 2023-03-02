@@ -29,7 +29,7 @@ public class ParserUtilTest {
 
     private static final String VALID_COMPANY_NAME = "Apple";
     private static final String VALID_ROLE = "iOS Developer";
-    private static final Status VALID_STATUS = Status.APPLIED;
+    private static final String VALID_STATUS = "applied";
     private static final String VALID_DATE = "2023-02-01";
     private static final String VALID_TAG_1 = "front";
     private static final String VALID_TAG_2 = "back";
@@ -114,38 +114,38 @@ public class ParserUtilTest {
 
     @Test
     public void parseStatus_validValueWithoutWhitespace_returnsStatus() throws Exception {
-        Status expectedStatus = VALID_STATUS;
-        assertEquals(expectedStatus, ParserUtil.parseStatus("accepted"));
+        Status expectedStatus = new Status(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(VALID_STATUS));
     }
 
     @Test
     public void parseStatus_validValueWithWhitespace_returnsTrimmedStatus() throws Exception {
         String statusWithWhitespace = WHITESPACE + VALID_STATUS + WHITESPACE;
-        Status expectedStatus = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        Status expectedStatus = new Status(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseDate_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Date expectedDate = new Date(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseDate_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        Date expectedDate = new Date(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
     }
 
     @Test

@@ -20,10 +20,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.Status;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,8 +94,8 @@ public class EditCommand extends Command {
             EditInternshipDescriptor editInternshipDescriptor) {
 
         assert internshipToEdit != null;
-        CompanyName updatedCompanyName = editInternshipDescriptor.getCompanyName().
-                orElse(internshipToEdit.getCompanyName());
+        CompanyName updatedCompanyName = editInternshipDescriptor.getCompanyName()
+                .orElse(internshipToEdit.getCompanyName());
         Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
         Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
         Date updatedDate = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDate());

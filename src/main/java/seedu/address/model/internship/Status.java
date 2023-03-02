@@ -3,9 +3,6 @@ package seedu.address.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -17,13 +14,13 @@ import java.util.List;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It" +
-                    " should not be blank too.";
+            "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It"
+                    + " should not be blank too.";
 
     //A set of valid statuses
-    public static List<String> listOfValidStatuses =
+    public static final List<String> LISTOFVALIDSTATUSES =
             Arrays.asList("new", "applied", "assessment", "interview", "offered", "rejected");
-    public static final HashSet<String> setOfValidStatuses = new HashSet<String>(listOfValidStatuses);
+    public static final HashSet<String> SETOFVALIDSTATUSES = new HashSet<String>(LISTOFVALIDSTATUSES);
 
     public final String fullStatus;
 
@@ -46,7 +43,7 @@ public class Status {
      * @return true if the given string corresponds to a valid string for a role, else returns false.
      */
     public static boolean isValidStatus(String test) {
-        return setOfValidStatuses.contains(test);
+        return SETOFVALIDSTATUSES.contains(test);
     }
 
     /**
@@ -56,7 +53,7 @@ public class Status {
      */
     @Override
     public String toString() {
-       return fullStatus;
+        return fullStatus;
     }
 
 

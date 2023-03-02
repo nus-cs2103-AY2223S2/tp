@@ -70,10 +70,13 @@ public interface Model {
     void addInternship(Internship internship);
 
     /**
-     * Replaces the given internship {@code target} with {@code editedInternship.
+     * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in InternBuddy.
      * The internship identity of {@code editedInternship} must not be the same as another existing internship in
      * the address book.
+     *
+     * @param target The given internship to be replaced.
+     * @param editedInternship The internship to replace the original one.
      */
     void setInternship(Internship target, Internship editedInternship);
 
