@@ -10,3 +10,4 @@ HospiSearch - is for Hospital Admin Staff who prefer CLI over GUI and has a lot 
 Given below are my contributions to the project.
 
 **to be added**.
+
