@@ -52,7 +52,7 @@ p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Managing Clients 
+## Managing Clients
 
 ### Creating a client contact: `c`
 
