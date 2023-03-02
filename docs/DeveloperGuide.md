@@ -261,13 +261,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
+- NUS Students
+- has a need to manage a significant number of lectures
+- falling behind on lectures
+- feeling unmotivated to watch lectures
+- feeling lost regarding lecture content
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: fun, fast and stress-free way to organise and track lecture material
+- gamified tracking application
+- easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
+- tailored to needs to students: provides additional information specific to lecture media such as watch progress and topics
+- faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -451,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Le Tracker shows an error message.
 
       Use case resumes at step 2.
-   
+
 * 3b. The given module code is invalid.
 
     * 3b1. Le Tracker shows an error message.
