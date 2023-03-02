@@ -503,6 +503,7 @@ Use case ends.
       Use case resumes at step 2.
 
 * 3b. No category is given.
+
   * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
     
      Use case ends.
