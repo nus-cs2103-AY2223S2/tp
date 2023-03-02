@@ -39,12 +39,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and deadlines, scheduling and tracking
 * Responsibilities: 'to be added'
 
-### James Doe
+### John Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johnchiahk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/johnchiahk)]
+[[portfolio](team/johnchiahk.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: 'to be added'
