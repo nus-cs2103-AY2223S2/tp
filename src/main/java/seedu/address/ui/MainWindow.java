@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.fish.Fish;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +33,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FishListPanel fishListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TaskListPanel taskListPanel;
+    private MainContent mainContent;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane mainContentPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -84,7 +88,7 @@ public class MainWindow extends UiPart<Stage> {
         menuItem.setAccelerator(keyCombination);
 
         /*
-         * TODO: the code below can be removed once the bug reported here
+         * task: the code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
          * is fixed in later version of SDK.
          *
@@ -110,8 +114,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        fishListPanel = new FishListPanel(logic.getFilteredFishList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        mainContent = new MainContent(fishListPanel, taskListPanel);
+        mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +169,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FishListPanel getFishListPanel() {
+        return fishListPanel;
     }
 
     /**
