@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 
-public class VaccinationCheckerTest {
+public class VaxCheckerTest {
     private static final int MIN_AGE = 5;
     private static final int MAX_AGE = 60;
     private static final int MIN_SPACING = 7;

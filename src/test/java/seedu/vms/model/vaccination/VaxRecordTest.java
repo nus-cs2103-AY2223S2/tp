@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 
-public class VaccinationRecordTest {
+public class VaxRecordTest {
     private static final VaxType TYPE_1 = VaxType.Builder.of("TYPE_1").build();
     private static final VaxType TYPE_2 = VaxType.Builder.of("TYPE_2").build();
 
