@@ -123,6 +123,136 @@
           ]
         }
       ]
+    },
+
+
+    {
+      "name": "Dose 1 (Moderna)",
+      "groups": ["DOSE 1", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 1"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "SM-102",
+            "Polyethylene glycol 2000 - dimyristoyl glycerol",
+            "Cholesterol",
+            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "Tromethamine",
+            "Tromethamine hydrochloride",
+            "Acetic acid",
+            "Sodium acetate",
+            "Sucrose"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dose 2 (Moderna)",
+      "groups": ["DOSE 2", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 2"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 1"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["Moderna"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "SM-102",
+            "Polyethylene glycol 2000 - dimyristoyl glycerol",
+            "Cholesterol",
+            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "Tromethamine",
+            "Tromethamine hydrochloride",
+            "Acetic acid",
+            "Sodium acetate",
+            "Sucrose"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dose 3 (Moderna)",
+      "groups": ["DOSE 3", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 3"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 2"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "SM-102",
+            "Polyethylene glycol 2000 - dimyristoyl glycerol",
+            "Cholesterol",
+            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "Tromethamine",
+            "Tromethamine hydrochloride",
+            "Acetic acid",
+            "Sodium acetate",
+            "Sucrose"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dose 4 (Moderna)",
+      "groups": ["DOSE 4", "Moderna", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": ["DOSE 4"]
+        },
+        {
+          "isExclusion": false,
+          "grpSet": ["DOSE 3"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "SM-102",
+            "Polyethylene glycol 2000 - dimyristoyl glycerol",
+            "Cholesterol",
+            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "Tromethamine",
+            "Tromethamine hydrochloride",
+            "Acetic acid",
+            "Sodium acetate",
+            "Sucrose"
+          ]
+        }
+      ]
     }
   ]
 }
