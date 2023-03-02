@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | As a financial advisor           | track my client interactions and notes                   | have a clear history of my advising sessions         |
 
 
-#### [Epic] As a financial advisor, I can manage my client investment and insurance plans
+##### [Epic] As a financial advisor, I can manage my client investment and insurance plans
 | Priority | As a …​                          | I can …​                                                 | So that I can…​                                                                              |
 |----------|----------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | `***`    | As a financial advisor           | keep track of my clients' investment and insurance plans | provide relevant advice                                                                      |
