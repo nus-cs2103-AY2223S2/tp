@@ -22,7 +22,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
+
 #### **Use case: List all recipes**
+
 
 **MSS (Main Success Scenario)**
 
@@ -46,7 +48,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
       Use case resumes from step 2.
 
 
+
 #### **Use case: Add a recipe**
+
 
 **MSS**
 
@@ -69,7 +73,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
       Use case ends.
 
+
 #### **Use case: Delete a recipe**
+
 
 **MSS**
 
@@ -92,7 +98,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
       Use case resumes from step 2.
 
+
 #### **Use case: View a recipe**
+
 
 **MSS**
 
