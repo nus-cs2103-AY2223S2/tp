@@ -20,9 +20,10 @@ free time slots within a group of NUS friends, and keep track of personal and fr
 
 
 - **Contributions to the DG**:
+  - Added documentations for user stories in the DeveloperGuide.md
 
 
 - **Contributions to team-based tasks**:
-  - Added documentations for README.md 
+  - Added documentations for README.md
 
 - **Contributions beyond the project team**:
