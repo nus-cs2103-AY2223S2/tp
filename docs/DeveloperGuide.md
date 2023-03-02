@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b2. Chef rectifies/fixes error with the file.
     * 2b3. Chef clicks the "file fixed" button
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 **Use case: Add a recipe**
 
