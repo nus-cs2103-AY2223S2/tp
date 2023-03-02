@@ -121,9 +121,28 @@ public class ModelManager implements Model {
         versionedAddressBook.commit(addressBook);
     }
 
-    //todo
-    public void undo(){}
+    public boolean canUndo() {
+        return versionedAddressBook.canUndo();
+    }
 
+    /**
+     * Overload
+     * This version doesn't do commit
+     * @param addressBook
+     */
+    public void setAddressBook(AddressBook addressBook) {
+        this.addressBook.resetData(addressBook.clone());
+    }
+
+    public boolean canRedo() {return false;}
+
+    //
+    public void undo(){
+        AddressBook ab = versionedAddressBook.undo();
+        setAddressBook(ab);
+    }
+
+    // todo
     public void redo(){}
 
     //=========== Filtered Person List Accessors =============================================================
