@@ -122,10 +122,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
-2.  MATHTUTORING shows a list of students
-3.  Tutor requests to delete a specific student in the list
-4.  MATHTUTORING deletes the student
+1.  Tutor requests to list students.
+2.  MATHTUTORING shows a list of students.
+3.  Tutor requests to delete a specific student in the list.
+4.  MATHTUTORING deletes the student.
 
     Use case ends.
 
@@ -150,10 +150,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
-2.  MATHTUTORING shows a list of students
-3.  Tutor requests to edit a specific student in the list
-4.  MATHTUTORING edits the student
+1.  Tutor requests to list students.
+2.  MATHTUTORING shows a list of students.
+3.  Tutor requests to edit a specific student in the list.
+4.  MATHTUTORING edits the student.
 
     Use case ends.
 
@@ -165,7 +165,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MATHTUTORING shows an error message.
 
       Use case resumes at step 2.
 
