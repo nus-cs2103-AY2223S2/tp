@@ -487,6 +487,7 @@ Use case ends.
   Use case ends.
 
 * 3a. The contact does not have github information.
+<<<<<<< HEAD
     
    Use case resumes from step 2.
 
@@ -529,14 +530,18 @@ Use case ends.
     * 5a1. SOCket shows an error message.
   
       Use case resume from 6 when the date entered are correct.
+=======
+
+   Use case resumes at step 2.
+>>>>>>> origin
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on 64-bit environments. 
-3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+2.  Should work on 64-bit environments.
+3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
