@@ -303,14 +303,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Add a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to add a contact
-2.  SOCket adds the contact
+1.  User requests to add a contact.
+2.  SOCket adds the contact.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. There are no details provided.
 
@@ -326,14 +326,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC02 - Edit a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contacts
-2.  SOCket shows a list of contacts
-3.  User requests to edit a specific contact's details in the list
-4.  SOCket edits the contact's details
+1.  User requests to list contacts.
+2.  SOCket shows a list of contacts.
+3.  User requests to edit a specific contact's details in the list.
+4.  SOCket edits the contact's details.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -365,16 +365,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC03 Delete a contact**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contacts
-2.  SOCket shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  SOCket deletes the contact
+1.  User requests to list contacts.
+2.  SOCket shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  SOCket deletes the contact.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
@@ -384,26 +384,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. SOCket shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 **Use case: UC04 Sort contacts**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contact
-2.  SOCket shows a list of contacts
-3.  User requests to sort the list by a category
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts
+1.  User requests to list contact.
+2.  SOCket shows a list of contacts.
+3.  User requests to sort the list by a category.
+4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The given category is invalid.
+
+  * 3a1. SOCket shows an error message. 
+  
+    Use case resumes from step 2.
+
+* 3b. No category is given.
+
+    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  
+* 3b. No category is given.
+
+  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+    
+     Use case ends.
+
+**Use case: UC05 Find contact(s)**
+
+**MSS**
+
+1.  User request to find a contact with the given keywords and tags.
+2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No contact matches any of the given keyword and any of the given tag.
+
+    * 1a1. SOCket shows an empty list of contacts. 
+      
+      Use case ends.
+
+**Use case: UC06 Clear contacts/tag**
+
+**MSS:**
+
+1. User chooses to clear off group of contacts.
+2. SOCket requests for confirmation to delete the contacts.
+3. User confirms.
+4. SOcket deletes all the contacts.
+
+Use case ends.
+
+**Extensions:**
+
+* 1a. All the given tags are present in SOCket.
+
+  * 1a1. SOCket request to delete all the contacts under the tags.
+
+* 1b. Some given tags are not present in SOCket.
+
+  * 1b1. SOCket shows an error message, listing all the wrong tags.
+
+  * 1b2. SOCket request to delete all the contacts under the correct tags.
+    
+    Use case resumes from step 2.
+
+* 1c. All the given tag are not present in SOCket.
+
+    * 1c1. SOCket shows an error message, listing all the wrong tags.
+  
+    * 1c2. SOCket requests for correct tags. 
+  
+      Steps 1c1-1c2 are repeated until a tag is entered correctly.
+
+      Use case resumes from step 2.
+
+* 1d. No tag is provided.
+
+    * 1d1. SOCket request to delete all the contacts.
+
+      Use case resumes from step 2.
+  
+* *a. At any time, User choose to cancel the operation.
+
+    * *a1. SOCKet stop the operation.
+
+      Use case ends.
+
+**Use case: UC07 List contacts**
+
+**MSS:**
+
+1. User requests to list contacts.
+2. SOCket shows a list of contacts.
+3. User requests to list contacts by tag.
+4. SOCket shows a list of contacts with given tag.
+
+   Use case ends.
+
+**Extensions:**
+
+* 3a. The given tag is invalid.
 
     * 3a1. SOCket shows an error message.
 
@@ -414,94 +507,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
      Use case ends
 
-**Use case: UC05 Find contact(s)**
-
-**MSS**
-
-1.  User request to find a contact with the given keywords and tags
-2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags
-
-    Use case ends.
-
-**Extensions**
-
-*  1a. No contact matches any of the given keyword and any of the given tag
-
-  * 1a1. SOCket shows an empty list of contacts
-
-    Use case ends.
-
-**Use case: UC07 List contacts**
-
-**MSS**
-
-1. User requests to list contacts 
-2. SOCket shows a list of contacts
-3. User requests to list contacts by tag
-4. SOCket shows a list of contacts with given tag
-
-   Use case ends.
-   
-**Extensions**
-
-* 3a. The given tag is invalid.
-  * 3a1. SOCket shows an error message. 
-    
-    Use case resumes at step 2.
-
 **Use case: UC08 Access Help page**
 
-**MSS**
+**MSS:**
 
-1. User requests for help 
-2. SOCket shows the help page 
-   
-   Use case ends. 
+1. User requests for help.
+2. SOCket shows the help page.
+
+   Use case ends.
 
 **Use case: UC09 - Exit SOCket**
 
-**MSS**
+**MSS:**
 
 1.  User requests to exit SOCket
 2.  SOCket exits
 
     Use case ends.
-    
+
 **Use case: UC10 Hide contact details**
 
-**MSS**
+**MSS:**
 
-1. User requests to list contact
-2. SOCket shows a list of contacts
-3. User requests to hide a category of a specific contact 
-4. SOCket hides the specific category of that user 
+1. User requests to list contact.
+2. SOCket shows a list of contacts.
+3. User requests to hide a category of a specific contact.
+4. SOCket hides the specific category of that user.
 
-   Use case ends. 
-   
-**Extensions** 
+   Use case ends.
+
+**Extensions:**
 
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The given category is invalid.
-  * 3a1. SOCket shows an error message. 
-    
-    Use case resumes at step 2.
-    
+
+    * 3a1. SOCket shows an error message.
+
+      Use case resumes at step 2.
+
 * 3b. The contact does not have that category.
-  * 3b1. SOCket shows an error message. 
-    
-    Use case resumes at step 2. 
 
-**Use case: UC09 - Exit SOCket**
+    * 3b1. SOCket shows an error message.
 
-**MSS**
+      Use case resumes at step 2.
 
-1.  User requests to exit SOCket
-2.  SOCket exits
-
-    Use case ends.
+      Use case ends.
 
 **Use case: UC11 Using shortcut command**
 
@@ -523,24 +576,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC12 Access peer GitHub information**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list contact
-2.  SOCket shows a list of contacts
+1.  User requests to list contact.
+2.  SOCket shows a list of contacts.
 3.  User requests to view a specific contact's github information.
-4.  SOCket opens the contact's github profile in a browser
+4.  SOCket opens the contact's github profile in a browser.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The contact does not have github information.
+    
+   Use case resumes from step 2.
 
-   Use case resumes at step 2.
+**Use case: UC13 Undo recent delete/clear operation**
+
+**MSS:**
+
+1. User chooses to delete/clear contact(s).
+2. SOCket deletes respective contact(s).
+3. User requests to get back the recent deleted contact(s).
+4. SOCket undo and restored recent deleted contact(s).
+
+   Use case ends.
+
+**Extensions:**
+
+* 3a. SOCket detects user has not done any delete/clear operation before.
+
+    * 3a1. SOCket shows an error message, no data can be restored.
+
+      Use case ends.
 
 **Use case: UC14 Tagging a contact**
 
@@ -548,9 +620,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User <ins>find contact(s) (UC05)</ins> they wish to tag
 2.  User tags the list of contacts currently shown with a tag name
-3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user 
+3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user
 
     Use case ends.
+
+**Use case: UC15 Set deadlines & responsibilities**
+
+**MSS:**
+
+1. User has a team project and creates a event.
+2. SOCket creates the event.
+3. User request to groups all the team members contact under the event created.
+4. SOCket groups the contacts together.
+5. User enters a deadline date to each milestone of the project.
+6. SOCket allocates the date to respective milestone.
+7. User chooses to give role to each team members.
+8. SOCket assigned the given roles to respective team members.
+
+   Use case ends.
+
+**Extensions:**
+
+* 5a. SOCket detects a syntax error in the entered date.
+
+    * 5a1. SOCket shows an error message.
+  
+      Use case resume from 6 when the date entered are correct.
+
+   Use case resumes at step 2.
 
 *{More to be added}*
 
