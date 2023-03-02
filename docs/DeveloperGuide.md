@@ -333,6 +333,66 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
+**Use case: Set availability**
+
+**MSS:**
+
+1. User requests to set availability.
+2. MediMeet asks for date/time of availability.
+3. User enters date/time of availability.
+4. MediMeet sets the date/time of availability for the user.
+   Use case ends.
+
+**Extensions:**
+
+* 3a. The given index is invalid.
+
+    * 3a1. MediMeet requests for a valid time/time input.
+    * 3a2. User provides a valid date/time input.
+  
+Steps 3a1-3a2 are repeated until a valid input is provided.
+Use case resumes at step 4.
+
+**Use case: View patient appointments and details**
+
+**MSS:**
+
+1. User requests to view patient appointments and details.
+2. MediMeet shows the list of patients that match the request.
+3. User selects the desired patient.
+4. MediMeet displays the patient appointments and details.
+   Use case ends.
+
+**Extensions:**
+
+* 1a. MediMeet cannot find any patients that match the search request.
+
+    * 1a1. MediMeet requests for a valid search request.
+    * 1a2. User provides a valid search request.
+
+Steps 1a1-1a2 are repeated until a valid input is provided.
+Use case resumes at step 2.
+
+**Use case: Filter appointments**
+
+**MSS:**
+
+1. User requests to filter appointments.
+2. MediMeet asks the user to enter the criteria to filter appointments by.
+3. User enters the criteria to filter appointments by.
+4. MediMeet shows the list of appointments that match the request.                                                                                 
+   Use case ends.
+
+**Extensions:**
+
+* 3a. MediMeet cannot find any patients that match the search request.
+
+    * 3a1. MediMeet requests for a valid search request.
+    * 3a2. User provides a valid search request.
+
+Steps 3a1-3a2 are repeated until a valid input is provided.
+Use case resumes at step 4.
+
 *{More to be added}*
 
 **Use case: UC1 - Edit patient details**
@@ -428,6 +488,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Availability**: The date/time the user is open to taking appointments for
 
 --------------------------------------------------------------------------------------------------------------------
 
