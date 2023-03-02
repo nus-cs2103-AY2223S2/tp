@@ -40,15 +40,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: TBD
 
 
-### Jean Doe
+### Jerome Seet
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yaladah.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/yaldah)]
 [[portfolio](team/zhengsterz.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Member
+* Responsibilities: TBD
 
 ### James Doe
 
