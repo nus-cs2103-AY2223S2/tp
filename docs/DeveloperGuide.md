@@ -281,7 +281,7 @@ timetables one by one. WGT then helps students to easily find FTS within their f
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                                   | So that I can…​                                                       |
+| Priority | As a …​  | I can …​                                                       | So that I can…​                                                       |
 |----------|----------|----------------------------------------------------------------|-----------------------------------------------------------------------|
 | `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the App                |
 | `* * *`  | user     | add a new friend                                               | store their events                                                    |
@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Where Got Time` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Delete a person**
 
@@ -414,11 +414,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface 
-* **FTS**: Free Time Slot 
-* **WGT**: Where Got Time 
-* **UI**: User Interface 
+* **FTS**: Free Time Slot
 * **GUI**: Graphical User Interface
 * **MSS**: Main Success Scenario 
+* **API**: Application Programming Interface
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
