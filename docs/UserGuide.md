@@ -163,6 +163,35 @@ Format: `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`
 
 Example: `untag /module CS2040 /lecture 1 /tag 1` deletes the 1st tag of the 1st lecture in the results of the `list /module CS2040` command
 
+### Progress
+
+Displays lecture progress for a specified module
+
+Format: `progress {module_code}`
+- Displays progress of a specified `module_code`
+
+Example: `progress CS2040S` lists progress for the module CS2040S
+
+### List Modules
+Lists all modules
+
+Format: `list`
+
+### List Lectures of Modules
+Lists all lectures belonging to a specified module code
+
+Format: `list /module {module_code}`
+- Lists all lectures of a specified `module_code`
+
+Examples: `list /module CS2040S` lists lectures belonging to CS2040S
+
+### List Videos of Lectures
+Lists all video belonging to a specified lecture code of a specified module code
+
+Format: `list /module {module_code} /lecture {lecture_id}`
+
+Examples: `list /module CS2040 /lecture 1` Lists videos belongs to lecture 1 of module CS2040S
+
 ### Saving the data
 
 Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
