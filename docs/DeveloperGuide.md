@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MediMeet` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -309,6 +309,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 *{More to be added}*
+
+**Use case: UC1 - Edit patient details**
+
+**MSS**
+
+1. User requests to edit the details of a patient.
+2. MediMeet shows the list of patients that match the search request.
+3. User selects the desired patient.
+4. MediMeet displays the patient details.
+5. User provides the edited patient details.
+6. MediMeet edits the details of the patient and displays the new patient details.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. MediMeet cannot find any patients that match the search request.
+  * 1a1. MediMeet requests for a valid search request.
+  * 1a2. User provides a valid search request.
+  * Steps 1a1-1a2 are repeated until a valid search request is provided.
+  * Use case resumes from step 2.
+
+* 5a. MediMeet detects an error in the entered data.
+  * 5a1. MediMeet requests for the correct data.
+  * 5a2. User enters new data.
+  * Steps 5a1-5a2 are repeated until the data entered are correct.
+  * Use case resumes from step 6.
+
+**Use case: UC7 - Add note about a patient**
+
+**MSS**
+
+1. User requests to add a note to a patient.
+2. MediMeet shows the list of patients that match the request.
+3. User selects the desired patient.
+4. MediMeet displays the patient details.
+5. User provides the new note.
+6. MediMeet adds the note to the patient and displays the new patient details and notes.
+   Use case ends.
+
+**Extensions**
+
+* 1a. No patients match the search request.
+  * 1a1. MediMeet requests for a valid search request.
+  * 1a2. User provides a valid search request.
+  * Steps 1a1-1a2 are repeated until a valid search request is provided.
+  * Use case resumes from step 2.
+
+**Use case: UC8 - Add patient appointment**
+
+**MSS**
+
+1. User requests to add appointment and enters the desired description and desired patient to add the appointment for.
+2. MediMeet shows the list of patients that match the request.
+3. User selects the desired patient.
+4. MediMeet adds the appointment and updates the calendar.
+5. MediMeet displays the patient's details.
+   Use case ends.
+
+**Extensions**
+
+* 1a. MediMeet detects an error in the entered data.
+  * 1a1. MediMeet requests for the correct data.
+  * 1a2. User enters new data.
+  * Steps 1a1-1a2 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+
+* 1b. The desired patient is not provided.
+  * 1b1. MediMeet requests for the patient details.
+  * 1b2. User enters patient details.
+  * Steps 1b1-1b2 are repeated until the data entered are correct.
+  * Use case resumes from step 2.
+
+* 1c. No patients match the desired patient details.
+  * 1c1. MediMeet requests for valid patient details.
+  * 1c2. User provides valid patient details.
+  * Steps 1c1-1c2 are repeated until a valid search request is provided.
+  * Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
