@@ -203,9 +203,6 @@ _Details coming soon ..._
 ### Edit meetings `[Coming Soon]`
 _Details coming soon ..._
 
-### Schedule meetings `[Coming Soon]`
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
