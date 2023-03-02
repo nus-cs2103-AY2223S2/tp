@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/swx0.png" width="200px">
 
-[[github](http://github.com/swx0)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/swx0)] [[portfolio](team/swx0.md)]
 
 * Role: Developer
 * Responsibilities: Data
