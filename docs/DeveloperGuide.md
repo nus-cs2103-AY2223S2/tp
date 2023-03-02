@@ -274,6 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
 | `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
 | `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on 
 
 *{More to be added}*
@@ -281,6 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
+
 
 **Use case: List all internship applications**
 
@@ -330,15 +332,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4b. There are no internship applications with an upcoming deadline.
 
+**Use case: List internships by desired criteria**
+
+**MSS**
+
+1. User requests to list sorted internships 
+2. System prompts user to choose a criteria to list internship by
+3. User inputs desired criteria
+4. System displays list of all internships sorted in order based on chosen 
+   criteria
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given criteria is invalid.
+
+    * 3a1. TinS shows an error message.
+
   Use case ends.   
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to navigate the application solely using the keyboard (i.e. input new internships, scroll through
+   internship listing via keyboard).
 
 *{More to be added}*
 
