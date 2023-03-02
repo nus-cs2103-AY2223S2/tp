@@ -17,8 +17,8 @@ tasks done faster than traditional GUI apps and networking with people can be ea
 5. [Command Summary]
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Quick Start <a name="quickstart"></a>
+<a name="quickstart"></a>
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
