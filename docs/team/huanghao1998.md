@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * `to be added soon`
- 
+
 * **Documentation**:
     * User Guide:
         * `to be added soon`
@@ -31,6 +31,6 @@ Given below are my contributions to the project.
 
 * **Community**:
     * `to be added soon`
-  
+
 * **Tools**:
     * `to be added soon`
