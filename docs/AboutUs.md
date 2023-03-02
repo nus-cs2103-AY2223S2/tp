@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yaladah.png" width="200px">
 
 [[github](http://github.com/yaldah)]
-[[portfolio](team/zhengsterz.md)]
+[[portfolio](team/yaladah.md)]
 
 * Role: Member
 * Responsibilities: TBD
