@@ -273,22 +273,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                         | So that I can…​                                                        |
-|----------| ------------------------------------------ |------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                     |                                                                        |
-| `* * *`  | user                                       | delete a person                                      | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                                 | locate a person easily                                                 |
-| `***`    | user| add a new contact without adding their email         | add people when I don't know their email id                            |
-| `***`    | user| add a new contact without adding their phone number  | add people when I don't know their phone number                        |
-| `***`    | user| add a new contact without adding their telegram      | add people when I don't know their telegram                            |
-| `***`    | user| add a new contact without adding any tags            | add people who don't have a common CCA or module with me               |
-| `**`     |  user| open whatsapp directly from the CLI                  | message someone without having to find them on whatsapp                |
-| `**`     | user | open telegram directly from the CLI                  | message someone without having to find them on telegram                |
-| `*` | user | send short mesages on telegram directly from the app | message someone without having to juggle between apps                  |
-| `*` | user | send short mesages on whatsapp directly from the app | message someone without having to juggle between apps                  |
+| Priority | As a …​                                      | I want to …​                                                    | So that I can…​                                                                          |
+|----------|----------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                     | see usage instructions                                          | refer to instructions when I forget how to use the App                                   |
+| `* * *`  | user                                         | add a new person                                                |                                                                                          |
+| `* * *`  | user                                         | delete a person                                                 | remove entries that I no longer need                                                     |
+| `* * *`  | user                                         | find a person by name                                           | locate details of persons without having to go through the entire list                   |
+| `* * *`  | user with many different modules             | add module tags to a person                                     | remember which module I met them from                                                    |
+| `* * *`  | user with many different CCAs                | add CCA tags to a person                                        | remember which CCA I met them from                                                       |
+| `* * *`  | user with many different CCAs                | add CCA post tags to a person                                   | remember which post they hold in the CCA                                                 |
+| `* * *`  | user                                         | add a new contact without adding their email                    | add people when I don't know their email id                                              |
+| `* * *`  | user                                         | add a new contact without adding their phone number             | add people when I don't know their phone number                                          |
+| `* * *`  | user                                         | add a new contact without adding their telegram                 | add people when I don't know their telegram                                              |
+| `* * *`  | user                                         | add a new contact without adding any tags                       | add people who don't have a common CCA or module with me                                 |
+| `* *`    | user                                         | hide private contact details                                    | minimize chance of someone else seeing them by accident                                  |
+| `* *`    | user                                         | open whatsapp directly from the CLI                             | message someone without having to find them on whatsapp                                  |
+| `* *`    | user                                         | open telegram directly from the CLI                             | message someone without having to find them on telegram                                  |
+| `* *`    | student with many CCAs                       | find the exco of a specific CCA                                 | submit a proposal for an event to them                                                   |
+| `* *`    | student with many CCAs                       | find the friends of a specific CCA                              | find their contact easily                                                                |
+| `* *`    | exco of a CCA who is also part of other CCAs | find the contacts of the CCA members (of which I am an exco of) | find their contact easily to contact them regarding CCA events/other needs               |
+| `* *`    | exco of a CCA                                | find the exco of my CCA                                         | contact them to plan an event for the members of the CCA                                 |
+| `* *`    | student with new friends                     | find their contact details                                      | easily ask them out to lunch to get to know them                                         |
+| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me        | study together with them                                                                 |
+| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me        | easily form groups with them prior to the start of the module                            |
+| `* *`    | student TA                                   | find the contact details of the students I am TA-ing            | so that I can easily inform them about important information related to the module/class |
+| `*`      | user with friends from different years       | add year tags to a person                                       | remember which year they are in                                                          |
+| `*`      | user with many persons saved in the app      | sort persons by name                                            | locate a person easily                                                                   |
+| `*`      | user                                         | send short messages on telegram directly from the app           | message someone without having to juggle between apps                                    |
+| `*`      | user                                         | send short messages on whatsapp directly from the app           | message someone without having to juggle between apps                                    |
+| `*`      | user with friends from other schools         | add school tags to a person                                     | remember which school they are from                                                      |
+| `*`      | user with friends from companies             | add company tags to a person                                    | remember which company they are from                                                     |
 
 *{More to be added}*
 
