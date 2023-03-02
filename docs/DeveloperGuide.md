@@ -270,6 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​                                    | I want to …​                                          | So that I can…​                                                        |
 |----------|--------------------------------------------|-------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                                | refer to instructions when I forget how to use the App                 |
@@ -281,12 +282,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | novice user                                | edit existing internship applications                 | update outdated information or add new details                         |
 | `*`      | intermediate user                          | quickly update the status of an internship            | keep the status of my applications up to date                          |
  | `* *`    | expert user                                | see all internship events that have clashes in dates  | try to reschedule some of those events                                 |
+| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                |
+| `* * *`  | Beginner user                              | add a new internship listing                 | record details of my internship application                           |
+| `* * *`  | Beginner user                              | delete a previously added internship listing | rid of dummy data or unwanted internship application                  |
+| `* * *`  | user                                       | find a person by name                        | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                 | minimize chance of someone else seeing them by accident               |
+| `*`      | user with many persons in the address book | sort persons by name                         | locate a person easily                                                |
+| `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
+| `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
+| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on 
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Edit description of an Internship Application**
 
@@ -299,20 +311,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. User inputs the new description of the internship application.
 6. System updates the internship application with the new details.
 
-    Use case ends.
+Use Case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
 
 * 3a. The specified ID is invalid.
 
     * 3a1. System shows an error message.
-
-      Use case resumes at step 2.
-
+    
 * 5a. User cancels the operation midway.
 
     * 5a1. System retains the original description and does not edit the internship application.
@@ -324,7 +330,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5b1. System shows an error message.
     * 5b2. System retains the original description and does not edit the internship application.
 
-        Use case resumes at step 4.
+      Use case resumes at step 4.
+        
+**Use Case: Add an Internship Listing**
+
+**MSS**
+
+1. User requests to Add
+2. System asks the user for Internship Position
+3. User inputs the Internship Position
+4. System asks the user for Company Name
+5. User inputs the Company Name
+6. System asks the user for application status
+7. User inputs the Status
+8. System Confirms Internship Addition
+9. User confirms addition
+10. System adds the internship listing
+
+Use Case ends.
+
+**Extensions**
+* 7.a System asks User to add addition information
+* 7.a1 System ask User for Application Link
+    
+    * 7.a2 User inputs Application link
+    
+    * 7.a3 System ask User for Contact details of Hiring Manager
+    
+    * 7.a3 User inputs Contact details of Hiring Manager
+    
+* 8a. User denies the addition of the listing
+      Use Case ends.
+
+
+
+**Use case: List all internship applications**
+
+**MSS**
+
+1.  User requests to list all internship applications saved on System.
+2.  System displays a list of internships.
+    Use case ends. 
+
+* 1a. User requests to list all internship applications that have not received updates in a long time.
+  
+  * 1b1. System displays all internships that have not had a change in status in a week. 
+    
+    Use case ends. 
+
+* 2a. The list is empty.
+    Use case ends.
+
+
+
+**Use Case: Delete Internship Listing**  
+
+**MSS**
+
+1. User requests to list internships inputted
+2. System shows a list all the inputted internships
+3. User requests to delete an internship listing
+4. System Confirms the listing User wants to delete
+5. User confirms the listing to be deleted
+6. System deletes the internship listing
+
+Use case ends.
+
+**Extensions**
+
+* 4a. User decides to not delete the listing  
+Use Case Ends.
+
+
+
+**Use case: List all internship applications with a deadline on a particular date**
+
+**MSS**
+
+1.  User requests to list all internship applications with an upcoming deadline on a particular date.
+2.  System prompts user to key in a date. 
+3.  User inputs a date. 
+4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The date given by user is in the future (i.e. later than today).
+  
+  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier. 
+
+    Use case resumes from step 2. 
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 4b. There are no internship applications with an upcoming deadline.
+
+
+**Use case: List internships by desired criteria**
+
+**MSS**
+
+1. User requests to list sorted internships 
+2. System prompts user to choose a criteria to list internship by
+3. User inputs desired criteria
+4. System displays list of all internships sorted in order based on chosen 
+   criteria
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given criteria is invalid.
+
+    * 3a1. TinS shows an error message.
+
+  Use case ends.   
+
+
+
 
 **Use case: View all clashes of internship Events.**
 
@@ -341,11 +469,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to navigate the application solely using the keyboard (i.e. input new internships, scroll through
+   internship listing via keyboard).
 
 *{More to be added}*
 
