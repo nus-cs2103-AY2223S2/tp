@@ -2,22 +2,30 @@
 layout: page
 title: User Guide
 ---
-
+# About CoDoc
 CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of
 their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the 
 benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management 
 tasks done faster than traditional GUI apps and networking with people can be easily done.
-
-
-* # Table of Contents
-1. [Quick Start](#quickstart)
-2. [Features]
-3. [Future Release]
-4. [FAQ]
-5. [Command Summary]
+--------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+   * Add
+   * View
+   * Edit
+   * Find
+   * List
+   * Delete
+   * Clear
+   * Help
+   * Auto save to file
+   * Automated bulk edit [coming soon]
+   * Archiving data files [coming soon]
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="quickstart"></a>
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -46,7 +54,7 @@ tasks done faster than traditional GUI apps and networking with people can be ea
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="features"></a>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -188,14 +196,17 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
+## Command Summary
 Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| --- | --- |
+Add	| `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 t/python t/java`
+View contact | `view INDEX`<br />e.g., `view 3`
+View tab | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`
+Edit | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`
+Find	name | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`
+Find module | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`
+Find tags | `findt TAG [MORETAGS]`<br />e.g., `findt java python` 
+List | `view` the default list of all contacts
+Delete | `delete INDEX`<br />e.g., `delete 3`
+Clear all contacts | `clear`
+Help | `help`
