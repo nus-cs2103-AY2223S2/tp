@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Bookopedia` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -312,9 +312,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Bookopedia should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Bookopedia should be able to hold up to 50 deliveries without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Bookopedia should work without requiring an installer.
+5. Bookopedia should not depend on your own remote server.
+6. Bookopedia should be packaged into a single _JAR_ file
+7. The file size of the _JAR_ file should be reasonable and not exceed the limit of 100MB.
+8. The _GUI_ should work well and usable under HD screens (1920x1080) at 100% scale.
+9. A _DBMS_ should not be used to store data.
+10. The data should be stored locally and should be in a human editable text file.
+11. Bookopedia should be for a single user i.e. (not a multi-user product).
+12. Bookopedia should respond to commands within 5s.
 
 *{More to be added}*
 
@@ -322,6 +331,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario
+* **JAR**: Java ARchive
+* **GUI**: Graphical User Interface
+* **DBMS**: Database Management System
 
 --------------------------------------------------------------------------------------------------------------------
 
