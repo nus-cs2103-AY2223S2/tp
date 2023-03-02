@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a contact by giving name and some contact information.
 2. ConnectUS adds a new contact with given information.
-3. Confirmation message is displayed.
+3. ConnectUS displays confirmation message.
 4. The new contact is visible in the contacts list.
 
    Use case ends.
@@ -336,6 +336,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. User requests to add more information to the contact.
   * 4a1. ConnectUS adds the given information to the contact.
+  * 4a2. ConnectUS displays confirmation message
+  * 4a3. Updated contact is visible in the contacts list
+  
+  Use case ends.
+
 
 **Use case: Delete a contact**
 
@@ -382,6 +387,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. ConnectUS shows an error message.
       Use case resumes at step 2.
 
+
+**Use case: Find a contact**
+
+**MSS**
+
+1. User requests to find a contact by keywords
+2. ConnectUS displays confirmation message
+3. ConnectUS displays all contacts with keywords in name
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No keywords are provided
+    * 1a1. ConnectUS displays error message
+    Use case ends
+    
+* 1b. User requests to find a contact by tag
+  * 1b1. ConnectUS displays confirmation message
+  * 1b2. ConnectUS displays all contacts with given tag
+  Use case ends
+  
+* 1c. User requests to find a contact by contact information
+  * 1c1. ConnectUS displays confirmation message
+  * 1c2. ConnectUS displays all contacts with given confirmation message
+  Use case ends
+
+**Use case: List all contacts**
+
+**MSS**
+
+1. User requests to list all contacts
+2. ConnectUS displays confirmation message
+3. ConnectUS displays all contacts 
+
+   Use case ends
+
+**Extensions**
+
+* 1a. There is an error in the request
+  * 1a1. ConnectUS displays error message
+  Use case ends
 
 *{More to be added}*
 
