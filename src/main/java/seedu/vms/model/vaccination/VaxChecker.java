@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -52,12 +53,18 @@ public class VaxChecker {
 
 
     private static boolean checkHistReq(List<VaxRequirement> reqs, List<VaxRecord> records) {
-        HashSet<String> takenGroups = records.stream()
+        List<HashSet<String>> grpSets = records.stream()
                 .map(record -> record.getVaccination().getGroups())
-                .collect(() -> new HashSet<>(),
-                        (takenSet, vaxSet) -> takenSet.addAll(vaxSet),
-                        (set1, set2) -> set1.addAll(set2));
-        return checkReq(reqs, takenGroups);
+                .collect(Collectors.toList());
+        if (records.isEmpty()) {
+            grpSets.add(new HashSet<>());
+        }
+        for (HashSet<String> grpSet : grpSets) {
+            if (checkReq(reqs, grpSet)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
