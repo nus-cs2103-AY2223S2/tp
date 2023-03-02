@@ -276,16 +276,17 @@ extensive typing. This justifies a sufficiently good level of proficiency with r
 existence of keyboard shortcuts, many programmers prefer typing over using the mouse because of the efficiency gains.
 
 
-* Reasonably comfortable using Command Line Interface (CLI) apps
+* Reasonably comfortable in using Command Line Interface (CLI) apps
 
 CLI provides a simple way to interact with computers to run programs and manage files.
 Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
 to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
 the CLI interface.
 
-* Prefer desktop applications over other types
+* Prefers desktop applications over other types
 
 **Value proposition**:
+
 InternBuddy aims to provide a 1-stop platform for a computing undergraduate to view and
 manage his internship applications. Consolidating internship information, the application provides organisational
 capabilities for easy tracking and follow-ups while eliminating the need to handle data across multiple platforms.
@@ -397,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  Should be able to respond to user input within 6 seconds.
 3.  A Computing undergraduate student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be easily adopted by most Computing undergraduates students who have never used command line applications to track internships before.
-5.  The user guide should be clear enough such that most Computing undergraduate students know how to use the core features of InternBuddy after reading the the user guide.
+5.  The user guide should be clear enough such that most Computing undergraduates know how to use the core features of InternBuddy after reading the the user guide.
 6.  The developer guide should be clear enough such that new developers are able to understand how the system is designed, and know how to contribute to the codebase after reading the guide.
 7.  InternBuddy is not required to handle concurrent users.
 8.  InternBuddy is not required to make data available online.
@@ -405,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Computing undergraduate**: Refers to a university undergraduate pursuing a computing degree.
+* **Computing undergraduate**: Refers to a university undergraduate pursuing a Computing degree.
 * **Tech stack**: Refers to a set of technologies that a company uses to create or maintain a software system or product.
 --------------------------------------------------------------------------------------------------------------------
 
