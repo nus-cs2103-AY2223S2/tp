@@ -21,4 +21,4 @@ The following are my contributions to this project:
 
 - **Documentation**:
   - User Guide: Initial v1.1 skeleton
-  - Developer Guide: xxx
+  - Developer Guide: Initial v1.1 skeleton
