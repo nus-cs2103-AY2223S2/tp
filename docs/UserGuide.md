@@ -133,7 +133,7 @@ Creates a new project.
 
 **Examples**
 
-The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman*from *fiverr.com*.
+The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*.
 
 ```bash
 p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
