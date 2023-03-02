@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/douglch.png" width="200px">
 
-[[github](http://github.com/douglch)] 
+[[github](http://github.com/douglch)]
 [[portfolio](team/douglch.md)]
 
 * Role: In charge of `Client`
