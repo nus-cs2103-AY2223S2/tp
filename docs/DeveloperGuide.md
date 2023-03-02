@@ -257,42 +257,67 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* has a need to manage a significant number of patient records
 * can type fast
-* prefers typing to mouse interactions
+* prefers typing to execute commands and input patient records
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* solve the problem of slow and multiple step process of documenting patient medical records during in-processing
+* provide faster access to a particular patient’s medical records for hospital admin staff
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​       | I want to …​                                       | So that I can…​                                                                             |
+|----------|---------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | staff member  | add a patient by NRIC                              | record the information later (start with NRIC as primary key)                               |
+| `* * *`  | staff member  | add personal particulars to a patient              | record their name, address and contacts                                                     |
+| `* * *`  | staff member  | add medical records to a patient                   | record their medical history, medical cases and medication allergen                         |
+| `* * *`  | staff member  | add a discharge date to hospitalised patients      | keep track of discharge dates                                                               |
+| `* * *`  | staff member  | view the list of commands                          | use the system proficiently                                                                 |
+| `* * *`  | staff member  | search for patients by personal particulars        | do a basic search to find a certain patient                                                 |
+| `* * *`  | staff member  | search for patients by discharge date              | plan for future patient discharges                                                          |
+| `* * *`  | staff member  | update personal particulars of a patient           | keep the personal particulars of a patient up to date                                       |
+| `* * *`  | staff member  | update the medical records of a patient            | keep the medical records of a patient up to date                                            |
+| `* * *`  | staff member  | update the discharge date of hospitalised patients | change the discharge date of a hospitalised patient due to unexpected medical complications |
+| `* * *`  | staff member  | remove a patient by NRIC                           | put the patient on hold or remove duplicate entries                                         |
+| `* * *`  | staff member  | remove the medical records of a patient            | correct the mistakes in medical cases, allergies and medical conditions                     |
+| `* * *`  | staff member  | remove the discharge date of a patient             | put the patient's discharge date on hold while awaiting further assessment                  |
+| `* *`    | staff member  | add a patient ward number                          | locate the patient                                                                          |
+| `* *`    | staff member  | add patient priority level                         | categorize patients by severity of condition when in-processed                              |
+| `* *`    | staff member  | search for patients by medical records             | find patients with a certain medical condition                                              |
+| `* *`    | staff member  | view the list of patients sorted by discharge date | plan for future patient discharges                                                          |
+| `* *`    | staff member  | see patients with approaching discharge dates      | be aware of approaching discharge patients                                                  |
+| `* *`    | staff member  | view patients by department                        | find patients in a department and check the occupancy within certain departments            |
+| `* *`    | staff member  | view patients by priority levels                   | address higher priority patients more quickly                                               |
+| `* *`    | staff member  | update patient ward number                         | move patients to different wards                                                            |
+| `* *`    | staff member  | update the allocated department of a patient       | change the department in charge of the patient due to a developed medical condition         |
+| `* *`    | staff member  | confirm a deletion                                 | avoid any mistakes                                                                          |
+| `*`      | staff member  | add financial records to a patient                 | record their outstanding bills, billing history and insurance details                       |
+| `*`      | staff member  | add payment methods of a patient                   | record their payment methods                                                                |
+| `*`      | staff member  | search for patients by financial records           | find patients with outstanding bills                                                        |
+| `*`      | staff member  | view patients by a category                        | view patients by type of record (e.g. medical information, financial records, etc)          |
+| `*`      | staff member  | update the financial records of a patient          | keep the financial records of a patient up to date                                          |
+| `*`      | staff member  | remove the financial records of a patient          | correct any mistakes in the billing                                                         |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MedInfo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients
+2.  MedInfo shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  MedInfo deletes the patient
 
     Use case ends.
 
@@ -302,9 +327,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given NRIC is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MedInfo shows an error message.
 
       Use case resumes at step 2.
 
@@ -313,15 +338,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should allow use only for hospital admin staff.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
+* **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
