@@ -255,15 +255,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile:**
+Computing Undergraduates
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Characteristics of user profile:**
+* Has a need to manage many internship applications
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+Internships form an integral part of the undergraduate curriculum for Computing Undergraduates. In a technical field
+like Computing, it is especially important for undergraduates to practice what they have learnt in classrooms.
+However, given the tight competition in the market, many undergraduates source for numerous internship opportunities
+before being accepted for one. Therefore, many Computing undergraduates face the need to track many applications
+where each could be in a different phase of the application process.
+
+* Prefers typing to mouse interactions, with good typing speed
+
+Computing undergraduates have great exposure to computer usage where coding assignments and projects in school require
+extensive typing. This justifies a sufficiently good level of proficiency with regard to typing. In fact, with the
+existence of keyboard shortcuts, many programmers prefer typing over using the mouse because of the efficiency gains.
+
+
+* Reasonably comfortable using Command Line Interface (CLI) apps
+
+CLI provides a simple way to interact with computers to run programs and manage files.
+Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
+to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
+the CLI interface.
+
+* Prefer desktop applications over other types
+
+**Value proposition**:
+InternBuddy aims to provide a 1-stop platform for a computing undergraduate to view and
+manage his internship applications. Consolidating internship information, the application provides organisational
+capabilities for easy tracking and follow-ups while eliminating the need to handle data across multiple platforms.
+
 
 
 ### User stories
@@ -293,8 +317,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | analytical Computing undergraduate                                                          | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
 | `*`      | Computing undergraduate who is planning to track internship applications in the long run    | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
 | `*`      | Computing undergraduate who is experienced in using InternBuddy                             | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
-| `*`      | a non-Computing undergraduate who wants to use InternBuddy to track internship applications | customise the statuses that I can assign to each entry           | use InternBuddy according to the internship application process specific to my field of study.      |
-
 
 ### Use cases
 

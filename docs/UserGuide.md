@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-InternBuddy is a **desktop app for Computing undergraduate students to manage their internship applications**. It is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InternBuddy can efficiently track your internship applications.
+InternBuddy is a **desktop app for Computing undergraduate students to manage their internship applications**.
+It is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
+Interface (GUI). If you can type fast, InternBuddy can efficiently track your internship applications.
 
 * Table of Contents
 {:toc}
@@ -14,26 +16,29 @@ InternBuddy is a **desktop app for Computing undergraduate students to manage th
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
+2. Download the latest `internbuddy.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for InternBuddy.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internbuddy.jar`
+   command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br>
    Some example commands you can try:
 
    * `list` : List All Internship Entries.
 
-   * `add n/CompanyXYZ r/Software engineering intern s/applied d/2023-03-03` : Adds an entry to track the internship application for Company XYZ for a software engineering role.
+   * `add n/CompanyXYZ r/Software Engineer s/applied d/2023-03-03` : Adds an entry to track the internship
+      application for Company XYZ for the role of a Software Engineer.
 
    * `delete 3` : Deletes the 3rd internship entry shown in the current list.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,7 +52,7 @@ InternBuddy is a **desktop app for Computing undergraduate students to manage th
   e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Apple`.
 
 * Items in square brackets are optional.<br>
-  e.g `edit INDEX [n/NAME]` can be used as `edit 2 n/CompanyXYZ` or as `edit 2`.
+  e.g. `edit INDEX [n/NAME]` can be used as `edit 2 n/CompanyXYZ` or as `edit 2`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -55,15 +60,17 @@ InternBuddy is a **desktop app for Computing undergraduate students to manage th
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/Apple r/Software Engineer`, `r/Software Engineer n/Apple` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
+  e.g. if you specify `r/Front-end Developer r/Back-end Developer`, only `r/Back-end Developer` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be
+  ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For any parameters that refer to a date (such as `add`, `edit`), they must be specified in the format YYYY-MM-DD<br>
-e.g. if the command specifies `edit INDEX [d/DATE]`, then 1 March 2023 should be entered as `2023-03-01` for the parameter `DATE`.
-
+* For any parameters that refer to a date (such as in `add`, `edit`), they must be specified in the format YYYY-MM-DD<br>
+  e.g. if the command specifies `edit INDEX [d/DATE]`, then 1 March 2023 should be entered as `2023-03-01` for the
+  parameter `DATE`.
 </div>
 
 ### Adding an internship entry: `add`
@@ -115,24 +122,6 @@ Examples:
 *  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -147,11 +136,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -161,42 +146,44 @@ Format: `exit`
 
 ### Saving the data
 
-InternBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+InternBuddy data are saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 ### Loading the data
 
-InternBuddy data are loaded from the hard disk automatically at the beginning of each run. There is no need to load manually. If the data file is invalid or missing, InternBuddy will discard all data and start with an empty data file at the next run.
+InternBuddy data are loaded from the hard disk automatically at the beginning of each run.
+There is no need to load manually. If the data file is invalid or missing, InternBuddy will discard all data and start
+with an empty data file at the next run.
 
 ### Editing the data file
 
-InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to update data directly by editing that data file.
+InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to
+update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, InternBuddy will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, InternBuddy will discard all data and start with an empty
+data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InternBuddy home folder.
+**A**: Install InternBuddy in the other computer and overwrite the empty data file it creates with the file that
+contains the data of your previous InternBuddy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**List** | `list`
-**Add** | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE​` <br> e.g., `add n/Apple r/Software Engineer s/new`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE]​`<br> e.g.,`edit 2 s/assessment r/SoftWare Developer`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                             |
+|------------|--------------------------------------------------------------------------------------------------------------|
+| **List**   | `list`                                                                                                       |
+| **Add**    | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE​` <br> e.g., `add n/Apple r/Software Engineer s/new d/2023-02-01` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                          |
+| **Edit**   | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE]​`<br> e.g.,`edit 2 s/assessment r/Software Developer`      |
+| **Help**   | `help`                                                                                                       |
+| **Exit**   | `exit`                                                                                                       |
 
 
