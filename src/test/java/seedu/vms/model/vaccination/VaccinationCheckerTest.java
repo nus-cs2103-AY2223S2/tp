@@ -21,21 +21,21 @@ public class VaccinationCheckerTest {
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
-            .setRequirements()
+            .setHistoryReq()
             .build();
     private static final VaxType TYPE_1_B = VaxType.Builder.of("TYPE_1_B")
             .setGroups("TYPE_1", "B")
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
-            .setRequirements(new VaxRequirement(true, new HashSet<>(List.of("TYPE_1"))))
+            .setHistoryReq(new VaxRequirement(true, new HashSet<>(List.of("TYPE_1"))))
             .build();
     private static final VaxType TYPE_2_A = VaxType.Builder.of("TYPE_2_A")
             .setGroups("TYPE_2", "A")
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
-            .setRequirements(
+            .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("TYPE_1"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
             .build();
@@ -44,7 +44,7 @@ public class VaccinationCheckerTest {
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
-            .setRequirements(
+            .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("B", "TYPE_1"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_2"))))
             .build();
@@ -53,7 +53,7 @@ public class VaccinationCheckerTest {
             .setMinAge(MIN_AGE)
             .setMaxAge(MAX_AGE)
             .setMinSpacing(MIN_SPACING)
-            .setRequirements(
+            .setHistoryReq(
                     new VaxRequirement(false, new HashSet<>(List.of("TYPE_2"))),
                     new VaxRequirement(true, new HashSet<>(List.of("TYPE_3"))))
             .build();
@@ -71,6 +71,8 @@ public class VaccinationCheckerTest {
             new VaxRecord(TYPE_1_A, TIME_1_VALID),
             new VaxRecord(TYPE_2_A, TIME_2_VALID));
 
+    private static final HashSet<String> ALLERGIES_NONE = new HashSet<>();
+
 
     /*
      * ========================================================================
@@ -84,6 +86,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_1_A,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_1,
                 TIME_1_VALID));
     }
@@ -94,6 +97,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_1_A,
                 MAX_AGE,
+                ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -104,6 +108,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_2_A,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -114,6 +119,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_2_B,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -124,6 +130,7 @@ public class VaccinationCheckerTest {
         assertTrue(VaxChecker.check(
                 TYPE_3,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_3,
                 TIME_3_VALID));
     }
@@ -141,6 +148,7 @@ public class VaccinationCheckerTest {
         assertFalse(VaxChecker.check(
                 TYPE_1_B,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_VALID));
     }
@@ -151,6 +159,7 @@ public class VaccinationCheckerTest {
         assertFalse(VaxChecker.check(
                 TYPE_1_A,
                 MIN_AGE - 1,
+                ALLERGIES_NONE,
                 RECORD_1,
                 TIME_1_VALID));
     }
@@ -161,6 +170,7 @@ public class VaccinationCheckerTest {
         assertFalse(VaxChecker.check(
                 TYPE_1_A,
                 MAX_AGE + 1,
+                ALLERGIES_NONE,
                 RECORD_1,
                 TIME_1_VALID));
     }
@@ -171,6 +181,7 @@ public class VaccinationCheckerTest {
         assertFalse(VaxChecker.check(
                 TYPE_2_A,
                 MIN_AGE,
+                ALLERGIES_NONE,
                 RECORD_2,
                 TIME_2_INVALID));
     }

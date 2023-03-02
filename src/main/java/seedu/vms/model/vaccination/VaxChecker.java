@@ -19,13 +19,14 @@ public class VaxChecker {
      *
      * @param vaxType - the vaccination type to check.
      * @param age - the age ot the person.
+     * @param allergies - allergies of the person.
      * @param records - the list of {@code VaxRecord} of the person.
      * @param time - the time of the shot.
      * @return {@code true} if the person meets the requirements and
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
-                int age, List<VaxRecord> records, LocalDateTime time) {
+                int age, HashSet<String> allergies, List<VaxRecord> records, LocalDateTime time) {
         boolean isWithinAge = vaxType.getMinAge() <= age && age <= vaxType.getMaxAge();
 
         boolean isSpaced = records.isEmpty();
@@ -33,9 +34,10 @@ public class VaxChecker {
             isSpaced = checkSpacing(vaxType, records, time);
         }
 
-        boolean isReqSatisfied = checkReq(vaxType.getRequirements(), records);
+        boolean isAllergiesSatisfied = checkReq(vaxType.getAllergyReqs(), allergies);
+        boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), records);
 
-        return isWithinAge && isSpaced && isReqSatisfied;
+        return isWithinAge && isSpaced && isAllergiesSatisfied && isHistorySatisfied;
     }
 
 
@@ -49,14 +51,19 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkReq(List<VaxRequirement> reqs, List<VaxRecord> records) {
+    private static boolean checkHistReq(List<VaxRequirement> reqs, List<VaxRecord> records) {
         HashSet<String> takenGroups = records.stream()
                 .map(record -> record.getVaccination().getGroups())
                 .collect(() -> new HashSet<>(),
                         (takenSet, vaxSet) -> takenSet.addAll(vaxSet),
                         (set1, set2) -> set1.addAll(set2));
+        return checkReq(reqs, takenGroups);
+    }
+
+
+    private static boolean checkReq(List<VaxRequirement> reqs, HashSet<String> set) {
         for (VaxRequirement req : reqs) {
-            if (!req.check(takenGroups)) {
+            if (!req.check(set)) {
                 return false;
             }
         }

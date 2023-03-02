@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 /**
@@ -24,27 +23,29 @@ public abstract class VaxType {
     private final int minAge;
     private final int maxAge;
     private final int minSpacing;
-    private final List<VaxRequirement> requirements;
+    private final List<VaxRequirement> historyReqs;
+    private final List<VaxRequirement> allergyReqs;
 
 
     private VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> requirements) {
+                List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
         this.minSpacing = minSpacing;
-        this.requirements = requirements;
+        this.historyReqs = historyReqs;
+        this.allergyReqs = allergyReqs;
     }
 
 
     private static VaxType of(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> requirements) {
+                List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
         VaxType vaxType = new VaxType(name, groups,
                 minAge, maxAge, minSpacing,
-                requirements) {};
+                historyReqs, allergyReqs) {};
         TYPE_MAP.put(name, vaxType);
         return vaxType;
     }
@@ -97,10 +98,13 @@ public abstract class VaxType {
     }
 
 
-    public List<VaxRequirement> getRequirements() {
-        return requirements.stream()
-                .map(req -> req.copy())
-                .collect(Collectors.toList());
+    public List<VaxRequirement> getHistoryReqs() {
+        return VaxRequirement.copy(historyReqs);
+    }
+
+
+    public List<VaxRequirement> getAllergyReqs() {
+        return VaxRequirement.copy(allergyReqs);
     }
 
 
@@ -122,7 +126,8 @@ public abstract class VaxType {
         public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
         public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
         public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
-        public static final List<VaxRequirement> DEFAULT_REQUIREMENTS = List.of();
+        public static final List<VaxRequirement> DEFAULT_HISTORY_REQS = List.of();
+        public static final List<VaxRequirement> DEFAULT_ALLERGY_REQS = List.of();
 
         private final Optional<String> originalName;
         private final String name;
@@ -130,20 +135,21 @@ public abstract class VaxType {
         private final int minAge;
         private final int maxAge;
         private final int minSpacing;
-        private final List<VaxRequirement> requirements;
+        private final List<VaxRequirement> historyReqs;
+        private final List<VaxRequirement> allergyReqs;
 
 
         private Builder(Optional<String> originalName, String name, HashSet<String> groups,
-                    int minAge, int maxAge, int minSpacing, List<VaxRequirement> requirements) {
+                    int minAge, int maxAge, int minSpacing,
+                    List<VaxRequirement> historyReqs, List<VaxRequirement> allergyReqs) {
             this.originalName = originalName;
             this.name = name;
             this.groups = new HashSet<>(groups);
             this.minAge = minAge;
             this.maxAge = maxAge;
             this.minSpacing = minSpacing;
-            this.requirements = requirements.stream()
-                    .map(req -> req.copy())
-                    .collect(Collectors.toList());
+            this.historyReqs = VaxRequirement.copy(historyReqs);
+            this.allergyReqs = VaxRequirement.copy(allergyReqs);
         }
 
 
@@ -164,7 +170,8 @@ public abstract class VaxType {
             int minAge = DEFAULT_MIN_AGE;
             int maxAge = DEFAULT_MAX_AGE;
             int minSpacing = DEFAULT_MIN_SPACING;
-            List<VaxRequirement> requirements = DEFAULT_REQUIREMENTS;
+            List<VaxRequirement> historyReqs = DEFAULT_HISTORY_REQS;
+            List<VaxRequirement> allergyReqs = DEFAULT_ALLERGY_REQS;
 
             VaxType vaxType = VaxType.get(name);
             if (vaxType != null) {
@@ -173,15 +180,16 @@ public abstract class VaxType {
                 minAge = vaxType.getMinAge();
                 maxAge = vaxType.getMaxAge();
                 minSpacing = vaxType.getMinSpacing();
-                requirements = vaxType.getRequirements();
+                historyReqs = vaxType.getHistoryReqs();
+                allergyReqs = vaxType.getAllergyReqs();
             }
 
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
         public Builder setName(String name) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
@@ -192,33 +200,44 @@ public abstract class VaxType {
 
 
         public Builder setGroups(HashSet<String> groups) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
         public Builder setMinAge(int minAge) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
         public Builder setMaxAge(int maxAge) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
         public Builder setMinSpacing(int minSpacing) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
-        public Builder setRequirements(VaxRequirement ... reqs) {
-            List<VaxRequirement> requirements = List.of(reqs);
-            return setRequirements(requirements);
+        public Builder setHistoryReq(VaxRequirement ... reqs) {
+            List<VaxRequirement> historyReqs = List.of(reqs);
+            return setHistoryReqs(historyReqs);
         }
 
 
-        public Builder setRequirements(List<VaxRequirement> requirements) {
-            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, requirements);
+        public Builder setHistoryReqs(List<VaxRequirement> historyReqs) {
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
+        }
+
+
+        public Builder setAllergyReqs(VaxRequirement ... reqs) {
+            List<VaxRequirement> allergyReqs = List.of(reqs);
+            return setAllergyReqs(allergyReqs);
+        }
+
+
+        public Builder setAllergyReqs(List<VaxRequirement> allergyReqs) {
+            return new Builder(originalName, name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
 
 
@@ -229,7 +248,7 @@ public abstract class VaxType {
          */
         public VaxType build() {
             originalName.ifPresent(VaxType::remove);
-            return VaxType.of(name, groups, minAge, maxAge, minSpacing, requirements);
+            return VaxType.of(name, groups, minAge, maxAge, minSpacing, historyReqs, allergyReqs);
         }
     }
 }

@@ -19,6 +19,16 @@ public class VaxTypeLoaderTest {
     private static final int TYPE_1_MIN_SPACING = 56;
     private static final List<VaxRequirement> TYPE_1_REQUIREMENTS = List.of(
             new VaxRequirement(true, new HashSet<>(List.of("DOSE 1"))));
+    private static final List<VaxRequirement> TYPE_1_ALLERGY_REQS = List.of(
+            new VaxRequirement(true, new HashSet<>(List.of(
+                    "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+                    "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+                    "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+                    "Cholesterol",
+                    "Sucrose",
+                    "Phosphate",
+                    "Tromethamine",
+                    "Tris(hydroxymethyl)aminoethane hydrochloride"))));
 
 
     @Test
@@ -30,6 +40,7 @@ public class VaxTypeLoaderTest {
                 TYPE_1_MIN_AGE,
                 TYPE_1_MAX_AGE,
                 TYPE_1_MIN_SPACING,
-                TYPE_1_REQUIREMENTS);
+                TYPE_1_REQUIREMENTS,
+                TYPE_1_ALLERGY_REQS);
     }
 }

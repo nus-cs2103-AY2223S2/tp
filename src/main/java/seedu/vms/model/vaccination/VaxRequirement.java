@@ -1,6 +1,8 @@
 package seedu.vms.model.vaccination;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /** Represents a vaccination requirement. */
@@ -54,6 +56,22 @@ public class VaxRequirement {
      */
     public VaxRequirement copy() {
         return new VaxRequirement(isExclusion, grpSet);
+    }
+
+
+    /**
+     * Returns a copy of the given list of {@code VaxRequirements}. Returned
+     * list is immutable and changes to the original will not be reflected in
+     * the copy.
+     *
+     * @param reqs - the list of requirements to copy.
+     * @return a copy of the specified list.
+     * @throws NullPointerException if list given is {@code null}.
+     */
+    public static List<VaxRequirement> copy(List<VaxRequirement> reqs) {
+        return reqs.stream()
+                .map(req -> req.copy())
+                .collect(Collectors.toList());
     }
 
 

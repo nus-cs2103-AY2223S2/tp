@@ -5,10 +5,25 @@
       "groups": ["DOSE 1", "Pfizer", "Vaccination"],
       "minAge": 5,
       "minSpacing": 56,
-      "requirements": [
+      "historyReqs": [
         {
           "isExclusion": true,
           "grpSet": ["DOSE 1"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "isExclusion": true,
+          "grpSet": [
+            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tris(hydroxymethyl)aminoethane hydrochloride"
+          ]
         }
       ]
     }
