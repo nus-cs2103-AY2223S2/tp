@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.result;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.ui.UiPart;
 import seedu.address.ui.body.address.PersonDetailCard;
 
 /**
