@@ -138,6 +138,31 @@ Format: `delete-video /module {module_code} /lecture {lecture_id} /video {video_
 Examples:
 - `delete-video /module CS2040 /lecture 1 /video 3` deletes the 3rd video in the results of the `list /module CS2040 /lecture 1` command
 
+### Tag a lecture
+
+Tags a specified lecture from a specified module with a description
+
+Format:  `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`
+- Tag a lecture of the specified `lecture_id` from the specified `module_code`
+- The `lecture_id` refers to the index number shown when listing the lectures specified in it’s `module_code`
+- The `lecture_id` **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+- `tag /module CS2040 /lecture 1 /description Boohoo` tags the 1st lecture in the results of the `list /module CS2040` command with the description `Boohoo`
+
+### Delete a tag
+
+Deletes a specified tag of a specified lecture
+
+Format: `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`
+- Untag a lecture of the specified `lecture_id` from the specified `module_code`
+- The `lecture_id` refers to the index number shown when listing the lectures specified in it’s `module_code`
+- The `lecture_id` **must be a positive integer** 1, 2, 3, …
+- The `tag_id` refers to the index number shown when listing the tags available of a lecture
+- The `tag_id` **must be a positive integer** 1, 2, 3, …
+
+Example: `untag /module CS2040 /lecture 1 /tag 1` deletes the 1st tag of the 1st lecture in the results of the `list /module CS2040` command
+
 ### Saving the data
 
 Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -166,3 +191,5 @@ If your changes to the data file makes its format invalid, Le Tracker will disca
 | **Add a Module**     | `add-module /code {module_code} [/name {module_name}]` <br> e.g., `add-module /code CS2040 /name Data Structures & Algorithms`                           |
 | **Add a Lecture**    | `add-lecture /module {module_code}` <br> e.g., `add-lecture /module CS2040`                                                                              |
 | **Add a Video**      | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` <br> e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
+| **Tag a Lecture**    | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` <br> e.g, `tag /module CS2040 /lecture 1 /description Boohoo`|
+| **Delete a Tag**     | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` <br> e.g,  `untag /module CS2040 /lecture 1 /tag 1` |
