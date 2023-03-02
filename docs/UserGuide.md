@@ -1,3 +1,4 @@
+=======
 ---
 layout: page
 title: User Guide
@@ -248,5 +249,6 @@ _Details coming soon ..._
 | **View**   | `view INDEX`<br/> e.g., `view 2`           |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`        |                                                                                                                                                                          |            |                                      |
 | **Exit**   | `exit`                                     |   
+
 
 
