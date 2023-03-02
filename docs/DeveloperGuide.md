@@ -404,14 +404,16 @@ Use case ends.
   Use case ends.
 
 * 3a. The given category is invalid.
+
   * 3a1. SOCket shows an error message. 
   
     Use case resumes from step 2.
 
-* 3b. No category is given
-    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts
+* 3b. No category is given.
 
-      Use case ends
+    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+
+      Use case ends.
 
 **Use case: UC06 Clear contacts/tag**
 
@@ -434,7 +436,7 @@ Use case ends.
 
   * 1b1. SOCket shows an error message, listing all the wrong tags.
 
-  * 1b2. SOCket request to delete all the contacts under the correct tags
+  * 1b2. SOCket request to delete all the contacts under the correct tags.
     
     Use case resumes from step 2.
 
@@ -487,7 +489,6 @@ Use case ends.
   Use case ends.
 
 * 3a. The contact does not have github information.
-<<<<<<< HEAD
     
    Use case resumes from step 2.
 
@@ -533,7 +534,6 @@ Use case ends.
 =======
 
    Use case resumes at step 2.
->>>>>>> origin
 
 *{More to be added}*
 
