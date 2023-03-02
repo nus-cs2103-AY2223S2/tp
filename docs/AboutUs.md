@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Tan
 
-<img src="images/jane.png" width="200px">
+<img src="images/sembcorpp.png" width="200px">
 
 
 [[github](https://github.com/sembcorpp)]
@@ -31,16 +31,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Muhammad Arshad Shaik
 
-<img src="images/Arshad.png" width="200px">
+<img src="images/fireradical22.png" width="200px">
 
-[[github](http://github.com/FireRadical22)] [[portfolio](team/arshad.md)]
+[[github](http://github.com/FireRadical22)] [[portfolio](team/fireradical22.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops
 
 ### Tabriz Pahlavi
 
-<img src="images/tabriz.png" width="200px">
+<img src="images/tabrizplv.png" width="200px">
 
 [[github](http://github.com/TabrizPlv)]
 [[portfolio](team/tabriz.md)]
