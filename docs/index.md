@@ -8,7 +8,7 @@ title: Intern Buddy
 
 ![Ui](images/Ui.png)
 
-**InternBuddy is a desktop application for for Computing undergraduates to manage and track their internship applications.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**InternBuddy is a desktop application for Computing undergraduates to manage and track their internship applications.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
