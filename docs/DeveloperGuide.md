@@ -58,8 +58,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Main Success Scenario (MSS)**: The main or optimal flow of a use case, representing the successful completion of the user's goal.
+* **Use Case**: A description of a specific user goal or task and the steps required to achieve it.
+* **Chef**: The user or operator of the application.
+* **Recipe**: A set of instructions to prepare and cook a specific dish. Includes dish name, ingredients, serving size, preparation time and any dietary labels.
+* **Book**: Refers to the application or system that manages the storage and retrieval of recipe data.
+* **Storage file**: The file used by the application to store and retrieve recipe data.
+* **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
