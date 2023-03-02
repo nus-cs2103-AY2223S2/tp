@@ -278,7 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 =======
-| Priority | As a …​           | I can …​                                                             | So that …​                                                             |
+| Priority | As a …​           | I can …​                                                             | So that …​                                                     |
 |----------|-------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user          | look at the list of clients                                          | I know who are my clients and their details                            |
 | `* * *`  | new user          | edit my client's routine                                             | the client's routine data is accurate                                  |
@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Fitbook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a client**
+**Use case: UC01 - Delete a client**
 
 **MSS**
 
@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a client**
+**Use case: UC02 - Add a client**
 
 **MSS**
 
@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
 
-**Use case: List clients**
+**Use case: UC03 - List clients**
 
 **MSS**
 
@@ -372,6 +372,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client list is empty use case.
 
   Use case ends.
+
+**Use case: UC04 - Edit a client**
+
+**MSS**
+
+1. User requests to edit a client's details.
+2. Fitbook edits the client's detail into the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters the command incorrectly.
+
+    * 1a1. Fitbook shows an error message.
+
+      Use case ends.
+
+* 1b. The user enters a client that does not exist in the database.
+
+    * 1b1. Fitbook shows an error message that the client does not exist.
+
+      Use case ends.
 
 *{More to be added}*
 
