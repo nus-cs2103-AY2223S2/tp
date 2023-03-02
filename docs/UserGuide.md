@@ -90,12 +90,6 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -113,24 +107,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -145,12 +121,29 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Finding a doctor
+
+Command: `find-doc KEYWORD`
+
+Users can search up doctors that contain a specific text (KEYWORD) using this command.
+
+* KEYWORD can contain multiple words.
+    > e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD.
+* The search is case-insensitive.
+    > e.g. `hans` will match `Hans`.
+* All doctor entries that contain KEYWORD in their fields will be listed.
+
+### Listing all doctors
+
+Command: `list-doc`
+
+This command will list all doctors saved in Docedex together with their information.
 
 ### Exiting the program
 
-Exit the program.
+Command: `exit`
 
-Format: `exit`
+Exit the program.
 
 ### Saving the data
 
