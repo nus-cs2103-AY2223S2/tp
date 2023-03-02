@@ -310,16 +310,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Fitbook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FitBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Delete a client**
 
 **MSS**
 
 1.  User requests to list clients
-2.  Fitbook shows a list of clients
+2.  FitBook shows a list of clients
 3.  User requests to delete a specific client in the list
-4.  Fitbook deletes the client
+4.  FitBook deletes the client
 
     Use case ends.
 
@@ -331,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. Fitbook shows an error message.
+    * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a client
-2. Fitbook adds the client into the list.
+2. FitBook adds the client into the list.
 
    Use case ends.
 
@@ -348,13 +348,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The client added has missing compulsory fields.
 
-    * 1a1. Fitbook shows an error message for missing fields.
+    * 1a1. FitBook shows an error message for missing fields.
     
       Use case ends.
 
 * 1b. The client added has duplicate names.
 
-    * 1b1. Fitbook shows an error message for duplicate names.
+    * 1b1. FitBook shows an error message for duplicate names.
   
       Use case ends.
 
@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list clients.
-2. Fitbook displays a list of clients.
+2. FitBook displays a list of clients.
 
    Use case ends.
 
@@ -378,7 +378,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to edit a client's details.
-2. Fitbook edits the client's detail into the database.
+2. FitBook edits the client's detail into the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters the command incorrectly.
+
+    * 1a1. FitBook shows an error message.
+
+      Use case ends.
+
+* 1b. The user enters a client that does not exist in the database.
+
+    * 1b1. FitBook shows an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC05 - Clear a client**
+
+**MSS**
+
+1. User requests to clear the list of clients.
+2. FitBook clears the list and database of clients.
 
    Use case ends.
 
