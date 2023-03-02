@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.body.address.PersonDetailCard;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -20,89 +19,97 @@ public class ResultDisplay extends UiPart<Region> {
 
     @FXML
     private VBox resultDisplayContainer;
+    @FXML
+    private Label resultDisplayLabel;
 
     /**
      * Creates a {@code ResultDisplay} with placeholder text.
      */
     public ResultDisplay() {
         super(FXML);
-        resultDisplayContainer.getChildren().add(getFeedbackLabel("Enter command below"));
+        resultDisplayLabel.setText("Enter command below");
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
-        FeedbackExtractor parameters = new FeedbackExtractor(feedbackToUser, "parameters:");
-        FeedbackExtractor example = parameters.fromRemainingPart("example:");
+        FeedbackExtractor extractor = new FeedbackExtractor(feedbackToUser);
+        String params = extractor.extractPart("parameters:");
+        String example = extractor.extractPart("example:");
 
+        resultDisplayLabel.setText(extractor.getLeftoverFeedback());
         ObservableList<Node> nodes = resultDisplayContainer.getChildren();
         nodes.clear();
-        nodes.add(getFeedbackLabel(example.getRemainingPart()));
-        if (parameters.hasExtractedPart()) {
-            // TODO: replace with custom card
-            PersonDetailCard card = new PersonDetailCard(new PersonDetailCard.DetailCardData("Parameters",
-                    parameters.getExtractedPart()));
+        nodes.add(resultDisplayLabel);
+        if (params != null) {
+            ResultDisplayCard card = new ResultDisplayCard("Parameters", params);
             nodes.add(card.getRoot());
         }
-        if (example.hasExtractedPart()) {
-            // TODO: replace with custom card
-            PersonDetailCard card = new PersonDetailCard(new PersonDetailCard.DetailCardData("Example",
-                    example.getExtractedPart()));
+        if (example != null) {
+            ResultDisplayCard card = new ResultDisplayCard("Example", example);
             nodes.add(card.getRoot());
         }
     }
 
-    private Label getFeedbackLabel(String remainingFeedback) {
-        Label label = new Label(remainingFeedback);
-        label.getStyleClass().add("label-p");
-        return label;
-    }
-
+    /**
+     * Helper class to extract parts from the feedback string.
+     */
     private static class FeedbackExtractor {
-        private final String keyword;
-        private String extractedPart;
-        private String remainingPart;
+        private String feedback;
 
-        public FeedbackExtractor(String feedback, String keyword) {
+        public FeedbackExtractor(String feedback) {
             requireNonNull(feedback);
-            requireNonNull(keyword);
-            this.keyword = keyword;
-            this.extractedPart = null;
-            this.remainingPart = feedback;
+            this.feedback = feedback.trim();
+        }
 
+        public String getLeftoverFeedback() {
+            return feedback;
+        }
+
+        public String extractPart(String keyword) {
+            return extractPart(keyword, '\n');
+        }
+
+        /**
+         * Returns part of the feedback, starting from
+         * the first occurrence of {@code keyword} (excluded) to
+         * the last character {@code endChar} (excluded).
+         *
+         * For example, {@code extractPart("parameters:", '\n')} on the string "Parameters: INDEX\n"
+         * will return "INDEX".
+         *
+         * Additionally, {@code keyword} and the corresponding part extracted
+         * will be spliced from the feedback string.
+         *
+         * @param keyword Keyword to search for, case-insensitive.
+         * @param endChar Character representing the end of the search.
+         * @return The extracted string if {@code keyword} exists and is not blank;
+         *         {@code null} otherwise.
+         */
+        public String extractPart(String keyword, char endChar) {
+            requireNonNull(keyword);
             if (keyword.isBlank()) {
-                return;
+                return null;
             }
 
             int startIndex = feedback.toLowerCase().indexOf(keyword.toLowerCase());
             if (startIndex < 0) {
-                return;
+                return null;
             }
-            remainingPart = feedback.substring(0, startIndex).trim();
+
+            String extractedFeedback;
+            String remainingFeedback = feedback.substring(0, startIndex).trim();
             startIndex += keyword.length();
 
-            int endIndex = feedback.indexOf('\n', startIndex);
+            int endIndex = feedback.indexOf(endChar, startIndex);
             if (endIndex < 0) {
-                extractedPart = feedback.substring(startIndex).trim();
+                extractedFeedback = feedback.substring(startIndex).trim();
             } else {
-                extractedPart = feedback.substring(startIndex, endIndex).trim();
-                remainingPart += " " + feedback.substring(endIndex).trim();
+                extractedFeedback = feedback.substring(startIndex, endIndex).trim();
+                remainingFeedback += endChar + feedback.substring(endIndex).trim();
             }
-        }
 
-        public boolean hasExtractedPart() {
-            return extractedPart != null && !extractedPart.isBlank();
-        }
-
-        public String getExtractedPart() {
-            return extractedPart;
-        }
-
-        public String getRemainingPart() {
-            return remainingPart;
-        }
-
-        public FeedbackExtractor fromRemainingPart(String keyword) {
-            return new FeedbackExtractor(getRemainingPart(), keyword);
+            feedback = remainingFeedback;
+            return extractedFeedback.isBlank() ? null : extractedFeedback;
         }
     }
 }
