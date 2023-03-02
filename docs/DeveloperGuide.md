@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Computing undergraduate**: Refers to a university undergraduate of the National University of Singapore who is currently studying a computing degree.
+* **Computing undergraduate**: Refers to an undergraduate of the National University of Singapore who is currently studying towards a computing degree.
 * **Tech stack**: Refers to a set of technologies that a company uses to create or maintain a software system or product.
 --------------------------------------------------------------------------------------------------------------------
 
