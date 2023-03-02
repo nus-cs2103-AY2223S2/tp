@@ -2,27 +2,44 @@
 layout: page
 title: User Guide
 ---
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+# About
+<span style="font-family:Helvetica; font-size:1em;">
+CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
+</span>
 
 --------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+   * [Add](#add)
+   * [View](#view)
+   * [Edit](#edit)
+   * [Find](#find)
+   * [List](#list)
+   * [Delete](#delete)
+   * [Clear](#clear)
+   * [Exit](#exit)
+   * [Help](#help)
+   * Automatically save to file
+   * Automated bulk edit [coming soon]
+   * Archiving data files [coming soon]
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
-## Quick start
+--------------------------------------------------------------------------------------------------------------------
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -35,10 +52,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -65,107 +81,122 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
+<a name="add"></a>
 ### Adding a person: `add`
+_Adds a person to the address book._
+>> add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...
+> 
+> **Compulsory parameters:**
+> - n/NAME (eg. n/John Doe)
+> - e/EMAIL (eg. e/johndoe123@email.com)
+> - y/YEAR (eg. ay/3, ay/prof, ay/alum)
+> - c/COURSE (eg. c/Computer Science, c/Information Security)
+> 
+> **Optional parameters:**
+> - ct/CONTACT (eg.ct/Telegram: @Johndoe123)
+> - sn/STUDENT NUMBER (eg. sn/E1234568)
+> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
+> - job/WORK (eg. job/Google Software Engineer, job/ATAP)
+> - skill/SKILL (eg. skill/C++, skill/Rust)
+> - link//LINK (eg. link//github.com/johndoe123)
+> 
+> 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+> 
+> **Examples:**
+> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe 
+> - `add` n/John Doe e/johnd@example.com y/2 c/Computer Science
+> ![Add Example](images/UiAddContact.png)
 
-Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+<a name="view"></a>
+### Viewing contacts/tabs: `view`
+_View more details of specific contact._
+>> view INDEX
+> 
+> Loads up the contact at INDEX to the right panel to view details
+> 
+> ![image](images/UIViewIndex.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+>> view TAB
+> 
+> Switches the tab of the right panel (eg. view c, view w, view m)
+> 
+> ![image](images/UiViewTab.png)
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+<a name="edit"></a>
+### Editing a person information: `edit`
+_Edits an existing person in the address book._
+>> edit [n/NAME] [e/EMAIL] [y/YEAR] [c/COURSE] [OPTIONAL/PARAMETER]...
+> 
+> - Edits the person displayed in the view panel 
+> - At least one of the optional fields must be provided. 
+> - Existing values will be updated to the input values. 
+> - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. 
+> - You can remove all the person’s tags by typing t/ without specifying any tags after it
+> 
+> **Examples:**
+> - edit p/91234567 e/johndoe@example.com will Edits the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
+> - edit n/Betsy Crower t/ Edits the name of the person to be Betsy Crower and clears all existing tags.
 
-Shows a list of all persons in the address book.
+<a name="find"></a>
+### Finding something: `find`
+_Finds persons whose names contain any of the given keywords._
 
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+>> find KEYWORD [MORE_KEYWORDS]
+> * The search is case-insensitive. e.g `hans` will match `Hans`
+> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> * Only the name is searched. 
+> * Only full words will be matched e.g. `Han` will not match `Hans`
+> * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+>
+> **Examples:**
+> - `find John` returns `john` and `John Doe`
+> - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+<a name="list"></a>
+### List all contacts: `list`
+_Shows a list of all persons in the address book._
+>> `list`
 
-Deletes the specified person from the address book.
+<a name="delete"></a>
+### Delete a contact: `delete`
+_Deletes the specified person from the address book._
+>> delete INDEX
+> 
+> - Deletes the person at the specified INDEX. 
+> - The index refers to the index number shown in the displayed person list. 
+> - The index must be a positive integer 1, 2, 3, …​
+>
+> Examples:
+> - list followed by delete 2 deletes the 2nd person in the address book. 
+> - find Betsy followed by delete 1 deletes the 1st person in the results of the find command.
 
-Format: `delete INDEX`
+<a name="clear"></a>
+### Clear all contacts: `clear`
+_Clears all entries from the address book._
+>> clear
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
+<a name="exit"></a>
 ### Exiting the program : `exit`
+_Exits the program._
+>> `exit`
 
-Exits the program.
+<a name="help"></a>
+### Viewing help : `help`
+_Shows a message explaining how to access the help page._
+>> help
+> 
+> ![help message](images/helpMessage.png)
 
-Format: `exit`
-
-### Saving the data
+### Automatically save to file
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+### Automated bulk edits `[coming in v2.0]`
+_Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -178,16 +209,25 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: Where is the data file stored?<br>
+**A**: AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+:warning: If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+## Command Summary
+| Action             | Format, Examples                                                                                                                                                                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add	               | `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 t/python t/java` |
+| View contact       | `view INDEX`<br />e.g., `view 3`                                                                                                                                                                                                                       |
+| View tab           | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`                                                                                                                                                                                                 |
+| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                    |
+| Find	name          | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`                                                                                                                                                                                                 |
+| Find module        | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`                                                                                                                                                                               |
+| Find tags          | `findt TAG [MORETAGS]`<br />e.g., `findt java python`                                                                                                                                                                                                  |
+| List               | `view` the default list of all contacts                                                                                                                                                                                                                |
+| Delete             | `delete INDEX`<br />e.g., `delete 3`                                                                                                                                                                                                                   |
+| Clear all contacts | `clear`                                                                                                                                                                                                                                                |
+| Exit               | `exit`                                                                                                                                                                                                                                                 |
+| Help               | `help`                                                                                                                                                                                                                                                 |
