@@ -75,6 +75,7 @@ Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE`
   `assessment`, `interview`, `offered` or `rejected`.
 - The meaning of `DATE` would be interpreted with respect to the value of `STATUS`.
 
+
 | Status       | Interpretation of Date       |
 |--------------|------------------------------|
 | `new`        | Deadline of Application      |
@@ -99,22 +100,20 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing an internship entry : `edit`
 
-Edits an existing person in the address book.
+Edits an internship entry from the list of existing entries.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the internship list displayed using the`list` command. 
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* `STATUS` must have one of the following values: `new`, `applied`, `assessment`, `interview`, `offered` or `rejected`.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
+*  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
+
 
 ### Locating persons by name: `find`
 
@@ -162,14 +161,18 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+InternBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Loading the data
+
+InternBuddy data are loaded from the hard disk automatically at the beginning of each run. There is no need to load manually. If the data file is invalid or missing, InternBuddy will discard all data and start with an empty data file at the next run.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, InternBuddy will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
