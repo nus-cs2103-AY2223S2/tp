@@ -103,7 +103,7 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing an internship : `edit`
 
 Edits an existing internship application to be tracked.
 
