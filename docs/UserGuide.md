@@ -119,20 +119,31 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name or tag: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons stored in address book based on the given keywords or tag.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search for both keyword and tag is case-insensitive. 
+  * e.g `hans` will match `Hans`
+  * e.g `t/cs2103t` will match `t/CS2103T`
+* The order of the keywords and tags does not matter. 
+  * e.g. `Hans Bo` will match `Bo Hans`
+  * e.g. `Hans t/cs2103t Bo` will match `Bo Hans t/cs2103t`
+* Only full words will be matched 
+  * e.g. `Han` will not match `Hans`
+  * e.g. `t/2103t` will not match `t/cs2103t` 
+* Persons matching at least one keyword will be returned (i.e. `OR` search). 
+  * e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If tags are used, person will match as long as one of its tags matches. 
+  (Matched person can have more tags than the tags specified.)
+  * e.g. `t/cs2103t t/cs2040` can return persons with only `t/cs2103t`
+  * e.g. `t/cs2103t` matches not just persons with only `t/cs2103t` but also both `t/cs2103t` and `t/cs2040`
+* Only the name is searched if searched without tag (i.e. `[t/TAG]`)
+* If both keywords and tags are provided, it will search for persons matching at least one keyword and contains all the tags specified
 
-Examples:
+  Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -217,6 +228,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
 **List** | `list [t/tag]`
 **Help** | `help`
