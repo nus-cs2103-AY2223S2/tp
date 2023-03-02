@@ -1,6 +1,10 @@
 # TeachMeSenpai
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status][CI Status badge]][CI Status link]
+
+[CI Status badge]: https://github.com/AY2223S2-CS2103T-W12-2/tp/workflows/Java%20CI/badge.svg
+[CI Status link]: https://github.com/AY2223S2-CS2103T-W12-2/tp/actions
+
 
 ![Ui](docs/images/Ui.png)
 
