@@ -45,7 +45,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
       Use case resumes from step 2.
 
-**Use case: Add a recipe**
+
+#### **Use case: Add a recipe**
 
 **MSS**
 
@@ -68,7 +69,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
       Use case ends.
 
-**Use case: Delete a recipe**
+#### **Use case: Delete a recipe**
 
 **MSS**
 
@@ -91,12 +92,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
       Use case resumes from step 2.
 
-
-
-**Use case: View a recipe**
+#### **Use case: View a recipe**
 
 **MSS**
-
 
 1. Chef requests to list recipes
 2. Book shows a list of ***all*** recipes
@@ -119,16 +117,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+    able to accomplish most of the tasks faster using commands than using the mouse.
+4. The app should have a high level of test coverage to ensure quality.
+5. The app should have automated testing and deployment processes to facilitate maintenance.
+6. The app should have clean and well-documented code that is easy to maintain and update. 
+7. The app should be able to tolerate system failures, and save data to the storage file with backups. 
+8. The app should have clear and comprehensive documentation, including user manuals and technical documentation. 
+9. The app should be easily extensible to support new features and functionality. 
+10. The documentation should be up-to-date and accurate. 
+11. The documentation should be accessible to all users.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private recipe detail**: A recipe detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,7 +154,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -158,17 +165,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a recipe
 
-1. Deleting a person while all persons are being shown
+1. Deleting a recipe while all recipes are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First recipe is deleted from the list. Details of the deleted recipe shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No recipe is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
