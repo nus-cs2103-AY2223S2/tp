@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ou Chuhao
 
-<img src="images/DerrickSaltFish.png" width="200px">
+<img src="images/derricksaltfish.png" width="200px">
 
 [[github](http://github.com/DerrickSaltFish)]
 [[portfolio](team/DerrickSaltFish.md)]
