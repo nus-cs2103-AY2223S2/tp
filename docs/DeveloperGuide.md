@@ -285,6 +285,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  User enters person details and submits the command 
+3.  AddressBook saves the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the command.
+
+  Use case ends.
+
+* 2b. AddressBook is unable to save the person.
+
+    * 2b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -307,6 +329,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Editing a person**
+
+**MSS**
+
+1.  User enters a command to edit an existing person by specifying their index number and new details 
+2.  AddressBook updates the person's details
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details. 
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 1b. User enters an invalid index number.
+
+    * 1b1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to update the person's details.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: List all persons**
+
+**MSS**
+
+1.  User enters a command to list all persons
+2.  AddressBook shows a list of all persons with their details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: Locating persons by name**
+
+**MSS**
+
+1.  User enters a command to search for persons by specifying one or more keywords 
+2.  AddressBook searches for persons whose names contain any of the given keywords 
+3.  AddressBook returns a list of persons matching the search criteria
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to search for persons.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 3a. No persons are found matching the search criteria.
+
+    * 3a1. AddressBook shows an empty list message.
+
+      Use case ends.
+
+**Use case: Clearing all entries**
+
+**MSS**
+
+1.  User enters a command to clear all entries 
+2.  AddressBook clears all entries from the address book 
+3.  AddressBook shows a success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to clear all entries.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
