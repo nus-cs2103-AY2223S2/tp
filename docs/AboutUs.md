@@ -28,8 +28,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jeraldkiew)]
 [[portfolio](team/jeraldkiew.md)]
 
-- Role: Documentation
-- Responsibilities: Model
+- Role: Developer
+- Code Focus Area: Model
+- Primary Role: Documentation
+- Secondary Role: Code Quality
 
 ### K Sunil Avinash
 
@@ -47,11 +49,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/daytona65.png" width="200px">
 
-[[github](http://github.com/daytona65]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daytona65)]
+[[portfolio](team/daytona65.md)]
 
-- Role: Integration and Testing
-- Responsibilities: Focusing on UI, integration and testing for the team.
+- Role: Developer
+- Code Focus Area: UI
+- Primary Role: Code Integration
+- Secondary Role: Testing
 
 ### Sun Yitong
 
