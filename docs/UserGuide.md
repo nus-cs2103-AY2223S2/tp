@@ -94,9 +94,9 @@ Examples:
   date of technical assessment `2023-02-01`.
 * `add n/Facebook s/new d/2023-02-01` Displays an error because the role is missing.
 
-### Listing all persons : `list`
+### Listing all internship entries : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internship entries that have been added into InternBuddy.
 
 Format: `list`
 
@@ -114,38 +114,18 @@ Examples:
 *  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
 *  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 
+### Deleting an internship entry : `delete`
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified internship entry from InternBuddy.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the internship entry at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship entries list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example:
+* `list` followed by `delete 2` deletes the 2nd internship entry in InternBuddy.
 
 ### Clearing all entries : `clear`
 
