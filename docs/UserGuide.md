@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic artistic addressbook (ArB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic addressbook (ArB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
 
 ## Table of Contents
 {:toc}
@@ -14,24 +14,22 @@ Artistic artistic addressbook (ArB) is a **desktop app for managing contacts, op
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `artistic addressbook.jar` from [here](https://github.com/se-edu/artistic addressbook-level3/releases).
+1. Download the latest `arb.jar` from [here](https://github.com/se-edu/artistic addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your artistic addressbook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar artistic addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list clients` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Artistic artistic addressbook.
+   * `add name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the Artistic addressbook.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
+   * `delete client 3` : Deletes the 3rd client shown in the current client list.
 
    * `exit` : Exits the app.
 
@@ -81,6 +79,14 @@ All commands case insensitive
 
 </div>
 
+### Viewing help: `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Adding a client: `add client`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client.
@@ -122,12 +128,6 @@ Shows a list of all projects in the application.
 
 Format: `list project`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the artistic artistic addressbook.
-
-Format: `list`
-
 ### Editing a client : `edit client`
 
 Edits the client at the given index of the client list, changing only the given field(s).
@@ -162,38 +162,6 @@ Format: `delete client <index>`
 
 Example:
 *  `delete client 1` Deletes the first client in the list (if there is one).
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the artistic addressbook.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the artistic addressbook.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Deleting a project : `delete project INDEX`
 
@@ -233,11 +201,6 @@ Format: `unmark INDEX`
 
 Examples:
 * `list project` followed by `unmark 2` marks the 2nd project in the list of projects as not done
-### Clearing all entries : `clear`
-
-Clears all entries from the artistic addressbook.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -247,11 +210,11 @@ Format: `exit`
 
 ### Saving the data
 
-artistic addressbook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Artistic addressbook's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-artistic addressbook data are saved as a JSON file `[JAR file location]/data/artisticaddressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Artistic addressbook's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, artistic addressbook will discard all data and start with an empty data file at the next run.
