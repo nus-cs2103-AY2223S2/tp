@@ -1,11 +1,15 @@
-package seedu.address.model.person.patient;
+package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -18,7 +22,7 @@ public class Patient extends Person {
     private final Gender gender;
     private final Ic ic;
     private Optional<DrugAllergy> drugAllergy;
-    private Optional<EmergencyContact> emergencyContact;
+    private Optional<Phone> emergencyContact;
 
     /**
      * Constructs a {@code DateOfBirth}.
@@ -37,7 +41,7 @@ public class Patient extends Person {
      * Uses this constructor when want to include drug allergy or emergency contact of the patient.
      */
     public Patient(Name name, Phone phone, Email email, Address address, DateOfBirth birthDate, Gender gender, Ic ic,
-        DrugAllergy drugAllergy, EmergencyContact emergencyContact) {
+        DrugAllergy drugAllergy, Phone emergencyContact) {
         this(name, phone, email, address, birthDate, gender, ic);
         this.drugAllergy = Optional.ofNullable(drugAllergy);
         this.emergencyContact = Optional.ofNullable(emergencyContact);
@@ -59,7 +63,7 @@ public class Patient extends Person {
         return this.drugAllergy.orElse(null);
     }
 
-    public EmergencyContact getEmergencyContact() {
+    public Phone getEmergencyContact() {
         return this.emergencyContact.orElse(null);
     }
 }

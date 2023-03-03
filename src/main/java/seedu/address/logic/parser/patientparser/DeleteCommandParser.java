@@ -4,7 +4,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.patientcommands.DeleteCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.patient.Ic;
+import seedu.address.model.person.Ic;
 
 import java.util.stream.Stream;
 

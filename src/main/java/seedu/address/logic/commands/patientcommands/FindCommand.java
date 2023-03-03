@@ -4,7 +4,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.CareFlowModel;
-import seedu.address.model.person.patient.NameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 

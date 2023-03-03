@@ -11,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.drug.*;
 import seedu.address.model.person.*;
-import seedu.address.model.person.patient.*;
 import seedu.address.model.tag.Tag;
 
 /**

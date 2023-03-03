@@ -5,7 +5,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.drug.Drug;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 

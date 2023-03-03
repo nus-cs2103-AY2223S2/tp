@@ -10,12 +10,11 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
-import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.DateOfBirth;
-import seedu.address.model.person.patient.DrugAllergy;
-import seedu.address.model.person.patient.EmergencyContact;
-import seedu.address.model.person.patient.Gender;
-import seedu.address.model.person.patient.Ic;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.DrugAllergy;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Ic;
 
 
 import java.util.stream.Stream;

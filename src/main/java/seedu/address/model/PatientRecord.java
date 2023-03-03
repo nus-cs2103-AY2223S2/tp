@@ -1,9 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.UniquePatientList;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.UniquePatientList;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 import java.util.List;

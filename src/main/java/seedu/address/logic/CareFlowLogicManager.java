@@ -10,7 +10,7 @@ import seedu.address.logic.parser.CareFlowParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.drug.Drug;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.storage.Storage;

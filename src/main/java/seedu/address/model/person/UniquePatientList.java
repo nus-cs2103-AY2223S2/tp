@@ -1,12 +1,9 @@
-package seedu.address.model.person.patient;
+package seedu.address.model.person;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePatientException;
 import seedu.address.model.person.exceptions.PatientNotFoundException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
