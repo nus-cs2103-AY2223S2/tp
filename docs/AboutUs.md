@@ -16,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LiuMC-SG)]
 [[portfolio](team/liumc-sg.md)]
 
-* Role: Team Lead
+* Role: Software Developer
+* Responsibilities: Team Lead
 
 ### Darren Chang
 
@@ -26,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/changgittyhub.md)]
 
 * Role: Software Developer
-* Responsibilities: Scheduling and tracking   
+* Responsibilities: Scheduling & Tracking
 
 ### Arkar Kyaw Aung
 
@@ -40,20 +41,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Hmuu Myat Moe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hmuumyatmoe.png" width="200px">
 
 [[github](https://github.com/HmuuMyatMoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hmuumyatmoe.md)]
 
 * Role: Developer
 * Responsibilities: Documentation & Code Quality
 
 ### Chong Wei Guan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chongweiguan.png" width="200px">
 
 [[github](https://github.com/chongweiguan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chongweiguan.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables & Deadlines

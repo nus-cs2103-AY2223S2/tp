@@ -259,12 +259,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Tech-savvy small home-based bakery business owners
-* < 40 years old — receptive to using digital platforms 
+* < 40 years old — receptive to using digital platforms
 * Owns E-commerce businesses that:
-  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products 
+  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products
   * Lack manpower/time to track logistics
   * Has < 5 employees
-  * Has < 200 customers per month 
+  * Has < 200 customers per month
   * Restocks from suppliers seasonally
 * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
@@ -573,8 +573,10 @@ MSS
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
