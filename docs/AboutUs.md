@@ -16,8 +16,8 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 [[github](http://github.com/vigonometry)]
 [[portfolio](team/vigonometry.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
 
 ### Amos Hung
 
@@ -25,8 +25,8 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 
 [[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
 ### Krishnamoorthi Praveen
 
@@ -35,15 +35,16 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 [[github](http://github.com/praveenkrishna0512)]
 [[portfolio](team/praveenkrishna0512.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents.
 
 ### Owen Yap Yuhan
 
-<img src="images/owen.png" width="200px">
+<img src="images/owen-yap.png" width="200px">
 
 [[github](http://github.com/owen-yap)]
 [[portfolio](team/owen.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Project Manager
+* Responsibilities: Responsible for overall project coordination and in charge of defining, \
+assigning, and tracking project tasks.
