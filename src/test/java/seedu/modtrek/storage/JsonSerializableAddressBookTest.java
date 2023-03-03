@@ -23,25 +23,32 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
+<<<<<<< HEAD:src/test/java/seedu/modtrek/storage/JsonSerializableAddressBookTest.java
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         DegreeProgression addressBookFromFile = dataFromFile.toModelType();
         DegreeProgression typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+=======
+        JsonSerializableDegreeProgression dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+                JsonSerializableDegreeProgression.class).get();
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+>>>>>>> pr/37:src/test/java/seedu/address/storage/JsonSerializableAddressBookTest.java
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableDegreeProgression dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+                JsonSerializableDegreeProgression.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableDegreeProgression dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+                JsonSerializableDegreeProgression.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableDegreeProgression.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 

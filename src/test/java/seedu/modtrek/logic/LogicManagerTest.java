@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+<<<<<<< HEAD:src/test/java/seedu/modtrek/logic/LogicManagerTest.java
 import seedu.modtrek.logic.Logic;
 import seedu.modtrek.logic.LogicManager;
 import seedu.modtrek.logic.commands.AddCommand;
@@ -33,6 +34,22 @@ import seedu.modtrek.storage.JsonAddressBookStorage;
 import seedu.modtrek.storage.JsonUserPrefsStorage;
 import seedu.modtrek.storage.StorageManager;
 import seedu.modtrek.testutil.PersonBuilder;
+=======
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonDegreeProgressionStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
+import seedu.address.testutil.PersonBuilder;
+>>>>>>> pr/37:src/test/java/seedu/address/logic/LogicManagerTest.java
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -45,8 +62,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonDegreeProgressionStorage addressBookStorage =
+                new JsonDegreeProgressionStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -73,7 +90,7 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
+        JsonDegreeProgressionStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
@@ -151,7 +168,7 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
+    private static class JsonAddressBookIoExceptionThrowingStub extends JsonDegreeProgressionStorage {
         private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }

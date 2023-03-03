@@ -20,7 +20,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
 
-    protected final String tagName;
+    public final String tagName;
 
     /**
      * Constructs a {@code Tag}.
