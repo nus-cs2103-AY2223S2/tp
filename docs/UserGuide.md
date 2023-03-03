@@ -279,7 +279,7 @@ Save changes after any command executed successfully. There is no need to save m
 Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v1.3]`
