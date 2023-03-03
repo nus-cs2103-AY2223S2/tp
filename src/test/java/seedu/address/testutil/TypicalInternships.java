@@ -36,7 +36,7 @@ public class TypicalInternships {
     public String VALID_TAG_IMPORTANT = "important";
 
     public static final Internship ML2 = new InternshipBuilder().withPosition("Machine Learning")
-            .withCompany("GovTech").withStatus(2).withDescription("Internship Period: unknown"
+            .withCompany("GovTech").withStatus(2).withDescription("Internship Period: unknown")
             .withTags("priority").build();
     public static final Internship SE3 = new InternshipBuilder().withPosition("Software Engineer")
             .withCompany("GovTech").withStatus(3).withDescription("Rejected on 20 Feb 2023")
