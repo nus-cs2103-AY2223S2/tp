@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jin Yuan's Project Portfolio Page
+title: Nigel's Project Portfolio Page
 ---
 
 ### Project: Well Informed Fridge Environment (WIFE)
