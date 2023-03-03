@@ -14,7 +14,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 <img src="images/vignesh.png" width="200px">
 
 [[github](http://github.com/vigonometry)]
-[[portfolio](team/vignesh.md)]
+[[portfolio](team/vigonometry.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -33,7 +33,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 <img src="images/praveen.png" width="200px">
 
 [[github](http://github.com/praveenkrishna0512)]
-[[portfolio](team/praveen.md)]
+[[portfolio](team/praveenkrishna0512.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
