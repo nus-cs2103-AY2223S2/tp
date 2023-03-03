@@ -31,11 +31,11 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        postal = new Postal(DEFAULT_POSTAL);
-        dateAndTime = new DateAndTime(DEFAULT_AGE);
-        age = new Age(DEFAULT_DATEANDTIME);
-        tags = new HashSet<>();
+        this.name = new Name(DEFAULT_NAME);
+        this.postal = new Postal(DEFAULT_POSTAL);
+        this.dateAndTime = new DateAndTime(DEFAULT_DATEANDTIME);
+        this.age = new Age(DEFAULT_AGE);
+        this.tags = new HashSet<>();
     }
 
     /**
@@ -66,7 +66,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Age} of the {@code Person} that we are building.
      */
     public PersonBuilder withAge(String age) {
         this.age = new Age(age);
@@ -82,10 +82,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code DateAndTime} of the {@code Person} that we are building.
      */
-    public PersonBuilder withDateAndTime(String email) {
-        this.dateAndTime = new DateAndTime(email);
+    public PersonBuilder withDateAndTime(String dateAndTime) {
+        this.dateAndTime = new DateAndTime(dateAndTime);
         return this;
     }
 

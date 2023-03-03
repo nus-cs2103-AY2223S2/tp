@@ -38,7 +38,7 @@ public class TypicalPersons {
             .withDateAndTime("cornelia@example.com").withAge("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPostal("948222")
             .withDateAndTime("werner@example.com").withAge("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPostal("948242")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPostal("948247")
             .withDateAndTime("lydia@example.com").withAge("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPostal("948244")
             .withDateAndTime("anna@example.com").withAge("4th street").build();

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the Dengue Hotspot Tracker.
+ * Represents a Person's dengue case dateAndTime in the Dengue Hotspot Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateAndTime(String)}
  */
 public class DateAndTime {
@@ -34,18 +34,18 @@ public class DateAndTime {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code DateAndTime}.
      *
-     * @param dateAndtime A Date and Time.
+     * @param dateAndTime A Date and Time.
      */
-    public DateAndTime(String dateAndtime) {
-        requireNonNull(dateAndtime);
-        checkArgument(isValidDateAndTime(dateAndtime), MESSAGE_CONSTRAINTS);
-        value = dateAndtime;
+    public DateAndTime(String dateAndTime) {
+        requireNonNull(dateAndTime);
+        checkArgument(isValidDateAndTime(dateAndTime), MESSAGE_CONSTRAINTS);
+        value = dateAndTime;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid dateAndTime.
      */
     public static boolean isValidDateAndTime(String test) {
         return test.matches(VALIDATION_REGEX);
