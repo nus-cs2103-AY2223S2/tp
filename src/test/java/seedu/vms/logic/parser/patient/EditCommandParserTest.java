@@ -24,6 +24,7 @@ import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,7 +46,7 @@ import seedu.vms.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + DELIMITER + PREFIX_TAG + " ";
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
