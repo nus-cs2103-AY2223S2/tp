@@ -16,7 +16,7 @@ import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.OperationMode;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
@@ -39,10 +39,9 @@ public class LogicManager implements Logic {
         new CommandGroup(OperationMode.PLANE, new CommandFactory[]{}),
         new CommandGroup(OperationMode.FLIGHT, new CommandFactory[]{}),
         new CommandGroup(OperationMode.LOCATION, new CommandFactory[]{}),
-    };
+        };
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
 
@@ -60,7 +59,7 @@ public class LogicManager implements Logic {
         final String[] rawTokens = commandText.trim().split(" ");
         final Deque<String> tokens = new ArrayDeque<>(Arrays.asList(rawTokens));
         final OperationMode operationMode =
-                this.model.getUserPrefs().getOperationMode();
+            this.model.getUserPrefs().getOperationMode();
         CommandResult result = null;
         for (CommandGroup commandGroup : COMMAND_GROUPS) {
             if (commandGroup.getOperationMode() != operationMode) {
@@ -72,9 +71,9 @@ public class LogicManager implements Logic {
         }
         if (result == null) {
             throw new CommandException("Did not receive a result from the "
-                                               + "command. This may be due to"
-                                               + " the fact that the command "
-                                               + "has not been found.");
+                                           + "command. This may be due to"
+                                           + " the fact that the command "
+                                           + "has not been found.");
         }
         save();
         return result;
@@ -99,7 +98,7 @@ public class LogicManager implements Logic {
                 throw new CommandException("Crew mode not implemented yet");
             case LOCATION:
                 throw new CommandException("Location mode not implemented "
-                                                   + "yet");
+                                               + "yet");
             default:
                 throw new CommandException("Unknown operation mode");
             }

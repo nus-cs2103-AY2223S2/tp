@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Deque;
 
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.exceptions.ParseException;
 
 /**
  * The group of commands.
@@ -23,7 +23,12 @@ public class CommandGroup {
     private final CommandFactory<?>[] factories;
 
     /**
-     * Creates a command group with the given mode and list of factories.
+     * Creates a command group with the given mode and list of factories. A
+     * command groups provides a logical grouping of the commands. Which
+     * command group to use is determined by the current mode of the
+     * software, hence this software being "modal". The specific resolution
+     * of the command is handled inside the command group via its array of
+     * factories.
      *
      * @param mode      the mode at which the command is executed.
      * @param factories the list of factories responsible for creating commands.
@@ -46,7 +51,7 @@ public class CommandGroup {
         for (CommandFactory<?> factory : factories) {
             if (commandWord.equals(factory.getCommandWord())) {
                 final CommandParam param =
-                        CommandParam.from(tokens, factory.getPrefixes());
+                    CommandParam.from(tokens, factory.getPrefixes());
                 return factory.createCommand(param);
             }
         }

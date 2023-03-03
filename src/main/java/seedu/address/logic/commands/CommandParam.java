@@ -124,4 +124,32 @@ public class CommandParam {
         // so that the caller cannot modify the named token
         return namedValues.map(Map::copyOf);
     }
+
+    /**
+     * Gets the value of the named token with the given prefix.
+     */
+    public Optional<String> getValue(String prefix) {
+        if (namedValues.isEmpty()) {
+            return Optional.empty();
+        }
+        return namedValues.get().get(prefix);
+    }
+
+    /**
+     * Gets the integer value of the named token with the given prefix.
+     */
+    public Optional<Integer> getIntValue(String prefix) {
+        if (namedValues.isEmpty()) {
+            return Optional.empty();
+        }
+        Optional<String> value = namedValues.get().get(prefix);
+        if (value.isEmpty()) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(Integer.parseInt(value.get()));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
 }

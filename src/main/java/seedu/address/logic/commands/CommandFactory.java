@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.exceptions.ParseException;
 
 /**
  * The factory that's responsible for creating a command.
@@ -26,7 +26,7 @@ public interface CommandFactory<T extends Command> {
      * then return {@code Optional.empty()}.
      *
      * @return the prefixes of the command, or {@code Optional.empty()} if
-     *         the command does not have any prefixes.
+     *     the command does not have any prefixes.
      */
     Optional<Set<String>> getPrefixes();
 

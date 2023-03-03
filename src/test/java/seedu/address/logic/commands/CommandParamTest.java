@@ -63,7 +63,9 @@ public class CommandParamTest {
     @Test
     void from_nonEmptyTokenNonEmptyPrefixes_returnsNamedValues() {
         // setup
-        String[] rawTokens = new String[]{"token", "p/", "prefix", "token2", "q/", "prefix2"};
+        String[] rawTokens = new String[]{
+            "token", "p/", "prefix", "token2", "q/", "prefix2",
+            };
         Deque<String> tokens = new ArrayDeque<>(Arrays.asList(rawTokens));
         Optional<Set<String>> prefixes = Optional.of(Set.of("p/", "q/"));
 

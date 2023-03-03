@@ -8,29 +8,57 @@ import seedu.address.model.item.Identifiable;
  * Represents a Pilot in the Wingman app.
  */
 public class Pilot implements Identifiable {
+    private final String name;
+
+    private final int age;
+
+    private final Gender gender;
+
+    private final int flightHour;
+
     private final PilotRank rank;
 
     private final String id;
 
     /**
-     * Creates a Pilot with the given name, phone, email and address and a
-     * random {@code UUID} as the id.
+     * Creates a pilot with a random UUID as its id.
      *
-     * @param rank the rank of the pilot.
+     * @param name       the name of the pilot.
+     * @param age        the age of the pilot.
+     * @param gender     the gender of the pilot.
+     * @param rank       the rank of the pilot.
+     * @param flightHour the flight hour of the pilot.
      */
-    public Pilot(PilotRank rank) {
-        this(UUID.randomUUID().toString(), rank);
+    public Pilot(String name, int age, Gender gender, PilotRank rank, int flightHour) {
+        this(UUID.randomUUID().toString(), name, age, gender, rank, flightHour);
     }
 
     /**
-     * Creates a Pilot with the given id, name, phone, email and address.
-     * Every field must be present and not null.
+     * Creates a pilot.
      *
-     * @param id the id of the pilot.
+     * @param id         the id of the pilot.
+     * @param name       the name of the pilot.
+     * @param age        the age of the pilot.
+     * @param gender     the gender of the pilot.
+     * @param rank       the rank of the pilot.
+     * @param flightHour the flight hour of the pilot.
      */
-    public Pilot(String id, PilotRank rank) {
+    public Pilot(String id, String name, int age, Gender gender, PilotRank rank, int flightHour) {
         this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
         this.rank = rank;
+        this.flightHour = flightHour;
+    }
+
+    /**
+     * Returns the name of the pilot.
+     *
+     * @return the name of the pilot.
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -42,6 +70,32 @@ public class Pilot implements Identifiable {
         return rank;
     }
 
+    /**
+     * Returns the age of the pilot.
+     *
+     * @return the age of the pilot.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Gets the gender of the pilot.
+     *
+     * @return the gender of the pilot.
+     */
+    public Gender getGender() {
+        return gender;
+    }
+
+    /**
+     * Gets the flight hour of the pilot.
+     *
+     * @return the flight hour of the pilot.
+     */
+    public int getFlightHour() {
+        return flightHour;
+    }
 
     @Override
     public String getId() {
