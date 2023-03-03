@@ -5,11 +5,11 @@ Advis.io (AIO) is a desktop app for managing clients information, optimized for 
 
 * Table of Contents
   * Quick start
-  * Features 
-    * General Management 
-      * Viewing help : `help `
-      * Exiting the program : `exit` 
-      * Saving the data 
+  * Features
+    * General Management
+      * Viewing help : `help`
+      * Exiting the program : `exit`
+      * Saving the data
       * Editing the data file
     * Client Management
       * Adding a client: `add`
@@ -17,7 +17,7 @@ Advis.io (AIO) is a desktop app for managing clients information, optimized for 
       * Editing a client : `edit`
       * Locating clients by name: `find`
       * Deleting a client : `delete`
-      * Policy Management 
+      * Policy Management
       * Adding a policy: `addPolicy`
       * Deleting a policy : `deletePolicy`
     * FAQ
@@ -83,7 +83,7 @@ Advis.io (AIO) is a desktop app for managing clients information, optimized for 
 </div>
 
 
-## Client Management 
+## Client Management
 
 ### Adding a client: `add`
 
@@ -109,7 +109,7 @@ Edits an existing client in the list of client profiles.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client 
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
   list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -119,7 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Examples:
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567 
+- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
 and johndoe@example.com respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
 
@@ -265,6 +265,40 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Policy Management (todo)
+### Adding a policy.
+
+Adds a policy to a specific client
+
+Format: `addPolicy n/NAME pn/POLICY-NAME d/START-DATE pr/PREMIUM fr/FREQUENCY`
+
+Examples: `addPolicy n/John Doe pn/Health d/28/05/2022 pr/300 fr/MONTHLY`
+
+### Listing all policies.
+
+Format: `listPolicy`
+
+### Editing a policy.
+
+Format: `editPolicy`
+
+### Locating policies by name.
+
+Format: `findPolicy`
+
+### Deleting a policy.
+
+Deletes the indexed policy from a specific client
+
+Format: `deletePolicy n/NAME INDEX`
+
+Examples: `deletePolicy n/John Doe 1`
+
+### Adding a claim.
+
+Format: `claimPolicy`
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -285,3 +319,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add a Policy** | `addPolicy n/NAME pn/POLICY-NAME d/START-DATE pr/PREMIUM fr/FREQUENCY` <br> e.g., `addPolicy n/John Doe pn/Health d/28/05/2022 pr/300 fr/MONTHLY`
+**Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`
