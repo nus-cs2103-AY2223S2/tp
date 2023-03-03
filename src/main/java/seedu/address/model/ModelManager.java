@@ -101,11 +101,11 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Student person) {
         addressBook.addStudent(person);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
-    public void setPerson(Student target, Student editedPerson) {
+    public void setStudent(Student target, Student editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
@@ -146,5 +146,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

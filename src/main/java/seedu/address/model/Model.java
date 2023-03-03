@@ -8,11 +8,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
 
 /**
- * The API of the Model component.
+ * The API of the Model component. Contains the data of the application in-memory.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -74,7 +74,7 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Student target, Student editedPerson);
+    void setStudent(Student target, Student editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Student> getFilteredStudentList();

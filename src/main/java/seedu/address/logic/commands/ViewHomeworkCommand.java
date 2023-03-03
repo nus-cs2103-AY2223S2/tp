@@ -108,7 +108,7 @@ public class ViewHomeworkCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof ViewHomeworkCommand // instanceof handles nulls
                 && namePredicate.equals(((ViewHomeworkCommand) other).namePredicate)
-                && homeworkStatusPredicate.equals(((
-                        ViewHomeworkCommand) other).homeworkStatusPredicate)); // state check
+                && homeworkStatusPredicate.equals(((ViewHomeworkCommand) other).homeworkStatusPredicate)
+                && defaultPredicateFlag == ((ViewHomeworkCommand) other).defaultPredicateFlag); // state check
     }
 }

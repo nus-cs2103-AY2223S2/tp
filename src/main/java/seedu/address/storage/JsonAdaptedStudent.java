@@ -120,5 +120,4 @@ class JsonAdaptedStudent {
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelHomeworkList);
     }
-
 }
