@@ -9,7 +9,6 @@ import seedu.address.model.drug.Drug;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVE_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIRECTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIDE_EFFECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STORAGE_COUNT;
@@ -28,7 +27,6 @@ public class AddCommand extends Command {
             + PREFIX_PURPOSE + "PURPOSE... "
             + PREFIX_SIDE_EFFECT + "SIDE EFFECT... "
             + PREFIX_DIRECTION + "DIRECTION"
-            + PREFIX_EXPIRY_DATE + "EXPIRY DATE "
             + PREFIX_STORAGE_COUNT + "STORAGE COUNT\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TRADE_NAME + "Panadol "
@@ -42,7 +40,6 @@ public class AddCommand extends Command {
             + PREFIX_SIDE_EFFECT + "unexplained bruising or bleeding "
             + PREFIX_DIRECTION + "Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not " +
             "recommended for children under 12 years. "
-            + PREFIX_EXPIRY_DATE + "31-08-2025 "
             + PREFIX_STORAGE_COUNT + "50 ";
 
     public static final String MESSAGE_SUCCESS = "New drug added: %1$s";

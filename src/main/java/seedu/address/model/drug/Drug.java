@@ -1,5 +1,7 @@
 package seedu.address.model.drug;
 
+import javafx.geometry.Side;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -16,23 +18,21 @@ public class Drug {
     // Data fields
     private final ActiveIngredient activeIngredient;
     private final Direction direction;
-    private final ExpiryDate expiryDate;
-    private final Set<Purpose> purposes;
-    private final Set<SideEffect> sideEffects;
+    private final Purpose purposes;
+    private final SideEffect sideEffects;
     private final StorageCount storageCount;
 
     /**
      * Every field must be present and not null.
      */
     public Drug(TradeName tradeName, ActiveIngredient activeIngredient, Direction direction,
-                ExpiryDate expiryDate, Set<Purpose> purposes, Set<SideEffect> sideEffects,
+                Purpose purposes, SideEffect sideEffects,
                 StorageCount storageCount) {
-        requireAllNonNull(tradeName, activeIngredient, direction, expiryDate, purposes, sideEffects,
+        requireAllNonNull(tradeName, activeIngredient, direction, purposes, sideEffects,
                 storageCount);
         this.tradeName = tradeName;
         this.activeIngredient = activeIngredient;
         this.direction = direction;
-        this.expiryDate = expiryDate;
         this.purposes = purposes;
         this.sideEffects = sideEffects;
         this.storageCount = storageCount;
@@ -50,12 +50,8 @@ public class Drug {
         return direction;
     }
 
-    public ExpiryDate getExpiryDate() {
-        return expiryDate;
-    }
-
-    public Set<Purpose> getPurposes() {
-        return Collections.unmodifiableSet(purposes);
+    public Purpose getPurposes() {
+        return purposes;
     }
 
     public StorageCount getStorageCount() {
@@ -66,8 +62,8 @@ public class Drug {
      * Returns an immutable side effect set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<SideEffect> getSideEffects() {
-        return Collections.unmodifiableSet(sideEffects);
+    public SideEffect getSideEffects() {
+        return sideEffects;
     }
 
     /**
@@ -79,8 +75,7 @@ public class Drug {
             return true;
         }
         return otherDrug != null
-                && otherDrug.getTradeName().equals(getTradeName())
-                && otherDrug.getExpiryDate().equals(getExpiryDate());
+                && otherDrug.getTradeName().equals(getTradeName());
     }
 
     @Override
@@ -95,7 +90,6 @@ public class Drug {
         return getTradeName().equals(otherDrug.getTradeName())
                 && getActiveIngredient().equals(otherDrug.getActiveIngredient())
                 && getDirection().equals(otherDrug.getDirection())
-                && getExpiryDate().equals(otherDrug.getExpiryDate())
                 && getPurposes().equals(otherDrug.getPurposes())
                 && getSideEffects().equals(otherDrug.getSideEffects())
                 && getStorageCount().equals(otherDrug.getStorageCount());
@@ -103,7 +97,7 @@ public class Drug {
 
     @Override
     public int hashCode() {
-        return Objects.hash(tradeName, activeIngredient, direction, expiryDate,
+        return Objects.hash(tradeName, activeIngredient, direction,
                 purposes, sideEffects, storageCount);
     }
 
@@ -115,21 +109,13 @@ public class Drug {
                 .append(getActiveIngredient())
                 .append("; Direction: ")
                 .append(getDirection())
-                .append("; Expiry Date: ")
-                .append(getExpiryDate())
                 .append("; Storage Count: ")
-                .append(getStorageCount());
+                .append(getStorageCount())
+                .append("; Purposes: ")
+                .append(getPurposes())
+                .append("; Side Effects: ")
+                .append(getSideEffects());
 
-        Set<Purpose> purposes = getPurposes();
-        if (!purposes.isEmpty()) {
-            builder.append("; Purposes: ");
-            purposes.forEach(builder::append);
-        }
-        Set<SideEffect> sideEffects = getSideEffects();
-        if (!sideEffects.isEmpty()) {
-            builder.append("; Side Effects: ");
-            sideEffects.forEach(builder::append);
-        }
         return builder.toString();
     }
 }

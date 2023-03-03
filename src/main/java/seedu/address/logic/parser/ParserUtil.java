@@ -210,20 +210,6 @@ public class ParserUtil {
         return new Direction(trimmedDirection);
     }
 
-    /**
-     * Parses a {@code String expiryDate} into a {@code ExpiryDate}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code expiryDate} is invalid.
-     */
-    public static ExpiryDate parseExpiryDate(String expiryDate) throws ParseException {
-        requireNonNull(expiryDate);
-        String trimmedExpiryDate = expiryDate.trim();
-        if (!ExpiryDate.isValidExpiryDate(trimmedExpiryDate)) {
-            throw new ParseException(ExpiryDate.MESSAGE_CONSTRAINTS);
-        }
-        return new ExpiryDate(trimmedExpiryDate);
-    }
 
     /**
      * Parses a {@code String purpose} into a {@code Purpose}.
