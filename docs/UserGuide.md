@@ -8,16 +8,16 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  * [Add a Contact](#add-a-contact--newcontact)
-  * [View Contact List](#list-all-contacts--listcontact)
-  * [Link Contact to Event](#link-contact-to-event--link)
-  * [View Rate](#view-rate--rate)
-  * [Tag Rate](#tag-rate--newrate)
-  * [Mark Event as Done](#mark-event-as-done--mark)
-  * [Create New Event](#create-new-event--newevent)
-  * [View Event List](#list-all-events--listevent)
-  * [Delete an Event](#delete-an-event--deleteevent)
-  * [Add Date to Event](#add-date-to-an-event--adddate)
+  * [Add a Contact](#add-a-contact-newcontact)
+  * [View Contact List](#list-all-contacts-listcontact)
+  * [Link Contact to Event](#link-contact-to-event-link)
+  * [View Rate](#view-rate-rate)
+  * [Tag Rate](#tag-rate-newrate)
+  * [Mark Event as Done](#mark-event-as-done-mark)
+  * [Create New Event](#create-new-event-newevent)
+  * [View Event List](#list-all-events-listevent)
+  * [Delete an Event](#delete-an-event-deleteevent)
+  * [Add Date to Event](#add-date-to-an-event-adddate)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -50,7 +50,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 
 ## Features
 
-### Add a Contact : `newcontact`
+### Add a Contact: `newcontact`
 
 Adding a contact to contacts
 
@@ -64,7 +64,7 @@ Adding a contact to contacts
 - `newcontact n/Mandy p/98765432`
 
 
-### List all Contacts : `listcontact`
+### List all Contacts: `listcontact`
 
 Displays all contacts saved in a list
 
@@ -139,14 +139,14 @@ Creates a new event
 **Example**: 
 - `newevent Singing` creates an event that has the name “Singing”.
 
-### List all Events : `listevent`
+### List all Events: `listevent`
 
 Shows a list of all events in the address book
 
 **Format**: `listevent`
 
 
-### Delete an Event : `deleteevent`
+### Delete an Event: `deleteevent`
 
 Deletes the specified event from the event book.
 
@@ -159,7 +159,7 @@ Deletes the specified event from the event book.
 **Example**:
   - `deleteevent 2` deletes the `2nd event` in the event list.
 
-### Add Date to an Event : `adddate`
+### Add Date to an Event: `adddate`
 
 Adds a starting time and ending time to the specified event in the event book.
 
