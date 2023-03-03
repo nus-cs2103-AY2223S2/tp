@@ -30,7 +30,7 @@ The documentation for Architecture is still **_in progress_**
 ### Product scope
 
 **Target user profile**
-We hope to target admin staff within hospitals who have to settle triaging of patients. <br>
+We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
 Here are some characteristics of our target user profile: <br>
 * needs to assign patients to the appropriate doctors quickly
 * prefer desktop apps over other types
