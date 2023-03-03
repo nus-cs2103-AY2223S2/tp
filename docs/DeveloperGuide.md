@@ -290,54 +290,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Use case: Add a job**
-
-**MSS**
+<details>
+<summary><b>[UC1] View statistics</b></summary>
+<pre>
+<b>MSS</b>
 
 1.  User is on homepage of list of jobs
-2.  AddressBook shows button to add job at the top
-3.  User requests to add a job in the list
-4.  AddressBook adds job and job appears in list of jobs
-
-    Use case ends.
-
-**Use case: Chat with a client**
-
-**MSS**
-
-1. User go to job list/contact list.
-2. User go to specific job/client.
-3. User start chatting by clicking on "Chat" function. Chat window pops out.
-4. Start typing and sending message by pressing Enter.
-
-   Use case ends.
-
-**Use case: View statistics**
-
-**MSS**
-
-1.  User is on homepage of list of jobs
-2.  AddressBook shows button to view overall statistics at the top
+2.  Duke Driver shows button to view overall statistics at the top
 3.  User requests to view statistics
-4.  AddressBook shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
+4.  Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
+
+    Use case ends.
+    
+<b>Extensions</b>
+
+* 2a. The list is empty.
+
+  Use case ends.
+</pre>
+</details>  
+
+<details>
+<summary><b>[UC2] Delete a job</b></summary>
+
+<pre>
+<b>MSS</b>
+
+1.  User is on homepage of list of jobs
+2.  Duke Driver shows a list of jobs 
+3.  User requests to delete a specific job in the list
+4.  Duke Driver deletes the job
 
     Use case ends.
 
-
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
@@ -345,17 +333,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Duke Driver shows an error message.
 
       Use case resumes at step 2.
+
+</pre>
+</details>  
+
+
+
+<details>
+<summary><b>[UC3] Add a job</b></summary>
+<pre>
+<b>MSS</b>
+
+
+1.  User is on homepage of list of jobs
+2.  Duke Driver shows button to add job at the top
+3.  User requests to add a job in the list
+4.  Duke Driver adds job and job appears in list of jobs
+
+    Use case ends.
+</pre>
+</details>  
+
+
+
+<details>
+<summary><b>[UC4] Chat with a client</b></summary>
+<pre>
+<b>MSS</b>
+
+1. User requests to list jobs/contacts.
+2. Duke Driver shows a list of jobs (UC2)
+3. User requests to display a specific job to start chat.
+4. Duke Driver displays the chosen job with more specific details.
+5. User selects "Chat" function from the chosen job.
+6. Duke Driver prompts Chat window with specific client.
+7. User starts the chat by typing in the messages and press Enter to send/
+8. Duke Driver shows the message sent in the Chat window.
+
+   Use case ends.
+
+<b>Extensions</b>
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Duke Driver shows an error message.
+
+      Use case resumes at step 2.
+</pre>
+</details>  
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be used for a single user only i.e. (not a multi-user product).
+3.  The system should respond within two seconds (after receiving input from user). 
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
