@@ -367,8 +367,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list jobs/contacts.
 2. Duke Driver shows a list of jobs (UC2)
 3. User requests to display a specific job to start chat.
-4. Duke Driver displays the chosen job with more specific details.
-5. User selects "Chat" function from the chosen job.
+4. Duke Driver displays the chosen job in details and Chat option.
+5. User selects "Chat" option from the chosen job.
 6. Duke Driver prompts Chat window with specific client.
 7. User starts the chat by typing in the messages and requests to send
 8. Duke Driver shows the message sent in the Chat window.
