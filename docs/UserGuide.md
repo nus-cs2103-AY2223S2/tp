@@ -1,4 +1,7 @@
-# User Guide for Paidlancers
+---
+layout: page
+title: User Guide for Paidlancers
+---
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
 
@@ -159,5 +162,4 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 | [Marks event as done](#marks-event-as-done-mark) | `mark INDEX` | `mark 2` |
 | [Create a new event](#create-a-new-event-newevent) | `newevent NAME` | `newevent Singing` |
 
-
-[Back to top](#user-guide-for-paidlancers)
+[Back to top](#)
