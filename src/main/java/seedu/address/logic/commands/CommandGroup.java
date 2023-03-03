@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Deque;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,11 +38,11 @@ public class CommandGroup {
      *
      * @param tokens the tokens of the command.
      */
-    public Command parse(String[] tokens) throws ParseException {
+    public Command parse(Deque<String> tokens) throws ParseException {
         requireNonNull(tokens);
-        assert tokens.length > 0 : "tokens should not be empty";
+        assert tokens.size() > 0 : "tokens should not be empty";
 
-        String commandWord = tokens[0];
+        String commandWord = tokens.pop();
         for (CommandFactory<?> factory : factories) {
             if (commandWord.equals(factory.getCommandWord())) {
                 final CommandParam param =
@@ -49,5 +51,14 @@ public class CommandGroup {
             }
         }
         throw new ParseException("Unknown command");
+    }
+
+    /**
+     * Returns the mode at which the command is executed.
+     *
+     * @return the mode at which the command is executed.
+     */
+    public OperationMode getOperationMode() {
+        return mode;
     }
 }

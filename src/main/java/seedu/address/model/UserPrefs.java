@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.OperationMode;
 
 /**
  * Represents User's preferences.
@@ -16,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
+    private int operationModeId = 0;
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -58,6 +60,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    // =================== OperationMode ===================
+
+    /**
+     * Returns the operation mode of the application.
+     *
+     * @return the operation mode of the application
+     */
+    public OperationMode getOperationMode() {
+        return OperationMode.fromInt(operationModeId);
+    }
+
+    /**
+     * Sets the operation mode of the application.
+     *
+     * @param operationMode the new operation mode of the application
+     */
+    public void setOperationMode(OperationMode operationMode) {
+        requireNonNull(operationMode);
+        this.operationModeId = operationMode.toInt();
     }
 
     // =================== PilotManager ===================

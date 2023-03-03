@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import seedu.address.commons.models.Pair;
+import java.util.Set;
 
 /**
  * Represents the parameters of a command.
@@ -23,7 +23,7 @@ public class CommandParam {
     private final Optional<Map<String, Optional<String>>> namedValues;
 
     private CommandParam(Optional<String> unnamedValue,
-                         Optional<Map<String, Optional<String>>> namedValues) {
+        Optional<Map<String, Optional<String>>> namedValues) {
         this.unnamedValue = unnamedValue;
         this.namedValues = namedValues;
     }
@@ -40,59 +40,65 @@ public class CommandParam {
      * @param prefixes the prefixes of the command.
      * @return the command parameter created.
      */
-    public static CommandParam from(String[] tokens,
-                                    Optional<Map<String, String>> prefixes) {
+    public static CommandParam from(Deque<String> tokens,
+        Optional<Set<String>> prefixes) {
         // special cases
-        if (tokens.length == 0) {
+        if (tokens.size() == 0) {
             return new CommandParam(Optional.empty(),
-                    Optional.empty());
+                Optional.empty());
         }
         if (prefixes.isEmpty()) {
             return new CommandParam(
-                    Optional.of(String.join(" ", tokens)),
-                    Optional.empty());
+                Optional.of(String.join(" ", tokens)),
+                Optional.empty());
         }
         // set up
-        Map<String, String> prefixMap = prefixes.get();
-        final StringBuilder builder = new StringBuilder();
+        Set<String> prefixMap = prefixes.get();
         // handle the unnamed token
-        Pair<Optional<String>, Integer> unnamedValuePair =
-                getUnnamedValue(tokens, prefixMap);
-        Optional<String> unnamedValue = unnamedValuePair.getFirst();
-        int start = unnamedValuePair.getSecond();
+        Optional<String> unnamedValue =
+            parseUnnamedValue(tokens, prefixMap);
         // handle the named tokens
         Map<String, Optional<String>> namedValues =
-                getNamedValues(tokens, prefixMap, start);
+            parseNamedValues(tokens, prefixMap);
         return new CommandParam(unnamedValue, Optional.of(namedValues));
     }
 
-    private static Pair<Optional<String>, Integer>
-    getUnnamedValue(String[] tokens, Map<String, String> prefixMap) {
+    private static Optional<String> parseUnnamedValue(Deque<String> tokens,
+        Set<String> prefixes) {
         final StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < tokens.length; i++) {
-            if (prefixMap.containsKey(tokens[i])) {
-                return new Pair<>(Optional.of(builder.toString().trim()), i);
-            }
-            builder.append(tokens[i]).append(" ");
+        while (!prefixes.contains(tokens.peek())) {
+            builder.append(tokens.pop()).append(" ");
         }
-        return new Pair<>(Optional.empty(), tokens.length);
+        if (builder.length() == 0) {
+            return Optional.empty();
+        }
+        return Optional.of(builder.toString().trim());
     }
 
-    private static Map<String, Optional<String>>
-    getNamedValues(String[] tokens, Map<String, String> prefixMap, int start) {
-        final StringBuilder builder = new StringBuilder();
+    private static Map<String, Optional<String>> parseNamedValues(Deque<String> tokens,
+        Set<String> prefixes) {
+        if (tokens.size() == 0) {
+            return new HashMap<>();
+        }
         Map<String, Optional<String>> namedValues = new HashMap<>();
-        for (int i = start; i < tokens.length; i++) {
-            if (!prefixMap.containsKey(tokens[i])) {
-                continue;
-            }
-            String prefix = prefixMap.get(tokens[i]);
-            if (i + 1 >= tokens.length || prefixMap.containsKey(tokens[i + 1])) {
+        String prefix = tokens.pop();
+        final StringBuilder builder = new StringBuilder();
+        while (tokens.size() > 0) {
+            if (prefixes.contains(tokens.peek())) {
                 namedValues.put(prefix, Optional.of(builder.toString().trim()));
+                prefix = tokens.pop();
                 builder.setLength(0);
-                break;
+            } else {
+                builder.append(tokens.pop()).append(" ");
             }
-            builder.append(tokens[i + 1]).append(" ");
+        }
+        if (builder.length() > 0) {
+            namedValues.put(prefix, Optional.of(builder.toString().trim()));
+        }
+        for (String p : prefixes) {
+            if (!namedValues.containsKey(p)) {
+                namedValues.put(p, Optional.empty());
+            }
         }
         return namedValues;
     }

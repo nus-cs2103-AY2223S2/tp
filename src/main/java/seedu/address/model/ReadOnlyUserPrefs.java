@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.OperationMode;
 
 /**
  * Unmodifiable view of user prefs.
@@ -10,6 +11,8 @@ import seedu.address.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
+
+    OperationMode getOperationMode();
 
     Path getAddressBookFilePath();
 
