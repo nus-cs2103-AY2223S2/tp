@@ -1,8 +1,7 @@
 package seedu.address.model.readonly;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Patient;
 
 /**
  * Unmodifiable view of a patient records

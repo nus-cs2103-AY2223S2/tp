@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.drug.Drug;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.Patient;
 
 /**
  * Panel containing the list of persons.
