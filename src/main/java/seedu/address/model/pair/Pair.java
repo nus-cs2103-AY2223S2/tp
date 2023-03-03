@@ -4,7 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * Represents a Pair of elderly and volunteer in the address book.
@@ -13,36 +14,35 @@ import seedu.address.model.person.Person;
 public class Pair {
 
     // Identity fields
-    private final Person elderly;
+    private final Elderly elderly;
 
-    private final Person volunteer;
+    private final Volunteer volunteer;
 
     /**
      * Every field must be present and not null.
      */
-    public Pair(Person elderly, Person volunteer) {
+    public Pair(Elderly elderly, Volunteer volunteer) {
         requireAllNonNull(elderly, volunteer);
         this.elderly = elderly;
         this.volunteer = volunteer;
     }
 
-    public Person getElderly() {
+    public Elderly getElderly() {
         return elderly;
     }
 
-    public Person getVolunteer() {
+    public Volunteer getVolunteer() {
         return volunteer;
     }
 
     /**
-     * Returns true if both pairs have the same volunteer name and elderly name.
+     * Returns true if both pairs have the same volunteer and elderly.
      * This defines a weaker notion of equality between two pairs.
      */
     public boolean isSamePair(Pair otherPair) {
         if (otherPair == this) {
             return true;
         }
-
         return otherPair != null
                 && getElderly().isSamePerson(otherPair.getElderly())
                 && getVolunteer().isSamePerson(otherPair.getVolunteer());

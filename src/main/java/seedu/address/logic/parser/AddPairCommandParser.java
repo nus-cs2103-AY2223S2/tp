@@ -4,19 +4,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Email;
-import seedu.address.model.person.information.Name;
-import seedu.address.model.person.information.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Parses input arguments and creates a new AddPairCommand object
@@ -37,17 +28,10 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
 
-        Name elderly = ParserUtil.parseName(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
-        Name volunteer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).get());
-        Phone phone = ParserUtil.parsePhone("88888888");
-        Email email = ParserUtil.parseEmail("dummy@email.com");
-        Address address = ParserUtil.parseAddress("dummy address");
-        Set<Tag> tagList = ParserUtil.parseTags(new HashSet<>());
+        Nric elderlyNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
+        Nric volunteerNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).get());
 
-        Pair pair = new Pair(new Person(elderly, phone, email, address, tagList),
-                new Person(volunteer, phone, email, address, tagList));
-
-        return new AddPairCommand(pair);
+        return new AddPairCommand(elderlyNric, volunteerNric);
     }
 
 }

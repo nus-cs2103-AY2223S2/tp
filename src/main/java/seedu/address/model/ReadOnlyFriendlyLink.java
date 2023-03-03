@@ -5,9 +5,9 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of FriendlyLink.
  */
-public interface ReadOnlyFriendlyLink {
+public interface ReadOnlyFriendlyLink extends ReadOnlyElderly, ReadOnlyVolunteer {
 
     /**
      * Returns an unmodifiable view of the persons list.

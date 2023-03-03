@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_AMY;
@@ -28,6 +29,7 @@ import seedu.address.model.person.Elderly;
  * (to be finished)
  */
 public class TypicalElderlys {
+
     public static final Elderly ALICE = new ElderlyBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends")
@@ -65,6 +67,11 @@ public class TypicalElderlys {
     public static final Elderly BOB = new ElderlyBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB).build();
+
+    // TODO: Replace magic strings
+    public static final Elderly CHARLIE = new ElderlyBuilder().withName("Charlie Kurz")
+            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
+            .withAge("31").withNric(VALID_NRIC_CHARLIE).build();
 
     private TypicalElderlys() {} // prevents instantiation
 

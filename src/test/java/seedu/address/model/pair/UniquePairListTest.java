@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPairs.PAIR2;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,8 +40,7 @@ public class UniquePairListTest {
     @Test
     public void contains_pairWithSameElderlyAndVolunteer_returnsTrue() {
         uniquePairList.add(PAIR1);
-        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(ALICE).withVolunteer(BOB)
-                .build();
+        Pair editedPair1 = new PairBuilder(PAIR1).build();
         assertTrue(uniquePairList.contains(editedPair1));
     }
 

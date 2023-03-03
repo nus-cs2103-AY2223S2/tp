@@ -75,10 +75,10 @@ You can reach us at any one of the following emails:
 
 ### Lee Zong Xun
 
-<img src="images/Zxun2.png" width="200px" alt="Zxun2's image">
+<img src="images/zxun2.png" width="200px" alt="Zxun2's image">
 
 [[github](http://github.com/Zxun2)]
-[[portfolio](team/Zxun2.md)]
+[[portfolio](team/zxun2.md)]
 
 * Role: Developer
 * Responsibilities:

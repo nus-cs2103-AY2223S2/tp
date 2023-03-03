@@ -67,5 +67,4 @@ public class ElderlyBuilder extends PersonBuilderScaffold<ElderlyBuilder> {
         return new Elderly(name, phone, email, address,
                 nric, age, riskLevel, tags);
     }
-
 }

@@ -4,9 +4,9 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building FriendlyLink objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code FriendlyLink fl = new FriendlyLinkBuilder().withPerson("John", "Doe").build();}
  */
 public class FriendlyLinkBuilder {
 
@@ -21,7 +21,7 @@ public class FriendlyLinkBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code FriendlyLink} that we are building.
      */
     public FriendlyLinkBuilder withPerson(Person person) {
         friendlyLink.addPerson(person);

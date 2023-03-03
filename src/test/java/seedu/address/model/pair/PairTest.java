@@ -4,20 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalElderlys.AMY;
+import static seedu.address.testutil.TypicalElderlys.CHARLIE;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPairs.PAIR2;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Elderly;
+import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.PairBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class PairTest {
 
@@ -29,15 +29,16 @@ public class PairTest {
         // null -> returns false
         assertFalse(PAIR1.isSamePair(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        // same nric, all other attributes different -> returns true
+        Elderly editedAmy = new ElderlyBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
+        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAmy).build();
         assertTrue(PAIR1.isSamePair(editedPair1));
+        // TODO: check that a different name returns true if nric is the same.
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_AMY).build();
-        editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
+        // different nric, all other attributes same -> returns false
+        editedAmy = new ElderlyBuilder(AMY).withNric(VALID_NRIC_BOB).build();
+        editedPair1 = new PairBuilder(PAIR1).withElderly(editedAmy).build();
         assertFalse(PAIR1.isSamePair(editedPair1));
     }
 
@@ -60,7 +61,7 @@ public class PairTest {
         assertFalse(PAIR1.equals(PAIR2));
 
         // different elderly -> returns false
-        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(CARL).build();
+        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(CHARLIE).build();
         assertFalse(PAIR1.equals(editedPair1));
 
         // different volunteer -> returns false
