@@ -18,7 +18,16 @@ Our app is catered towards fast typist and many features are catered for student
 
 
 ### 🔍 Filter contacts by their tags quickly
+
 MODCheck can quickly filter all your contacts based on the tag provided
+
+### 💾 Instant saving when changes are made
+
+MODCheck can save all your work immediately on the fly
+
+### ✅ List all contacts quickly without lag
+
+MODCheck can display all your contacts in one go!
 
 ## Usage
 
