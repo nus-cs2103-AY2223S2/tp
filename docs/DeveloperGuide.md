@@ -270,14 +270,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                              | I want to …​                                                                | So that I can…​                                                   |
+|----------|--------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | parcel delivery rider (basic)        | view all my deliveries                                                      | I can view my future deliveries as well                           |
+| `* * *`  | parcel delivery rider (basic)        | view a specific delivery                                                    | I can view the details of the delivery                            |
+| `* * *`  | parcel delivery rider (basic)        | delete a delivery                                                           | I can delete the delivery if I input it wrongly                   |
+| `* * *`  | parcel delivery rider (basic)        | add deliveries                                                              | I can add new delivery jobs                                       |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery in progess                                                  | I can keep track of which deliveries is in progress               |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as done                                                     | I can keep track of which deliveries are done                     |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as failed                                                   | I can keep track of which deliveries have failed to be delivered  |
+| `* * *`  | parcel delivery rider (basic)        | check what specific parcel I need to deliver to a specific address          | I will delivery the correct parcel to the correct customers       |
+| `* * `   | parcel delivery rider (basic)        | view the number of failed attempts                                          | I know which deliveries have multiple failed attempts             |
+| `* * `   | parcel delivery rider (intermediate) | see the weight of the parcels                                               | I can carry the appropriate amount of parcels                     |
+| `* * `   | parcel delivery rider (basic)        | see the phone number of the customer                                        | I can contact the customer if there is no response at the address |
+| `* * `   | parcel delivery rider (intermediate) | find the shortest path that goes through the scheduled delivery for the day | I can complete my job efficiently                                 |
+| `* * `   | customer (basic)                     | be notified when the delivery is in progress                                | I can be there to receive the delivery                            |
+| `* * `   | customer (basic)                     | leave feedback                                                              | get better services in the future                                 |
+| `* * `   | parcel delivery rider (expert)       | sort my deliveries by priority                                              | I know which deliveries I have to deliver first                   |
+| `* * `   | parcel delivery rider (expert)       | view all my deliveries in a map form                                        | I have an overall view of where my deliveries are                 |
+| `* * `   | parcel delivery rider (new riders)   | view the nearest carpark on the map                                         | I know where to park my vehicle                                   |
+| `* * `   | parcel delivery rider                | mark parcels as fragile                                                     | I can be more careful for fragile parcels                         |
+| `* * `   | parcel delivery rider                | get notified to take a break                                                | I know if I am exceeding or under utilizing my breaks             |
 
 *{More to be added}*
 
