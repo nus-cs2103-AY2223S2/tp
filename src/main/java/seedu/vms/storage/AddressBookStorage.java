@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.DataConversionException;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link seedu.vms.model.person.AddressBook}.
+ * Represents a storage for {@link seedu.vms.model.patient.AddressBook}.
  */
 public interface AddressBookStorage {
 

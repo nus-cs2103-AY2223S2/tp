@@ -14,8 +14,8 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.storage.Storage;
 
 /**
@@ -61,8 +61,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableMap<Integer, IdData<Person>> getFilteredPersonMap() {
-        return model.getFilteredPersonList();
+    public ObservableMap<Integer, IdData<Patient>> getFilteredPatientMap() {
+        return model.getFilteredPatientList();
     }
 
     @Override

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.vms.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.vms.testutil.Assert.assertThrows;
-import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,15 +18,15 @@ import seedu.vms.logic.commands.patient.AddCommand;
 import seedu.vms.logic.commands.patient.ClearCommand;
 import seedu.vms.logic.commands.patient.DeleteCommand;
 import seedu.vms.logic.commands.patient.EditCommand;
-import seedu.vms.logic.commands.patient.EditCommand.EditPersonDescriptor;
+import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.logic.commands.patient.FindCommand;
 import seedu.vms.logic.commands.patient.ListCommand;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.person.NameContainsKeywordsPredicate;
-import seedu.vms.model.person.Person;
-import seedu.vms.testutil.EditPersonDescriptorBuilder;
-import seedu.vms.testutil.PersonBuilder;
-import seedu.vms.testutil.PersonUtil;
+import seedu.vms.model.patient.NameContainsKeywordsPredicate;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.testutil.EditPatientDescriptorBuilder;
+import seedu.vms.testutil.PatientBuilder;
+import seedu.vms.testutil.PatientUtil;
 
 public class PatientParserTest {
 
@@ -34,9 +34,9 @@ public class PatientParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parse(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Patient patient = new PatientBuilder().build();
+        AddCommand command = (AddCommand) parser.parse(PatientUtil.getAddCommand(patient));
+        assertEquals(new AddCommand(patient), command);
     }
 
     @Test
@@ -48,17 +48,17 @@ public class PatientParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parse(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_PATIENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Patient patient = new PatientBuilder().build();
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
 
     @Test

@@ -107,7 +107,7 @@ The patient feature manages patient's information such as their contact informat
 
 #### Add a patient - `add`
 
-Adds a person to the system.
+Adds a patient to the system.
 
 ```text
 patient add --name <string> [--phone <phone-number>] [--email <string>]

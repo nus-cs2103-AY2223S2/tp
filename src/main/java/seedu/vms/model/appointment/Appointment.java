@@ -5,26 +5,26 @@ import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import seedu.vms.model.person.Person;
+import seedu.vms.model.patient.Patient;
 
 /**
  * Represents an Appointment in the vaccine management system.
  */
 public class Appointment {
-    private final Person person;
+    private final Patient patient;
     private LocalDateTime appointmentTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person person, LocalDateTime appointmentTime) {
-        requireAllNonNull(person, appointmentTime);
-        this.person = person;
+    public Appointment(Patient patient, LocalDateTime appointmentTime) {
+        requireAllNonNull(patient, appointmentTime);
+        this.patient = patient;
         this.appointmentTime = appointmentTime;
     }
 
-    public Person getPerson() {
-        return person;
+    public Patient getPatient() {
+        return patient;
     }
 
     public LocalDateTime getAppointmentTime() {
@@ -41,13 +41,13 @@ public class Appointment {
      * Returns true if both appointments have the same patient.
      * This defines a weaker notion of equality between two patients.
      */
-    public boolean isSamePatient(Person otherPerson) {
-        if (otherPerson == person) {
+    public boolean isSamePatient(Patient otherPatient) {
+        if (otherPatient == patient) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(person.getName());
+        return otherPatient != null
+                && otherPatient.getName().equals(patient.getName());
     }
 
     /**
@@ -65,19 +65,19 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.getPerson().equals(getPerson())
+        return otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(person, appointmentTime);
+        return Objects.hash(patient, appointmentTime);
     }
 
     @Override
     public String toString() {
-        return person
+        return patient
                 + " has an appointment at"
                 + appointmentTime;
     }

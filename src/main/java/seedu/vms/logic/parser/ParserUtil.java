@@ -12,10 +12,10 @@ import java.util.Set;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.person.Address;
-import seedu.vms.model.person.Email;
-import seedu.vms.model.person.Name;
-import seedu.vms.model.person.Phone;
+import seedu.vms.model.patient.Address;
+import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Name;
+import seedu.vms.model.patient.Phone;
 import seedu.vms.model.tag.Tag;
 
 /**
