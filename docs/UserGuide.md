@@ -12,6 +12,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
   * [View Contact List](#view-contact-list)
   * [Link Contact to Event](#link-contact-event)
   * [View Rate](#view-rate)
+  * [Tag Rate](#tag-rate)
   * [Marks event as done](#marks-event-as-done-:-mark)
   * [Create a new event](#create-a-new-event-:-newevent)
 - [FAQ](#faq)
@@ -65,34 +66,34 @@ Format: listcontact
 Displays the list of contacts saved
 
 
-Linking a client contact  to a event : link
+### Linking a client contact  to a event : `link`
 Links client contact to an event.
-Format: link INDEX CONTACT
-Links contact to the event at the specified INDEX.
+Format: `link INDEX CONTACT`
+Links contact to the event at the specified `INDEX`.
 The index refers to the index number in the displayed events list.
 The index must be a positive integer 1, 2, 3, …​
 Example:
-link 2 91234567 links contact 91234567 to 2nd event in the list.
+- `link 2 91234567` links contact 91234567 to 2nd event in the list.
 
 
-Display the rate: rate
+### Display the rate: `rate`
 Displays the rate tagged to an event.
-Format: rate INDEX
-Displays the agreed rate of the event at the specified INDEX.
+Format: `rate INDEX`
+Displays the agreed rate of the event at the specified `INDEX`.
 The index refers to the index number in the displayed events list.
 The index must be a positive integer 1, 2, 3, …​
 Example: 
-rate 2 returns the rate of 2nd event in the event list.
+- `rate 2` returns the rate of 2nd event in the event list.
 
 
-Display the rate: newrate
+### Tag a rate: `newrate`
 Tags a rate to an event.
-Format: newrate INDEX AMOUNT
-Adds a specified rate, AMOUNT, to an event at the specified INDEX.
+Format: `newrate INDEX AMOUNT`
+Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
 The index refers to the index number in the displayed events list.
 The index must be a positive integer 1, 2, 3, …​
 Example: 
-newrate 2 100 adds the rate of 100 to thex 2nd event in the event list.
+- `newrate 2 100` adds the rate of 100 to thex 2nd event in the event list.
 
 
 ### Marks event as done : `mark`
@@ -155,11 +156,10 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 ## Command Summary
 |                   Commands                    |                     Command Format                      |                        Example Usage                          | 
 |:---------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------------:|
-| [Add a Contact](#add-a-contact) | | |  
-| [View Contact List](#view-contact-list) | | |  
-| [Link Contact to Event](#link-contact-event) | | |
-| [View Rate](#view-rate) | | |  
-| [Marks event as done](#marks-event-as-done-:-mark) | `mark INDEX` | `mark 2` |
-| [Create a new event](#create-a-new-event-:-newevent)  | `newevent` | `newevent` |
+
+| [Link Contact to Event](#link-contact-event) | `link INDEX CONTACT` | `link 2 91234567` |
+| [View Rate](#view-rate) | `rate INDEX` | `rate 2` |  
+| [Tag a rate](#tag-rate) | `newrate INDEX AMOUNT` | `newrate 2 100` |
+
 
 [Back to top](#user-guide-for-taskgenie)
