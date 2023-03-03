@@ -9,7 +9,7 @@ Duke Driver - A contact and job management app to aid delivery drivers in better
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Feature**: Data, Add and view jobs function
 
 * **New Feature**: to be added soon
 

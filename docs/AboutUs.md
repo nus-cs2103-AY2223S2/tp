@@ -51,6 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/ZhuLeYao)]
 
 * Role: Developer
+* Responsibilities: Data, Add and view jobs function
 
 ### Chen Junsheng
 
