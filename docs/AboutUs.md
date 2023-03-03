@@ -43,7 +43,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 <img src="images/owen-yap.png" width="200px">
 
 [[github](http://github.com/owen-yap)]
-[[portfolio](team/owen.md)]
+[[portfolio](team/owen-yap.md)]
 
 * Role: Project Manager
 * Responsibilities: Responsible for overall project coordination and in charge of defining, \
