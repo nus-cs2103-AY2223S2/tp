@@ -292,24 +292,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1 - List jobs**
-
-**MSS**
+<details>
+<summary><b>[UC1] List jobs</b></summary>
+<pre>
+<b>MSS</b>
 
 1.  User requests to list jobs
 2.  Duke Driver shows a list of jobs
 
     Use case ends.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
   Use case ends.
+</pre>
+</details>  
 
-**Use case: UC2 - Delete a job**
+<details>
+<summary><b>[UC2] Delete a job</b></summary>
 
-**MSS**
+<pre>
+<b>MSS</b>
 
 1.  User requests to list jobs
 2.  Duke Driver shows a list of jobs (UC1)
@@ -318,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+<b>Extensions</b>
 
 * 3a. The given index is invalid.
 
@@ -326,19 +331,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC3 - Add a job**
+</pre>
+</details>  
 
-**MSS**
+
+<details>
+<summary><b>[UC3] Add a job</b></summary>
+<pre>
+<b>MSS</b>
+
 
 1. User requests to add a specific job to the list
 2. Duke Driver adds the job
 
     Use case ends.
+</pre>
+</details>  
 
 
-**Use case: UC4 - Chat with a client**
 
-**MSS**
+<details>
+<summary><b>[UC4] Chat with a client</b></summary>
+<pre>
+<b>MSS</b>
 
 1. User requests to list jobs/contacts.
 2. Duke Driver shows a list of jobs (UC2)
@@ -351,13 +366,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+<b>Extensions</b>
 
 * 3a. The given index is invalid.
 
     * 3a1. Duke Driver shows an error message.
 
       Use case resumes at step 2.
+</pre>
+</details>  
 
 
 *{More to be added}*
