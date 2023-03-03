@@ -11,7 +11,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 
 ### Vigneshwar Hariharan
 
-<img src="images/vignesh.png" width="200px">
+<img src="images/vigonometry.png" width="200px">
 
 [[github](http://github.com/vigonometry)]
 [[portfolio](team/vigonometry.md)]
@@ -30,7 +30,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 
 ### Krishnamoorthi Praveen
 
-<img src="images/praveen.png" width="200px">
+<img src="images/praveenkrishna0512.png" width="200px">
 
 [[github](http://github.com/praveenkrishna0512)]
 [[portfolio](team/praveenkrishna0512.md)]
