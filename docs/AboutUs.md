@@ -55,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jedidiahc.png" width="200px">
 
 [[github](https://github.com/jedidiahC)]
-[[portfolio](team/jedidiahC.md)]
+[[portfolio](team/jedidiahc.md)]
 
 - Role: Developer
 - Responsibilities: UI
