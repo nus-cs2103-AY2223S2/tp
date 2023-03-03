@@ -16,8 +16,8 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](http://github.com/jnjy)]
 [[portfolio](team/jnjy.md)]
 
-* Role: Team lead
-* Responsibilities:
+-   Role: Team lead
+-   Responsibilities:
 
 ### Ritika Joshi
 
@@ -26,8 +26,8 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](https://github.com/rmj1405)]
 [[portfolio](team/rmj1405.md)]
 
-* Role: Scheduling and tracking, Deliverables and deadlines
-* Responsibilities:
+-   Role: Scheduling and tracking, Deliverables and deadlines
+-   Responsibilities:
 
 ### Justin Leng
 
@@ -36,8 +36,8 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](http://github.com/scorpiussigma)]
 [[portfolio](team/scorpiussigma.md)]
 
-* Role: Integration
-* Responsibilities:
+-   Role: Integration
+-   Responsibilities:
 
 ### Nigel Teo
 
@@ -46,8 +46,8 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](http://github.com/nigelteosw)]
 [[portfolio](team/nigelteosw.md)]
 
-* Role: UI/UX experts
-* Responsibilities:
+-   Role: UI/UX experts
+-   Responsibilities:
 
 ### Wesley Teo
 
@@ -56,5 +56,5 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](http://github.com/bicesto)]
 [[portfolio](team/bicesto.md)]
 
-* Role: Documentation
-* Responsibilities:
+-   Role: Documentation
+-   Responsibilities:
