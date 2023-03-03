@@ -156,12 +156,4 @@ public class ParserUtil {
         return new DrugAllergy(trimmedDrugAllergy);
     }
 
-    public static EmergencyContact parseEmergencyContact(Person emergencyContactPerson,
-                                                         String emergencyContactRelationship) {
-        requireNonNull(emergencyContactPerson, emergencyContactRelationship);
-
-        //TODO: checker for relationship?
-        String trimmedEmergencyContactRelationship = emergencyContactRelationship.trim();
-        return new EmergencyContact(emergencyContactPerson, trimmedEmergencyContactRelationship);
-    }
 }
