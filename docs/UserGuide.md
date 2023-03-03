@@ -104,7 +104,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK u/UNIT c/COMPANY pl/PLATOON`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -127,7 +127,7 @@ Examples:
   | company      | SIR                            |
   | platoon      | 4                              |
 
-- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 company/SIR pl/3 t/allergy-seafood` adds a new person `Lawrence Tay` to the FAILS with the following information:
+- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to the FAILS with the following information:
 
   | Field        | Value                  |
   |--------------|------------------------|
@@ -137,8 +137,6 @@ Examples:
   | address      | 124 Drummond Street    |
   | rank         | 3SG                    |
   | unit         | 801                    |
-  | company      | SIR                    |
-  | platoon      | 3                      |
   | tag          | platoon-leader         |
   | tag          | allergy-seafood        |
 
@@ -245,7 +243,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK u/UNIT c/COMPANY pl/PLATOON` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
