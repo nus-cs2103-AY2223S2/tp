@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
+import seedu.vms.model.vaccination.VaxTypeStorage;
 
 
 /** A JSON friendly version of {@link VaxType}. */
@@ -51,11 +53,11 @@ public class JsonAdaptedVaxType {
      *
      * @throws IllegalValueException if name field is missing.
      */
-    public VaxType toModelType() throws IllegalValueException {
+    public VaxType toModelType(VaxTypeStorage storage) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }
-        VaxType.Builder builder = VaxType.Builder.of(name);
+        VaxTypeBuilder builder = VaxTypeBuilder.of(storage, name);
 
         if (groups != null) {
             builder = builder.setGroups(new HashSet<>(groups));

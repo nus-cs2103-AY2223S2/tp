@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
+import seedu.vms.model.vaccination.VaxTypeStorage;
 
 
 /** A JSON file loader of {@code VaxType}. */
@@ -32,11 +33,13 @@ public class VaxTypeLoader {
      *      JSON file.
      * @throws IOException if an I/O error occurs.
      */
-    public static void load() throws IllegalValueException, IOException {
+    public static VaxTypeStorage load() throws IllegalValueException, IOException {
         VaxTypeLoader adaptedList = JsonUtil
                 .deserializeFromResource(JSON_FILE_PATH, VaxTypeLoader.class);
+        VaxTypeStorage storage = new VaxTypeStorage();
         for (JsonAdaptedVaxType adapted : adaptedList.types) {
-            adapted.toModelType();
+            adapted.toModelType(storage);
         }
+        return storage;
     }
 }
