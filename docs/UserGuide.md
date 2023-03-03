@@ -1,7 +1,4 @@
----
-layout: page
-title: User Guide
----
+# User Guide for Paidlancers
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
 
@@ -10,11 +7,11 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 - [Features](#features)
   * [Add a Contact](#add-a-contact)
   * [View Contact List](#view-contact-list)
-  * [Link Contact to Event](#link-contact-event)
-  * [View Rate](#view-rate)
-  * [Tag Rate](#tag-rate)
-  * [Marks event as done](#marks-event-as-done-:-mark)
-  * [Create a new event](#create-a-new-event-:-newevent)
+  * [Link Contact to Event](#linking-a-client-contact-to-a-event-link)
+  * [View Rate](#display-the-rate-rate)
+  * [Tag Rate](#tag-a-rate-newrate)
+  * [Marks event as done](#marks-event-as-done-mark)
+  * [Create a new event](#create-a-new-event-newevent)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -66,7 +63,7 @@ Format: listcontact
 Displays the list of contacts saved
 
 
-### Linking a client contact  to a event : `link`
+### Linking a client contact to a event: `link`
 Links client contact to an event.
 Format: `link INDEX CONTACT`
 Links contact to the event at the specified `INDEX`.
@@ -96,7 +93,7 @@ Example:
 - `newrate 2 100` adds the rate of 100 to thex 2nd event in the event list.
 
 
-### Marks event as done : `mark`
+### Marks event as done: `mark`
 Marks a specified event in the address book as done.  
 Format: `mark INDEX`  
 Marks the event at the specified **INDEX** as done.  
@@ -104,9 +101,9 @@ The event must not be marked as done beforehand.
 Example:  
 - `mark 2` marks the 2nd event as done.
 
-### Create a new event : `newevent`
+### Create a new event: `newevent`
 Creates a new event  
-Format: `newevent`  
+Format: `newevent NAME`  
 Creates a new event with the specified event **NAME**  
 Example: 
 - `newevent Singing` creates an event that has the name “Singing”.
@@ -151,15 +148,16 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskGenie home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
 
 ## Command Summary
-|                   Commands                    |                     Command Format                      |                        Example Usage                          | 
-|:---------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------------:|
+| Commands | Command Format | Example Usage | 
+|:-:|:-:|:-:|
+| [Link Contact to Event](#linking-a-client-contact-to-a-event-link) | `link INDEX CONTACT` | `link 2 91234567` |
+| [View Rate](#display-the-rate-rate) | `rate INDEX` | `rate 2` |  
+| [Tag a rate](#tag-a-rate-newrate) | `newrate INDEX AMOUNT` | `newrate 2 100` |
+| [Marks event as done](#marks-event-as-done-mark) | `mark INDEX` | `mark 2` |
+| [Create a new event](#create-a-new-event-newevent) | `newevent NAME` | `newevent Singing` |
 
-| [Link Contact to Event](#link-contact-event) | `link INDEX CONTACT` | `link 2 91234567` |
-| [View Rate](#view-rate) | `rate INDEX` | `rate 2` |  
-| [Tag a rate](#tag-rate) | `newrate INDEX AMOUNT` | `newrate 2 100` |
 
-
-[Back to top](#user-guide-for-taskgenie)
+[Back to top](#user-guide-for-paidlancers)
