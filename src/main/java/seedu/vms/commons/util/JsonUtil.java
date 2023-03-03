@@ -104,6 +104,19 @@ public class JsonUtil {
 
 
     /**
+     * Deserializes a JSON file in the specified pathString.
+     *
+     * @throws IOException if an I/O exception occurs.
+     */
+    public static <T> T deserializeFromFile(String pathString, Class<T> valueType)
+                throws IOException {
+        try (BufferedReader reader = FileUtil.getFileReader(pathString)) {
+            return objectMapper.readValue(reader, valueType);
+        }
+    }
+
+
+    /**
      * Converts a given string representation of a JSON data to instance of a class
      * @param <T> The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string

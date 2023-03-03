@@ -2,6 +2,7 @@ package seedu.vms.commons.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -99,4 +100,13 @@ public class FileUtil {
         return new BufferedReader(reader, BUFFER_SIZE);
     }
 
+
+    /**
+     * Returns the buffered reader of the specified file.
+     *
+     * @throws FileNotFoundException if the file cannot be found.
+     */
+    public static BufferedReader getFileReader(String pathString) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(Paths.get(pathString).toFile()));
+    }
 }
