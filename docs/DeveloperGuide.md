@@ -309,8 +309,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Actor: Admin clerk**
 
 **MSS**
-1. Admin clerk <u>searches for a person named "Lawrence Tay" (UC5)</u>.
-2. Admin clerk <u>edits the _rank_ information of "Lawrence Tay" (UC6)</u>.
+1. Admin clerk <ins>searches for a person named "Lawrence Tay" (UC5)</ins>.
+2. Admin clerk <ins>edits the _rank_ information of "Lawrence Tay" (UC6)</ins>.
 3. FAILS displays the updated _rank_ information of "Lawrence Tay".
 
 **Extensions**
