@@ -73,11 +73,11 @@ Syntax: `help`
 
 ### Adding a supplier: `add_supplier` / `add_s`
 
-Adds a supplier to the supplier list.
+Adds a supplier to the list of suppliers.
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
-* A supplier can have any number of tags (including 0)
+* A supplier can have any number of tags (including 0).
 
 Examples:
 * `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
@@ -91,9 +91,9 @@ Adds an order into the list of orders.
 Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]…​`
 
 * An order can have any number of remarks.
-* Either customer phone number or email address must be provided
-* Status available for setting are: Open, Preparing, Ready, Delivering, Delivered
-* If no status is provided, it is defaulted to Open
+* Either customer phone number or email address must be provided.
+* Status available for setting are: Open, Preparing, Ready, Delivering, Delivered.
+* If no status is provided, it is defaulted to Open.
 
 Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
@@ -105,8 +105,8 @@ Adds a task to the list of tasks.
 
 Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
 
-* Status available for setting are: `N` (Not done), `D` (Done)
-* If no status is provided, it is defaulted to `N` (Not done)
+* Status available for setting are: `N` (Not done), `D` (Done).
+* If no status is provided, it is defaulted to `N` (Not done).
 
 Examples:
 * `add_task d/Buy cookie cutter d/2022-12-22`
@@ -114,18 +114,18 @@ Examples:
 
 ### Adding tags to a supplier: `tag_supplier` / `tag_s`
 
-Add tags to an existing supplier entry
+Add tags to an existing supplier entry.
 
 Syntax: `tag_supplier INDEX t/TAG`
 
 * Tags the supplier at the specified `INDEX`.
 * The index refers to the number shown in the suppliers list displayed.
 * The index **must be a positive integer** 1, 2, 3, …​
-* More than one tag can be given, but at least one tag must be given
+* More than one tag can be given, but at least one tag must be given.
 
 Examples:
-`tag_supplier 1 t/Supplies Sugar t/100kg per order` adds the tags `Supplies Sugar` and `100kg per order` onto of the existing tags for the 1st supplier.
-`tag_s 4 t/Minimum 10kg per order` adds the tag `Minimum 10kg per order` onto of the existing tags of the 4th supplier.
+`tag_supplier 1 t/Supplies Sugar t/100kg per order` adds the tags `Supplies Sugar` and `100kg per order` onto of the existing tags for the 1st supplier
+`tag_s 4 t/Minimum 10kg per order` adds the tag `Minimum 10kg per order` onto of the existing tags of the 4th supplier
 
 ### Editing a supplier: `edit_supplier` / `edit_s`
 
@@ -142,7 +142,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Typing `t/` without any input will remove all the existing tags.
 
 Examples:
-`edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags.
+`edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
 `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
 
@@ -150,13 +150,13 @@ Examples:
 
 Edits an order that is present in the order list.
 
-Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]...`
+Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
 * Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields
-* Existing values will be replaced with the input values
-* When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative)
-* User can remove the remarks by typing r/ without specifying any remarks after it
+* User is required to key in at least one of the optional fields.
+* Existing values will be replaced with the input values.
+* When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
+* User can remove the remarks by typing r/ without specifying any remarks after it.
 
 Examples:
 *  `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
@@ -169,9 +169,9 @@ Edits a task present in the task list.
 Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
 * Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields
-* Existing values will be replaced with the input values
-* When editing status, the existing status of the order will be removed and replaced with the given status
+* User is required to key in at least one of the optional fields.
+* Existing values will be replaced with the input values.
+* When editing status, the existing status of the order will be removed and replaced with the given status.
 
 Examples:
 * `edit_task 1 d/Get creamer` edits the 1st task description to be get creamer
@@ -183,13 +183,13 @@ Find suppliers whose information matches with any of the given parameters.
 
 Syntax: `find_supplier [n/NAME] [t/TAG]…​`
 
-* Search is case-insensitive, e.g. `mark` will match `Mark`
-* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`
+* Search is case-insensitive, e.g. `mark` will match `Mark`.
+* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
 * At least one of the optional fields must be keyed in.
 * More than one tag can be given.
-* Only full words will match e.g. `Mar` will not match with `Mark`
-* People matching with at least one keyword will be returned (i.e. `OR` search)
-  e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`
+* Only full words will match e.g. `Mar` will not match with `Mark`.
+* People matching with at least one keyword will be returned (i.e. `OR` search).
+  e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`.
 
 Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
@@ -201,17 +201,17 @@ Find tasks with information that matches with any of the given parameters.
 
 Syntax: `find_task [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
-* Search is case-insensitive, e.g. `match` will match `Match`
-* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`
+* Search is case-insensitive, e.g. `match` will match `Match`.
+* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
 * At least one of the optional fields must be keyed in.
-* Only full words will match e.g. `Mar` will not match with `Mark`
+* Only full words will match e.g. `Mar` will not match with `Mark`.
 * Tasks matching with at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/order flour` will match with `order sugar` and `order 10kg flour`
+  e.g. `n/order flour` will match with `order sugar` and `order 10kg flour`.
 
 Examples:
 * `find_task n/order flour` returns `Order milk` and `mix flour`
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
-* `find_t s/N` returns all tasks not done.
+* `find_t s/N` returns all tasks not done
 
 ### Deleting a supplier: `delete_supplier` / `delete_s`
 
@@ -219,13 +219,13 @@ Deletes the specified supplier from the contact list.
 
 Syntax: `delete_supplier INDEX`
 
-* Deletes the task at the specified `INDEX`
+* Deletes the task at the specified `INDEX`.
 * The index refers to the number shown in the task list displayed.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete_supplier 2` deletes the first supplier.
-* `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`.
+* `delete_supplier 2` deletes the first supplier
+* `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
 
 ### Deleting an order: `delete_order` / `delete_o`
 
@@ -233,7 +233,7 @@ Syntax: `delete_order INDEX`
 
 * Deletes the order at the specified `INDEX`.
 * The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
@@ -245,13 +245,13 @@ Deletes the specified task from the task list.
 
 Syntax: `delete_task INDEX`
 
-* Deletes the task at the specified `INDEX`
+* Deletes the task at the specified `INDEX`.
 * The index refers to the number shown in the task list displayed.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete_task 2` deletes the first task.
-* `find_t flour` followed by `delete_t 3` deletes the 1st task in the results of the `find_t` command.
+* `delete_task 2` deletes the first task
+* `find_t flour` followed by `delete_t 3` deletes the 1st task in the results of the `find_t` command
 
 ### Switching tabs: `tab`
 
