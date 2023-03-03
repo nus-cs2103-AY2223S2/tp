@@ -12,4 +12,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_IC = "The patient NRIC provided is not found";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d persons listed!";
 }
