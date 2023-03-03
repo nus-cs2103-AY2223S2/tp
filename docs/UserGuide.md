@@ -29,7 +29,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `powerconnect.jar` from [here]().
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -365,20 +365,20 @@ _Details coming soon ..._
 
 ## Command Summary Student `student <CLASS>`
 
-Action | Format, Examples
---------|------------------
-**Add** | `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`
-**Grade** | `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
-**Comment** | `comment <INDEX_NUMBER> note/<COMMENT>`
-**List** | `list`
-**Edit** | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]`
-**Find** | `find <INDEX_NUMBER> `
-**Delete** | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
+| Action      | Format, Examples                                                                                                                                                                                                    |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`                                                                    |
+| **Grade**   | `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`                                                                                                                                                                 |
+| **Comment** | `comment <INDEX_NUMBER> note/<COMMENT>`                                                                                                                                                                             |
+| **List**    | `list`                                                                                                                                                                                                              |
+| **Edit**    | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]` |
+| **Find**    | `find <INDEX_NUMBER> `                                                                                                                                                                                              |
+| **Delete**  | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`                                                                                                            |
 
 ## Command Summary Parent `parent <CLASS>`
 
-Action | Format, Examples
---------|------------------
-**Add** | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `
-**List** | `list`
-**Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`
+| Action     | Format, Examples                                                                                                                                  |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `                |
+| **List**   | `list`                                                                                                                                            |
+| **Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]` |
