@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.Map;
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -7,7 +10,6 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public interface Command {
-
     /**
      * Executes the command and returns the result message.
      *
@@ -15,7 +17,8 @@ public interface Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    CommandResult execute(Model model) throws CommandException;
-
+    CommandResult execute(Model model,
+                          Optional<String> unnamedToken,
+                          Optional<Map<String, String>> namedToken)
+            throws CommandException;
 }
-
