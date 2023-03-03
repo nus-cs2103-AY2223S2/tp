@@ -71,7 +71,7 @@ Displays all contacts saved in a list
 
 **Format**: `listcontact`
 
-### Linking a client contact to a event: `link`
+### Linking a Contact to a event: `link`
 
 Links client contact to an event.
 
@@ -83,7 +83,7 @@ Links client contact to an event.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**:
-- `link 2 91234567` links contact `2nd event` to `91234567` in the list.
+- `link 2 91234567` links `2nd event` to contact `91234567` in the list.
 
 
 ### Display the rate: `rate`
@@ -157,9 +157,8 @@ Deletes the specified event from the event book.
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
   
-**Examples**:
-  list followed by delete 2 deletes the 2nd event in the event book.
-
+**Example**:
+  - `deleteevent 2` deletes the `2nd event` in the event list.
 
 ### Adds dates to an event : `adddate`
 
@@ -172,14 +171,6 @@ Adds a starting time and ending time to the specified event in the event book.
     - The `INDEX` must be a positive integer 1, 2, 3, …​
   
 The event must not have time associated with it beforehand.
-
-
-### Saving all events and contacts: `save`
-
-Saves all entries in Paidlancer.
-
-**Format**: `save`
-
 
 ### Loading all events and contacts : `load`
 
