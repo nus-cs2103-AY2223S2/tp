@@ -189,7 +189,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+    public void updateFilteredVolunteerList(Predicate<Volunteer> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
+import static seedu.address.model.person.information.Nric.VALIDATION_REGEX;
 
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,12 +18,12 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteVolunteerCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC_VOLUNTEER);
-        if (argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).isEmpty() || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteVolunteerCommand.MESSAGE_USAGE));
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty() || (!trimmedArgs.matches(VALIDATION_REGEX))) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE));
         }
-        Nric nric = new Nric(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).get());
+        Nric nric = new Nric(trimmedArgs);
         return new DeleteVolunteerCommand(nric);
     }
 
