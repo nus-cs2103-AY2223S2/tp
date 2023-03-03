@@ -60,30 +60,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Docedex` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: XXX**
+**Use case: UC3 - Delete Doctor**
+
+Actor: User
 
 **MSS**
 
-1.  User requests to XXX
-2.  
-3.  
-4.  
-
-    Use case ends.
+1. User enters command to delete a doctor. 
+2. Docedex confirms the deletion of the doctor contact.<br> 
+   Use case ends.
 
 **Extensions**
 
-* 2a. 
-
-  Use case ends.
-
-* 3a. 
-
-    * 3a1. 
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+* 1a. Docedex detects an error in the command.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+  Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+  Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
