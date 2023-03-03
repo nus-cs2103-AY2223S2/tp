@@ -270,20 +270,42 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                 | I want to …​                                                                                                           | So that I can…​                                |
+| -------- |---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| `* * *`  | Student who often needs help with school work           | I want to be able to see who is likely to be available currently                                                       | Get help as soon as possible                   |
+| `* * *`  | Student who often contacts external organisations       | Segregate my contacts into different categories (e.g. friends, family, t-shirt suppliers, bus drivers , sponsors etc.) | Organise my contacts effectively               |
+| `* * *`  | Student sourcing for internships                        | I am able to see Students internship experience                                                                        | To find out more about their interview process |
+| `* * *`  | Student who wants to go for a career fair with somebody | I want to find people who are available at a certain time                                                              | So that I can go to the career fair with them  |
+| `* *`    | Student who made a new connection                       | I want to be able to add a new contact                                                                                 | So that I can save the person’s details        |
+| `*`      | Student who is in to keeping everything in one place    | I like being able to keep everything I need to see in one place                                                        | So that I dont forget anything                 |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  User enters person details and submits the command 
+3.  AddressBook saves the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the command.
+
+  Use case ends.
+
+* 2b. AddressBook is unable to save the person.
+
+    * 2b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete a person**
 
@@ -308,13 +330,117 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Editing a person**
+
+**MSS**
+
+1.  User enters a command to edit an existing person by specifying their index number and new details 
+2.  AddressBook updates the person's details
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details. 
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 1b. User enters an invalid index number.
+
+    * 1b1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to update the person's details.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: List all persons**
+
+**MSS**
+
+1.  User enters a command to list all persons
+2.  AddressBook shows a list of all persons with their details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+**Use case: Locating persons by name**
+
+**MSS**
+
+1.  User enters a command to search for persons by specifying one or more keywords 
+2.  AddressBook searches for persons whose names contain any of the given keywords 
+3.  AddressBook returns a list of persons matching the search criteria
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to search for persons.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 3a. No persons are found matching the search criteria.
+
+    * 3a1. AddressBook shows an empty list message.
+
+      Use case ends.
+
+**Use case: Clearing all entries**
+
+**MSS**
+
+1.  User enters a command to clear all entries 
+2.  AddressBook clears all entries from the address book 
+3.  AddressBook shows a success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command or incorrect details.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 2a. AddressBook is unable to clear all entries.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be easy to use and navigate, even for users who are not familiar with the NUS student community. This could include features such as clear labeling, intuitive interfaces, and helpful error messages.
+5. Should be accessible to users with disabilities, including those who use screen readers or other assistive technologies. The user interface should be highly readable for all users.
+6. Should provide fast response times and minimal resource usage, even when running on lower-end hardware.
+7. Should be able to handle errors and exceptions gracefully, without crashing or losing user data. This could include features such as error logging, fault tolerance mechanisms, and data backup options.
 
 *{More to be added}*
 
