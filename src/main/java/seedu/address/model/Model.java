@@ -17,6 +17,7 @@ import seedu.address.model.person.information.Nric;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLYS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -191,7 +192,7 @@ public interface Model {
      * Updates the filter of the filtered elderly list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredElderlyList(Predicate<Person> predicate);
+    void updateFilteredElderlyList(Predicate<Elderly> predicate);
 
 
     /** Returns an unmodifiable view of the filtered volunteers list */
