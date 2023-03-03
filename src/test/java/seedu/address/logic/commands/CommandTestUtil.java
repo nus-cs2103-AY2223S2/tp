@@ -36,7 +36,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_LANGUAGE_AMY = "Python";
     public static final String VALID_LANGUAGE_BOB = "C++";
-
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
