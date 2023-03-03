@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
-import seedu.vms.model.person.AddressBook;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredIdDataMap<Person> filteredPersonMap;
+    private final FilteredIdDataMap<Patient> filteredPatientMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersonMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
+        filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
     }
 
     public ModelManager() {
@@ -89,43 +89,43 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(int id) {
+    public boolean hasPatient(int id) {
         return addressBook.contains(id);
     }
 
     @Override
-    public void deletePerson(int id) {
+    public void deletePatient(int id) {
         addressBook.remove(id);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.add(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPatient(Patient patient) {
+        addressBook.add(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override
-    public void setPerson(int id, Person editedPerson) {
-        requireAllNonNull(editedPerson);
+    public void setPatient(int id, Patient editedPatient) {
+        requireAllNonNull(editedPatient);
 
-        addressBook.set(id, editedPerson);
+        addressBook.set(id, editedPatient);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Patient List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableMap<Integer, IdData<Person>> getFilteredPersonList() {
-        return filteredPersonMap.asUnmodifiableObservableMap();
+    public ObservableMap<Integer, IdData<Patient>> getFilteredPatientList() {
+        return filteredPatientMap.asUnmodifiableObservableMap();
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersonMap.filter(predicate);
+        filteredPatientMap.filter(predicate);
     }
 
     @Override
@@ -144,13 +144,13 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersonMap.asUnmodifiableObservableMap()
-                        .equals(other.filteredPersonMap.asUnmodifiableObservableMap());
+                && filteredPatientMap.asUnmodifiableObservableMap()
+                        .equals(other.filteredPatientMap.asUnmodifiableObservableMap());
     }
 
     @Override
     public String toString() {
-        return filteredPersonMap.asUnmodifiableObservableMap().toString();
+        return filteredPatientMap.asUnmodifiableObservableMap().toString();
     }
 
 }

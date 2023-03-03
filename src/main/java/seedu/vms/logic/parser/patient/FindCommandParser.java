@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.vms.logic.commands.patient.FindCommand;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.person.NameContainsKeywordsPredicate;
+import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -1,14 +1,14 @@
 package seedu.vms.logic.commands.patient;
 
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.person.AddressBook;
+import seedu.vms.model.patient.AddressBook;
 
 public class ClearCommandTest {
 

@@ -19,33 +19,33 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
-import seedu.vms.model.person.AddressBook;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
-import seedu.vms.testutil.PersonBuilder;
+import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.testutil.PatientBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
+        Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Patient alice = new PatientBuilder().withName("Alice").build();
+        Patient bob = new PatientBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -62,7 +62,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different patient -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -101,7 +101,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,41 +116,41 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(int id) {
+        public void deletePatient(int id) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(int id, Person editedPerson) {
+        public void setPatient(int id, Patient editedPatient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableMap<Integer, IdData<Person>> getFilteredPersonList() {
+        public ObservableMap<Integer, IdData<Patient>> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPatientList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(int id) {
+        public boolean hasPatient(int id) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the patient being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPatientAdded extends ModelStub {
+        final ArrayList<Patient> patientsAdded = new ArrayList<>();
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPatient(Patient patient) {
+            requireNonNull(patient);
+            patientsAdded.add(patient);
         }
 
         @Override

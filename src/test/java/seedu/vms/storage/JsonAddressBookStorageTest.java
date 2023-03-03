@@ -3,9 +3,9 @@ package seedu.vms.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.vms.testutil.Assert.assertThrows;
-import static seedu.vms.testutil.TypicalPersons.HOON;
-import static seedu.vms.testutil.TypicalPersons.IDA;
-import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.HOON;
+import static seedu.vms.testutil.TypicalPatients.IDA;
+import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.exceptions.DataConversionException;
-import seedu.vms.model.person.AddressBook;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -50,13 +50,13 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readAddressBook_invalidPatientAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPatientAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidPatientAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPatientAddressBook.json"));
     }
 
     @Test

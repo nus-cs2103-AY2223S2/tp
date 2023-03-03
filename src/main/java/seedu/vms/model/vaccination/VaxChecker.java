@@ -9,19 +9,19 @@ import java.util.List;
 
 
 /**
- * A utility class to check if a person meets the requirements to take a
+ * A utility class to check if a patient meets the requirements to take a
  * vaccination.
  */
 public class VaxChecker {
     /**
-     * Checks if the given attributes of a person meets the requirements to
+     * Checks if the given attributes of a patient meets the requirements to
      * take the specified vaccination.
      *
      * @param vaxType - the vaccination type to check.
-     * @param age - the age ot the person.
-     * @param records - the list of {@code VaxRecord} of the person.
+     * @param age - the age ot the patient.
+     * @param records - the list of {@code VaxRecord} of the patient.
      * @param time - the time of the shot.
-     * @return {@code true} if the person meets the requirements and
+     * @return {@code true} if the patient meets the requirements and
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
