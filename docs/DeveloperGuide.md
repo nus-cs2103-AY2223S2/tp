@@ -398,8 +398,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Posting**: An appointment to a software development job
+* **Console-first Interface**: A text-based user interface to efficiently
+  run Mycelium
+* **Project**: A freelance software development job
+* **Contact**: An individual associated with a particular project
+* **Deliverable**: A task to be completed as part of a project
+
 
 --------------------------------------------------------------------------------------------------------------------
 
