@@ -46,12 +46,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Java
 
-### Jean Doh
+### Elvern Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elvern18.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/elvern18)]
+[[portfolio](team/elvern18.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
