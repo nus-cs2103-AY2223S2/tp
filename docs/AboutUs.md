@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aeron Toh
 
-<img src="images/Tohtoroo.png" width="200px">
+<img src="images/tohtoroo.png" width="200px">
 
 [[github](http://github.com/Tohtoroo)]
-[[portfolio](team/Tohtoroo.md)]
+[[portfolio](team/tohtoroo.md)]
 
 * Role: Developer
 * Responsibilities: Data
