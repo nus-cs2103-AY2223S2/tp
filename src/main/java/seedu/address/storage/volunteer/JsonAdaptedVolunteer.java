@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.volunteer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,36 +10,44 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdaptedTag;
 
-/**
- * Jackson-friendly version of {@link Person}.
- */
-public class JsonAdaptedPerson {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+public class JsonAdaptedVolunteer {
+    /**
+     * Jackson-friendly version of {@link Person}.
+     */
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
+    private final String nric;
+    private final String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
+        this.age = age;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -48,11 +56,13 @@ public class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedVolunteer(Volunteer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        nric = source.getNric().value;
+        age = source.getAge().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -63,8 +73,7 @@ public class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    // TODO: delete when no longer needed
-    public Person toModelType() throws IllegalValueException {
+    public Volunteer toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -102,8 +111,21 @@ public class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
 
+        if (age == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
+        }
+        if (!Age.isValidAge(age)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Volunteer(modelName, modelPhone, modelEmail, modelAddress, new Nric(nric), new Age(age), modelTags);
+    }
 }
