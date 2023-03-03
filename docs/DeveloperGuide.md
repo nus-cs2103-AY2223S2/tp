@@ -398,10 +398,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+
 * **Console-first Interface**: An interface with interactions primarily through 
                                text commands
 * **Project**: A freelance software development job
 * **Client**: An individual associated with a particular project
+
 
 
 

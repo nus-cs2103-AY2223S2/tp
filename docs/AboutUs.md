@@ -58,3 +58,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Writing and testing the GUI for the Project Panel
+
+### Sachin Kalinga
+
+<img src="images/sachindavid96.png" width="200px">
+
+[[github](http://github.com/sachindavid96)]
+[[portfolio](team/sachindavid96.md)]
+
+* Role: Developer
+* Responsibilities: Implementing the Parser
