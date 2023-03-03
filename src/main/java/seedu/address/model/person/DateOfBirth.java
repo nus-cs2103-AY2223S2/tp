@@ -22,17 +22,17 @@ public class DateOfBirth {
                     .toArray(DateTimeFormatter[]::new);
     private static final LocalDate minRangeOfBirth = LocalDate.of(1900, 1, 1);
     private static final LocalDate maxRangeOfBirth = LocalDate.now();
-    private final String birthDate;
+    public final String value;
 
     /**
      * Constructs a {@code DateOfBirth}.
      *
-     * @param birthDate A valid birth date.
+     * @param value A valid birth date.
      */
-    public DateOfBirth(String birthDate) {
-        requireNonNull(birthDate);
-        checkArgument(isValidBirthDate(birthDate), MESSAGE_CONSTRAINTS);
-        this.birthDate = birthDate;
+    public DateOfBirth(String value) {
+        requireNonNull(value);
+        checkArgument(isValidBirthDate(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -70,19 +70,19 @@ public class DateOfBirth {
 
     @Override
     public String toString() {
-        return birthDate;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateOfBirth // instanceof handles nulls
-                && birthDate.equals(((DateOfBirth) other).birthDate)); // state check
+                && value.equals(((DateOfBirth) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return birthDate.hashCode();
+        return value.hashCode();
     }
 
 }

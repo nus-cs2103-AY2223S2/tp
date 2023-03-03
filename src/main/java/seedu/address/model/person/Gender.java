@@ -11,17 +11,17 @@ public class Gender {
     public static final String MESSAGE_CONSTRAINTS =
             "Gender should only be either female or male, it should not be blank";
     private static final String VALIDATION_REGEX = "f|female|m|male";
-    private final String gender;
+    public final String value;
 
     /**
      * Constructs a {@code Gender}.
      *
-     * @param gender A valid gender.
+     * @param value A valid gender.
      */
-    public Gender(String gender) {
-        requireNonNull(gender);
-        checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.gender = gender;
+    public Gender(String value) {
+        requireNonNull(value);
+        checkArgument(isValidGender(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -33,18 +33,18 @@ public class Gender {
 
     @Override
     public String toString() {
-        return gender;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                && gender.equals(((Gender) other).gender)); // state check
+                && value.equals(((Gender) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return gender.hashCode();
+        return value.hashCode();
     }
 }

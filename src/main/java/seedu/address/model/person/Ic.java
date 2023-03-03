@@ -12,7 +12,7 @@ public class Ic {
                     + " and it should be exactly 8 digits and characters long";
 
     private static final String VALIDATION_REGEX = "[a-zA-Z]\\d{7}[a-zA-Z]";
-    private final String ic;
+    public final String value;
 
     /**
      * Constructs a {@code Ic}.
@@ -22,11 +22,7 @@ public class Ic {
     public Ic(String icNumber) {
         requireNonNull(icNumber);
         checkArgument(isValidIc(icNumber), MESSAGE_CONSTRAINTS);
-        ic = icNumber;
-    }
-
-    public String getIc() {
-        return this.ic;
+        value = icNumber;
     }
 
     /**
@@ -38,19 +34,19 @@ public class Ic {
 
     @Override
     public String toString() {
-        return ic;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ic // instanceof handles nulls
-                && ic.equals(((Ic) other).ic)); // state check
+                && value.equals(((Ic) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return ic.hashCode();
+        return value.hashCode();
     }
 
 }
