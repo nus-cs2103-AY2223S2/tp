@@ -345,6 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a client
 2. FitBook adds the client into the list.
+3. FitBook displays that the client has been added.
 
    Use case ends.
 
@@ -396,8 +397,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The user enters a client that does not exist in the database.
 
-    * 1b1. FitBook shows an error message that the client does not exist.
-
+    * 1b1. FitBook shows an error message that the client does not exist. 
+  
       Use case ends.
 
 > **Use case: UC05 - Clear all clients**
@@ -406,13 +407,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to clear the list of clients.
 2. FitBook clears the list and database of clients.
+3. FitBook displays that the list is cleared.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-
+* 1a. The list is empty in the database.
+  * 1a1. FitBook displays that the list is cleared.
+    
       Use case ends.
 
 > **Use case: UC06 - Exit**
@@ -425,7 +428,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 > **Use case: UC07 - Find**
+
 //TODO By Kalaris
+
 **MSS**
 
 1. User requests to exit the application.
