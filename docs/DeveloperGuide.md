@@ -409,6 +409,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The list is empty.
+
+      Use case ends.
+
 > **Use case: UC06 - Exit**
 
 **MSS**
