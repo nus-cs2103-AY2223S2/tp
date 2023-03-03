@@ -24,12 +24,12 @@ public class SampleDataUtil {
             new Internship(new CompanyName("Amazon"), new Role("Cloud Architect"), new Status("new"),
                 new Date("2023-02-02"), getTagSet("aws", "cloud services")),
             new Internship(new CompanyName("Google"), new Role("Software Engineer"), new Status("assessment"),
-                new Date("2023-02-03"), getTagSet("golang", "back-end")),
+                new Date("2023-02-03"), getTagSet("golang", "backend")),
             new Internship(new CompanyName("Samsung"), new Role("Android Developer"), new Status("interview"),
                 new Date("2023-02-02"), getTagSet("android", "mobile")),
-            new Internship(new CompanyName("Grab"), new Role("Front-end Designer"), new Status("offered"),
+            new Internship(new CompanyName("Grab"), new Role("Frontend Designer"), new Status("offered"),
                 new Date("2023-02-02"), getTagSet("react", "css")),
-            new Internship(new CompanyName("Facebook"), new Role("Back-end Developer"), new Status("rejected"),
+            new Internship(new CompanyName("Facebook"), new Role("Backend Developer"), new Status("rejected"),
                 new Date("2023-02-02"), getTagSet("sql"))
         };
     }

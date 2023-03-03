@@ -65,9 +65,9 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 3);
-        CompanyNameContainsKeywordsPredicate predicate = preparePredicate("Gold Riot Samsung");
+        CompanyNameContainsKeywordsPredicate predicate = preparePredicate("Goldman Riot Samsung");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

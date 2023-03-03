@@ -198,7 +198,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + STATUS_DESC_GOOGLE + INVALID_TAG_DESC + DATE_DESC_GOOGLE
+        userInput = targetIndex.getOneBased() + STATUS_DESC_GOOGLE + INVALID_ROLE_DESC + DATE_DESC_GOOGLE
                 + ROLE_DESC_GOOGLE;
         descriptor = new EditInternshipDescriptorBuilder().withRole(VALID_ROLE_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
                 .withDate(VALID_DATE_GOOGLE).build();

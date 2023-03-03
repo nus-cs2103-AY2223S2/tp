@@ -1,6 +1,6 @@
 {
-  "persons": [ {
-    "name": "Internship with invalid name field: Go!gle M@ets Te_ams",
+  "internships": [ {
+    "companyName": "Internship with invalid name field: Go!gle M@ets Te_ams",
     "role": "Software Engineer",
     "status": "applied",
     "date": "2023-02-01"

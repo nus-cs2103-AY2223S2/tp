@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ public class EditInternshipDescriptorTest {
         assertFalse(DESC_APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedApple = new EditInternshipDescriptorBuilder(DESC_APPLE).withTags(VALID_TAG_FRONT).build();
+        editedApple = new EditInternshipDescriptorBuilder(DESC_APPLE).withTags(VALID_TAG_BACK).build();
         assertFalse(DESC_APPLE.equals(editedApple));
     }
 }

@@ -41,8 +41,12 @@ public class Status {
      *
      * @param test The string to check for.
      * @return true if the given string corresponds to a valid string for a role, else returns false.
+     * @throws NullPointerException if a null status is passed in
      */
     public static boolean isValidStatus(String test) {
+        if (test == null) {
+            throw new NullPointerException();
+        }
         return SETOFVALIDSTATUSES.contains(test);
     }
 

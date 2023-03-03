@@ -49,7 +49,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + STATUS_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
 
         // multiple company names - last company name accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE
@@ -57,7 +57,7 @@ public class AddCommandParserTest {
 
         // multiple roles - last role accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_APPLE + ROLE_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + STATUS_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
+                + STATUS_DESC_GOOGLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
 
         // multiple statuses - last status accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_APPLE

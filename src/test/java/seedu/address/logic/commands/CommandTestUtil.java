@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_GOOGLE = "applied";
     public static final String VALID_DATE_APPLE = "2023-02-01";
     public static final String VALID_DATE_GOOGLE = "2023-02-03";
-    public static final String VALID_TAG_FRONT = "front-end";
-    public static final String VALID_TAG_BACK = "back-end";
+    public static final String VALID_TAG_FRONT = "frontend";
+    public static final String VALID_TAG_BACK = "backend";
 
     public static final String COMPANY_NAME_DESC_APPLE = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_APPLE;
     public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_GOOGLE;

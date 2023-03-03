@@ -1,52 +1,42 @@
 {
-  "_comment": "AddressBook save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
-  "persons" : [ {
-    "companyName" : "Google",
-    "role" : "Software Engineer",
-    "status" : "applied",
-    "date" : "2023-02-01",
-    "tagged" : [ "golang" ]
-  }, {
+  "_comment": "InternBuddy save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
+  "internships" : [ {
       "companyName" : "Amazon",
       "role" : "Cloud Architect",
-      "status" : "new",
-      "date" : "2023-02-04",
-      "tagged" : [ "aws", "backend" ]
+      "status" : "assessment",
+      "date" : "2023-02-01",
+      "tagged" : [ "aws", "back" ]
   }, {
-    "companyName" : "Facebook",
-    "role" : "Backend Developer",
-    "status" : "rejected",
-    "date" : "2023-01-28",
-    "tagged" : [ "sql", "metaverse" ]
-  }, {
-    "companyName" : "Apple",
-    "role" : "Software Engineer",
-    "status" : "accepted",
-    "date" : "2023-01-30",
-    "tagged" : [ "iOS", "swift" ]
-  }, {
-    "companyName" : "Riot Games",
-    "role" : "Game Developer",
+    "companyName" : "Food Panda",
+    "role" : "Back end Developer",
     "status" : "assessment",
-    "date" : "2023-02-05",
-    "tagged" : [ "C#", "unreal" ]
+    "date" : "2023-02-02"
   }, {
-    "companyName" : "Twitter",
-    "role" : "Frontend Developer",
-    "status" : "interview",
-    "date" : "2023-02-07",
-    "tagged" : [ "React" ]
+    "companyName" : "Goldman",
+    "role" : "Cyber Security Analyst",
+    "status" : "offered",
+    "date" : "2023-02-03"
   }, {
     "companyName" : "Grab",
-    "role" : "Backend Developer",
-    "status" : "applied",
-    "date" : "2023-02-01",
-    "tagged" : [  ]
+    "role" : "Front end Engineer",
+    "status" : "rejected",
+    "date" : "2023-02-04"
   }, {
-    "companyName" : "Foodpanda",
-    "role" : "Software Engineer",
+    "companyName" : "Riot Games",
+    "role" : "Game Client Developer",
+    "status" : "interview",
+    "date" : "2023-02-05",
+    "tagged" : [ "game", "developer" ]
+  }, {
+    "companyName" : "Samsung",
+    "role" : "Android Developer",
+    "status" : "applied",
+    "date" : "2023-02-06"
+  }, {
+    "companyName" : "Supercell Games",
+    "role" : "Game Designer",
     "status" : "new",
-    "date" : "2023-02-15",
-    "tagged" : [ "java" ]
+    "date" : "2023-02-07",
+    "tagged" : [ "design", "game" ]
   } ]
 }

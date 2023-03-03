@@ -29,7 +29,7 @@ public class TypicalInternships {
             .withDate("2023-02-01")
             .withTags("aws", "back").build();
     public static final Internship FOODPANDA = new InternshipBuilder().withCompanyName("Food Panda")
-            .withRole("Back-end Developer")
+            .withRole("Back end Developer")
             .withStatus("assessment")
             .withDate("2023-02-02").build();
     public static final Internship GOLDMAN = new InternshipBuilder().withCompanyName("Goldman")
@@ -37,7 +37,7 @@ public class TypicalInternships {
             .withStatus("offered")
             .withDate("2023-02-03").build();
     public static final Internship GRAB = new InternshipBuilder().withCompanyName("Grab")
-            .withRole("Front-end Engineer")
+            .withRole("Front end Engineer")
             .withStatus("rejected")
             .withDate("2023-02-04").build();
     public static final Internship RIOTGAMES = new InternshipBuilder().withCompanyName("Riot Games")
@@ -80,7 +80,7 @@ public class TypicalInternships {
             .withTags(VALID_TAG_FRONT, VALID_TAG_BACK)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Games"; // A keyword that matches GAMES
+    public static final String KEYWORD_MATCHING_GAMES = "Games"; // A keyword that matches GAMES
 
     private TypicalInternships() {} // prevents instantiation
 
@@ -96,7 +96,6 @@ public class TypicalInternships {
     }
 
     public static List<Internship> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(AMAZON, FOODPANDA, GOLDMAN, GRAB, RIOTGAMES, SAMSUNG,
-                SAMSUNG, SUPERCELLGAMES));
+        return new ArrayList<>(Arrays.asList(AMAZON, FOODPANDA, GOLDMAN, GRAB, RIOTGAMES, SAMSUNG, SUPERCELLGAMES));
     }
 }

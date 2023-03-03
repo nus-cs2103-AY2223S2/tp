@@ -65,7 +65,6 @@ public class ParserUtil {
         return new Role(trimmedRole);
     }
 
-    //TODO: Update with status
     /**
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
@@ -78,7 +77,7 @@ public class ParserUtil {
         if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Status(status);
+        return new Status(trimmedStatus);
     }
 
     /**

@@ -31,10 +31,10 @@ public class RoleTest {
         assertFalse(Role.isValidRole("developer*")); // contains non-alphanumeric characters
 
         // valid role
-        assertTrue(Role.isValidRole("front-end developer")); // alphabets only
+        assertTrue(Role.isValidRole("front end developer")); // alphabets only
         assertTrue(Role.isValidRole("12345")); // numbers only
         assertTrue(Role.isValidRole("developer 1st")); // alphanumeric characters
         assertTrue(Role.isValidRole("Software Developer")); // with capital letters
-        assertTrue(Role.isValidRole("Full Stack Developer Specialising in Front-end")); // long names
+        assertTrue(Role.isValidRole("Full Stack Developer Specialising in Front end")); // long names
     }
 }
