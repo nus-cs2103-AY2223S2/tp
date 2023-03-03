@@ -245,4 +245,7 @@ public class Student {
         return builder.toString();
     }
 
+    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
+        homeworkList.updateFilteredHomeworkList(homeworkStatusPredicate);
+    }
 }

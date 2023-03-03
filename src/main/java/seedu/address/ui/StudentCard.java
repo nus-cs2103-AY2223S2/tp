@@ -41,7 +41,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Button viewSchoolTasksButton;
 
-
     private final Student student;
 
     /**

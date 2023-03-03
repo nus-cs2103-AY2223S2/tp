@@ -32,6 +32,6 @@ public class HomeworkIsCompletePredicate implements Predicate<Homework> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HomeworkIsCompletePredicate // instanceof handles nulls
-                && isComplete == (((HomeworkIsCompletePredicate) other).isComplete)); // state check
+                && isComplete == ((HomeworkIsCompletePredicate) other).isComplete); // state check
     }
 }
