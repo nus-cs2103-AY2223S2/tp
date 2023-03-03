@@ -22,7 +22,7 @@ public class Status {
     /*
      * The integer representing a Status need to be in the range of 0 to 3 (inclusive).
      */
-    public static final String VALIDATION_REGEX = "[0-3]";
+    public static final String VALIDATION_REGEX = "[0-3](\\s)?";
 
     public final Integer statusId;
 
@@ -34,11 +34,12 @@ public class Status {
     public Status(String statusId) {
         requireNonNull(statusId);
         checkArgument(isValidStatus(statusId), MESSAGE_CONSTRAINTS);
-        this.statusId = Integer.parseInt(statusId);
+        this.statusId = Integer.parseInt(statusId.stripTrailing());
     }
 
     /**
-     * Returns true if a given string is a valid Status.
+     * Returns true if a given string represents a valid status id.
+     * A valid status id is a number in the range of 0 - 3. Trailing space is allowed.
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
