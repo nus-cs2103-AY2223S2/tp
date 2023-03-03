@@ -265,7 +265,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Provide a way to view all clients records easily and compare and analyze their financial information.
+* Provide a way to view all clients' records easily and compare and analyze their financial information.
 * Keep track of client information such as financial goals, current financial status, and investment plans purchased.
 * Make it easier to remind financial advisors on follow-up tasks and future advising sessions.
 * Personalized recommendations: propose personalized financial advice and recommendations tailored to the student’s unique needs and circumstances
