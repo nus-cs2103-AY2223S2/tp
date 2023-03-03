@@ -123,7 +123,7 @@ Examples:
 <img src="https://raw.githubusercontent.com/AY2223S2-CS2103-F10-3/tp/master/docs/images/findAlexDavidResult.png" align="center" height=auto width="600">
 </p>
 <p align="center">
-<em>result for 'find alex david</em>
+<em>result for 'find alex david'</em>
 </p>
 
 ### Deleting a person : `delete`
