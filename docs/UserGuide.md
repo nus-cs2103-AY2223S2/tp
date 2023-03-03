@@ -1,4 +1,7 @@
-# User Guide for Paidlancers
+---
+layout: page
+title: User Guide for Paidlancers
+---
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
 
@@ -91,8 +94,8 @@ Displays the rate tagged to an event.
 
 - Displays the agreed rate of the event at the specified `INDEX`.
 
-The `INDEX` refers to the index number in the displayed events list.
-The `INDEX` must be a positive integer 1, 2, 3, …​
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**: 
 - `rate 2` returns the rate of `2nd event` in the event list.
@@ -182,7 +185,7 @@ Saves all entries in Paidlancer.
 
 Loads all entries in Paidlancer from local storage if it exist
 
-**Format**: load
+**Format**: `load`
 
 ### Saving the data
 
@@ -205,4 +208,4 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 |         [Create a new event](#create-a-new-event-newevent)         |       `newevent NAME`        |          `newevent Singing`           |
 
 
-[Back to top](#user-guide-for-paidlancers)
+[Back to top](#)
