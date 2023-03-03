@@ -97,14 +97,21 @@ public class StudentBuilder {
 
     /**
      * Sets the {@code Homework} of the {@code Person} that we are building.
+     *
+     * @param homeworkList The homework list of the student.
+     *                     {@code homeworkList} is a list of {@code Homework} objects.
      */
     public StudentBuilder withHomeworkList(List<Homework> homeworkList) {
         this.homeworkList = homeworkList;
         return this;
     }
 
+    /**
+     * Builds a student with the given details.
+     *
+     * @return a student with the given details.
+     */
     public Student build() {
         return new Student(name, phone, email, address, tags, homeworkList);
     }
-
 }

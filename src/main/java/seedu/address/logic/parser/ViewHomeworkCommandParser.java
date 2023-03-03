@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -37,7 +37,7 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {
-            namePredicate = PREDICATE_SHOW_ALL_PERSONS;
+            namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
             defaultPredicateFlag = true;
         }
 

@@ -21,8 +21,8 @@ You can reach us at these emails :
 [[github](https://github.com/Yufannnn)]
 [[portfolio](team/yufan.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Coder
+* Responsibilities: code
 
 ### Niu Boqian
 
