@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  * An Immutable FriendlyLink that is serializable to JSON format.
  */
 @JsonRootName(value = "friendlylink")
-class JsonSerializableFriendlyLink implements SerializableEntity<FriendlyLink> {
+class JsonSerializableFriendlyLink implements JsonSerializable<FriendlyLink> {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_PAIR = "Persons list contains duplicate pair(s).";
 

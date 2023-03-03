@@ -12,13 +12,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.person.Elderly;
-import seedu.address.storage.SerializableEntity;
+import seedu.address.storage.JsonSerializable;
 
 /**
  * An Immutable Elderly that is serializable to JSON format.
  */
 @JsonRootName(value = "elderly")
-public class JsonSerializableElderly implements SerializableEntity<FriendlyLink> {
+public class JsonSerializableElderly implements JsonSerializable<FriendlyLink> {
     public static final String MESSAGE_DUPLICATE_ELDERLY = "Elderly list contains duplicate elderly.";
 
     private final List<JsonAdaptedElderly> elderly = new ArrayList<>();

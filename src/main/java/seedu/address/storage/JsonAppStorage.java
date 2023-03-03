@@ -10,7 +10,14 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 
-abstract public class JsonAppStorage<T, K extends T, R extends SerializableEntity<K>> {
+/**
+ * An abstract AppStorage that implements common read operations from files.
+ *
+ * @param <T> The ReadOnlyEntity
+ * @param <K> FriendlyLink
+ * @param <R> Any JsonSerializableObjects
+ */
+abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<K>> {
 
     private final Path filePath;
 

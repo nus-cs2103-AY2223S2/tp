@@ -58,7 +58,9 @@ public class StorageManager implements Storage {
     // ================ Elderly methods ==============================
 
     @Override
-    public Path getElderlyFilePath() { return elderlyStorage.getElderlyFilePath(); }
+    public Path getElderlyFilePath() {
+        return elderlyStorage.getElderlyFilePath();
+    }
 
     /**
      * Returns FriendlyLink data as a {@link ReadOnlyElderly}.

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
@@ -21,10 +20,11 @@ import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonAdaptedTag;
 
+/**
+ * Jackson-friendly version of {@link Volunteer}.
+ */
 public class JsonAdaptedVolunteer {
-    /**
-     * Jackson-friendly version of {@link Person}.
-     */
+
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
     private final String name;
     private final String phone;
@@ -39,9 +39,9 @@ public class JsonAdaptedVolunteer {
      */
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("nric") String nric, @JsonProperty("age") String age,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
