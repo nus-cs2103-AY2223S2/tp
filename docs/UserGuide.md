@@ -87,19 +87,12 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-  ![AddCommand](images/userguide/AddCommand.png | width=100)  ![AddCommandOutcome](images/userguide/AddCommandOutcome.png | width=100)
-  Enter Add Command             |  Outcome
-
-  :-------------------------:|:-------------------------:
-
-  <img src=images/userguide/AddCommand.png width="100" height="100">  |  <img src=images/userguide/AddCommandOutcome.png width="100" height="100">
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
-![ListCommand](images/userguide/ListCommand.png)
 
 ### Editing a person : `edit`
 
