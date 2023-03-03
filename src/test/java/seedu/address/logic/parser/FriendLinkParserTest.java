@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
@@ -36,13 +35,6 @@ import seedu.address.testutil.PersonUtil;
 public class FriendLinkParserTest {
 
     private final FriendLinkParser parser = new FriendLinkParser();
-
-    @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
-    }
 
     @Test
     public void parseCommand_deleteElderly() throws Exception {
