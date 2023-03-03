@@ -25,5 +25,4 @@ Given below are my contributions to the project.
     * to be added soon
 * **Community**:
     * to be added soon
-* **Tools**:
-    * to be added soon
+
