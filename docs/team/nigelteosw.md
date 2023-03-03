@@ -1,19 +1,11 @@
 ---
 layout: page
-<<<<<<< HEAD
-title: Nigels's Project Portfolio Page
+title: Nigel's Project Portfolio Page
 ---
 
 ### Project: Well Informed Fridge Environment (WIFE) Level 3
 
 WIFE is always right and never question her. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
-=======
-title: Nigel Teo's Project Portfolio Page
----
-
-### Project: Well Informed Fridge Environment (WIFE)
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge, and never question her. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
->>>>>>> 83c11edc605add0098e29de68a0ee6cd23c2184d
 
 Given below are my contributions to the project.
 
