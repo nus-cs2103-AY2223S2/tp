@@ -8,7 +8,7 @@ title: Lanreath's Project Portfolio Page
 * **Code contributed**:
   * To be added soon
 
-* **Enhancements to existing features**:
+* **Enhancements implemented**:
   * To be added soon
 
 * **Documentation**:
@@ -18,5 +18,5 @@ title: Lanreath's Project Portfolio Page
 * **Testing**:
   * To be added soon
 
-* **Tools**:
+* **Review/mentoring contributions**:
   * To be added soon
