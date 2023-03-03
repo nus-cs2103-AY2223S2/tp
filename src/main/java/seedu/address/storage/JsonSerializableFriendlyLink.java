@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  * An Immutable FriendlyLink that is serializable to JSON format.
  */
 @JsonRootName(value = "friendlylink")
-class JsonSerializableFriendlyLink {
+class JsonSerializableFriendlyLink implements SerializableEntity<FriendlyLink> {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_PAIR = "Persons list contains duplicate pair(s).";
 
@@ -61,6 +61,7 @@ class JsonSerializableFriendlyLink {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
+    @Override
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
         unserializeEntities(persons, friendlyLink);

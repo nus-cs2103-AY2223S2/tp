@@ -12,22 +12,22 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.person.Elderly;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.SerializableEntity;
 
 /**
  * An Immutable Elderly that is serializable to JSON format.
  */
-@JsonRootName(value = "elderlies")
-public class JsonSerializableElderly {
+@JsonRootName(value = "elderly")
+public class JsonSerializableElderly implements SerializableEntity<FriendlyLink> {
     public static final String MESSAGE_DUPLICATE_ELDERLY = "Elderly list contains duplicate elderly.";
 
-    private final List<JsonAdaptedPerson> elderly = new ArrayList<>();
+    private final List<JsonAdaptedElderly> elderly = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableElderly} with the given elderly.
      */
     @JsonCreator
-    public JsonSerializableElderly(@JsonProperty("elderlies") List<JsonAdaptedPerson> elderly) {
+    public JsonSerializableElderly(@JsonProperty("elderly") List<JsonAdaptedElderly> elderly) {
         serializeEntities(this.elderly, elderly);
     }
 
@@ -38,10 +38,10 @@ public class JsonSerializableElderly {
      */
     public JsonSerializableElderly(ReadOnlyElderly source) {
         serializeEntities(elderly,
-                source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+                source.getElderlyList().stream().map(JsonAdaptedElderly::new).collect(Collectors.toList()));
     }
 
-    private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
+    private void serializeEntities(List<JsonAdaptedElderly> entities, List<JsonAdaptedElderly> source) {
         entities.addAll(source);
     }
 
@@ -57,10 +57,10 @@ public class JsonSerializableElderly {
     }
 
     private void unserializeEntities(
-            List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedPerson jsonAdaptedPerson : entity) {
+            List<JsonAdaptedElderly> entity, FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedElderly jsonAdaptedElderly : entity) {
             // TODO: Check if there is a need to cast
-            Elderly elderly = (Elderly) jsonAdaptedPerson.toModelType();
+            Elderly elderly = jsonAdaptedElderly.toModelType();
             if (friendlyLink.hasElderly(elderly)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ELDERLY);
             }
