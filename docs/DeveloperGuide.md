@@ -257,13 +257,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* Receptionists, specifically targeting General Practitioner clinics, usually with fewer and regular patients.
+* Mostly desk-bound. Computers are accessible tools. 
+* Able to pick up typing skills quickly and able to type fast.
 * is reasonably comfortable using CLI apps
+* has a need to manage a significant number of contacts
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+
+* Better communication between healthcare providers and patients
+* Increased efficiency in tracking patient’s health records and personal information
+* Addresses the needs and pain points of GPs who do not have a centralized system for tracking patients and drugs/inventory
 
 ### User stories
 
