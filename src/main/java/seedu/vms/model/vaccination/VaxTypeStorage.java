@@ -60,7 +60,7 @@ public class VaxTypeStorage {
      * @return the {@code VaxType} removed wrapped in an {@code Optional}.
      */
     public Optional<VaxType> remove(String name) {
-        return Optional.ofNullable(typeMap.get(name));
+        return Optional.ofNullable(typeMap.remove(name));
     }
 
 
