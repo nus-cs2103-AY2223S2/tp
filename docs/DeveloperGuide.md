@@ -298,9 +298,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <b>MSS</b>
 
 1.  User is on homepage of list of jobs
-2.  Duke Driver shows button to view overall statistics at the top
-3.  User requests to view statistics
-4.  Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
+2. User requests to view overall statistics
+3. Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
 
     Use case ends.
     
@@ -348,10 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <b>MSS</b>
 
 
-1.  User is on homepage of list of jobs
-2.  Duke Driver shows button to add job at the top
-3.  User requests to add a job in the list
-4.  Duke Driver adds job and job appears in list of jobs
+1. User is on homepage of list of jobs
+2. User requests to add a job in the list
+3. Duke Driver adds job and job appears in list of jobs
 
     Use case ends.
 </pre>
