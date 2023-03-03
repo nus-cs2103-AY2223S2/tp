@@ -255,29 +255,60 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
+Evolve AB3 into a lightweight CRM / Contact manager for a company's sales department.
+
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of business contacts
+* has clients, for example, a salesman or an agent
+* has a need to keep track of leads from clients
+* has a need to learn statistics of leads
+* needs to prioritise leads
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Managing and keeping track of leads by salesmen contacts faster than a typical mouse/GUI driven app.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority |         As a …        |                             I want to …                            |                                So that I can…                                |   |
+|:--------:|:---------------------:|:------------------------------------------------------------------:|:----------------------------------------------------------------------------:|---|
+| * * *    | As a user             | I can add a contact                                                |                                                                              |   |
+| * * *    | As a user             | I can delete a contact                                             |                                                                              |   |
+| * * *    | As a salesman         | I can easily retrieve my client’s phone number and email           | Allows salesmen to efficiently find out ways to contact the client           |   |
+| * * *    | As a salesman         | I can sort my clients by potential business size                   | Allows salesmen to prioritize time to get more revenue                       |   |
+| * *      | As a salesman         | I can easily retrieve clients’ namecard                            | Easily download a copy of their digital namecard through a QR code           |   |
+| *        | As an insurance agent | I can keep track of what products I have (relevant to the contact) | I can send pamphlets to customers                                            |   |
+| * *      | As a salesman         | I can mark a contact as a lead                                     | Allows salesmen to keep track of his own leads across many potential clients |   |
+| * *      | As a salesman         | I can rate the value of my leads                                   | Allows salesmen to prioritize time to get more revenue                       |   |
+| * *      | As a salesman         | I can mark my leads as requiring follow up action                  | I don’t forget to follow up with important clients                           |   |
+| * *      | As a salesman         | I can add a deadline to my next follow up action                   | I can keep the customer updated                                              |   |
+| * *      | As a salesman         | I can sort the leads by follow up deadline                         | I know which clients require my immediate attention                          |   |
+| * *      | As a salesman         | I can sort the leads by value                                      | Prioritize higher value clients                                              |   |
+| *        | As a salesman         | I can add the different stages of my sales flow                    | I can see which stage I am at and what action I require                      |   |
+| * * *    | As a user             | I can see all the contacts I have                                  |                                                                              |   |
+| * *      | As a user             | I can see the count of my contacts                                 |                                                                              |   |
+| * *      | As a user             | I can see a display of what's my most urgent items for the day     | I can see my next action for the day                                         |   |
+| * *      | As a user             | I can see my total revenue size from all potential leads           |                                                                              |   |
+| * *      | As a user             | I can see if I am often missing deadlines                          | Allows me to keep track of my discipline                                     |   |
+| * *      | As a salesman         | I can keep track of how much sales I have a made                   |                                                                              |   |
+| * *      | As a salesman         | I can display how much sales I have made                           |                                                                              |   |
+| * *      | As a salesman         | I can keep track of how much potential sales I have made           |                                                                              |   |
+| * *      | As a new user         | I can see the app populated with sample data                       | I can easily see how the app will look like when it is in use                |   |
+| * *      | As a new user         | I can purge all current data                                       | I can get rid of sample’s data                                               |   |
+| * * *    | As a salesman         | I can tag my contacts                                              | I can group them easily                                                      |   |
+| *        | As a salesman         | I can schedule meeting with clients/lead                           | I can plan my day easily                                                     |   |
+| *        | As a user             | I can view the schedule                                            |                                                                              |   |
+| *        | As a salesman         | I can get reminder when deadline/meeting date is coming up         |                                                                              |   |
+| *        | As a user             | I can update the contact details/deadline/meeting date             | I can edit when I made a mistake                                             |   |
+| * *      | As a user             | I can get help(in-App guidance) from the app                       | I know how to perform certain tasks                                          |   |
+| * *      | As a salesman         | I can write notes on the clients                                   | I can remember certain things about the clients                              |   |
 
 *{More to be added}*
 
@@ -374,6 +405,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User** : A person using the application, usually a user would use this to manage client contacts
+* **Person** : Refers to a client that a user has, whose contact can be seen or edited in the user's address book
+* **NextBigFish** : Name of the application
 
 --------------------------------------------------------------------------------------------------------------------
 
