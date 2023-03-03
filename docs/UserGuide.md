@@ -207,5 +207,8 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 |          [Marks event as done](#marks-event-as-done-mark)           |         `mark INDEX`         |                `mark 2`                |
 |         [Create a new event](#create-a-new-event-newevent)          |       `newevent NAME`        |           `newevent Singing`           |
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 [Back to top](#)
