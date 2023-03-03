@@ -1,0 +1,8 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "postal": "948424",
+    "datetime": "invalid@email!3e",
+    "age": "4th street"
+  } ]
+}

@@ -1,0 +1,14 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "postal": "943512",
+    "datetime": "alice@example.com",
+    "age": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "postal": "943512",
+    "datetime": "pauline@example.com",
+    "age": "4th street"
+  } ]
+}

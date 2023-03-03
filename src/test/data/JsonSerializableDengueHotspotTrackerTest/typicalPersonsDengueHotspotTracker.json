@@ -1,0 +1,46 @@
+{
+  "_comment": "DengueHotspotTracker save file which contains the same Person values as in TypicalPersons#getTypicalDengueHotspotTracker()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "postal" : "943512",
+    "datetime" : "alice@example.com",
+    "age" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "postal" : "987654",
+    "datetime" : "johnd@example.com",
+    "age" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "postal" : "953525",
+    "datetime" : "heinz@example.com",
+    "age" : "wall street",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "postal" : "876525",
+    "datetime" : "cornelia@example.com",
+    "age" : "10th street",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "postal" : "948222",
+    "datetime" : "werner@example.com",
+    "age" : "michegan ave",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "postal" : "948247",
+    "datetime" : "lydia@example.com",
+    "age" : "little tokyo",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "postal" : "948244",
+    "datetime" : "anna@example.com",
+    "age" : "4th street",
+    "tagged" : [ ]
+  } ]
+}

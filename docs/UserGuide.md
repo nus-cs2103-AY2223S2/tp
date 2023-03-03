@@ -86,13 +86,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the dengue case list.
+Shows a list of all persons in the Dengue Hotspot Tracker.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the dengue case list.
+Edits an existing person in the Dengue Hotspot Tracker.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -104,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and dateAndTime age of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -127,7 +127,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the dengue case list.
+Deletes the specified person from the Dengue Hotspot Tracker.
 
 Format: `delete INDEX`
 
@@ -136,12 +136,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the dengue case list.
+* `list` followed by `delete 2` deletes the 2nd person in the Dengue Hotspot Tracker.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the dengue case list.
+Clears all entries from the Dengue Hotspot Tracker.
 
 Format: `clear`
 
