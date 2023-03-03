@@ -175,6 +175,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePilot(String id) {
+        pilotManager.removeItem(id);
+    }
+
+    @Override
     public void addPilot(Pilot pilot) {
         requireNonNull(pilot);
         pilotManager.addItem(pilot);

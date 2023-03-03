@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.ParseException;
+
 /**
  * Represents the parameters of a command.
  */
@@ -115,6 +118,26 @@ public class CommandParam {
     }
 
     /**
+     * Gets the unnamed token of the command or throws an exception.
+     */
+    public String getUnnamedValueOrThrow(String message) throws ParseException {
+        if (unnamedValue.isEmpty()) {
+            throw new ParseException(message);
+        }
+        return unnamedValue.get();
+    }
+
+    /**
+     * Gets the unnamed token of the command or throws an exception.
+     *
+     * @return the unnamed token of the command.
+     * @throws CommandException if the unnamed token is not present.
+     */
+    public String getUnnamedValueOrThrow() throws ParseException {
+        return getUnnamedValueOrThrow("Missing unnamed value");
+    }
+
+    /**
      * Returns the named token of the command, which is the part right after
      * one prefix and before the next prefix.
      *
@@ -136,20 +159,44 @@ public class CommandParam {
     }
 
     /**
-     * Gets the integer value of the named token with the given prefix.
+     * Gets the value of the named token with the given prefix or throws an exception.
      */
-    public Optional<Integer> getIntValue(String prefix) {
-        if (namedValues.isEmpty()) {
-            return Optional.empty();
-        }
-        Optional<String> value = namedValues.get().get(prefix);
+    public String getValueOrThrow(String prefix, String message) throws ParseException {
+        final Optional<String> value = getValue(prefix);
         if (value.isEmpty()) {
-            return Optional.empty();
+            throw new ParseException(message);
         }
+        return value.get();
+    }
+
+    /**
+     * Gets the value of the named token with the given prefix or throws an exception.
+     *
+     * @see #getValueOrThrow(String, String)
+     */
+    public String getValueOrThrow(String prefix) throws ParseException {
+        return getValueOrThrow(prefix, "Missing value for prefix " + prefix);
+    }
+
+    /**
+     * Gets the integer value of the named token with the given prefix or throws an exception.
+     */
+    public int getIntOrThrow(String prefix, String message) throws ParseException {
+        final String value = getValueOrThrow(prefix, message);
         try {
-            return Optional.of(Integer.parseInt(value.get()));
+            return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            return Optional.empty();
+            throw new ParseException("Invalid value for prefix " + prefix + ": cannot "
+                                         + "parse " + value + " as integer: " + e.getMessage());
         }
+    }
+
+    /**
+     * Gets the integer value of the named token with the given prefix or throws an exception.
+     *
+     * @see #getIntOrThrow(String, String)
+     */
+    public int getIntOrThrow(String prefix) throws ParseException {
+        return getIntOrThrow(prefix, "Missing value for prefix " + prefix);
     }
 }

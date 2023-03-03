@@ -146,6 +146,11 @@ public interface Model {
     void deletePilot(Pilot target);
 
     /**
+     * Deletes the pilot with the given id.
+     */
+    void deletePilot(String id);
+
+    /**
      * Adds the given pilot.
      *
      * @param pilot the pilot to add.

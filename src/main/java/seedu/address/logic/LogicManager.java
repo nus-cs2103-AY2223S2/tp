@@ -17,6 +17,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.OperationMode;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.ParseException;
+import seedu.address.logic.commands.factories.AddPilotCommandFactory;
+import seedu.address.logic.commands.factories.DeletePilotCommandFactory;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
@@ -34,7 +36,10 @@ public class LogicManager implements Logic {
      * The command groups that are available in the application.
      */
     private static final CommandGroup[] COMMAND_GROUPS = new CommandGroup[]{
-        new CommandGroup(OperationMode.PILOT, new CommandFactory[]{}),
+        new CommandGroup(OperationMode.PILOT, new CommandFactory[]{
+            new AddPilotCommandFactory(),
+            new DeletePilotCommandFactory(),
+            }),
         new CommandGroup(OperationMode.CREW, new CommandFactory[]{}),
         new CommandGroup(OperationMode.PLANE, new CommandFactory[]{}),
         new CommandGroup(OperationMode.FLIGHT, new CommandFactory[]{}),
