@@ -293,95 +293,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
 <details>
-<summary><b>[UC1] View statistics</b></summary>
+<summary><b>[ST1] View statistics</b></summary>
 <pre>
 <b>MSS</b>
-
-1.  User is on homepage of list of jobs
-2. User requests to view overall statistics
-3. Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
-
-    Use case ends.
+1. User is on homepage of list of jobs.
+2. User requests to view overall statistics.
+3. System shows total earnings, monthly earnings,
+   weekly earnings, daily earnings and top customers visited.
+   Use case ends.
     
 <b>Extensions</b>
-
 * 2a. The list is empty.
-
-  Use case ends.
+      Use case ends.
 </pre>
 </details>  
 
 <details>
-<summary><b>[UC2] Delete a job</b></summary>
-
+<summary><b>[DE1] View delivery job details</b></summary>
 <pre>
 <b>MSS</b>
-
-1.  User is on homepage of list of jobs
-2.  Duke Driver shows a list of jobs 
-3.  User requests to delete a specific job in the list
-4.  Duke Driver deletes the job
-
-    Use case ends.
-
-<b>Extensions</b>
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Duke Driver shows an error message.
-
-      Use case resumes at step 2.
-
+1. User opens the system.
+2. System list all pending jobs.
+3. User selects the job for details.
+5. System displays the full detail of the deivery job. 
 </pre>
 </details>  
 
 
-
 <details>
-<summary><b>[UC3] Add a job</b></summary>
+<summary><b>[DE2] Add a delivery job</b></summary>
 <pre>
 <b>MSS</b>
-
-
-1. User is on homepage of list of jobs
-2. User requests to add a job in the list
-3. Duke Driver adds job and job appears in list of jobs
-
-    Use case ends.
+1. User is on homepage of list of jobs.
+2. User requests to add a job in the list.
+3. System adds job and job appears in list of jobs.
+   Use case ends.
 </pre>
 </details>  
 
 
-
 <details>
-<summary><b>[UC4] Chat with a client</b></summary>
+<summary><b>[DE3] Delete a job</b></summary>
 <pre>
 <b>MSS</b>
-
-1. User goes to homepage with list of jobs/contacts.
-2. Duke Driver displays job list.
-3. User requests to display a specific job to start chat.
-4. Duke Driver displays the chosen job in details and Chat option.
-5. User selects "Chat" option from the chosen job and requests to chat.
-6. Duke Driver shows the message sent in the Chat window.
-
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests to delete a specific job in the list.
+4. System deletes the job.
    Use case ends.
 
 <b>Extensions</b>
-
 * 2a. The list is empty.
-
   Use case ends.
-
 * 3a. The given index is invalid.
-
-    * 3a1. Duke Driver shows an error message.
-
+    * 3a1. System shows an error message.
       Use case resumes at step 2.
+</pre>
+</details>  
+
+
+<details>
+<summary><b>[CH1] Chat with a client</b></summary>
+<pre>
+<b>MSS</b>
+1. User goes to homepage with list of jobs/contacts.
+2. System displays job list.
+3. User requests to display a specific job to start chat.
+4. System displays the chosen job in details and Chat option.
+5. User selects "Chat" option from the chosen job and requests to chat.
+6. DSystem shows the message sent in the Chat window.
+   Use case ends.
+
+<b>Extensions</b>
+* 2a. The list is empty.
+      Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+           Use case resumes at step 2.
 </pre>
 </details>  
 
