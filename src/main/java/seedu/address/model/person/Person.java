@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Status status;
+    private Status status;
     private final Set<Tag> notes = new HashSet<>();
 
     /**
@@ -77,6 +77,22 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if the person status can be advanced otherwise false.
+     */
+    public boolean advanceStatus() {
+        switch (this.status) {
+        case APPLIED:
+            this.status = Status.SHORTLISTED;
+            return true;
+        case SHORTLISTED:
+            this.status = Status.ACCEPTED;
+            return true;
+        default:
+            return false;
+        }
     }
 
     /**

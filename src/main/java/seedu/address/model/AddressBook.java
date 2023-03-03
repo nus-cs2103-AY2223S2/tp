@@ -93,6 +93,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Advances {@code target} from this {@code AddressBook}
+     * {@code target} must exist in the address book.
+     */
+    public boolean advancePerson(Person target) {
+        requireNonNull(target);
+
+        return persons.advancePerson(target);
+    }
+
     //// util methods
 
     @Override

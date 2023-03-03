@@ -98,6 +98,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Advances the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public boolean advancePerson(Person toAdvance) {
+        requireNonNull(toAdvance);
+        return toAdvance.advanceStatus();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

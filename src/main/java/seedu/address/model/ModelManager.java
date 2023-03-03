@@ -111,6 +111,19 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean advancePerson(Person target) {
+        requireNonNull(target);
+
+        return addressBook.advancePerson(target);
+    }
+
+    @Override
+    public void refreshListWithPredicate(Predicate<Person> predicate) {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filteredPersons.setPredicate(predicate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

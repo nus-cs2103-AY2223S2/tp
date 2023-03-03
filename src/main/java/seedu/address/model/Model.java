@@ -76,6 +76,17 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Advances the given person.
+     * The person must exist in the address book.
+     */
+    boolean advancePerson(Person target);
+
+    /**
+     * Refreshes the list after a command.
+     */
+    void refreshListWithPredicate(Predicate<Person> predicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
