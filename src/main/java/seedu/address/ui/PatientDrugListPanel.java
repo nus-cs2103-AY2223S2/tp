@@ -32,7 +32,7 @@ public class PatientDrugListPanel extends UiPart<Region> {
 
         // PERSON LIST
         patientListView.setItems(patientList);
-//        drugListView.setCellFactory(listView -> new PatientListViewCell());
+//        patientListView.setCellFactory(listView -> new PatientListViewCell());
 
         // DRUG LIST
         drugListView.setItems(drugList);
@@ -40,18 +40,35 @@ public class PatientDrugListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Patient> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Patient patient, boolean empty) {
+            super.updateItem(patient, empty);
 
-            if (empty || person == null) {
+            if (empty || patient == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(patient, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Drug} using a {@code DrugCard}.
+     */
+    class DrugListViewCell extends ListCell<Drug> {
+        @Override
+        protected void updateItem(Drug drug, boolean empty) {
+            super.updateItem(drug, empty);
+
+            if (empty || drug == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new DrugCard(drug, getIndex() + 1).getRoot());
             }
         }
     }
