@@ -23,8 +23,8 @@ public class JsonAdaptedVaxType {
     private final Integer minAge;
     private final Integer maxAge;
     private final Integer minSpacing;
-    private final List<JsonAdaptedVaxRequirement> historyReqs;
     private final List<JsonAdaptedVaxRequirement> allergyReqs;
+    private final List<JsonAdaptedVaxRequirement> historyReqs;
 
 
     /** Constructs a {@code JsonAdaptedVaxType}. */
@@ -35,15 +35,15 @@ public class JsonAdaptedVaxType {
                 @JsonProperty("minAge") Integer minAge,
                 @JsonProperty("maxAge") Integer maxAge,
                 @JsonProperty("minSpacing") Integer minSpacing,
-                @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs,
-                @JsonProperty("allergyReqs") List<JsonAdaptedVaxRequirement> allergyReqs) {
+                @JsonProperty("allergyReqs") List<JsonAdaptedVaxRequirement> allergyReqs,
+                @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
         this.minSpacing = minSpacing;
-        this.historyReqs = historyReqs;
         this.allergyReqs = allergyReqs;
+        this.historyReqs = historyReqs;
     }
 
 
@@ -75,12 +75,12 @@ public class JsonAdaptedVaxType {
             builder = builder.setMinSpacing(minSpacing);
         }
 
-        if (historyReqs != null) {
-            builder = builder.setHistoryReqs(toReqList(historyReqs));
-        }
-
         if (allergyReqs != null) {
             builder = builder.setAllergyReqs(toReqList(allergyReqs));
+        }
+
+        if (historyReqs != null) {
+            builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
         return builder.build();

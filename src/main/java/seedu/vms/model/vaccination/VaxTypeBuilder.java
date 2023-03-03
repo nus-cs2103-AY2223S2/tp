@@ -124,7 +124,7 @@ public class VaxTypeBuilder {
     public VaxType build() {
         oriName.ifPresent(storage::remove);
         VaxType vaxType = new VaxType(name, grps, minAge, maxAge, minSpacing,
-                historyReqs, allergyReqs);
+                allergyReqs, historyReqs);
         storage.add(vaxType);
         return vaxType;
     }

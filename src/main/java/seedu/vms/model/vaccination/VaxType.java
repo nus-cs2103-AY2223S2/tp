@@ -29,14 +29,14 @@ public class VaxType {
      */
     public VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<Requirement> historyReqs, List<Requirement> allergyReqs) {
+                List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
         this.minSpacing = minSpacing;
-        this.historyReqs = historyReqs;
         this.allergyReqs = allergyReqs;
+        this.historyReqs = historyReqs;
     }
 
 
