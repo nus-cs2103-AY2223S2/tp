@@ -38,15 +38,18 @@ public class ParserUtilTest {
     private static final String WHITESPACE = " \t\r\n";
 
     private static final LocalDateTime EXPECTED_DATE = LocalDateTime.of(2023, 3, 5, 4, 55);
+    private static final LocalDateTime EXPECTED_DATE_ONLY = LocalDateTime.of(2023, 3, 5, 0, 0);
 
     private static final String VALID_DEFAULT_DATE = "2023-03-05T04:55";
     private static final String VALID_FULL_DATE = "2023-03-05 0455";
+    private static final String VALID_DATE_ONLY = "2023-03-05";
 
     private static final String INVALID_DATE_RUBBISH = "RuBbisH";
     private static final String INVALID_DATE_MIN_OUT = "2023-03-05T04:99";
     private static final String INVALID_DATE_HRS_OUT = "2023-03-05T99:55";
     private static final String INVALID_DATE_DAY_OUT = "2023-03-99T04:55";
     private static final String INVALID_DATE_MTH_OUT = "2023-99-99T04:55";
+    private static final String INVALID_DATE_ONLY_MTH_OUT = "2023-99-99";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -55,8 +58,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
+                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -218,6 +221,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDate_validDateOnly_returnDate() throws Exception {
+        assertEquals(EXPECTED_DATE_ONLY, ParserUtil.parseDate(VALID_DATE_ONLY));
+    }
+
+    @Test
     public void parseDate_rubbishDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_RUBBISH));
     }
@@ -240,5 +248,10 @@ public class ParserUtilTest {
     @Test
     public void parseDate_monthOutOfRange_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_MTH_OUT));
+    }
+
+    @Test
+    public void parseDateOnly_monthOutOfRange_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_ONLY_MTH_OUT));
     }
 }
