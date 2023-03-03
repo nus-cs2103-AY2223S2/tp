@@ -1,0 +1,35 @@
+{
+  "types": [
+    {
+      "name": "UNCHI",
+      "maxAge": 100
+    },
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": [
+            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
+            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
+            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tris(hydroxymethyl)aminoethane hydrochloride"
+          ]
+        }
+      ]
+    }
+  ]
+}

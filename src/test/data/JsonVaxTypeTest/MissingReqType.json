@@ -1,0 +1,14 @@
+{
+  "types": [
+    {
+      "name": "UNCHI",
+      "allergyReqs": [
+        {
+          "reqSet": [
+            "BANANA"
+          ]
+        }
+      ]
+    }
+  ]
+}
