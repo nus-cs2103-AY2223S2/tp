@@ -88,11 +88,20 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all food items : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all food item in WIFE.
 
 Format: `list`
+
+Example:
+
+`list` returns
+```shell
+  1. Spinach
+  2. Meiji Milk
+  3. Awfully Chocolate
+```
 
 ### Editing a person : `edit`
 
@@ -131,17 +140,22 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified food item from WIFE.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food item list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+`delete 1` returns
+````shell
+  The below item has been deleted for you:
+  Meiji Milk
+```
+
 
 ### Clearing all entries : `clear`
 
