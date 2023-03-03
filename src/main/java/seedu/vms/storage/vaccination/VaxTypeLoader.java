@@ -34,10 +34,27 @@ public class VaxTypeLoader {
      * @throws IOException if an I/O error occurs.
      */
     public static VaxTypeStorage load() throws IllegalValueException, IOException {
-        VaxTypeLoader adaptedList = JsonUtil
-                .deserializeFromResource(JSON_FILE_PATH, VaxTypeLoader.class);
+        VaxTypeLoader loader = JsonUtil.deserializeFromResource(JSON_FILE_PATH, VaxTypeLoader.class);
+        return loader.toModelType();
+    }
+
+
+    /**
+     * Loads all the vaccination types contained in the specified JSON file.
+     *
+     * @throws IllegalValueException if there are errors in the fields of the
+     *      JSON file.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static VaxTypeStorage load(String pathString) throws IllegalValueException, IOException {
+        VaxTypeLoader loader = JsonUtil.deserializeFromFile(pathString, VaxTypeLoader.class);
+        return loader.toModelType();
+    }
+
+
+    private VaxTypeStorage toModelType() throws IllegalValueException {
         VaxTypeStorage storage = new VaxTypeStorage();
-        for (JsonAdaptedVaxType adapted : adaptedList.types) {
+        for (JsonAdaptedVaxType adapted : types) {
             adapted.toModelType(storage);
         }
         return storage;
