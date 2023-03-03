@@ -71,7 +71,7 @@ public class InternshipBuilder {
     // }
 
     /**
-     * Sets the {@code position} of the {@code Internship} that we are building.
+     * Sets the {@code Position} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withPosition(String position) {
         this.position = new Position(position);
@@ -79,7 +79,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code company} of the {@code Internship} that we are building.
+     * Sets the {@code Company} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withCompany(String company) {
         this.company = new Company(company);
@@ -87,7 +87,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code status} of the {@code Internship} that we are building.
+     * Sets the {@code Status} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withStatus(Integer status) {
         this.status = new Status(status);
@@ -95,7 +95,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code description} of the {@code Internship} that we are building.
+     * Sets the {@code Description} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withDescription(String description) {
         this.description = new Description(description);
