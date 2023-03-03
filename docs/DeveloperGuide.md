@@ -257,13 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* have large number of students to manage
+* accept fixed rate hour pay as a tutor, no matter which subject
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage students faster than a typical mouse/GUI driven app
+* keep track of the students' academic progress and specified requirements more efficiently
+
 
 
 ### User stories
@@ -272,14 +276,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | see instructions               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | new user                                   | Open the app             |begin using the app                                                                        |
+| `* * *`  | new user                                       | close the app            | leave the app                           |
+| `* * *`  | new user                                       | add a student’s name      |Track a student’s progress by their name |
+| `* * *`    | new user                                       | include the student’s education level when adding the student (eg. P6)       | keep track of a student’s education level                |
+| `* * *`      | new user  | include the student’s address when adding the student (eg. Block 69 S642069)      | keep track of a student’s address and go to the place easily                                        |
+| `* * *`      | user with some experience  | delete a student entry from my list (by index)      | remove all details related to a certain student
+| `* * *`      | user with some experience  | view my list of students   | keep track of who I’m currently teaching
+| `* * *`      | new user  | have my changes autosave   | be sure that I won’t lose my changes if I crash/close the app
+| `* * *`      | new user  | include optional student-specific notes when adding the student (eg. Good in Japanese)  | store additional student’s descriptive information
+| `* * *`      | new user  | have my data persist between use sessions | continue my session where I left off
 
-*{More to be added}*
 
 ### Use cases
 
