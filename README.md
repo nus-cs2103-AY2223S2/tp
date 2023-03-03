@@ -2,8 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-
-* This is a team project by 5 students, entitled Dengue Hotspot Tracker, targeted towards NEA personnel or 
+* This is a team project by 5 students, entitled Dengue Hotspot Tracker, targeted towards NEA personnel or
 members within the government.<br>
   Usages:
   * to keep track of dengue hotspots
@@ -15,7 +14,7 @@ members within the government.<br>
   * add n/NAME p/POSTAL_CODE d/DATETIME a/AGE
   * delete 3 (index)
 
-* The project is built on an ongoing software project for a desktop application (called _denguetracker_) 
+* The project is built on an ongoing software project for a desktop application (called _denguetracker_)
 used for managing contact details, named `Dengue Hotspot Tracker` (`DHT` for short).
 
 ```
