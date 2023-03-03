@@ -334,7 +334,7 @@ specified otherwise)
 
 **MSS**
 
-1. Actor inputs client’s personal information
+1. Actor inputs the client’s personal information
 2. System confirms and creates the client profile
 3. Use case ends
 
