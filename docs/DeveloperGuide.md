@@ -273,18 +273,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ |------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add/delete jobs                | keep track of my upcoming and old tasks.                               |
-| `* * *`  | user                                       | mark/unmakr jobs               | keep track of completed jobs                                           |
-| `* * *`  | user                                       | add a new person               | keep in touch with my clients.                                         |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | chat with my clients           | retain custormer relations and maintain more customers.                |
-| `* *`    | Gig employee                               | view my aggregated information | track my earnings                                                      |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
+| Priority | As a …​                                                           | I want to …​                   | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                          | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                   | add/delete jobs                | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                   | mark/unmark jobs               | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to provide better service for customers | chat with my clients           | retain custormer relations and maintain more customers.                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
 
 *{More to be added}*
 
@@ -293,15 +293,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
 <details>
-<summary><b>[UC1] List jobs</b></summary>
+<summary><b>[UC1] View statistics</b></summary>
 <pre>
 <b>MSS</b>
 
-1.  User requests to list jobs
-2.  Duke Driver shows a list of jobs
+1.  User is on homepage of list of jobs
+2.  Duke Driver shows button to view overall statistics at the top
+3.  User requests to view statistics
+4.  Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
 
     Use case ends.
-
+    
 <b>Extensions</b>
 
 * 2a. The list is empty.
@@ -316,14 +318,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <pre>
 <b>MSS</b>
 
-1.  User requests to list jobs
-2.  Duke Driver shows a list of jobs (UC1)
+1.  User is on homepage of list of jobs
+2.  Duke Driver shows a list of jobs 
 3.  User requests to delete a specific job in the list
 4.  Duke Driver deletes the job
 
     Use case ends.
 
 <b>Extensions</b>
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -335,14 +341,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>  
 
 
+
 <details>
 <summary><b>[UC3] Add a job</b></summary>
 <pre>
 <b>MSS</b>
 
 
-1. User requests to add a specific job to the list
-2. Duke Driver adds the job
+1.  User is on homepage of list of jobs
+2.  Duke Driver shows button to add job at the top
+3.  User requests to add a job in the list
+4.  Duke Driver adds job and job appears in list of jobs
 
     Use case ends.
 </pre>
@@ -367,6 +376,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 <b>Extensions</b>
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 * 3a. The given index is invalid.
 
