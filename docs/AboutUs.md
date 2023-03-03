@@ -21,9 +21,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Haiqel
 
-<img src="images/Acerizm.png" width="200px">
+<img src="images/acerizm.png" width="200px">
 
-[[github](http://github.com/Acerizm)]
+[[github](http://github.com/acerizm)]
 [[portfolio](team/acerizm.md)]
 
 * Role: Developer
