@@ -10,7 +10,7 @@ TutorPro is a desktop app designed to help private tutors manage their student i
 Given below are my contributions to the project.
 
 * **New Feature**: Adds the ability to view a student's personal profile.
-    
+  
     - What it does: Enables users to view detailed information about a student, such as their home address and phone number, by clicking on the "view profile" button next to their name.
     - Justification: This feature provides users with quick access to a student's contact information, which can be essential for communication or other purposes.
     - Highlights: This feature required modifications to the existing codebase to add the "view profile" button and implement the functionality to display the student's contact information.
@@ -59,14 +59,14 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]
     * Added documentation for the introduction and description
+    * Added the command Summary Section
   * Developer Guide:
-
+  
 * **Community**:
   * PRs reviewed (with non-trivial review comments): )
-  * Contributed to forum discussions ()
   * Reported bugs and suggestions for other teams in the class ()
   * Some parts of the history feature I added was adopted by several other class mates ()
-
+  
 * **Tools**:
 
   
