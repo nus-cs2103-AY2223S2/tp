@@ -17,7 +17,7 @@ Trackr is a **desktop app for managing deliveries for your business, optimised f
 
 1. Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Trackr.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar trackr.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -69,11 +69,11 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Syntax: `help`
 
 ### Adding a supplier: `add_supplier` / `add_s`
 
-Adds a supplier to the address book.
+Adds a supplier to the supplier list.
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
@@ -92,7 +92,7 @@ Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER 
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided
-Status available for setting are: Open, Preparing, Ready, Delivering, Delivered
+* Status available for setting are: Open, Preparing, Ready, Delivering, Delivered
 * If no status is provided, it is defaulted to Open
 
 Examples:
@@ -146,7 +146,7 @@ Examples:
 `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
 
-### Editing an order : `edit_order / edit_o`
+### Editing an order : `edit_order` / `edit_o`
 
 Edits an order that is present in the order list.
 
@@ -268,7 +268,7 @@ Examples:
 
 Exits the program.
 
-Format: `exit`
+Syntax: `exit`
 
 ### Saving the data
 
@@ -276,7 +276,7 @@ Save changes after any command executed successfully. There is no need to save m
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
+Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
