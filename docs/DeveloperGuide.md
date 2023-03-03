@@ -23,6 +23,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 6. [Command Summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -501,6 +502,10 @@ _{Explain here how the data archiving feature will be implemented}_
 6. PowerConnect should only be used by a single user per installation and not by multiple users.
 7. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish the majority of the tasks faster using CLI commands than using the mouse.
+8. PowerConnect should be able to handle all user input errors gracefully.
+9. PowerConnect should be able to display all error messages in a user-friendly manner.
+10. PowerConnect should be able to run on a 32-bit system with 8GB of RAM.
+11. PowerConnect should be able to display all success messages within 1 second.
 
 *{More to be added}*
 
