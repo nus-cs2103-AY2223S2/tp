@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `ng.jinyuan@u.nus.edu`
 
 ## Project team
 
-### Ritika 
+### Ng Jin Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jnjy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jnjy)]
+[[portfolio](team/jnjy.md)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities:
 
-### Jane Doe
+### Ritika Joshi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rmj1405.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/rmj1405)]
+[[portfolio](team/rmj1405.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Scheduling and tracking, Deliverables and deadlines
+* Responsibilities:
 
-### Johnny Doe
+### Justin Leng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/scorpiussigma.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/scorpiussigma)]
+[[portfolio](team/scorpiussigma.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration
+* Responsibilities:
 
 ### Nigel Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nigelteosw.png" width="200px">
 
 [[github](http://github.com/nigelteosw)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nigelteosw.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: UI/UX experts
+* Responsibilities:
 
 ### Wesley Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bicesto.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bicesto)]
+[[portfolio](team/bicesto.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities:
