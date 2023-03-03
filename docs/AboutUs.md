@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gibson
 
-<img src="images/gibson.png" width="200px">
+<img src="images/gibson0918.png" width="200px">
 
 [[github](http://github.com/Gibson0918)] [[portfolio](team/gibson0918.md)]
 
