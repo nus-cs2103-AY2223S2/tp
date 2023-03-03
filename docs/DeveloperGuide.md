@@ -290,41 +290,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+<details>
+<summary><b>[UC1] List jobs</b></summary>
+<pre>
+<b>MSS</b>
 
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list jobs
+2.  Duke Driver shows a list of jobs
 
     Use case ends.
 
-**Use case: Chat with a client**
-
-**MSS**
-
-1. User go to job list/contact list.
-2. User go to specific job/client.
-3. User start chatting by clicking on "Chat" function.
-4. Start typing and sending message by pressing Enter.
-
-   Use case ends.
-
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
   Use case ends.
+</pre>
+</details>  
+
+<details>
+<summary><b>[UC2] Delete a job</b></summary>
+
+<pre>
+<b>MSS</b>
+
+1.  User requests to list jobs
+2.  Duke Driver shows a list of jobs (UC1)
+3.  User requests to delete a specific job in the list
+4.  Duke Driver deletes the job
+
+    Use case ends.
+
+<b>Extensions</b>
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Duke Driver shows an error message.
 
       Use case resumes at step 2.
+
+</pre>
+</details>  
+
+
+<details>
+<summary><b>[UC3] Add a job</b></summary>
+<pre>
+<b>MSS</b>
+
+
+1. User requests to add a specific job to the list
+2. Duke Driver adds the job
+
+    Use case ends.
+</pre>
+</details>  
+
+
+
+<details>
+<summary><b>[UC4] Chat with a client</b></summary>
+<pre>
+<b>MSS</b>
+
+1. User requests to list jobs/contacts.
+2. Duke Driver shows a list of jobs (UC2)
+3. User requests to display a specific job to start chat.
+4. Duke Driver displays the chosen job with more specific details.
+5. User selects "Chat" function from the chosen job.
+6. Duke Driver prompts Chat window with specific client.
+7. User starts the chat by typing in the messages and press Enter to send/
+8. Duke Driver shows the message sent in the Chat window.
+
+   Use case ends.
+
+<b>Extensions</b>
+
+* 3a. The given index is invalid.
+
+    * 3a1. Duke Driver shows an error message.
+
+      Use case resumes at step 2.
+</pre>
+</details>  
+
 
 *{More to be added}*
 
@@ -332,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be used for a single user only i.e. (not a multi-user product).
-3.  The system should respond within two seconds (after receiving input from user).
+3.  The system should respond within two seconds (after receiving input from user). 
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
