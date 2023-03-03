@@ -17,7 +17,7 @@ import seedu.address.commons.util.JsonUtil;
  * @param <K> FriendlyLink
  * @param <R> Any JsonSerializableObjects
  */
-abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<K>> {
+public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<K>> {
 
     private final Path filePath;
 
