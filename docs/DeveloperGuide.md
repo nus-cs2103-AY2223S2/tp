@@ -257,6 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* students from NUS
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -270,29 +271,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                       | I want to …​                 | So that I can…​                                                        |
+| -------- |-----------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                                       | add a new person             |                                                                        |
+| `* * *`  | Student                                       | delete a person              | remove entries that I no longer need                                   |
+| `* * *`  | Student                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                                       | filter a person by tag       | find the persons that is related to the tag quickly                    |
+| `* *`    | Student                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
+| `*`      | Student with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModCheck` and the **Actor** is the `Student`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Student requests to list persons
+2.  ModCheck shows a list of persons
+3.  Student requests to delete a specific person in the list
+4.  ModCheck deletes the person
 
     Use case ends.
 
@@ -304,11 +307,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModCheck shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Filter a person by tag**
+
+**MSS**
+
+1. Student requests to filter persons by tag.
+2. ModCheck shows a list of persons with the tag.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no persons with the tag.
+
+    * 2a1. ModCheck shows an error message.
+        
+        Use case ends.
+
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
@@ -317,6 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
+
 
 ### Glossary
 
