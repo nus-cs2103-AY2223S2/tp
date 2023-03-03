@@ -8,16 +8,16 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  * [Add a Contact](#add-a-contact-newcontact)
-  * [View Contact List](#list-all-contacts-listcontact)
-  * [Link Contact to Event](#link-contact-to-event-link)
-  * [View Rate](#view-rate-rate)
-  * [Tag Rate](#tag-rate-newrate)
-  * [Mark Event as Done](#mark-event-as-done-mark)
-  * [Create New Event](#create-new-event-newevent)
-  * [View Event List](#list-all-events-listevent)
-  * [Delete an Event](#delete-an-event-deleteevent)
-  * [Add Date to Event](#add-date-to-an-event-adddate)
+  * [Add a Contact](#add-a-contact)
+  * [View Contact List](#list-all-contacts)
+  * [Link Contact to Event](#link-contact-to-event)
+  * [View Rate](#view-rate)
+  * [Tag Rate](#tag-rate)
+  * [Mark Event as Done](#mark-event)
+  * [Create New Event](#create-new-event)
+  * [View Event List](#list-all-events)
+  * [Delete an Event](#delete-an-event)
+  * [Add Date to Event](#add-date-to-an-event)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -50,7 +50,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 
 ## Features
 
-### Add a Contact: `newcontact`
+### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
 Adding a contact to contacts
 
@@ -64,13 +64,13 @@ Adding a contact to contacts
 - `newcontact n/Mandy p/98765432`
 
 
-### List all Contacts: `listcontact`
+### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
 
 Displays all contacts saved in a list
 
 **Format**: `listcontact`
 
-### Link Contact to Event: `link`
+### Link Contact to Event: `link` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.
 
@@ -85,7 +85,7 @@ Links client contact to an event.
 - `link 2 91234567` links `2nd event` to contact `91234567` in the list.
 
 
-### View Rate: `rate`
+### View Rate: `rate` <a id = "view-rate"></a>
 
 Displays the rate tagged to an event.
 
@@ -100,7 +100,7 @@ Displays the rate tagged to an event.
 - `rate 2` returns the rate of `2nd event` in the event list.
 
 
-### Tag Rate: `newrate`
+### Tag Rate: `newrate` <a id = "tag-rate"></a>
 
 Tags a rate to an event.
 
@@ -115,7 +115,7 @@ Tags a rate to an event.
 - `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list.
 
 
-### Mark Event as Done: `mark`
+### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
 Marks a specified event in the address book as done. 
 
@@ -128,7 +128,7 @@ The event must not be marked as done beforehand.
 **Example**:  
 - `mark 2` marks the `2nd event` as done.
 
-### Create new Event: `newevent`
+### Create new Event: `newevent` <a id = "create-new-event"></a>
 
 Creates a new event  
 
@@ -139,14 +139,14 @@ Creates a new event
 **Example**: 
 - `newevent Singing` creates an event that has the name “Singing”.
 
-### List all Events: `listevent`
+### List all Events: `listevent` <a id = "list-all-events"></a>
 
 Shows a list of all events in the address book
 
 **Format**: `listevent`
 
 
-### Delete an Event: `deleteevent`
+### Delete an Event: `deleteevent` <a id = "delete-an-event"></a>
 
 Deletes the specified event from the event book.
 
@@ -159,7 +159,7 @@ Deletes the specified event from the event book.
 **Example**:
   - `deleteevent 2` deletes the `2nd event` in the event list.
 
-### Add Date to an Event: `adddate`
+### Add Date to an Event: `adddate` <a id = "add-date-to-an-event"></a>
 
 Adds a starting time and ending time to the specified event in the event book.
 
@@ -182,19 +182,28 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 
 **Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
-
+(#add-a-contact)
+  * [View Contact List](#list-all-contacts)
+  * [Link Contact to Event](#link-contact-to-event)
+  * [View Rate](#view-rate)
+  * [Tag Rate](#tag-rate)
+  * [Mark Event as Done](#mark-event)
+  * [Create New Event](#create-new-event)
+  * [View Event List](#list-all-events)
+  * [Delete an Event](#delete-an-event)
+  * [Add Date to Event](#add-date-to-an-event)
 ## Command Summary
 |                        Commands                        |               Command Format                |                                Example Usage                                |
 |:------------------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
-|      [Add a Contact](#add-a-contact--newcontact)       |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
-| [Listing All Contact](#list-all-contacts--listcontact) |                `listcontact`                |                                `listcontact`                                |
-| [Link Contact to Event](#link-contact-to-event--link)  |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
-|             [View Rate](#view-rate--rate)              |                `rate INDEX`                 |                                  `rate 2`                                   |  
-|            [Tag a rate](#tag-rate--newrate)            |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
-|    [Marks Event as Done](#mark-event-as-done--mark)    |                `mark INDEX`                 |                                  `mark 2`                                   |
-|   [Create a new Event](#create-new-event--newevent)    |               `newevent NAME`               |                             `newevent Singing`                              |
-|     [View Event List](#list-all-events--listevent)     |                 `listevent`                 |                                 `listevent`                                 |
-|    [Delete an Event](#delete-an-event--deleteevent)    |               `deleteevent 2`               |                               `deleteevent 2`                               |
-|  [Add Date to Event](#add-date-to-an-event--adddate)   | `adddate INDEX /from dd/MM/yy /to dd/MM/yy` |                   `adddate 2 /from 03/03/03 /to 04/03/03`                   |
+|      [Add a Contact](#add-a-contact)       |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
+| [Listing All Contact](#list-all-contacts) |                `listcontact`                |                                `listcontact`                                |
+| [Link Contact to Event](#link-contact-to-event)  |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
+|             [View Rate](#view-rate)              |                `rate INDEX`                 |                                  `rate 2`                                   |  
+|            [Tag a rate](#tag-rate)            |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
+|    [Marks Event as Done](#mark-event)    |                `mark INDEX`                 |                                  `mark 2`                                   |
+|   [Create a new Event](#create-new-event)    |               `newevent NAME`               |                             `newevent Singing`                              |
+|     [View Event List](#list-all-events)     |                 `listevent`                 |                                 `listevent`                                 |
+|    [Delete an Event](#delete-an-event)    |               `deleteevent 2`               |                               `deleteevent 2`                               |
+|  [Add Date to Event](#add-date-to-an-event)   | `adddate INDEX /from dd/MM/yy /to dd/MM/yy` |                   `adddate 2 /from 03/03/03 /to 04/03/03`                   |
 
 [Back to top](#)
