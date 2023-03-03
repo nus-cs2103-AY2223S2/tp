@@ -87,14 +87,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 doctors in each application.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 doctor contacts and 30,000 patient contacts without noticeable reduction in performance.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should not utilize any network to transmit any information.
+5. The average time required to boot up the application should be under 5 seconds.
+6. Feedback from Docedex should be displayed within 2 seconds of the user's input.
+7. The file size of the application's `jar` should not exceed 100MB.
+8. Should utilize less than 300MB of memory when in use.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **User**: Triage Admin Staff within the clinic.
+* **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
+* 
 
 --------------------------------------------------------------------------------------------------------------------
