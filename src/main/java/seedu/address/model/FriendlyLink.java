@@ -17,8 +17,7 @@ import seedu.address.model.person.information.Nric;
  * Wraps all data at the friendly-link level
  * Duplicates are not allowed (by .isSamePerson, .isSamePair comparison)
  */
-public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, ReadOnlyVolunteer {
-    // TODO: update generic to volunteer and remove person list
+public class FriendlyLink implements ReadOnlyFriendlyLink {
     private final UniquePersonList<Person> persons;
     private final UniquePersonList<Elderly> elderly;
     private final UniquePersonList<Volunteer> volunteers;
@@ -48,8 +47,20 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         resetFriendlyLinkData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // Application-wide code
 
+    /**
+     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     */
+    public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
+        requireNonNull(newData);
+        setPersons(newData.getPersonList());
+        setAllElderly(newData.getElderlyList());
+        setVolunteers(newData.getVolunteerList());
+        setPairs(newData.getPairList());
+    }
+
+    // TODO: remove code if not needed
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -83,34 +94,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         this.volunteers.setPersons(volunteers);
     }
 
-    /**
-     * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
-     */
-    public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
-        requireNonNull(newData);
-        setPersons(newData.getPersonList());
-        setAllElderly(newData.getElderlyList());
-        setVolunteers(newData.getVolunteerList());
-        setPairs(newData.getPairList());
-    }
-
-    /**
-     * Resets the existing elderly data of this {@code FriendlyLink} with {@code newData}.
-     */
-    public void resetElderlyData(ReadOnlyElderly newData) {
-        requireNonNull(newData);
-        setAllElderly(newData.getElderlyList());
-    }
-
-    /**
-     * Resets the existing volunteer data of this {@code FriendlyLink} with {@code newData}.
-     */
-    public void resetVolunteerData(ReadOnlyVolunteer newData) {
-        requireNonNull(newData);
-        setVolunteers(newData.getVolunteerList());
-    }
-
-    //// person-level operations
+    // person-level operations
     /**
      * Returns true if a person with the same identity as {@code person} exists in the friendlyLink cache.
      */
