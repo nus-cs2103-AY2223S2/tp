@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
+[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries. It
+is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,15 +257,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile:**
+Computing Undergraduates
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Characteristics of user profile:**
+* Has a need to manage many internship applications
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+Internships form an integral part of the undergraduate curriculum for Computing Undergraduates. In a technical field
+like Computing, it is especially important for undergraduates to practice what they have learnt in classrooms.
+However, given the tight competition in the market, many undergraduates source for numerous internship opportunities
+before being accepted for one. Therefore, many Computing undergraduates face the need to track many applications
+where each could be in a different phase of the application process.
+
+* Prefers typing to mouse interactions, with good typing speed
+
+Computing undergraduates have great exposure to computer usage where coding assignments and projects in school require
+extensive typing. This justifies a sufficiently good level of proficiency with regard to typing. In fact, with the
+existence of keyboard shortcuts, many programmers prefer typing over using the mouse because of the efficiency gains.
+
+
+* Reasonably comfortable in using Command Line Interface (CLI) apps
+
+CLI provides a simple way to interact with computers to run programs and manage files.
+Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
+to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
+the CLI interface.
+
+* Prefers desktop applications over other types
+
+**Value proposition**:
+
+InternBuddy aims to provide a 1-stop platform for a computing undergraduate to view and
+manage his internship applications. Consolidating internship information, the application provides organisational
+capabilities for easy tracking and follow-ups while eliminating the need to handle data across multiple platforms.
+
 
 
 ### User stories
@@ -293,8 +320,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | analytical Computing undergraduate                                                          | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
 | `*`      | Computing undergraduate who is planning to track internship applications in the long run    | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
 | `*`      | Computing undergraduate who is experienced in using InternBuddy                             | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
-| `*`      | a non-Computing undergraduate who wants to use InternBuddy to track internship applications | customise the statuses that I can assign to each entry           | use InternBuddy according to the internship application process specific to my field of study.      |
-
 
 ### Use cases
 
@@ -325,6 +350,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: Edit an internship entry**
+
+**MSS**
+
+1.  User edits an internship entry
+2.  InternBuddy updates that particular internship entry and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternBuddy detects missing field.
+  * 1a1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+* 1b. InternBuddy detects one or more fields has invalid parameters.
+  * 1b1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+**Use case: Display list of all internship applications on InternBuddy.**
+
+**MSS**
+
+1.  User requests for the list
+2.  InternBuddy displays a list of all the internship entries
+
+    Use case ends.
+
 **Use case: Exit InternBuddy**
 
 **MSS**
@@ -339,16 +394,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 500 internship entries without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to respond to user input within 6 seconds.
+3.  A Computing undergraduate student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be easily adopted by most Computing undergraduates students who have never used command line applications to track internships before.
+5.  The user guide should be clear enough such that most Computing undergraduates know how to use the core features of InternBuddy after reading the the user guide.
+6.  The developer guide should be clear enough such that new developers are able to understand how the system is designed, and know how to contribute to the codebase after reading the guide.
+7.  InternBuddy is not required to handle concurrent users.
+8.  InternBuddy is not required to make data available online.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Computing undergraduate**: Refers to a university undergraduate pursuing a Computing degree.
+* **Tech stack**: Refers to a set of technologies that a company uses to create or maintain a software system or product.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
