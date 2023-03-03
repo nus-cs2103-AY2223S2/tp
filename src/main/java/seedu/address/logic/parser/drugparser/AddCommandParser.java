@@ -5,7 +5,6 @@ import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.drug.*;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -32,13 +31,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         TradeName tradeName = ParserUtil.parseTradeName(argMultimap.getValue(PREFIX_TRADE_NAME).get());
         ActiveIngredient activeIngredient = ParserUtil.parseActiveIngredient(argMultimap.getValue(PREFIX_ACTIVE_INGREDIENT).get());
         Direction direction = ParserUtil.parseDirection(argMultimap.getValue(PREFIX_DIRECTION).get());
-        ExpiryDate expiryDate = ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_EXPIRY_DATE).get());
         Purpose purpose = ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get());
         SideEffect sideEffect = ParserUtil.parseSideEffect(argMultimap.getValue(PREFIX_SIDE_EFFECT).get());
         StorageCount storageCount = ParserUtil.parseStorageCount(argMultimap.getValue(PREFIX_STORAGE_COUNT).get());
 
-        //Drug drug = new Drug(tradeName, activeIngredient, direction,expiryDate, purpose, sideEffect, storageCount);
-        return null;
+        Drug drug = new Drug(tradeName, activeIngredient, direction, purpose, sideEffect, storageCount);
+        return new AddCommand(drug);
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

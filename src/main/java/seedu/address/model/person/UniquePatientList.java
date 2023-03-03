@@ -68,7 +68,7 @@ public class UniquePatientList implements Iterable<Patient> {
         }
     }
 
-    public void setPersons(UniquePatientList replacement) {
+    public void setPatients(UniquePatientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -116,6 +116,7 @@ public class UniquePatientList implements Iterable<Patient> {
     private boolean patientsAreUnique(List<Patient> patients) {
         for (int i = 0; i < patients.size() - 1; i++) {
             for (int j = i + 1; j < patients.size(); j++) {
+                // TODO: will need isSamePerson in Patient class
                 if (patients.get(i).isSamePerson(patients.get(j))) {
                     return false;
                 }

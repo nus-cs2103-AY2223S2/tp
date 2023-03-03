@@ -20,17 +20,7 @@ import seedu.address.model.person.Ic;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -54,15 +44,13 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_GENDER,
                         PREFIX_IC,
                         PREFIX_DRUG_ALLERGY,
-                        PREFIX_EMERGENCY_CONTACT_NAME,
-                        PREFIX_EMERGENCY_CONTACT_PHONE,
-                        PREFIX_EMERGENCY_CONTACT_RELATIONSHIP
+                        PREFIX_EMERGENCY_CONTACT_NUMBER
                         );
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_DOB, PREFIX_GENDER, PREFIX_IC, PREFIX_DRUG_ALLERGY,
-                PREFIX_EMERGENCY_CONTACT_NAME, PREFIX_EMERGENCY_CONTACT_PHONE, PREFIX_EMERGENCY_CONTACT_RELATIONSHIP)
+                PREFIX_ADDRESS, PREFIX_DOB, PREFIX_GENDER, PREFIX_IC, PREFIX_DRUG_ALLERGY, PREFIX_EMERGENCY_CONTACT_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    seedu.address.logic.commands.AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -75,14 +63,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
         DrugAllergy drugAllergy = ParserUtil.parseDrugAllergy(argMultimap.
                 getValue(PREFIX_DRUG_ALLERGY).get());
-
-        // Emergency Contact
-        Name emergencyContactName = ParserUtil.parseName(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NAME).get());
-        Phone emergencyContactPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_PHONE).get());
-        Person emergencyContactPerson = new Person(emergencyContactName, emergencyContactPhone);
-        EmergencyContact emergencyContact = ParserUtil.parseEmergencyContact(emergencyContactPerson,
-                argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_RELATIONSHIP).get());
-        Patient patient = new Patient(name, phone, email, address, birthDate, gender, ic, drugAllergy, emergencyContact);
+        Phone emergencyContactNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).get());
+        Patient patient = new Patient(name, phone, email, address, birthDate, gender, ic,
+                drugAllergy, emergencyContactNumber);
         return new AddCommand(patient);
     }
 
