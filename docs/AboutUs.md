@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/Acerizm.png" width="200px">
 
 [[github](http://github.com/Acerizm)]
-[[portfolio](team/Acerizm.md)]
+[[portfolio](team/acerizm.md)]
 
 * Role: Developer
 
