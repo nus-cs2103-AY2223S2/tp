@@ -44,7 +44,7 @@ Examples:
 
 ### Filtering contacts : 'filter' [coming soon]
 
-Filters the contact list. 
+Filters the contact list.
 
 Format: 'filter [s/BUSINESS\_SIZE] [c/COMPANY\_NAME] [d/DEADLINE] [t/TAG]'
 
