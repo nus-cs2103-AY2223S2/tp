@@ -283,16 +283,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NextBigFish` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person to the list.
+2.  NextBigFish adds the person and shows confirmation message.
+    Use case ends.
+
+**Extensions**
+
+* 2a. Person to be added in already in the list.
+
+    * 2a1. NextBigFish shows an error message.
+
+      Use case ends.
+
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  NextBigFish shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  NextBigFish deletes the person.
 
     Use case ends.
 
@@ -304,7 +321,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NextBigFish shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  NextBigFish shows a list of persons.
+3.  User requests to edit a specific person in the list and provides the updated information.
+4.  NextBigFish edits the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. Updated information is the same as the before information.
+
+    * 2b1. NextBigFish shows an error message.
+    
+    Use case ends.
+
+* 2c. Missing field in updated information.
+
+    * 2c1. NextBigFish displays error message.
+    
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NextBigFish shows an error message.
 
       Use case resumes at step 2.
 
