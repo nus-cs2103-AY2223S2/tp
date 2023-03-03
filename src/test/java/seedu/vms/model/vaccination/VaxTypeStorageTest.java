@@ -43,4 +43,30 @@ public class VaxTypeStorageTest {
         }
         fail("Exception not thrown");
     }
+
+
+    @Test
+    public void containsCheck() {
+        VaxTypeStorage storage = new VaxTypeStorage();
+        assertFalse(storage.contains(TYPE_1.getName()));
+
+        storage.add(TYPE_1);
+        assertTrue(storage.contains(TYPE_1.getName()));
+
+        storage.remove(TYPE_1.getName());
+        assertFalse(storage.contains(TYPE_1.getName()));
+    }
+
+
+    @Test
+    public void getTest() {
+        VaxTypeStorage storage = new VaxTypeStorage();
+        assertFalse(storage.get(TYPE_1.getName()).isPresent());
+
+        storage.add(TYPE_1);
+        assertEquals(TYPE_1, storage.get(TYPE_1.getName()).get());
+
+        storage.remove(TYPE_1.getName());
+        assertFalse(storage.get(TYPE_1.getName()).isPresent());
+    }
 }
