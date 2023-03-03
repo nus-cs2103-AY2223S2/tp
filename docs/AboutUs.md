@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/praveen.png" width="200px">
 
 [[github](http://github.com/praveenkrishna0512)]
-[[portfolio](team/praveen.md)]
+[[portfolio](team/praveenkrishna0512.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
