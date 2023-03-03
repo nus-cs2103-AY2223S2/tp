@@ -55,7 +55,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 
 Adding a contact to contacts
 
-**Format** : `newcontact n/NAME p/NUMBER`
+**Format**: `newcontact n/NAME p/NUMBER`
 
 - Creates a new contact with specified `NAME` and `NUMBER`
 
@@ -112,7 +112,7 @@ Tags a rate to an event.
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-Example: 
+**Example**: 
 - `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list.
 
 
@@ -137,14 +137,14 @@ Creates a new event
 
 - Creates a new event with the specified event `NAME` 
 
-Example: 
+**Example**: 
 - `newevent Singing` creates an event that has the name “Singing”.
 
 ### Listing all events : `listevent`
 
 Shows a list of all events in the address book
 
-Format: `listevent`
+**Format**: `listevent`
 
 
 ### Deleting an event : `deleteevent`
