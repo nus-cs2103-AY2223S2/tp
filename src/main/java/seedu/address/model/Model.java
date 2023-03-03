@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' dengue hotspot tracker file path.
+     * Returns the user prefs' dengue case list file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' dengue hotspot tracker file path.
+     * Sets the user prefs' dengue case list file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces dengue hotspot tracker data with the data in {@code addressBook}.
+     * Replaces dengue case list data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
@@ -53,26 +53,26 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the dengue hotspot tracker.
+     * Returns true if a person with the same identity as {@code person} exists in the dengue case list.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the dengue hotspot tracker.
+     * The person must exist in the dengue case list.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the dengue hotspot tracker.
+     * {@code person} must not already exist in the dengue case list.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the dengue hotspot tracker.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the dengue hotspot tracker.
+     * {@code target} must exist in the dengue case list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the dengue case list.
      */
     void setPerson(Person target, Person editedPerson);
 

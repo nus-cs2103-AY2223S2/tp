@@ -41,7 +41,7 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this dengue hotspot tracker into the model's {@code AddressBook} object.
+     * Converts this dengue case list into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

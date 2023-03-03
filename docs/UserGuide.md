@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the dengue hotspot tracker.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the dengue case list.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,7 +76,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the dengue hotspot tracker.
+Adds a person to the dengue case list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -90,13 +90,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the dengue hotspot tracker.
+Shows a list of all persons in the dengue case list.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the dengue hotspot tracker.
+Edits an existing person in the dengue case list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -131,7 +131,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the dengue hotspot tracker.
+Deletes the specified person from the dengue case list.
 
 Format: `delete INDEX`
 
@@ -140,12 +140,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the dengue hotspot tracker.
+* `list` followed by `delete 2` deletes the 2nd person in the dengue case list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the dengue hotspot tracker.
+Clears all entries from the dengue case list.
 
 Format: `clear`
 

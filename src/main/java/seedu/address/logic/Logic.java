@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' dengue hotspot tracker file path.
+     * Returns the user prefs' dengue case list file path.
      */
     Path getAddressBookFilePath();
 

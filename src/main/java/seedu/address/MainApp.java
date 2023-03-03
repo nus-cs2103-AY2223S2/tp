@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s dengue hotspot tracker and {@code userPrefs}. <br>
-     * The data from the sample dengue hotspot tracker will be used instead if {@code storage}'s dengue hotspot tracker is not found,
-     * or an empty dengue hotspot tracker will be used instead if errors occur when reading {@code storage}'s dengue hotspot tracker.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s dengue case list and {@code userPrefs}. <br>
+     * The data from the sample dengue case list will be used instead if {@code storage}'s dengue case list is not found,
+     * or an empty dengue case list will be used instead if errors occur when reading {@code storage}'s dengue case list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an dengue hotspot tracker
+ * Unmodifiable view of an dengue case list
  */
 public interface ReadOnlyAddressBook {
 
