@@ -77,11 +77,11 @@ public interface Model {
     void setPerson(Student target, Student editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Student> getFilteredPersonList();
+    ObservableList<Student> getFilteredStudentList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 }
