@@ -3,44 +3,45 @@ layout: page
 title: Krishnamoorthi Praveen's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Docédex
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
 
+* Table of Contents
+{:toc}
+
+### Summary of Contributions
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+#### Code contributed
+My code contributions can be visualised through [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=praveenkrishna0512&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+#### Enhancements implemented
+Here is a summary of the enhancements you implemented.
 
-* **Code contributed**: [RepoSense link]()
+(to be added)
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+#### Contributions to the UG
+Here are my contributions to the UG.
+- Implementing the template of the UG
+- Completing Command Summary
+- Adding description for **_Saving the data file_** and **_Editing the data file_**
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+#### Contributions to the DG
+Here are my contributions to the DG
+- Sections
+  - (to be added)
+- UML diagrams
+  - (to be added)
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+#### Contributions to team-based tasks
+Here are my contributions to team-based tasks
+- Brainstorming of user stories and use cases
+- Envisioning product design (ie. problem statement, target audience)
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+#### Review/mentoring contributions
+Here are the PRs that I have reviewed
+- (to be added)
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+Here are some ways through which I have aided my team members
+- (to be added)
