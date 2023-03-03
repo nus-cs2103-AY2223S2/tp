@@ -21,7 +21,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 
 ### Amos Hung
 
-<img src="images/amos.png" width="200px">
+<img src="images/bobfree546.png" width="200px">
 
 [[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
 
