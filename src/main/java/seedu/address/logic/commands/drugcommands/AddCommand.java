@@ -58,6 +58,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
-        return null;
+        if (model.hasDrug(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DRUG);
+        }
+        model.addDrug(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

@@ -36,6 +36,10 @@ public class TradeName {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isBlank() {
+        return this.tradeName.isBlank();
+    }
+
 
     @Override
     public String toString() {

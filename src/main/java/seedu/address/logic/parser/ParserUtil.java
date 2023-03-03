@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.drug.*;
 import seedu.address.model.person.*;
 import seedu.address.model.person.patient.*;
 import seedu.address.model.tag.Tag;
@@ -156,4 +157,108 @@ public class ParserUtil {
         return new DrugAllergy(trimmedDrugAllergy);
     }
 
+    /**
+     * Parses a {@code String tradeName} into a {@code TradeName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tradeName} is invalid.
+     */
+    public static TradeName parseTradeName(String tradeName) throws ParseException {
+        requireNonNull(tradeName);
+        String trimmedTradeName = tradeName.trim();
+        if (!TradeName.isValidTradeName(trimmedTradeName)) {
+            throw new ParseException(TradeName.MESSAGE_CONSTRAINTS);
+        }
+        return new TradeName(trimmedTradeName);
+    }
+
+    /**
+     * Parses a {@code String ingredient} into a {@code ActiveIngredient}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ingredient} is invalid.
+     */
+    public static ActiveIngredient parseActiveIngredient(String ingredient) throws ParseException {
+        requireNonNull(ingredient);
+        String trimmedIngredient = ingredient.trim();
+        if (!ActiveIngredient.isValidIngredient(trimmedIngredient)) {
+            throw new ParseException(ActiveIngredient.MESSAGE_CONSTRAINTS);
+        }
+        return new ActiveIngredient(trimmedIngredient);
+    }
+
+    /**
+     * Parses a {@code String direction} into a {@code Direction}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code direction} is invalid.
+     */
+    public static Direction parseDirection(String direction) throws ParseException {
+        requireNonNull(direction);
+        String trimmedDirection = direction.trim();
+        if (!Direction.isValidDirection(trimmedDirection)) {
+            throw new ParseException(Direction.MESSAGE_CONSTRAINTS);
+        }
+        return new Direction(trimmedDirection);
+    }
+
+    /**
+     * Parses a {@code String expiryDate} into a {@code ExpiryDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code expiryDate} is invalid.
+     */
+    public static ExpiryDate parseExpiryDate(String expiryDate) throws ParseException {
+        requireNonNull(expiryDate);
+        String trimmedExpiryDate = expiryDate.trim();
+        if (!ExpiryDate.isValidExpiryDate(trimmedExpiryDate)) {
+            throw new ParseException(ExpiryDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ExpiryDate(trimmedExpiryDate);
+    }
+
+    /**
+     * Parses a {@code String purpose} into a {@code Purpose}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code purpose} is invalid.
+     */
+    public static Purpose parsePurpose(String purpose) throws ParseException {
+        requireNonNull(purpose);
+        String trimmedPurpose = purpose.trim();
+        if (!Purpose.isValidPurpose(trimmedPurpose)) {
+            throw new ParseException(Purpose.MESSAGE_CONSTRAINTS);
+        }
+        return new Purpose(trimmedPurpose);
+    }
+
+    /**
+     * Parses a {@code String sideEffect} into a {@code SideEffect}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sideEffect} is invalid.
+     */
+    public static SideEffect parseSideEffect(String sideEffect) throws ParseException {
+        requireNonNull(sideEffect);
+        String trimmedSideEffect = sideEffect.trim();
+        if (!SideEffect.isValidSideEffect(trimmedSideEffect)) {
+            throw new ParseException(SideEffect.MESSAGE_CONSTRAINTS);
+        }
+        return new SideEffect(trimmedSideEffect);
+    }
+
+    /**
+     * Parses a {@code String count} into a {@code StorageCount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code count} is invalid.
+     */
+    public static StorageCount parseStorageCount(String count) throws ParseException {
+        requireNonNull(count);
+        String trimmedCount = count.trim();
+        if (!StorageCount.isValidStorageCount(trimmedCount)) {
+            throw new ParseException(StorageCount.MESSAGE_CONSTRAINTS);
+        }
+        return new StorageCount(trimmedCount);
+    }
 }
