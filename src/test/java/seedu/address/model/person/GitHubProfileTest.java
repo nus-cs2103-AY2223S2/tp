@@ -2,11 +2,16 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 class GitHubProfileTest {
+    private static final GitHubProfile AMY_PROFILE = new GitHubProfile(VALID_GITHUBPROFILE_AMY);
+    private static final GitHubProfile BOB_PROFILE = new GitHubProfile(VALID_GITHUBPROFILE_BOB);
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new GitHubProfile(null));
@@ -43,5 +48,29 @@ class GitHubProfileTest {
         assertTrue(GitHubProfile.isValidProfile("chia-yh2")); // alphanumeric characters and hyphen
         assertTrue(GitHubProfile.isValidProfile("chia-yh-2")); // alphanumeric characters and hyphens
         assertTrue(GitHubProfile.isValidProfile("012345678901234567890123456789012345678")); // 39 chars
+    }
+
+    @Test
+    public void testToString() {
+        assertTrue(VALID_GITHUBPROFILE_AMY.equals(AMY_PROFILE.toString()));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        GitHubProfile amyCopy = new GitHubProfile(VALID_GITHUBPROFILE_AMY);
+        assertTrue(AMY_PROFILE.equals(amyCopy));
+
+        // same object -> returns true
+        assertTrue(AMY_PROFILE.equals(AMY_PROFILE));
+
+        // null -> returns false
+        assertFalse(AMY_PROFILE.equals(null));
+
+        // different type -> returns false
+        assertFalse(AMY_PROFILE.equals(5));
+
+        // different profile -> returns false
+        assertFalse(AMY_PROFILE.equals(BOB_PROFILE));
     }
 }
