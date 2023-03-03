@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/vignesh.png" width="200px">
 
 [[github](http://github.com/vigonometry)]
-[[portfolio](team/vignesh.md)]
+[[portfolio](team/vigonometry.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
