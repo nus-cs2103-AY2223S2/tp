@@ -116,16 +116,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MATHTUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Tutor requests to list students.
+2.  MATHTUTORING shows a list of students.
+3.  Tutor requests to delete a specific student in the list.
+4.  MATHTUTORING deletes the student.
 
     Use case ends.
 
@@ -137,9 +137,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MATHTUTORING shows an error message.
 
       Use case resumes at step 2.
+      
+* 3b. The given command argument(s) are invalid.
+    * 3b1. MATHTUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Update a student**
+
+**MSS**
+
+1.  Tutor requests to list students.
+2.  MATHTUTORING shows a list of students.
+3.  Tutor requests to edit a specific student in the list.
+4.  MATHTUTORING edits the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MATHTUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given command argument(s) are invalid.
+    * 3b1. MATHTUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a task**
+
+**MSS**
+
+*{More to be added}*
+
+**Extensions**
+
+*{More to be added}*
+
+**Use case: Update a task**
+
+**MSS**
+
+*{More to be added}*
+
+**Extensions**
+
+*{More to be added}*
+
 
 *{More to be added}*
 
@@ -149,7 +203,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 students' information without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The application should work on both 32-bit and 64-bit environments.
-5.  The application should responses within 3 seconds.
+5.  The application should respond within 3 seconds.
 6.  The user interface should be intuitive enough for users who are not IT-savvy.
 7.  The product is free of charge.
 
@@ -158,7 +212,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tutors**: Private math tuition teachers that will be using the application
+* **Students' progress**: For our current version, the progress of a student is tracked through 
+the number of tasks the student has completed
+* **Students' performance**: A summary of the student's progress to see how well they are doing
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 

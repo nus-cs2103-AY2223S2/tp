@@ -89,7 +89,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/friend c/83927482 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### View students contacts as a list : `listStudents`
+### Viewing students contacts as a list : `listStudents`
 
 Lists all the students in the student list.
 
@@ -143,6 +143,15 @@ Format: `delete INDEX`
 Examples:
 * `listStudents` followed by `delete 2` deletes the 2nd student in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Listing tasks of a student : listTasks
+
+Lists the tasks of the specified student from the student list.
+
+Format: `listTasks INDEX`
+
+Examples: 
+* `listTasks 1`
 
 ### Adding a task for a student: `addTask`
 
