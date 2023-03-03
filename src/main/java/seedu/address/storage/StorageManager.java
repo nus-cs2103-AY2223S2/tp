@@ -31,30 +31,27 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getUserPrefsFilePath() {
-//        return userPrefsStorage.getUserPrefsFilePath();
-        return null;
+        return userPrefsStorage.getUserPrefsFilePath();
     }
 //
     @Override
     public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
-//        return userPrefsStorage.readUserPrefs();
-        return null;
+        return userPrefsStorage.readUserPrefs();
     }
 
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-//        userPrefsStorage.saveUserPrefs(userPrefs);
+        userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
     // ================ AddressBook methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {
-//        return addressBookStorage.getAddressBookFilePath();
-        return null;
+        return addressBookStorage.getAddressBookFilePath();
     }
 
-//
+
 //    @Override
 //    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
 //        return readAddressBook(addressBookStorage.getAddressBookFilePath());
@@ -76,5 +73,5 @@ public class StorageManager implements Storage {
 //        logger.fine("Attempting to write to data file: " + filePath);
 //        addressBookStorage.saveAddressBook(addressBook, filePath);
 //    }
-//
+
 }
