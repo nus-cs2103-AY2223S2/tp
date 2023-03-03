@@ -259,8 +259,8 @@ Evolve AB3 into a lightweight CRM / Contact manager for a company's sales depart
 
 **Target user profile**:
 
-* has a need to manage a significant number of business contacts 
-* has clients, for example, a salesman or an agent 
+* has a need to manage a significant number of business contacts
+* has clients, for example, a salesman or an agent
 * has a need to keep track of leads from clients
 * has a need to learn statistics of leads
 * needs to prioritise leads
