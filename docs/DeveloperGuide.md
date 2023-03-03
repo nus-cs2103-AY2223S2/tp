@@ -315,6 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. All user operations should complete within 0.5 seconds.
+5. Should only be used by authorised users, the owner of the contacts.
+6. Users should be able to transfer data files to another device and be loaded there.
 
 *{More to be added}*
 
