@@ -8,8 +8,8 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 /**
  * API of the Logic component
@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableMap<Integer, IdData<Person>> getFilteredPersonMap();
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableMap<Integer, IdData<Patient>> getFilteredPatientMap();
 
     /**
      * Returns the user prefs' address book file path.

@@ -1,14 +1,14 @@
 package seedu.vms.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.vms.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.vms.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.vms.testutil.Assert.assertThrows;
-import static seedu.vms.testutil.TypicalPersons.AMY;
+import static seedu.vms.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,12 +26,12 @@ import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.storage.JsonAddressBookStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
 import seedu.vms.storage.StorageManager;
-import seedu.vms.testutil.PersonBuilder;
+import seedu.vms.testutil.PatientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -60,7 +60,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "patient delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -87,16 +87,16 @@ public class LogicManagerTest {
                 PHONE_DESC_AMY,
                 EMAIL_DESC_AMY,
                 ADDRESS_DESC_AMY);
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonMap().put(0, null));
+    public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientMap().put(0, null));
     }
 
     /**

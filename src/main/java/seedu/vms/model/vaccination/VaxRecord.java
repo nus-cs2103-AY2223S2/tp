@@ -3,7 +3,7 @@ package seedu.vms.model.vaccination;
 import java.time.LocalDateTime;
 
 
-/** Represents a vaccination record of a person. */
+/** Represents a vaccination record of a patient. */
 public class VaxRecord implements Comparable<VaxRecord> {
     private final VaxType vaccination;
     private final LocalDateTime timeTaken;

@@ -1,9 +1,9 @@
 package seedu.vms.logic.commands.patient;
 
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.vms.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.vms.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

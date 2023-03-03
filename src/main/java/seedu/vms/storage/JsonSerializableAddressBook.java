@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.IdData;
-import seedu.vms.model.person.AddressBook;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +20,15 @@ import seedu.vms.model.person.ReadOnlyAddressBook;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String DUPLICATE_ID = "Persons list contains duplicate ID(s).";
+    public static final String DUPLICATE_ID = "Patients list contains duplicate ID(s).";
 
-    private final List<JsonAdaptedPersonData> datas = new ArrayList<>();
+    private final List<JsonAdaptedPatientData> datas = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("datas") List<JsonAdaptedPersonData> datas) {
+    public JsonSerializableAddressBook(@JsonProperty("datas") List<JsonAdaptedPatientData> datas) {
         this.datas.addAll(datas);
     }
 
@@ -41,7 +41,7 @@ class JsonSerializableAddressBook {
         datas.addAll(source.getMapView()
                 .values()
                 .stream()
-                .map(JsonAdaptedPersonData::new)
+                .map(JsonAdaptedPatientData::new)
                 .collect(Collectors.toList()));
     }
 
@@ -52,12 +52,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPersonData jsonAdaptedPersonData : datas) {
-            IdData<Person> personData = jsonAdaptedPersonData.toModelType();
-            if (addressBook.contains(personData.getId())) {
+        for (JsonAdaptedPatientData jsonAdaptedPatientData : datas) {
+            IdData<Patient> patientData = jsonAdaptedPatientData.toModelType();
+            if (addressBook.contains(patientData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
-            addressBook.add(personData);
+            addressBook.add(patientData);
         }
         return addressBook;
     }

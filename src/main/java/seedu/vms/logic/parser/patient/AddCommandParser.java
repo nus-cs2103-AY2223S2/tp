@@ -17,11 +17,11 @@ import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.Prefix;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.person.Address;
-import seedu.vms.model.person.Email;
-import seedu.vms.model.person.Name;
-import seedu.vms.model.person.Person;
-import seedu.vms.model.person.Phone;
+import seedu.vms.model.patient.Address;
+import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Name;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.Phone;
 import seedu.vms.model.tag.Tag;
 
 /**
@@ -35,8 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Patient patient = new Patient(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(patient);
     }
 
     /**

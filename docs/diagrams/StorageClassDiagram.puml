@@ -18,7 +18,7 @@ package "Vms Storage" #F4F6F6{
 Class "<<interface>>\nVmsStorage" as VmsStorage
 Class JsonVmsStorage
 Class JsonSerializableVms
-Class JsonAdaptedPerson
+Class JsonAdaptedPatient
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> VmsStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonVmsStorage .up.|> VmsStorage
 JsonVmsStorage ..> JsonSerializableVms
-JsonSerializableVms --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableVms --> "*" JsonAdaptedPatient
+JsonAdaptedPatient --> "*" JsonAdaptedTag
 
 @enduml

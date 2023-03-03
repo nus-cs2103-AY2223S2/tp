@@ -2,7 +2,7 @@ package seedu.vms.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.vms.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.person.AddressBook;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 public class StorageManagerTest {
 

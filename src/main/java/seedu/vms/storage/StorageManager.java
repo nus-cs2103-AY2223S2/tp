@@ -9,7 +9,7 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.person.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyAddressBook;
 
 /**
  * Manages storage of AddressBook data in local storage.
