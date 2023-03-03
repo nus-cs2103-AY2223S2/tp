@@ -183,15 +183,7 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 **Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
 (#add-a-contact)
-  * [View Contact List](#list-all-contacts)
-  * [Link Contact to Event](#link-contact-to-event)
-  * [View Rate](#view-rate)
-  * [Tag Rate](#tag-rate)
-  * [Mark Event as Done](#mark-event)
-  * [Create New Event](#create-new-event)
-  * [View Event List](#list-all-events)
-  * [Delete an Event](#delete-an-event)
-  * [Add Date to Event](#add-date-to-an-event)
+
 ## Command Summary
 |                        Commands                        |               Command Format                |                                Example Usage                                |
 |:------------------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
