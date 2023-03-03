@@ -9,33 +9,31 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
+import seedu.address.storage.JsonAppStorage;
 
 /**
  * A class to access elderly data stored as a json file on the hard disk.
  */
-public class JsonElderlyStorage implements ElderlyStorage {
+public class JsonElderlyStorage extends JsonAppStorage<ReadOnlyElderly, FriendlyLink, JsonSerializableElderly>
+        implements ElderlyStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonElderlyStorage.class);
 
-    private final Path filePath;
-
     public JsonElderlyStorage(Path filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
     @Override
     public Path getElderlyFilePath() {
-        return filePath;
+        return super.getFilePath();
     }
 
-
-    @Override
     public Optional<ReadOnlyElderly> readElderly() throws DataConversionException {
-        return readElderly(filePath);
+        return super.read(JsonSerializableElderly.class, logger);
     }
 
     /**
@@ -45,26 +43,12 @@ public class JsonElderlyStorage implements ElderlyStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyElderly> readElderly(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
-
-        Optional<JsonSerializableElderly> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableElderly.class);
-
-        if (jsonAddressBook.isEmpty()) {
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
-        }
+        return super.read(filePath, JsonSerializableElderly.class, logger);
     }
 
     @Override
-    public void saveElderly(ReadOnlyElderly friendlyLink) throws IOException {
-        saveElderly(friendlyLink, filePath);
+    public void saveElderly(ReadOnlyElderly entity) throws IOException {
+        saveElderly(entity, super.getFilePath());
     }
 
     /**

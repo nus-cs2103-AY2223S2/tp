@@ -55,18 +55,10 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ FriendlyLink methods ==============================
-
-    @Override
-    public Path getFriendlyLinkFilePath() {
-        return friendlyLinkStorage.getFriendlyLinkFilePath();
-    }
+    // ================ Elderly methods ==============================
 
     @Override
-    public Path getElderlyFilePath() {
-        return elderlyStorage.getElderlyFilePath();
-    }
+    public Path getElderlyFilePath() { return elderlyStorage.getElderlyFilePath(); }
 
     /**
      * Returns FriendlyLink data as a {@link ReadOnlyElderly}.
@@ -103,6 +95,8 @@ public class StorageManager implements Storage {
         elderlyStorage.saveElderly(elderly, filePath);
     }
 
+    // ================ Volunteer methods ==============================
+
     @Override
     public Path getVolunteerFilePath() {
         return volunteerStorage.getVolunteerFilePath();
@@ -136,6 +130,13 @@ public class StorageManager implements Storage {
     public void saveVolunteer(ReadOnlyVolunteer volunteer, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         volunteerStorage.saveVolunteer(volunteer, filePath);
+    }
+
+    // ================ FriendlyLink methods ==============================
+
+    @Override
+    public Path getFriendlyLinkFilePath() {
+        return friendlyLinkStorage.getFriendlyLinkFilePath();
     }
 
     @Override
