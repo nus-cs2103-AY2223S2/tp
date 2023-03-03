@@ -60,6 +60,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
+     * [TO REMOVE: Use TestUtil.getTypicalFriendlyLink() instead]
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static FriendlyLink getTypicalFriendlyLink() {

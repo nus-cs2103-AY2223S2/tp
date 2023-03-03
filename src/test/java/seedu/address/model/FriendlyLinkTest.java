@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -132,7 +133,7 @@ public class FriendlyLinkTest {
     private static class FriendlyLinkStub implements ReadOnlyFriendlyLink, ReadOnlyVolunteer, ReadOnlyElderly {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Elderly> elderly = FXCollections.observableArrayList();
-        private final ObservableList<Person> volunteers = FXCollections.observableArrayList();
+        private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
         private final ObservableList<Pair> pairs = FXCollections.observableArrayList();
 
         FriendlyLinkStub(Collection<Person> persons) {
@@ -150,7 +151,7 @@ public class FriendlyLinkTest {
         }
 
         @Override
-        public ObservableList<Person> getVolunteerList() {
+        public ObservableList<Volunteer> getVolunteerList() {
             return volunteers;
         }
 

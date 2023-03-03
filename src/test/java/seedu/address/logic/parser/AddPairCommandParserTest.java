@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ELDERLY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VOLUNTEER_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -24,11 +24,11 @@ public class AddPairCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE);
 
         // missing elderly prefix
-        assertParseFailure(parser, ELDERLY_DESC_AMY,
+        assertParseFailure(parser, NRIC_ELDERLY_DESC_AMY,
                 expectedMessage);
 
         // missing volunteer prefix
-        assertParseFailure(parser, VOLUNTEER_DESC_BOB,
+        assertParseFailure(parser, NRIC_VOLUNTEER_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing
