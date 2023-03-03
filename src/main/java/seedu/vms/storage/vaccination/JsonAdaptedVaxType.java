@@ -87,7 +87,8 @@ public class JsonAdaptedVaxType {
     }
 
 
-    private List<Requirement> toReqList(List<JsonAdaptedVaxRequirement> adaptedList) throws IllegalValueException {
+    private List<Requirement> toReqList(List<JsonAdaptedVaxRequirement> adaptedList)
+                throws IllegalValueException {
         ArrayList<Requirement> reqs = new ArrayList<>();
         for (JsonAdaptedVaxRequirement adapted : adaptedList) {
             reqs.add(adapted.toModelType());
