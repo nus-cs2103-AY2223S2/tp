@@ -11,7 +11,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Kevin Eyo Kai Wen
 
-<img src="images/kevineyo.png" width="200px">
+<img src="images/KevinEyo1.png" width="200px">
 
 [[github](https://github.com/KevinEyo1)]
 [[portfolio](team/johndoe.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Tan Yu Fei
 
-<img src="images/tanyufei.png" width="200px">
+<img src="images/Lanreath.png" width="200px">
 
 [[github](https://github.com/Lanreath)]
 [[portfolio](team/johndoe.md)]
@@ -31,17 +31,17 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Anton Timothy Lee Zi Jie
 
-<img src="images/antonlee.png" width="200px">
+<img src="images/antonlee59.png" width="200px">
 
 [[github](https://github.com/antonlee59)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Code quality
+* Responsibilities: Code quality and developer guide
 
 ### Alexander Lee Shao Bin
 
-<img src="images/alexanderlee.png" width="200px">
+<img src="images/Varstak.png" width="200px">
 
 [[github](https://github.com/Varstak)]
 [[portfolio](team/johndoe.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Darren Sim
 
-<img src="images/darrensim.png" width="200px">
+<img src="images/BagDownB3nny.png" width="200px">
 
 [[github](https://github.com/BagDownB3nny)]
 [[portfolio](team/johndoe.md)]
