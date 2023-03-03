@@ -19,21 +19,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Xu BoJie
+### Jean Doe
 
-<img src="images/bojie3.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/bojie3)]
-[[portfolio](team/bojie3.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Xu BoJie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bojie3.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/bojie3)] 
+[[portfolio](team/bojie3.md)]
 
 * Role: Developer
 * Responsibilities: Data
