@@ -34,7 +34,7 @@ You can reach us at these emails :
 * Role: coder
 * Responsibilities: code
 
-### Johnny Doe
+### Sze Jian Cheng
 
 <img src="images/JC.png" width="200px">
 
