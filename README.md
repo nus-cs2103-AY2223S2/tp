@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/AY2223S2-CS2103-T17-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-T17-4/tp/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-T17-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T17-4/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
