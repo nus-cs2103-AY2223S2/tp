@@ -273,18 +273,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ |------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add/delete jobs                | keep track of my upcoming and old tasks.                               |
-| `* * *`  | user                                       | mark/unmakr jobs               | keep track of completed jobs                                           |
-| `* * *`  | user                                       | add a new person               | keep in touch with my clients.                                         |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | chat with my clients           | retain custormer relations and maintain more customers.                |
-| `* *`    | Gig employee                               | view my aggregated information | track my earnings                                                      |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
+| Priority | As a …​                                                           | I want to …​                   | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                          | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                   | add/delete jobs                | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                   | mark/unmark jobs               | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to provide better service for customers | chat with my clients           | retain custormer relations and maintain more customers.                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
 
 *{More to be added}*
 
@@ -303,16 +303,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Add a job**
+
+**MSS**
+
+1.  User is on homepage of list of jobs
+2.  AddressBook shows button to add job at the top
+3.  User requests to add a job in the list
+4.  AddressBook adds job and job appears in list of jobs
+
+    Use case ends.
+
 **Use case: Chat with a client**
 
 **MSS**
 
 1. User go to job list/contact list.
 2. User go to specific job/client.
-3. User start chatting by clicking on "Chat" function.
+3. User start chatting by clicking on "Chat" function. Chat window pops out.
 4. Start typing and sending message by pressing Enter.
 
    Use case ends.
+
+**Use case: View statistics**
+
+**MSS**
+
+1.  User is on homepage of list of jobs
+2.  AddressBook shows button to view overall statistics at the top
+3.  User requests to view statistics
+4.  AddressBook shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
+
+    Use case ends.
+
 
 **Extensions**
 
