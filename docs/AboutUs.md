@@ -52,4 +52,3 @@ You can reach us at these emails :
 
 * Role: 
 * Responsibilities: 
-
