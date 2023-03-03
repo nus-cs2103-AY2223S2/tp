@@ -279,7 +279,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
 | `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |
 | `* * *`  | Receptionist                     | be able to key in people with the same name                                                | save the data of people with the same name.                                       |
-| `* * *`  | Potato PC user                   | my data to be save automatically                                                           | do not lose data when my computer crash.                                          |
 | `* * *`  | User                             | delete patients/appointments                                                               | remove mistakes                                                                   |
 | `* * *`  | Receptionist                     | add an appointment                                                                         |                                                                                   |
 | `* *`    | Junior receptionist              | view a quick start guide easily                                                            | learn the basic features of the system quickly                                    |
@@ -459,7 +458,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
+4.  Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
+5.  VMS should auto save to prevent data loss if something crashes. (Specific implementation can be found in [#18](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/18))
 
 *{More to be added}*
 
