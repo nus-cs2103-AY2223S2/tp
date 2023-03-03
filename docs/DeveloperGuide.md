@@ -257,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of internship applications
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,43 +270,99 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                     |
+| -------- | ------------------------------------------ | ------------------------------ |-----------------------------------------------------|
+| `* * *`  | potential user exploring the app           | see the app populated with sample openings         | easily see how the app will look when it is in use. |
+| `* * *`  | user                                       | add an opening regarding the internship I am interested in               | keep note of it                                     |
+| `* * *`  | user                                       | delete an opening      | remove unwanted openings                            |
+| `* * *`  | user                                       | Be able to see all applications          | track my progress                                   |
+| `* *`    | user                                       | see submission deadlines   | check them                                          |
+| `*`      | user | be able to see the total number of accepted applications           | celebrate my success                              |
+| '*' | user | see all the outcomes of my application | properly assess my options |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Ultron` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:  UC 1 - Adding an opening**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters a command to add an opening
+2. Ultron adds the opening to its list of openings
+   Use case ends.
 
-    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. Ultron detects an error in the entered data.
+    1a1. Ultron informs the user that the data is invalid
+    Use case ends
 
-  Use case ends.
+**Use case:  UC 2 - Deleting an opening**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User enters a command to delete an opening
+2. Ultron deletes the opening from its list of openings
+   Use case ends.
 
-      Use case resumes at step 2.
+
+**Extensions**
+
+1a. Ultron detects an error in the entered data.
+    1a1. Ultron informs the user that the data is invalid
+    Use case ends
+
+**Use case:  UC 3 - Editing an opening**
+
+**MSS**
+
+1. User enters a command to edit an opening
+2. Ultron edits the opening based on the user input parameters
+   Use case ends.
+
+
+**Extensions**
+
+1a. Ultron detects an error in the entered data.
+    1a1. Ultron informs the user that the data is invalid
+    Use case ends
+
+**Use case:  UC 4 - See all openings**
+
+**MSS**
+
+1. User enters a command to list all openings
+2. Ultron shows the user a list of all the openings that the user has added
+   Use case ends.
+
+
+**Extensions**
+
+1a. List is empty
+    1a1. Ultron informs the user that the list is currently empty
+    Use case ends
+
+**Use case:  UC 5 - See all openings with a specific status**
+
+**MSS**
+
+1. User enters a command to list all openings of a specific status
+2. Ultron shows the user a list of all the openings that match the status given by the user
+   Use case ends.
+
+
+
+**Extensions**
+
+1a. No opening contains the status specified by the user
+    1a1. Ultron informs the user that no openings of that status exist
+    Use case ends
+
+
 
 *{More to be added}*
 
