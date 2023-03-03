@@ -97,6 +97,9 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+List Command Outcome |
+:-------------------: 
 ![ListCommand](images/userguide/ListCommand.png)
 
 ### Editing a person : `edit`
