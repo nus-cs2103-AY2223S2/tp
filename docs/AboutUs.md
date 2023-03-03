@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Amos Hung
 
-<img src="images/amos.png" width="200px">
+<img src="images/bobfree546.png" width="200px">
 
 [[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
 
