@@ -30,10 +30,9 @@ public class DeleteCommandParserTest {
         Person amy = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).build();
         NamePhoneNumberPredicate predicate = new NamePhoneNumberPredicate(amy.getName(), amy.getPhone());
         DeleteCommand expectedDeleteCommand = new DeleteCommand(predicate);
-        assertParseSuccess(parser, "n/AMY BEE p/11111111", expectedDeleteCommand);
-
+        assertParseSuccess(parser, " n/Amy Bee p/11111111", expectedDeleteCommand);
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n n/AMY BEE \n \t p/11111111  \t", expectedDeleteCommand);
+        assertParseSuccess(parser, " \n n/Amy Bee \n \t p/11111111  \t", expectedDeleteCommand);
     }
 
     @Test
