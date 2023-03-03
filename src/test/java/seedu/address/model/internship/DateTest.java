@@ -31,8 +31,8 @@ public class DateTest {
         assertFalse(Date.isValidDate("March 1st 2023")); //invalid date format
 
         // valid dates
-        assertTrue(Address.isValidAddress("2023-03-01"));
-        assertTrue(Address.isValidAddress("2023-02-05"));
-        assertTrue(Address.isValidAddress("2023-03-05"));
+        assertTrue(Date.isValidDate("2023-03-01"));
+        assertTrue(Date.isValidDate("2023-02-05"));
+        assertTrue(Date.isValidDate("2023-03-05"));
     }
 }
