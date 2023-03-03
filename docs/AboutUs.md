@@ -29,21 +29,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Zuo Hui
 
-<img src="images/chenzuohui.png" width="200px">
+<img src="images/zuohui48.png" width="200px">
 
 [[github](https://github.com/zuohui48)]
 
 * Role: Developer
 * Responsibilities: List jobs, Summary Statistics
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
 
 ### Zhu Le Yao
 
