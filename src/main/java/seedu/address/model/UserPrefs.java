@@ -14,12 +14,14 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -36,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +54,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    // =================== PilotManager ===================
+
+    @Override
+    public Path getPilotManagerFilePath() {
+        return this.pilotManagerFilePath;
+    }
+
+    /**
+     * Sets the user prefs' pilot manager file path.
+     *
+     * @param pilotManagerFilePath the new pilot manager file path
+     */
+    public void setPilotManagerFilePath(Path pilotManagerFilePath) {
+        requireNonNull(pilotManagerFilePath);
+        this.pilotManagerFilePath = pilotManagerFilePath;
     }
 
     @Override
@@ -68,7 +89,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                       && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
