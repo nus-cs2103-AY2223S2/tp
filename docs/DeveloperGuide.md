@@ -364,8 +364,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <pre>
 <b>MSS</b>
 
-1. User requests to list jobs/contacts.
-2. Duke Driver shows a list of jobs (UC2)
+1. User goes to homepage with list of jobs/contacts.
+2. Duke Driver displays job list.
 3. User requests to display a specific job to start chat.
 4. Duke Driver displays the chosen job in details and Chat option.
 5. User selects "Chat" option from the chosen job.
