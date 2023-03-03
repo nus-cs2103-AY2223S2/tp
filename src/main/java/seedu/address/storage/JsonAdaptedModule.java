@@ -102,7 +102,7 @@ class JsonAdaptedModule {
         }
         final SemYear modelSemYear = new SemYear(semYear);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(moduleTags);
         return new Module(modelCode, modelCredit, modelSemYear, modelTags, modelGrade);
     }
 
