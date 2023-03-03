@@ -197,15 +197,15 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
 
 ## Command Summary
-|                              Commands                              |        Command Format        |             Example Usage             |
-|:------------------------------------------------------------------:|:----------------------------:|:-------------------------------------:|
-|          [Add a Contact](#adding-a-contact--newcontact)            | `newcontact n/NAME p/NUMBER` | `newcontact n/Deborah Tan p/91234567` |
-|     [Listing All Contact](#listing-all-contacts--listcontact)      |        `listcontact`         |             `listcontact`             |
-| [Link Contact to Event](#linking-a-client-contact-to-a-event-link) |     `link INDEX CONTACT`     |           `link 2 91234567`           |
-|                [View Rate](#display-the-rate-rate)                 |         `rate INDEX`         |               `rate 2`                |  
-|                 [Tag a rate](#tag-a-rate-newrate)                  |    `newrate INDEX AMOUNT`    |            `newrate 2 100`            |
-|          [Marks event as done](#marks-event-as-done-mark)          |         `mark INDEX`         |               `mark 2`                |
-|         [Create a new event](#create-a-new-event-newevent)         |       `newevent NAME`        |          `newevent Singing`           |
+|                              Commands                               |        Command Format        |             Example Usage              |
+|:-------------------------------------------------------------------:|:----------------------------:|:--------------------------------------:|
+|           [Add a Contact](#adding-a-contact--newcontact)            | `newcontact n/NAME p/NUMBER` | `newcontact n/Deborah Tan p/91234567`  |
+|      [Listing All Contact](#listing-all-contacts--listcontact)      |        `listcontact`         |             `listcontact`              |
+| [Link Contact to Event](#linking-a-client-contact-to-a-event-link)  |     `link INDEX CONTACT`     |           `link 2 91234567`            |
+|                 [View Rate](#display-the-rate-rate)                 |         `rate INDEX`         |                `rate 2`                |  
+|                  [Tag a rate](#tag-a-rate-newrate)                  |    `newrate INDEX AMOUNT`    |            `newrate 2 100`             |
+|          [Marks event as done](#marks-event-as-done-mark)           |         `mark INDEX`         |                `mark 2`                |
+|         [Create a new event](#create-a-new-event-newevent)          |       `newevent NAME`        |           `newevent Singing`           |
 
 
 [Back to top](#)
