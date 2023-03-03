@@ -169,7 +169,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Filter persons by tags
 
-Filters the entries that matches the tag provided
+Filters the entries that matches the tag provided. The tag provided can be in uppercase,lowercase or mixed.
 
 Format: `filter [TAG]`
 
@@ -201,3 +201,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Filter** | `filter [TAG]` <br> e.g., `filter Girlfriend`, `filter family`
