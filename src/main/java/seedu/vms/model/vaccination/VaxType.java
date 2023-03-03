@@ -1,98 +1,42 @@
 package seedu.vms.model.vaccination;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 
 /**
  * Represents a vaccination type.
- *
- * <p>Types created through either {@link #of(String, HashSet, int, int, int, List)}
- * or {@link #of(String, int, int, int, List)} methods are stored and can be
- * retrieved through the {@link #get(String)} method. During creation of a
- * type, if the name of the type already exists, the vaccination type mapping
- * to that name is replaced with the newly created type.
  */
-public abstract class VaxType {
-    private static final HashMap<String, VaxType> TYPE_MAP = new HashMap<>();
+public class VaxType {
+    public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
+    public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
+    public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
+    public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
+    public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
+    public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
     private final String name;
     private final HashSet<String> groups;
     private final int minAge;
     private final int maxAge;
     private final int minSpacing;
-    private final List<VaxRequirement> requirements;
+    private final List<Requirement> historyReqs;
+    private final List<Requirement> allergyReqs;
 
 
-    private VaxType(String name, HashSet<String> groups,
+    /**
+     * Constructs a {@code VaxType}.
+     */
+    public VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> requirements) {
+                List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
         this.minSpacing = minSpacing;
-        this.requirements = requirements;
-    }
-
-
-    /**
-     * Creates a {@code VaxType}.
-     *
-     * <p>This method should be used for creating or replacing a type only. To
-     * get a type, use {@link #get(String)}.
-     *
-     * @param name - the name of the vaccination type.
-     * @param groups - the groups the vaccination is classified under.
-     * @param minAge - the minimum age requirement to take the vaccination.
-     * @param maxAge - the maximum age requirement to take the vaccination.
-     * @param minSpacing - the minimum time spacing this vaccination can be
-     *      taken from the last in days.
-     * @param requirements - the list of requirements.
-     * @return the created vaccination type.
-     */
-    public static VaxType of(String name, HashSet<String> groups,
-                int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> requirements) {
-        VaxType vaxType = new VaxType(name, groups,
-                minAge, maxAge, minSpacing,
-                requirements) {};
-        TYPE_MAP.put(name, vaxType);
-        return vaxType;
-    }
-
-
-    /**
-     * Creates a {@code VaxType} that has no groups.
-     *
-     * <p>This method should be used for creating or replacing a type only. To
-     * get a type, use {@link #get(String)}.
-     *
-     * @param name - the name of the vaccination type.
-     * @param minAge - the minimum age requirement to take the vaccination.
-     * @param maxAge - the maximum age requirement to take the vaccination.
-     * @param minSpacing - the minimum time spacing this vaccination can be
-     *      taken from the last in days.
-     * @param requirements - the list of requirements.
-     * @return the created vaccination type.
-     */
-    public static VaxType of(String name,
-                int minAge, int maxAge, int minSpacing,
-                List<VaxRequirement> requirements) {
-        return VaxType.of(name, new HashSet<>(), minAge, maxAge, minSpacing, requirements);
-    }
-
-
-    /**
-     * Returns the vaccination type mapped to the specified name. If there are
-     * no mappings to the name, {@code null} is returned.
-     *
-     * @param name - the name of the type to retrieve.
-     * @return the type mapped to the specified name.
-     */
-    public static VaxType get(String name) {
-        return TYPE_MAP.get(name);
+        this.allergyReqs = allergyReqs;
+        this.historyReqs = historyReqs;
     }
 
 
@@ -102,7 +46,7 @@ public abstract class VaxType {
 
 
     public HashSet<String> getGroups() {
-        return groups;
+        return new HashSet<>(groups);
     }
 
 
@@ -121,8 +65,13 @@ public abstract class VaxType {
     }
 
 
-    public List<VaxRequirement> getRequirements() {
-        return requirements;
+    public List<Requirement> getHistoryReqs() {
+        return Requirement.copy(historyReqs);
+    }
+
+
+    public List<Requirement> getAllergyReqs() {
+        return Requirement.copy(allergyReqs);
     }
 
 

@@ -1,6 +1,12 @@
 package seedu.vms.commons.util;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -10,7 +16,7 @@ import java.nio.file.Paths;
  * Writes and reads files
  */
 public class FileUtil {
-
+    private static final int BUFFER_SIZE = 2097152; // 2MB
     private static final String CHARSET = "UTF-8";
 
     public static boolean isFileExists(Path file) {
@@ -80,4 +86,27 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+
+    /**
+     * Returns the buffered reader of the specified file relative to the
+     * application's resource folder.
+     */
+    public static BufferedReader getResourceFileReader(String pathString) throws FileNotFoundException {
+        InputStream inStream = FileUtil.class.getResourceAsStream(pathString);
+        if (inStream == null) {
+            throw new FileNotFoundException(String.format("%s not found", pathString));
+        }
+        Reader reader = new InputStreamReader(inStream);
+        return new BufferedReader(reader, BUFFER_SIZE);
+    }
+
+
+    /**
+     * Returns the buffered reader of the specified file.
+     *
+     * @throws FileNotFoundException if the file cannot be found.
+     */
+    public static BufferedReader getFileReader(String pathString) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(Paths.get(pathString).toFile()));
+    }
 }

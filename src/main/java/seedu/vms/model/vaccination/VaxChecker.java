@@ -2,10 +2,12 @@ package seedu.vms.model.vaccination;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -25,7 +27,7 @@ public class VaxChecker {
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
-                int age, List<VaxRecord> records, LocalDateTime time) {
+                int age, HashSet<String> allergies, List<VaxRecord> records, LocalDateTime time) {
         boolean isWithinAge = vaxType.getMinAge() <= age && age <= vaxType.getMaxAge();
 
         boolean isSpaced = records.isEmpty();
@@ -33,9 +35,10 @@ public class VaxChecker {
             isSpaced = checkSpacing(vaxType, records, time);
         }
 
-        boolean isReqSatisfied = checkReq(vaxType.getRequirements(), records);
+        boolean isAllergiesSatisfied = checkReq(vaxType.getAllergyReqs(), allergies);
+        boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), records);
 
-        return isWithinAge && isSpaced && isReqSatisfied;
+        return isWithinAge && isSpaced && isAllergiesSatisfied && isHistorySatisfied;
     }
 
 
@@ -49,14 +52,40 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkReq(List<VaxRequirement> reqs, List<VaxRecord> records) {
-        HashSet<String> takenGroups = records.stream()
+    private static boolean checkHistReq(List<Requirement> reqs, List<VaxRecord> records) {
+        List<HashSet<String>> grpSets = getHistGrpSet(records);
+        ArrayDeque<Requirement> pendingReqs = new ArrayDeque<>(reqs);
+        for (HashSet<String> grpSet : grpSets) {
+            ArrayDeque<Requirement> unsatisfiedReqs = new ArrayDeque<>();
+            while (!pendingReqs.isEmpty()) {
+                Requirement req = pendingReqs.pop();
+                if (!req.check(grpSet)) {
+                    unsatisfiedReqs.add(req);
+                }
+            }
+            pendingReqs = unsatisfiedReqs;
+            if (pendingReqs.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private static List<HashSet<String>> getHistGrpSet(List<VaxRecord> records) {
+        List<HashSet<String>> grpSets = records.stream()
                 .map(record -> record.getVaccination().getGroups())
-                .collect(() -> new HashSet<>(),
-                        (takenSet, vaxSet) -> takenSet.addAll(vaxSet),
-                        (set1, set2) -> set1.addAll(set2));
-        for (VaxRequirement req : reqs) {
-            if (!req.check(takenGroups)) {
+                .collect(Collectors.toList());
+        if (records.isEmpty()) {
+            grpSets.add(new HashSet<>());
+        }
+        return grpSets;
+    }
+
+
+    private static boolean checkReq(List<Requirement> reqs, HashSet<String> set) {
+        for (Requirement req : reqs) {
+            if (!req.check(set)) {
                 return false;
             }
         }
