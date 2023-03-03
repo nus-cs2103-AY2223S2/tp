@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Branson Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bransonlj.png" width="200px">
 
 [[github](http://github.com/bransonlj)]
 [[portfolio](team/bransonlj.md)]
