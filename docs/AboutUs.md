@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team member
 * Responsibilities: ??
 
-### Jean Doe
+### Glenn Ong JunJie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/GlennOngJunJie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/GlennOngJunJie)]
+[[portfolio](team/GlennOngJunJie.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Member
+* Responsibilities: ??
 
 ### James Doe
 
