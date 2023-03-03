@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `darrensim999@gmail.com`
 
 ## Project team
 
-### John Doe
+### Kevin Eyo Kai Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kevineyo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/KevinEyo1)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead/Developer
+* Responsibilities: Scheduling and tracking
 
-### Jane Doe
+### Tan Yu Fei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanyufei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/Lanreath)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing and developer guide
 
-### James Doe
+### Anton Timothy Lee Zi Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/antonlee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/antonlee59)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
+
+### Alexander Lee Shao Bin
+
+<img src="images/alexanderlee.png" width="200px">
+
+[[github](https://github.com/Varstak)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines, user guide
+
+### Darren Sim
+
+<img src="images/darrensim.png" width="200px">
+
+[[github](https://github.com/BagDownB3nny)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Integration
