@@ -25,9 +25,7 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "GENDER "
             + PREFIX_IC + "IC"
             + PREFIX_DRUG_ALLERGY + "DRUG ALLERGY "
-            + PREFIX_EMERGENCY_CONTACT_NAME + "EMERGENCY CONTACT "
-            + PREFIX_EMERGENCY_CONTACT_PHONE + "EMERGENCY CONTACT PHONE "
-            + PREFIX_EMERGENCY_CONTACT_RELATIONSHIP + "EMERGENCY CONTACT RELATIONSHIP\n"
+            + PREFIX_EMERGENCY_CONTACT_NUMBER + "EMERGENCY CONTACT NUMBER\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tom Smith "
             + PREFIX_PHONE + "84356788 "
@@ -37,13 +35,11 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "MALE "
             + PREFIX_IC + "T0278234M "
             + PREFIX_DRUG_ALLERGY + "Aspirin "
-            + PREFIX_EMERGENCY_CONTACT_NAME + "Jade Smith "
-            + PREFIX_EMERGENCY_CONTACT_PHONE + "93746552"
-            + PREFIX_EMERGENCY_CONTACT_RELATIONSHIP + "Wife";
+            + PREFIX_EMERGENCY_CONTACT_NUMBER + "93746552\n";
 
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists.";
     private final Patient patientToAdd;
 
     public AddCommand(Patient patient) {
@@ -63,7 +59,7 @@ public class AddCommand extends Command {
         requireNonNull(careFlowModel);
 
         if(careFlowModel.hasPatient(patientToAdd)){
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
         careFlowModel.addPatient(patientToAdd);

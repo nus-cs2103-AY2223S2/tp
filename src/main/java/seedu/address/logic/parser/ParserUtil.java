@@ -157,14 +157,6 @@ public class ParserUtil {
         return new DrugAllergy(trimmedDrugAllergy);
     }
 
-    public static EmergencyContact parseEmergencyContact(Person emergencyContactPerson,
-                                                         String emergencyContactRelationship) {
-        requireNonNull(emergencyContactPerson, emergencyContactRelationship);
-
-        //TODO: checker for relationship?
-        String trimmedEmergencyContactRelationship = emergencyContactRelationship.trim();
-        return new EmergencyContact(emergencyContactPerson, trimmedEmergencyContactRelationship);
-    }
     /**
      * Parses a {@code String tradeName} into a {@code TradeName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -255,5 +247,4 @@ public class ParserUtil {
         }
         return new StorageCount(trimmedCount);
     }
-
 }
