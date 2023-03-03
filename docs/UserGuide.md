@@ -48,98 +48,141 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 
 ## Features
 
-### Add a Contact
-Adding a contact : `newcontact`
+### Adding a contact : `newcontact`
+
 Adding a contact to contacts
-Format: newcontact NAME NUMBER
-Creates a new contact with specified NAME and NUMBER
-Example:
-newcontact Deborah Tan /num 91234567
+
+**Format** : `newcontact n/NAME p/NUMBER`
+
+- Creates a new contact with specified `NAME` and `NUMBER`
 
 
-View all contacts : listcontact
+**Example**:
+- `newcontact n/Deborah Tan p/91234567`
+- `newcontact n/Mandy p/98765432`
+
+
+### Listing all contacts : `listcontact`
+
 Displays all contacts saved in a list
-Format: listcontact
-Displays the list of contacts saved
 
+**Format**: `listcontact`
 
 ### Linking a client contact to a event: `link`
+
 Links client contact to an event.
-Format: `link INDEX CONTACT`
-Links contact to the event at the specified `INDEX`.
-The index refers to the index number in the displayed events list.
-The index must be a positive integer 1, 2, 3, …​
-Example:
-- `link 2 91234567` links contact 91234567 to 2nd event in the list.
+
+**Format**: `link INDEX CONTACT`
+
+- Links contact to the event at the specified `INDEX`.
+
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+
+**Example**:
+- `link 2 91234567` links contact `2nd event` to `91234567` in the list.
 
 
 ### Display the rate: `rate`
+
 Displays the rate tagged to an event.
-Format: `rate INDEX`
-Displays the agreed rate of the event at the specified `INDEX`.
-The index refers to the index number in the displayed events list.
-The index must be a positive integer 1, 2, 3, …​
-Example: 
-- `rate 2` returns the rate of 2nd event in the event list.
+
+**Format**: `rate INDEX`
+
+- Displays the agreed rate of the event at the specified `INDEX`.
+
+The `INDEX` refers to the index number in the displayed events list.
+The `INDEX` must be a positive integer 1, 2, 3, …​
+
+**Example**: 
+- `rate 2` returns the rate of `2nd event` in the event list.
 
 
 ### Tag a rate: `newrate`
+
 Tags a rate to an event.
-Format: `newrate INDEX AMOUNT`
-Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
-The index refers to the index number in the displayed events list.
-The index must be a positive integer 1, 2, 3, …​
+
+**Format**: `newrate INDEX AMOUNT`
+
+- Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
+
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+
 Example: 
-- `newrate 2 100` adds the rate of 100 to thex 2nd event in the event list.
+- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list.
 
 
 ### Marks event as done: `mark`
-Marks a specified event in the address book as done.  
-Format: `mark INDEX`  
-Marks the event at the specified **INDEX** as done.  
+
+Marks a specified event in the address book as done. 
+
+**Format**: `mark INDEX`  
+
+- Marks the event at the specified `INDEX` as done. 
+
 The event must not be marked as done beforehand.  
-Example:  
-- `mark 2` marks the 2nd event as done.
+
+**Example**:  
+- `mark 2` marks the `2nd event` as done.
 
 ### Create a new event: `newevent`
+
 Creates a new event  
-Format: `newevent NAME`  
-Creates a new event with the specified event **NAME**  
+
+**Format**: `newevent NAME`  
+
+- Creates a new event with the specified event `NAME` 
+
 Example: 
 - `newevent Singing` creates an event that has the name “Singing”.
 
-Listing all events : listevent
+### Listing all events : `listevent`
+
 Shows a list of all events in the address book
-Format: listevent
+
+Format: `listevent`
 
 
-Deleting an event : deleteevent
+### Deleting an event : `deleteevent`
+
 Deletes the specified event from the event book.
-Format: deleteevent INDEX
-Deletes the event at the specified INDEX
-The index refers to the index number shown in the displayed event list.
-The index must be a positive integer 1, 2, 3, …​
-Examples:
-list followed by delete 2 deletes the 2nd event in the event book.
+
+**Format**: `deleteevent INDEX`
+
+- Deletes the event at the specified INDEX
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+  
+**Examples**:
+  list followed by delete 2 deletes the 2nd event in the event book.
 
 
-Adds dates to an event : adddate
+### Adds dates to an event : `adddate`
+
 Adds a starting time and ending time to the specified event in the event book.
-Format: adddate INDEX /from dd/MM/yy /to dd/MM/yy
-Adds starting and ending time to the event at the specified INDEX
-The index refers to the index number shown in the displayed event list.
-The index must be a positive integer 1, 2, 3, …​
-The event must not have time associated with it beforehand
+
+**Format**: `adddate INDEX /from dd/MM/yy /to dd/MM/yy`
+
+- Adds starting and ending time to the event at the specified INDEX
+    - The `INDEX` refers to the index number shown in the displayed event list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …​
+  
+The event must not have time associated with it beforehand.
 
 
-Saving all events and contacts: save
+### Saving all events and contacts: `save`
+
 Saves all entries in Paidlancer.
-Format: save
+
+**Format**: `save`
 
 
-Loading all events and contacts : load
+### Loading all events and contacts : `load`
+
 Loads all entries in Paidlancer from local storage if it exist
-Format: load
+
+**Format**: load
 
 ### Saving the data
 
@@ -151,13 +194,15 @@ Paidlancer data are saved in the hard disk automatically exiting the program. Th
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
 
 ## Command Summary
-| Commands | Command Format | Example Usage | 
-|:-:|:-:|:-:|
-| [Link Contact to Event](#linking-a-client-contact-to-a-event-link) | `link INDEX CONTACT` | `link 2 91234567` |
-| [View Rate](#display-the-rate-rate) | `rate INDEX` | `rate 2` |  
-| [Tag a rate](#tag-a-rate-newrate) | `newrate INDEX AMOUNT` | `newrate 2 100` |
-| [Marks event as done](#marks-event-as-done-mark) | `mark INDEX` | `mark 2` |
-| [Create a new event](#create-a-new-event-newevent) | `newevent NAME` | `newevent Singing` |
+|                              Commands                              |        Command Format        |             Example Usage             |
+|:------------------------------------------------------------------:|:----------------------------:|:-------------------------------------:|
+|          [Add a Contact](#adding-a-contact--newcontact)            | `newcontact n/NAME p/NUMBER` | `newcontact n/Deborah Tan p/91234567` |
+|     [Listing All Contact](#listing-all-contacts--listcontact)      |        `listcontact`         |             `listcontact`             |
+| [Link Contact to Event](#linking-a-client-contact-to-a-event-link) |     `link INDEX CONTACT`     |           `link 2 91234567`           |
+|                [View Rate](#display-the-rate-rate)                 |         `rate INDEX`         |               `rate 2`                |  
+|                 [Tag a rate](#tag-a-rate-newrate)                  |    `newrate INDEX AMOUNT`    |            `newrate 2 100`            |
+|          [Marks event as done](#marks-event-as-done-mark)          |         `mark INDEX`         |               `mark 2`                |
+|         [Create a new event](#create-a-new-event-newevent)         |       `newevent NAME`        |          `newevent Singing`           |
 
 
 [Back to top](#user-guide-for-paidlancers)
