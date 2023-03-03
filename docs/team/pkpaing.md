@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Phone Khant Paing's Project Portfolio Page
 ---
 

@@ -1,6 +1,6 @@
 **Target user profile**: University students who need to keep track of their contacts from different classes/ccas/clubs etc.
 
-**Value proposition**: Students often take many classes and meet different people. This app helps them to organise their
+**Value proposition**: Students often take many classes and meet different people. This application helps them to organise their
 contacts list for an easier way to set up proper communication channels. This makes it easier for students to form
 connections with their peers during their time in University.
 

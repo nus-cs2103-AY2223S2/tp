@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Ian's Project Portfolio Page
 ---
 
