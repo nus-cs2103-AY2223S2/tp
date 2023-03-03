@@ -19,12 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Tam Keng Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tamkenghong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TamKengHong)]
+[[portfolio](team/tamkenghong.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
