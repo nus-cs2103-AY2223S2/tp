@@ -24,6 +24,9 @@ public class VaxType {
     private final List<Requirement> allergyReqs;
 
 
+    /**
+     * Constructs a {@code VaxType}.
+     */
     public VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
                 List<Requirement> historyReqs, List<Requirement> allergyReqs) {

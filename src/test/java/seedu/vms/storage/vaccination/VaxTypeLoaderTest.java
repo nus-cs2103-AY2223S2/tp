@@ -7,10 +7,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.model.vaccination.Requirement.RequirementType;
 import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeStorage;
-import seedu.vms.model.vaccination.Requirement.RequirementType;
 
 
 public class VaxTypeLoaderTest {

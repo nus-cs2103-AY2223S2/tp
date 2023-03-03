@@ -26,7 +26,7 @@ public class VaxTypeBuilder {
                 String name, HashSet<String> grps, int minAge, int maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         this.storage = storage;
-        this. oriName = oriName;
+        this.oriName = oriName;
         this.name = name;
         this.grps = new HashSet<>(grps);
         this.minAge = minAge;
@@ -37,6 +37,14 @@ public class VaxTypeBuilder {
     }
 
 
+    /**
+     * Factory method to create a {@code VaxTypeBuilder}.
+     *
+     * @param storage - the {@code VaxTypeStorage} the builder should be
+     *      bounded to.
+     * @param name - the name of the {@code VaxType} to create/override from
+     *      in the specified storage.
+     */
     public static VaxTypeBuilder of(VaxTypeStorage storage, String name) {
         Optional<VaxType> vaxType = storage.get(name);
         Optional<String> oriName = vaxType.map(VaxType::getName);
@@ -108,6 +116,11 @@ public class VaxTypeBuilder {
     }
 
 
+    /**
+     * Builds and adds the {@code VaxType} to the bounded storage.
+     *
+     * @return the {@code VaxType} built.
+     */
     public VaxType build() {
         oriName.ifPresent(storage::remove);
         VaxType vaxType = new VaxType(name, grps, minAge, maxAge, minSpacing,
