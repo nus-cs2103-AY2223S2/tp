@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
         List<Drug> drugList = model.getFilteredDrugList();
-        if (targetTradeName.isBlank()) {
+        if (targetTradeName == null) {
             if (targetIndex.getZeroBased() >= drugList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX);
             }
@@ -63,7 +63,7 @@ public class DeleteCommand extends Command {
                 }
             }
             if (drugToDelete == null) {
-                return new CommandResult(String.format(MESSAGE_SUCCESS, targetTradeName));
+                throw new CommandException(String.format(MESSAGE_FAILURE, targetTradeName));
             }
             model.deleteDrug(drugToDelete);
             return new CommandResult(String.format(MESSAGE_SUCCESS, drugToDelete));
