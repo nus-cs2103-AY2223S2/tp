@@ -3,8 +3,9 @@ layout: page
 title: Nigel's Project Portfolio Page
 ---
 
-### Project: Well Informed Fridge Environment (WIFE)
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge, and never question her. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
+### Project: Well Informed Fridge Environment (WIFE) Level 3
+
+WIFE is always right and never question her. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
 
 Given below are my contributions to the project.
 
@@ -16,6 +17,21 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
+<<<<<<< HEAD
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=scorpiussigma&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ScorpiusSigma&tabRepo=AY2223S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+* **Project management**:
+    * TO BE ADDED
+
+* **Enhancements to existing features**:
+    * TO BE ADDED
+
+* **Documentation**:
+    * User Guide:
+        * Added documentation for the features `list` and `delete` [\#72]()
+    * Developer Guide:
+        * TO BE ADDED
+=======
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jnjy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
@@ -30,6 +46,7 @@ Given below are my contributions to the project.
         * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
     * Developer Guide:
         * To be added
+>>>>>>> 83c11edc605add0098e29de68a0ee6cd23c2184d
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
@@ -41,4 +58,9 @@ Given below are my contributions to the project.
     * Integrated a third party library (Natty) to the project ([\#42]())
     * Integrated a new Github plugin (CircleCI) to the team repo
 
+<<<<<<< HEAD
 * _{you can add/remove categories in the list above}_
+
+=======
+* _{you can add/remove categories in the list above}_
+>>>>>>> 83c11edc605add0098e29de68a0ee6cd23c2184d
