@@ -281,4 +281,16 @@ public class RequirementTest {
         reqs.add(req1);
         assertTrue(reqs.contains(req2));
     }
+
+
+    @Test
+    public void getReqSetTest() {
+        Requirement req = new Requirement(RequirementType.ALL, SET_1_A);
+
+        assertEquals(SET_1_A, req.getReqSet());
+
+        // immutability
+        req.getReqSet().addAll(SET_1_B);
+        assertEquals(SET_1_A, req.getReqSet());
+    }
 }
