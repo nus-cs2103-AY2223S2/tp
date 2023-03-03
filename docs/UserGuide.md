@@ -150,6 +150,10 @@ Adds a new event with the given event name, start date time, and end date time.
 
 Format: `addevent ev/EVENT from/DATETIME to/DATETIME`
 
+* Event name can be a combination of alphanumeric and punctuations with spaces.
+* Event name must begin with alphanumeric.
+* Start date time cannot be after the end date time.
+
 Examples:
 * `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 * `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30`
