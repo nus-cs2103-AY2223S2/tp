@@ -2,6 +2,7 @@ package seedu.vms.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,10 +27,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
 
-    private static final String DEFAULT_DATE_REGREX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
-    private static final String FULL_DATE_REGREX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
+    private static final String DEFAULT_DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
+    private static final String FULL_DATE_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
 
-    private static final String FULL_DATE_PATTERN = "yyyy-M-d HHmm";
+    private static final String FULL_DATETIME_PATTERN = "yyyy-M-d HHmm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -131,38 +132,56 @@ public class ParserUtil {
         return tagSet;
     }
 
-
     /**
      * Parses a String date to a {@code LocalDateTime}.
-     *
-     * <p>The following formats are supported:
+     * <p>
+     * The following formats are supported:
      * <ul>
-     * <li>{@code yyyy-MM-dd'T'hh:mm}
-     * <li>{@code yyyy-M-d hhmm}
+     * <li>{@code yyyy-MM-d}
      * </ul>
      *
      * @param dateString - the String date to parse.
      * @return the parsed {@code LocalDateTime}.
      * @throws ParseException if the given String cannot be parsed.
      */
-    public static LocalDateTime parseDate(String dateString) throws ParseException {
+    public static LocalDate parseDate(String dateString) throws ParseException {
         try {
-            return parseCustomDate(dateString);
+            return LocalDate.parse(dateString);
         } catch (DateTimeParseException dateParseEx) {
             throw new ParseException(dateParseEx.getMessage());
         }
     }
 
+    /**
+     * Parses a String date to a {@code LocalDateTime}.
+     * <p>
+     * The following formats are supported:
+     * <ul>
+     * <li>{@code yyyy-MM-dd'T'hh:mm}
+     * <li>{@code yyyy-M-d hhmm}
+     * </ul>
+     *
+     * @param datetimeString - the String date to parse.
+     * @return the parsed {@code LocalDateTime}.
+     * @throws ParseException if the given String cannot be parsed.
+     */
+    public static LocalDateTime parseDateTime(String datetimeString) throws ParseException {
+        try {
+            return parseCustomDateTime(datetimeString);
+        } catch (DateTimeParseException dateParseEx) {
+            throw new ParseException(dateParseEx.getMessage());
+        }
+    }
 
-    private static LocalDateTime parseCustomDate(String dateString) throws ParseException {
-        if (dateString.matches(DEFAULT_DATE_REGREX)) {
+    private static LocalDateTime parseCustomDateTime(String datetimeString) throws ParseException {
+        if (datetimeString.matches(DEFAULT_DATE_REGEX)) {
             // yyyy-MM-dd'T'hh:mm format
-            return LocalDateTime.parse(dateString);
-        } else if (dateString.matches(FULL_DATE_REGREX)) {
+            return LocalDateTime.parse(datetimeString);
+        } else if (datetimeString.matches(FULL_DATE_REGEX)) {
             // yyyy-MM-dd hhmm format
             return LocalDateTime.parse(
-                        dateString,
-                        DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
+                    datetimeString,
+                    DateTimeFormatter.ofPattern(FULL_DATETIME_PATTERN));
         }
         throw new ParseException(MESSAGE_INVALID_DATE);
     }

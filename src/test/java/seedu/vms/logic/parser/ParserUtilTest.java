@@ -6,6 +6,7 @@ import static seedu.vms.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,16 +38,24 @@ public class ParserUtilTest {
 
     private static final String WHITESPACE = " \t\r\n";
 
-    private static final LocalDateTime EXPECTED_DATE = LocalDateTime.of(2023, 3, 5, 4, 55);
+    private static final LocalDateTime EXPECTED_DATETIME = LocalDateTime.of(2023, 3, 5, 4, 55);
 
-    private static final String VALID_DEFAULT_DATE = "2023-03-05T04:55";
-    private static final String VALID_FULL_DATE = "2023-03-05 0455";
+    private static final String VALID_DEFAULT_DATETIME = "2023-03-05T04:55";
+    private static final String VALID_FULL_DATETIME = "2023-03-05 0455";
+
+    private static final String INVALID_DATETIME_RUBBISH = "RuBbisH";
+    private static final String INVALID_DATETIME_MIN_OUT = "2023-03-05T04:99";
+    private static final String INVALID_DATETIME_HRS_OUT = "2023-03-05T99:55";
+    private static final String INVALID_DATETIME_DAY_OUT = "2023-03-99T04:55";
+    private static final String INVALID_DATETIME_MTH_OUT = "2023-99-99T04:55";
+
+    private static final LocalDate EXPECTED_DATE = LocalDate.of(2023, 3, 25);
+
+    private static final String VALID_FULL_DATE = "2023-03-25";
 
     private static final String INVALID_DATE_RUBBISH = "RuBbisH";
-    private static final String INVALID_DATE_MIN_OUT = "2023-03-05T04:99";
-    private static final String INVALID_DATE_HRS_OUT = "2023-03-05T99:55";
-    private static final String INVALID_DATE_DAY_OUT = "2023-03-99T04:55";
-    private static final String INVALID_DATE_MTH_OUT = "2023-99-99T04:55";
+    private static final String INVALID_DATE_DAY_OUT = "2023-03-99";
+    private static final String INVALID_DATE_MTH_OUT = "2023-99-99";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -55,8 +64,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
+                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -207,9 +216,39 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_validDefaultDate_returnDate() throws Exception {
-        LocalDateTime actualDate = ParserUtil.parseDate(VALID_DEFAULT_DATE);
-        assertEquals(EXPECTED_DATE, actualDate);
+    public void parseDateTime_validDefaultDate_returnDate() throws Exception {
+        LocalDateTime actualDate = ParserUtil.parseDateTime(VALID_DEFAULT_DATETIME);
+        assertEquals(EXPECTED_DATETIME, actualDate);
+    }
+
+    @Test
+    public void parseDateTime_validFullDate_returnDate() throws Exception {
+        assertEquals(EXPECTED_DATETIME, ParserUtil.parseDateTime(VALID_FULL_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_rubbishDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_RUBBISH));
+    }
+
+    @Test
+    public void parseDateTime_minutesOutOfRange_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_MIN_OUT));
+    }
+
+    @Test
+    public void parseDateTime_hoursOutOfRange_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_HRS_OUT));
+    }
+
+    @Test
+    public void parseDateTime_dayOutOfRange_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_DAY_OUT));
+    }
+
+    @Test
+    public void parseDateTime_monthOutOfRange_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_MTH_OUT));
     }
 
     @Test
@@ -223,16 +262,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_minutesOutOfRange_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_MIN_OUT));
-    }
-
-    @Test
-    public void parseDate_hoursOutOfRange_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_HRS_OUT));
-    }
-
-    @Test
     public void parseDate_dayOutOfRange_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_DAY_OUT));
     }
@@ -241,4 +270,5 @@ public class ParserUtilTest {
     public void parseDate_monthOutOfRange_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_MTH_OUT));
     }
+
 }
