@@ -65,4 +65,13 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Convert given string to lowercase.
+     */
+    public static String makeStringCaseInsensitive(String s) {
+        requireNonNull(s);
+        return s.toLowerCase();
+    }
+
 }

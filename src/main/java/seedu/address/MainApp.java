@@ -13,15 +13,16 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.logic.CareFlowLogic;
+import seedu.address.logic.CareFlowLogicManager;
+import seedu.address.model.CareFlowModel;
+import seedu.address.model.CareFlowModelManager;
+import seedu.address.model.DrugInventory;
+import seedu.address.model.PatientRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -41,9 +42,9 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected Logic logic;
+    protected CareFlowLogic logic;
     protected Storage storage;
-    protected Model model;
+    protected CareFlowModel model;
     protected Config config;
 
     @Override
@@ -63,7 +64,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new CareFlowLogicManager(model, storage);
 
         ui = new UiManager(logic);
     }
@@ -73,24 +74,36 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
+    private CareFlowModel initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+//        Optional<ReadOnlyAddressBook> addressBookOptional;
+//        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyPatientRecord> patientRecordOptional;
+        Optional<ReadOnlyDrugInventory> drugInventoryOptional;
+        ReadOnlyPatientRecord initialDataPatient;
+        ReadOnlyDrugInventory initialDataDrug;
 
-        return new ModelManager(initialData, userPrefs);
+//        try {
+            // to be changed
+//            addressBookOptional = storage.readAddressBook();
+//            if (!addressBookOptional.isPresent()) {
+//                logger.info("Data file not found. Will be starting with a sample AddressBook");
+//            }
+//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+//            initialDataPatient = ?
+//            initialDataDrug = ?
+//        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+//            initialData = new AddressBook();
+            initialDataPatient = new PatientRecord();
+            initialDataDrug = new DrugInventory();
+//        } catch (IOException e) {
+
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+//            initialData = new AddressBook();
+            initialDataPatient = new PatientRecord();
+            initialDataDrug = new DrugInventory();
+//        }
+        return new CareFlowModelManager(initialDataPatient, initialDataDrug, userPrefs);
     }
 
     private void initLogging(Config config) {

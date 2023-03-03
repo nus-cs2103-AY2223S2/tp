@@ -25,7 +25,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructor for backward compatibility
+     * Might be removed in the future.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +35,29 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+    }
+
+    /**
+     * Constructor for creating a emergency contact person,
+     * so only include important information like name and phone number.
+     */
+    public Person(Name name, Phone phone) {
+        requireAllNonNull(name, phone);
+        this.name = name;
+        this.phone = phone;
+        this.email = null;
+        this.address = null;
     }
 
     public Name getName() {

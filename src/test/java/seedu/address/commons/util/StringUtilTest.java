@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -138,6 +139,15 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+    @Test
+    public void makeStringCaseInsensitive() {
+        // invalid input
+        assertThrows(NullPointerException.class, () -> StringUtil.makeStringCaseInsensitive(null));
+
+        // valid input
+        assertEquals("testing", StringUtil.makeStringCaseInsensitive("TESTING"));
     }
 
 }

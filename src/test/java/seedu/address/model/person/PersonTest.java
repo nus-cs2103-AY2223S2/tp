@@ -18,6 +18,13 @@ import seedu.address.testutil.PersonBuilder;
 public class PersonTest {
 
     @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Person(null, null));
+        assertThrows(NullPointerException.class, () -> new Person(null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new Person(null, null, null, null, null));
+    }
+
+    @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
