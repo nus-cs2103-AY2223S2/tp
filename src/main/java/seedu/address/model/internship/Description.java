@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
 
-    public final String DESCRIPTION_EMPTY_MESSAGE = "No description available.";
+    public static final String EMPTY_MESSAGE = "No description available.";
     public final String descriptionMessage;
 
     /**
@@ -31,7 +31,7 @@ public class Description {
     }
     @Override
     public String toString() {
-        return isEmpty() ? DESCRIPTION_EMPTY_MESSAGE : descriptionMessage;
+        return isEmpty() ? EMPTY_MESSAGE : descriptionMessage;
     }
 
     @Override
