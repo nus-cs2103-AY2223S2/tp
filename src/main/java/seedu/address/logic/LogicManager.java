@@ -15,6 +15,7 @@ import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandGroup;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.OperationMode;
+import seedu.address.logic.core.WingmanParser;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.logic.factories.AddPilotCommandFactory;
@@ -32,55 +33,42 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
 
-    /**
-     * The command groups that are available in the application.
-     */
-    private static final CommandGroup[] COMMAND_GROUPS = new CommandGroup[]{
-        new CommandGroup(OperationMode.PILOT, new CommandFactory[]{
-            new AddPilotCommandFactory(),
-            new DeletePilotCommandFactory(),
-            }),
-        new CommandGroup(OperationMode.CREW, new CommandFactory[]{}),
-        new CommandGroup(OperationMode.PLANE, new CommandFactory[]{}),
-        new CommandGroup(OperationMode.FLIGHT, new CommandFactory[]{}),
-        new CommandGroup(OperationMode.LOCATION, new CommandFactory[]{}),
-        };
-
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final Model model;
     private final Storage storage;
+    private final WingmanParser parser;
 
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
+     *
+     * @param model   the model to use.
+     * @param storage the storage to use.
+     * @param parser  the parser to use.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, WingmanParser parser) {
         this.model = model;
         this.storage = storage;
+        this.parser = parser;
+    }
+
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}, using the default {@code WingmanParser}.
+     *
+     * @param model   the model to use.
+     * @param storage the storage to use.
+     */
+    public LogicManager(Model model, Storage storage) {
+        this(model, storage, new WingmanParser());
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        final String[] rawTokens = commandText.trim().split(" ");
-        final Deque<String> tokens = new ArrayDeque<>(Arrays.asList(rawTokens));
-        final OperationMode operationMode =
-            this.model.getUserPrefs().getOperationMode();
-        CommandResult result = null;
-        for (CommandGroup commandGroup : COMMAND_GROUPS) {
-            if (commandGroup.getOperationMode() != operationMode) {
-                continue;
-            }
-            final Command command = commandGroup.parse(tokens);
-            result = command.execute(this.model);
-            break;
-        }
-        if (result == null) {
-            throw new CommandException("Did not receive a result from the "
-                                           + "command. This may be due to"
-                                           + " the fact that the command "
-                                           + "has not been found.");
-        }
-        save();
+        final Command command = parser.parse(model.getOperationMode(), commandText);
+        final CommandResult result = command.execute(model);
+        this.save();
         return result;
     }
 
@@ -107,6 +95,7 @@ public class LogicManager implements Logic {
             default:
                 throw new CommandException("Unknown operation mode");
             }
+            storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);
         }
