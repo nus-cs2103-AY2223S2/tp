@@ -11,22 +11,22 @@ import seedu.loyaltylift.commons.core.LogsCenter;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of customers.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class CustomerListPanel extends UiPart<Region> {
+    private static final String FXML = "CustomerListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(CustomerListPanel.class);
 
     @FXML
-    private ListView<Customer> personListView;
+    private ListView<Customer> customerListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Customer> personList) {
+    public CustomerListPanel(ObservableList<Customer> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        customerListView.setItems(personList);
+        customerListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
@@ -34,14 +34,14 @@ public class PersonListPanel extends UiPart<Region> {
      */
     class PersonListViewCell extends ListCell<Customer> {
         @Override
-        protected void updateItem(Customer person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Customer customer, boolean empty) {
+            super.updateItem(customer, empty);
 
-            if (empty || person == null) {
+            if (empty || customer == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new CustomerCard(customer, getIndex() + 1).getRoot());
             }
         }
     }

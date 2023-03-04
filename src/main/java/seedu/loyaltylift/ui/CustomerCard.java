@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Customer}.
  */
-public class PersonCard extends UiPart<Region> {
+public class CustomerCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "CustomerListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,9 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Customer} and index to display.
+     * Creates a {@code CustomerCard} with the given {@code Customer} and index to display.
      */
-    public PersonCard(Customer customer, int displayedIndex) {
+    public CustomerCard(Customer customer, int displayedIndex) {
         super(FXML);
         this.customer = customer;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof CustomerCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        CustomerCard card = (CustomerCard) other;
         return id.getText().equals(card.id.getText())
                 && customer.equals(card.customer);
     }
