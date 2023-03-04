@@ -33,5 +33,4 @@ public class PositionTest {
         assertTrue(Position.isValidPosition("Software Engineering"));
         assertTrue(Position.isValidPosition("s")); // one character
     }
-    
 }

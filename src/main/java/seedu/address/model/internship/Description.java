@@ -29,7 +29,6 @@ public class Description {
     public boolean isEmpty() {
         return descriptionMessage.stripTrailing().equals("");
     }
-    
     @Override
     public String toString() {
         return isEmpty() ? DESCRIPTION_EMPTY_MESSAGE : descriptionMessage;

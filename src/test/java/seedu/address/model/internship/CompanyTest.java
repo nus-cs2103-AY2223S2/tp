@@ -33,5 +33,4 @@ public class CompanyTest {
         assertTrue(Company.isValidCompany("Google"));
         assertTrue(Company.isValidCompany("G")); // one character
     }
-    
 }

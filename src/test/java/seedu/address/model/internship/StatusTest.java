@@ -50,5 +50,4 @@ public class StatusTest {
         assertEquals((new Status(statusIdRejected)).toString(), "REJECTED");
 
     }
-    
 }

@@ -7,7 +7,6 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable
  */
 public class Id {
-    
 
     public final String id;
 
