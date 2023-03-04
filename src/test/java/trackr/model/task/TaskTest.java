@@ -62,7 +62,7 @@ public class TaskTest {
         // different type -> returns false
         assertFalse(SORT_INVENTORY_N.equals(5));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(SORT_INVENTORY_N.equals(BUY_FLOUR_N));
 
         // different name -> returns false

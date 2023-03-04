@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import trackr.model.person.exceptions.PersonNotFoundException;
 import trackr.model.task.exceptions.DuplicateTaskException;
 import trackr.model.task.exceptions.TaskNotFoundException;
 
@@ -59,7 +58,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TaskNotFoundException();
         }
 
         if (!target.isSameTask(editedTask) && contains(editedTask)) {

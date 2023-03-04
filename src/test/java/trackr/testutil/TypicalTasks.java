@@ -61,7 +61,7 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(
-                Arrays.asList(SORT_INVENTORY_N, SORT_INVENTORY_D, SORT_INVENTORY_DIFF_DATE_N,
-                        SORT_INVENTORY_DIFF_DATE_D, BUY_FLOUR_N, BUY_EGGS_D));
+                Arrays.asList(SORT_INVENTORY_N, SORT_INVENTORY_DIFF_DATE_D,
+                        BUY_FLOUR_N, BUY_EGGS_D));
     }
 }

@@ -55,7 +55,7 @@ public class TaskList implements ReadOnlyTaskList {
         setTasks(newData.getTaskList());
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task list.
