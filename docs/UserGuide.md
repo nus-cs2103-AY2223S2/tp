@@ -10,7 +10,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -67,11 +67,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
+
+Format: `help`
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+
 
 
 ### Adding a person: `add`
@@ -106,9 +108,9 @@ Format: `list`
 
 ![ListCommand](images/userguide/ListCommand.png)
 
-|                         List Command Outcome                          |
-|:---------------------------------------------------------------------:|
-| <img src=./images/userguide/ListCommand.png width="50%" height="50%"> |
+|               List Command Outcome               |
+|:------------------------------------------------:|
+| ![ListCommand](images/userguide/ListCommand.png) |
 
 ### Editing a person : `edit`
 
