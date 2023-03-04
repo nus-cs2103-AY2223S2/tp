@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class Date {
 
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format yyyy-mm-dd"
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format yyyy-MM-dd"
             + "and adhere to the following constraints:\n"
             + "1. Date to be formatted as yyyy-MM-dd in 3 blocks separated by a hyphen '-'\n"
             + " - Each block should only contain digits, and no other special characters\n"

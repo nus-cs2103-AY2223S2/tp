@@ -120,7 +120,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The name and postal codes are searched.
   * For names, partial words will be matched e.g. `Han` will match `Hans` and `Abrahan`
   * For postal codes, the beginning of the postal code will be matched e.g. `10` will match `S101234` but not `S123410`
-  * For postal codes, the user may choose to include an `"S"` character or not e.g. `S10` will match `S101234`
+  * For postal codes, the user may choose to include an `"S"` or `"s""` character or not e.g.
+    * `S10` will match `S101234`
+    * `s10` will also match `S101234`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all persons whose postal codes begin with `101`.
 

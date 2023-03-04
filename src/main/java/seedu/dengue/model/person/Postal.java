@@ -11,24 +11,42 @@ public class Postal {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Postal codes should only contain numbers, and it must be 6 digits long";
-    public static final String VALIDATION_REGEX = "[S]{0,1}\\d{6}";
+            "Postal codes should only contain numbers or start with S, and it must be 6 digits long";
+    public static final String VALIDATION_REGEX = "[Ss]?\\d{6}";
     public final String value;
 
     /**
      * Constructs a {@code Postal}.
-     *
      * @param postal A valid postal number.
      */
     public Postal(String postal) {
-        boolean hasStart = postal.substring(0, 1).equals("S");
         requireNonNull(postal);
         checkArgument(isValidPostal(postal), MESSAGE_CONSTRAINTS);
+        value = formatPostal(postal);
+    }
+
+    /**
+     * Checks if a postal code string begins with the letter "S" pr "s".
+     * @param postal postal code string.
+     * @return a boolean value.
+     */
+    public boolean hasStart(String postal) {
+        return postal.substring(0, 1).toUpperCase().equals("S");
+    }
+
+    /**
+     * Formats a postal code to be in the form "^S\\d{6}$"
+     * @param string Postal code to format.
+     * @return A formatted postal code.
+     */
+    public String formatPostal(String string) {
+        boolean hasStart = hasStart(string);
         if (hasStart) {
-            value = postal;
+            return string.toUpperCase();
         } else {
-            value = "S" + postal;
+            return "S" + string;
         }
+
 
     }
 

@@ -17,7 +17,7 @@ public class Age {
      * otherwise " " (a blank string) becomes a valid input.
      */
     //TODO
-    public static final String VALIDATION_REGEX = "(^\\d{0,2}$|^[01]\\d{0,2})";
+    public static final String VALIDATION_REGEX = "^[01]?\\d{0,2}$";
 
     public final String value;
 
