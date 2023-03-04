@@ -18,12 +18,21 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities: Integration & Tracking
 * In-charge of: Leave features
 
+### Kenneth Kiang
+
+<img src="images/kennethk-1201.png" width="200px">
+
+[[github](https://github.com/kennethk-1201)]
+[[portfolio](https://kennethkiang.netlify.app/)]
+
+* Role: Team Lead
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/4ndrelim.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -32,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/4ndrelim.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -42,7 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/4ndrelim.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -52,7 +61,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/4ndrelim.md)]
 
 * Role: Developer
 * Responsibilities: UI
