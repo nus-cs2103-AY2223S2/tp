@@ -6,10 +6,24 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
+
+The product addresses several challenges faced by managers in the current office environment, such as work overload 
+among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual 
+tasks like typing and sending emails.
+
+OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing 
+managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and 
+communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that 
+emails are sent during working hours, so that subordinates will not be disturbed outside of work.
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+OfficeConnect is a brownfield Java project based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) 
+by [se-education.org](https://se-education.org).
+* Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,6 +271,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* holds a managerial role
 * has a need to manage a significant number of subordinates
 * has a need to assign large number of tasks to subordinates
 * prefer desktop apps over other types
@@ -266,6 +281,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * manage tasks and contacts faster than a typical mouse/GUI driven app
+* able to view all upcoming tasks to be completed at one glance
 * allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 
@@ -324,19 +340,44 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `OfficeConnect` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="span" class="alert alert-info">
 
-**Use case: Delete a person**
+:information_source: **Note:** For all use cases below, the **System** is the `OfficeConnect` and the 
+**Actor** is the `user`, unless specified otherwise.
 
-**Main Success Scenario (MSS)**
+</div>
 
-1. User requests to list persons
+**Use case 1: Add a person**
 
-2. OfficeConnect shows a list of persons
+**Main Success Scenario (MSS):**
 
-3. User requests to delete a specific person in the list
+1. User requests to add a person.
 
-4. OfficeConnect deletes the person
+2. OfficeConnect adds the person to the contact list.
+
+3. OfficeConnect informs user has been successfully added.
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters incomplete or invalid data. 
+
+  * 1a1. OfficeConnect shows an error message.
+
+    Use case ends. 
+---
+**Use case 2: Delete a person**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to delete a specific person in the list.
+
+4. OfficeConnect deletes the person.
 
     Use case ends.
 
@@ -351,18 +392,18 @@ In the example above, the user story is clearly defined at the top, followed by 
   * 3a1. OfficeConnect shows an error message. 
   
     Use case resumes at step 2.
+---
+**Use case 3: Delete a task**
 
-**Use case: Delete a task**
+**Main Success Scenario (MSS):**
 
-**Main Success Scenario (MSS)**
+1. User requests to list tasks.
 
-1. User requests to list tasks
+2. OfficeConnect shows a list of tasks.
 
-2. OfficeConnect shows a list of tasks
+3. User requests to delete a specific task in the list.
 
-3. User requests to delete a specific task in the list
-
-4. OfficeConnect deletes the task
+4. OfficeConnect deletes the task.
 
    Use case ends.
 
@@ -377,22 +418,22 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 3a1. OfficeConnect shows an error message.
 
       Use case resumes at step 2.
+---
+**Use case 4: Assign a task to a person**
 
-**Use case: Assign a task to a person**
+**Main Success Scenario (MSS):**
 
-**Main Success Scenario (MSS)**
+1. User requests to list persons.
 
-1. User requests to list persons
+2. OfficeConnect shows a list of persons.
 
-2. OfficeConnect shows a list of persons
+3. User requests to list tasks.
 
-3. User requests to list tasks
+4. OfficeConnect shows a list of tasks.
 
-4. OfficeConnect shows a list of tasks
+5. User requests to assign a specific task to a specific person.
 
-5. User requests to assign a specific task to a specific person 
-
-6. OfficeConnect assigns the task to the person 
+6. OfficeConnect assigns the task to the person.
 
     Use case ends.
 
@@ -404,7 +445,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 * 4a. The list is empty.
 
-    Use case ends
+    Use case ends.
 
 * 5a. The given person index is invalid.
 
@@ -428,7 +469,10 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 ### Glossary
 
+#### *M*
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+#### *P*
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
