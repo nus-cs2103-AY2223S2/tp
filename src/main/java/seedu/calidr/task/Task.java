@@ -1,10 +1,5 @@
 package seedu.calidr.task;
 
-import seedu.calidr.exception.CalidrException;
-import seedu.calidr.exception.CalidrInvalidDataFileException;
-
-//import seedu.calidr.parser.Parser;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -37,63 +32,6 @@ public abstract class Task {
     }
 
     /**
-     * Gets a Task object from the file representation of the task.
-     *
-     * @param task The String representation of the task in the text file.
-     * @return The Task object corresponding to the String representation in the text file.
-     */
-
-    // To be used with Storage
-    /*
-    public static Task getTaskFromString(String task) throws CalidrException {
-
-        if (!task.contains("~")) {
-            throw new CalidrInvalidDataFileException(
-                    "The data file has been corrupted. All data has been erased :/");
-        }
-
-        try {
-            String[] taskParts = task.split("~");
-            String taskType = taskParts[0];
-            Priority priority = Parser.parsePriority(taskParts[1]);
-            String marked = taskParts[2];
-            String description = taskParts[3];
-
-            Task answer = null;
-
-            if (taskType.equals("T")) {
-                answer = new ToDo(description, priority);
-
-            } else if (taskType.equals("D")) {
-                answer = new Deadline(description,
-                        LocalDateTime.parse(taskParts[4]),
-                        priority);
-
-            } else {
-                answer = new Event(description,
-                        LocalDateTime.parse(taskParts[4]),
-                        LocalDateTime.parse(taskParts[5]),
-                        priority);
-
-            }
-
-            if (answer != null && marked.equals("X")) {
-                answer.mark();
-
-            }
-
-            return answer;
-
-        } catch (Exception e) {
-            throw new CalidrInvalidDataFileException(
-                    "The data file has been corrupted. All data has been erased :/");
-
-        }
-
-    }
-     */
-
-    /**
      * Gets the representation of the LocalDateTime object formatted like Jan 21 2023 06:00 PM.
      *
      * @param dateTime The LocalDateTime object to be formatted.
@@ -114,7 +52,7 @@ public abstract class Task {
     public void mark() {
         this.isDone = true;
     }
-    
+
     public void unmark() {
         this.isDone = false;
     }

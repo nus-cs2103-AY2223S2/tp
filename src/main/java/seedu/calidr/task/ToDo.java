@@ -9,6 +9,12 @@ public class ToDo extends Task {
         super(description);
     }
 
+    /**
+     * Creates a ToDo object with the given description and priority.
+     *
+     * @param description The description of the ToDo.
+     * @param priority The priority associated with the ToDo.
+     */
     public ToDo(String description, Priority priority) {
 
         super(description, priority);

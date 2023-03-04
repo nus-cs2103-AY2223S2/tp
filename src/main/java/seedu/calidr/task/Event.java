@@ -11,6 +11,11 @@ public class Event extends Task {
     private final LocalDateTime from;
     private final LocalDateTime to;
 
+    /**
+     * Creates a Event object with the given description and MEDIUM priority.
+     *
+     * @param description The description of the Event.
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
 
@@ -21,6 +26,12 @@ public class Event extends Task {
         this.to = to;
     }
 
+    /**
+     * Creates a Event object with the given description and priority.
+     *
+     * @param description The description of the Event.
+     * @param priority The priority associated with the Event.
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to, Priority priority) {
         super(description, priority);
 

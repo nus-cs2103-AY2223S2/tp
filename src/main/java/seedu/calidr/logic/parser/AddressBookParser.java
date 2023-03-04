@@ -15,6 +15,7 @@ import seedu.calidr.logic.commands.ExitCommand;
 import seedu.calidr.logic.commands.FindCommand;
 import seedu.calidr.logic.commands.HelpCommand;
 import seedu.calidr.logic.commands.ListCommand;
+import seedu.calidr.logic.commands.TestCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 
 /**

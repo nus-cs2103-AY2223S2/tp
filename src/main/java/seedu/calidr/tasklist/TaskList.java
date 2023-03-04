@@ -1,14 +1,11 @@
 package seedu.calidr.tasklist;
 
+import java.util.ArrayList;
+
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
-
-//import duke.storage.Storage;
-
 import seedu.calidr.task.Priority;
 import seedu.calidr.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Represents a task list manager that aids in storing and manipulating the
@@ -16,20 +13,11 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    // To be used when integrating with storage
-    /*
-    private static final String TASKS_FILE_PATH = "data/duke_tasks.txt";
-
-    private final Storage taskStorage = new Storage(TASKS_FILE_PATH);
-
-    private final ArrayList<Task> tasks = taskStorage.readTasksFromFile();
-     */
-
     private final ArrayList<Task> tasks = new ArrayList<Task>();
 
     /**
      * Returns all the Tasks in the list of Tasks.
-     * 
+     *
      * @return The String response of the chatbot.
      */
     public String listTasks() {
@@ -75,7 +63,6 @@ public class TaskList {
 
             }
 
-//            this.taskStorage.writeTasksToFile(this.tasks);
             return response.toString();
 
         } else {
@@ -88,9 +75,9 @@ public class TaskList {
      * Marks a particular Task in the list of Tasks, as done.
      *
      * @param taskNumber The number to indicate which Task is to be marked as done.
-     * @return The String response of the chatbot.                  
+     * @return The String response of the chatbot.
      * @throws CalidrException When the task number given is not valid or
-     * when there is an error in writing to the file.
+     *     when there is an error in writing to the file.
      */
     public String markTask(int taskNumber) throws CalidrException {
         return this.markUnmark(taskNumber, true);
@@ -100,9 +87,9 @@ public class TaskList {
      * Marks a particular Task in the list of Tasks, as undone.
      *
      * @param taskNumber The number to indicate which Task is to be marked as undone.
-     * @return The String response of the chatbot.                  
+     * @return The String response of the chatbot.
      * @throws CalidrException When the task number given is not valid or
-     * when there is an error in writing to the file.
+     *     when there is an error in writing to the file.
      */
     public String unmarkTask(int taskNumber) throws CalidrException {
         return this.markUnmark(taskNumber, false);
@@ -121,7 +108,6 @@ public class TaskList {
         assert taskType != null;
 
         this.tasks.add(task);
-//        this.taskStorage.writeTasksToFile(this.tasks);
 
         StringBuilder response = new StringBuilder();
         response.append("I have added the ")
@@ -140,7 +126,7 @@ public class TaskList {
      * @param taskNumber The number to indicate which Task is to be deleted.
      * @return The String response of the chatbot.
      * @throws CalidrException When the task number given is not valid or
-     * when there is an error in writing to the file.
+     *     when there is an error in writing to the file.
      */
     public String deleteTask(int taskNumber) throws CalidrException {
         boolean isValidTaskNumber = (taskNumber > 0
@@ -148,7 +134,6 @@ public class TaskList {
 
         if (isValidTaskNumber) {
             Task removedTask = this.tasks.remove(taskNumber - 1);
-//            this.taskStorage.writeTasksToFile(this.tasks);
 
             StringBuilder response = new StringBuilder();
             response.append("I have removed Task ")
@@ -211,8 +196,6 @@ public class TaskList {
             return response.toString();
 
         }
-
-
     }
 
     public String setTaskPriority(int taskNumber, Priority priority) throws CalidrException {
@@ -230,8 +213,6 @@ public class TaskList {
                     .append(this.tasks.get(taskNumber - 1))
                     .append("\n");
 
-
-//            this.taskStorage.writeTasksToFile(this.tasks);
             return response.toString();
 
         } else {
