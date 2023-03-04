@@ -98,10 +98,10 @@ Format: `list`
 
 View a person's contact details.
 
-Format: `view <id>`
+Format: `view <name>`
 
 Examples: 
-* `view 1` returns `John Doe`
+* `view John Doe` returns `John Doe`
 
 ![viewContactDetails](images/view/viewContactDetails.png)
 
