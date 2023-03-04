@@ -36,6 +36,17 @@ public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUnd
         }
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        // for all the names, trim the name and only take the first word
+        for (int i = 0; i < nameKeywords.size(); i++) {
+            String name = nameKeywords.get(i);
+            name = name.trim();
+            int spaceIndex = name.indexOf(" ");
+            if (spaceIndex != -1) {
+                name = name.substring(0, spaceIndex);
+            }
+            nameKeywords.set(i, name);
+        }
+
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new MarkHomeworkAsUndoCommand(new NameContainsKeywordsPredicate(nameKeywords), index);
