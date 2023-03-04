@@ -11,7 +11,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/4ndrelim.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/4ndrelim)]
 [[portfolio](team/andre.md)]
 
