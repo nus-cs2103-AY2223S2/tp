@@ -94,11 +94,28 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
+    public void toModelType_invalidFromToFormat_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, VALID_DATE);
+        JsonAdaptedTask task2 =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, VALID_DATE, EMPTY_DATE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, task2::toModelType);
+    }
+
+    @Test
     public void toModelType_deadlineAndEventOverlap_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, VALID_DATE, VALID_DATE, VALID_DATE);
+        JsonAdaptedTask task2 =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, VALID_DATE, VALID_DATE, EMPTY_DATE);
+        JsonAdaptedTask task3 =
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, VALID_DATE, EMPTY_DATE, VALID_DATE);
         String expectedMessage = DEADLINE_EVENT_OVERLAP;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, task2::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, task3::toModelType);
     }
 
     @Test
