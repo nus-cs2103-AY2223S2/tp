@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableMap;
 
-public class VaxTypeStorageTest {
+public class VaxTypeManagerTest {
     private static final VaxType TYPE_1 = new VaxType("UNCHI",
             VaxType.DEFAULT_GROUP_SET,
             VaxType.DEFAULT_MIN_AGE,
@@ -21,7 +21,7 @@ public class VaxTypeStorageTest {
 
     @Test
     public void asUnmodifiableObservableMapTest() {
-        VaxTypeStorage storage = new VaxTypeStorage();
+        VaxTypeManager storage = new VaxTypeManager();
         ObservableMap<String, VaxType> mapView = storage.asUnmodifiableObservableMap();
 
         // addition link
@@ -47,7 +47,7 @@ public class VaxTypeStorageTest {
 
     @Test
     public void containsCheck() {
-        VaxTypeStorage storage = new VaxTypeStorage();
+        VaxTypeManager storage = new VaxTypeManager();
         assertFalse(storage.contains(TYPE_1.getName()));
 
         storage.add(TYPE_1);
@@ -60,7 +60,7 @@ public class VaxTypeStorageTest {
 
     @Test
     public void getTest() {
-        VaxTypeStorage storage = new VaxTypeStorage();
+        VaxTypeManager storage = new VaxTypeManager();
         assertFalse(storage.get(TYPE_1.getName()).isPresent());
 
         storage.add(TYPE_1);

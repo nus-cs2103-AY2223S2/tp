@@ -11,7 +11,7 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 
 /** A JSON friendly version of {@link VaxType}. */
@@ -53,7 +53,7 @@ public class JsonAdaptedVaxType {
      *
      * @throws IllegalValueException if name field is missing.
      */
-    public VaxType toModelType(VaxTypeStorage storage) throws IllegalValueException {
+    public VaxType toModelType(VaxTypeManager storage) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }

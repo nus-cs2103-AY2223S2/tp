@@ -10,6 +10,8 @@ import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxTypeManager;
+import seedu.vms.storage.vaccination.VaxTypeLoader;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -73,6 +75,20 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Vax Type methods ==============================
+
+    @Override
+    public VaxTypeManager loadDefaultVaxTypes() {
+        logger.fine("Attempting to load default vaccination types");
+        try {
+            return VaxTypeLoader.load();
+        } catch (Throwable ex) {
+            // should never happen but present just to be safe
+            logger.warning("Unable to load defaults");
+            return new VaxTypeManager();
+        }
     }
 
 }

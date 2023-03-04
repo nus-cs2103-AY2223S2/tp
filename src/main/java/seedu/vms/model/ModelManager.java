@@ -13,6 +13,8 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,13 +23,15 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
+
     private final FilteredIdDataMap<Patient> filteredPatientMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, VaxTypeManager vaxTypeManager, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -35,10 +39,20 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
+
+        this.vaxTypeManager = vaxTypeManager;
+    }
+
+    /**
+     * Convenience constructor to construct a {@code ModelManager} with an
+     * empty {@code VaxTypeManager}.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, new VaxTypeManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new VaxTypeManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -127,6 +141,15 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPatientMap.filter(predicate);
     }
+
+    //=========== Filtered VaxType Map Accessors ==============================================================
+
+    @Override
+    public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
+        return vaxTypeManager.asUnmodifiableObservableMap();
+    }
+
+    //=========== Misc methods ================================================================================
 
     @Override
     public boolean equals(Object obj) {

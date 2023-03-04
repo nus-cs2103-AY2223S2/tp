@@ -22,6 +22,7 @@ import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.util.SampleDataUtil;
+import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.AddressBookStorage;
 import seedu.vms.storage.JsonAddressBookStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
@@ -90,7 +91,9 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        VaxTypeManager vaxTypeManager = storage.loadDefaultVaxTypes();
+
+        return new ModelManager(initialData, vaxTypeManager, userPrefs);
     }
 
     private void initLogging(Config config) {

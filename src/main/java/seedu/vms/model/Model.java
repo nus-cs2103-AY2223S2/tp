@@ -7,6 +7,7 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * The API of the Model component.
@@ -80,6 +81,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
+
+    /** Returns an unmodifiable view of the filtered vaccination type map. */
+    ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
     /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.

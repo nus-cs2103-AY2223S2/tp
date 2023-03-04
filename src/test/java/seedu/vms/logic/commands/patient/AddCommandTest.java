@@ -22,6 +22,7 @@ import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.testutil.PatientBuilder;
 
 public class AddCommandTest {
@@ -137,6 +138,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPatient(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

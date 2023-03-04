@@ -7,10 +7,10 @@ import java.util.Optional;
 
 /**
  * A factory class to create, rename or edit {@link VaxType} to its set
- * {@link VaxTypeStorage}.
+ * {@link VaxTypeManager}.
  */
 public class VaxTypeBuilder {
-    private final VaxTypeStorage storage;
+    private final VaxTypeManager storage;
     private final Optional<String> oriName;
 
     private final String name;
@@ -22,7 +22,7 @@ public class VaxTypeBuilder {
     private final List<Requirement> historyReqs;
 
 
-    private VaxTypeBuilder(VaxTypeStorage storage, Optional<String> oriName,
+    private VaxTypeBuilder(VaxTypeManager storage, Optional<String> oriName,
                 String name, HashSet<String> grps, int minAge, int maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         this.storage = storage;
@@ -40,12 +40,12 @@ public class VaxTypeBuilder {
     /**
      * Factory method to create a {@code VaxTypeBuilder}.
      *
-     * @param storage - the {@code VaxTypeStorage} the builder should be
+     * @param storage - the {@code VaxTypeManager} the builder should be
      *      bounded to.
      * @param name - the name of the {@code VaxType} to create/override from
      *      in the specified storage.
      */
-    public static VaxTypeBuilder of(VaxTypeStorage storage, String name) {
+    public static VaxTypeBuilder of(VaxTypeManager storage, String name) {
         Optional<VaxType> vaxType = storage.get(name);
         Optional<String> oriName = vaxType.map(VaxType::getName);
         HashSet<String> grps = vaxType.map(VaxType::getGroups)

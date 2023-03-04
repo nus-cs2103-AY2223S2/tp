@@ -2,9 +2,11 @@ package seedu.vms.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,8 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.testutil.SampleVaxTypeData;
 
 public class StorageManagerTest {
 
@@ -63,6 +67,17 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void loadDefaultVaxTypes() {
+        /*
+         * This is an integration test to verify that VaxTypeManager has been integrated properly.
+         */
+        Optional<VaxType> data = storageManager
+                .loadDefaultVaxTypes()
+                .get(SampleVaxTypeData.NAME);
+        assertTrue(data.isPresent());
     }
 
 }

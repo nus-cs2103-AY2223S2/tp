@@ -7,19 +7,19 @@ import javafx.collections.ObservableMap;
 
 
 /**
- * A storage map to store {@code VaxType}.
+ * A manager to handle {@code VaxType}.
  *
  * <p>The uniqueness of {@code VaxType} names are maintained.
  */
-public class VaxTypeStorage {
+public class VaxTypeManager {
     private final ObservableMap<String, VaxType> typeMap;
     private final ObservableMap<String, VaxType> unmodifiableTypeMap;
 
 
     /**
-     * Constructs an empty {@code VaxTypeStorage}.
+     * Constructs an empty {@code VaxTypeManager}.
      */
-    public VaxTypeStorage() {
+    public VaxTypeManager() {
         typeMap = FXCollections.observableHashMap();
         unmodifiableTypeMap = FXCollections.unmodifiableObservableMap(typeMap);
     }

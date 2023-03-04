@@ -10,6 +10,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * API of the Logic component
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientMap();
+
+    /** Returns an unmodifiable view of the filtered map of vaccination types. */
+    ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
     /**
      * Returns the user prefs' address book file path.
