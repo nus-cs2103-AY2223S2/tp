@@ -92,6 +92,11 @@ Examples:
 |:--------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
 | <img src=./images/userguide/AddCommand.png width="100" height="100"> | <img src=./images/userguide/AddCommandOutcome.png width="100" height="100"> |
 
+
+|            Enter Add Command            |                       Outcome                        |
+|:---------------------------------------:|:----------------------------------------------------:|
+| ![Add](images/userguide/AddCommand.png) | ![AddOutput](images/userguide/AddCommandOutcome.png) |
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
