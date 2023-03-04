@@ -147,14 +147,21 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd person in the list.
+
+![viewContactDetails](images/delete/deleteContact.png)
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+Examples: 
+* `list` followed by `clear` deletes all the contacts in the list.
+  ![viewContactDetails](images/clear/clearAllContacts.png)
+
 
 ### Exiting the program : `exit`
 
