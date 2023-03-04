@@ -353,6 +353,7 @@ Otherwise, FAILS does nothing in this step.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Non-technical person**: Someone who is able to execute basic tasks using the computer's point-and-click interface and has the ability to use simple GUI applications.
 
 --------------------------------------------------------------------------------------------------------------------
 
