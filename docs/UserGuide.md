@@ -82,7 +82,7 @@ A person can have any number of modules (including 0)
 
 Examples:
 * `add n/Messi d/Professor e/leomessi@psg.com c/98101010`
-* `add n/C.Ronaldo d/Tutor e/SIUUUUUU@gmail.com c/98070707 m/CS2105 m/CS2103`
+* `add n/CRonaldo d/Tutor e/SIUUUUUU@gmail.com c/98070707 m/CS2105 m/CS2103`
 
 ### Listing all persons : `list`
 
