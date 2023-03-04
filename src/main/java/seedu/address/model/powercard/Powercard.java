@@ -76,6 +76,39 @@ public class Powercard {
 
         return builder.toString();
     }
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePerson(Powercard otherPowercard) {
+        if (otherPowercard == this) {
+            return true;
+        }
+
+        return otherPowercard != null
+                && otherPowercard.getQuestion().equals(getQuestion());
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Powercard)) {
+            return false;
+        }
+
+        Powercard otherPerson = (Powercard) other;
+        return otherPerson.getQuestion().equals(getQuestion())
+                && otherPerson.getAnswer().equals(getAnswer());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

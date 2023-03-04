@@ -37,6 +37,12 @@ public class Answer {
         return test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Answer // instanceof handles nulls
+                && this.answer.equals(((Answer) other).answer)); // state check
+    }
 
     @Override
     public String toString() {
