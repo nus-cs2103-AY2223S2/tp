@@ -10,12 +10,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-
+/**
+ * Favorites a Person in the Address Book
+ */
 public class FavoriteCommand extends Command {
 
     public static final String COMMAND_WORD = "fav";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Favourites the person according to the Contact ID provided by user input.\n "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Favourites the person according "
+            + "to the Contact ID provided by user input.\n "
             + "Parameters: INDEX (must be positive integer).\n"
             + "Example: " + COMMAND_WORD + "1";
 
@@ -31,6 +34,10 @@ public class FavoriteCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Returns a CommandResult where the Selected Person
+     * is Favorited.
+     */
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();

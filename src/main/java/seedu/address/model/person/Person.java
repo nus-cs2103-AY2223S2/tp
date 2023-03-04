@@ -66,7 +66,8 @@ public class Person {
      * Require all fields to be present and not null
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
-                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms, Favorite favorite) {
+                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
+                  Favorite favorite) {
         requireAllNonNull(name, favorite);
         this.name = name;
         this.isFavorite = favorite;

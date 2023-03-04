@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UnfavoriteCommand object
+ */
 public class UnfavoriteCommandParser implements Parser<UnfavoriteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the StarCommand
