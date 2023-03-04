@@ -2,24 +2,16 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.core.Command;
-import seedu.address.logic.core.CommandFactory;
-import seedu.address.logic.core.CommandGroup;
 import seedu.address.logic.core.CommandResult;
-import seedu.address.logic.core.OperationMode;
 import seedu.address.logic.core.WingmanParser;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.factories.AddPilotCommandFactory;
-import seedu.address.logic.factories.DeletePilotCommandFactory;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;

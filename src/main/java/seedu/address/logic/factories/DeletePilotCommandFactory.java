@@ -3,9 +3,9 @@ package seedu.address.logic.factories;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.DeletePilotCommand;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
-import seedu.address.logic.commands.DeletePilotCommand;
 import seedu.address.logic.core.exceptions.ParseException;
 
 /**

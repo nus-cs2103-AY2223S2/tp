@@ -90,8 +90,7 @@ public class WingmanParser extends FactoryParser {
      * @throws ParseException if a parsing error exists, or if no command is
      *                        found in the parser.
      */
-    public Command parse(OperationMode operationMode, String userInput)
-        throws ParseException {
+    public Command parse(OperationMode operationMode, String userInput) throws ParseException {
         final Deque<String> tokens = tokenize(userInput);
 
         final Optional<Command> topCommand = this.parseFactory(tokens);
