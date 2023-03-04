@@ -307,7 +307,8 @@ public class CommandParamTest {
     @Test
     void equals_sameObject_returnTrue() {
         // setup
-        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param = new CommandParam(Optional.of("token"),
+            Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
         // verify
         assertEquals(param, param);
     }
@@ -315,7 +316,8 @@ public class CommandParamTest {
     @Test
     void equals_nullObject_returnFalse() {
         // setup
-        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param = new CommandParam(Optional.of("token"),
+            Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
         // verify
         assertNotEquals(param, null);
     }
@@ -323,7 +325,8 @@ public class CommandParamTest {
     @Test
     void equals_differentClass_returnFalse() {
         // setup
-        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param = new CommandParam(Optional.of("token"),
+            Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
         // verify
         assertNotEquals(param, new Object());
     }
@@ -331,8 +334,10 @@ public class CommandParamTest {
     @Test
     void equals_sameTokenDifferentInstance_returnTrue() {
         // setup
-        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
-        CommandParam param2 = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param = new CommandParam(Optional.of("token"),
+            Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param2 = new CommandParam(Optional.of("token"),
+            Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
         // verify
         assertEquals(param, param2);
     }

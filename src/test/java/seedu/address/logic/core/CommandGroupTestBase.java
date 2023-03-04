@@ -12,6 +12,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
 
+/**
+ * Base class for {@link CommandGroup} tests, basically setting up some
+ * common mocks to be used by the subclasses.
+ */
 @ExtendWith(MockitoExtension.class)
 public abstract class CommandGroupTestBase {
 

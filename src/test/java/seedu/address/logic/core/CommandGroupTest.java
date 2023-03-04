@@ -67,19 +67,18 @@ public class CommandGroupTest extends CommandGroupTestBase {
     @Test
     void parse_validTokens1_returnsCommand() throws ParseException {
         Deque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD1, "arg1", "arg2"));
-        CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2")
-            , Optional.empty());
+        CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2"),
+            Optional.empty());
         assertEquals(command1, commandGroup.parse(tokens));
         Mockito.verify(commandFactory1).createCommand(commandParam);
     }
 
     @Test
     void parse_validTokens2_returnsCommand() throws ParseException {
-        Deque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD2, "arg1"
-            , "arg2", "arg3"));
-        CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2 "
-                                                                     + "arg3")
-            , Optional.empty());
+        Deque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD2, "arg1",
+            "arg2", "arg3"));
+        CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2 arg3"),
+            Optional.empty());
         assertEquals(command2, commandGroup.parse(tokens));
         Mockito.verify(commandFactory2).createCommand(commandParam);
     }
