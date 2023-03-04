@@ -23,7 +23,7 @@ class LanguageTest {
     }
 
     @Test
-    public void isValidLanguageName() {
+    public void testIsValidLanguageName() {
         // null language name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
 
@@ -52,7 +52,7 @@ class LanguageTest {
     }
 
     @Test
-    public void equals() {
+    public void testEquals() {
         // same values -> returns true
         Language amyCopy = new Language(VALID_LANGUAGE_AMY);
         assertTrue(AMY_LANGUAGE.equals(amyCopy));
