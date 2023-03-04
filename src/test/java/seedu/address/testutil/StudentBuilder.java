@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Homework;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
@@ -30,6 +31,7 @@ public class StudentBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<Homework> homeworkList;
+    private List<Lesson> lessonList;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +43,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         homeworkList = new ArrayList<>();
+        lessonList = new ArrayList<>();
     }
 
     /**
@@ -53,6 +56,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
         homeworkList = new ArrayList<>(studentToCopy.getHomeworkList());
+        lessonList = new ArrayList<>(studentToCopy.getLessonsList());
     }
 
     /**
@@ -103,8 +107,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Lesson} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withLessonList(List<Lesson> lessonList) {
+        this.lessonList = lessonList;
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, tags, homeworkList);
+        return new Student(name, phone, email, address, tags, homeworkList, lessonList);
     }
 
 }

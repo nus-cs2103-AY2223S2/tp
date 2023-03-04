@@ -43,18 +43,8 @@ public class Student {
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList) {
-        requireAllNonNull(name, phone, email, address, tags, homeworkList);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.homeworkList.setHomeworks(homeworkList);
-    }
-
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
                    List<Lesson> lessonList) {
         requireAllNonNull(name, phone, email, address, tags, homeworkList, lessonList);
@@ -200,6 +190,10 @@ public class Student {
         this.homeworkList.remove(homeworkToDelete);
     }
 
+    /**
+     * Adds a lesson to the lesson list
+     * @param lesson the lesson to be added
+     */
     public void addLesson(Lesson lesson) {
         for (Lesson l : this.lessonsList) {
             if (l.equals(lesson)) {

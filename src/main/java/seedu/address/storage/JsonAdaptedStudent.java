@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Homework;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
@@ -31,6 +32,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedHomework> homeworkList = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessonList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -39,7 +41,8 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("homeworks") List<JsonAdaptedHomework> homeworkList) {
+                              @JsonProperty("homeworks") List<JsonAdaptedHomework> homeworkList,
+                              @JsonProperty("lessons") List<JsonAdaptedLesson> lessonList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,9 @@ class JsonAdaptedStudent {
         }
         if (homeworkList != null) {
             this.homeworkList.addAll(homeworkList);
+        }
+        if (lessonList != null) {
+            this.lessonList.addAll(lessonList);
         }
     }
 
@@ -66,6 +72,9 @@ class JsonAdaptedStudent {
         homeworkList.addAll(source.getHomeworkList().stream()
                 .map(JsonAdaptedHomework::new)
                 .collect(Collectors.toList()));
+        lessonList.addAll(source.getLessonsList().stream()
+            .map(JsonAdaptedLesson::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -83,6 +92,12 @@ class JsonAdaptedStudent {
         final List<Homework> modelHomeworkList = new ArrayList<>();
         for (JsonAdaptedHomework homework : homeworkList) {
             modelHomeworkList.add(homework.toModelType());
+        }
+
+        // Convert lessonList to modelLessonList
+        final List<Lesson> modelLessonList = new ArrayList<>();
+        for (JsonAdaptedLesson lesson : lessonList) {
+            modelLessonList.add(lesson.toModelType());
         }
 
         if (name == null) {
@@ -118,7 +133,8 @@ class JsonAdaptedStudent {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelHomeworkList);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelHomeworkList,
+            modelLessonList);
     }
 
 }

@@ -9,8 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
-import seedu.address.model.student.exceptions.DuplicateHomeworkException;
-import seedu.address.model.student.exceptions.HomeworkNotFoundException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**

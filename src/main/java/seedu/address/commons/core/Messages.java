@@ -19,4 +19,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX = "The homework index provided is invalid";
     public static final String MESSAGE_HOMEWORK_DELETED_SUCCESS = "Homework : %s. %s\n"
             + "Deleted from the %s\n";
+    public static final String MESSAGE_LESSON_ADDED_SUCCESS = "New lesson added: \n%s \n"
+        + "To the following students: \n%s";
 }
