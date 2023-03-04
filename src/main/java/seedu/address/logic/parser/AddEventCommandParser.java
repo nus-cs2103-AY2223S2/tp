@@ -35,7 +35,9 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());
         DateTime startDatetime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         DateTime endDatetime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
-
+        if (!DateTime.isValidDateRange(startDatetime.toString(), endDatetime.toString())) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
         Event event = new Event(eventName, startDatetime, endDatetime);
 
         return new AddEventCommand(event);

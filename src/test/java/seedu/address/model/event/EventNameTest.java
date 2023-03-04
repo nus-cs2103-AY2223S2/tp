@@ -28,6 +28,8 @@ public class EventNameTest {
         assertFalse(EventName.isValidName(" ")); // spaces only
         assertFalse(EventName.isValidName("!!")); // only non-alphanumeric characters
         assertFalse(EventName.isValidName("!EFG Concert!")); // starts with non-alphanumeric character
+        assertFalse(EventName.isValidName("小明's Birthday"));
+        assertFalse(EventName.isValidName("Graduation Ceremony for シャオ・ミン"));
 
         // valid name
         assertTrue(EventName.isValidName("sports day")); // alphabets only

@@ -39,6 +39,19 @@ public class DateTime {
         }
     }
 
+    /**
+     * Returns true if a valid startDate is earlier than or equal to a valid endDate.
+     */
+    public static boolean isValidDateRange(String startDate, String endDate) {
+        if (!isValidDateTime(startDate) || !isValidDateTime(endDate)) {
+            return false;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
+        LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
+        return startDateTime.equals(endDateTime) || startDateTime.isBefore(endDateTime);
+    }
+
     @Override
     public String toString() {
         return dateTime;

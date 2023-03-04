@@ -34,4 +34,18 @@ public class DateTimeTest {
         // valid date time
         assertTrue(DateTime.isValidDateTime("03-02-2020 20:40"));
     }
+
+    @Test
+    public void isValidDateRange() {
+        // invalid date time range
+        assertFalse(DateTime.isValidDateRange("", "")); // empty string
+        assertFalse(DateTime.isValidDateRange(" ", " ")); // spaces only
+        assertFalse(DateTime.isValidDateRange("02-02-2023 22:20", "01-02-2023 22:20")); // one-day difference
+        assertFalse(DateTime.isValidDateRange("02-02-2023 22:20", "02-02-2023 22:19")); // one-minute difference
+
+        // valid date time range
+        assertTrue(DateTime.isValidDateRange("02-02-2023 22:20", "02-02-2023 22:20")); // accept same date
+        assertTrue(DateTime.isValidDateRange("01-02-2023 22:20", "02-02-2023 22:20")); // one-day difference
+        assertTrue(DateTime.isValidDateRange("02-02-2023 22:19", "02-02-2023 22:20")); // one-minute difference
+    }
 }
