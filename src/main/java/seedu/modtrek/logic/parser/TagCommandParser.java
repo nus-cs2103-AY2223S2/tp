@@ -9,6 +9,9 @@ import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.tag.Tag;
 
+/**
+ * The type Tag command parser.
+ */
 public class TagCommandParser implements Parser<TagCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.

@@ -8,14 +8,22 @@ import javafx.collections.ObservableList;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
 
+/**
+ * The type Degree progression.
+ */
 public class DegreeProgression implements ReadOnlyDegreeProgression {
 
     private final UniqueModuleList modules = new UniqueModuleList();
 
+    /**
+     * Instantiates a new Degree progression.
+     */
     public DegreeProgression() {}
 
     /**
      * Creates an DegreeProgression using the Modules in the {@code toBeCopied}
+     *
+     * @param toBeCopied the to be copied
      */
     public DegreeProgression(ReadOnlyDegreeProgression toBeCopied) {
         this();
@@ -25,15 +33,19 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the Module list with {@code Modules}.
-     * {@code Modules} must not contain duplicate Modules.
+     * Replaces the contents of the Module list with {@code modules}.
+     * {@code modules} must not contain duplicate Modules.
+     *
+     * @param modules the modules
      */
-    public void setModules(List<Module> Modules) {
-        this.modules.setModules(Modules);
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
     }
 
     /**
      * Resets the existing data of this {@code DegreeProgression} with {@code newData}.
+     *
+     * @param newData the new data
      */
     public void resetData(ReadOnlyDegreeProgression newData) {
         requireNonNull(newData);
@@ -45,6 +57,9 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
 
     /**
      * Returns true if a Module with the same identity as {@code Module} exists in the address book.
+     *
+     * @param module the module
+     * @return the boolean
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -54,6 +69,8 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     /**
      * Adds a Module to the address book.
      * The Module must not already exist in the address book.
+     *
+     * @param p the p
      */
     public void addModule(Module p) {
         modules.add(p);
@@ -63,6 +80,9 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
      * Replaces the given Module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the address book.
      * The Module identity of {@code editedModule} must not be the same as another existing Module in the address book.
+     *
+     * @param target       the target
+     * @param editedModule the edited module
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -73,6 +93,8 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     /**
      * Removes {@code key} from this {@code DegreeProgression}.
      * {@code key} must exist in the address book.
+     *
+     * @param key the key
      */
     public void removeModule(Module key) {
         modules.remove(key);

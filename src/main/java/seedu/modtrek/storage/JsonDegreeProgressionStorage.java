@@ -14,12 +14,20 @@ import seedu.modtrek.commons.util.FileUtil;
 import seedu.modtrek.commons.util.JsonUtil;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 
+/**
+ * The type Json degree progression storage.
+ */
 public class JsonDegreeProgressionStorage implements DegreeProgressionStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonDegreeProgressionStorage.class);
 
     private Path filePath;
 
+    /**
+     * Instantiates a new Json degree progression storage.
+     *
+     * @param filePath the file path
+     */
     public JsonDegreeProgressionStorage(Path filePath) {
         this.filePath = filePath;
     }

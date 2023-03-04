@@ -78,8 +78,8 @@ public class ModelManager implements Model {
     //=========== DegreeProgression ================================================================================
 
     @Override
-    public void setDegreeProgression(ReadOnlyDegreeProgression DegreeProgression) {
-        this.degreeProgression.resetData(DegreeProgression);
+    public void setDegreeProgression(ReadOnlyDegreeProgression degreeProgression) {
+        this.degreeProgression.resetData(degreeProgression);
     }
 
     @Override
@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasModule(Module Module) {
-        requireNonNull(Module);
-        return degreeProgression.hasModule(Module);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return degreeProgression.hasModule(module);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addModule(Module Module) {
-        degreeProgression.addModule(Module);
+    public void addModule(Module module) {
+        degreeProgression.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 

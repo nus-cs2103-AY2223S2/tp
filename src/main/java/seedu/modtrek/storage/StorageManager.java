@@ -59,7 +59,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyDegreeProgression> readDegreeProgression(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyDegreeProgression> readDegreeProgression(Path filePath) throws DataConversionException,
+            IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return degreeProgressionStorage.readDegreeProgression(filePath);
     }

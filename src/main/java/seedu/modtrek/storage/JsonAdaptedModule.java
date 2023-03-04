@@ -13,8 +13,8 @@ import seedu.modtrek.commons.exceptions.IllegalValueException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Credit;
 import seedu.modtrek.model.module.Grade;
-import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.module.Module;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**

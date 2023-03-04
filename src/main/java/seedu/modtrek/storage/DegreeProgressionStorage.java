@@ -28,7 +28,8 @@ public interface DegreeProgressionStorage {
     /**
      * @see #getDegreeProgressionFilePath()
      */
-    Optional<ReadOnlyDegreeProgression> readDegreeProgression(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyDegreeProgression> readDegreeProgression(Path filePath) throws DataConversionException,
+            IOException;
 
     /**
      * Saves the given {@link ReadOnlyDegreeProgression} to the storage.

@@ -1,10 +1,10 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
@@ -14,8 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.modtrek.commons.core.Messages;
-import seedu.modtrek.commons.core.index.Index;
 import seedu.modtrek.commons.util.CollectionUtil;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;

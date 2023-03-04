@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
+/**
+ * The type Unique module list.
+ */
 public class UniqueModuleList implements Iterable<Module> {
 
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
@@ -18,11 +21,22 @@ public class UniqueModuleList implements Iterable<Module> {
             FXCollections.unmodifiableObservableList(internalList);
 
 
+    /**
+     * Contains boolean.
+     *
+     * @param toCheck the to check
+     * @return the boolean
+     */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameModule);
     }
 
+    /**
+     * Add.
+     *
+     * @param toAdd the to add
+     */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -31,6 +45,12 @@ public class UniqueModuleList implements Iterable<Module> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Sets module.
+     *
+     * @param target       the target
+     * @param editedModule the edited module
+     */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
@@ -46,6 +66,11 @@ public class UniqueModuleList implements Iterable<Module> {
         internalList.set(index, editedModule);
     }
 
+    /**
+     * Remove.
+     *
+     * @param toRemove the to remove
+     */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -53,12 +78,22 @@ public class UniqueModuleList implements Iterable<Module> {
         }
     }
 
+    /**
+     * Sets modules.
+     *
+     * @param replacement the replacement
+     */
     // For resetting
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
+    /**
+     * Sets modules.
+     *
+     * @param modules the modules
+     */
     // For resetting
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
@@ -69,6 +104,11 @@ public class UniqueModuleList implements Iterable<Module> {
         internalList.setAll(modules);
     }
 
+    /**
+     * As unmodifiable observable list observable list.
+     *
+     * @return the observable list
+     */
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }

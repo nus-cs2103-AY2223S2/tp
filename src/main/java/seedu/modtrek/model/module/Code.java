@@ -3,21 +3,41 @@ package seedu.modtrek.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
+/**
+ * The type Code.
+ */
 public class Code {
 
+    /**
+     * The constant MESSAGE_CONSTRAINTS.
+     */
     public static final String MESSAGE_CONSTRAINTS =
             "Module code should not be blank and is alphanumeric";
 
     private static final String VALIDATION_REGEX = "^[A-Z]{2,3}[0-9]{4}[A-Z]{0,1}$";
 
+    /**
+     * The Code.
+     */
     protected final String code;
 
+    /**
+     * Instantiates a new Code.
+     *
+     * @param code the code
+     */
     public Code(String code) {
         requireNonNull(code);
         checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
         this.code = code;
     }
 
+    /**
+     * Is valid code boolean.
+     *
+     * @param test the test
+     * @return the boolean
+     */
     public static boolean isValidCode(String test) {
         return test.matches(VALIDATION_REGEX);
     }

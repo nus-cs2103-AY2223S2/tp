@@ -2,10 +2,10 @@ package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;

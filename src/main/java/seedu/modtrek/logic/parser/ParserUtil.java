@@ -6,8 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.modtrek.commons.core.index.Index;
-import seedu.modtrek.commons.util.StringUtil;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Credit;
