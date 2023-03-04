@@ -2,10 +2,10 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
+import static seedu.address.testutil.TypicalEvents.BIRTHDAY_PARTY;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
 import static seedu.address.testutil.TypicalEvents.SPORTS_DAY;
-import static seedu.address.testutil.TypicalEvents.BIRTHDAY_PARTY;
+import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 
 import org.junit.jupiter.api.Test;
 
