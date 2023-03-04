@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Huang Hao's Project Portfolio Page
+title: Carmen Ang's Project Portfolio Page
 ---
 
 ### Project: SOCket
@@ -15,7 +15,9 @@ Given below are my contributions to the project.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other)
+* **New Feature**: `to be added soon`
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cmang12&breakdown=true)
 
 * **Project management**:
     * `to be added soon`
@@ -34,3 +36,5 @@ Given below are my contributions to the project.
 
 * **Tools**:
     * `to be added soon`
+
+* _{you can add/remove categories in the list above}_
