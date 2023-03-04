@@ -2,7 +2,6 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,13 +14,8 @@ import seedu.task.model.tag.Tag;
 public class Event extends Task {
 
     // Identity fields
-    private Name name;
-    private Description description;
     private Date from;
     private Date to;
-
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -67,6 +61,45 @@ public class Event extends Task {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, description, tags, from, to);
+    }
+
+    /**
+     * Compares tasks to get their position in a sorted list.
+     * If task is a SimpleTask or a Deadline instance, task should be higher up on the list.
+     * If task is an Event instance, order to compare by is as follows: from, to, tags size, name.
+     *
+     * @param task the object to be compared.
+     * @return int priority.
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof SimpleTask) {
+            return 1;
+        }
+
+        if (task instanceof Deadline) {
+            return 1;
+        }
+
+        Event newTask = (Event) task;
+
+        if (!this.from.equals(newTask.from)) {
+            // compare to first.
+            return this.from.compareTo(newTask.from);
+        }
+
+        if (!this.to.equals(newTask.to)) {
+            // if from is the same, compare to.
+            return this.to.compareTo(newTask.to);
+        }
+
+        if (this.tags.size() == newTask.tags.size()) {
+            // if number of tags are the same, compare name.
+            return this.name.compareTo(newTask.name);
+        } else {
+            // if number of tags are different, compare size.
+            return Integer.compare(this.tags.size(), newTask.tags.size());
+        }
     }
 
     @Override

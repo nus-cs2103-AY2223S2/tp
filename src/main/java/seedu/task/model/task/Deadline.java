@@ -15,12 +15,7 @@ import seedu.task.model.tag.Tag;
 public class Deadline extends Task {
 
     // Identity fields
-    private Name name;
-    private Description description;
     private Date deadline;
-
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -60,6 +55,41 @@ public class Deadline extends Task {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, description, tags, deadline);
+    }
+
+    /**
+     * Compares tasks to get their position in a sorted list.
+     * If task is a SimpleTask instance, task should be higher up on the list.
+     * If task is an Event instance, this instance should be on higher up on the list.
+     * If task is a Deadline instance, order to compare by is as follows: deadline, tags size, name.
+     *
+     * @param task the object to be compared.
+     * @return int priority.
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof SimpleTask) {
+            return 1;
+        }
+
+        if (task instanceof Event) {
+            return -1;
+        }
+
+        Deadline newTask = (Deadline) task;
+
+        if (!this.deadline.equals(newTask.deadline)) {
+            // if deadline is different, compare deadline.
+            return this.deadline.compareTo(newTask.deadline);
+        }
+
+        if (this.tags.size() == newTask.tags.size()) {
+            // if number of tags are the same, compare name.
+            return this.name.compareTo(newTask.name);
+        } else {
+            // if number of tags are different, compare size.
+            return Integer.compare(this.tags.size(), newTask.tags.size());
+        }
     }
 
     @Override

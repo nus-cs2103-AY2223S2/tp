@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * Represents a Task's date in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date must be valid";
     public final LocalDateTime value;
@@ -81,6 +81,17 @@ public class Date {
         String hour = String.format("%02d", value.getHour());
         String minute = String.format("%02d", value.getMinute());
         return year + "-" + month + "-" + day + " " + hour + minute;
+    }
+
+    /**
+     * Compares the date using the LocalDateTime compareTo.
+     *
+     * @param date the object to be compared.
+     * @return int priority.
+     */
+    @Override
+    public int compareTo(Date date) {
+        return this.value.compareTo(date.value);
     }
 
     @Override
