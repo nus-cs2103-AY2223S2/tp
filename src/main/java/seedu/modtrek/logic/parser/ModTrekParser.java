@@ -20,7 +20,7 @@ import seedu.modtrek.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ModTrekParser {
 
     /**
      * Used for initial separation of command word and args.
