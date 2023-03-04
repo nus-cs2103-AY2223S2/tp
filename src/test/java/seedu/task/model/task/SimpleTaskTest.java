@@ -1,7 +1,7 @@
 package seedu.task.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -9,8 +9,12 @@ import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalTasks.ALICE;
 import static seedu.task.testutil.TypicalTasks.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.task.model.tag.Tag;
 import seedu.task.testutil.SimpleTaskBuilder;
 
 public class SimpleTaskTest {
@@ -77,5 +81,40 @@ public class SimpleTaskTest {
         // different tags -> returns false
         editedAlice = new SimpleTaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compareTo_tags() {
+        Tag tagOne = new Tag("Tag1");
+        Tag tagTwo = new Tag("Tag2");
+        Set<Tag> zeroTag = new HashSet<>();
+        Set<Tag> oneTag = new HashSet<>();
+        oneTag.add(tagOne);
+        Set<Tag> twoTag = new HashSet<>();
+        twoTag.add(tagOne);
+        twoTag.add(tagTwo);
+
+        Task zeroTagDeadline = new SimpleTask(new Name("zeroTag"), new Description("zeroTag"),
+                zeroTag);
+        Task oneTagDeadline = new SimpleTask(new Name("oneTag"), new Description("oneTag"),
+                oneTag);
+        Task twoTagDeadline = new SimpleTask(new Name("twoTag"), new Description("twoTag"),
+                twoTag);
+
+        assertEquals(1, oneTagDeadline.compareTo(zeroTagDeadline));
+        assertEquals(-1, oneTagDeadline.compareTo(twoTagDeadline));
+    }
+
+    @Test
+    public void compareTo_name() {
+        Task aName = new SimpleTask(new Name("apple"), new Description("apple"),
+                new HashSet<>());
+        Task bName = new SimpleTask(new Name("bucket"), new Description("bucket"),
+                new HashSet<>());
+        Task cName = new SimpleTask(new Name("car"), new Description("car"),
+                new HashSet<>());
+
+        assertEquals(1, bName.compareTo(aName));
+        assertEquals(-1, bName.compareTo(cName));
     }
 }

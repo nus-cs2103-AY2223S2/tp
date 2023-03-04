@@ -1,13 +1,18 @@
 package seedu.task.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
 import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.task.model.tag.Tag;
 import seedu.task.testutil.DeadlineBuilder;
 
 public class DeadlineTest {
@@ -74,5 +79,54 @@ public class DeadlineTest {
         // different tags -> returns false
         editedReturn = new DeadlineBuilder(RETURN_BOOK).withTags("Important").build();
         assertFalse(RETURN_BOOK.equals(editedReturn));
+    }
+
+    @Test
+    public void compareTo_tags() {
+        Tag tagOne = new Tag("Tag1");
+        Tag tagTwo = new Tag("Tag2");
+        Set<Tag> zeroTag = new HashSet<>();
+        Set<Tag> oneTag = new HashSet<>();
+        oneTag.add(tagOne);
+        Set<Tag> twoTag = new HashSet<>();
+        twoTag.add(tagOne);
+        twoTag.add(tagTwo);
+
+        Task zeroTagDeadline = new Deadline(new Name("zeroTag"), new Description("zeroTag"),
+                zeroTag, new Date("2023-04-01 0000"));
+        Task oneTagDeadline = new Deadline(new Name("oneTag"), new Description("oneTag"),
+                oneTag, new Date("2023-04-01 0000"));
+        Task twoTagDeadline = new Deadline(new Name("twoTag"), new Description("twoTag"),
+                twoTag, new Date("2023-04-01 0000"));
+
+        assertEquals(1, oneTagDeadline.compareTo(zeroTagDeadline));
+        assertEquals(-1, oneTagDeadline.compareTo(twoTagDeadline));
+    }
+
+    @Test
+    public void compareTo_name() {
+        Task aName = new Deadline(new Name("apple"), new Description("apple"),
+                new HashSet<>(), new Date("2023-04-01 0000"));
+        Task bName = new Deadline(new Name("bucket"), new Description("bucket"),
+                new HashSet<>(), new Date("2023-04-01 0000"));
+        Task cName = new Deadline(new Name("car"), new Description("car"),
+                new HashSet<>(), new Date("2023-04-01 0000"));
+
+        assertEquals(1, bName.compareTo(aName));
+        assertEquals(-1, bName.compareTo(cName));
+    }
+
+    @Test
+    public void compareTo_date() {
+        Task morningDeadline = new Deadline(new Name("Morning"), new Description("0000 to 1200"),
+                new HashSet<>(), new Date("2023-04-01 0000"));
+        Task noonDeadline = new Deadline(new Name("WholeDay"), new Description("0000 to 2359"),
+                new HashSet<>(), new Date("2023-04-01 1200"));
+        Task nightDeadline = new Deadline(new Name("Night"), new Description("1200 to 2359"),
+                new HashSet<>(), new Date("2023-04-01 2359"));
+
+        assertEquals(-1, morningDeadline.compareTo(noonDeadline));
+        assertEquals(-1, morningDeadline.compareTo(nightDeadline));
+        assertEquals(-1, noonDeadline.compareTo(nightDeadline));
     }
 }

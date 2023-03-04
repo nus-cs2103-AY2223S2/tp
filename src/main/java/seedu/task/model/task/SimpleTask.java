@@ -34,6 +34,9 @@ public class SimpleTask extends Task {
         if (task instanceof Event) {
             return -1;
         }
+        if (this.tags.size() != task.tags.size()) {
+            return Integer.compare(this.tags.size(), task.tags.size());
+        }
         return this.name.compareTo(task.name);
     }
 
