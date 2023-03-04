@@ -94,6 +94,17 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Viewing a person's contact details : `view`
+
+View a person's contact details.
+
+Format: `view <name>`
+
+Examples: 
+* `view John Doe` returns `John Doe`
+
+![viewContactDetails](images/view/viewContactDetails.png)
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
