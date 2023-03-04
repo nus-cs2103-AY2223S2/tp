@@ -15,4 +15,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_STATUS = new Prefix("st/");
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
+
+    public static final Prefix PREFIX_LESSON = new Prefix("l/");
+    public static final Prefix PREFIX_STARTTIME = new Prefix("start/");
+    public static final Prefix PREFIX_ENDTIME = new Prefix("end/");
 }
