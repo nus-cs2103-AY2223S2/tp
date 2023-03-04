@@ -10,11 +10,12 @@ import seedu.address.model.ReadOnlyFriendlyLink;
 
 /**
  * Represents a storage for {@link FriendlyLink}.
+ * This storage holds application-wide data that does not fit in Elderly or Volunteer.
  */
 public interface FriendlyLinkStorage {
 
     /**
-     * Returns the file path of the data file.
+     * Returns the file path of FriendlyLink's data file.
      */
     Path getFriendlyLinkFilePath();
 
@@ -24,12 +25,14 @@ public interface FriendlyLinkStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException;
+    Optional<ReadOnlyFriendlyLink> readFriendlyLink(
+            FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
     /**
      * @see #getFriendlyLinkFilePath()
      */
-    Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFriendlyLink> readFriendlyLink(
+            Path filePath, FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyFriendlyLink} to the storage.

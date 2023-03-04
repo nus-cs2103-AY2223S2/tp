@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 
 /**
@@ -22,12 +23,12 @@ public interface ElderlyStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyElderly> readElderly() throws DataConversionException, IOException;
+    Optional<ReadOnlyElderly> readElderly(FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
     /**
      * @see #getElderlyFilePath()
      */
-    Optional<ReadOnlyElderly> readElderly(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyElderly> readElderly(Path filePath, FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyElderly} to the storage.
