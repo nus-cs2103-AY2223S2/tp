@@ -257,16 +257,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* *coming soon*
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: *to be added*
 
 
-### User stories
+### User stories *to be edited*
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -283,16 +279,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Tag a food item**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  WIFE shows the full list of food items.
+3.  User tag specified food item with tags pre-defined by WIFE.
+4.  WIFE tagged the food item with the chosen tag.
 
     Use case ends.
 
@@ -303,12 +299,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. WIFE shows an error message.
       Use case resumes at step 2.
 
-*{More to be added}*
+* 4a. Chosen tag is not in the pre-defined list of tags.
+  * 4a1. WIFE shows an error message.
+  * 4a2. WIFE asks if the user wish to add the new tags into the tag list.
+    Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
@@ -320,8 +318,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X <br/>
+*{more to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -351,7 +349,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a person *[for reference]*
 
 1. Deleting a person while all persons are being shown
 

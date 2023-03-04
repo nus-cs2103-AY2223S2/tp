@@ -4,15 +4,19 @@ title: Jin Yuan's Project Portfolio Page
 ---
 
 ### Project: Well Informed Fridge Environment (WIFE)
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge, and never question her. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
+WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage their fridge inventory.
+With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing 
+wastage and improving the efficiency of grocery shopping.
+
+P.S. Never question WIFE.
 
 Given below are my contributions to the project.
 
 * **New Feature**: 
-* Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+* Added the ability to add tags to the food items.
+  * What it does: allows the user to add specified tags to the food item they wish to categorise.
+  * Justification: This feature improves the product significantly because a user can conveniently search the food item based on the tags as well as allow easier categorisation.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: *to be added*
@@ -36,6 +40,6 @@ Given below are my contributions to the project.
   * to be added
 
 * **Tools**:
-  * Integrated a Github plugin (CodeCov) to the team repo
+  * Integrated a GitHub plugin (CodeCov) to the team repo.
 
 * _{you can add/remove categories in the list above}_
