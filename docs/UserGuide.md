@@ -76,19 +76,19 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `add-doc n/NAME p/PHONE_NUMBER`
 
-Adds a person to the address book.
+Adds a doctor to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add-doc n/NAME p/PHONE_NUMBER`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Praveen K p/98765432`
+* `add n/Owen Y p/97531011`
 
 ### Editing a doctor : `edit-doc`
 
