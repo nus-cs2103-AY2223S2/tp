@@ -11,7 +11,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Kevin Eyo Kai Wen
 
-<img src="images/KevinEyo1.png" width="200px">
+<img src="images/kevineyo1.png" width="200px">
 
 [[github](https://github.com/KevinEyo1)]
 [[portfolio](team/johndoe.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Tan Yu Fei
 
-<img src="images/Lanreath.png" width="200px">
+<img src="images/lanreath.png" width="200px">
 
 [[github](https://github.com/Lanreath)]
 [[portfolio](team/johndoe.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Alexander Lee Shao Bin
 
-<img src="images/Varstak.png" width="200px">
+<img src="images/varstak.png" width="200px">
 
 [[github](https://github.com/Varstak)]
 [[portfolio](team/johndoe.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `darrensim999@gmail.com`
 
 ### Darren Sim
 
-<img src="images/BagDownB3nny.png" width="200px">
+<img src="images/bagdownb3nny.png" width="200px">
 
 [[github](https://github.com/BagDownB3nny)]
 [[portfolio](team/johndoe.md)]
