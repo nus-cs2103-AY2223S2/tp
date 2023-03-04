@@ -1,5 +1,6 @@
 package seedu.vms.model.patient;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,9 +36,37 @@ public class DobTest {
     }
 
     @Test
-    public void isValidFormat() throws ParseException {
+    public void constructor_validDobString() throws ParseException {
         final String expected = "2020-03-19";
 
         assertEquals(expected, new Dob(expected).toString());
+    }
+
+    @Test
+    public void constructor_validDobLocalDateTime() {
+        LocalDateTime expected = LocalDateTime.now().minusDays(1);
+        String expectedString = expected.format(ISO_LOCAL_DATE);
+
+        assertEquals(expectedString, new Dob(expected).toString());
+    }
+
+    @Test
+    public void isEqualsDob() throws ParseException {
+        LocalDateTime expected = LocalDateTime.now().minusDays(1);
+        String expectedString = expected.format(ISO_LOCAL_DATE);
+        Dob equalOne = new Dob(expected);
+        Dob equalTwo = new Dob(expected);
+        Dob equalThree = new Dob(expectedString);
+        Dob notEqual = new Dob("2020-03-23");
+
+        // Equal Dobs
+        assertTrue(equalOne.equals(equalTwo));
+        assertTrue(equalOne.equals(equalThree));
+
+        // Not Equal Dobs
+        assertFalse(notEqual.equals(equalOne));
+        assertFalse(notEqual.equals(equalThree));
+        assertFalse(equalOne.equals(notEqual));
+        assertFalse(equalThree.equals(notEqual));
     }
 }

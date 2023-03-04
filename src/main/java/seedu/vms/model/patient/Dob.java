@@ -40,8 +40,9 @@ public class Dob {
      */
     public Dob(LocalDateTime dob) {
         requireNonNull(dob);
-        checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
-        value = dob;
+        LocalDateTime cleanDob = LocalDateTime.of(dob.getYear(), dob.getMonthValue(), dob.getDayOfMonth(), 0, 0);
+        checkArgument(isValidDob(cleanDob), MESSAGE_CONSTRAINTS);
+        value = cleanDob;
     }
 
     /**
