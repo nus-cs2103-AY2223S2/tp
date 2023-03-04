@@ -61,8 +61,22 @@ public class JsonAdaptedHomework {
         if (status == Status.COMPLETED) {
             homework.markAsDone();
         } else {
-            homework.markAsNotDone();
+            homework.markAsUndone();
         }
         return homework;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof JsonAdaptedHomework // instanceof handles nulls
+                && description.equals(((JsonAdaptedHomework) other).description)
+                && deadline.equals(((JsonAdaptedHomework) other).deadline)
+                && status.equals(((JsonAdaptedHomework) other).status)); // state check
+    }
+
+    @Override
+public int hashCode() {
+        return description.hashCode() + deadline.hashCode() + status.hashCode();
     }
 }

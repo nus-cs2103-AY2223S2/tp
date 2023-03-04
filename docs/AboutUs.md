@@ -8,7 +8,7 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at these emails :
 * `e0773591[at]u.nus.edu` - Zhu Yufan
 * `e0774823[at]u.nus.edu` - Niu Boqian
-* `[at]u.nus.edu`
+* `e0727234[at]u.nus.edu` - Sze Jian Cheng
 * `[at]u.nus.edu`
 
 ## Project team
@@ -19,10 +19,10 @@ You can reach us at these emails :
 
 [[homepage](https://blog.zyf.ninja/)]
 [[github](https://github.com/Yufannnn)]
-[[portfolio](team/yufan.md)]
+[[portfolio](team/yufannnn.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Coder
+* Responsibilities: code
 
 ### Niu Boqian
 
@@ -34,14 +34,14 @@ You can reach us at these emails :
 * Role: coder
 * Responsibilities: code
 
-### Johnny Doe
+### Sze Jian Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/JC.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/szejiancheng)] [[portfolio](https://github.com/szejiancheng?tab=repositories)]
 
-* Role: 
-* Responsibilities: 
+* Role: coder
+* Responsibilities: UML diagrams, implementation, and providing snacks
 
 ### Jean Doe
 
@@ -52,4 +52,3 @@ You can reach us at these emails :
 
 * Role: 
 * Responsibilities: 
-

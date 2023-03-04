@@ -21,4 +21,11 @@ public class Messages {
             + "Deleted from the %s\n";
     public static final String MESSAGE_LESSON_ADDED_SUCCESS = "New lesson added: \n%s \n"
         + "To the following students: \n%s";
+    public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE =
+            "Homework %s of student %s is already marked as done\n";
+    public static final String MESSAGE_HOMEWORK_MARKED_AS_DONE = "Homework %s of student %s is marked as done\n";
+    public static final String MESSAGE_HOMEWORK_MARKED_AS_UNDONE = "Homework %s of student %s is marked as undone\n";
+    public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE =
+            "Homework %s of student %s is already marked as undone\n";
+    public static final String MESSAGE_INVALID_STUDENT_NAME = "No student found!\n";
 }

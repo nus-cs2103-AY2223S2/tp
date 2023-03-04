@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,8 +21,6 @@ import seedu.address.model.student.exceptions.HomeworkNotFoundException;
  * that the homework with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
- *
- * @see Homework#isSameHomework(Homework)
  */
 public class UniqueHomeworkList implements Iterable<Homework> {
 
@@ -157,5 +156,25 @@ public class UniqueHomeworkList implements Iterable<Homework> {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueHomeworkList // instanceof handles nulls
+                        && internalList.equals(((UniqueHomeworkList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    /**
+     * Updates the list of homeworks to only contain homeworks that are not completed.
+     */
+    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
+        requireNonNull(homeworkStatusPredicate);
+        internalList.removeIf(homeworkStatusPredicate.negate());
     }
 }

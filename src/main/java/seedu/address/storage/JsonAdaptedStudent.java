@@ -136,5 +136,4 @@ class JsonAdaptedStudent {
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelHomeworkList,
             modelLessonList);
     }
-
 }

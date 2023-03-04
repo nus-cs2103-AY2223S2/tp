@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -34,10 +34,21 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+            // for all the names, trim the name and only take the first word
+            for (int i = 0; i < nameKeywords.size(); i++) {
+                String name = nameKeywords.get(i);
+                name = name.trim();
+                int spaceIndex = name.indexOf(" ");
+                if (spaceIndex != -1) {
+                    name = name.substring(0, spaceIndex);
+                }
+                nameKeywords.set(i, name);
+            }
+
             namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {
-            namePredicate = PREDICATE_SHOW_ALL_PERSONS;
+            namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
             defaultPredicateFlag = true;
         }
 
