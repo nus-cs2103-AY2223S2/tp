@@ -338,11 +338,16 @@ Otherwise, FAILS does nothing in this step.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. FAILS must store the personal data of military personnel securely
+2. FAILS must only allow the authorised admin clerk access to the military personnel data (in compliance with PDPA)
+3. FAILS must not leak the personal data of military personnel even during a computer crash
+4. FAILS must not connect to the Internet
+5. FAILS must be able to handle at least 1000 military personnel contacts
+6. FAILS should be easy to use even for non-technical persons like an admin clerk
+7. FAILS should be efficient enough that it performs well even on lower-tier hardware (e.g., like those found in everyday office computers that admin clerks use)
+8. FAILS should respond within 1 second for any command the user inputs
+9. FAILS must not lose critical data on military personnel even during a computer crash
+10. FAILS must be accessible to military personnel with disabilities
 
 ### Glossary
 
