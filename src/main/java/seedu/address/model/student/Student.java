@@ -28,6 +28,7 @@ public class Student {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueHomeworkList homeworkList = new UniqueHomeworkList();
+    private final UniqueLessonsList lessonsList = new UniqueLessonsList();
 
     /**
      * Every field must be present and not null.
@@ -52,6 +53,18 @@ public class Student {
         this.address = address;
         this.tags.addAll(tags);
         this.homeworkList.setHomeworks(homeworkList);
+    }
+
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
+                   List<Lesson> lessonList) {
+        requireAllNonNull(name, phone, email, address, tags, homeworkList, lessonList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.homeworkList.setHomeworks(homeworkList);
+        this.lessonsList.setLessons(lessonList);
     }
 
     public Name getName() {
@@ -89,6 +102,16 @@ public class Student {
     public List<Homework> getHomeworkList() {
         return homeworkList.asUnmodifiableObservableList();
     }
+    /**
+     * Returns an immutable lessons list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of lessons
+     */
+    public List<Lesson> getLessonsList() {
+        return lessonsList.asUnmodifiableObservableList();
+    }
+
 
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
@@ -177,6 +200,15 @@ public class Student {
         this.homeworkList.remove(homeworkToDelete);
     }
 
+    public void addLesson(Lesson lesson) {
+        for (Lesson l : this.lessonsList) {
+            if (l.equals(lesson)) {
+                return;
+            }
+        }
+        this.lessonsList.add(lesson);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -219,7 +251,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, homeworkList);
+        return Objects.hash(name, phone, email, address, tags, homeworkList, lessonsList);
     }
 
     @Override

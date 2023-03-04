@@ -19,6 +19,7 @@ public class StudentCard extends UiPart<Region> {
     private static final String FXML = "StudentListCard.fxml";
     private final Stage studentInfoPageStage;
     private final Stage studentTasksPageStage;
+    private final Stage studentLessonsPageStage;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,6 +41,8 @@ public class StudentCard extends UiPart<Region> {
     private Button viewProfileButton;
     @FXML
     private Button viewSchoolTasksButton;
+    @FXML
+    private Button viewLessonsButton;
 
 
     private final Student student;
@@ -52,6 +55,8 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         this.studentInfoPageStage = new Stage();
         this.studentTasksPageStage = new Stage();
+        this.studentLessonsPageStage = new Stage();
+
 
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
@@ -60,6 +65,7 @@ public class StudentCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         viewProfileButton.setOnAction(event -> handleViewProfileClick());
         viewSchoolTasksButton.setOnAction(event -> handleViewTasksClick());
+        viewLessonsButton.setOnAction(event -> handleViewLessonsClick());
     }
 
     /**
@@ -89,6 +95,19 @@ public class StudentCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the view student lessons button click event
+     *
+     */
+    private void handleViewLessonsClick() {
+        StudentLessonsPage lessonsPage = new StudentLessonsPage(student, studentLessonsPageStage);
+
+        if (!lessonsPage.isShowing()) {
+            lessonsPage.show();
+        } else {
+            lessonsPage.focus();
+        }
+    }
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
