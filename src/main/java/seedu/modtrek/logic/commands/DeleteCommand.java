@@ -2,13 +2,11 @@ package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import seedu.modtrek.commons.core.Messages;
-import seedu.modtrek.commons.core.index.Index;
+import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.Module;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -18,36 +16,33 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the module identified by the module code\n"
+            + "Parameters: MODULE CODE\n"
+            + "Example: " + COMMAND_WORD + " CS1101S";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Module: %1$s";
 
-    private final Index targetIndex;
+    private final Code targetCode;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Code targetCode) {
+        this.targetCode = targetCode;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        ObservableList<Module> lastShownList = model.getFilteredModuleList();
+        Module moduleToDelete = new Module(targetCode);
+        if (lastShownList.contains(moduleToDelete)) {
+            model.deleteModule(moduleToDelete);
         }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, moduleToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetCode.equals(((DeleteCommand) other).targetCode)); // state check
     }
 }

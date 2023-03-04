@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.modtrek.commons.core.index.Index;
 import seedu.modtrek.commons.util.StringUtil;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.person.Address;
-import seedu.modtrek.model.person.Email;
-import seedu.modtrek.model.person.Name;
-import seedu.modtrek.model.person.Phone;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -23,76 +23,63 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses a {@code String code} into a {@code Code}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code code} is invalid.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+    public static Code parseCode(String code) throws ParseException {
+        requireNonNull(code);
+        String trimmedName = code.trim();
+        if (!Code.isValidCode(trimmedName)) {
+            throw new ParseException(Code.MESSAGE_CONSTRAINTS);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return new Code(trimmedName);
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String credit} into a {@code Credit}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code credit} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Credit parseCredit(String credit) throws ParseException {
+        requireNonNull(credit);
+        String trimmedCredit = credit.trim();
+        if (!Credit.isValidCredit(trimmedCredit)) {
+            throw new ParseException(Credit.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Credit(trimmedCredit);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String semYear} into an {@code SemYear}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code semYear} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static SemYear parseSemYear(String semYear) throws ParseException {
+        requireNonNull(semYear);
+        String trimmedAddress = semYear.trim();
+        if (!SemYear.isValidSemYear(trimmedAddress)) {
+            throw new ParseException(SemYear.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new SemYear(trimmedAddress);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String grade} into an {@code Grade}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code grade} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
+        return new Grade(trimmedGrade);
     }
 
     /**

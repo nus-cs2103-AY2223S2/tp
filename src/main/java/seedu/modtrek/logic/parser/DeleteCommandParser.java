@@ -5,6 +5,7 @@ import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.modtrek.commons.core.index.Index;
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
+import seedu.modtrek.model.module.Code;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -18,8 +19,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            Code code = ParserUtil.parseCode(args);
+            return new DeleteCommand(code);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

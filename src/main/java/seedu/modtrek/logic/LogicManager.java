@@ -10,11 +10,11 @@ import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.commands.Command;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
-import seedu.modtrek.logic.parser.AddressBookParser;
+import seedu.modtrek.logic.parser.ModTrekParser;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.ReadOnlyAddressBook;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
+import seedu.modtrek.model.module.Module;
 import seedu.modtrek.storage.Storage;
 
 /**
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ModTrekParser modTrekParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        modTrekParser = new ModTrekParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = modTrekParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveDegreeProgression(model.getDegreeProgression());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyDegreeProgression getDegreeProgression() {
+        return model.getDegreeProgression();
+    }
+
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getDegreeProgressionFilePath() {
+        return model.getDegreeProgressionFilePath();
     }
 
     @Override

@@ -1,10 +1,10 @@
 package seedu.modtrek.logic.parser;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.person.Address;
-import seedu.modtrek.model.person.Email;
-import seedu.modtrek.model.person.Name;
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.model.person.Phone;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.Module;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -31,22 +31,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Code code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+        Credit credit = ParserUtil.parseCredit(argMultimap.getValue(PREFIX_CREDIT).get());
+        SemYear semYear = ParserUtil.parseSemYear(argMultimap.getValue(PREFIX_SEMYEAR).get());
+        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Module module = new Module(code, credit, semYear, tagList, grade);
 
-        return new AddCommand(person);
+        return new AddCommand(module);
     }
 
     /**

@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-<<<<<<< HEAD:src/main/java/seedu/modtrek/MainApp.java
 import seedu.modtrek.commons.core.Config;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.commons.core.Version;
@@ -19,43 +18,18 @@ import seedu.modtrek.logic.LogicManager;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
-import seedu.modtrek.model.ReadOnlyAddressBook;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.ReadOnlyUserPrefs;
 import seedu.modtrek.model.UserPrefs;
 import seedu.modtrek.model.util.SampleDataUtil;
-import seedu.modtrek.storage.AddressBookStorage;
-import seedu.modtrek.storage.JsonAddressBookStorage;
+import seedu.modtrek.storage.DegreeProgressionStorage;
+import seedu.modtrek.storage.JsonDegreeProgressionStorage;
 import seedu.modtrek.storage.JsonUserPrefsStorage;
 import seedu.modtrek.storage.Storage;
 import seedu.modtrek.storage.StorageManager;
 import seedu.modtrek.storage.UserPrefsStorage;
 import seedu.modtrek.ui.Ui;
 import seedu.modtrek.ui.UiManager;
-=======
-import seedu.address.commons.core.Config;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonDegreeProgressionStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
->>>>>>> pr/37:src/main/java/seedu/address/MainApp.java
 
 /**
  * Runs the application.
@@ -82,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonDegreeProgressionStorage(userPrefs.getAddressBookFilePath());
+        DegreeProgressionStorage addressBookStorage = new JsonDegreeProgressionStorage(userPrefs.getFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -100,14 +74,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyDegreeProgression> addressBookOptional;
+        ReadOnlyDegreeProgression initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readDegreeProgression();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleDegreeProgression);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new DegreeProgression();

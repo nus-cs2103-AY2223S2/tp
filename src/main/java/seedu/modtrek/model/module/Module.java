@@ -31,6 +31,14 @@ public class Module {
         this.grade = grade;
     }
 
+    public Module(Code code) {
+        requireAllNonNull(code);
+        this.code = code;
+        this.credits = new Credit("4");
+        this.semesterYear = new SemYear("Y1S1");
+        this.grade = new Grade("S");
+    }
+
     public Code getCode() {
         return code;
     }
@@ -68,20 +76,8 @@ public class Module {
         }
 
         Module otherModule = (Module) other;
-        boolean gradeCheck = true;
 
-        if ((this.grade == null && otherModule.grade != null)
-                || (this.grade != null && otherModule.grade == null)) {
-            gradeCheck = false;
-        } else if (this.grade != null && otherModule.grade != null) {
-            gradeCheck = this.grade.equals(otherModule.grade);
-        }
-
-        return gradeCheck
-                && otherModule.code.equals(this.code)
-                && otherModule.credits.equals(this.credits)
-                && otherModule.semesterYear.equals(this.semesterYear)
-                && otherModule.tags.equals(this.tags);
+        return otherModule.code.equals(this.code);
     }
 
     @Override

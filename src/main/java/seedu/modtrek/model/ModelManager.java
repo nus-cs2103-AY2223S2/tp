@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module Module) {
         degreeProgression.addModule(Module);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_ModuleS);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override

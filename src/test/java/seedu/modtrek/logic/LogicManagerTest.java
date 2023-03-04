@@ -17,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-<<<<<<< HEAD:src/test/java/seedu/modtrek/logic/LogicManagerTest.java
 import seedu.modtrek.logic.Logic;
 import seedu.modtrek.logic.LogicManager;
 import seedu.modtrek.logic.commands.AddCommand;
@@ -27,29 +26,14 @@ import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
-import seedu.modtrek.model.ReadOnlyAddressBook;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.storage.JsonAddressBookStorage;
+import seedu.modtrek.model.module.Module;
+import seedu.modtrek.storage.JsonDegreeProgressionStorage;
 import seedu.modtrek.storage.JsonUserPrefsStorage;
 import seedu.modtrek.storage.StorageManager;
 import seedu.modtrek.testutil.PersonBuilder;
-=======
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonDegreeProgressionStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
->>>>>>> pr/37:src/test/java/seedu/address/logic/LogicManagerTest.java
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

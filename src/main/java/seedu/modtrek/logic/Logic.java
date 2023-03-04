@@ -7,8 +7,9 @@ import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.ReadOnlyAddressBook;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.Model;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
+import seedu.modtrek.model.module.Module;
 
 /**
  * API of the Logic component
@@ -26,17 +27,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.modtrek.model.Model#getAddressBook()
+     * @see Model#getDegreeProgression()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDegreeProgression getDegreeProgression();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getDegreeProgressionFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

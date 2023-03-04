@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.model.module.Module;
-import seedu.modtrek.model.person.Person;
 
 /**
  * Panel containing the list of persons.
