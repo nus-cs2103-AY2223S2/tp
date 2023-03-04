@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are familiar with the Ultron interface, it can help you organise your applications in a structured manner. 
+Ultron is a **desktop app for compiling job and internship openings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are familiar with the Ultron interface, it can help you organise your openings in a structured manner. 
 
 * Table of Contents
 {:toc}
@@ -39,57 +39,45 @@ _More details coming soon ..._
 
 </div>
 
-### Adding an application : `add`
+### Adding an opening : `add`
 
-Adds a new application to the list.
+Adds a new opening to the list.
 
 Format: `add /n POSITION /c COMPANY /s STATUS /d DEADLINE`
 
 Examples:
 * `add /n Software Engineer /c Google /s ongoing /d 2023-03-14`
 
-### Listing all applications : `list`
+### Listing all openings : `list`
 
-Shows the whole list of applications, regardless of whether the application is ongoing, successful or rejected.
+Shows the whole list of openings, regardless of whether the opening is ongoing, successful or rejected.
 
 Format: `list`
 
-### Listing all application outcomes : `outcome`
+### Listing all opening outcomes : `outcome`
 
-Shows the list of applications based on the application status provided. 
+Shows the list of openings based on the opening status provided. 
 
 Format: `outcome /o STATUS`
 
-* Shows all applications with specified `STATUS`.
+* Shows all openings with specified `STATUS`.
 * The status **must be of either ongoing, successful or rejected**.
 
 Examples:
-`outcome /o ongoing` produces a list of ongoing applications. 
-
-### Listing all deadlines : `deadline`
-
-Shows a list of all deadlines of applications in YYYY-MM-DD format.
-
-Format: `deadline`
-
-### Listing all successful applications : `success`
-
-Shows the total number of successful applications and the corresponding list of companies.
-
-Format: `success`
+`outcome /o ongoing` produces a list of ongoing openings.
 
 ### Deleting an opening : `delete`
 
-Deletes an application from the list.
+Deletes an opening from the list.
 
 Format: `delete INDEX`
 
-* Deletes the application at the specified `INDEX`.
-* The index refers to the index number shown in the displayed application list.
+* Deletes the opening at the specified `INDEX`.
+* The index refers to the index number shown in the displayed opening list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd application in the applications list.
+* `list` followed by `delete 2` deletes the 2nd opening in the opening list.
 
 ### Exiting the program : `exit`
 
