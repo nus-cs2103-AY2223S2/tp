@@ -67,58 +67,46 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Don't know how to get started? Don't worry!
 
-Format: `help`
+Simply use this command to get access to our help page!
+
+>Command: `help`
 
 ![help message](images/helpMessage.png)
 
-
-
-
 ### Adding a person: `add`
 
-Adds a person to the address book.
+This command allows you to add a person to your address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+> Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+><div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+>A person can have any number of tags (including 0)
+></div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
- 
-|                          Enter Add Command                           |                                   Outcome                                   |
-|:--------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
-| <img src=./images/userguide/AddCommand.png width="100" height="100"> | <img src=./images/userguide/AddCommandOutcome.png width="100" height="100"> |
 
-
-|            Enter Add Command            |                       Outcome                        |
-|:---------------------------------------:|:----------------------------------------------------:|
-| ![Add](images/userguide/AddCommand.png) | ![AddOutput](images/userguide/AddCommandOutcome.png) |
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Want to see all your contacts?
 
-Format: `list`
+Use this command to gain access to all of them!
+
+> Command: `list`
 
 
-![ListCommand](images/userguide/ListCommand.png)
+### Editing a person's details : `edit`
 
-|               List Command Outcome               |
-|:------------------------------------------------:|
-| ![ListCommand](images/userguide/ListCommand.png) |
+Edits an existing person's details in the address book.
 
-### Editing a person : `edit`
+> Command: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Here are some important requirements for you to take note:
+* Edits the person at the specified `INDEX`. 
+The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
