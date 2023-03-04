@@ -35,7 +35,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class FriendLinkParserTest {
 
-    private final FriendLinkParser parser = new FriendLinkParser();
+    private final FriendlyLinkParser parser = new FriendlyLinkParser();
 
     @Test
     public void parseCommand_add() throws Exception {

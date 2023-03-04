@@ -25,7 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class FriendLinkParser {
+public class FriendlyLinkParser {
 
     /**
      * Used for initial separation of command word and args.
