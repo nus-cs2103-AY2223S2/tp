@@ -23,5 +23,5 @@ Given below are my contributions to the project.
 * **Testing contributed**:
   * *to be added soon*
 
-* **Review/mentoring contributions:**:
+* **Review/mentoring contributions**:
   * *to be added soon*
