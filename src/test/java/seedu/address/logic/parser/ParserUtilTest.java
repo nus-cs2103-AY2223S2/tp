@@ -203,8 +203,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseLanguages_collectionWithInvalidLanguages_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseLanguages(Arrays.asList(VALID_LANGUAGE_1, INVALID_LANGUAGE)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseLanguages(Arrays.asList(VALID_LANGUAGE_1, INVALID_LANGUAGE)));
     }
 
     @Test

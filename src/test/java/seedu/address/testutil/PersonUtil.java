@@ -39,7 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getLanguages().stream().forEach(
-                s -> sb.append(PREFIX_LANGUAGE+ s.languageName + " ")
+                s -> sb.append(PREFIX_LANGUAGE + s.languageName + " ")
         );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
