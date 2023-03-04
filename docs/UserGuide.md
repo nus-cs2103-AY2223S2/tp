@@ -62,6 +62,8 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `DATEIME` must be in this format: `DD-MM-YYYY HH:mm`.
+
 </div>
 
 ### Viewing help : `help`
@@ -141,6 +143,32 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding a new event : `addevent`
+
+Adds a new event with the given event name, start date time, and end date time.
+
+Format: `addevent ev/EVENT from/DATETIME to/DATETIME`
+
+* Event name can be a combination of alphanumeric and punctuations with spaces.
+* Event name must begin with alphanumeric.
+* Start date time cannot be after the end date time.
+
+Examples:
+* `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
+* `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30`
+
+### Listing all events : `listevent`
+
+Prints all the existing events in the address book.
+
+Format: `listevent`
+
+* Does not require any additional user arguments.
+* Follow strictly to the command `listevent`.
+
+Examples:
+* `listevent` prints a list of events.
 
 ### Deleting an event : `delevent`
 

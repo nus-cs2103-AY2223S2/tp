@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -37,6 +40,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_EVENT_NAME_CARNIVAL = "Carnival";
+    public static final String VALID_EVENT_NAME_SPORTS_DAY = "20th Sports Day @ Sports Hub";
+    public static final String VALID_START_DATE_TIME_CARNIVAL = "02-02-2024 09:00";
+    public static final String VALID_START_DATE_TIME_SPORTS_DAY = "02-03-2024 08:30";
+    public static final String VALID_END_DATE_TIME_CARNIVAL = "10-02-2024 22:00";
+    public static final String VALID_END_DATE_TIME_SPORTS_DAY = "02-03-2024 18:30";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -48,11 +58,28 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String EVENT_NAME_DESC_CARNIVAL = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_CARNIVAL;
+    public static final String EVENT_NAME_DESC_SPORTS_DAY = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_SPORTS_DAY;
+    public static final String START_DATE_TIME_DESC_CARNIVAL = " " + PREFIX_START_DATE_TIME
+            + VALID_START_DATE_TIME_CARNIVAL;
+    public static final String START_DATE_TIME_DESC_SPORTS_DAY = " " + PREFIX_START_DATE_TIME
+            + VALID_START_DATE_TIME_SPORTS_DAY;
+    public static final String END_DATE_TIME_DESC_CARNIVAL = " " + PREFIX_END_DATE_TIME + VALID_END_DATE_TIME_CARNIVAL;
+    public static final String END_DATE_TIME_DESC_SPORTS_DAY = " " + PREFIX_END_DATE_TIME
+            + VALID_END_DATE_TIME_SPORTS_DAY;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    // Event names not allowed to start with punctuations
+    public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_EVENT_NAME + "'20TH' Company anniversary";
+    // Invalid date time format
+    public static final String INVALID_START_DATE_TIME_DESC = " " + PREFIX_START_DATE_TIME + "02-02-202 12:00";
+    // Value used is out of range
+    public static final String INVALID_END_DATE_TIME_DESC = " " + PREFIX_END_DATE_TIME + "40-40-2024 12:99";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
