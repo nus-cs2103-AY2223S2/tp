@@ -53,3 +53,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/c0j0s.md)]
 
 * Role: Developer
+* Responsibilities: Delivery jobs function
