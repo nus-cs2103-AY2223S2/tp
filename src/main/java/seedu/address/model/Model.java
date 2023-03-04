@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.item.Identifiable;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -43,6 +44,11 @@ public interface Model {
      * @param operationMode The new operation mode.
      */
     void setOperationMode(OperationMode operationMode);
+
+    /**
+     * Returns the list of identifiables.
+     */
+    ObservableList<Identifiable> getItemsList();
 
     /**
      * Returns the user prefs' GUI settings.

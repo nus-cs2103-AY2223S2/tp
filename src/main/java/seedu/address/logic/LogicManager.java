@@ -123,9 +123,8 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Identifiable> getFilteredItemList() {
-        logger.info("Getting filtered item list: " + model.getFilteredPilotList().size() + " items");
-        ObservableList<Identifiable> result = FXCollections.observableArrayList();
-        Bindings.bindContent(result, model.getFilteredPilotList());
-        return result;
+        logger.info("Getting filtered item list: " + model.getItemsList().size() + " "
+                        + "items");
+        return model.getItemsList();
     }
 }

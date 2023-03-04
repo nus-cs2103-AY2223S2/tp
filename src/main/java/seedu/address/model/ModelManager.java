@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Identifiable;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
 
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
+    private final ObservableList<Identifiable> itemsList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -45,6 +48,9 @@ public class ModelManager implements Model {
 
         this.pilotManager = new IdentifiableManager<>(pilotManager);
         filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
+
+        itemsList = FXCollections.observableArrayList();
+        setOperationMode(userPrefs.getOperationMode());
     }
 
     public ModelManager() {
@@ -77,6 +83,25 @@ public class ModelManager implements Model {
     @Override
     public void setOperationMode(OperationMode mode) {
         this.userPrefs.setOperationMode(mode);
+        switch (mode) {
+        case PILOT:
+            itemsList.setAll(filteredPilots);
+            break;
+        case PLANE:
+        case FLIGHT:
+        case CREW:
+        case LOCATION:
+            logger.warning("Operation mode not supported yet: " + mode);
+            break;
+        default:
+            logger.warning("Unknown operation mode: " + mode);
+            break;
+        }
+    }
+
+    @Override
+    public ObservableList<Identifiable> getItemsList() {
+        return itemsList;
     }
 
     @Override
