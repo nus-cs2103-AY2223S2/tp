@@ -40,6 +40,10 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses an {@code intString} into an {@code Integer} and returns it.
+     * @throws ParseException if the string cannot be converted into an integer.
+     */
     public static int parseInt(String intString) throws ParseException {
         String trimmedInt = intString.trim();
         if (trimmedInt.isEmpty() || !StringUtil.isNonZeroUnsignedInteger(trimmedInt)) {

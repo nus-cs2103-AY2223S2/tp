@@ -50,6 +50,13 @@ public class GroupTagSet implements Comparable<GroupTagSet> {
     }
 
     /**
+     * Returns the number of groups.
+     */
+    public int size() {
+        return groups.size();
+    }
+
+    /**
      * Returns an immutable group tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

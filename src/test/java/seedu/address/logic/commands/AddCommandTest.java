@@ -140,6 +140,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public User getUser() {
             throw new AssertionError("This method should not be called.");
         }

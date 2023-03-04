@@ -60,6 +60,13 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     }
 
     /**
+     * Returns the number of modules.
+     */
+    public int size() {
+        return modules.size();
+    }
+
+    /**
      * Computes and sets the common modules the person shares with the user.
      */
     public void setCommonModules(Set<ModuleTag> userModuleTags) {
@@ -101,6 +108,13 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         return uncommonModuleTags;
     }
 
+    /**
+     * Returns the number of common modules.
+     */
+    public int getNumberOfCommonModules() {
+        return commonModules.size();
+    }
+
     @Override
     public String toString() {
         Stream<ModuleTag> commonModulesFirst = Stream.concat(commonModules.stream().sorted(),
@@ -123,7 +137,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     @Override
     public int compareTo(ModuleTagSet otherModuleTagSet) {
-        return Integer.compare(commonModules.size(),
-                otherModuleTagSet.commonModules.size());
+        return Integer.compare(getNumberOfCommonModules(),
+                otherModuleTagSet.getNumberOfCommonModules());
     }
 }

@@ -7,8 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ModuleTag;
@@ -20,10 +19,23 @@ import seedu.address.model.tag.ModuleTag;
  */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts persons by any field. "
+            + "If it is a tag field, then sort by the number of common tags. "
+            + "Otherwise, sort by alphanumerical order.\n"
+            + "Add an 'a' behind the prefix to sort the field by ascending order. "
+            + "Likewise, add a 'd' behind the prefix to sort the field by descending order.\n"
+            + "You can chain sorts together to deal with tie breaks.\n"
+            + "Parameters: "
+            + "PREFIX/a or PREFIX/d\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " " + Prefix.GROUP_TAG + "a" + Prefix.NAME + "d\n"
+            + COMMAND_WORD + " " + Prefix.MODULE_TAG + "";
     private final Comparator<Person> comparator;
+    private final String comparatorDesc;
 
-    public SortCommand(Comparator<Person> comparator) {
+    public SortCommand(Comparator<Person> comparator, String comparatorDesc) {
         this.comparator = comparator;
+        this.comparatorDesc = comparatorDesc;
     }
 
     /**
@@ -31,10 +43,9 @@ public class SortCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         // we copy here as the above personList is immutable
@@ -51,6 +62,18 @@ public class SortCommand extends Command {
         sortedPersonList.forEach(model::addPerson);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format("Sorted by:\n%s", comparatorDesc));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        System.out.println(comparator + comparatorDesc);
+        if (other instanceof SortCommand) {
+            System.out.println(((SortCommand) other).comparator + ((SortCommand) other).comparatorDesc);
+        }
+        // we don't check for comparator equality because it is not possible
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && comparatorDesc.equals(((SortCommand) other).comparatorDesc));
     }
 }

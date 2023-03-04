@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 
@@ -22,8 +21,8 @@ public class FindCommand extends Command {
             + "Parameters: "
             + "PREFIX/KEYWORD [MORE_KEYWORDS]...\n"
             + "Examples: \n"
-            + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie\n"
-            + COMMAND_WORD + " " + PREFIX_GROUP_TAG + "ta cca study";
+            + COMMAND_WORD + " " + Prefix.NAME + "alice bob charlie\n"
+            + COMMAND_WORD + " " + Prefix.GROUP_TAG + "ta cca study";
     private final ContainsKeywordsPredicate predicate;
 
     public FindCommand(ContainsKeywordsPredicate predicate) {
