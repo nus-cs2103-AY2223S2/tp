@@ -14,8 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-//    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path patientRecordFilePath = Paths.get("date", "patientRecord.json");
+    private Path patientRecordFilePath = Paths.get("data", "patientRecord.json");
     private Path drugInventoryFilePath  = Paths.get("data", "drugInventory.json");
 
     /**
@@ -37,7 +36,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPatientRecordFilePath(newUserPrefs.getPatientRecordFilePath());
+        setDrugInventoryFilePath(newUserPrefs.getDrugInventoryFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,14 +49,25 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-//    public Path getAddressBookFilePath() {
-//        return addressBookFilePath;
-//    }
-//
-//    public void setAddressBookFilePath(Path addressBookFilePath) {
-//        requireNonNull(addressBookFilePath);
-//        this.addressBookFilePath = addressBookFilePath;
-//    }
+    @Override
+    public Path getPatientRecordFilePath() {
+        return patientRecordFilePath;
+    }
+
+    public void setPatientRecordFilePath(Path patientRecordFilePath) {
+        requireNonNull(patientRecordFilePath);
+        this.patientRecordFilePath = patientRecordFilePath;
+    }
+
+    @Override
+    public Path getDrugInventoryFilePath() {
+        return drugInventoryFilePath;
+    }
+
+    public void setDrugInventoryFilePath(Path drugInventoryFilePath) {
+        requireNonNull(drugInventoryFilePath);
+        this.drugInventoryFilePath = drugInventoryFilePath;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -70,19 +81,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && patientRecordFilePath.equals(o.patientRecordFilePath)
+                && drugInventoryFilePath.equals(o.drugInventoryFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, patientRecordFilePath, drugInventoryFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("Gui Settings : ").append(guiSettings);
+        sb.append("\nLocal patient data file location : ").append(patientRecordFilePath);
+        sb.append("\nLocal drug data file location : ").append(drugInventoryFilePath);
         return sb.toString();
     }
 

@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Direction {
     public static final String MESSAGE_CONSTRAINTS =
             "Direction should be in sentence form and it should not be blank";
-    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9: ,.-]*";
+    public static final String VALIDATION_REGEX = "[0-9a-zA-Z][a-zA-Z0-9: ,.-]*";
     public final String value;
 
     /**

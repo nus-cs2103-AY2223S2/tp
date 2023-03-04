@@ -4,16 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
-import seedu.address.model.person.DrugAllergy;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Ic;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-
 /**
  * Represents a Patient in the patient record
  */
@@ -66,4 +56,5 @@ public class Patient extends Person {
     public Phone getEmergencyContact() {
         return this.emergencyContact.orElse(null);
     }
+
 }

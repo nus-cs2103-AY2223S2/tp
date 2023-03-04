@@ -19,7 +19,7 @@ import static java.util.Objects.requireNonNull;
 
 public class JsonDrugInventoryStorage implements DrugInventoryStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonDrugInventoryStorage.class);
 
     private Path filePath;
 
@@ -44,19 +44,18 @@ public class JsonDrugInventoryStorage implements DrugInventoryStorage {
     public Optional<ReadOnlyDrugInventory> readDrugInventory(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-//        Optional<JsonSerializableDrugInventory> jsonDrugInventory = JsonUtil.readJsonFile(
-//                filePath, JsonSerializablejsonDrugInventory.class);
-//        if (!jsonDrugInventory.isPresent()) {
-//            return Optional.empty();
-//        }
-//
-//        try {
-//            return Optional.of(jsonDrugInventory.get().toModelType());
-//        } catch (IllegalValueException ive) {
-//            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-//            throw new DataConversionException(ive);
-//        }
-        return Optional.empty();
+        Optional<JsonSerializableDrugInventory> jsonDrugInventory = JsonUtil.readJsonFile(
+                filePath, JsonSerializableDrugInventory.class);
+        if (jsonDrugInventory.isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonDrugInventory.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
@@ -74,7 +73,7 @@ public class JsonDrugInventoryStorage implements DrugInventoryStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-//        JsonUtil.saveJsonFile(new JsonSerializableDrugInventroy(drugInventory), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableDrugInventory(drugInventory), filePath);
     }
 
 }
