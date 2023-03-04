@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bookopedia.model.person.Person;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -12,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import bookopedia.commons.exceptions.IllegalValueException;
 import bookopedia.model.AddressBook;
 import bookopedia.model.ReadOnlyAddressBook;
+import bookopedia.model.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

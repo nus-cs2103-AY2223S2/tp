@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import bookopedia.commons.util.JsonUtil;
 import bookopedia.commons.exceptions.DataConversionException;
+import bookopedia.commons.util.JsonUtil;
 import bookopedia.model.ReadOnlyUserPrefs;
 import bookopedia.model.UserPrefs;
 

@@ -1,8 +1,9 @@
 package bookopedia.logic.parser;
 
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Arrays;
 
-import bookopedia.commons.core.Messages;
 import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
@@ -21,7 +22,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

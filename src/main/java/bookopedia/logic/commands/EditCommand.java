@@ -1,7 +1,8 @@
 package bookopedia.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static bookopedia.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.commons.util.CollectionUtil;
 import bookopedia.logic.commands.exceptions.CommandException;
@@ -67,7 +67,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());

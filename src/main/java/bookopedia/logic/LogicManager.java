@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import bookopedia.commons.core.GuiSettings;
 import bookopedia.commons.core.LogsCenter;
 import bookopedia.logic.commands.Command;
 import bookopedia.logic.commands.CommandResult;
 import bookopedia.logic.commands.exceptions.CommandException;
-import javafx.collections.ObservableList;
-import bookopedia.commons.core.GuiSettings;
 import bookopedia.logic.parser.AddressBookParser;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.Model;
 import bookopedia.model.ReadOnlyAddressBook;
 import bookopedia.model.person.Person;
 import bookopedia.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

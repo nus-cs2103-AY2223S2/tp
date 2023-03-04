@@ -1,10 +1,10 @@
 package bookopedia.logic.commands;
 
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());

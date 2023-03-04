@@ -1,19 +1,19 @@
 package bookopedia.logic;
 
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static bookopedia.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static bookopedia.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import bookopedia.commons.core.Messages;
 import bookopedia.logic.commands.AddCommand;
 import bookopedia.logic.commands.CommandResult;
 import bookopedia.logic.commands.CommandTestUtil;
 import bookopedia.logic.commands.ListCommand;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.exceptions.ParseException;
-import bookopedia.testutil.Assert;
 import bookopedia.testutil.PersonBuilder;
 import bookopedia.testutil.TypicalPersons;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,13 +50,13 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
     /**
@@ -139,7 +139,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        Assert.assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
 

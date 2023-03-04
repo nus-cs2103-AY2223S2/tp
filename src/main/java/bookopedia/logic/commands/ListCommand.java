@@ -1,7 +1,7 @@
 package bookopedia.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static bookopedia.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import bookopedia.model.Model;
 

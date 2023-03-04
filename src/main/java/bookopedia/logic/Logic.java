@@ -7,9 +7,9 @@ import bookopedia.logic.commands.CommandResult;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.Model;
-import javafx.collections.ObservableList;
 import bookopedia.model.ReadOnlyAddressBook;
 import bookopedia.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

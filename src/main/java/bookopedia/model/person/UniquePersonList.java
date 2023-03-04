@@ -1,12 +1,11 @@
 package bookopedia.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static bookopedia.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import bookopedia.commons.util.CollectionUtil;
 import bookopedia.model.person.exceptions.DuplicatePersonException;
 import bookopedia.model.person.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;
@@ -55,7 +54,7 @@ public class UniquePersonList implements Iterable<Person> {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
     public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
+        requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
@@ -90,7 +89,7 @@ public class UniquePersonList implements Iterable<Person> {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        CollectionUtil.requireAllNonNull(persons);
+        requireAllNonNull(persons);
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }

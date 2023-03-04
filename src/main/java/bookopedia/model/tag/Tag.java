@@ -1,9 +1,7 @@
 package bookopedia.model.tag;
 
-import bookopedia.commons.util.AppUtil;
-
-import static java.util.Objects.requireNonNull;
 import static bookopedia.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Tag in the address book.
@@ -23,7 +21,7 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        AppUtil.checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 

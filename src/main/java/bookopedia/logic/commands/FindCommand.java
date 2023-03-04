@@ -1,8 +1,8 @@
 package bookopedia.logic.commands;
 
+import static bookopedia.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static java.util.Objects.requireNonNull;
 
-import bookopedia.commons.core.Messages;
 import bookopedia.model.Model;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 
@@ -30,7 +30,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

@@ -2,12 +2,12 @@ package bookopedia.ui;
 
 import java.util.Comparator;
 
+import bookopedia.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import bookopedia.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.

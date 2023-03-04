@@ -1,6 +1,7 @@
 package bookopedia.logic.parser;
 
-import bookopedia.commons.core.Messages;
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.CommandTestUtil;
 import bookopedia.logic.commands.EditCommand;
@@ -19,7 +20,7 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + CliSyntax.PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 

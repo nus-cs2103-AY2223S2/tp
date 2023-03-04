@@ -8,28 +8,28 @@ import java.util.logging.Logger;
 import bookopedia.commons.core.Config;
 import bookopedia.commons.core.LogsCenter;
 import bookopedia.commons.core.Version;
+import bookopedia.commons.exceptions.DataConversionException;
 import bookopedia.commons.util.ConfigUtil;
 import bookopedia.commons.util.StringUtil;
 import bookopedia.logic.Logic;
 import bookopedia.logic.LogicManager;
-import bookopedia.model.util.SampleDataUtil;
-import bookopedia.ui.Ui;
-import bookopedia.ui.UiManager;
-import javafx.application.Application;
-import javafx.stage.Stage;
-import bookopedia.commons.exceptions.DataConversionException;
 import bookopedia.model.AddressBook;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.ReadOnlyAddressBook;
 import bookopedia.model.ReadOnlyUserPrefs;
 import bookopedia.model.UserPrefs;
+import bookopedia.model.util.SampleDataUtil;
 import bookopedia.storage.AddressBookStorage;
 import bookopedia.storage.JsonAddressBookStorage;
 import bookopedia.storage.JsonUserPrefsStorage;
 import bookopedia.storage.Storage;
 import bookopedia.storage.StorageManager;
 import bookopedia.storage.UserPrefsStorage;
+import bookopedia.ui.Ui;
+import bookopedia.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

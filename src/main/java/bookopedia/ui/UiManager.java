@@ -2,6 +2,7 @@ package bookopedia.ui;
 
 import java.util.logging.Logger;
 
+import bookopedia.MainApp;
 import bookopedia.commons.core.LogsCenter;
 import bookopedia.commons.util.StringUtil;
 import bookopedia.logic.Logic;
@@ -10,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import bookopedia.MainApp;
 
 /**
  * The manager of the UI component.

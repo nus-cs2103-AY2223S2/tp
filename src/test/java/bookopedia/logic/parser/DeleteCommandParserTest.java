@@ -1,6 +1,7 @@
 package bookopedia.logic.parser;
 
-import bookopedia.commons.core.Messages;
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import bookopedia.logic.commands.DeleteCommand;
 import bookopedia.testutil.TypicalIndexes;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        CommandParserTestUtil.assertParseFailure(parser, "a", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        CommandParserTestUtil.assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

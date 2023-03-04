@@ -1,9 +1,7 @@
 package bookopedia.model.person;
 
-import bookopedia.commons.util.AppUtil;
-
-import static java.util.Objects.requireNonNull;
 import static bookopedia.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's address in the address book.
@@ -28,7 +26,7 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        AppUtil.checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
