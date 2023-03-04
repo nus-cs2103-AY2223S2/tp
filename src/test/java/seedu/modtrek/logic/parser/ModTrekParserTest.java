@@ -21,24 +21,23 @@ import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
 import seedu.modtrek.logic.commands.ListCommand;
-import seedu.modtrek.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.modtrek.logic.parser.AddressBookParser;
+import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.person.NameContainsKeywordsPredicate;
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.testutil.EditPersonDescriptorBuilder;
-import seedu.modtrek.testutil.PersonBuilder;
-import seedu.modtrek.testutil.PersonUtil;
+import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.Module;
+import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
+import seedu.modtrek.testutil.ModuleBuilder;
+import seedu.modtrek.testutil.ModuleUtil;
 
-public class AddressBookParserTest {
+public class ModTrekParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModTrekParser parser = new ModTrekParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Module module = new ModuleBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ModuleUtil.getAddCommand(module));
+        assertEquals(new AddCommand(module), command);
     }
 
     @Test
@@ -56,10 +55,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Module module = new ModuleBuilder().build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -74,7 +73,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ModuleCodePredicate(keywords)), command);
     }
 
     @Test
