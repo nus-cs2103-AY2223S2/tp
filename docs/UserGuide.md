@@ -63,7 +63,7 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` followed by the sequence of 6 digits.
+* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits.
 
 </div>
 
@@ -106,7 +106,7 @@ Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/912345 d/2001-01-01` Edits the POSTAL number and date age of the 1st person to be `S912345` and `2001-01-01` respectively.
+*  `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st person to be `S912345` and `2001-01-01` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
