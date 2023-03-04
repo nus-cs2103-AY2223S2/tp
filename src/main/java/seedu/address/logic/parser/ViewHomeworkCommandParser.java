@@ -34,6 +34,17 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+            // for all the names, trim the name and only take the first word
+            for (int i = 0; i < nameKeywords.size(); i++) {
+                String name = nameKeywords.get(i);
+                name = name.trim();
+                int spaceIndex = name.indexOf(" ");
+                if (spaceIndex != -1) {
+                    name = name.substring(0, spaceIndex);
+                }
+                nameKeywords.set(i, name);
+            }
+
             namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {

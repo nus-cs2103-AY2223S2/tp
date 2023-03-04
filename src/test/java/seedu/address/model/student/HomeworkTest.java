@@ -63,7 +63,7 @@ class HomeworkTest {
         LocalDateTime deadline = LocalDateTime.of(2023, 3, 31, 23, 59);
         Homework homework = new Homework("Math homework", deadline);
         homework.markAsDone();
-        homework.markAsNotDone();
+        homework.markAsUndone();
         assertEquals(Homework.Status.PENDING, homework.getStatus());
     }
 
@@ -111,7 +111,7 @@ class HomeworkTest {
         LocalDateTime deadline = LocalDateTime.of(2023, 3, 15, 23, 59);
         Homework homework = new Homework("Complete Math Homework", deadline);
         homework.markAsDone();
-        homework.markAsNotDone();
+        homework.markAsUndone();
         assertFalse(homework.isCompleted());
     }
 
