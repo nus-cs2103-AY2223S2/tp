@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,7 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Postal;
@@ -39,12 +39,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_POSTAL + "POSTAL] "
-            + "[" + PREFIX_EMAIL + "AGE] "
+            + "[" + PREFIX_DATE + "AGE] "
             + "[" + PREFIX_ADDRESS + "TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_POSTAL + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DATE + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +95,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Postal updatedPostal = editPersonDescriptor.getPostal().orElse(personToEdit.getPostal());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPostal, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPostal, updatedDate, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Postal postal;
-        private Email email;
+        private Date date;
         private Address address;
         private Set<Tag> tags;
 
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPostal(toCopy.postal);
-            setEmail(toCopy.email);
+            setDate(toCopy.date);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, postal, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, postal, date, address, tags);
         }
 
         public void setName(Name name) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(postal);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setAddress(Address address) {
@@ -218,7 +218,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPostal().equals(e.getPostal())
-                    && getEmail().equals(e.getEmail())
+                    && getDate().equals(e.getDate())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

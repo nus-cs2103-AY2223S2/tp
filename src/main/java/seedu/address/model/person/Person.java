@@ -18,7 +18,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Postal postal;
-    private final Email email;
+    private final Date date;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Postal postal, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, postal, email, address, tags);
+    public Person(Name name, Postal postal, Date date, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, postal, date, address, tags);
         this.name = name;
         this.postal = postal;
-        this.email = email;
+        this.date = date;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Person {
         return postal;
     }
 
-    public Email getEmail() {
-        return email;
+    public Date getDate() {
+        return date;
     }
 
     public Address getAddress() {
@@ -90,7 +90,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPostal().equals(getPostal())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getDate().equals(getDate())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, postal, email, address, tags);
+        return Objects.hash(name, postal, date, address, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Person {
         builder.append(getName())
                 .append("; Postal: ")
                 .append(getPostal())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Address: ")
                 .append(getAddress());
 
