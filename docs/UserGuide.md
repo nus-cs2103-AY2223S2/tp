@@ -341,73 +341,73 @@ Examples:
 
 ### Adding a leave: `andre`
 
-Adds a person to the address book.
+Tracks a person's leave.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_leave n/NAME d/DATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_leave n/John Doe d/2023-03-05`
+* `add_leave n/Betsy Crowe d/2023-03-05~2023-03-10`
 
 ### Updating a leave: `andre`
 
-Adds a person to the address book.
+TBC. Seemingly only relevant if we introduce half-day leaves.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `TBC`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `TBC`
+* `TBC`
 
 ### Deleting a leave: `andre`
 
-Adds a person to the address book.
+Removes leave dates that are now cancelled.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all leaves for a user: `andre`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `del_leave n/NAME d/DATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `del_leave n/John Doe d/2023-03-05`
+* `del_leave n/Betsy Crowe d/2023-03-06~2023-03-08`
 
-### List all users on leave for a date: `andre`
+### Listing all leaves for a person: `andre`
 
-Adds a person to the address book.
+Lists all the leave date(s) of an employee.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `ls_leave n/NAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `ls_leave n/John Doe `
+* `ls_leave n/Betsy Crowe`
+
+### Listing all users on leave for a given date: `andre`
+
+Lists all personnel that are on leave for a given date(s).
+
+Format: `ls_on_leave d/DATE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `ls_on_leave d/2023-03-05`
+* `ls_on_leave d/2023-03-05~2023-05-7`
 
 ### Adding a refresher course: `kwangjoo`
 
