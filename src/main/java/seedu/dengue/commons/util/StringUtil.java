@@ -59,8 +59,8 @@ public class StringUtil {
         return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
     }
 
-    public static boolean startsWithSubstringIgnoreCase(String sentence, String substring) {
-        return containsSubstringIgnoreCase(sentence, String.format("^%s", substring));
+    public static boolean startsWithSubstringIgnoreCaseatIndex(String sentence, String substring, int index) {
+        return containsSubstringIgnoreCase(sentence.substring(index), String.format("^%s", substring));
     }
 
     /**

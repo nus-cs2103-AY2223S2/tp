@@ -12,7 +12,7 @@ public class Postal {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Postal codes should only contain numbers, and it must be 6 digits long";
-    public static final String VALIDATION_REGEX = "\\d{6}";
+    public static final String VALIDATION_REGEX = "[S]{0,1}\\d{6}";
     public final String value;
 
     /**
@@ -21,9 +21,15 @@ public class Postal {
      * @param postal A valid postal number.
      */
     public Postal(String postal) {
+        boolean hasStart = postal.substring(0, 1).equals("S");
         requireNonNull(postal);
         checkArgument(isValidPostal(postal), MESSAGE_CONSTRAINTS);
-        value = postal;
+        if (hasStart) {
+            value = postal;
+        } else {
+            value = "S" + postal;
+        }
+
     }
 
     /**
