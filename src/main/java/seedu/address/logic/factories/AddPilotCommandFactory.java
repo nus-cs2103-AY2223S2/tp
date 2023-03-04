@@ -1,12 +1,12 @@
-package seedu.address.logic.commands.factories;
+package seedu.address.logic.factories;
 
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.CommandFactory;
-import seedu.address.logic.commands.CommandParam;
-import seedu.address.logic.commands.commands.AddPilotCommand;
-import seedu.address.logic.commands.exceptions.ParseException;
+import seedu.address.logic.core.CommandFactory;
+import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.commands.AddPilotCommand;
+import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.pilot.Gender;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.pilot.PilotRank;

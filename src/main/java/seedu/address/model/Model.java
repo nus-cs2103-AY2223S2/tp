@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.core.OperationMode;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -31,6 +32,11 @@ public interface Model {
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    OperationMode getOperationMode();
 
     /**
      * Returns the user prefs' GUI settings.

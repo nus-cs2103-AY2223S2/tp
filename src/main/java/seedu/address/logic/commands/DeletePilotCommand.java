@@ -1,10 +1,10 @@
-package seedu.address.logic.commands.commands;
+package seedu.address.logic.commands;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.core.Command;
+import seedu.address.logic.core.CommandResult;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pilot.Pilot;
 

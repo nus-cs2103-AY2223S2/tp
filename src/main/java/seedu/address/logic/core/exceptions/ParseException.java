@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.exceptions;
+package seedu.address.logic.core.exceptions;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 

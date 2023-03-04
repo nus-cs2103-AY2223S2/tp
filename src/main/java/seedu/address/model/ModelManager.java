@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.core.OperationMode;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager) {
+        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -62,6 +63,20 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
+    }
+
+    @Override
+    public OperationMode getOperationMode() {
+        return userPrefs.getOperationMode();
+    }
+
+    /**
+     * Sets the operation mode of the app.
+     *
+     * @param mode the new operation mode
+     */
+    public void setOperationMode(OperationMode mode) {
+        this.userPrefs.setOperationMode(mode);
     }
 
     @Override
@@ -217,9 +232,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                       && userPrefs.equals(other.userPrefs)
-                       && filteredPersons.equals(other.filteredPersons)
-                       && pilotManager.equals(other.pilotManager);
+                   && userPrefs.equals(other.userPrefs)
+                   && filteredPersons.equals(other.filteredPersons)
+                   && pilotManager.equals(other.pilotManager);
     }
 
 }

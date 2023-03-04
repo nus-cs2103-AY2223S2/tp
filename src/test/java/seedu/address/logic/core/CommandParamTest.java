@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;

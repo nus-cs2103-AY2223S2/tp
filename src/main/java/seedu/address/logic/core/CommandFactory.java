@@ -1,9 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.ParseException;
+import seedu.address.logic.core.exceptions.ParseException;
 
 /**
  * The factory that's responsible for creating a command.

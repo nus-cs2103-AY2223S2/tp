@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.exceptions.ParseException;
+import seedu.address.logic.core.exceptions.CommandException;
+import seedu.address.logic.core.exceptions.ParseException;
 
 /**
  * Represents the parameters of a command.

@@ -1,15 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.Deque;
+import java.util.List;
+import java.util.Optional;
 
-import seedu.address.logic.commands.exceptions.ParseException;
+import seedu.address.logic.core.exceptions.ParseException;
 
 /**
  * The group of commands.
  */
-public class CommandGroup {
+public class CommandGroup extends FactoryParser {
     /**
      * The mode at which the command is executed.
      */
@@ -20,7 +22,7 @@ public class CommandGroup {
      * Since we won't be having too many commands, using a list would be
      * faster than using a map.
      */
-    private final CommandFactory<?>[] factories;
+    private final List<CommandFactory<?>> factories;
 
     /**
      * Creates a command group with the given mode and list of factories. A
@@ -33,7 +35,7 @@ public class CommandGroup {
      * @param mode      the mode at which the command is executed.
      * @param factories the list of factories responsible for creating commands.
      */
-    public CommandGroup(OperationMode mode, CommandFactory<?>[] factories) {
+    public CommandGroup(OperationMode mode, List<CommandFactory<?>> factories) {
         this.mode = mode;
         this.factories = factories;
     }
@@ -46,16 +48,11 @@ public class CommandGroup {
     public Command parse(Deque<String> tokens) throws ParseException {
         requireNonNull(tokens);
         assert tokens.size() > 0 : "tokens should not be empty";
-
-        String commandWord = tokens.pop();
-        for (CommandFactory<?> factory : factories) {
-            if (commandWord.equals(factory.getCommandWord())) {
-                final CommandParam param =
-                    CommandParam.from(tokens, factory.getPrefixes());
-                return factory.createCommand(param);
-            }
+        final Optional<Command> result = this.parseFactory(tokens);
+        if (result.isEmpty()) {
+            throw new ParseException("Unknown command in " + this.mode);
         }
-        throw new ParseException("Unknown command");
+        return result.get();
     }
 
     /**
@@ -65,5 +62,10 @@ public class CommandGroup {
      */
     public OperationMode getOperationMode() {
         return mode;
+    }
+
+    @Override
+    protected List<CommandFactory<?>> getFactories() {
+        return null;
     }
 }

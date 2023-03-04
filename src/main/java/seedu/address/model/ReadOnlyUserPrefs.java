@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.OperationMode;
+import seedu.address.logic.core.OperationMode;
 
 /**
  * Unmodifiable view of user prefs.

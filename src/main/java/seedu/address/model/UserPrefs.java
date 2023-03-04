@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.OperationMode;
+import seedu.address.logic.core.OperationMode;
 
 /**
  * Represents User's preferences.

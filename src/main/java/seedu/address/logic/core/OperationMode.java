@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 /**
  * The mode at which the command is executed.
@@ -45,7 +45,7 @@ public enum OperationMode {
             return LOCATION;
         default:
             throw new IllegalArgumentException(
-                    "Invalid mode index: " + i + ", should be between 0 and 4");
+                "Invalid mode index: " + i + ", should be between 0 and 4");
         }
     }
 
@@ -66,6 +66,24 @@ public enum OperationMode {
             return 3;
         case LOCATION:
             return 4;
+        default:
+            throw new IllegalArgumentException("Invalid mode: " + this);
+        }
+    }
+
+    @Override
+    public String toString() {
+        switch (this) {
+        case PILOT:
+            return "Pilot";
+        case PLANE:
+            return "Plane";
+        case FLIGHT:
+            return "Flight";
+        case CREW:
+            return "Crew";
+        case LOCATION:
+            return "Location";
         default:
             throw new IllegalArgumentException("Invalid mode: " + this);
         }
