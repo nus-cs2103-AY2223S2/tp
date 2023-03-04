@@ -36,7 +36,7 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
    * `exit` : Exits the app.
 
 ## Feature summary
-1. [Attendance] (#Attendance)
+1. [Attendance](#Attendance)
  * mark
  * unmark
  * exit
