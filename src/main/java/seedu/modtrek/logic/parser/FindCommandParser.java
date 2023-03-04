@@ -2,11 +2,9 @@ package seedu.modtrek.logic.parser;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.person.NameContainsKeywordsPredicate;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -25,9 +23,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new ModuleCodePredicate(ParserUtil.parseCode(args)));
     }
 
 }

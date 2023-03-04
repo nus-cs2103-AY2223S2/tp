@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.modtrek.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ModuleListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,7 +40,7 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ModuleCode} with the given {@code Module} and index to display.
      */
     public ModuleCard(Module module) {
         super(FXML);

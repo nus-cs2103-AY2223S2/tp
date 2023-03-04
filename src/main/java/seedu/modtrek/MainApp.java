@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ModTrek ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        DegreeProgressionStorage addressBookStorage = new JsonDegreeProgressionStorage(userPrefs.getFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DegreeProgressionStorage degreeProgressionStorage = new JsonDegreeProgressionStorage(userPrefs.getFilePath());
+        storage = new StorageManager(degreeProgressionStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,19 +74,19 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyDegreeProgression> addressBookOptional;
+        Optional<ReadOnlyDegreeProgression> degreeProgressionOptional;
         ReadOnlyDegreeProgression initialData;
         try {
-            addressBookOptional = storage.readDegreeProgression();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            degreeProgressionOptional = storage.readDegreeProgression();
+            if (!degreeProgressionOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ModTrek");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleDegreeProgression);
+            initialData = degreeProgressionOptional.orElseGet(SampleDataUtil::getSampleDegreeProgression);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty ModTrek");
             initialData = new DegreeProgression();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModTrek");
             initialData = new DegreeProgression();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModTrek");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ModTrek " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
