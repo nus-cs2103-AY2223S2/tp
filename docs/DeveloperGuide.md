@@ -255,13 +255,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Target user profile**: Military admin clerk who handles information of other military personnel
 
 **Value proposition**: Contains dedicated fields in a contact card that manages military-specific information
 (e.g., rank, company, unit, etc.)
@@ -283,31 +277,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Fast Army Internal Lookup System (FAILS)`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC2 - Create a new military personnel**
+
+**Actor: Admin clerk**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Admin clerk creates a new military personnel contact by entering the command. 
+2. FAILS creates and displays the newly created military personnel contact to the admin clerk.
 
     Use case ends.
 
 **Extensions**
+* 1a. FAILS detects an error in the command (e.g. missing information, incorrect syntax).
 
-* 2a. The list is empty.
+  * 1a1. FAILS displays an error message to the admin clerk.
+  * 1a2. Admin clerk re-enters the information to create the military personnel contact.
+  * Steps 1a1-1a2 are repeated until the information provided is acceptable.
+  * Use case resumes at step 2.
+***
 
-  Use case ends.
+**Use case: UC101 - Update the rank of person named "Lawrence Tay"**
 
-* 3a. The given index is invalid.
+**Actor: Admin clerk**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. Admin clerk <ins>searches for a person named "Lawrence Tay" (UC5)</ins>.
+2. Admin clerk <ins>edits the _rank_ information of "Lawrence Tay" (UC6)</ins>.
+3. FAILS displays the updated _rank_ information of "Lawrence Tay".
 
-      Use case resumes at step 2.
+**Extensions**
+* 1a. After searching, there is more than one "Lawrence Tay" in the displayed list.
+  * 1a1. Admin clerk scrolls through the list of "Lawrence Tay"s and mentally notes down the index 
+  of the exact "Lawrence Tay" person she is looking for.
+  * Use cases resumes at step 2.
+***
 
+**Use case: UC102 - Import contacts from CSV file**
+
+**Actor: Admin clerk**
+
+**MSS**
+1. Admin clerk chooses to import a CSV file containing the personal information of military personnel from her computer.
+2. FAILS imports the CSV file.
+3. FAILS prompts the admin clerk whether the information in the CSV file should _replace_ or 
+be _added_ to the existing list of contacts.
+4. Admin clerk chooses one of the options.
+5. If the option was to _replace_, FAILS will delete all existing all contacts. 
+Otherwise, FAILS does nothing in this step.
+6. FAILS adds the CSV contacts to the existing list of contacts.
+
+**Extensions**
+* 2a. FAILS is unable to automatically match the CSV column names to FAILS contact fields.
+  * 2a1. FAILS prompts the admin clerk to decide which CSV column refer to which FAILS contact field 
+  (e.g., the CSV might have a column called "mobile_number" whereas FAILS has a field called "phone").
+  * Use case resumes at step 3.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
