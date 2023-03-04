@@ -34,13 +34,13 @@ public class AddPilotCommandFactory implements CommandFactory<AddPilotCommand> {
 
     @Override
     public AddPilotCommand createCommand(CommandParam param) throws ParseException {
-        final String name = param.getValueOrThrow(PREFIX_NAME);
-        final int rankId = param.getIntOrThrow(PREFIX_RANK);
+        final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
+        final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
         final PilotRank rank = PilotRank.fromIndex(rankId);
-        final int age = param.getIntOrThrow(PREFIX_AGE);
-        final int genderIdx = param.getIntOrThrow(PREFIX_GENDER);
+        final int age = param.getNamedIntOrThrow(PREFIX_AGE);
+        final int genderIdx = param.getNamedIntOrThrow(PREFIX_GENDER);
         final Gender gender = Gender.fromIndex(genderIdx);
-        final int flightHour = param.getIntOrThrow(PREFIX_FLIGHT_HOUR);
+        final int flightHour = param.getNamedIntOrThrow(PREFIX_FLIGHT_HOUR);
 
         final Pilot pilot = new Pilot(name, age, gender, rank, flightHour);
 

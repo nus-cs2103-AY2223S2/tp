@@ -25,7 +25,18 @@ public class CommandParam {
      */
     private final Optional<Map<String, Optional<String>>> namedValues;
 
-    private CommandParam(Optional<String> unnamedValue,
+    /**
+     * Creates a command parameter from the given tokens. Note that this
+     * function will not throw parser exception, but will instead return a
+     * {@code CommandParam} with empty optional fields. It is the caller's
+     * responsibility to check if the returned command parameter is valid,
+     * because this class does not have enough context to provide a
+     * meaningful exception message.
+     *
+     * @param unnamedValue the unnamed token of the command.
+     * @param namedValues  the named token of the command.
+     */
+    public CommandParam(Optional<String> unnamedValue,
         Optional<Map<String, Optional<String>>> namedValues) {
         this.unnamedValue = unnamedValue;
         this.namedValues = namedValues;
@@ -66,10 +77,28 @@ public class CommandParam {
         return new CommandParam(unnamedValue, Optional.of(namedValues));
     }
 
-    private static Optional<String> parseUnnamedValue(Deque<String> tokens,
+    /**
+     * Parses the unnamed value from the given tokens. The unnamed value is
+     * the part right after the command word and before the first prefix.
+     * Note that it is assumed that the tokens already have the command word
+     * removed. The prefix set is used to determine when the unnamed value
+     * ends.
+     *
+     * @param tokens   the tokens of the command, with the command word
+     *                 removed.
+     * @param prefixes the prefixes of the command.
+     * @return the unnamed value parsed.
+     */
+    public static Optional<String> parseUnnamedValue(Deque<String> tokens,
         Set<String> prefixes) {
+        if (tokens.size() == 0) {
+            return Optional.empty();
+        }
         final StringBuilder builder = new StringBuilder();
-        while (!prefixes.contains(tokens.peek())) {
+        while (tokens.size() > 0) {
+            if (prefixes.contains(tokens.peek())) {
+                break;
+            }
             builder.append(tokens.pop()).append(" ");
         }
         if (builder.length() == 0) {
@@ -78,26 +107,54 @@ public class CommandParam {
         return Optional.of(builder.toString().trim());
     }
 
-    private static Map<String, Optional<String>> parseNamedValues(Deque<String> tokens,
+    /**
+     * Parses the named values from the given tokens. The named values are
+     * the parts right after the prefixes and before the next prefix. Note
+     * that it is assumed that the tokens already have the command word
+     * and the unnamed value removed.
+     *
+     * @param tokens   the tokens of the command, with the command word and
+     *                 the unnamed value removed.
+     * @param prefixes the prefixes of the command.
+     * @return the named values parsed.
+     */
+    public static Map<String, Optional<String>> parseNamedValues(Deque<String> tokens,
         Set<String> prefixes) {
         if (tokens.size() == 0) {
-            return new HashMap<>();
+            return padNamedValues(new HashMap<>(), prefixes);
         }
         Map<String, Optional<String>> namedValues = new HashMap<>();
         String prefix = tokens.pop();
+        // just to be defensive, despite the assumption
+        while (!prefixes.contains(prefix)) {
+            prefix = tokens.pop();
+        }
         final StringBuilder builder = new StringBuilder();
         while (tokens.size() > 0) {
-            if (prefixes.contains(tokens.peek())) {
-                namedValues.put(prefix, Optional.of(builder.toString().trim()));
-                prefix = tokens.pop();
-                builder.setLength(0);
-            } else {
+            if (!prefixes.contains(tokens.peek())) {
                 builder.append(tokens.pop()).append(" ");
+                continue;
             }
+            namedValues.put(prefix, Optional.of(builder.toString().trim()));
+            prefix = tokens.pop();
+            builder.setLength(0);
         }
         if (builder.length() > 0) {
             namedValues.put(prefix, Optional.of(builder.toString().trim()));
         }
+        return padNamedValues(namedValues, prefixes);
+    }
+
+    /**
+     * Pad the named values with empty values for the prefixes that are not
+     * present in the named values.
+     *
+     * @param namedValues the named values to pad.
+     * @param prefixes    the prefixes to pad.
+     * @return the named values padded.
+     */
+    private static Map<String, Optional<String>> padNamedValues(
+        Map<String, Optional<String>> namedValues, Set<String> prefixes) {
         for (String p : prefixes) {
             if (!namedValues.containsKey(p)) {
                 namedValues.put(p, Optional.empty());
@@ -151,7 +208,7 @@ public class CommandParam {
     /**
      * Gets the value of the named token with the given prefix.
      */
-    public Optional<String> getValue(String prefix) {
+    public Optional<String> getNamedValues(String prefix) {
         if (namedValues.isEmpty()) {
             return Optional.empty();
         }
@@ -161,8 +218,8 @@ public class CommandParam {
     /**
      * Gets the value of the named token with the given prefix or throws an exception.
      */
-    public String getValueOrThrow(String prefix, String message) throws ParseException {
-        final Optional<String> value = getValue(prefix);
+    public String getNamedValuesOrThrow(String prefix, String message) throws ParseException {
+        final Optional<String> value = getNamedValues(prefix);
         if (value.isEmpty()) {
             throw new ParseException(message);
         }
@@ -172,17 +229,40 @@ public class CommandParam {
     /**
      * Gets the value of the named token with the given prefix or throws an exception.
      *
-     * @see #getValueOrThrow(String, String)
+     * @see #getNamedValuesOrThrow(String, String)
      */
-    public String getValueOrThrow(String prefix) throws ParseException {
-        return getValueOrThrow(prefix, "Missing value for prefix " + prefix);
+    public String getNamedValuesOrThrow(String prefix) throws ParseException {
+        return getNamedValuesOrThrow(prefix, "Missing value for prefix " + prefix);
     }
+
+    /**
+     * Gets the integer value of the unnamed token with the given prefix,
+     * else throws a {@code ParseException} with the given message.
+     */
+    public int getUnnamedIntOrThrow(String message) throws ParseException {
+        final String value = getUnnamedValueOrThrow(message);
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid value for unnamed token: cannot "
+                                         + "parse " + value + " as integer: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Gets the integer value of the unnamed token with the given prefix,
+     * else throws a {@code ParseException} with the given message.
+     */
+    public int getUnnamedIntOrThrow() throws ParseException {
+        return getUnnamedIntOrThrow("Missing unnamed value");
+    }
+
 
     /**
      * Gets the integer value of the named token with the given prefix or throws an exception.
      */
-    public int getIntOrThrow(String prefix, String message) throws ParseException {
-        final String value = getValueOrThrow(prefix, message);
+    public int getNamedIntOrThrow(String prefix, String message) throws ParseException {
+        final String value = getNamedValuesOrThrow(prefix, message);
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
@@ -194,9 +274,9 @@ public class CommandParam {
     /**
      * Gets the integer value of the named token with the given prefix or throws an exception.
      *
-     * @see #getIntOrThrow(String, String)
+     * @see #getNamedIntOrThrow(String, String)
      */
-    public int getIntOrThrow(String prefix) throws ParseException {
-        return getIntOrThrow(prefix, "Missing value for prefix " + prefix);
+    public int getNamedIntOrThrow(String prefix) throws ParseException {
+        return getNamedIntOrThrow(prefix, "Missing value for prefix " + prefix);
     }
 }
