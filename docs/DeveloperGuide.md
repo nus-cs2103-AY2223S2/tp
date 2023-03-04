@@ -276,12 +276,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student                                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
 | `* * *`  | Student                                       | add a new person             |                                                                        |
 | `* * *`  | Student                                       | delete a person              | remove entries that I no longer need                                   |
+| `* * *`  | Student                                       | view a person's contact details | contact the person(TA/Professor) to seek help for my tutorials         |
 | `* * *`  | Student                                       | find a person by name        | locate details of persons without having to go through the entire list |
 | `* * *`  | Student                                       | filter a person by tag       | find the persons that is related to the tag quickly                    |
 | `* *`    | Student                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | Student with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-
 *{More to be added}*
 
 ### Use cases
@@ -328,8 +327,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
         Use case ends.
 
-*{More to be added}*
+**Use case: View a person's contact details**
 
+**MSS**
+
+1.  User requests to list persons
+2.  ModCheck shows a list of persons
+3.  User requests to view a specific person in the list
+4.  ModCheck displays the person's contact details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModCheck shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The person's contact details are hidden 
+
+    * 3a1. ModCheck shows an error message.
+
+      Use case ends.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -339,7 +366,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  A student should be able to learn and use commands provided by MODCheck easily within an hour of usage.
 
 *{More to be added}*
-
 
 ### Glossary
 
@@ -388,6 +414,33 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Viewing a person's contact details
+
+1. Viewing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Contact details not hidden
+
+       1. Test case: `view John Doe`<br>
+          Expected: John Doe's contact is viewed from the list. Details of the contact is displayed in ModCheck.
+
+       2. Test case: `view 0`<br>
+          Expected: No person's contact details is displayed. Error details shown in the status message. Status bar remains the same.
+
+       3. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+          Expected: Similar to previous.
+    
+    2. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Contact details are hidden
+
+        1. Test case: `view John Doe`<br>
+           Expected: Details of the contact not displayed in ModCheck. Error details shown in the status message. Status bar remains the same.
+
+        2. Test case: `view 0`<br>
+           Expected: No person's contact details is displayed. Error details shown in the status message. Status bar remains the same.
+
+        3. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+           Expected: Similar to previous.
+
 
 1. _{ more test cases …​ }_
 
