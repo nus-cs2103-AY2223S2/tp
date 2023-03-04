@@ -75,19 +75,30 @@ Format: `help`
 
 ### Adding a task: `add`
 
-Adds a task to the address book.
+Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
+For `Deadline` and `Event` date(s) are required. Dates should be in the format `YYYY-MM-DD HHmm`.
 
-Format: `add n/TASKNAME d/DESCRIPTION t/TAGS…​`
+Format: 
 
-Alternative Format to Add Multiple Tasks With the Same Descriptions and Tags:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION t/TAGS…​`
+- SimpleTask: `add n/TASKNAME d/DESCRIPTION t/TAGS…​` 
+
+- Deadline: `add n/TASKNAME d/DESCRIPTION t/TAGS D/DEADLINE…​`
+
+- Event: `add n/TASKNAME d/DESCRIPTION t/TAGS F/FROMDATE T/TODATE…​`
+
+You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION t/TAGS…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can add multiple Events and Deadlines as well! However, they have to share the same timings. 
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Read Book d/Make sure to take notes t/Leisure`
+* `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
 ### Listing all tasks : `list`
 

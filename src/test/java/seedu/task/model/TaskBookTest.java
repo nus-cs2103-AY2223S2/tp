@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class TaskBookTest {
 
@@ -46,7 +46,8 @@ public class TaskBookTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new SimpleTaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         TaskBookStub newData = new TaskBookStub(newTasks);
@@ -73,7 +74,8 @@ public class TaskBookTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskBook_returnsTrue() {
         taskBook.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new SimpleTaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(taskBook.hasTask(editedAlice));
     }

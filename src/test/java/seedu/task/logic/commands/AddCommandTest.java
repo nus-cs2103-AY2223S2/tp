@@ -21,7 +21,7 @@ import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
 import seedu.task.model.task.Task;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class AddCommandTest {
 
@@ -34,7 +34,7 @@ public class AddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         ArrayList<Task> validTask = new ArrayList<>();
-        validTask.add(new TaskBuilder().build());
+        validTask.add(new SimpleTaskBuilder().build());
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
@@ -45,7 +45,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new SimpleTaskBuilder().build();
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Task alice = new TaskBuilder().withName("Alice").build();
-        Task bob = new TaskBuilder().withName("Bob").build();
+        Task alice = new SimpleTaskBuilder().withName("Alice").build();
+        Task bob = new SimpleTaskBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

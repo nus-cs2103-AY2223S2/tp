@@ -13,11 +13,11 @@ import seedu.task.model.tag.Tag;
  * Represents a Task in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public abstract class Task {
 
     // Identity fields
-    private final Name name;
-    private final Description description;
+    private Name name;
+    private Description description;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
