@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Elvern Tan
 
-<img src="images/elvern18.jpg" width="200px">
+<img src="images/elvern18.png" width="200px">
 
 [[github](http://github.com/elvern18)]
 [[portfolio](team/elvern18.md)]
