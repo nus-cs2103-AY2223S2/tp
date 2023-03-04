@@ -17,6 +17,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkHomeworkAsDoneCommand;
+import seedu.address.logic.commands.MarkHomeworkAsUndoCommand;
 import seedu.address.logic.commands.ViewHomeworkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -80,9 +82,14 @@ public class AddressBookParser {
         case DeleteHomeworkCommand.COMMAND_WORD:
             return new DeleteHomeworkCommandParser().parse(arguments);
 
+        case MarkHomeworkAsDoneCommand.COMMAND_WORD:
+            return new MarkHomeworkAsDoneCommandParser().parse(arguments);
+
+        case MarkHomeworkAsUndoCommand.COMMAND_WORD:
+            return new MarkHomeworkAsUndoCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
