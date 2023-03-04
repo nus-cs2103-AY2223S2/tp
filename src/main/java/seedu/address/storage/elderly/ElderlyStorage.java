@@ -28,7 +28,8 @@ public interface ElderlyStorage {
     /**
      * @see #getElderlyFilePath()
      */
-    Optional<ReadOnlyElderly> readElderly(Path filePath, FriendlyLink friendlyLink) throws DataConversionException, IOException;
+    Optional<ReadOnlyElderly> readElderly(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyElderly} to the storage.

@@ -28,7 +28,8 @@ public interface VolunteerStorage {
     /**
      * @see #getVolunteerFilePath()
      */
-    Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink) throws DataConversionException, IOException;
+    Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyVolunteer} to the storage.
