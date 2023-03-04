@@ -21,7 +21,6 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
 
-
     private Logic logic;
     private MainWindow mainWindow;
 
@@ -35,9 +34,6 @@ public class UiManager implements Ui {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
-
-
-
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
