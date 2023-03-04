@@ -1,9 +1,9 @@
 package seedu.vms.model.patient;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.AppUtil.checkArgument;
 import static seedu.vms.logic.parser.ParserUtil.parseDate;
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,8 @@ import seedu.vms.logic.parser.exceptions.ParseException;
  */
 public class Dob {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date of birth can take any date earlier than today, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Date of birth can take any date earlier than today, and it should not be blank";
 
     public final LocalDateTime value;
 

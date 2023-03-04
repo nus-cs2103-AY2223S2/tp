@@ -33,7 +33,7 @@ public class DobTest {
         assertTrue(Dob.isValidDob("1903-05-29")); // Very old person
         assertTrue(Dob.isValidDob("2000-01-01")); // Y2k
     }
-    
+
     @Test
     public void isValidFormat() throws ParseException {
         final String expected = "2020-03-19";
