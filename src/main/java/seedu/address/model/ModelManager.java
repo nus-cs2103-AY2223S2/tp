@@ -95,7 +95,7 @@ public class ModelManager implements Model {
         return friendlyLink;
     }
 
-    //=========== FriendlyLink Persons  ======================================================================
+    //=========== FriendlyLink Persons ======================================================================
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -119,7 +119,7 @@ public class ModelManager implements Model {
         friendlyLink.setPerson(target, editedPerson);
     }
 
-    //=========== FriendlyLink Elderly  ======================================================================
+    //=========== FriendlyLink Elderly ======================================================================
     @Override
     public boolean hasElderly(Elderly e) {
         requireNonNull(e);
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
         friendlyLink.setElderly(target, editedPerson);
     }
 
-    //=========== FriendlyLink Volunteers  ======================================================================
+    //=========== FriendlyLink Volunteers ======================================================================
     @Override
     public boolean hasVolunteer(Volunteer person) {
         requireNonNull(person);
@@ -178,6 +178,7 @@ public class ModelManager implements Model {
         return friendlyLink.getVolunteer(nric);
     }
 
+    //=========== FriendlyLink Pairs ======================================================================
     @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
@@ -186,7 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePair(Pair target) {
-        // TODO: implement friendlyLink.removePair(target);
+        friendlyLink.removePair(target);
     }
 
     @Override

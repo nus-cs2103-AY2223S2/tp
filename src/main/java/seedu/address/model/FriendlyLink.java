@@ -244,6 +244,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
+     *
+     * @param pair Pair to check for in FriendlyLink.
+     * @return True if pair exists in FriendlyLink, false otherwise.
      */
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
@@ -251,21 +254,36 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Adds a pair to FriendlyLink.
-     * The pair must not already exist in FriendlyLink.
+     * Adds a {@pair} to {@code FriendlyLink}.
+     * The pair must not already exist in {@code FriendlyLink}.
+     *
+     * @param pair Pair to add into FriendlyLink.
      */
-    public void addPair(Pair p) {
-        pairs.add(p);
+    public void addPair(Pair pair) {
+        pairs.add(pair);
     }
 
     /**
      * Replaces the given pair {@code target} in the list with {@code editedPair}.
      * {@code target} must exist in FriendlyLink.
      * The pair identity of {@code editedPair} must not be the same as another existing pair in FriendlyLink.
+     *
+     * @param target Pair to edit.
+     * @param editedPair Pair with edited information.
      */
     public void setPair(Pair target, Pair editedPair) {
         requireNonNull(editedPair);
         pairs.setPair(target, editedPair);
+    }
+
+    /**
+     * Removes {@code target} from {@code FriendlyLink}.
+     * {@code target} must exist in the pair list.
+     *
+     * @param target Pair to remove.
+     */
+    public void removePair(Pair target) {
+        pairs.remove(target);
     }
 
     //// util methods

@@ -14,13 +14,13 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Adds a person to FriendlyLink.
+ * Deletes the pair identified using NRIC of its elderly and volunteer from the FriendlyLink database.
  */
-public class AddPairCommand extends Command {
+public class DeletePairCommand extends Command {
+    public static final String COMMAND_WORD = "delete_pair";
 
-    public static final String COMMAND_WORD = "add_pair";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in FriendlyLink. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes the pair identified by the nric of an elderly and their volunteer.\n"
             + "Parameters: "
             + PREFIX_NRIC_ELDERLY + "ELDERLY ID "
             + PREFIX_NRIC_VOLUNTEER + "VOLUNTEER ID \n"
@@ -28,9 +28,7 @@ public class AddPairCommand extends Command {
             + PREFIX_NRIC_ELDERLY + "s02133334I "
             + PREFIX_NRIC_VOLUNTEER + "T2245343a ";
 
-    public static final String MESSAGE_SUCCESS = "New pair added: %1$s";
-
-    public static final String MESSAGE_DUPLICATE_PAIR = "This pair already exists in FriendlyLink";
+    public static final String MESSAGE_DELETE_PAIR_SUCCESS = "Deleted Pair: %1$s";
 
     public static final String MESSAGE_ELDERLY_NOT_FOUND =
             "The elderly with the specified NRIC does not exist in FriendlyLink";
@@ -38,14 +36,14 @@ public class AddPairCommand extends Command {
     public static final String MESSAGE_VOLUNTEER_NOT_FOUND =
             "The volunteer with the specified NRIC does not exist in FriendlyLink";
 
+    public static final String MESSAGE_PAIR_NOT_FOUND =
+            "The pair with the specified elderly and volunteer does not exist in FriendlyLink";
+
     private final Nric elderlyNric;
     private final Nric volunteerNric;
 
-    /**
-     * Creates an AddPairCommand to add the specified {@code Pair}
-     */
-    public AddPairCommand(Nric elderlyNric, Nric volunteerNric) {
-        requireAllNonNull(elderlyNric, volunteerNric);
+    public DeletePairCommand(Nric elderlyNric, Nric volunteerNric) {
+            requireAllNonNull(elderlyNric, volunteerNric);
         this.elderlyNric = elderlyNric;
         this.volunteerNric = volunteerNric;
     }
@@ -68,20 +66,21 @@ public class AddPairCommand extends Command {
             throw new CommandException(MESSAGE_VOLUNTEER_NOT_FOUND);
         }
 
-        Pair toAdd = new Pair(elderly, volunteer);
-        if (model.hasPair(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PAIR);
+        Pair toDelete = new Pair(elderly, volunteer);
+        if (!model.hasPair(toDelete)) {
+            throw new CommandException(MESSAGE_PAIR_NOT_FOUND);
         }
 
-        model.addPair(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.deletePair(toDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PAIR_SUCCESS, toDelete));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddPairCommand // instanceof handles nulls
-                && elderlyNric.equals(((AddPairCommand) other).elderlyNric)
-                && volunteerNric.equals(((AddPairCommand) other).volunteerNric));
+        return other == this
+                || (other instanceof DeletePairCommand
+                && elderlyNric.equals(((DeletePairCommand) other).elderlyNric)
+                && volunteerNric.equals(((DeletePairCommand) other).volunteerNric));
     }
+
 }
