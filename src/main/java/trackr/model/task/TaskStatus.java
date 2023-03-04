@@ -36,7 +36,7 @@ public class TaskStatus {
     public TaskStatus(String status) {
         requireNonNull(status);
         checkArgument(isValidTaskStatus(status), MESSAGE_CONSTRAINTS);
-        if (status.equals("D")) {
+        if (status.equalsIgnoreCase("D")) {
             isDone = true;
         }
     }
@@ -46,7 +46,7 @@ public class TaskStatus {
      */
     public static boolean isValidTaskStatus(String test) {
         return test.matches(VALIDATION_REGEX)
-                && (test.equals("N") || test.equals("D"));
+                && (test.equalsIgnoreCase("N") || test.equalsIgnoreCase("D"));
     }
 
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class TaskDeadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Task deadline should only contain numeric values in the format \"YYYY/MM/DD\""
+            "Task deadline should only contain numeric values in the format \"DD/MM/YYYY\""
                     + "and it should not be blank";
 
     public final LocalDate taskDeadline;
@@ -33,7 +33,7 @@ public class TaskDeadline {
      * meaning date is today's date or after today's date.
      */
     public static boolean isValidTaskDeadline(LocalDate test) {
-        return test.isAfter(LocalDate.now());
+        return test.isAfter(LocalDate.now()) || test.isEqual(LocalDate.now());
     }
 
     /**
