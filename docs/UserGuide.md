@@ -65,7 +65,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Viewing Help : `help`
 
 Don't know how to get started? Don't worry!
 
@@ -75,9 +75,10 @@ Simply use this command to get access to our help page!
 
 ![help message](images/helpMessage.png)
 
-### Adding a person: `add`
+### Adding A New Contact: `add`
 
-This command allows you to add a person to your address book.
+Met a new friend?
+Use this command to add him/her to your address book.
 
 > Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 ><div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -89,7 +90,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 
-### Listing all persons : `list`
+### Listing All Contacts : `list`
 
 Want to see all your contacts?
 
@@ -98,84 +99,102 @@ Use this command to gain access to all of them!
 > Command: `list`
 
 
-### Editing a person's details : `edit`
+### Editing a contact's details : `edit`
 
-Edits an existing person's details in the address book.
+Learnt something new about your friend? Or perhaps he/she changed a particular detail?
+
+Use this command to edit his/her details easily!
 
 > Command: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Here are some important requirements for you to take note:
-* Edits the person at the specified `INDEX`. 
-The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+  * `INDEX` must be a **positive integer**.
+* At least one field must be provided.
+  * Note that when editing a contact's `t/TAG`, the existing tags will be removed
+    
+    _[i.e  adding of tags is not cumulative]_
+    * If you wish to remove all tags from the person, simply type `t/`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding Particular Contacts: `find`
 
-Finds persons whose names contain any of the given keywords.
+Want to narrow down your displayed contacts to a certain few?
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Use this command to find contacts whose names contain any of the given keywords!
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> Command: `find KEYWORD [MORE_KEYWORDS]`
+
+Here are some important requirements for you to take note:
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is **case-insensitive**.
+
+    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
+* The order of the keywords does not matter. 
+
+    _[e.g. `Hans Bo` will match `Bo Hans`]_
+
+* Only full words will be matched
+
+    _[e.g. `Han` will not match `Hans`]_
+* Persons matching at least one keyword will be returned (i.e. `OR` search)
+
+    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+### Deleting A Contact : `delete`
 
-Format: `delete INDEX`
+No longer interact with someone in your contacts?
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Use this command to delete the specified contact from your address book.
+
+> Command: `delete INDEX`
+
+Here are some important requirements for you to take note:
+* `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
+  * `INDEX` must be a **positive integer**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all contacts : `clear`
 
-Clears all entries from the address book.
+Want to start from a clean slate?
 
-Format: `clear`
+Simply use this command to clear all contacts from your address book.
 
-### Exiting the program : `exit`
+> Command: `clear`
 
-Exits the program.
+### Exiting AddressBookNeo : `exit`
 
-Format: `exit`
+Finished what you needed to do?
+
+Use this command to exit the application!
+
+> Command: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
+
+You are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
