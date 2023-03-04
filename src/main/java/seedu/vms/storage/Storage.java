@@ -31,6 +31,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
 
-    VaxTypeManager loadVaxTypes();
+    VaxTypeManager loadDefaultVaxTypes();
 
 }

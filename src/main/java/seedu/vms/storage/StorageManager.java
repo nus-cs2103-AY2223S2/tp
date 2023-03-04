@@ -80,7 +80,7 @@ public class StorageManager implements Storage {
     // ================ Vax Type methods ==============================
 
     @Override
-    public VaxTypeManager loadVaxTypes() {
+    public VaxTypeManager loadDefaultVaxTypes() {
         logger.fine("Attempting to load default vaccination types");
         try {
             return VaxTypeLoader.load();

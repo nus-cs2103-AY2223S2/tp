@@ -91,7 +91,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        VaxTypeManager vaxTypeManager = storage.loadVaxTypes();
+        VaxTypeManager vaxTypeManager = storage.loadDefaultVaxTypes();
 
         return new ModelManager(initialData, vaxTypeManager, userPrefs);
     }
