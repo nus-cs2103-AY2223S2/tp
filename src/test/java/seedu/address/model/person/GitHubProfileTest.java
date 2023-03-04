@@ -24,7 +24,7 @@ class GitHubProfileTest {
     }
 
     @Test
-    public void isValidProfile() {
+    public void testIsValidProfile() {
         // null profile
         assertThrows(NullPointerException.class, () -> GitHubProfile.isValidProfile(null));
 
@@ -56,7 +56,7 @@ class GitHubProfileTest {
     }
 
     @Test
-    public void equals() {
+    public void testEquals() {
         // same values -> returns true
         GitHubProfile amyCopy = new GitHubProfile(VALID_GITHUBPROFILE_AMY);
         assertTrue(AMY_PROFILE.equals(amyCopy));
