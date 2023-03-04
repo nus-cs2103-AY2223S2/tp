@@ -3,8 +3,8 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg)
+aiming to transform fridge inventory management. <br/><br/>
 You can reach us at the email `ng.jinyuan@u.nus.edu`
 
 ## Project team
@@ -16,8 +16,8 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[github](http://github.com/jnjy)]
 [[portfolio](team/jnjy.md)]
 
--   Role: Team lead
--   Responsibilities:
+-   Role: Team lead, Git Expert
+-   Responsibilities: *WIP*
 
 ### Ritika Joshi
 
@@ -27,7 +27,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/rmj1405.md)]
 
 -   Role: Scheduling and tracking, Deliverables and deadlines
--   Responsibilities:
+-   Responsibilities: *WIP*
 
 ### Justin Leng
 
@@ -37,7 +37,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/scorpiussigma.md)]
 
 -   Role: Integration
--   Responsibilities:
+-   Responsibilities: *WIP*
 
 ### Nigel Teo
 
@@ -47,14 +47,14 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/nigelteosw.md)]
 
 -   Role: UI/UX experts
--   Responsibilities:
+-   Responsibilities: *WIP*
 
 ### Wesley Teo
 
-<img src="images/bicesto.png" width="200px">
+<img src="images/bisceto.png" width="200px">
 
-[[github](http://github.com/bicesto)]
+[[github](http://github.com/bisceto)]
 [[portfolio](team/bicesto.md)]
 
 -   Role: Documentation
--   Responsibilities:
+-   Responsibilities: *WIP*
