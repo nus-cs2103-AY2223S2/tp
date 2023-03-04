@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (lastShownList.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_NAME);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
