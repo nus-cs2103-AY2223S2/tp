@@ -2,7 +2,7 @@ package seedu.dengue.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,13 +22,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_POSTAL + "POSTAL "
-            + PREFIX_DATEANDTIME + "DATEANDTIME "
+            + PREFIX_DATE + "DATE "
             + PREFIX_AGE + "AGE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_POSTAL + "611321 "
-            + PREFIX_DATEANDTIME + "TODO:Choose a datetime format " //TODO
+            + PREFIX_DATE + "TODO:Choose a date format " //TODO
             + PREFIX_AGE + "48 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

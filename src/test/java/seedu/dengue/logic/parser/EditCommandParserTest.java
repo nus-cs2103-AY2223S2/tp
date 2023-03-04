@@ -6,7 +6,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
-import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATEANDTIME_DESC;
+import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_POSTAL_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -17,8 +17,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATEANDTIME_AMY;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATEANDTIME_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
@@ -37,7 +37,7 @@ import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.EditCommand;
 import seedu.dengue.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.tag.Tag;
@@ -83,7 +83,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS); // invalid postal
-        assertParseFailure(parser, "1" + INVALID_DATEANDTIME_DESC, DateAndTime.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -101,7 +101,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATEANDTIME_DESC
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATE_DESC
                         + VALID_AGE_AMY + VALID_POSTAL_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
@@ -113,7 +113,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPostal(VALID_POSTAL_BOB).withDateAndTime(VALID_DATEANDTIME_AMY).withAddress(VALID_AGE_AMY)
+                .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -126,7 +126,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
-                .withDateAndTime(VALID_DATEANDTIME_AMY).build();
+                .withDate(VALID_DATE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -149,7 +149,7 @@ public class EditCommandParserTest {
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withDateAndTime(VALID_DATEANDTIME_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -174,7 +174,7 @@ public class EditCommandParserTest {
                 + POSTAL_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
-                .withDateAndTime(VALID_DATEANDTIME_BOB).withAddress(VALID_AGE_BOB)
+                .withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -195,7 +195,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_POSTAL_DESC + ADDRESS_DESC_BOB
                 + POSTAL_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
-                .withDateAndTime(VALID_DATEANDTIME_BOB)
+                .withDate(VALID_DATE_BOB)
                 .withAddress(VALID_AGE_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

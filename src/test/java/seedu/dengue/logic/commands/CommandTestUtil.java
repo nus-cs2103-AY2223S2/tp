@@ -3,7 +3,7 @@ package seedu.dengue.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,8 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_POSTAL_AMY = "111111";
     public static final String VALID_POSTAL_BOB = "222222";
-    public static final String VALID_DATEANDTIME_AMY = "amy@example.com";
-    public static final String VALID_DATEANDTIME_BOB = "bob@example.com";
+    public static final String VALID_DATE_AMY = "amy@example.com";
+    public static final String VALID_DATE_BOB = "bob@example.com";
     public static final String VALID_AGE_AMY = "Block 312, Amy Street 1";
     public static final String VALID_AGE_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String POSTAL_DESC_AMY = " " + PREFIX_POSTAL + VALID_POSTAL_AMY;
     public static final String POSTAL_DESC_BOB = " " + PREFIX_POSTAL + VALID_POSTAL_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_DATEANDTIME + VALID_DATEANDTIME_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_DATEANDTIME + VALID_DATEANDTIME_BOB;
+    public static final String EMAIL_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
+    public static final String EMAIL_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -50,7 +50,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_POSTAL_DESC = " " + PREFIX_POSTAL + "911a"; // 'a' not allowed in postals
-    public static final String INVALID_DATEANDTIME_DESC = " " + PREFIX_DATEANDTIME + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -62,10 +62,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPostal(VALID_POSTAL_AMY).withDateAndTime(VALID_DATEANDTIME_AMY).withAddress(VALID_AGE_AMY)
+                .withPostal(VALID_POSTAL_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPostal(VALID_POSTAL_BOB).withDateAndTime(VALID_DATEANDTIME_BOB).withAddress(VALID_AGE_BOB)
+                .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

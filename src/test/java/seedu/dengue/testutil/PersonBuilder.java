@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -18,12 +18,12 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_POSTAL = "654214";
-    public static final String DEFAULT_DATEANDTIME = "amy@gmail.com";
+    public static final String DEFAULT_DATE = "amy@gmail.com";
     public static final String DEFAULT_AGE = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Postal postal;
-    private DateAndTime dateAndTime;
+    private Date date;
     private Age age;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         this.name = new Name(DEFAULT_NAME);
         this.postal = new Postal(DEFAULT_POSTAL);
-        this.dateAndTime = new DateAndTime(DEFAULT_DATEANDTIME);
+        this.date = new Date(DEFAULT_DATE);
         this.age = new Age(DEFAULT_AGE);
         this.tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         postal = personToCopy.getPostal();
-        dateAndTime = personToCopy.getDateAndTime();
+        date = personToCopy.getDate();
         age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -82,15 +82,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code DateAndTime} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Person} that we are building.
      */
-    public PersonBuilder withDateAndTime(String dateAndTime) {
-        this.dateAndTime = new DateAndTime(dateAndTime);
+    public PersonBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
     public Person build() {
-        return new Person(name, postal, dateAndTime, age, tags);
+        return new Person(name, postal, date, age, tags);
     }
 
 }

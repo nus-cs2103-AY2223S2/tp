@@ -2,7 +2,7 @@ package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import seedu.dengue.logic.commands.AddCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -32,20 +32,20 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL,
-                        PREFIX_DATEANDTIME, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_DATE, PREFIX_AGE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_AGE, PREFIX_POSTAL, PREFIX_DATEANDTIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_AGE, PREFIX_POSTAL, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Postal postal = ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get());
-        DateAndTime dateAndTime = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATEANDTIME).get());
+        Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get());
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, postal, dateAndTime, age, tagList);
+        Person person = new Person(name, postal, date, age, tagList);
 
         return new AddCommand(person);
     }

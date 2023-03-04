@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.exceptions.IllegalValueException;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
 
@@ -26,7 +26,7 @@ public class JsonAdaptedPersonTest {
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPostal().toString();
-    private static final String VALID_EMAIL = BENSON.getDateAndTime().toString();
+    private static final String VALID_EMAIL = BENSON.getDate().toString();
     private static final String VALID_ADDRESS = BENSON.getAge().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -72,14 +72,14 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = DateAndTime.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateAndTime.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

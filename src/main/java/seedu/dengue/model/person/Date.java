@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's dengue case dateAndTime in the Dengue Hotspot Tracker.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateAndTime(String)}
+ * Represents a Person's dengue case date in the Dengue Hotspot Tracker.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class DateAndTime {
+public class Date {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -34,20 +34,20 @@ public class DateAndTime {
     public final String value;
 
     /**
-     * Constructs an {@code DateAndTime}.
+     * Constructs an {@code Date}.
      *
-     * @param dateAndTime A Date and Time.
+     * @param date A Date.
      */
-    public DateAndTime(String dateAndTime) {
-        requireNonNull(dateAndTime);
-        checkArgument(isValidDateAndTime(dateAndTime), MESSAGE_CONSTRAINTS);
-        value = dateAndTime;
+    public Date(String date) {
+        requireNonNull(date);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        value = date;
     }
 
     /**
-     * Returns if a given string is a valid dateAndTime.
+     * Returns if a given string is a valid date.
      */
-    public static boolean isValidDateAndTime(String test) {
+    public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -59,8 +59,8 @@ public class DateAndTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DateAndTime // instanceof handles nulls
-                && value.equals(((DateAndTime) other).value)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && value.equals(((Date) other).value)); // state check
     }
 
     @Override

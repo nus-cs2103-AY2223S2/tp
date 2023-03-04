@@ -3,7 +3,7 @@ package seedu.dengue.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATEANDTIME_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -33,7 +33,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPostal(VALID_POSTAL_BOB)
-                .withDateAndTime(VALID_DATEANDTIME_BOB)
+                .withDate(VALID_DATE_BOB)
                 .withAge(VALID_AGE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -78,7 +78,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withDateAndTime(VALID_DATEANDTIME_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

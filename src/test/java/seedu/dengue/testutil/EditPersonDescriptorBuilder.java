@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.dengue.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -34,7 +34,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPostal(person.getPostal());
-        descriptor.setDateAndTime(person.getDateAndTime());
+        descriptor.setDate(person.getDate());
         descriptor.setAge(person.getAge());
         descriptor.setTags(person.getTags());
     }
@@ -58,8 +58,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withDateAndTime(String email) {
-        descriptor.setDateAndTime(new DateAndTime(email));
+    public EditPersonDescriptorBuilder withDate(String email) {
+        descriptor.setDate(new Date(email));
         return this;
     }
 

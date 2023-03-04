@@ -10,7 +10,7 @@ import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.commons.util.StringUtil;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.tag.Tag;
@@ -89,13 +89,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static DateAndTime parseEmail(String email) throws ParseException {
+    public static Date parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!DateAndTime.isValidDateAndTime(trimmedEmail)) {
-            throw new ParseException(DateAndTime.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(trimmedEmail)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new DateAndTime(trimmedEmail);
+        return new Date(trimmedEmail);
     }
 
     /**

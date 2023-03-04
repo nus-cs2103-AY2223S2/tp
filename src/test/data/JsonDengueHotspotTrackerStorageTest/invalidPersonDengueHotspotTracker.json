@@ -2,7 +2,7 @@
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "postal": "9482424",
-    "datetime": "hans@example.com",
+    "date": "hans@example.com",
     "age": "4th street"
   } ]
 }
