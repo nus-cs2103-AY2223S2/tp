@@ -33,7 +33,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Adds an event to the list.
-     * The person must not already exist in the list.
+     * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);

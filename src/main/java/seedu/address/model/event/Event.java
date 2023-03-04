@@ -37,7 +37,7 @@ public class Event {
 
     /**
      * Returns true if both events have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {

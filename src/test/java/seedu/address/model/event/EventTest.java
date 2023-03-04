@@ -26,7 +26,7 @@ public class EventTest {
         // different type -> returns false
         assertFalse(CARNIVAL.equals(511));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(CARNIVAL.equals(SPORTS_DAY));
     }
 }
