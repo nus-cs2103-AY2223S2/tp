@@ -2,7 +2,7 @@ package seedu.dengue.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -14,14 +14,14 @@ import java.time.format.DateTimeParseException;
 public class Date {
 
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format yyyy-mm-dd HH:mm"
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format yyyy-mm-dd"
             + "and adhere to the following constraints:\n"
-            + "1. Each block should only contain digits, and no other special characters\n"
-            + "2. Each block is separated by a colon ':'\n"
-            + "3. Dates must be valid. i.e.\n"
-            + " - mm cannot take values >12\n"
-            + " - HH:mm cannot go beyond 23:59";
-    private static final String VALIDATION_DATE = "yyyy-MM-dd HH:mm";
+            + "1. Date to be formatted as yyyy-MM-dd in 3 blocks separated by a hyphen '-'\n"
+            + " - Each block should only contain digits, and no other special characters\n"
+            + "2. Dates must be valid. i.e.\n"
+            + " - MM cannot take values >12";
+
+    private static final String VALIDATION_DATE = "yyyy-MM-dd";
     private static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern(VALIDATION_DATE);
 
 
@@ -44,7 +44,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDateTime.parse(test, VALIDATION_FORMAT);
+            LocalDate.parse(test, VALIDATION_FORMAT);
         } catch (DateTimeParseException e) {
             return false;
         }
