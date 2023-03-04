@@ -3,7 +3,7 @@ package seedu.modtrek.model.module;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Module}'s {@code Name} matches module code.
  */
 public class ModuleCodePredicate implements Predicate<Module> {
     private final Code moduleCode;
