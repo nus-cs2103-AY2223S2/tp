@@ -30,7 +30,8 @@ public class JsonElderlyStorageTest {
     }
 
     private java.util.Optional<ReadOnlyElderly> readElderly(String filePath) throws Exception {
-        return new JsonElderlyStorage(Paths.get(filePath)).readElderly(addToTestDataPathIfNotNull(filePath));
+        return new JsonElderlyStorage(Paths.get(filePath))
+                .readElderly(addToTestDataPathIfNotNull(filePath), new FriendlyLink());
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,20 +68,20 @@ public class JsonElderlyStorageTest {
 
         // Save in new file and read back
         jsonElderlyStorage.saveElderly(original, filePath);
-        ReadOnlyElderly readBack = jsonElderlyStorage.readElderly(filePath).get();
+        ReadOnlyElderly readBack = jsonElderlyStorage.readElderly(filePath, new FriendlyLink()).get();
         assertEquals(original.getElderlyList(), readBack.getElderlyList());
 
         // Modify data, overwrite exiting file, and read back
         original.removeElderly(TypicalElderly.ALICE);
         original.addElderly(TypicalElderly.ALICE);
         jsonElderlyStorage.saveElderly(original, filePath);
-        readBack = jsonElderlyStorage.readElderly(filePath).get();
+        readBack = jsonElderlyStorage.readElderly(filePath, new FriendlyLink()).get();
         assertEquals(original.getElderlyList(), readBack.getElderlyList());
 
         // Save and read without specifying file path
         original.addElderly(TypicalElderly.AMY);
         jsonElderlyStorage.saveElderly(original); // file path not specified
-        readBack = jsonElderlyStorage.readElderly().get(); // file path not specified
+        readBack = jsonElderlyStorage.readElderly(new FriendlyLink()).get(); // file path not specified
         assertEquals(original.getElderlyList(), readBack.getElderlyList());
 
     }

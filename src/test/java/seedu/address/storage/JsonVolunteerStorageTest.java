@@ -30,7 +30,8 @@ public class JsonVolunteerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyVolunteer> readVolunteer(String filePath) throws Exception {
-        return new JsonVolunteerStorage(Paths.get(filePath)).readVolunteer(addToTestDataPathIfNotNull(filePath));
+        return new JsonVolunteerStorage(Paths.get(filePath))
+                .readVolunteer(addToTestDataPathIfNotNull(filePath), new FriendlyLink());
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,20 +68,20 @@ public class JsonVolunteerStorageTest {
 
         // Save in new file and read back
         jsonVolunteerStorage.saveVolunteer(original, filePath);
-        ReadOnlyVolunteer readBack = jsonVolunteerStorage.readVolunteer(filePath).get();
+        ReadOnlyVolunteer readBack = jsonVolunteerStorage.readVolunteer(filePath, new FriendlyLink()).get();
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
 
         // Modify data, overwrite exiting file, and read back
         original.removeVolunteer(TypicalVolunteers.ALICE);
         original.addVolunteer(TypicalVolunteers.ALICE);
         jsonVolunteerStorage.saveVolunteer(original, filePath);
-        readBack = jsonVolunteerStorage.readVolunteer(filePath).get();
+        readBack = jsonVolunteerStorage.readVolunteer(filePath, new FriendlyLink()).get();
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
 
         // Save and read without specifying file path
         original.addVolunteer(TypicalVolunteers.AMY);
         jsonVolunteerStorage.saveVolunteer(original); // file path not specified
-        readBack = jsonVolunteerStorage.readVolunteer().get(); // file path not specified
+        readBack = jsonVolunteerStorage.readVolunteer(new FriendlyLink()).get(); // file path not specified
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
 
     }
