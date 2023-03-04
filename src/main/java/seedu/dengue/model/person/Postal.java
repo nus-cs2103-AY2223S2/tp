@@ -25,14 +25,6 @@ public class Postal {
         value = formatPostal(postal);
     }
 
-    /**
-     * Checks if a postal code string begins with the letter "S" pr "s".
-     * @param postal postal code string.
-     * @return a boolean value.
-     */
-    public boolean hasStart(String postal) {
-        return postal.substring(0, 1).toUpperCase().equals("S");
-    }
 
     /**
      * Formats a postal code to be in the form "^S\\d{6}$"
@@ -40,7 +32,7 @@ public class Postal {
      * @return A formatted postal code.
      */
     public String formatPostal(String string) {
-        boolean hasStart = hasStart(string);
+        boolean hasStart = string.substring(0, 1).toUpperCase().equals("S");
         if (hasStart) {
             return string.toUpperCase();
         } else {
