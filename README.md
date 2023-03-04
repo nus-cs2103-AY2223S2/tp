@@ -6,8 +6,8 @@
 
 # Team builder
 
-This is a project by Software Engineering (SE) students of the 
-National University of Singapore (NUS). It is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org). You can view the NUS source code [here](https://github.com/nus-cs2103-AY2223S2/tp).
+This is a project by Software Engineering (SE) students of the National University of Singapore (NUS).
+It is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org). You can view the NUS source code [here](https://github.com/nus-cs2103-AY2223S2/tp).
 
 We aim for this project to be able to help Computing Students manage contacts to form teams for hackathons, etc.
 
@@ -16,14 +16,16 @@ We aim for this project to be able to help Computing Students manage contacts to
 * For the detailed documentation of this project, see the **[Team Builder Product Website](https://ay2223s2-cs2103t-t17-1.github.io/tp/)**.
 * This project is an implementation of a project that is **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
-## Installation 
+## Installation
 
-Prerequisite: 
+Prerequisite:
+
 1. Downloaded [Java JDK 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
 
 Team Builder Installation:
-1. Download teambuilder.jar from the latest release  
-2. Run Team Builder using method (A) or (B)  
+
+1. Download teambuilder.jar from the latest release
+2. Run Team Builder using method (A) or (B)
    (A) Run teambuilder.jar from the command line using  
 `java -jar teambuilder.jar`  
    (B) Double click onto teambuilder.jar
