@@ -29,15 +29,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
 ### Kenz Antonius
 
 <img src="images/kenzantonius.png" width="200px">
@@ -45,15 +36,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/kenzantonius)]
 [[portfolio](team/kenzantonius.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### Sanjevi Ravi
 
-### James Doe
+<img src="images/sanjevi13.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/sanjevi13)]
 [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Kynhan Tang
+
+<img src="images/kynhan.png" width="200px">
+
+[[github](http://github.com/kynhan)]
+[[portfolio](team/kynhan.md)]
 
 * Role: Developer
 * Responsibilities: UI
