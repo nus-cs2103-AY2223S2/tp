@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.SortCommand;
-
 /**
  * Represents a prefix's position in an arguments string.
  */

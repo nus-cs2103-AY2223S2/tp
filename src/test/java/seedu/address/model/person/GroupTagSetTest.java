@@ -1,14 +1,13 @@
 package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.GroupTag;
 
@@ -50,8 +49,7 @@ public class GroupTagSetTest {
         GroupTagSet groupTagSet = new GroupTagSet();
         Set<GroupTag> immutableSet = groupTagSet.getImmutableGroups();
 
-        assertThrows(UnsupportedOperationException.class,
-                () -> immutableSet.add(GROUP_TAG_1));
+        assertThrows(UnsupportedOperationException.class, () -> immutableSet.add(GROUP_TAG_1));
     }
 
     @Test

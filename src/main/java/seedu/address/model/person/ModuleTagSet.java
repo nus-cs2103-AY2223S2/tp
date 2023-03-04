@@ -30,6 +30,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     private Set<ModuleTag> commonModules;
 
+    /**
+     * Initialises a new ModuleTagSet.
+     */
     public ModuleTagSet() {
         modules = new HashSet<>();
         commonModules = new HashSet<>();

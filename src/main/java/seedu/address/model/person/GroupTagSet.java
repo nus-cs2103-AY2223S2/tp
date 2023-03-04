@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.tag.GroupTag;
-import seedu.address.model.tag.ModuleTag;
 
 /**
  * This class was added to facilitate the Sort Command.

@@ -33,6 +33,10 @@ public class SortCommand extends Command {
     private final Comparator<Person> comparator;
     private final String comparatorDesc;
 
+    /**
+     * @param comparator to compare the persons
+     * @param comparatorDesc that describes what the sort command sorts by
+     */
     public SortCommand(Comparator<Person> comparator, String comparatorDesc) {
         this.comparator = comparator;
         this.comparatorDesc = comparatorDesc;

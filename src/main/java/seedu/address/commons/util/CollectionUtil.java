@@ -38,7 +38,13 @@ public class CollectionUtil {
 
     /**
      * Zips two streams together with a BiFunction.
-     * Solution adapted from "<a href="https://stackoverflow.com/questions/17640754/zipping-streams-using-jdk8-with-lambda-java-util-stream-streams-zip">...</a>".
+     * Solution adapted from
+     * "<a href="https://stackoverflow.com/questions
+     * /17640754/zipping-streams-using-jdk8-with-lambda
+     * -java-util-stream-streams-zip">Stack Overflow</a>".
+     *
+     * Apparently, there's no raw Java that can zip streams together.
+     * If you can find alternatives, you can just take this out.
      */
     public static <T, U, R> Stream<R> zip(Stream<T> firstStream, Stream<U> secondStream, BiFunction<T, U, R> zipper) {
         final Iterator<T> firstIterator = firstStream.iterator();

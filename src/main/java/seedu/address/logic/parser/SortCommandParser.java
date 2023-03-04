@@ -19,25 +19,25 @@ import seedu.address.model.person.Person;
 public class SortCommandParser implements Parser<SortCommand> {
     // maps the prefixes to their comparators
     private static final HashMap<Prefix, Comparator<Person>> COMPARATOR_HASH_MAP = new HashMap<>() {{
-        put(Prefix.ADDRESS, Comparator.comparing(Person::getAddress));
-        put(Prefix.EMAIL, Comparator.comparing(Person::getEmail));
-        put(Prefix.GROUP_TAG, Comparator.comparing(Person::getGroupTags));
-        put(Prefix.MODULE_TAG, Comparator.comparing(Person::getModuleTags));
-        put(Prefix.NAME, Comparator.comparing(Person::getName));
-        put(Prefix.PHONE, Comparator.comparing(Person::getPhone));
-        put(Prefix.TELEGRAM_HANDLE, Comparator.comparing(Person::getTelegramHandle));
-    }};
+            put(Prefix.ADDRESS, Comparator.comparing(Person::getAddress));
+            put(Prefix.EMAIL, Comparator.comparing(Person::getEmail));
+            put(Prefix.GROUP_TAG, Comparator.comparing(Person::getGroupTags));
+            put(Prefix.MODULE_TAG, Comparator.comparing(Person::getModuleTags));
+            put(Prefix.NAME, Comparator.comparing(Person::getName));
+            put(Prefix.PHONE, Comparator.comparing(Person::getPhone));
+            put(Prefix.TELEGRAM_HANDLE, Comparator.comparing(Person::getTelegramHandle));
+        }};
 
     // use this as the default sorting direction
     private static final HashMap<Prefix, Boolean> IS_ASCENDING_DEFAULT_HASH_MAP = new HashMap<>() {{
-        put(Prefix.ADDRESS, true);
-        put(Prefix.EMAIL, true);
-        put(Prefix.GROUP_TAG, false);
-        put(Prefix.MODULE_TAG, false);
-        put(Prefix.NAME, true);
-        put(Prefix.PHONE, true);
-        put(Prefix.TELEGRAM_HANDLE, true);
-    }};
+            put(Prefix.ADDRESS, true);
+            put(Prefix.EMAIL, true);
+            put(Prefix.GROUP_TAG, false);
+            put(Prefix.MODULE_TAG, false);
+            put(Prefix.NAME, true);
+            put(Prefix.PHONE, true);
+            put(Prefix.TELEGRAM_HANDLE, true);
+        }};
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand

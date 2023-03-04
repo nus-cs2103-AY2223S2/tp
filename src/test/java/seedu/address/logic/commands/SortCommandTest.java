@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
@@ -72,7 +71,7 @@ public class SortCommandTest {
         List<Person> personList = model.getFilteredPersonList();
 
         for (int i = 0; i < personList.size() - 1; i++) {
-            assertTrue(comparator.compare(personList.get(i), personList.get(i+1)) <= 0);
+            assertTrue(comparator.compare(personList.get(i), personList.get(i + 1)) <= 0);
         }
     }
 }

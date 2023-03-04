@@ -1,14 +1,13 @@
 package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.testutil.TypicalUser;
@@ -51,8 +50,7 @@ public class ModuleTagSetTest {
         ModuleTagSet moduleTagSet = new ModuleTagSet();
         Set<ModuleTag> immutableSet = moduleTagSet.getImmutableModules();
 
-        assertThrows(UnsupportedOperationException.class,
-                () -> immutableSet.add(MODULE_TAG_1));
+        assertThrows(UnsupportedOperationException.class, () -> immutableSet.add(MODULE_TAG_1));
     }
 
     @Test
@@ -60,8 +58,7 @@ public class ModuleTagSetTest {
         ModuleTagSet moduleTagSet = new ModuleTagSet();
         Set<ModuleTag> immutableSet = moduleTagSet.getImmutableCommonModules();
 
-        assertThrows(UnsupportedOperationException.class,
-                () -> immutableSet.add(MODULE_TAG_1));
+        assertThrows(UnsupportedOperationException.class, () -> immutableSet.add(MODULE_TAG_1));
     }
 
     @Test
