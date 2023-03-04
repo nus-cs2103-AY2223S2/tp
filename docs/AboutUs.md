@@ -32,31 +32,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:
   * In charge of UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Lim Jian Rong, Nicholas
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/nicholaslim.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/nicljr)] [[portfolio](team/nicholaslim.md)]
 
-### Jean Doe
+* Role: 
+  * Code Quality
+  * Deliverables And Deadlines
+* Responsibilities: In Charge of Calendar
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Tan Wei Xuan Rachel
+<img src="images/rachel.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/rachtan27)]
+[[portfolio](team/rachel.md)]
 
-### James Doe
+* Role: Testing
+* Responsibilities:
+  * In charge of Commands
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Shane Duggan
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/ShaneDuggan.png" width="200px">
+
+[[github](http://github.com/Shuggan)]
+
+* Role: Documentation
+* Responsibilities: Storage

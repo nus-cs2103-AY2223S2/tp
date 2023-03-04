@@ -19,11 +19,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,9 +102,16 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
+        Modules updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
+        Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
+        CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
+
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms);
     }
 
     @Override
@@ -130,6 +142,11 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Gender gender;
+        private Major major;
+        private Race race;
+        private Modules modules;
+        private CommunicationChannel comms;
 
         public EditPersonDescriptor() {}
 
@@ -143,13 +160,18 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGender(toCopy.gender);
+            setMajor(toCopy.major);
+            setRace(toCopy.race);
+            setModules(toCopy.modules);
+            setComms(toCopy.comms);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, gender, major, race, modules, comms);
         }
 
         public void setName(Name name) {
@@ -221,6 +243,46 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public void setMajor(Major major) {
+            this.major = major;
+        }
+
+        public void setRace(Race race) {
+            this.race = race;
+        }
+
+        public void setModules(Modules modules) {
+            this.modules = modules;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(this.gender);
+        }
+
+        public Optional<Major> getMajor() {
+            return Optional.ofNullable(this.major);
+        }
+
+        public Optional<Modules> getModules() {
+            return Optional.ofNullable(this.modules);
+        }
+
+        public Optional<Race> getRace() {
+            return Optional.ofNullable(this.race);
+        }
+
+        public Optional<CommunicationChannel> getComms() {
+            return Optional.ofNullable(this.comms);
+        }
+
+        public void setComms(CommunicationChannel comms) {
+            this.comms = comms;
         }
     }
 }

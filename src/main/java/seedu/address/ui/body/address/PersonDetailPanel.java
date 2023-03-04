@@ -2,6 +2,8 @@ package seedu.address.ui.body.address;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,24 +41,38 @@ public class PersonDetailPanel extends UiPart<Region> {
         clearPerson();
     }
 
-    public void setPerson(Person person, int displayedIndex) {
+    public void setPerson(Person person) {
         clearPerson();
         if (person == null) {
-            clearPerson();
             return;
         }
 
-        id.setText("Index: " + displayedIndex);
         name.setText(person.getName().toString());
         tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
     }
 
     /**
+     * Sets the index of the {@code Person} to be displayed to the user.
+     * If the given {@code index} is less than 1, it is assumed that
+     * no {@code Person} is selected.
+     *
+     * @param index 1-based index of the corresponding {@code Person}.
+     */
+    public void setDisplayedIndex(int index) {
+        if (index < 1) {
+            id.setText("Select a contact.");
+        } else {
+            id.setText(String.format("Index: %d", index));
+        }
+    }
+
+    /**
      * Empties the fields, resulting in a blank {@code PersonDetailPanel}.
      */
     public void clearPerson() {
-        id.setText("Select a contact.");
+        setDisplayedIndex(-1);
+
         name.setText(null);
         tags.getChildren().clear();
         dataContainer.getChildren().clear();
@@ -72,12 +88,26 @@ public class PersonDetailPanel extends UiPart<Region> {
     }
 
     private Collection<Region> getDataCardCollection(Person person) {
-        return Stream.of(
+        List<Region> regions = Stream.of(
                 new PersonDetailCard.DetailCardData("Phone", person.getPhone().toString()),
                 new PersonDetailCard.DetailCardData("Address", person.getAddress().toString()),
-                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()))
+                new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()),
+                new PersonDetailCard.DetailCardData("Gender", person.getGender().toString()),
+                new PersonDetailCard.DetailCardData("Race", person.getRace().toString()),
+                new PersonDetailCard.DetailCardData("Communication channels", person.getComms().toString()),
+                new PersonDetailCard.DetailCardData("Major", person.getMajor().toString()))
+                .filter(PersonDetailCard.DetailCardData::hasBody)
                 .map(PersonDetailCard::new)
                 .map(PersonDetailCard::getRoot)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(LinkedList::new));
+
+        if (person.getModules() == null
+                || person.getModules().mods == null
+                || person.getModules().mods.isEmpty()) {
+            return regions;
+        }
+        regions.add(new PersonModulesCard("Modules", person.getModules().mods).getRoot());
+
+        return regions;
     }
 }

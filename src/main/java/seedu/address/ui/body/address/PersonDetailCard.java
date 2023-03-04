@@ -1,5 +1,7 @@
 package seedu.address.ui.body.address;
 
+import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -39,8 +41,16 @@ public class PersonDetailCard extends UiPart<Region> {
          * Creates a {@code DetailCardData} with the given {@code title} and {@code body}.
          */
         public DetailCardData(String title, String body) {
+            Objects.requireNonNull(title);
             this.title = title;
             this.body = body;
+        }
+
+        /**
+         * Returns whether the card body has any content.
+         */
+        public boolean hasBody() {
+            return body != null && !body.isBlank();
         }
     }
 }
