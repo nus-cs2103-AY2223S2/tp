@@ -22,8 +22,8 @@ public class PairUtil {
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPairDetails(Pair pair) {
-        String sb = PREFIX_NRIC_ELDERLY + pair.getElderly().getName().fullName + " "
-                + PREFIX_NRIC_VOLUNTEER + pair.getVolunteer().getName().fullName + " ";
+        String sb = PREFIX_NRIC_ELDERLY + pair.getElderly().getNric().value + " "
+                + PREFIX_NRIC_VOLUNTEER + pair.getVolunteer().getNric().value + " ";
         return sb;
     }
 }
