@@ -279,4 +279,17 @@ public class CommandParam {
     public int getNamedIntOrThrow(String prefix) throws ParseException {
         return getNamedIntOrThrow(prefix, "Missing value for prefix " + prefix);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof CommandParam)) {
+            return false;
+        }
+        CommandParam otherCommandParam = (CommandParam) other;
+        return unnamedValue.equals(otherCommandParam.unnamedValue)
+                   && namedValues.equals(otherCommandParam.namedValues);
+    }
 }

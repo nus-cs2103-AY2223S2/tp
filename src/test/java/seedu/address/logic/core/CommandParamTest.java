@@ -2,6 +2,7 @@ package seedu.address.logic.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -301,5 +302,38 @@ public class CommandParamTest {
         int result = param.getNamedIntOrThrow(PREFIX_A);
         // verify
         assertEquals(1, result);
+    }
+
+    @Test
+    void equals_sameObject_returnTrue() {
+        // setup
+        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        // verify
+        assertEquals(param, param);
+    }
+
+    @Test
+    void equals_nullObject_returnFalse() {
+        // setup
+        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        // verify
+        assertNotEquals(param, null);
+    }
+
+    @Test
+    void equals_differentClass_returnFalse() {
+        // setup
+        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        // verify
+        assertNotEquals(param, new Object());
+    }
+
+    @Test
+    void equals_sameTokenDifferentInstance_returnTrue() {
+        // setup
+        CommandParam param = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        CommandParam param2 = new CommandParam(Optional.of("token"), Optional.of(Map.of(PREFIX_A, Optional.of("value"))));
+        // verify
+        assertEquals(param, param2);
     }
 }

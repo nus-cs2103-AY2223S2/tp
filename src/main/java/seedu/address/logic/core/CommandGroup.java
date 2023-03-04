@@ -48,7 +48,9 @@ public class CommandGroup extends FactoryParser {
      */
     public Command parse(Deque<String> tokens) throws ParseException {
         requireNonNull(tokens);
-        assert tokens.size() > 0 : "tokens should not be empty";
+        if (tokens.isEmpty()) {
+            throw new ParseException("Tokens is empty");
+        }
         final Optional<Command> result = this.parseFactory(tokens);
         if (result.isEmpty()) {
             throw new ParseException("Unknown command in " + this.mode);
@@ -67,6 +69,6 @@ public class CommandGroup extends FactoryParser {
 
     @Override
     protected List<CommandFactory<?>> getFactories() {
-        return null;
+        return factories;
     }
 }
