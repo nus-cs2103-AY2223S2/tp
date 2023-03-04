@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Kenneth Kiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kennethk-1201.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kennethk-1201)]
+[[portfolio](https://kennethkiang.netlify.app/)]
 
-* Role: Project Advisor
+* Role: Team Lead
 
 ### Jane Doe
 
