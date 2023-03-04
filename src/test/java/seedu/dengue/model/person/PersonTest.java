@@ -77,7 +77,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withPostal(VALID_POSTAL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+        // different date -> returns false
         editedAlice = new PersonBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

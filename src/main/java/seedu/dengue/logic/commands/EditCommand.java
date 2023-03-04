@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Postal updatedPostal = editPersonDescriptor.getPostal().orElse(personToEdit.getPostal());
-        Date updatedDate = editPersonDescriptor.getEmail().orElse(personToEdit.getDate());
+        Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -172,7 +172,7 @@ public class EditCommand extends Command {
             this.date = date;
         }
 
-        public Optional<Date> getEmail() {
+        public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
 
@@ -218,7 +218,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPostal().equals(e.getPostal())
-                    && getEmail().equals(e.getEmail())
+                    && getDate().equals(e.getDate())
                     && getAge().equals(e.getAge())
                     && getTags().equals(e.getTags());
         }

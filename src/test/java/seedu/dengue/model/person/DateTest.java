@@ -14,17 +14,17 @@ public class DateTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidEmail));
+    public void constructor_invalidDate_throwsIllegalArgumentException() {
+        String invalidDate = "";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDate));
     }
 
     @Test
-    public void isValidEmail() {
-        // null email
+    public void isValidDate() {
+        // null date
         assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
 
-        // blank email
+        // blank date
         assertFalse(Date.isValidDate("")); // empty string
         assertFalse(Date.isValidDate(" ")); // spaces only
 
@@ -53,7 +53,7 @@ public class DateTest {
         assertFalse(Date.isValidDate("peterjack@example.com-")); // domain name ends with a hyphen
         assertFalse(Date.isValidDate("peterjack@example.c")); // top level domain has less than two chars
 
-        // valid email
+        // valid date
         assertTrue(Date.isValidDate("PeterJack_1190@example.com")); // underscore in local part
         assertTrue(Date.isValidDate("PeterJack.1190@example.com")); // period in local part
         assertTrue(Date.isValidDate("PeterJack+1190@example.com")); // '+' symbol in local part
