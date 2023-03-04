@@ -81,8 +81,10 @@ public class LogicManager implements Logic {
             case FLIGHT:
             case CREW:
             case LOCATION:
-                logger.warning("Saving of " + getOperationMode() + " not implemented yet");
-                break;
+                throw new CommandException(
+                    "Operation mode not supported yet: " + getOperationMode()
+                        + "Check LogicManager.java's save() method."
+                );
             default:
                 throw new CommandException("Unknown operation mode");
             }
