@@ -1,15 +1,13 @@
 package seedu.address.storage.volunteer;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
@@ -18,21 +16,17 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdaptedPerson;
 import seedu.address.storage.JsonAdaptedTag;
+import seedu.address.storage.JsonSerializable;
 
 /**
  * Jackson-friendly version of {@link Volunteer}.
  */
-public class JsonAdaptedVolunteer {
-
+public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSerializable<Volunteer> {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
     private final String nric;
     private final String age;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,30 +36,19 @@ public class JsonAdaptedVolunteer {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+
+        super(name, phone, email, address, tagged);
         this.nric = nric;
         this.age = age;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Volunteer} into this class for Jackson use.
      */
     public JsonAdaptedVolunteer(Volunteer source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        super(source);
         nric = source.getNric().value;
         age = source.getAge().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -73,43 +56,12 @@ public class JsonAdaptedVolunteer {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Volunteer toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
+    public Volunteer toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
+        Name modelName = super.getModelName();
+        Phone modelPhone = super.getModelPhone();
+        Email modelEmail = super.getModelEmail();
+        Address modelAddress = super.getModelAddress();
+        Set<Tag> modelTags = super.getTagSet(friendlyLink);
 
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
@@ -117,7 +69,6 @@ public class JsonAdaptedVolunteer {
         if (!Nric.isValidNric(nric)) {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
@@ -125,7 +76,7 @@ public class JsonAdaptedVolunteer {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Volunteer(modelName, modelPhone, modelEmail, modelAddress, new Nric(nric), new Age(age), modelTags);
+        return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
+                new Nric(nric), new Age(age), modelTags);
     }
 }
