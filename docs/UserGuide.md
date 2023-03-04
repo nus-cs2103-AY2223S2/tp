@@ -100,6 +100,11 @@ View a person's contact details.
 
 Format: `view <id>`
 
+Examples: 
+* `view 1` returns `John Doe`
+
+![viewContactDetails](images/view/viewContactDetails.png)
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
