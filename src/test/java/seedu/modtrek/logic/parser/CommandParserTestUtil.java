@@ -3,7 +3,6 @@ package seedu.modtrek.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.modtrek.logic.commands.Command;
-import seedu.modtrek.logic.parser.Parser;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 
 /**

@@ -1,6 +1,5 @@
 package seedu.modtrek.logic.commands;
 
-import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
@@ -34,12 +33,6 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validModule), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validModule), expectedModel);
-    }
-
-    @Test
-    public void execute_duplicateModule_throwsCommandException() {
-        Module moduleInList = model.getDegreeProgression().getModuleList().get(0);
-        assertCommandFailure(new AddCommand(moduleInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

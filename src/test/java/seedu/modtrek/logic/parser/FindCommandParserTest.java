@@ -4,7 +4,6 @@ import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;

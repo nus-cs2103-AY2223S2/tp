@@ -6,8 +6,6 @@ import static seedu.modtrek.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.commons.util.FileUtil;
-
 public class FileUtilTest {
 
     @Test

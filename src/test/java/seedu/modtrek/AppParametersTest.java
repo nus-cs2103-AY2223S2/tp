@@ -11,7 +11,6 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
-import seedu.modtrek.AppParameters;
 
 public class AppParametersTest {
 

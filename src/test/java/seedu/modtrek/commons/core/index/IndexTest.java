@@ -7,8 +7,6 @@ import static seedu.modtrek.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.commons.core.index.Index;
-
 public class IndexTest {
 
     @Test

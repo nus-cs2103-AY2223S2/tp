@@ -12,10 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.commons.exceptions.IllegalValueException;
-import seedu.modtrek.model.module.Grade;
-import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.SemYear;
+
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_NAME = "CS1";

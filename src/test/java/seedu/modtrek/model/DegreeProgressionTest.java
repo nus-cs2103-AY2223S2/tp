@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.testutil.ModuleBuilder;
@@ -47,7 +46,7 @@ public class DegreeProgressionTest {
     @Test
     public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
         // Two modules with the same identity fields
-        Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND)
+        Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_CS1101S)
                 .build();
         List<Module> newModules = Arrays.asList(CS1101S, editedAlice);
         DegreeProgressionStub newData = new DegreeProgressionStub(newModules);
@@ -74,7 +73,7 @@ public class DegreeProgressionTest {
     @Test
     public void hasModule_moduleWithSameIdentityFieldsInDegreeProgression_returnsTrue() {
         degreeProgression.addModule(CS1101S);
-        Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND)
+        Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_CS1101S)
                 .build();
         assertTrue(degreeProgression.hasModule(editedAlice));
     }

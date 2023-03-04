@@ -15,7 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.modtrek.commons.core.Config;
 import seedu.modtrek.commons.exceptions.DataConversionException;
-import seedu.modtrek.commons.util.ConfigUtil;
+
 
 public class ConfigUtilTest {
 

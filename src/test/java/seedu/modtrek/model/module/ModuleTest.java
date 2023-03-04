@@ -2,11 +2,11 @@ package seedu.modtrek.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.MA2002;
@@ -32,8 +32,9 @@ public class ModuleTest {
         assertFalse(CS1101S.isSameModule(null));
 
         // same name, all other attributes different -> returns true
-        Module editedCS1101s = new ModuleBuilder(CS1101S).withCredit(VALID_CREDIT_MA2002).withSemYear(VALID_SEMYEAR_MA2002)
-                .withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND).build();
+        Module editedCS1101s = new ModuleBuilder(CS1101S).withCredit(VALID_CREDIT_MA2002)
+                .withSemYear(VALID_SEMYEAR_MA2002)
+                .withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_CS1101S).build();
         assertTrue(CS1101S.isSameModule(editedCS1101s));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +86,7 @@ public class ModuleTest {
         assertFalse(CS1101S.equals(editedCS1101s));
 
         // different tags -> returns false
-        editedCS1101s = new ModuleBuilder(CS1101S).withTags(VALID_TAG_HUSBAND).build();
+        editedCS1101s = new ModuleBuilder(CS1101S).withTags(VALID_TAG_CS1101S).build();
         assertFalse(CS1101S.equals(editedCS1101s));
     }
 }

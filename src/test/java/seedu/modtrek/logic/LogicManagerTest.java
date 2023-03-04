@@ -3,10 +3,10 @@ package seedu.modtrek.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
-import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.CODE_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 
@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.modtrek.logic.Logic;
-import seedu.modtrek.logic.LogicManager;
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.ListCommand;

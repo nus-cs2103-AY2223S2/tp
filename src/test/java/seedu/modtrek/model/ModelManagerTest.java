@@ -10,12 +10,10 @@ import static seedu.modtrek.testutil.TypicalModules.MA2002;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.commons.core.GuiSettings;
-import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.testutil.DegreeProgressionBuilder;
 
 
@@ -96,7 +94,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        DegreeProgression degreeProgression = new DegreeProgressionBuilder().withModule(CS1101S).withModule(MA2002).build();
+        DegreeProgression degreeProgression = new DegreeProgressionBuilder().withModule(CS1101S)
+                .withModule(MA2002).build();
         DegreeProgression differentDegreeProgression = new DegreeProgression();
         UserPrefs userPrefs = new UserPrefs();
 

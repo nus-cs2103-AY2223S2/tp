@@ -12,7 +12,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
 import seedu.modtrek.MainApp;
-import seedu.modtrek.ui.UiPart;
 
 public class UiPartTest {
 

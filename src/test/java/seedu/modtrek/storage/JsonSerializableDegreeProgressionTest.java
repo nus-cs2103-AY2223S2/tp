@@ -11,15 +11,18 @@ import org.junit.jupiter.api.Test;
 import seedu.modtrek.commons.exceptions.IllegalValueException;
 import seedu.modtrek.commons.util.JsonUtil;
 import seedu.modtrek.model.DegreeProgression;
-import seedu.modtrek.storage.JsonSerializableDegreeProgression;
 import seedu.modtrek.testutil.TypicalModules;
 
 public class JsonSerializableDegreeProgressionTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableDegreeProgressionTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalModulesDegreeProgression.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidModuleDegreeProgression.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleDegreeProgression.json");
+    private static final Path TEST_DATA_FOLDER = Paths
+            .get("src", "test", "data", "JsonSerializableDegreeProgressionTest");
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER
+            .resolve("typicalModulesDegreeProgression.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER
+            .resolve("invalidModuleDegreeProgression.json");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER
+            .resolve("duplicateModuleDegreeProgression.json");
 
     @Test
     public void toModelType_typicalModulesFile_success() throws Exception {

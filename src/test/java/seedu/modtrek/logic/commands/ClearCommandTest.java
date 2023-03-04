@@ -5,7 +5,6 @@ import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.commands.ClearCommand;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;

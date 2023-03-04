@@ -1,26 +1,14 @@
 package seedu.modtrek.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.modtrek.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.modtrek.commons.core.index.Index;
-import seedu.modtrek.logic.commands.Command;
-import seedu.modtrek.logic.commands.CommandResult;
-import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
-import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
 
 /**
@@ -95,23 +83,6 @@ public class CommandTestUtil {
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
-    }
-
-    /**
-     * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered module list and selected module in {@code actualModel} remain unchanged
-     */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
-        DegreeProgression expectedDegreeProgression = new DegreeProgression(actualModel.getDegreeProgression());
-        List<Module> expectedFilteredList = new ArrayList<Module>(actualModel.getFilteredModuleList());
-
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedDegreeProgression, actualModel.getDegreeProgression());
-        assertEquals(expectedFilteredList, actualModel.getFilteredModuleList());
     }
 
 }

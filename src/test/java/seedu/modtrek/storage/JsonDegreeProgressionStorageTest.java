@@ -18,7 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.modtrek.commons.exceptions.DataConversionException;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
-import seedu.modtrek.storage.JsonDegreeProgressionStorage;
 
 public class JsonDegreeProgressionStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDegreeProgressionStorageTest");
@@ -32,7 +31,8 @@ public class JsonDegreeProgressionStorageTest {
     }
 
     private java.util.Optional<ReadOnlyDegreeProgression> readDegreeProgression(String filePath) throws Exception {
-        return new JsonDegreeProgressionStorage(Paths.get(filePath)).readDegreeProgression(addToTestDataPathIfNotNull(filePath));
+        return new JsonDegreeProgressionStorage(Paths.get(filePath))
+                .readDegreeProgression(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -58,7 +58,8 @@ public class JsonDegreeProgressionStorageTest {
 
     @Test
     public void readDegreeProgression_invalidAndValidModuleDegreeProgression_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDegreeProgression("invalidAndValidModuleDegreeProgression.json"));
+        assertThrows(DataConversionException.class, () -> readDegreeProgression(
+                "invalidAndValidModuleDegreeProgression.json"));
     }
 
     @Test

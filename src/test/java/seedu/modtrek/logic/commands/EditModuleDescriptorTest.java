@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modtrek.logic.commands.CommandTestUtil.DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.DESC_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,8 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_CS1101S.equals(DESC_MA2002));
 
         // different name -> returns false
-        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_CS1101S).withCode(VALID_CODE_MA2002).build();
+        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_CS1101S)
+                .withCode(VALID_CODE_MA2002).build();
         assertFalse(DESC_CS1101S.equals(editedAmy));
 
         // different phone -> returns false

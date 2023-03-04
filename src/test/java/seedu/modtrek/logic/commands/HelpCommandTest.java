@@ -5,8 +5,6 @@ import static seedu.modtrek.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.commands.CommandResult;
-import seedu.modtrek.logic.commands.HelpCommand;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 

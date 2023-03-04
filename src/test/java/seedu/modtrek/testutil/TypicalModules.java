@@ -1,15 +1,15 @@
 package seedu.modtrek.testutil;
 
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_CS1101S;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,10 +49,14 @@ public class TypicalModules {
             .withSemYear("Y1S2").withGrade("B+").build();
 
     // Manually added - Module's details found in {@code CommandTestUtil}
-    public static final Module CS1101S = new ModuleBuilder().withCode(VALID_CODE_CS1101S).withCredit(VALID_CREDIT_CS1101S)
-            .withSemYear(VALID_SEMYEAR_CS1101S).withGrade(VALID_GRADE_CS1101S).withTags(VALID_TAG_MA2002).build();
-    public static final Module MA2002 = new ModuleBuilder().withCode(VALID_CODE_MA2002).withCredit(VALID_CREDIT_MA2002)
-            .withSemYear(VALID_SEMYEAR_MA2002).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_CS1101S, VALID_TAG_MA2002)
+    public static final Module CS1101S = new ModuleBuilder().withCode(VALID_CODE_CS1101S)
+            .withCredit(VALID_CREDIT_CS1101S)
+            .withSemYear(VALID_SEMYEAR_CS1101S).withGrade(VALID_GRADE_CS1101S)
+            .withTags(VALID_TAG_MA2002).build();
+    public static final Module MA2002 = new ModuleBuilder().withCode(VALID_CODE_MA2002)
+            .withCredit(VALID_CREDIT_MA2002)
+            .withSemYear(VALID_SEMYEAR_MA2002).withGrade(VALID_GRADE_MA2002)
+            .withTags(VALID_TAG_CS1101S, VALID_TAG_MA2002)
             .build();
 
     public static final String KEYWORD_MATCHING_CS2030S = "CS2030S"; // A keyword that matches MEIER

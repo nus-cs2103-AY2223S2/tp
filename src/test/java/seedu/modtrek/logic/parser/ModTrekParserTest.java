@@ -5,11 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
-import static seedu.modtrek.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,15 +12,15 @@ import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.ClearCommand;
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.commands.EditCommand;
+import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
 import seedu.modtrek.logic.commands.ListCommand;
-import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
-import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.model.module.Module;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
 import seedu.modtrek.testutil.ModuleBuilder;
 import seedu.modtrek.testutil.ModuleUtil;

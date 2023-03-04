@@ -3,12 +3,10 @@ package seedu.modtrek.logic.parser;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.modtrek.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.DeleteCommand;
-import seedu.modtrek.logic.parser.DeleteCommandParser;
 import seedu.modtrek.model.module.Code;
 
 /**

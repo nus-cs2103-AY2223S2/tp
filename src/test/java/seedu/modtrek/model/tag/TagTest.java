@@ -4,8 +4,6 @@ import static seedu.modtrek.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.model.tag.Tag;
-
 public class TagTest {
 
     @Test

@@ -15,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.exceptions.DataConversionException;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.storage.JsonUserPrefsStorage;
 
 public class JsonUserPrefsStorageTest {
 

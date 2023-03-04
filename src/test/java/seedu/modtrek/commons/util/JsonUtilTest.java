@@ -7,8 +7,6 @@ import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.commons.util.FileUtil;
-import seedu.modtrek.commons.util.JsonUtil;
 import seedu.modtrek.testutil.SerializableTestClass;
 import seedu.modtrek.testutil.TestUtil;
 
