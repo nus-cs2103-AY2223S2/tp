@@ -33,12 +33,15 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_COMPANY_EMAIL, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddApplicationCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddApplicationCommand.MESSAGE_USAGE));
         }
 
         Role role = ApplicationParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        CompanyName companyName = ApplicationParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
-        CompanyEmail companyEmail = ApplicationParserUtil.parseCompanyEmail(argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
+        CompanyName companyName = ApplicationParserUtil.parseCompanyName(
+                argMultimap.getValue(PREFIX_COMPANY_NAME).get());
+        CompanyEmail companyEmail = ApplicationParserUtil.parseCompanyEmail(
+                argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
         Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
         Application application = new Application(role, companyName, companyEmail, status);
