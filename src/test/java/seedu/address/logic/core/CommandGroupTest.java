@@ -8,10 +8,8 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -22,49 +20,7 @@ import seedu.address.model.OperationMode;
  * Tests for {@link CommandGroup}.
  */
 @ExtendWith(MockitoExtension.class)
-public class CommandGroupTest {
-    private static final String COMMAND_WORD1 = "command1";
-    private static final String COMMAND_WORD2 = "command2";
-    @Mock
-    private Command command1;
-    @Mock
-    private Command command2;
-    @Mock
-    private CommandFactory<Command> commandFactory1;
-    @Mock
-    private CommandFactory<Command> commandFactory2;
-    private List<CommandFactory<?>> commandFactories;
-    private CommandGroup commandGroup;
-
-    @BeforeEach
-    void setUp() throws ParseException {
-        Mockito
-            .lenient()
-            .when(commandFactory1.getCommandWord())
-            .thenReturn(COMMAND_WORD1);
-        Mockito
-            .lenient()
-            .when(commandFactory2.getCommandWord())
-            .thenReturn(COMMAND_WORD2);
-        Mockito
-            .lenient()
-            .when(commandFactory1.getPrefixes())
-            .thenReturn(Optional.empty());
-        Mockito
-            .lenient()
-            .when(commandFactory2.getPrefixes())
-            .thenReturn(Optional.empty());
-        Mockito
-            .lenient()
-            .when(commandFactory1.createCommand(Mockito.any()))
-            .thenReturn(command1);
-        Mockito
-            .lenient()
-            .when(commandFactory2.createCommand(Mockito.any()))
-            .thenReturn(command2);
-        commandFactories = List.of(commandFactory1, commandFactory2);
-        commandGroup = new CommandGroup(OperationMode.PILOT, commandFactories);
-    }
+public class CommandGroupTest extends CommandGroupTestBase {
 
     @Test
     void getOperationMode_void_returnsOperationMode() {

@@ -31,7 +31,9 @@ public abstract class FactoryParser {
      */
     public Optional<Command> parseFactory(Deque<String> tokens) throws ParseException {
         requireNonNull(tokens);
-        assert tokens.size() > 0 : "tokens should not be empty";
+        if (tokens.isEmpty()) {
+            throw new ParseException("Tokens is empty");
+        }
         String commandWord = tokens.peek();
         for (CommandFactory<?> factory : getFactories()) {
             if (commandWord.equals(factory.getCommandWord())) {
