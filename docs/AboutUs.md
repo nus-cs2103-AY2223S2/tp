@@ -17,7 +17,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/jnjy.md)]
 
 -   Role: Team lead
--   Responsibilities:
+-   Responsibilities: Responsible for overall project coordination.
 
 ### Ritika Joshi
 
@@ -27,7 +27,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/rmj1405.md)]
 
 -   Role: Scheduling and tracking, Deliverables and deadlines
--   Responsibilities:
+-   Responsibilities: Responsible for ensuring that requirements are being met. In charge of defining, assigning and tracking project tickets.
 
 ### Justin Leng
 
@@ -37,7 +37,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/scorpiussigma.md)]
 
 -   Role: Integration
--   Responsibilities:
+-   Responsibilities: Responsible for versioning of the code, maintaining the code repository, integrate various parts of the software to create a whole.
 
 ### Nigel Teo
 
@@ -47,14 +47,14 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/nigelteosw.md)]
 
 -   Role: UI/UX experts
--   Responsibilities:
+-   Responsibilities: Responsible for the look of the product and user experience.
 
 ### Wesley Teo
 
-<img src="images/bicesto.png" width="200px">
+<img src="images/bisceto.png" width="200px">
 
-[[github](http://github.com/bicesto)]
-[[portfolio](team/bicesto.md)]
+[[github](http://github.com/bisceto)]
+[[portfolio](team/bisceto.md)]
 
 -   Role: Documentation
--   Responsibilities:
+-   Responsibilities: Responsible for the quality of project documentation.
