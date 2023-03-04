@@ -71,10 +71,6 @@ public class SortCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        System.out.println(comparator + comparatorDesc);
-        if (other instanceof SortCommand) {
-            System.out.println(((SortCommand) other).comparator + ((SortCommand) other).comparatorDesc);
-        }
         // we don't check for comparator equality because it is not possible
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
