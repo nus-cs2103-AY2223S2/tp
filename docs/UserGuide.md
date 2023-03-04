@@ -94,6 +94,12 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Viewing a person's contact details : `view`
+
+View a person's contact details.
+
+Format: `view <id>`
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
