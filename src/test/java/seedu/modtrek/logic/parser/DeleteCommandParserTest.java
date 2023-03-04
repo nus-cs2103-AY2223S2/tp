@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.parser.DeleteCommandParser;
+import seedu.modtrek.model.module.Code;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -23,7 +24,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "CS1101S", new DeleteCommand(new Code("CS1101S")));
     }
 
     @Test

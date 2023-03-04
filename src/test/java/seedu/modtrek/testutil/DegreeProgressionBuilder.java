@@ -1,34 +1,34 @@
 package seedu.modtrek.testutil;
 
 import seedu.modtrek.model.DegreeProgression;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.module.Module;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Module objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code DegreeProgression dp = new DegreeProgressionBuilder().withModule("CS1101s", "MA2002").build();}
  */
-public class AddressBookBuilder {
+public class DegreeProgressionBuilder {
 
-    private DegreeProgression addressBook;
+    private DegreeProgression degreeProgression;
 
-    public AddressBookBuilder() {
-        addressBook = new DegreeProgression();
+    public DegreeProgressionBuilder() {
+        degreeProgression = new DegreeProgression();
     }
 
-    public AddressBookBuilder(DegreeProgression addressBook) {
-        this.addressBook = addressBook;
+    public DegreeProgressionBuilder(DegreeProgression degreeProgression) {
+        this.degreeProgression = degreeProgression;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public DegreeProgressionBuilder withModule(Module module) {
+        degreeProgression.addModule(module);
         return this;
     }
 
     public DegreeProgression build() {
-        return addressBook;
+        return degreeProgression;
     }
 }

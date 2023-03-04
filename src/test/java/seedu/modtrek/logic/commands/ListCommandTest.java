@@ -1,14 +1,11 @@
 package seedu.modtrek.logic.commands;
 
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modtrek.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.modtrek.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.modtrek.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
@@ -23,18 +20,12 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
+        expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

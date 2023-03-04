@@ -3,12 +3,12 @@ package seedu.modtrek.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.modtrek.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.modtrek.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.modtrek.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.modtrek.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CODE_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
 import static seedu.modtrek.testutil.Assert.assertThrows;
-import static seedu.modtrek.testutil.TypicalPersons.AMY;
+import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,7 +32,7 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.storage.JsonDegreeProgressionStorage;
 import seedu.modtrek.storage.JsonUserPrefsStorage;
 import seedu.modtrek.storage.StorageManager;
-import seedu.modtrek.testutil.PersonBuilder;
+import seedu.modtrek.testutil.ModuleBuilder;
 
 
 public class LogicManagerTest {
@@ -47,7 +47,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonDegreeProgressionStorage addressBookStorage =
-                new JsonDegreeProgressionStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonDegreeProgressionStorage(temporaryFolder.resolve("degreeprogression.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -82,18 +82,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + CODE_DESC_CS1101S + CREDIT_DESC_CS1101S + SEMYEAR_DESC_CS1101S
+                + GRADE_DESC_CS1101S;
+        Module expectedModule = new ModuleBuilder(CS1101S).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addModule(expectedModule);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
     }
 
     /**
@@ -132,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -158,7 +158,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveDegreeProgression(ReadOnlyDegreeProgression addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

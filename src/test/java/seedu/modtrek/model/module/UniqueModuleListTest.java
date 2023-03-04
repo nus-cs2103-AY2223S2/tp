@@ -3,11 +3,11 @@ package seedu.modtrek.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
-import static seedu.modtrek.testutil.TypicalPersons.ALICE;
-import static seedu.modtrek.testutil.TypicalPersons.BOB;
+    import static seedu.modtrek.testutil.TypicalModules.CS1101S;
+import static seedu.modtrek.testutil.TypicalModules.MA2002;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,158 +15,156 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.model.module.Person;
-import seedu.modtrek.model.module.UniquePersonList;
-import seedu.modtrek.model.module.exceptions.DuplicatePersonException;
-import seedu.modtrek.model.module.exceptions.PersonNotFoundException;
-import seedu.modtrek.testutil.PersonBuilder;
+import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
+import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
+import seedu.modtrek.testutil.ModuleBuilder;
 
-public class UniquePersonListTest {
+public class UniqueModuleListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueModuleList uniqueModuleList = new UniqueModuleList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.contains(null));
     }
 
     @Test
     public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+            assertFalse(uniqueModuleList.contains(CS1101S));
     }
 
     @Test
     public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+            uniqueModuleList.add(CS1101S);
+            assertTrue(uniqueModuleList.contains(CS1101S));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+            uniqueModuleList.add(CS1101S);
+            Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueModuleList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateModule_throwsDuplicateModuleException() {
+            uniqueModuleList.add(CS1101S);
+            assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.add(CS1101S));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setModule_nullTargetModule_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(null, CS1101S));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setModule_nullEditedModule_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(CS1101S, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setModule_targetModuleNotInList_throwsModuleNotFoundException() {
+                assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.setModule(CS1101S, CS1101S));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setModule_editedModuleIsSameModule_success() {
+            uniqueModuleList.add(CS1101S);
+                uniqueModuleList.setModule(CS1101S, CS1101S);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+            expectedUniqueModuleList.add(CS1101S);
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setModule_editedModuleHasSameIdentity_success() {
+            uniqueModuleList.add(CS1101S);
+            Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+            uniqueModuleList.setModule(CS1101S, editedAlice);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+        expectedUniqueModuleList.add(editedAlice);
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setModule_editedModuleHasDifferentIdentity_success() {
+            uniqueModuleList.add(CS1101S);
+            uniqueModuleList.setModule(CS1101S, MA2002);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+        expectedUniqueModuleList.add(MA2002);
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setModule_editedModuleHasNonUniqueIdentity_throwsDuplicateModuleException() {
+            uniqueModuleList.add(CS1101S);
+        uniqueModuleList.add(MA2002);
+            assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModule(CS1101S, MA2002));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_personDoesNotExist_throwsModuleNotFoundException() {
+            assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(CS1101S));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingModule_removesModule() {
+            uniqueModuleList.add(CS1101S);
+            uniqueModuleList.remove(CS1101S);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setModules_nullUniqueModuleList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModules((UniqueModuleList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setModules_uniqueModuleList_replacesOwnListWithProvidedUniqueModuleList() {
+            uniqueModuleList.add(CS1101S);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+        expectedUniqueModuleList.add(MA2002);
+        uniqueModuleList.setModules(expectedUniqueModuleList);
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+    public void setModules_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModules((List<Module>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setModules_list_replacesOwnListWithProvidedList() {
+            uniqueModuleList.add(CS1101S);
+        List<Module> personList = Collections.singletonList(MA2002);
+        uniqueModuleList.setModules(personList);
+        UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
+        expectedUniqueModuleList.add(MA2002);
+        assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    public void setModules_listWithDuplicateModules_throwsDuplicateModuleException() {
+                List<Module> listWithDuplicateModules = Arrays.asList(CS1101S, CS1101S);
+        assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModules(listWithDuplicateModules));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -4,84 +4,84 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.modtrek.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.modtrek.model.person.Address;
-import seedu.modtrek.model.person.Email;
-import seedu.modtrek.model.person.Name;
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.model.person.Phone;
+import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.Module;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditModuleDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditModuleDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditModuleDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+    public EditModuleDescriptorBuilder() {
+        descriptor = new EditModuleDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
-    }
-
-    /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
-     */
-    public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+    public EditModuleDescriptorBuilder(EditModuleDescriptor descriptor) {
+        this.descriptor = new EditModuleDescriptor(descriptor);
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Returns an {@code EditModuleDescriptor} with fields containing {@code module}'s details
      */
-    public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    public EditModuleDescriptorBuilder(Module module) {
+        descriptor = new EditModuleDescriptor();
+        descriptor.setCode(module.getCode());
+        descriptor.setCredit(module.getCredit());
+        descriptor.setSemYear(module.getSemYear());
+        descriptor.setGrade(module.getGrade());
+        descriptor.setTags(module.getTags());
+    }
+
+    /**
+     * Sets the {@code Code} of the {@code EditModuleDescriptor} that we are building.
+     */
+    public EditModuleDescriptorBuilder withCode(String code) {
+        descriptor.setCode(new Code(code));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Credit} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditModuleDescriptorBuilder withCredit(String credit) {
+        descriptor.setCredit(new Credit(credit));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code SemYear} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditModuleDescriptorBuilder withSemYear(String semYear) {
+        descriptor.setSemYear(new SemYear(semYear));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Grade} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditModuleDescriptorBuilder withGrade(String grade) {
+        descriptor.setGrade(new Grade(grade));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditModuleDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditModuleDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditModuleDescriptor build() {
         return descriptor;
     }
 }

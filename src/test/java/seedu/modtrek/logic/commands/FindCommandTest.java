@@ -15,11 +15,10 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.model.person.NameContainsKeywordsPredicate;
+import seedu.modtrek.model.module.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

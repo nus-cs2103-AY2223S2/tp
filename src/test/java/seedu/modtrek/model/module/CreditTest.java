@@ -29,14 +29,14 @@ public class CreditTest {
         // invalid phone numbers
         assertFalse(Credit.isValidCredit("")); // empty string
         assertFalse(Credit.isValidCredit(" ")); // spaces only
-        assertFalse(Credit.isValidCredit("91")); // less than 3 numbers
-        assertFalse(Credit.isValidCredit("phone")); // non-numeric
-        assertFalse(Credit.isValidCredit("9011p041")); // alphabets within digits
-        assertFalse(Credit.isValidCredit("9312 1534")); // spaces within digits
+        assertFalse(Credit.isValidCredit("0"));
+        assertFalse(Credit.isValidCredit("four")); // non-numeric
+        assertFalse(Credit.isValidCredit("4 MC")); // alphabets within digits
+        assertFalse(Credit.isValidCredit("60"));
 
         // valid phone numbers
-        assertTrue(Credit.isValidCredit("911")); // exactly 3 numbers
-        assertTrue(Credit.isValidCredit("93121534"));
-        assertTrue(Credit.isValidCredit("124293842033123")); // long phone numbers
+        assertTrue(Credit.isValidCredit("4"));
+        assertTrue(Credit.isValidCredit("8"));
+        assertTrue(Credit.isValidCredit("12"));
     }
 }

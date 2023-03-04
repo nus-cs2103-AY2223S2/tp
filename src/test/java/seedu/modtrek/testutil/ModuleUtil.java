@@ -1,60 +1,60 @@
 package seedu.modtrek.testutil;
 
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.modtrek.logic.commands.AddCommand;
-import seedu.modtrek.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
+import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Module.
  */
-public class PersonUtil {
+public class ModuleUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code module}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Module module) {
+        return AddCommand.COMMAND_WORD + " " + getModuleDetails(module);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code module}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_CODE + module.getCode().toString() + " ");
+        sb.append(PREFIX_CREDIT + module.getCredit().toString() + " ");
+        sb.append(PREFIX_SEMYEAR + module.getSemYear().toString() + " ");
+        sb.append(PREFIX_GRADE + module.getGrade().toString() + " ");
+        module.getTags().stream().forEach(
+            s -> sb.append(PREFIX_TAG + s.toString() + " ")
         );
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditModuleDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditModuleDescriptorDetails(EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getCode().ifPresent(name -> sb.append(PREFIX_CODE).append(name.toString()).append(" "));
+        descriptor.getCredit().ifPresent(phone -> sb.append(PREFIX_CREDIT).append(phone.toString()).append(" "));
+        descriptor.getSemYear().ifPresent(email -> sb.append(PREFIX_SEMYEAR).append(email.toString()).append(" "));
+        descriptor.getGrade().ifPresent(address -> sb.append(PREFIX_GRADE).append(address.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.toString()).append(" "));
             }
         }
         return sb.toString();

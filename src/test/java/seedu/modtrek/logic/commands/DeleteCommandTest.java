@@ -4,20 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modtrek.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.modtrek.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.modtrek.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.modtrek.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.modtrek.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.commons.core.index.Index;
-import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.module.Module;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -25,24 +24,24 @@ import seedu.modtrek.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Module personToDelete = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        ModelManager expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
+        expectedModel.deleteModule(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -50,27 +49,27 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showModuleAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Module personToDelete = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        Model expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
+        expectedModel.deleteModule(personToDelete);
+        showNoModule(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showModuleAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getDegreeProgression().getModuleList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
@@ -102,9 +101,9 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoModule(Model model) {
+        model.updateFilteredModuleList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredModuleList().isEmpty());
     }
 }

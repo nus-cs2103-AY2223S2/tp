@@ -4,13 +4,12 @@ import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.logic.parser.FindCommandParser;
-import seedu.modtrek.model.person.NameContainsKeywordsPredicate;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 
 public class FindCommandParserTest {
 
@@ -25,11 +24,8 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+                new FindCommand(new ModuleCodePredicate(new Code("CS1101S")));
+        assertParseSuccess(parser, "CS1101S", expectedFindCommand);
     }
 
 }

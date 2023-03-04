@@ -33,10 +33,10 @@ public class CodeTest {
         assertFalse(Code.isValidCode("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Code.isValidCode("peter jack")); // alphabets only
-        assertTrue(Code.isValidCode("12345")); // numbers only
-        assertTrue(Code.isValidCode("peter the 2nd")); // alphanumeric characters
-        assertTrue(Code.isValidCode("Capital Tan")); // with capital letters
-        assertTrue(Code.isValidCode("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Code.isValidCode("CS3230"));
+        assertTrue(Code.isValidCode("CS3211"));
+        assertTrue(Code.isValidCode("CS2105"));
+        assertTrue(Code.isValidCode("MA2108"));
+        assertTrue(Code.isValidCode("GESS1025")); // long names
     }
 }

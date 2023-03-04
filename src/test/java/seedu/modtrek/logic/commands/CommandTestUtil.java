@@ -2,10 +2,10 @@ package seedu.modtrek.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 
@@ -20,56 +20,55 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.person.NameContainsKeywordsPredicate;
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.testutil.EditPersonDescriptorBuilder;
+import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_CODE_CS1101S = "CS1101S";
+    public static final String VALID_CODE_MA2002 = "MA2002";
+    public static final String VALID_CREDIT_CS1101S = "4";
+    public static final String VALID_CREDIT_MA2002 = "4";
+    public static final String VALID_SEMYEAR_CS1101S = "Y1S1";
+    public static final String VALID_SEMYEAR_MA2002 = "Y1S2";
+    public static final String VALID_GRADE_CS1101S = "A";
+    public static final String VALID_GRADE_MA2002 = "A-";
+    public static final String VALID_TAG_CS1101S = "COMPUTER SCIENCE FOUNDATION";
+    public static final String VALID_TAG_MA2002 = "MATHEMATICS AND SCIENCES";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String CODE_DESC_CS1101S = " " + PREFIX_CODE + VALID_CODE_CS1101S;
+    public static final String CODE_DESC_MA2002 = " " + PREFIX_CODE + VALID_CODE_MA2002;
+    public static final String CREDIT_DESC_CS1101S = " " + PREFIX_CREDIT + VALID_CREDIT_CS1101S;
+    public static final String CREDIT_DESC_MA2002 = " " + PREFIX_CREDIT + VALID_CREDIT_MA2002;
+    public static final String SEMYEAR_DESC_CS1101S = " " + PREFIX_SEMYEAR + VALID_SEMYEAR_CS1101S;
+    public static final String SEMYEAR_DESC_MA2002 = " " + PREFIX_SEMYEAR + VALID_SEMYEAR_MA2002;
+    public static final String GRADE_DESC_CS1101S = " " + PREFIX_GRADE + VALID_GRADE_CS1101S;
+    public static final String GRADE_DESC_MA2002 = " " + PREFIX_GRADE + VALID_GRADE_MA2002;
+    public static final String TAG_DESC_MA2002 = " " + PREFIX_TAG + VALID_TAG_MA2002;
+    public static final String TAG_DESC_CS1101S = " " + PREFIX_TAG + VALID_TAG_CS1101S;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CS1101S&"; // '&' not allowed in names
+    public static final String INVALID_CREDIT_DESC = " " + PREFIX_CREDIT + "4MC"; // 'a' not allowed in phones
+    public static final String INVALID_SEMYEAR_DESC = " " + PREFIX_SEMYEAR + "YEAR1SEM1"; // missing '@' symbol
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE; // empty string not allowed for addresses
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "COMPUTER SCIENCE *"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditModuleDescriptor DESC_CS1101S;
+    public static final EditCommand.EditModuleDescriptor DESC_MA2002;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CS1101S = new EditModuleDescriptorBuilder().withCode(VALID_CODE_CS1101S)
+                .withCredit(VALID_CREDIT_CS1101S).withSemYear(VALID_SEMYEAR_CS1101S).withGrade(VALID_GRADE_CS1101S)
+                .withTags(VALID_TAG_MA2002).build();
+        DESC_MA2002 = new EditModuleDescriptorBuilder().withCode(VALID_CODE_MA2002)
+                .withCredit(VALID_CREDIT_MA2002).withSemYear(VALID_SEMYEAR_MA2002).withGrade(VALID_GRADE_MA2002)
+                .withTags(VALID_TAG_CS1101S, VALID_TAG_MA2002).build();
     }
 
     /**
@@ -102,30 +101,17 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered module list and selected module in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        DegreeProgression expectedAddressBook = new DegreeProgression(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        DegreeProgression expectedDegreeProgression = new DegreeProgression(actualModel.getDegreeProgression());
+        List<Module> expectedFilteredList = new ArrayList<Module>(actualModel.getFilteredModuleList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-    }
-    /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(expectedDegreeProgression, actualModel.getDegreeProgression());
+        assertEquals(expectedFilteredList, actualModel.getFilteredModuleList());
     }
 
 }

@@ -13,12 +13,11 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.parser.ParserUtil;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.person.Address;
-import seedu.modtrek.model.person.Email;
-import seedu.modtrek.model.person.Name;
-import seedu.modtrek.model.person.Phone;
+import seedu.modtrek.model.module.Address;
+import seedu.modtrek.model.module.Email;
+import seedu.modtrek.model.module.Name;
+import seedu.modtrek.model.module.Phone;
 import seedu.modtrek.model.tag.Tag;
 
 public class ParserUtilTest {

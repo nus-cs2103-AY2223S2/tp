@@ -34,7 +34,7 @@ public class TagCommand extends Command {
             + "Parameters: CODE (module code) "
             + " [code]\n"
             + "Example: " + COMMAND_WORD + " CS1101S "
-            + "t/ UNIVERSITY LEVEL REQUIREMENT.";
+            + "/t UNIVERSITY LEVEL REQUIREMENT.";
 
     /**
      * The constant MESSAGE_NOT_IMPLEMENTED_YET.

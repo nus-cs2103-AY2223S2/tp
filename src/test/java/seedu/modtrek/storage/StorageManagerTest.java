@@ -2,7 +2,7 @@ package seedu.modtrek.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.modtrek.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
 import java.nio.file.Path;
 
@@ -12,11 +12,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.model.DegreeProgression;
-import seedu.modtrek.model.ReadOnlyAddressBook;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.storage.JsonAddressBookStorage;
-import seedu.modtrek.storage.JsonUserPrefsStorage;
-import seedu.modtrek.storage.StorageManager;
 
 public class StorageManagerTest {
 
@@ -54,18 +51,18 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonDegreeProgressionStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonDegreeProgressionStorageTest} class.
          */
-        DegreeProgression original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        DegreeProgression original = getTypicalDegreeProgression();
+        storageManager.saveDegreeProgression(original);
+        ReadOnlyDegreeProgression retrieved = storageManager.readDegreeProgression().get();
         assertEquals(original, new DegreeProgression(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getDegreeProgressionFilePath() {
+        assertNotNull(storageManager.getDegreeProgressionFilePath());
     }
 
 }

@@ -2,91 +2,90 @@ package seedu.modtrek.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
-import static seedu.modtrek.testutil.TypicalPersons.ALICE;
-import static seedu.modtrek.testutil.TypicalPersons.BOB;
+import static seedu.modtrek.testutil.TypicalModules.CS1101S;
+import static seedu.modtrek.testutil.TypicalModules.MA2002;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.model.module.Person;
-import seedu.modtrek.testutil.PersonBuilder;
+import seedu.modtrek.testutil.ModuleBuilder;
 
-public class PersonTest {
+public class ModuleTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
+        Module person = new ModuleBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameModule() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(CS1101S.isSameModule(CS1101S));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(CS1101S.isSameModule(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Module editedCS1101s = new ModuleBuilder(CS1101S).withCredit(VALID_CREDIT_MA2002).withSemYear(VALID_SEMYEAR_MA2002)
+                .withGrade(VALID_GRADE_MA2002).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(CS1101S.isSameModule(editedCS1101s));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
+        assertFalse(CS1101S.isSameModule(editedCS1101s));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Module editedBob = new ModuleBuilder(MA2002).withCode(VALID_CODE_MA2002.toLowerCase()).build();
+        assertFalse(MA2002.isSameModule(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = VALID_CODE_MA2002 + " ";
+        editedBob = new ModuleBuilder(MA2002).withCode(nameWithTrailingSpaces).build();
+        assertFalse(MA2002.isSameModule(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Module aliceCopy = new ModuleBuilder(CS1101S).build();
+        assertTrue(CS1101S.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(CS1101S.equals(CS1101S));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(CS1101S.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(CS1101S.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(CS1101S.equals(MA2002));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Module editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
+        assertFalse(CS1101S.equals(editedCS1101s));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedCS1101s = new ModuleBuilder(CS1101S).withCredit(VALID_CREDIT_MA2002).build();
+        assertFalse(CS1101S.equals(editedCS1101s));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedCS1101s = new ModuleBuilder(CS1101S).withSemYear(VALID_SEMYEAR_MA2002).build();
+        assertFalse(CS1101S.equals(editedCS1101s));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedCS1101s = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).build();
+        assertFalse(CS1101S.equals(editedCS1101s));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedCS1101s = new ModuleBuilder(CS1101S).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(CS1101S.equals(editedCS1101s));
     }
 }

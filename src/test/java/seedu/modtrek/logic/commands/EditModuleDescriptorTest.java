@@ -8,7 +8,7 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
-import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_CS1101S.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_CS1101S).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS1101S).withTags(VALID_TAG_CS1101S).build();
         assertFalse(DESC_CS1101S.equals(editedAmy));
     }
 }

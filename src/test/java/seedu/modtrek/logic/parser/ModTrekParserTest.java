@@ -23,6 +23,7 @@ import seedu.modtrek.logic.commands.HelpCommand;
 import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
+import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
@@ -49,8 +50,8 @@ public class ModTrekParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + "CS1101S");
+        assertEquals(new DeleteCommand(new Code("CS1101S")), command);
     }
 
     @Test
@@ -58,8 +59,8 @@ public class ModTrekParserTest {
         Module module = new ModuleBuilder().build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + "CS1101S" + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(new Code("CS1101S"), descriptor), command);
     }
 
     @Test
@@ -70,10 +71,10 @@ public class ModTrekParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        Code findCode = new Code("CS1101S");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new ModuleCodePredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + "CS1101S");
+        assertEquals(new FindCommand(new ModuleCodePredicate(findCode)), command);
     }
 
     @Test
