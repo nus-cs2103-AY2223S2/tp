@@ -270,16 +270,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                    | So that I can…​                                                        |
-| -------- |--------------------------------------------|---------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                |                                                                        |
-| `* * *`  | user                                       | delete a person                 | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name           | locate details of persons without having to go through the entire list |
+| Priority | As a …​                                       | I want to …​                 | So that I can…​                                                        |
+| -------- |-----------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                                       | add a new person             |                                                                        |
+| `* * *`  | Student                                       | delete a person              | remove entries that I no longer need                                   |
 | `* * *`  | Student                                    | view a person's contact details | contact the person(TA/Professor) to seek help for my tutorials         |
-| `* *`    | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name            | locate a person easily                                                 |
-
+| `* * *`  | Student                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                                       | filter a person by tag       | find the persons that is related to the tag quickly                    |
+| `* *`    | Student                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
+| `*`      | Student with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 *{More to be added}*
 
 ### Use cases
