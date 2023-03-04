@@ -317,30 +317,143 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Paidlancers` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add Event**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an event together with its information.
+2.  System adds the event and displays information of the event added.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
 
-  Use case ends.
+      Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+**Use case: UC2 - Delete Event**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to delete a specified event in the list.
+3. System deletes the event and displays information of the event deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
+
+* 1b. User enters an invalid index.
+   * 1b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+**Use case: UC3 - Mark Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to mark a specified event in the list.
+3. System marks the event and displays information of the event marked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 1b. User enters an invalid index.
+   * 1b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 1c. User marks an event that is already marked.
+   * 1c1. System displays that the event has already been marked.
+
+      Use case ends.
+   
+**Use case: UC4 - List Events**
+
+**MSS**
+
+1. User requests the system to list events.
+2. System displays information of all events with their respective index.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 2a. The list is empty.
+   * 2a1. System displays an empty list.
+      
+      Use case ends.
+
+**Use case: UC5 - List Contacts**
+
+**MSS**
+
+1. User requests the system to list contacts.
+2. System displays information of all contacts with their respective index.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 2a. The list is empty.
+   * 2a1. System displays an empty list.
+      
+      Use case ends.
+
+**Use case: UC6 - Link contact and event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User <u>lists contacts (UC5)</u>.
+3. User requests to link a specified event and contact.
+4. System links them and displays the event's and contact's information.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User enters the wrong command.
+   * 3a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 3b. User enters an invalid index.
+   * 3b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 4a. The event has a contact linked already.
+   * 4a1. System replaces the previous contact with the new contact.
+
+      Use case ends.
+
 
 *{More to be added}*
 
