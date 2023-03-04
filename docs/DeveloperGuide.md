@@ -257,7 +257,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**: Military admin clerk who handles information of other military personnel
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Contains dedicated fields in a contact card that manages military-specific information
+(e.g., rank, company, unit, etc.)
 
 ### User stories
 
