@@ -9,7 +9,7 @@ SportSync is a desktop address book application used for coaching student athlet
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
 
 [//]: # (  * Added the ability to undo/redo previous commands.)
 
