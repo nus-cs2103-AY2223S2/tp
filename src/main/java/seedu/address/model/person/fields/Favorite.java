@@ -19,6 +19,17 @@ public class Favorite {
         this.isFavorite = isFavorite;
     }
 
+    public Favorite(String favoriteMessage) {
+        if (favoriteMessage.equals("T")) {
+            this.isFavorite = true;
+        } else {
+            this.isFavorite = false;
+        }
+    }
+
+    public boolean getFavoriteStatus() {
+        return isFavorite;
+    }
 
     /**
      * Checks if a string is a valid favorite tag
@@ -28,5 +39,13 @@ public class Favorite {
             return true;
         }
         return Objects.equals(trimmedFavorite, "T") || Objects.equals(trimmedFavorite, "F");
+    }
+
+    public String toString() {
+        if (isFavorite) {
+            return "T";
+        } else {
+            return "F";
+        }
     }
 }
