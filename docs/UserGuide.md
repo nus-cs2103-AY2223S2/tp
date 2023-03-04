@@ -78,15 +78,35 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME [{SPECIFIER}/{DATA}]`
+
+Here are all the specifiers that can be used:
+| Specifier   | Name of Field| Optional? |
+| ----------- | -----------  |
+|n | name | No |
+|e | Email address | Yes |
+|a | Address | Yes |
+|m | Major | Yes |
+|mt | Mods Taken | Yes |
+|f | Faculty | Yes |
+|p | Photo | Yes |
+|g | Gender | Yes |
+|t | Tags | Yes |
+|c | Preferred Communication Channel | Yes |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and modules taken(including 0). 
+
+IMPT: If you want to add multiple tags or modules in one statement, 
+every tag or module has to have its corresponding specifier.
+
+In the future, only modules that are a part of NUS' mod systems will be allowed. This is
+to prevent any messiness and also allows for syncing with the calendar.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
 ### Listing all persons : `list`
 
@@ -98,14 +118,27 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [{SPECIFIER}/{DATA}]`
+
+| Specifier   | Name of Field| Optional? |
+| ----------- | -----------  |
+|n | name | No |
+|e | Email address | Yes |
+|a | Address | Yes |
+|m | Major | Yes |
+|mt | Mods Taken | Yes |
+|f | Faculty | Yes |
+|p | Photo | Yes |
+|g | Gender | Yes |
+|t | Tags | Yes |
+|c | Preferred Communication Channel | Yes |
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags/mods taken, the existing tags/mods taken of/by the person will be removed 
+i.e adding of tags and mods taken are not cumulative.
+* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
