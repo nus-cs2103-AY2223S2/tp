@@ -88,7 +88,7 @@ public class ClientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different appointments -> returns false
-        editedAlice = new ClientBuilder(ALICE).withAddress(VALID_APPOINTMENT_DATE_TWO).build();
+        editedAlice = new ClientBuilder(ALICE).withAppointments(VALID_APPOINTMENT_DATE_TWO).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
