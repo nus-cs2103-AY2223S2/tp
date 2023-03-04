@@ -2,7 +2,6 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 

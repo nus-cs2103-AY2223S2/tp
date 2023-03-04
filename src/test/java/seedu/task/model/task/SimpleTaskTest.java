@@ -1,7 +1,8 @@
 package seedu.task.model.task;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -116,5 +117,19 @@ public class SimpleTaskTest {
 
         assertEquals(1, bName.compareTo(aName));
         assertEquals(-1, bName.compareTo(cName));
+    }
+
+    @Test
+    public void compareTo_all_tasks() {
+        Task aName = new SimpleTask(new Name("apple"), new Description("apple"),
+                new HashSet<>());
+        Task bName = new Deadline(new Name("bucket"), new Description("bucket"),
+                new HashSet<>(), new Date("2023-04-01 0000"));
+        Task cName = new Event(new Name("car"), new Description("car"),
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+
+        assertEquals(1, bName.compareTo(aName));
+        assertEquals(-1, bName.compareTo(cName));
+        assertEquals(-1, aName.compareTo(cName));
     }
 }
