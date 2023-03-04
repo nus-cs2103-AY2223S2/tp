@@ -3,14 +3,17 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import org.controlsfx.control.Notifications;
 
 /**
  * The manager of the UI component.
@@ -43,6 +46,15 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+
+            //show notifications
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Test Notification")
+                    .text("This is a test Notification")
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.TOP_RIGHT);
+            notificationBuilder.showConfirm();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

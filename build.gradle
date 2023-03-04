@@ -41,6 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    implementation 'org.controlsfx:controlsfx:11.1.2'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
