@@ -1,9 +1,8 @@
-package seedu.address.logic.factories;
+package seedu.address.logic.pilot.addpilot;
 
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.AddPilotCommand;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;

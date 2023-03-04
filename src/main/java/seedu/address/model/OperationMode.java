@@ -1,4 +1,4 @@
-package seedu.address.logic.core;
+package seedu.address.model;
 
 /**
  * The mode at which the command is executed.
@@ -31,7 +31,7 @@ public enum OperationMode {
      * @param i the integer to convert, should be between 0 and 4.
      * @return the mode corresponding to the integer.
      */
-    public static OperationMode fromInt(int i) {
+    public static OperationMode fromInt(int i) throws IllegalArgumentException {
         switch (i) {
         case 0:
             return PILOT;
@@ -46,6 +46,31 @@ public enum OperationMode {
         default:
             throw new IllegalArgumentException(
                 "Invalid mode index: " + i + ", should be between 0 and 4");
+        }
+    }
+
+    /**
+     * Converts a string to a mode.
+     *
+     * @param s the string to convert, should be one of pilot, plane, flight, crew, location.
+     * @return the mode corresponding to the string.
+     * @throws IllegalArgumentException if the string is not one of the valid modes.
+     */
+    public static OperationMode fromString(String s) throws IllegalArgumentException {
+        switch (s.toLowerCase()) {
+        case "pilot":
+            return PILOT;
+        case "plane":
+            return PLANE;
+        case "flight":
+            return FLIGHT;
+        case "crew":
+            return CREW;
+        case "location":
+            return LOCATION;
+        default:
+            throw new IllegalArgumentException(
+                "Invalid mode string: " + s + ", should be one of pilot, plane, flight, crew, location");
         }
     }
 

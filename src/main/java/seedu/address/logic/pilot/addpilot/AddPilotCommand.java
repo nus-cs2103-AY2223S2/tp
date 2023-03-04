@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.pilot.addpilot;
 
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;

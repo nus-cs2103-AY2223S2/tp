@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.core.exceptions.ParseException;
+import seedu.address.model.OperationMode;
 
 /**
  * The group of commands.

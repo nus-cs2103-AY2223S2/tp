@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.factories.AddPilotCommandFactory;
-import seedu.address.logic.factories.DeletePilotCommandFactory;
+import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
+import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
+import seedu.address.logic.toplevel.changemode.ChangeModeCommandFactory;
+import seedu.address.model.OperationMode;
 
 /**
  * The parser that's responsible for parsing the user input and handling the
@@ -32,7 +34,9 @@ public class WingmanParser extends FactoryParser {
     /**
      * The top level command factories that are available in the application.
      */
-    private static final List<CommandFactory<?>> COMMAND_FACTORIES = List.of();
+    private static final List<CommandFactory<?>> COMMAND_FACTORIES = List.of(
+        new ChangeModeCommandFactory()
+    );
 
     /**
      * The command groups that are available in the application.

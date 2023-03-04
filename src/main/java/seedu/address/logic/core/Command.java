@@ -15,19 +15,5 @@ public interface Command {
      * @throws CommandException If an error occurs during command execution.
      */
     CommandResult execute(Model model)
-            throws CommandException;
-
-    /**
-     * Reverses the "harm" that this command has done to the model.
-     * <p>
-     * TODO: enable this in future iterations by removing the default
-     * implementation. We can implement undo/redo by storing the Commands as
-     * a stack and then popping them off to reverse the effects.
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @throws CommandException If an error occurs during command execution.
-     */
-    default void reverse(Model model) throws CommandException {
-        throw new CommandException("This command cannot be reversed.");
-    }
+        throws CommandException;
 }
