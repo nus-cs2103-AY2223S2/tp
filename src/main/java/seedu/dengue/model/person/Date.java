@@ -23,7 +23,6 @@ public class Date {
 
     private static final String VALIDATION_DATE = "yyyy-MM-dd";
     private static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern(VALIDATION_DATE);
-    
     public final String value;
 
     /**
