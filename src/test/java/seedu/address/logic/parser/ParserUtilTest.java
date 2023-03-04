@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_CALORIE = "012";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_CALORIE = "2000";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -100,6 +103,29 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseCalorie_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCalorie((String) null));
+    }
+
+    @Test
+    public void parseCalorie_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE));
+    }
+
+    @Test
+    public void parseCalorie_validValueWithoutWhitespace_returnsCalorie() throws Exception {
+        Calorie expectedCalorie = new Calorie(VALID_CALORIE);
+        assertEquals(expectedCalorie, ParserUtil.parseCalorie(VALID_CALORIE));
+    }
+
+    @Test
+    public void parseCalorie_validValueWithWhitespace_returnsTrimmedCalorie() throws Exception {
+        String calorieWithWhitespace = WHITESPACE + VALID_CALORIE + WHITESPACE;
+        Calorie expectedCalorie = new Calorie(VALID_CALORIE);
+        assertEquals(expectedCalorie, ParserUtil.parseCalorie(calorieWithWhitespace));
     }
 
     @Test
