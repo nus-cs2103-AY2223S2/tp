@@ -58,10 +58,12 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
   e.g. if the command specifies `n/NAME p/POSTAL_CODE`, `p/POSTAL_CODE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/123414 p/567878`, only `p/567878` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` followed by the sequence of 6 digits.
 
 </div>
 
@@ -104,7 +106,7 @@ Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/912345 d/2001-01-01` Edits the POSTAL number and date age of the 1st person to be `912345` and `2001-01-01` respectively.
+*  `edit 1 p/912345 d/2001-01-01` Edits the POSTAL number and date age of the 1st person to be `S912345` and `2001-01-01` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -117,7 +119,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The name and postal codes are searched.
   * For names, partial words will be matched e.g. `Han` will match `Hans` and `Abrahan`
-  * For postal codes, the beginning of the postal code will be matched e.g. `10` will match `101234` but not `123410`
+  * For postal codes, the beginning of the postal code will be matched e.g. `10` will match `S101234` but not `S123410`
+  * For postal codes, the user may choose to include an `"S"` character or not e.g. `S10` will match `S101234`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all persons whose postal codes begin with `101`.
 
@@ -181,7 +184,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/222244 d/2000-11-11 a/123, t/URGENT`
+**Add** | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, t/URGENT`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`
