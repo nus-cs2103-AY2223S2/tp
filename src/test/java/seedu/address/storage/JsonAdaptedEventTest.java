@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
-        import static org.junit.jupiter.api.Assertions.assertEquals;
-        import static seedu.address.testutil.Assert.assertThrows;
-        import static seedu.address.testutil.TypicalEvents.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.*;
 
-        import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
-        import seedu.address.commons.exceptions.IllegalValueException;
-        import seedu.address.model.event.DateTime;
-        import seedu.address.model.event.Event;
-        import seedu.address.model.event.EventName;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.DateTime;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
 
 public class JsonAdaptedEventTest {
     private static final Event INVALID_EVENT_DATETIME = new Event(
