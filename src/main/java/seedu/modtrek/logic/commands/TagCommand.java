@@ -32,9 +32,8 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds tags to the module identified "
             + "Parameters: CODE (module code) "
-            + " [code]\n"
             + "Example: " + COMMAND_WORD + " CS1101S "
-            + "/t UNIVERSITY LEVEL REQUIREMENT.";
+            + "/t UNIVERSITY LEVEL REQUIREMENTS";
 
     /**
      * The constant MESSAGE_NOT_IMPLEMENTED_YET.
@@ -69,12 +68,15 @@ public class TagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Module> lastShownList = model.getFilteredModuleList();
 
+        // possibly make module list a hash set instead of list
         Module moduleToEdit = new Module(code);
+        int index = lastShownList.indexOf(moduleToEdit);
+        moduleToEdit = lastShownList.get(index);
         if (!lastShownList.contains(moduleToEdit)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Set<Tag> newTags = moduleToEdit.getTags();
+        Set<Tag> newTags = moduleToEdit.getModifiableTags();
         newTags.add(tag);
 
         Module editedModule = new Module(

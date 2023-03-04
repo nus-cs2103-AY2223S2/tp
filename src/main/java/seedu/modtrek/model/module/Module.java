@@ -100,6 +100,15 @@ public class Module {
     }
 
     /**
+     * Gets modifiable tags.
+     *
+     * @return the tags
+     */
+    public Set<Tag> getModifiableTags() {
+        return tags;
+    }
+
+    /**
      * Is same module boolean.
      *
      * @param otherModule the other module

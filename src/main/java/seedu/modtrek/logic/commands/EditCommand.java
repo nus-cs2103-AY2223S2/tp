@@ -69,6 +69,8 @@ public class EditCommand extends Command {
 
 
         Module moduleToEdit = new Module(code);
+        int index = lastShownList.indexOf(moduleToEdit);
+        moduleToEdit = lastShownList.get(index);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
 
         if (!moduleToEdit.isSameModule(editedModule) && model.hasModule(editedModule)) {

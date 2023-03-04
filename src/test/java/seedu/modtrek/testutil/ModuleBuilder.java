@@ -16,10 +16,10 @@ import seedu.modtrek.model.util.SampleDataUtil;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_CODE = "CS1101S";
+    public static final String DEFAULT_CREDIT = "4";
+    public static final String DEFAULT_SEMYEAR = "Y1S1";
+    public static final String DEFAULT_GRADE = "A";
 
     private Code code;
     private Credit credit;
@@ -31,10 +31,10 @@ public class ModuleBuilder {
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        code = new Code(DEFAULT_NAME);
-        credit = new Credit(DEFAULT_PHONE);
-        semYear = new SemYear(DEFAULT_EMAIL);
-        grade = new Grade(DEFAULT_ADDRESS);
+        code = new Code(DEFAULT_CODE);
+        credit = new Credit(DEFAULT_CREDIT);
+        semYear = new SemYear(DEFAULT_SEMYEAR);
+        grade = new Grade(DEFAULT_GRADE);
         tags = new HashSet<>();
     }
 
