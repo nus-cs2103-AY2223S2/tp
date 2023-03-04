@@ -63,7 +63,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         IdentifiableStorage<Pilot> pilotStorage =
-                new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
+            new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage);
 
         initLogging(config);
@@ -85,7 +85,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook addressBook;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             addressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -104,8 +104,10 @@ public class MainApp extends Application {
             pilotManagerOptional = storage.readPilotManager();
             if (pilotManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample PilotManager");
+                pilotManager = new IdentifiableManager<>();
+            } else {
+                pilotManager = pilotManagerOptional.get();
             }
-            pilotManager = pilotManagerOptional.orElseThrow();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
@@ -144,7 +146,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                                   + "Using default config properties");
+                               + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -172,7 +174,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                                   + "Using default user prefs");
+                               + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");

@@ -1,14 +1,20 @@
 package seedu.address.ui.core;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import seedu.address.model.item.Identifiable;
+import seedu.address.ui.UiPart;
 
 /**
  * A generic view for an item.
  */
-public class ItemView extends VBox {
+public class ItemCard extends UiPart<VBox> {
+    private static final String FXML = "ItemCard.fxml";
     private final Identifiable item;
+
+    @FXML
+    private VBox cardPane;
 
     /**
      * Creates a view for the given item. The item is an identifiable object
@@ -16,11 +22,12 @@ public class ItemView extends VBox {
      *
      * @param item The item to be displayed.
      */
-    public ItemView(Identifiable item) {
-        super();
+    public ItemCard(Identifiable item) {
+        super(FXML);
         this.item = item;
         for (String line : item.getDisplayList()) {
-            getChildren().add(new Label(line));
+            Label label = new Label(line);
+            cardPane.getChildren().add(label);
         }
     }
 
