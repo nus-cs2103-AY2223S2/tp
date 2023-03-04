@@ -3,11 +3,11 @@ package seedu.loyaltylift.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.loyaltylift.model.person.Address;
-import seedu.loyaltylift.model.person.Email;
-import seedu.loyaltylift.model.person.Name;
-import seedu.loyaltylift.model.person.Person;
-import seedu.loyaltylift.model.person.Phone;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 import seedu.loyaltylift.model.util.SampleDataUtil;
 
@@ -41,7 +41,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PersonBuilder(Customer personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -89,8 +89,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Customer build() {
+        return new Customer(name, phone, email, address, tags);
     }
 
 }

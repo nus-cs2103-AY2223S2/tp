@@ -1,4 +1,4 @@
-package seedu.loyaltylift.model.person;
+package seedu.loyaltylift.model.customer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.util.AppUtil.checkArgument;

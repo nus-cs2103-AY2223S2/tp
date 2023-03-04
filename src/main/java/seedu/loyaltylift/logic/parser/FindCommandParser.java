@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.loyaltylift.logic.commands.FindCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.person.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

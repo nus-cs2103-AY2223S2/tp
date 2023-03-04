@@ -4,12 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.loyaltylift.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.loyaltylift.model.person.Address;
-import seedu.loyaltylift.model.person.Email;
-import seedu.loyaltylift.model.person.Name;
-import seedu.loyaltylift.model.person.Person;
-import seedu.loyaltylift.model.person.Phone;
+import seedu.loyaltylift.logic.commands.EditCommand;
+import seedu.loyaltylift.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -17,21 +18,21 @@ import seedu.loyaltylift.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditCommand.EditCustomerDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCommand.EditCustomerDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditCommand.EditCustomerDescriptor descriptor) {
+        this.descriptor = new EditCustomerDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
+    public EditPersonDescriptorBuilder(Customer person) {
+        descriptor = new EditCustomerDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -81,7 +82,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditCustomerDescriptor build() {
         return descriptor;
     }
 }

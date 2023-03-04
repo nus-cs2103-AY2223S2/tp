@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.loyaltylift.logic.commands.AddCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.person.Address;
-import seedu.loyaltylift.model.person.Email;
-import seedu.loyaltylift.model.person.Name;
-import seedu.loyaltylift.model.person.Person;
-import seedu.loyaltylift.model.person.Phone;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Customer person = new Customer(name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

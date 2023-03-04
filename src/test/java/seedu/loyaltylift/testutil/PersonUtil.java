@@ -9,8 +9,8 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.loyaltylift.logic.commands.AddCommand;
-import seedu.loyaltylift.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.loyaltylift.model.person.Person;
+import seedu.loyaltylift.logic.commands.EditCommand;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -21,14 +21,14 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddCommand(Customer person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Customer person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
@@ -43,7 +43,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditCommand.EditCustomerDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

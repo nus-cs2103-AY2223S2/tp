@@ -1,4 +1,4 @@
-package seedu.loyaltylift.model.person;
+package seedu.loyaltylift.model.customer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
