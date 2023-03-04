@@ -21,22 +21,22 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-                new Person(new Name("Alex Yeoh"), new GitHubProfile("alex-yeoh"), new Phone("87438807"),
+            new Person(new Name("Alex Yeoh"), new GitHubProfile("alex-yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
                 getLanguageSet("Java"), getTagSet("friends")),
-                new Person(new Name("Bernice Yu"), new GitHubProfile("bernice-yu"), new Phone("99272758"),
+            new Person(new Name("Bernice Yu"), new GitHubProfile("bernice-yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getLanguageSet("Python", "Dart"), getTagSet("colleagues", "friends")),
-                new Person(new Name("Charlotte Oliveiro"), new GitHubProfile("charlotte-o"), new Phone("93210283"),
+            new Person(new Name("Charlotte Oliveiro"), new GitHubProfile("charlotte-o"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getLanguageSet("C"), getTagSet("neighbours")),
-                new Person(new Name("David Li"), new GitHubProfile("david-li"), new Phone("91031282"),
+            new Person(new Name("David Li"), new GitHubProfile("david-li"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getLanguageSet("C#"), getTagSet("family")),
-                new Person(new Name("Irfan Ibrahim"), new GitHubProfile("irfan-ibrahim"), new Phone("92492021"),
+            new Person(new Name("Irfan Ibrahim"), new GitHubProfile("irfan-ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
                 getLanguageSet("C++"), getTagSet("classmates")),
-                new Person(new Name("Roy Balakrishnan"), new GitHubProfile("roy-balakrishnan"), new Phone("92624417"),
+            new Person(new Name("Roy Balakrishnan"), new GitHubProfile("roy-balakrishnan"), new Phone("92624417"),
                 new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getLanguageSet("JavaScript"), getTagSet("colleagues"))
         };
