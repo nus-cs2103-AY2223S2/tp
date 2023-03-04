@@ -26,14 +26,16 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
 
-    private static final String DEFAULT_DATE_REGREX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
-    private static final String FULL_DATE_REGREX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
+    private static final String DEFAULT_DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
+    private static final String FULL_DATE_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
+    private static final String DATE_ONLY_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2}";
 
     private static final String FULL_DATE_PATTERN = "yyyy-M-d HHmm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -131,11 +133,10 @@ public class ParserUtil {
         return tagSet;
     }
 
-
     /**
      * Parses a String date to a {@code LocalDateTime}.
-     *
-     * <p>The following formats are supported:
+     * <p>
+     * The following formats are supported:
      * <ul>
      * <li>{@code yyyy-MM-dd'T'hh:mm}
      * <li>{@code yyyy-M-d hhmm}
@@ -153,16 +154,19 @@ public class ParserUtil {
         }
     }
 
-
     private static LocalDateTime parseCustomDate(String dateString) throws ParseException {
-        if (dateString.matches(DEFAULT_DATE_REGREX)) {
+        if (dateString.matches(DEFAULT_DATE_REGEX)) {
             // yyyy-MM-dd'T'hh:mm format
             return LocalDateTime.parse(dateString);
-        } else if (dateString.matches(FULL_DATE_REGREX)) {
+        } else if (dateString.matches(FULL_DATE_REGEX)) {
             // yyyy-MM-dd hhmm format
             return LocalDateTime.parse(
-                        dateString,
-                        DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
+                    dateString,
+                    DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
+        } else if (dateString.matches(DATE_ONLY_REGEX)) {
+            return LocalDateTime.parse(
+                    dateString + " 0000",
+                    DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
         }
         throw new ParseException(MESSAGE_INVALID_DATE);
     }
