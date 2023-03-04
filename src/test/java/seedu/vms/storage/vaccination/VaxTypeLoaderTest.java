@@ -13,7 +13,7 @@ import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
 import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 
 public class VaxTypeLoaderTest {
@@ -57,7 +57,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_resource() throws Exception {
-        VaxTypeStorage storage = VaxTypeLoader.load();
+        VaxTypeManager storage = VaxTypeLoader.load();
         VaxType vaxType = storage.get(NAME).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 NAME,
@@ -72,7 +72,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_fileDefaultValues() throws Exception {
-        VaxTypeStorage storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_DEFAULT_VALUES);
+        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_DEFAULT_VALUES);
         VaxType vaxType = storage.get(DEFAULT_NAME).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
@@ -87,7 +87,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_multipleTypes() throws Exception {
-        VaxTypeStorage storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_VALID_MULTIPLE);
+        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_VALID_MULTIPLE);
         VaxType vaxType = storage.get(DEFAULT_NAME).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
@@ -111,7 +111,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_emptyList() throws Exception {
-        VaxTypeStorage storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_EMPTY);
+        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_EMPTY);
         assertTrue(storage.asUnmodifiableObservableMap().isEmpty());
     }
 

@@ -14,7 +14,7 @@ import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final VaxTypeStorage vaxTypeStorage;
+    private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, VaxTypeStorage vaxTypeStorage, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, VaxTypeManager vaxTypeManager, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -40,19 +40,19 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
 
-        this.vaxTypeStorage = vaxTypeStorage;
+        this.vaxTypeManager = vaxTypeManager;
     }
 
     /**
      * Convenience constructor to construct a {@code ModelManager} with an
-     * empty {@code VaxTypeStorage}.
+     * empty {@code VaxTypeManager}.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, new VaxTypeStorage(), userPrefs);
+        this(addressBook, new VaxTypeManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new VaxTypeStorage(), new UserPrefs());
+        this(new AddressBook(), new VaxTypeManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -146,7 +146,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
-        return vaxTypeStorage.asUnmodifiableObservableMap();
+        return vaxTypeManager.asUnmodifiableObservableMap();
     }
 
     //=========== Misc methods ================================================================================

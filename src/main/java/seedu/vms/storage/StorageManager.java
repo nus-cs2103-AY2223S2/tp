@@ -10,7 +10,7 @@ import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.vaccination.VaxTypeLoader;
 
 /**
@@ -80,14 +80,14 @@ public class StorageManager implements Storage {
     // ================ Vax Type methods ==============================
 
     @Override
-    public VaxTypeStorage loadVaxTypes() {
+    public VaxTypeManager loadVaxTypes() {
         logger.fine("Attempting to load default vaccination types");
         try {
             return VaxTypeLoader.load();
         } catch (Throwable ex) {
             // should never happen but present just to be safe
             logger.warning("Unable to load defaults");
-            return new VaxTypeStorage();
+            return new VaxTypeManager();
         }
     }
 

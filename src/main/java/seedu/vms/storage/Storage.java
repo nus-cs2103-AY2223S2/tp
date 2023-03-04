@@ -8,7 +8,7 @@ import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
  * API of the Storage component
@@ -31,6 +31,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
 
-    VaxTypeStorage loadVaxTypes();
+    VaxTypeManager loadVaxTypes();
 
 }

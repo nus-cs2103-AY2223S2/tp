@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
-import seedu.vms.model.vaccination.VaxTypeStorage;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 
 /** A JSON file loader of {@code VaxType}. */
@@ -33,7 +33,7 @@ public class VaxTypeLoader {
      *      JSON file.
      * @throws IOException if an I/O error occurs.
      */
-    public static VaxTypeStorage load() throws IllegalValueException, IOException {
+    public static VaxTypeManager load() throws IllegalValueException, IOException {
         VaxTypeLoader loader = JsonUtil.deserializeFromResource(JSON_FILE_PATH, VaxTypeLoader.class);
         return loader.toModelType();
     }
@@ -46,14 +46,14 @@ public class VaxTypeLoader {
      *      JSON file.
      * @throws IOException if an I/O error occurs.
      */
-    public static VaxTypeStorage load(String pathString) throws IllegalValueException, IOException {
+    public static VaxTypeManager load(String pathString) throws IllegalValueException, IOException {
         VaxTypeLoader loader = JsonUtil.deserializeFromFile(pathString, VaxTypeLoader.class);
         return loader.toModelType();
     }
 
 
-    private VaxTypeStorage toModelType() throws IllegalValueException {
-        VaxTypeStorage storage = new VaxTypeStorage();
+    private VaxTypeManager toModelType() throws IllegalValueException {
+        VaxTypeManager storage = new VaxTypeManager();
         for (JsonAdaptedVaxType adapted : types) {
             adapted.toModelType(storage);
         }
