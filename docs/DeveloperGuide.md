@@ -459,16 +459,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage. 
+4. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+5. The system should work on both 32-bit and 64-bit environments.
+6. The source code should be open source.
+7. The product is offered as a free product.
+8. The system should respond within two seconds for events and persons up to 1000.
+9. The user interface should be intuitive enough for users who are not as IT-savvy.
+10. The dimensions should be at least `726px * 593px` so that it is readable for the user.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
