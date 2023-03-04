@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dengue.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATEANDTIME_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -44,7 +44,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDateAndTime(VALID_DATEANDTIME_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

@@ -11,7 +11,7 @@ members within the government.<br>
 
 * Example commands:
   * find <keyword>: finds a case profile by provided keyword, and displays cases whose names contain the keyword
-  * add n/NAME p/POSTAL_CODE d/DATETIME a/AGE
+  * add n/NAME p/POSTAL_CODE d/DATE a/AGE
   * delete 3 (index)
 
 * The project is built on an ongoing software project for a desktop application (called _denguetracker_)

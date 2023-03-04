@@ -1,7 +1,7 @@
 package seedu.dengue.testutil;
 
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,7 +32,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_POSTAL + person.getPostal().value + " ");
-        sb.append(PREFIX_DATEANDTIME + person.getDateAndTime().value + " ");
+        sb.append(PREFIX_DATE + person.getDate().value + " ");
         sb.append(PREFIX_AGE + person.getAge().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -47,7 +47,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPostal().ifPresent(postal -> sb.append(PREFIX_POSTAL).append(postal.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_DATEANDTIME).append(email.value).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_DATE).append(email.value).append(" "));
         descriptor.getAge().ifPresent(address -> sb.append(PREFIX_AGE).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

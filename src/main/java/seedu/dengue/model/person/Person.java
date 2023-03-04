@@ -18,7 +18,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Postal postal;
-    private final DateAndTime dateAndTime;
+    private final Date date;
 
     // Data fields
     private final Age age;
@@ -27,11 +27,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Postal postal, DateAndTime dateAndTime, Age age, Set<Tag> tags) {
-        requireAllNonNull(name, postal, dateAndTime, age, tags);
+    public Person(Name name, Postal postal, Date date, Age age, Set<Tag> tags) {
+        requireAllNonNull(name, postal, date, age, tags);
         this.name = name;
         this.postal = postal;
-        this.dateAndTime = dateAndTime;
+        this.date = date;
         this.age = age;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Person {
         return postal;
     }
 
-    public DateAndTime getDateAndTime() {
-        return dateAndTime;
+    public Date getDate() {
+        return date;
     }
 
     public Age getAge() {
@@ -90,7 +90,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPostal().equals(getPostal())
-                && otherPerson.getDateAndTime().equals(getDateAndTime())
+                && otherPerson.getDate().equals(getDate())
                 && otherPerson.getAge().equals(getAge())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, postal, dateAndTime, age, tags);
+        return Objects.hash(name, postal, date, age, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Person {
         builder.append(getName())
                 .append("; Postal: ")
                 .append(getPostal())
-                .append("; DateTime: ")
-                .append(getDateAndTime())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Age: ")
                 .append(getAge());
 

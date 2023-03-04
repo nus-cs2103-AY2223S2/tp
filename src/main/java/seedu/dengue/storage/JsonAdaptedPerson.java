@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.dengue.commons.exceptions.IllegalValueException;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -26,7 +26,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String postal;
-    private final String dateandtime;
+    private final String date;
     private final String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("postal") String postal,
-            @JsonProperty("datetime") String dateandtime, @JsonProperty("age") String age,
+            @JsonProperty("date") String date, @JsonProperty("age") String age,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.postal = postal;
-        this.dateandtime = dateandtime;
+        this.date = date;
         this.age = age;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         postal = source.getPostal().value;
-        dateandtime = source.getDateAndTime().value;
+        date = source.getDate().value;
         age = source.getAge().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,14 +86,14 @@ class JsonAdaptedPerson {
         }
         final Postal modelPostal = new Postal(postal);
 
-        if (dateandtime == null) {
+        if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DateAndTime.class.getSimpleName()));
+                    Date.class.getSimpleName()));
         }
-        if (!DateAndTime.isValidDateAndTime(dateandtime)) {
-            throw new IllegalValueException(DateAndTime.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final DateAndTime modelDateAndTime = new DateAndTime(dateandtime);
+        final Date modelDate = new Date(date);
 
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
@@ -104,7 +104,7 @@ class JsonAdaptedPerson {
         final Age modelAge = new Age(age);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPostal, modelDateAndTime, modelAge, modelTags);
+        return new Person(modelName, modelPostal, modelDate, modelAge, modelTags);
     }
 
 }

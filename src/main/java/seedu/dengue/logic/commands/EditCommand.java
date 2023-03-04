@@ -2,7 +2,7 @@ package seedu.dengue.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,7 +20,7 @@ import seedu.dengue.commons.util.CollectionUtil;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -39,12 +39,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_POSTAL + "POSTAL] "
-            + "[" + PREFIX_DATEANDTIME + "AGE] "
-            + "[" + PREFIX_AGE + "TIME] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_POSTAL + "91234567 "
-            + PREFIX_DATEANDTIME + "johndoe@example.com";
+            + PREFIX_DATE + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +95,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Postal updatedPostal = editPersonDescriptor.getPostal().orElse(personToEdit.getPostal());
-        DateAndTime updatedDateAndTime = editPersonDescriptor.getEmail().orElse(personToEdit.getDateAndTime());
+        Date updatedDate = editPersonDescriptor.getEmail().orElse(personToEdit.getDate());
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPostal, updatedDateAndTime, updatedAge, updatedTags);
+        return new Person(updatedName, updatedPostal, updatedDate, updatedAge, updatedTags);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Postal postal;
-        private DateAndTime dateAndTime;
+        private Date date;
         private Age age;
         private Set<Tag> tags;
 
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPostal(toCopy.postal);
-            setDateAndTime(toCopy.dateAndTime);
+            setDate(toCopy.date);
             setAge(toCopy.age);
             setTags(toCopy.tags);
         }
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, postal, dateAndTime, age, tags);
+            return CollectionUtil.isAnyNonNull(name, postal, date, age, tags);
         }
 
         public void setName(Name name) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(postal);
         }
 
-        public void setDateAndTime(DateAndTime dateAndTime) {
-            this.dateAndTime = dateAndTime;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<DateAndTime> getEmail() {
-            return Optional.ofNullable(dateAndTime);
+        public Optional<Date> getEmail() {
+            return Optional.ofNullable(date);
         }
 
         public void setAge(Age age) {

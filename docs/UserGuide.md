@@ -78,7 +78,7 @@ Format: `help`
 
 Adds a dengue patient to the dengue hotspot tracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATETIME a/AGE`
+Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE`
 
 Examples:
 * `add n/John Tan p/543299 d/2023-02-13 19:52 a/20`
@@ -104,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and dateAndTime age of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and date age of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`

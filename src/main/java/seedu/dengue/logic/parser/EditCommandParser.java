@@ -3,7 +3,7 @@ package seedu.dengue.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATEANDTIME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_TAG;
@@ -33,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL,
-                        PREFIX_DATEANDTIME, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_DATE, PREFIX_AGE, PREFIX_TAG);
 
         Index index;
 
@@ -50,8 +50,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
             editPersonDescriptor.setPostal(ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get()));
         }
-        if (argMultimap.getValue(PREFIX_DATEANDTIME).isPresent()) {
-            editPersonDescriptor.setDateAndTime(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATEANDTIME).get()));
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editPersonDescriptor.setDate(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editPersonDescriptor.setAge(ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));

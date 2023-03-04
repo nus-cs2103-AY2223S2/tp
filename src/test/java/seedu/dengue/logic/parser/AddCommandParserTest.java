@@ -6,7 +6,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
-import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATEANDTIME_DESC;
+import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_POSTAL_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -19,7 +19,7 @@ import static seedu.dengue.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATEANDTIME_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.commands.AddCommand;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.DateAndTime;
+import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
@@ -95,7 +95,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + VALID_DATEANDTIME_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + VALID_DATE_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
@@ -103,7 +103,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_POSTAL_BOB + VALID_DATEANDTIME_BOB + VALID_AGE_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_POSTAL_BOB + VALID_DATE_BOB + VALID_AGE_BOB,
                 expectedMessage);
     }
 
@@ -118,8 +118,8 @@ public class AddCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Postal.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + INVALID_DATEANDTIME_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DateAndTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + INVALID_DATE_DESC + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + EMAIL_DESC_BOB + INVALID_AGE_DESC
