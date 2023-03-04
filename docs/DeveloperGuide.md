@@ -271,16 +271,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                 | So that I can…​                                                        |
-| -------- |-----------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | Student                                       | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | Student                                       | add a new person             |                                                                        |
-| `* * *`  | Student                                       | delete a person              | remove entries that I no longer need                                   |
+| Priority | As a …​                                       | I want to …​                    | So that I can…​                                                        |
+|----------|-----------------------------------------------|---------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                                       | see usage instructions          | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                                       | add a new person                |                                                                        |
+| `* * *`  | Student                                       | delete a person                 | remove a contact that I no longer need                                 |
 | `* * *`  | Student                                       | view a person's contact details | contact the person(TA/Professor) to seek help for my tutorials         |
-| `* * *`  | Student                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* * *`  | Student                                       | filter a person by tag       | find the persons that is related to the tag quickly                    |
-| `* *`    | Student                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | Student with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *`  | Student                                       | find a person by name           | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                                       | filter a person by tag          | find the persons that is related to the tag quickly                    |
+| `* *`    | Student                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
+| `* *`    | Student  | delete all contacts             | remove all contacts for a fresh start                                  |
+| `*`      | Student with many persons in the address book | sort persons by name            | locate a person easily                                                 |
+
 *{More to be added}*
 
 ### Use cases
@@ -364,6 +366,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A student should be able to learn and use commands provided by MODCheck easily within an hour of usage.
+5. Should be able to handle exceptions, errors and invalid inputs without crashing.
+6. Should be able to still work even if there is no data file present.
 
 *{More to be added}*
 
@@ -371,7 +375,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **TA**: Teaching Assistant - people who assists Professors in conducting tutorial, labs and other classes
+* **GUI**: Graphical User Interface - a system of interactive visual components for computer software
+* **CLI**: Command Line Interface - a text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Index**: A number indicating the order or position in a given list
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
