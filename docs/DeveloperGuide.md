@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -449,13 +449,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
+* 3c. User enters an invalid contact information
+   * 3c1. System displays that the index is invalid and to try again.
+
+      Use case resumts at step 3.
+
 * 4a. The event has a contact linked already.
    * 4a1. System replaces the previous contact with the new contact.
 
       Use case ends.
 
+**Use case: UC7 - Display Rate**
 
-*{More to be added}*
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to display the rate of a specified event in the list.
+3. System displays the event and displays information of the rate.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+**Use case: UC8 - Tag a rate to an Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to tag a rate to a specified event in the list.
+3. System tags the rate to the event and displays information of the event tagged.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid rate.
+   * 2c1. System displays that the rate is invalid and to try again.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
