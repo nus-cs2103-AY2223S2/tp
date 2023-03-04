@@ -12,6 +12,9 @@ import seedu.vms.ui.TagFlowView;
 import seedu.vms.ui.UiPart;
 
 
+/**
+ * Graphical representation of a vaccination type.
+ */
 public class VaxTypeCard extends UiPart<Region> {
     private static final String FXML_FILE = "VaxTypeCard.fxml";
 
@@ -21,6 +24,11 @@ public class VaxTypeCard extends UiPart<Region> {
     @FXML private VBox historyBox;
 
 
+    /**
+     * Constructs a {@code VaxTypeCard}.
+     *
+     * @param vaxType - the vaccination type to display.
+     */
     public VaxTypeCard(VaxType vaxType) {
         super(FXML_FILE);
         titleLabel.setText(vaxType.getName());

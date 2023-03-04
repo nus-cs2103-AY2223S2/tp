@@ -7,7 +7,16 @@ import javafx.scene.control.ListView;
 import seedu.vms.model.vaccination.VaxType;
 
 
+/**
+ * Graphical representation of the filtered list view of available vaccination
+ * types.
+ */
 public class VaxTypeListPanel extends ListView<VaxType> {
+    /**
+     * Constructs a {@code VaxTypeListPanel}.
+     *
+     * @param vaxTypeMap - the observable map of vaccination maps to display.
+     */
     public VaxTypeListPanel(ObservableMap<String, VaxType> vaxTypeMap) {
         vaxTypeMap.addListener(this::handleChange);
         getItems().setAll(vaxTypeMap.values());

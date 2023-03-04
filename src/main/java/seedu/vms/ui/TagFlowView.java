@@ -7,10 +7,18 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 
 
+/**
+ * Graphical representation of a list of tags.
+ */
 public class TagFlowView extends FlowPane {
     private static final String TAG_STYLE_CLASS = "tag";
 
 
+    /**
+     * Constructs a {@code TagFlowView}.
+     *
+     * @param tags - the tags to display.
+     */
     public TagFlowView(Collection<String> tags) {
         setHgap(5);
         setVgap(5);
