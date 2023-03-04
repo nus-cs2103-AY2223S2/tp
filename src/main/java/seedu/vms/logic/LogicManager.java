@@ -16,6 +16,7 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.storage.Storage;
 
 /**
@@ -63,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableMap<Integer, IdData<Patient>> getFilteredPatientMap() {
         return model.getFilteredPatientList();
+    }
+
+    @Override
+    public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
+        return model.getFilteredVaxTypeMap();
     }
 
     @Override
