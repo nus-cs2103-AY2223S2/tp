@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wang ShaoFeng
 
-<img src="images/shaofeng.png" width="200px">
+<img src="images/sfcoding123.png" width="200px">
 
 [[github](http://github.com/SFCoding123]
 [[portfolio](team/johndoe.md)]
