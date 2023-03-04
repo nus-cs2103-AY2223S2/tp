@@ -1,4 +1,4 @@
-package seedu.modtrek.model.person;
+package seedu.modtrek.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,10 +15,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.model.person.Person;
-import seedu.modtrek.model.person.UniquePersonList;
-import seedu.modtrek.model.person.exceptions.DuplicatePersonException;
-import seedu.modtrek.model.person.exceptions.PersonNotFoundException;
+import seedu.modtrek.model.module.Person;
+import seedu.modtrek.model.module.UniquePersonList;
+import seedu.modtrek.model.module.exceptions.DuplicatePersonException;
+import seedu.modtrek.model.module.exceptions.PersonNotFoundException;
 import seedu.modtrek.testutil.PersonBuilder;
 
 public class UniquePersonListTest {

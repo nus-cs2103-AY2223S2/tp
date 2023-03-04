@@ -1,4 +1,4 @@
-package seedu.modtrek.model.person;
+package seedu.modtrek.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,7 @@ import static seedu.modtrek.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.model.person.Person;
+import seedu.modtrek.model.module.Person;
 import seedu.modtrek.testutil.PersonBuilder;
 
 public class PersonTest {
