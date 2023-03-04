@@ -23,7 +23,6 @@ public class Age {
 
     /**
      * Constructs an {@code Age}.
-     *
      * @param age A valid age.
      */
     public Age(String age) {

@@ -38,8 +38,6 @@ public class Postal {
         } else {
             return "S" + string;
         }
-
-
     }
 
     /**
