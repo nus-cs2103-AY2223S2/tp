@@ -7,6 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
+import seedu.address.model.OperationMode;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.person.Person;
@@ -58,4 +59,11 @@ public interface Logic {
      * @return the filtered list of items.
      */
     ObservableList<Identifiable> getFilteredItemList();
+
+    /**
+     * Gets the current operation mode.
+     *
+     * @return the current operation mode.
+     */
+    OperationMode getOperationMode();
 }
