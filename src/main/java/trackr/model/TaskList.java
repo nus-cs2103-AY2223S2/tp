@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import trackr.model.person.Person;
-import trackr.model.person.UniquePersonList;
 import trackr.model.task.Task;
 import trackr.model.task.UniqueTaskList;
 

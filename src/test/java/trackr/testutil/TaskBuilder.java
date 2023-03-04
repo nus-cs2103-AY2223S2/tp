@@ -1,7 +1,6 @@
 package trackr.testutil;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
@@ -14,8 +13,7 @@ import trackr.model.task.TaskStatus;
 public class TaskBuilder {
 
     public static final String DEFAULT_TASK_NAME = "Sort inventory";
-    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public static final LocalDate DEFAULT_TASK_DEADLINE = LocalDate.parse("01/01/2027", dtf);
+    public static final LocalDate DEFAULT_TASK_DEADLINE = LocalDate.parse("2027-01-01");
     public static final String DEFAULT_TASK_STATUS = "N";
     private TaskName taskName;
     private TaskDeadline taskDeadline;

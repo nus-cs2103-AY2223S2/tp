@@ -8,8 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import trackr.model.person.Person;
-import trackr.model.person.exceptions.DuplicatePersonException;
 import trackr.model.person.exceptions.PersonNotFoundException;
 import trackr.model.task.exceptions.DuplicateTaskException;
 import trackr.model.task.exceptions.TaskNotFoundException;

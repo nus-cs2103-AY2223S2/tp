@@ -18,7 +18,7 @@ public class TaskStatus {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructs a {@code TaskStatus}.

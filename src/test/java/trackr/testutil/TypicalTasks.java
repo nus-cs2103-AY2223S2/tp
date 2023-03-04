@@ -1,12 +1,12 @@
 package trackr.testutil;
 
-import trackr.model.TaskList;
-import trackr.model.task.Task;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import trackr.model.TaskList;
+import trackr.model.task.Task;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

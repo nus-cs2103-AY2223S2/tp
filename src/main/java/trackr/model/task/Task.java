@@ -3,12 +3,6 @@ package trackr.model.task;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
-
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Phone;
-import trackr.model.tag.Tag;
 
 /**
  * Represents a Task in the task list.
