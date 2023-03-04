@@ -273,44 +273,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a/an...           | I can...                                         | so that...                                           |
 | -------- | -------------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| High     | User                 | Click X to exit                                  | I can stop it                                        |
-| High     | User                 | add client contact                               | I can refer to when needed                           |
-| High     | User                 | View all my contacts                             | I can see who I can contact                          |
-| High     | User                 | link client contact to event                     | I can have quick reference to POC (Point of Contact) |
-| High     | User                 | See the rates I have discussed with the client   | I know how much money to collect                     |
-| High     | User                 | Mark the event that is done                      | I know what I don't have to do anymore               |
-| High     | User                 | Add events                                       | I can remember my events later                       |
-| High     | User                 | View events                                      | I can see what events I have done or am going to do  |
-| High     | User                 | Delete events                                    | I can remove unnecessary events                      |
-| High     | User                 | Add a date to my events                          | I know when the event is due                         |
-| High     | User                 | save my events after closing the app             | I can save for when I use the app another time       |
-| High     | User                 | load my saved events when opening the app        | I can see my events when I reopen the app            |
-| High     | User                 | Add a rate to an event                           | I can see how much I earn from an event              |
-| High     | User                 | View information associated to each event        | I can see its details                                |
-| High     | User                 | edit my existing event details                   | I can change the details whenever there are changes  |
-| High     | User                 | See what I have added before                     | I don't need repeat myself                           |
-| High     | User                 | Change a contact linked to an event              | I can link a different contact if the POC changes    |
-| High     | New user             | See usage instructions                           | I know how to use the software                       |
-| High     | User                 | View undone events                               | I can see what events I have to do                   |
-| High     | Freelancer           | link venue to event                              | I can have quick reference                           |
-| High     | Forgetful User       | Be reminded of upcoming events                   | I can remember                                       |
-| High     | User                 | Delete contacts                                  | I can delete unnecessary contacts                    |
-| Medium   | User                 | Filter the events that has not been paid         | I can collect money                                  |
-| Medium   | User                 | View the total revenue I have earned this week   | I can manage my money                                |
-| Medium   | User                 | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
-| Medium   | User                 | View timing of upcoming events                   | I know when to go                                    |
-| Medium   | User                 | See the most urgent events                       | I know what to do first                              |
-| Medium   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
-| Medium   | Impatient person     | search contacts                                  | I can quick find specific POC                        |
-| Medium   | Impatient person     | Search events                                    | I can quick find specific event                      |
-| Medium   | Lazy person          | filter events to find similar events             | I can find similar events easily                     |
-| Medium   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
-| Medium   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
-| Low      | User                 | toggle between light and dark mode               | I can use the theme i prefer                         |
-| Low      | User                 | Redo previous action                             | I can redo previous action                           |
-| Low      | User                 | Use abbreviation                                 | I can quickly insert items                           |
-| Low      | Goal oriented person | Set goals                                        | I can look at my goals                               |
-| Low      | Forgetful User       | set reminders/checklist for events               | I can remember things to bring etc.                  |
+| `* * *`     | User                 | Click X to exit                                  | I can stop it                                        |
+| `* * *`     | User                 | add client contact                               | I can refer to when needed                           |
+| `* * *`     | User                 | View all my contacts                             | I can see who I can contact                          |
+| `* * *`     | User                 | link client contact to event                     | I can have quick reference to POC (Point of Contact) |
+| `* * *`     | User                 | See the rates I have discussed with the client   | I know how much money to collect                     |
+| `* * *`     | User                 | Mark the event that is done                      | I know what I don't have to do anymore               |
+| `* * *`     | User                 | Add events                                       | I can remember my events later                       |
+| `* * *`     | User                 | View events                                      | I can see what events I have done or am going to do  |
+| `* * *`     | User                 | Delete events                                    | I can remove unnecessary events                      |
+| `* * *`     | User                 | Add a date to my events                          | I know when the event is due                         |
+| `* * *`     | User                 | save my events after closing the app             | I can save for when I use the app another time       |
+| `* * *`     | User                 | load my saved events when opening the app        | I can see my events when I reopen the app            |
+| `* * *`     | User                 | Add a rate to an event                           | I can see how much I earn from an event              |
+| `* * *`     | User                 | View information associated to each event        | I can see its details                                |
+| `* * *`     | User                 | edit my existing event details                   | I can change the details whenever there are changes  |
+| `* * *`     | User                 | See what I have added before                     | I don't need repeat myself                           |
+| `* * *`     | User                 | Change a contact linked to an event              | I can link a different contact if the POC changes    |
+| `* * *`     | New user             | See usage instructions                           | I know how to use the software                       |
+| `* * *`     | User                 | View undone events                               | I can see what events I have to do                   |
+| `* * *`     | Freelancer           | link venue to event                              | I can have quick reference                           |
+| `* * *`     | Forgetful User       | Be reminded of upcoming events                   | I can remember                                       |
+| `* * *`     | User                 | Delete contacts                                  | I can delete unnecessary contacts                    |
+| `* *`   | User                 | Filter the events that has not been paid         | I can collect money                                  |
+| `* *`   | User                 | View the total revenue I have earned this week   | I can manage my money                                |
+| `* *`   | User                 | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
+| `* *`   | User                 | View timing of upcoming events                   | I know when to go                                    |
+| `* *`   | User                 | See the most urgent events                       | I know what to do first                              |
+| `* *`   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
+| `* *`   | Impatient person     | search contacts                                  | I can quick find specific POC                        |
+| `* *`   | Impatient person     | Search events                                    | I can quick find specific event                      |
+| `* *`   | Lazy person          | filter events to find similar events             | I can find similar events easily                     |
+| `* *`   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
+| `* *`   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
+| `*`      | User                 | toggle between light and dark mode               | I can use the theme i prefer                         |
+| `*`      | User                 | Redo previous action                             | I can redo previous action                           |
+| `*`      | User                 | Use abbreviation                                 | I can quickly insert items                           |
+| `*`      | Goal oriented person | Set goals                                        | I can look at my goals                               |
+| `*`      | Forgetful User       | set reminders/checklist for events               | I can remember things to bring etc.                  |
 
 
 *{More to be added}*
