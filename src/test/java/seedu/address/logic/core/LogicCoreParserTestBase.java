@@ -17,7 +17,7 @@ import seedu.address.model.OperationMode;
  * common mocks to be used by the subclasses.
  */
 @ExtendWith(MockitoExtension.class)
-public abstract class CommandGroupTestBase {
+public abstract class LogicCoreParserTestBase {
 
     protected static final String COMMAND_WORD1 = "command1";
     protected static final String COMMAND_WORD2 = "command2";

@@ -20,7 +20,7 @@ import seedu.address.model.OperationMode;
  * Tests for {@link CommandGroup}.
  */
 @ExtendWith(MockitoExtension.class)
-public class CommandGroupTest extends CommandGroupTestBase {
+public class CommandGroupTest extends LogicCoreParserTestBase {
 
     @Test
     void getOperationMode_void_returnsOperationMode() {

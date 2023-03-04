@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import seedu.address.logic.core.exceptions.ParseException;
 
 @ExtendWith(MockitoExtension.class)
-public class FactoryParserTest extends CommandGroupTestBase {
+public class FactoryParserTest extends LogicCoreParserTestBase {
 
     private FactoryParserStub factoryParser;
 
