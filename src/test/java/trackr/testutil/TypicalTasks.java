@@ -9,7 +9,7 @@ import trackr.model.TaskList;
 import trackr.model.task.Task;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
 
@@ -49,7 +49,7 @@ public class TypicalTasks {
     private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code TaskList} with all the typical persons.
+     * Returns an {@code TaskList} with all the typical tasks.
      */
     public static TaskList getTypicalTaskList() {
         TaskList taskList = new TaskList();
