@@ -7,10 +7,10 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.testutil.SampleVaxTypeData;
 import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
+import seedu.vms.testutil.SampleVaxTypeData;
 
 
 public class VaxTypeLoaderTest {
