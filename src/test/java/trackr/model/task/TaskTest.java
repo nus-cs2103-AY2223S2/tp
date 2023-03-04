@@ -6,7 +6,6 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_2100;
 import static trackr.logic.commands.CommandTestUtil.VALID_TASK_NAME_BUY_FLOUR;
 import static trackr.logic.commands.CommandTestUtil.VALID_TASK_NAME_SORT_INVENTORY;
 import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
-import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_NOT_DONE;
 import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
 import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;

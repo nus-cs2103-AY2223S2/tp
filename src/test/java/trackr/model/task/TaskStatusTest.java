@@ -21,7 +21,7 @@ public class TaskStatusTest {
     }
 
     @Test
-    public void constructor_NoArguments_success() {
+    public void constructor_noArguments_success() {
         TaskStatus expectedStatus = new TaskStatus("N");
         assertEquals(expectedStatus, new TaskStatus());
     }
