@@ -5,5 +5,13 @@
     "email": "invalid@email!3e",
     "address": "4th street"
   } ],
-  "events" : [ ]
+  "events" : [ {
+    "eventName" : "Wedding Dinner",
+    "startDateTime" : "01-05-2023 17:00",
+    "endDateTime" : "01-05-2023 21:00"
+  }, {
+    "eventName" : "Wedding Dinner",
+    "startDateTime" : "01-05-2023 17:00",
+    "endDateTime" : "01-05-2023 21:00"
+  } ]
 }
