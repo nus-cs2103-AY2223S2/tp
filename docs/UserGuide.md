@@ -167,9 +167,19 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Filter persons by tags
 
-_Details coming soon ..._
+Filters the entries that matches the tag provided. The tag provided can be in uppercase,lowercase or mixed.
+
+Format: `filter [TAG]`
+
+Examples:
+
+* `filter girlfriend` returns `No contacts matches the tag provided!`
+
+![filterGirlfriend](images/filter/filterGirlfriendResult.png)
+* `filter family` returns `Alex Yeoh`
+![filterFamily](images/filter/filterFamilyResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -191,3 +201,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Filter** | `filter [TAG]` <br> e.g., `filter Girlfriend`, `filter family`
