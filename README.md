@@ -2,8 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-
-* This is a team project by 5 students, entitled Dengue Hotspot Tracker, targeted towards NEA personnel or 
+* This is a team project by 5 students, entitled Dengue Hotspot Tracker, targeted towards NEA personnel or
 members within the government.<br>
   Usages:
   * to keep track of dengue hotspots
@@ -12,12 +11,12 @@ members within the government.<br>
 
 * Example commands:
   * find <keyword>: finds a case profile by provided keyword, and displays cases whose names contain the keyword
-  * add n/NAME p/POSTAL_CODE d/DATETIME a/AGE
+  * add n/NAME p/POSTAL_CODE d/DATE a/AGE
   * delete 3 (index)
 
-* The project is built on an ongoing software project for a desktop application (called _denguetracker_) 
+* The project is built on an ongoing software project for a desktop application (called _denguetracker_)
 used for managing contact details, named `Dengue Hotspot Tracker` (`DHT` for short).
 
 ```
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the DengueHotspotTracker-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 ```
