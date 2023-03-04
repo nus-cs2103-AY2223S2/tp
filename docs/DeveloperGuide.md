@@ -295,7 +295,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Administrator types add command together with the patient details (NRIC, age, gender, medicine usage, health conditions).
 2.  HS adds the patient to the system.
-
     Use case ends.
 
 **Extensions**
@@ -307,6 +306,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
+**Use case: UC2 - Edit patients' details**
+
+**MSS**
+
+1.  Administrator requests to update a patients' details and enters the updated information.
+2.  HS updates the patient's record in the system.
+    Use case ends.
+
+**Extensions**
+
+* 1a. HS detects an error in the updated information.
+
+    1a1. HS requests for the correct data.
+    1a2. Administrator enters the new data.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+**Use case: UC3 - Help Administrator obtain information on HospiSearch**
+
+**MSS**
+
+1.  Administrator is new to the system and requests for help.
+2.  HS gives a list of all possible commands together with brief descriptions to guide the user.
+    Use case ends.
+
+**Use case: UC4 - Clear all data**
+
+**MSS**
+
+1.  Administrator requests to clear all data in the system.
+2.  HS clears all the data in the system.
+    Use case ends.
+
+**Use case: UC5 - Search for patients by health conditions**
+
+**MSS**
+
+1.  Administrator wants to search for patients based on a certain health condition.
+2.  HS provides a list of all patients with the specified health condition.
+    Use case ends.
+
+**Extensions**
+
+* 1a. No such patient has the specified health condition.
+  Use case ends.
+
+**Use case: UC6 - Search for patients by medicine**
+
+**MSS**
+
+1.  Administrator requests for a list of patients using a certain type of medicine as he wants to stock up on medicine.
+2.  HS provides a list of patients using the specified type of medicine.
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no patients using the specified type of medicine in HS system.
+  Use case ends.
+
+**Use case: UC7 - Get patient by NRIC**
+
+**MSS**
+
+1.  Administrator wants to get patient details’ based on the patient’s NRIC.
+2.  HS provides the details of the patient with the specified NRIC.
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no such patient with specified NRIC in the HS system.
+  Use case ends.
+
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
