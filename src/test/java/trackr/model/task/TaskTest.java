@@ -2,12 +2,13 @@ package trackr.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_2100;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_NAME_BUY_FLOUR;
 import static trackr.logic.commands.CommandTestUtil.VALID_TASK_NAME_SORT_INVENTORY;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_NOT_DONE;
 import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
 import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
-import static trackr.testutil.TypicalTasks.SORT_INVENTORY_D;
-import static trackr.testutil.TypicalTasks.SORT_INVENTORY_DIFF_DATE_D;
-import static trackr.testutil.TypicalTasks.SORT_INVENTORY_DIFF_DATE_N;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 
 import org.junit.jupiter.api.Test;
@@ -31,10 +32,19 @@ public class TaskTest {
         assertFalse(SORT_INVENTORY_N.isSameTask(null));
 
         // same name, same deadline all other attributes different -> returns true
-        assertTrue(SORT_INVENTORY_N.isSameTask(SORT_INVENTORY_D));
+        Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        assertTrue(SORT_INVENTORY_N.isSameTask(editedTask));
 
         // different name, all other attributes same -> returns false
-        assertFalse(SORT_INVENTORY_N.isSameTask(SORT_INVENTORY_DIFF_DATE_D));
+        editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskName(VALID_TASK_NAME_BUY_FLOUR).build();
+        assertFalse(SORT_INVENTORY_N.isSameTask(editedTask));
+
+        // different deadline, all other attributes same -> returns false
+        editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskDeadline(VALID_TASK_DEADLINE_2100).build();
+        assertFalse(SORT_INVENTORY_N.isSameTask(editedTask));
 
         // name differs in case, all other attributes same -> returns false
         Task editedSortInventoryN = new TaskBuilder(SORT_INVENTORY_N)
@@ -43,7 +53,8 @@ public class TaskTest {
 
         // name has trailing spaces, all other attributes same -> returns false
         String taskNameWithTrailingSpaces = VALID_TASK_NAME_SORT_INVENTORY + " ";
-        editedSortInventoryN = new TaskBuilder(SORT_INVENTORY_N).withTaskName(taskNameWithTrailingSpaces).build();
+        editedSortInventoryN = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskName(taskNameWithTrailingSpaces).build();
         assertFalse(SORT_INVENTORY_N.isSameTask(editedSortInventoryN));
     }
 
@@ -66,15 +77,19 @@ public class TaskTest {
         assertFalse(SORT_INVENTORY_N.equals(BUY_FLOUR_N));
 
         // different name -> returns false
-        Task editedSortInventoryN = new TaskBuilder(BUY_EGGS_D)
+        Task editedTask = new TaskBuilder(BUY_EGGS_D)
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build();
-        assertFalse(BUY_EGGS_D.equals(editedSortInventoryN));
+        assertFalse(BUY_EGGS_D.equals(editedTask));
 
         // different deadline -> returns false
-        assertFalse(SORT_INVENTORY_N.equals(SORT_INVENTORY_DIFF_DATE_N));
+        editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskDeadline(VALID_TASK_DEADLINE_2100).build();
+        assertFalse(SORT_INVENTORY_N.equals(editedTask));
 
         // different status -> returns false
-        assertFalse(SORT_INVENTORY_N.equals(SORT_INVENTORY_D));
+        editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        assertFalse(SORT_INVENTORY_N.equals(editedTask));
     }
 }
 

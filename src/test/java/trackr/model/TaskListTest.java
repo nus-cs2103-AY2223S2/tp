@@ -3,8 +3,8 @@ package trackr.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalTasks.SORT_INVENTORY_D;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import trackr.model.task.Task;
 import trackr.model.task.exceptions.DuplicateTaskException;
+import trackr.testutil.TaskBuilder;
 
 public class TaskListTest {
 
@@ -44,7 +45,9 @@ public class TaskListTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        List<Task> newTasks = Arrays.asList(SORT_INVENTORY_N, SORT_INVENTORY_D);
+        Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        List<Task> newTasks = Arrays.asList(SORT_INVENTORY_N, editedTask);
         TaskListTest.TaskListStub newData = new TaskListTest.TaskListStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskList.resetData(newData));
@@ -69,7 +72,9 @@ public class TaskListTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
         taskList.addTask(SORT_INVENTORY_N);
-        assertTrue(taskList.hasTask(SORT_INVENTORY_D)); //different status
+        Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        assertTrue(taskList.hasTask(editedTask)); //different status
     }
 
     @Test

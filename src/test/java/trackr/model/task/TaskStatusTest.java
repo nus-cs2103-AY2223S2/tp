@@ -1,5 +1,6 @@
 package trackr.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
@@ -17,6 +18,12 @@ public class TaskStatusTest {
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidTaskStatus = "";
         assertThrows(IllegalArgumentException.class, () -> new TaskStatus(invalidTaskStatus));
+    }
+
+    @Test
+    public void constructor_NoArguments_success() {
+        TaskStatus expectedStatus = new TaskStatus("N");
+        assertEquals(expectedStatus, new TaskStatus());
     }
 
     @Test
@@ -38,5 +45,14 @@ public class TaskStatusTest {
         assertTrue(TaskStatus.isValidTaskStatus("D")); // done
         assertTrue(TaskStatus.isValidTaskStatus("n")); // small letter
         assertTrue(TaskStatus.isValidTaskStatus("d")); // small letter
+    }
+
+    @Test
+    public void toStringTest() {
+        TaskStatus done = new TaskStatus("D");
+        assertEquals("D", done.toString());
+
+        TaskStatus notDone = new TaskStatus("N");
+        assertEquals("N", notDone.toString());
     }
 }

@@ -1,5 +1,6 @@
 package trackr.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
@@ -36,5 +37,11 @@ public class TaskNameTest {
         assertTrue(TaskName.isValidTaskName("buy 100kg of flour")); // alphanumeric characters
         assertTrue(TaskName.isValidTaskName("Buy Eggs")); // with capital letters
         assertTrue(TaskName.isValidTaskName("Buy 10kg of Flour and 5kg of Eggs and 2kg of sugar")); // long names
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "Sort Inventory";
+        assertEquals(expected, new TaskName("Sort Inventory").toString());
     }
 }

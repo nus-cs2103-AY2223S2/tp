@@ -16,19 +16,6 @@ public class TypicalTasks {
     public static final Task SORT_INVENTORY_N = new TaskBuilder().withTaskName("Sort Inventory")
             .withTaskDeadline(LocalDate.parse("2024-01-01"))
             .withTaskStatus("N").build();
-
-    public static final Task SORT_INVENTORY_D = new TaskBuilder().withTaskName("Sort Inventory")
-            .withTaskDeadline(LocalDate.parse("2024-01-01"))
-            .withTaskStatus("D").build();
-
-    public static final Task SORT_INVENTORY_DIFF_DATE_N = new TaskBuilder().withTaskName("Sort Inventory")
-            .withTaskDeadline(LocalDate.parse("2023-12-15"))
-            .withTaskStatus("N").build();
-
-    public static final Task SORT_INVENTORY_DIFF_DATE_D = new TaskBuilder().withTaskName("Sort Inventory")
-            .withTaskDeadline(LocalDate.parse("2023-12-15"))
-            .withTaskStatus("D").build();
-
     public static final Task BUY_FLOUR_N = new TaskBuilder().withTaskName("Buy 10kg of Flour")
             .withTaskDeadline(LocalDate.parse("2023-09-01"))
             .withTaskStatus("N").build();
@@ -61,7 +48,6 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(
-                Arrays.asList(SORT_INVENTORY_N, SORT_INVENTORY_DIFF_DATE_D,
-                        BUY_FLOUR_N, BUY_EGGS_D));
+                Arrays.asList(SORT_INVENTORY_N, BUY_FLOUR_N, BUY_EGGS_D));
     }
 }

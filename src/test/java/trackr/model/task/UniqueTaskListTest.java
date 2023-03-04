@@ -3,10 +3,10 @@ package trackr.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
 import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
-import static trackr.testutil.TypicalTasks.SORT_INVENTORY_D;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.model.task.exceptions.DuplicateTaskException;
 import trackr.model.task.exceptions.TaskNotFoundException;
+import trackr.testutil.TaskBuilder;
 
 public class UniqueTaskListTest {
 
@@ -41,7 +42,9 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(SORT_INVENTORY_N);
-        assertTrue(uniqueTaskList.contains(SORT_INVENTORY_D));
+        Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        assertTrue(uniqueTaskList.contains(editedTask));
     }
 
     @Test
@@ -82,11 +85,11 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(SORT_INVENTORY_N);
-        uniqueTaskList.setTask(SORT_INVENTORY_N, SORT_INVENTORY_D); //change task status
-
+        Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        uniqueTaskList.setTask(SORT_INVENTORY_N, editedTask); //change task status
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
-        expectedUniqueTaskList.add(SORT_INVENTORY_D);
-
+        expectedUniqueTaskList.add(editedTask);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 

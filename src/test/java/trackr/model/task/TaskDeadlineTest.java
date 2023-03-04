@@ -1,5 +1,6 @@
 package trackr.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
@@ -31,5 +32,15 @@ public class TaskDeadlineTest {
         assertTrue(TaskDeadline.isValidTaskDeadline(todayDate)); // today's date
         assertTrue(TaskDeadline.isValidTaskDeadline(tomorrow)); // tomorrow's date
         assertTrue(TaskDeadline.isValidTaskDeadline(farAwayDate)); // very far away date
+    }
+
+    @Test
+    public void toStringTest() {
+        LocalDate todayDate = LocalDate.now();
+        int day = todayDate.getDayOfMonth();
+        String month = todayDate.getMonth().toString();
+        int year = todayDate.getYear();
+        String expectedString = String.format("%d %s %d", day, month, year);
+        assertEquals(expectedString, new TaskDeadline(todayDate).toString());
     }
 }
