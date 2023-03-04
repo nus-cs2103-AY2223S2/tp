@@ -3,8 +3,8 @@ package seedu.dengue.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.dengue.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.dengue.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.dengue.logic.commands.CommandTestUtil.AGE_DESC_AMY;
+import static seedu.dengue.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_AMY;
 import static seedu.dengue.testutil.Assert.assertThrows;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDengueHotspotStorage addressBookStorage =
-                new JsonDengueHotspotStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonDengueHotspotStorage dengueHotspotTrackerStorage =
+                new JsonDengueHotspotStorage(temporaryFolder.resolve("dengueHotspotTracker.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,17 +71,17 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonDengueHotspotTrackerIoExceptionThrowingStub
-        JsonDengueHotspotStorage addressBookStorage =
+        JsonDengueHotspotStorage dengueHotspotTrackerStorage =
                 new JsonDengueHotspotIoExceptionThrowingStub(temporaryFolder
                         .resolve("ioExceptionDengueHotspotTracker.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + POSTAL_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + POSTAL_DESC_AMY + DATE_DESC_AMY
+                + AGE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -156,7 +156,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker addressBook, Path filePath)
+        public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

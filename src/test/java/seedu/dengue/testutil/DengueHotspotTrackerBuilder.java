@@ -4,7 +4,7 @@ import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building DengueHotspotTracker objects.
  * Example usage: <br>
  *     {@code DengueHotspotTracker ab = new DengueHotspotTrackerBuilder().withPerson("John", "Doe").build();}
  */

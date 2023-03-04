@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDengueHotspotStorage addressBookStorage = new JsonDengueHotspotStorage(getTempFilePath("ab"));
+        JsonDengueHotspotStorage dengueHotspotTrackerStorage = new JsonDengueHotspotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

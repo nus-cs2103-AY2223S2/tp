@@ -34,14 +34,14 @@ public interface DengueHotspotStorage {
 
     /**
      * Saves the given {@link ReadOnlyDengueHotspotTracker} to the storage.
-     * @param addressBook cannot be null.
+     * @param dengueHotspotTracker cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker addressBook) throws IOException;
+    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException;
 
     /**
      * @see #saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker)
      */
-    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker addressBook, Path filePath) throws IOException;
+    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath) throws IOException;
 
 }

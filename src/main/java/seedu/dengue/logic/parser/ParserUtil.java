@@ -89,7 +89,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Date parseEmail(String email) throws ParseException {
+    public static Date parseDate(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Date.isValidDate(trimmedEmail)) {

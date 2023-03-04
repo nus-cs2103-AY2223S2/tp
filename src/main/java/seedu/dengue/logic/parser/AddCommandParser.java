@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Postal postal = ParserUtil.parsePostal(argMultimap.getValue(PREFIX_POSTAL).get());
-        Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "denguehotspottracker.json"
+  "dengueHotspotTrackerFilePath" : "denguehotspottracker.json"
 }

@@ -61,8 +61,8 @@ public class JsonDengueHotspotStorage implements DengueHotspotStorage {
     }
 
     @Override
-    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker addressBook) throws IOException {
-        saveDengueHotspotTracker(addressBook, filePath);
+    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException {
+        saveDengueHotspotTracker(dengueHotspotTracker, filePath);
     }
 
     /**
@@ -70,12 +70,13 @@ public class JsonDengueHotspotStorage implements DengueHotspotStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
+            throws IOException {
+        requireNonNull(dengueHotspotTracker);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDengueHotspotTracker(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableDengueHotspotTracker(dengueHotspotTracker), filePath);
     }
 
 }

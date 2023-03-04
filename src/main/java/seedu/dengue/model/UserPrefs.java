@@ -14,7 +14,7 @@ import seedu.dengue.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path dengueHotspotTrackerFilePath = Paths.get("data" , "denguehotspottracker.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -48,12 +48,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getDengueHotspotTrackerFilePath() {
-        return addressBookFilePath;
+        return dengueHotspotTrackerFilePath;
     }
 
-    public void setDengueHotspotTrackerFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setDengueHotspotTrackerFilePath(Path dengueHotspotTrackerFilePath) {
+        requireNonNull(dengueHotspotTrackerFilePath);
+        this.dengueHotspotTrackerFilePath = dengueHotspotTrackerFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && dengueHotspotTrackerFilePath.equals(o.dengueHotspotTrackerFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, dengueHotspotTrackerFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + dengueHotspotTrackerFilePath);
         return sb.toString();
     }
 

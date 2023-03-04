@@ -51,7 +51,7 @@ public class JsonDengueHotspotTrackerStorageTest {
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, ()
-                -> readDengueHotspotTracker("notJsonFormatDengueHotspotTracket.json"));
+                -> readDengueHotspotTracker("notJsonFormatDengueHotspotTracker.json"));
     }
 
     @Test

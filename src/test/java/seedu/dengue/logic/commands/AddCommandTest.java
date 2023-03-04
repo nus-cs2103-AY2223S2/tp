@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setDengueHotspotTrackerFilePath(Path addressBookFilePath) {
+        public void setDengueHotspotTrackerFilePath(Path dengueHotspotTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

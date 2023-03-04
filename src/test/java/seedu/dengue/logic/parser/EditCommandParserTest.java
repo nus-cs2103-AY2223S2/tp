@@ -1,10 +1,10 @@
 package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.dengue.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.dengue.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.dengue.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.AGE_DESC_AMY;
+import static seedu.dengue.logic.commands.CommandTestUtil.AGE_DESC_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static seedu.dengue.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -88,7 +88,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid postal followed by valid email
-        assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + EMAIL_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + DATE_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
 
         // valid postal followed by invalid postal. The test case for invalid postal followed by valid postal
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -110,7 +110,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + DATE_DESC_AMY + AGE_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPostal(VALID_POSTAL_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_AGE_AMY)
@@ -123,7 +123,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + POSTAL_DESC_BOB + DATE_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_AMY).build();
@@ -148,13 +148,13 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
+        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
+        userInput = targetIndex.getOneBased() + AGE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_AGE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -169,9 +169,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + POSTAL_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + POSTAL_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + POSTAL_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + POSTAL_DESC_AMY + AGE_DESC_AMY + DATE_DESC_AMY
+                + TAG_DESC_FRIEND + POSTAL_DESC_AMY + AGE_DESC_AMY + DATE_DESC_AMY + TAG_DESC_FRIEND
+                + POSTAL_DESC_BOB + AGE_DESC_BOB + DATE_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB).withAddress(VALID_AGE_BOB)
@@ -192,7 +192,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_POSTAL_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + DATE_DESC_BOB + INVALID_POSTAL_DESC + AGE_DESC_BOB
                 + POSTAL_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB)

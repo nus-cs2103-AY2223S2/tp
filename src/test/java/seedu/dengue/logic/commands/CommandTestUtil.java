@@ -41,17 +41,17 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String POSTAL_DESC_AMY = " " + PREFIX_POSTAL + VALID_POSTAL_AMY;
     public static final String POSTAL_DESC_BOB = " " + PREFIX_POSTAL + VALID_POSTAL_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
+    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
+    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
+    public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
+    public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_POSTAL_DESC = " " + PREFIX_POSTAL + "911a"; // 'a' not allowed in postals
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE; // empty string not allowed for addresses
+    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE; // empty string not allowed for age
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
