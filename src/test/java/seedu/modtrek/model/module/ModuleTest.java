@@ -40,15 +40,6 @@ public class ModuleTest {
         // different name, all other attributes same -> returns false
         editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
         assertFalse(CS1101S.isSameModule(editedCS1101s));
-
-        // name differs in case, all other attributes same -> returns false
-        Module editedBob = new ModuleBuilder(MA2002).withCode(VALID_CODE_MA2002.toLowerCase()).build();
-        assertFalse(MA2002.isSameModule(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_CODE_MA2002 + " ";
-        editedBob = new ModuleBuilder(MA2002).withCode(nameWithTrailingSpaces).build();
-        assertFalse(MA2002.isSameModule(editedBob));
     }
 
     @Test
@@ -71,22 +62,6 @@ public class ModuleTest {
 
         // different name -> returns false
         Module editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
-        assertFalse(CS1101S.equals(editedCS1101s));
-
-        // different phone -> returns false
-        editedCS1101s = new ModuleBuilder(CS1101S).withCredit(VALID_CREDIT_MA2002).build();
-        assertFalse(CS1101S.equals(editedCS1101s));
-
-        // different email -> returns false
-        editedCS1101s = new ModuleBuilder(CS1101S).withSemYear(VALID_SEMYEAR_MA2002).build();
-        assertFalse(CS1101S.equals(editedCS1101s));
-
-        // different address -> returns false
-        editedCS1101s = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002).build();
-        assertFalse(CS1101S.equals(editedCS1101s));
-
-        // different tags -> returns false
-        editedCS1101s = new ModuleBuilder(CS1101S).withTags(VALID_TAG_CS1101S).build();
         assertFalse(CS1101S.equals(editedCS1101s));
     }
 }

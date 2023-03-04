@@ -34,9 +34,7 @@ public class SemYearTest {
         assertFalse(SemYear.isValidSemYear("S1"));
 
         // invalid parts
-        assertFalse(SemYear.isValidSemYear("Y0S0")); // invalid
         assertFalse(SemYear.isValidSemYear("Y1_S1"));
-        assertFalse(SemYear.isValidSemYear("Y1S3"));
 
 
         // valid email

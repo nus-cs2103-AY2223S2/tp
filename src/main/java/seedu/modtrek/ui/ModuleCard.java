@@ -29,6 +29,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label code;
     @FXML
     private Label credit;
@@ -42,11 +44,12 @@ public class ModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to display.
      */
-    public ModuleCard(Module module) {
+    public ModuleCard(Module module, int displayedIndex) {
         super(FXML);
         this.module = module;
+        id.setText(displayedIndex + ".");
         code.setText(module.getCode().toString());
-        credit.setText(module.getCredit().toString());
+        credit.setText(module.getCredit().toString() + " MCs");
         semyear.setText(module.getSemYear().toString());
         grade.setText(module.getGrade().toString());
         module.getTags().stream()

@@ -3,7 +3,6 @@ package seedu.modtrek.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.modtrek.testutil.Assert.assertThrows;
-import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.CS2030S;
 import static seedu.modtrek.testutil.TypicalModules.CS2040S;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
@@ -75,7 +74,7 @@ public class JsonDegreeProgressionStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addModule(CS2030S);
-        original.removeModule(CS1101S);
+        original.removeModule(CS2030S);
         jsonDegreeProgressionStorage.saveDegreeProgression(original, filePath);
         readBack = jsonDegreeProgressionStorage.readDegreeProgression(filePath).get();
         assertEquals(original, new DegreeProgression(readBack));

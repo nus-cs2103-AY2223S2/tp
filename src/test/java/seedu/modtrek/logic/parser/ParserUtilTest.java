@@ -19,18 +19,18 @@ import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_CODE = "R@chel";
-    private static final String INVALID_CREDIT = "+651234";
+    private static final String INVALID_CODE = "CS@3230";
+    private static final String INVALID_CREDIT = "+4";
     private static final String INVALID_GRADE = " ";
-    private static final String INVALID_SEMYEAR = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SEMYEAR = "Year 2 Sem 2";
+    private static final String INVALID_TAG = "#computer science breath and depth";
 
-    private static final String VALID_CODE = "Rachel Walker";
-    private static final String VALID_CREDIT = "123456";
-    private static final String VALID_GRADE = "123 Main Street #0505";
-    private static final String VALID_SEMYEAR = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_CODE = "CS3230";
+    private static final String VALID_CREDIT = "4";
+    private static final String VALID_GRADE = "A+";
+    private static final String VALID_SEMYEAR = "Y2S2";
+    private static final String VALID_TAG_1 = "computer science breadth and depth";
+    private static final String VALID_TAG_2 = "computer science foundation";
 
     private static final String WHITESPACE = " \t\r\n";
 

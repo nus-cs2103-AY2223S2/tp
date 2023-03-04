@@ -52,7 +52,7 @@ public class TypicalModules {
     public static final Module CS1101S = new ModuleBuilder().withCode(VALID_CODE_CS1101S)
             .withCredit(VALID_CREDIT_CS1101S)
             .withSemYear(VALID_SEMYEAR_CS1101S).withGrade(VALID_GRADE_CS1101S)
-            .withTags(VALID_TAG_MA2002).build();
+            .withTags(VALID_TAG_CS1101S).build();
     public static final Module MA2002 = new ModuleBuilder().withCode(VALID_CODE_MA2002)
             .withCredit(VALID_CREDIT_MA2002)
             .withSemYear(VALID_SEMYEAR_MA2002).withGrade(VALID_GRADE_MA2002)
@@ -75,6 +75,6 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS2100, ST2334, MA1521, GEA1000, CS1231, CS1010R, IS1103));
+        return new ArrayList<Module>(Arrays.asList(CS2100, ST2334, MA1521, GEA1000, CS1231, CS1010R, IS1103));
     }
 }

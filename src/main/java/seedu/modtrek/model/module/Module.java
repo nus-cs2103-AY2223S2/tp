@@ -115,6 +115,9 @@ public class Module {
      * @return the boolean
      */
     public boolean isSameModule(Module otherModule) {
+        if (otherModule == null) {
+            return false;
+        }
         return code.equals(otherModule.code);
     }
 

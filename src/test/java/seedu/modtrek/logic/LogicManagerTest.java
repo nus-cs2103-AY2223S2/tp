@@ -1,7 +1,6 @@
 package seedu.modtrek.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.modtrek.logic.commands.CommandTestUtil.CODE_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
@@ -55,12 +54,6 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
-    }
-
-    @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

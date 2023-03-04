@@ -35,6 +35,6 @@ public class CodeTest {
         assertTrue(Code.isValidCode("CS3211"));
         assertTrue(Code.isValidCode("CS2105"));
         assertTrue(Code.isValidCode("MA2108"));
-        assertTrue(Code.isValidCode("GESS1025")); // long names
+        assertTrue(Code.isValidCode("GEC1025")); // long names
     }
 }

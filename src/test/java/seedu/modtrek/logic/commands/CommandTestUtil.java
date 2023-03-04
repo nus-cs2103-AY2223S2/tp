@@ -19,7 +19,7 @@ public class CommandTestUtil {
     public static final String VALID_CODE_CS1101S = "CS1101S";
     public static final String VALID_CODE_MA2002 = "MA2002";
     public static final String VALID_CREDIT_CS1101S = "4";
-    public static final String VALID_CREDIT_MA2002 = "4";
+    public static final String VALID_CREDIT_MA2002 = "8";
     public static final String VALID_SEMYEAR_CS1101S = "Y1S1";
     public static final String VALID_SEMYEAR_MA2002 = "Y1S2";
     public static final String VALID_GRADE_CS1101S = "A";

@@ -185,7 +185,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = (tags != null) ? new HashSet<>(tags) : new HashSet<>();
         }
 
         /**

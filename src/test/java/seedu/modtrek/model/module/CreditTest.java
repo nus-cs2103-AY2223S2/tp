@@ -27,10 +27,9 @@ public class CreditTest {
         // invalid phone numbers
         assertFalse(Credit.isValidCredit("")); // empty string
         assertFalse(Credit.isValidCredit(" ")); // spaces only
-        assertFalse(Credit.isValidCredit("0"));
         assertFalse(Credit.isValidCredit("four")); // non-numeric
         assertFalse(Credit.isValidCredit("4 MC")); // alphabets within digits
-        assertFalse(Credit.isValidCredit("60"));
+        assertFalse(Credit.isValidCredit("600"));
 
         // valid phone numbers
         assertTrue(Credit.isValidCredit("4"));

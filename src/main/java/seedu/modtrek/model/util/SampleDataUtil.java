@@ -1,5 +1,6 @@
 package seedu.modtrek.model.util;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
@@ -21,7 +22,11 @@ public class SampleDataUtil {
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
-        return null;
+        Set<Tag> tagSet = new HashSet<>();
+        for (String s : strings) {
+            tagSet.add(new Tag(s));
+        }
+        return tagSet;
     }
 
 }

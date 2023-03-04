@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newModule_success() {
-        Module validModule = new ModuleBuilder().build();
+        Module validModule = new ModuleBuilder().build();;
 
         Model expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
         expectedModel.addModule(validModule);

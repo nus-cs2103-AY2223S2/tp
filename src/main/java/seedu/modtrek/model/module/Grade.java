@@ -56,6 +56,7 @@ public class Grade {
      * @return the boolean
      */
     public static boolean isValidGrade(String test) {
+        requireNonNull(test);
         return VALID_GRADES.contains(test);
     }
 
