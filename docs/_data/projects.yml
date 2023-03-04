@@ -10,6 +10,9 @@
 - name: "AB-4"
   url: https://se-edu.github.io/addressbook-level4
 
+- name: "sprINT"
+  url: https://ay2223s2-cs2103t-t13-3.github.io/tp/
+
 - name: "Duke"
   url:  https://se-edu.github.io/duke
 
