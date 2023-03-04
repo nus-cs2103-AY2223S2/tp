@@ -50,3 +50,6 @@ If you would like to contribute to our project, there are some items you will ne
 - Chen Jiarui ([@chen-jerry-junior](https://github.com/chen-jerry-junior))
 - See Wei Xun ([@swx0](https://github.com/swx0))
 - William Chau Wei Xuan ([@WillCWX](https://github.com/willcwx))
+
+## Other Acknowledgements
+- [Fluent UI Icons](https://github.com/microsoft/fluentui-system-icons) ([filled](https://www.svgrepo.com/collection/fluent-ui-icons-filled/), [outlined](https://www.svgrepo.com/collection/fluent-ui-icons-outlined)) are used under the MIT License.
