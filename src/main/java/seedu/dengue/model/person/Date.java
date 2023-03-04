@@ -2,6 +2,7 @@ package seedu.dengue.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
