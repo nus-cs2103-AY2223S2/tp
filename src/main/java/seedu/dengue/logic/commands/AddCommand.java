@@ -28,10 +28,9 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_POSTAL + "611321 "
-            + PREFIX_DATE + "TODO:Choose a date format " //TODO
+            + PREFIX_DATE + "2001-10-10 "
             + PREFIX_AGE + "48 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "severe ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Dengue Hotspot Tracker";

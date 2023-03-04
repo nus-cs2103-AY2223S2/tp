@@ -5,7 +5,7 @@
     "date": "hans@example.com",
     "age": "4th street"
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Person With Invalid Postal Field",
     "postal": "948asdf2424",
     "date": "hans@example.com",
     "age": "4th street"
