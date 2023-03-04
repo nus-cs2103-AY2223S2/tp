@@ -60,14 +60,14 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         setPairs(newData.getPairList());
     }
 
-    // TODO: remove code if not needed
+
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
-    }
+    } // TODO: remove code if not needed
 
     /**
      * Replaces the contents of the pair list with {@code pairs}.
@@ -101,7 +101,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
-    }
+    } // TODO: remove code if not needed
 
     /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
@@ -125,7 +125,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public void addPerson(Person p) {
         persons.add(p);
-    }
+    } // TODO: remove code if not needed
 
     /**
      * Adds an elderly to the friendlyLink cache.
@@ -176,7 +176,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         persons.setPerson(target, editedPerson);
-    }
+    } // TODO: remove code if not needed
 
     /**
      * Replaces the given elderly {@code target} in the list with {@code editedPerson}.
@@ -206,7 +206,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-    }
+    } // TODO: remove code if not needed
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
@@ -280,7 +280,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public ObservableList<Pair> getPairList() {
         return pairs.asUnmodifiableObservableList();
     }
-
 
     @Override
     public boolean equals(Object other) {

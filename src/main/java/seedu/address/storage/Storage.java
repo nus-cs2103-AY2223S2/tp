@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.elderly.ElderlyStorage;
@@ -20,11 +19,4 @@ public interface Storage extends FriendlyLinkStorage, VolunteerStorage, ElderlyS
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
-
-    @Override
-    Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException;
-
-    @Override
-    void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink) throws IOException;
-
 }

@@ -62,16 +62,14 @@ class JsonSerializableFriendlyLink implements JsonSerializable<FriendlyLink> {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     @Override
-    public FriendlyLink toModelType() throws IllegalValueException {
-        FriendlyLink friendlyLink = new FriendlyLink();
-        unserializeEntities(persons, friendlyLink);
+    public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
+        unserializeEntities(friendlyLink);
         return friendlyLink;
     }
 
-    private void unserializeEntities(
-            List<JsonAdaptedPerson> entities, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedPerson jsonAdaptedPerson : entities) {
-            Person person = jsonAdaptedPerson.toModelType();
+    private void unserializeEntities(FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            Person person = jsonAdaptedPerson.toModelType(friendlyLink);
             if (friendlyLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
@@ -85,5 +83,4 @@ class JsonSerializableFriendlyLink implements JsonSerializable<FriendlyLink> {
             friendlyLink.addPair(pair);
         }
     }
-
 }

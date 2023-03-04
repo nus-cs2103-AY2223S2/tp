@@ -50,16 +50,14 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public FriendlyLink toModelType() throws IllegalValueException {
-        FriendlyLink friendlyLink = new FriendlyLink();
-        unserializeEntities(volunteers, friendlyLink);
+    public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
+        unserializeEntities(friendlyLink);
         return friendlyLink;
     }
 
-    private void unserializeEntities(
-            List<JsonAdaptedVolunteer> entities, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedVolunteer jsonAdaptedVolunteer : entities) {
-            Volunteer volunteer = jsonAdaptedVolunteer.toModelType();
+    private void unserializeEntities(FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedVolunteer jsonAdaptedVolunteer : volunteers) {
+            Volunteer volunteer = jsonAdaptedVolunteer.toModelType(friendlyLink);
             if (friendlyLink.hasVolunteer(volunteer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VOLUNTEER);
             }

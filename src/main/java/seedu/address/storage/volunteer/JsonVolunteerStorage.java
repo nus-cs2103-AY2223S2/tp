@@ -35,18 +35,20 @@ public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, Frie
 
 
     @Override
-    public Optional<ReadOnlyVolunteer> readVolunteer() throws DataConversionException {
-        return super.read(JsonSerializableVolunteer.class, logger);
+    public Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink) throws DataConversionException {
+        return super.read(JsonSerializableVolunteer.class, logger, friendlyLink);
     }
 
     /**
-     * Similar to {@link #readVolunteer()}.
+     * Similar to {@link VolunteerStorage#readVolunteer(FriendlyLink)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath     location of the data. Cannot be null.
+     * @param friendlyLink the cache the volunteer list will be read to.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath) throws DataConversionException {
-        return super.read(filePath, JsonSerializableVolunteer.class, logger);
+    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException {
+        return super.read(filePath, JsonSerializableVolunteer.class, logger, friendlyLink);
     }
 
     @Override

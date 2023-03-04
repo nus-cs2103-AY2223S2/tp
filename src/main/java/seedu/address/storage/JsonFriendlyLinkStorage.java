@@ -30,18 +30,20 @@ public class JsonFriendlyLinkStorage extends JsonAppStorage<ReadOnlyFriendlyLink
         return super.getFilePath();
     }
 
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException {
-        return super.read(JsonSerializableFriendlyLink.class, logger);
+    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(FriendlyLink friendlyLink) throws DataConversionException {
+        return super.read(JsonSerializableFriendlyLink.class, logger, friendlyLink);
     }
 
     /**
-     * Similar to {@link #readFriendlyLink()}.
+     * Similar to {@link #readFriendlyLink(FriendlyLink)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath     location of the data. Cannot be null.
+     * @param friendlyLink the cache to save to.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath) throws DataConversionException {
-        return super.read(filePath, JsonSerializableFriendlyLink.class, logger);
+    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException {
+        return super.read(filePath, JsonSerializableFriendlyLink.class, logger, friendlyLink);
     }
 
     @Override

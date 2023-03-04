@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -70,14 +71,16 @@ public class StorageManager implements Storage {
      * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyElderly> readElderly() throws DataConversionException, IOException {
-        return readElderly(elderlyStorage.getElderlyFilePath());
+    public Optional<ReadOnlyElderly> readElderly(FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
+        return readElderly(elderlyStorage.getElderlyFilePath(), friendlyLink);
     }
 
     @Override
-    public Optional<ReadOnlyElderly> readElderly(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyElderly> readElderly(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return elderlyStorage.readElderly(filePath);
+        return elderlyStorage.readElderly(filePath, friendlyLink);
     }
 
     /**
@@ -112,15 +115,17 @@ public class StorageManager implements Storage {
      * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyVolunteer> readVolunteer() throws DataConversionException, IOException {
-        return readVolunteer(volunteerStorage.getVolunteerFilePath());
+    public Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
+        return readVolunteer(volunteerStorage.getVolunteerFilePath(), friendlyLink);
 
     }
 
     @Override
-    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return volunteerStorage.readVolunteer(filePath);
+        return volunteerStorage.readVolunteer(filePath, friendlyLink);
     }
 
     @Override
@@ -142,14 +147,16 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink() throws DataConversionException, IOException {
-        return readFriendlyLink(friendlyLinkStorage.getFriendlyLinkFilePath());
+    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
+        return readFriendlyLink(friendlyLinkStorage.getFriendlyLinkFilePath(), friendlyLink);
     }
 
     @Override
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return friendlyLinkStorage.readFriendlyLink(filePath);
+        return friendlyLinkStorage.readFriendlyLink(filePath, friendlyLink);
     }
 
     @Override

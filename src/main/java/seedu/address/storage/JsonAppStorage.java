@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.FriendlyLink;
 
 /**
  * An abstract AppStorage that implements common read operations from files.
@@ -29,15 +30,16 @@ public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<
         return filePath;
     }
 
-    public Optional<T> read(Class<R> classInfo, Logger logger) throws DataConversionException {
-        return read(filePath, classInfo, logger);
+    public Optional<T> read(Class<R> classInfo, Logger logger,
+            FriendlyLink friendlyLink) throws DataConversionException {
+        return read(filePath, classInfo, logger, friendlyLink);
     }
 
     /**
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<T> read(Path filePath, Class<R> classInfo, Logger logger)
+    public Optional<T> read(Path filePath, Class<R> classInfo, Logger logger, FriendlyLink friendlyLink)
             throws DataConversionException {
 
         requireNonNull(filePath);
@@ -48,7 +50,7 @@ public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<
         }
 
         try {
-            return Optional.of(jsonStorage.get().toModelType());
+            return Optional.of(jsonStorage.get().toModelType(friendlyLink));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

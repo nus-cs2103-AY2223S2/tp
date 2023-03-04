@@ -46,21 +46,18 @@ public class JsonSerializableElderly implements JsonSerializable<FriendlyLink> {
     }
 
     /**
-     * Converts this elderly list into the model's {@code Elderly} object.
+     * Converts this elderly list into the model's {@code Elderly} object and adds it to the application cache.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public FriendlyLink toModelType() throws IllegalValueException {
-        FriendlyLink friendlyLink = new FriendlyLink();
-        unserializeEntities(elderly, friendlyLink);
+    public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
+        unserializeEntities(friendlyLink);
         return friendlyLink;
     }
 
-    private void unserializeEntities(
-            List<JsonAdaptedElderly> entity, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedElderly jsonAdaptedElderly : entity) {
-            // TODO: Check if there is a need to cast
-            Elderly elderly = jsonAdaptedElderly.toModelType();
+    private void unserializeEntities(FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedElderly jsonAdaptedElderly : elderly) {
+            Elderly elderly = jsonAdaptedElderly.toModelType(friendlyLink);
             if (friendlyLink.hasElderly(elderly)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ELDERLY);
             }
