@@ -11,13 +11,13 @@ import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
 
 /**
- * Adds a person to the address book.
+ * Adds an application to the internship book.
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the Internship Book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_COMPANY_NAME + "COMPANY NAME "
@@ -36,7 +36,7 @@ public class AddApplicationCommand extends ApplicationCommand {
     private final Application toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddApplicationCommand to add the specified {@code Application}
      */
     public AddApplicationCommand(Application application) {
         requireNonNull(application);
