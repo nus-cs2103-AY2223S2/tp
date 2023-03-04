@@ -245,10 +245,8 @@ public class CommandParamTest {
         CommandParam param2 = new CommandParam(Optional.of("token"),
             Optional.of(Map.of(PREFIX_A, Optional.empty())));
         // execute
-        assertThrows(ParseException.class,
-            () -> param.getNamedValuesOrThrow(PREFIX_A));
-        assertThrows(ParseException.class,
-            () -> param2.getNamedValuesOrThrow(PREFIX_A));
+        assertThrows(ParseException.class, () -> param.getNamedValuesOrThrow(PREFIX_A));
+        assertThrows(ParseException.class, () -> param2.getNamedValuesOrThrow(PREFIX_A));
     }
 
     @Test
@@ -282,8 +280,7 @@ public class CommandParamTest {
         // setup
         CommandParam param = new CommandParam(Optional.empty(), Optional.empty());
         // execute
-        assertThrows(ParseException.class,
-            () -> param.getNamedIntOrThrow(PREFIX_A));
+        assertThrows(ParseException.class, () -> param.getNamedIntOrThrow(PREFIX_A));
     }
 
     @Test
@@ -292,8 +289,7 @@ public class CommandParamTest {
         CommandParam param = new CommandParam(Optional.empty(),
             Optional.of(Map.of(PREFIX_A, Optional.of("token"))));
         // execute
-        assertThrows(ParseException.class,
-            () -> param.getNamedIntOrThrow(PREFIX_A));
+        assertThrows(ParseException.class, () -> param.getNamedIntOrThrow(PREFIX_A));
     }
 
     @Test
