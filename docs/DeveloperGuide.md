@@ -398,12 +398,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Posting**: An appointment to a software development job
-* **Console-first Interface**: A text-based user interface to efficiently
-  run Mycelium
+
+* **Console-first Interface**: An interface with interactions primarily through 
+                               text commands
 * **Project**: A freelance software development job
-* **Contact**: An individual associated with a particular project
-* **Deliverable**: A task to be completed as part of a project
+* **Client**: An individual associated with a particular project
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
