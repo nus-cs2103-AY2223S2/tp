@@ -27,7 +27,7 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
 
    * `list` : Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023-02-13 19:52 a/20` : Adds a contact named `John Tan` to the Dengue Hotspot Tracker.
+   * `add n/John Tan p/543299 d/2023-02-13 a/20` : Adds a contact named `John Tan` to the Dengue Hotspot Tracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
 
@@ -55,13 +55,15 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/POSTAL_CODE`, `p/POSTAL_CODE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/123414 p/567878`, only `p/567878` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits.
 
 </div>
 
@@ -81,8 +83,8 @@ Adds a dengue patient to the dengue hotspot tracker.
 Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 19:52 a/20`
-* `add n/Desiree Lim p/519999 d/2023-02-13 13:12 a/18`
+* `add n/John Tan p/543299 d/2023-02-13 a/20`
+* `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
 ### Listing all persons : `list`
 
@@ -94,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the Dengue Hotspot Tracker.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/DATE] [a/AGE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -104,7 +106,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/DATE] [a/AGE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and date age of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st person to be `S912345` and `2001-01-01` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -115,15 +117,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The name and postal codes are searched.
+  * For names, partial words will be matched e.g. `Han` will match `Hans` and `Abrahan`
+  * For postal codes, the beginning of the postal code will be matched e.g. `10` will match `S101234` but not `S123410`
+  * For postal codes, the user may choose to include an `"S"` or `"s""` character or not e.g.
+    * `S10` will match `S101234`
+    * `s10` will also match `S101234`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all persons whose postal codes begin with `101`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Boe` returns `Boeing` and `Wong Boe`
+* `find alex david 101` returns `Alexander Peterson`, `Allison Tan` (postal code), `Davidson Li`<br>
+  ![result for 'find alex david 101'](..%2F..%2F..%2FDownloads%2Fimage%20%281%29.png)
 
 ### Deleting a person : `delete`
 
@@ -180,10 +186,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, t/URGENT`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`

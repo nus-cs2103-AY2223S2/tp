@@ -47,7 +47,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPostal().ifPresent(postal -> sb.append(PREFIX_POSTAL).append(postal.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_DATE).append(email.value).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         descriptor.getAge().ifPresent(address -> sb.append(PREFIX_AGE).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

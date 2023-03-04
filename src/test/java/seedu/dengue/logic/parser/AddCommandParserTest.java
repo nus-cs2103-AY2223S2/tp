@@ -59,7 +59,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_AMY + POSTAL_DESC_BOB + DATE_DESC_BOB
                 + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
-        // multiple emails - last email accepted
+        // multiple dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
                 + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
@@ -94,7 +94,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_POSTAL_BOB + DATE_DESC_BOB + AGE_DESC_BOB,
                 expectedMessage);
 
-        // missing email prefix
+        // missing date prefix
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + VALID_DATE_BOB + AGE_DESC_BOB,
                 expectedMessage);
 
@@ -117,7 +117,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_POSTAL_DESC + DATE_DESC_BOB + AGE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Postal.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid date
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + INVALID_DATE_DESC + AGE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
 

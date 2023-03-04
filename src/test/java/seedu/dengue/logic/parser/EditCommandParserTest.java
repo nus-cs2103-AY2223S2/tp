@@ -83,11 +83,11 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS); // invalid postal
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid postal followed by valid email
+        // invalid postal followed by valid date
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + DATE_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
 
         // valid postal followed by invalid postal. The test case for invalid postal followed by valid postal
@@ -147,7 +147,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // date
         userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

@@ -9,30 +9,30 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
  */
 public class Age {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Ages must be a number not more than 3 digits long"
+            + " and smaller than 200.";
 
     /*
      * The first character of the age must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     //TODO
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[01]?\\d{0,2}$";
 
     public final String value;
 
     /**
      * Constructs an {@code Age}.
-     *
      * @param age A valid age.
      */
     public Age(String age) {
         requireNonNull(age);
         checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
-        value = age;
+        value = String.valueOf(Integer.valueOf(age));
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidAge(String test) {
         return test.matches(VALIDATION_REGEX);
