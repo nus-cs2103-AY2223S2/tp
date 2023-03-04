@@ -85,7 +85,6 @@ public class AddressBookParser {
 
         case CreateLessonCommand.COMMAND_WORD:
             return new CreateLessonCommandParser().parse(arguments);
-            
         case MarkHomeworkAsDoneCommand.COMMAND_WORD:
             return new MarkHomeworkAsDoneCommandParser().parse(arguments);
 

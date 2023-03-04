@@ -117,8 +117,8 @@ public class StudentBuilder {
         this.lessonList = lessonList;
         return this;
     }
+    /**
      * Builds a student with the given details.
-     *
      * @return a student with the given details.
      */
     public Student build() {

@@ -204,6 +204,7 @@ public class Student {
         }
         this.lessonsList.add(lesson);
     }
+    /**
      * Marks a homework as done from the homework list.
      *
      * @param index index of homework to be marked as done
