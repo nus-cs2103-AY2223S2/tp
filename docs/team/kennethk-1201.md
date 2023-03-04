@@ -8,18 +8,18 @@ SudoHR is a desktop application used for teaching Software Engineering principle
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Feature**: CRUD operations for Project class
 
-* **New Feature**:
+* **New Feature**: Adding/Removing employees for Project class
 
-* **Code contributed**:
+* **Code contributed**: to be added soon
 
-* **Project management**:
+* **Project management**: to be added soon
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: to be added soon
 
-* **Documentation**:
+* **Documentation**: to be added soon
 
-* **Community**:
+* **Community**: to be added soon
 
-* **Tools**:
+* **Tools**: to be added soon
