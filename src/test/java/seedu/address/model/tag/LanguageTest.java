@@ -25,7 +25,7 @@ class LanguageTest {
     @Test
     public void testIsValidLanguageName() {
         // null language name
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Language.isValidLanguageName(null));
 
         // invalid language name
         assertFalse(Language.isValidLanguageName("")); // empty string
