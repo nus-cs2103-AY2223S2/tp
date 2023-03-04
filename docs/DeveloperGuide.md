@@ -289,6 +289,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ModCheck` and the **Actor** is the `Student`, unless specified otherwise)
 
+**Use case: Add a person**
+
+**MSS**
+
+1. Student requests to add person. 
+2. Student enter the required details and submits.
+3. ModCheck creates a new person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given details is of the wrong format.
+  
+    * 2a1. ModCheck shows an error message.
+    Use case continues at step 2.
+* 2b. Person already exists in ModCheck
+    * 2b1. ModCheck shows an error message.
+    Use case continues at step 2.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -379,6 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface - a system of interactive visual components for computer software
 * **CLI**: Command Line Interface - a text-based user interface (UI) used to run programs, manage computer files and interact with the computer
 * **Index**: A number indicating the order or position in a given list
+* **Person**: Referring to TA or Professor
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
