@@ -16,6 +16,7 @@ import seedu.vms.logic.Logic;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.ui.vaccination.VaxTypeListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,23 +33,20 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
+    private VaxTypeListPanel vaxTypeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-    @FXML
-    private StackPane commandBoxPlaceholder;
+    @FXML private StackPane commandBoxPlaceholder;
 
-    @FXML
-    private MenuItem helpMenuItem;
+    @FXML private MenuItem helpMenuItem;
 
-    @FXML
-    private StackPane patientListPanelPlaceholder;
+    @FXML private StackPane patientListPanelPlaceholder;
+    @FXML private StackPane vaxTypeListPanelPlaceholder;
 
-    @FXML
-    private StackPane resultDisplayPlaceholder;
+    @FXML private StackPane resultDisplayPlaceholder;
 
-    @FXML
-    private StackPane statusbarPlaceholder;
+    @FXML private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -112,6 +110,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientMap());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        vaxTypeListPanel = new VaxTypeListPanel(logic.getFilteredVaxTypeMap());
+        vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
