@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE;
-import static seedu.address.commons.core.Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
