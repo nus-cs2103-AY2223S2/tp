@@ -108,6 +108,4 @@ Action | Format, Examples
 **Add** | `add /n POSITION /c COMPANY /s STATUS /d DEADLINE` <br> e.g., `add /n Software Engineer /c Google /s ongoing /d 2023-03-14`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Outcome** | `outcome /o STATUS`<br> e.g., `outcome /o ongoing`
-**Success** | `success`
 **List** | `list`
-**Deadline** | `deadline`
