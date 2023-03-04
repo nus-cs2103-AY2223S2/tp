@@ -48,7 +48,5 @@ public class UnfavoriteCommand extends Command {
         model.setPerson(personToFav, unfavoritePerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritePerson));
-
-
     }
 }
