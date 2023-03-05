@@ -47,4 +47,17 @@ public class Location implements Identifiable {
     public String getId() {
         return id;
     }
+
+    /**
+     * Returns true if both locations have the same name.
+     * This defines a weaker notion of equality between two locations.
+     */
+    public boolean isSameLocation(Location otherLocation) {
+        if (otherLocation == this) {
+            return true;
+        }
+
+        return otherLocation != null
+                && otherLocation.getName().equals(getName());
+    }
 }
