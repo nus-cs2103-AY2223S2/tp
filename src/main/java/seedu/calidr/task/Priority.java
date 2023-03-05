@@ -1,4 +1,4 @@
-package seedu.calidr.model.task;
+package seedu.calidr.task;
 
 /**
  * Represents the priority associated with each task.
