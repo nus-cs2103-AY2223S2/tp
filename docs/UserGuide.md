@@ -98,6 +98,31 @@ Use this command to gain access to all of them!
 
 > Command: `list`
 
+### Favourite A Contact : `fav`
+
+Contact someone very frequently?
+
+Use this command to favourite it so that you have easy access to it!
+
+> Command: `fav INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+
+### Unfavourite A Contact : `unfav`
+
+No longer contact someone as frequently as you used to?
+
+Use this command to unfavourite it!
+
+> Command: `unfav INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
 
 ### Editing a contact's details : `edit`
 
@@ -193,7 +218,7 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 You are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
