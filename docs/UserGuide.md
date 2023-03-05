@@ -155,6 +155,15 @@ Exits the program.
 
 Format: `exit`
 
+### Add meeting : `meeting add`
+
+### Remove meeting : `meeting delete`
+
+### Find meeting : `meeting find`
+
+### List meeting : `meeting list`
+
+### Locate person by region : `region find`
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -170,7 +179,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
-
+###
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
