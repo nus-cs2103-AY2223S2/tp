@@ -2,8 +2,8 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_CPLUSPLUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
