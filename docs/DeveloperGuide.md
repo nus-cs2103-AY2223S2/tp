@@ -278,7 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student                                       | delete a contact                                    | remove a contact that I no longer need                                 |
 | `* * *`  | Student                                       | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
 | `* * *`  | Student                                       | find a contact by name                              | locate details of persons without having to go through the entire list |
-| `* * *`  | Student                                       | filter my contacts by tag                           | find the persons that is related to the tag quickly                    |
+| `* * *`  | Student                                       | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
 | `* * *`  | Student                                       | edit a contact                                      | update the contact details of my contacts when they change             |
 | `* * *`  | Student                                       | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
 | `* * *`  | Student                                       | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
