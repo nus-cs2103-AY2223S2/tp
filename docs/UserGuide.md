@@ -74,15 +74,15 @@ Format: `help`
 
 Adds a person to ModCheck.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/<NAME> d/<DESCRIPTION> e/<EMAIL> c/<CONTACT> m/<MODULECODE>…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of modules (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Messi d/Professor e/leomessi@psg.com c/98101010`
+* `add n/C.Ronaldo d/Tutor e/SIUUUUUU@gmail.com c/98070707 m/CS2105 m/CS2103`
 
 ### Listing all persons : `list`
 
@@ -115,8 +115,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
+*  `edit 3 p/90011009 e/bernice512@example.com` Edits the phone number and email address of the 3rd person to be 
+   90011009 and bernice512@example.com respectively
+![editCommandExample](images/editCommandExample.png)
+
 
 ### Locating persons by name: `find`
 
