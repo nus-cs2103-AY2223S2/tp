@@ -27,15 +27,15 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+   * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-    * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts.
 
-    * `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 6. Refer to the [Address Book Features](#address-book-features) below for details of each command.
 
@@ -51,28 +51,28 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 ![addressBkUI](images/userguide/addressBkUI.png)
 
 1. Current Displayed List
-    * show contacts based on command input
-    * contains the `index` you should use to refer to each contact
+   * show contacts based on command input
+   * contains the `index` you should use to refer to each contact
 2. Information Of Specific Contact
-    * displays all the saved information related to contact
-    * toggle between different contacts by _clicking on them in the displayed list_
+   * displays all the saved information related to contact
+   * toggle between different contacts by _clicking on them in the displayed list_
 3. Command Results:
-    * displays the result of input command
+   * displays the result of input command
 4. Command Line:
-    * type command and press enter to execute it
-    * refer to the [Address Book Features](#address-book-features ) below for possible commands to execute
+   * type command and press enter to execute it
+   * refer to the [Address Book Features](#address-book-features ) below for possible commands to execute
 
 ### UI Breakdown For `Calendar`
 
 ![calendar](images/userguide/calendarUI.png)
 
 1. Calender Display
-    * displays all lessons and events you have saved
+   * displays all lessons and events you have saved
 2. Command Results:
-    * displays the result of input command
+   * displays the result of input command
 3. Command Line
-    * type command and press enter to execute it
-    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+   * type command and press enter to execute it
+   * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
 ____________________________________________________________________________________________________________________
 ## Address Book Features
@@ -166,7 +166,7 @@ Use this command to favourite it so that you have easy access to it!
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 
 ### Unfavourite A Contact : `unfav`
 
@@ -179,7 +179,7 @@ Use this command to unfavourite it!
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 
 ### Editing a contact's details : `edit`
 
@@ -192,12 +192,12 @@ Use this command to edit his/her details easily!
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-    * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
+  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
 
-      _[i.e  adding of tags and mods taken are not cumulative]_
-        * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
+  _[i.e  adding of tags and mods taken are not cumulative]_
+  * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
 * We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
 
 | Specifier | Name of Field                   | Optional? |
@@ -230,17 +230,17 @@ Here are some important requirements for you to take note:
 * Only the name is searched.
 * The search is **case-insensitive**.
 
-  _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
+    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
 * The order of the keywords does not matter.
 
-  _[e.g. `Hans Bo` will match `Bo Hans`]_
+    _[e.g. `Hans Bo` will match `Bo Hans`]_
 
 * Only full words will be matched
 
-  _[e.g. `Han` will not match `Hans`]_
+    _[e.g. `Han` will not match `Hans`]_
 * Persons matching at least one keyword will be returned (i.e. `OR` search)
 
-  _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
+    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -257,7 +257,7 @@ Use this command to delete the specified contact from your address book.
 
 Here are some important requirements for you to take note:
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
