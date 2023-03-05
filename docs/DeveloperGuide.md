@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 MSS
 
 1. Home bakery owner requests to add a new task.
-2. Home bakery owner enters an add command with the required information.
+2. Home bakery owner enters an add task command with the required information.
 3. Trackr saves the new task to the system.
 
    Use case ends.
@@ -341,15 +341,15 @@ MSS
 * 2a. The Home bakery owner does not enter all required information.
 Trackr shows an error message.
 
-  Use case ends without adding any task.
+  Use case ends without adding any supplier.
 
-**Use case: Add a new task**
+**Use case: Add a new order**
 
 MSS
 
-1. Home bakery owner requests to add a new task. 
-2. Home bakery owner enters an add command with the required information. 
-3. Trackr saves the new task to the system.
+1. Home bakery owner requests to add a new order. 
+2. Home bakery owner enters an add order command with the required information. 
+3. Trackr saves the new order to the system.
 
     Use case ends.
 
@@ -358,7 +358,7 @@ MSS
 * 2a. The Home bakery owner does not enter all required information.
 Trackr shows an error message.
 
-    Use case ends without adding any task.
+    Use case ends without adding any order.
 
 
 **Use case: Delete an order**
