@@ -11,6 +11,10 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
+    OperationMode getOperationMode();
+
     Path getAddressBookFilePath();
+
+    Path getPilotManagerFilePath();
 
 }
