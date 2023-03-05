@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is  `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -321,6 +321,104 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC1 - Create a department**
+
+**MSS:**
+1. User requests to create a department.
+2. SudoHR creates the department.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given argument is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC2 - Add employee to department**
+**MSS:**
+1. User lists department
+2. User requests to add employee to the department.
+3. SudoHR adds employee to the department.
+4. Use case ends.
+
+**Extensions**
+
+* 1a. The given argument is invalid.
+    
+    * 1a1. SudoHR shows an error message.
+  
+      Use case resumes at step 2.
+
+
+**Use case: UC3 - Add event**
+**MSS:**
+1. User request to add event with corresponding event title description and date
+2. SudoHR adds event.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. The given argument has invalid fields.
+   
+   * 1a1. SudoHR shows an error message.
+     
+     Use case resumes at step 1.
+
+* 1b. The given argument has missing fields.
+
+    * 1b1. SudoHR shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+
+**Use case: UC4 - Delete event**
+**MSS:**
+1. User lists event
+2. SudoHR shows all events
+3. User requests to delete event from SudoHR
+4. SudoHR deletes event.
+5. Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC4 - Delete event**
+**MSS:**
+1. User lists event
+2. SudoHR shows all events
+3. User requests to delete event from SudoHR
+4. SudoHR deletes event.
+5. Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+
 
 *{More to be added}*
 
