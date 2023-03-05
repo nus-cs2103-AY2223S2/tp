@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sanjevi13.png" width="200px">
 
 [[github](http://github.com/sanjevi13)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sanjevi13.md)]
 
 * Role: Developer
 * Responsibilities: Testing
