@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/pkwangjoo.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio]()]
+[[portfolio](team/pkwangjoo.md)]
 
 - Role: Developer
 - Responsibilities: Integration
