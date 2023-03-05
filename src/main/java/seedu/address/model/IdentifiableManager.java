@@ -15,7 +15,7 @@ import seedu.address.model.item.UniqueList;
  * that allows for the modification of the manager.
  */
 public class IdentifiableManager<T extends Identifiable> implements
-        ReadOnlyIdentifiableManager<T> {
+                                                         ReadOnlyIdentifiableManager<T> {
 
     /**
      * The internal list responsible for holding the items.
@@ -118,6 +118,16 @@ public class IdentifiableManager<T extends Identifiable> implements
         items.remove(item);
     }
 
+    /**
+     * Removes the item with the given ID from this {@code
+     * IdentifiableManager}.
+     *
+     * @param id the ID of the item to remove
+     */
+    public void removeItem(String id) {
+        items.remove(id);
+    }
+
     @Override
     public Optional<T> getItem(String id) {
         for (T item : items) {
@@ -153,7 +163,7 @@ public class IdentifiableManager<T extends Identifiable> implements
             return false;
         }
         IdentifiableManager<?> otherIdentifiableManager =
-                (IdentifiableManager<?>) other;
+            (IdentifiableManager<?>) other;
         return items.equals(otherIdentifiableManager.items);
     }
 

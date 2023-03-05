@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.pilot.Pilot;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -17,15 +19,20 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
+
+    private final IdentifiableStorage<Pilot> pilotStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          IdentifiableStorage<Pilot> pilotStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.pilotStorage = pilotStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +82,47 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ Pilot methods ==============================
+
+    @Override
+    public Path getPilotManagerFilePath() {
+        return pilotStorage.getPath();
+    }
+
+    @Override
+    public Optional<? extends ReadOnlyIdentifiableManager<Pilot>> readPilotManager()
+            throws DataConversionException, IOException {
+        return readPilotManager(pilotStorage.getPath());
+    }
+
+    /**
+     * Reads the pilot manager from the given file path.
+     *
+     * @param filePath the file path to read from
+     * @return the pilot manager
+     * @throws DataConversionException if the file is not in the correct format.
+     * @throws IOException             if there was any problem when reading from the file.
+     */
+    public Optional<? extends ReadOnlyIdentifiableManager<Pilot>> readPilotManager(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return pilotStorage.read(filePath);
+    }
+
+    @Override
+    public void savePilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) throws IOException {
+        savePilotManager(pilotManager, pilotStorage.getPath());
+    }
+
+    /**
+     * Saves the pilot manager to the given file path.
+     *
+     * @param pilotManager the pilot manager to save
+     * @param filePath     the file path to save to
+     * @throws IOException if there was any problem writing to the file.
+     */
+    public void savePilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        pilotStorage.save(pilotManager, filePath);
+    }
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.pilot.Pilot;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,12 +22,19 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+
     private final FilteredList<Person> filteredPersons;
+
+    // pilot manager
+
+    private final IdentifiableManager<Pilot> pilotManager;
+    private final FilteredList<Pilot> filteredPilots;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -34,10 +42,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.pilotManager = new IdentifiableManager<>(pilotManager);
+        filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -51,6 +62,21 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
+    }
+
+    @Override
+    public OperationMode getOperationMode() {
+        return userPrefs.getOperationMode();
+    }
+
+    /**
+     * Sets the operation mode of the app.
+     *
+     * @param mode the new operation mode
+     */
+    @Override
+    public void setOperationMode(OperationMode mode) {
+        this.userPrefs.setOperationMode(mode);
     }
 
     @Override
@@ -128,6 +154,69 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Pilot ========================================================
+
+    @Override
+    public ReadOnlyIdentifiableManager<Pilot> getPilotManager() {
+        return pilotManager;
+    }
+
+    @Override
+    public Path getPilotManagerFilePath() {
+        return userPrefs.getPilotManagerFilePath();
+    }
+
+    @Override
+    public void setPilotManagerFilePath(Path pilotManagerFilePath) {
+        requireNonNull(pilotManagerFilePath);
+
+        userPrefs.setPilotManagerFilePath(pilotManagerFilePath);
+    }
+
+    @Override
+    public void setPilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) {
+        this.pilotManager.resetData(pilotManager);
+    }
+
+    @Override
+    public boolean hasPilot(Pilot pilot) {
+        requireNonNull(pilot);
+        return pilotManager.hasItem(pilot);
+    }
+
+    @Override
+    public void deletePilot(Pilot target) {
+        pilotManager.removeItem(target);
+    }
+
+    @Override
+    public void deletePilot(String id) {
+        pilotManager.removeItem(id);
+    }
+
+    @Override
+    public void addPilot(Pilot pilot) {
+        requireNonNull(pilot);
+        pilotManager.addItem(pilot);
+    }
+
+    @Override
+    public void setPilot(Pilot target, Pilot editedPilot) {
+        requireAllNonNull(target, editedPilot);
+        pilotManager.setItem(target, editedPilot);
+    }
+
+    @Override
+    public ObservableList<Pilot> getFilteredPilotList() {
+        return filteredPilots;
+    }
+
+    @Override
+    public void updateFilteredPilotList(Predicate<Pilot> predicate) {
+        requireNonNull(predicate);
+        filteredPilots.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -143,8 +232,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                   && userPrefs.equals(other.userPrefs)
+                   && filteredPersons.equals(other.filteredPersons)
+                   && pilotManager.equals(other.pilotManager);
     }
 
 }
