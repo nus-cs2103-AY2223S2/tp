@@ -79,12 +79,18 @@ Tag food item - tag <Index> /with <Tag Name>
 
 ### Adding a food item: `add`
 
-*placeholder*
+Add food items into your fridge.
 
-Format: `placeholder`
+Format: `add`
 
 Examples:
-* `placeholder`
+* `add Spinach`
+
+Example: <br/>
+`add Spinach` returns
+```shell
+  You have successfully added Spinach into your fridge.
+```
 
 ### Listing all food items : `list`
 
