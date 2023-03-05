@@ -3,7 +3,17 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+
+Salespeople managing client contacts who prefer a CLI
+
+- has a need to manage a significant number of contacts
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
+
+**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, prioritise sales tasks
 
 * Table of Contents
 {:toc}
@@ -169,13 +179,13 @@ Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits and closes the program
 
 Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SalesPunch contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
