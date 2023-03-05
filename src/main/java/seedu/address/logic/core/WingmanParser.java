@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.core.exceptions.ParseException;
+import seedu.address.logic.location.addlocation.AddLocationCommandFactory;
+import seedu.address.logic.location.deletelocation.DeleteLocationCommandFactory;
 import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
 import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
 import seedu.address.logic.toplevel.changemode.ChangeModeCommandFactory;
@@ -28,7 +30,10 @@ public class WingmanParser extends FactoryParser {
         new CommandGroup(OperationMode.CREW, List.of()),
         new CommandGroup(OperationMode.PLANE, List.of()),
         new CommandGroup(OperationMode.FLIGHT, List.of()),
-        new CommandGroup(OperationMode.LOCATION, List.of())
+        new CommandGroup(OperationMode.LOCATION, List.of(
+                new AddLocationCommandFactory(),
+                new DeleteLocationCommandFactory()
+        ))
     );
 
     /**
