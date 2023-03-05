@@ -46,10 +46,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 ### Tan Wei Xuan Rachel
-<img src="images/rachel.png" width="200px">
+<img src="images/rachtan27.png" width="200px">
 
 [[github](http://github.com/rachtan27)]
-[[portfolio](team/rachel.md)]
+[[portfolio](team/rachtan27.md)]
 
 * Role: Testing
 * Responsibilities:
