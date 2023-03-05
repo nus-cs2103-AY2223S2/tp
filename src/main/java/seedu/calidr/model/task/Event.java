@@ -58,8 +58,7 @@ public class Event extends Task {
     @Override
     public String getFileRepresentation() {
         String mark = (super.isDone()) ? "X" : " ";
-
-        return "E" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.from + "~" + this.to;
+        return String.format("E~%s~%s~%s~%s~%s", this.getPriority(), mark, this.getDescription(), this.from, this.to);
     }
 
     @Override

@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.AddressBook;

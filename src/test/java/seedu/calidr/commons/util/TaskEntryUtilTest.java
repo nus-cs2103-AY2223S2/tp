@@ -6,6 +6,7 @@ import static seedu.calidr.testutil.TypicalTasks.EVENT1;
 import static seedu.calidr.testutil.TypicalTasks.TODO1;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.calidr.model.TaskEntry;
 
 class TaskEntryUtilTest {

@@ -127,8 +127,7 @@ public class TaskList {
 
         if (isValidTaskNumber) {
             Task removedTask = this.tasks.remove(taskNumber - 1);
-
-            return "I have removed Task " + taskNumber + " from the list.\n" + removedTask + "\nYou now have " + this.tasks.size() + " task(s) in the list.\n";
+            return String.format("I have removed Task %d from the list.\n%s\nYou now have %d task(s) in the list.\n", taskNumber, removedTask, this.tasks.size());
 
         } else {
             throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");

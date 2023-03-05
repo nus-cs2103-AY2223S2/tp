@@ -17,7 +17,6 @@ public class TypicalTasks {
     public static final ToDo TODO3 = new ToDo("CS2103T Quiz 3", Priority.LOW);
 
     public static final Deadline DEADLINE1 = new Deadline("CS2101 Quiz 1", LocalDateTime.of(2019, 10, 10, 10, 10));
-
     public static final Deadline DEADLINE2 = new Deadline("CS2101 Quiz 2", LocalDateTime.of(2019, 10, 10, 10, 10), Priority.HIGH);
 
     public static final Deadline DEADLINE3 = new Deadline("CS2101 Quiz 3", LocalDateTime.of(2019, 12, 10, 10, 10), Priority.LOW);
