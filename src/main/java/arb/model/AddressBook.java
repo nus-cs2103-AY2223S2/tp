@@ -3,9 +3,11 @@ package arb.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import arb.model.client.Client;
 import arb.model.client.UniqueClientList;
+import arb.model.project.UniqueProjectList;
 import javafx.collections.ObservableList;
 
 /**
@@ -15,6 +17,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueClientList clients;
+    private final UniqueProjectList projects;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         clients = new UniqueClientList();
+        projects = new UniqueProjectList();
     }
 
     public AddressBook() {}
@@ -47,6 +51,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.clients.setClients(clients);
     }
 
+    public void setProjects(List<ProjectStub> projects) {
+        this.projects.setProjects(projects);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -54,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setClients(newData.getClientList());
+        setProjects(newData.getProjectList());
     }
 
     //// client-level operations
@@ -66,12 +75,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.contains(client);
     }
 
+    public boolean hasProject(ProjectStub project) {
+        requireNonNull(project);
+        return projects.contains(project);
+    }
+
     /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
     public void addClient(Client p) {
         clients.add(p);
+    }
+
+    public void addProject(ProjectStub p) {
+        projects.add(p);
     }
 
     /**
@@ -85,6 +103,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.setClient(target, editedClient);
     }
 
+    public void setProject(ProjectStub target, ProjectStub editedProject) {
+        requireNonNull(editedProject);
+
+        projects.setProject(target, editedProject);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -93,11 +117,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    public void removeProject(ProjectStub key) {
+        projects.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return clients.asUnmodifiableObservableList().size() + " clients";
+        return clients.asUnmodifiableObservableList().size() + " clients, "
+                + projects.asUnmodifiableObservableList().size() + " projects";
         // TODO: refine later
     }
 
@@ -107,14 +136,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<ProjectStub> getProjectList() {
+        return projects.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && clients.equals(((AddressBook) other).clients));
+                && clients.equals(((AddressBook) other).clients))
+                && projects.equals(((AddressBook) other).projects);
     }
 
     @Override
     public int hashCode() {
-        return clients.hashCode();
+        return Objects.hash(clients, projects);
     }
 }

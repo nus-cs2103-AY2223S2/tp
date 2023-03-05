@@ -12,4 +12,8 @@ public class ProjectStub {
     public String getStatus() {
         return "Done";
     }
+
+    public boolean isSameProject(ProjectStub other) {
+        return true;
+    }
 }

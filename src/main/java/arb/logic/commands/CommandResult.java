@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import arb.model.ListType;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,15 +19,15 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private final boolean isSwapList;
+    private final ListType listType;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isSwapList) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ListType listType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.isSwapList = isSwapList;
+        this.listType = listType;
         this.exit = exit;
     }
 
@@ -33,8 +35,8 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+    public CommandResult(String feedbackToUser, ListType listType) {
+        this(feedbackToUser, false, false, listType);
     }
 
     public String getFeedbackToUser() {
@@ -49,8 +51,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isSwapList() {
-        return this.isSwapList;
+    public ListType getListType() {
+        return listType;
     }
 
     @Override
@@ -67,12 +69,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && listType == otherCommandResult.listType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, listType);
     }
 
 }

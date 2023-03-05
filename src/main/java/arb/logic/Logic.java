@@ -6,6 +6,7 @@ import arb.commons.core.GuiSettings;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.ListType;
 import arb.model.ProjectStub;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
@@ -24,6 +25,8 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    void setListType(ListType newListType);
+
     /**
      * Returns the AddressBook.
      *
@@ -34,7 +37,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of clients */
     ObservableList<Client> getFilteredClientList();
 
-    ObservableList<ProjectStub> getEmptyFilteredPersonList();
+    ObservableList<ProjectStub> getFilteredProjectList();
 
     /**
      * Returns the user prefs' address book file path.

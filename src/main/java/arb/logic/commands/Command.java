@@ -1,6 +1,7 @@
 package arb.logic.commands;
 
 import arb.logic.commands.exceptions.CommandException;
+import arb.model.ListType;
 import arb.model.Model;
 
 /**
@@ -15,6 +16,6 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
+    public abstract CommandResult execute(Model model, ListType currentListType) throws CommandException;
 
 }

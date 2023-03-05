@@ -14,4 +14,6 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Client> getClientList();
 
+    ObservableList<ProjectStub> getProjectList();
+
 }

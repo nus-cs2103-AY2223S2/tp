@@ -8,6 +8,7 @@ import arb.logic.Logic;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.ListType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane clientListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,8 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        projectListPanel = new ProjectListPanel(logic.getEmptyFilteredPersonList());
-        //clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+        swapList(ListType.CLIENT);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -169,14 +170,31 @@ public class MainWindow extends UiPart<Stage> {
         return clientListPanel;
     }
 
-    public void swapList() {
-        this.clientListPanelPlaceholder.getChildren().clear();
-        this.clientListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    public void swapToClientList() {
+        this.logic.setListType(ListType.CLIENT);
+        this.listPanelPlaceholder.getChildren().clear();
+        this.listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
-    public void swapBackToList() {
-        this.clientListPanelPlaceholder.getChildren().clear();
-        this.clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+    public void swapToProjectList() {
+        this.logic.setListType(ListType.PROJECT);
+        this.listPanelPlaceholder.getChildren().clear();
+        this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    }
+
+    public void swapList(ListType listType) {
+        switch (listType) {
+        case NONE:
+            break;
+        case PROJECT:
+            swapToProjectList();
+            break;
+        case CLIENT:
+            swapToClientList();
+            break;
+        default:
+            break;
+        }
     }
 
     /**
@@ -198,13 +216,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             } 
             
-            if (commandResult.isSwapList()) {
-                logger.info("Swapped list");
-                swapList();
-            } else {
-                logger.info("Swap Back");
-                swapBackToList();//check whether to change list?
-            }
+            swapList(commandResult.getListType());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

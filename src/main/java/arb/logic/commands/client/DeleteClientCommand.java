@@ -9,6 +9,7 @@ import arb.commons.core.index.Index;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 
@@ -33,7 +34,7 @@ public class DeleteClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListType) throws CommandException {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
@@ -43,7 +44,7 @@ public class DeleteClientCommand extends Command {
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete), ListType.CLIENT);
     }
 
     @Override

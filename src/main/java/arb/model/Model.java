@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    
+    Predicate<ProjectStub> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -57,17 +59,23 @@ public interface Model {
      */
     boolean hasClient(Client client);
 
+    boolean hasProject(ProjectStub project);
+
     /**
      * Deletes the given client.
      * The client must exist in the address book.
      */
     void deleteClient(Client target);
 
+    void deleteProject(ProjectStub target);
+
     /**
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
     void addClient(Client client);
+
+    void addProject(ProjectStub project);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
@@ -76,14 +84,18 @@ public interface Model {
      */
     void setClient(Client target, Client editedClient);
 
+    void setProject(ProjectStub target, ProjectStub editedProject);
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
-    ObservableList<ProjectStub> getEmptyFilteredPersonList();
+    ObservableList<ProjectStub> getFilteredProjectList();
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    void updateFilteredProjectList(Predicate<ProjectStub> predicate);
 }
