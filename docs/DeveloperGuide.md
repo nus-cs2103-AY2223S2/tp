@@ -429,14 +429,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 > **Use case: UC07 - Find**
 
-//TODO By Kalaris
-
 **MSS**
 
-1. User requests to exit the application.
-2. FitBook exits the program.
+1. User requests to find a client.
+2. FitBook displays the list of matching clients.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. The input does not match any client in the database.
+    * 1a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+* 2a. The list is empty in the database.
+    * 2a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+* 3a. The find command has incorrect format.
+    * 3a1. FitBook displays an error that the find format is wrong.
+
+      Use case ends.
 
 *{More to be added}
 
