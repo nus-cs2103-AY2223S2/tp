@@ -80,7 +80,8 @@ Examples:
 * `add Meiji Milk`
 * `add Awfully Chocolate`
 
-Command outcome:
+Example: <br/>
+`add Spinach` returns
 ```shell
   You have successfully added Spinach into your fridge.
 ```
