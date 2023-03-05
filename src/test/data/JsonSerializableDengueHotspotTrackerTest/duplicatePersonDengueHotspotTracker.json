@@ -2,13 +2,13 @@
   "persons": [ {
     "name": "Alice Pauline",
     "postal": "943512",
-    "date": "alice@example.com",
-    "age": "123, Jurong West Ave 6, #08-111",
+    "date": "2022-12-29",
+    "age": "22",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "postal": "943512",
-    "date": "pauline@example.com",
-    "age": "4th street"
+    "date": "2022-12-29",
+    "age": "22"
   } ]
 }

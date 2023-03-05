@@ -2,7 +2,7 @@
   "persons": [ {
     "name": "Hans Muster",
     "postal": "948424a",
-    "date": "invalid@date!3e",
-    "age": "4th street"
+    "date": "2022-11-02",
+    "age": "21"
   } ]
 }

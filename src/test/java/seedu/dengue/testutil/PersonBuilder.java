@@ -18,8 +18,8 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_POSTAL = "654214";
-    public static final String DEFAULT_DATE = "amy@gmail.com";
-    public static final String DEFAULT_AGE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DATE = "2023-03-05";
+    public static final String DEFAULT_AGE = "23";
 
     private Name name;
     private Postal postal;

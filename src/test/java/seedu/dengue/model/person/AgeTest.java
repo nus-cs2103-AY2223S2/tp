@@ -15,22 +15,36 @@ public class AgeTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Age(invalidAddress));
+        String invalidAge = "";
+        assertThrows(IllegalArgumentException.class, () -> new Age(invalidAge));
     }
 
     @Test
     public void isValidAge() {
-        // null address
+        // null age
         assertThrows(NullPointerException.class, () -> Age.isValidAge(null));
 
-        // invalid addresses
+        // invalid age
         assertFalse(Age.isValidAge("")); // empty string
         assertFalse(Age.isValidAge(" ")); // spaces only
+        assertFalse(Age.isValidAge("200")); // > 199
+        assertFalse(Age.isValidAge("a")); // non numerical
+        assertFalse(Age.isValidAge("2@")); // illegal special characters
+        assertFalse(Age.isValidAge("#@")); // special characters
 
-        // valid addresses
-        assertTrue(Age.isValidAge("Blk 456, Den Road, #01-355"));
-        assertTrue(Age.isValidAge("-")); // one character
-        assertTrue(Age.isValidAge("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid ages
+        assertTrue(Age.isValidAge("0")); // Boundary case 0
+        assertTrue(Age.isValidAge("1")); // long address
+        assertTrue(Age.isValidAge("10"));
+        assertTrue(Age.isValidAge("21"));
+        assertTrue(Age.isValidAge("32"));
+        assertTrue(Age.isValidAge("43"));
+        assertTrue(Age.isValidAge("54"));
+        assertTrue(Age.isValidAge("65"));
+        assertTrue(Age.isValidAge("76"));
+        assertTrue(Age.isValidAge("87"));
+        assertTrue(Age.isValidAge("98"));
+        assertTrue(Age.isValidAge("100"));
+        assertTrue(Age.isValidAge("199")); // Boundary case 199
     }
 }

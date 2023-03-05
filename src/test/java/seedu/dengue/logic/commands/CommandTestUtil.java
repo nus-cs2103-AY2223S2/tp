@@ -17,8 +17,8 @@ import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -30,10 +30,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_POSTAL_AMY = "111111";
     public static final String VALID_POSTAL_BOB = "222222";
-    public static final String VALID_DATE_AMY = "amy@example.com";
-    public static final String VALID_DATE_BOB = "bob@example.com";
-    public static final String VALID_AGE_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_AGE_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_DATE_AMY = "2001-01-01";
+    public static final String VALID_DATE_BOB = "2002-02-02";
+    public static final String VALID_AGE_AMY = "11";
+    public static final String VALID_AGE_BOB = "22";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

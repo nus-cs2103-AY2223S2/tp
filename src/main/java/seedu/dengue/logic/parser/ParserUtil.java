@@ -80,6 +80,7 @@ public class ParserUtil {
         if (!Age.isValidAge(trimmedAge)) {
             throw new ParseException(Age.MESSAGE_CONSTRAINTS);
         }
+
         return new Age(trimmedAge);
     }
 
