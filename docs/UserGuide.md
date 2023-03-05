@@ -35,19 +35,47 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Address Book Features](#address-book-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-Apart from being your all-encompassing address book, AddressBook Neo also has a calender function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, AddressBook Neo also has a calendar function for you to keep track of your daily schedule.
 
 1. Use these tabs to toggle between the 2 functions!
+
 ![highlightTabs](images/userguide/highlightTabs.png)
 
 ### UI Breakdown For `Address Book`
+
+![addressBkUI](images/userguide/addressBkUI.png)
+
+1. Current Displayed List
+   * show contacts based on command input
+   * contains the `index` you should use to refer to each contact
+2. Information Of Specific Contact
+   * displays all the saved information related to contact
+   * toggle between different contacts by _clicking on them in the displayed list_
+3. Command Results:
+   * displays the result of input command
+4. Command Line:
+   * type command and press enter to execute it
+   * refer to the [Address Book Features](#address-book-features ) below for possible commands to execute
+
+### UI Breakdown For `Calendar`
+
+![calendar](images/userguide/calendarUI.png)
+
+1. Calender Display
+    * displays all lessons and events you have saved
+2.Command Results:
+    * displays the result of input command
+4. Command Line:
+    * type command and press enter to execute it
+    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+
 ____________________________________________________________________________________________________________________
-## Features
+## Address Book Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -214,30 +242,7 @@ Use this command to exit the application!
 
 > Command: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
-
-You are welcome to update the data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Address Book Command Summary
 
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -250,3 +255,33 @@ If your changes to the data file makes its format invalid, AddressBook Neo will 
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+
+--------------------------------------------------------------------------------------------------------------------
+## Calendar Features
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
+
+### Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+
+You are welcome to update the data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
