@@ -3,6 +3,7 @@ package seedu.vms.storage.vaccination;
 import java.io.IOException;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.FileUtil;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 
@@ -36,6 +37,7 @@ public class JsonVaxTypeStorage implements VaxTypeStorage {
 
     @Override
     public void saveVaxTypes(VaxTypeManager manager) throws IOException {
+        FileUtil.createIfMissing(USER_FILE_PATH);
         VaxTypeLoader.fromModelType(manager).write(USER_FILE_PATH);
     }
 }

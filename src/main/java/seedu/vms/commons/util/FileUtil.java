@@ -50,6 +50,15 @@ public class FileUtil {
     }
 
     /**
+     * See {@link #createIfMissing(Path)}.
+     *
+     * @param pathString - the path to the file to create.
+     */
+    public static void createIfMissing(String pathString) throws IOException {
+        createIfMissing(Paths.get(pathString));
+    }
+
+    /**
      * Creates a file if it does not exist along with its missing parent directories.
      */
     public static void createFile(Path file) throws IOException {
