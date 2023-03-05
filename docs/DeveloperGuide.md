@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.
 
 * 3c. User enters an invalid contact information
-   * 3c1. System displays that the index is invalid and to try again.
+   * 3c1. System displays that the contact information is invalid and to try again.
 
       Use case resumts at step 3.
 
