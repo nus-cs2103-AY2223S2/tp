@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  WIFE shows the full list of food items.
-3.  User tag specified food item with tags pre-defined by WIFE.
+3.  User tag food item at specified index with tags pre-defined by WIFE.
 4.  WIFE tagged the food item with the chosen tag.
 
     Use case ends.
