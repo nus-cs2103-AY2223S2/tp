@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentManager appointmentManager = new AppointmentManager();
     private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
 
