@@ -1,16 +1,12 @@
 package seedu.address.logic.commands.student;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
