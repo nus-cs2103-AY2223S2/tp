@@ -65,17 +65,25 @@ public class UniqueEventListTest {
     }
 
     @Test
+    public void setEventWithAnotherUniqueEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(uniqueEventList);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
+    public void setEventWithAnotherEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL));
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(events);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
     public void setDuplicateEvent_throwsDuplicateEventException() {
-        List<Event> invalidList = new ArrayList<>(Arrays.asList(
-            new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
-                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
-                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
-                .build(),
-            new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
-                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
-                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
-                .build()
-        ));
-        assertThrows(DuplicateEventException.class, () -> new UniqueEventList().setEvents(invalidList));
+        List<Event> invalidEvents = new ArrayList<>(Arrays.asList(CARNIVAL, CARNIVAL));
+        assertThrows(DuplicateEventException.class, () -> new UniqueEventList().setEvents(invalidEvents));
     }
 }
