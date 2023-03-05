@@ -62,11 +62,19 @@ improving the efficiency of grocery shopping.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a list of available commands as well as their correct formats
 
 Format: `help`
+
+Example:
+`help` returns 
+```
+Command Examples:
+Add food item - add <Food Name>
+Update food item - update <Food Name>
+Delete food item - delete <Index>
+Tag food item - tag <Index> /with <Tag Name>
+```
 
 
 ### Adding a food item: `add`
