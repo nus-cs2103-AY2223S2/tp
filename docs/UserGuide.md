@@ -21,6 +21,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
+    - [`deletes`](#deleting-multiple-patients--delete)
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
     - [Saving of data](#saving-the-data)
@@ -174,14 +175,14 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-### Deleting multiple person : `deletes` 
+### Deleting multiple patients : `deletes` 
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the address book.
 
 Format: `delete INDEX1 INDEX2 ...`
 
-* Deletes the person at the specified INDEXs.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified INDEXs.
+* The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
