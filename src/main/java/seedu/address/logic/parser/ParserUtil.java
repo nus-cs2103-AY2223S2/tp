@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +121,57 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static IndexNumber parseIndexNumber(String indexNumber) throws ParseException {
+        String trimmedIndexNumber = indexNumber.trim();
+        if (!IndexNumber.isValidIndexNumber(trimmedIndexNumber)) {
+            throw new ParseException(IndexNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new IndexNumber(trimmedIndexNumber);
+    }
+
+    public static Sex parseSex(String sex) throws ParseException {
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
+    }
+
+    public static ParentName parseParentName(String parentName) throws ParseException {
+        requireNonNull(parentName);
+        String trimmedParentName = parentName.trim();
+        if (!ParentName.isValidParentName(trimmedParentName)) {
+            throw new ParseException(ParentName.MESSAGE_CONSTRAINTS);
+        }
+        return new ParentName(trimmedParentName);
+    }
+
+    public static Age parseAge(String studentAge) throws ParseException {
+        requireNonNull(studentAge);
+        String trimmedStudentAge = studentAge.trim();
+        if (!Age.isValidAge(trimmedStudentAge)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(trimmedStudentAge);
+    }
+
+    public static Image parseImage(String studentImage) throws ParseException {
+        requireNonNull(studentImage);
+        String trimmedStudentImage = studentImage.trim();
+        if (!Image.isValidImage(trimmedStudentImage)) {
+            throw new ParseException(Image.MESSAGE_CONSTRAINTS);
+        }
+        return new Image(trimmedStudentImage);
+    }
+
+    public static CCA parseCCA(String cca) throws ParseException {
+        requireNonNull(cca);
+        String trimmedCca = cca.trim();
+        if (!CCA.isValidCCA(trimmedCca)) {
+            throw new ParseException(CCA.MESSAGE_CONSTRAINTS);
+        }
+        return new CCA(trimmedCca);
     }
 }

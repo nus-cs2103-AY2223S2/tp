@@ -35,6 +35,34 @@ public class ArgumentMultimap {
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            switch(prefix.getPrefix()) {
+                case "pn/":
+                    Optional<String> missingParentName = Optional.of("Insert parent name here!");
+                    return missingParentName;
+                case "ageS/":
+                    Optional<String> missingStudentAge = Optional.of("Insert student age here!");
+                    return missingStudentAge;
+                case "imgS/":
+                    Optional<String> missingImage = Optional.of("Insert student image here!");
+                    return missingImage;
+                case "eS/":
+                    Optional<String> missingEmail = Optional.of("Insert student email here!");
+                    return missingEmail;
+                case "phS/":
+                    Optional<String> missingPhoneNumber = Optional.of("Insert student phone number here!");
+                    return missingPhoneNumber;
+                case "cca/":
+                    Optional<String> missingCCA = Optional.of("Insert student CCA here!");
+                    return missingCCA;
+                case "a/":
+                    Optional<String> missingAddress = Optional.of("Insert student Address here!");
+                    return missingAddress;
+                default:
+                    List<String> values = getAllValues(prefix);
+                    return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+            }
+        }
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }

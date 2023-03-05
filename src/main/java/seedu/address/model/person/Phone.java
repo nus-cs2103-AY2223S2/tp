@@ -30,6 +30,10 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+
+        if (test.equals("Insert student phone number here!")){
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
