@@ -1,10 +1,13 @@
 package seedu.vms.storage.vaccination;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.VaxTestingUtil;
@@ -30,6 +33,11 @@ public class VaxTypeLoaderTest {
 
     private static final String FILE_VALID_MULTIPLE = "ValidMultipleTypes.json";
     private static final String FILE_EMPTY = "ZeroTypes.json";
+
+    private static final String TEST_SAVE_FILE = "VAX_TYPE_TEST_FILE.json";
+
+    @TempDir
+    public Path testFolder;
 
 
     @Test
@@ -167,5 +175,23 @@ public class VaxTypeLoaderTest {
             // expected exception
             return;
         }
+    }
+
+
+    @Test
+    public void write() throws Exception {
+        // empty manager
+        testSaveMethod(new VaxTypeManager());
+        // filled manager
+        // assuming default loading works
+        testSaveMethod(VaxTypeLoader.load());
+    }
+
+
+    private void testSaveMethod(VaxTypeManager manager) throws Exception {
+        Path saveFile = testFolder.resolve(TEST_SAVE_FILE);
+        VaxTypeLoader.fromModelType(manager).write(saveFile.toString());
+        VaxTypeManager loaded = VaxTypeLoader.load(saveFile.toString());
+        assertEquals(manager.asUnmodifiableObservableMap(), loaded.asUnmodifiableObservableMap());
     }
 }
