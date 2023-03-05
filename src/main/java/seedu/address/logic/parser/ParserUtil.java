@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
@@ -180,5 +181,9 @@ public class ParserUtil {
         } else {
             throw new ParseException("Invalid status. Please use either 'completed' or 'pending'.");
         }
+    }
+
+    public static LocalDate parseDate(String date) throws ParseException {
+        return LocalDate.parse(date);
     }
 }

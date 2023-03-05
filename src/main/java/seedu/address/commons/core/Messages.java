@@ -28,4 +28,10 @@ public class Messages {
     public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE =
             "Homework %s of student %s is already marked as undone\n";
     public static final String MESSAGE_INVALID_STUDENT_NAME = "No student found!\n";
+    public static final String MESSAGE_NO_LESSON_FOUND = "No lesson is found!";
+    public static final String MESSAGE_ALL_LESSONS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
+    public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%d lessons from %d students listed: \n%s";
+    public static final String MESSAGE_LESSON_DELETED_SUCCESS = "Lesson: %s, %s\n"
+        + "Deleted from the %s\n";
+    public static final String MESSAGE_INVALID_LESSON_DISPLAYED_INDEX = "The lesson index provided is invalid";
 }
