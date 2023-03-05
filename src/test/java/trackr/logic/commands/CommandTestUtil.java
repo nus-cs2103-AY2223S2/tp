@@ -69,6 +69,14 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    //task fields
+    public static final String VALID_TASK_NAME_SORT_INVENTORY = "Sort Inventory";
+    public static final String VALID_TASK_NAME_BUY_FLOUR = "Buy Flour";
+
+    public static final String VALID_TASK_DEADLINE_2100 = "01/01/2100";
+    public static final String VALID_TASK_STATUS_DONE = "D";
+    public static final String VALID_TASK_STATUS_NOT_DONE = "N";
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
