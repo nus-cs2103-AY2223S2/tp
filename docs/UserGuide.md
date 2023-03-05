@@ -69,7 +69,7 @@ Examples
 * `unmark james 1`
 
 ### Exit attendance system: `exit`
-Exits the attendance system.
+Exits the attendance system.<br>
 Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
