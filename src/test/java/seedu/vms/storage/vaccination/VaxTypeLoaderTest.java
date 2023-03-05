@@ -43,15 +43,15 @@ public class VaxTypeLoaderTest {
     @Test
     public void load_resource() throws Exception {
         VaxTypeManager storage = VaxTypeLoader.load();
-        VaxType vaxType = storage.get(SampleVaxTypeData.NAME).get();
+        VaxType vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
         VaxTestingUtil.assertVaxType(vaxType,
-                SampleVaxTypeData.NAME,
-                SampleVaxTypeData.GROUPS,
-                SampleVaxTypeData.MIN_AGE,
-                SampleVaxTypeData.MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING,
-                SampleVaxTypeData.HISTORY_REQS,
-                SampleVaxTypeData.ALLERGY_REQS);
+                SampleVaxTypeData.NAME_REAL,
+                SampleVaxTypeData.GROUPS_REAL,
+                SampleVaxTypeData.MIN_AGE_REAL,
+                SampleVaxTypeData.MAX_AGE_REAL,
+                SampleVaxTypeData.MIN_SPACING_REAL,
+                SampleVaxTypeData.HISTORY_REQS_REAL,
+                SampleVaxTypeData.ALLERGY_REQS_REAL);
     }
 
 
@@ -82,15 +82,15 @@ public class VaxTypeLoaderTest {
                 VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_HISTORY_REQS,
                 VaxType.DEFAULT_ALLERGY_REQS);
-        vaxType = storage.get(SampleVaxTypeData.NAME).get();
+        vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
         VaxTestingUtil.assertVaxType(vaxType,
-                SampleVaxTypeData.NAME,
-                SampleVaxTypeData.GROUPS,
-                SampleVaxTypeData.MIN_AGE,
-                SampleVaxTypeData.MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING,
-                SampleVaxTypeData.HISTORY_REQS,
-                SampleVaxTypeData.ALLERGY_REQS);
+                SampleVaxTypeData.NAME_REAL,
+                SampleVaxTypeData.GROUPS_REAL,
+                SampleVaxTypeData.MIN_AGE_REAL,
+                SampleVaxTypeData.MAX_AGE_REAL,
+                SampleVaxTypeData.MIN_SPACING_REAL,
+                SampleVaxTypeData.HISTORY_REQS_REAL,
+                SampleVaxTypeData.ALLERGY_REQS_REAL);
     }
 
 

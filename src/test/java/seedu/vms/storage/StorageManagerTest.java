@@ -78,7 +78,7 @@ public class StorageManagerTest {
          */
         Optional<VaxType> data = storageManager
                 .loadDefaultVaxTypes()
-                .get(SampleVaxTypeData.NAME);
+                .get(SampleVaxTypeData.NAME_REAL);
         assertTrue(data.isPresent());
     }
 
