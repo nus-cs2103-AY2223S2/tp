@@ -124,7 +124,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEvent(Event e) {
         events.add(e);
     }
-    
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
