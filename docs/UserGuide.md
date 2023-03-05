@@ -127,14 +127,17 @@ Spinach {VEGETABLES}
 
 ### Updating a food item : `update`
 
-Placeholder.
+Update  food items in your fridge.
 
-Format: `placeholder`
+Format: `update <Old Item> /to <New Item>`
 
-* placeholder
+* `Old Item`must be an item currently in the fridge
 
-Examples:
-*  `placeholder`
+Example: <br/>
+`update Meiji Milk /to Meiji Chocolate Milk` returns
+```markdown
+You have successfully updated Meiji Milk to Meiji Chocolate Milk
+```
 
 ### Deleting a food item : `delete`
 

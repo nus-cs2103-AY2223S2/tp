@@ -368,6 +368,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
     Use case resumes at step 2.
 
+### **Use case UC06: Update a food item**
+
+**MSS**
+
+1.  User requests to update an item in the fridge.
+2.  WIFE updates the item and displays successful update message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. WIFE is empty.
+  * 1a1. WIFE displays a message that tells the User that there are no items
+  and cannot update specified item
+  
+    Use case ends.
+* 1b. User selects an item that does not exist.
+  * 1b1. WIFE displays a message that tells the User that specified item does not exist.
+  
+    Use case ends.
 
 ### Non-Functional Requirements
 
