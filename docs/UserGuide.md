@@ -38,7 +38,7 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip**
 A person can have any number of tags (including 0)
 </div>
 
@@ -65,7 +65,17 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
 
-### Locating persons by name: `find` [coming soon]
+### Locating persons by keyword: `find` 
+
+Shows a list of all persons in address book whose details match the keyword provided.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* Displays list of persons matching at least one keyword if multiple keywords are provided.
+
+Examples:
+* `find UTown` displays list of all persons whose address includes the phrase 'UTown' in it.
+
 
 ### Deleting a person : `delete`
 
