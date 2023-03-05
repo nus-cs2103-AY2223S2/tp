@@ -270,27 +270,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person 
-| `***` | HR personnel | Add a person’s leave to SudoHR | Ensure consolidation of information
+| Priority | As a …​                                    | I want to …​                                           | So that I can…​                                                        |
+| -------- | ------------------------------------------ |--------------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                 | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                       |                                                                        |
+| `* * *`  | user                                       | delete a person                                        | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                  | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                           | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                   | locate a person 
+| `***` | HR personnel | Add a person’s leave to SudoHR                         | Ensure consolidation of information
 | `***` | HR personnel | be able to view all the leave the person has applied for | Access an employee availability easily
 | `***` | HR personnel | Be able to view everyone who has applied leave on a day | Better plan company events
-| `***` | HR personnel |Add a person to a department | Apply department-level operations (e.g announcements) on the person
-| `***`| HR personnel| Add a person to a project    | Know who is involved in what projects
-| `*` | user with many persons in the address book | sort persons by name | locate a person easily
-| `***` | HR personnel | Create a new event       | keep track of all the event details of the company
-| `***` | HR personnel | Delete a event         | Remove events I no longer need
-| `**` | HR personnel | Update a event | Update the details of an event
-| `***` |HR personnel | List a event | See all the events added to the management system
-| `***` | HR personnel | Add a employee to a event | Know which employee is involved in a event
-| `***` | HR personnel | Delete a employee from a event | Remove employees that are not participating in a event
-| `***` | HR personnel | List employees attending a specific event | Obtain the contact details of all employees attending a specific event
+| `***` | HR personnel | Add a person to a department                           | Apply department-level operations (e.g announcements) on the person
+| `***`| HR personnel| Create a project                                       | create project to add employees inside
+| `***`| HR personnel| Update a project                                       | modify a project
+| `***`| HR personnel| Delete a project                                       | delete old projects
+| `***`| HR personnel| List projects                                          | list all existing projects
+| `***`| HR personnel| Add employee to a project                              | add employees to projects that they are doing
+| `***`| HR personnel| Remove employee from a project                         | remove employees from projects they are no longer doing
+| `***`| HR personnel| List all employees doing a project                     | list all employees doing a certain project
+| `*` | user with many persons in the address book | sort persons by name                                   | locate a person easily
+| `***` | HR personnel | Create a new event                                     | keep track of all the event details of the company
+| `***` | HR personnel | Delete a event                                         | Remove events I no longer need
+| `**` | HR personnel | Update a event                                         | Update the details of an event
+| `***` |HR personnel | List a event                                           | See all the events added to the management system
+| `***` | HR personnel | Add a employee to a event                              | Know which employee is involved in a event
+| `***` | HR personnel | Delete a employee from a event                         | Remove employees that are not participating in a event
+| `***` | HR personnel | List employees attending a specific event              | Obtain the contact details of all employees attending a specific event
 
 
 *{More to be added}*
