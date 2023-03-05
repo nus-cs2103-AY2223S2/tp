@@ -22,9 +22,9 @@ public class FavoriteCommand extends Command {
             + "Parameters: INDEX (must be positive integer).\n"
             + "Example: " + COMMAND_WORD + "1";
 
-    public static final String MESSAGE_NOT_EXISTS = "User doesn't exist in the address book";
+    public static final String MESSAGE_NOT_EXISTS = "Person doesn't exist in the address book";
 
-    public static final String MESSAGE_ISFAVORITED = "User is already starred in this address book";
+    public static final String MESSAGE_ISFAVORITED = "Person is already favorited in this address book: %1s";
 
     public static final String MESSAGE_FAVORITE_PERSON_SUCCESS = "Favourited Person: %1$s";
 
@@ -49,13 +49,13 @@ public class FavoriteCommand extends Command {
         Person personToFav = lastShownList.get(index.getZeroBased());
 
         if (personToFav.getIsFavorite().getFavoriteStatus()) {
-            throw new CommandException(MESSAGE_ISFAVORITED);
+            return new CommandResult(String.format(MESSAGE_ISFAVORITED, personToFav));
         }
 
-        Person starredPerson = personToFav.favorite();
+        Person favoritedPerson = personToFav.favorite();
 
-        model.setPerson(personToFav, starredPerson);
+        model.setPerson(personToFav, favoritedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_FAVORITE_PERSON_SUCCESS, starredPerson));
+        return new CommandResult(String.format(MESSAGE_FAVORITE_PERSON_SUCCESS, favoritedPerson));
     }
 }

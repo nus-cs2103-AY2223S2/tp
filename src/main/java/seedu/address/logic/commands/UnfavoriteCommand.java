@@ -21,9 +21,9 @@ public class UnfavoriteCommand extends Command {
             + "Parameters: INDEX (must be positive integer).\n"
             + "Example: " + COMMAND_WORD + "1";
 
-    public static final String MESSAGE_NOT_EXISTS = "User doesn't exist in the address book";
+    public static final String MESSAGE_NOT_EXISTS = "Person doesn't exist in the address book";
 
-    public static final String MESSAGE_ISUNFAVORITED = "User is already unfavorited in this address book";
+    public static final String MESSAGE_ISUNFAVORITED = "Person is already unfavorited in this address book: %1$s";
 
     public static final String MESSAGE_UNFAVORITE_PERSON_SUCCESS = "Unfavourited Person: %1$s";
 
@@ -45,16 +45,16 @@ public class UnfavoriteCommand extends Command {
             throw new CommandException(MESSAGE_NOT_EXISTS);
         }
 
-        Person personToFav = lastShownList.get(index.getZeroBased());
+        Person personToUnfav = lastShownList.get(index.getZeroBased());
 
-        if (!personToFav.getIsFavorite().getFavoriteStatus()) {
-            throw new CommandException(MESSAGE_ISUNFAVORITED);
+        if (!personToUnfav.getIsFavorite().getFavoriteStatus()) {
+            return new CommandResult(String.format(MESSAGE_ISUNFAVORITED, personToUnfav));
         }
 
-        Person unfavoritePerson = personToFav.unfavorite();
+        Person unfavoritedPerson = personToUnfav.unfavorite();
 
-        model.setPerson(personToFav, unfavoritePerson);
+        model.setPerson(personToUnfav, unfavoritedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritePerson));
+        return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritedPerson));
     }
 }
