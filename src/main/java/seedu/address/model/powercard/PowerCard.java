@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Powercard in the Deck
  */
-public class Powercard {
+public class PowerCard {
 
     private Question question;
     private Answer answer;
@@ -19,7 +19,7 @@ public class Powercard {
      * @param question
      * @param answer
      */
-    public Powercard(Question question, Answer answer) {
+    public PowerCard(Question question, Answer answer) {
         requireAllNonNull(question, answer);
         this.question = question;
         this.answer = answer;
@@ -81,7 +81,7 @@ public class Powercard {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePowercard(Powercard otherPowercard) {
+    public boolean isSamePowercard(PowerCard otherPowercard) {
         if (otherPowercard == this) {
             return true;
         }
@@ -100,11 +100,11 @@ public class Powercard {
             return true;
         }
 
-        if (!(other instanceof Powercard)) {
+        if (!(other instanceof PowerCard)) {
             return false;
         }
 
-        Powercard otherPerson = (Powercard) other;
+        PowerCard otherPerson = (PowerCard) other;
         return otherPerson.getQuestion().equals(getQuestion())
                 && otherPerson.getAnswer().equals(getAnswer());
     }
