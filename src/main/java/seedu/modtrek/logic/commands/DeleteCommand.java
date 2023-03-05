@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.model.Model.PREDICATE_SHOW_NO_MODULES;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
@@ -35,12 +36,15 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         ObservableList<Module> lastShownList = model.getFilteredModuleList();
         Module moduleToDelete = new Module(targetCode);
-
-        if (!lastShownList.contains(moduleToDelete)) {
+        //should change this to a better way to retrieve module (possibly HashSet for modules?)
+        int index = lastShownList.indexOf(moduleToDelete);
+        if (index < 0) {
             throw new CommandException(String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, targetCode));
         }
+        moduleToDelete = lastShownList.get(index);
 
         model.deleteModule(moduleToDelete);
+        model.updateFilteredModuleList(PREDICATE_SHOW_NO_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 

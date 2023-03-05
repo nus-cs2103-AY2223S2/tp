@@ -14,7 +14,7 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
 
 /**
- * The type Tag command.
+ * Tags modules with valid tags that correspond to different areas in degree progression
  */
 public class TagCommand extends Command {
     /**

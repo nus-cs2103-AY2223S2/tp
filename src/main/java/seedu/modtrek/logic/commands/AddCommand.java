@@ -12,7 +12,7 @@ import seedu.modtrek.model.Model;
 import seedu.modtrek.model.module.Module;
 
 /**
- * Adds a person to the address book.
+ * Adds a module to ModTrek
  */
 public class AddCommand extends Command {
 

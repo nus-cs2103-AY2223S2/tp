@@ -6,7 +6,7 @@ import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the degree progression
  */
 public class ClearCommand extends Command {
 
