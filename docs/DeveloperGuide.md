@@ -277,27 +277,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                   | delete an employee                                         | remove entries that I no longer need                                     |
 | `* * *`  | user                                   | find an employee by name                                   | locate details of employees without having to go through the entire list |
 | `* *`    | user                                   | hide private contact details                               | minimize chance of someone else seeing them by accident                  |
-| `*`      | user with many employees in the system | sort employees by name                                     | locate an employee                                                       
-| `***` | HR personnel                           | Add an employee’s leave to SudoHR                          | Ensure consolidation of information                                      
-| `***` | HR personnel                           | be able to view all the leave the employee has applied for | Access an employee availability easily                                   
-| `***` | HR personnel                           | Be able to view everyone who has applied leave on a day    | Better plan company events                                               
-| `***` | HR personnel                           | Creae a department                                         | Create a department to add employees in                                  
+| `*`      | user with many employees in the system | sort employees by name                                     | locate an employee
+| `***` | HR personnel                           | Add an employee’s leave to SudoHR                          | Ensure consolidation of information
+| `***` | HR personnel                           | be able to view all the leave the employee has applied for | Access an employee availability easily
+| `***` | HR personnel                           | Be able to view everyone who has applied leave on a day    | Better plan company events
+| `***` | HR personnel                           | Creae a department                                         | Create a department to add employees in
 | `***` | HR personnel                           | Add an employee to a department                            | Apply department-level operations (e.g announcements) on the employee      
-| `***`| HR personnel                           | Create a project                                           | create project to add employees inside                                   
-| `***`| HR personnel                           | Update a project                                           | modify a project                                                         
-| `***`| HR personnel                           | Delete a project                                           | delete old projects                                                      
-| `***`| HR personnel                           | List projects                                              | list all existing projects                                               
-| `***`| HR personnel                           | Add employee to a project                                  | add employees to projects that they are doing                            
-| `***`| HR personnel                           | Remove employee from a project                             | remove employees from projects they are no longer doing                  
-| `***`| HR personnel                           | List all employees doing a project                         | list all employees doing a certain project                               
-| `*` | user with many employees in the system | sort employees by name                                     | locate an employee easily                                                
-| `***` | HR personnel                           | Create a new event                                         | keep track of all the event details of the company                       
-| `***` | HR personnel                           | Delete a event                                             | Remove events I no longer need                                           
-| `**` | HR personnel                           | Update a event                                             | Update the details of an event                                           
-| `***` | HR personnel                           | List a event                                               | See all the events added to the management system                        
-| `***` | HR personnel                           | Add a employee to a event                                  | Know which employee is involved in a event                               
-| `***` | HR personnel                           | Delete a employee from a event                             | Remove employees that are not participating in a event                   
-| `***` | HR personnel                           | List employees attending a specific event                  | Obtain the contact details of all employees attending a specific event   
+| `***`| HR personnel                           | Create a project                                           | create project to add employees inside
+| `***`| HR personnel                           | Update a project                                           | modify a project
+| `***`| HR personnel                           | Delete a project                                           | delete old projects
+| `***`| HR personnel                           | List projects                                              | list all existing projects
+| `***`| HR personnel                           | Add employee to a project                                  | add employees to projects that they are doing
+| `***`| HR personnel                           | Remove employee from a project                             | remove employees from projects they are no longer doing
+| `***`| HR personnel                           | List all employees doing a project                         | list all employees doing a certain project
+| `*` | user with many employees in the system | sort employees by name                                     | locate an employee easily
+| `***` | HR personnel                           | Create a new event                                         | keep track of all the event details of the company
+| `***` | HR personnel                           | Delete a event                                             | Remove events I no longer need
+| `**` | HR personnel                           | Update a event                                             | Update the details of an event
+| `***` | HR personnel                           | List a event                                               | See all the events added to the management system
+| `***` | HR personnel                           | Add a employee to a event                                  | Know which employee is involved in a event
+| `***` | HR personnel                           | Delete a employee from a event                             | Remove employees that are not participating in a event
+| `***` | HR personnel                           | List employees attending a specific event                  | Obtain the contact details of all employees attending a specific event
 
 
 *{More to be added}*
@@ -334,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 1. User requests to create a department.
 2. SudoHR creates the department.
-    
+
     Use case ends.
 
 **Extensions**
@@ -355,9 +355,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given argument is invalid.
-    
+
     * 1a1. SudoHR shows an error message.
-  
+
       Use case resumes at step 2.
 
 **Use case: UC3 - Create a project**
@@ -479,9 +479,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given argument has invalid fields.
-   
+
    * 1a1. SudoHR shows an error message.
-     
+
      Use case resumes at step 1.
 
 * 1b. The given argument has missing fields.
@@ -584,7 +584,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to list events
 2. SudoHR shows all events and their details
 3. User requests to list employees added to an event
-4. SudoHR shows all employees added to an event and their details 
+4. SudoHR shows all employees added to an event and their details
 5. Use case ends.
 
 **Extensions**

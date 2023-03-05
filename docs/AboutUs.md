@@ -38,6 +38,16 @@ We are a team based in the [School of Computing, National University of Singapor
 - Responsibilities: Integration
 - In-charge of: Performance review features
 
+### Chee Jer En
+
+<img src="images/jerrrren.png" width="200px">
+
+[[github](http://github.com/jerrrren)] [[portfolio](team/jerrrren.md)]
+
+- Role: Code reviewer
+- Responsibilities: Review Code
+
+
 ### Johnathan Wee
 
 <img src="images/jweeyh.png" width="200px">
