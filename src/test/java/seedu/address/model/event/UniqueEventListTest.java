@@ -8,8 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.testutil.EventBuilder;
 
 public class UniqueEventListTest {
@@ -51,5 +56,20 @@ public class UniqueEventListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueEventList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void duplicate_event_throwsDuplicateEventException() {
+        List<Event> invalidList = new ArrayList<>(Arrays.asList(
+            new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
+                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
+                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
+                .build(),
+            new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
+                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
+                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
+                .build()
+        ));
+        assertThrows(DuplicateEventException.class, () -> new UniqueEventList().setEvents(invalidList));
     }
 }

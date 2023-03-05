@@ -1,11 +1,14 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.exceptions.DuplicateEventException;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -41,6 +44,24 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
+    public void setEvents(UniqueEventList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        requireAllNonNull(events);
+        if (!eventsAreUnique(events)) {
+            throw new DuplicateEventException();
+        }
+
+        internalList.setAll(events);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -64,4 +85,19 @@ public class UniqueEventList implements Iterable<Event> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+    /**
+     * Returns true if {@code events} contains only unique events.
+     */
+    private boolean eventsAreUnique(List<Event> events) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            for (int j = i + 1; j < events.size(); j++) {
+                if (events.get(i).isSameEvent(events.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
