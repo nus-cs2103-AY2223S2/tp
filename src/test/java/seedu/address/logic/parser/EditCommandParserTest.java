@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROFILE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.LANGUAGE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.LANGUAGE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.LANGUAGE_DESC_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.LANGUAGE_DESC_CPLUSPLUS;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -26,8 +26,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_CPLUSPLUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -109,10 +109,10 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_LANGUAGE} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid language results in error
-        assertParseFailure(parser, "1" + LANGUAGE_DESC_AMY + LANGUAGE_EMPTY, Language.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + LANGUAGE_DESC_AMY + LANGUAGE_EMPTY + LANGUAGE_DESC_BOB,
+        assertParseFailure(parser, "1" + LANGUAGE_DESC_PYTHON + LANGUAGE_EMPTY, Language.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + LANGUAGE_DESC_PYTHON + LANGUAGE_EMPTY + LANGUAGE_DESC_CPLUSPLUS,
                 Language.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + LANGUAGE_EMPTY + LANGUAGE_DESC_AMY + LANGUAGE_DESC_BOB,
+        assertParseFailure(parser, "1" + LANGUAGE_EMPTY + LANGUAGE_DESC_PYTHON + LANGUAGE_DESC_CPLUSPLUS,
                 Language.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
@@ -130,11 +130,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + PROFILE_DESC_AMY + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + LANGUAGE_DESC_BOB + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + LANGUAGE_DESC_CPLUSPLUS + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withProfile(VALID_GITHUBPROFILE_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withLanguages(VALID_LANGUAGE_BOB)
+                .withAddress(VALID_ADDRESS_AMY).withLanguages(VALID_LANGUAGE_CPLUSPLUS)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -187,8 +187,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // languages
-        userInput = targetIndex.getOneBased() + LANGUAGE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withLanguages(VALID_LANGUAGE_AMY).build();
+        userInput = targetIndex.getOneBased() + LANGUAGE_DESC_PYTHON;
+        descriptor = new EditPersonDescriptorBuilder().withLanguages(VALID_LANGUAGE_PYTHON).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -203,14 +203,14 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + PROFILE_DESC_AMY + LANGUAGE_DESC_BOB + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + EMAIL_DESC_AMY + TAG_DESC_FRIEND + LANGUAGE_DESC_AMY + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                + PROFILE_DESC_AMY + LANGUAGE_DESC_CPLUSPLUS + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY + TAG_DESC_FRIEND + LANGUAGE_DESC_PYTHON + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + PROFILE_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withProfile(VALID_GITHUBPROFILE_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withLanguages(VALID_LANGUAGE_BOB, VALID_LANGUAGE_AMY).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .withLanguages(VALID_LANGUAGE_CPLUSPLUS, VALID_LANGUAGE_PYTHON)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

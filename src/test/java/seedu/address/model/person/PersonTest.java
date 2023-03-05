@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_CPLUSPLUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -35,7 +35,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withProfile(VALID_GITHUBPROFILE_BOB).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withLanguages(VALID_LANGUAGE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withLanguages(VALID_LANGUAGE_CPLUSPLUS)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -92,7 +92,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different languages -> returns false
-        editedAlice = new PersonBuilder(ALICE).withLanguages(VALID_LANGUAGE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withLanguages(VALID_LANGUAGE_CPLUSPLUS).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

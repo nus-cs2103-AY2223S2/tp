@@ -2,15 +2,15 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_CPLUSPLUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 class LanguageTest {
-    private static final Language AMY_LANGUAGE = new Language(VALID_LANGUAGE_AMY);
-    private static final Language BOB_LANGUAGE = new Language(VALID_LANGUAGE_BOB);
+    private static final Language AMY_LANGUAGE = new Language(VALID_LANGUAGE_PYTHON);
+    private static final Language BOB_LANGUAGE = new Language(VALID_LANGUAGE_CPLUSPLUS);
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Language(null));
@@ -48,13 +48,13 @@ class LanguageTest {
 
     @Test
     public void testToString() {
-        assertTrue(("[" + VALID_LANGUAGE_AMY + "]").equals(AMY_LANGUAGE.toString()));
+        assertTrue(("[" + VALID_LANGUAGE_PYTHON + "]").equals(AMY_LANGUAGE.toString()));
     }
 
     @Test
     public void testEquals() {
         // same values -> returns true
-        Language amyCopy = new Language(VALID_LANGUAGE_AMY);
+        Language amyCopy = new Language(VALID_LANGUAGE_PYTHON);
         assertTrue(AMY_LANGUAGE.equals(amyCopy));
 
         // same object -> returns true

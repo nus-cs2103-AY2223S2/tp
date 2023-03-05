@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_GITHUBPROFILE_AMY = "amy-bee";
     public static final String VALID_GITHUBPROFILE_BOB = "bob-choo";
-    public static final String VALID_LANGUAGE_AMY = "Python";
-    public static final String VALID_LANGUAGE_BOB = "C++";
+    public static final String VALID_LANGUAGE_PYTHON = "Python";
+    public static final String VALID_LANGUAGE_CPLUSPLUS = "C++";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -53,8 +53,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String LANGUAGE_DESC_AMY = " " + PREFIX_LANGUAGE + VALID_LANGUAGE_AMY;
-    public static final String LANGUAGE_DESC_BOB = " " + PREFIX_LANGUAGE + VALID_LANGUAGE_BOB;
+    public static final String LANGUAGE_DESC_PYTHON = " " + PREFIX_LANGUAGE + VALID_LANGUAGE_PYTHON;
+    public static final String LANGUAGE_DESC_CPLUSPLUS = " " + PREFIX_LANGUAGE + VALID_LANGUAGE_CPLUSPLUS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -75,11 +75,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withProfile(VALID_GITHUBPROFILE_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withLanguages(VALID_LANGUAGE_AMY)
+                .withLanguages(VALID_LANGUAGE_PYTHON)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withProfile(VALID_GITHUBPROFILE_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withLanguages(VALID_LANGUAGE_BOB)
+                .withLanguages(VALID_LANGUAGE_CPLUSPLUS)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
