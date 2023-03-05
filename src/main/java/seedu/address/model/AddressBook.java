@@ -67,7 +67,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
-
     }
 
     //// person-level operations
