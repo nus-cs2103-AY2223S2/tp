@@ -61,12 +61,33 @@ Format: `help`
 
 ### Listing all Decks : `list`
 
+_**No Decks should not be selected to use this command.**_
 
+Shows a list of all Decks.
+
+Format: `list`
+
+### Selecting a Deck : `select`
+
+Selects a deck. 
+
+Format: `select INDEX`
+
+Examples:
+* `select 2`
+
+### Unselecting a Deck : `unselect`
+
+Unselects deck
+
+Format: `unselect`
+
+Examples:
+* `unselect`
 
 ### Adding a Powercard: `add`
 
-_**User must select a deck to use this command.
-**_
+_**User must select a deck to use this command.**_
 
 Adds a Powercard to the **selected** Deck.
 
@@ -81,8 +102,7 @@ Examples:
 
 ### Listing all Powercards : `list`
 
-_**User must select a deck to use this command.
-**_
+_**User must select a deck to use this command.**_
 
 Shows a list of all Powercard in the **selected** Deck.
 
@@ -90,8 +110,7 @@ Format: `list`
 
 ### Editing a Powercard : `edit`
 
-_**User must select a deck to use this command.
-**_
+_**User must select a deck to use this command.**_
 
 Edits an existing Powercard in a Deck.
 
