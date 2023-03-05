@@ -38,14 +38,15 @@ We are a team based in the [School of Computing, National University of Singapor
 - Responsibilities: Integration
 - In-charge of: Performance review features
 
-### Johnny Doe
+### Johnathan Wee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jweeyh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/4ndrelim.md)]
+[[github](http://github.com/jweeyh)] [[portfolio](team/jweeyh.md)]
 
 - Role: Developer
-- Responsibilities: Data
+- Responsibilities: Secretary
+- In-charge of: Department features
 
 ### Jean Doe
 
