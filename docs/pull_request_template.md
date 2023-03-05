@@ -17,4 +17,4 @@
 
 ## Checklist
 
-[ ] All tests pass locally and on CI
+- [ ] All tests pass locally and on CI
