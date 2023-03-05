@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Wang ShaoFeng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sfcoding123.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/SFCoding123]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Storage and Model
 
 ### Johnny Doe
 
