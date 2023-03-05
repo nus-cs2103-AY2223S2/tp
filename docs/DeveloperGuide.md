@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/SudoHR-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,14 +86,14 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SudoHRParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,11 +110,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SudoHRParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SudoHRParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `SudoHR`, which `Person` references. This allows `SudoHR` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,18 +135,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/SudoHR-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `SudoHRStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,37 +158,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedSudoHR`. It extends `SudoHR` with an undo/redo history, stored internally as an `SudoHRStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedSudoHR#commit()` — Saves the current address book state in its history.
+* `VersionedSudoHR#undo()` — Restores the previous address book state from its history.
+* `VersionedSudoHR#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitSudoHR()`, `Model#undoSudoHR()` and `Model#redoSudoHR()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedSudoHR` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitSudoHR()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `SudoHRStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitSudoHR()`, causing another modified address book state to be saved into the `SudoHRStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSudoHR()`, so the address book state will not be saved into the `SudoHRStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSudoHR()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial SudoHR state, then there are no previous SudoHR states to restore. The `undo` command uses `Model#canUndoSudoHR()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -201,17 +201,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoSudoHR()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `SudoHRStateList.size() - 1`, pointing to the latest address book state, then there are no undone SudoHR states to restore. The `redo` command uses `Model#canRedoSudoHR()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitSudoHR()`, `Model#undoSudoHR()` or `Model#redoSudoHR()`. Thus, the `SudoHRStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitSudoHR()`. Since the `currentStatePointer` is not pointing at the end of the `SudoHRStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -270,33 +270,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                           | So that I can…​                                                        |
-| -------- | ------------------------------------------ |--------------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                                 | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                       |                                                                        |
-| `* * *`  | user                                       | delete a person                                        | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                  | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                           | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                                   | locate a person 
-| `***` | HR personnel | Add a person’s leave to SudoHR                         | Ensure consolidation of information
+| Priority | As a …​                                    | I want to …​                                             | So that I can…​                                                        |
+| -------- | ------------------------------------------ |----------------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                   | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                         |                                                                        |
+| `* * *`  | user                                       | delete a person                                          | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                    | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                             | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                     | locate a person 
+| `***` | HR personnel | Add a person’s leave to SudoHR                           | Ensure consolidation of information
 | `***` | HR personnel | be able to view all the leave the person has applied for | Access an employee availability easily
-| `***` | HR personnel | Be able to view everyone who has applied leave on a day | Better plan company events
-| `***` | HR personnel | Add a person to a department                           | Apply department-level operations (e.g announcements) on the person
-| `***`| HR personnel| Create a project                                       | create project to add employees inside
-| `***`| HR personnel| Update a project                                       | modify a project
-| `***`| HR personnel| Delete a project                                       | delete old projects
-| `***`| HR personnel| List projects                                          | list all existing projects
-| `***`| HR personnel| Add employee to a project                              | add employees to projects that they are doing
-| `***`| HR personnel| Remove employee from a project                         | remove employees from projects they are no longer doing
-| `***`| HR personnel| List all employees doing a project                     | list all employees doing a certain project
-| `*` | user with many persons in the address book | sort persons by name                                   | locate a person easily
-| `***` | HR personnel | Create a new event                                     | keep track of all the event details of the company
-| `***` | HR personnel | Delete a event                                         | Remove events I no longer need
-| `**` | HR personnel | Update a event                                         | Update the details of an event
-| `***` |HR personnel | List a event                                           | See all the events added to the management system
-| `***` | HR personnel | Add a employee to a event                              | Know which employee is involved in a event
-| `***` | HR personnel | Delete a employee from a event                         | Remove employees that are not participating in a event
-| `***` | HR personnel | List employees attending a specific event              | Obtain the contact details of all employees attending a specific event
+| `***` | HR personnel | Be able to view everyone who has applied leave on a day  | Better plan company events
+| `***` | HR personnel | Creae a department                                       | Create a department to add employees in
+| `***` | HR personnel | Add a person to a department                             | Apply department-level operations (e.g announcements) on the person
+| `***`| HR personnel| Create a project                                         | create project to add employees inside
+| `***`| HR personnel| Update a project                                         | modify a project
+| `***`| HR personnel| Delete a project                                         | delete old projects
+| `***`| HR personnel| List projects                                            | list all existing projects
+| `***`| HR personnel| Add employee to a project                                | add employees to projects that they are doing
+| `***`| HR personnel| Remove employee from a project                           | remove employees from projects they are no longer doing
+| `***`| HR personnel| List all employees doing a project                       | list all employees doing a certain project
+| `*` | user with many persons in the address book | sort persons by name                                     | locate a person easily
+| `***` | HR personnel | Create a new event                                       | keep track of all the event details of the company
+| `***` | HR personnel | Delete a event                                           | Remove events I no longer need
+| `**` | HR personnel | Update a event                                           | Update the details of an event
+| `***` |HR personnel | List a event                                             | See all the events added to the management system
+| `***` | HR personnel | Add a employee to a event                                | Know which employee is involved in a event
+| `***` | HR personnel | Delete a employee from a event                           | Remove employees that are not participating in a event
+| `***` | HR personnel | List employees attending a specific event                | Obtain the contact details of all employees attending a specific event
 
 
 *{More to be added}*
@@ -305,14 +306,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is  `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an employee**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list employees
+2.  SudoHR shows a list of employees
+3.  User requests to delete a specific employee in the list
+4.  SudoHR deletes the employee
 
     Use case ends.
 
@@ -324,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SudoHR shows an error message.
 
       Use case resumes at step 2.
 
@@ -359,8 +360,117 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case resumes at step 2.
 
+**Use case: UC3 - Create a project**
 
-**Use case: UC3 - Add event**
+**MSS:**
+1. User requests to create a project.
+2. SudoHR creates the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC4 - Update a project**
+
+**MSS:**
+1. User lists all existing projects.
+2. User requests to update a project.
+3. SudoHR updates the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC5 - Delete a project**
+
+**MSS:**
+1. User lists all existing projects.
+2. User requests to delete a project.
+3. SudoHR deletes the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC6 - List projects**
+
+**MSS:**
+1. User lists all existing projects.
+
+   Use case ends.
+
+**Use case: UC7 - Add employee to a project**
+
+**MSS:**
+1. User lists all existing projects.
+2. User lists all employees.
+3. User requests to add employee to a specific project.
+4. SudoHR adds employee to the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument(s) is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: UC8 - Remove employee from a project**
+
+**MSS:**
+1. User lists all existing projects.
+2. User lists all employees.
+3. User requests to remove employee from a specific project.
+4. SudoHR removes employee from the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument(s) is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: UC9 - List all employees doing a project**
+
+**MSS:**
+1. User lists all existing projects.
+2. User requests to list all employees doing a project.
+3. SudoHR lists all the employees doing a project
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given argument(s) is invalid.
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC10 - Add event**
 **MSS:**
 1. User request to add event with corresponding event title description and date
 2. SudoHR adds event.
@@ -383,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC4 - Delete event**
+**Use case: UC11 - Delete event**
 **MSS:**
 1. User request to list event
 2. SudoHR shows all events
@@ -404,7 +514,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: UC5 - Update event**
+**Use case: UC12 - Update event**
 **MSS:**
 1. User resuest to list event
 2. SudoHR shows all events and their details
@@ -431,13 +541,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: UC6 - List event**
+**Use case: UC13 - List event**
 **MSS:**
 1. User requests SudoHR to list all events
 2. SudoHR shows all events and their details
 
 
-**Use case: UC7 - Add employee to event**
+**Use case: UC14 - Add employee to event**
 **MSS:**
 1. User requests to list event
 2. SudoHR shows all events and their details
@@ -469,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: UC8 - List employees in an event**
+**Use case: UC15 - List employees in an event**
 **MSS:**
 1. User request to list events
 2. SudoHR shows all events and their details
@@ -489,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: UC9 - Delete employee from event**
+**Use case: UC16 - Delete employee from event**
 **MSS:**
 1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
