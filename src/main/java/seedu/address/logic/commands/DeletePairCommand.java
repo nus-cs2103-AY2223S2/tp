@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
@@ -87,6 +89,11 @@ public class DeletePairCommand extends Command {
                 || (other instanceof DeletePairCommand
                 && elderlyNric.equals(((DeletePairCommand) other).elderlyNric)
                 && volunteerNric.equals(((DeletePairCommand) other).volunteerNric));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elderlyNric, volunteerNric);
     }
 
 }

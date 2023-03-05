@@ -92,9 +92,6 @@ public class FriendlyLinkParser {
         case FindNricCommand.COMMAND_WORD:
             return new FindNricCommandParser().parse(arguments);
 
-
-
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
