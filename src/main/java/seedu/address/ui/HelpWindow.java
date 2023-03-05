@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+/* =================== ARCHIVED FILE FROM ORIGINAL ADDRESS BOOK =================== */
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;

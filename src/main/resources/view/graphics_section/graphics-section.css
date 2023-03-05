@@ -1,0 +1,31 @@
+/* =============================================================================================== */
+/* GRAPHICS (LEFT) SECTION */
+/* =============================================================================================== */
+
+#graphics-section {
+    -fx-pref-width: 480;
+    -fx-padding: 0 20;
+}
+
+#graphics-section-header-deco {
+    -fx-max-height: 3;
+
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+
+    -fx-background-color: -white;
+}
+
+#graphics-section-header-title-container {
+    -fx-padding: 0 20;
+}
+#graphics-section-header-title {
+    -fx-text-fill: -teal;
+}
+#graphics-section-header-subtitle {
+    -fx-text-fill: -white;
+}
+
+#graphics-section-body {
+    -fx-padding: 10;
+}
