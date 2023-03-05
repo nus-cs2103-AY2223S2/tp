@@ -255,13 +255,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-* has a need to manage a significant number of employees
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Target user profile**: HR in company who has a need to manage a significant number of employees
 
 **Value proposition**: data management for employees faster than a typical mouse/GUI driven app
 
