@@ -21,7 +21,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
-    - [`deletes`](#deleting-multiple-patients--delete)
+    - [`deletes`](#deleting-multiple-patients--deletes)
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
     - [Saving of data](#saving-the-data)
