@@ -388,89 +388,84 @@ Examples:
 * `listPRdue within/5`
 * `ListPRdue by/2023-04-05`
 
-### Adding an event: `jeren`
+### Adding an event: `addEvent`
 
-Adds a person to the address book.
+Adds an event to the HR management System.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `addEvent t/title d/description s/date ​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addEvent t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
 
-### Updating an event: `jeren`
 
-Adds a person to the address book.
+### List all employees attending an event: `listEvent`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Lists the employees added to an event in the HR Management
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `listEvent`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `listEvent`
 
-### Deleting an event: `jeren`
 
-Adds a person to the address book.
+### Updating an event: `updateEvent`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Updates an event to the HR Management System.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `updateEvent INDEX t/title d/description s/date ​`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Adding an employee to an event: `jeren`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `updateEvent 2 t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
 
-### Remove employee from an event: `jeren`
+### Deleting an event: `deleteEvent`
 
-Adds a person to the address book.
+Deletes an event from the HR Management System.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `deleteEvent INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `deleteEvent 1`
 
-### List all employees attending an event: `jeren`
+### Adding an employee to an event: `addEmployeeEvent`
 
-Adds a person to the address book.
+Adds a person to the event in the HR Management System.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Add the employee at the specified `EMPLOYEEINDEX` to the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the displayed employee list.  Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addEmployeeEvent 1 1`
+
+### List all employees attending an event: `listEventEmployee`
+
+Lists the employees added to an event in the HR Management
+
+Format: `listEventEmployee INDEX​`
+
+* List the employees attending the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listEventEmployee 1`
+
+
+### Remove employee from an event: `deleteEmployeeEvent`
+
+Remove a person from a event in the HR Management System.
+
+Format: `deleteEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
+
+* Remove the employee at the specified `EMPLOYEEINDEX` from the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the **displayed list of employees added to the event**.  Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteEmployeeEvent 1 1`
+
 
 ### Clearing all entries : `clear`
 

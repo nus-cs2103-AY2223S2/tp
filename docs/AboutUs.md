@@ -38,14 +38,14 @@ We are a team based in the [School of Computing, National University of Singapor
 - Responsibilities: Integration
 - In-charge of: Performance review features
 
-### Johnny Doe
+### Chee Jer En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerrrren.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/4ndrelim.md)]
+[[github](http://github.com/jerrrren)] [[portfolio](team/jerrrren.md)]
 
-- Role: Developer
-- Responsibilities: Data
+- Role: Code reviewer
+- Responsibilities: Review Code
 
 ### Jean Doe
 
