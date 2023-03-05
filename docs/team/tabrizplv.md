@@ -12,9 +12,13 @@ Given below are my contributions to the project.
 
 * **New Feature**: to be added soon
 
-**Enhancements implemented**: to be added soon
+**Enhancements implemented**:
+
+Created Meeting Class for v1.2
 
 **Contributions to the UG:** to be added soon
+
+Added Draft User Guide
 
 **Contributions to the DG:** to be added soon
 
