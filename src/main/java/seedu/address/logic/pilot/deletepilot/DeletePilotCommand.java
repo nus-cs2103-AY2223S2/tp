@@ -20,7 +20,7 @@ public class DeletePilotCommand implements Command {
     /**
      * This can be used to undo the deletion.
      */
-    private Optional<Pilot> deletedPilot;
+    private Optional<Pilot> pilotToDelete;
 
     /**
      * Creates a command that, when executed, deletes the pilot with the
@@ -34,7 +34,7 @@ public class DeletePilotCommand implements Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        deletedPilot = model.getPilotManager().getItem(uuid);
+        pilotToDelete = model.getPilotManager().getItem(uuid);
         model.deletePilot(uuid);
         return new CommandResult("Deleted pilot: " + uuid);
     }
