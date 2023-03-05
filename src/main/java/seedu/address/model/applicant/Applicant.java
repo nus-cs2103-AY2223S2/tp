@@ -3,7 +3,7 @@ package seedu.address.model.applicant;
 import java.util.Objects;
 
 /**
- * Represents an Applicant in the address book.
+ * Represents an Applicant in a Listing.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {

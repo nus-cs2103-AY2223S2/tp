@@ -14,7 +14,7 @@ import seedu.address.testutil.ApplicantBuilder;
 public class ApplicantTest {
 
     @Test
-    public void isSamePerson() {
+    public void isSameApplicant() {
         // same object -> returns true
         assertTrue(BENEDICT.isSameApplicant(BENEDICT));
 
