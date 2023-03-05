@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Identifiable;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -34,6 +35,12 @@ public class ModelManager implements Model {
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
     // TODO: migrate this to the ui layer -> this probably should be there.
+
+    // location manager
+    private final IdentifiableManager<Location> locationManager;
+    private final FilteredList<Location> filteredLocations;
+
+    // general utilities
     private final ObservableList<Identifiable> itemsList;
     private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
 
@@ -41,7 +48,8 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
-        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager) {
+                        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager,
+                        ReadOnlyIdentifiableManager<Location> locationManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -53,12 +61,15 @@ public class ModelManager implements Model {
         this.pilotManager = new IdentifiableManager<>(pilotManager);
         filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
 
+        this.locationManager = new IdentifiableManager<>(locationManager);
+        filteredLocations = new FilteredList<>(this.locationManager.getItemList());
+
         itemsList = FXCollections.observableArrayList();
         setOperationMode(userPrefs.getOperationMode());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -95,7 +106,7 @@ public class ModelManager implements Model {
         case FLIGHT:
         case CREW:
         case LOCATION:
-            logger.warning("Operation mode not supported yet: " + mode);
+            rebind(filteredLocations);
             break;
         default:
             logger.warning("Unknown operation mode: " + mode);
@@ -208,7 +219,6 @@ public class ModelManager implements Model {
     @Override
     public void setPilotManagerFilePath(Path pilotManagerFilePath) {
         requireNonNull(pilotManagerFilePath);
-
         userPrefs.setPilotManagerFilePath(pilotManagerFilePath);
     }
 
@@ -256,6 +266,69 @@ public class ModelManager implements Model {
         filteredPilots.setPredicate(predicate);
     }
 
+    //=========== Location ========================================================
+
+    @Override
+    public ReadOnlyIdentifiableManager<Location> getLocationManager() {
+        return locationManager;
+    }
+
+    @Override
+    public Path getLocationManagerFilePath() {
+        return userPrefs.getPilotManagerFilePath();
+    }
+
+    @Override
+    public void setLocationManagerFilePath(Path locationManagerFilePath) {
+        requireNonNull(locationManagerFilePath);
+        userPrefs.setPilotManagerFilePath(locationManagerFilePath);
+    }
+
+    @Override
+    public void setLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) {
+        this.locationManager.resetData(locationManager);
+    }
+
+    @Override
+    public boolean hasLocation(Location location) {
+        requireNonNull(location);
+        return locationManager.hasItem(location);
+    }
+
+    public void deleteLocation(Location location) {
+        locationManager.removeItem(location);
+    }
+
+    @Override
+    public void deleteLocation(String id) {
+        locationManager.removeItem(id);
+    }
+
+    @Override
+    public void addLocation(Location location) {
+        requireNonNull(location);
+        locationManager.addItem(location);
+    }
+
+    @Override
+    public void setLocation(Location target, Location editedLocation) {
+        requireAllNonNull(target, editedLocation);
+        locationManager.setItem(target, editedLocation);
+    }
+
+    @Override
+    public ObservableList<Location> getFilteredLocationList() {
+        return filteredLocations;
+    }
+
+    @Override
+    public void updateFilteredLocationList(Predicate<Location> predicate) {
+        requireNonNull(predicate);
+        filteredLocations.setPredicate(predicate);
+    }
+
+    //=========== Generic ========================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -275,5 +348,4 @@ public class ModelManager implements Model {
                    && filteredPersons.equals(other.filteredPersons)
                    && pilotManager.equals(other.pilotManager);
     }
-
 }

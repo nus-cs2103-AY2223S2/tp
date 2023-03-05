@@ -26,12 +26,10 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final Model model;
     private final Storage storage;
     private final WingmanParser parser;
-
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and
@@ -77,10 +75,12 @@ public class LogicManager implements Logic {
             case PILOT:
                 storage.savePilotManager(model.getPilotManager());
                 break;
+            case LOCATION:
+                storage.saveLocationManager(model.getLocationManager());
+                break;
             case PLANE:
             case FLIGHT:
             case CREW:
-            case LOCATION:
                 throw new CommandException(
                     "Operation mode not supported yet: " + getOperationMode()
                         + "Check LogicManager.java's save() method."

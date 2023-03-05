@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
 
 /**
@@ -46,8 +47,31 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Optional<? extends ReadOnlyIdentifiableManager<Pilot>> readPilotManager() throws DataConversionException,
                                                          IOException;
 
+    /* Location related methods */
+
     /**
-     * Saves the pilot manager to the {@code Storage::getPiliotManagerFilePath}
+     * Saves the pilot manager to the {@code Storage::getLocationManagerFilePath}
      */
     void savePilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) throws IOException;
+
+    /**
+     * Retrieves the file path to location manager.
+     * @return the location manager file path
+     */
+    Path getLocationManagerFilePath();
+
+    /**
+     * Reads the location manager from the {@code Storage::getLocationManagerFilePath}
+     *
+     * @return the location manager.
+     */
+    Optional<? extends ReadOnlyIdentifiableManager<Location>> readLocationManager() throws DataConversionException,
+            IOException;
+
+    /**
+     * Saves the location manager to {@code Storage::getLocationManagerFilePath}
+     * @param locationManager the location manager
+     * @throws IOException when the file cannot be saved
+     */
+    void saveLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) throws IOException;
 }
