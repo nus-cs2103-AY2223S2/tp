@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -107,7 +106,7 @@ public class ModelManager implements Model {
         case FLIGHT:
         case CREW:
         case LOCATION:
-            logger.warning("Operation mode not supported yet: " + mode);
+            rebind(filteredLocations);
             break;
         default:
             logger.warning("Unknown operation mode: " + mode);

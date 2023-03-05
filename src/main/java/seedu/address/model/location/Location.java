@@ -1,5 +1,6 @@
 package seedu.address.model.location;
 
+import java.util.List;
 import java.util.UUID;
 
 import seedu.address.model.item.Identifiable;
@@ -46,6 +47,11 @@ public class Location implements Identifiable {
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public List<String> getDisplayList() {
+        return List.of("Name: " + getName(), "ID: " + getId());
     }
 
     /**
