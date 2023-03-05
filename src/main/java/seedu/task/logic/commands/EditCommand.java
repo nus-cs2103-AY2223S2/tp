@@ -20,6 +20,7 @@ import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
 
 /**
@@ -83,12 +84,13 @@ public class EditCommand extends Command {
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+        //TODO: Change edit to accommodate for event/deadline.
         assert taskToEdit != null;
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDescription, updatedTags);
+        return new SimpleTask(updatedName, updatedDescription, updatedTags);
     }
 
     @Override

@@ -13,14 +13,14 @@ import seedu.task.model.tag.Tag;
  * Represents a Task in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public abstract class Task implements Comparable<Task> {
 
     // Identity fields
-    private final Name name;
-    private final Description description;
+    protected Name name;
+    protected Description description;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -102,4 +102,6 @@ public class Task {
         return builder.toString();
     }
 
+    @Override
+    public abstract int compareTo(Task task);
 }

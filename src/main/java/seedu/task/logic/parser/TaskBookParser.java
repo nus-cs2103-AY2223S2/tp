@@ -15,6 +15,7 @@ import seedu.task.logic.commands.ExitCommand;
 import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.commands.HelpCommand;
 import seedu.task.logic.commands.ListCommand;
+import seedu.task.logic.commands.SortCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class TaskBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

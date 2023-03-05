@@ -6,13 +6,14 @@ import java.util.Set;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Task objects.
  */
-public class TaskBuilder {
+public class SimpleTaskBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_DESCRIPTION = "Amy's description";
@@ -22,18 +23,18 @@ public class TaskBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code TaskBuilder} with the default details.
+     * Creates a {@code SimpleTaskBuilder} with the default details.
      */
-    public TaskBuilder() {
+    public SimpleTaskBuilder() {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
+     * Initializes the SimpleTaskBuilder with the data of {@code taskToCopy}.
      */
-    public TaskBuilder(Task taskToCopy) {
+    public SimpleTaskBuilder(Task taskToCopy) {
         name = taskToCopy.getName();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
@@ -44,7 +45,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code Name} of the {@code Task} that we are building.
      */
-    public TaskBuilder withName(String name) {
+    public SimpleTaskBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -52,7 +53,7 @@ public class TaskBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    public TaskBuilder withTags(String ... tags) {
+    public SimpleTaskBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -60,13 +61,13 @@ public class TaskBuilder {
     /**
      * Sets the {@code Description} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDescription(String description) {
+    public SimpleTaskBuilder withDescription(String description) {
         this.description = new Description(description);
         return this;
     }
 
     public Task build() {
-        return new Task(name, description, tags);
+        return new SimpleTask(name, description, tags);
     }
 
 }

@@ -9,7 +9,6 @@ import static seedu.task.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Description must contain at least one character";
     public final String value;

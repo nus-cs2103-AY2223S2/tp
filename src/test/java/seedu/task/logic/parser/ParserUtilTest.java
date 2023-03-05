@@ -15,13 +15,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Name;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DESCRIPTION = "";
+    private static final String INVALID_DATE = "2023 Jan 4";
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_DATE = "2023-01-02 1800";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -78,6 +81,21 @@ public class ParserUtilTest {
     @Test
     public void parseDescription_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValue_returnsDate() throws Exception {
+        assertEquals(new Date(VALID_DATE), ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test

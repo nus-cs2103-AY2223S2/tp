@@ -32,7 +32,7 @@ import seedu.task.model.task.NameContainsKeywordsPredicate;
 import seedu.task.model.task.TagsContainsKeywordsPredicate;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 import seedu.task.testutil.TaskUtil;
 
 public class TaskBookParserTest {
@@ -41,7 +41,11 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
+<<<<<<< HEAD
         Task task = new TaskBuilder().build();
+=======
+        Task task = new SimpleTaskBuilder().build();
+>>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
@@ -63,7 +67,7 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Task task = new TaskBuilder().build();
+        Task task = new SimpleTaskBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));

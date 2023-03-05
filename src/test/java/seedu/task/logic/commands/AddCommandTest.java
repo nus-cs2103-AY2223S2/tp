@@ -21,7 +21,7 @@ import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
 import seedu.task.model.task.Task;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class AddCommandTest {
 
@@ -34,7 +34,11 @@ public class AddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         ArrayList<Task> validTask = new ArrayList<>();
+<<<<<<< HEAD
         validTask.add(new TaskBuilder().build());
+=======
+        validTask.add(new SimpleTaskBuilder().build());
+>>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
@@ -45,7 +49,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new SimpleTaskBuilder().build();
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
@@ -53,8 +57,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Task alice = new TaskBuilder().withName("Alice").build();
-        Task bob = new TaskBuilder().withName("Bob").build();
+        Task alice = new SimpleTaskBuilder().withName("Alice").build();
+        Task bob = new SimpleTaskBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -76,7 +80,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -136,6 +140,11 @@ public class AddCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortTask() {
             throw new AssertionError("This method should not be called.");
         }
 

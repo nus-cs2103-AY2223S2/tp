@@ -28,7 +28,7 @@ import seedu.task.model.task.Task;
 import seedu.task.storage.JsonTaskBookStorage;
 import seedu.task.storage.JsonUserPrefsStorage;
 import seedu.task.storage.StorageManager;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -78,7 +78,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DESCRIPTION_DESC_AMY;
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        Task expectedTask = new SimpleTaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

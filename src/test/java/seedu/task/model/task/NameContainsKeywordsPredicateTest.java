@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -38,19 +38,19 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Alice");
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withName("Alice").build()));
 
         // keyphrase
         predicate = new NameContainsKeywordsPredicate("Alice Bob");
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate("Carol");
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate("aLicE bOB");
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new SimpleTaskBuilder().withName("Alice Bob").build()));
     }
 
     @Test
@@ -59,11 +59,11 @@ public class NameContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate("Carol");
-        assertFalse(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new SimpleTaskBuilder().withName("Alice Bob").build()));
 
         // Keywords match description, but does not match name
         predicate = new NameContainsKeywordsPredicate("likes to play");
-        assertFalse(predicate.test(new TaskBuilder()
+        assertFalse(predicate.test(new SimpleTaskBuilder()
                 .withName("Alice").withDescription("likes to play").build()));
     }
 }

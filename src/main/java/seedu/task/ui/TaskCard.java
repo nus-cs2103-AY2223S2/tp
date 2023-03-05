@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.task.model.task.Deadline;
+import seedu.task.model.task.Event;
 import seedu.task.model.task.Task;
 
 /**
@@ -35,6 +37,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label time;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,6 +50,15 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
+        time.setText("No specified time");
+        if (task instanceof Deadline) {
+            Deadline tmp = (Deadline) task;
+            time.setText("Deadline: " + tmp.getDeadline().toString());
+        }
+        if (task instanceof Event) {
+            Event tmp = (Event) task;
+            time.setText("From: " + tmp.getFrom().toString() + " to: " + tmp.getTo().toString());
+        }
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

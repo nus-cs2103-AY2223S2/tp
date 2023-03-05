@@ -13,7 +13,7 @@ import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.task.Task;
-import seedu.task.testutil.TaskBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -29,7 +29,11 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newTask_success() {
+<<<<<<< HEAD
         Task validTask = new TaskBuilder().build();
+=======
+        Task validTask = new SimpleTaskBuilder().build();
+>>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.addTask(validTask);
         assertCommandSuccess(new AddCommand(validTask), model,
