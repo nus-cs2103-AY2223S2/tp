@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_CARNIVAL;
@@ -7,9 +8,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_CARN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_CARNIVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
+import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.testutil.EventBuilder;
 
 public class UniqueEventListTest {
@@ -48,8 +56,66 @@ public class UniqueEventListTest {
     }
 
     @Test
+    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((UniqueEventList) null));
+    }
+
+    @Test
+    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+        uniqueEventList.add(WEDDING_DINNER);
+        UniqueEventList expectedUniqueEventList = new UniqueEventList();
+        expectedUniqueEventList.add(CARNIVAL);
+        uniqueEventList.setEvents(expectedUniqueEventList);
+        assertEquals(expectedUniqueEventList, uniqueEventList);
+    }
+
+    @Test
+    public void setPersons_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((List<Event>) null));
+    }
+
+    @Test
+    public void setPersons_list_replacesOwnListWithProvidedList() {
+        uniqueEventList.add(WEDDING_DINNER);
+        List<Event> eventList = Collections.singletonList(CARNIVAL);
+        uniqueEventList.setEvents(eventList);
+        UniqueEventList expectedUniqueEventList = new UniqueEventList();
+        expectedUniqueEventList.add(CARNIVAL);
+        assertEquals(expectedUniqueEventList, uniqueEventList);
+    }
+
+    @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueEventList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void setNullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((UniqueEventList) null));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((List<Event>) null));
+    }
+
+    @Test
+    public void setEventWithAnotherUniqueEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(uniqueEventList);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
+    public void setEventWithAnotherEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL));
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(events);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
+    public void setDuplicateEvent_throwsDuplicateEventException() {
+        List<Event> invalidEvents = new ArrayList<>(Arrays.asList(CARNIVAL, CARNIVAL));
+        assertThrows(DuplicateEventException.class, () -> new UniqueEventList().setEvents(invalidEvents));
     }
 }

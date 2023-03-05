@@ -52,6 +52,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -98,36 +106,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// util methods
 
-    @Override
-    public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons "
-                + events.asUnmodifiableObservableList().size() + " events";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Event> getEventList() {
-        return events.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
-    }
-
-    @Override
-    public int hashCode() {
-        return persons.hashCode();
-    }
+    //// event-level operations
 
     /**
      * Returns true if an event with the same date time information as {@code event} exists in the address book.
@@ -153,12 +133,35 @@ public class AddressBook implements ReadOnlyAddressBook {
         events.remove(key);
     }
 
-    /**
-     * Replaces the contents of the event list with {@code events}.
-     * {@code events} must not contain duplicate events.
-     */
-    public void setEvents(List<Event> events) {
-        this.events.setEvents(events);
+    //// util methods
+
+    @Override
+    public String toString() {
+        return persons.asUnmodifiableObservableList().size() + " persons "
+                + events.asUnmodifiableObservableList().size() + " events";
+        // TODO: refine later
     }
 
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return events.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
+        //TODO: compare events here
+    }
+
+    @Override
+    public int hashCode() {
+        return persons.hashCode();
+    }
 }
