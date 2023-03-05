@@ -1,5 +1,6 @@
 package seedu.address.model.pilot;
 
+import java.util.List;
 import java.util.UUID;
 
 import seedu.address.model.item.Identifiable;
@@ -95,6 +96,18 @@ public class Pilot implements Identifiable {
      */
     public int getFlightHour() {
         return flightHour;
+    }
+
+    @Override
+    public List<String> getDisplayList() {
+        return List.of(
+            "UUID: " + id,
+            "Name: " + name,
+            "Gender: " + gender,
+            "Age: " + age,
+            "Rank: " + rank,
+            "Flight Hour: " + flightHour
+        );
     }
 
     @Override
