@@ -58,7 +58,6 @@ public class UniqueEventList implements Iterable<Event> {
         if (!eventsAreUnique(events)) {
             throw new DuplicateEventException();
         }
-
         internalList.setAll(events);
     }
 
@@ -99,5 +98,4 @@ public class UniqueEventList implements Iterable<Event> {
         }
         return true;
     }
-
 }
