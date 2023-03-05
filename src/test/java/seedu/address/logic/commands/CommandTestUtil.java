@@ -37,6 +37,15 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_TITLE =
+            "Entry Level Software Developer – Mentorship program and option to work remotely!";
+    public static final String VALID_DESCRIPTION =
+            "We’re looking for a full-time entry-level software developer. "
+            + "The ideal candidate is someone who’s just out of school and looking for some quality career experience. "
+            + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
+            + "Remote work is possible.";
+    public static final ArrayList<String> VALID_APPLICANTS = new ArrayList<>();
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
