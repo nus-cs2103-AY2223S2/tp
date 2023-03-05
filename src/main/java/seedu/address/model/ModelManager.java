@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -32,6 +34,7 @@ public class ModelManager implements Model {
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
     private final ObservableList<Identifiable> itemsList;
+    private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -85,7 +88,7 @@ public class ModelManager implements Model {
         this.userPrefs.setOperationMode(mode);
         switch (mode) {
         case PILOT:
-            itemsList.setAll(filteredPilots);
+            rebind(filteredPilots);
             break;
         case PLANE:
         case FLIGHT:
@@ -97,6 +100,16 @@ public class ModelManager implements Model {
             logger.warning("Unknown operation mode: " + mode);
             break;
         }
+    }
+
+    private void rebind(ObservableList<? extends Identifiable> list) {
+        if (lastBoundList.isPresent()) {
+            final ObservableList<? extends Identifiable> lastBound =
+                lastBoundList.get();
+            Bindings.unbindContent(itemsList, lastBound);
+        }
+        Bindings.bindContent(itemsList, list);
+        lastBoundList = Optional.of(list);
     }
 
     @Override
