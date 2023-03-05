@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shen Chenzi
 
-![docs/images/shenchenzi.png](https://user-images.githubusercontent.com/97273558/221216937-eecda515-93e0-47b0-9b74-d0f08ac43253.jpg)
+<img src="images/shenchenzizoe.png" width="220px">
 
 [[github](https://github.com/shenchenzizoe)]
 [[portfolio](team/johndoe.md)]
