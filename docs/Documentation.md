@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Documentation guide
+jobTitle: Documentation guide
 ---
 
 **Setting up and maintaining the project website:**

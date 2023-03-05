@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Logging guide
+jobTitle: Logging guide
 ---
 
 * We are using `java.util.logging` package for logging.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Tutorial: Adding a command"
+jobTitle: "Tutorial: Adding a command"
 ---
 
 Let's walk you through the implementation of a new command — `remark`.

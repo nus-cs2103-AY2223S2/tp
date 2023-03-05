@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+jobTitle: Developer Guide
 ---
 * Table of Contents
 {:toc}
