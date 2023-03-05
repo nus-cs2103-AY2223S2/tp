@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of pet details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* prefers an app with GUI.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage pet details better than a typical mouse driven app
 
 
 ### User stories
