@@ -52,7 +52,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String step} into a {@code Step}. Parses each ingredient that is separated by a whitespace.
+     * Parses a {@code String step} into a {@code ArrayList<Step>}. Parses each step that is separated by a comma ",".
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code step} is invalid.
@@ -72,6 +72,12 @@ public class ParserUtil {
         return listOfSteps;
     }
 
+    /**
+     * Parses a {@code String step} into a {@code Step}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code step} is invalid.
+     */
     public static Step parseStepHelper(String step) throws ParseException {
         requireNonNull(step);
         String trimmedStep = step.trim();
@@ -82,10 +88,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String ingredients} into an {@code ArrayList<Ingredient>}. Ingredients are separated by a comma ","
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code ingredients} is invalid.
      */
     public static ArrayList<Ingredient> parseIngredients(String ingredients) throws ParseException {
         requireNonNull(ingredients);
@@ -102,6 +108,12 @@ public class ParserUtil {
         return listOfIngredients;
     }
 
+    /**
+     * Parses a {@code String ingredients} into an {@code Ingredient}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ingredients} is invalid.
+     */
     public static Ingredient parseIngredientHelper(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
@@ -112,10 +124,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String title} into an {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
