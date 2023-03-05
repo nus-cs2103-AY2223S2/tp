@@ -73,7 +73,7 @@ public class TagCommand extends Command {
         int index = lastShownList.indexOf(moduleToEdit);
         moduleToEdit = lastShownList.get(index);
         if (!lastShownList.contains(moduleToEdit)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
         Set<Tag> newTags = moduleToEdit.getModifiableTags();
