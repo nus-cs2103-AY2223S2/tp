@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -40,6 +41,16 @@ public class AddEventCommandTest {
 
         assertEquals(String.format(AddEventCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
+    }
+
+    @Test
+    public void execute_duplicatePerson_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        AddEventCommand addEventCommand = new AddEventCommand(validEvent);
+        AddEventCommandTest.ModelStub modelStub = new AddEventCommandTest.ModelStubWithEvent(validEvent);
+
+        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () ->
+                addEventCommand.execute(modelStub));
     }
 
     @Test
