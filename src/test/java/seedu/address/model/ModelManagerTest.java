@@ -112,6 +112,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getEventPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON)
                 .withEvent(WEDDING_DINNER).withEvent(CARNIVAL).build();

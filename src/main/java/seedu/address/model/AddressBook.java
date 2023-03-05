@@ -52,6 +52,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -98,6 +106,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    //// event-level operations
+
+    /**
+     * Returns true if an event with the same date time information as {@code event} exists in the address book.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return events.contains(event);
+    }
+
+    /**
+     * Adds an event to the address book.
+     * The event must not already exist in the address book.
+     */
+    public void addEvent(Event e) {
+        events.add(e);
+    }
+    
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeEvent(Event key) {
+        events.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -122,43 +157,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons));
+        //TODO: compare events here
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
     }
-
-    /**
-     * Returns true if an event with the same date time information as {@code event} exists in the address book.
-     */
-    public boolean hasEvent(Event event) {
-        requireNonNull(event);
-        return events.contains(event);
-    }
-
-    /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
-     */
-    public void addEvent(Event e) {
-        events.add(e);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeEvent(Event key) {
-        events.remove(key);
-    }
-
-    /**
-     * Replaces the contents of the event list with {@code events}.
-     * {@code events} must not contain duplicate events.
-     */
-    public void setEvents(List<Event> events) {
-        this.events.setEvents(events);
-    }
-
 }

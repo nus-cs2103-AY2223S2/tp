@@ -114,6 +114,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -131,6 +148,24 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Event List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+
+    //=========== Utils =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -147,35 +182,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
-    //=========== Events Accessors =============================================================
-    @Override
-    public boolean hasEvent(Event event) {
-        requireNonNull(event);
-        return addressBook.hasEvent(event);
-    }
-
-    @Override
-    public void addEvent(Event event) {
-        addressBook.addEvent(event);
-        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-    }
-
-    @Override
-    public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
-    }
-
-    @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return filteredEvents;
-    }
-
-    @Override
-    public void updateFilteredEventList(Predicate<Event> predicate) {
-        requireNonNull(predicate);
-        filteredEvents.setPredicate(predicate);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredEvents.equals(other.filteredEvents);
     }
 }
