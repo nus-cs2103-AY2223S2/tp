@@ -286,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Student                                       | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
 | `* *`    | Student                                       | hide private contact details                        | minimize chance of someone else seeing them by accident                |
 | `* *`    | Student                                       | delete all contacts                                 | remove all contacts for a fresh start                                  |
-| `*`      | Student with many persons in the address book | sort persons by name                                | locate a person easily                                                 |
+| `*`      | Student with many contacts | sort contacts by name                                | locate a contact easily                                                 |
 | `*`      | Student                                       | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
 
 *{More to be added}*
