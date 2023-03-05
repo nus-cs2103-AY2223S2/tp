@@ -18,11 +18,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;

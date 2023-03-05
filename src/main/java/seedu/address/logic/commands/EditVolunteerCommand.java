@@ -249,7 +249,7 @@ public class EditVolunteerCommand extends Command {
 
             // state check
             EditVolunteerDescriptor e = (EditVolunteerDescriptor) other;
-            System.out.println(getNric().equals(e.getNric()));
+
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())

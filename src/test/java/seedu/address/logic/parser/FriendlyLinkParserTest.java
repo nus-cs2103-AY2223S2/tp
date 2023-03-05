@@ -80,7 +80,7 @@ public class FriendlyLinkParserTest {
         String nricStr = "T1234567I";
         DeleteElderlyCommand command = (DeleteElderlyCommand) parser.parseCommand(
                 DeleteElderlyCommand.COMMAND_WORD + " " + nricStr);
-        assertEquals(new DeleteElderlyCommand(nricStr), command);
+        assertEquals(new DeleteElderlyCommand(new Nric(nricStr)), command);
     }
 
     @Test
