@@ -42,12 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/abenx162.png" width="200px">
 
-[[github](https://github.com/johndoe)]
-[[portfolio](team/gyulong1.md)]
-
-[[github](https://github.com/abenx162)]
-
-[[portfolio](team/abenx162.md)]
+[[github](https://github.com/abenx162)] [[portfolio](team/abenx162.md)]
 
 
 * Role: Developer

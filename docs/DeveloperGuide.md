@@ -284,6 +284,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Executive Pro` and the **Actor** is the `HR Manager`, unless specified otherwise)
 
+**Use case: UC1 - Add an employee**
+
+**MSS**
+
+1.  HR Manager requests to add an employee.
+2.  ExecutivePro adds the employee with the given details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. HR Manager leaves out compulsory details of an employee.
+    * 1a1. ExecutivePro displays error message indicating that compulsory details are missing.
+
+      Use case ends.
+
+**Use case: UC2 - Edit details of an employee**
+
+**MSS**
+
+1.  HR Manager requests to edit employee’s details based on the employee's ID number.
+2.  ExecutivePro changes the details of the employee.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given ID number is invalid.
+    * 1a1. ExecutivePro displays error message.
+
+      Use case ends.
+* 1b. HR Manager's request does not contain any details to edit.
+    * 1b1. ExecutivePro shows an error message.
+
+      Use case ends.
+
+**Use case: UC3 - Delete an employee**
+
+**MSS**
+
+1. HR Manager lists employee details (UC4).
+2. HR Manager requests to delete a specific employee from the list based on the employee's ID number.
+3. ExecutivePro deletes the details of the employee.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given ID number is invalid.
+    * 2a1. ExecutivePro displays error message.
+
+      Use case ends.
+
 **Use case: UC4 - List details of employees**
 
 **MSS**
@@ -320,7 +373,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  HR Manager requests to exit the program.
+1. HR Manager requests to exit the program.
+2. ExecutivePro shuts down.
 
     Use case ends.
 

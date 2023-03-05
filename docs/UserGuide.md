@@ -122,11 +122,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**Delete** | `delete EMPLOYEE_ID`<br> e.g., `delete 3`
-**Edit** | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Delete** | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                       |
+| **Edit**   | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                      |
+| **List**   | `list`                                                                                                                                                          |
+| **Help**   | `help`                                                                                                                                                          |
