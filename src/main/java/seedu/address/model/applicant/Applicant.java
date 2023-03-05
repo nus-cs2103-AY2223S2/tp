@@ -2,8 +2,6 @@ package seedu.address.model.applicant;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents an Applicant in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -18,6 +16,19 @@ public class Applicant {
 
     public Name getName() {
         return name;
+    }
+
+    /**
+     * Returns true if both applicants have the same name.
+     * This defines a weaker notion of equality between the two applicants.
+     */
+    public boolean isSameApplicant(Applicant otherApplicant) {
+        if (otherApplicant == this) {
+            return true;
+        }
+
+        return otherApplicant != null
+                && otherApplicant.getName().equals(this.getName());
     }
 
     /**

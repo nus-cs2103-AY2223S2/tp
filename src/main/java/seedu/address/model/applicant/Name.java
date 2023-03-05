@@ -1,4 +1,5 @@
 package seedu.address.model.applicant;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -27,7 +28,8 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        String trimmedName = name.trim();
+        fullName = trimmedName;
     }
 
     /**
@@ -46,8 +48,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.person.Name) other).fullName)); // state check
+                || (other instanceof seedu.address.model.applicant.Name // instanceof handles nulls
+                && fullName.equals(((seedu.address.model.applicant.Name) other).fullName)); // state check
     }
 
     @Override
