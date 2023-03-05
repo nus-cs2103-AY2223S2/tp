@@ -3,10 +3,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <ScrollPane cacheShape="false" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0" minWidth="300.0" stylesheets="@CustomerInfo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
@@ -16,7 +16,10 @@
                <children>
                   <Label fx:id="customerName" styleClass="nameHeader" text="\\$customerName" />
                   <Separator minWidth="100.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <StackPane fx:id="customerTypePlaceholder" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" />
+                  <StackPane alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+                     <children>
+                        <AnchorPane fx:id="customerTypePlaceholder" StackPane.alignment="CENTER" />
+                     </children></StackPane>
                </children>
             </HBox>
          </children>

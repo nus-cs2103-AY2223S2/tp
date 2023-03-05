@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.customer.Customer;
@@ -25,7 +25,7 @@ public class CustomerInfo extends UiPart<ScrollPane> {
     private Label customerName;
 
     @FXML
-    private StackPane customerTypePlaceholder;
+    private AnchorPane customerTypePlaceholder;
 
     /**
      * Creates a {@code CustomerInfo} with the given {@code Customer}.
