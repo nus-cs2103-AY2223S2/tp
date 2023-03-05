@@ -59,8 +59,14 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Listing all Decks : `list`
+
+
 
 ### Adding a Powercard: `add`
+
+_**User must select a deck to use this command.
+**_
 
 Adds a Powercard to the **selected** Deck.
 
@@ -73,13 +79,19 @@ A person can have any number of tags (including 0)
 Examples:
 * `add q/What is chemical symbol for Oxygen? a/O`
 
-### Listing all persons : `list`
+### Listing all Powercards : `list`
+
+_**User must select a deck to use this command.
+**_
 
 Shows a list of all Powercard in the **selected** Deck.
 
 Format: `list`
 
 ### Editing a Powercard : `edit`
+
+_**User must select a deck to use this command.
+**_
 
 Edits an existing Powercard in a Deck.
 
