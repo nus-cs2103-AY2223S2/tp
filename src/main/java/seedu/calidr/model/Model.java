@@ -1,13 +1,11 @@
 package seedu.calidr.model;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.model.person.Person;
-import seedu.calidr.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -78,20 +76,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Returns read-only view of the tasklist.
-     */
-    ArrayList<Task> getTaskList();
 }

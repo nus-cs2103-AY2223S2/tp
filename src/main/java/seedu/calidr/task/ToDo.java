@@ -1,4 +1,4 @@
-package seedu.calidr.model.task;
+package seedu.calidr.task;
 
 /**
  * Represents a task that should be completed, with no time constraints.
@@ -27,9 +27,12 @@ public class ToDo extends Task {
      */
     @Override
     public String getFileRepresentation() {
-        String mark = (super.isDone()) ? "X" : " ";
+        String mark = (super.isDone) ? "X" : " ";
 
-        return "T" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription();
+        return "T" + "~"
+                + this.priority + "~"
+                + mark + "~"
+                + this.description;
     }
 
     @Override
