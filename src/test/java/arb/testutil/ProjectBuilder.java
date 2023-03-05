@@ -24,7 +24,7 @@ public class ProjectBuilder {
     }
 
     /**
-     * Initializes the ProjectBuilder with the data of {@code personToCopy}.
+     * Initializes the ProjectBuilder with the data of {@code projectToCopy}.
      */
     public ProjectBuilder(Project projectToCopy) {
         title = projectToCopy.getTitle();

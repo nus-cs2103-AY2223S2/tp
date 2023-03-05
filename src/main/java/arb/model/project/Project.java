@@ -13,6 +13,7 @@ public class Project {
     // Details fields
     private final Title title;
     private final Deadline deadline;
+    private final Status status;
 
     /**
      * Constructs a {@code Project}.
@@ -22,6 +23,7 @@ public class Project {
         requireAllNonNull(title, deadline);
         this.title = title;
         this.deadline = deadline;
+        status = new Status();
     }
 
     public Title getTitle() {
@@ -30,6 +32,10 @@ public class Project {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     @Override
@@ -49,7 +55,8 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getTitle().equals(getTitle())
-                && otherProject.getDeadline().equals(getDeadline());
+                && otherProject.getDeadline().equals(getDeadline())
+                && otherProject.getStatus().equals(getStatus());
     }
 
     @Override
