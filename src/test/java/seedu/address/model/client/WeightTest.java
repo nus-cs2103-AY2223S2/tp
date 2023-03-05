@@ -32,4 +32,12 @@ class WeightTest {
         assertTrue(Weight.isValidWeight("233.0")); // weight to 1 decimal
         assertTrue(Weight.isValidWeight("23.00")); // weight to 2 decimal
     }
+
+    @Test
+    public void test_equalsSymmetric() {
+        Weight weightA = new Weight("23");
+        Weight weightB = new Weight("23");
+        assertTrue(weightA.equals(weightB) && weightB.equals(weightA));
+        assertTrue(weightA.hashCode() == weightB.hashCode());
+    }
 }

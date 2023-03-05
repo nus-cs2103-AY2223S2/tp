@@ -32,4 +32,11 @@ class GenderTest {
         assertTrue(Gender.isValidGender("f")); // small character 'f'
         assertTrue(Gender.isValidGender("F")); // big character 'F'
     }
+    @Test
+    public void test_equalsSymmetric() {
+        Gender genderA = new Gender("m");
+        Gender genderB = new Gender("m");
+        assertTrue(genderA.equals(genderB) && genderB.equals(genderA));
+        assertTrue(genderA.hashCode() == genderB.hashCode());
+    }
 }
