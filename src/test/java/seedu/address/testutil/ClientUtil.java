@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.tag.Tag;
 
@@ -38,6 +40,9 @@ public class ClientUtil {
         sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
         sb.append(PREFIX_WEIGHT + client.getWeight().value + " ");
         sb.append(PREFIX_GENDER + client.getGender().value + " ");
+        client.getAppointments().stream().forEach(
+                s -> sb.append(PREFIX_APPOINTMENT + s.appointmentTime + " ")
+        );
         client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -55,6 +60,14 @@ public class ClientUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getWeight().ifPresent(weight -> sb.append(PREFIX_WEIGHT).append(weight.value).append(" "));
         descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+        if (descriptor.getAppointments().isPresent()) {
+            Set<Appointment> appointments = descriptor.getAppointments().get();
+            if (appointments.isEmpty()) {
+                sb.append(PREFIX_APPOINTMENT).append(" ");
+            } else {
+                appointments.forEach(s -> sb.append(PREFIX_APPOINTMENT).append(s.appointmentTime).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

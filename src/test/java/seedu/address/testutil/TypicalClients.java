@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_DATE_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_DATE_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
@@ -29,18 +31,19 @@ public class TypicalClients {
 
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withWeight("50.0").withGender("M")
+            .withPhone("94351253").withAppointments("13-02-2020", "14-01-2021").withWeight("50.0").withGender("M")
             .withTags("friends").build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withWeight("50.0").withGender("M")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withAppointments("13-02-2020", "14-01-2021").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withWeight("50.0").withGender("M").build();
+            .withWeight("50.0").withGender("M").withAppointments("13-02-2020", "14-01-2021").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withWeight("50.0").withGender("M").withTags("friends").build();
+            .withWeight("50.0").withGender("M").withAppointments("12-12-2020").withTags("friends").build();
+
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withWeight("50.0").withGender("M").build();
@@ -59,15 +62,15 @@ public class TypicalClients {
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withWeight("20.0").withGender("M").build();
 
-    // Manually added - Client's details found in {@code CommandTestUtil}
+    // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withWeight(VALID_WEIGHT_AMY).withGender(VALID_GENDER_AMY).build();
+            .withWeight(VALID_WEIGHT_AMY).withGender(VALID_GENDER_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE).build();
     public static final Client BOB = new ClientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
+            .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalClients() {} // prevents instantiation

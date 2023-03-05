@@ -43,6 +43,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label gender;
     @FXML
+    private FlowPane appointments;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -58,6 +60,9 @@ public class ClientCard extends UiPart<Region> {
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
         gender.setText(client.getGender().value);
+        client.getAppointments().stream()
+                .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
+                .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

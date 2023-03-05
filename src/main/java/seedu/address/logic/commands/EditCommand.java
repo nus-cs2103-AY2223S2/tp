@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,6 +23,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -105,8 +108,9 @@ public class EditCommand extends Command {
         Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight()); //place holder
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight,
+        Set<Appointment> updatedAppointment =
+                editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
                 updatedGender, updatedTags);
     }
 
@@ -140,6 +144,7 @@ public class EditCommand extends Command {
         private Weight weight;
         private Gender gender;
         private Set<Tag> tags;
+        private Set<Appointment> appointments;
 
         public EditClientDescriptor() {}
 
@@ -154,6 +159,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setWeight(toCopy.weight);
             setGender(toCopy.gender);
+            setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
         }
 
@@ -161,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, tags);
         }
 
         public void setName(Name name) {
@@ -212,6 +218,23 @@ public class EditCommand extends Command {
 
 
         /**
+         * Sets {@code appointments} to this object's {@code appointments}.
+         * A defensive copy of {@code appointments} is used internally.
+         */
+        public void setAppointments(Set<Appointment> appointments) {
+            this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code appointments} is null.
+         */
+        public Optional<Set<Appointment>> getAppointments() {
+            return (appointments != null) ? Optional.of(Collections.unmodifiableSet(appointments)) : Optional.empty();
+        }
+
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
@@ -249,6 +272,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getWeight().equals(e.getWeight())
                     && getGender().equals(e.getGender())
+                    && getAppointments().equals(e.getAppointments())
                     && getTags().equals(e.getTags());
         }
     }

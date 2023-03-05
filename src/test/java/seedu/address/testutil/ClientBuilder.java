@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -28,6 +29,7 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Set<Appointment> appointments;
     private Set<Tag> tags;
     private Weight weight;
     private Gender gender;
@@ -42,20 +44,22 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         weight = new Weight(DEFAULT_WEIGHT);
         gender = new Gender(DEFAULT_GENDER);
+        appointments = new HashSet<>();
         tags = new HashSet<>();
     }
 
     /**
      * Initializes the ClientBuilder with the data of {@code personToCopy}.
      */
-    public ClientBuilder(Client personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        weight = personToCopy.getWeight();
-        gender = personToCopy.getGender();
-        tags = new HashSet<>(personToCopy.getTags());
+    public ClientBuilder(Client clientToCopy) {
+        name = clientToCopy.getName();
+        phone = clientToCopy.getPhone();
+        email = clientToCopy.getEmail();
+        address = clientToCopy.getAddress();
+        weight = clientToCopy.getWeight();
+        gender = clientToCopy.getGender();
+        appointments = new HashSet<>(clientToCopy.getAppointments());
+        tags = new HashSet<>(clientToCopy.getTags());
     }
 
     /**
@@ -71,6 +75,15 @@ public class ClientBuilder {
      */
     public ClientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public ClientBuilder withAppointments(String ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
@@ -113,7 +126,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, weight, gender, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, tags);
     }
 
 }

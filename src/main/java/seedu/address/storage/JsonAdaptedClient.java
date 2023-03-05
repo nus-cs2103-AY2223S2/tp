@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -30,8 +31,12 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+
     private final String weight;
     private final String gender;
+
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,6 +45,7 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -48,6 +54,9 @@ class JsonAdaptedClient {
         this.address = address;
         this.weight = weight;
         this.gender = gender;
+        if (appointments != null) {
+            this.appointments.addAll(appointments);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +72,9 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         weight = source.getWeight().value;
         gender = source.getGender().value;
+        appointments.addAll(source.getAppointments().stream()
+                .map(JsonAdaptedAppointment::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -75,6 +87,10 @@ class JsonAdaptedClient {
      */
     public Client toFitBookModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
+        final List<Appointment> clientAppointments = new ArrayList<>();
+        for (JsonAdaptedAppointment appointment : appointments) {
+            clientAppointments.add(appointment.toFitBookModelType());
+        }
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toFitBookModelType());
         }
@@ -125,9 +141,11 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelWeight, modelGender, modelTags);
 
+        final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
+                modelWeight, modelGender, modelTags);
     }
 
 }
