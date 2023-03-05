@@ -18,12 +18,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Glen Lim
+<img src="docs/images/glyfy.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glyfy)]
+[[portfolio](team/glenlim.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -34,6 +33,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/kenzantonius)]
 [[portfolio](team/kenzantonius.md)]
+
+* Role: Developer
+* Responsibilities: Data
 
 ### Sanjevi Ravi
 
