@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tabriz Pahlavi
 
-<img src="images/tabriz.png" width="200px">
+<img src="images/tabrizplv.png" width="200px">
 
 [[github](http://github.com/TabrizPlv)]
-[[portfolio](team/tabriz.md)]
+[[portfolio](team/tabrizplv.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + UI
