@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends AddressBookStorage, TaskListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+
+    @Override
+    Path getTaskListFilePath();
+
+    @Override
+    Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
+
+    @Override
+    void saveTaskList(ReadOnlyTaskList taskList) throws IOException;
 
 }
