@@ -262,18 +262,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priority:
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+- 1 = must have
+- 2 = nice to have
+- 3 = unlikely to have
 
-*{More to be added}*
+<br>
+
+| Priority | As a/an...                | I can...                                                                                | so that...                                                                                                     |
+|----------|---------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+|        1 | fast typer                | type in a command and the contact details to create a new contact                       | I can save time (instead of using the mouse to interact with the software which is slower)                     |
+|        1 | fast typer                | type in a command to delete a contact                                                   | I can save time (instead of using the mouse to interact with the software which is slower)                     |
+|        1 | fast typer                | type in a command to view all contacts                                                  | I can save time (instead of using the mouse to interact with the software which is slower)                     |
+|        2 | beginner                  | view the user guide                                                                     | I look up the syntax of a command that I had forgotten                                                         |
+|        2 | beginner                  | search for a contact by name                                                            | I can save time (instead of searching manually)                                                                |
+|        2 | beginner                  | edit an existing contact                                                                | I don't have to create an entirely new contact just because of a small typo                                    |
+|        2 | beginner                  | tag contacts with extra information (e.g., leader of XYZ)                               | I can find the leader of XYZ easily                                                                            |
+|        2 | seasoned user             | filter and sort contacts                                                                | I can quickly find contacts that meet the criteria (instead of searching manually)                             |
+|        3 | security conscious person | set up an app password                                                                  | I can prevent others from reading the sensitive information on the military personnel                          |
+|        3 | security conscious person | change the app password                                                                 | I can ensure the security of the password                                                                      |
+|        3 | new user                  | import contacts from a CSV file                                                         | I can easily migrate from other contacts management systems                                                    |
+|        3 | clumsy user               | undo the previous action                                                                | I can rectify grave mistakes quickly                                                                           |
+|        3 | forgetful user            | search for a contact by any identifying details                                         | I can still find a contact even if I have forgotten the person's name                                          |
+|        3 | busy user                 | see recently viewed contacts                                                            | I can revisit previously accessed contacts quickly (instead of searching for them again)                       |
+|        3 | busy user                 | generate a nicely formatted text template that contains all of the person's information | I do not need to re-type the same headers / tables whenever I send a new email                                 |
+|        3 | seasoned user             | save commonly used contacts as favourites                                               | I can quickly look up commonly used contacts                                                                   |
+|        3 | seasoned user             | hide unavailable personnel (using filters)                                              | I can see only those people that are currently available                                                       |
+|        3 | seasoned user             | be shown daily tips on how to use some advanced features of FAILS                       | I can continuously learn how to save even more time (and become an advanced user)                              |
+|        3 | seasoned user             | see a count of the number of people in the current list                                 | I can quickly calculate the number of people in each subset of the military                                    |
+|        3 | advanced user             | export all FAILS data to a FAILS data file                                              | I don't lose my data when I change computers / departments                                                     |
+|        3 | advanced user             | import all FAILS data from a FAILS data file                                            | I don't lose my data when I change computers / departments                                                     |
+|        3 | advanced user             | delete all the data on the FAILS                                                        | I can ensure that the sensitive data will not remain on the old computer when I change computers / departments |
+|        3 | advanced user             | automatically see the ORD date of a recruit                                             | I can inform them of the administrative processes that must completed before they ORD                          |
+|        3 | advanced user             | mark that a person is on leave from `start_date` to `end_date`                          | I can tell if the soldier is available or not (and when he will be available)                                  |
+|        3 | advanced user             | make simultaneous edits to multiple contacts at once (e.g., update rank)                | I can save time by rectifying mass mistakes / save time by updating multiple people's information quickly      |
+|        3 | advanced user             | view two contacts side by side                                                          | I can compare two contacts side by side easily (instead of having to open up another instance of the app)      |
+|        3 | advanced user             | save commonly used combinations of filters as favourites                                | I can view the updated data quickly without having to apply the same combination of filters again              |
+|        3 | inaccurate typer          | search for contacts even with typos (fuzzy search)                                      | I can search fast even with minor typos                                                                        |
+|        3 | slower typer              | see suggested names when searching                                                      | I can easily autocomplete my search query                                                                      |
+|        3 | slower typer              | see all contacts that match my current search query even before I press ENTER           | I do not need to type out my complete search query to start seeing results                                     |
+|        3 | ration manager            | filter and count the number of people that need halal meals / are allergic to seafood   | I know how many halal / non-seafood food packs to order                                                        |
+|        3 | artistic user             | edit the theme of the app/font of the UI                                                | I can personalize the look of the app to be more aesthetically pleasing to me                                  |
+|        3 | person with bad eyesight  | increase the font size/UI size of the whole app                                         | I can see text better                                                                                          |
 
 ### Use cases
 
