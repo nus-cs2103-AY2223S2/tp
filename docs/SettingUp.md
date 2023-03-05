@@ -47,6 +47,8 @@ If you plan to use Intellij IDEA (highly recommended):
 
    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
 
-### 3. **Learn the design**
+### 3. **Set Up PlantUML**
+
+### 4. **Learn the design**
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [EduMate’s architecture](DeveloperGuide.md#architecture).
