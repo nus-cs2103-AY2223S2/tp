@@ -485,9 +485,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case continues at step 1.
 
-**Use case: User want to list all**
-
-
 
 *{More to be added}*
 
