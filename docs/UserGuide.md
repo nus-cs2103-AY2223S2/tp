@@ -87,7 +87,7 @@ In this system, you can call the following commands:
 - Listing all students: `list`
 - Find student: `find`
 
-### Create a class list: `create`
+### Create a class list: `create` [coming soon]
 Creates a class list to store the information about a group of students.
 
 Format: `create LIST_NAME [STUDENT_NAMES]`
@@ -100,7 +100,7 @@ Examples:
 - `create cs6244` creates an empty class list.
 
 
-### Random grouping of students: `rand_grp`
+### Random grouping of students: `rand_grp` [coming soon]
 Forms random groups of a specified size within a given class list.
 
 Format: `rand_grp CLASS_LIST GROUP_SIZE`
@@ -113,7 +113,7 @@ Examples:
 - `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-### Adding a student: `add`
+### Adding a student: `add` [coming soon]
 Adds a student to a given class list.
 
 Format: `add STUDENT_NAME CLASS_LIST`
@@ -127,7 +127,7 @@ Examples:
 - `add Harry cs6244` adds Harry to the class list CS6244
 
 
-### Deleting a student: `delete`
+### Deleting a student: `delete` [coming soon]
 Deletes a student from a given class list.
 
 Format: `delete STUDENT_NAME CLASS_LIST`
