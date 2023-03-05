@@ -33,7 +33,7 @@
           </MenuBar>
 
           <HBox>
-            <VBox>
+            <VBox maxWidth="100">
               <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
