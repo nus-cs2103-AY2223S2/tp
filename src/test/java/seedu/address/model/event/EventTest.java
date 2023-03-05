@@ -16,9 +16,11 @@ public class EventTest {
         // same values -> returns true
         Event carnivalCopy = new EventBuilder(CARNIVAL).build();
         assertTrue(CARNIVAL.equals(carnivalCopy));
+        assertTrue(CARNIVAL.hashCode() == carnivalCopy.hashCode());
 
         // same object -> returns true
         assertTrue(CARNIVAL.equals(CARNIVAL));
+        assertTrue(CARNIVAL.hashCode() == CARNIVAL.hashCode());
 
         // null -> returns false
         assertFalse(CARNIVAL.equals(null));
@@ -28,5 +30,6 @@ public class EventTest {
 
         // different event -> returns false
         assertFalse(CARNIVAL.equals(SPORTS_DAY));
+        assertFalse(CARNIVAL.hashCode() == SPORTS_DAY.hashCode());
     }
 }
