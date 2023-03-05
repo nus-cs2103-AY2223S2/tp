@@ -58,8 +58,8 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
       Marks the attendance of a student for that week
       Format: `mark {student_name} {week_number}`
       Examples
-      * mark john 1
-      * mark james 1
+        * mark john 1
+        * mark james 1
 
    ### Unmark attendance: `unmark`
       Unmarks the attendance of a student for that week
