@@ -18,6 +18,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLYS = unused -> true;
+    Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -202,7 +203,7 @@ public interface Model {
      * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVolunteerList(Predicate<Person> predicate);
+    void updateFilteredVolunteerList(Predicate<Volunteer> predicate);
 
     /** Returns an unmodifiable view of the filtered pair list */
     ObservableList<Pair> getFilteredPairList();

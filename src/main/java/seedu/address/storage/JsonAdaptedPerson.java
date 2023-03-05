@@ -13,8 +13,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -28,6 +30,8 @@ public class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String nric;
+    private final String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +40,14 @@ public class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("nric") String nric, @JsonProperty("age") String age,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
+        this.age = age;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +61,8 @@ public class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        nric = source.getNric().value;
+        age = source.getAge().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,7 +80,24 @@ public class JsonAdaptedPerson {
         final Phone modelPhone = getModelPhone();
         final Email modelEmail = getModelEmail();
         final Address modelAddress = getModelAddress();
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelNric = new Nric(nric);
+
+        if (age == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
+        }
+        if (!Age.isValidAge(age)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        }
+        final Age modelAge = new Age(age);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelNric, modelAge, modelTags);
     }
 
     protected Address getModelAddress() throws IllegalValueException {
