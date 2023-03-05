@@ -46,7 +46,6 @@
     -usage-high-text-color: black;
     -usage-very-high-text-color: white;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * A few ID-based styles.
@@ -87,7 +86,6 @@
 .date-hyperlink {
     -fx-cursor: hand;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for CalendarView.
@@ -111,7 +109,6 @@
 .right-toolbar-container {
     -fx-spacing: 10px;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PageBase abstract superclass of the day, week, month, and year page.
@@ -144,7 +141,6 @@
 .calendar-page > .container > .header > .navigate-date-view > .container > .next-date-button {
     -fx-padding: 3 7 3 7;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the "days" page.
@@ -221,7 +217,6 @@
 .toolbar-controls-box {
     -fx-spacing: 5px;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the DatePopOver control.
@@ -250,7 +245,6 @@
     -fx-font-size: 10px;
     -fx-text-fill: gray;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for the EntryDetailsView.
@@ -264,7 +258,6 @@
 .entry-details-view > .content > .recurrence-summary-label {
     -fx-font-weight: bold;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the source view. This control displays the currently known
@@ -314,7 +307,6 @@
 .source-view > .container > .single-calendar-group {
     -fx-padding: 1em;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the scroll pane that wraps the source view.
@@ -336,7 +328,6 @@
 .source-view-scroll-pane .corner {
     -fx-background-insets: 0.0px;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the year view.
@@ -350,7 +341,6 @@
 .year-view .scroll-pane .container {
     -fx-background-color: white;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the year month view.
@@ -497,7 +487,6 @@
     -fx-background-radius: 10em;
     -fx-opacity: 1 !important;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the month view.
@@ -601,7 +590,6 @@
     -fx-background-insets: 0.0 4.0px 0.0 4.0px;
     -fx-alignment: center-right;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the week day separators.
@@ -615,7 +603,6 @@
     -fx-max-width: -size;
     -fx-background-color: lightgrey;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the day view.
@@ -669,7 +656,6 @@
     -fx-stroke: -today-fill-color;
     -fx-fill: -today-stroke-color;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the weekday view.
@@ -685,7 +671,6 @@
 .weekday-view.weekend-day {
     -fx-background-color: rgb(245.0, 245.0, 245.0);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the time scale (01:00, 02:00, .... 24:00).
@@ -717,7 +702,6 @@
 .time-scale > .late-hour-label {
     -fx-opacity: 0.5;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the WeekDayHeaderView.
@@ -735,7 +719,6 @@
 .weekday-header-view > .container > .today {
     -fx-text-fill: -today-fill-color;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the AllDayView.
@@ -761,7 +744,6 @@
 .all-day-view > .container > .weekend {
     -fx-background-color: rgb(245.0, 245.0, 245.0);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the AgendaView.
@@ -839,7 +821,6 @@
     -fx-border-color: lightgray;
     -fx-border-style: dashed none none none;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the SearchResultView.
@@ -881,7 +862,6 @@
     -fx-font-size: 0.8em;
     -fx-text-fill: gray;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the MonthEntryView.
@@ -889,7 +869,6 @@
 
 .month-entry-view {
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Default styles for calendar entries.
@@ -964,7 +943,6 @@
 
 .default-style-entry-popover-title {
 }
-
 /* Small entries */
 .default-style-entry-small {
     -fx-padding: 0.15em 0.5em 0.15em 0.5em;
@@ -1046,7 +1024,6 @@
 .default-style-calendar-header:middle,
 .default-style-calendar-header:last {
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 1 (green).
@@ -1104,7 +1081,6 @@
 .style1-calendar-header {
     -fx-background-color: derive(-style1-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 2 (blue).
@@ -1162,7 +1138,6 @@
 .style2-calendar-header {
     -fx-background-color: derive(-style2-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 3 (yellow).
@@ -1220,7 +1195,6 @@
 .style3-calendar-header {
     -fx-background-color: derive(-style3-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 4 (purple).
@@ -1278,7 +1252,6 @@
 .style4-calendar-header {
     -fx-background-color: derive(-style4-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 5 (red).
@@ -1336,7 +1309,6 @@
 .style5-calendar-header {
     -fx-background-color: derive(-style5-color, 70.0%);
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 6 (orange).
@@ -1394,7 +1366,6 @@
 .style6-calendar-header {
     -fx-background-color: derive(-style6-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 7 (brown).
@@ -1452,7 +1423,6 @@
 .style7-calendar-header {
     -fx-background-color: derive(-style7-color, 70.0%);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the entry popover control.
@@ -1541,7 +1511,6 @@
 .popover-accordion > .titled-pane:expanded > * {
     -fx-background-color: rgba(240.0, 240.0, 240.0, 0.95);
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the RecurrenceView control.
@@ -1578,7 +1547,6 @@
 .recurrence-view > .container > .weekday-box > .toggle-button {
     -fx-background-radius: 0.0;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles used for the RecurrencePopup control.
@@ -1606,7 +1574,6 @@
     -fx-spacing: 1.0em;
     -fx-padding: 2.0em 1.0em 0.5em 1.0em;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles used for MonthSheetView control.
@@ -1766,7 +1733,6 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PaperView control.
@@ -1788,7 +1754,6 @@
 .paper-view > .container > .custom-fields > .text-field {
     -fx-pref-width: 3em;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the TimeRangeView control.
@@ -1801,7 +1766,6 @@
     -fx-hgap: 10;
     -fx-vgap: 10;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the SettingsView control.
@@ -1817,7 +1781,6 @@
 .print-settings-view > .container > .section-title > .label {
     -fx-font-weight: bold;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the SourceGridView control.
@@ -1835,7 +1798,6 @@
     -fx-pref-width: 20.0;
     -fx-pref-height: 10.0;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PrintablePage control.
@@ -1869,7 +1831,6 @@
 .print-page .year-month-view > .container {
     -fx-padding: 5.0 10.0 5.0 10.0;
 }
-
 /*
  * The YearMonthView instances shown inside the PrintablePage control should be smaller than
  * normally. Otherwise they waste too much space.
@@ -1884,7 +1845,6 @@
 .print-page .year-month-view > .container > .header > .year-header > .year-label {
     -fx-font-size: 14.0px;
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PreviewPane control.
@@ -1910,7 +1870,6 @@
     -fx-border-width: 1.0;
     -fx-effect: dropshadow(three-pass-box, gray, 10.0, 0.0, 0.0, 0.0);
 }
-
 /* 
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PrintView control.
@@ -1929,7 +1888,6 @@
 .print-view > .container > .separator {
     -fx-padding: 0 10 0 10;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the ButtonBar control.
@@ -1971,7 +1929,6 @@
     -fx-background-radius: 0;
     -fx-background-insets: -2 0 -2 -1, 0 0 0 -1, 1 1 1 0, 2 2 2 1;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the DetailedDayView control.
@@ -1994,7 +1951,6 @@
     -fx-padding: 0 2 0 0;
     -fx-alignment: center-right;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the DetailedWeekView control.
@@ -2020,7 +1976,6 @@
     -fx-padding: 0 2 0 0;
     -fx-alignment: center-right;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the WeekFieldsView control.
@@ -2033,7 +1988,6 @@
     -fx-hgap: 10;
     -fx-vgap: 10;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the ResourceCalendarView control.
@@ -2055,7 +2009,6 @@
     -fx-pref-height: 5px;
     -fx-background-color: orange;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the TimeField control.
@@ -2063,7 +2016,6 @@
 .time-field > .box {
     -fx-spacing: 2px;
 }
-
 /*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the ResourcesView.
