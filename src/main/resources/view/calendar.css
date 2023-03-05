@@ -141,7 +141,7 @@
 .calendar-page > .container > .header > .navigate-date-view > .container > .next-date-button {
     -fx-padding: 3 7 3 7;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the "days" page.
  */
@@ -258,7 +258,7 @@
 .entry-details-view > .content > .recurrence-summary-label {
     -fx-font-weight: bold;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the source view. This control displays the currently known
  * calendar sources and for each source the calendars inside of it.
@@ -487,7 +487,7 @@
     -fx-background-radius: 10em;
     -fx-opacity: 1 !important;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the month view.
  */
@@ -603,7 +603,7 @@
     -fx-max-width: -size;
     -fx-background-color: lightgrey;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the day view.
  */
@@ -671,7 +671,7 @@
 .weekday-view.weekend-day {
     -fx-background-color: rgb(245.0, 245.0, 245.0);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the time scale (01:00, 02:00, .... 24:00).
  */
@@ -702,7 +702,7 @@
 .time-scale > .late-hour-label {
     -fx-opacity: 0.5;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the WeekDayHeaderView.
  */
@@ -719,7 +719,7 @@
 .weekday-header-view > .container > .today {
     -fx-text-fill: -today-fill-color;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the AllDayView.
  */
@@ -744,7 +744,7 @@
 .all-day-view > .container > .weekend {
     -fx-background-color: rgb(245.0, 245.0, 245.0);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the AgendaView.
  */
@@ -821,7 +821,7 @@
     -fx-border-color: lightgray;
     -fx-border-style: dashed none none none;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed by the SearchResultView.
  */
@@ -869,7 +869,7 @@
 
 .month-entry-view {
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Default styles for calendar entries.
  */
@@ -1024,7 +1024,7 @@
 .default-style-calendar-header:middle,
 .default-style-calendar-header:last {
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 1 (green).
  */
@@ -1081,7 +1081,7 @@
 .style1-calendar-header {
     -fx-background-color: derive(-style1-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 2 (blue).
  */
@@ -1138,7 +1138,7 @@
 .style2-calendar-header {
     -fx-background-color: derive(-style2-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 3 (yellow).
  */
@@ -1195,7 +1195,7 @@
 .style3-calendar-header {
     -fx-background-color: derive(-style3-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 4 (purple).
  */
@@ -1252,7 +1252,7 @@
 .style4-calendar-header {
     -fx-background-color: derive(-style4-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 5 (red).
  */
@@ -1366,7 +1366,7 @@
 .style6-calendar-header {
     -fx-background-color: derive(-style6-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles needed for calendar type 7 (brown).
  */
@@ -1423,7 +1423,7 @@
 .style7-calendar-header {
     -fx-background-color: derive(-style7-color, 70.0%);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the entry popover control.
  */
@@ -1754,7 +1754,7 @@
 .paper-view > .container > .custom-fields > .text-field {
     -fx-pref-width: 3em;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the TimeRangeView control.
  */
@@ -1766,7 +1766,7 @@
     -fx-hgap: 10;
     -fx-vgap: 10;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the SettingsView control.
  */
@@ -1781,7 +1781,7 @@
 .print-settings-view > .container > .section-title > .label {
     -fx-font-weight: bold;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the SourceGridView control.
  */
@@ -1798,7 +1798,7 @@
     -fx-pref-width: 20.0;
     -fx-pref-height: 10.0;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PrintablePage control.
  */
@@ -1845,7 +1845,7 @@
 .print-page .year-month-view > .container > .header > .year-header > .year-label {
     -fx-font-size: 14.0px;
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PreviewPane control.
  */
@@ -1870,7 +1870,7 @@
     -fx-border-width: 1.0;
     -fx-effect: dropshadow(three-pass-box, gray, 10.0, 0.0, 0.0, 0.0);
 }
-/* 
+/*
  * --------------------------------------------------------------------------------------------------------------
  * Styles for the PrintView control.
  */
