@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.location.Location;
-import seedu.address.model.location.UniqueLocationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,7 +15,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueLocationList locations;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +25,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        locations = new UniqueLocationList();
     }
 
     public AddressBook() {}
@@ -97,35 +93,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// location-related methods
-
-    /**
-     * Returns true if a person with the same identity as {@code location} exists in the address book.
-     *
-     * @param location a location to be checked
-     * @return true if the person exists
-     */
-    public boolean hasLocation(Location location) {
-        requireNonNull(location);
-        return locations.contains(location);
-    }
-
-    /**
-     * Add a location to the location list
-     * @param location the location to be added
-     */
-    public void addLocation(Location location) {
-        locations.add(location);
-    }
-
-    /**
-     * Remove a location from the location list
-     * @param location a location to be removed
-     */
-    public void removeLocation(Location location) {
-        locations.remove(location);
-    }
-
     //// util methods
 
     @Override
@@ -137,11 +104,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Location> getLocationList() {
-        return locations.asUnmodifiableObservableList();
     }
 
     @Override

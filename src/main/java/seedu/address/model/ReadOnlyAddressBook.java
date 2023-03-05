@@ -14,10 +14,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
-
-    /**
-     * Returns an unmodifiable view of the location list.
-     * The list will not contain any duplicate locations.
-     */
-    ObservableList<Location> getLocationList();
 }
