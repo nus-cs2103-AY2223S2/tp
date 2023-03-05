@@ -2,7 +2,6 @@ package seedu.modtrek.logic.parser;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.modtrek.logic.commands.ClearCommand;
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;

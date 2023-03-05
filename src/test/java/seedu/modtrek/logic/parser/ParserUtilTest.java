@@ -21,7 +21,7 @@ import seedu.modtrek.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_CODE = "CS@3230";
     private static final String INVALID_CREDIT = "+4";
-    private static final String INVALID_GRADE = " ";
+    private static final String INVALID_GRADE = "A++";
     private static final String INVALID_SEMYEAR = "Year 2 Sem 2";
     private static final String INVALID_TAG = "#computer science breath and depth";
 

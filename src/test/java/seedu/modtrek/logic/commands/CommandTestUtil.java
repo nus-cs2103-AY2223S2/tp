@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CS1101S&"; // '&' not allowed in names
     public static final String INVALID_CREDIT_DESC = " " + PREFIX_CREDIT + "4MC"; // 'a' not allowed in phones
     public static final String INVALID_SEMYEAR_DESC = " " + PREFIX_SEMYEAR + "YEAR1SEM1"; // missing '@' symbol
-    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE; // empty string not allowed for addresses
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "A++";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "COMPUTER SCIENCE *"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

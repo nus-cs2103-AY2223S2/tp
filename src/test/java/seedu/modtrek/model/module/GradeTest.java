@@ -15,7 +15,7 @@ public class GradeTest {
 
     @Test
     public void constructor_invalidGrade_throwsIllegalArgumentException() {
-        String invalidGrade = "";
+        String invalidGrade = " ";
         assertThrows(IllegalArgumentException.class, () -> new Grade(invalidGrade));
     }
 
@@ -25,7 +25,7 @@ public class GradeTest {
         assertThrows(NullPointerException.class, () -> Grade.isValidGrade(null));
 
         // invalid addresses
-        assertFalse(Grade.isValidGrade("")); // empty string
+        assertFalse(Grade.isValidGrade("A++")); // empty string
         assertFalse(Grade.isValidGrade(" ")); // spaces only
 
         // valid addresses

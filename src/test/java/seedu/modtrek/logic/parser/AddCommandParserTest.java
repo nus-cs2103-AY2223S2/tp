@@ -18,9 +18,12 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.TAG_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.TAG_DESC_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_GRADE_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
@@ -80,6 +83,12 @@ public class AddCommandParserTest {
         Module expectedModule = new ModuleBuilder(CS1101S).withTags().build();
         assertParseSuccess(parser, CODE_DESC_CS1101S + CREDIT_DESC_CS1101S + SEMYEAR_DESC_CS1101S + GRADE_DESC_CS1101S,
                 new AddCommand(expectedModule));
+
+        //no grade specified
+        expectedModule = new ModuleBuilder().withCode(VALID_CODE_CS1101S)
+                .withCredit(VALID_CREDIT_CS1101S).withSemYear(VALID_SEMYEAR_CS1101S).build();
+        assertParseSuccess(parser, CODE_DESC_CS1101S + CREDIT_DESC_CS1101S + SEMYEAR_DESC_CS1101S,
+                new AddCommand(expectedModule));
     }
 
     @Test
@@ -96,10 +105,6 @@ public class AddCommandParserTest {
 
         // missing email prefix
         assertParseFailure(parser, CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + VALID_SEMYEAR_MA2002 + GRADE_DESC_MA2002,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002 + VALID_GRADE_MA2002,
                 expectedMessage);
 
         // all prefixes missing

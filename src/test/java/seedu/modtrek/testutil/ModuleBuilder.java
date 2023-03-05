@@ -19,7 +19,7 @@ public class ModuleBuilder {
     public static final String DEFAULT_CODE = "CS1101S";
     public static final String DEFAULT_CREDIT = "4";
     public static final String DEFAULT_SEMYEAR = "Y1S1";
-    public static final String DEFAULT_GRADE = "A";
+    public static final String DEFAULT_GRADE = "";
 
     private Code code;
     private Credit credit;
