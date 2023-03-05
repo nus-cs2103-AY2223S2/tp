@@ -4,16 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Task's deadline in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTaskDeadline(LocalDate)}
+ * Represents a Task's deadline in the task list.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTaskDeadline(String)}
  */
 public class TaskDeadline {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Task deadline should only contain numeric values in the format \"DD/MM/YYYY\""
-                    + "and it should not be blank";
+                    + "and it should not be blank"
+                    + "and deadline should be today or after today's date.";
 
     public final LocalDate taskDeadline;
 
@@ -22,18 +25,26 @@ public class TaskDeadline {
      *
      * @param deadline A valid deadline.
      */
-    public TaskDeadline(LocalDate deadline) {
+    public TaskDeadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidTaskDeadline(deadline), MESSAGE_CONSTRAINTS);
-        taskDeadline = deadline;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDateDeadline = LocalDate.parse(deadline, dtf);
+        taskDeadline = localDateDeadline;
     }
 
     /**
      * Returns true if a given local date is a valid deadline,
      * meaning date is today's date or after today's date.
      */
-    public static boolean isValidTaskDeadline(LocalDate test) {
-        return test.isAfter(LocalDate.now()) || test.isEqual(LocalDate.now());
+    public static boolean isValidTaskDeadline(String test) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            LocalDate localDateTest = LocalDate.parse(test, dtf);
+            return localDateTest.isAfter(LocalDate.now()) || localDateTest.isEqual(LocalDate.now());
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
@@ -42,10 +53,8 @@ public class TaskDeadline {
      */
     @Override
     public String toString() {
-        int day = taskDeadline.getDayOfMonth();
-        String month = taskDeadline.getMonth().toString();
-        int year = taskDeadline.getYear();
-        return String.format("%d %s %d", day, month, year);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        return taskDeadline.format(dtf);
     }
 
     @Override

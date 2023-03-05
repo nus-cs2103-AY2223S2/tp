@@ -13,7 +13,7 @@ public class TaskStatus {
             "Task status should only be `N` for not done or `D` for done";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the task status must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";

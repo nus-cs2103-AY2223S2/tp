@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,18 +18,34 @@ public class TaskDeadlineTest {
     }
 
     @Test
+    public void constructor_wrongFormat_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("2023/01/01"));
+    }
+
+    @Test
+    public void constructor_dateNotInCalendar_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("35/14/2023"));
+    }
+
+    @Test
+    public void constructor_datePassed_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("01/01/2020"));
+    }
+
+    @Test
     public void isValidTaskDeadline() {
-        // null task name
+        // null task deadline
         assertThrows(NullPointerException.class, () -> TaskDeadline.isValidTaskDeadline(null));
 
         // invalid task deadline
-        LocalDate passedDate = LocalDate.parse("2022-01-01");
+        String passedDate = "2022-01-01";
         assertFalse(TaskDeadline.isValidTaskDeadline(passedDate)); // deadline is before today's date
 
         // valid task deadline
-        LocalDate todayDate = LocalDate.now();
-        LocalDate tomorrow = LocalDate.now().plusDays(1);
-        LocalDate farAwayDate = LocalDate.now().plusYears(1).plusMonths(2).plusDays(71);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String todayDate = LocalDate.now().format(dtf);
+        String tomorrow = LocalDate.now().plusDays(1).format(dtf);
+        String farAwayDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
         assertTrue(TaskDeadline.isValidTaskDeadline(todayDate)); // today's date
         assertTrue(TaskDeadline.isValidTaskDeadline(tomorrow)); // tomorrow's date
         assertTrue(TaskDeadline.isValidTaskDeadline(farAwayDate)); // very far away date
@@ -36,11 +53,10 @@ public class TaskDeadlineTest {
 
     @Test
     public void toStringTest() {
-        LocalDate todayDate = LocalDate.now();
-        int day = todayDate.getDayOfMonth();
-        String month = todayDate.getMonth().toString();
-        int year = todayDate.getYear();
-        String expectedString = String.format("%d %s %d", day, month, year);
-        assertEquals(expectedString, new TaskDeadline(todayDate).toString());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String todayDate = LocalDate.now().format(dtf);
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        String expectedDate = LocalDate.now().format(dtf2);
+        assertEquals(expectedDate, new TaskDeadline(todayDate).toString());
     }
 }

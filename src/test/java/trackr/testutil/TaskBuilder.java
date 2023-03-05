@@ -1,7 +1,5 @@
 package trackr.testutil;
 
-import java.time.LocalDate;
-
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
@@ -13,7 +11,7 @@ import trackr.model.task.TaskStatus;
 public class TaskBuilder {
 
     public static final String DEFAULT_TASK_NAME = "Sort inventory";
-    public static final LocalDate DEFAULT_TASK_DEADLINE = LocalDate.parse("2027-01-01");
+    public static final String DEFAULT_TASK_DEADLINE = "01/01/2027";
     public static final String DEFAULT_TASK_STATUS = "N";
     private TaskName taskName;
     private TaskDeadline taskDeadline;
@@ -48,7 +46,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code TaskDeadline} of the {@code Task} that we are building.
      */
-    public TaskBuilder withTaskDeadline(LocalDate taskDeadline) {
+    public TaskBuilder withTaskDeadline(String taskDeadline) {
         this.taskDeadline = new TaskDeadline(taskDeadline);
         return this;
     }
