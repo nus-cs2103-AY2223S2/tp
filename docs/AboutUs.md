@@ -11,50 +11,50 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 ### Alson
 
-<img src="images/developers/alson.png" width="200px">
+<img src="images/alson001.png" width="200px">
 
-[[homepage]()]
 [[github](https://github.com/alson001)]
 [[portfolio](team/alson001.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor, Documentation Head
+- Responsibilities: ***TBC***
 
 ### Filbert Phang
 
-<img src="images/developers/filbert.png" width="200px">
+<img src="images/filbertphang.png" width="200px">
 
 [[github](http://github.com/filbertphang)]
 [[portfolio](team/filbertphang.md)]
 
-* Role: 
-* Responsibilities: 
+- Role: Testing
+- Responsibilities: (to be confirmed)
 
 ### James Liu Zixin
 
-<img src="images/developers/jamesliu.png" width="200px">
+<img src="images/jamesliuzx.png" width="200px">
 
-[[github](http://github.com/jamesliuzx)] 
+[[github](http://github.com/jamesliuzx)]
 [[portfolio](team/jamesliuzx.md)]
 
-* Role: 
-* Responsibilities: 
+- Role: Team Lead
+- Responsibilities: Overall project coordination
 
 ### Ong Seeu Sim
 
-<img src="images/developers/seeusim.png" width="200px">
+<img src="images/seeusim.png" width="200px">
 
 [[github](http://github.com/SeeuSim)]
 [[portfolio](team/seeusim.md)]
 
-* Role: 
-* Responsibilities: the whole bag cuh
+- Role: Code Quality, Integration Head
+- Responsibilities: ***TBC***
 
 ### Tang Zong Hao
 
-<img src="images/developers/zhtang.png" width="200px">
+<img src="images/zhtang29.png" width="200px">
 
 [[github](http://github.com/zhtang29)]
 [[portfolio](team/zhtang29.md)]
 
-* Role: 
-* Responsibilities:
+- Role: Deliverables, Tracking and Deadlines Head
+- Responsibilities: ***TBC***
