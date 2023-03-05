@@ -1,8 +1,10 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +41,21 @@ public class UniqueEventList implements Iterable<Event> {
         requireNonNull(toAdd);
         // To check if there is duplicate event here
         internalList.add(toAdd);
+    }
+
+    public void setEvents(UniqueEventList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        requireAllNonNull(events);
+
+        internalList.setAll(events);
     }
 
     /**
