@@ -1,11 +1,9 @@
 package seedu.loyaltylift.ui.customer;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -13,7 +11,10 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.ui.Tag;
 import seedu.loyaltylift.ui.UiPart;
 
-public class CustomerInfo extends UiPart<ScrollPane>  {
+/**
+ * ScrollPane that displays information of a customer.
+ */
+public class CustomerInfo extends UiPart<ScrollPane> {
 
     private static final String FXML = "Customer/CustomerInfo.fxml";
 
@@ -26,6 +27,10 @@ public class CustomerInfo extends UiPart<ScrollPane>  {
     @FXML
     private StackPane customerTypePlaceholder;
 
+    /**
+     * Creates a {@code CustomerInfo} with the given {@code Customer}.
+     * @param customer The customer whose information is to be displayed.
+     */
     public CustomerInfo(Customer customer) {
         super(FXML);
 
@@ -39,7 +44,7 @@ public class CustomerInfo extends UiPart<ScrollPane>  {
         insertSection("General", customerGeneralInfo.getRoot());
     }
 
-    private void insertSection (String sectionTitle, Node node) {
+    private void insertSection(String sectionTitle, Node node) {
         VBox vbox = new VBox();
 
         Label label = new Label(sectionTitle);

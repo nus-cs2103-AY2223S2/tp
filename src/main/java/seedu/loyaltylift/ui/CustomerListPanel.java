@@ -55,11 +55,13 @@ public class CustomerListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Represents a function that handles the event of when a customer card is clicked in this list.
+     */
     @FunctionalInterface
     public interface CustomerInfoOnClickHandler {
         /**
          * Handles the displaying of customer information on main window.
-         *
          */
         void customerInfoOnClick(Customer customer);
     }

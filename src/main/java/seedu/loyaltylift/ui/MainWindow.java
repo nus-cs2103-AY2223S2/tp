@@ -4,11 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventDispatchChain;
-import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -25,7 +21,6 @@ import seedu.loyaltylift.logic.commands.CommandResult;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.ui.customer.CustomerGeneralInfo;
 import seedu.loyaltylift.ui.customer.CustomerInfo;
 
 /**
@@ -86,6 +81,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        /* A bugfix to resolve blurry contents in a ScrollPane */
+        infoPane.getChildren().addListener((InvalidationListener) e ->
+                resetScrollPaneCacheProperty()
+        );
     }
 
     public Stage getPrimaryStage() {
@@ -141,14 +141,6 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        /* A bugfix to resolve blurry contents in a ScrollPane */
-        infoPane.getChildren().addListener((InvalidationListener) e ->
-            Platform.runLater(()->{
-                StackPane stackPane = (StackPane) infoPane.lookup("ScrollPane .viewport");
-                stackPane.setCache(false);
-            })
-        );
     }
 
     /**
@@ -193,6 +185,22 @@ public class MainWindow extends UiPart<Stage> {
 
     public CustomerListPanel getCustomerListPanel() {
         return customerListPanel;
+    }
+
+    /**
+     * This recursive method aims to resolve the blurry contents in a ScrollPane. `ScrollPaneSkin` sets
+     * cache to true manually, ignoring the property set in the FXML file.
+     * Hence, this method aggressively attempts to reset the property.
+     */
+    private void resetScrollPaneCacheProperty() {
+        Platform.runLater(() -> {
+            StackPane stackPane = (StackPane) infoPane.lookup("ScrollPane .viewport");
+            if (stackPane == null) {
+                resetScrollPaneCacheProperty();
+                return;
+            }
+            stackPane.setCache(false);
+        });
     }
 
     /**

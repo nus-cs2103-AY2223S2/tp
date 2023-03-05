@@ -1,23 +1,10 @@
 package seedu.loyaltylift.ui;
 
-import java.util.Comparator;
-
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import seedu.loyaltylift.logic.commands.CommandResult;
-import seedu.loyaltylift.logic.commands.exceptions.CommandException;
-import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
