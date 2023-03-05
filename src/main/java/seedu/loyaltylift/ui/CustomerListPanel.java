@@ -32,7 +32,7 @@ public class CustomerListPanel extends UiPart<Region> {
         customerListView.setItems(personList);
         customerListView.setCellFactory(listView -> new PersonListViewCell());
 
-        customerListView.setOnMouseClicked(e -> {
+        customerListView.getSelectionModel().selectedItemProperty().addListener(e -> {
             Customer customer = customerListView.getSelectionModel().getSelectedItem();
             handler.customerInfoOnClick(customer);
         });
