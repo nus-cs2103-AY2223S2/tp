@@ -137,7 +137,7 @@ Here are some important requirements for you to take note:
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
   * Note that when editing a contact's `t/TAG`, the existing tags will be removed
-    
+
     _[i.e  adding of tags is not cumulative]_
     * If you wish to remove all tags from the person, simply type `t/`.
 
