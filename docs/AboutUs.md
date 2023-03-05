@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/seriouslia0.png" width="200px">
 
 [[github](http://github.com/seriouslia0)]
-[[portfolio](team/matthew.md)]
+[[portfolio](team/seriouslia0.md)]
 
 * Role: Chief Expresso Officer
 * Responsibilities: UI
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/iapetusbob.png" width="200px">
 
 [[github](http://github.com/iapetusbob)]
-[[portfolio](team/yuanhao.md)]
+[[portfolio](team/iapetusbob.md)]
 
 * Role: Developer
 * Responsibilities: UI
