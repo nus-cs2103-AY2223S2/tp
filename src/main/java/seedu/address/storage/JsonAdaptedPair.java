@@ -13,10 +13,10 @@ import seedu.address.model.person.information.Nric;
 /**
  * Jackson-friendly version of {@link Pair}.
  */
-class JsonAdaptedPair {
+class JsonAdaptedPair implements JsonSerializable<Pair> {
 
-    public static final String MISSING_ELDERLY_FIELD_MESSAGE_FORMAT = "Pair's Elderly's %s field is missing!";
-    public static final String MISSING_VOLUNTEER_FIELD_MESSAGE_FORMAT = "Pair's Volunteer's %s field is missing!";
+    public static final String MISSING_ELDERLY_FIELD_MESSAGE_FORMAT = "Elderly's %s field is missing!";
+    public static final String MISSING_VOLUNTEER_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
 
     private final String elderlyNric;
     private final String volunteerNric;
@@ -64,5 +64,4 @@ class JsonAdaptedPair {
 
         return new Pair(elderly, volunteer);
     }
-
 }

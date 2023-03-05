@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalElderlys.AMY;
-import static seedu.address.testutil.TypicalElderlys.BOB;
-import static seedu.address.testutil.TypicalElderlys.CHARLIE;
+import static seedu.address.testutil.TypicalElderly.AMY;
+import static seedu.address.testutil.TypicalElderly.BOB;
+import static seedu.address.testutil.TypicalElderly.CHARLIE;
 import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 import static seedu.address.testutil.TypicalVolunteers.ELLE;
 

@@ -18,10 +18,8 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.FriendlyLinkStorage;
 import seedu.address.storage.JsonFriendlyLinkStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -39,7 +37,6 @@ import seedu.address.ui.UiManager;
  * Runs the application.
  */
 public class MainApp extends Application {
-
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
@@ -82,28 +79,21 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code AppStorage} and {@code userPrefs}. <br>
+     * An empty application will be used instead if errors occur when reading {@code storage}.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFriendlyLink> friendlyLinkOptional;
-        ReadOnlyFriendlyLink initialData;
+        FriendlyLink applicationCache = new FriendlyLink();
         try {
-            friendlyLinkOptional = storage.readFriendlyLink();
-            if (friendlyLinkOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample FriendlyLink");
-            }
-            initialData = friendlyLinkOptional.orElseGet(SampleDataUtil::getSampleFriendlyLink);
+            storage.readFriendlyLink(applicationCache);
+            storage.readElderly(applicationCache);
+            storage.readVolunteer(applicationCache);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
-            initialData = new FriendlyLink();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
-            initialData = new FriendlyLink();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(applicationCache, userPrefs);
     }
 
     private void initLogging(Config config) {

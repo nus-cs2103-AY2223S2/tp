@@ -15,7 +15,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Nric;
-import seedu.address.testutil.TypicalElderlys;
+import seedu.address.testutil.TypicalElderly;
 
 class DeleteElderlyCommandTest {
 
@@ -25,7 +25,7 @@ class DeleteElderlyCommandTest {
 
     @Test
     public void execute_validNric_success() {
-        Elderly elderlyToDelete = TypicalElderlys.getTypicalElderlys().get(0);
+        Elderly elderlyToDelete = TypicalElderly.getTypicalElderly().get(0);
         DeleteElderlyCommand deleteElderlyCommand =
                 new DeleteElderlyCommand(elderlyToDelete.getNric());
 

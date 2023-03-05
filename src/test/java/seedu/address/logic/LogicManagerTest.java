@@ -84,13 +84,16 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonFriendlyLinkIoExceptionThrowingStub
         JsonFriendlyLinkStorage friendlyLinkStorage =
-                new JsonFriendlyLinkIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
+                new JsonFriendlyLinkIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonElderlyStorage elderlyStorage =
-                new JsonElderlyStorage(temporaryFolder.resolve("ioExceptionElderly.json"));
+                new JsonElderlyStorage(
+                        temporaryFolder.resolve("ioExceptionElderly.json"));
         JsonVolunteerStorage volunteerStorage =
                 new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+
         StorageManager storage =
                 new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);

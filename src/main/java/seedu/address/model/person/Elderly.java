@@ -102,6 +102,4 @@ public class Elderly extends Person {
         }
         return builder.toString();
     }
-
-
 }

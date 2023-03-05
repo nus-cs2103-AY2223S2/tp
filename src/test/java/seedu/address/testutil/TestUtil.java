@@ -64,7 +64,7 @@ public class TestUtil {
         for (Volunteer volunteer : TypicalVolunteers.getTypicalVolunteers()) {
             ab.addVolunteer(volunteer);
         }
-        for (Elderly elderly : TypicalElderlys.getTypicalElderlys()) {
+        for (Elderly elderly : TypicalElderly.getTypicalElderly()) {
             ab.addElderly(elderly);
         }
         return ab;
