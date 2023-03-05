@@ -73,14 +73,4 @@ public class CustomerCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && customer.equals(card.customer);
     }
-
-    public void setSelected(boolean isSelected) {
-        this.isSelected = isSelected;
-
-        if (isSelected) {
-            name.setStyle("-fx-font-weight: bold; -fx-text-fill: #4F46E5");
-        } else {
-            name.setStyle("-fx-font-weight: normal; -fx-text-fill: black");
-        }
-    }
 }
