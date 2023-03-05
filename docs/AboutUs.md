@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Phone Khant Paing
 
-<img src="images/phone.png" width="200px">
+<img src="images/pkpaing.png" width="200px">
 
 [[github](http://github.com/pkpaing)]
 [[portfolio](team/pkpaing.md)]
