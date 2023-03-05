@@ -14,7 +14,7 @@ import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.model.module.Module;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the degree progression data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

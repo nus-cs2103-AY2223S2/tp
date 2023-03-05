@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     private final Module toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Module}
      */
     public AddCommand(Module module) {
         requireNonNull(module);

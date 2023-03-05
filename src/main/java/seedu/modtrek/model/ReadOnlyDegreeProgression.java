@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.modtrek.model.module.Module;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a degree progression
  */
 public interface ReadOnlyDegreeProgression {
 
