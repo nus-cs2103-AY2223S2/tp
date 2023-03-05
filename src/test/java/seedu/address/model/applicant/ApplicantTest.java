@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplicants.BENEDICT;
 import static seedu.address.testutil.TypicalApplicants.CHRIS;
 
@@ -27,9 +26,9 @@ public class ApplicantTest {
         assertFalse(CHRIS.isSameApplicant(editedChris));
 
         // name has trailing spaces -> true
-        String nameWithTrailingSpaces = VALID_APPLICANT_NAME_CHRIS + " ";
-        editedChris = new ApplicantBuilder(CHRIS).withName(nameWithTrailingSpaces).build();
-        assertTrue(CHRIS.isSameApplicant(editedChris));
+        String nameWithTrailingSpaces = VALID_APPLICANT_NAME_BENEDICT + " ";
+        Applicant editedBenedict = new ApplicantBuilder(BENEDICT).withName(nameWithTrailingSpaces).build();
+        assertTrue(BENEDICT.isSameApplicant(editedBenedict));
     }
 
     @Test
