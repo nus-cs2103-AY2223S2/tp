@@ -38,7 +38,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## User Interface
 
+Apart from being your all-encompassing address book, AddressBook Neo also has a calender function for you to keep track of your daily schedule.
+
+1. Use these tabs to toggle between the 2 functions!
+![highlightTabs](images/userguide/highlightTabs.png)
+
+### UI Breakdown For `Address Book`
+____________________________________________________________________________________________________________________
 ## Features
 
 <div markdown="block" class="alert alert-info">
