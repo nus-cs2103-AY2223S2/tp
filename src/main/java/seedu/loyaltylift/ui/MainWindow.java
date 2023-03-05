@@ -2,7 +2,13 @@ package seedu.loyaltylift.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -135,6 +141,14 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        /* A bugfix to resolve blurry contents in a ScrollPane */
+        infoPane.getChildren().addListener((InvalidationListener) e ->
+            Platform.runLater(()->{
+                StackPane stackPane = (StackPane) infoPane.lookup("ScrollPane .viewport");
+                stackPane.setCache(false);
+            })
+        );
     }
 
     /**
