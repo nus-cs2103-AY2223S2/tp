@@ -10,11 +10,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
 import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 
-import java.util.Collections;
-import java.util.List;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
