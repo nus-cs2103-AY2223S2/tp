@@ -429,7 +429,7 @@ Remove a person from a event in the HR Management System.
 
 Format: `deleteEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
 
-* Remove the employee at the specified `EMPLOYEEINDEX` from the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the **list of employees added to the event**.  Both indexes **must be a positive integer** 1, 2, 3, …​
+* Remove the employee at the specified `EMPLOYEEINDEX` from the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the **displayed list of employees added to the event**.  Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deleteEmployeeEvent 1 1`
