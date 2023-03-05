@@ -129,7 +129,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullWeight_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_APPOINTMENTS,null, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, null, VALID_GENDER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
