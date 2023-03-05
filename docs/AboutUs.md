@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jarrett Teo
 
-<img src="images/jarrett0203.png" width="200px">
+<img src="images/jarrettteo.png" width="200px">
 
 [[github](https://github.com/Jarrett0203)]
 [[portfolio](team/jarretteo.md)]
@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 
 ### Glen Lim
-<img src="images/glyfy.png" width="200px">
+<img src="docs/images/glyfy.png" width="200px">
 
 [[github](http://github.com/glyfy)]
 [[portfolio](team/glenlim.md)]
