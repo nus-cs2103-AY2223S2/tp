@@ -15,7 +15,9 @@ If you can type fast, MM can get your contact management tasks done faster than 
 - [Features](#features)
     - [`help`](#viewing-help--help)
     - [`add`](#adding-a-patient--add)
+    - [`addTime`](#adding-patient-scheduled-time--addTime)
     - [`list`](#listing-all-patients--list)
+    - [`listTime`](#listing-patients-by-time--listTime)
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
@@ -110,11 +112,18 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+### Adding patient scheduled time : `addTime`
+_Details coming in v2.0 soon ..._
+
 ### Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+### Listing patients by time : `listTime`
+
+_Details coming in v2.0 soon ..._
 
 ### Editing a patient : `edit`
 
