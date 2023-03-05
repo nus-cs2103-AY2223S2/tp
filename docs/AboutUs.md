@@ -28,11 +28,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer, Water Boy
 
-### Johnny Doe
+### Clevon Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/clevon-w.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/clevon-w)] [[portfolio](team/clevon-w.md)]
 
 * Role: Developer
 * Responsibilities: Data
