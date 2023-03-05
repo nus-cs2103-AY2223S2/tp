@@ -8,7 +8,7 @@ AddressBook Neo is a **desktop app for managing contacts, optimized for use via 
 Apart from being your all-encompassing address book, AddressBook Neo also has a calendar function for you to keep track of your daily schedule.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
