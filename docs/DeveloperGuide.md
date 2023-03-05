@@ -282,16 +282,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Executive Pro` and the **Actor** is the `HR Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC4 - List details of employees**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  HR Manager requests to list employee details.
+2.  ExecutivePro shows a list of details of employees.
 
     Use case ends.
 
@@ -301,13 +299,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC5 - Find details of an employee**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  HR Manager requests to find details of all employees based on a keyword.
+2.  ExecutivePro shows a list of employees matching the keyword.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no employee matching the given keyword
+  * 2a1. ExecutivePro displays message indicating that no employee matches the given keyword
+
+    Use case ends.
+
+
+**Use case: UC6 - Exiting the ExecutivePro program**
+
+**MSS**
+
+1.  HR Manager requests to exit the program.
+
+    Use case ends.
+
+
 
 ### Non-Functional Requirements
 
