@@ -337,33 +337,53 @@ Examples:
 * `ls_on_leave d/2023-03-05`
 * `ls_on_leave d/2023-03-05~2023-05-7`
 
-### Adding a refresher course: `kwangjoo`
+### Adding a performance review statement: `Kwangjoo`
 
-Adds a person to the address book.
+Adds a performance review statement for a specified employee. Allows option to specify the subsequent performance review date. If unspecified, the next performance review date is set to default interval.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `addPR INDEX pr/REVIEW_STATEMENT d/DATE [nextPRd/DATE]​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all employees due for a refresher course: `kwangjoo`
+* `addPR 1 pr/Met Expectations this month, expected to be promoted at the end of this year. d/2023-03-23`
+* `addPR 2 pr/Below expectations. To be sent for counselling and training regarding low performance. Early performance review next week d/2023-03-23 nextPRd/2023-03-20`
 
-Adds a person to the address book.
+### Listing all performance reviews done on employee: `Kwangjoo`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Lists all the performance review of the specified employee.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `listPR INDEX`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+* `listPR 1`
+
+### Deleting a performance review statement: `Kwangjoo`
+
+Deletes erroneous performance reviews possibly due to administrative errors. There can only be at most one performance review per person in a given day.
+
+<!-- It could be better to include a unique employee id so that the user wont mess up and delete a wrong performance review.  -->
+
+Format: `deletePR INDEX d/DATE`
+
+Examples:
+
+* `deletePR 3 d/2023-03-23`
+
+### Listing all employees due for a performance review: `Kwangjoo`
+
+Lists all employees who have a performance review due within the next specified number of days. If the DAYS in unspecified, set to default number of days.
+
+A date can be specified and SudoHR shows the employees who need to have their performance reviewed by the specified date.
+
+If both DAYS and DATE is specified, DATE takes precedence. And If neither is specified, SudoHR displays the performance review due within the default number of days.
+
+Format: `listPRdue [within/DAYS] [by/DATE]​`
+
+Examples:
+
+* `listPRdue within/5`
+* `ListPRdue by/2023-04-05`
 
 ### Adding an event: `jeren`
 
