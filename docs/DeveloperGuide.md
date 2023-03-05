@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Needs to study a group of terms and definitions efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: study various topics using flashcards on the desktop
 
 
 ### User stories
@@ -273,26 +273,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| **`Epic`** | **user**                                  | **manage PowerCards**		       | 				                                                                |
+| `* * *`  | user                                       | create a new PowerCard with a question and answer pair               |                                  |
+| `* *`  | user                                         | search for PowerCards using keywords in the questions                |                                  |
+| `* *`  | user                                         | rewrite the question or the answer in the PowerCard                  | 						                      |
+| **`Epic`**  | **user**                                | **group PowerCards into decks of the same topic**                    | 				                          |
+| `* * *` | user                                        | set the name of a deck                                               | 	                                |
+| `* * *` | user | list all decks I have created     |					|
+| `* * *` | user | list all the PowerCards in a deck |					|
+| `* * *` | user | add PowerCards in a deck	 |					|
+| `* * *` | user | remove PowerCards in a deck	 |					|
+| `* *` | user | rename a deck	 |					|
+| `* *` | user | delete a deck		 |					|
+| `* *` | user | add the description of each deck		 | I can check later what this deck is about.				|
+| **`Epic`**    | **user**                                       | **review decks of PowerCards** | 				               |
+| `* * *` | user | review a single deck of PowerCards           | I can test my knowledge of the topic	                                               |
+| `* * *` | user | mark a flash card to be correct / wrong during review          | 				                                   |
+| `* *` | user | review multiple decks of PowerCards          | I can test my knowledge of multiple topics                                    |
+| `* *` | user | see how many PowerCards I have left to review in one deck          | 		                                   |
+| **`Epic`**    | **user**                                       | **keep track of how effective my learning has been** | 				               |
+| `* *` | user | record the number of questions I got right	 | I can see my progress					|
+| `* *` | user | see which are the PowerCards I struggle with / succeed at	 |					|
+| `*` | user | see which topics (decks) I am stronger / weaker in	 |					|
+| `*` | user | see how many times I have reviewed a PowerCard or deck	 |					|
+| `*` | user | see how long I spent on each question during review	 |					|
+| `*` | user | revise PowerCards that I got wrong for		 | I can see what I’m weak at				|
+| `* *` | user | reset the statistics	 |					|
+| **`Epic`**    | **user**                                       | **share and receive decks from my friends** | 				               |
+| `* * *` | user | import decks from other users.          | 				                                   |
+| `* * *` | user | export decks for other users.         | 				                                   |
+| **`Epic`**    | **user**                                       | **undo and redo changes I make** | 				               |
+| `*` | user | retrieve a deck or flash card should I accidentally delete a PowerCard or deck	 |					|
+| `*` | user | redo changes that I had undone.	 |					|
+| **`Epic`**    | **user**                                       | **adjust the frequency of certain PowerCards appearing based on my input** | 				               |
+| `* *` | user | tag PowerCards that are hard	 | they will appear more frequently					|
+| `* *` | user | tag PowerCards that are easy	 | they will appear less frequently				|
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Powercard` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a powercard**
+
+**MSS**
+ 1.  User requests to add a powercard
+
+**Use case: Delete a powercard**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list powercards
+2.  Powercard shows a list of powercards
+3.  User requests to delete a specific powercard in the list
+4.  Powercard deletes the powercard
 
     Use case ends.
 
@@ -304,24 +338,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Powercard shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
+
+
+**Use case: Find a powercard**
+
+**MSS**
+1. User requests to find powercard containing a certain string
+2. Powercard shows a list of cards with their index matching the query
+
+ Use case ends.
+
+**Extensions**
+* 2a. There are no powercards the match the query.
+
+  Use case ends.
+
+
+
+
+**Use case:**Review  a deck**
+
+**MSS**
+
+1. User requests to review a particular deck
+2. Powercard shows a random, non repeating card in the deck
+3. User attempts the powercard 
+4. User requests the answer to the powercard 
+5. Powercard reveals the answer to the powercard
+6. User self grades answer and provides Powercard with question answered correct/wrong data
+repeat step 2-6 until all powercards in deck have been exhausted
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. There are no decks with the name requested by the user
+
+  Use case ends
+
+*.a User decides to end the review early
+
+ *.a1 User requests to end the review session
+ *.a2 Powercard ends the session and brings the user back to default area
+
+ Use case ends
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+2.  Should be able to hold up to 1000 Powercards without a noticeable sluggishness in performance for typical usage.
+3. A Powercard should load when prompted without any noticeable lag
+4. Every command should provide a response within 2 seconds
+5. The Powercard program is not expected to determine the correctness of the user’s response
+6. A Powercard should be easily added/deleted in less than 3 commands after opening the program
+7.The data stored by Powercard should be forward compatible such that old data can still be loaded in newer versions of the program
+8. The maximum character limit of a powercard text should be [TO BE DETERMINED]
 *{More to be added}*
+
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Deck**: A group of PowerCards (flashcards) of a specific topic
+*{More to be added}*
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
