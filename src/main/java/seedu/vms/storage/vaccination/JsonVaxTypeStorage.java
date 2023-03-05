@@ -32,4 +32,10 @@ public class JsonVaxTypeStorage implements VaxTypeStorage {
             throw new RuntimeException("Unable to load defaults", ex);
         }
     }
+
+
+    @Override
+    public void saveVaxTypes(VaxTypeManager manager) throws IOException {
+        VaxTypeLoader.fromModelType(manager).write(USER_FILE_PATH);
+    }
 }

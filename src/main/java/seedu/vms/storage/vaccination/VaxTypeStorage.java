@@ -24,4 +24,12 @@ public interface VaxTypeStorage {
      * @throws RuntimeException if an error occurs.
      */
     public VaxTypeManager loadDefaultVaxTypes() throws RuntimeException;
+
+
+    /**
+     * Saves the specified {@code VaxTypeManager} to hard disk.
+     *
+     * @throws IOException if an I/O error occurs.
+     */
+    public void saveVaxTypes(VaxTypeManager manager) throws IOException;
 }

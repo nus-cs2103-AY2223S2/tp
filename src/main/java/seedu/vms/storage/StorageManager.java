@@ -95,4 +95,9 @@ public class StorageManager implements Storage {
         return vaxTypeStorage.loadUserVaxTypes();
     }
 
+    @Override
+    public void saveVaxTypes(VaxTypeManager manager) throws IOException {
+        vaxTypeStorage.saveVaxTypes(manager);
+    }
+
 }
