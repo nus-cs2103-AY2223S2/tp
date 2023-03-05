@@ -271,17 +271,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                    | So that I can…​                                                        |
-|----------|-----------------------------------------------|---------------------------------|------------------------------------------------------------------------|
-| `* * *`  | Student                                       | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | Student                                       | add a new person                |                                                                        |
-| `* * *`  | Student                                       | delete a person                 | remove a contact that I no longer need                                 |
-| `* * *`  | Student                                       | view a person's contact details | contact the person(TA/Professor) to seek help for my tutorials         |
-| `* * *`  | Student                                       | find a person by name           | locate details of persons without having to go through the entire list |
-| `* * *`  | Student                                       | filter a person by tag          | find the persons that is related to the tag quickly                    |
-| `* *`    | Student                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
-| `* *`    | Student  | delete all contacts             | remove all contacts for a fresh start                                  |
-| `*`      | Student with many persons in the address book | sort persons by name            | locate a person easily                                                 |
+| Priority | As a …​                                       | I want to …​                                        | So that I can…​                                                        |
+|----------|-----------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                                       | see usage instructions                              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                                       | add a new contact                                   |                                                                        |
+| `* * *`  | Student                                       | delete a contact                                    | remove a contact that I no longer need                                 |
+| `* * *`  | Student                                       | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
+| `* * *`  | Student                                       | find a contact by name                              | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                                       | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
+| `* * *`  | Student                                       | edit a contact                                      | update the contact details of my contacts when they change             |
+| `* * *`  | Student                                       | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
+| `* * *`  | Student                                       | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
+| `* *`    | Student                                       | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
+| `* *`    | Student                                       | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
+| `* *`    | Student                                       | hide private contact details                        | minimize chance of someone else seeing them by accident                |
+| `* *`    | Student                                       | delete all contacts                                 | remove all contacts for a fresh start                                  |
+| `*`      | Student with many contacts | sort contacts by name                                | locate a contact easily                                                 |
+| `*`      | Student                                       | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
 
 *{More to be added}*
 
@@ -332,7 +338,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Filter a person by tag**
+
+#### Use case: Filter contacts by tag
 
 **MSS**
 
@@ -349,13 +356,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
         Use case ends.
 
-**Use case: View a person's contact details**
+
+
+#### Use case: View a person's contact details
 
 **MSS**
 
-1.  User requests to list persons
-2.  ModCheck shows a list of persons
-3.  User requests to view a specific person in the list
+1.  Student requests to list contacts
+2.  ModCheck shows a list of contacts
+3.  Student requests to view a specific contact in the list
 4.  ModCheck displays the person's contact details
 
     Use case ends.
@@ -378,6 +387,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+#### Use case: Edit a contact
+
+**MSS**
+
+1.  Student requests to edit a contact supplying new values for certain fields 
+2.  ModCheck finds the relevant contact and edits it
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact does not exist
+    * 2a1. ModCheck informs student that contact does not exist
+
+        Use case ends.
+
+* 3a. The new value for the specified field is invalid
+    * 3a1. ModCheck informs student that the given value for the specified field is invalid 
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -386,14 +417,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A student should be able to learn and use commands provided by MODCheck easily within an hour of usage.
-5. Should be able to handle exceptions, errors and invalid inputs without crashing.
-6. Should be able to still work even if there is no data file present.
+5.  Should be able to handle exceptions, errors and invalid inputs without crashing.
+6.  Should be able to still work even if there is no data file present.
+7.  Should be able to function offline - data file and features should work without network connection
+8.  Data file should be human-readable and editable with a simple text editor
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Contact**: An entry in ModCheck describing a person, consisting of a name and fields containing contact details of 
+  that person
+* **Contact details**: Information regarding a person's phone number, email, office location, telegram, LinkedIn, or 
+  any other information relevant for students to communicate with that person
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **TA**: Teaching Assistant - people who assists Professors in conducting tutorial, labs and other classes
 * **GUI**: Graphical User Interface - a system of interactive visual components for computer software
