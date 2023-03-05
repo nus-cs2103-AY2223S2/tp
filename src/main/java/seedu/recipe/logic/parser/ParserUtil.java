@@ -5,11 +5,15 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Name;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Title;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -33,33 +37,48 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDesc = description.trim();
+        if (!Description.isValidDesc(trimmedDesc)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Description(trimmedDesc);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String step} into a {@code Step}. Parses each ingredient that is separated by a whitespace.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code step} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static ArrayList<Step> parseSteps(String steps) throws ParseException {
+        requireNonNull(steps);
+        String trimmedSteps = steps.trim();
+        if (!Step.isValidStep(trimmedSteps)) {
+            throw new ParseException(Step.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        ArrayList<Step> listOfSteps = new ArrayList<>();
+        String[] tempSteps = trimmedSteps.split(",");
+        for (int i = 0; i < tempSteps.length; i++) {
+            Step currentStep = parseStepHelper(tempSteps[i]);
+            listOfSteps.add(currentStep);
+        }
+        return listOfSteps;
+    }
+
+    public static Step parseStepHelper(String step) throws ParseException {
+        requireNonNull(step);
+        String trimmedStep = step.trim();
+        if (!Tag.isValidTagName(trimmedStep)) {
+            throw new ParseException(Step.MESSAGE_CONSTRAINTS);
+        }
+        return new Step(trimmedStep);
     }
 
     /**
@@ -68,13 +87,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static ArrayList<Ingredient> parseIngredients(String ingredients) throws ParseException {
+        requireNonNull(ingredients);
+        String trimmedIngredients = ingredients.trim();
+        if (!Ingredient.isValidIngredient(trimmedIngredients)) {
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        ArrayList<Ingredient> listOfIngredients = new ArrayList<>();
+        String[] tempIngredients = trimmedIngredients.split(",");
+        for (int i = 0; i < tempIngredients.length; i++) {
+            Ingredient currentIngredient = parseIngredientHelper(tempIngredients[i]);
+            listOfIngredients.add(currentIngredient);
+        }
+        return listOfIngredients;
+    }
+
+    public static Ingredient parseIngredientHelper(String ingredient) throws ParseException {
+        requireNonNull(ingredient);
+        String trimmedIngredient = ingredient.trim();
+        if (!Ingredient.isValidIngredient(trimmedIngredient)) {
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        }
+        return new Ingredient(trimmedIngredient);
     }
 
     /**
@@ -83,13 +117,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Title(trimmedTitle);
     }
 
     /**
