@@ -3,10 +3,16 @@ package seedu.loyaltylift.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
@@ -37,9 +43,7 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private HBox customerTypePlaceholder;
 
     /**
      * Creates a {@code CustomerCard} with the given {@code Customer} and index to display.
@@ -51,10 +55,9 @@ public class CustomerCard extends UiPart<Region> {
         name.setText(customer.getName().fullName);
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
-        email.setText(customer.getEmail().value);
-        customer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        Tag customerTypeTag = new Tag(Color.BLUEVIOLET, Color.WHITE, "Individual");
+        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
     }
 
     @Override
