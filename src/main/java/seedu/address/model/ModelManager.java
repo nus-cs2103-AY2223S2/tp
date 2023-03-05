@@ -33,6 +33,7 @@ public class ModelManager implements Model {
 
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
+    // TODO: migrate this to the ui layer -> this probably should be there.
     private final ObservableList<Identifiable> itemsList;
     private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
 
