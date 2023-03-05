@@ -64,19 +64,6 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setEvents(List<Event> events) {
-        requireAllNonNull(events);
-        if (!eventsAreUnique(events)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.setAll(events);
-    }
-
-    /**
      * Removes the equivalent event from the list.
      * The event must exist in the list.
      */
