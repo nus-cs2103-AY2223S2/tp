@@ -7,9 +7,9 @@
 
 # Links
 
-- [About Us](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/docs/AboutUs.md)
-- [Developer Guide](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/docs/DeveloperGuide.md)
-- [User Guide](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/docs/UserGuide.md)
+- [About Us](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/docs/AboutUs.md)
+- [Developer Guide](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/docs/DeveloperGuide.md)
+- [User Guide](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/docs/UserGuide.md)
 
 # Acknowledgements
 
