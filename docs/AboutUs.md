@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Code Reviewer
 
-### Jane Doe
+### Tan Homun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/homuntan02.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/homuntan02)]
+[[portfolio](team/homuntan02.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Water Boy
 
 ### Johnny Doe
 
