@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/kennethk-1201.png" width="200px">
 
 [[github](https://github.com/kennethk-1201)]
-[[portfolio](https://kennethkiang.netlify.app/)]
+[[portfolio](team/kennethk-1201.md)]
 
 - Role: Team Lead
 
