@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/pawan.png" width="200px">
 
 [[github](http://github.com/PawanPatil19)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/pawan.md)]
 
 * Role: Team Member
 * Responsibilities: TBD
@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Member
 * Responsibilities: TBD
 
-### James Doe
+### Jereld Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jereldlimjy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/zhengsterz.md)]
+[[github](http://github.com/jereldlimjy)]
+[[portfolio](team/jereldlimjy.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: TBD
