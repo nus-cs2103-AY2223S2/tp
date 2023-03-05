@@ -40,9 +40,9 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
  * mark
  * unmark
  * exit
-3. Assignment
-4. Class List
-5. CSV Parser
+1. Assignment
+1. Class List
+1. CSV Parser
 
 --------------------------------------------------------------------------------------------------------------------
 
