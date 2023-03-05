@@ -71,6 +71,7 @@ Examples
 ### Exit attendance system: `exit`
 Exits the attendance system.<br>
 Format: `exit`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Viewing help : `help`
