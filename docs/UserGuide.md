@@ -51,6 +51,9 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
+* Items in curly brackets are features that are currently work in progress. <br>
+  e.g `{t/TAG}` means that tagging someone has not yet been implemented, but are planned to be a feature.
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
@@ -80,10 +83,10 @@ Format: `help`
 
 Adds a dengue patient to the dengue hotspot tracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE`
+Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE {t/DENGUE_VARIANT_TAG]}`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20`
+* `add n/John Tan p/543299 d/2023-02-13 a/20 {t/Omicron}`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
 ### Listing all persons : `list`
@@ -96,7 +99,7 @@ Format: `list`
 
 Edits an existing person in the Dengue Hotspot Tracker.
 
-Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/TAG (Work in Progress)]…​`
+Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] {[t/DENGUE_VARIANT_TAG]…​}`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -113,7 +116,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT_TAG`}
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
