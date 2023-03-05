@@ -119,14 +119,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    // ================ Pilot methods ==============================
+
     /**
      * Returns the person manager.
      *
      * @return the person manager.
      */
-    ReadOnlyIdentifiableManager<Pilot> getPilotManager();
 
-    // ================ Pilot methods ==============================
+    ReadOnlyIdentifiableManager<Pilot> getPilotManager();
 
     /**
      * Returns the pilot manager file path.
@@ -200,10 +201,12 @@ public interface Model {
      */
     void updateFilteredPilotList(Predicate<Pilot> predicate);
 
+
     /* Location-related functions */
 
     /**
      * Returns true if the location is in the location list
+     *
      * @param location a location object to be checked
      * @return true if the location has already been in the list
      */
@@ -211,13 +214,31 @@ public interface Model {
 
     /**
      * Delete a location from the location list
-     * @param location the location to be deleted
+     *
+     * @param uuid the id of the location to be deleted
      */
-    void deleteLocation(Location location);
+    void deleteLocation(String uuid);
 
     /**
      * Add a location to the location list
+     *
      * @param location the location to be added
      */
     void addLocation(Location location);
+
+    void setLocationManagerFilePath(Path pilotManagerFilePath);
+
+    ReadOnlyIdentifiableManager<Location> getLocationManager();
+
+    Path getLocationManagerFilePath();
+
+    void setLocationManager(ReadOnlyIdentifiableManager<Location> locationManager);
+
+    void setLocation(Location target, Location editedLocation);
+
+    ObservableList<Location> getFilteredLocationList();
+
+    void updateFilteredLocationList(Predicate<Location> predicate);
+
+    void deleteLocation(Location location);
 }
