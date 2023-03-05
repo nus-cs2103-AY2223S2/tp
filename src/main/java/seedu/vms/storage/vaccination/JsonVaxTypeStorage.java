@@ -6,7 +6,10 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 
-
+/**
+ * An {@link VaxTypeStorage} to handle read and write operations from and to
+ * JSON files containing {@link VaxTypeManager} data.
+ */
 public class JsonVaxTypeStorage implements VaxTypeStorage {
     public static final String USER_FILE_PATH = "data/vaxtype.json";
 
