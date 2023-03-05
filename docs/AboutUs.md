@@ -35,9 +35,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Jian Rong, Nicholas
 
-<img src="images/nicholaslim.png" width="200px">
+<img src="images/nicljr.png" width="200px">
 
-[[github](http://github.com/nicljr)] [[portfolio](team/nicholaslim.md)]
+[[github](http://github.com/nicljr)] [[portfolio](team/nicljr.md)]
 
 * Role: 
   * Code Quality

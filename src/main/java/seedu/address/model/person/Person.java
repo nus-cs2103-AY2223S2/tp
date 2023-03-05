@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
@@ -38,6 +39,8 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Favorite isFavorite;
+
     /**
      * Every field must be present and not null.
      */
@@ -45,6 +48,29 @@ public class Person {
                   Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms) {
         requireAllNonNull(name);
         this.name = name;
+
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.gender = gender;
+        this.major = major;
+        this.modules = modules;
+        this.race = race;
+        this.comms = comms;
+        this.isFavorite = new Favorite(false);
+    }
+
+    /**
+     * Returns a new Person who is Favourited.
+     * Require all fields to be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender,
+                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
+                  Favorite favorite) {
+        requireAllNonNull(name, favorite);
+        this.name = name;
+        this.isFavorite = favorite;
 
         this.phone = phone;
         this.email = email;
@@ -81,6 +107,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Favorite getIsFavorite() {
+        return isFavorite;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -92,6 +122,24 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns same Person who is Favorited.
+     */
+    public Person favorite() {
+        Favorite newFavorite = new Favorite(true);
+        return new Person(name, phone, email, address, gender,
+                major, modules, race, tags, comms, newFavorite);
+    }
+
+    /**
+     * Returns same Person who is Unfavorited.
+     */
+    public Person unfavorite() {
+        Favorite newFavorite = new Favorite(false);
+        return new Person(name, phone, email, address, gender,
+                major, modules, race, tags, comms, newFavorite);
     }
 
     /**
