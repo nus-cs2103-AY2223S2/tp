@@ -98,7 +98,7 @@ Examples:
 
 ### Deleting an employee : `delete`
 
-Deletes the specified employee from the address book.
+Deletes the specified employee from SudoHR.
 
 Format: `delete INDEX`
 
@@ -107,12 +107,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd employee in the address book.
+* `list` followed by `delete 2` deletes the 2nd employee in SudoHR.
 * `find Betsy` followed by `delete 1` deletes the 1st employee in the results of the `find` command.
 
 ### Adding a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -126,7 +126,7 @@ Examples:
 
 ### Updating a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -140,7 +140,7 @@ Examples:
 
 ### Deleting a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -154,7 +154,7 @@ Examples:
 
 ### Listing all departments: `jonathan`
 
-Adds a person to the address book.
+Adds a person to the SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -168,7 +168,7 @@ Examples:
 
 ### Add employee to a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to the SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -182,7 +182,7 @@ Examples:
 
 ### Remove employee from a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to the SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -196,7 +196,7 @@ Examples:
 
 ### List all employees in a department: `jonathan`
 
-Adds a person to the address book.
+Adds a person to the SudoHR.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
