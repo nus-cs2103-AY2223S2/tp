@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yeoh Yong Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yyj-02.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://yeohyongjie.com)]
+[[github](https://github.com/yyj-02)]
+[[portfolio](team/yyj-02.md)]
 
-- Role: Project Advisor
+- Role: Code Reviewer
 
 ### Tan Homun
 
