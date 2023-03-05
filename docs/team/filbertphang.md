@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Managed releases `v1.xx` - `v1.xx` (# releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated... (Pull requests [\#](), [\#]())
+    * Updated... (Pull requests [\#29](), [\#39](), [\#40]())
     * Wrote additional tests... (Pull requests [\#](), [\#]())
 
 * **Documentation**:
@@ -31,10 +31,10 @@ Given below are my contributions to the project.
         * Added documentation for the features `xx` and `xx` [\#]()
         * Did cosmetic tweaks to existing documentation of features `xx`, `xx`: [\#]()
     * Developer Guide:
-        * Added implementation details of the `xx` feature.
+        * Added user profile
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+    * PRs reviewed (with non-trivial review comments): [\#3]()
     * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
     * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
