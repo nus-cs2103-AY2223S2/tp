@@ -8,7 +8,7 @@ import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ProjectStub;
 import arb.model.ReadOnlyAddressBook;
-import arb.model.person.Person;
+import arb.model.client.Client;
 import javafx.collections.ObservableList;
 
 /**
@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
 
     ObservableList<ProjectStub> getEmptyFilteredPersonList();
 

@@ -1,13 +1,12 @@
 package arb.logic;
 
-import static arb.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static arb.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static arb.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static arb.testutil.Assert.assertThrows;
-import static arb.testutil.TypicalPersons.AMY;
+import static arb.testutil.TypicalClients.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -26,11 +25,11 @@ import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.UserPrefs;
-import arb.model.person.Person;
+import arb.model.client.Client;
 import arb.storage.JsonAddressBookStorage;
 import arb.storage.JsonUserPrefsStorage;
 import arb.storage.StorageManager;
-import arb.testutil.PersonBuilder;
+import arb.testutil.ClientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -59,7 +58,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteClientCommand = "delete 9";
-        assertCommandException(deleteClientCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteClientCommand, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,18 +78,17 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add client command
-        String addClientCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addClientCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+        Client expectedClient = new ClientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addClient(expectedClient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addClientCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClientList().remove(0));
     }
 
     /**
