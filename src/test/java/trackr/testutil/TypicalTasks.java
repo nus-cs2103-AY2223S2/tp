@@ -30,7 +30,7 @@ public class TypicalTasks {
             .withTaskStatus(VALID_TASK_STATUS_NOT_DONE)
             .build();
 
-    public static final String KEYWORD_MATCHING_BUY = "Buy"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_BUY = "Buy"; // A keyword that matches BUY
 
     private TypicalTasks() {} // prevents instantiation
 

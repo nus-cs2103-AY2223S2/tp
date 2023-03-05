@@ -13,6 +13,7 @@ public class TaskBuilder {
     public static final String DEFAULT_TASK_NAME = "Sort inventory";
     public static final String DEFAULT_TASK_DEADLINE = "01/01/2027";
     public static final String DEFAULT_TASK_STATUS = "N";
+
     private TaskName taskName;
     private TaskDeadline taskDeadline;
     private TaskStatus taskStatus;

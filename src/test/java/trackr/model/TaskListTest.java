@@ -48,7 +48,7 @@ public class TaskListTest {
         Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         List<Task> newTasks = Arrays.asList(SORT_INVENTORY_N, editedTask);
-        TaskListTest.TaskListStub newData = new TaskListTest.TaskListStub(newTasks);
+        TaskListStub newData = new TaskListStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskList.resetData(newData));
     }
