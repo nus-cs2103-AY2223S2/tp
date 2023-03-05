@@ -77,8 +77,6 @@ Format: `add`
 
 Examples:
 * `add Spinach`
-* `add Meiji Milk`
-* `add Awfully Chocolate`
 
 Example: <br/>
 `add Spinach` returns
