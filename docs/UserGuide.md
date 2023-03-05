@@ -37,9 +37,9 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
 
 ## Feature summary
 1. [Attendance](#Attendance)
-  * mark
-  * unmark
-  * exit
+    * mark
+    * unmark
+    * exit
 1. Assignment
 1. Class List
 1. CSV Parser
@@ -49,29 +49,29 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
 ## Features
 
 ## Attendance
-   Directs you to the attendance system. Within the attendance system, you can call:
-   * mark
-   * unmark
-   * exit
+Directs you to the attendance system. Within the attendance system, you can call:
+* mark
+* unmark
+* exit
 
-   ### Mark attendance: `mark`
-      Marks the attendance of a student for that week
-      Format: `mark {student_name} {week_number}`
-      Examples
-        * mark john 1
-        * mark james 1
+### Mark attendance: `mark`
+Marks the attendance of a student for that week<br>
+Format: `mark {student_name} {week_number}`<br>
+Examples
+* `mark john 1`
+* `mark james 1`
 
-   ### Unmark attendance: `unmark`
-      Unmarks the attendance of a student for that week
-      Format: `unmark {student_name} {week_number}`
-      Examples
-      * unmark john 1
-      * unmark james 1
+### Unmark attendance: `unmark`
+Unmarks the attendance of a student for that week<br>
+Format: `unmark {student_name} {week_number}`<br>
+Examples
+* `unmark john 1`
+* `unmark james 1`
 
 ### Exit attendance system: `exit`
 Exits the attendance system.
 Format: `exit`
-
+--------------------------------------------------------------------------------------------------------------------
 
 ### Viewing help : `help`
 
