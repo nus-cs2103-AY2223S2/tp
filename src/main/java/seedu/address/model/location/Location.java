@@ -15,7 +15,7 @@ public class Location implements Identifiable {
 
     /**
      * Creates a Location object with the given name.
-     * @param name: name of the location
+     * @param name name of the location
      */
     public Location(String name) {
         this(UUID.randomUUID().toString(), name);

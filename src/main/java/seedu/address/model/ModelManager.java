@@ -14,8 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.location.Location;
 import seedu.address.model.item.Identifiable;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -295,7 +295,6 @@ public class ModelManager implements Model {
         return locationManager.hasItem(location);
     }
 
-    @Override
     public void deleteLocation(Location location) {
         locationManager.removeItem(location);
     }

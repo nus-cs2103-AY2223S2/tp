@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.location.Location;
 import seedu.address.model.item.Identifiable;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -239,6 +239,4 @@ public interface Model {
     ObservableList<Location> getFilteredLocationList();
 
     void updateFilteredLocationList(Predicate<Location> predicate);
-
-    void deleteLocation(Location location);
 }

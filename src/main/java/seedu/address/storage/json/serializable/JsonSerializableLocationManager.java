@@ -9,10 +9,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.location.Location;
-import seedu.address.model.pilot.Pilot;
 import seedu.address.storage.json.JsonIdentifiableManager;
 import seedu.address.storage.json.adapted.JsonAdaptedLocation;
-import seedu.address.storage.json.adapted.JsonAdaptedPilot;
 
 /**
  * Represents a serializable manager of locations.
@@ -34,8 +32,7 @@ public class JsonSerializableLocationManager extends JsonIdentifiableManager<Loc
      *                &lt;Pilot&gt;
      * @return a new JsonSerializablePilotManager
      */
-    public static JsonSerializableLocationManager from(
-        ReadOnlyIdentifiableManager<Location> manager) {
+    public static JsonSerializableLocationManager from(ReadOnlyIdentifiableManager<Location> manager) {
         final JsonSerializableLocationManager res =
             new JsonSerializableLocationManager(new ArrayList<>());
         res.readFromManager(manager);

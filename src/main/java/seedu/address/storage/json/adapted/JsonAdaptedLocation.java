@@ -5,11 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
-import seedu.address.model.pilot.Gender;
-import seedu.address.model.pilot.Pilot;
-import seedu.address.model.pilot.PilotRank;
-import seedu.address.model.pilot.exceptions.InvalidGenderException;
-import seedu.address.model.pilot.exceptions.InvalidPilotRankException;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**
