@@ -14,7 +14,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.ElderlyBuilder;
 
 
@@ -27,24 +26,25 @@ public class AddElderlyCommandTest {
 
     @Test
     public void execute_elderlyAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingElderlyAdded modelStub = new ModelStubAcceptingElderlyAdded();
         Elderly validElderly = new ElderlyBuilder().build();
 
         CommandResult commandResult = new AddElderlyCommand(validElderly).execute(modelStub);
 
         assertEquals(String.format(AddElderlyCommand.MESSAGE_SUCCESS, validElderly),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validElderly), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validElderly), modelStub.elderlyAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateElderly_throwsCommandException() {
         Elderly validElderly = new ElderlyBuilder().build();
-        AddElderlyCommand addCommand = new AddElderlyCommand(validElderly);
+        AddElderlyCommand addElderlyCommand = new AddElderlyCommand(validElderly);
         ModelStub modelStub = new ModelStubWithElderly(validElderly);
 
         assertThrows(CommandException.class,
-                AddElderlyCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddElderlyCommand.MESSAGE_DUPLICATE_ELDERLY, () ->
+                        addElderlyCommand.execute(modelStub));
     }
 
     @Test
@@ -72,39 +72,39 @@ public class AddElderlyCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single elderly.
      */
     private class ModelStubWithElderly extends ModelStub {
-        private final Person person;
+        private final Elderly elderly;
 
-        ModelStubWithElderly(Elderly person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithElderly(Elderly elderly) {
+            requireNonNull(elderly);
+            this.elderly = elderly;
         }
 
         @Override
-        public boolean hasElderly(Elderly person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasElderly(Elderly elderly) {
+            requireNonNull(elderly);
+            return this.elderly.isSamePerson(elderly);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the elderly being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingElderlyAdded extends ModelStub {
+        final ArrayList<Elderly> elderlyAdded = new ArrayList<>();
 
         @Override
-        public boolean hasElderly(Elderly person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasElderly(Elderly elderly) {
+            requireNonNull(elderly);
+            return elderlyAdded.stream().anyMatch(elderly::isSamePerson);
         }
 
         @Override
-        public void addElderly(Elderly person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addElderly(Elderly elderly) {
+            requireNonNull(elderly);
+            elderlyAdded.add(elderly);
         }
 
         @Override

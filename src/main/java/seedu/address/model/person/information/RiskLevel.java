@@ -21,7 +21,7 @@ public class RiskLevel {
     public enum Risk {
         LOW,
         MEDIUM,
-        HIGH;
+        HIGH
     }
 
     /**

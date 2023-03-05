@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 
 /**
@@ -36,37 +36,82 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the volunteer in the {@code model}'s volunteer list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Index getMidVolunteerIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredVolunteerList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the volunteer in the {@code model}'s volunteer list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Index getLastVolunteerIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredVolunteerList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the volunteer in the {@code model}'s volunteer list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Volunteer getVolunteer(Model model, Index index) {
+        return model.getFilteredVolunteerList().get(index.getZeroBased());
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns the middle index of the elderly in the {@code model}'s elderly list.
+     */
+    public static Index getMidElderlyIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredElderlyList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the elderly in the {@code model}'s elderly list.
+     */
+    public static Index getLastElderlyIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredElderlyList().size());
+    }
+
+    /**
+     * Returns the elderly in the {@code model}'s elderly list at {@code index}.
+     */
+    public static Elderly getElderly(Model model, Index index) {
+        return model.getFilteredElderlyList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the middle index of the pair in the {@code model}'s pair list.
+     */
+    public static Index getMidPairIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredPairList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the pair in the {@code model}'s pair list.
+     */
+    public static Index getLastPairIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredPairList().size());
+    }
+
+    /**
+     * Returns the pair in the {@code model}'s pair list at {@code index}.
+     */
+    public static Pair getPair(Model model, Index index) {
+        return model.getFilteredPairList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns a {@code FriendlyLink} with all the typical volunteers, elderly and pairs.
      */
     public static FriendlyLink getTypicalFriendlyLink() {
-        FriendlyLink ab = new FriendlyLink();
+        FriendlyLink fl = new FriendlyLink();
         for (Volunteer volunteer : TypicalVolunteers.getTypicalVolunteers()) {
-            ab.addVolunteer(volunteer);
+            fl.addVolunteer(volunteer);
         }
-        for (Elderly elderly : TypicalElderlys.getTypicalElderlys()) {
-            ab.addElderly(elderly);
+        for (Elderly elderly : TypicalElderly.getTypicalElderly()) {
+            fl.addElderly(elderly);
         }
-        return ab;
+        for (Pair pair : TypicalPairs.getTypicalPairs()) {
+            fl.addPair(pair);
+        }
+        return fl;
     }
 }

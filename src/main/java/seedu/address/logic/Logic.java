@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 
 /**
@@ -33,10 +32,6 @@ public interface Logic {
      */
     ReadOnlyFriendlyLink getFriendlyLink();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
-    // NOTE: Add to UI if needed (MainWindow)
     /** Returns an unmodifiable view of the filtered list of elderly */
     ObservableList<Elderly> getFilteredElderlyList();
 

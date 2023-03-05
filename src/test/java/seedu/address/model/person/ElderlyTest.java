@@ -12,10 +12,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalElderlys.ALICE;
-import static seedu.address.testutil.TypicalElderlys.BOB;
+import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,12 +40,12 @@ public class ElderlyTest {
         // same name, same nric, all other attributes different -> returns true
         Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_SINGLE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, different nric, all other attributes different -> returns false
         editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).withNric(VALID_NRIC_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).withNric(VALID_NRIC_BOB)
                 .withRiskLevel(VALID_RISKLEVEL_BOB).withAge(VALID_AGE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
@@ -110,7 +110,7 @@ public class ElderlyTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different tags -> returns false
-        editedAlice = new ElderlyBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ElderlyBuilder(ALICE).withTags(VALID_TAG_SINGLE).build();
         assertNotEquals(ALICE, editedAlice);
     }
 }

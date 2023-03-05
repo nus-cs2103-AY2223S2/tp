@@ -40,7 +40,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_TAG + "undergradStudent";
 
     public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This volunteer already exists in the database";
+    public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the database";
 
     private final Volunteer toAdd;
 
@@ -57,7 +57,7 @@ public class AddVolunteerCommand extends Command {
         requireNonNull(model);
 
         if (model.hasVolunteer(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.addVolunteer(toAdd);

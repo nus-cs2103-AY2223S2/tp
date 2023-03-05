@@ -44,7 +44,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This elderly already exists in the database";
+    public static final String MESSAGE_DUPLICATE_ELDERLY = "This elderly already exists in the database";
 
     private final Elderly toAdd;
 
@@ -63,7 +63,7 @@ public class AddElderlyCommand extends Command {
         // hasPerson makes the judgement based on if same name
         // in Elderly, criteria is same name and age
         if (model.hasElderly(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.addElderly(toAdd);

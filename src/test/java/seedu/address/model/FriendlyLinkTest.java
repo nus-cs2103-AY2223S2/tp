@@ -3,12 +3,15 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalFriendlyLink;
+import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,11 +24,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.PairBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 public class FriendlyLinkTest {
 
@@ -33,8 +36,9 @@ public class FriendlyLinkTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), friendlyLink.getPersonList());
-        // TODO: implement assertEquals(Collections.emptyList(), addressBook.getPairList());
+        assertEquals(Collections.emptyList(), friendlyLink.getElderlyList());
+        assertEquals(Collections.emptyList(), friendlyLink.getVolunteerList());
+        assertEquals(Collections.emptyList(), friendlyLink.getPairList());
     }
 
     @Test
@@ -51,44 +55,87 @@ public class FriendlyLinkTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateElderly_throwsDuplicatePersonException() {
+        // Two elderly with the same identity fields
+        Elderly editedAlice = new ElderlyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        FriendlyLinkStub newData = new FriendlyLinkStub(newPersons);
+        List<Elderly> newElderlyList = Arrays.asList(ALICE, editedAlice);
+        FriendlyLinkStub newData = new FriendlyLinkStub(newElderlyList,
+                Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetFriendlyLinkData(newData));
-        // TODO: check that duplicate pairs throws exceptions.
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> friendlyLink.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInFriendlyLink_returnsFalse() {
-        assertFalse(friendlyLink.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInFriendlyLink_returnsTrue() {
-        friendlyLink.addPerson(ALICE);
-        assertTrue(friendlyLink.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personWithSameIdentityFieldsInFriendlyLink_returnsTrue() {
-        friendlyLink.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateVolunteers_throwsDuplicatePersonException() {
+        // Two volunteers with the same identity fields
+        Volunteer editedBob = new VolunteerBuilder(BOB).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_STRONG)
                 .build();
-        assertTrue(friendlyLink.hasPerson(editedAlice));
+        List<Volunteer> newVolunteers = Arrays.asList(BOB, editedBob);
+        FriendlyLinkStub newData = new FriendlyLinkStub(Collections.emptyList(),
+                newVolunteers, Collections.emptyList());
+
+        assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetFriendlyLinkData(newData));
+    }
+
+    // TODO: check that duplicate pairs throws exceptions.
+
+    @Test
+    public void hasElderly_nullElderly_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasElderly(null));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPersonList().remove(0));
+    public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasVolunteer(null));
+    }
+
+    @Test
+    public void hasElderly_elderlyNotInFriendlyLink_returnsFalse() {
+        assertFalse(friendlyLink.hasElderly(ALICE));
+    }
+
+    @Test
+    public void hasVolunteer_volunteerNotInFriendlyLink_returnsFalse() {
+        assertFalse(friendlyLink.hasVolunteer(BOB));
+    }
+
+    @Test
+    public void hasElderly_elderlyInFriendlyLink_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        assertTrue(friendlyLink.hasElderly(ALICE));
+    }
+
+    @Test
+    public void hasVolunteer_volunteerInFriendlyLink_returnsTrue() {
+        friendlyLink.addVolunteer(BOB);
+        assertTrue(friendlyLink.hasVolunteer(BOB));
+    }
+
+    @Test
+    public void hasElderly_elderlyWithSameIdentityFieldsInFriendlyLink_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        Elderly editedAlice = new ElderlyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE)
+                .build();
+        assertTrue(friendlyLink.hasElderly(editedAlice));
+    }
+
+    @Test
+    public void hasVolunteer_volunteerWithSameIdentityFieldsInFriendlyLink_returnsTrue() {
+        friendlyLink.addVolunteer(BOB);
+        Volunteer editedAlice = new VolunteerBuilder(BOB).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_STRONG)
+                .build();
+        assertTrue(friendlyLink.hasVolunteer(editedAlice));
+    }
+
+    @Test
+    public void getElderlyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getElderlyList().remove(0));
+    }
+
+    @Test
+    public void getVolunteerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getVolunteerList().remove(0));
     }
 
     @Test
@@ -131,18 +178,15 @@ public class FriendlyLinkTest {
      * A stub ReadOnlyFriendlyLink whose persons list can violate interface constraints.
      */
     private static class FriendlyLinkStub implements ReadOnlyFriendlyLink, ReadOnlyVolunteer, ReadOnlyElderly {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Elderly> elderly = FXCollections.observableArrayList();
         private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
         private final ObservableList<Pair> pairs = FXCollections.observableArrayList();
 
-        FriendlyLinkStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        FriendlyLinkStub(Collection<Elderly> elderly, Collection<Volunteer> volunteers,
+                Collection<Pair> pairs) {
+            this.elderly.setAll(elderly);
+            this.volunteers.setAll(volunteers);
+            this.pairs.setAll(pairs);
         }
 
         @Override

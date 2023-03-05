@@ -3,11 +3,13 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalVolunteers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -28,13 +30,13 @@ import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Volunteer;
 import seedu.address.storage.JsonFriendlyLinkStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.elderly.JsonElderlyStorage;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -93,19 +95,24 @@ public class LogicManagerTest {
                 new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        // Execute add volunteer command
+        String addVolunteerCommand = AddVolunteerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NRIC_VOLUNTEER_DESC_AMY + AGE_DESC_AMY;
+        Volunteer expectedVolunteer = new VolunteerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addVolunteer(expectedVolunteer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addVolunteerCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredVolunteerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredVolunteerList().remove(0));
+    }
+
+    @Test
+    public void getFilteredElderlyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredElderlyList().remove(0));
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.FriendlyLink;
-import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableFriendlyLinkTest {
 
@@ -25,8 +25,8 @@ public class JsonSerializableFriendlyLinkTest {
         JsonSerializableFriendlyLink dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableFriendlyLink.class).get();
         FriendlyLink friendlyLinkFromFile = dataFromFile.toModelType();
-        FriendlyLink typicalPersonsFriendlyLink = TypicalPersons.getTypicalFriendlyLink();
-        assertEquals(friendlyLinkFromFile, typicalPersonsFriendlyLink);
+        FriendlyLink typicalFriendlyLink = getTypicalFriendlyLink();
+        assertEquals(friendlyLinkFromFile, typicalFriendlyLink);
     }
 
     @Test

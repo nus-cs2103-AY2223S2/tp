@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
-import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable FriendlyLink that is serializable to JSON format.
@@ -45,7 +43,7 @@ class JsonSerializableFriendlyLink {
         serializePairs(pairs,
                 source.getPairList().stream().map(JsonAdaptedPair::new).collect(Collectors.toList()));
         serializePersons(persons,
-                source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+                source.getElderlyList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     private void serializePersons(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
@@ -63,11 +61,12 @@ class JsonSerializableFriendlyLink {
      */
     public FriendlyLink toModelType() throws IllegalValueException {
         FriendlyLink friendlyLink = new FriendlyLink();
-        unserializeEntities(persons, friendlyLink);
+        // TODO: uncomment when done
+        // unserializeEntities(persons, friendlyLink);
         return friendlyLink;
     }
-
-    private void unserializeEntities(
+    // TODO: update after JsonAdaptedElderly and JsonAdaptedVolunteer is done
+    /* private void unserializeEntities(
             List<JsonAdaptedPerson> entities, FriendlyLink friendlyLink) throws IllegalValueException {
         for (JsonAdaptedPerson jsonAdaptedPerson : entities) {
             Person person = jsonAdaptedPerson.toModelType();
@@ -83,6 +82,6 @@ class JsonSerializableFriendlyLink {
             }
             friendlyLink.addPair(pair);
         }
-    }
+    } */
 
 }

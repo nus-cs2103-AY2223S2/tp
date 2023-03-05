@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyFriendlyLink;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.VolunteerBuilder;
 
@@ -26,24 +25,24 @@ public class AddVolunteerCommandTest {
 
     @Test
     public void execute_volunteerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingVolunteerAdded modelStub = new ModelStubAcceptingVolunteerAdded();
         Volunteer validVolunteer = new VolunteerBuilder().build();
 
         CommandResult commandResult = new AddVolunteerCommand(validVolunteer).execute(modelStub);
 
         assertEquals(String.format(AddVolunteerCommand.MESSAGE_SUCCESS, validVolunteer),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validVolunteer), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validVolunteer), modelStub.volunteersAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Volunteer validVolunteer = new VolunteerBuilder().build();
-        AddVolunteerCommand addCommand = new AddVolunteerCommand(validVolunteer);
+        AddVolunteerCommand addVolunteerCommand = new AddVolunteerCommand(validVolunteer);
         ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
         assertThrows(CommandException.class,
-                AddVolunteerCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
     }
 
     @Test
@@ -71,39 +70,39 @@ public class AddVolunteerCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single volunteer.
      */
     private static class ModelStubWithVolunteer extends ModelStub {
-        private final Person person;
+        private final Volunteer volunteer;
 
-        ModelStubWithVolunteer(Volunteer person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithVolunteer(Volunteer volunteer) {
+            requireNonNull(volunteer);
+            this.volunteer = volunteer;
         }
 
         @Override
-        public boolean hasVolunteer(Volunteer person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasVolunteer(Volunteer volunteer) {
+            requireNonNull(volunteer);
+            return this.volunteer.isSamePerson(volunteer);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the volunteer being added.
      */
-    private static class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private static class ModelStubAcceptingVolunteerAdded extends ModelStub {
+        final ArrayList<Volunteer> volunteersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasVolunteer(Volunteer person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasVolunteer(Volunteer volunteer) {
+            requireNonNull(volunteer);
+            return volunteersAdded.stream().anyMatch(volunteer::isSamePerson);
         }
 
         @Override
-        public void addVolunteer(Volunteer person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addVolunteer(Volunteer volunteer) {
+            requireNonNull(volunteer);
+            volunteersAdded.add(volunteer);
         }
 
         @Override

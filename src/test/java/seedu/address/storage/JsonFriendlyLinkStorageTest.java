@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.HOON;
+import static seedu.address.testutil.TypicalElderly.IDA;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +72,14 @@ public class JsonFriendlyLinkStorageTest {
         assertEquals(original, new FriendlyLink(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addElderly(HOON);
+        original.removeElderly(ALICE);
         jsonFriendlyLinkStorage.saveFriendlyLink(original, filePath);
         readBack = jsonFriendlyLinkStorage.readFriendlyLink(filePath).get();
         assertEquals(original, new FriendlyLink(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addElderly(IDA);
         jsonFriendlyLinkStorage.saveFriendlyLink(original); // file path not specified
         readBack = jsonFriendlyLinkStorage.readFriendlyLink().get(); // file path not specified
         assertEquals(original, new FriendlyLink(readBack));

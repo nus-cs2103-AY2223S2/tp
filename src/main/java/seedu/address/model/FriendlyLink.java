@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
@@ -19,7 +18,6 @@ import seedu.address.model.person.information.Nric;
  */
 public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, ReadOnlyVolunteer {
     // TODO: update generic to volunteer and remove person list
-    private final UniquePersonList<Person> persons;
     private final UniquePersonList<Elderly> elderly;
     private final UniquePersonList<Volunteer> volunteers;
     private final UniquePairList pairs;
@@ -32,7 +30,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      *   among constructors.
      */
     {
-        persons = new UniquePersonList<>();
         pairs = new UniquePairList();
         elderly = new UniquePersonList<>();
         volunteers = new UniquePersonList<>();
@@ -49,14 +46,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Replaces the contents of the pair list with {@code pairs}.
@@ -88,7 +77,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
      */
     public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
-        setPersons(newData.getPersonList());
         setAllElderly(newData.getElderlyList());
         setVolunteers(newData.getVolunteerList());
         setPairs(newData.getPairList());
@@ -111,13 +99,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     //// person-level operations
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the friendlyLink cache.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
@@ -133,14 +114,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
         return volunteers.contains(volunteer);
-    }
-
-    /**
-     * Adds a person to the friendlyLink cache.
-     * The person must not already exist in the friendlyLink cache.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
     }
 
     /**
@@ -184,17 +157,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the friendlyLink cache.
-     * The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the friendlyLink cache.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
      * Replaces the given elderly {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the friendlyLink cache.
      * The elderly identity of {@code editedElderly} must not be the same as
@@ -214,14 +176,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public void setVolunteer(Volunteer target, Volunteer editedPerson) {
         requireNonNull(editedPerson);
         volunteers.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code FriendlyLink}.
-     * {@code key} must exist in the friendlyLink cache.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     /**
@@ -268,18 +222,14 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
         pairs.setPair(target, editedPair);
     }
 
+    // TODO: removePair()
+
     //// util methods
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons"
-                + elderly.asUnmodifiableObservableList().size() + " elderly"
+        return elderly.asUnmodifiableObservableList().size() + " elderly"
                 + volunteers.asUnmodifiableObservableList().size() + " volunteers"
                 + pairs.asUnmodifiableObservableList().size() + " pairs";
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -302,7 +252,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FriendlyLink // instanceof handles nulls
-                && persons.equals(((FriendlyLink) other).persons)
                 && elderly.equals(((FriendlyLink) other).elderly)
                 && volunteers.equals(((FriendlyLink) other).volunteers)
                 && pairs.equals(((FriendlyLink) other).pairs));
@@ -310,8 +259,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
 
     @Override
     public int hashCode() {
-        return persons.hashCode()
-                + elderly.hashCode()
+        return elderly.hashCode()
                 + volunteers.hashCode()
                 + pairs.hashCode();
     }
