@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -82,7 +82,7 @@ public class EditCommand extends Command {
         }
 
         model.setPet(personToEdit, editedPet);
-        model.updateFilteredPetList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPet));
     }
 
