@@ -17,6 +17,7 @@ import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.testutil.SampleVaxTypeData;
 
 public class StorageManagerTest {
@@ -30,7 +31,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
+        storageManager = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
