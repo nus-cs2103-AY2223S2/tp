@@ -83,6 +83,24 @@ public class Person {
         this.comms = comms;
     }
 
+    /**
+     * Constructor to create a Person with only a name. Will assign the rest of the fields as blank.
+     */
+    public Person(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.isFavorite = new Favorite(false);
+        this.phone = new Phone("");
+        this.email = new Email("");
+        this.address = new Address("");
+        this.tags.addAll(new HashSet<>());
+        this.gender = new Gender("");
+        this.major = new Major("");
+        this.modules = new Modules(new HashSet<>());
+        this.race = new Race("");
+        this.comms = new CommunicationChannel("");
+    }
+
     public Name getName() {
         return name;
     }
