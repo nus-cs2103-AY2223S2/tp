@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
@@ -39,6 +40,8 @@ class JsonAdaptedPerson {
     private final String gender;
     private final String comms;
 
+    private final String isFavorite;
+
     private final List<JsonAdaptedNusMod> modules = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -52,7 +55,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("major") String major, @JsonProperty("gender") String gender,
                              @JsonProperty("comms") String comms,
                              @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("favorite") String isFavorite) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -62,6 +66,8 @@ class JsonAdaptedPerson {
 
         this.gender = gender;
         this.comms = comms;
+        this.isFavorite = isFavorite;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -88,6 +94,7 @@ class JsonAdaptedPerson {
         this.tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        this.isFavorite = source.getIsFavorite().toString();
     }
 
     /**
@@ -149,6 +156,11 @@ class JsonAdaptedPerson {
         }
         final Race modelRace = new Race(this.race);
 
+        if (!Favorite.isValidFavorite(isFavorite)) {
+            throw new IllegalValueException(Favorite.MESSAGE_CONSTRAINTS);
+        }
+        final Favorite favoriteStatus = new Favorite(this.isFavorite);
+
         Set<NusMod> personMods = new HashSet<>();
         for (JsonAdaptedNusMod mod: this.modules) {
             personMods.add(mod.toModelType());
@@ -159,7 +171,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
-                modelModules, modelRace, modelTags, modelComms);
+                modelModules, modelRace, modelTags, modelComms, favoriteStatus);
     }
 
 }
