@@ -15,8 +15,14 @@ public class TaskStatusTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidTaskStatus = "";
+    public void constructor_blankStatus_throwsIllegalArgumentException() {
+        String blankTaskStatus = "";
+        assertThrows(IllegalArgumentException.class, () -> new TaskStatus(blankTaskStatus));
+    }
+
+    @Test
+    public void constructor_invalidStatus_throwsIllegalArgumentException() {
+        String invalidTaskStatus = "Z";
         assertThrows(IllegalArgumentException.class, () -> new TaskStatus(invalidTaskStatus));
     }
 
@@ -36,7 +42,9 @@ public class TaskStatusTest {
         assertFalse(TaskStatus.isValidTaskStatus(" ")); // spaces only
         assertFalse(TaskStatus.isValidTaskStatus("^")); // only non-alphanumeric characters
         assertFalse(TaskStatus.isValidTaskStatus("N*")); // contains non-alphanumeric characters
+        assertFalse(TaskStatus.isValidTaskStatus("M")); // invalid status
         assertFalse(TaskStatus.isValidTaskStatus("DN")); // both D and N
+        assertFalse(TaskStatus.isValidTaskStatus("N N")); // more than one character
         assertFalse(TaskStatus.isValidTaskStatus("12345")); // numbers only
         assertFalse(TaskStatus.isValidTaskStatus("D ")); // white spaces at the back
 

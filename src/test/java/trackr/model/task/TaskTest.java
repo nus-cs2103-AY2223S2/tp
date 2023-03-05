@@ -16,12 +16,6 @@ import trackr.testutil.TaskBuilder;
 
 public class TaskTest {
 
-    /*@Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Task task = new TaskBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> task.);
-    }*/
-
     @Test
     public void isSameTask() {
         // same object -> returns true

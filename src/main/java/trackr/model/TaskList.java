@@ -66,7 +66,7 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
-     * Adds a task to the address book.
+     * Adds a task to the task list.
      * The task must not already exist in the task list.
      */
     public void addTask(Task t) {

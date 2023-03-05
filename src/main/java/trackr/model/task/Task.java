@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class Task {
 
-    // Identity fields
+    // Data fields
     private final TaskName taskName;
     private final TaskDeadline taskDeadline;
     private final TaskStatus taskStatus;
@@ -84,8 +84,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getTaskDeadline())
                 .append("; Status: ")
-                .append(getTaskStatus())
-                .append("; Address: ");
+                .append(getTaskStatus());
         return builder.toString();
     }
 

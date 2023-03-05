@@ -9,7 +9,6 @@ import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import static trackr.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,7 +73,7 @@ public class CommandTestUtil {
     public static final String VALID_TASK_NAME_SORT_INVENTORY = "Sort Inventory";
     public static final String VALID_TASK_NAME_BUY_FLOUR = "Buy Flour";
 
-    public static final LocalDate VALID_TASK_DEADLINE_2100 = LocalDate.parse("2100-01-01");
+    public static final String VALID_TASK_DEADLINE_2100 = "01/01/2100";
     public static final String VALID_TASK_STATUS_DONE = "D";
     public static final String VALID_TASK_STATUS_NOT_DONE = "N";
 

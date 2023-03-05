@@ -10,13 +10,13 @@ import static trackr.commons.util.AppUtil.checkArgument;
 public class TaskStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Task status should only be `N` for not done or `D` for done";
+            "Task status should only be `N` or `n` for not done or `D` or `d` for done";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the task status must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[nNdD]";
 
     private boolean isDone;
 
@@ -45,17 +45,13 @@ public class TaskStatus {
      * Returns true if a given string is a valid task status.
      */
     public static boolean isValidTaskStatus(String test) {
-        return test.matches(VALIDATION_REGEX)
-                && (test.equalsIgnoreCase("N") || test.equalsIgnoreCase("D"));
+        return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        if (isDone) {
-            return "D";
-        }
-        return "N";
+        return isDone ? "D" : "N";
     }
 
     @Override
@@ -63,6 +59,12 @@ public class TaskStatus {
         return other == this // short circuit if same object
                 || (other instanceof TaskStatus // instanceof handles nulls
                 && isDone == ((TaskStatus) other).isDone); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        // Hashcode 1231 in Java represents true while 1237 represents false
+        return isDone ? 1231 : 1237;
     }
 
 }
