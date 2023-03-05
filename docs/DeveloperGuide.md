@@ -257,23 +257,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* *coming soon*
+* Fridge owner who cares about food waste and wish to track their fridge inventory.
 
-**Value proposition**: *to be added*
+**Value proposition**:
+* The perfect solution to make sure you’re always one step ahead when managing your inventory, saving you time and money while reducing food waste.
 
 
 ### User stories *to be edited*
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                                          | So that I can…​                             |
+|----------|------------------------------------|-------------------------------------------------------|---------------------------------------------|
+| `* * *`  | user                               | add food items to my list                             | track what is in my fridge                  |
+| `* * *`  | meal planner                       | set expiration dates for items in my fridge           | plan meals around items that are expiring   |
+| `* * *`  | chef                               | set item categories for fridge items                  | easily find what I need when cooking.       |
+| `* * *`  | user                               | delete ingredients                                    | know what ingredients I have thrown away    |
+| `* *`    | user                               | layout items                                          | see where all my food items are             |
+| `* *`    | fridge owner                       | transfer my list to another system                    | use the same system with another fridge     |
+| `* *`    | user                               | search for specific food items                        | see whether I still have it in my fridge    |
+| `* *`    | user                               | leave comments on items                               | remember any particular remarks             |
+| `* *`    | user                               | attach images to items                                | remember what they look like                |
+| `* *`    | user who manages finances          | know how much is spent every month                    | track my monthly finances                   |
+| `* *`    | user who likes to try new products | rate the items                                        | know whether to buy the same item next time |
+| `* *`    | forgetful user                     | see past purchases                                    | remember what I have bought in the past     |
+| `* *`    | user                               | set reminders for items                               | remember to use them before they expire     |
+| `*`      | student                            | see recipes with the food in my fridge as ingredients | decide what meals I can make                |
+| `*`      | housewife                          | generate a grocery list                               | bring it to the supermarket                 |
 
 *{More to be added}*
 
@@ -281,30 +291,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Tag a food item**
+### **Use case UC01: Add a new item**
+**MSS**
+1. User add item by giving WIFE the name of the item.
+2. User confirms.
+3. WIFE adds the item to the list and displays all current items in the fridge.
+   Use case ends.
+
+**Extensions**
+* 2a. WIFE detects an error in the entered data.
+  * 2a1. WIFE requests for the correct data.
+  * 2a2. User enters new data.
+  * Steps 2a1-2a2 are repeated until the data entered are correct. <br/>
+  Use case resumes from step 3.
+
+* *a. At any time, User chooses to cancel the transfer.
+  * *a1. OBS requests to confirm the cancellation.
+  * *a2. User confirms the cancellation. <br/>
+  Use case ends.
+
+
+### **Use case UC02: View all food items**
+**MSS**
+1. User ask to view all food items in WIFE.
+2. WIFE displays all food items that are in the fridge. <br/>
+   Use case ends.
+
+**Extensions:**
+* 1a. WIFE is empty.
+  * 1a1. WIFE displays a message that tells the User that there are no items. <br/> 
+  Use case ends.
+
+### **Use case UC03: Delete a food item**
+**MSS**
+1. User requests to delete specified food items in WIFE.
+2. WIFE deletes food item and displays successful deletion message. <br/>
+   Use case ends.
+
+**Extensions:**
+* 1a. WIFE is empty.
+  * 1a1. WIFE displays a message that tells the User that there are no items and cannot delete specified item. <br/>
+    Use case ends. 
+* 1b. User selects an item that does not exist.
+  * 1b1. WIFE displays a message that tells the User that specified item does not exist. <br/>
+    Use case ends.
+
+### **Use case UC04: View help**
+**MSS:**
+1. User asks the WIFE for the help page
+2. WIFE displays all available commands and corresponding formats <br/>
+   Use case ends.
+
+
+### **Use case UC05: Tag a food item**
 
 **MSS**
 
 1.  User requests to list persons
 2.  WIFE shows the full list of food items.
-3.  User tag specified food item with tags pre-defined by WIFE.
+3.  User tag food item at specified index with tags pre-defined by WIFE.
 4.  WIFE tagged the food item with the chosen tag.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+* 2a. The list is empty. </br>
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. WIFE shows an error message.
+    * 3a1. WIFE shows an error message. </br>
       Use case resumes at step 2.
 
 * 4a. Chosen tag is not in the pre-defined list of tags.
   * 4a1. WIFE shows an error message.
-  * 4a2. WIFE asks if the user wish to add the new tags into the tag list.
+  * 4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
     Use case resumes at step 2.
 
 **Use case: Update a food item**
@@ -335,12 +396,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  Application’s dimension should be a minimum of 450 by 600 pixels.
+5.  Should support a minimum of 50 items in storage.
+6.  There should be no more than 1 second of lag when a user inputs a command.
+7.  A first-time user should be able to easily perform CRUD operations on items.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X <br/>
+* **WIFE** - Well Informed Fridge Environment <br/>
 *{more to be added}*
 
 --------------------------------------------------------------------------------------------------------------------

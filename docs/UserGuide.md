@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage 
+WIFE is always right. Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
 improving the efficiency of grocery shopping.
@@ -62,21 +62,35 @@ improving the efficiency of grocery shopping.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a list of available commands as well as their correct formats
 
 Format: `help`
+
+Example:
+`help` returns 
+```
+Command Examples:
+Add food item - add <Food Name>
+Update food item - update <Food Name>
+Delete food item - delete <Index>
+Tag food item - tag <Index> /with <Tag Name>
+```
 
 
 ### Adding a food item: `add`
 
-*placeholder*
+Add food items into your fridge.
 
-Format: `placeholder`
+Format: `add`
 
 Examples:
-* `placeholder`
+* `add Spinach`
+
+Example: <br/>
+`add Spinach` returns
+```shell
+  You have successfully added Spinach into your fridge.
+```
 
 ### Listing all food items : `list`
 
