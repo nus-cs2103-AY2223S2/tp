@@ -55,3 +55,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: To Be Added
 - Responsibilities: To Be Added
+
+### Ethan Tan
+
+<img src="images/yes.png" width="200px">
+
+[[github](http://github.com/thedesalizes)]
+[[portfolio](team/thedesalizes.md)]
+
+- Role: To Be Added
+- Responsibilities: To Be Added
