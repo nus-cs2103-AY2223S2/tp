@@ -53,4 +53,10 @@ public class ApplicantTest {
         Applicant editedBenedict = new ApplicantBuilder(BENEDICT).withName(VALID_APPLICANT_NAME_CHRIS).build();
         assertFalse(BENEDICT.equals(editedBenedict));
     }
+
+    @Test
+    public void stringTest() {
+        String expected = "Benedict Green";
+        assertTrue(BENEDICT.toString().equals(expected));
+    }
 }

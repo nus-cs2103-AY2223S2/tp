@@ -7,7 +7,7 @@ import seedu.address.model.applicant.Name;
  * A utility class to help with building Applicant objects.
  */
 public class ApplicantBuilder {
-    public static final String DEFAULT_NAME = "Chris Topper";
+    public static final String DEFAULT_NAME = "Benedict Green";
 
     private Name name;
     /**

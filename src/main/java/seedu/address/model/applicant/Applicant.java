@@ -62,5 +62,4 @@ public class Applicant {
 
         return builder.toString();
     }
-
 }
