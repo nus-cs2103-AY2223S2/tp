@@ -35,6 +35,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditInternshipDescriptor();
         descriptor.setPosition(internship.getPosition());
         descriptor.setCompany(internship.getCompany());
+        descriptor.setId(internship.getId());
         descriptor.setStatus(internship.getStatus());
         descriptor.setDescription(internship.getDescription());
         descriptor.setTags(internship.getTags());
@@ -53,6 +54,14 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withCompany(String company) {
         descriptor.setCompany(new Company(company));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Id} of the {@code EditInternshipDescriptor} that we are building.
+     */
+    public EditInternshipDescriptorBuilder withId(String id) {
+        descriptor.setId(new Id(id));
         return this;
     }
 

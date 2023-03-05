@@ -16,7 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Internship objects.
  */
 public class InternshipBuilder {
-    // public static final Integer DEFAULT_ID = 1;
+    public static final String DEFAULT_ID = "1";
     public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_COMPANY = "Grab";
     public static final Integer DEFAULT_STATUS = 1;
@@ -26,6 +26,7 @@ public class InternshipBuilder {
     private Position position;
     private Company company;
     private Status status;
+    private Id id;
     private Description description;
     private Set<Tag> tags;
 
@@ -38,6 +39,7 @@ public class InternshipBuilder {
         company = new Company(DEFAULT_COMPANY);
         status = new Status(DEFAULT_STATUS);
         description = new Description(DEFAULT_DESCRIPTION);
+        id = new Id(DEFAULT_ID);
         tags = new HashSet<>();
     }
 
@@ -45,7 +47,7 @@ public class InternshipBuilder {
      * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
-        // id = internshipToCopy.getId();
+        id = internshipToCopy.getId();
         position = internshipToCopy.getPosition();
         company = internshipToCopy.getCompany();
         status = internshipToCopy.getStatus();
@@ -65,10 +67,10 @@ public class InternshipBuilder {
     /**
      * Sets the {@code id} of the {@code Internship} that we are building.
      */
-    // public InternshipBuilder withId(Integer id) {
-        // this.id = new Id(id);
-        // return this;
-    // }
+    public InternshipBuilder withId(String id) {
+        this.id = new Id(id);
+        return this;
+    }
 
     /**
      * Sets the {@code Position} of the {@code Internship} that we are building.
@@ -103,7 +105,8 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(position, company, status, description, tags);
+        return new Internship(position, company, id, status, description, tags);
     }
+
 }
 

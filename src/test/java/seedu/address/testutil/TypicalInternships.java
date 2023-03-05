@@ -14,21 +14,25 @@ public class TypicalInternships {
     // Values declared below should be moved to static seedu.address.logic.commands.CommandTestUtil package
     public String VALID_POSITION_ML1 = "Machine Learning";
     public String VALID_COMPANY_ML1 = "Tiktok";
+    public String VALID_ID_ML1 = "1";
     public Integer VALID_STATUS_ML1 = 0;
     public String VALID_DESCRIPTION_ML1 = "Registration Deadline: 20 Mar 2023";
 
     public String VALID_POSITION_SE1 = "Software Engineer";
     public String VALID_COMPANY_SE1 = "Grab";
+    public String VALID_ID_SE1 = "2";
     public Integer VALID_STATUS_SE1 = 1;
     public String VALID_DESCRIPTION_SE1 = "Interview Date: 20 May 2023";
 
     public String VALID_POSITION_DA1 = "Data Analytics";
     public String VALID_COMPANY_DA1 = "Google";
+    public String VALID_ID_DA1 = "3";
     public Integer VALID_STATUS_DA1 = 2;
     public String VALID_DESCRIPTION_DA1 = "Internship Period: 01 May 2023 to 31 July 2023";
 
     public String VALID_POSITION_SD1 = "Software Developer";
     public String VALID_COMPANY_SD1 = "Shopee";
+    public String VALID_ID_SD1 = "4";
     public Integer VALID_STATUS_SD1 = 3;
     public String VALID_DESCRIPTION_SD1 = "Rejected on 21 Feb 2023";
 
@@ -36,34 +40,37 @@ public class TypicalInternships {
     public String VALID_TAG_IMPORTANT = "important";
 
     public static final Internship ML2 = new InternshipBuilder().withPosition("Machine Learning")
-            .withCompany("GovTech").withStatus(2).withDescription("Internship Period: unknown")
+            .withCompany("GovTech").withId("5").withStatus(2).withDescription("Internship Period: unknown")
             .withTags("priority").build();
     public static final Internship SE3 = new InternshipBuilder().withPosition("Software Engineer")
-            .withCompany("GovTech").withStatus(3).withDescription("Rejected on 20 Feb 2023")
+            .withCompany("GovTech").withId("6").withStatus(3).withDescription("Rejected on 20 Feb 2023")
             .withTags("priority", "fun").build();
     public static final Internship SE4 = new InternshipBuilder().withPosition("Software Engineer")
-            .withCompany("Apple").withStatus(0).withDecription("Submitted resume").build();
+            .withCompany("Apple").withId("7").withStatus(0).withDescription("Submitted resume").build();
     public static final Internship DS1 = new InternshipBuilder().withPosition("Data Science")
-            .withCompany("Gojek").withStatus(0).withDecription("Submitted resume").build();
+            .withCompany("Gojek").withId("8").withStatus(0).withDescription("Submitted resume").build();
     public static final Internship BE1 = new InternshipBuilder().withPosition("Backend Engineer")
-            .withCompany("TikTok").withStatus(0).withDecription("Submitted resume").build();
-    public static final Internship ST1 = new InternshipBuilder().withPosition("Software Testing")
-            .withCompany("Razor").withStatus(1).withDecription("Interview Date: 20 Mar 2023")
+            .withCompany("TikTok").withId("9").withStatus(0).withDescription("Submitted resume").build();
+    public static final Internship ST1 =new InternshipBuilder().withPosition("Software Testing")
+            .withCompany("Razor").withId("10").withStatus(1).withDescription("Interview Date: 20 Mar 2023")
             .withTags("priority", "important").build();
     public static final Internship DA2 = new InternshipBuilder().withPosition("Data Analyst")
-            .withCompany("Infineon Technologies").withStatus(2).withDecription("Final interview unconfirmed").build();
+            .withCompany("Infineon Technologies").withId("11").withStatus(2)
+            .withDescription("Final interview unconfirmed").build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship ML1 = new InternshipBuilder().withPosition(VALID_POSITION_ML1)
-            .withCompany(VALID_COMPANY_ML1).withDescription(VALID_DESCRIPTION_ML1).withStatus(VALID_STATUS_ML1)
-            .withTags(VALID_TAG_IMPORTANT).build();
+            .withCompany(VALID_COMPANY_ML1).withId(VALID_ID_ML1).withDescription(VALID_DESCRIPTION_ML1)
+            .withStatus(VALID_STATUS_ML1).withTags(VALID_TAG_IMPORTANT).build();
     public static final Internship SE1 = new InternshipBuilder().withPosition(VALID_POSITION_SE1)
-            .withCompany(VALID_COMPANY_SE1).withDescription(VALID_DESCRIPTION_SE1).withStatus(VALID_STATUS_SE1)
-            .withTags(VALID_TAG_IMPORTANT).withTags(VALID_TAG_FUN).build();
+            .withCompany(VALID_COMPANY_SE1).withId(VALID_ID_SE1).withDescription(VALID_DESCRIPTION_SE1)
+            .withStatus(VALID_STATUS_SE1).withTags(VALID_TAG_IMPORTANT).withTags(VALID_TAG_FUN).build();
     public static final Internship DA1 = new InternshipBuilder().withPosition(VALID_POSITION_DA1)
-            .withCompany(VALID_COMPANY_DA1).withDescription(VALID_DESCRIPTION_DA1).withStatus(VALID_STATUS_DA1).build();
+            .withCompany(VALID_COMPANY_DA1).withID(VALID_ID_DA1).withDescription(VALID_DESCRIPTION_DA1)
+            .withStatus(VALID_STATUS_DA1).build();
     public static final Internship SD1 = new InternshipBuilder().withPosition(VALID_POSITION_SD1)
-            .withCompany(VALID_COMPANY_SD1).withDescription(VALID_DESCRIPTION_SD1).withStatus(VALID_STATUS_SD1).build();
+            .withCompany(VALID_COMPANY_SD1).withId(VALID_ID_SD1).withDescription(VALID_DESCRIPTION_SD1)
+            .withStatus(VALID_STATUS_SD1).build();
 
     public static final String KEYWORD_MATCHING_SOFTWARE = "software"; // A keyword that matches software
 
