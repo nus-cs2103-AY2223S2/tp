@@ -257,29 +257,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-nerds turned salespeople, who are used to a CLI-interface
+* Who have many contacts to trace
+* But don't want to deal with a cluttered interface, because updating a CRM can be a pain
+* And instead want a minimal and fast set-up to track their clients, tasks, and view stats
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: hyper-efficient CRM system for salespeople who don't want to work with a cluttered GUI
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                            | So that I can…​                                          |
+|----------|--------------------------------------------|---------------------------------------------------------|----------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                  | refer to instructions when I forget how to use the App   |
+| `* * *`  | salesperson                                | access and update customer information                  |                                                          |
+| `* * *`  | salesperson                                | add a new client                                        |                                                          |
+| `* * *`  | salesperson                                | delete a client                                         | remove leads that have fallen cold, or are false entries |
+| `* * *`  | forgetful salesperson                      | filter my contacts by lead status                       | prioritise what to follow up on                          |
+| `* *`    | salesperson                                | have a keyword search                                   | find lead based on a company or persons name             |
+| `* *`    | forgetful salesperson                      | associate my contacts with the day of first creation    | determine the next time I should contact them            |
+| `* *`    | frantic salesperson                        | be warned when I make certain actions in my application | won’t jeopardise my work through carelessness            |
+| `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                   |
+| `*`      | new user                                   | import my current database                              |                                                          |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -313,15 +315,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A user should be able to work with 20 tasks per client without having noticeable sluggishness in performance for typical usage.
+5.  If a user wishes to use the email templating feature, a default mail app on their system is required. 
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
+* **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
+* **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Client. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
 
 --------------------------------------------------------------------------------------------------------------------
 
