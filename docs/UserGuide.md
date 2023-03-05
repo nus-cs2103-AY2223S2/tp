@@ -81,18 +81,20 @@ Adds a person to the address book.
 Format: `add n/NAME [{SPECIFIER}/{DATA}]`
 
 Here are all the specifiers that can be used:
-| Specifier   | Name of Field| Optional? |
-| ----------- | -----------  |
-|n | name | No |
-|e | Email address | Yes |
-|a | Address | Yes |
-|m | Major | Yes |
-|mt | Mods Taken | Yes |
-|f | Faculty | Yes |
-|p | Photo | Yes |
-|g | Gender | Yes |
-|t | Tags | Yes |
-|c | Preferred Communication Channel | Yes |
+
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| p         | Photo                           | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0). 
@@ -120,18 +122,19 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [{SPECIFIER}/{DATA}]`
 
-| Specifier   | Name of Field| Optional? |
-| ----------- | -----------  |
-|n | name | No |
-|e | Email address | Yes |
-|a | Address | Yes |
-|m | Major | Yes |
-|mt | Mods Taken | Yes |
-|f | Faculty | Yes |
-|p | Photo | Yes |
-|g | Gender | Yes |
-|t | Tags | Yes |
-|c | Preferred Communication Channel | Yes |
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| p         | Photo                           | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
