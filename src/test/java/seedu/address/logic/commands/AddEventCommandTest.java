@@ -44,7 +44,7 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEvent_throwsCommandException() {
         Event validEvent = new EventBuilder().build();
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
         AddEventCommandTest.ModelStub modelStub = new AddEventCommandTest.ModelStubWithEvent(validEvent);
