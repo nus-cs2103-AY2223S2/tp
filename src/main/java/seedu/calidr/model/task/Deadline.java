@@ -1,4 +1,4 @@
-package seedu.calidr.task;
+package seedu.calidr.model.task;
 
 import java.time.LocalDateTime;
 
@@ -37,6 +37,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public LocalDateTime getBy() {
+        return by;
+    }
+
+
     /**
      * Gets the String representation of the deadline to be stored in the text file.
      *
@@ -44,13 +49,9 @@ public class Deadline extends Task {
      */
     @Override
     public String getFileRepresentation() {
-        String mark = (super.isDone) ? "X" : " ";
+        String mark = (super.isDone()) ? "X" : " ";
 
-        return "D" + "~"
-                + this.priority + "~"
-                + mark + "~"
-                + this.description + "~"
-                + this.by;
+        return "D" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.by;
     }
 
     @Override

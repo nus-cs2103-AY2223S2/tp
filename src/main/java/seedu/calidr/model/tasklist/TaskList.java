@@ -1,11 +1,11 @@
-package seedu.calidr.tasklist;
+package seedu.calidr.model.tasklist;
 
 import java.util.ArrayList;
 
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
-import seedu.calidr.task.Priority;
-import seedu.calidr.task.Task;
+import seedu.calidr.model.task.Priority;
+import seedu.calidr.model.task.Task;
 
 /**
  * Represents a task list manager that aids in storing and manipulating the
@@ -13,7 +13,7 @@ import seedu.calidr.task.Task;
  */
 public class TaskList {
 
-    private final ArrayList<Task> tasks = new ArrayList<Task>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
      * Returns all the Tasks in the list of Tasks.
@@ -109,14 +109,7 @@ public class TaskList {
 
         this.tasks.add(task);
 
-        StringBuilder response = new StringBuilder();
-        response.append("I have added the ")
-                .append(taskType)
-                .append(" to the list :)\n")
-                .append(task)
-                .append("\n");
-
-        return response.toString();
+        return "I have added the " + taskType + " to the list :)\n" + task + "\n";
 
     }
 
@@ -135,16 +128,7 @@ public class TaskList {
         if (isValidTaskNumber) {
             Task removedTask = this.tasks.remove(taskNumber - 1);
 
-            StringBuilder response = new StringBuilder();
-            response.append("I have removed Task ")
-                    .append(taskNumber)
-                    .append(" from the list.\n")
-                    .append(removedTask)
-                    .append("\nYou now have ")
-                    .append(this.tasks.size())
-                    .append(" task(s) in the list.\n");
-
-            return response.toString();
+            return "I have removed Task " + taskNumber + " from the list.\n" + removedTask + "\nYou now have " + this.tasks.size() + " task(s) in the list.\n";
 
         } else {
             throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");

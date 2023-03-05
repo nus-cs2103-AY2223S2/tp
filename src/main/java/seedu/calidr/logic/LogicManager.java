@@ -2,6 +2,7 @@ package seedu.calidr.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.person.Person;
+import seedu.calidr.model.task.Task;
 import seedu.calidr.storage.Storage;
 
 /**

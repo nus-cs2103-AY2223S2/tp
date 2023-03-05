@@ -180,10 +180,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
+            } else {
+                calendarPanel.updateCalendar(logic.getTaskList());
             }
 
             return commandResult;

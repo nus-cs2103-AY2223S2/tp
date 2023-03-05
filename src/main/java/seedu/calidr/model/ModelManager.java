@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.model.person.Person;
+import seedu.calidr.model.task.Deadline;
+import seedu.calidr.model.task.Event;
+import seedu.calidr.model.task.Task;
+import seedu.calidr.model.task.ToDo;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -126,6 +132,16 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ArrayList<Task> getTaskList() {
+        // TODO remove stub
+        ArrayList<Task> taskList = new ArrayList<>();
+        taskList.add(new ToDo("CS2103T"));
+        taskList.add(new Deadline("CS2101", LocalDateTime.of(2023, 3, 5, 3, 10)));
+        taskList.add(new Event("CS3211", LocalDateTime.of(2023, 3, 6, 10, 10), LocalDateTime.of(2023, 3, 7, 10, 10)));
+        return taskList;
     }
 
     @Override

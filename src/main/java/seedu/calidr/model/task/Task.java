@@ -1,4 +1,4 @@
-package seedu.calidr.task;
+package seedu.calidr.model.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,12 +9,16 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
 
-    protected final String description;
-    protected boolean isDone;
-    protected Priority priority;
+    private final String description;
+    private boolean isDone;
+    private Priority priority;
 
-
-    protected Task(String description) {
+    /**
+     * Creates a Task object with the given description and MEDIUM priority.
+     *
+     * @param description The description of the Task.
+     */
+    public Task(String description) {
         assert description != null;
 
         this.description = description;
@@ -22,7 +26,13 @@ public abstract class Task {
         this.priority = Priority.MEDIUM;
     }
 
-    protected Task(String description, Priority priority) {
+    /**
+     * Creates a Task object with the given description and priority.
+     *
+     * @param description The description of the Task.
+     * @param priority    The priority associated with the Task.
+     */
+    public Task(String description, Priority priority) {
         assert description != null;
         assert priority != null;
 
@@ -61,12 +71,22 @@ public abstract class Task {
         this.priority = p;
     }
 
+    public Priority getPriority() {
+        return this.priority;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
     @Override
     public String toString() {
         String mark = this.isDone ? "X" : " ";
-        return "{" + this.priority.toString().toLowerCase()
-                + "}[" + mark + "] "
-                + this.description;
+        return "{" + this.priority.toString().toLowerCase() + "}[" + mark + "] " + this.description;
     }
 
     /**
