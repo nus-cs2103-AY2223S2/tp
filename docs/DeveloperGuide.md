@@ -309,65 +309,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home bakery owner`)
 
 
-**Use case: Add a new order**
+**Use case: Add a new task**
 
 MSS
 
-1. Home bakery owner requests to add a new order
-2. Trackr displays a input bar for entering the details of the new order
-3. Home bakery owner enters the required information
-5. Trackr saves the new order to the system
+1. Home bakery owner requests to add a new task.
+2. Home bakery owner enters an add command with the required information.
+3. Trackr saves the new task to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
+* 2a. The Home bakery owner does not enter all required information.
+  Trackr shows an error message.
 
-  Use case resumes at step 2.
-
-  Use case ends without adding any order.
+  Use case ends without adding any task.
 
 **Use case: Add a new supplier**
 
 MSS
 
-1. Home bakery owner requests to add a new supplier
-2. Trackr displays a input bar for entering the details of the new supplier
-3. Home bakery owner enters the required information
-5. Trackr saves the new supplier to the system
+1. Home bakery owner requests to add a new supplier information.
+2. Home bakery owner enters an add supplier command with the required information.
+3. Trackr saves the new supplier to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
 
-  Use case resumes at step 2.
-
-  Use case ends without adding any supplier.
+  Use case ends without adding any task.
 
 **Use case: Add a new task**
 
 MSS
 
-1. Home bakery owner requests to add a new task
-2. Trackr displays a input bar for entering the details of the new task
-3. Home bakery owner enters the required information
-5. Trackr saves the new task to the system
+1. Home bakery owner requests to add a new task. 
+2. Home bakery owner enters an add command with the required information. 
+3. Trackr saves the new task to the system.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
 
-  Use case resumes at step 2.
-
-  Use case ends without adding any task.
+    Use case ends without adding any task.
 
 
 **Use case: Delete an order**
@@ -441,34 +432,34 @@ MSS
 
 **Use case: Edit an order**
 
-**MSS**
+MSS
 
 1. Home bakery owner requests to list orders
 2. Trackr shows a list of orders
-3. Home bakery owner selects a specific order to edit
-4. Trackr displays the details of the selected order
-5. Home bakery owner makes changes to the order details
-6. Trackr updates the order details with the new information
+3. Home bakery owner enters an edit order command with the index of the order and the updated information 
+4. Trackr updates the order details with the new information
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
+Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
+    
+    Use case ends.
 
-  Use case ends.
-* 3a. The Home bakery owner selects an invalid order.
+
 
 **Use case: Edit a supplier information**
 
-**MSS**
+MSS
 
-1. Home bakery owner requests to list supplier
-2. Trackr shows a list of suppliers
-3. Home bakery owner selects a specific supplier information to edit
-4. Trackr displays the details of the selected supplier
-5. Home bakery owner makes changes to the supplier details
-6. Trackr updates the supplier details with the new information
+1. Home bakery owner requests to list suppliers. 
+2. Trackr shows a list of suppliers. 
+3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information. 
+4. Trackr updates the supplier details with the new information.
 
    Use case ends.
 
@@ -476,25 +467,20 @@ MSS
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
 
-* 3a. The Home bakery owner selects an invalid supplier.
-
-    * 3a1. Trackr shows an error message.
-
-  Use case resumes at step 2.
-
+    Use case ends.
 
 **Use case: Edit a task information**
 
-**MSS**
+MSS
 
-1. Home bakery owner requests to list tasks
-2. Trackr shows a list of tasks
-3. Home bakery owner selects a specific task information to edit
-4. Trackr displays the details of the selected task
-5. Home bakery owner makes changes to the task details
-6. Trackr updates the tasks details with the new information
+1. Home bakery owner requests to list tasks.
+2. Trackr shows a list of tasks.
+3. Home bakery owner enters an edit task command with the index of the task and the updated information.
+4. Trackr updates the task details with the new information.
 
    Use case ends.
 
@@ -504,69 +490,93 @@ MSS
 
   Use case ends.
 
-* 3a. The Home bakery owner selects an invalid task.
+* 3a. The Home bakery owner enters an invalid index.
+  Trackr displays an error message.
 
-    * 3a1. Trackr shows an error message.
-
-  Use case resumes at step 2.
+  Use case ends.
 
 
-**Use case: Find an order**
+**Use case: Finding a task**
 
 MSS
 
-1. Home bakery owner requests to search for an order
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria
-4. Home bakery owner submits the search
-5. Trackr displays a list of orders that match the search criteria
+1. Home bakery owner requests to find an order.
+2. Home bakery owner enters the find_order command with the desired search criteria.
+3. Trackr searches for orders that match the given criteria.
+4. Trackr displays a list of orders that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
-* 5a. No orders match the search criteria in the correct format.
-* 5a1. Trackr shows a message indicating that no orders were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+  Use case ends.
+* 4a. No order matches the given search criteria.
+  Trackr displays a message indicating no matching order is found.
 
   Use case ends.
 
-**Use case: Find a supplier**
+
+**Use case: Finding a supplier**
 
 MSS
 
-1. Home bakery owner requests to search for a supplier
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria in the correct format.
-4. Home bakery owner submits the search
-5. Trackr displays a list of suppliers that match the search criteria
+1. Home bakery owner requests to find a supplier.
+2. Home bakery owner enters the find_supplier command with the desired search criteria.
+3. Trackr searches for suppliers that match the given criteria.
+4. Trackr displays a list of suppliers that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
-* 5a. No suppliers match the search criteria in the correct format.
-* 5a1. Trackr shows a message indicating that no suppliers were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+
+  Use case ends.
+* 4a. No supplier matches the given search criteria.
+  Trackr displays a message indicating no matching supplier is found.
 
   Use case ends.
 
-**Use case: Find a task**
+**Use case: Finding a task**
 
 MSS
 
-1. Home bakery owner requests to search for a task
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria in the correct format.
-4. Home bakery owner submits the search
-5. Trackr displays a list of tasks that match the search criteria
+1. Home bakery owner requests to find a task. 
+2. Home bakery owner enters the find_task command with the desired search criteria. 
+3. Trackr searches for tasks that match the given criteria. 
+4. Trackr displays a list of tasks that match the criteria. 
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 5a. No tasks match the search criteria.
-* 5a1. Trackr shows a message indicating that no tasks were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+Trackr displays an error message.
+Use case ends.
+* 4a. No task matches the given search criteria.
+Trackr displays a message indicating no matching task is found.
 
   Use case ends.
+
+**Use case: Switch to another tab**
+
+MSS
+
+1. Home bakery owner requests to switch to another tab. 
+2. Home bakery owner enters the tab command with the target tab. 
+3. Trackr switches to the target tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner enters an invalid target tab.
+Trackr displays an error message. 
+
+    Use case ends.
 
 *{More to be added}*
 
