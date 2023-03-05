@@ -3,10 +3,31 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+MediMate (MM) is a **cross-platform desktop application** for medical professionals, specifically doctors or their receptionists,
+who are experienced with computers and currently using paper records to store patient information. 
+With this solution, they will be able to better manage their patient data, including updating, 
+accessing and adding new patient details easily. It is optimized for use via a **Command Line Interface (CLI)** 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MM can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Quick start](#quick-start)
+- [Features](#features)
+    - [`help`](#viewing-help--help)
+    - [`add`](#adding-a-person--add)
+    - [`list`](#listing-all-persons--list)
+    - [`edit`](#editing-a-person--edit)
+    - [`find`](#locating-persons-by-name--find)
+    - [`delete`](#deleting-a-person--delete)
+    - [`clear`](#clearing-all-entries--clear)
+    - [`exit`](#exiting-the-program--exit)
+    - [Saving of data](#saving-the-data)
+    - [Editing of data](#editing-the-data-file)
+    - [Archiving of data](#archiving-data-files-coming-in-v20)
+    - [View meetings](#view-all-meetings-coming-in-v20)
+    - [Schedule meetings](#schedule-meetings-coming-soon)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
