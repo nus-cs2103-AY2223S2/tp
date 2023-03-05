@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="60" maxWidth="400" id="userProfilePane" fx:id="userProfilePane" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane id="userProfilePane" fx:id="userProfilePane" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 
     <stylesheets>
         <URL value="@UserProfilePanel.css" />
@@ -16,12 +16,12 @@
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
-        <Label fx:id="name" text="\$name" wrapText="true"/>
-        <Label fx:id="phone" text="\$phone" wrapText="true"/>
-        <Label fx:id="email" text="\$email" wrapText="true"/>
-        <Label fx:id="address" text="\$address" wrapText="true"/>
-        <Label fx:id="telegramHandle" text="\$telegramHandle" wrapText="true"/>
-        <Label fx:id="moduleTags" text="\$moduleTags" wrapText="true" />
+        <Label fx:id="name" text="\$name" />
+        <Label fx:id="phone" text="\$phone" />
+        <Label fx:id="email" text="\$email" />
+        <Label fx:id="address" text="\$address" />
+        <Label fx:id="telegramHandle" text="\$telegramHandle" />
+        <Label fx:id="moduleTags" text="\$moduleTags" />
         <Label fx:id="groupTags" text="\$groupTags" wrapText="true" />
     </VBox>
     <padding>
