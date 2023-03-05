@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" id="cli-section" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@cli-section.css" />
+    </stylesheets>
+
+    <StackPane VBox.vgrow="ALWAYS" alignment="CENTER" id="cli-screen-outer-container">
+        <ScrollPane fx:id="cliScreenScrollContainer" vbarPolicy="ALWAYS" hbarPolicy="NEVER" hvalue="1.0" vvalue="1.0" id="cli-screen-scroll-container">
+            <content>
+                <VBox fx:id="cliScreen" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" id="cli-screen" />
+            </content>
+        </ScrollPane>
+    </StackPane>
+
+    <StackPane alignment="CENTER" id="cli-input-container">
+        <TextField onAction="#handleCommandEntered" fx:id="cliInput" promptText="Type your command here..." id="cli-input" />
+    </StackPane>
+</VBox>
