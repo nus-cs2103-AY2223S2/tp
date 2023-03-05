@@ -12,8 +12,6 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.tag.Tag;
 
-import seedu.address.model.group.exceptions.DuplicateGroupException;
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.

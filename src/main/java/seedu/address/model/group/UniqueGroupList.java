@@ -1,14 +1,18 @@
 package seedu.address.model.group;
 
-import seedu.address.model.group.exceptions.DuplicateGroupException;
-import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.group.exceptions.DuplicateGroupException;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.person.Person;
+
+/**
+ * A list of groups that enforces uniqueness between its elements and does not allow nulls.
+ * A group is considered unique by comparing using group name and object
+ */
 public class UniqueGroupList {
 
     private final Set<Group> groups = new HashSet<>();
