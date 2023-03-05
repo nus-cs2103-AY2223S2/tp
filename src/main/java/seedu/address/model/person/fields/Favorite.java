@@ -19,6 +19,22 @@ public class Favorite {
         this.isFavorite = isFavorite;
     }
 
+    /**
+     * Constructs a {@code Favorite} based on message input
+     *
+     * @param favoriteMessage If message is "T" or "F"
+     */
+    public Favorite(String favoriteMessage) {
+        if (favoriteMessage.equals("T")) {
+            this.isFavorite = true;
+        } else {
+            this.isFavorite = false;
+        }
+    }
+
+    public boolean getFavoriteStatus() {
+        return isFavorite;
+    }
 
     /**
      * Checks if a string is a valid favorite tag
@@ -28,5 +44,16 @@ public class Favorite {
             return true;
         }
         return Objects.equals(trimmedFavorite, "T") || Objects.equals(trimmedFavorite, "F");
+    }
+
+    /**
+     * Returns a String Representation of Favorite.
+     */
+    public String toString() {
+        if (isFavorite) {
+            return "T";
+        } else {
+            return "F";
+        }
     }
 }
