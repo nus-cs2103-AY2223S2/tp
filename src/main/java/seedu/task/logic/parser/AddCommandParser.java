@@ -48,10 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-<<<<<<< HEAD
-        List<Task> taskList = addTasks(nameList, description, tagList);
 
-=======
         List<Task> taskList;
         // auto-convert to deadline if deadline prefix exists.
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
@@ -69,7 +66,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         taskList = addSimpleTasks(nameList, description, tagList);
 
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         return new AddCommand(taskList);
     }
 
@@ -84,12 +80,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param tagList A single tag belonging to all tasks
      * @return
      */
-<<<<<<< HEAD
-    public List<Task> addTasks(Set<Name> nameList, Description description, Set<Tag> tagList) {
-        List<Task> taskList = new ArrayList<>();
-        for (Name cur: nameList) {
-            taskList.add(new Task(cur, description, tagList));
-=======
     public List<Task> addSimpleTasks(Set<Name> nameList, Description description, Set<Tag> tagList) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
@@ -127,7 +117,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
             taskList.add(new Event(cur, description, tagList, from, to));
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         }
         return taskList;
     }
