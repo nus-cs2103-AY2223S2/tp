@@ -15,24 +15,13 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Volunteer extends Person {
-    private final Nric nric;
-    private final Age age;
+
     /**
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Phone phone, Email email,
                      Address address, Nric nric, Age age, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
-        this.nric = nric;
-        this.age = age;
-    }
-
-    public Nric getNric() {
-        return nric;
-    }
-
-    public Age getAge() {
-        return age;
+        super(name, phone, email, address, nric, age, tags);
     }
 
     /**
@@ -45,7 +34,8 @@ public class Volunteer extends Person {
         if (this == otherVolunteer) {
             return true;
         }
-        return super.isSamePerson(otherVolunteer) && getNric().equals(otherVolunteer.getNric());
+        return super.isSamePerson(otherVolunteer)
+                && getNric().equals(otherVolunteer.getNric());
     }
 
     @Override

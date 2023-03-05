@@ -5,8 +5,10 @@ import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -20,11 +22,15 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NRIC = "S1111111A";
+    public static final String DEFAULT_AGE = "40";
 
     protected Name name;
     protected Phone phone;
     protected Email email;
     protected Address address;
+    protected Nric nric;
+    protected Age age;
     protected Set<Tag> tags;
 
     /**
@@ -35,6 +41,8 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        nric = new Nric(DEFAULT_NRIC);
+        age = new Age(DEFAULT_AGE);
         tags = new HashSet<>();
     }
 
@@ -46,6 +54,8 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        nric = personToCopy.getNric();
+        age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -94,8 +104,28 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         return castSelf();
     }
 
+    /**
+     * Sets the {@code Nric} of the {@code Person} that we are building.
+     */
+    public T withNric(String nric) {
+        this.nric = new Nric(nric);
+        return castSelf();
+    }
+
+    /**
+     * Sets the {@code Age} of the {@code Person} that we are building.
+     */
+    public T withAge(String age) {
+        this.age = new Age(age);
+        return castSelf();
+    }
+
+    /**
+     * Build a person object
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address,
+                nric, age, tags);
     }
 
 }
