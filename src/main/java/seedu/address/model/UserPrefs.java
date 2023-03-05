@@ -16,7 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
-    private Path locationManagerFilePath = Paths.get("data", "pilotmanager.json");
+    private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
     private int operationModeId = 0;
 
     /**
@@ -126,7 +126,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                       && addressBookFilePath.equals(o.addressBookFilePath);
+                   && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
