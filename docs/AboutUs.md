@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/bokung)]
-[[portfolio](team/bokun.md)]
+[[portfolio](team/bokung.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Testing
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tabrizplv.png" width="200px">
 
 [[github](http://github.com/TabrizPlv)]
-[[portfolio](team/tabriz.md)]
+[[portfolio](team/tabrizplv.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + UI
