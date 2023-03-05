@@ -365,7 +365,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding an event: `jeren`
+### Adding an event: `addEvent`
 
 Adds an event to the HR management System.
 
@@ -375,7 +375,7 @@ Examples:
 * `addEvent t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
 
 
-### List all employees attending an event: `jeren`
+### List all employees attending an event: `listEvent`
 
 Lists the employees added to an event in the HR Management
 
@@ -385,7 +385,7 @@ Examples:
 * `listEvent`
 
 
-### Updating an event: `jeren`
+### Updating an event: `updateEvent`
 
 Updates an event to the HR Management System.
 
@@ -398,7 +398,7 @@ Format: `updateEvent INDEX t/title d/description s/date ​`
 Examples:
 * `updateEvent 2 t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
 
-### Deleting an event: `jeren`
+### Deleting an event: `deleteEvent`
 
 Deletes an event from the HR Management System.
 
@@ -409,7 +409,7 @@ Format: `deleteEvent INDEX`
 Examples:
 * `deleteEvent 1`
 
-### Adding an employee to an event: `jeren`
+### Adding an employee to an event: `addEmployeeEvent`
 
 Adds a person to the event in the HR Management System.
 
@@ -420,7 +420,7 @@ Format: `addEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
 Examples:
 * `addEmployeeEvent 1 1`
 
-### List all employees attending an event: `jeren`
+### List all employees attending an event: `listEventEmployee`
 
 Lists the employees added to an event in the HR Management
 
@@ -432,7 +432,7 @@ Examples:
 * `listEventEmployee 1`
 
 
-### Remove employee from an event: `jeren`
+### Remove employee from an event: `deleteEmployeeEvent`
 
 Remove a person from a event in the HR Management System.
 
