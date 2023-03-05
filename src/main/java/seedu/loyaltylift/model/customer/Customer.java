@@ -19,6 +19,7 @@ public class Customer {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final CustomerType customerType;
 
     // Data fields
     private final Address address;
@@ -27,13 +28,14 @@ public class Customer {
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.customerType = customerType;
     }
 
     public Name getName() {
@@ -51,6 +53,8 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+    public CustomerType getCustomerType() { return customerType; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

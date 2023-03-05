@@ -14,6 +14,7 @@ import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -44,7 +45,7 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Customer customer = new Customer(name, phone, email, address, tagList);
+        Customer customer = new Customer(CustomerType.INDIVIDUAL, name, phone, email, address, tagList);
 
         return new AddCustomerCommand(customer);
     }

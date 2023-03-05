@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -103,7 +104,7 @@ class JsonAdaptedCustomer {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Customer(CustomerType.INDIVIDUAL, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

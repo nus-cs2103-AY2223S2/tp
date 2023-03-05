@@ -50,8 +50,24 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
 
-        Badge customerTypeBadge = new Badge(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
-        customerTypePlaceholder.getChildren().add(customerTypeBadge.getRoot());
+        Color tagBackgroundColor;
+        String customerType;
+        switch (customer.getCustomerType()) {
+        case INDIVIDUAL:
+            tagBackgroundColor = Color.valueOf("#2F8F95");
+            customerType = "Individual";
+            break;
+        case ENTERPRISE:
+            tagBackgroundColor = Color.valueOf("#95352F");
+            customerType = "Enterprise";
+            break;
+        default:
+            tagBackgroundColor = Color.BLACK;
+            customerType = "Unknown";
+        }
+
+        Badge customerTypeTag = new Badge(tagBackgroundColor, Color.WHITE, customerType);
+        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
 
         this.isSelected = false;
     }

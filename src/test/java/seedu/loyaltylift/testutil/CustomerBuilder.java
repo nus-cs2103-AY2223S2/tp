@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -90,7 +91,7 @@ public class CustomerBuilder {
     }
 
     public Customer build() {
-        return new Customer(name, phone, email, address, tags);
+        return new Customer(CustomerType.INDIVIDUAL, name, phone, email, address, tags);
     }
 
 }
