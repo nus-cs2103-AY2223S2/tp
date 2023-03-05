@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_DELETE_EVENT_SUCCESS;
-import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
