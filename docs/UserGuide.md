@@ -14,15 +14,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -35,7 +35,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
     * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,37 +78,15 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME [{SPECIFIER}/{DATA}]`
-
-Here are all the specifiers that can be used:
-
-
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags and modules taken(including 0). 
-
-IMPT: If you want to add multiple tags or modules in one statement,
-every tag or module has to have its corresponding specifier.
-
-In the future, only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for syncing with the calendar.
+A person can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -120,28 +98,14 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [{SPECIFIER}/{DATA}]`
-
-
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
-  i.e adding of tags and mods taken are not cumulative.
-* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
