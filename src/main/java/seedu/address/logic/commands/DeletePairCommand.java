@@ -42,8 +42,14 @@ public class DeletePairCommand extends Command {
     private final Nric elderlyNric;
     private final Nric volunteerNric;
 
+    /**
+     * Constructs a DeletePairCommand to delete a pair.
+     *
+     * @param elderlyNric Nric of the elderly of the pair.
+     * @param volunteerNric Nric of the volunteer of the pair.
+     */
     public DeletePairCommand(Nric elderlyNric, Nric volunteerNric) {
-            requireAllNonNull(elderlyNric, volunteerNric);
+        requireAllNonNull(elderlyNric, volunteerNric);
         this.elderlyNric = elderlyNric;
         this.volunteerNric = volunteerNric;
     }
