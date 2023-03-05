@@ -59,7 +59,13 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void duplicate_event_throwsDuplicateEventException() {
+    public void setNullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((UniqueEventList) null));
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((List<Event>) null));
+    }
+
+    @Test
+    public void setDuplicateEvent_throwsDuplicateEventException() {
         List<Event> invalidList = new ArrayList<>(Arrays.asList(
             new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
                 .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
