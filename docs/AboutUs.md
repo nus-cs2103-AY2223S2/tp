@@ -19,6 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+
+### Wang ShaoFeng
+
+<img src="images/sfcoding123.png" width="200px">
+
+[[github](http://github.com/SFCoding123]
+[[portfolio](team/johndoe.md)]
+
 ### Wei De
 
 <img src="images/IMG_1672.JPG" width="200px">
@@ -29,15 +37,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Functions
 
-### Wang ShaoFeng
-
-<img src="images/791654880285_.pic_hd.jpg" width="200px">
-
-[[github](https://github.com/SFCoding123)]
-[[portfolio](https://www.linkedin.com/in/shaofeng-wang-468303197/)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Luo Xizi
 
