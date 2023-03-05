@@ -54,12 +54,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Develop ExecutivePro
 
-### James Doe
+### Panav Dua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/panavdua.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/gyulong1.md)]
+[[github](http://github.com/panavdua)]
+[[portfolio](team/panavdua.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Develop ExecutivePro
