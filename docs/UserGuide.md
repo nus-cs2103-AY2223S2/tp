@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage 
+WIFE is always right. Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
 improving the efficiency of grocery shopping.
