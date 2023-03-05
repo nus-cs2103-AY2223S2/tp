@@ -1,4 +1,4 @@
-package seedu.calidr.model.task;
+package seedu.calidr.task;
 
 import java.time.LocalDateTime;
 
@@ -42,14 +42,6 @@ public class Event extends Task {
         this.to = to;
     }
 
-    public LocalDateTime getFrom() {
-        return from;
-    }
-
-    public LocalDateTime getTo() {
-        return to;
-    }
-
     /**
      * Gets the String representation of the event to be stored in the text file.
      *
@@ -57,9 +49,14 @@ public class Event extends Task {
      */
     @Override
     public String getFileRepresentation() {
-        String mark = (super.isDone()) ? "X" : " ";
+        String mark = (super.isDone) ? "X" : " ";
 
-        return "E" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.from + "~" + this.to;
+        return "E" + "~"
+                + this.priority + "~"
+                + mark + "~"
+                + this.description + "~"
+                + this.from + "~"
+                + this.to;
     }
 
     @Override
