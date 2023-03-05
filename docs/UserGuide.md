@@ -32,19 +32,17 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
 ### Viewing help : `help` [coming soon]
 
+
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the ExecutivePro database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip**
-A person can have any number of tags (including 0)
-</div>
+Format: `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add 1 n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02`
+
 
 ### Listing all persons : `list`
 
@@ -126,8 +124,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add** | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 **Delete** | `delete EMPLOYEE_ID`<br> e.g., `delete 3`
 **Edit** | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
