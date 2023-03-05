@@ -257,14 +257,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* has a need to manage a significant number of deliveries 
+* requires the ability to track, monitor and update the status of deliveries
+* shows a preference for desktop applications
+* has proficient typing skills
+* prefers typing to mouse-based interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: optimize delivery management through an application that utilizes CLI commands,
+providing a more efficient alternative to conventional mouse-driven GUI applications.
 
 ### User stories
 
