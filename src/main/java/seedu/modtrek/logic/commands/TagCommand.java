@@ -96,7 +96,7 @@ public class TagCommand extends Command {
      */
     private String generateSuccessMessage(Module moduleToEdit) {
         String message = !tag.tagName.isEmpty() ? MESSAGE_ADD_TAG_SUCCESS : MESSAGE_ADD_TAG_FAILURE;
-        return String.format(message, moduleToEdit);
+        return String.format(message, moduleToEdit.getCode().toString());
     }
 
     @Override
