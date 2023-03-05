@@ -3,7 +3,7 @@ layout: page
 title: Bojie's Project Portfolio Page
 ---
 
-### Project: Teaching assistant assistant 
+### Project: Teaching assistant assistant
 
 * **Overview**
 * To be added soon
