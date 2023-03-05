@@ -32,6 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:
   * In charge of UI
 
+
 ### Lim Jian Rong, Nicholas
 
 <img src="images/nicholaslim.png" width="200px">
@@ -43,15 +44,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
   * Deliverables And Deadlines
 * Responsibilities: In Charge of Calendar
 
-### Rachel Tan
 
-<img src="images/johndoe.png" width="200px">
+### Tan Wei Xuan Rachel
+<img src="images/rachel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rachtan27)]
+[[portfolio](team/rachel.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities:
+  * In charge of Commands
+
 
 ### Shane Duggan
 
