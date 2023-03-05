@@ -6,8 +6,7 @@ Title: HospiSearch User Guide
 HospiSearch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** 
 (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+* Table of Contents: coming soon
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,17 +14,16 @@ HospiSearch is a **desktop app for managing contacts, optimized for use via a Co
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `HospiSearch.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your HospiSearch.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-
-[//]: # (   ![Ui]&#40;images/Ui.png&#41;)
-
-
-1. Refer to the [Features](#features) below for details of each command.
+   ![Ui](images/Ui.png)
+5. Type in a command in the command box to execute it. Some commands to try:
+   1. `help` opens up the help menu
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,30 +59,24 @@ Format: `help`
 
 Adds a person to the patient records.
 
-Format: `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DIAGNOSIS] [t/TAG]…`
 
 
 **Tip**: A person can have any number of tags (including 0)
 
 
 Examples:
-* `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe i/T0012345B e/betsycrowe@example.com a/Newgate Prison p/1234567 t/diabetic`
+* `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/cancer`
+* `add n/Betsy Crowe i/T0012345B e/betsycrowe@example.com a/Newgate Prison p/1234567 d/diabetes d/osteoporosis`
 
 
 
-### Adding a person: `add`
+### Editing a person: `edit`
 
 Edits an existing person in the patient record.
 
-Format: `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​`
 
-
-* Edits the person at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided. 
-* Existing values will be updated to the input values. 
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. 
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
 Examples:
@@ -98,16 +90,11 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
-
-* Edits the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …
-
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command.
 
-### Deleting a person: `filter`
+### Filtering a person: `filter`
 
 Filters people according to a particular attribute. Eg. Medicine usage or health conditions.
 
@@ -146,8 +133,8 @@ Example: `save 3` saves the data to the 3rd slot
 
 ###Help menu:
 Help function lists out all the commands available, along with a brief description
-Format: `help`
 
+Format: `help`
 
 ### Listing all persons : `list`
 
@@ -161,7 +148,7 @@ Format: `list`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HospiSearch home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,11 +156,11 @@ Format: `list`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+**Add** | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br> e.g. `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression`
 **Get** | ` get i/T0012345A`
 **Clear all** | `clearAll`
 **Delete** | `delete INDEX` e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`  e.g.,edit 2 n/James Lee e/jameslee@example.com
+**Edit** | `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [d/DIAGNOSIS] [a/ADDRESS] [t/TAG]…`  e.g.,edit 2 n/James Lee e/jameslee@example.com
 **Find** | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g., find panadol <br/> e.g., find diabetes
 **Save** | `save FILE_NO` <br/> eg. save 3
 **List** | `list`
