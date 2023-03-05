@@ -76,7 +76,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -136,6 +136,11 @@ public class AddCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortTask() {
             throw new AssertionError("This method should not be called.");
         }
 

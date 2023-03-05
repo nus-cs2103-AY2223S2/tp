@@ -98,6 +98,13 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Sorts the contents of this list.
+     */
+    public void sort() {
+        FXCollections.sort(internalList, Task::compareTo);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

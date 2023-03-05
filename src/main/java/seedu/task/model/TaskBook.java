@@ -93,6 +93,10 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.remove(key);
     }
 
+    public void sortTask() {
+        tasks.sort();
+    }
+
     //// util methods
 
     @Override

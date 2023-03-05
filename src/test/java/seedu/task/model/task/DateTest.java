@@ -87,4 +87,15 @@ public class DateTest {
         Date dateTestClone = new Date("2023-01-01 1800");
         assertEquals(dateTest, dateTestClone);
     }
+
+    @Test
+    public void compareTo_test() {
+        Date dateTest = new Date("2023-01-01 1800");
+        Date dateTestClone = new Date("2023-01-01 1800");
+        assertEquals(0, dateTest.compareTo(dateTestClone));
+        dateTestClone = new Date("2023-01-01 1700");
+        assertEquals(1, dateTest.compareTo(dateTestClone));
+        dateTestClone = new Date("2023-01-01 1900");
+        assertEquals(-1, dateTest.compareTo(dateTestClone));
+    }
 }

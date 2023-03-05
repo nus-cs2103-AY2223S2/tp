@@ -76,6 +76,11 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Sorts the list by the task.
+     */
+    void sortTask();
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

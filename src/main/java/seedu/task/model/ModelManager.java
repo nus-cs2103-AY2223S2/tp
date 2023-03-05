@@ -111,6 +111,11 @@ public class ModelManager implements Model {
         taskBook.setTask(target, editedTask);
     }
 
+    @Override
+    public void sortTask() {
+        taskBook.sortTask();
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
