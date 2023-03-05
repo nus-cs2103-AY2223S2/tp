@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+
+
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -25,6 +29,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -33,6 +38,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex(s)} into an {@code Index} and returns List of Index.
+     * Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static ArrayList<Index> parseindexs(String multiIndex, String separator) throws ParseException {
+        //assume input is 2 3 4 5 6 ....
+        String trimmedIndex = multiIndex.trim();
+        ArrayList<Index> indices = new ArrayList<>();
+        String[] tokens = trimmedIndex.split(separator);
+
+        for (String token : tokens) {
+            if (!StringUtil.isNonZeroUnsignedInteger(token)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indices.add(Index.fromOneBased(Integer.parseInt(token)));
+        }
+        return indices;
     }
 
     /**
