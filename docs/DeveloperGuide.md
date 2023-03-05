@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
     Use case resumes at step 2.
 
-**Use case: Update a food item**
+### **Use case UC06: Update a food item**
 
 **MSS**
 
@@ -385,12 +385,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 * 1b. User selects an item that does not exist.
-  * WIFE displays a message that tells the User that specified item does not exist.
+  * 1b1. WIFE displays a message that tells the User that specified item does not exist.
   
     Use case ends.
 
-
-    Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
