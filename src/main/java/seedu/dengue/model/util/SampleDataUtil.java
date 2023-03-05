@@ -26,7 +26,7 @@ public class SampleDataUtil {
                 new Age("11"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Postal("932283"),
-                    new Date("2000-11-11 00:00"), new Age("0"),
+                    new Date("2000-11-11"), new Age("0"),
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Postal("910312"), new Date("2000-11-11"),
                 new Age("1"),
