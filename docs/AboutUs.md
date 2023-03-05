@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jarrett0203.png" width="200px">
 
 [[github](https://github.com/Jarrett0203)]
-[[portfolio](team/jarretteo.md)]
+[[portfolio](team/jarrett0203.md)]
 
 * Role: Project Advisor
 
@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/glyfy.png" width="200px">
 
 [[github](http://github.com/glyfy)]
-[[portfolio](team/glenlim.md)]
+[[portfolio](team/glyfy.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sanjevi13.png" width="200px">
 
 [[github](http://github.com/sanjevi13)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sanjevi13.md)]
 
 * Role: Developer
 * Responsibilities: Testing
