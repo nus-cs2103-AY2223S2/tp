@@ -113,7 +113,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Adding patient scheduled time : `addTime`
-_Details coming in v2.0 soon ..._
+_Details coming in v1.2 soon ..._
 
 ### Listing all patients : `list`
 
@@ -123,7 +123,7 @@ Format: `list`
 
 ### Listing patients by time : `listTime`
 
-_Details coming in v2.0 soon ..._
+_Details coming in v1.2 soon ..._
 
 ### Editing a patient : `edit`
 
@@ -173,6 +173,20 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+### Deleting multiple person : `deletes` 
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX1 INDEX2 ...`
+
+* Deletes the person at the specified INDEXs.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2 3` deletes the 2nd person and 3rd in the address book.
+* `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
