@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_CARNIVAL;
@@ -7,6 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_CARN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_CARNIVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
+import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
+
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +50,35 @@ public class UniqueEventListTest {
     @Test
     public void add_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.add(null));
+    }
+
+    @Test
+    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((UniqueEventList) null));
+    }
+
+    @Test
+    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+        uniqueEventList.add(WEDDING_DINNER);
+        UniqueEventList expectedUniqueEventList = new UniqueEventList();
+        expectedUniqueEventList.add(CARNIVAL);
+        uniqueEventList.setEvents(expectedUniqueEventList);
+        assertEquals(expectedUniqueEventList, uniqueEventList);
+    }
+
+    @Test
+    public void setPersons_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((List<Event>) null));
+    }
+
+    @Test
+    public void setPersons_list_replacesOwnListWithProvidedList() {
+        uniqueEventList.add(WEDDING_DINNER);
+        List<Event> eventList = Collections.singletonList(CARNIVAL);
+        uniqueEventList.setEvents(eventList);
+        UniqueEventList expectedUniqueEventList = new UniqueEventList();
+        expectedUniqueEventList.add(CARNIVAL);
+        assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 
     @Test
