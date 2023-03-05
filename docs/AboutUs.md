@@ -14,9 +14,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/4ndrelim)]
 [[portfolio](team/andre.md)]
 
-* Role: Developer
-* Responsibilities: Integration & Tracking
-* In-charge of: Leave features
+- Role: Developer
+- Responsibilities: Integration & Tracking
+- In-charge of: Leave features
 
 ### Kenneth Kiang
 
@@ -25,17 +25,18 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/kennethk-1201)]
 [[portfolio](https://kennethkiang.netlify.app/)]
 
-* Role: Team Lead
+- Role: Team Lead
 
-### Jane Doe
+### Park Kwangjoo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pkwangjoo.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/4ndrelim.md)]
+[[portfolio](team/pkwangjoo.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Integration
+- In-charge of: Performance review features
 
 ### Johnny Doe
 
@@ -43,8 +44,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/johndoe)] [[portfolio](team/4ndrelim.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Jean Doe
 
@@ -53,8 +54,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/johndoe)]
 [[portfolio](team/4ndrelim.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -63,5 +64,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/johndoe)]
 [[portfolio](team/4ndrelim.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
