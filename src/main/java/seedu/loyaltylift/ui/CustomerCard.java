@@ -37,6 +37,8 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private HBox customerTypePlaceholder;
 
+    private boolean isSelected;
+
     /**
      * Creates a {@code CustomerCard} with the given {@code Customer} and index to display.
      */
@@ -50,6 +52,8 @@ public class CustomerCard extends UiPart<Region> {
 
         Tag customerTypeTag = new Tag(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
         customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
+
+        this.isSelected = false;
     }
 
     @Override
@@ -68,5 +72,15 @@ public class CustomerCard extends UiPart<Region> {
         CustomerCard card = (CustomerCard) other;
         return id.getText().equals(card.id.getText())
                 && customer.equals(card.customer);
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+
+        if (isSelected) {
+            name.setStyle("-fx-font-weight: bold; -fx-text-fill: #4F46E5");
+        } else {
+            name.setStyle("-fx-font-weight: normal; -fx-text-fill: black");
+        }
     }
 }

@@ -25,6 +25,15 @@
     -fx-text-fill: black;
 }
 
+.list-cell:filled:selected:focused .cell_big_label, .list-cell:filled:selected:focused .cell_big_id_label {
+    -fx-text-fill: #4F46E5;
+    -fx-font-weight: bold;
+}
+
+.list-cell:hover .cell_big_label, .list-cell:hover .cell_big_id_label {
+    -fx-text-fill: #4F46E5;
+}
+
 .list-cell:empty {
     -fx-border-width: 0;
     -fx-background-color: transparent;
