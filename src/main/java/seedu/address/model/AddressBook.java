@@ -110,6 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonListByName() {
         return persons.asSortedByNameList();
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
