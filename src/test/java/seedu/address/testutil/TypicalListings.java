@@ -12,21 +12,21 @@ import seedu.address.model.listing.Listing;
 
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Listing} objects to be used in tests.
  */
 public class TypicalListings {
 
-    public static final Listing CHICKENRICEUNCLE = new ListingBuilder()
+    public static final Listing CHICKEN_RICE_UNCLE = new ListingBuilder()
             .withTitle("Chicken Rice Uncle")
             .withDescription("Make delicious chicken rice!")
             .withApplicants(new ArrayList<>(Arrays.asList("Tom", "Dick", "Harry")))
             .build();
-    public static final Listing TOILETCLEANER = new ListingBuilder()
+    public static final Listing TOILET_CLEANER = new ListingBuilder()
             .withTitle("Toilet Cleaner")
             .withDescription("Cleans toilets really quickly and well")
             .withApplicants(new ArrayList<>(Arrays.asList("Naruto", "Sasuke", "Sakura")))
             .build();
-    public static final Listing SOFTWAREDEVELOPER = new ListingBuilder()
+    public static final Listing SOFTWARE_DEVELOPER = new ListingBuilder()
             .withTitle(VALID_TITLE)
             .withDescription(VALID_DESCRIPTION)
             .withApplicants(VALID_APPLICANTS)
@@ -37,6 +37,6 @@ public class TypicalListings {
 
 
     public static List<Listing> getTypicalListings() {
-        return new ArrayList<>(Arrays.asList(CHICKENRICEUNCLE, TOILETCLEANER, SOFTWAREDEVELOPER));
+        return new ArrayList<>(Arrays.asList(CHICKEN_RICE_UNCLE, TOILET_CLEANER, SOFTWARE_DEVELOPER));
     }
 }
