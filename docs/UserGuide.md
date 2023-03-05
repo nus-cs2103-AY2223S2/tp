@@ -57,41 +57,41 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 
 ### Add
 
-### Adding a customer: `add customer` 
-Adds a customer to the system and assigns a unique customer ID. 
+### Adding a customer: `add customer`
+Adds a customer to the system and assigns a unique customer ID.
 
-Format: `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` 
+Format: `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Example: `add customer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Adding a vehicle: `add vehicle` 
-Adds a vehicle of specified type (i.e. motorbike, 4wd) to the system and assigns a unique vehicle ID. 
+### Adding a vehicle: `add vehicle`
+Adds a vehicle of specified type (i.e. motorbike, 4wd) to the system and assigns a unique vehicle ID.
 
-Format: `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` 
+Format: `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
 
 Example: `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`
 
 ### Adding a vehicle part: `add part`
-Adds a vehicle part to the system. 
+Adds a vehicle part to the system.
 
-Format: `add part n/NAME q/Quantity` 
+Format: `add part n/NAME q/Quantity`
 
 Example: `add part n/Cylinder Head q/50`
 
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
 
-Format: `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]` 
+Format: `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`
 
-Examples: 
-* `add service v/10 t/standard s/in progress d/Customer says abc` 
+Examples:
+* `add service v/10 t/standard s/in progress d/Customer says abc`
 * `add service v/10 t/standard` \
 Note: Adding service without specifying the type of service will default to “to repair”
 
 ### Adding a customer appointment: `add appointment`
 Adds a customer appointment to the system.
 
-Format: `add appointment c/CUSTOMER_ID d/DATE t/TIME` 
+Format: `add appointment c/CUSTOMER_ID d/DATE t/TIME`
 
 Example: `add appointment c/5 d/05/03/2023 t/5pm`
 
@@ -101,7 +101,7 @@ Example: `add appointment c/5 d/05/03/2023 t/5pm`
 ### Listing all vehicles/customers/parts/appointments: `list`
 Shows all vehicles/customers/parts/appointments.
 
-Format: `list (vehicles/customers/parts/appointments)` 
+Format: `list (vehicles/customers/parts/appointments)`
 
 Examples:
 * `list vehicles`
@@ -117,7 +117,7 @@ Sorts all vehicles/customers/parts/appointments list in ascending or descending 
 
 Format: `sort by/BRAND d/DIRECTION`
 
-Example: `sort by/brand d/asc` 
+Example: `sort by/brand d/asc`
 
 ---
 ### Find
@@ -132,7 +132,7 @@ Finds vehicles/customers/parts/appointments that contain any of the given keywor
 
 Format: `find (vehicle/customer/part/appointment) KEYWORD`
 
-Examples: 
+Examples:
 * `find vehicle toyota`
 * `find customer John`
 * `find part Cylinder Head`
