@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.DetailedWeekView;
+
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;

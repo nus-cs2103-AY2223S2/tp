@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.calendarfx.model.Interval;
+
 import seedu.calidr.model.TaskEntry;
 import seedu.calidr.model.task.Deadline;
 import seedu.calidr.model.task.Event;

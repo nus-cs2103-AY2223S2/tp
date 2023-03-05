@@ -1,6 +1,7 @@
 package seedu.calidr.model;
 
 import com.calendarfx.model.Entry;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
