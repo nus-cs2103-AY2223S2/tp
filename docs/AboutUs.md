@@ -11,11 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Tan
 
-<img src="images/jane.png" width="200px">
+<img src="images/sembcorpp.png" width="200px">
 
 
 [[github](https://github.com/sembcorpp)]
-[[portfolio](team/jane.md)]
+[[portfolio](team/sembcorpp.md)]
 
 * Role: Developer
 
@@ -24,16 +24,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/bokung)]
-[[portfolio](team/bokun.md)]
+[[portfolio](team/bokung.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Testing
 
 ### Muhammad Arshad Shaik
 
-<img src="images/Arshad.png" width="200px">
+<img src="images/fireradical22.png" width="200px">
 
-[[github](http://github.com/FireRadical22)] [[portfolio](team/arshad.md)]
+[[github](http://github.com/FireRadical22)] [[portfolio](team/fireradical22.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops
