@@ -212,6 +212,26 @@ public class Student {
         homeworkToMarkAsUndone.markAsUndone();
     }
     /**
+     * Returns a homework from the homework list.
+     *
+     * @param index index of homework to be returned
+     * @return homework
+     */
+
+    public Lesson getLesson(Index index) {
+        return this.lessonsList.getLesson(index.getZeroBased());
+    }
+
+    /**
+     * Deletes a homework from the homework list.
+     *
+     * @param index index of homework to be deleted
+     */
+    public void deleteLesson(Index index) {
+        Lesson lessonToDelete = this.lessonsList.getLesson(index.getZeroBased());
+        this.lessonsList.remove(lessonToDelete);
+    }
+    /**
      * Adds a lesson to the lesson list
      * @param lesson the lesson to be added
      */
@@ -223,6 +243,7 @@ public class Student {
         }
         this.lessonsList.add(lesson);
     }
+
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
