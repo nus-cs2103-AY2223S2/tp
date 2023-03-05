@@ -2,16 +2,192 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# **Table of Contents**
+1. [Introduction](#1-introduction)
+   * [Software Overview](#software-overview)
+   * [Intended Audience](#intended-audience)
+   * [Using the Guide](#using-the-guide)
+   * [Content Overview](#content-overview)
+   * [About Us](#about-us)
+   * [Getting Help](#getting-help)
+   * [Core Technologies](#core-technologies)
+   * [Acknowledgements](#acknowledgements)
+   * [Version Control](#version-control)
+   * [Issue Tracker](#issue-tracker)
+2. [Development Environment](#2-development-environment)
+   * [Quick Start](#quick-start)
+   * [Set Up Dependencies](#set-up-dependencies)
+   * [Set Up Java](#set-up-java)
+   * [Set Up PlantUML](#set-up-plantuml)
+   * [Clone the EduMate Software Git Repo](#clone-the-edumate-software-git-repo)
+3. [Tips](#3-tips)
+   * [Sample Data](#sample-data)
+4. [Design](#4-design)
+   * [Architecture](#architecture)
+   * [UI Component](#ui-component)
+   * [Model Component](#model-component)
+   * [Tag](#tag)
+       * [Group Tag](#group-tag)
+       * [Module Tag](#module-tag)
+   * [Person](#person)
+       * [Name](#name)
+       * [Address](#address)
+       * [Phone](#phone)
+       * [Email](#email)
+       * [Telegram Handle](#telegram-handle)
+       * [Group Tag Set](#group-tag-set)
+       * [Module Tag Set](#module-tag-set)
+   * [Utils](#utils)
+       * [Sample Data Util](#sample-data-util)
+   * [Logic Component](#logic-component)
+   * [Commands](#commands)
+       * [Add Command](#add-command)
+       * [Edit Command](#edit-command)
+       * [Delete Command](#delete-command)
+       * [Tag Command](#tag-command)
+       * [User Command](#user-command)
+       * [Find Command](#find-command)
+       * [Sort Command](#sort-command)
+       * [List Command](#list-command)
+       * [Exit Command](#exit-command)
+   * [Parsers](#parsers)
+       * [Argument Multimap](#argument-multimap)
+       * [Prefix](#prefix)
+       * [Add Command Parser](#add-command-parser)
+       * [Edit Command Parser](#edit-command-parser)
+       * [Find Command Parser](#find-command-parser)
+       * [Tag Command Parser](#tag-command-parser)
+       * [Sort Command Parser](#sort-command-parser)
+   * [Storage Component](#storage-component)
+5. [Testing](#5-testing)
+   * [Unit Tests](#unit-tests)
+   * [Testing Models](#testing-models)
+   * [Testing Commands](#testing-commands)
+   * [Testing Parsers](#testing-parsers)
+   * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
+   * [Create Code Coverage Report](#create-code-coverage-report)
+   * [Read Code Coverage Report](#read-code-coverage-report)
+   * [Continuous Integration](#continuous-integration)
+6. [Documentation](#6-documentation)
+   * [Using PlantUML](#using-plantuml)
+     * [Creating Class Diagrams](#creating-class-diagrams)
+     * [Creating Sequence Diagrams](#creating-sequence-diagrams)
+7. [Appendix](#7-appendix)
+   - [Glossary](#glossary)
 
---------------------------------------------------------------------------------------------------------------------
+# **1. Introduction**
 
+## **Software Overview**
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimized for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, eduMate can complete contact and module management tasks faster than traditional GUI apps.
+
+## **Intended Audience**
+This guide is intended primarily for developers who want to work on the **EduMate** Software code base at [https://github.com/AY2223S2-CS2103T-W14-2/tp](https://github.com/AY2223S2-CS2103T-W14-2/tp).
+
+To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
+
+## **Using the Guide**
+### **What Do the Emojis Mean**
+:bulb: Tip - 
+
+## **Content Overview**
+
+
+## **About Us**
+## **Getting Help**
+## **Core Technologies**
 ## **Acknowledgements**
+* This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5).
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## **Version Control**
+### **The `master` Branch**
+### **How to Make a Pull Request**
 
---------------------------------------------------------------------------------------------------------------------
+## **Issue Tracker**
+
+# **2. Development Environment**
+
+## **Quick Start**
+## **Set Up Dependencies**
+### **Set Up Java**
+### **Set Up PlantUML**
+### **Clone the EduMate Software Git Repo**
+
+# **3. Tips**
+
+## **Sample Data**
+
+# **4. Design**
+
+## **Architecture**
+## **UI Component**
+
+## **Model Component**
+### **Tag**
+#### **Group Tag**
+#### **Module Tag**
+### **Person**
+#### **Name**
+#### **Address**
+#### **Phone**
+#### **Email**
+#### **Telegram Handle**
+#### **Group Tag Set**
+#### **Module Tag Set**
+### **Utils**
+#### **Sample Data Util**
+
+## **Logic Component**
+### **Commands**
+#### **Add Command**
+#### **Edit Command**
+#### **Delete Command**
+#### **Tag Command**
+#### **User Command**
+#### **Find Command**
+#### **Sort Command**
+#### **List Command**
+#### **Exit Command**
+### **Parsers**
+#### **Argument Multimap**
+#### **Prefix**
+#### **Add Command Parser**
+#### **Edit Command Parser**
+#### **Find Command Parser**
+#### **Tag Command Parser**
+#### **Sort Command Parser**
+
+## **Storage Component**
+
+# **5. Testing**
+
+## **Unit Tests**
+### **Testing Models**
+### **Testing Commands**
+### **Testing Parsers**
+
+## **Measuring Coverage of Integration Tests**
+### **Create Code Coverage Report**
+### **Read Code Coverage Report**
+
+## **Continuous Integration**
+
+# **6. Documentation**
+
+## **Using PlantUML**
+### **Creating Class Diagrams**
+### **Creating Sequence Diagrams**
+
+# **7. Appendix**
+
+## **Glossary**
+
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **NUS**: National University of Singapore
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 
 ## **Setting up, getting started**
 
@@ -19,14 +195,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Overview**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### Architectur
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,7 +212,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -104,6 +280,18 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
+
+![Interactions Inside the Logic Component for the `add n/Bart...` Command](images/AddSequenceDiagram.png)
+
+![Interactions Inside the Logic Component for the `add n/Bart...` Command](images/AddParserSequenceDiagram.png)
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
+
+![Interactions Inside the Logic Component for the `edit 1...` Command](images/EditSequenceDiagram.png)
+
+![Interactions Inside the Logic Component for the `edit 1...` Command](images/EditParserSequenceDiagram.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -484,11 +672,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4.  Should consistently execute commands within 1 second.
 
 *{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

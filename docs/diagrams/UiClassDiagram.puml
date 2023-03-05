@@ -1,10 +1,10 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
+skinparam arrowColor UI_COLOR_DARK
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
+package UI <<Rectangle>> UI_COLOR_BACKGROUND {
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
@@ -17,12 +17,10 @@ Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+package Model <<Rectangle>> MODEL_COLOR_BACKGROUND {
 }
 
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+package Logic <<Rectangle>> LOGIC_COLOR_BACKGROUND {
 }
 
 Class HiddenOutside #FFFFFF
@@ -49,7 +47,7 @@ HelpWindow --|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox

@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "m:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+end box
+
+activate EditCommandParser
+
+group sd Parse Arguments
+    EditCommandParser -> ArgumentTokenizer : tokenize("n/Bart...", ...)
+    activate ArgumentTokenizer
+
+    ArgumentTokenizer -> ArgumentTokenizer : findAllPrefixPositions("n/Bart...", ...)
+    activate ArgumentTokenizer
+
+    ArgumentTokenizer --> ArgumentTokenizer : positions
+    deactivate ArgumentTokenizer
+
+    ArgumentTokenizer -> ArgumentTokenizer : extractArguments("n/Bart...", positions)
+    activate ArgumentTokenizer
+
+    create ArgumentMultimap
+    ArgumentTokenizer -> ArgumentMultimap
+    activate ArgumentMultimap
+
+    loop
+        ArgumentTokenizer -> ArgumentMultimap : prefixPosition
+        activate ArgumentMultimap
+        deactivate ArgumentMultimap
+    end
+
+    ArgumentMultimap --> ArgumentTokenizer : m
+    deactivate ArgumentMultimap
+
+    ArgumentTokenizer --> ArgumentTokenizer : m
+    deactivate ArgumentTokenizer
+
+    ArgumentTokenizer --> EditCommandParser : m
+    deactivate ArgumentTokenizer
+
+    EditCommandParser -> EditCommandParser : Parse Tags
+    activate EditCommandParser
+
+    EditCommandParser --> EditCommandParser
+    deactivate EditCommandParser
+end
+
+@enduml
