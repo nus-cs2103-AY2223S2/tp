@@ -1,19 +1,21 @@
 package seedu.address.model.student;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Lesson}'s title matches the given subject.
  */
-public class LessonSubjectPredicate implements Predicate<Lesson> {
-    private final String subject;
+public class LessonDonePredicate implements Predicate<Lesson> {
+    private final String done;
 
     /**
      * Creates a predicate to test if a Homework's title matches the specified subject
-     * @param subject The String to test against.
+     * @param done The String that represents date
      */
-    public LessonSubjectPredicate(String subject) {
-        this.subject = subject;
+    public LessonDonePredicate(String done) {
+        this.done = done;
     }
 
     /**
@@ -24,13 +26,16 @@ public class LessonSubjectPredicate implements Predicate<Lesson> {
      */
     @Override
     public boolean test(Lesson lesson) {
-        return lesson.getTitle().contains(subject);
+        if (done.equals("done")) {
+            return lesson.getStartTime().isBefore(LocalDateTime.now());
+        }
+        return lesson.getStartTime().isAfter((LocalDateTime.now()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof LessonSubjectPredicate // instanceof handles nulls
-            && subject.equals(((LessonSubjectPredicate) other).subject)); // date check
+            || (other instanceof LessonDonePredicate // instanceof handles nulls
+            && done.equals(((LessonDonePredicate) other).done)); // date check
     }
 }

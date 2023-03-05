@@ -28,6 +28,7 @@ public class ViewLessonCommand extends Command {
     private final Predicate<Student> namePredicate;
     private final Predicate<Lesson> lessonDatePredicate;
     private final Predicate<Lesson> subjectPredicate;
+    private final Predicate<Lesson> donePredicate;
     private final boolean defaultPredicateFlag;
 
 
@@ -38,11 +39,12 @@ public class ViewLessonCommand extends Command {
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> subjectPredicate,
-                             boolean defaultPredicateFlag) {
+                             Predicate<Lesson> donePredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
         this.lessonDatePredicate = SHOW_ALL_LESSONS;
         this.defaultPredicateFlag = defaultPredicateFlag;
         this.subjectPredicate = subjectPredicate;
+        this.donePredicate = donePredicate;
     }
 
     /**
@@ -53,11 +55,13 @@ public class ViewLessonCommand extends Command {
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> lessonDatePredicate,
-                               Predicate<Lesson> subjectPredicate, boolean defaultPredicateFlag) {
+                               Predicate<Lesson> subjectPredicate, Predicate<Lesson> donePredicate,
+                             boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
         this.lessonDatePredicate = lessonDatePredicate;
         this.defaultPredicateFlag = defaultPredicateFlag;
         this.subjectPredicate = subjectPredicate;
+        this.donePredicate = donePredicate;
     }
 
     /**
@@ -82,7 +86,8 @@ public class ViewLessonCommand extends Command {
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
             sb.append(student.getName().fullName).append(":\n");
-            List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate);
+            List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
+                donePredicate);
             numOfLessons += lessonList.size();
 
             for (int i = 0; i < lessonList.size(); i++) {
