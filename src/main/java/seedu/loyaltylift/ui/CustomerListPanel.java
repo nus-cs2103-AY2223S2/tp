@@ -17,16 +17,25 @@ public class CustomerListPanel extends UiPart<Region> {
     private static final String FXML = "CustomerListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CustomerListPanel.class);
 
+    private final CustomerInfoOnClickHandler handler;
+
     @FXML
     private ListView<Customer> customerListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public CustomerListPanel(ObservableList<Customer> personList) {
+    public CustomerListPanel(ObservableList<Customer> personList, CustomerInfoOnClickHandler handler) {
         super(FXML);
+        this.handler = handler;
+
         customerListView.setItems(personList);
         customerListView.setCellFactory(listView -> new PersonListViewCell());
+
+        customerListView.setOnMouseClicked(e -> {
+            Customer customer = customerListView.getSelectionModel().getSelectedItem();
+            handler.customerInfoOnClick(customer);
+        });
     }
 
     /**
@@ -46,4 +55,12 @@ public class CustomerListPanel extends UiPart<Region> {
         }
     }
 
+    @FunctionalInterface
+    public interface CustomerInfoOnClickHandler {
+        /**
+         * Handles the displaying of customer information on main window.
+         *
+         */
+        void customerInfoOnClick(Customer customer);
+    }
 }

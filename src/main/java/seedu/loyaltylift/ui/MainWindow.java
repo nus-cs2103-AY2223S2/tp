@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -17,6 +18,7 @@ import seedu.loyaltylift.logic.Logic;
 import seedu.loyaltylift.logic.commands.CommandResult;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.ui.customer.CustomerGeneralInfo;
 import seedu.loyaltylift.ui.customer.CustomerInfo;
 
@@ -58,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane infoPane;
+
+    @FXML
+    private Label hintLabel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -119,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList());
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(), this::showCustomerInfo);
         customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -201,5 +206,16 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Handles the event where a CustomerCard is clicked and the customer info needs to be shown.
+     * @param customer The customer to be displayed on the information pane.
+     */
+    private void showCustomerInfo(Customer customer) {
+        infoPane.getChildren().clear();
+
+        CustomerInfo customerInfo = new CustomerInfo(customer);
+        infoPane.getChildren().add(customerInfo.getRoot());
     }
 }

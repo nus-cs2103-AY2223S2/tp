@@ -3,9 +3,8 @@ package seedu.loyaltylift.ui.customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.ui.UiPart;
-
-import java.net.URL;
 
 public class CustomerGeneralInfo extends UiPart<VBox> {
 
@@ -18,11 +17,11 @@ public class CustomerGeneralInfo extends UiPart<VBox> {
     @FXML
     private Label email;
 
-    public CustomerGeneralInfo() {
+    public CustomerGeneralInfo(Customer customer) {
         super(FXML);
 
-        phone.setText("91031028");
-        address.setText("10 Summer Drive, Singapore 309881");
-        email.setText("tracyloh@example.com");
+        phone.setText(customer.getPhone().value);
+        address.setText(customer.getAddress().value);
+        email.setText(customer.getEmail().value);
     }
 }

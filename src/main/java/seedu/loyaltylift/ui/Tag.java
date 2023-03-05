@@ -9,6 +9,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import seedu.loyaltylift.model.customer.Customer;
 
 public class Tag extends UiPart<StackPane> {
 

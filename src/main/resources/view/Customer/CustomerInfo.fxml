@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox minHeight="100.0" minWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" />
+<ScrollPane cacheShape="false" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minHeight="100.0" minWidth="300.0" stylesheets="@CustomerInfo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox fx:id="verticalContainer" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" nodeOrientation="LEFT_TO_RIGHT">
+               <children>
+                  <Label fx:id="customerName" styleClass="nameHeader" text="\\$customerName" />
+                  <Separator minWidth="100.0" visible="false" HBox.hgrow="ALWAYS" />
+                  <StackPane fx:id="customerTypePlaceholder" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
