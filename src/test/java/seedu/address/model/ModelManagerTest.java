@@ -17,6 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -114,6 +115,34 @@ public class ModelManagerTest {
     @Test
     public void getEventPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void deleteEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteEvent(null));
+    }
+
+    @Test
+    public void deleteEvent_eventNotInAddressBook_throwsEventNotFoundException() {
+        assertThrows(EventNotFoundException.class, () -> modelManager.deleteEvent(WEDDING_DINNER));
+    }
+
+    @Test
+    public void deleteEvent_soleEventInAddressBook_deletesEvent() {
+        modelManager.addEvent(WEDDING_DINNER);
+        modelManager.deleteEvent(WEDDING_DINNER);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
+    public void deleteEvent_multipleEventsInAddressBook_deletesEvent() {
+        modelManager.addEvent(WEDDING_DINNER);
+        modelManager.addEvent(CARNIVAL);
+        modelManager.deleteEvent(WEDDING_DINNER);
+        ModelManager expectedModelManager = new ModelManager();
+        expectedModelManager.addEvent(CARNIVAL);
+        assertEquals(expectedModelManager, modelManager);
     }
 
     @Test
