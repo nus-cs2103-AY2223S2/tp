@@ -117,13 +117,35 @@ Met a new friend?
 Use this command to add him/her to your address book.
 
 > Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-><div markdown="span" class="alert alert-primary">:bulb: **Tip:**
->A person can have any number of tags (including 0)
-></div>
+
+Here are all the specifiers that can be used:
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| p         | Photo                           | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags and modules taken(including 0). 
+
+IMPT: If you want to add multiple tags or modules in one statement, 
+every tag or module has to have its corresponding specifier.
+
+In the future, only modules that are a part of NUS' mod systems will be allowed. This is
+to prevent any messiness and also allows for syncing with the calendar.
+</div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
 ### Listing All Contacts : `list`
 
@@ -165,17 +187,32 @@ Learnt something new about your friend? Or perhaps he/she changed a particular d
 
 Use this command to edit his/her details easily!
 
-> Command: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+> Command: `edit INDEX [{SPECIFIER}/{DATA}]`
 
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-  * Note that when editing a contact's `t/TAG`, the existing tags will be removed
+  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed 
 
-    _[i.e  adding of tags is not cumulative]_
-    * If you wish to remove all tags from the person, simply type `t/`.
+    _[i.e  adding of tags and mods taken are not cumulative]_
+    * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
+ * We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| p         | Photo                           | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
+
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.

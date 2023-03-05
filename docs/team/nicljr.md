@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: `to be added soon`
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nicljr&breakdown=true)
 
 * **Project management**:
   * `to be added soon`
@@ -29,5 +29,4 @@ Given below are my contributions to the project.
   * `to be added soon`
 
 * **Tools**:
-  * Integrated a third party library (CalendarFX) to the project ([\#PR]())
   * `to be added soon`
