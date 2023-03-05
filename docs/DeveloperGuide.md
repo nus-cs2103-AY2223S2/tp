@@ -312,9 +312,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Technical requirements
+1. Should work on any mainstream OS with the same workflow as long as it has Java 11 or above installed.
+
+#### Performance requirements
+1. Should be able to hold records of up to 1000 employees.
+2. The system should be able to execute all commands within a second.
+
+#### Usability requirements
+1. A user with above average typing speed (above 40 WPM) for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. The application should be easy to use by users with little experience of using a command line application.
+3. The application should be accessible and readily available to new users.
 
 *{More to be added}*
 
