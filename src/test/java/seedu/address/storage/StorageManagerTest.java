@@ -58,7 +58,7 @@ public class StorageManagerTest {
          */
     /*    FriendlyLink original = getTypicalFriendlyLink();
         storageManager.saveFriendlyLink(original);
-        ReadOnlyFriendlyLink retrieved = storageManager.readFriendlyLink().get();
+        ReadOnlyFriendlyLink retrieved = storageManager.readFriendlyLink(new FriendlyLink()).get();
         assertEquals(original, new FriendlyLink(retrieved));
     } */
 

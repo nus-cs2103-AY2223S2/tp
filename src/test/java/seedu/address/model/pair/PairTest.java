@@ -1,6 +1,8 @@
 package seedu.address.model.pair;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -46,26 +48,26 @@ public class PairTest {
     public void equals() {
         // same values -> returns true
         Pair pair1Copy = new PairBuilder(PAIR1).build();
-        assertTrue(PAIR1.equals(pair1Copy));
+        assertEquals(PAIR1, pair1Copy);
 
         // same object -> returns true
-        assertTrue(PAIR1.equals(PAIR1));
+        assertEquals(PAIR1, PAIR1);
 
         // null -> returns false
-        assertFalse(PAIR1.equals(null));
+        assertNotEquals(null, PAIR1);
 
         // different type -> returns false
-        assertFalse(PAIR1.equals(5));
+        assertNotEquals(5, PAIR1);
 
         // different pair -> returns false
-        assertFalse(PAIR1.equals(PAIR2));
+        assertNotEquals(PAIR1, PAIR2);
 
         // different elderly -> returns false
         Pair editedPair1 = new PairBuilder(PAIR1).withElderly(CHARLIE).build();
-        assertFalse(PAIR1.equals(editedPair1));
+        assertNotEquals(PAIR1, editedPair1);
 
         // different volunteer -> returns false
         editedPair1 = new PairBuilder(PAIR1).withVolunteer(DANIEL).build();
-        assertFalse(PAIR1.equals(editedPair1));
+        assertNotEquals(PAIR1, editedPair1);
     }
 }
