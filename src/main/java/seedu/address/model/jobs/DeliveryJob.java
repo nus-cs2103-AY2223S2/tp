@@ -30,7 +30,8 @@ public class DeliveryJob {
         this(UUID.randomUUID(), recepient, deliverSlot, packages, earning);
     }
 
-    private DeliveryJob(UUID jobId, Person recepient, String deliverSlot, List<DeliveryPackage> packages, double earning) {
+    private DeliveryJob(UUID jobId, Person recepient, String deliverSlot, List<DeliveryPackage> packages,
+            double earning) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.deliverSlot = deliverSlot;
@@ -57,19 +58,18 @@ public class DeliveryJob {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        
+
         String outString = "Job [%s]\n"
-            + "receipent: %s\n"
-            + "slot: %s\n"
-            + "earn: $%s\n";
+                + "receipent: %s\n"
+                + "slot: %s\n"
+                + "earn: $%s\n";
 
         builder.append(
-            String.format(outString, 
-                jobId, 
-                getRecepient(), 
-                getDeliverSlot(), 
-                getEarning())
-            );
+                String.format(outString,
+                        jobId,
+                        getRecepient(),
+                        getDeliverSlot(),
+                        getEarning()));
 
         return builder.toString();
     }

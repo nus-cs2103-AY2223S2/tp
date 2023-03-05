@@ -44,19 +44,19 @@ public class DeliveryPackage {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        
+
         String outString = "Package [%s]\n"
             + "weight: %s\n"
             + "LxBxH: %s x %s x %s\n";
 
         builder.append(
-            String.format(outString, 
-                packageId, 
-                getWeight(), 
-                getLength(), 
+            String.format(outString,
+                packageId,
+                getWeight(),
+                getLength(),
                 getBreadth(),
                 getHeight())
-            );
+        );
 
         return builder.toString();
     }
