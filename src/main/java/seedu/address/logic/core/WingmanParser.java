@@ -114,6 +114,18 @@ public class WingmanParser extends FactoryParser {
                                      + operationMode);
     }
 
+    /**
+     * Helps to delegate the parsing to each command group. This is
+     * abstracted out so that we can have single level of abstraction in
+     * the {@code parse} method.
+     *
+     * @param operationMode the operation mode at which the command is
+     * @param tokens        the tokens to parse.
+     * @return the command that corresponds to the user input.
+     * @throws ParseException if a parsing error exists. Note that if no
+     *                        group is found, this method will simply return an
+     *                        empty {@code Optional}.
+     */
     private Optional<Command> parseGroup(OperationMode operationMode,
         Deque<String> tokens) throws ParseException {
         for (CommandGroup commandGroup : this.groups) {
