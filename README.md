@@ -1,4 +1,7 @@
 ## Product name: PowerCards
+
+![Ui](docs/images/Ui.png)
+
 ### Target user profile: University Students
 ### Value proposition: 
 - Enable users to input a pool of information (question-answer pairs) of their desired topic and utilize the application to practice active recall of this information.
