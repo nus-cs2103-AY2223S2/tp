@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -32,6 +33,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.json.storage.JsonLocationManagerStorage;
 import seedu.address.storage.json.storage.JsonPilotManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -64,7 +66,9 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         IdentifiableStorage<Pilot> pilotStorage =
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage);
+        IdentifiableStorage<Location> locationStorage =
+                new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage);
 
         initLogging(config);
 
@@ -99,24 +103,31 @@ public class MainApp extends Application {
 
         ReadOnlyIdentifiableManager<Pilot> pilotManager;
         Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
+        ReadOnlyIdentifiableManager<Location> locationManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
 
         try {
             pilotManagerOptional = storage.readPilotManager();
+            locationManagerOptional = storage.readLocationManager();
             if (pilotManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample PilotManager");
                 pilotManager = new IdentifiableManager<>();
+                locationManager = new IdentifiableManager<>();
             } else {
                 pilotManager = pilotManagerOptional.get();
+                locationManager = locationManagerOptional.get();
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
+            locationManager = new IdentifiableManager<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
+            locationManager = new IdentifiableManager<>();
         }
 
-        return new ModelManager(addressBook, userPrefs, pilotManager);
+        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager);
     }
 
     private void initLogging(Config config) {
