@@ -11,40 +11,40 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 ### Lin Yuan Xun
 
-<img src="images/yuanxun9834.png.jpg" width="200px">
+<img src="images/yuanxun9834.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/YuanXun9834)]
-[[portfolio](team/yuanxun9834_portfolio.md)]
+[[portfolio](team/YuanXun9834.md)]
 
 * Role: Project Advisor
 
 ### Soo Weng Kit
 
-<img src="images/wengkit1.png.jpg" width="200px">
+<img src="images/wengkit1.png" width="200px">
 
 [[github](http://github.com/wengkit1)]
-[[portfolio](team/wengkit1_portfolio.md)]
+[[portfolio](team/wengkit1.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
 ### He Shuimei
 
-<img src="images/shuimeihe.png.jpg" width="200px">
+<img src="images/shuimeihe.png" width="200px">
 
+[[homepage](https://shuimeihe.github.io/)]
 [[github](http://github.com/shuimeihe)]
-[[portfolio](team/shuimeihe_portfolio.md)]
+[[portfolio](team/shuimeihe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
 ### Daniel Kur
 
-<img src="images/daniel-kur.png.jpg" width="200px">
+<img src="images/daniel-kur.png" width="200px">
 
 [[github](http://github.com/daniel-kur)]
-[[portfolio](team/daniel-kur_portfolio.md)]
+[[portfolio](team/Daniel-Kur.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
