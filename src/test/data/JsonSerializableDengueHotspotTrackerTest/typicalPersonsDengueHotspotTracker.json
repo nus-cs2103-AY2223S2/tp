@@ -3,44 +3,44 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "postal" : "943512",
-    "date" : "alice@example.com",
-    "age" : "123, Jurong West Ave 6, #08-111",
+    "date" : "2023-03-05",
+    "age" : "21",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "postal" : "987654",
-    "date" : "johnd@example.com",
-    "age" : "311, Clementi Ave 2, #02-25",
+    "date" : "2022-03-05",
+    "age" : "85",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "postal" : "953525",
-    "date" : "heinz@example.com",
-    "age" : "wall street",
+    "date" : "2023-02-02",
+    "age" : "35",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "postal" : "876525",
-    "date" : "cornelia@example.com",
-    "age" : "10th street",
+    "date" : "2023-01-01",
+    "age" : "143",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "postal" : "948222",
-    "date" : "werner@example.com",
-    "age" : "michegan ave",
+    "date" : "2022-12-31",
+    "age" : "65",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "postal" : "948247",
-    "date" : "lydia@example.com",
-    "age" : "little tokyo",
+    "date" : "2022-01-05",
+    "age" : "5",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "postal" : "948244",
-    "date" : "anna@example.com",
-    "age" : "4th street",
+    "date" : "2023-01-05",
+    "age" : "12",
     "tagged" : [ ]
   } ]
 }

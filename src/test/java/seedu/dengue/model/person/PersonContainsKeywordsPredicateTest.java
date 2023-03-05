@@ -44,7 +44,8 @@ public class PersonContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(
+                Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -71,9 +72,9 @@ public class PersonContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, date and address, but does not match name
-        predicate = new PersonContainsKeywordsPredicate(Arrays.asList("123456", "alice@date.com",
-                "Main", "Street"));
+        predicate = new PersonContainsKeywordsPredicate(Arrays.asList("123456", "2022-11-01",
+                "15"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPostal("123567")
-                .withDate("alice@date.com").withAge("Main Street").build()));
+                .withDate("2022-11-01").withAge("15").build()));
     }
 }

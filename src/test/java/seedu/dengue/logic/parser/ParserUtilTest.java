@@ -29,8 +29,8 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_POSTAL = "123456";
-    private static final String VALID_AGE = "123 Main Street #0505";
-    private static final String VALID_DATE = "rachel@example.com";
+    private static final String VALID_AGE = "25";
+    private static final String VALID_DATE = "2023-02-25";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 

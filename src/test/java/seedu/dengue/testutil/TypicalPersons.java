@@ -24,30 +24,29 @@ import seedu.dengue.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAge("123, Jurong West Ave 6, #08-111").withDate("alice@example.com")
+            .withAge("21").withDate("2023-03-05")
             .withPostal("943512")
             .withTags("friends").build();
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAge("311, Clementi Ave 2, #02-25")
-            .withDate("johnd@example.com").withPostal("987654")
+            .withAge("85").withDate("2022-03-05").withPostal("987654")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPostal("953525")
-            .withDate("heinz@example.com").withAge("wall street").build();
+            .withDate("2023-02-02").withAge("35").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPostal("876525")
-            .withDate("cornelia@example.com").withAge("10th street").withTags("friends").build();
+            .withDate("2023-01-01").withAge("143").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPostal("948222")
-            .withDate("werner@example.com").withAge("michegan ave").build();
+            .withDate("2022-12-31").withAge("65").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPostal("948247")
-            .withDate("lydia@example.com").withAge("little tokyo").build();
+            .withDate("2022-01-05").withAge("5").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPostal("948244")
-            .withDate("anna@example.com").withAge("4th street").build();
+            .withDate("2023-01-05").withAge("12").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPostal("848242")
-            .withDate("stefan@example.com").withAge("little india").build();
+            .withDate("1850-01-02").withAge("1").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPostal("848213")
-            .withDate("hans@example.com").withAge("chicago ave").build();
+            .withDate("1996-10-01").withAge("27").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPostal(VALID_POSTAL_AMY)
