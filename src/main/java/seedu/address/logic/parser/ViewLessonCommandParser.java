@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
@@ -11,7 +12,9 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.LessonBelongsToDatePredicate;
+import seedu.address.model.student.LessonSubjectPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 
@@ -28,8 +31,9 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
     public ViewLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_SUBJECT);
         Predicate<Student> namePredicate;
+        Predicate<Lesson> subjectPredicate = lesson -> true;
         boolean defaultPredicateFlag;
 
         // If name is present, create a predicate to filter by name
@@ -53,14 +57,19 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
             defaultPredicateFlag = true;
         }
 
-        // If status is present, create a predicate to filter by status
+        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
+            String subject = argMultimap.getValue(PREFIX_SUBJECT).get();
+            subjectPredicate = new LessonSubjectPredicate(subject);
+        }
+
+        // If date is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
             LessonBelongsToDatePredicate datePredicate = new LessonBelongsToDatePredicate(targetDate);
-            return new ViewLessonCommand(namePredicate, datePredicate, defaultPredicateFlag);
+            return new ViewLessonCommand(namePredicate, datePredicate, subjectPredicate, defaultPredicateFlag);
         } else {
-            return new ViewLessonCommand(namePredicate, defaultPredicateFlag);
+            return new ViewLessonCommand(namePredicate, subjectPredicate, defaultPredicateFlag);
         }
     }
 
