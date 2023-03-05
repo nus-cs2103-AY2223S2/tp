@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Shen Chenzi
 
-<img src="images/johndoe.png" width="200px">
+![docs/images/shenchenzi.png](https://user-images.githubusercontent.com/97273558/221216937-eecda515-93e0-47b0-9b74-d0f08ac43253.jpg)
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/shenchenzizoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Year 2 NUS Computer Science Student
+* Sleep >= 12 hours per day
 
 ### James Doe
 
