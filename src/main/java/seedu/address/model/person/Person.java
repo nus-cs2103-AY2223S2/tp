@@ -7,7 +7,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.tag.Tag;
+
+import seedu.address.model.group.exceptions.DuplicateGroupException;
 
 /**
  * Represents a Person in the address book.
@@ -23,6 +28,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Set<Group> groups = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +40,31 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Add a group into person
+     *
+     * @param group Group that a person is in
+     */
+    public void addGroup(Group group) {
+        if (groups.contains(group)) {
+            throw new PersonAlreadyInGroupException();
+        }
+        this.groups.add(group);
+    }
+
+
+    /**
+     * Remove a group from person
+     *
+     * @param group Group that a person does not belong in anymore
+     */
+    public void removeGroup(Group group) {
+        if (!groups.contains(group)) {
+            throw new GroupNotFoundException();
+        }
+        this.groups.remove(group);
     }
 
     public Name getName() {
@@ -58,6 +89,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
     }
 
     /**
@@ -116,6 +155,12 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Group> groups = getGroups();
+        if (!groups.isEmpty()) {
+            builder.append("; Groups: ");
+            groups.forEach(builder::append);
         }
         return builder.toString();
     }
