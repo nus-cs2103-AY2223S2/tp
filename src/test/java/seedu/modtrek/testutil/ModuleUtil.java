@@ -53,6 +53,8 @@ public class ModuleUtil {
             Set<Tag> tags = descriptor.getTags().get();
             if (!tags.isEmpty()) {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.toString()).append(" "));
+            } else {
+                sb.append(PREFIX_TAG).append(" ");
             }
         }
         return sb.toString();

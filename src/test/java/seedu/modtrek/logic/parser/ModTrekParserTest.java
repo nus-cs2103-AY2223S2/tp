@@ -53,8 +53,6 @@ public class ModTrekParserTest {
     public void parseCommand_edit() throws Exception {
         Module module = new ModuleBuilder().build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
-        System.out.println(EditCommand.COMMAND_WORD + " "
-                + "CS1101S" + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + "CS1101S" + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
         assertTrue(new EditCommand(new Code("CS1101S"), descriptor).equals(command));
