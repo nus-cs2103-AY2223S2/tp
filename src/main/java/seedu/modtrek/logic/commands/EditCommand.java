@@ -43,9 +43,9 @@ public class EditCommand extends Command {
             + PREFIX_CREDIT + "4 "
             + PREFIX_SEMYEAR + "Y2S2";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Module: %1$s";
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module already exists in the grade book.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the grade book.";
 
     private final Code code;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -67,19 +67,19 @@ public class EditCommand extends Command {
         requireNonNull(model);
         ObservableList<Module> lastShownList = model.getFilteredModuleList();
 
-
+        //should change this to a better way to retrieve module (possibly HashSet for modules?)
         Module moduleToEdit = new Module(code);
         int index = lastShownList.indexOf(moduleToEdit);
         moduleToEdit = lastShownList.get(index);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
 
         if (!moduleToEdit.isSameModule(editedModule) && model.hasModule(editedModule)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
     /**
