@@ -35,8 +35,6 @@ public class CustomerListPanel extends UiPart<Region> {
         customerListView.setOnMouseClicked(e -> {
             Customer customer = customerListView.getSelectionModel().getSelectedItem();
             handler.customerInfoOnClick(customer);
-
-//            customerListView.getItems().
         });
     }
 
