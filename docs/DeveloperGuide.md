@@ -278,8 +278,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person 
-Priority
-
 | `***` | HR personnel | Add a person’s leave to SudoHR | Ensure consolidation of information
 | `***` | HR personnel | be able to view all the leave the person has applied for | Access an employee availability easily
 | `***` | HR personnel | Be able to view everyone who has applied leave on a day | Better plan company events
