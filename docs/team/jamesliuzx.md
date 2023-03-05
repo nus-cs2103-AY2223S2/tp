@@ -28,19 +28,18 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `xx` and `xx` [\#]()
-        * Did cosmetic tweaks to existing documentation of features `xx`, `xx`: [\#]()
+        * Added documentation for the features `delete` [\#f8a7ea1]()
+        * Added table of contents and hyperlinks [\#2307c7f]()
+
     * Developer Guide:
-        * Added implementation details of the `xx` feature.
+      * Added DG glossary [\#42]()  
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+    * PRs reviewed (with non-trivial review comments): [\#30](), [\#35]()
     * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
     * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
 * **Tools**:
-    * Integrated a third party library (BangBros-JS) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
