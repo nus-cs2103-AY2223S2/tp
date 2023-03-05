@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -52,6 +53,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /* Person-related functions */
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,4 +87,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /* Location-related functions */
+
+    /**
+     * Returns true if the location is in the location list
+     * @param location a location object to be checked
+     * @return true if the location has already been in the list
+     */
+    boolean hasLocation(Location location);
+
+    /**
+     * Delete a location from the location list
+     * @param location the location to be deleted
+     */
+    void deleteLocation(Location location);
+
+    /**
+     * Add a location to the location list
+     * @param location the location to be added
+     */
+    void addLocation(Location location);
 }
