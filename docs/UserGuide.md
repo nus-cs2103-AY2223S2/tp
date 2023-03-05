@@ -6,22 +6,7 @@ title: User Guide
 ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-<!-- TOC -->
-  * [Quick start](#quick-start)
-  * [Features](#features)
-    * [Viewing help : `help` [coming soon]](#viewing-help--help-coming-soon)
-    * [Adding a person: `add`](#adding-a-person--add)
-    * [Listing all persons : `list`](#listing-all-persons--list)
-    * [Editing a person : `edit`](#editing-a-person--edit)
-    * [Locating persons by name: `find` [coming soon]](#locating-persons-by-name--find-coming-soon)
-    * [Deleting a person : `delete`](#deleting-a-person--delete)
-    * [Exiting the program : `exit`](#exiting-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
-  * [FAQ](#faq)
-  * [Command summary](#command-summary)
-<!-- TOC -->
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
