@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC4 - Delete event**
 **MSS:**
-1. User lists event
+1. User request to list event
 2. SudoHR shows all events
 3. User requests to delete event from SudoHR
 4. SudoHR deletes event.
@@ -398,12 +398,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: UC4 - Delete event**
+**Use case: UC5 - Update event**
 **MSS:**
-1. User lists event
-2. SudoHR shows all events
-3. User requests to delete event from SudoHR
-4. SudoHR deletes event.
+1. User resuest to list event
+2. SudoHR shows all events and their details
+3. User requests to update event details on SudoHR
+4. SudoHR update event.
 5. Use case ends.
 
 **Extensions**
@@ -418,6 +418,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The given argument is empty.
+
+    * 3b1. SudoHR shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC6 - List event**
+**MSS:**
+1. User requests SudoHR to list all events
+2. SudoHR shows all events and their details
+
+
+**Use case: UC7 - Add employee to event**
+**MSS:**
+1. User requests to list event
+2. SudoHR shows all events and their details
+3. User requests to list employees
+4. SudoHR shows all employees and their details
+5. User requests to add employee to event on SudoHR
+6. SudoHR add employee to event.
+7. Use case ends.
+
+**Extensions**
+
+* 2a. The event list is empty.
+
+  Use case ends.
+
+* 4a. The employee list is empty.
+
+  Use case ends.
+
+* 5a. The given Employeeindex is invalid.
+
+    * 5a1. SudoHR shows an error message.
+
+      Use case resumes at step 4.
+
+* 5b. The given Eventindex is invalid.
+
+    * 5b1. SudoHR shows an error message.
+
+      Use case resumes at step 4.
+
+**Use case: UC8 - List employees in an event**
+**MSS:**
+1. User request to list events
+2. SudoHR shows all events and their details
+3. User requests to list employees added to an event
+4. SudoHR shows all employees added to an event and their details 
+5. Use case ends.
+
+**Extensions**
+
+* 2a. The event list is empty.
+
+  Use case ends.
+
+* 3a. The given Index is invalid.
+
+    * 3a1. SudoHR shows an error message.
+
+      Use case resumes at step 4.
+
+**Use case: UC9 - Delete employee from event**
+**MSS:**
+1. User requests to __list events(UC6)__
+2. SudoHR shows all events and their details
+3. User requests to __list employees in a event(UC8)__
+4. SudoHR shows all employees added to an event and their details
+5. User requests to delete employee to event on SudoHR
+6. SudoHR delete employee from event.
+7. Use case ends.
+
+**Extensions**
+
+* 2a. The event list is empty.
+
+  Use case ends.
+
+* 4a. The employee list is empty.
+
+  Use case ends.
+
+* 5a. The given Employeeindex is invalid.
+
+    * 5a1. SudoHR shows an error message.
+
+      Use case resumes at step 4.
+
+* 5b. The given Eventindex is invalid.
+
+    * 5b1. SudoHR shows an error message.
+
+      Use case resumes at step 4.
 
 
 *{More to be added}*
