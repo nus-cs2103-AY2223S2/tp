@@ -3,6 +3,7 @@ package seedu.vms.storage.vaccination;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -44,6 +45,30 @@ public class JsonAdaptedVaxType {
         this.minSpacing = minSpacing;
         this.allergyReqs = allergyReqs;
         this.historyReqs = historyReqs;
+    }
+
+
+    /**
+     * Converts the specified {@code VaxType} to a
+     * {@code JsonAdaptedVaxType}.
+     */
+    public static JsonAdaptedVaxType fromModelType(VaxType vaxType) {
+        String name = vaxType.getName();
+        List<String> groups = List.copyOf(vaxType.getGroups());
+        Integer minAge = vaxType.getMinAge();
+        Integer maxAge = vaxType.getMaxAge();
+        Integer minSpacing = vaxType.getMinSpacing();
+        List<JsonAdaptedVaxRequirement> allergyReqs = convertToAdaptedReq(vaxType.getAllergyReqs());
+        List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
+
+        return new JsonAdaptedVaxType(name, groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+    }
+
+
+    private static List<JsonAdaptedVaxRequirement> convertToAdaptedReq(List<Requirement> reqs) {
+        return reqs.stream()
+                .map(req -> JsonAdaptedVaxRequirement.fromModelType(req))
+                .collect(Collectors.toList());
     }
 
 
