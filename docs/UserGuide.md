@@ -242,7 +242,7 @@ Use this command to exit the application!
 
 > Command: `exit`
 
-## Address Book Command Summary
+### Address Book Command Summary
 
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -264,6 +264,8 @@ Use this command to exit the application!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## Data
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
