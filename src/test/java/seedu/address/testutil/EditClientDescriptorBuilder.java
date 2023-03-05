@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -36,6 +37,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
         descriptor.setAddress(client.getAddress());
+        descriptor.setAppointments(client.getAppointments());
         descriptor.setTags(client.getTags());
     }
 
@@ -78,6 +80,16 @@ public class EditClientDescriptorBuilder {
     public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditClientDescriptor}
+     * that we are building.
+     */
+    public EditClientDescriptorBuilder withAppointments(String... appointments) {
+        Set<Appointment> appointmentSet = Stream.of(appointments).map(Appointment::new).collect(Collectors.toSet());
+        descriptor.setAppointments(appointmentSet);
         return this;
     }
 

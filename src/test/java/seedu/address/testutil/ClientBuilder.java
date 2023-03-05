@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -25,6 +26,7 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Set<Appointment> appointments;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +37,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        appointments = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -46,6 +49,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
+        appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
     }
 
@@ -62,6 +66,15 @@ public class ClientBuilder {
      */
     public ClientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public ClientBuilder withAppointments(String ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
@@ -90,7 +103,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, appointments, tags);
     }
 
 }

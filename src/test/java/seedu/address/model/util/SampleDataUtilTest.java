@@ -1,25 +1,23 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static seedu.address.model.util.SampleDataUtil.getAppointmentSet;
+import static seedu.address.model.util.SampleDataUtil.getTagSet;
+import static seedu.address.testutil.Assert.assertArrayNotEquals;
 
-import seedu.address.model.FitBook;
-import seedu.address.model.ReadOnlyFitBook;
+import org.junit.jupiter.api.Test;
+
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
 
-/**
- * Contains utility methods for populating {@code FitBook} with sample data.
- */
-public class SampleDataUtil {
-    public static Client[] getSampleClients() {
-        return new Client[] {
+public class SampleDataUtilTest {
+
+    @Test
+    public void getSampleClients() {
+        Client[] testClient = new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), getAppointmentSet("12-12-2019"),
                 getTagSet("friends")),
@@ -39,31 +37,13 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"), getAppointmentSet("12-08-2019"),
                 getTagSet("colleagues"))
         };
-    }
+        int clientNumber = SampleDataUtil.getSampleClients().length;
+        Client[] nullTestClient = new Client[clientNumber];
 
-    public static ReadOnlyFitBook getSampleFitBook() {
-        FitBook sampleAb = new FitBook();
-        for (Client sampleClient : getSampleClients()) {
-            sampleAb.addClient(sampleClient);
-        }
-        return sampleAb;
-    }
+        // Sample Data is the equal to the sample data of test.
+        assertArrayEquals(SampleDataUtil.getSampleClients(), testClient);
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
-    /**
-     * Returns an appointment set containing the list of strings given.
-     */
-    public static Set<Appointment> getAppointmentSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Appointment::new)
-                .collect(Collectors.toSet());
+        // Sample Data is non null.
+        assertArrayNotEquals(nullTestClient, SampleDataUtil.getSampleClients());
     }
 }
