@@ -13,7 +13,7 @@ import seedu.calidr.model.task.Task;
  */
 public class TaskList {
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<Task>();
 
     /**
      * Returns all the Tasks in the list of Tasks.
@@ -127,7 +127,8 @@ public class TaskList {
 
         if (isValidTaskNumber) {
             Task removedTask = this.tasks.remove(taskNumber - 1);
-            return String.format("I have removed Task %d from the list.\n%s\nYou now have %d task(s) in the list.\n", taskNumber, removedTask, this.tasks.size());
+
+            return "I have removed Task " + taskNumber + " from the list.\n" + removedTask + "\nYou now have " + this.tasks.size() + " task(s) in the list.\n";
 
         } else {
             throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");

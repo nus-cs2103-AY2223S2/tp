@@ -171,12 +171,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
-
-    /*
-        public PersonListPanel getPersonListPanel() {
-            return personListPanel;
-        }
-    */
     public CalendarPanel getCalendarPanel() {
         return calendarPanel;
     }
