@@ -5,6 +5,7 @@ import static seedu.address.model.person.information.Nric.VALIDATION_REGEX;
 
 import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Parses input arguments and creates a new DeleteElderlyCommand object
@@ -22,6 +23,7 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteElderlyCommand.MESSAGE_USAGE));
         }
-        return new DeleteElderlyCommand(trimmedArgs);
+        Nric nric = new Nric(trimmedArgs);
+        return new DeleteElderlyCommand(nric);
     }
 }
