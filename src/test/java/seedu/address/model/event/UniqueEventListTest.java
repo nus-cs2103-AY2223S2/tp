@@ -85,6 +85,15 @@ public class UniqueEventListTest {
     }
 
     @Test
+    public void setEventWithAnotherEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL));
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(events);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueEventList.asUnmodifiableObservableList().remove(0));
