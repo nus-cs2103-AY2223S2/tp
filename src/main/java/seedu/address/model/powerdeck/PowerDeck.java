@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 import seedu.address.model.powercard.PowerCard;
 import seedu.address.model.powercard.UniqueCardList;
 
+/**
+ * Wraps all data at the PowerDeck level
+ * Duplicates are not allowed (by .isSamePowerCard comparison)
+ */
 public class PowerDeck implements ReadOnlyPowerDeck {
     private final UniqueCardList cards;
 
