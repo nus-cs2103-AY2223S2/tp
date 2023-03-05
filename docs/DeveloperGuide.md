@@ -272,6 +272,8 @@ adding fitness routines to each client with checkboxes for easy access and to ch
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
 
+---
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -308,11 +310,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+---
+
 ### Use cases
 
 (For all use cases below, the **System** is the `FitBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a client**
+> **Use case: UC01 - Delete a client**
 
 **MSS**
 
@@ -335,12 +339,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Add a client**
+> **Use case: UC02 - Add a client**
 
 **MSS**
 
 1. User requests to add a client
 2. FitBook adds the client into the list.
+3. FitBook displays that the client has been added.
+
 
    Use case ends.
 
@@ -349,12 +355,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The client added has missing compulsory fields.
 
     * 1a1. FitBook shows an error message for missing fields.
-
+    
       Use case ends.
 
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
+
 
       Use case ends.
 
@@ -376,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC04 - Edit a client**
+> **Use case: UC04 - Edit a client**
 
 **MSS**
 
@@ -395,12 +402,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The user enters a client that does not exist in the database.
 
-    * 1b1. FitBook shows an error message that the client does not exist.
-
+    * 1b1. FitBook shows an error message that the client does not exist. 
+  
       Use case ends.
 
-*{More to be added}*
+> **Use case: UC05 - Clear all clients**
 
+**MSS**
+
+1. User requests to clear the list of clients.
+2. FitBook clears the list and database of clients.
+3. FitBook displays that the list is cleared.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. The list is empty in the database.
+  * 1a1. FitBook displays that the list is cleared.
+    
+      Use case ends.
+
+> **Use case: UC06 - Exit**
+
+**MSS**
+
+1. User requests to exit the application.
+2. FitBook exits the program.
+
+   Use case ends.
+
+> **Use case: UC07 - Find**
+
+//TODO By Kalaris
+
+**MSS**
+
+1. User requests to exit the application.
+2. FitBook exits the program.
+
+   Use case ends.
+
+*{More to be added}
+
+---
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -414,6 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. JAR file should be less than 2GB.
 
 *{More to be added}*
+
+---
 
 ### Glossary
 
