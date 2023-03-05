@@ -35,7 +35,7 @@
         <StackPane fx:id="bodyPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border, pa"
-                   minHeight="140" prefHeight="140" maxHeight="140" />
+                   minHeight="160" prefHeight="160" maxHeight="160" />
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border, pa" />
 
