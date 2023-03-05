@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AutoM8 can get your auto repair shop management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,26 +14,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `autom8.jar` from [here](https://github.com/AY2223S2-CS2103-W17-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar autom8.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+    [UI image to be added]
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -46,7 +34,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add appointment c/CUSTOMER_ID d/DATE t/TIME`, `CUSTOMER_ID, DATE and Time` are parameters which can be used as `add appointment c/2 d/02/02/2023 t/2pm`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -65,89 +53,161 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+---
 
-Shows a message explaning how to access the help page.
+### Add
 
-![help message](images/helpMessage.png)
+### Adding a customer: `add customer` 
+Adds a customer to the system and assigns a unique customer ID. 
 
-Format: `help`
+Format: `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` 
 
+Example: `add customer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Adding a person: `add`
+### Adding a vehicle: `add vehicle` 
+Adds a vehicle of specified type (i.e. motorbike, 4wd) to the system and assigns a unique vehicle ID. 
 
-Adds a person to the address book.
+Format: `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` 
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Example: `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Adding a vehicle part: `add part`
+Adds a vehicle part to the system. 
+
+Format: `add part n/NAME q/Quantity` 
+
+Example: `add part n/Cylinder Head q/50`
+
+### Adding a service to a vehicle: `add service`
+Adds a service to perform on the specified vehicle plate number.
+
+Format: `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]` 
+
+Examples: 
+* `add service v/10 t/standard s/in progress d/Customer says abc` 
+* `add service v/10 t/standard` \
+Note: Adding service without specifying the type of service will default to “to repair”
+
+### Adding a customer appointment: `add appointment`
+Adds a customer appointment to the system.
+
+Format: `add appointment c/CUSTOMER_ID d/DATE t/TIME` 
+
+Example: `add appointment c/5 d/05/03/2023 t/5pm`
+
+---
+### List/Sort
+
+### Listing all vehicles/customers/parts/appointments: `list`
+Shows all vehicles/customers/parts/appointments.
+
+Format: `list (vehicles/customers/parts/appointments)` 
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
+* `list vehicles`
+* `list customers`
+* `list parts`
+* `list appointments`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+### Sorting displayed list: `sort`
+Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param. \
+*Note: Command is context-sensitive (i.e. can only be used after list command)*
 
-### Editing a person : `edit`
+Format: `sort by/BRAND d/DIRECTION`
 
-Edits an existing person in the address book.
+Example: `sort by/brand d/asc` 
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+---
+### Find
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+### Finding specific vehicles/customers/parts/appointments: `find`
+
+Finds vehicles/customers/parts/appointments that contain any of the given keywords. This does not return details regarding the searched term, only returns information useful for other commands such as view, delete etc.
+* Vehicle - can find by brand, plate number and customer id
+* Customer - can find by name and customer id
+* Part - can find by name
+* Appointment - can find by customer id and date
+
+Format: `find (vehicle/customer/part/appointment) KEYWORD`
+
+Examples: 
+* `find vehicle toyota`
+* `find customer John`
+* `find part Cylinder Head`
+* `find appointment 05/03/2023`
+---
+### View
+
+### Viewing specific vehicle/customer/part/appointment details: `view`
+
+View a specific vehicle/customer/part/appointment detail. Id can be found by using the find or list command.
+
+Format: `view (vehicle/customer/part/appointment) ID`
+
+Examples:
+* `view vehicle 12`
+* `view customer 2`
+* `view part 23`
+* `view appointment 56`
+
+---
+### Edit
+
+### Editing a vehicle/customer/part/appointment : `edit`
+
+Updates the specified (Vehicle/Customer/Part/Appointment) information
+
+Format: `edit (vehicle/customer/part/appointment) ID [?/PARAM] …​`
+
+* Edits the specified object at the specified `ID`. The id refers to the index number shown in the displayed list from the list or find command. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit customer 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with id 1 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit vehicle 2 p/SBA9876G` Edits the plate number of the vehicle with id 2 to be `SBA9876G`.
 
-### Locating persons by name: `find`
+---
+### Delete
 
-Finds persons whose names contain any of the given keywords.
+### Deleting a vehicle/customer/part/appointment : `delete`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Deletes the specified vehicle/customer/part/appointment from the system and all its related records.
+* Deletes the vehicle/customer/part/appointment at the specified `ID`.
+* The id refers to the index number shown in the displayed list from the list or find command.
+* The id **must be a positive integer** 1, 2, 3, …​
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `delete (vehicle/customer/part/appointment) ID`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Example: `delete customer 12` deletes the customer with id 12 and all their related records in the AutoM8 system.
 
-### Deleting a person : `delete`
+---
+### Actions
 
-Deletes the specified person from the address book.
+### Undo a previously executed command: `undo`
 
-Format: `delete INDEX`
+Undoes the previously typed command
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `undo`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example flow:
+1. `add customer n/john p/91238765 e/john@gmail.com a/kent ridge street, block 123, #01-01`
+2. `undo`
+3. *System deletes previously added customer*
 
-### Clearing all entries : `clear`
+### Redo a previously executed command: `redo`
 
-Clears all entries from the address book.
+Repeats the execution of the previously typed command
 
-Format: `clear`
+Format: `redo`
+
+Example flow:
+to be updated
+
+---
+### Others
 
 ### Exiting the program : `exit`
 
@@ -155,39 +215,48 @@ Exits the program.
 
 Format: `exit`
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+Format: `help`
+
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AutoM8 data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AutoM8 data are saved as a JSON file `[JAR file location]/data/autom8.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AutoM8 will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+to be updated
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action                                                  | Format, Examples                                                                                                                                                     |
+|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Customer**                                        | `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Vehicle**                                         | `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                     |
+| **Add Service**                                         | `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `add service v/10 t/standard s/in progress d/Customer says abc`                       |
+| **Add Appointment**                                     | `add appointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`add appointment c/5 d/05/03/2023 t/5pm`                                                                      |
+| **List all Vehicles/Customers/Parts/Appointments**      | `list (vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                            |
+| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                     |
+| **Find specific Vehicle/Customer/Part/Appointment**     | `find (vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                   |
+| **View specific Vehicle/Customer/Part/Appointment**     | `view (vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                        |
+| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit (vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                              |
+| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete (vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                       |
+| **Undo**                                                | `undo`                                                                                                                                                               |
+| **Redo**                                                | `redo`                                                                                                                                                               |
+| **Exit**                                                | `exit`                                                                                                                                                               |
+| **Help**                                                | `help`                                                                                                                                                               |
