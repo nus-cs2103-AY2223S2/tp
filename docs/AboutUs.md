@@ -19,19 +19,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Wei De
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/IMG_1672.JPG" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/WeideTeo)]
+[[portfolio](https://www.linkedin.com/in/weideteo/)]
+
+* Role: Developer
+* Responsibilities: Functions
+
+### Wang ShaoFeng
+
+<img src="images/791654880285_.pic_hd.jpg" width="200px">
+
+[[github](https://github.com/SFCoding123)]
+[[portfolio](https://www.linkedin.com/in/shaofeng-wang-468303197/)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Luo Xizi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lxz333.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
@@ -48,12 +58,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Year 2 NUS Computer Science Student
 * Sleep >= 12 hours per day
 
-### James Doe
+### Xiao Yan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/windycall.png" width="220px" height="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/windycall)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Storage, Backend
