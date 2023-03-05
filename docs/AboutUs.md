@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](https://www.linkedin.com/in/weideteo/)]
 
 * Role: Developer
-* Responsibilities: Functions
+* Responsibilities: Add Functions
 
 
 ### Luo Xizi
