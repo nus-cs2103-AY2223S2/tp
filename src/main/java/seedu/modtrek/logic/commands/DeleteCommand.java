@@ -9,7 +9,7 @@ import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a module identified using module code from ModTrek.
  */
 public class DeleteCommand extends Command {
 
@@ -20,7 +20,9 @@ public class DeleteCommand extends Command {
             + "Parameters: MODULE CODE\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+
+    public static final String MESSAGE_DELETE_MODULE_NOT_FOUND = "Could not find Module to delete: %1$s";
 
     private final Code targetCode;
 
@@ -33,10 +35,13 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         ObservableList<Module> lastShownList = model.getFilteredModuleList();
         Module moduleToDelete = new Module(targetCode);
-        if (lastShownList.contains(moduleToDelete)) {
-            model.deleteModule(moduleToDelete);
+
+        if (!lastShownList.contains(moduleToDelete)) {
+            throw new CommandException(String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, targetCode));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, moduleToDelete));
+
+        model.deleteModule(moduleToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 
     @Override

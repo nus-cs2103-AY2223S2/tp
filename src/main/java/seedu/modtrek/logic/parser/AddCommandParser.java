@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Code code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
         Credit credit = ParserUtil.parseCredit(argMultimap.getValue(PREFIX_CREDIT).get());
         SemYear semYear = ParserUtil.parseSemYear(argMultimap.getValue(PREFIX_SEMYEAR).get());
-        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Module module = new Module(code, credit, semYear, tagList, grade);

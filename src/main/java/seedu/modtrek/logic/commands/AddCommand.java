@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module to the ModTrek. "
             + "Parameters: "
             + PREFIX_CODE + "MODULE CODE "
             + PREFIX_CREDIT + "MODULE CREDITS "
@@ -33,8 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "University Level Requirement "
             + PREFIX_TAG + "Computer Science Foundation";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New module added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This module has already been added.Try using edit instead.";
 
     private final Module toAdd;
 

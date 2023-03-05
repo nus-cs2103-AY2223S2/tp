@@ -30,7 +30,8 @@ public class Grade {
         "D",
         "F",
         "S",
-        "U"
+        "U",
+        "" // empty grade field
     });
 
     /**
