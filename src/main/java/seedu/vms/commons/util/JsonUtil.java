@@ -3,6 +3,7 @@ package seedu.vms.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -112,6 +113,21 @@ public class JsonUtil {
                 throws IOException {
         try (BufferedReader reader = FileUtil.getFileReader(pathString)) {
             return objectMapper.readValue(reader, valueType);
+        }
+    }
+
+
+    /**
+     * Serializes the given object instance to the specified file.
+     *
+     * @param pathString - path of the file to serialize to.
+     * @param instance - the object instance to serialize.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static void serializeToFile(String pathString, Object instance) throws IOException {
+        try (BufferedWriter writer = FileUtil.getFileWriter(pathString)) {
+            objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(writer, instance);
         }
     }
 
