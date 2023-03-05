@@ -75,29 +75,35 @@ public class JsonAdaptedPerson {
      */
     // TODO: delete when no longer needed
     public Person toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
-        final Set<Tag> modelTags = getTagSet(friendlyLink);
         final Name modelName = getModelName();
         final Phone modelPhone = getModelPhone();
         final Email modelEmail = getModelEmail();
         final Address modelAddress = getModelAddress();
+        final Nric modelNric = getModelNric();
+        final Age modelAge = getModelAge();
+        final Set<Tag> modelTags = getTagSet(friendlyLink);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelNric, modelAge, modelTags);
+    }
+
+    public Nric getModelNric() throws IllegalValueException {
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
         if (!Nric.isValidNric(nric)) {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final Nric modelNric = new Nric(nric);
+        return new Nric(nric);
+    }
 
+    public Age getModelAge() throws IllegalValueException {
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
-        final Age modelAge = new Age(age);
-
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelNric, modelAge, modelTags);
+        return new Age(age);
     }
 
     protected Address getModelAddress() throws IllegalValueException {
@@ -147,4 +153,6 @@ public class JsonAdaptedPerson {
         }
         return new HashSet<>(personTags);
     }
+
+
 }

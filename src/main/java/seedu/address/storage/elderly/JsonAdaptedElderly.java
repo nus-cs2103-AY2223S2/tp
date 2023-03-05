@@ -26,8 +26,6 @@ import seedu.address.storage.JsonSerializable;
  */
 public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSerializable<Elderly> {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Elderly's %s field is missing!";
-    private final String nric;
-    private final String age;
     private final String riskLevel;
 
     /**
@@ -39,9 +37,7 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
             @JsonProperty("riskLevel") String riskLevel, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
-        super(name, phone, email, address, tagged);
-        this.nric = nric;
-        this.age = age;
+        super(name, phone, email, address, nric, age, tagged);
         this.riskLevel = riskLevel;
     }
 
@@ -50,8 +46,6 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
      */
     public JsonAdaptedElderly(Elderly source) {
         super(source);
-        nric = source.getNric().value;
-        age = source.getAge().value;
         riskLevel = String.valueOf(source.getRiskLevel().riskStatus);
     }
 
@@ -66,19 +60,10 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
         Email modelEmail = super.getModelEmail();
         Address modelAddress = super.getModelAddress();
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
+        Nric modelNric = super.getModelNric();
+        Age modelAge = super.getModelAge();
 
-        if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
-        }
-        if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
-        }
-        if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
-        }
-        if (!Age.isValidAge(age)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
-        }
+
         if (riskLevel == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     RiskLevel.class.getSimpleName()));
@@ -88,6 +73,6 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
         }
 
         return new Elderly(modelName, modelPhone, modelEmail, modelAddress,
-                new Nric(nric), new Age(age), new RiskLevel(riskLevel), modelTags);
+               modelNric, modelAge, new RiskLevel(riskLevel), modelTags);
     }
 }

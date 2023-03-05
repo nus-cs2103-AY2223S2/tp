@@ -131,7 +131,7 @@ public class JsonAdaptedPersonTest {
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         INVALID_NRIC, VALID_AGE, VALID_TAGS);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(appTestCache));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 null, VALID_AGE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(appTestCache));
     }
 
     @Test
@@ -150,7 +150,7 @@ public class JsonAdaptedPersonTest {
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_NRIC, INVALID_AGE, VALID_TAGS);
         String expectedMessage = Age.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(appTestCache));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_NRIC, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(appTestCache));
     }
 
     @Test
@@ -167,12 +167,10 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, () -> person.toModelType(appTestCache));
                 new JsonAdaptedPerson(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_NRIC, VALID_AGE, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, () -> person.toModelType(appTestCache));
     }
 
 }

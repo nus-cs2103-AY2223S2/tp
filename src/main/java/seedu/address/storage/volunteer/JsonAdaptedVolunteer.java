@@ -25,8 +25,6 @@ import seedu.address.storage.JsonSerializable;
  */
 public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSerializable<Volunteer> {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
-    private final String nric;
-    private final String age;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,9 +35,7 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
-        super(name, phone, email, address, tagged);
-        this.nric = nric;
-        this.age = age;
+        super(name, phone, email, address, nric, age, tagged);
     }
 
     /**
@@ -47,8 +43,6 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
      */
     public JsonAdaptedVolunteer(Volunteer source) {
         super(source);
-        nric = source.getNric().value;
-        age = source.getAge().value;
     }
 
     /**
@@ -62,21 +56,10 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
         Email modelEmail = super.getModelEmail();
         Address modelAddress = super.getModelAddress();
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
-
-        if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
-        }
-        if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
-        }
-        if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
-        }
-        if (!Age.isValidAge(age)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
-        }
+        Nric modelNric = super.getModelNric();
+        Age modelAge = super.getModelAge();
 
         return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
-                new Nric(nric), new Age(age), modelTags);
+                modelNric, modelAge, modelTags);
     }
 }
