@@ -18,6 +18,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
 
 public class UniqueEventListTest {
@@ -56,12 +57,12 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setEvents_nullUniqueEventList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((UniqueEventList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setEvents_uniqueEventList_replacesOwnListWithProvidedUniqueEventList() {
         uniqueEventList.add(WEDDING_DINNER);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         expectedUniqueEventList.add(CARNIVAL);
@@ -70,12 +71,12 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setEvents_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.setEvents((List<Event>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setEvents_list_replacesOwnListWithProvidedList() {
         uniqueEventList.add(WEDDING_DINNER);
         List<Event> eventList = Collections.singletonList(CARNIVAL);
         uniqueEventList.setEvents(eventList);
@@ -117,5 +118,23 @@ public class UniqueEventListTest {
     public void setDuplicateEvent_throwsDuplicateEventException() {
         List<Event> invalidEvents = new ArrayList<>(Arrays.asList(CARNIVAL, CARNIVAL));
         assertThrows(DuplicateEventException.class, () -> new UniqueEventList().setEvents(invalidEvents));
+    }
+
+    @Test
+    public void remove_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEventList.remove(null));
+    }
+
+    @Test
+    public void remove_eventDoesNotExist_throwsEventNotFoundException() {
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(CARNIVAL));
+    }
+
+    @Test
+    public void remove_existingEvent_removesEvent() {
+        uniqueEventList.add(CARNIVAL);
+        uniqueEventList.remove(CARNIVAL);
+        UniqueEventList expectedUniqueEventList = new UniqueEventList();
+        assertEquals(expectedUniqueEventList, uniqueEventList);
     }
 }
