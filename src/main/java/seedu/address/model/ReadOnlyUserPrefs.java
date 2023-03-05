@@ -16,5 +16,9 @@ public interface ReadOnlyUserPrefs {
     Path getAddressBookFilePath();
 
     Path getPilotManagerFilePath();
+    void setPilotManagerFilePath(Path pilotManagerFilePath);
+
+    Path getLocationManagerFilePath();
+    void setLocationManagerFilePath(Path locationManagerFilePath);
 
 }
