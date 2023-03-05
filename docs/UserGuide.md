@@ -68,9 +68,9 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
 1. Calender Display
     * displays all lessons and events you have saved
-      2.Command Results:
+2. Command Results:
     * displays the result of input command
-4. Command Line:
+3. Command Line
     * type command and press enter to execute it
     * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
