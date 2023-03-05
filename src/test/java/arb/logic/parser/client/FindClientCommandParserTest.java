@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.client.FindClientCommand;
-import arb.model.person.NameContainsKeywordsPredicate;
+import arb.model.client.NameContainsKeywordsPredicate;
 
 public class FindClientCommandParserTest {
 
