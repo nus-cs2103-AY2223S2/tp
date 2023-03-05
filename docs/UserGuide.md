@@ -10,7 +10,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -65,111 +65,160 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Viewing Help : `help`
 
-Shows a message explaning how to access the help page.
+Don't know how to get started? Don't worry!
+
+Simply use this command to get access to our help page!
+
+>Command: `help`
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+### Adding A New Contact: `add`
 
+Met a new friend?
+Use this command to add him/her to your address book.
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+> Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+><div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+>A person can have any number of tags (including 0)
+></div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing All Contacts : `list`
 
-Shows a list of all persons in the address book.
+Want to see all your contacts?
 
-Format: `list`
+Use this command to gain access to all of them!
 
-### Editing a person : `edit`
+> Command: `list`
 
-Edits an existing person in the address book.
+### Favourite A Contact : `fav`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Contact someone very frequently?
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Use this command to favourite it so that you have easy access to it!
+
+> Command: `fav INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+
+### Unfavourite A Contact : `unfav`
+
+No longer contact someone as frequently as you used to?
+
+Use this command to unfavourite it!
+
+> Command: `unfav INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+
+### Editing a contact's details : `edit`
+
+Learnt something new about your friend? Or perhaps he/she changed a particular detail?
+
+Use this command to edit his/her details easily!
+
+> Command: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+  * `INDEX` must be a **positive integer**.
+* At least one field must be provided.
+  * Note that when editing a contact's `t/TAG`, the existing tags will be removed
+    
+    _[i.e  adding of tags is not cumulative]_
+    * If you wish to remove all tags from the person, simply type `t/`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding Particular Contacts: `find`
 
-Finds persons whose names contain any of the given keywords.
+Want to narrow down your displayed contacts to a certain few?
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Use this command to find contacts whose names contain any of the given keywords!
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> Command: `find KEYWORD [MORE_KEYWORDS]`
+
+Here are some important requirements for you to take note:
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is **case-insensitive**.
+
+    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
+* The order of the keywords does not matter. 
+
+    _[e.g. `Hans Bo` will match `Bo Hans`]_
+
+* Only full words will be matched
+
+    _[e.g. `Han` will not match `Hans`]_
+* Persons matching at least one keyword will be returned (i.e. `OR` search)
+
+    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+### Deleting A Contact : `delete`
 
-Format: `delete INDEX`
+No longer interact with someone in your contacts?
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Use this command to delete the specified contact from your address book.
+
+> Command: `delete INDEX`
+
+Here are some important requirements for you to take note:
+* `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
+  * `INDEX` must be a **positive integer**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all contacts : `clear`
 
-Clears all entries from the address book.
+Want to start from a clean slate?
 
-Format: `clear`
+Simply use this command to clear all contacts from your address book.
 
-### Exiting the program : `exit`
+> Command: `clear`
 
-Exits the program.
+### Exiting AddressBookNeo : `exit`
 
-Format: `exit`
+Finished what you needed to do?
+
+Use this command to exit the application!
+
+> Command: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
+
+You are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,12 +231,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
