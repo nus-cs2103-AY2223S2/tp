@@ -7,7 +7,6 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {
-    // Identity fields
     private final Name name;
 
     public Applicant(Name name) {
