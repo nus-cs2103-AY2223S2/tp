@@ -1,6 +1,6 @@
 ---
 layout: page
-jobTitle: Setting up and getting started
+title: Setting up and getting started
 ---
 
 * Table of Contents

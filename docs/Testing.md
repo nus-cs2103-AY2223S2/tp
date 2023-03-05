@@ -1,6 +1,6 @@
 ---
 layout: page
-jobTitle: Testing guide
+title: Testing guide
 ---
 
 * Table of Contents

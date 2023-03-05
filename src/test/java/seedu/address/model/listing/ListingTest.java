@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
-import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
-import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
+import static seedu.address.testutil.TypicalListings.CHICKENRICEUNCLE;
+import static seedu.address.testutil.TypicalListings.TOILETCLEANER;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,68 +14,66 @@ import seedu.address.testutil.ListingBuilder;
 
 public class ListingTest {
     @Test
-    public void isSameListing() {
+    public void isSamePerson() {
         // same object -> returns true
-        assertTrue(CHICKEN_RICE_UNCLE.isSameListing(CHICKEN_RICE_UNCLE));
+        assertTrue(CHICKENRICEUNCLE.isSameListing(CHICKENRICEUNCLE));
 
         // null -> returns false
-        assertFalse(CHICKEN_RICE_UNCLE.isSameListing(null));
+        assertFalse(CHICKENRICEUNCLE.isSameListing(null));
 
         // same name, all other attributes different -> returns true
-        Listing editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE)
+        Listing editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE)
                 .withDescription(VALID_DESCRIPTION)
                 .withApplicants(VALID_APPLICANTS)
                 .build();
-        assertTrue(CHICKEN_RICE_UNCLE.isSameListing(editedChickenRiceUncle));
+        assertTrue(CHICKENRICEUNCLE.isSameListing(editedChickenRiceUncle));
 
         // different name, all other attributes same -> returns false
-        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withTitle(VALID_TITLE).build();
-        assertFalse(CHICKEN_RICE_UNCLE.isSameListing(editedChickenRiceUncle));
+        editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE).withTitle(VALID_TITLE).build();
+        assertFalse(CHICKENRICEUNCLE.isSameListing(editedChickenRiceUncle));
 
         // name differs in case, all other attributes same -> returns false
-        Listing editedToiletCleaner = new ListingBuilder(TOILET_CLEANER)
-                .withTitle(TOILET_CLEANER.getTitle().toString().toLowerCase())
+        Listing editedToiletCleaner = new ListingBuilder(TOILETCLEANER)
+                .withTitle(TOILETCLEANER.getTitle().toString().toLowerCase())
                 .build();
-        assertFalse(TOILET_CLEANER.isSameListing(editedToiletCleaner));
+        assertFalse(TOILETCLEANER.isSameListing(editedToiletCleaner));
 
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Listing chickenRiceUncleCopy = new ListingBuilder(CHICKEN_RICE_UNCLE).build();
-        assertTrue(CHICKEN_RICE_UNCLE.equals(chickenRiceUncleCopy));
+        Listing chickenRiceUncleCopy = new ListingBuilder(CHICKENRICEUNCLE).build();
+        assertTrue(CHICKENRICEUNCLE.equals(chickenRiceUncleCopy));
 
         // same object -> returns true
-        assertTrue(CHICKEN_RICE_UNCLE.equals(CHICKEN_RICE_UNCLE));
+        assertTrue(CHICKENRICEUNCLE.equals(CHICKENRICEUNCLE));
 
         // null -> returns false
-        assertFalse(CHICKEN_RICE_UNCLE.equals(null));
+        assertFalse(CHICKENRICEUNCLE.equals(null));
 
         // different type -> returns false
-        assertFalse(CHICKEN_RICE_UNCLE.equals(5));
+        assertFalse(CHICKENRICEUNCLE.equals(5));
 
-        // different listing -> returns false
-        assertFalse(CHICKEN_RICE_UNCLE.equals(TOILET_CLEANER));
+        // different person -> returns false
+        assertFalse(CHICKENRICEUNCLE.equals(TOILETCLEANER));
 
-        // different title -> returns false
-        Listing editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withTitle(VALID_TITLE).build();
-        assertFalse(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
+        // different name -> returns false
+        Listing editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE).withTitle(VALID_TITLE).build();
+        assertFalse(CHICKENRICEUNCLE.equals(editedChickenRiceUncle));
 
-        // different description -> returns false
-        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withDescription(VALID_DESCRIPTION).build();
-        assertFalse(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
+        // different phone -> returns false
+        editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE).withDescription(VALID_DESCRIPTION).build();
+        assertFalse(CHICKENRICEUNCLE.equals(editedChickenRiceUncle));
 
-        // different applicants -> returns true
-        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withApplicants(VALID_APPLICANTS).build();
-        assertTrue(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
+        // different email -> returns true
+        editedChickenRiceUncle = new ListingBuilder(CHICKENRICEUNCLE).withApplicants(VALID_APPLICANTS).build();
+        assertTrue(CHICKENRICEUNCLE.equals(editedChickenRiceUncle));
     }
 
     @Test
     public void stringTest() {
-        String expected = "Chicken Rice Uncle; "
-                + "JobDescription: Make delicious chicken rice!; "
-                + "Applicants: Tom, Dick, Harry";
-        assertTrue(CHICKEN_RICE_UNCLE.toString().equals(expected));
+        String expected = "Chicken Rice Uncle; Description: Make delicious chicken rice!; Applicants: Tom, Dick, Harry";
+        assertTrue(CHICKENRICEUNCLE.toString().equals(expected));
     }
 }

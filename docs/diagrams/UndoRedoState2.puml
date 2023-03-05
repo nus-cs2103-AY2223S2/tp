@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-jobTitle After command "add n/David"
+title After command "add n/David"
 
 package States <<rectangle>> {
     class State1 as "__ab0:AddressBook__"

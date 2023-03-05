@@ -12,8 +12,8 @@ import java.util.UUID;
  */
 public class Listing {
     // Compulsory fields
-    private JobTitle jobTitle;
-    private JobDescription jobDescription;
+    private Title title;
+    private Description description;
     private String uniqueID = UUID.randomUUID().toString();
 
     // Optional fields
@@ -22,19 +22,19 @@ public class Listing {
     /**
      * Every field must be present and not null.
      */
-    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<String> applicants) {
-        requireAllNonNull(jobTitle, jobDescription, applicants);
-        this.jobTitle = jobTitle;
-        this.jobDescription = jobDescription;
+    public Listing(Title title, Description description, ArrayList<String> applicants) {
+        requireAllNonNull(title, description, applicants);
+        this.title = title;
+        this.description = description;
         this.applicants.addAll(applicants);
     }
 
-    public JobTitle getTitle() {
-        return jobTitle;
+    public Title getTitle() {
+        return title;
     }
 
-    public JobDescription getDescription() {
-        return jobDescription;
+    public Description getDescription() {
+        return description;
     }
 
     public ArrayList<String> getApplicants() {
@@ -46,7 +46,7 @@ public class Listing {
     }
 
     /**
-     * Returns true if both listings have the same JobTitle.
+     * Returns true if both listings have the same title.
      * This defines a weaker notion of equality between two listings.
      */
     public boolean isSameListing(Listing otherListing) {
@@ -59,8 +59,8 @@ public class Listing {
     }
 
     /**
-     * Returns true if both listings have the same data fields.
-     * This defines a stronger notion of equality between two listings.
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -80,14 +80,14 @@ public class Listing {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(jobTitle, jobDescription, applicants, uniqueID);
+        return Objects.hash(title, description, applicants, uniqueID);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; JobDescription: ")
+                .append("; Description: ")
                 .append(getDescription());
 
         ArrayList<String> applicants = getApplicants();

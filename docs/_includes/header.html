@@ -3,8 +3,8 @@
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    {%- assign titles_size = site.pages | map: 'jobTitle' | join: '' | size -%}
-    <a class="site-jobTitle" rel="author" href="{{ "/" | relative_url }}">{{ site.jobTitle | escape }}</a>
+    {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
     {%- if titles_size > 0 -%}
       <nav class="site-nav">
@@ -20,8 +20,8 @@
         <div class="trigger">
           {%- for path in page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if my_page.jobTitle -%}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.jobTitle | escape }}</a>
+            {%- if my_page.title -%}
+            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
           {%- if site.repository -%}
