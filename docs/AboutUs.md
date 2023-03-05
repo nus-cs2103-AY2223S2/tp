@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/yyj-02)]
 [[portfolio](team/yyj-02.md)]
 
-- Role: Code Reviewer
+* Role: Code Reviewer
 
 ### Tan Homun
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/homuntan02)]
 [[portfolio](team/homuntan02.md)]
 
-- Role: Developer, Water Boy
+* Role: Developer, Water Boy
 
 ### Johnny Doe
 
@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: Data
+* Role: Developer
+* Responsibilities: Data
 
 ### Jean Doe
 
@@ -44,8 +44,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -54,5 +54,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Developer
-- Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI
