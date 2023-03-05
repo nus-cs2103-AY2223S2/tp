@@ -1,28 +1,23 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.event.Event;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.testutil.Assert.assertThrows;
 
 /**
  * Contains helper methods for testing commands.
@@ -150,6 +145,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitEventName = event.getName().toString().split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(splitEventName[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }

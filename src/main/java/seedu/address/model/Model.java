@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -14,6 +14,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -96,4 +99,19 @@ public interface Model {
      * {@code event} must not already exist in the address book.
      */
     void addEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event event);
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
 }

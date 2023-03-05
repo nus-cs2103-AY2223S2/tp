@@ -1,18 +1,18 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -158,6 +160,22 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
-        // To update filtered event list here
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 }

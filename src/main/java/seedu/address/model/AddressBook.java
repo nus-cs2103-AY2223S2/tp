@@ -1,14 +1,14 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -58,6 +58,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setEvents(newData.getEventList());
     }
 
     //// person-level operations
@@ -101,7 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons "
+                + events.asUnmodifiableObservableList().size() + " events";
         // TODO: refine later
     }
 
@@ -142,4 +144,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEvent(Event e) {
         events.add(e);
     }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeEvent(Event key) {
+        events.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
 }

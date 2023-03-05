@@ -1,19 +1,7 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,6 +10,15 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddEventCommandTest {
 
@@ -147,6 +144,21 @@ public class AddEventCommandTest {
 
         @Override
         public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
