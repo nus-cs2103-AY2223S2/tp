@@ -7,8 +7,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import bookopedia.testutil.PersonBuilder;
 import org.junit.jupiter.api.Test;
+
+import bookopedia.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 

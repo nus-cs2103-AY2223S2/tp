@@ -1,7 +1,5 @@
 package bookopedia.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static bookopedia.logic.commands.CommandTestUtil.DESC_AMY;
 import static bookopedia.logic.commands.CommandTestUtil.DESC_BOB;
@@ -14,6 +12,8 @@ import static bookopedia.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

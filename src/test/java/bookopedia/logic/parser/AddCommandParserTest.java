@@ -29,6 +29,8 @@ import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.BOB;
 
+import org.junit.jupiter.api.Test;
+
 import bookopedia.logic.commands.AddCommand;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
@@ -37,8 +39,6 @@ import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
 import bookopedia.model.tag.Tag;
 import bookopedia.testutil.PersonBuilder;
-
-import org.junit.jupiter.api.Test;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

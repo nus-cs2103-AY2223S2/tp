@@ -1,14 +1,14 @@
 package bookopedia.logic.parser;
 
+import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 
-import bookopedia.commons.core.Messages;
-import bookopedia.logic.commands.FindCommand;
 import org.junit.jupiter.api.Test;
 
+import bookopedia.logic.commands.FindCommand;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -17,7 +17,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test

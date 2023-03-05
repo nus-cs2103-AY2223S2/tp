@@ -1,15 +1,18 @@
 package bookopedia.logic.commands;
 
 import static bookopedia.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static bookopedia.testutil.TypicalPersons.CARL;
+import static bookopedia.testutil.TypicalPersons.ELLE;
+import static bookopedia.testutil.TypicalPersons.FIONA;
+import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import bookopedia.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.model.Model;
@@ -21,8 +24,8 @@ import bookopedia.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -68,7 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     /**

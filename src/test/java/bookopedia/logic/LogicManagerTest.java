@@ -2,24 +2,26 @@ package bookopedia.logic;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static bookopedia.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static bookopedia.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static bookopedia.testutil.Assert.assertThrows;
+import static bookopedia.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import bookopedia.logic.commands.AddCommand;
-import bookopedia.logic.commands.CommandResult;
-import bookopedia.logic.commands.CommandTestUtil;
-import bookopedia.logic.commands.ListCommand;
-import bookopedia.logic.commands.exceptions.CommandException;
-import bookopedia.logic.parser.exceptions.ParseException;
-import bookopedia.testutil.PersonBuilder;
-import bookopedia.testutil.TypicalPersons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import bookopedia.logic.commands.AddCommand;
+import bookopedia.logic.commands.CommandResult;
+import bookopedia.logic.commands.ListCommand;
+import bookopedia.logic.commands.exceptions.CommandException;
+import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.ReadOnlyAddressBook;
@@ -28,6 +30,7 @@ import bookopedia.model.person.Person;
 import bookopedia.storage.JsonAddressBookStorage;
 import bookopedia.storage.JsonUserPrefsStorage;
 import bookopedia.storage.StorageManager;
+import bookopedia.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -76,9 +79,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

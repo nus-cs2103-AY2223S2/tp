@@ -1,20 +1,20 @@
 package bookopedia.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_TAG;
 import static bookopedia.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.commons.core.index.Index;
+import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.AddressBook;
 import bookopedia.model.Model;
 import bookopedia.model.person.NameContainsKeywordsPredicate;

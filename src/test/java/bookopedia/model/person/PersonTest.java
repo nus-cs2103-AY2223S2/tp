@@ -1,86 +1,91 @@
 package bookopedia.model.person;
 
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static bookopedia.testutil.Assert.assertThrows;
+import static bookopedia.testutil.TypicalPersons.ALICE;
+import static bookopedia.testutil.TypicalPersons.BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static bookopedia.testutil.Assert.assertThrows;
 
-import bookopedia.logic.commands.CommandTestUtil;
-import bookopedia.testutil.Assert;
-import bookopedia.testutil.PersonBuilder;
-import bookopedia.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
+
+import bookopedia.testutil.PersonBuilder;
 
 public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
-        Assert.assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(TypicalPersons.ALICE.isSamePerson(TypicalPersons.ALICE));
+        assertTrue(ALICE.isSamePerson(ALICE));
 
         // null -> returns false
-        assertFalse(TypicalPersons.ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        assertTrue(TypicalPersons.ALICE.isSamePerson(editedAlice));
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(TypicalPersons.ALICE.isSamePerson(editedAlice));
+        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(TypicalPersons.BOB).withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = CommandTestUtil.VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(TypicalPersons.BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        assertFalse(BOB.isSamePerson(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(TypicalPersons.ALICE).build();
-        assertTrue(TypicalPersons.ALICE.equals(aliceCopy));
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(TypicalPersons.ALICE.equals(TypicalPersons.ALICE));
+        assertTrue(ALICE.equals(ALICE));
 
         // null -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(null));
+        assertFalse(ALICE.equals(null));
 
         // different type -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(5));
+        assertFalse(ALICE.equals(5));
 
         // different person -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(TypicalPersons.BOB));
+        assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 }
