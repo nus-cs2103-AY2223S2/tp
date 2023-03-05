@@ -4,13 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Identifiable;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 
@@ -29,6 +33,9 @@ public class ModelManager implements Model {
 
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
+    // TODO: migrate this to the ui layer -> this probably should be there.
+    private final ObservableList<Identifiable> itemsList;
+    private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -45,6 +52,9 @@ public class ModelManager implements Model {
 
         this.pilotManager = new IdentifiableManager<>(pilotManager);
         filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
+
+        itemsList = FXCollections.observableArrayList();
+        setOperationMode(userPrefs.getOperationMode());
     }
 
     public ModelManager() {
@@ -77,6 +87,35 @@ public class ModelManager implements Model {
     @Override
     public void setOperationMode(OperationMode mode) {
         this.userPrefs.setOperationMode(mode);
+        switch (mode) {
+        case PILOT:
+            rebind(filteredPilots);
+            break;
+        case PLANE:
+        case FLIGHT:
+        case CREW:
+        case LOCATION:
+            logger.warning("Operation mode not supported yet: " + mode);
+            break;
+        default:
+            logger.warning("Unknown operation mode: " + mode);
+            break;
+        }
+    }
+
+    private void rebind(ObservableList<? extends Identifiable> list) {
+        if (lastBoundList.isPresent()) {
+            final ObservableList<? extends Identifiable> lastBound =
+                lastBoundList.get();
+            Bindings.unbindContent(itemsList, lastBound);
+        }
+        Bindings.bindContent(itemsList, list);
+        lastBoundList = Optional.of(list);
+    }
+
+    @Override
+    public ObservableList<Identifiable> getItemsList() {
+        return itemsList;
     }
 
     @Override

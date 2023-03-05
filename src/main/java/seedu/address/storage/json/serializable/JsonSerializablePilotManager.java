@@ -1,7 +1,9 @@
 package seedu.address.storage.json.serializable;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
@@ -16,23 +18,9 @@ import seedu.address.storage.json.adapted.JsonAdaptedPilot;
 @JsonRootName(value = "pilotmanager")
 public class JsonSerializablePilotManager extends JsonIdentifiableManager<Pilot, JsonAdaptedPilot> {
 
-
-    /**
-     * Creates a new JsonSerializablePilotManager. This will be used by the
-     * factory method {@link #from(ReadOnlyIdentifiableManager)}.
-     */
-    private JsonSerializablePilotManager() {
-    }
-
-    /**
-     * Creates a new JsonSerializablePilotManager from the given manager.
-     * This is intended to be used by Jackson.
-     *
-     * @param pilots the list of pilots to create the
-     *               JsonSerializablePilotManager from.
-     */
+    @JsonCreator
     public JsonSerializablePilotManager(
-            @JsonProperty("pilots") List<JsonAdaptedPilot> pilots) {
+        @JsonProperty("items") List<JsonAdaptedPilot> pilots) {
         this.items.addAll(pilots);
     }
 
@@ -45,9 +33,9 @@ public class JsonSerializablePilotManager extends JsonIdentifiableManager<Pilot,
      * @return a new JsonSerializablePilotManager
      */
     public static JsonSerializablePilotManager from(
-            ReadOnlyIdentifiableManager<Pilot> manager) {
+        ReadOnlyIdentifiableManager<Pilot> manager) {
         final JsonSerializablePilotManager res =
-                new JsonSerializablePilotManager();
+            new JsonSerializablePilotManager(new ArrayList<>());
         res.readFromManager(manager);
         return res;
     }

@@ -13,7 +13,9 @@ import seedu.address.logic.core.WingmanParser;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.OperationMode;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.item.Identifiable;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -58,7 +60,7 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        final Command command = parser.parse(model.getOperationMode(), commandText);
+        final Command command = parser.parse(getOperationMode(), commandText);
         final CommandResult result = command.execute(model);
         this.save();
         return result;
@@ -71,19 +73,18 @@ public class LogicManager implements Logic {
      */
     private void save() throws CommandException {
         try {
-            switch (this.model.getUserPrefs().getOperationMode()) {
+            switch (getOperationMode()) {
             case PILOT:
                 storage.savePilotManager(model.getPilotManager());
                 break;
             case PLANE:
-                throw new CommandException("Plane mode not implemented yet");
             case FLIGHT:
-                throw new CommandException("Flight mode not implemented yet");
             case CREW:
-                throw new CommandException("Crew mode not implemented yet");
             case LOCATION:
-                throw new CommandException("Location mode not implemented "
-                                               + "yet");
+                throw new CommandException(
+                    "Operation mode not supported yet: " + getOperationMode()
+                        + "Check LogicManager.java's save() method."
+                );
             default:
                 throw new CommandException("Unknown operation mode");
             }
@@ -116,5 +117,17 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Identifiable> getFilteredItemList() {
+        logger.info("Getting filtered item list: " + model.getItemsList().size() + " "
+                        + "items");
+        return model.getItemsList();
+    }
+
+    @Override
+    public OperationMode getOperationMode() {
+        return model.getOperationMode();
     }
 }
