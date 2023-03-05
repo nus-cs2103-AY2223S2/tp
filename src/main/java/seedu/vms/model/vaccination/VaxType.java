@@ -79,4 +79,23 @@ public class VaxType {
     public String toString() {
         return name;
     }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof VaxType)) {
+            return false;
+        }
+
+        VaxType casted = (VaxType) other;
+        return name.equals(casted.name) && groups.equals(casted.groups)
+                && minAge == casted.minAge && maxAge == casted.maxAge
+                && minSpacing == casted.minSpacing
+                && allergyReqs.equals(casted.allergyReqs)
+                && historyReqs.equals(casted.historyReqs);
+    }
 }
