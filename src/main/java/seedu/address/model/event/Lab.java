@@ -5,6 +5,9 @@ import java.util.List;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Allows the TA to create a Lab event that usually occurs once a week
+ */
 public class Lab extends Event {
 
     public Lab(List<Person> students) {

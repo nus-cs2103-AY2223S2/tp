@@ -62,9 +62,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        //Retrieve the image url from the person object
-        Image studentImage =
-                new Image(person.getPhoto().photoFilePath);
+        //Retrieve the image url from the person object but this abstraction is slow.
+        //For testing use the bottom hardcoded path
+
+        //Image studentImage = new Image(person.getPhoto().photoFilePath);
+
+        Image studentImage = new Image("https://picsum.photos/id/443/200/300");
 
         for (int i = 1; i < numberOfStudents; i++) {
             //Set the retrieved image url height and width

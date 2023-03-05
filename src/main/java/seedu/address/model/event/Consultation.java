@@ -5,6 +5,9 @@ import java.util.List;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Allows the TA to create a consultation event that is usually a one time occurrence
+ */
 public class Consultation extends Event {
 
     public Consultation(List<Person> students) {

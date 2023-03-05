@@ -1,11 +1,13 @@
 package seedu.address.model.event;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Allows the TA to create a Tutorial event that usually occurs once or more than once a week
+ */
 public class Tutorial extends Event {
 
     public Tutorial(List<Person> students) {
