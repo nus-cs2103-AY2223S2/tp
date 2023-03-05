@@ -15,5 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DOB = new Prefix("d");
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("b");
     public static final Prefix PREFIX_ALLERGY = new Prefix("a");
+    public static final Prefix PREFIX_VACCINATION = new Prefix("v");
 
 }
