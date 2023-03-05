@@ -71,12 +71,19 @@ Format: `help`
 
 ### Adding a food item: `add`
 
-*placeholder*
+Add food items into your fridge.
 
-Format: `placeholder`
+Format: `add`
 
 Examples:
-* `placeholder`
+* `add Spinach`
+* `add Meiji Milk`
+* `add Awfully Chocolate`
+
+Command outcome:
+```shell
+  You have successfully added Spinach into your fridge.
+```
 
 ### Listing all food items : `list`
 
