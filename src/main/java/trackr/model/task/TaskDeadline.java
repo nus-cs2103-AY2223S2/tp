@@ -34,8 +34,9 @@ public class TaskDeadline {
     }
 
     /**
-     * Returns true if a given local date is a valid deadline,
-     * meaning date is today's date or after today's date.
+     * Returns true if a given string is a valid deadline,
+     * meaning string is of the format "dd/MM/yyyy" and
+     * the parsed date is today's date or after today's date.
      */
     public static boolean isValidTaskDeadline(String test) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");

@@ -38,7 +38,14 @@ public class TaskDeadlineTest {
         assertThrows(NullPointerException.class, () -> TaskDeadline.isValidTaskDeadline(null));
 
         // invalid task deadline
-        String passedDate = "2022-01-01";
+
+        String wrongFormatDate = "2024-01-01";
+        assertFalse(TaskDeadline.isValidTaskDeadline(wrongFormatDate)); //deadline is in the wrong format
+
+        String invalidDate = "35/14/2024";
+        assertFalse(TaskDeadline.isValidTaskDeadline(invalidDate)); //deadline is an invalid date in the calendar
+
+        String passedDate = "01/01/2022";
         assertFalse(TaskDeadline.isValidTaskDeadline(passedDate)); // deadline is before today's date
 
         // valid task deadline
