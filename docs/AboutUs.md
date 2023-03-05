@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wei De
 
-<img src="images/IMG_1672.JPG" width="200px">
+<img src="images/WeideTeo.png" width="200px">
 
 [[github](https://github.com/WeideTeo)]
 [[portfolio](https://www.linkedin.com/in/weideteo/)]
