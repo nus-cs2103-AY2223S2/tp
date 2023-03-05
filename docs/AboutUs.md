@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Member
 * Responsibilities: ??
 
-### James Doe
+### Shin Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="Desktop/NUS/Y2S2/CS2103T/tp/docs/images/jinnieshin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jinnieshin)]
+[[portfolio](team/jinnieshin.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team member
+* Responsibilities: ??
