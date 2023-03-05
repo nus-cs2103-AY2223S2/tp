@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.ui.UiPart;
 
 /**
@@ -21,10 +22,22 @@ import seedu.address.ui.UiPart;
 public class CalendarPanel extends UiPart<Region> {
     private static final String FXML = "body/calendar/CalendarPanel.fxml";
 
+    @FXML
+    private VBox calendarContent;
+
     /**
      * Creates a {@code CalendarPanel}.
      */
     public CalendarPanel() {
         super(FXML);
+
+        calendarContent.getChildren().addAll(
+                new CalendarDayCard().getRoot(),
+                new CalendarDayCard().getRoot(),
+                new CalendarDayCard().getRoot(),
+                new CalendarDayCard().getRoot(),
+                new CalendarDayCard().getRoot(),
+                new CalendarDayCard().getRoot()
+        );
     }
 }

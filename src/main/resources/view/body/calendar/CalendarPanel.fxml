@@ -3,9 +3,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <ScrollPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner, p0"
             fitToWidth="true" hbarPolicy="NEVER"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml">
-    <VBox fx:id="calendarContent" spacing="10" styleClass="pa" />
+    <VBox styleClass="pa">
+        <Label text="Events" styleClass="label-h3" />
+        <VBox fx:id="calendarContent" spacing="10">
+            <Label text="What" />
+        </VBox>
+    </VBox>
 </ScrollPane>
