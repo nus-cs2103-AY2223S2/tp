@@ -9,26 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Leow Li Yong
 
 <img src="images/ginloy.png" width="200px">
@@ -60,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Edwin Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/9fc70c892.png" width="200px">
 
 [[github](https://github.com/9fc70c892)]
 [[portfolio](team/edwin.md)]

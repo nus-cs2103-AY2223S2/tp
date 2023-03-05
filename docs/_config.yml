@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "AutoM8"
 theme: minima
 
 header_pages:
@@ -8,7 +8,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103-W17-4/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
