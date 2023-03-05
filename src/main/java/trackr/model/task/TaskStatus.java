@@ -10,7 +10,7 @@ import static trackr.commons.util.AppUtil.checkArgument;
 public class TaskStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Task status should only be `N` for not done or `D` for done";
+            "Task status should only be `N` or `n` for not done or `D` or `d` for done";
 
     /*
      * The first character of the task status must not be a whitespace,
