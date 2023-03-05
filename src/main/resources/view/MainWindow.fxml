@@ -68,7 +68,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0">
                      <children>
-                        <StackPane prefHeight="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <StackPane fx:id="infoPane" prefHeight="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" text="Make a selection on the left!" textFill="#9a988a">
                                  <font>
@@ -76,6 +76,9 @@
                                  </font>
                               </Label>
                            </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </StackPane>
                      </children></AnchorPane>
               </items>

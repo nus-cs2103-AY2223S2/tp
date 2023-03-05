@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox styleClass="base" stylesheets="@CustomerGeneralInfo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="phone" text="\$phone" />
+      <Label fx:id="address" text="\$address" />
+      <Label fx:id="email" text="\$email" />
+   </children>
+</VBox>

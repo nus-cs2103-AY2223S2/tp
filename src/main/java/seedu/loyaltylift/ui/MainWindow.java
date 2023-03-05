@@ -17,6 +17,8 @@ import seedu.loyaltylift.logic.Logic;
 import seedu.loyaltylift.logic.commands.CommandResult;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
+import seedu.loyaltylift.ui.customer.CustomerGeneralInfo;
+import seedu.loyaltylift.ui.customer.CustomerInfo;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -53,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox userCommandBox;
+
+    @FXML
+    private StackPane infoPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
