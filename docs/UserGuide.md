@@ -375,6 +375,16 @@ Examples:
 * `addEvent t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
 
 
+### List all employees attending an event: `jeren`
+
+Lists the employees added to an event in the HR Management
+
+Format: `listEvent`
+
+Examples:
+* `listEvent`
+
+
 ### Updating an event: `jeren`
 
 Updates an event to the HR Management System.
@@ -414,12 +424,12 @@ Examples:
 
 Lists the employees added to an event in the HR Management
 
-Format: `listEvent INDEX​`
+Format: `listEventEmployee INDEX​`
 
 * List the employees attending the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listEvent 1`
+* `listEventEmployee 1`
 
 
 ### Remove employee from an event: `jeren`
