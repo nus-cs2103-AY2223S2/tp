@@ -137,4 +137,22 @@ public class UniqueEventListTest {
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         assertEquals(expectedUniqueEventList, uniqueEventList);
     }
+
+    @Test
+    public void eventsAreUnique_noEvents_returnsTrue() {
+        List<Event> events = new ArrayList<>();
+        assertTrue(uniqueEventList.eventsAreUnique(events));
+    }
+
+    @Test
+    public void eventsAreUnique_sameEventExist_returnsFalse() {
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL, CARNIVAL));
+        assertFalse(uniqueEventList.eventsAreUnique(events));
+    }
+
+    @Test
+    public void eventsAreUnique_uniqueEvents_returnsTrue() {
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL, WEDDING_DINNER));
+        assertTrue(uniqueEventList.eventsAreUnique(events));
+    }
 }
