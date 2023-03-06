@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Client's phone number in the address book.
+ * Represents a Client's Gender in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender {
@@ -16,9 +16,9 @@ public class Gender {
     public final String value;
 
     /**
-     * Constructs a {@code Weight}.
+     * Constructs a {@code Gender}.
      *
-     * @param gender A valid phone number.
+     * @param gender A valid gender.
      */
     public Gender(String gender) {
         requireNonNull(gender);

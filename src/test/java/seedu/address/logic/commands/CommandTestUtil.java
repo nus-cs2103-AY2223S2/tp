@@ -70,6 +70,9 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     public static final String INVALID_APPOINTMENT_DESC =
             " " + PREFIX_APPOINTMENT + "11a-11-2020"; // 'a' not allowed in appointment
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "g";
+
+    public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "-23";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

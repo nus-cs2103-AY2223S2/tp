@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight()); //place holder
+        Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Appointment> updatedAppointment =

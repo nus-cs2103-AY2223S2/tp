@@ -105,11 +105,11 @@ public class ParserUtil {
      */
     public static Weight parseWeight(String weight) throws ParseException {
         requireNonNull(weight);
-        String trimmedAddress = weight.trim();
-        if (!Weight.isValidWeight(trimmedAddress)) {
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
             throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
-        return new Weight(trimmedAddress);
+        return new Weight(trimmedWeight);
     }
     /**
      * Parses a {@code String Gender} into an {@code Gender}.
@@ -119,11 +119,11 @@ public class ParserUtil {
      */
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
-        String trimmedAddress = gender.trim();
-        if (!Gender.isValidGender(trimmedAddress)) {
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
-        return new Gender(trimmedAddress);
+        return new Gender(trimmedGender);
     }
 
     /**

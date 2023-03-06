@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditClientDescriptor objects.
  */
 public class EditClientDescriptorBuilder {
 
@@ -32,7 +32,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code client}'s details
+     * Returns an {@code EditClientDescriptor} with fields containing {@code client}'s details
      */
     public EditClientDescriptorBuilder(Client client) {
         descriptor = new EditClientDescriptor();
@@ -47,7 +47,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -55,7 +55,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -63,7 +63,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -71,7 +71,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -79,7 +79,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code weight} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code weight} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withWeight(String weight) {
         descriptor.setWeight(new Weight(weight));
@@ -87,7 +87,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code gender} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code gender} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withGender(String gender) {
         descriptor.setGender(new Gender(gender));
@@ -95,7 +95,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditClientDescriptor}
      * that we are building.
      */
     public EditClientDescriptorBuilder withTags(String... tags) {

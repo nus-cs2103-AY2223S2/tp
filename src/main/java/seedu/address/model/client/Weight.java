@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Client's phone number in the address book.
+ * Represents a Client's Weight in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
  */
 public class Weight {
@@ -18,7 +18,7 @@ public class Weight {
     /**
      * Constructs a {@code Weight}.
      *
-     * @param weight A valid phone number.
+     * @param weight A valid weight.
      */
     public Weight(String weight) {
         requireNonNull(weight);

@@ -31,12 +31,10 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
-
     private final String weight;
     private final String gender;
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
-
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**

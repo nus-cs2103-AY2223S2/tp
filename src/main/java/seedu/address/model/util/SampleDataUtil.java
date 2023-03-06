@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
 
     public static Client[] getSampleClients() {
-        return new Client [] {
+        return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), getAppointmentSet("12-12-2019"),
                 new Weight("20"), new Gender("M"), getTagSet("friends")),

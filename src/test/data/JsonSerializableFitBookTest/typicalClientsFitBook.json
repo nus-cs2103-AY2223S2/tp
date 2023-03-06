@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "appointments": [ "13-02-2020", "14-01-2021" ],
+    "appointments": [ "13-02-1999" ],
     "weight": "50.0",
     "gender": "M",
     "tagged" : [ "friends" ]
@@ -23,7 +23,6 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "appointments": [ "13-02-2020", "14-01-2021" ],
     "weight": "50.0",
     "gender": "M",
     "tagged" : [ ]
