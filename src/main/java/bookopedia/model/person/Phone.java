@@ -1,9 +1,8 @@
 package bookopedia.model.person;
 
-import java.util.Objects;
-
 import static bookopedia.commons.util.AppUtil.checkArgument;
-import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's phone number in the address book.
