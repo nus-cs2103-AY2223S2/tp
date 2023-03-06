@@ -19,8 +19,7 @@ public class Listing {
     private String uniqueID = UUID.randomUUID().toString();
 
     // Optional fields
-    private ArrayList<Applicant> applicants = new ArrayList<>(); // TODO: Update when Applicant class is added
-
+    private ArrayList<Applicant> applicants = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
