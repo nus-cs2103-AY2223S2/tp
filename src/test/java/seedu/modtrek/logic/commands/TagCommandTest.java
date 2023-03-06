@@ -9,6 +9,9 @@ import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.ST2334;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.parser.ParserUtil;
@@ -26,9 +29,15 @@ class TagCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
-        Module taggedModule = CS2100;
+        Set<Tag> taggedModuleTags = CS2100.getModifiableTags();
+        taggedModuleTags.add(new Tag("computer science breadth and depth"));
+        Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
+                CS2100.getSemYear(), taggedModuleTags, CS2100.getGrade());
+        Set<String> tagsToAdd = new HashSet<>();
+        tagsToAdd.add("computer science breadth and depth");
         TagCommand tagCommand = new TagCommand(CS2100.getCode(),
-                isInclude, ParserUtil.parseTag("computer science breadth and depth"));
+                true, ParserUtil.parseTags(tagsToAdd));
+
 
         String expectedMessage = String.format(TagCommand.MESSAGE_ADD_TAG_SUCCESS,
                 taggedModule.getCode().toString());
@@ -42,10 +51,12 @@ class TagCommandTest {
 
     @Test
     public void equals() {
-        final TagCommand standardCommand = new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_CS1101S));
+        Set<Tag> tagToAdd = new HashSet<>();
+        tagToAdd.add(new Tag(VALID_TAG_CS1101S));
+        final TagCommand standardCommand = new TagCommand(CS2100.getCode(), true, tagToAdd);
 
         // same values -> returns true
-        TagCommand commandWithSameValues = new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_CS1101S));
+        TagCommand commandWithSameValues = new TagCommand(CS2100.getCode(), true, tagToAdd);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -58,10 +69,12 @@ class TagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new TagCommand(ST2334.getCode(), isInclude, new Tag(VALID_TAG_CS1101S))));
+        assertFalse(standardCommand.equals(new TagCommand(ST2334.getCode(), true, tagToAdd)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_MA2002))));
+        Set<Tag> tagToAdd2 = new HashSet<>();
+        tagToAdd2.add(new Tag(VALID_TAG_MA2002));
+        assertFalse(standardCommand.equals(new TagCommand(CS2100.getCode(), true, tagToAdd2)));
     }
 
 }

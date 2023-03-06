@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.modtrek.logic.commands.TagCommand;
@@ -36,7 +33,7 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         try {
             String preamble = argMultimap.getPreamble();
-            String preambleParts[] = preamble.split(" ");
+            String[] preambleParts = preamble.split(" ");
             code = ParserUtil.parseCode(preambleParts[0]);
             if (preambleParts[1].toLowerCase(Locale.ROOT).equals("include")) {
                 isInclude = true;

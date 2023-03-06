@@ -37,7 +37,7 @@ class TagCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, VALID_CODE_CS1101S + INVALID_TAG_DESC,
+        assertParseFailure(parser, VALID_CODE_CS1101S + " include " + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
     }
 
