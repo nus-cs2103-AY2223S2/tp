@@ -13,6 +13,33 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **User profile and value proposition**
+
+The product is intended for insurance agents, advertisers or anyone in adjacent roles to manage their customers' information efficiently.
+
+Users will enjoy the advantages of a command-line interface, as managing contacts can be done more quickly by typing, while a graphical user interface allows the user to visualise their contacts intuitively.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **User stories**
+
+As a user, I want to get help conveniently from the AddressBook application, so that I can understand the syntax and the various commands.
+
+As a user, I need a way to group my contacts easily to view contacts who might be related to one another.
+
+As a user with little time on my hands, I want to type less while managing my contacts so I can save more time on my other tasks.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Non-functional requirements**
+
+This application should be usable on mainstream OSes as long as Java 11 is installed.
+
+The application should be sufficiently easy to use, that the average owner of a desktop computer should be able to use it efficiently.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -320,6 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Command-line interface**: any changes to the state of the AddressBook is done via a text command
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
