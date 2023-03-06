@@ -257,37 +257,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* works as a private academic tutor, with 10 students
+* is not tech-savvy but has basic data entry skills to use programs like Excel to track his students
+* doesn’t know how to use the analytics functions of Excel and needs a simple interface to generate analytics
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* keep track of students, their progress, and any student-specific info (like their weak subject)
+* has simpler interface than Excel
+* handles errors such as wrong data inputs in a user-friendly manner. (guides users / gives suggestions)
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                              | So that I can…​                                                        |
-|----------|--------------------------------------------|-------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                    | refer to instructions when I forget how to use the App                 |
-| `* * *`  | new user                                   | add a new student                         |                                                                        |
-| `* * *`  | new user                                   | delete a student                          | remove entries that I no longer need                                   |
-| `* * *`  | new user                                   | add a student's education level           | keep track of a student's education level                              |
-| `* * *`  | new user                                   | add a student's phone number              | Keep track of his contact information                                  |
-| `* * *`  | new user                                   | add a student's email address             | keep track of his contact information                                  |
-| `* * *`  | new user                                   | add additional notes                      | Store additional descriptive information about a student               |
-| `* * *`  | new user                                   | save my data when I close the application | store the data that I have input locally                               |
-| `* * *`  | new user                                   | view my list of students                  | see all the students that I am currently teaching                      |
-| `* * `   | user with some experience                  | find a student by name                    | locate details of persons without having to go through the entire list |
-| `* *`    | user with many persons in the address book | sort persons by name                      | locate a person easily                                                 |
-| `* `     | user                                       | hide private contact details              | minimize chance of someone else seeing them by accident                |
-
-
-
-*{More to be added}*
+| Priority | As a …​                    | I want to …​                                                                            | So that I can…​                                                |
+| -------- | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `* * *`  | new user                  | open the app                                                                           | begin using the app                                           |
+| `* * *`  | new user                  | close the app                                                                          | leave the app                                                 |
+| `* * *`  | new user                  | add a student's name                                                                   | track a student's progress by their name                      |
+| `* * *`  | new user                  | include student's education level when adding the student (eg. P6)                     | keep track of a student's education level                     |
+| `* * *`  | new user                  | include student's phone number when adding the student (eg. 94206942)                  | keep track of a student's phone number                        |
+| `* * *`  | new user                  | include student's email when adding the student (eg. iloveanimegirls@gmail.com)        | keep track of a student's email                               |
+| `* * *`  | new user                  | include student's address when adding the student (eg. Block 69 S642069)               | keep track of a student's address and go to the place easily  |
+| `* * *`  | new user                  | include optional student-specific notes when adding the student (eg. Good in Japanese) | store additional student's descriptive information            |
+| `* * *`  | user with some experience | delete a student entry from my list (by index)                                         | remove all details related to a certain student               |
+| `* * *`  | new user                  | have my changes autosave                                                               | be sure that I won't lose my changes if I crash/close the app |
+| `* * *`  | new user                  | view my list of students                                                               | keep track of who I'm currently teaching                      |
+| `* * *`  | new user                  | View the address of a student                                                          | know where to go if I need to provide tuition at their house  |
+| `* * *`  | new user                  | have my data persist between use sessions                                              | continue my session where I left off                          |
 
 ### Use cases
 
