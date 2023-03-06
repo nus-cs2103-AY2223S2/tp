@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
 
 /**
@@ -118,4 +119,37 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    //=========== TankList =============================================================
+    void setTankList(ReadOnlyTankList tankList);
+
+    ReadOnlyTankList getTankList();
+
+    Path getTankListFilePath();
+
+    void setTankListFilePath(Path tankListFilePath);
+
+    /**
+     * Returns true if a Tank with the same identity as {@code Tank} exists in Fish Ahoy!.
+     */
+    boolean hasTank(Tank tank);
+
+    /**
+     * Adds the given Tank.
+     * {@code Tank} must not already exist in Fish Ahoy!.
+     */
+    void addTank(Tank tank);
+
+    /**
+     * Deletes the given Tank.
+     * The Tank must exist in the address book.
+     */
+    void deleteTank(Tank tank);
+
+    void setTank(Tank target, Tank editedTank);
+
+    /** Returns an unmodifiable view of the filtered tank list */
+    ObservableList<Tank> getFilteredTankList();
+
+    void updateFilteredTankList(Predicate<Tank> predicate);
 }

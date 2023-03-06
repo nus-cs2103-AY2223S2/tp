@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path taskListFilePath = Paths.get("data" , "tasklist.json");
+    private Path tankListFilePath = Paths.get("data", "tanklist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setTaskListFilePath(newUserPrefs.getTaskListFilePath());
+        setTankListFilePath(newUserPrefs.getTankListFilePath());
 
     }
 
@@ -66,6 +68,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTaskListFilePath(Path taskListFilePath) {
         requireNonNull(taskListFilePath);
         this.taskListFilePath = taskListFilePath;
+    }
+
+    public Path getTankListFilePath() {
+        return tankListFilePath;
+    }
+
+    public void setTankListFilePath(Path tankListFilePath) {
+        requireNonNull(tankListFilePath);
+        this.tankListFilePath = tankListFilePath;
     }
 
     @Override
