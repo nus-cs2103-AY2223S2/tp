@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.plane.Plane;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,10 +24,15 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    // plane manager
+    private final IdentifiableManager<Plane> planeManager;
+    private final FilteredList<Plane> filteredPlanes;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyIdentifiableManager<Plane> planeManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -34,10 +40,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.planeManager = new IdentifiableManager<>(planeManager);
+        filteredPlanes = new FilteredList<>(this.planeManager.getItemList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -107,7 +116,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -128,6 +136,61 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Plane ========================================================
+    @Override
+    public void setPlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) {
+        this.planeManager.resetData(planeManager);
+    }
+
+    @Override
+    public ReadOnlyIdentifiableManager<Plane> getPlaneManager() {
+        return this.planeManager;
+    }
+
+    @Override
+    public void addPlane(Plane plane) {
+        requireAllNonNull(plane);
+        planeManager.addItem(plane);
+    }
+
+    @Override
+    public void deletePlane(Plane plane) {
+        planeManager.removeItem(plane);
+    }
+
+    @Override
+    public void deletePlane(String id) {
+        // planeManager.removeItem(id);
+    }
+
+    @Override
+    public boolean hasPlane(Plane plane) {
+        requireNonNull(plane);
+        return planeManager.hasItem(plane);
+    }
+
+    @Override
+    public boolean hasPlane(String id) {
+        return planeManager.hasItem(id);
+    }
+
+    @Override
+    public void setPlane(Plane target, Plane editedPlane) {
+        requireAllNonNull(target, editedPlane);
+        planeManager.setItem(target, editedPlane);
+    }
+
+    @Override
+    public ObservableList<Plane> getFilteredPlaneList() {
+        return filteredPlanes;
+    }
+
+    @Override
+    public void updateFilteredPlaneList(Predicate<Plane> predicate) {
+        requireNonNull(predicate);
+        filteredPlanes.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -146,5 +209,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.plane.Plane;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // ================ Plane methods ================
+    void setPlaneManager(ReadOnlyIdentifiableManager<Plane> manager);
+    ReadOnlyIdentifiableManager<Plane> getPlaneManager();
+    void addPlane(Plane plane);
+    void deletePlane(Plane plane);
+    void deletePlane(String id);
+    boolean hasPlane(Plane plane);
+    boolean hasPlane(String id);
+    void setPlane(Plane target, Plane editedPlane);
+    ObservableList<Plane> getFilteredPlaneList();
+    void updateFilteredPlaneList(Predicate<Plane> predicate);
 }
