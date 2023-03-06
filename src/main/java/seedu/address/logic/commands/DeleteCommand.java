@@ -26,6 +26,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Application: %1$s";
+    public static final String MESSAGE_DELETE_APPLICATION_FAILED = "Application: %1$s Not Deleted";
 
     public static final String MESSAGE_DELETE_CONFIRMATION = "Are you sure you want to delete this: application-%1$s";
 
@@ -45,8 +46,14 @@ public class DeleteCommand extends Command {
         }
 
         Person internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteInternship(internshipToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
+
+        ConfirmationDialog confirmationDialog = new ConfirmationDialog((String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getName())));
+
+        if (confirmationDialog.getConfirmationStatus()) {
+            model.deleteInternship(internshipToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
+        }
+        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_FAILED, internshipToDelete));
     }
 
     @Override
