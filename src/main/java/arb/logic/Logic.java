@@ -25,6 +25,11 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    /**
+     * Sets the variable that keeps track of which list is currently being shown
+     * to the user.
+     * @param newListType The new type of list.
+     */
     void setListType(ListType newListType);
 
     /**
@@ -37,6 +42,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of clients */
     ObservableList<Client> getFilteredClientList();
 
+    /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<ProjectStub> getFilteredProjectList();
 
     /**

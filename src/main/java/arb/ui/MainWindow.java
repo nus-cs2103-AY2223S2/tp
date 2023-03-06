@@ -170,19 +170,23 @@ public class MainWindow extends UiPart<Stage> {
         return clientListPanel;
     }
 
-    public void swapToClientList() {
+    public ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
+    }
+
+    private void swapToClientList() {
         this.logic.setListType(ListType.CLIENT);
         this.listPanelPlaceholder.getChildren().clear();
         this.listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
-    public void swapToProjectList() {
+    private void swapToProjectList() {
         this.logic.setListType(ListType.PROJECT);
         this.listPanelPlaceholder.getChildren().clear();
         this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
     }
 
-    public void swapList(ListType listType) {
+    private void swapList(ListType listType) {
         switch (listType) {
         case NONE:
             break;

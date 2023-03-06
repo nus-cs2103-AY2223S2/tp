@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

@@ -14,6 +14,10 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Client> getClientList();
 
+    /**
+     * Returns an unmodifiable view of the projects list.
+     * This list will not contain any duplicate projects.
+     */
     ObservableList<ProjectStub> getProjectList();
 
 }

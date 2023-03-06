@@ -13,15 +13,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of clients that enforces uniqueness between its elements and does not allow nulls.
- * A client is considered unique by comparing using {@code Client#isSameClient(Client)}. As such, adding and updating of
- * clients uses Client#isSameClient(Client) for equality so as to ensure that the client being added or updated is
- * unique in terms of identity in the UniqueClientList. However, the removal of a client uses Client#equals(Object) so
- * as to ensure that the client with exactly the same fields will be removed.
+ * A list of projects that enforces uniqueness between its elements and does not allow nulls.
+ * A project is considered unique by comparing using {@code Project#isSameProject(Project)}. As such, adding and updating of
+ * projects uses Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
+ * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object) so
+ * as to ensure that the project with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Client#isSameClient(Client)
+ * @see Project#isSameProject(Project)
  */
 public class UniqueProjectList implements Iterable<ProjectStub> {
 
@@ -30,7 +30,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent client as the given argument.
+     * Returns true if the list contains an equivalent project as the given argument.
      */
     public boolean contains(ProjectStub toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     }
 
     /**
-     * Adds a client to the list.
-     * The client must not already exist in the list.
+     * Adds a project to the list.
+     * The project must not already exist in the list.
      */
     public void add(ProjectStub toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +50,9 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     }
 
     /**
-     * Replaces the client {@code target} in the list with {@code editedClient}.
+     * Replaces the project {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the list.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the list.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the list.
      */
     public void setProject(ProjectStub target, ProjectStub editedProject) {
         requireAllNonNull(target, editedProject);
@@ -70,8 +70,8 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     }
 
     /**
-     * Removes the equivalent client from the list.
-     * The client must exist in the list.
+     * Removes the equivalent project from the list.
+     * The project must exist in the list.
      */
     public void remove(ProjectStub toRemove) {
         requireNonNull(toRemove);
@@ -86,16 +86,16 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     }
 
     /**
-     * Replaces the contents of this list with {@code clients}.
-     * {@code clients} must not contain duplicate clients.
+     * Replaces the contents of this list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
      */
-    public void setProjects(List<ProjectStub> clients) {
-        requireAllNonNull(clients);
-        if (!projectsAreUnique(clients)) {
+    public void setProjects(List<ProjectStub> projects) {
+        requireAllNonNull(projects);
+        if (!projectsAreUnique(projects)) {
             throw new DuplicateProjectException();
         }
 
-        internalList.setAll(clients);
+        internalList.setAll(projects);
     }
 
     /**
@@ -123,12 +123,12 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     }
 
     /**
-     * Returns true if {@code clients} contains only unique clients.
+     * Returns true if {@code projects} contains only unique projects.
      */
-    private boolean projectsAreUnique(List<ProjectStub> clients) {
-        for (int i = 0; i < clients.size() - 1; i++) {
-            for (int j = i + 1; j < clients.size(); j++) {
-                if (clients.get(i).isSameProject(clients.get(j))) {
+    private boolean projectsAreUnique(List<ProjectStub> projects) {
+        for (int i = 0; i < projects.size() - 1; i++) {
+            for (int j = i + 1; j < projects.size(); j++) {
+                if (projects.get(i).isSameProject(projects.get(j))) {
                     return false;
                 }
             }

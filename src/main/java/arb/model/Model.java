@@ -11,9 +11,10 @@ import javafx.collections.ObservableList;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} for filtered client list that always evaluates to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     
+    /** {@code Predicate} for filtered project list that always evaluates to true */
     Predicate<ProjectStub> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
@@ -59,6 +60,9 @@ public interface Model {
      */
     boolean hasClient(Client client);
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
     boolean hasProject(ProjectStub project);
 
     /**
@@ -67,6 +71,10 @@ public interface Model {
      */
     void deleteClient(Client target);
 
+    /**
+     * Deletes the given project.
+     * The project must exist in the address book.
+     */
     void deleteProject(ProjectStub target);
 
     /**
@@ -75,6 +83,10 @@ public interface Model {
      */
     void addClient(Client client);
 
+    /**
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
+     */
     void addProject(ProjectStub project);
 
     /**
@@ -84,11 +96,17 @@ public interface Model {
      */
     void setClient(Client target, Client editedClient);
 
+    /**
+     * Replaces the given project {@code target} with {@code editedProject}.
+     * {@code target} must exist in the address book.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
+     */
     void setProject(ProjectStub target, ProjectStub editedProject);
 
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
+    /** Returns an unmodifiable view of the filtered project list */
     ObservableList<ProjectStub> getFilteredProjectList();
 
     /**
@@ -97,5 +115,9 @@ public interface Model {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    /**
+     * Updates the filter of the filtered project list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredProjectList(Predicate<ProjectStub> predicate);
 }

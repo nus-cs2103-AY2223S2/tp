@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of projects.
  */
 public class ProjectListPanel extends UiPart<Region> {
     private static final String FXML = "ProjectListPanel.fxml";
@@ -21,7 +21,7 @@ public class ProjectListPanel extends UiPart<Region> {
     private ListView<ProjectStub> projectListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
     public ProjectListPanel(ObservableList<ProjectStub> projectList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ProjectListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */
     class ProjectListViewCell extends ListCell<ProjectStub> {
         @Override

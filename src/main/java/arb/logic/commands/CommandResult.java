@@ -19,6 +19,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** What type of list should be shown to the user. */
     private final ListType listType;
 
     /**
@@ -32,8 +33,8 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and
+     * {@code listType}, with all other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, ListType listType) {
         this(feedbackToUser, false, false, listType);

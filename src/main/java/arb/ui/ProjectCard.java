@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Project}.
  */
 public class ProjectCard extends UiPart<Region> {
 
@@ -35,7 +35,7 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
      */
     public ProjectCard(ProjectStub project, int displayedIndex) {
         super(FXML);
