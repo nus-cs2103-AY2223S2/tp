@@ -29,7 +29,7 @@ public class Badge extends UiPart<StackPane> {
         tag.setText(text);
     }
 
-    private String colorToHex(Color color) {
+    public static String colorToHex(Color color) {
         return "#" + color.toString().substring(2, 8);
     }
 }
