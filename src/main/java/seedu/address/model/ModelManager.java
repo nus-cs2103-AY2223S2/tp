@@ -88,42 +88,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Client client) {
+    public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
     }
 
     @Override
-    public void deletePerson(Client target) {
+    public void deleteClient(Client target) {
         addressBook.removeClient(target);
     }
 
     @Override
-    public void addPerson(Client client) {
+    public void addClient(Client client) {
         addressBook.addClient(client);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
-    public void setPerson(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Client List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Client> getFilteredPersonList() {
+    public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Client> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }
