@@ -40,8 +40,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_GRADE + "GRADE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " CS2106 "
-            + PREFIX_CREDIT + "4 "
-            + PREFIX_SEMYEAR + "Y2S2";
+            + PREFIX_CREDIT + " 4 "
+            + PREFIX_SEMYEAR + " Y2S2";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

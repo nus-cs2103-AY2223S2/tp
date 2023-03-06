@@ -28,7 +28,7 @@ class TagCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
         Module taggedModule = CS2100;
         TagCommand tagCommand = new TagCommand(CS2100.getCode(),
-                ParserUtil.parseTag("computer science breadth and depth"));
+                isInclude, ParserUtil.parseTag("computer science breadth and depth"));
 
         String expectedMessage = String.format(TagCommand.MESSAGE_ADD_TAG_SUCCESS,
                 taggedModule.getCode().toString());
@@ -42,10 +42,10 @@ class TagCommandTest {
 
     @Test
     public void equals() {
-        final TagCommand standardCommand = new TagCommand(CS2100.getCode(), new Tag(VALID_TAG_CS1101S));
+        final TagCommand standardCommand = new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_CS1101S));
 
         // same values -> returns true
-        TagCommand commandWithSameValues = new TagCommand(CS2100.getCode(), new Tag(VALID_TAG_CS1101S));
+        TagCommand commandWithSameValues = new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_CS1101S));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -58,10 +58,10 @@ class TagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new TagCommand(ST2334.getCode(), new Tag(VALID_TAG_CS1101S))));
+        assertFalse(standardCommand.equals(new TagCommand(ST2334.getCode(), isInclude, new Tag(VALID_TAG_CS1101S))));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new TagCommand(CS2100.getCode(), new Tag(VALID_TAG_MA2002))));
+        assertFalse(standardCommand.equals(new TagCommand(CS2100.getCode(), isInclude, new Tag(VALID_TAG_MA2002))));
     }
 
 }
