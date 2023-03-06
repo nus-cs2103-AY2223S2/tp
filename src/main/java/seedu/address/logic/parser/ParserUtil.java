@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Date;
+import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String companyName} into a {@code CompanyName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code companyName} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static CompanyName parseCompanyName(String companyName) throws ParseException {
+        requireNonNull(companyName);
+        String trimmedName = companyName.trim();
+        if (!CompanyName.isValidCompanyName(trimmedName)) {
+            throw new ParseException(CompanyName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new CompanyName(trimmedName);
     }
 
     /**
@@ -56,28 +56,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Role(trimmedRole);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code status} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Status(trimmedStatus);
     }
 
     /**
@@ -86,13 +86,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Date(trimmedDate);
     }
 
     /**
