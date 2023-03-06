@@ -91,7 +91,6 @@ A person can have any number of events (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` Adds person to the address book.
 * `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 ev/1` Adds 1st event to the new person `Alex Yeoh` in the address book.
-    added in the address book
 
 ### Listing all persons : `list`
 
