@@ -52,7 +52,7 @@ public class TypicalContacts {
     /**
      * Returns an {@code AddressBook} with all the typical Contacts.
      */
-    public static ContactBook getTypicalAddressBook() {
+    public static ContactBook getTypicalContactBook() {
         ContactBook cb = new ContactBook();
         for (Contact contact : getTypicalContacts()) {
             cb.addContact(contact);
