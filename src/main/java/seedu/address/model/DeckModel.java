@@ -1,17 +1,19 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.powercard.PowerCard;
+import seedu.address.model.powerdeck.PowerDeck;
 import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 
 /**
  * The API of the Model component for Deck.
  */
-public interface CardModel {
+public interface DeckModel {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<PowerCard> PREDICATE_SHOW_ALL_CARDS = unused -> true;
@@ -86,5 +88,12 @@ public interface CardModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCardList(Predicate<PowerCard> predicate);
+
+    ArrayList<PowerDeck> getDecks();
+    void unSelectDeck();
+
+    /* ========================== When No Deck selected ============================ */
+    void createDeck();
+    void selectDeck(int deckIndex);
 
 }
