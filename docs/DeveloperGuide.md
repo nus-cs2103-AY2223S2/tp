@@ -157,7 +157,7 @@ To be filled
 ## **Version Control**
 ### **The `master` Branch**
 
-The `master` branch represents stable released versions of the **EduMate** software. It is expected that this version always works as expected. 
+The `master` branch represents stable released versions of the **EduMate** software. It is expected that this version always works as expected.
 
 <div markdown="span" class="alert alert-danger">
 
