@@ -14,3 +14,4 @@ public class InvalidCrewRankException extends RuntimeException {
         super("Invalid crew rank" + rank.toString());
     }
 }
+

@@ -6,19 +6,18 @@ import java.util.*;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Crew implements Identifiable {
-    private final String name;
     private final String id;
-
+    private final String name;
     private final CrewRank rank;
 
     public Crew(String name, CrewRank rank) {
         this(UUID.randomUUID().toString(), name, rank);
     }
 
-    public Crew(String name, String id, CrewRank rank) {
-        requireAllNonNull(name, id, rank);
-        this.name = name;
+    public Crew(String id, String name, CrewRank rank) {
+        requireAllNonNull(id, name, rank);
         this.id = id;
+        this.name = name;
         this.rank = rank;
     }
 
@@ -36,18 +35,10 @@ public class Crew implements Identifiable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, id, rank);
+    public List<String> getDisplayList() {
+        return List.of("ID: " + id,
+                "Name: " + name,
+                "Rank: " + rank);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Id: ")
-                .append(getId())
-                .append("; Rank: ")
-                .append(getRank());
-        return builder.toString();
-    }
 }
