@@ -52,6 +52,13 @@ public class Person {
         return address;
     }
 
+     /**
+     * Adds a tag to the person
+     */
+    public void addTag(Tag toAdd) {
+        tags.add(toAdd);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
