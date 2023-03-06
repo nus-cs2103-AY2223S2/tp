@@ -5,7 +5,7 @@ title: Ai Bo's Project Portfolio Page
 
 ### Project: Wingman
 
-Wingman - Wingman is an application designed to help airline managers efficiently manage the allocation of their resources. 
+Wingman - Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
 
 Given below are my contributions to the project.
 
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: NA.
-* 
+*
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=boai01&breakdown=true)
 
 * **Project management**:
@@ -46,4 +46,4 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
- 
+

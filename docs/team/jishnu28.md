@@ -3,12 +3,41 @@ layout: page
 title: Jishnu's Project Portfolio Page
 ---
 
-### Project: Wingman
+# Project: Wingman
+<br>
 
+## Overview:
 Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
+<br>
 
+## Summary of Contributions
 Given below are my contributions to the project.
 
+### Code contributed:
+TBC
+
+### Enhancements implemented:
+TBC
+
+### Contributions to the UG:
+TBC
+
+### Contributions to the DG:
+TBC
+
+### Contributions to team-based-tasks:
+TBC
+
+### Review/mentoring contributions:
+TBC
+
+### Contributions beyond the project team:
+TBC
+
+<br>
+
+* Link to PPP requirements: https://nus-cs2103-ay2223s2.github.io/website/schedule/week7/project.html#4-add-a-skeletal-ppp
+* _{you can add/remove categories in the list below}
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -41,6 +70,4 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Integrated a new Github plugin (CircleCI) to the team repo_

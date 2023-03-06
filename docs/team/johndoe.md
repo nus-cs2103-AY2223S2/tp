@@ -5,13 +5,15 @@ title: Xiuxuan Wang's Project Portfolio Page
 
 ### Project: Wingman
 
-Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
+Wingman is an application designed to help airline managers efficiently manage
+the allocation of their resources.
 
-**Code Contributed**: [Click Here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=wxxedu&breakdown=true)
+**Code Contributed**:
+[Click Here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=wxxedu&breakdown=true)
 
-* **New Feature**: 
+* **New Feature**:
 
-* **Code contributed**: 
+* **Code contributed**:
 
 * **Project management**:
 

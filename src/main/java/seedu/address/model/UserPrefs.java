@@ -14,12 +14,16 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
+    private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
+    private int operationModeId = 0;
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -36,6 +40,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,11 +56,64 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    // =================== OperationMode ===================
+
+    /**
+     * Returns the operation mode of the application.
+     *
+     * @return the operation mode of the application
+     */
+    public OperationMode getOperationMode() {
+        return OperationMode.fromInt(operationModeId);
+    }
+
+    /**
+     * Sets the operation mode of the application.
+     *
+     * @param operationMode the new operation mode of the application
+     */
+    public void setOperationMode(OperationMode operationMode) {
+        requireNonNull(operationMode);
+        this.operationModeId = operationMode.toInt();
+    }
+
+    // =================== PilotManager ===================
+
+    @Override
+    public Path getPilotManagerFilePath() {
+        return this.pilotManagerFilePath;
+    }
+
+    /**
+     * Sets the user prefs' pilot manager file path.
+     *
+     * @param pilotManagerFilePath the new pilot manager file path
+     */
+    @Override
+    public void setPilotManagerFilePath(Path pilotManagerFilePath) {
+        requireNonNull(pilotManagerFilePath);
+        this.pilotManagerFilePath = pilotManagerFilePath;
+    }
+
+    // =================== LocationManager ===================
+    @Override
+    public Path getLocationManagerFilePath() {
+        return locationManagerFilePath;
+    }
+
+    @Override
+    public void setLocationManagerFilePath(Path locationManagerFilePath) {
+        requireNonNull(locationManagerFilePath);
+        this.locationManagerFilePath = locationManagerFilePath;
+    }
+
+    // =================== Generic ===================
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,7 +126,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                   && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
