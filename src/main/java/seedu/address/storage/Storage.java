@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 
 /**
  * API of the Storage component
@@ -74,4 +75,16 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @throws IOException when the file cannot be saved
      */
     void saveLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) throws IOException;
+
+    /* Plane related methods */
+    Path getPlaneManagerFilePath();
+
+    /**
+     * Reads the pilot manager from the {@code Storage::getPilotManagerFilePath}
+     *
+     * @return the pilot manager.
+     */
+    Optional<? extends ReadOnlyIdentifiableManager<Plane>> readPlaneManager() throws DataConversionException,
+            IOException;
+
 }
