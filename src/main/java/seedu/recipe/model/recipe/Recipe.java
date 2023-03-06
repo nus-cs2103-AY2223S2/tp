@@ -95,13 +95,13 @@ public class Recipe {
 
         Set<Ingredient> ingredients = getIngredients();
         if (!ingredients.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Ingredients: ");
             ingredients.forEach(builder::append);
         }
 
         Set<Step> steps = getSteps();
         if (!steps.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Steps: ");
             steps.forEach(builder::append);
         }
         return builder.toString();
