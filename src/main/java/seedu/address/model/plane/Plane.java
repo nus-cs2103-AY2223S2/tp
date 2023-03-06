@@ -53,12 +53,17 @@ public class Plane implements Identifiable {
     }
 
     public List<String> getDisplayList() {
-        return List.of("UUID: " + this.id,
-                "Model: " + this.model,
-                "Age: " + this.age);
+        return List.of("UUID: " + id,
+                "Model: " + model,
+                "Age: " + age);
     }
 
     public String getId() {
         return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " Model: " + model + " Age: " + age;
     }
 }

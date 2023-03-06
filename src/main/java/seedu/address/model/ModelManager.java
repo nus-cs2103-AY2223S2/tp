@@ -113,6 +113,7 @@ public class ModelManager implements Model {
             break;
         case PLANE:
             rebind(filteredPlanes);
+            break;
         case FLIGHT:
         case CREW:
         case LOCATION:
@@ -412,5 +413,4 @@ public class ModelManager implements Model {
                    && filteredPersons.equals(other.filteredPersons)
                    && pilotManager.equals(other.pilotManager);
     }
-
 }

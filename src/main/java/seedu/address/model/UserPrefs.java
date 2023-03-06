@@ -43,6 +43,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
+        setPlaneManagerFilePath(newUserPrefs.getPlaneManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -118,7 +119,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     // =================== PlaneManager ===================
     @Override
     public Path getPlaneManagerFilePath() {
-        return planeManagerFilePath;
+        return this.planeManagerFilePath;
     }
 
     @Override

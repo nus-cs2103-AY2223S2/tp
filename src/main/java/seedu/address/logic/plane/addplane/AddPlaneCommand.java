@@ -21,13 +21,13 @@ public class AddPlaneCommand implements Command {
      *
      * @param plane The pilot to be added.
      */
-    public AddPlaneCommand(Plane plane) { 
+    public AddPlaneCommand(Plane plane) {
         this.plane = plane;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addPlane(plane);
-        return new CommandResult("Added plane: " + plane);
+        return new CommandResult("Added plane: " + plane.toString());
     }
 }
