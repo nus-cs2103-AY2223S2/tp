@@ -12,16 +12,16 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 1. [Quick Start](#quick-start)
 1. [Features](#features)
-    1. Add a module: `Add`
-   1. Remove a module: `Delete`
-   1. Change module details: `Edit`
-   1. Remove all modules: `Clear`
-   1. Display all modules: `List`
-   1. Find specific module by module code: `Find`
-   1. Viewing help: `Help`
-   1. Exiting the program: `Exit`
-   1. Saving the data
-   1. Editing the data file
+    1. Add a module: `add`
+   1. Remove a module: `delete`
+   2. Remove all modules: `delete all`
+   3. Change module details: `edit`
+   4. Display all modules: `list`
+   5. Find specific module by module code: `find`
+   6. Viewing help: `help`
+   7. Exiting the program: `exit`
+   8. Saving the data
+   9. Editing the data file
 3. [Frequently Asked Questions (FAQ)](#faq)
 4. [Command Summary](#command-summary)
 
@@ -45,9 +45,9 @@ MODTrek supports the following features:
 
 | Feature              | Description                                                                                                                                                                                                                                                                                                                                                    | Command Syntax                                                                                                                                                                                                                                               |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add a module         | _Adds a module to the module list. Modules must be distinct.                                                                                                                                                                                                                                                                                                   | `add /m <code> /c <credits> /y <year-semester> (/g <grade>)`                                                                                                                                                                                                 |
-| delete a module      | _Deletes the specified module from the module list.                                                                                                                                                                                                                                                                                                            | _To delete specific modules:_ <br>`delete /m <code1> (<code2>) ...` <br><br><br> :exclamation: For `...`, specify one or more module codes of modules to be deleted, separated by space (' '). <br><br><br> _To delete all modules:_ <br>`delete all`        |
-| edit a module        | _Edits an existing module in the module list.                                                                                                                                                                                                                                                                                                                  | `edit /m <code> ...`<br><br><br>_Specify one or more parameters in `...` :_<br>- `/m <code>`<br>- `/c <credits>`<br>- `/y <year-semester>`<br>- `/g <grade>`                                                                                                 |
+| add a module         | _Adds a module to the module list. Modules must be distinct.                                                                                                                                                                                                                                                                                                   | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br><br><br> :exclamation: For `...`, specify one or more tags to be added, separated by space (' ').                                                                                                                                                                                                |
+| delete a module      | _Deletes the specified module from the module list.                                                                                                                                                                                                                                                                                                            | _To delete specific modules:_ <br>`delete /m <code1> (/m <code2>) ...` <br><br><br> :exclamation: For `...`, specify one or more module codes of modules to be deleted, separated by space (' '). <br><br><br> _To delete all modules:_ <br>`delete all`        |
+| edit a module        | _Edits an existing module in the module list.                                                                                                                                                                                                                                                                                                                  | `edit <code> ...`<br><br><br>_Specify one or more parameters in `...` :_<br>- `/m <new code>`<br>- `/c <credits>`<br>- `/y <year-semester>`<br>- `/g <grade>`<br>- `/t <tag>`                                                                                                 |
 | tag a module         | _Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.                                                                                                                                                                                             | _To include tags:_ `tag /m <code> include <tag1> (<tag2>) ...` <br><br><br> _To remove tags:_ `tag /m <code> remove <tag1> (<tag2>) ...` <br><br><br> :exclamation: For `...`, specify one or more tags to be included or removed, separated by space (' '). |
 | list modules         | _Displays all the modules taken by the user.                                                                                                                                                                                                                                                                                                                   | `list`                                                                                                                                                                                                                                                       |
 | find a module        | _Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.                                                                                                                                                                                                      | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`                                                                                                                                                                                          |
@@ -59,8 +59,8 @@ MODTrek supports the following features:
 
 ### Notes about command format:
 - Words enclosed by `<>` are the parameters to be supplied by the user.<br>
-  - E.g. in `add /m <code> /c <credits> /y <year-semester> /g <grade>`, `<code>`, `<credits>`, `<year-semester>`, `<grade>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+`
-- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.
+  - E.g. in `add /m <code> /c <credits> /y <year-semester> /g <grade> /t <tag>...`, `<code>`, `<credits>`, `<year-semester>`, `<grade>`, `<tag>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+ /t University Level Requirements /t Computer Science Foundation`
+- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `delete all`) will be ignored.
 - Parameters encapsulated in between brackets ('()') are optional.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -75,9 +75,9 @@ MODTrek supports the following features:
 
 | Action                   | Format, Examples                                                                                                                                                                                  |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>)` <br> e.g., `add /m CS2103T /c 4 /y y2s2`                                                                                             |
-| **Delete**               | `delete <code1> (<code2>) ...` or `delete all` <br> e.g. `delete CS2100 CS2040S`                                                                                                                  |
-| **Edit**                 | `edit /m <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `edit /m ES2660 /m CS2101`                                                                  |
+| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`                                                                                             |
+| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                                                                  |
+| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                                                  |
 | **Tag**                  | `tag /m <code> include <tag1> (<tag2>) ...` or `tag /m <code> remove <tag1> (<tag2>) ...` <br> e.g., `tag CS2030S include cs_foundation`, `tag ES2660 remove university_level it_professionalism` |
 | **List**                 | `list`                                                                                                                                                                                            |
 | **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                                                          |
