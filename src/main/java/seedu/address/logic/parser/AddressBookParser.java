@@ -74,7 +74,6 @@ public class AddressBookParser {
             return new ExportCommand();
         
         case TagCommand.COMMAND_WORD:
-            System.out.println(1);
             return new TagCommandParser().parse(arguments);
 
         default:
