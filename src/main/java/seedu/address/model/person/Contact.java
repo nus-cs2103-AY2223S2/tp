@@ -9,6 +9,9 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a contact.
+ */
 public class Contact {
 
     private final Name name;
