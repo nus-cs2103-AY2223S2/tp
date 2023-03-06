@@ -10,7 +10,7 @@ import mycelium.mycelium.model.person.Person;
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends ClientModel, ProjectModel {
     /**
      * {@code Predicate} that always evaluate to true
      */
