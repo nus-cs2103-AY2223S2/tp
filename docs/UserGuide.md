@@ -143,6 +143,56 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a remark : `remark`
+
+Adds a remark to any given person stored in the address book.
+
+Format: `remark INDEX [r/REMARK]`
+
+* Adds `REMARK` to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `remark 2 He is a cheese lover` adds the remark “He is a cheese lover” to the 2nd person.
+
+### Adding a tag : `tag`
+
+Adds a tag to any given person stored in the address book.
+
+Format: `tag INDEX [t/TAG]`
+
+* Adds `TAG` to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `add_tag 2 banker` adds the tag “banker” to the 2nd person.
+
+### Deleting a tag : `delete_tag`
+
+Deletes a tag on a person.
+
+Format: `tag INDEX [t/TAG]`
+
+* Deletes `TAG` on the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete_tag 2 banker` deletes the tag “banker” from the 2nd person.
+
+### Filter by tag : `filter`
+
+Search for all persons with a corresponding tag.
+
+Format: `filter [t/TAG]`
+
+* Displays the data of persons with the given `tag` name.
+
+Examples:
+* `filter banker` will list all persons with the tag “banker”.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -166,6 +216,20 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
+
+### Import data from CSV : `import`
+
+Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
+
+Format: `import`
+
+### Export data to CSV `[coming in v1.3]`
+
+Opens a file chooser to select a directory where you can save the data to a CSV file.
+
+_Details coming soon ..._
+
+Format: `export`
 
 ### Archiving data files `[coming in v2.0]`
 
