@@ -58,7 +58,7 @@ This enables delivery riders to be able to quickly plan their deliveries by typi
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the user guide.
 
 ![help message](images/helpMessage.png)
 
