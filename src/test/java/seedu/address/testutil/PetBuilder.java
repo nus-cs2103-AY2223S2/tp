@@ -3,11 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,11 +12,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PetBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_OWNER_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Amy Bee Woof";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    private OwnerName ownerName;
     private Name name;
     private Phone phone;
     private Email email;
@@ -31,6 +29,7 @@ public class PetBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PetBuilder() {
+        ownerName = new OwnerName(DEFAULT_OWNER_NAME);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -42,11 +41,19 @@ public class PetBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PetBuilder(Pet personToCopy) {
+        ownerName = personToCopy.getOwnerName();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+    }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public PetBuilder withOwnerName(String ownerName) {
+        this.ownerName = new OwnerName(ownerName);
+        return this;
     }
 
     /**
@@ -90,7 +97,7 @@ public class PetBuilder {
     }
 
     public Pet build() {
-        return new Pet(name, phone, email, address, tags);
+        return new Pet(ownerName, name, phone, email, address, tags);
     }
 
 }

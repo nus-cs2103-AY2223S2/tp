@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PetPal;
 import seedu.address.model.pet.Pet;
 
 /**
@@ -60,17 +60,18 @@ public class TypicalPets {
     private TypicalPets() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code PetPal} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static PetPal getTypicalPetPal() {
+        PetPal pp = new PetPal();
         for (Pet person : getTypicalPet()) {
-            ab.addPet(person);
+            pp.addPet(person);
         }
-        return ab;
+        return pp;
     }
 
     public static List<Pet> getTypicalPet() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }

@@ -16,6 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Pet {
 
     // Identity fields
+    private final OwnerName ownerName;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -27,14 +28,16 @@ public class Pet {
     /**
      * Every field must be present and not null.
      */
-    public Pet(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
+    public OwnerName getOwnerName() { return ownerName; }
 
     public Name getName() {
         return name;
@@ -88,7 +91,8 @@ public class Pet {
         }
 
         Pet otherPet = (Pet) other;
-        return otherPet.getName().equals(getName())
+        return  otherPet.getOwnerName().equals(getOwnerName())
+                && otherPet.getName().equals(getName())
                 && otherPet.getPhone().equals(getPhone())
                 && otherPet.getEmail().equals(getEmail())
                 && otherPet.getAddress().equals(getAddress())
@@ -98,13 +102,15 @@ public class Pet {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(ownerName, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getOwnerName())
+                .append("; Name: ")
+                .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
