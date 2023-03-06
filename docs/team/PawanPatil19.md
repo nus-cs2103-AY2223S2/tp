@@ -3,4 +3,4 @@
 Hi 👋
 I am a Year 2 Computer Science Student from India.
 
-![My Picture](../images/pawan.png)
+![My Picture](../images/PawanPatil19.png)
