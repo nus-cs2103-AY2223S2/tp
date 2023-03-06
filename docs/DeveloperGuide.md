@@ -378,8 +378,7 @@ specified otherwise)
 
 **MSS**
 
-1. The financial advisor enters the name, account number, or any other relevant information of the client they want to
-   find.
+1. The financial advisor enters the name, account number, or any other relevant information of the client they want to find
 2. The system searches for the client based on the entered information.
 3. The system displays a list of clients matching the entered information.
 4. The financial advisor selects the desired client from the list.
