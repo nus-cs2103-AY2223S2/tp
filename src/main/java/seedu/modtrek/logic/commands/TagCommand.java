@@ -47,7 +47,7 @@ public class TagCommand extends Command {
     /**
      * The constant MESSAGE_ADD_TAG_FAILURE.
      */
-    public static final String MESSAGE_ADD_TAG_FAILURE = "Removed tag from Module: %1$s";
+    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
 
     private final Code code;
     private final boolean isInclude;
@@ -79,12 +79,10 @@ public class TagCommand extends Command {
         }
 
         Set<Tag> newTags = moduleToEdit.getModifiableTags();
-        System.out.println(isInclude);
         if (isInclude) {
             newTags.addAll(tags);
         } else {
             newTags.removeAll(tags);
-            System.out.println(newTags);
         }
 
         Module editedModule = new Module(
@@ -103,7 +101,7 @@ public class TagCommand extends Command {
      * {@code editedModule}.
      */
     private String generateSuccessMessage(Module editedModule) {
-        String message = isInclude ? MESSAGE_ADD_TAG_SUCCESS : MESSAGE_ADD_TAG_FAILURE;
+        String message = isInclude ? MESSAGE_ADD_TAG_SUCCESS : MESSAGE_REMOVE_TAG_SUCCESS;
         return String.format(message, editedModule.getCode().toString());
     }
 

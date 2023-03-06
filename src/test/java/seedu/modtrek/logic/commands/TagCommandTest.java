@@ -28,7 +28,7 @@ class TagCommandTest {
             new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
+    public void execute_addOneTag_success() throws ParseException {
         Set<Tag> taggedModuleTags = CS2100.getModifiableTags();
         taggedModuleTags.add(new Tag("computer science breadth and depth"));
         Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
@@ -45,6 +45,74 @@ class TagCommandTest {
         Model expectedModel = new ModelManager(new DegreeProgression(model
                 .getDegreeProgression()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), taggedModule);
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_addMultipleTags_success() throws ParseException {
+        Set<Tag> taggedModuleTags = CS2100.getModifiableTags();
+        taggedModuleTags.add(new Tag("computer science breadth and depth"));
+        taggedModuleTags.add(new Tag("mathematics and sciences"));
+        Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
+                CS2100.getSemYear(), taggedModuleTags, CS2100.getGrade());
+        Set<String> tagsToAdd = new HashSet<>();
+        tagsToAdd.add("computer science breadth and depth");
+        tagsToAdd.add("mathematics and sciences");
+        TagCommand tagCommand = new TagCommand(CS2100.getCode(),
+                true, ParserUtil.parseTags(tagsToAdd));
+
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_ADD_TAG_SUCCESS,
+                taggedModule.getCode().toString());
+
+        Model expectedModel = new ModelManager(new DegreeProgression(model
+                .getDegreeProgression()), new UserPrefs());
+        expectedModel.setModule(model.getFilteredModuleList().get(0), taggedModule);
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_removeOneTag_success() throws ParseException {
+        Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
+                CS2100.getSemYear(), new HashSet<>(), CS2100.getGrade());
+        Set<String> tagsToRemove = new HashSet<>();
+        tagsToRemove.add("computer science foundation");
+        TagCommand tagCommand = new TagCommand(CS2100.getCode(),
+                false, ParserUtil.parseTags(tagsToRemove));
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_REMOVE_TAG_SUCCESS,
+                taggedModule.getCode().toString());
+
+        Model expectedModel = new ModelManager(new DegreeProgression(model
+                .getDegreeProgression()), new UserPrefs());
+        expectedModel.setModule(model.getFilteredModuleList().get(0), taggedModule);
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_removeMultipleTags_success() throws ParseException {
+        Module untaggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
+                CS2100.getSemYear(), new HashSet<>(), CS2100.getGrade());
+        Set<String> tagsToRemove = new HashSet<>();
+        tagsToRemove.add("computer science foundation");
+        tagsToRemove.add("mathematics and sciences");
+        Set<Tag> tagsToBeRemoved = CS2100.getModifiableTags();
+        tagsToBeRemoved.add(new Tag("mathematics and sciences"));
+        Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
+                CS2100.getSemYear(), tagsToBeRemoved, CS2100.getGrade());
+        TagCommand tagCommand = new TagCommand(CS2100.getCode(),
+                false, ParserUtil.parseTags(tagsToRemove));
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_REMOVE_TAG_SUCCESS,
+                untaggedModule.getCode().toString());
+
+        Model expectedModel = new ModelManager(new DegreeProgression(model
+                .getDegreeProgression()), new UserPrefs());
+        expectedModel.setModule(model.getFilteredModuleList().get(0), untaggedModule);
+        model.setModule(model.getFilteredModuleList().get(0), taggedModule);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
