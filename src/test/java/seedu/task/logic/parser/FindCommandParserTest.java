@@ -39,7 +39,7 @@ public class FindCommandParserTest {
         names.add("Alice");
         FindCommand expectedFindCommand2 =
             new FindCommand(new NameContainsAllKeywordsPredicate(names));
-        assertParseSuccess(parser, " all/hi n/Alice n/Bob", expectedFindCommand2);
+        assertParseSuccess(parser, " all/ n/Alice n/Bob", expectedFindCommand2);
         FindCommand expectedFindCommand3 =
             new FindCommand(new DeadlineDateContainsKeywordsPredicate("2023-01-01"));
         assertParseSuccess(parser, " D/2023-01-01", expectedFindCommand3);
