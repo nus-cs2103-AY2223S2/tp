@@ -42,7 +42,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/jerrrren.png" width="200px">
 
-[[github](http://github.com/jerrrren)] [[portfolio](team/jerrrren.md)]
+[[github](http://github.com/jerrrren)] 
+[[portfolio](team/jerrrren.md)]
 
 - Role: Code reviewer
 - Responsibilities: Review Code
@@ -52,7 +53,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/jweeyh.png" width="200px">
 
-[[github](http://github.com/jweeyh)] [[portfolio](team/jweeyh.md)]
+[[github](http://github.com/jweeyh)] 
+[[portfolio](team/jweeyh.md)]
 
 - Role: Developer
 - Responsibilities: Secretary
