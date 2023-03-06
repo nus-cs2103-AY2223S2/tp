@@ -20,7 +20,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png) 
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -145,7 +145,7 @@ However, adding `all/` means that a task which contains all your tag inputs will
   * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
 Examples:
-* `find book` returns `read book` and `return books`
+* `find n/book` returns `read book` and `return books`
 
 ### Deleting a task : `delete`
 
@@ -162,6 +162,31 @@ Format: `delete INDEX(S)`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+### Getting statistics : `stats`
+
+Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
+
+Format: `stats`
+
+### Sorting tasks : `sort`
+
+Sorts the list using the following format:
+
+    1. SimpleTask
+        1.1. Sort by tags size.
+        1.2. If tags size are the same, sort by name.
+    2. Deadline
+        2.1. Sort by earliest deadline.
+        2.2. If deadlines are the same, sort by tags size.
+        2.3. If tags size are the same, sort by name.
+    3. Event
+        3.1. Sort by earliest "from" date.
+        3.2. If "from" date is the same, sort by earliest "to" date.
+        3.3. If "to" date is the same, sort by tags size.
+        3.4. If tags size are the same, sort by name.
+
+Format: `sort`
 
 ### Clearing all entries : `clear`
 
@@ -211,3 +236,5 @@ _Details coming soon ..._
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+| **Stats**  | `stats`                                                                                                                                                               |
+| **sort**   | `sort`                                                                                                                                                                |

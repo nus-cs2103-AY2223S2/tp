@@ -48,6 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
         List<Task> taskList;
         // auto-convert to deadline if deadline prefix exists.
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
