@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.powercard.PowerCard;
+import seedu.address.model.powercard.UniqueCardList;
 
 
 /**
