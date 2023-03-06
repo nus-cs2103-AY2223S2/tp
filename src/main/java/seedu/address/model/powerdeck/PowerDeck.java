@@ -2,9 +2,12 @@ package seedu.address.model.powerdeck;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.powercard.PowerCard;
 import seedu.address.model.powercard.UniqueCardList;
+
 
 /**
  * Wraps all data at the PowerDeck level
@@ -25,6 +28,32 @@ public class PowerDeck implements ReadOnlyPowerDeck {
     }
 
     public PowerDeck() {}
+
+    /**
+     * Creates a PowerDeck using the Cards in the {@code toBeCopied}
+     */
+    public PowerDeck(ReadOnlyPowerDeck toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    /* OVERWRITE OPERATIONS */
+
+    /**
+     * Replaces the contents of the card list with {@code cards}.
+     * {@code cards} must not contain duplicate cards.
+     */
+    public void setCards(List<PowerCard> cards) {
+        this.cards.setCards(cards);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyPowerDeck newData) {
+        requireNonNull(newData);
+        setCards(newData.getCardList());
+    }
 
     /* CARD-LEVEL OPERATIONS */
 
@@ -52,20 +81,27 @@ public class PowerDeck implements ReadOnlyPowerDeck {
         cards.remove(card);
     }
 
-    /* TODO: OVERWRITE OPERATIONS */
+    /**
+     * Replaces the given card {@code target} in the list with {@code editedCard}.
+     * {@code target} must exist in the deck.
+     * The card identity of {@code editedCard} must not be the same as another existing card in the address book.
+     */
+    public void setCard(PowerCard target, PowerCard editedCard) {
+        requireNonNull(editedCard);
+
+        cards.setCard(target, editedCard);
+    }
 
     /* UTIL METHODS */
 
     @Override
     public String toString() {
-        return null;
-        // TODO: refine later
+        return null; // TODO: refine later
     }
 
     @Override
     public ObservableList<PowerCard> getCardList() {
-        return null;
-        // TODO: refine later
+        return cards.asUnmodifiableObservableList();
     }
 
     @Override
@@ -79,5 +115,4 @@ public class PowerDeck implements ReadOnlyPowerDeck {
     public int hashCode() {
         return cards.hashCode();
     }
-
 }
