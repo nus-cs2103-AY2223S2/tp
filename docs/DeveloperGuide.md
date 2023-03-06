@@ -289,10 +289,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
+1. User requests to list persons
+2. ExpressLibrary shows a list of persons
+3. User requests to delete a specific person in the list
+4. ExpressLibrary deletes the person
+
+    Use case ends.
+
+**Use case: Add book borrowed to a person**
+
+**MSS**
+
 1.  User requests to list persons
 2.  ExpressLibrary shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+3.  User requests to add a book to a specific person in the list
+4.  ExpressLibrary adds a book field to the person
 
     Use case ends.
 
