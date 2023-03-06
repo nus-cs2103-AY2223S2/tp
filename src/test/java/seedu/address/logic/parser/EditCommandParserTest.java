@@ -136,7 +136,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_CLIENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand.EditClientDescriptor descriptor;
+        descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
