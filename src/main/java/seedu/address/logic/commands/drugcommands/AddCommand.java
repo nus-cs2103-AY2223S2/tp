@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_DIRECTION + "DIRECTION"
             + PREFIX_STORAGE_COUNT + "STORAGE COUNT\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TRADE_NAME + "Panadoldi "
+            + PREFIX_TRADE_NAME + "Panadol "
             + PREFIX_ACTIVE_INGREDIENT + "Paracetamol "
             + PREFIX_PURPOSE + "relieve pain "
             + PREFIX_PURPOSE + "relieve fever "
