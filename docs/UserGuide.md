@@ -132,7 +132,7 @@ The event must not be marked as done beforehand.
 
 Creates a new event
 
-**Format**: `newevent NAME` 
+**Format**: `newevent NAME`
 
 - Creates a new event with the specified event `NAME`
 
@@ -190,7 +190,7 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 |         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
 |    [Listing All Contact](#list-all-contacts)    |                `listcontact`                |                                `listcontact`                                |
 | [Link Contact to Event](#link-contact-to-event) |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
-|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |  
+|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
 |             [Tag a rate](#tag-rate)             |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
 |       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
 |     [Create a new Event](#create-new-event)     |               `newevent NAME`               |                             `newevent Singing`                              |
