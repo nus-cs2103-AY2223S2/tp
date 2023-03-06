@@ -11,10 +11,9 @@ import seedu.address.model.tag.Tag;
  */
 public class JsonAdaptedPolicy {
     private final String policyName;
-    private final LocalDate startDate;
-    private final Premium premium;
-    private final Frequency frequency;
-    private final Set<Tag> tags;
+    private final String startDate;
+    private final String premium;
+    private final String frequency;
 
     // What is this for? Similar to Tag but what's the purpose?
     @JsonCreator
@@ -24,12 +23,17 @@ public class JsonAdaptedPolicy {
 
     public JsonAdaptedPolicy(Policy source) {
         policyName = source.getPolicyName();// Need tell Yuze to make this field in Policy to be public, similar to tag
-        startDate = source.getStartDate();
-        premium = source.getPremium();
-        frequency = source.getFrequency();
-        tags = source.getTags();
+        startDate = source.getStartDate().format(Policy.DATE_FORMAT); //tell yuze make this
+        premium = source.getPremium().toString();
+        frequency = source.getFrequency().toString();
     }
+    /*
+     need tell yuze to make all the new classes to support constructor
+     that takes in strings because i need convert from json to there
+     */
 
+
+    /* Need to see how this works ... */
     @JsonValue
     public String getPolicy() {
         StringBuilder policy = new StringBuilder("[");
