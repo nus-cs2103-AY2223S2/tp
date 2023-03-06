@@ -51,7 +51,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void testEquals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);

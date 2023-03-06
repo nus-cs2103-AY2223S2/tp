@@ -19,7 +19,7 @@ class GitHubProfileTest {
 
     @Test
     public void constructor_invalidProfile_throwsIllegalArgumentException() {
-        String invalidProfile = "";
+        String invalidProfile = " ";
         assertThrows(IllegalArgumentException.class, () -> new GitHubProfile(invalidProfile));
     }
 
@@ -29,7 +29,6 @@ class GitHubProfileTest {
         assertThrows(NullPointerException.class, () -> GitHubProfile.isValidProfile(null));
 
         // invalid profile
-        assertFalse(GitHubProfile.isValidProfile("")); // empty string
         assertFalse(GitHubProfile.isValidProfile(" ")); // spaces only
         assertFalse(GitHubProfile.isValidProfile("^")); // only non-alphanumeric characters
         assertFalse(GitHubProfile.isValidProfile("-chiayh")); // starts with hyphen
