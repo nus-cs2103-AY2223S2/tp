@@ -273,58 +273,106 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ |------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add/delete jobs                | keep track of my upcoming and old tasks.                               |
-| `* * *`  | user                                       | mark/unmakr jobs               | keep track of completed jobs                                           |
-| `* * *`  | user                                       | add a new person               | keep in touch with my clients.                                         |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | chat with my clients           | retain custormer relations and maintain more customers.                |
-| `* *`    | Gig employee                               | view my aggregated information | track my earnings                                                      |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
+| Priority | As a …​                                                           | I want to …​                   | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                          | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                   | add/delete jobs                | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                   | mark/unmark jobs               | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to provide better service for customers | chat with my clients           | retain custormer relations and maintain more customers.                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+<details>
+<summary><b>[ST1] View statistics</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. User requests to view overall statistics.
+3. System shows total earnings, monthly earnings,
+   weekly earnings, daily earnings and top customers visited.
+   Use case ends.
+    
+<b>Extensions</b>
+* 2a. The list is empty.
+      Use case ends.
+</pre>
+</details>  
 
-**MSS**
+<details>
+<summary><b>[DE1] View delivery job details</b></summary>
+<pre>
+<b>MSS</b>
+1. User opens the system.
+2. System list all pending jobs.
+3. User selects the job for details.
+5. System displays the full detail of the deivery job. 
+</pre>
+</details>  
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
 
-    Use case ends.
+<details>
+<summary><b>[DE2] Add a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. User requests to add a job in the list.
+3. System adds job and job appears in list of jobs.
+   Use case ends.
+</pre>
+</details>  
 
-**Use case: Chat with a client**
 
-**MSS**
-
-1. User go to job list/contact list.
-2. User go to specific job/client.
-3. User start chatting by clicking on "Chat" function.
-4. Start typing and sending message by pressing Enter.
-
+<details>
+<summary><b>[DE3] Delete a job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests to delete a specific job in the list.
+4. System deletes the job.
    Use case ends.
 
-**Extensions**
-
+<b>Extensions</b>
 * 2a. The list is empty.
-
   Use case ends.
-
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. System shows an error message.
       Use case resumes at step 2.
+</pre>
+</details>  
+
+
+<details>
+<summary><b>[CH1] Chat with a client</b></summary>
+<pre>
+<b>MSS</b>
+1. User goes to homepage with list of jobs/contacts.
+2. System displays job list.
+3. User requests to display a specific job to start chat.
+4. System displays the chosen job in details and Chat option.
+5. User selects "Chat" option from the chosen job and requests to chat.
+6. DSystem shows the message sent in the Chat window.
+   Use case ends.
+
+<b>Extensions</b>
+* 2a. The list is empty.
+      Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+           Use case resumes at step 2.
+</pre>
+</details>  
+
 
 *{More to be added}*
 
@@ -332,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be used for a single user only i.e. (not a multi-user product).
-3.  The system should respond within two seconds (after receiving input from user).
+3.  The system should respond within two seconds (after receiving input from user). 
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 

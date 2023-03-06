@@ -16,6 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ChinJunAn)]
 
 * Role: Developer
+* Responsibilities: Notification and reminder function
 
 ### Do Ha Duong
 
@@ -24,40 +25,32 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/dohaduong)]
 
 * Role: Developer
+* Responsibility: Build and develop Chat function
 
 ### Chen Zuo Hui
 
-<img src="images/chenzuohui.png" width="200px">
+<img src="images/zuohui48.png" width="200px">
 
 [[github](https://github.com/zuohui48)]
 
 * Role: Developer
+* Responsibilities: List jobs, Summary Statistics
 
-### Johnny Doe
+### Zhu Le Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhuleyao.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ZhuLeYao)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data, Add and view jobs function
 
-### James Doe
+### Chen Junsheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/c0j0s.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/c0j0s)]
+[[portfolio](team/c0j0s.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Delivery jobs function
