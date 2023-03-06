@@ -2,10 +2,9 @@ package seedu.loyaltylift.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.ui.Badge;
+import javafx.scene.paint.Color;
 
 public class BadgeTest {
 
