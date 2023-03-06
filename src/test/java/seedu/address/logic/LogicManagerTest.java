@@ -59,25 +59,25 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
+    public void execute_deleteCommandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_commandExecutionError2_throwsCommandException() {
+    public void execute_delEventCommandExecutionError_throwsCommandException() {
         String delEventCommand = "delevent 9";
         assertCommandException(delEventCommand, MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void execute_validListCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
-    public void execute_validCommand2_success() throws Exception {
+    public void execute_validListEventCommand_success() throws Exception {
         String listEventCommand = ListEventCommand.COMMAND_WORD;
         assertCommandSuccess(listEventCommand, ListEventCommand.MESSAGE_SUCCESS, model);
     }
