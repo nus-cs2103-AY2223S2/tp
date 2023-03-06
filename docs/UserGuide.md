@@ -145,7 +145,7 @@ However, adding `all/` means that a task which contains all your tag inputs will
   * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
 Examples:
-* `find book` returns `read book` and `return books`
+* `find n/book` returns `read book` and `return books`
 
 ### Deleting a task : `delete`
 
