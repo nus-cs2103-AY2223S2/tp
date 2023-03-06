@@ -130,10 +130,10 @@ Example:
 
 ### Add a Drug entry: `d add`
 Adds a drug entry to the list of drugs.
-Format: `d add -dn DRUG_NAME -tn TRADE_NAME -s STOCK`
+Format: `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
 
 Examples:
-* `d add -dn paracetamol -tn Panadol -s 500`
+* `d add -tn Panadol -ai Paracetamol, sodium - dir Adults and children above 12 years old, 1-2 capsules - pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
 
 
 ### List all Drug entries: `d list`
@@ -224,22 +224,22 @@ _Details coming soon ..._
 
 ## Command Summary
 
-| Action                        | Format, Examples                                                                                                                                    |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                      | `g help`                                                                                                                                            |
-| **Add patient**               | `p add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS` <br> e.g., `add -n John Doe -p 98765432 -e johnd@example.com -a John street, block 123, #01-01` |
-| **List patient**              | `p list`                                                                                                                                            |
-| **Clear all patient**         | `p clear`                                                                                                                                           |
-| **Find patient by name**      | `p find -n PATIENT_NAME` <br> e.g., `p find -n John` returns `john` and `John Doe`                                                                  |
-| **Find patient by NRIC**      | `p find -ic PATIENT_NRIC` <br> e.g., `find -ic T0021248C`                                                                                           |
-| **Delete patient by index**   | `p delete -in PATIENT_INDEX` <br> e.g., `delete -in 3`                                                                                              |
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <br> e.g., `delete -ic T0021248C`                                                                                       |
-| **Add a drug**                | `d add -dn DRUG_NAME -tn TRADE_NAME -s STOCK` <br> e.g., `add -dn paracetamol  -tn Panadol -s 500`                                                  |
-| **List drug**                 | `d list`                                                                                                                                            |
-| **Clear all drugs**           | `d clear`                                                                                                                                           |
-| **Find drug by trade name**   | `d find -tn TRADE_NAME` <br> e.g., `d find -tn panadol`                                                                                             |
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                  |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                        |
-| **Update drug storage count** | `d update -tn TRADE_NAME -sc +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -sc +90`                                                               |
-| **Exit**                      | `g exit`                                                                                                                                            |
+| Action                        | Format, Examples                                                                                                                                                                                                                               |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                      | `g help`                                                                                                                                                                                                                                       |
+| **Add patient**               | `p add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS` <br> e.g., `add -n John Doe -p 98765432 -e johnd@example.com -a John street, block 123, #01-01`                                                                                            |
+| **List patient**              | `p list`                                                                                                                                                                                                                                       |
+| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                      |
+| **Find patient by name**      | `p find -n PATIENT_NAME` <br> e.g., `p find -n John` returns `john` and `John Doe`                                                                                                                                                             |
+| **Find patient by NRIC**      | `p find -ic PATIENT_NRIC` <br> e.g., `find -ic T0021248C`                                                                                                                                                                                      |
+| **Delete patient by index**   | `p delete -in PATIENT_INDEX` <br> e.g., `delete -in 3`                                                                                                                                                                                         |
+| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <br> e.g., `delete -ic T0021248C`                                                                                                                                                                                  |
+| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` |
+| **List drug**                 | `d list`                                                                                                                                                                                                                                       |
+| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      |
+| **Find drug by trade name**   | `d find -tn TRADE_NAME` <br> e.g., `d find -tn panadol`                                                                                                                                                                                        |
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             |
+| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   |
+| **Update drug storage count** | `d update -tn TRADE_NAME -sc +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -sc +90`                                                                                                                                                          |
+| **Exit**                      | `g exit`                                                                                                                                                                                                                                       |
 
