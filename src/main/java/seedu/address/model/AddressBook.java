@@ -14,7 +14,7 @@ import seedu.address.model.client.UniqueClientList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueClientList persons;
+    private final UniqueClientList clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueClientList();
+        clients = new UniqueClientList();
     }
 
     public AddressBook() {}
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the client list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Client> clients) {
-        this.persons.setClients(clients);
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setClients(newData.getPersonList());
     }
 
     //// client-level operations
@@ -63,7 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Client client) {
         requireNonNull(client);
-        return persons.contains(client);
+        return clients.contains(client);
     }
 
     /**
@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The client must not already exist in the address book.
      */
     public void addPerson(Client p) {
-        persons.add(p);
+        clients.add(p);
     }
 
     /**
@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        persons.setClient(target, editedClient);
+        clients.setClient(target, editedClient);
     }
 
     /**
@@ -90,31 +90,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Client key) {
-        persons.remove(key);
+        clients.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return clients.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Client> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && clients.equals(((AddressBook) other).clients));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return clients.hashCode();
     }
 }
