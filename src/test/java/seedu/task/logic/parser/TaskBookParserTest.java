@@ -41,11 +41,7 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-<<<<<<< HEAD
-        Task task = new TaskBuilder().build();
-=======
         Task task = new SimpleTaskBuilder().build();
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(task);
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));

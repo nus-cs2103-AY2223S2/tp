@@ -57,17 +57,10 @@ public class AddCommandParserTest {
         Task expectedTask = new SimpleTaskBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
-<<<<<<< HEAD
-        Task expectedBobBoth = new TaskBuilder(BOB_BOTH)
-                .withTags(VALID_TAG_FRIEND)
-                .build();
-        Task expectedAmyBoth = new TaskBuilder(AMY_BOTH)
-=======
         Task expectedBobBoth = new SimpleTaskBuilder(BOB_BOTH)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
         Task expectedAmyBoth = new SimpleTaskBuilder(AMY_BOTH)
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
                 .withTags(VALID_TAG_FRIEND)
                 .build();
         ArrayList<Task> multiNameTasks = new ArrayList<>();

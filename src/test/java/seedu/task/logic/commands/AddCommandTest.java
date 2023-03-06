@@ -34,11 +34,7 @@ public class AddCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         ArrayList<Task> validTask = new ArrayList<>();
-<<<<<<< HEAD
-        validTask.add(new TaskBuilder().build());
-=======
         validTask.add(new SimpleTaskBuilder().build());
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 

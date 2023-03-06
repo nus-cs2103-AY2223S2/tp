@@ -3,6 +3,9 @@ package seedu.task.logic.commands;
 import seedu.task.model.Model;
 import seedu.task.model.tracker.TaskByTagTracker;
 
+/**
+ * Prints out statistics
+ */
 public class StatsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";

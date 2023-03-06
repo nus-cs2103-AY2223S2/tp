@@ -70,11 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-<<<<<<< HEAD
-     * Adds tasks to the task list
-=======
      * Adds simple tasks to the task list
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
      * @param nameList All the names of tasks
      * @param description A single description belonging to all tasks
      * @param tagList A single tag belonging to all tasks

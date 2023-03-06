@@ -58,19 +58,12 @@ public class TypicalTasks {
             .withDescription(VALID_DESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
-<<<<<<< HEAD
-    public static final Task BOB_BOTH = new TaskBuilder().withName(VALID_NAME_BOB)
-        .withDescription(VALID_DESCRIPTION_BOTH)
-        .withTags(VALID_TAG_FRIEND)
-        .build();
-    public static final Task AMY_BOTH = new TaskBuilder().withName(VALID_NAME_AMY)
-=======
+
     public static final Task BOB_BOTH = new SimpleTaskBuilder().withName(VALID_NAME_BOB)
         .withDescription(VALID_DESCRIPTION_BOTH)
         .withTags(VALID_TAG_FRIEND)
         .build();
     public static final Task AMY_BOTH = new SimpleTaskBuilder().withName(VALID_NAME_AMY)
->>>>>>> d7186a335444074e58b9e7ddc69593254833a5bb
         .withDescription(VALID_DESCRIPTION_BOTH)
         .withTags(VALID_TAG_FRIEND)
         .build();
