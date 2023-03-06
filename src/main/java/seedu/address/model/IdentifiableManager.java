@@ -165,4 +165,5 @@ public class IdentifiableManager<T extends Identifiable> implements
     public int hashCode() {
         return items.hashCode();
     }
+
 }

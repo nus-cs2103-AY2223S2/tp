@@ -14,10 +14,12 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
     private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
     private Path crewManagerFilePath = Paths.get("data", "crewmanager.json");
+    private Path planeManagerFilePath = Paths.get("data", "planemanager.json");
+
     private int operationModeId = 0;
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -41,6 +43,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
         setCrewManagerFilePath(newUserPrefs.getCrewManagerFilePath());
+        setPlaneManagerFilePath(newUserPrefs.getPlaneManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -101,7 +104,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     // =================== LocationManager ===================
-
     @Override
     public Path getLocationManagerFilePath() {
         return locationManagerFilePath;
@@ -130,8 +132,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.crewManagerFilePath = crewManagerFilePath;
     }
 
-    // =================== Generic ===================
+    // =================== PlaneManager ===================
+    @Override
+    public Path getPlaneManagerFilePath() {
+        return this.planeManagerFilePath;
+    }
 
+    @Override
+    public void setPlaneManagerFilePath(Path planeManagerFilePath) {
+        requireNonNull(planeManagerFilePath);
+        this.planeManagerFilePath = planeManagerFilePath;
+    }
+
+    // =================== Generic ===================
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -159,5 +172,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
-
 }

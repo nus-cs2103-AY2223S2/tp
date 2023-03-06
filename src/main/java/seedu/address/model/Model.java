@@ -10,6 +10,7 @@ import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 
 /**
  * The API of the Model component.
@@ -246,7 +247,6 @@ public interface Model {
 
     void updateFilteredLocationList(Predicate<Location> predicate);
 
-
     /* Crew-related functions */
 
     /**
@@ -302,4 +302,16 @@ public interface Model {
     void updateFilteredCrewList(Predicate<Crew> predicate);
 
     ObservableList<Crew> getFilteredCrewList();
+
+    // ================ Plane methods ================
+    void setPlaneManager(ReadOnlyIdentifiableManager<Plane> manager);
+    ReadOnlyIdentifiableManager<Plane> getPlaneManager();
+    void addPlane(Plane plane);
+    void deletePlane(Plane plane);
+    void deletePlane(String id);
+    boolean hasPlane(Plane plane);
+    boolean hasPlane(String id);
+    void setPlane(Plane target, Plane editedPlane);
+    ObservableList<Plane> getFilteredPlaneList();
+    void updateFilteredPlaneList(Predicate<Plane> predicate);
 }

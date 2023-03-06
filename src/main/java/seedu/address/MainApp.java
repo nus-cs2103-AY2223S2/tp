@@ -26,6 +26,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.IdentifiableStorage;
@@ -37,6 +38,7 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.json.storage.JsonCrewManagerStorage;
 import seedu.address.storage.json.storage.JsonLocationManagerStorage;
 import seedu.address.storage.json.storage.JsonPilotManagerStorage;
+import seedu.address.storage.json.storage.JsonPlaneManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -72,7 +74,10 @@ public class MainApp extends Application {
                 new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
         IdentifiableStorage<Crew> crewStorage =
                 new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage, crewStorage);
+        IdentifiableStorage<Plane> planeStorage =
+                new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage,
+                crewStorage, planeStorage);
 
         initLogging(config);
 
@@ -111,34 +116,42 @@ public class MainApp extends Application {
         Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
         ReadOnlyIdentifiableManager<Crew> crewManager;
         Optional<? extends ReadOnlyIdentifiableManager<Crew>> crewManagerOptional;
+        ReadOnlyIdentifiableManager<Plane> planeManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Plane>> planeManagerOptional;
 
         try {
             pilotManagerOptional = storage.readPilotManager();
             locationManagerOptional = storage.readLocationManager();
             crewManagerOptional = storage.readCrewManager();
+            planeManagerOptional = storage.readPlaneManager();
+
             if (pilotManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample PilotManager");
                 pilotManager = new IdentifiableManager<>();
                 locationManager = new IdentifiableManager<>();
                 crewManager = new IdentifiableManager<>();
+                planeManager = new IdentifiableManager<>();
             } else {
                 pilotManager = pilotManagerOptional.get();
                 locationManager = locationManagerOptional.get();
                 crewManager = crewManagerOptional.get();
+                planeManager = planeManagerOptional.get();
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
             locationManager = new IdentifiableManager<>();
             crewManager = new IdentifiableManager<>();
+            planeManager = new IdentifiableManager<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
             locationManager = new IdentifiableManager<>();
             crewManager = new IdentifiableManager<>();
+            planeManager = new IdentifiableManager<>();
         }
 
-        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, crewManager);
+        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, crewManager, planeManager);
     }
 
     private void initLogging(Config config) {
