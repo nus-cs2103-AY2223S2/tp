@@ -23,6 +23,14 @@ public class JsonSerializablePlaneManager extends JsonIdentifiableManager<Plane,
         this.items.addAll(planes);
     }
 
+    /**
+     * Creates a new JsonSerializablePlaneManager from the given manager.
+     *
+     * @param manager the manager to create the JsonSerializablePlaneManager
+     *                from, it should be a ReadOnlyIdentifiableManager
+     *                &lt;Plane&gt;
+     * @return        a new JsonSerializablePilotManager.
+     */
     public static JsonSerializablePlaneManager from(ReadOnlyIdentifiableManager<Plane> manager) {
         final JsonSerializablePlaneManager res =
                 new JsonSerializablePlaneManager(new ArrayList<>());

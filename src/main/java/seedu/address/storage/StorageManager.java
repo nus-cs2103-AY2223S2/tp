@@ -191,6 +191,14 @@ public class StorageManager implements Storage {
         return readPlaneManager(planeStorage.getPath());
     }
 
+    /**
+     * Reads the plane manager from the given file path.
+     *
+     * @param filePath                 the file path to read from.
+     * @return                         the plane manager.
+     * @throws DataConversionException if the file is not in the correct format.
+     * @throws IOException             if there was any problem when reading from the file.
+     */
     public Optional<? extends ReadOnlyIdentifiableManager<Plane>> readPlaneManager(Path filePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
@@ -202,6 +210,13 @@ public class StorageManager implements Storage {
         savePlaneManager(planeManager, planeStorage.getPath());
     }
 
+    /**
+     * Saves the plane manager to the given file path.
+     *
+     * @param planeManager the location manager to save
+     * @param filePath     the file path to save to
+     * @throws IOException when there are errors writing to the file
+     */
     public void savePlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager, Path filePath) throws IOException {
         logger.fine("Attempting to saving pilots to data file: " + filePath);
         planeStorage.save(planeManager, filePath);

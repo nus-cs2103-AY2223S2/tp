@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.plane.Plane;
-import seedu.address.model.plane.PlaneAge;
-import seedu.address.model.plane.PlaneModel;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**

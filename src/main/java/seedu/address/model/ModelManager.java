@@ -77,8 +77,13 @@ public class ModelManager implements Model {
         setOperationMode(userPrefs.getOperationMode());
     }
 
+    /**
+     * Initializes a ModelManager
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(), new IdentifiableManager<>(), new IdentifiableManager<>());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
+                new IdentifiableManager<>(),
+                new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
