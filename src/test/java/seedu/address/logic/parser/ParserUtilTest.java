@@ -61,13 +61,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndexs_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseindexs("10 a"," "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseindexs("10 a", " "));
     }
 
     @Test
     public void parseIndexs_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
-                () -> ParserUtil.parseindexs( "1" + Long.toString(Integer.MAX_VALUE + 1), " "));
+                () -> ParserUtil.parseindexs("1" + Long.toString(Integer.MAX_VALUE + 1), " "));
     }
 
     @Test
