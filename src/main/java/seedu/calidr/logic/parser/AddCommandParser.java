@@ -17,6 +17,7 @@ import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.person.Phone;
+import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
 
 /**
@@ -42,9 +43,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, remark, tagList);
 
         return new AddCommand(person);
     }

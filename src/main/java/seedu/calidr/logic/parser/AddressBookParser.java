@@ -15,6 +15,7 @@ import seedu.calidr.logic.commands.ExitCommand;
 import seedu.calidr.logic.commands.FindCommand;
 import seedu.calidr.logic.commands.HelpCommand;
 import seedu.calidr.logic.commands.ListCommand;
+import seedu.calidr.logic.commands.RemarkCommand;
 import seedu.calidr.logic.commands.TestCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 
@@ -59,6 +60,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
