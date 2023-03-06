@@ -20,7 +20,6 @@ public class CliSyntax {
     /* Prefix definitions for drug*/
     public static final Prefix PREFIX_ACTIVE_INGREDIENT = new Prefix("-ai");
     public static final Prefix PREFIX_DIRECTION = new Prefix("-dir");
-    public static final Prefix PREFIX_EXPIRY_DATE = new Prefix("-ed");
     public static final Prefix PREFIX_PURPOSE = new Prefix("-pur");
     public static final Prefix PREFIX_SIDE_EFFECT = new Prefix("-se");
     public static final Prefix PREFIX_STORAGE_COUNT = new Prefix("-sc");
