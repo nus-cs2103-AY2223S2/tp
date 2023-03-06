@@ -94,6 +94,7 @@ public class ClientTest {
 
         //different gender -> returns false
         editedAlice = new ClientBuilder(ALICE).withGender("f").build();
+        assertFalse(ALICE.equals(editedAlice));
 
         // different appointments -> returns false
         editedAlice = new ClientBuilder(ALICE).withAppointments(VALID_APPOINTMENT_DATE_TWO).build();
