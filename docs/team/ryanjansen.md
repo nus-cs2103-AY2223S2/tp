@@ -12,6 +12,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
   * Delete recipe
+  * Add recipe
 * **New Feature**: 
   * to be added soon
   * **Code contributed**: [Link]()
