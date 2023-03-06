@@ -31,7 +31,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-//    private PersonListPanel personListPanel;
     private RecipeListPanel recipeListPanel;
 
     private ResultDisplay resultDisplay;
@@ -45,9 +44,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane recipeListPanelPlaceholder;
-
-//    @FXML
-//    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -117,8 +113,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         recipeListPanel = new RecipeListPanel(logic.getFilteredPersonList());
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
-//        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -169,10 +163,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
-
-//    public PersonListPanel getPersonListPanel() {
-//        return personListPanel;
-//    }
 
     public RecipeListPanel getRecipeListPanel() {
         return recipeListPanel;
