@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FastTrack responds telling the user that a name is required and the command is invalid.
   * 2a2. User enters add command with the category name.
   * 2a3. Steps 2a1-2a2 are repeated until the data entered are correct.
-
+  
     Use case resumes at step 3.
 
 * 2b. The category name already exists
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User enters the delete command with the index i of the category to be deleted.
 4. FastTrack deletes the category at index i.
 5. FastTrack displays a success message to the user indicating the category has been successfully deleted.
-
+  
    Use case ends.
 
 **Extensions**
@@ -333,6 +333,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
+**Use case: UC7 - List all expense**
+
+**MSS**
+
+1.  User requests to list all expense.
+2.  FastTrack displays all expenses added by user.
+
+    Use case ends.
+
+**Use case: UC8 - List all expense in a given category**
+
+**MSS**
+
+1.  User requests to list all expense in a given category. 
+2.  FastTrack displays all expenses in a given category added by user.
+   Use case ends.
+
+* 1a. User does not enter a category.
+  * 1a1. FastTrack displays error message.
+
+      Use case ends.
+
+* 1b. The given cateogry is invalid.
+
+    * 1b1. FastTrack displays an error message.
+
+      Use case ends.
+
+**Use case: UC9 - List all expense in the past week**
+
+**MSS**
+
+1.  User requests to list all expense in the past week.
+2.  FastTrack displays all expenses added by user in the past week .
+
+    Use case ends.
+
+**Use case: UC10 - Find an expense**
+
+**MSS**
+
+1.  User requests to find an expense.
+2.  FastTrack displays all expenses related to the keyword provided.
+
+    Use case ends.
     
 ### Non-Functional Requirements
 
