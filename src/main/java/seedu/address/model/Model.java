@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -24,6 +25,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to false
      */
     Predicate<Pilot> PREDICATE_SHOW_ALL_PILOTS = unused -> false;
+
+    /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Crew> PREDICATE_SHOW_ALL_CREW = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -127,7 +133,6 @@ public interface Model {
      *
      * @return the person manager.
      */
-
     ReadOnlyIdentifiableManager<Pilot> getPilotManager();
 
     /**
@@ -229,6 +234,7 @@ public interface Model {
 
     void setLocationManagerFilePath(Path pilotManagerFilePath);
 
+
     ReadOnlyIdentifiableManager<Location> getLocationManager();
 
     Path getLocationManagerFilePath();
@@ -253,4 +259,59 @@ public interface Model {
     ObservableList<Plane> getFilteredPlaneList();
     void updateFilteredPlaneList(Predicate<Plane> predicate);
 
+    /* Crew-related functions */
+
+    /**
+     * Returns the crew manager file path.
+     *
+     * @return the crew manager file path.
+     */
+    Path getCrewManagerFilePath();
+
+    /**
+     * Sets the crew manager file path.
+     *
+     * @param crewManagerFilePath the crew manager file path.
+     */
+    void setCrewManagerFilePath(Path crewManagerFilePath);
+
+    void setCrewManager(ReadOnlyIdentifiableManager<Crew> manager);
+
+    /**
+     * Returns the crew manager.
+     *
+     * @return the crew manager.
+     */
+    ReadOnlyIdentifiableManager<Crew> getCrewManager();
+
+    boolean hasCrew(Crew crew);
+
+    boolean hasCrew(String id);
+
+    /**
+     * Add a crew to the crew list.
+     *
+     * @param crew the crew to be added.
+     */
+    void addCrew(Crew crew);
+
+    /**
+     * Deletes a crew to the crew list.
+     *
+     * @param crew the crew to be deleted.
+     */
+    void deleteCrew(Crew crew);
+
+    /**
+     * Deletes a crew to the crew list.
+     *
+     * @param id the id of the crew to be deleted.
+     */
+    void deleteCrew(String id);
+
+    void setCrew(Crew target, Crew editedCrew);
+
+    void updateFilteredCrewList(Predicate<Crew> predicate);
+
+    ObservableList<Crew> getFilteredCrewList();
 }

@@ -14,18 +14,17 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
     private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
     private Path planeManagerFilePath = Paths.get("data", "planemanager.json");
+    private Path crewManagerFilePath = Paths.get("data", "crewmanager.json");
 
     private int operationModeId = 0;
-
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {
-    }
+    public UserPrefs() {}
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -44,6 +43,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
         setPlaneManagerFilePath(newUserPrefs.getPlaneManagerFilePath());
+        setCrewManagerFilePath(newUserPrefs.getCrewManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -58,7 +58,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
     }
-
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
@@ -105,6 +104,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     // =================== LocationManager ===================
+
     @Override
     public Path getLocationManagerFilePath() {
         return locationManagerFilePath;
@@ -126,9 +126,26 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setPlaneManagerFilePath(Path planeManagerFilePath) {
         requireNonNull(planeManagerFilePath);
         this.planeManagerFilePath = planeManagerFilePath;
+      
+    // =================== CrewManager ===================
+
+    @Override
+    public Path getCrewManagerFilePath() {
+        return this.crewManagerFilePath;
+    }
+
+    /**
+     * Sets the user prefs' crew manager file path.
+     *
+     * @param crewManagerFilePath the new crew manager file path
+     */
+    public void setCrewManagerFilePath(Path crewManagerFilePath) {
+        requireNonNull(crewManagerFilePath);
+        this.crewManagerFilePath = crewManagerFilePath;
     }
 
     // =================== Generic ===================
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -141,7 +158,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                   && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
