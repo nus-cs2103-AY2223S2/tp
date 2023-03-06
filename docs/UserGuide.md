@@ -74,15 +74,15 @@ Format: `help`
 
 Adds a person to ModCheck.
 
-Format: `add n/<NAME> d/<DESCRIPTION> e/<EMAIL> c/<CONTACT> m/<MODULECODE>…`
+Format: `add n/<NAME> d/<DESCRIPTION> e/<EMAIL> p/<CONTACT> t/<tags>…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of modules (including 0)
 </div>
 
 Examples:
-* `add n/Messi d/Professor e/leomessi@psg.com c/98101010`
-* `add n/CRonaldo d/Tutor e/SIUUUUUU@gmail.com c/98070707 m/CS2105 m/CS2103`
+* `add n/Messi d/helpful e/leomessi@psg.com p/98101010`
+* `add n/CRonaldo d/smart friendly e/SIUUUUUU@gmail.com p/98070707 t/Prof`
 
 ### Listing all persons : `list`
 
