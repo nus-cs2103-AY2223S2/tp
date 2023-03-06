@@ -414,7 +414,31 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C8 - Delete Customer Note
+#### Use case: UC C8 - Append Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters new note data to append.
+3.  LL updates the note and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested note does not exist.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C9 - Delete Customer Note
 
 **MSS**
 
@@ -453,7 +477,32 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
   Use case ends.
 
-#### Use case: UC O2 - View Order
+#### Use case: UC O2 - Create Order
+
+**MSS**
+
+1.  User gets <u>list of customers (UC O1)</u>.
+2.  User enters customer id and new data order.
+3.  LL creates the order and assigns the order to the customer.
+4.  LL displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O3 - View Order
 
 **MSS**
 
@@ -471,7 +520,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O3 - Delete Order
+#### Use case: UC O4 - Delete Order
 
 **MSS**
 
@@ -489,7 +538,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O4 - Update Order
+#### Use case: UC O5 - Update Order
 
 **MSS**
 
@@ -513,7 +562,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O5 - Advance Order Status
+#### Use case: UC O6 - Advance Order Status
 
 **MSS**
 
@@ -536,31 +585,6 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
-
-#### Use case: UC O6 - Tag Order to Customer
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User <u>gets list of orders (UC O1)</u>.
-3.  User requests to tag an order to a customer.
-4.  LL tags the order to the customer and displays the order information.
-
-    Use case ends.
-
-**Extensions**
-
-* 3a. Requested order does not exist.
-
-    * 3a1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 3b. Requested customer does not exist.
-
-    * 3b1. LL shows an error message.
-
-      Use case resumes from step 2.
 
 #### Use case: UC R1 - List Rewards
 
@@ -637,7 +661,31 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC R5 - Give Reward to Customer
+#### Use case: UC R5 - Set/Add Customer Points
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters customer points.
+3.  LL updates the customer's points and displays the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R6 - Give Reward to Customer
 
 **MSS**
 
