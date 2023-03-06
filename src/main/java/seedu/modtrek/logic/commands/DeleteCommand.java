@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     /**
      * The constant MESSAGE_DELETE_MODULE_SUCCESS.
      */
-    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Modules: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module(s): %1$s";
 
     /**
      * The constant MESSAGE_DELETE_MODULE_NOT_FOUND.
