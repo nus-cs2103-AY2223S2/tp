@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-PlanEase is a **desktop app tailored for event planners to organise and manage their contacts**. It is optimised for use via a Command Line Interface (CLI), while still retaining the familiar GUI from the AB3 address book. If you are a fast typist, PlanEase will accelerate your current workflow compared to your traditional address books.
+PlanEase is a **desktop app tailored for event planners to organise and manage their contacts**. It is optimised for use via a Command Line Interface (CLI), while still retaining the familiar GUI from the address book. If you are a fast typist, PlanEase will accelerate your current workflow compared to your traditional address books.
 * Table of Contents
 {:toc}
 
