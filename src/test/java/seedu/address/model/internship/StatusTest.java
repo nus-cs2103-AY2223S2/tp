@@ -16,7 +16,7 @@ public class StatusTest {
 
     @Test
     public void constructor_invalid_throwsIllegalArgumentException() {
-        String invalidStatus = "1000";
+        Integer invalidStatus = 1000;
         assertThrows(IllegalArgumentException.class, () -> new Status(invalidStatus));
     }
 
@@ -26,24 +26,19 @@ public class StatusTest {
         assertThrows(NullPointerException.class, () -> Status.isValidStatus(null));
 
         // invalid statuses
-        assertFalse(Status.isValidStatus("")); // empty string
-        assertFalse(Status.isValidStatus(" ")); // spaces only
-        assertFalse(Status.isValidStatus("a")); // alphabetical
-        assertFalse(Status.isValidStatus("$")); // symbols
-        assertFalse(Status.isValidStatus("30")); // not 0 - 3
+        assertFalse(Status.isValidStatus(4)); // not 0 - 3
 
 
         // valid statuses
-        assertTrue(Status.isValidStatus("1"));
-        assertTrue(Status.isValidStatus("1 ")); // valid status id with trailing space
+        assertTrue(Status.isValidStatus(0));
     }
 
     @Test
     public void testToString() {
-        String statusIdInterested = "0";
-        String statusIdApplied = "1";
-        String statusIdOffered = "2";
-        String statusIdRejected = "3";
+        Integer statusIdInterested = 0;
+        Integer statusIdApplied = 1;
+        Integer statusIdOffered = 2;
+        Integer statusIdRejected = 3;
 
         // valid mapping from status id to status type
         assertEquals((new Status(statusIdInterested)).toString(), "INTERESTED");

@@ -19,11 +19,6 @@ public class Status {
     public static final String MESSAGE_CONSTRAINTS =
             "Status of an Internship should be keyed in as a number from 0 to 3.";
 
-    /*
-     * The integer representing a Status need to be in the range of 0 to 3 (inclusive).
-     */
-    public static final String VALIDATION_REGEX = "[0-3](\\s)?";
-
     public final Integer statusId;
 
     /**
@@ -31,18 +26,18 @@ public class Status {
      *
      * @param statusId A valid String that represents the id of a Status.
      */
-    public Status(String statusId) {
+    public Status(Integer statusId) {
         requireNonNull(statusId);
         checkArgument(isValidStatus(statusId), MESSAGE_CONSTRAINTS);
-        this.statusId = Integer.parseInt(statusId.stripTrailing());
+        this.statusId = statusId;
     }
 
     /**
      * Returns true if a given string represents a valid status id.
      * A valid status id is a number in the range of 0 - 3. Trailing space is allowed.
      */
-    public static boolean isValidStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidStatus(Integer test) {
+        return test >= 0 && test <= 3;
     }
 
     @Override
