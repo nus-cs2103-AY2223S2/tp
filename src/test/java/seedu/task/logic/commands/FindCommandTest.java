@@ -24,7 +24,6 @@ import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.task.DeadlineDateContainsKeywordsPredicate;
-import seedu.task.model.task.Event;
 import seedu.task.model.task.EventFromContainsKeywordsPredicate;
 import seedu.task.model.task.EventToContainsKeywordsPredicate;
 import seedu.task.model.task.NameContainsAllKeywordsPredicate;
