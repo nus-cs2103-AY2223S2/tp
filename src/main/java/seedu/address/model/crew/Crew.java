@@ -1,11 +1,9 @@
 package seedu.address.model.crew;
 
-import seedu.address.model.item.Identifiable;
-
 import java.util.List;
 import java.util.UUID;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.item.Identifiable;
 
 /**
  * Represents a Crew in the Wingman app.
@@ -36,7 +34,6 @@ public class Crew implements Identifiable {
      * @param rank the rank of the crew.
      */
     public Crew(String id, String name, CrewRank rank) {
-        requireAllNonNull(id, name, rank);
         this.id = id;
         this.name = name;
         this.rank = rank;
