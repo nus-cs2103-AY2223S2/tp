@@ -24,7 +24,7 @@ public class ClientTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameClient() {
         // same object -> returns true
         assertTrue(ALICE.isSameClient(ALICE));
 
