@@ -17,9 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.loyaltylift.logic.commands.AddCommand;
+import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.CommandResult;
-import seedu.loyaltylift.logic.commands.ListCommand;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.Model;
@@ -58,14 +58,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "deletec 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCustomerCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCustomerCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCustomerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

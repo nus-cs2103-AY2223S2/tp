@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.loyaltylift.logic.commands.EditCommand;
-import seedu.loyaltylift.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.Email;
@@ -18,13 +18,13 @@ import seedu.loyaltylift.model.tag.Tag;
  */
 public class EditCustomerDescriptorBuilder {
 
-    private EditCommand.EditCustomerDescriptor descriptor;
+    private EditCustomerCommand.EditCustomerDescriptor descriptor;
 
     public EditCustomerDescriptorBuilder() {
-        descriptor = new EditCommand.EditCustomerDescriptor();
+        descriptor = new EditCustomerCommand.EditCustomerDescriptor();
     }
 
-    public EditCustomerDescriptorBuilder(EditCommand.EditCustomerDescriptor descriptor) {
+    public EditCustomerDescriptorBuilder(EditCustomerCommand.EditCustomerDescriptor descriptor) {
         this.descriptor = new EditCustomerDescriptor(descriptor);
     }
 
@@ -82,7 +82,7 @@ public class EditCustomerDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditCustomerDescriptor build() {
+    public EditCustomerCommand.EditCustomerDescriptor build() {
         return descriptor;
     }
 }

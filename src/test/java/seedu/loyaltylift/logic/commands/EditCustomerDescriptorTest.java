@@ -12,7 +12,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
 
 public class EditCustomerDescriptorTest {

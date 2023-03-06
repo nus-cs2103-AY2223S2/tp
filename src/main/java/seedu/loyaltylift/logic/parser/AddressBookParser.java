@@ -6,15 +6,15 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.loyaltylift.logic.commands.AddCommand;
+import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
-import seedu.loyaltylift.logic.commands.DeleteCommand;
-import seedu.loyaltylift.logic.commands.EditCommand;
+import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.ExitCommand;
-import seedu.loyaltylift.logic.commands.FindCommand;
+import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
-import seedu.loyaltylift.logic.commands.ListCommand;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,23 +44,23 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddCustomerCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditCustomerCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteCustomerCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FindCustomerCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListCustomerCommand.COMMAND_WORD:
+            return new ListCustomerCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
