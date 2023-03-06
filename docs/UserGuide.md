@@ -65,15 +65,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a delivery: `add`
+### Adding a person: `add`
 
-Adds a delivery with its destination address.
+Adds a person to deliver to.
 
-Format: `add n/DELIVERY a/ADDRESS`
+Format: `add n/NAME a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL]`
 
 Examples:
-* `add n/Shopee a/Yusof Ishak House, #04-420`
-* `add n/Lazada a/Utown, #01-01`
+* `add n/Yusof a/Yusof Ishak House, #04-420 e/yusof@gmail.com`
+* `add n/Linus a/Utown, #01-01 p/91234567`
 
 ### Listing all deliveries : `list`
 
