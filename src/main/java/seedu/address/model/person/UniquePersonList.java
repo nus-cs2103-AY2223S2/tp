@@ -143,16 +143,48 @@ public class UniquePersonList implements Iterable<Person> {
     public void sort(String category) {
         switch (category) {
         case "name":
-            internalList.sort(Comparator.comparing(person -> person.getName().toString()));
+            internalList.sort((Person a, Person b) -> {
+                if (a.getName().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getName().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getName().toString().compareTo(b.getName().toString());
+                }
+            });
             break;
         case "phone":
-            internalList.sort(Comparator.comparing(person -> person.getPhone().toString()));
+            internalList.sort((Person a, Person b) -> {
+                if (a.getPhone().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getPhone().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getPhone().toString().compareTo(b.getPhone().toString());
+                }
+            });
             break;
         case "email":
-            internalList.sort(Comparator.comparing(person -> person.getEmail().toString()));
+            internalList.sort((Person a, Person b) -> {
+                if (a.getEmail().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getEmail().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getEmail().toString().compareTo(b.getEmail().toString());
+                }
+            });
             break;
         case "address":
-            internalList.sort(Comparator.comparing(person -> person.getAddress().toString()));
+            internalList.sort((Person a, Person b) -> {
+                if (a.getAddress().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getAddress().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getAddress().toString().compareTo(b.getAddress().toString());
+                }
+            });
             break;
         default:
         }
