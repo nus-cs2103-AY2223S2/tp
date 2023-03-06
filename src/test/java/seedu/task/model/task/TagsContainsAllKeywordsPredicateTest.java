@@ -25,8 +25,8 @@ public class TagsContainsAllKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TagsContainsKeywordsPredicate firstPredicateCopy =
-            new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
+        TagsContainsAllKeywordsPredicate firstPredicateCopy =
+            new TagsContainsAllKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

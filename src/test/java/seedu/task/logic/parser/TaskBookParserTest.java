@@ -91,8 +91,8 @@ public class TaskBookParserTest {
             FindCommand.COMMAND_WORD + " " + PREFIX_ALLMATCH + " " + PREFIX_NAME
                 + nameKeyphrase + " " + PREFIX_NAME + nameKeyphrase1);
         List<String> nameList = new ArrayList<>();
-        nameList.add("Alice");
         nameList.add("Bob");
+        nameList.add("Alice");
         assertEquals(new FindCommand(new NameContainsAllKeywordsPredicate(nameList)), command1);
 
         String descriptionKeyphrase = "test";

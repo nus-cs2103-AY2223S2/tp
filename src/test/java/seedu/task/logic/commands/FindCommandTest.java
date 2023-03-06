@@ -81,7 +81,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("TESTING");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
-        assertCommandSuccess(command, deadlineModel, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }
 
