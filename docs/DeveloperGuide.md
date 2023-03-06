@@ -380,9 +380,6 @@ ___
 
 **Extensions**
 
-* 2a. The patient with the entered name does not exist.  
-      Use case ends.
-
 * *a. At any time, Ward admin chooses to cancel the deletion of patient.
     * a1. Patientist requests to confirm the cancellation.
     * a2. Ward admin confirms the cancellation.
@@ -395,12 +392,11 @@ ___
 
 **MSS**
 
-1.  Ward doctor <u>searches for a patient</u>.
-2.  Patientist shows the details of the patient.
-3.  Ward doctor chooses to add instruction or prescription to the selected patient.
-4.  Patientist requests for the content of the instruction or prescription.
-5.  Ward doctor enters an instruction or prescription.
-6.  Patientist adds the instruction or prescription to the details of the patient.
+1. Ward doctor <u>searches for a patient</u>.
+2. Ward doctor chooses to add instruction or prescription to the selected patient.
+3. Patientist requests for the content of the instruction or prescription.
+4. Ward doctor enters an instruction or prescription.
+5. Patientist adds the instruction or prescription to the details of the patient.
 
     Use case ends.
 ___
@@ -410,14 +406,164 @@ ___
 
 **MSS**
 
-1.  Ward doctor <u>searches for a patient</u>. 
-2.  Patientist shows the details of the patient.
-3.  Ward doctor chooses an instruction or a prescription to be deleted.
-4.  Patientist requests to confirm the deletion.
-5.  Ward doctor confirms the deletion.
-6.  Patientist deletes the instruction or prescription from the details of the patient.
+1. Ward doctor <u>searches for a patient</u>. 
+2. Ward doctor chooses an instruction or a prescription to be deleted.
+3. Patientist requests to confirm the deletion.
+4. Ward doctor confirms the deletion.
+5. Patientist deletes the instruction or prescription from the details of the patient.
 
     Use case ends.
+___
+**Use case: Add a new doctor/nurse to the ward**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1. Ward admin <u>searches for a patient</u>.
+2. Ward admin chooses to assign a new doctor/nurse to the patient.
+3. Patientist requests for the name of doctor/nurse to be added.
+4. Ward admin enters the name of the doctor/nurse.
+5. Patientist adds the doctor/nurse to the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The doctor/nurse with the entered name does not exist.  
+  Use case ends.
+___
+**Use case: Delete a doctor/nurse from the ward**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1. Ward admin <u>searches for a patient</u>.
+2. Ward admin chooses to delete a doctor/nurse from the patient.
+3. Patientist asks for the name of doctor/nurse to be deleted.
+4. Ward admin enters the name of the doctor/nurse.
+5. Patientist requests to confirm the deletion.
+6. Ward admin confirms the deletion.
+7. Patientist deletes the doctor/nurse from the patient.
+
+**Extensions**
+
+* *a. At any time, Ward admin chooses to cancel the deletion of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
+
+    Use case ends.
+___
+**Use case: View todo list for a patient**
+
+**Actor: Ward doctor/nurse**
+
+**MSS**
+
+1. Ward doctor/nurse <u>searches for a patient</u>.
+2. Ward doctor/nurse chooses to view the todo list of the patient.
+3. Patientist shows the patient.
+
+Use case ends.
+___
+**Use case: Edit todo list for a patient**
+
+**Actor: Ward doctor/nurse**
+
+**MSS**
+
+1. Ward doctor/nurse chooses to <u>view todo list for a patient</u>.
+2. Ward doctor/nurse chooses a task to edit from todo list of the patient.
+3. Patientist asks for how to edit the task.
+4. Ward doctor/nurse enters the new content of the task.
+5. Patientist saves the changed content of the task to the todo list of the patient.
+
+    Use case ends.
+___
+**Use case: List all patient in the system**
+
+**Actor: User unfamiliar with the hospital**
+
+**MSS**
+
+1. User chooses to list all patients in the system
+2. Patientist shows the list of all patients in the system.
+
+    Use case ends.
+___
+**Use case: List all patient in a particular ward**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all patients in a particular ward.
+2. Patientist shows the list of all patients in the ward.
+
+   Use case ends.
+___
+**Use case: Search for a patient by name**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to search for a patient by name.
+2. Patientist requests for the name of the patient.
+3. User enters the name of the patient.
+4. Patientist shows the details of the patient.
+
+   Use case ends.
+___
+**Use case: Search for a patient by ID**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to search for a patient by ID.
+2. Patientist requests for the ID of the patient.
+3. User enters the ID of the patient.
+4. Patientist shows the details of the patient.
+
+   Use case ends.
+___
+**Use case: List all staff members in the system**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all staff members in the system.
+2. Patientist shows the list of all staff members in the system.
+
+   Use case ends.
+___
+**Use case: List all ward names in the system**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all ward names in the system.
+2. Patientist shows the list of all ward names in the system.
+
+   Use case ends.
+___
+**Use case: Move patients between wards**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1. Ward admin chooses to move a patient to another ward.
+2. Patientist requests for the name of the patient and ward to be moved.
+3. Ward admin enters the name of the patient and ward to be moved.
+4. Patientist moves the patient to the new ward.
+5. Patientist shows the updated state of the patient.
+
+   Use case ends.
 ___
 *{More to be added}*
 
@@ -440,7 +586,8 @@ ___
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **System**: The whole hospital system that uses Patientist.
+* **User**: All people who have access to Patientist such as ward admin, ward doctor, and ward nurse.
 
 --------------------------------------------------------------------------------------------------------------------
 
