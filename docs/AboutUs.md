@@ -17,7 +17,7 @@ You can reach us at the email `ng.jinyuan@u.nus.edu`
 [[portfolio](team/jnjy.md)]
 
 -   Role: Team lead, Git Expert
--   Responsibilities: Responsible for overall project coordination and assisting team with issue relating to Git.
+-   Responsibilities: Responsible for overall project coordination and assisting team with issues relating to Git.
 
 ### Ritika Joshi
 
