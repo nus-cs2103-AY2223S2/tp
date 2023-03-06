@@ -58,6 +58,7 @@ public class TypicalTasks {
             .withDescription(VALID_DESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+
     public static final Task BOB_BOTH = new SimpleTaskBuilder().withName(VALID_NAME_BOB)
         .withDescription(VALID_DESCRIPTION_BOTH)
         .withTags(VALID_TAG_FRIEND)

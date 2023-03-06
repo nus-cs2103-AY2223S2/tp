@@ -154,6 +154,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+### Getting statistics : `stats`
+
+Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks. 
+
+Format: `stats`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
