@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/nicljr)] [[portfolio](team/nicljr.md)]
 
-* Role: 
+* Role:
   * Code Quality
   * Deliverables And Deadlines
 * Responsibilities: In Charge of Calendar
