@@ -11,7 +11,17 @@ import javafx.collections.ObservableList;
 import seedu.address.model.contact.exceptions.ContactNotFoundException;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
 
-
+/**
+ * A list of contacts that enforces uniqueness between its elements and does not allow nulls.
+ * A contact is considered unique by comparing using {@code Person#isSameContact(Contact)}. As such, adding and
+ * updating of contacts uses Contact#isSameContact(Contact) for equality to ensure that the contact being added
+ * or updated is unique in terms of identity in the UniqueContactList.
+ * However, the removal of a contact uses Contact#equals(Object) to ensure that the contact
+ * with exactly the same fields will be removed.
+ * Supports a minimal set of list operations.
+ *
+ * @see Contact#isSameContact(Contact)
+ */
 public class UniqueContactList implements Iterable<Contact> {
 
     private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
@@ -102,8 +112,8 @@ public class UniqueContactList implements Iterable<Contact> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.contact.UniqueContactList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.contact.UniqueContactList) other).internalList));
+                || (other instanceof UniqueContactList // instanceof handles nulls
+                    && internalList.equals(((UniqueContactList) other).internalList));
     }
 
     @Override

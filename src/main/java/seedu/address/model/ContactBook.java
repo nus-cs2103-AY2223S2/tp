@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.UniqueContactList;
 
 
 /**
@@ -81,7 +81,8 @@ public class ContactBook implements ReadOnlyContactBook {
     /**
      * Replaces the given contact {@code target} in the list with {@code editedContact}.
      * {@code target} must exist in the contact book.
-     * The contact identity of {@code editedContact} must not be the same as another existing contact in the contact book.
+     * The contact identity of {@code editedContact} must not be the same as another existing
+     * contact in the contact book.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
