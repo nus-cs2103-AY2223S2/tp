@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddApplicationCommand;
 //import seedu.address.logic.commands.EditApplicationCommand;
 //import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ApplicationCommand;
+import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 //Uncomment the corresponding import statement once you've implemented your own feature.
@@ -51,6 +52,10 @@ public class InternshipBookParser {
 
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
+
+        case FindApplicationCommand.COMMAND_WORD:
+            return new FindApplicationCommandParser().parse(arguments);
+
         /*
         case EditApplicationCommand.COMMAND_WORD:
             return new EditApplicationCommandParser().parse(arguments);
