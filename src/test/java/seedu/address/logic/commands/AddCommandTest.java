@@ -26,13 +26,13 @@ import seedu.address.testutil.ClientBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_clientAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new ClientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
@@ -42,10 +42,10 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateClient_throwsCommandException() {
         Client validClient = new ClientBuilder().build();
         AddCommand addCommand = new AddCommand(validClient);
-        ModelStub modelStub = new ModelStubWithPerson(validClient);
+        ModelStub modelStub = new ModelStubWithClient(validClient);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
     }
@@ -152,10 +152,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single client.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithClient extends ModelStub {
         private final Client client;
 
-        ModelStubWithPerson(Client client) {
+        ModelStubWithClient(Client client) {
             requireNonNull(client);
             this.client = client;
         }
@@ -170,7 +170,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the client being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingClientAdded extends ModelStub {
         final ArrayList<Client> clientsAdded = new ArrayList<>();
 
         @Override
