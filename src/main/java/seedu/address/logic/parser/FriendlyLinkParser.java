@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.commands.AddVolunteerCommand;
@@ -25,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class FriendLinkParser {
+public class FriendlyLinkParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -48,9 +47,6 @@ public class FriendLinkParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
         case AddElderlyCommand.COMMAND_WORD:
             return new AddElderlyCommandParser().parse(arguments);

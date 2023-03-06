@@ -28,7 +28,7 @@ import seedu.address.model.person.Elderly;
  * A utility class containing a list of {@code Elderly} objects to be used in tests.
  * (to be finished)
  */
-public class TypicalElderlys {
+public class TypicalElderly {
 
     public static final Elderly ALICE = new ElderlyBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -73,9 +73,9 @@ public class TypicalElderlys {
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
             .withAge("31").withNric(VALID_NRIC_CHARLIE).build();
 
-    private TypicalElderlys() {} // prevents instantiation
+    private TypicalElderly() {} // prevents instantiation
 
-    public static List<Elderly> getTypicalElderlys() {
+    public static List<Elderly> getTypicalElderly() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

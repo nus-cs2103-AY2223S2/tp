@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalElderlys.AMY;
+import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import seedu.address.model.pair.Pair;

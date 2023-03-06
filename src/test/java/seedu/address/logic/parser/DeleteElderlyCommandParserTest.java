@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteVolunteerCommand;
+import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -18,19 +18,18 @@ import seedu.address.model.person.information.Nric;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteVolunteerCommandParserTest {
-
-    private DeleteVolunteerCommandParser parser = new DeleteVolunteerCommandParser();
+class DeleteElderlyCommandParserTest {
+    private DeleteElderlyCommandParser parser = new DeleteElderlyCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteVolunteerCommand() {
+    public void parse_validArgs_returnsDeleteElderlyCommand() {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NRIC_BOB,
-                new DeleteVolunteerCommand(new Nric(VALID_NRIC_BOB)));
+                new DeleteElderlyCommand(new Nric(VALID_NRIC_BOB)));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteElderlyCommand.MESSAGE_USAGE));
     }
 }

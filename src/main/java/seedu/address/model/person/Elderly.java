@@ -17,9 +17,6 @@ import seedu.address.model.tag.Tag;
  */
 public class Elderly extends Person {
 
-    private final Nric nric;
-    private final Age age;
-
     private final RiskLevel riskLevel;
 
     // private final Region region;
@@ -31,18 +28,8 @@ public class Elderly extends Person {
      */
     public Elderly(Name name, Phone phone, Email email,
                    Address address, Nric nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
-        this.nric = nric;
-        this.age = age;
+        super(name, phone, email, address, nric, age, tags);
         this.riskLevel = riskLevel;
-    }
-
-    public Nric getNric() {
-        return nric;
-    }
-
-    public Age getAge() {
-        return age;
     }
 
     public RiskLevel getRiskLevel() {
@@ -115,6 +102,4 @@ public class Elderly extends Person {
         }
         return builder.toString();
     }
-
-
 }

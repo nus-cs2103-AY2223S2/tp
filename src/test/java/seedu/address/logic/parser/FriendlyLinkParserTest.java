@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,8 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -30,25 +30,27 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PairBuilder;
+import seedu.address.testutil.PairUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class FriendLinkParserTest {
+public class FriendlyLinkParserTest {
 
-    private final FriendLinkParser parser = new FriendLinkParser();
+    private final FriendlyLinkParser parser = new FriendlyLinkParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_deleteElderly() throws Exception {
+        String nricStr = "T1234567I";
+        DeleteElderlyCommand command = (DeleteElderlyCommand) parser.parseCommand(
+                DeleteElderlyCommand.COMMAND_WORD + " " + nricStr);
+        assertEquals(new DeleteElderlyCommand(new Nric(nricStr)), command);
     }
 
     @Test
     public void parseCommand_deleteVolunteer() throws Exception {
         String nricStr = "T1234567I";
         DeleteVolunteerCommand command = (DeleteVolunteerCommand) parser.parseCommand(
-                DeleteVolunteerCommand.COMMAND_WORD + " " + PREFIX_NRIC_VOLUNTEER + nricStr);
+                DeleteVolunteerCommand.COMMAND_WORD + " " + nricStr);
         assertEquals(new DeleteVolunteerCommand(new Nric(nricStr)), command);
     }
 
@@ -96,7 +98,8 @@ public class FriendLinkParserTest {
     @Test
     public void parseCommand_addPair() throws Exception {
         Pair pair = new PairBuilder().build();
-        /* TODO: check that parser.parseCommand works properly. */
+        AddPairCommand command = (AddPairCommand) parser.parseCommand(PairUtil.getAddPairCommand(pair));
+        assertEquals(new AddPairCommand(pair.getElderly().getNric(), pair.getVolunteer().getNric()), command);
     }
 
     @Test

@@ -8,8 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -26,17 +28,22 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Nric nric;
+    private final Age age;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Nric nric, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
+        this.age = age;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +63,14 @@ public class Person {
         return address;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -72,9 +87,9 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -96,6 +111,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getNric().equals(getNric())
+                && otherPerson.getAge().equals(getAge())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -114,7 +131,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; NRIC: ")
+                .append(getNric())
+                .append("; Age: ")
+                .append(getAge());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
