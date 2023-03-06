@@ -22,6 +22,7 @@ import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
@@ -86,6 +87,13 @@ public class AddressBookParserTest {
     public void parseCommand_listc() throws Exception {
         assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD) instanceof ListCustomerCommand);
         assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " 3") instanceof ListCustomerCommand);
+    }
+
+    @Test
+    public void parseCommand_viewc() throws Exception {
+        ViewCustomerCommand command = (ViewCustomerCommand) parser.parseCommand(
+                ViewCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
+        assertEquals(new ViewCustomerCommand(INDEX_FIRST_CUSTOMER), command);
     }
 
     @Test
