@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setInternEase(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
