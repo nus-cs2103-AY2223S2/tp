@@ -33,6 +33,12 @@ public class TaskByTagTracker {
                 counter = editHashMap(counter, itr.next());
             }
         }
+
+        String output = orderAndPrint(counter);
+        return output;
+    }
+
+    private static String orderAndPrint(HashMap<Tag, Integer> counter) {
         PriorityQueue<TagComparator> ordering = createOrdering(counter);
         String output = "";
         int idx = 0;
@@ -44,7 +50,6 @@ public class TaskByTagTracker {
             tags--;
             idx++;
         }
-
         return output;
     }
 
