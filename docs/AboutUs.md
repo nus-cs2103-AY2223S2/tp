@@ -5,7 +5,8 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+Our team was formed to complete a Team Project (tp)
+as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering).
 
 ## Project team
 
@@ -16,41 +17,38 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/jednghk)]
 [[portfolio](team/jednghk.md)]
 
-### Jane Doe
+### Ryo Hilmawan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/CloudHill.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/CloudHill)]
+[[portfolio](team/CloudHill.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Dawson Lui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Infrix.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Infrix)]
+[[portfolio](team/Infrix.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Javon Teo
+
+<img src="images/JavonTeo.png" width="200px">
+
+[[github](http://github.com/JavonTeo)]
+[[portfolio](team/JavonTeo.md)]
+
+* Role: Developer
+
+### Goh Jun Yi
+
+<img src="images/Junyi00.png" width="200px">
+
+[[github](http://github.com/Junyi00)]
+[[portfolio](team/Junyi00.md)]
+
+* Role: Developer
