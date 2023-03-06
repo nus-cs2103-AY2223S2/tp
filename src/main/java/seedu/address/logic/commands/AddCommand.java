@@ -1,61 +1,60 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.internship.Internship;
-
+import seedu.address.model.person.Person;
 
 /**
- * Adds a internship to the internship catalogue.
+ * Adds a person to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to the internship catalogue. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_POSITION + "POSITION "
-            + PREFIX_COMPANY + "COMPANY "
-            + PREFIX_STATUS + "STATUS "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_POSITION + "Software Engineer "
-            + PREFIX_COMPANY + "Grab"
-            + PREFIX_STATUS + "1"
-            + PREFIX_DESCRIPTION + "Interview Date: 20 May 2023"
-            + PREFIX_TAG + "highly interested"
-            + PREFIX_TAG + "django";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the catalogue";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Internship toAdd;
+    private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Internship}
+     * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Internship internship) {
-        requireNonNull(internship);
-        toAdd = internship;
+    public AddCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasInternship(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addInternship(toAdd);
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
