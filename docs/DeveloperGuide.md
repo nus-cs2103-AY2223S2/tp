@@ -58,26 +58,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAA` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: grade a person's assignment**
-
-**MSS**
-
-1.  User adds an assignemnt
-2.  TAA adds an assignment 
-3.  User requests to grade an specific assignemnt 
-4.  TAA adds the grade to the specified assignment
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The given assignment index is invalid.
-
-    * 2a1. TAA shows an error message.
-
-      Use case resumes at step 1.
- 
-
 **Use case: delete a student**
 
 **MSS**
@@ -100,7 +80,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TAA shows an error message.
 
       Use case resumes at step 2.
-
+      
+ 
 *{More to be added}*
 
 ### Glossary
