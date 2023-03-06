@@ -21,7 +21,7 @@ public class AddPlaneCommand implements Command {
      *
      * @param plane The pilot to be added.
      */
-    public AddPlaneCommand(Plane plane) {
+    public AddPlaneCommand(Plane plane) { 
         this.plane = plane;
     }
 

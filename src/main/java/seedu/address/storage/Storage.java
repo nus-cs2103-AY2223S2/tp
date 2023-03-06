@@ -83,5 +83,4 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
             IOException;
 
     void savePlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) throws IOException;
-
 }

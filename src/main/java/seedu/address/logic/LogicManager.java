@@ -79,6 +79,8 @@ public class LogicManager implements Logic {
                 storage.saveLocationManager(model.getLocationManager());
                 break;
             case PLANE:
+                storage.savePlaneManager(model.getPlaneManager());
+                break;
             case FLIGHT:
             case CREW:
                 throw new CommandException(
