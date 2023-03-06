@@ -77,7 +77,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book and adds existing event to this person if event index is specified
+Adds a person to the address book and adds existing event to this person if event index is specified.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX]…​`
 
