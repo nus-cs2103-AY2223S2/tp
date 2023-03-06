@@ -29,7 +29,7 @@ public class CreateLessonCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + "n/John Doe "
         + "l/H2 Math Lesson "
-        + "start/2023-03-01 12:00"
+        + "start/2023-03-01 12:00 "
         + "end/2023-03-01 14:00";
 
     private final String lessonName;

@@ -353,4 +353,8 @@ public class Student {
     public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         homeworkList.updateFilteredHomeworkList(homeworkStatusPredicate);
     }
+
+    public boolean hasLesson() {
+        return this.lessonsList.hasLesson();
+    }
 }

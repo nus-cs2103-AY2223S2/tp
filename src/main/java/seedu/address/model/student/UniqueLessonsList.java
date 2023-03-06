@@ -58,6 +58,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
             }
         }
         internalList.add(toAdd);
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -71,6 +72,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         if (!internalList.remove(toRemove)) {
             throw new LessonNotFoundException();
         }
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -94,8 +96,8 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         if (!lessonsAreCompatible(lessons)) {
             throw new ConflictingLessonsException();
         }
-
         internalList.setAll(lessons);
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -132,5 +134,23 @@ public class UniqueLessonsList implements Iterable<Lesson> {
             }
         }
         return true;
+    }
+
+    /**
+     * Checks the number of lessons in the list
+     * @return an int that is the number of lessons in the list
+     */
+    public int size() {
+        return this.internalList.size();
+    }
+
+    public List<Lesson> getSortedLessonsList() {
+        List<Lesson> tempList = internalList;
+        tempList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        return tempList;
+    }
+
+    public boolean hasLesson() {
+        return this.internalList.size() != 0;
     }
 }

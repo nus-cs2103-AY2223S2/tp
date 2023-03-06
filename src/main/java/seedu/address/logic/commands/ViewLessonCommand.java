@@ -85,16 +85,18 @@ public class ViewLessonCommand extends Command {
 
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
-            sb.append(student.getName().fullName).append(":\n");
-            List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
-                donePredicate);
-            numOfLessons += lessonList.size();
+            if (student.hasLesson()) {
+                sb.append(student.getName().fullName).append(":\n");
+                List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
+                    donePredicate);
+                numOfLessons += lessonList.size();
 
-            for (int i = 0; i < lessonList.size(); i++) {
-                sb.append(i + 1).append(". ").append(lessonList.get(i)).append("\n");
+                for (int i = 0; i < lessonList.size(); i++) {
+                    sb.append(i + 1).append(". ").append(lessonList.get(i)).append("\n");
+                }
+
+                sb.append("--------------------------------------------------\n");
             }
-
-            sb.append("--------------------------------------------------\n");
         }
 
         // If no homework is found, throw an exception
