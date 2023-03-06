@@ -33,12 +33,12 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-
-    @FXML
-    private Label email;
-
     @FXML
     private Label phone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label email;
 
     @FXML
     private FlowPane groupTags;
@@ -55,6 +55,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)
@@ -64,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
                             + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
                     groupTags.getChildren().add(temp);
                 });
-        person.getImmutableModuleTags().stream()
+        person.getImmutableCommonModuleTags().stream()
                 .sorted(ModuleTag::compareTo)
                 .forEach(moduleTag -> {
                     Label temp = new Label(moduleTag.tagName);
