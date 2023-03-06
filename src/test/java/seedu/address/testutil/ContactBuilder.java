@@ -4,6 +4,11 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 
+/**
+ * A utility class to help with building Contactbook objects.
+ * Example usage: <br>
+ *     {@code ContactBook cb = new ContactBookBuilder().withContact("John", "Doe").build();}
+ */
 public class ContactBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";

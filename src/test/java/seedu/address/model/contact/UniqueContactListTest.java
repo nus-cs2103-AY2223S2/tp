@@ -1,20 +1,22 @@
 package seedu.address.model.contact;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
 import static seedu.address.testutil.TypicalContacts.BOB;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.contact.exceptions.ContactNotFoundException;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.ContactBuilder;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import seedu.address.model.contact.exceptions.ContactNotFoundException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.ContactBuilder;
 
 public class UniqueContactListTest {
     private final UniqueContactList uniqueContactList = new UniqueContactList();

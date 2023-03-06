@@ -12,7 +12,9 @@ import java.util.List;
 import seedu.address.model.ContactBook;
 import seedu.address.model.contact.Contact;
 
-
+/**
+ * A utility class containing a list of {@code Contact} objects to be used in tests.
+ */
 public class TypicalContacts {
     public static final Contact ALICE = new ContactBuilder().withName("Alice Pauline")
             .withPhone("94351253")
@@ -52,8 +54,8 @@ public class TypicalContacts {
      */
     public static ContactBook getTypicalAddressBook() {
         ContactBook cb = new ContactBook();
-        for (Contact Contact : getTypicalContacts()) {
-            cb.addContact(Contact);
+        for (Contact contact : getTypicalContacts()) {
+            cb.addContact(contact);
         }
         return cb;
     }
