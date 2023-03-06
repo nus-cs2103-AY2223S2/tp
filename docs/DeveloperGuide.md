@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***` | HR personnel                           | be able to view all the leave the employee has applied for | Access an employee availability easily
 | `***` | HR personnel                           | Be able to view everyone who has applied leave on a day    | Better plan company events
 | `***` | HR personnel                           | Creae a department                                         | Create a department to add employees in
-| `***` | HR personnel                           | Add an employee to a department                            | Apply department-level operations (e.g announcements) on the employee      
+| `***` | HR personnel                           | Add an employee to a department                            | Apply department-level operations (e.g announcements) on the employee
 | `***`| HR personnel                           | Create a project                                           | create project to add employees inside
 | `***`| HR personnel                           | Update a project                                           | modify a project
 | `***`| HR personnel                           | Delete a project                                           | delete old projects

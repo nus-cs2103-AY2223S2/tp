@@ -42,27 +42,20 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/jerrrren.png" width="200px">
 
-[[github](http://github.com/jerrrren)] [[portfolio](team/jerrrren.md)]
+[[github](http://github.com/jerrrren)]
+[[portfolio](team/jerrrren.md)]
 
 - Role: Code reviewer
 - Responsibilities: Review Code
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Johnathan Wee
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/4ndrelim.md)]
+<img src="images/jweeyh.png" width="200px">
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/4ndrelim.md)]
+[[github](http://github.com/jweeyh)]
+[[portfolio](team/jweeyh.md)]
 
 - Role: Developer
-- Responsibilities: UI
+- Responsibilities: Secretary
+- In-charge of: Department features
