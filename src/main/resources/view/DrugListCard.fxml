@@ -22,11 +22,11 @@
                 </Label>
                 <Label fx:id="tradeName" text="\$tradeName" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="activeIngredient" styleClass="cell_small_label" text="\$activeIngredient" />
-            <Label fx:id="direction" styleClass="cell_small_label" text="\$direction" />
-            <Label fx:id="purposes" styleClass="cell_small_label" text="\$purposes" />
-            <Label fx:id="sideEffects" styleClass="cell_small_label" text="\$sideEffects" />
-            <Label fx:id="storageCount" styleClass="cell_small_label" text="\$storageCount" />
+            <Label fx:id="activeIngredient" styleClass="cell_small_label" text="\$activeIngredient" wrapText="true"/>
+            <Label fx:id="direction" styleClass="cell_small_label" text="\$direction" wrapText="true" />
+            <Label fx:id="purposes" styleClass="cell_small_label" text="\$purposes" wrapText="true" />
+            <Label fx:id="sideEffects" styleClass="cell_small_label" text="\$sideEffects" wrapText="true" />
+            <Label fx:id="storageCount" styleClass="cell_small_label" text="\$storageCount" wrapText="true" />
         </VBox>
     </GridPane>
 </HBox>
