@@ -28,6 +28,7 @@ import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.BOB;
+import static bookopedia.testutil.TypicalPersons.OPTIONAL_AMY;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,6 +81,13 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_emptyEmailAndPhone_success() {
+        // empty Email and Phone
+        Person expectedPerson = new PersonBuilder(OPTIONAL_AMY).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
     }
 
     @Test
