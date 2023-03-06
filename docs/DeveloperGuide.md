@@ -299,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new event by entering the addevent command, followed by the event name, and dates which the event is being held.
+1.  User requests to add a new event.
 2.  PlanEase shows a prompt to indicate that the event has been added successfully.
 
   Use case ends.
