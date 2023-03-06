@@ -28,7 +28,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             boolean isAll;
             Set<Code> codes;
             String flag = argumentMultimap.getPreamble();
-            if (flag.equals("all") && argumentMultimap.getValue(PREFIX_CODE).isEmpty()) {
+            if (flag.equals("all")) {
                 isAll = true;
                 codes = new HashSet<>();
             } else if (flag.isEmpty() && argumentMultimap.getValue(PREFIX_CODE).isPresent()) {
