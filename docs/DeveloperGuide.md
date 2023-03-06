@@ -285,28 +285,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC5 - Add an expense**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User wants to add an expense to be tracked.
+2.  User keys in the command to add an expense to be tracked.
+3.  FastTrack responds with a successfully added message.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. User keys in information in wrong format.
+  * 2a1. FastTrack returns an error, requesting that the user inputs information in the correct format.
+  * 2a2. User inputs information again.
+  * 2a3. Steps 2a1-2a2 are repeated until the information being input is of the correct format.
+   
+    Use case resumes from step 3.
 
-  Use case ends.
+**Use case: UC6 - Delete an expense**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User wants to delete an expense that has been tracked.
+2. User uses UC7 (to list out all expenses currently added).
+3. User keys in the command to delete the expense.
+4. FastTrack responds with a successfully deleted message.
 
-      Use case resumes at step 2.
+    Use case ends.
+
+**Extensions**
+
+* 3a. User keys in an invalid expense index.
+    * 3a1. FastTrack returns an error, requesting that the user inputs the correct expense index.
+    * 3a2. User inputs information again.
+    * 3a3. Steps 3a1-3a2 are repeated until the expense index being input by the user is valid.
+  
+      Use case resumes from step 4.
+
+**Use case: UC11 - Clear all expenses from the expense log**
+
+**MSS**
+
+1. User wants to wipe all currently-logged expenses.
+2. User keys in the command to clear all logged expenses.
+    
+    Use case ends.
+
+**Use case: UC12 - Exit from FastTrack**
+
+**MSS**
+
+1. User wants to exit the application.
+2. User keys in the command to exit the application.
+3. FastTrack exits and is closed.
+
+    Use case ends.
 
 *{More to be added}*
 
