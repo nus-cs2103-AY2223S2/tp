@@ -293,32 +293,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PlanEase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new event**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
+1.  User requests to add a new event by entering the addevent command, followed by the event name, and dates which the event is being held.
+2.  PlanEase shows a prompt to indicate that the event has been added successfully.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+**Extensions**
 
-  - 3a1. AddressBook shows an error message.
+- 1a. PlanEase detects the event description is missing.
 
-    Use case resumes at step 2.
+  - 1a1. PlanEase prompts User of invalid inputs and requests for the event description.
 
-_{More to be added}_
+  Use case ends.
+
+- 1b. PlanEase detects that the datetime range or format is not valid.
+
+  - 1b1. PlanEase prompts User of invalid inputs and requests for valid datetime inputs.
+
+  Use case ends.
+  
+- 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
+
+  - 1c1. PlanEase prompts User of invalid number of datetime inputs and requests for only 2 datetime inputs.
+
+  Use case ends.
+  
+- 1d. PlanEase detects that the User has used invalid tag(s).
+
+  - 1d1. PlanEase prompts User of invalid tag(s) used and requests for valid input.
+
+  Use case ends.
+
+<br>
+
+**Use case: List all events**
+
+**MSS**
+
+1.  User requests to list all events.
+2.  PlanEase shows a list of events.
+
+  Use case ends.
+
+<br>
+
+**Use case: Delete an event**
+
+**MSS**
+
+1.  User requests to delete a specific event in the list
+2.  PlanEase deletes the event in the list and deletes all occurrences of the event tied to person in the address book, if any.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The given event index is invalid.
+
+  - 1a1. PlanEase shows an error message.
+
+  Use case ends
+
+<br>
+
+**Use case: Add an existing event to a new contact**
+
+**MSS**
+
+1.  User requests to add a new contact by entering the add command, followed by the index of an existing event.
+2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The given event index is invalid.
+
+  - 1a1. PlanEase shows an error message.
+
+  Use case ends
+
+- 1b. The given contact name exists in the address book.
+
+  - 1b1. PlanEase shows an error message.
+
+  Use case ends
+  
 
 ### Non-Functional Requirements
 
