@@ -1,9 +1,9 @@
 package seedu.address.model.internship;
 
-import java.text.SimpleDateFormat;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.text.SimpleDateFormat;
 
 /**
  * Represents an Internship's date in InternBuddy. The date is associated with the status of the Internship.
