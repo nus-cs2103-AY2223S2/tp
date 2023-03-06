@@ -52,22 +52,22 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-           parseForFindCommand(PREFIX_NAME, argMultimap);
+            parseForFindCommand(PREFIX_NAME, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-           parseForFindCommand(PREFIX_DESCRIPTION, argMultimap);
+            parseForFindCommand(PREFIX_DESCRIPTION, argMultimap);
         }
         if (parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).isPresent()) {
-           parseForFindCommand(PREFIX_TAG, argMultimap);
+            parseForFindCommand(PREFIX_TAG, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-          parseForFindCommand(PREFIX_DEADLINE, argMultimap);
+            parseForFindCommand(PREFIX_DEADLINE, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_FROM).isPresent()) {
-           parseForFindCommand(PREFIX_FROM, argMultimap);
+            parseForFindCommand(PREFIX_FROM, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_TO).isPresent()) {
-           parseForFindCommand(PREFIX_TO, argMultimap);
+            parseForFindCommand(PREFIX_TO, argMultimap);
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
@@ -94,8 +94,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private FindCommand parseForFindCommand (Prefix prefix, ArgumentMultimap argMultimap)
-        throws ParseException {
+    private FindCommand parseForFindCommand(Prefix prefix, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (prefix.equals(PREFIX_NAME)) {
             Set<Name> names = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -103,8 +103,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 return new FindCommand(new NameContainsAllKeywordsPredicate(ParserUtil.parseNamesToList(names)));
             }
             return new FindCommand(new NameContainsKeywordsPredicate(name.toString()));
-        }
-        else if (prefix.equals(PREFIX_DESCRIPTION)) {
+        } else if (prefix.equals(PREFIX_DESCRIPTION)) {
             Set<Description> descriptions = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
             Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
             if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
@@ -112,27 +111,22 @@ public class FindCommandParser implements Parser<FindCommand> {
                     .parseDescriptionsToList(descriptions)));
             }
             return new FindCommand(new DescContainsKeywordsPredicate(description.toString()));
-        }
-        else if (prefix.equals(PREFIX_TAG)) {
+        } else if (prefix.equals(PREFIX_TAG)) {
             Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
                 return new FindCommand(new TagsContainsAllKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
             }
             return new FindCommand(new TagsContainsKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
-        }
-        else if (prefix.equals(PREFIX_DEADLINE)) {
+        } else if (prefix.equals(PREFIX_DEADLINE)) {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_DEADLINE).get());
             return new FindCommand(new DeadlineDateContainsKeywordsPredicate(date));
-        }
-        else if (prefix.equals(PREFIX_FROM)) {
+        } else if (prefix.equals(PREFIX_FROM)) {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_FROM).get());
             return new FindCommand(new EventFromContainsKeywordsPredicate(date));
-        }
-        else if (prefix.equals(PREFIX_TO)) {
+        } else if (prefix.equals(PREFIX_TO)) {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_TO).get());
             return new FindCommand(new EventToContainsKeywordsPredicate(date));
-        }
-        else {
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
