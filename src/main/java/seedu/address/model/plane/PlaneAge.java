@@ -28,4 +28,5 @@ public class PlaneAge {
                 || (other instanceof PlaneAge
                 && planeAge.equals(((PlaneAge) other).planeAge));
     }
+
 }

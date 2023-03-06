@@ -411,4 +411,5 @@ public class ModelManager implements Model {
                    && filteredPersons.equals(other.filteredPersons)
                    && pilotManager.equals(other.pilotManager);
     }
+
 }

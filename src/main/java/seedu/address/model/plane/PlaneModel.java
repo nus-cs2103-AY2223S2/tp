@@ -28,4 +28,5 @@ public class PlaneModel {
                 || (other instanceof PlaneModel
                 && this.planeModel.equals(((PlaneModel) other).planeModel));
     }
+
 }

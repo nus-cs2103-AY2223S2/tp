@@ -240,7 +240,6 @@ public interface Model {
     ObservableList<Location> getFilteredLocationList();
 
     void updateFilteredLocationList(Predicate<Location> predicate);
-}
 
     // ================ Plane methods ================
     void setPlaneManager(ReadOnlyIdentifiableManager<Plane> manager);
@@ -253,4 +252,5 @@ public interface Model {
     void setPlane(Plane target, Plane editedPlane);
     ObservableList<Plane> getFilteredPlaneList();
     void updateFilteredPlaneList(Predicate<Plane> predicate);
+
 }
