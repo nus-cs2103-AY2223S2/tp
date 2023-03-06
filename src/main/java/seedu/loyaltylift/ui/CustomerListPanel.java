@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.loyaltylift.commons.core.LogsCenter;
 import seedu.loyaltylift.model.customer.Customer;
@@ -53,6 +54,10 @@ public class CustomerListPanel extends UiPart<Region> {
                 setGraphic(new CustomerCard(customer, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    public MultipleSelectionModel<Customer> getSelectionModel() {
+        return customerListView.getSelectionModel();
     }
 
     /**
