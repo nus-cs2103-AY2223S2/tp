@@ -48,3 +48,25 @@ Examples:
 - `add n/Shaun a/123 NUS Street o/Good in Japanese`
 - `add n/Shao Hong o/Good in German`
 - `add n/Wen Li a/696 PGPR o/毎日3回うんこをとります`
+
+### Delete a student: `delete`
+
+Deletes the specified student from the address book.
+
+> Format: `delete INDEX`
+
+- Deletes the student at the specified `INDEX`.
+- The index refers to the index number shown in the displayed student list.
+- The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+
+- `list` followed by `delete 2` deletes the 2nd student in the address book.
+
+### Saving the data
+
+TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
+
+### Editing the data file
+
+> ❗ **Caution:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
