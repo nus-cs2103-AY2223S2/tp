@@ -123,9 +123,6 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     /**
      * Build a person object
      */
-    public Person build() {
-        return new Person(name, phone, email, address,
-                nric, age, tags);
-    }
+    public abstract Person build();
 
 }

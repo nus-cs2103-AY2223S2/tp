@@ -31,7 +31,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     {
         pairs = new UniquePairList();
         elderly = new UniquePersonList<>();
-        volunteers = new UniquePerssonList<>();
+        volunteers = new UniquePersonList<>();
     }
 
     public FriendlyLink() {}

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
@@ -24,20 +25,6 @@ public class Volunteer extends Person {
         super(name, phone, email, address, nric, age, tags);
     }
 
-    /**
-     * Returns true if both volunteer have the same name and NRIC.
-     * This defines a weaker notion of equality between two volunteers.
-     * Used to detect if the new volunteer is "Duplicate" of existing ones
-     * in the database.
-     */
-    public boolean isSamePerson(Volunteer otherVolunteer) {
-        if (this == otherVolunteer) {
-            return true;
-        }
-        return super.isSamePerson(otherVolunteer)
-                && getNric().equals(otherVolunteer.getNric());
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -50,6 +37,13 @@ public class Volunteer extends Person {
         return super.equals(otherVolunteer)
                 && getNric().equals(otherVolunteer.getNric())
                 && getAge().equals(otherVolunteer.getAge());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
+                getNric(), getAge(), getTags());
     }
 
     @Override
