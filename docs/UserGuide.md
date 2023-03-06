@@ -70,3 +70,14 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 ### Editing the data file
 
 > ❗ **Caution:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
+
+---
+
+# Command summary
+
+| Action | Format, Examples                                                                                |
+| ------ | ----------------------------------------------------------------------------------------------- |
+| Add    | `add n/STUDENT_NAME a/ADDRESS o/NOTES`<br>eg. `add n/Shaun a/123 NUS Street o/Good in Japanese` |
+| Delete | `delete INDEX`<br>eg. `delete 3`                                                                |
+| Exit   | `exit`, `bye`, `quit`                                                                           |
+| List   | `list`                                                                                          |
