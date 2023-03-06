@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.powercard.PowerCard;
@@ -22,9 +21,9 @@ import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 public class DeckModelManager implements DeckModel {
     private static final Logger logger = LogsCenter.getLogger(DeckModelManager.class);
     private PowerDeck selectedDeck = null;
-    private final ArrayList<PowerDeck> powerDecks = new ArrayList<>();;
+    private final ArrayList<PowerDeck> powerDecks = new ArrayList<>();
     private final UserPrefs userPrefs;
-//    private final FilteredList<PowerCard> filteredCards;
+    //  private final FilteredList<PowerCard> filteredCards;
 
     /**
      * Initializes a CardModelManager with the given deck and userPrefs.
@@ -35,7 +34,7 @@ public class DeckModelManager implements DeckModel {
         logger.fine("Initializing with user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
-//        filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
+        //      filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
     }
 
     public DeckModelManager() {
@@ -124,13 +123,13 @@ public class DeckModelManager implements DeckModel {
     @Override
     public ObservableList<PowerCard> getFilteredCardList() {
         return null;
-//        return filteredCards;
+        // return filteredCards;
     }
 
     @Override
     public void updateFilteredCardList(Predicate<PowerCard> predicate) {
         requireNonNull(predicate);
-//        filteredCards.setPredicate(predicate);
+        // filteredCards.setPredicate(predicate);
     }
 
     @Override
@@ -149,7 +148,7 @@ public class DeckModelManager implements DeckModel {
         DeckModelManager other = (DeckModelManager) obj;
         return this.selectedDeck.equals(other.selectedDeck)
                 && userPrefs.equals(other.userPrefs);
-//                && filteredCards.equals(other.filteredCards);
+        // && filteredCards.equals(other.filteredCards);
     }
 
     @Override

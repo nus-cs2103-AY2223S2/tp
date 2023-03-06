@@ -46,7 +46,7 @@ public interface DeckModel {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setDeckFilePath(Path DeckFilePath);
+    void setDeckFilePath(Path deckFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.

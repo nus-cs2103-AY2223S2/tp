@@ -74,10 +74,10 @@ class DeckModelManagerTest {
 
 
 
-//    @Test
-//    public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
-//    }
+    //    @Test
+    //    public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
+    //        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
+    //    }
 
     // Todo: create a default card to test these following methods
 
