@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-- 1e. PlanEase detects that event already exist(s).
+- 1e. PlanEase detects that event already exists.
 
   - 1e1. PlanEase prompts User of duplicate event used.
 
