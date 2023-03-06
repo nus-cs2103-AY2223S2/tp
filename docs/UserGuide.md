@@ -160,6 +160,25 @@ Prints the top 10 tags (if applicable) and its corresponding number of occurrenc
 
 Format: `stats`
 
+### Sorting tasks : `sort`
+
+Sorts the list using the following format:
+
+    1. SimpleTask
+        1.1. Sort by tags size.
+        1.2. If tags size are the same, sort by name.
+    2. Deadline
+        2.1. Sort by earliest deadline.
+        2.2. If deadlines are the same, sort by tags size. 
+        2.3. If tags size are the same, sort by name.
+    3. Event
+        3.1. Sort by earliest "from" date.
+        3.2. If "from" date is the same, sort by earliest "to" date.
+        3.3. If "to" date is the same, sort by tags size.
+        3.4. If tags size are the same, sort by name.
+
+Format: `sort`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -208,3 +227,5 @@ _Details coming soon ..._
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+| **Stats**  | `stats`                                                                                                                                                               |
+| **sort**   | `sort`                                                                                                                                                                |
