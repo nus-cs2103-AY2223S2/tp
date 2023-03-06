@@ -43,47 +43,90 @@ Here are some characteristics of our target user profile: <br>
 
 ### User stories
 
+In the table below, **_user_** refers to the triage admin staff.
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       |          |                  |
-| `* * *`  | user                                       |                |                                                                        |
-| `* * *`  | user                                       |                 |                                    |
-| `* * *`  | user                                       |           |  |
-| `* *`    | user                                       |    |                 |
-| `*`      | user                                       |            |                                                 |
-
-*{More to be added}*
+| Priority | As a …​ | I want to …​                                                      | So that I can…​                                                                  |
+|----------|---------|-------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user    | add doctor contacts into my address book                          | store their contacts in case I need them in the future                           |
+| `* * *`  | user    | look up doctors by their name, specialty, department and position | assign patients to relevant doctors                                              |
+| `* * *`  | user    | sort doctors based on specialty                                   | assign patients to doctors according to nature of condition                      |
+| `* * *`  | user    | sort doctors based on years of experience                         | assign patients to doctors according to severity of condition                    |
+| `* * *`  | user    | sort doctors based on availability                                | assign patients to doctors currently present in the clinic                       |
+| `* * *`  | user    | edit the doctor contacts in Docedex                               | keep the doctor contacts up to date                                              |
+| `* * *`  | user    | delete doctors that have left the hospital or have retired        | ensure all doctor contacts reflect doctors in the hospital                       |
+| `* * *`  | user    | save my doctor contacts in my desktop                             | refer to doctor contacts in the future                                           |
+| `* * *`  | user    | load my contacts from a file when I boot up the application       | refer to doctor contacts created in the past                                     |
+| `* * *`  | user    | add patient contacts into my address book                         | store their contacts in case I need them in the future                           |
+| `* * *`  | user    | look up patients by their name                                    | view medical history of the patient including doctors that have treated them     |
+| `* * *`  | user    | tag patients with a priority (triage)                             | determine assignment priorities to doctors                                       |
+| `* * *`  | user    | sort patients according to their priority                         | tag patients according to severity of condition                                  |
+| `* * *`  | user    | detect duplicate entries                                          | either halt operation or update information.                                     |
+| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
+| `* *`    | user    | tag patients to the doctor                                        | keep track of patients treated by the doctor                                     |
+| `* *`    | user    | tag doctors to the patients                                       | keep track of doctors treating the patient                                       |
+| `* *`    | user    | exit the application through the CLI                              | terminate use of the application                                                 |
+| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
+| `*`      | user    | add remarks for doctors                                           | store additional information on each doctor                                      |
+| `*`      | user    | star certain doctors as important                                 | perform quick retrieval of information pertaining to important doctors           |
+| `*`      | user    | see the history of doctors I viewed recently                      | re-access recently queried doctor contacts quickly                               |
+| `*`      | user    | retrieve the size of my contact book for doctors                  | verify the number of doctors in my clinic                                        |
+| `*`      | user    | archive doctors that are no longer working                        | retain information about such doctors without having them appear in my searches  |
+| `*`      | user    | classify patients by compliance                                   | keep track of non-compliant cases and warn doctors                               |
+| `*`      | user    | archive patients that have died or no longer visit this hospital. | retain information about such patients without having them appear in my searches |
+| `*`      | user    | self-destruct my address book                                     | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
+| `*`      | user    | create a new address book instance for a new clinic               | track doctors and patients across different clinics                              |
 
 ### Use cases
 
 (For all use cases below, the **System** is `Docedex` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: XXX**
+**Use case: UC1 - Add Doctor**
+
+Actor: User
+Precondition: User is logged in and has access to the add doctor feature.
 
 **MSS**
 
-1.  User requests to XXX
-2.  
-3.  
-4.  
+1. User requests to add a doctor and enters the doctor's contact information, including name, department, and specialty..
+2. Docedex confirms the addition of the doctor contact.<br>
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. 
+* 1a. User enters invalid command.
+      * 1a. Docedex detects error in command.
+        * 1a1. Docedex prompts user to correct the format of the command. <br>
+        * 1a2. User enters command and information to add a doctor.<br>
+        Steps 1a1-1a2 are repeated until a valid add command is entered.<br>
+        Use case resumes from step 2.
+      * 1b. Docedex detects duplicate information within the address book.
+        * 1b1. Docedex prompts user to confirm if they would like a new entry or <u>UCx Edit information.</u>
+        * 1b2. User chooses the option they desire.
+        Use cases resumes from step 2
+     
 
-  Use case ends.
+**Use case: UC3 - Delete Doctor**
 
-* 3a. 
+Actor: User
 
-    * 3a1. 
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to find doctors.
+2. Docedex shows a list of doctors.
+3. User request to delete a specific doctor from the list.  
+4. Docedex confirms the deletion of the doctor contact.<br> 
+   Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+* 1a. Docedex detects an error in the command.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+  Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+  Use case resumes from step 2.
 
 ### Non-Functional Requirements
 

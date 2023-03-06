@@ -76,33 +76,27 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `add-doc n/NAME p/PHONE_NUMBER`
 
-Adds a person to the address book.
+Adds a doctor to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add-doc n/NAME p/PHONE_NUMBER`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Praveen K p/98765432`
+* `add n/Owen Y p/97531011`
 
-### Listing all persons : `list`
+### Editing a doctor : `edit-doc`
 
-Shows a list of all persons in the address book.
+Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
 
-Format: `list`
+Format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -110,26 +104,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+*  `edit 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
+*  `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
 
 ### Deleting a person : `delete`
 
@@ -145,12 +121,29 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Finding a doctor
+
+Command: `find-doc KEYWORD`
+
+Users can search up doctors that contain a specific text (KEYWORD) using this command.
+
+* KEYWORD can contain multiple words.
+    > e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD.
+* The search is case-insensitive.
+    > e.g. `hans` will match `Hans`.
+* All doctor entries that contain KEYWORD in their fields will be listed.
+
+### Listing all doctors
+
+Command: `list-doc`
+
+This command will list all doctors saved in Docedex together with their information.
 
 ### Exiting the program
 
-Exit the program.
+Command: `exit`
 
-Format: `exit`
+Exit the program.
 
 ### Saving the data
 
