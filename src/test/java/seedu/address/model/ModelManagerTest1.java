@@ -1,9 +1,9 @@
-package seedu.address.internship;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.internship.Model1.PREDICATE_SHOW_ALL_INTERNSHIPS;
+import static seedu.address.model.Model1.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;

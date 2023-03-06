@@ -1,11 +1,10 @@
-package seedu.address.internship;
+package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.internship.*;
-//import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.ReadOnlyUserPrefs;
-//import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Person;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
