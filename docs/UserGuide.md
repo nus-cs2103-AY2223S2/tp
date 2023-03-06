@@ -132,8 +132,17 @@ Format: `find n/{NAME}` OR `find d/{DESCRIPTION}` OR `find t/{TAG}...`
 * The search is case-insensitive. e.g `book` will match `Book`
 * Use only 1 attribute at a time.
 * Substrings will be matched e.g. `book` will match `Books`
-* For tags, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+* For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
+  * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
+* For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+However, adding `all/` means that a task which contains all your tag inputs will be displayed.
   * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
+  * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
+* For deadlines, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+  * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
+* For events, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+  * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
+  * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
 Examples:
 * `find book` returns `read book` and `return books`
