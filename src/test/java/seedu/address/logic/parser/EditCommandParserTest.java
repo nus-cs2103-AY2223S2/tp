@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_APPLE;

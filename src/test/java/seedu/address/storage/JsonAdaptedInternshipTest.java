@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_APPLE;
@@ -37,7 +36,6 @@ import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Status;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.InternshipBuilder;
 
 public class AddCommandParserTest {
