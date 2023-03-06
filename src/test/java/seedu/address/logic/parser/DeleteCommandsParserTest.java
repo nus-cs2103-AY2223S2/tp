@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteCommands;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommands;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
