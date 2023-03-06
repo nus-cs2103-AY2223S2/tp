@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
 
 public class ContactBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -22,9 +22,9 @@ public class ContactBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public ContactBuilder(Contact personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+    public ContactBuilder(Contact contactToCopy) {
+        name = contactToCopy.getName();
+        phone = contactToCopy.getPhone();
     }
 
     /**
