@@ -5,8 +5,7 @@
     -fx-pref-width: 480;
     -fx-padding: 0 30;
 
-    -fx-font-family: monospace;
-    -fx-font-weight: bold;
+    -fx-font-family: 'Courier Prime Bold';
     -fx-font-size: 14;
     -fx-text-fill: -white;
 }
@@ -33,6 +32,30 @@
 #cli-screen {
     -fx-padding: 0 20;
     -fx-spacing: 10;
+}
+
+#cli-screen-welcome-dialog {
+    -fx-spacing: 75;
+}
+
+#cli-screen-welcome-message {
+    -fx-spacing: 10;
+}
+
+#cli-screen-contributors-section {
+    -fx-spacing: 10;
+}
+#cli-screen-contributors-section-deco {
+    -fx-pref-height: 3;
+    -fx-max-width: 75;
+
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+
+    -fx-background-color: -teal;
+}
+#cli-screen-contributors {
+    -fx-spacing: 5;
 }
 
 #cli-input-container {
