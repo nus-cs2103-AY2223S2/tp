@@ -4,45 +4,45 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.skill.Skill;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Skill}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedSkill {
 
-    private final String tagName;
+    private final String skillName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedSkill} with the given {@code skillName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedSkill(String skillName) {
+        this.skillName = skillName;
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Skill} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedSkill(Skill source) {
+        skillName = source.skillName;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getSkillName() {
+        return skillName;
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted skill object into the model's {@code Skill} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted skill.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public Skill toModelType() throws IllegalValueException {
+        if (!Skill.isValidSkillName(skillName)) {
+            throw new IllegalValueException(Skill.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new Skill(skillName);
     }
 
 }
