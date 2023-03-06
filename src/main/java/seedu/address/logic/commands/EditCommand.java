@@ -2,11 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,15 +24,18 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Edits the details of an existing client in the FitBook.
  */
 public class EditCommand extends Command {
 
@@ -44,6 +50,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_CALORIE + "CALORIE] "
+            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
+            + "[" + PREFIX_WEIGHT + "WEIGHT] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -51,7 +60,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FitBook.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -95,15 +104,18 @@ public class EditCommand extends Command {
      */
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
         assert clientToEdit != null;
-
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Calorie updatedCalorie = editClientDescriptor.getCalorie().orElse(clientToEdit.getCalorie());
+        Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
+        Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCalorie, updatedTags);
+        Set<Appointment> updatedAppointment =
+                editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
+                updatedGender, updatedCalorie, updatedTags);
     }
 
     @Override
@@ -134,7 +146,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Calorie calorie;
+        private Weight weight;
+        private Gender gender;
         private Set<Tag> tags;
+        private Set<Appointment> appointments;
 
         public EditClientDescriptor() {}
 
@@ -148,6 +163,9 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setCalorie(toCopy.calorie);
+            setWeight(toCopy.weight);
+            setGender(toCopy.gender);
+            setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
         }
 
@@ -155,7 +173,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, calorie, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments,
+                    gender, weight, calorie, tags);
         }
 
         public void setName(Name name) {
@@ -188,6 +207,38 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setWeight(Weight weight) {
+            this.weight = weight;
+        }
+
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
+        }
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
+
+        /**
+         * Sets {@code appointments} to this object's {@code appointments}.
+         * A defensive copy of {@code appointments} is used internally.
+         */
+        public void setAppointments(Set<Appointment> appointments) {
+            this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code appointments} is null.
+         */
+        public Optional<Set<Appointment>> getAppointments() {
+            return (appointments != null) ? Optional.of(Collections.unmodifiableSet(appointments)) : Optional.empty();
         }
 
         /**
@@ -235,7 +286,11 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getCalorie().equals(e.getCalorie());
+                    && getCalorie().equals(e.getCalorie())
+                    && getWeight().equals(e.getWeight())
+                    && getGender().equals(e.getGender())
+                    && getAppointments().equals(e.getAppointments())
+                    && getTags().equals(e.getTags());
         }
     }
 }

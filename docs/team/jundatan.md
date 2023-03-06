@@ -3,24 +3,26 @@ layout: page
 title: Jun Da's Project Portfolio Page
 ---
 
-### Project: Fitbook
+### Project: FitBook
 
 Fitbook is a desktop tracking book application used for tracking the progress and informations
 for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java.
 
-> Anything below are to be added soon. They are just placeholders.
-
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added *Calorie* class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit the recommended calorie intake of the client. (Optional attribute)
+  * Justification: This feature improves the product significantly because a user may want to keep track of the
+  recommended calorie's intake of its clients which makes it easier for the client to keep track.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
+* **New Feature**: Added *Appointment* class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit the appointment date and time (coming soon) of the client. (Optional attribute)
+  * Justification: This feature improves the product significantly because a user may want to keep track of the
+    appointment dates and time of its clients which makes it easier for the client to keep track.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
@@ -32,14 +34,21 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `add` [\#62](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/62)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added Use case for `add` [\#67](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/67)
+    * Added Use case for `exit` and `clear`
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * PRs reviewed (with non-trivial review comments): 
+  [\#81](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/81), 
+  [\#75](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/75), 
+  [\#58](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/58), 
+  [\#48](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/48)
+  * Contributed to forum discussions 
+  [\109](https://github.com/nus-cs2103-AY2223S2/forum/issues/109),
+  [\#114](https://github.com/nus-cs2103-AY2223S2/forum/issues/114), 
+  [\#150](https://github.com/nus-cs2103-AY2223S2/forum/issues/150)
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 

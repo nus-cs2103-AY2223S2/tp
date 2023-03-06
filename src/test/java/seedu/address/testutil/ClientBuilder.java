@@ -4,11 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,13 +25,18 @@ public class ClientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_CALORIE = "2000";
+    public static final String DEFAULT_WEIGHT = "50.00";
+    public static final String DEFAULT_GENDER = "F";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Calorie calorie;
+    private Set<Appointment> appointments;
     private Set<Tag> tags;
+    private Weight weight;
+    private Gender gender;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -39,11 +47,14 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         calorie = new Calorie(DEFAULT_CALORIE);
+        weight = new Weight(DEFAULT_WEIGHT);
+        gender = new Gender(DEFAULT_GENDER);
+        appointments = new HashSet<>();
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
+     * Initializes the ClientBuilder with the data of {@code personToCopy}.
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
@@ -51,6 +62,9 @@ public class ClientBuilder {
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
         calorie = clientToCopy.getCalorie();
+        weight = clientToCopy.getWeight();
+        gender = clientToCopy.getGender();
+        appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
     }
 
@@ -67,6 +81,15 @@ public class ClientBuilder {
      */
     public ClientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public ClientBuilder withAppointments(String ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
@@ -93,6 +116,20 @@ public class ClientBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code Weight} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
+        return this;
+    }
+    /**
+     * Sets the {@code Gender} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
 
     /**
      * Sets the {@code Calorie} of the {@code Client} that we are building.
@@ -103,7 +140,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, calorie, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, calorie, tags);
     }
 
 }
