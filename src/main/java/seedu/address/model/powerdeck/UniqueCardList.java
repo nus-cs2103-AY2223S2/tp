@@ -1,6 +1,7 @@
-package seedu.address.model.powercard;
+package seedu.address.model.powerdeck;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.powercard.PowerCard;
 
 /**
  * A list of cards that enforces uniqueness between its elements and does not allow nulls.
@@ -57,6 +59,51 @@ public class UniqueCardList implements Iterable<PowerCard> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException(); // TODO change to CardNotFoundException
         }
+    }
+
+    /**
+     * Replaces the card {@code target} in the list with {@code editedCard}.
+     * {@code target} must exist in the list.
+     * The card identity of {@code editedPerson} must not be the same as another existing card in the list.
+     */
+    public void setCard(PowerCard target, PowerCard editedCard) {
+        requireAllNonNull(target, editedCard);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException(); // TODO: Refactor exception
+        }
+
+        if (!target.isSamePowercard(editedCard) && contains(editedCard)) {
+            throw new DuplicatePersonException(); // TODO: Refactor
+        }
+
+        internalList.set(index, editedCard);
+    }
+
+    public void setCards(UniqueCardList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code cards}.
+     * {@code cards} must not contain duplicate cards.
+     */
+    public void setCards(List<PowerCard> cards) {
+        requireAllNonNull(cards);
+        if (!cardsAreUnique(cards)) {
+            throw new DuplicatePersonException(); // TODO: Refactor
+        }
+
+        internalList.setAll(cards);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<PowerCard> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
     }
 
     @Override
