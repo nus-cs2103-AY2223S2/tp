@@ -3,8 +3,10 @@ package seedu.task.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 
@@ -65,6 +67,7 @@ public class TaskBook implements ReadOnlyTaskBook {
         requireNonNull(task);
         return tasks.contains(task);
     }
+
 
     /**
      * Adds a task to the task book.

@@ -4,11 +4,14 @@ import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.task.logic.commands.FindCommand;
+import seedu.task.model.task.NameContainsAllKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
 import seedu.task.model.task.TagsContainsKeywordsPredicate;
 

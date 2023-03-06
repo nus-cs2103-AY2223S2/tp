@@ -13,7 +13,7 @@ import seedu.task.model.task.Task;
 
 /**
  * Finds and lists all tasks in task book whose name/tag/description matches the argument.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 

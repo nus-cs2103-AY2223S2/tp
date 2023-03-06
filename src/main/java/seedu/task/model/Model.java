@@ -1,10 +1,12 @@
 package seedu.task.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
+import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 
 /**
@@ -56,6 +58,7 @@ public interface Model {
      * Returns true if a task with the same identity as {@code task} exists in the task book.
      */
     boolean hasTask(Task task);
+
 
     /**
      * Deletes the given task.
