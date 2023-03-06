@@ -1,5 +1,7 @@
 package bookopedia.model.person;
 
+import java.util.Objects;
+
 import static bookopedia.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
@@ -39,8 +41,10 @@ public class Email {
      * @param email A valid email address.
      */
     public Email(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        //requireNonNull(email);
+        if (!Objects.equals(email, "")) {
+            checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        }
         value = email;
     }
 

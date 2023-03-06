@@ -1,5 +1,7 @@
 package bookopedia.model.person;
 
+import java.util.Objects;
+
 import static bookopedia.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
@@ -21,8 +23,10 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        //requireNonNull(phone);
+        if (!Objects.equals(phone, "")) {
+            checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        }
         value = phone;
     }
 
