@@ -262,10 +262,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps 
+* is reasonably comfortable using CLI apps
 
-**Value proposition**: 
-Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.                   
+**Value proposition**:
+Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.
 
 ### User stories
 
@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
 | `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
 | `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
-| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out | 
+| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out |
 | `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
 | `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
 | `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business. 
+* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business.
 * **Enterprise customers**: companies that order a large amount of products, much more than individual customers
 
 --------------------------------------------------------------------------------------------------------------------
