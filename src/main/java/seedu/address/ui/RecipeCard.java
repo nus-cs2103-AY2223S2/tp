@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Recipe}.
  */
 public class RecipeCard extends UiPart<Region> {
 
@@ -29,32 +29,21 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label title;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label desc;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
     public RecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
-        name.setText(recipe.getName().fullName);
-        phone.setText(recipe.getPhone().value);
-        address.setText(recipe.getAddress().value);
-        email.setText(recipe.getEmail().value);
-        recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        title.setText(recipe.getTitle().title);
+        desc.setText(recipe.getDesc().description);
     }
 
     @Override
@@ -65,7 +54,7 @@ public class RecipeCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof RecipeCard)) {
             return false;
         }
 

@@ -11,37 +11,38 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of recipes.
  */
 public class RecipeListPanel extends UiPart<Region> {
     private static final String FXML = "RecipeListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RecipeListPanel.class);
 
     @FXML
-    private ListView<Person> recipeListView;
+    private ListView<Recipe> recipeListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code RecipeListPanel} with the given {@code ObservableList}.
      */
-    public RecipeListPanel(ObservableList<Person> personList) {
+    public RecipeListPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
-        recipeListView.setItems(personList);
+        recipeListView.setItems(recipeList);
         recipeListView.setCellFactory(listView -> new RecipeListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Recipe} using a {@code ReciepCard}.
      */
-    class RecipeListViewCell extends ListCell<Person> {
+    class RecipeListViewCell extends ListCell<Recipe> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Recipe recipe, boolean empty) {
+            super.updateItem(recipe, empty);
 
-            if (empty || person == null) {
+            if (empty || recipe == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new RecipeCard(recipe, getIndex() + 1).getRoot());
+//                setGraphic(new PersonCard(recipe, getIndex() + 1).getRoot());
             }
         }
     }
