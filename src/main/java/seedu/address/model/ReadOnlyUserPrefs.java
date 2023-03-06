@@ -21,7 +21,9 @@ public interface ReadOnlyUserPrefs {
     Path getLocationManagerFilePath();
     void setLocationManagerFilePath(Path locationManagerFilePath);
 
+    Path getCrewManagerFilePath();
+    void setCrewManagerFilePath(Path crewManagerFilePath);
+
     Path getPlaneManagerFilePath();
     void setPlaneManagerFilePath(Path planeManagerFilePath);
-
 }

@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
@@ -75,6 +76,27 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @throws IOException when the file cannot be saved
      */
     void saveLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) throws IOException;
+
+    /**
+     * Returns the path to the crew manager file.
+     *
+     * @return the path to the crew manager file.
+     */
+    Path getCrewManagerFilePath();
+
+    /**
+     * Reads the crew manager from the {@code Storage::getCrewManagerFilePath}
+     *
+     * @return the crew manager.
+     */
+    Optional<? extends ReadOnlyIdentifiableManager<Crew>> readCrewManager() throws DataConversionException,
+            IOException;
+
+
+    /**
+     * Saves the crew manager to the {@code Storage::getCrewManagerFilePath}
+     */
+    void saveCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) throws IOException;
 
     /* Plane related methods */
     Path getPlaneManagerFilePath();
