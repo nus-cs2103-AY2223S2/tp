@@ -9,7 +9,7 @@ title: Mycelium
 
 ![Ui](images/Ui.png)
 
-**Mycelium is a desktop application for freelance devs to manage clients and projects.** 
+**Mycelium is a desktop application for freelance devs to manage clients and projects.**
 
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 

@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Nguyen Hong Ngoc 
+### Nguyen Hong Ngoc
 
 <img src="images/rubynguyen07.png" width="200px">
 
@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rubynguyen07.md)]
 
 * Role: Developer
-* Responsibilities: UI for Clients view 
+* Responsibilities: UI for Clients view
 
 ### Douglas Chow
 
