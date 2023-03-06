@@ -11,16 +11,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedPatient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
@@ -36,7 +27,7 @@ public class JsonAdaptedPatient {
     private final String emergencyContact;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -66,9 +57,16 @@ public class JsonAdaptedPatient {
         birthDate = source.getBirthDate().value;
         gender = source.getGender().value;
         ic = source.getIc().value;
-        // How to save drug allergy? Please change...
-        drugAllergy = source.getDrugAllergy().toString(); // temporary
-        emergencyContact = source.getEmergencyContact().value;
+        if (source.getDrugAllergy() != null) {
+            drugAllergy = source.getDrugAllergy().toString();
+        } else {
+            drugAllergy = null;
+        }
+        if (source.getDrugAllergy() != null) {
+            emergencyContact = source.getEmergencyContact().value;
+        } else {
+            emergencyContact = null;
+        }
     }
 
     /**
@@ -125,16 +123,20 @@ public class JsonAdaptedPatient {
         }
         final Ic modelIc = new Ic(ic);
 
-        if (!DrugAllergy.isValidDrugAllergy(drugAllergy)) {
+        if (drugAllergy != null && !DrugAllergy.isValidDrugAllergy(drugAllergy)) {
             throw new IllegalValueException(DrugAllergy.MESSAGE_CONSTRAINTS);
         }
-        final DrugAllergy modelDrugAllergy = new DrugAllergy(drugAllergy);
 
-        if(!Phone.isValidPhone(emergencyContact)) {
+        if(emergencyContact != null && !Phone.isValidPhone(emergencyContact)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelEmergencyContact = new Phone(emergencyContact);
 
+        if (drugAllergy == null && emergencyContact == null) {
+            return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelBirthDate, modelGender, modelIc);
+        }
+
+        final DrugAllergy modelDrugAllergy = new DrugAllergy(drugAllergy);
+        final Phone modelEmergencyContact = new Phone(emergencyContact);
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelBirthDate, modelGender, modelIc,
                 modelDrugAllergy, modelEmergencyContact);
     }

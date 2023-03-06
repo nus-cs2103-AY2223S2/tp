@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.PatientRecord;
 import seedu.address.model.person.Patient;
@@ -11,10 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * An Immutable PatientRecord that is serializable to JSON format.
+ */
+@JsonRootName(value = "patientrecord")
 public class JsonSerializablePatientRecord {
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patient list contains duplicate patient(s).";
 
-    private final List<JsonAdaptedPatient> patients = new ArrayList<>();
+    private final List<JsonAdaptedPatient> patients;
+
+    {
+        patients = new ArrayList<>();
+    }
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
