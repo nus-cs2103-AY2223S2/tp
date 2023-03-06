@@ -69,9 +69,6 @@ public class JsonPatientRecordStorage implements PatientRecordStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        File file = new File("data/patientRecord.json");
-        if (file.exists()) {
-            JsonUtil.saveJsonFile(new JsonSerializablePatientRecord(patientRecord), filePath);
-        }
+        JsonUtil.saveJsonFile(new JsonSerializablePatientRecord(patientRecord), filePath);
     }
 }
