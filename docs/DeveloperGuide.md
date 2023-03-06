@@ -366,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new contact by entering the add command, followed by the index of an existing event.
+1.  User requests to add a new contact.
 2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
 
   Use case ends.
