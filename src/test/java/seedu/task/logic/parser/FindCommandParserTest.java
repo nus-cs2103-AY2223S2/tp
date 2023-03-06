@@ -11,6 +11,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.task.logic.commands.FindCommand;
+import seedu.task.model.task.DeadlineDateContainsKeywordsPredicate;
+import seedu.task.model.task.EventFromContainsKeywordsPredicate;
+import seedu.task.model.task.EventToContainsKeywordsPredicate;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.NameContainsAllKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
@@ -34,10 +37,20 @@ public class FindCommandParserTest {
         List<String> names = new ArrayList<>();
         names.add("Bob");
         names.add("Alice");
-        FindCommand expectedFindCommand3 =
+        FindCommand expectedFindCommand2 =
             new FindCommand(new NameContainsAllKeywordsPredicate(names));
-        assertParseSuccess(parser, " all/hi n/Alice n/Bob", expectedFindCommand3);
+        assertParseSuccess(parser, " all/hi n/Alice n/Bob", expectedFindCommand2);
+        FindCommand expectedFindCommand3 =
+            new FindCommand(new DeadlineDateContainsKeywordsPredicate("2023-01-01"));
+        assertParseSuccess(parser, " D/2023-01-01", expectedFindCommand3);
+        FindCommand expectedFindCommand4 =
+            new FindCommand(new EventToContainsKeywordsPredicate("2023-01-01"));
+        assertParseSuccess(parser, " T/2023-01-01", expectedFindCommand4);
+        FindCommand expectedFindCommand5 =
+            new FindCommand(new EventFromContainsKeywordsPredicate("2023-01-01"));
+        assertParseSuccess(parser, " F/2023-01-01", expectedFindCommand5);
     }
+
 
     @Test
     public void parse_inValidArgs_throwsParseException() {
