@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -40,6 +41,10 @@ public class ModelManager implements Model {
     private final IdentifiableManager<Location> locationManager;
     private final FilteredList<Location> filteredLocations;
 
+    // crew manager
+    private final IdentifiableManager<Crew> crewManager;
+    private final FilteredList<Crew> filteredCrew;
+
     // general utilities
     private final ObservableList<Identifiable> itemsList;
     private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
@@ -49,7 +54,8 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager,
-                        ReadOnlyIdentifiableManager<Location> locationManager) {
+                        ReadOnlyIdentifiableManager<Location> locationManager,
+                        ReadOnlyIdentifiableManager<Crew> crewManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -64,12 +70,19 @@ public class ModelManager implements Model {
         this.locationManager = new IdentifiableManager<>(locationManager);
         filteredLocations = new FilteredList<>(this.locationManager.getItemList());
 
+        this.crewManager = new IdentifiableManager<>(crewManager);
+        filteredCrew = new FilteredList<>(this.crewManager.getItemList());
+
         itemsList = FXCollections.observableArrayList();
         setOperationMode(userPrefs.getOperationMode());
     }
 
+    /**
+     * Initializes a ModelManager
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(), new IdentifiableManager<>());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
+                new IdentifiableManager<>(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -105,6 +118,8 @@ public class ModelManager implements Model {
         case PLANE:
         case FLIGHT:
         case CREW:
+            rebind(filteredCrew);
+            break;
         case LOCATION:
             rebind(filteredLocations);
             break;
@@ -117,7 +132,7 @@ public class ModelManager implements Model {
     private void rebind(ObservableList<? extends Identifiable> list) {
         if (lastBoundList.isPresent()) {
             final ObservableList<? extends Identifiable> lastBound =
-                lastBoundList.get();
+                    lastBoundList.get();
             Bindings.unbindContent(itemsList, lastBound);
         }
         Bindings.bindContent(itemsList, list);
@@ -327,6 +342,76 @@ public class ModelManager implements Model {
         filteredLocations.setPredicate(predicate);
     }
 
+    //=========== CrewManager ==================================================================================
+
+    @Override
+    public void setCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) {
+        requireNonNull(crewManager);
+        this.crewManager.resetData(crewManager);
+    }
+
+    @Override
+    public ReadOnlyIdentifiableManager<Crew> getCrewManager() {
+        return crewManager;
+    }
+
+    @Override
+    public Path getCrewManagerFilePath() {
+        return userPrefs.getCrewManagerFilePath();
+    }
+
+    @Override
+    public void setCrewManagerFilePath(Path crewManagerFilePath) {
+        requireNonNull(crewManagerFilePath);
+        userPrefs.setCrewManagerFilePath(crewManagerFilePath);
+    }
+
+    @Override
+    public boolean hasCrew(Crew crew) {
+        requireNonNull(crew);
+        return this.crewManager.hasItem(crew);
+    }
+
+    @Override
+    public boolean hasCrew(String id) {
+        requireNonNull(id);
+        return this.crewManager.hasItem(id);
+    }
+
+    @Override
+    public void addCrew(Crew crew) {
+        requireNonNull(crew);
+        crewManager.addItem(crew);
+    }
+
+    @Override
+    public void deleteCrew(Crew crew) {
+        crewManager.removeItem(crew);
+    }
+
+    @Override
+    public void deleteCrew(String id) {
+        crewManager.removeItem(id);
+    }
+
+    @Override
+    public void setCrew(Crew target, Crew editedCrew) {
+        requireAllNonNull(target, editedCrew);
+        crewManager.setItem(target, editedCrew);
+    }
+
+    @Override
+    public ObservableList<Crew> getFilteredCrewList() {
+        return filteredCrew;
+    }
+
+    @Override
+    public void updateFilteredCrewList(Predicate<Crew> predicate) {
+        requireNonNull(predicate);
+        filteredCrew.setPredicate(predicate);
+    }
+
+
     //=========== Generic ========================================================
 
     @Override
@@ -344,8 +429,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                   && userPrefs.equals(other.userPrefs)
-                   && filteredPersons.equals(other.filteredPersons)
-                   && pilotManager.equals(other.pilotManager);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && pilotManager.equals(other.pilotManager)
+                && crewManager.equals(other.crewManager);
     }
 }
+

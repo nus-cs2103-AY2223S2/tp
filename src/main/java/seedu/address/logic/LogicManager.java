@@ -81,10 +81,8 @@ public class LogicManager implements Logic {
             case PLANE:
             case FLIGHT:
             case CREW:
-                throw new CommandException(
-                    "Operation mode not supported yet: " + getOperationMode()
-                        + "Check LogicManager.java's save() method."
-                );
+                storage.saveCrewManager(model.getCrewManager());
+                break;
             default:
                 throw new CommandException("Unknown operation mode");
             }
