@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteInternship(Person target);
 
     /**
      * Adds the given person.
@@ -77,7 +77,7 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getFilteredInternshipList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

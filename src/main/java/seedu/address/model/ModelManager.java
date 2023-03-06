@@ -94,7 +94,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deleteInternship(Person target) {
         addressBook.removePerson(target);
     }
 
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredInternshipList() {
         return filteredPersons;
     }
 
