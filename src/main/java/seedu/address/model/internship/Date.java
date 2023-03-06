@@ -1,5 +1,7 @@
 package seedu.address.model.internship;
 
+import java.text.SimpleDateFormat;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -11,7 +13,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Date {
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-MM-dd";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-MM-dd and be a valid date";
 
     public final String fullDate;
 
@@ -32,7 +34,17 @@ public class Date {
      * @returns true if a given string is a valid date string, else returns false.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        };
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        df.setLenient(false);
+        try {
+            df.parse(test);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     /**
