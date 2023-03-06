@@ -19,6 +19,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubProfile;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 
@@ -51,16 +55,36 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PROFILE).isPresent()) {
-            editPersonDescriptor.setProfile(ParserUtil.parseProfile(argMultimap.getValue(PREFIX_PROFILE).get()));
+            String updatedProfile = argMultimap.getValue(PREFIX_PROFILE).get();
+            if (!updatedProfile.isEmpty()) {
+                editPersonDescriptor.setProfile(ParserUtil.parseProfile(updatedProfile));
+            } else {
+                throw new ParseException(GitHubProfile.MESSAGE_CONSTRAINTS);
+            }
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            String updatedPhone = argMultimap.getValue(PREFIX_PHONE).get();
+            if (!updatedPhone.isEmpty()) {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(updatedPhone));
+            } else {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            String updatedEmail = argMultimap.getValue(PREFIX_EMAIL).get();
+            if (!updatedEmail.isEmpty()) {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(updatedEmail));
+            } else {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            String updatedAddress = argMultimap.getValue(PREFIX_ADDRESS).get();
+            if (!updatedAddress.isEmpty()) {
+                editPersonDescriptor.setAddress(ParserUtil.parseAddress(updatedAddress));
+            } else {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
         }
         parseLanguagesForEdit(argMultimap.getAllValues(PREFIX_LANGUAGE)).ifPresent(editPersonDescriptor::setLanguages);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
@@ -86,6 +110,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> languageSet = languages.size() == 1 && languages.contains("")
                 ? Collections.emptySet()
                 : languages;
+        if (languageSet.isEmpty()) {
+            return Optional.empty();
+        }
         return Optional.of(ParserUtil.parseLanguages(languageSet));
     }
 

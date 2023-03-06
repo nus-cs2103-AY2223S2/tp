@@ -105,9 +105,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Language> newLanguages = editPersonDescriptor.getLanguages().orElse(null);
-        Set<Language> updatedLanguages = new HashSet<>();
-        updatedLanguages.addAll(personToEdit.getLanguages());
+        Set<Language> updatedLanguages = personToEdit.getLanguages();
         if (newLanguages != null) {
+            updatedLanguages = new HashSet<>(updatedLanguages);
             updatedLanguages.addAll(newLanguages);
         }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());

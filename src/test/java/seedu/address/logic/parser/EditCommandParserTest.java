@@ -235,14 +235,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetLanguages_success() {
+    public void parse_resetLanguages_failure() {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + LANGUAGE_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withLanguages().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
