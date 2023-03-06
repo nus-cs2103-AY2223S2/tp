@@ -1,4 +1,5 @@
 package seedu.address.testutil;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
+
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -54,6 +56,7 @@ public class PersonBuilder {
         this.name = new Name(name);
         return this;
     }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
@@ -61,6 +64,7 @@ public class PersonBuilder {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
+
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
@@ -68,6 +72,7 @@ public class PersonBuilder {
         this.address = new Address(address);
         return this;
     }
+
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
@@ -75,6 +80,7 @@ public class PersonBuilder {
         this.phone = new Phone(phone);
         return this;
     }
+
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */

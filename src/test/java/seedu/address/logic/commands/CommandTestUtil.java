@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -49,7 +50,7 @@ public class CommandTestUtil {
             + "The ideal candidate is someone who’s just out of school and looking for some quality career experience. "
             + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
             + "Remote work is possible.";
-    public static final ArrayList<String> VALID_APPLICANTS = new ArrayList<>();
+    public static final ArrayList<Applicant> VALID_APPLICANTS = new ArrayList<>();
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
