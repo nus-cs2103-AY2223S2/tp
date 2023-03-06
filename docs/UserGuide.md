@@ -65,10 +65,10 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/SKILL]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [s/SKILL]` can be used as `n/John Doe s/python` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/SKILL]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[s/SKILL]…​` can be used as ` ` (i.e. 0 times), `s/python`, `s/python s/sql` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -133,11 +133,11 @@ _Edits an existing person in CoDoc._
 > - At least one of the optional fields must be provided. 
 > - Existing values will be updated to the input values. 
 > - When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative. 
-> - You can remove all the person’s skills by typing t/ without specifying any skills after it
+> - You can remove all the person’s skills by typing s/ without specifying any skills after it
 > 
 > **Examples:**
 > - edit p/91234567 e/johndoe@example.com will edit the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
-> - edit n/Betsy Crower t/ Edits the name of the person to be Betsy Crower and clears all existing skills.
+> - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
 
 <a name="find"></a>
 ### Finding something: `find`
@@ -219,10 +219,10 @@ _Details coming soon ..._
 ## Command Summary
 | Action             | Format, Examples                                                                                                                                                                                                                                       |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add	               | `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [t/SKILL]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 t/python t/java` |
+| Add	               | `add n/NAME y/YEAR c/COURSE e/EMAIL [l/LINKEDIN] [g/GITHUB] [m/YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java` |
 | View contact       | `view INDEX`<br />e.g., `view 3`                                                                                                                                                                                                                       |
 | View tab           | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`                                                                                                                                                                                                 |
-| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/SKILL]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                    |
+| Edit               | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`                                                                                    |
 | Find	name          | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`                                                                                                                                                                                                 |
 | Find module        | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`                                                                                                                                                                               |
 | Find skills          | `findt SKILL [MORESKILLS]`<br />e.g., `findt java python`                                                                                                                                                                                                  |
