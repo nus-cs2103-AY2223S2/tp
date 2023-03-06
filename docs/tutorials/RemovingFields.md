@@ -20,7 +20,7 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 ## Safely deleting `Address`
 
@@ -28,7 +28,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.client.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `address` field in `Person` is actually an instance of the `seedu.address.model.person.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
@@ -100,12 +100,12 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "clients": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+   "persons": [ {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "address": "4th street"
+   } ]
 }
 ```
 
