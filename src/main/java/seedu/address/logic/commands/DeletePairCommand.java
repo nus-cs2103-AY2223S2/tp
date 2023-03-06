@@ -34,13 +34,14 @@ public class DeletePairCommand extends Command {
     public static final String MESSAGE_DELETE_PAIR_SUCCESS = "Deleted Pair: %1$s";
 
     public static final String MESSAGE_ELDERLY_NOT_FOUND =
-            "The elderly with the specified NRIC does not exist in FriendlyLink";
+            "The elderly with NRIC %1$s does not exist in FriendlyLink";
 
     public static final String MESSAGE_VOLUNTEER_NOT_FOUND =
-            "The volunteer with the specified NRIC does not exist in FriendlyLink";
+            "The volunteer with NRIC %1$s does not exist in FriendlyLink";
 
     public static final String MESSAGE_PAIR_NOT_FOUND =
-            "The pair with the specified elderly and volunteer does not exist in FriendlyLink";
+            "The pair consisting of elderly with NRIC %1$s and volunteer with NRIC %2$s"
+                    + " does not exist in FriendlyLink";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;
@@ -67,14 +68,14 @@ public class DeletePairCommand extends Command {
             elderly = model.getElderly(elderlyNric);
             volunteer = model.getVolunteer(volunteerNric);
         } catch (ElderlyNotFoundException e) {
-            throw new CommandException(MESSAGE_ELDERLY_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_ELDERLY_NOT_FOUND, elderlyNric));
         } catch (VolunteerNotFoundException e) {
-            throw new CommandException(MESSAGE_VOLUNTEER_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, volunteerNric));
         }
 
         Pair toDelete = new Pair(elderly, volunteer);
         if (!model.hasPair(toDelete)) {
-            throw new CommandException(MESSAGE_PAIR_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_PAIR_NOT_FOUND, elderlyNric, volunteerNric));
         }
 
         model.deletePair(toDelete);

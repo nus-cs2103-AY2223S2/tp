@@ -54,14 +54,18 @@ public class DeletePairTest {
 
         //Invalid Elderly
         final DeletePairCommand deletePairCommand1 = new DeletePairCommand(AMY.getNric(), BOB.getNric());
+        String expectedMessage =
+                String.format(DeletePairCommand.MESSAGE_ELDERLY_NOT_FOUND, AMY.getNric());
         assertThrows(CommandException.class,
-                DeletePairCommand.MESSAGE_ELDERLY_NOT_FOUND, () -> deletePairCommand1.execute(model));
+                expectedMessage, () -> deletePairCommand1.execute(model));
         assertTrue(model.hasPair(pair));
 
         //Invalid Volunteer
+        expectedMessage =
+                String.format(DeletePairCommand.MESSAGE_VOLUNTEER_NOT_FOUND, BENSON.getNric());
         final DeletePairCommand deletePairCommand2 = new DeletePairCommand(ALICE.getNric(), BENSON.getNric());
         assertThrows(CommandException.class,
-                DeletePairCommand.MESSAGE_VOLUNTEER_NOT_FOUND, () -> deletePairCommand2.execute(model));
+                expectedMessage, () -> deletePairCommand2.execute(model));
         assertTrue(model.hasPair(pair));
     }
 
