@@ -14,6 +14,7 @@ public class AddCrewCommand implements Command {
 
     /**
      * Creates a executable command that add a crew to the list.
+     *
      * @param crew the location to add.
      */
     public AddCrewCommand(Crew crew) {

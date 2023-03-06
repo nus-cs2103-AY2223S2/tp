@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.crew.Crew;
 import seedu.address.storage.json.JsonIdentifiableManager;
 import seedu.address.storage.json.adapted.JsonAdaptedCrew;
-import seedu.address.storage.json.adapted.JsonAdaptedCrew;
 
 /**
  * Represents a serializable manager of crew.

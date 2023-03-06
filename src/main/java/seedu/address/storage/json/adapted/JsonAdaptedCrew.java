@@ -10,7 +10,7 @@ import seedu.address.model.crew.exceptions.InvalidCrewRankException;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**
- * Represents a Jackson-friendly version of a Pilot.
+ * Represents a Jackson-friendly version of a Crew.
  */
 public class JsonAdaptedCrew implements JsonAdaptedModel<Crew> {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Crew's %s field is missing!";

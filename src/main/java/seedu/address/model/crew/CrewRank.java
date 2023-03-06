@@ -37,7 +37,7 @@ public enum CrewRank {
     }
 
     /**
-     * Returns the pilot rank from the string representation.
+     * Returns the crew rank from the string representation.
      *
      * @param rank the string representation of the crew rank
      * @return the crew rank
@@ -58,9 +58,9 @@ public enum CrewRank {
     }
 
     /**
-     * Returns the index of the pilot rank in the enum.
+     * Returns the index of the crew rank in the enum.
      *
-     * @return the index of the pilot rank in the enum
+     * @return the index of the crew rank in the enum
      */
     public int toIndex() {
         switch (this) {
@@ -78,10 +78,10 @@ public enum CrewRank {
     }
 
     /**
-     * Returns the pilot rank from the index.
+     * Returns the crew rank from the index.
      *
-     * @param index the index of the pilot rank in the enum
-     * @return the pilot rank
+     * @param index the index of the crew rank in the enum
+     * @return the crew rank
      */
     public static CrewRank fromIndex(int index) {
         switch (index) {

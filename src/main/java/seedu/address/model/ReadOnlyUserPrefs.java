@@ -11,8 +11,17 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
+    OperationMode getOperationMode();
+
     Path getAddressBookFilePath();
 
+    Path getPilotManagerFilePath();
+    void setPilotManagerFilePath(Path pilotManagerFilePath);
+
+    Path getLocationManagerFilePath();
+    void setLocationManagerFilePath(Path locationManagerFilePath);
+
     Path getCrewManagerFilePath();
+    void setCrewManagerFilePath(Path crewManagerFilePath);
 
 }
