@@ -8,10 +8,10 @@
             fitToWidth="true" hbarPolicy="NEVER"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml">
-    <VBox styleClass="pa">
+    <VBox spacing="10" styleClass="pa">
         <Label text="Events" styleClass="label-h3" />
-        <VBox fx:id="calendarContent" spacing="10">
-            <Label text="What" />
-        </VBox>
+        <Label text="Note: recurring events will only show up once on the next earliest date."
+               styleClass="label-p" />
+        <VBox fx:id="calendarContent" spacing="10" />
     </VBox>
 </ScrollPane>
