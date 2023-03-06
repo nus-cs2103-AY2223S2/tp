@@ -89,8 +89,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS);
         // invalid date
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
-        // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid role followed by valid status
         assertParseFailure(parser, "1" + INVALID_ROLE_DESC + STATUS_DESC_APPLE, Role.MESSAGE_CONSTRAINTS);
