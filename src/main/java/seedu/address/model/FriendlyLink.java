@@ -270,6 +270,18 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         pairs.remove(target);
     }
 
+    /**
+     * Removes pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * from {@code FriendlyLink}.
+     * The pair must exist in the pair list.
+     *
+     * @param elderlyNric Nric of elderly.
+     * @param volunteerNric Nric of volunteer.
+     */
+    public void removePair(Nric elderlyNric, Nric volunteerNric) {
+        pairs.remove(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
+    }
+
     //// util methods
     @Override
     public String toString() {

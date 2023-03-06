@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalElderly.BENSON;
@@ -18,7 +19,6 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.pair.Pair;
-import seedu.address.model.pair.exceptions.PairNotFoundException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
@@ -41,7 +41,7 @@ public class DeletePairTest {
         Model model = new ModelStubWithDeletablePair(pair);
 
         CommandResult commandResult = deletePairCommand.execute(model);
-        assertEquals(String.format(DeletePairCommand.MESSAGE_DELETE_PAIR_SUCCESS, pair),
+        assertEquals(String.format(DeletePairCommand.MESSAGE_DELETE_PAIR_SUCCESS, elderlyNric, volunteerNric),
                 commandResult.getFeedbackToUser());
         assertFalse(model.hasPair(pair));
     }
@@ -108,12 +108,14 @@ public class DeletePairTest {
         }
 
         @Override
-        public void deletePair(Pair pair) {
-            requireNonNull(pair);
-            if (pair.equals(this.pair)) {
-                this.pair = null;
+        public void deletePair(Nric elderlyNric, Nric volunteerNric) {
+            requireAllNonNull(elderlyNric, volunteerNric);
+            if (!elderlyNric.equals(pair.getElderly().getNric())) {
+                throw new ElderlyNotFoundException();
+            } else if (!volunteerNric.equals(pair.getVolunteer().getNric())) {
+                throw new VolunteerNotFoundException();
             } else {
-                throw new PairNotFoundException();
+                this.pair = null;
             }
         }
 

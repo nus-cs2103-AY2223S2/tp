@@ -134,7 +134,7 @@ public class ModelManager implements Model {
     @Override
     public void addElderly(Elderly person) {
         friendlyLink.addElderly(person);
-        updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLYS);
+        updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLY);
     }
 
     @Override
@@ -188,6 +188,11 @@ public class ModelManager implements Model {
     @Override
     public void deletePair(Pair target) {
         friendlyLink.removePair(target);
+    }
+
+    @Override
+    public void deletePair(Nric elderlyNric, Nric volunteerNric) {
+        friendlyLink.removePair(elderlyNric, volunteerNric);
     }
 
     @Override

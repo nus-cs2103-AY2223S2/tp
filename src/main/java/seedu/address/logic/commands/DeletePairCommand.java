@@ -9,9 +9,7 @@ import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.pair.Pair;
-import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.pair.exceptions.PairNotFoundException;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
@@ -31,7 +29,8 @@ public class DeletePairCommand extends Command {
             + PREFIX_NRIC_ELDERLY + "s02133334I "
             + PREFIX_NRIC_VOLUNTEER + "T2245343a ";
 
-    public static final String MESSAGE_DELETE_PAIR_SUCCESS = "Deleted Pair: %1$s";
+    public static final String MESSAGE_DELETE_PAIR_SUCCESS = "Deleted Pair consisting of"
+            + " elderly with NRIC %1$s and volunteer with NRIC %2$s";
 
     public static final String MESSAGE_ELDERLY_NOT_FOUND =
             "The elderly with NRIC %1$s does not exist in FriendlyLink";
@@ -61,25 +60,16 @@ public class DeletePairCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Elderly elderly;
-        Volunteer volunteer;
-
         try {
-            elderly = model.getElderly(elderlyNric);
-            volunteer = model.getVolunteer(volunteerNric);
+            model.deletePair(elderlyNric, volunteerNric);
+            return new CommandResult(String.format(MESSAGE_DELETE_PAIR_SUCCESS, elderlyNric, volunteerNric));
         } catch (ElderlyNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_ELDERLY_NOT_FOUND, elderlyNric));
         } catch (VolunteerNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, volunteerNric));
-        }
-
-        Pair toDelete = new Pair(elderly, volunteer);
-        if (!model.hasPair(toDelete)) {
+        } catch (PairNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_PAIR_NOT_FOUND, elderlyNric, volunteerNric));
         }
-
-        model.deletePair(toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PAIR_SUCCESS, toDelete));
     }
 
     @Override
