@@ -29,22 +29,22 @@ public class DelEventCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        DelEventCommand deleventCommand = new DelEventCommand(INDEX_FIRST_EVENT);
+        DelEventCommand delEventCommand = new DelEventCommand(INDEX_FIRST_EVENT);
 
         String expectedMessage = String.format(DelEventCommand.MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
 
-        assertCommandSuccess(deleventCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(delEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
-        DelEventCommand deleventCommand = new DelEventCommand(outOfBoundIndex);
+        DelEventCommand delEventCommand = new DelEventCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        assertCommandFailure(delEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DelEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        DelEventCommand deleventCommand = new DelEventCommand(INDEX_FIRST_EVENT);
+        DelEventCommand delEventCommand = new DelEventCommand(INDEX_FIRST_EVENT);
 
         String expectedMessage = String.format(DelEventCommand.MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete);
 
@@ -60,7 +60,7 @@ public class DelEventCommandTest {
         expectedModel.deleteEvent(eventToDelete);
         showNoEvent(expectedModel);
 
-        assertCommandSuccess(deleventCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(delEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,31 +71,31 @@ public class DelEventCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
 
-        DelEventCommand deleventCommand = new DelEventCommand(outOfBoundIndex);
+        DelEventCommand delEventCommand = new DelEventCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        assertCommandFailure(delEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DelEventCommand deleteFirstCommand = new DelEventCommand(INDEX_FIRST_EVENT);
-        DelEventCommand deleteSecondCommand = new DelEventCommand(INDEX_SECOND_EVENT);
+        DelEventCommand delEventFirstCommand = new DelEventCommand(INDEX_FIRST_EVENT);
+        DelEventCommand delEventSecondCommand = new DelEventCommand(INDEX_SECOND_EVENT);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(delEventFirstCommand.equals(delEventFirstCommand));
 
         // same values -> returns true
-        DelEventCommand deleteFirstCommandCopy = new DelEventCommand(INDEX_FIRST_EVENT);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        DelEventCommand delEventFirstCommandCopy = new DelEventCommand(INDEX_FIRST_EVENT);
+        assertTrue(delEventFirstCommand.equals(delEventFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(delEventFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(delEventFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(delEventFirstCommand.equals(delEventSecondCommand));
     }
 
     /**
