@@ -7,15 +7,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
 import static seedu.address.testutil.TypicalContacts.BOB;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.address.model.contact.exceptions.ContactNotFoundException;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.ContactBuilder;
 
 public class UniqueContactListTest {
@@ -53,7 +52,7 @@ public class UniqueContactListTest {
     @Test
     public void add_duplicateContact_throwsDuplicatePersonException() {
         uniqueContactList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueContactList.add(ALICE));
+        assertThrows(DuplicateContactException.class, () -> uniqueContactList.add(ALICE));
     }
 
     @Test
