@@ -2,7 +2,7 @@ package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -17,13 +17,13 @@ public class Recipe {
     private final Description desc;
 
     // Data fields
-    private final ArrayList<Ingredient> ingredients;
-    private final ArrayList<Step> steps;
+    private final Set<Ingredient> ingredients;
+    private final Set<Step> steps;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Title title, Description desc, ArrayList<Ingredient> ingredients, ArrayList<Step> steps) {
+    public Recipe(Title title, Description desc, Set<Ingredient> ingredients, Set<Step> steps) {
         requireAllNonNull(title, desc, ingredients, steps);
         this.title = title;
         this.desc = desc;
@@ -39,10 +39,10 @@ public class Recipe {
         return this.desc;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return this.ingredients;
     }
-    public ArrayList<Step> getSteps() {
+    public Set<Step> getSteps() {
         return this.steps;
     }
 
@@ -93,13 +93,13 @@ public class Recipe {
                 .append("; Description: ")
                 .append(getDesc());
 
-        ArrayList<Ingredient> ingredients = getIngredients();
+        Set<Ingredient> ingredients = getIngredients();
         if (!ingredients.isEmpty()) {
             builder.append("; Tags: ");
             ingredients.forEach(builder::append);
         }
 
-        ArrayList<Step> steps = getSteps();
+        Set<Step> steps = getSteps();
         if (!steps.isEmpty()) {
             builder.append("; Tags: ");
             steps.forEach(builder::append);

@@ -44,13 +44,13 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_STEP).isPresent()) {
-            editPersonDescriptor.setSteps(ParserUtil.parseSteps(argMultimap.getValue(PREFIX_STEP).get()));
+            editPersonDescriptor.setSteps(ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP)));
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editPersonDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
-            editPersonDescriptor.setIngredients(ParserUtil.parseIngredients(argMultimap.getValue(PREFIX_INGREDIENT).get()));
+            editPersonDescriptor.setIngredients(ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT)));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editPersonDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));

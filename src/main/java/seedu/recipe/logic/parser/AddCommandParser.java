@@ -39,9 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        ArrayList<Ingredient> ingredients = ParserUtil.parseIngredients(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        Set<Ingredient> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        ArrayList<Step> steps = ParserUtil.parseSteps(argMultimap.getValue(PREFIX_STEP).get());
+        Set<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
 
         Recipe recipe = new Recipe(title, description, ingredients, steps);
 
