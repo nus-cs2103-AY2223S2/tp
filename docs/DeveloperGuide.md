@@ -312,11 +312,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The application should be _free_.
+2. It should be easy to understand and use, even for users with little to no experience.
+3. Offline application used by each person.
+4. The application should be able to operate on any _mainstream OS_ such as Linux, MacOS and Windows so long as Java 11 or above is installed.
+5. The product should be highly testable.
+6. Use of clear and concise English should be observed in the documentation
+7. This product does not necessarily need to be installed but can run as an executable.
+8. Contain clear and easy to understand error messages
+9. Should be able to support up to 1000 persons without any noticeable lag in performance for typical usage.
+10. A user that possess above average typing speed for regular text (i.e. not code, not system admin commands) should be able to achieve majority of the task faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
