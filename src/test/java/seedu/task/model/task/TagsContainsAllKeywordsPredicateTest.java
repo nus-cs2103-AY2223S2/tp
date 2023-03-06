@@ -9,30 +9,25 @@ import org.junit.jupiter.api.Test;
 
 import seedu.task.testutil.SimpleTaskBuilder;
 
-public class TagsContainsKeywordsPredicateTest {
+public class TagsContainsAllKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        String[] firstPredicateKeyword = {"first"};
-        String[] secondPredicateKeyword = {"second"};
+        String[] firstPredicateKeyword = {"third", "fourth"};
+        String[] secondPredicateKeyword = {"third"};
 
-
-
-        TagsContainsKeywordsPredicate firstPredicate =
-                new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
-        TagsContainsKeywordsPredicate secondPredicate =
-                new TagsContainsKeywordsPredicate(Arrays.asList(secondPredicateKeyword));
-
+        TagsContainsAllKeywordsPredicate firstPredicate =
+            new TagsContainsAllKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
+        TagsContainsAllKeywordsPredicate secondPredicate =
+            new TagsContainsAllKeywordsPredicate(Arrays.asList(secondPredicateKeyword));
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
-
         // same values -> returns true
         TagsContainsKeywordsPredicate firstPredicateCopy =
-                new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
+            new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
         assertTrue(firstPredicate.equals(firstPredicateCopy));
-
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
@@ -42,29 +37,20 @@ public class TagsContainsKeywordsPredicateTest {
 
         // different task -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
-
     }
 
     @Test
-    public void test_tagsContainsKeywords_returnsTrue() {
+    public void test_tagsContainsAllKeywords_returnsTrue() {
         String[] tag = {"urgent", "important", "uRgEnT"};
-        // One keyword
-        TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[0]));
-        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent").build()));
-
-        // match 1
-        predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[1]));
-        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent", "important").build()));
-
-        // match at least 1
-        predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag));
-        assertTrue(predicate.test(new SimpleTaskBuilder().withTags("sorta", "important").build()));
 
         // Mixed-case keywords
-        predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[2]));
+        TagsContainsAllKeywordsPredicate predicate = new TagsContainsAllKeywordsPredicate(Arrays.asList(tag[2]));
         assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent").build()));
 
-
+        String[] test = {"study", "party"};
+        // Multiple tags with all keyword
+        TagsContainsAllKeywordsPredicate predicate2 = new TagsContainsAllKeywordsPredicate(Arrays.asList(test));
+        assertTrue(predicate2.test(new SimpleTaskBuilder().withTags("party", "study").build()));
     }
 
     @Test
@@ -77,6 +63,11 @@ public class TagsContainsKeywordsPredicateTest {
         // Keywords match name, but does not match description
         predicate = new DescContainsKeywordsPredicate("Alice");
         assertFalse(predicate.test(new SimpleTaskBuilder()
-                .withName("Alice").withDescription("likes to play").build()));
+            .withName("Alice").withDescription("likes to play").build()));
+        String[] test = {"study", "party"};
+
+        //Multiple tags with all keyword but the task only has one matching keyword
+        TagsContainsAllKeywordsPredicate predicate3 = new TagsContainsAllKeywordsPredicate(Arrays.asList(test));
+        assertFalse(predicate3.test(new SimpleTaskBuilder().withName("study").build()));
     }
 }

@@ -93,7 +93,7 @@ public class TaskBookParserTest {
         List<String> nameList = new ArrayList<>();
         nameList.add("Alice");
         nameList.add("Bob");
-        assertEquals(new FindCommand(new NameContainsAllKeywordsPredicate(nameList)),command1);
+        assertEquals(new FindCommand(new NameContainsAllKeywordsPredicate(nameList)), command1);
 
         String descriptionKeyphrase = "test";
         String descriptionKeyphrase1 = "now";
@@ -114,6 +114,7 @@ public class TaskBookParserTest {
         FindCommand tagCommand = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + tagKeyphrase);
         assertEquals(new FindCommand(new TagsContainsKeywordsPredicate(Arrays.asList(tagKeyphrases))), tagCommand);
+
 
     }
 

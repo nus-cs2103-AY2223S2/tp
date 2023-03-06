@@ -21,6 +21,10 @@ public class NameContainsAllKeywordsPredicate implements Predicate<Task> {
             StringUtil.containsIgnoreCase(task.getName().toString(), keyphrase));
     }
 
+    public List<String> getKeyphrases() {
+        return this.keyphrases;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

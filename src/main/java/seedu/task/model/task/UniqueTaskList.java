@@ -5,11 +5,9 @@ import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.task.model.tag.Tag;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.model.task.exceptions.TaskNotFoundException;
 

@@ -9,7 +9,6 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
-import static seedu.task.model.task.Date.MESSAGE_INVALID_DATE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -59,16 +58,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 return new FindCommand(new NameContainsAllKeywordsPredicate(ParserUtil.parseNamesToList(names)));
             }
             return new FindCommand(new NameContainsKeywordsPredicate(name.toString()));
-
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             Set<Description> descriptions = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
             Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
             if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
-                return new FindCommand(new DescContainsAllKeywordsPredicate(ParserUtil.parseDescriptionsToList(descriptions)));
+                return new FindCommand(new DescContainsAllKeywordsPredicate(ParserUtil
+                    .parseDescriptionsToList(descriptions)));
             }
             return new FindCommand(new DescContainsKeywordsPredicate(description.toString()));
-
         }
         if (parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).isPresent()) {
             Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
@@ -76,7 +74,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 return new FindCommand(new TagsContainsAllKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
             }
             return new FindCommand(new TagsContainsKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
-
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_DEADLINE).get());
@@ -90,7 +87,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_TO).get());
             return new FindCommand(new EventToContainsKeywordsPredicate(date));
         }
-
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 

@@ -48,14 +48,6 @@ public abstract class Task implements Comparable<Task> {
         return Collections.unmodifiableSet(tags);
     }
 
-    /**
-     * Returns whether this task has all the tags in the input tag set
-     * @return True or false
-     */
-    public boolean hasTags(Set<Tag> tags) {
-         Set<Tag> thisTags = this.getTags();
-         return tags !=null && thisTags.containsAll(tags);
-    }
 
     /**
      * Returns true if both tasks have the same name.

@@ -6,6 +6,7 @@ import static seedu.task.commons.util.AppUtil.checkArgument;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import seedu.task.logic.parser.exceptions.ParseException;
 
 /**
@@ -102,9 +103,9 @@ public class Date implements Comparable<Date> {
 
 
 
-        /**
-         * Returns a full information String which can be parsed back into a DateTime.
-         */
+    /**
+     * Returns a full information String which can be parsed back into a DateTime.
+     */
     public String getValue() {
         String month = String.format("%02d", value.getMonthValue());
         String day = String.format("%02d", value.getDayOfMonth());

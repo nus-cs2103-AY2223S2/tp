@@ -3,10 +3,8 @@ package seedu.task.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 

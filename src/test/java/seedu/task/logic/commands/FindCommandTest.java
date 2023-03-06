@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
 import seedu.task.model.UserPrefs;
+import seedu.task.model.task.NameContainsAllKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
 
 /**
@@ -32,9 +33,14 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate("first");
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate("second");
+        String[] inputs = {"study", "party"};
+        NameContainsAllKeywordsPredicate thirdPredicate =
+                new NameContainsAllKeywordsPredicate(Arrays.asList(inputs));
+
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findThirdCommand = new FindCommand(thirdPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
@@ -51,6 +57,9 @@ public class FindCommandTest {
 
         // different task -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        //same values -> returns true
+        assertTrue(findThirdCommand.equals(new FindCommand(thirdPredicate)));
     }
 
     @Test
@@ -74,10 +83,26 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredTaskList());
     }
 
+    @Test
+    public void execute_multipleKeywords_oneTasksFound() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+        NameContainsAllKeywordsPredicate predicate = prepareAllPredicate("Benson", "Meier");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        model.getFilteredTaskList().stream().forEach(task -> System.out.println(task.getName()));
+        assertEquals(Arrays.asList(BENSON), model.getFilteredTaskList());
+
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(userInput);
+    }
+
+    private NameContainsAllKeywordsPredicate prepareAllPredicate(String... userInput) {
+        return new NameContainsAllKeywordsPredicate(Arrays.asList(userInput));
     }
 }

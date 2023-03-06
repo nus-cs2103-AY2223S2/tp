@@ -18,7 +18,7 @@ public class TagsContainsAllKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keyphrases.stream().allMatch(keyphrase ->
-           StringUtil.containsIgnoreCase(task.getName().toString(), keyphrase));
+           StringUtil.containsIgnoreCase(task.getTags().toString(), keyphrase));
     }
 
     @Override

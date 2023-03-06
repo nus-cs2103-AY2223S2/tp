@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.commons.core.LogsCenter;
-import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 
 /**

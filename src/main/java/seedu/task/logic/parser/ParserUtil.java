@@ -2,7 +2,6 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.SystemTray;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -118,15 +117,20 @@ public class ParserUtil {
      * @return The descriptions as a set
      * @throws ParseException if the given{@code descriptions is invalid}
      */
-    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException{
+    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
         requireNonNull(descriptions);
-        final Set<Description> descriptionSet= new HashSet<>();
+        final Set<Description> descriptionSet = new HashSet<>();
         for (String cur: descriptions) {
             descriptionSet.add(parseDescription(cur));
         }
         return descriptionSet;
     }
 
+    /**
+     * Returns a list of strings from the set of descriptions
+     * @param descriptions The set of descriptions
+     * @return A list of string
+     */
     public static List<String> parseDescriptionsToList(Set<Description> descriptions) {
         requireNonNull(descriptions);
         final List<String> descriptionList = new ArrayList<>();
@@ -183,7 +187,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code List<String>}.
      */
-    public static List<String> parseTagsToList(Set<Tag> tags){
+    public static List<String> parseTagsToList(Set<Tag> tags) {
         requireNonNull(tags);
         List<String> tagList = new ArrayList<>();
         for (Tag cur: tags) {

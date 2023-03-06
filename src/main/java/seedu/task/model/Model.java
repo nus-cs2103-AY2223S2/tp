@@ -1,12 +1,10 @@
 package seedu.task.model;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
-import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Task;
 
 /**

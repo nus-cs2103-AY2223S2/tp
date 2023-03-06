@@ -27,7 +27,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "books";
 
-    private final Predicate<Task> predicate;
+    public final Predicate<Task> predicate;
 
     public FindCommand(Predicate<Task> predicate) {
         this.predicate = predicate;

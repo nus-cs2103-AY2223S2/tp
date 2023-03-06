@@ -17,7 +17,7 @@ public class DescContainsAllKeywordsPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return  keyphrases.stream().allMatch(keyphrase ->
+        return keyphrases.stream().allMatch(keyphrase ->
             StringUtil.containsIgnoreCase(task.getDescription().value, keyphrase));
     }
 

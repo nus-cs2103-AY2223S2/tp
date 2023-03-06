@@ -2,8 +2,6 @@ package seedu.task.model.task;
 
 import java.util.function.Predicate;
 
-import seedu.task.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Task}'s {@code Description} matches any of the keywords given.
  */
