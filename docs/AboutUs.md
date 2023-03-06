@@ -5,19 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
-
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
 
 ### Tam Keng Hong
 
@@ -49,13 +37,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Class List: Insertion, Deletion and Grouping of Students (Class List)
 
+### Li Chengyue
 
-### Jean Doe
+<img src="images/cyli133.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/cyli133)]
+[[portfolio](team/cyli133.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: 
+
+### Gu Haiwei
+
+<img src="images/williamhaiweigu.png" width="200px">
+
+[[github](http://github.com/WilliamHaiweiGu)]
+[[portfolio](team/williamhaiweigu.md)]
+
+* Role: Developer
+* Responsibilities: 
+
