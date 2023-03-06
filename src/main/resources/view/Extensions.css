@@ -34,3 +34,7 @@
 .button:hover {
     -fx-text-fill: #E63946;
 }
+
+.list-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}

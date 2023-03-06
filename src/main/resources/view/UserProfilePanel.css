@@ -8,7 +8,7 @@
 #phone, #email, #address, #telegramHandle, #groupTags, #moduleTags {
     -fx-font-family: "SansSerif";
     -fx-font-size: 14px;
-    -fx-text-fill: #E4E4E4;
+    -fx-text-fill: #C7C7C7;
     -fx-padding: 2;
     -fx-wrap-text: true;
 }
