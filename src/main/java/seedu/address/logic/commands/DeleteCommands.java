@@ -54,4 +54,11 @@ public class DeleteCommands extends Command {
         });
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteCommands // instanceof handles nulls
+                && indices.equals(((DeleteCommands) other).indices)); // state check
+    }
 }
