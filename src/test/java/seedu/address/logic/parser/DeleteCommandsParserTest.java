@@ -5,14 +5,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
-
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommands;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.commons.core.index.Index;
 
-import java.util.ArrayList;
+
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -26,7 +27,7 @@ public class DeleteCommandsParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommands() throws ParseException {
-        ArrayList<Index> temp = ParserUtil.parseindexs("1 2 3"," ");
+        ArrayList<Index> temp = ParserUtil.parseindexs("1 2 3", " ");
         assertParseSuccess(parser, "1 2 3", new DeleteCommands(temp));
     }
 
