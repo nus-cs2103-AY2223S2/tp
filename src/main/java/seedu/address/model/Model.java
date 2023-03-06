@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Crew> PREDICATE_SHOW_ALL_CREW = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +86,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    Path getCrewManagerFilePath();
+
+    void setCrewManagerFilePath(Path crewManagerFilePath);
+
+    void setCrewManager(ReadOnlyIdentifiableManager<Crew> manager);
+
+    ReadOnlyIdentifiableManager<Crew> getCrewManager();
+
+    boolean hasCrew(Crew crew);
+
+    boolean hasCrew(String id);
+
+    void addCrew(Crew crew);
+
+    void deleteCrew(Crew crew);
+
+    void deleteCrew(String id);
+
+    void setCrew(Crew target, Crew editedCrew);
+
+    void updateFilteredCrewList(Predicate<Crew> predicate);
+
+    ObservableList<Crew> getFilteredCrewList();
+
 }

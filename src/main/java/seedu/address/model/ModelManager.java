@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,11 +24,15 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final IdentifiableManager<Crew> crewManager;
+    private final FilteredList<Crew> filteredCrew;
+    private final ObservableList<Crew> crewList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager crewManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -34,10 +40,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.crewManager = new IdentifiableManager(crewManager);
+        filteredCrew = new FilteredList<Crew>(this.crewManager.getItemList());
+        crewList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -128,6 +137,76 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== CrewManager ==================================================================================
+
+    @Override
+    public void setCrewManager(ReadOnlyIdentifiableManager Crew) {
+        requireNonNull(Crew);
+        this.crewManager.resetData(Crew);
+    }
+
+    @Override
+    public ReadOnlyIdentifiableManager<Crew> getCrewManager() {
+        return crewManager;
+    }
+
+    @Override
+    public Path getCrewManagerFilePath() {
+        return userPrefs.getCrewManagerFilePath();
+    }
+
+    @Override
+    public void setCrewManagerFilePath(Path crewManagerFilePath) {
+        requireNonNull(crewManagerFilePath);
+        userPrefs.setCrewManagerFilePath(crewManagerFilePath);
+    }
+
+    @Override
+    public boolean hasCrew(Crew crew) {
+        requireNonNull(crew);
+        return this.crewManager.hasItem(crew);
+    }
+
+    @Override
+    public boolean hasCrew(String id) {
+        requireNonNull(id);
+        return this.crewManager.hasItem(id);
+    }
+
+    @Override
+    public void addCrew(Crew crew) {
+        crewManager.addItem(crew);
+        updateFilteredCrewList(PREDICATE_SHOW_ALL_CREW);
+    }
+
+    @Override
+    public void deleteCrew(Crew crew) {
+        crewManager.removeItem(crew);
+    }
+
+    @Override
+    public void deleteCrew(String id) {
+        crewManager.removeItem(id);
+    }
+
+    @Override
+    public void setCrew(Crew target, Crew editedCrew) {
+        requireAllNonNull(target, editedCrew);
+        crewManager.setItem(target, editedCrew);
+    }
+
+    @Override
+    public ObservableList<Crew> getFilteredCrewList() {
+        return filteredCrew;
+    }
+
+    @Override
+    public void updateFilteredCrewList(Predicate<Crew> predicate) {
+        requireNonNull(predicate);
+        filteredCrew.setPredicate(predicate);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -144,7 +223,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && crewManager.equals(other.crewManager);
     }
 
 }

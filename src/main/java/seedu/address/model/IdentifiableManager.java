@@ -118,6 +118,10 @@ public class IdentifiableManager<T extends Identifiable> implements
         items.remove(item);
     }
 
+    public void removeItem(String id) {
+        items.remove(id);
+    }
+
     @Override
     public Optional<T> getItem(String id) {
         for (T item : items) {
