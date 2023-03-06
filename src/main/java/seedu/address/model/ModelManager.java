@@ -141,7 +141,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         persons.setAll(addressBook.getPersonList());
         filteredPersons.setPredicate(predicate);
-        persons.setAll(new SortedList<>(filteredPersons, new PersonComparatorByName()));
+        persons.setAll(filteredPersonsByName);
     }
 
     @Override
