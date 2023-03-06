@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,6 +18,18 @@ public class PhoneTest {
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
         String invalidPhone = "";
         assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+    }
+
+    @Test
+    public void constructor_validPhone_equalsString() {
+        String validPhone = "91234567";
+        assertEquals(validPhone, new Phone(validPhone).toString());
+    }
+
+    @Test
+    public void constructor_validPhone_equalsHashCode() {
+        String validPhone = "91234567";
+        assertEquals(validPhone.hashCode(), new Phone(validPhone).hashCode());
     }
 
     @Test
