@@ -283,45 +283,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Fastrack` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Precondition: The user has launched the FastTrack application**
+
+**UC1: Add category**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new category to FastTrack.
+2. User enters the add command with the category name.
+3. FastTrack adds the new category.
+4. FastTrack responds with a success message indicating the category has been successfully added.
 
     Use case ends.
 
 **Extensions**
+* 2a. The user does not enter the required category name.
+  * 2a1. FastTrack responds telling the user that a name is required and the command is invalid.
+  * 2a2. User enters add command with the category name.
+  * 2a3. Steps 2a1-2a2 are repeated until the data entered are correct.
 
-* 2a. The list is empty.
+    Use case resumes at step 3.
 
-  Use case ends.
+* 2b. The category name already exists
+  * 2b1. FastTrack informs the user that the category name has already been used and prompts the user for a different category name.
+  * 2b2. User enters add command with the category name.
+  * 2b3. Steps 2b1-2b2 are repeated until the data entered are correct.
+    
+    Use case resumes at step 3.
 
-* 3a. The given index is invalid.
+**UC2: Delete a Category**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User lists all categories using UC4.
+2. User requests to delete a category from FastTrack.
+3. User enters the delete command with the index i of the category to be deleted.
+4. FastTrack deletes the category at index i.
+5. FastTrack displays a success message to the user indicating the category has been successfully deleted.
 
-*{More to be added}*
+   Use case ends.
 
+**Extensions**
+* 3a. The user selects an invalid category index (the index is out of bounds of the list)
+    * 3a1. FastTrack displays an error message telling the user to key in a valid index.
+    * 3a2. User enters delete command with the category index.
+    * 3a3. Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes at step 4.
+
+    
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 expenses without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. FastTrack should be designed in a modular, scalable manner to enable easy addition of new features in the future.
+5. The code should be well-organized and well-documented to ensure ease of maintenance and debugging.
+6. FastTrack should protect user data from unauthorized access or modification.
+7. Any modification to the data will result in a prompt update to the user interface.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
