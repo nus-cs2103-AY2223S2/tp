@@ -1,6 +1,5 @@
 package seedu.address.model.student;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
 

@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
+import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**
@@ -49,7 +50,12 @@ public class UniqueLessonsList implements Iterable<Lesson> {
     public void add(Lesson toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new ConflictingLessonsException();
+            throw new DuplicateLessonException();
+        }
+        for (Lesson lesson : internalList) {
+            if (lesson.isSameTimeLesson(toAdd)) {
+                throw new ConflictingLessonsException();
+            }
         }
         internalList.add(toAdd);
     }
