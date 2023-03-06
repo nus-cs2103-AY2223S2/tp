@@ -18,3 +18,23 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.list-view .list-cell:filled:focused:selected {
+    -fx-background-color: black;
+}
+
+.list-view .list-cell:filled:focused:selected > * > * > * > HBox > Label {
+    -fx-text-fill: #000000;
+}
+
+.list-view .list-cell:filled:focused:selected > * > * > * > Label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:hover {
+    -fx-text-fill: #E63946;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}

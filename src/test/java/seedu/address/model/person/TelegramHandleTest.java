@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -56,5 +57,12 @@ public class TelegramHandleTest {
                 "@linus2richards3")); // with numeric
         assertTrue(TelegramHandle.isValidTelegramHandle(
                 "@Linus2Richards3")); // with upper case and numeric
+    }
+
+    @Test
+    public void hashCode_validTelegramHandle_success() {
+        String handle = "@linus";
+        TelegramHandle telegramHandle = new TelegramHandle(handle);
+        assertEquals(telegramHandle.hashCode(), handle.hashCode());
     }
 }

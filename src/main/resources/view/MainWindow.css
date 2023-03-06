@@ -1,0 +1,82 @@
+/* ---- Start of side bar css ---- */
+
+.side-bar {
+    -fx-background-color: black;
+    -fx-opacity: 0.9;
+    -fx-background-radius: 0 10 0 10;
+}
+
+.side-button {
+    -fx-background-color: #edede9;
+    -fx-background-radius: 10;
+}
+
+/* ---- Start of middle pane css ---- */
+
+.middle-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.command-box-placeholder {
+    -fx-background-color: #dbdbdb;
+    -fx-background-radius: 10;
+}
+
+.command-box {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 5 5;
+}
+
+.person-card-box {
+    -fx-background-color: #e63946;
+    -fx-background-radius: 0 5 0 5;
+    -fx-padding: 3;
+}
+
+.person-card-upper-box-element {
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 5;
+}
+
+.person-card-lower-box-element {
+    -fx-text-fill: #5e5e5e;
+}
+
+.person-list-panel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.person-list-placeholder {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+/* ---- Start of right pane css ---- */
+
+.result-display-panel {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.result-display-text {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.result-display-placeholder {
+    -fx-opacity: 0.5;
+}
+
+.user-profile-placeholder {
+    -fx-background-color: black;
+    -fx-background-radius: 10;
+}
+
+.right-pane {
+    -fx-background-color: #EDEDE9;
+    -fx-background-radius: 10;
+}

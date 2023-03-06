@@ -19,6 +19,9 @@ import seedu.address.testutil.PersonUtil;
 
 public class StorageManagerTest {
 
+    private static final String STORAGE_FILE_PATH = "ab";
+    private static final String USER_PREFS_FILE_PATH = "prefs";
+
     @TempDir
     public Path testFolder;
 
@@ -26,8 +29,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonEduMateStorage eduMateStorage = new JsonEduMateStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        JsonEduMateStorage eduMateStorage = new JsonEduMateStorage(getTempFilePath(
+                STORAGE_FILE_PATH));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath(
+                USER_PREFS_FILE_PATH));
         storageManager = new StorageManager(eduMateStorage, userPrefsStorage);
     }
 
@@ -67,6 +72,12 @@ public class StorageManagerTest {
     @Test
     public void getEduMateFilePath() {
         assertNotNull(storageManager.getEduMateFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath_validFilePath_success() {
+        assertEquals(storageManager.getUserPrefsFilePath(),
+                getTempFilePath(USER_PREFS_FILE_PATH));
     }
 
 }

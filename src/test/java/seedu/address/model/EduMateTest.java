@@ -7,12 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -84,6 +86,20 @@ public class EduMateTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> eduMate.getPersonList().remove(0));
+    }
+
+    @Test
+    public void hashCode_validEduMate_success() {
+        assertEquals(eduMate.hashCode(), Objects.hash(eduMate.getPersonList(), eduMate.getUser()));
+    }
+
+    @Test
+    public void removePerson_validIndex_success() {
+        if (!eduMate.hasPerson(BART)) {
+            eduMate.addPerson(BART);
+        }
+        eduMate.removePerson(BART);
+        assertFalse(eduMate.hasPerson(BART));
     }
 
     /**
