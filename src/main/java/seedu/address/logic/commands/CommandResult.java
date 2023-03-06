@@ -14,9 +14,6 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean isShowHelp;
 
-    /** The application should show user profile. */
-    private final boolean isShowUserProfile;
-
     /** The application should exit. */
     private final boolean isExit;
 
@@ -27,7 +24,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
-        this.isShowUserProfile = isShowUserProfile;
     }
 
     /**
@@ -50,9 +46,6 @@ public class CommandResult {
         return isExit;
     }
 
-    public boolean isShowUserProfile() {
-        return isShowUserProfile;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -68,8 +61,7 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && isShowHelp == otherCommandResult.isShowHelp
-                && isExit == otherCommandResult.isExit
-                && isShowUserProfile == otherCommandResult.isShowUserProfile;
+                && isExit == otherCommandResult.isExit;
     }
 
     @Override

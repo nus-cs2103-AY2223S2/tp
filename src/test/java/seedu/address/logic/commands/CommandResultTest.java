@@ -70,9 +70,4 @@ public class CommandResultTest {
     public void isExit_true_true() {
         assertTrue(COMMAND_RESULT.isExit());
     }
-
-    @Test
-    public void isShowUserProfile_true_true() {
-        assertTrue(COMMAND_RESULT.isShowUserProfile());
-    }
 }
