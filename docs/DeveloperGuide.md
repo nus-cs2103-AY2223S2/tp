@@ -278,16 +278,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see instructions               | refer to instructions when I forget how to use the App                 |
 | `* * *`  | new user                                   | Open the app             |begin using the app                                                                        |
-| `* * *`  | new user                                       | close the app            | leave the app                           |
-| `* * *`  | new user                                       | add a student’s name      |Track a student’s progress by their name |
-| `* * *`    | new user                                       | include the student’s education level when adding the student (eg. P6)       | keep track of a student’s education level                |
-| `* * *`      | new user  | include the student’s address when adding the student (eg. Block 69 S642069)      | keep track of a student’s address and go to the place easily                                        |
-| `* * *`      | user with some experience  | delete a student entry from my list (by index)      | remove all details related to a certain student
-| `* * *`      | user with some experience  | view my list of students   | keep track of who I’m currently teaching
-| `* * *`      | new user  | have my changes autosave   | be sure that I won’t lose my changes if I crash/close the app
-| `* * *`      | new user  | include optional student-specific notes when adding the student (eg. Good in Japanese)  | store additional student’s descriptive information
-| `* * *`      | new user  | have my data persist between use sessions | continue my session where I left off
-
+| `* * *`  | new user                                   | close the app            | leave the app                           |
+| `* * *`  | new user                                   | add a student’s name      |Track a student’s progress by their name |
+| `* * *`  | new user                                   | include the student’s education level when adding the student (eg. P6)       | keep track of a student’s education level                |
+| `* * *`  | new user  | include the student’s address when adding the student (eg. Block 69 S642069)      | keep track of a student’s address and go to the place easily                                        |
+| `* * *`  | user with some experience  | delete a student entry from my list (by index)      | remove all details related to a certain student
+| `* * *`  | user with some experience  | view my list of students   | keep track of who I’m currently teaching
+| `* * *`  | new user  | have my changes autosave   | be sure that I won’t lose my changes if I crash/close the app
+| `* * *`  | new user  | include optional student-specific notes when adding the student (eg. Good in Japanese)  | store additional student’s descriptive information
+| `* * *`  | new user  | have my data persist between use sessions | continue my session where I left off
 
 ### Use cases
 
@@ -320,9 +319,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
+2. System should respond within 0.1 second of the user providing an input.
+3. All systems must be able to access the _save file_ ie. Save file should be independent of the OS.
+4. Any information displayed should be concise and structured in a logical manner such that it is easily understandable.
+5. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
@@ -330,6 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
