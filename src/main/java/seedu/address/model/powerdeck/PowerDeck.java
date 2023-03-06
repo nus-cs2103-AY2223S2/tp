@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.powercard.PowerCard;
 
+
 /**
  * Wraps all data at the PowerDeck level
  * Duplicates are not allowed (by .isSamePowerCard comparison)

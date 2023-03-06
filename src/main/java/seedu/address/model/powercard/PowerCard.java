@@ -27,8 +27,6 @@ public class PowerCard {
         this.numWrong = 0;
     }
 
-
-
     public Question getQuestion() {
         return this.question;
     }
