@@ -20,7 +20,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png) 
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -156,7 +156,7 @@ Examples:
 
 ### Getting statistics : `stats`
 
-Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks. 
+Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
 
 Format: `stats`
 
@@ -169,7 +169,7 @@ Sorts the list using the following format:
         1.2. If tags size are the same, sort by name.
     2. Deadline
         2.1. Sort by earliest deadline.
-        2.2. If deadlines are the same, sort by tags size. 
+        2.2. If deadlines are the same, sort by tags size.
         2.3. If tags size are the same, sort by name.
     3. Event
         3.1. Sort by earliest "from" date.
