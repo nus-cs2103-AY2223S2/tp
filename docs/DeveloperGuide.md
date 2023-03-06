@@ -37,20 +37,27 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                          | So that I can…​                                                      |
-|----------|----------------|-------------------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | responsible TA | track students' participation statuses                | award participation marks to students fairly and accurately          |
-| `* * *`  | forgetful TA   | track valid reasons for a student's absence           | record attendance for those with valid reasons                       |
-| `* * *`  | forgetful TA   | track student assignment submissions/scores/deadlines | grade assignments easily                                             |
-| `* * *`  | user           | have CSV files storing my data                        | make backups to guard against data loss                              |
-| `* * *`  | user           | load in CSV files to restore data                     | avoid having to do manual data entry when using the app from scratch |
-| `* * *`  | user           | exit the app gracefully                               | avoid data corruption                                                |
-| `* *`    | forgetful TA   | track questions asked by students                     | answer them on time                                                  |
-| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson           | complete the lessons on time without missing out on any content      |
-| `* *`    | forgetful TA   | be reminded to take attendance before class ends      | award attendance marks correctly                                     |
-| `* *`    | TA             | group students quickly and fairly                     | reduce time wasted due to group formation                            |
-| `* *`    | TA             | search students by keywords                           | lessen the mental load required to find a student                    |
-| `*`      | head TA        | manage all other TAs                                  | track whether each TA has done their job correctly                   |
+| Priority | As a …​        | I want to …​                                          | So that I can…​                                                          |
+|----------|----------------|-------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | TA             | group students by class                               | track participation/assignment statuses by students' own classes         |
+| `* * *`  | TA             | add students to a class list                          | expand the class list if needed (e.g. new student joins)                 |
+| `* * *`  | TA             | delete students from a class list                     | remove students who are no longer part of the class (e.g. dropped class) |
+| `* * *`  | TA             | allocate assignments to students by class             | track the statuses of assignments assigned to each class                 |
+| `* * *`  | careless TA    | remove assignments allocated to a class               | remove incorrect assignment entries                                      |
+| `* * *`  | responsible TA | track students' participation statuses                | award participation marks to students fairly and accurately              |
+| `* * *`  | forgetful TA   | track valid reasons for a student's absence           | record attendance for those with valid reasons                           |
+| `* * *`  | forgetful TA   | track student assignment submissions/scores/deadlines | grade assignments easily                                                 |
+| `* * *`  | user           | have CSV files storing my data                        | make backups to guard against data loss                                  |
+| `* * *`  | user           | load in CSV files to restore data                     | avoid having to do manual data entry when using the app from scratch     |
+| `* * *`  | user           | exit the app gracefully                               | avoid data corruption                                                    |
+| `* *`    | TA             | assign individual assignment grades to students       | track the specific grade each student has obtained for each assignment   |
+| `* *`    | forgetful TA   | track questions asked by students                     | answer them on time                                                      |
+| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson           | complete the lessons on time without missing out on any content          |
+| `* *`    | forgetful TA   | be reminded to take attendance before class ends      | award attendance marks correctly                                         |
+| `* *`    | TA             | group students quickly and fairly                     | reduce time wasted due to group formation                                |
+| `* *`    | TA             | search students by keywords                           | lessen the mental load required to find a student                        |
+| `* *`    | TA             | list all students in a class                          | see an overview of the students in a class at a glance                   |
+| `*`      | head TA        | manage all other TAs                                  | track whether each TA has done their job correctly                       |
 
 *{More to be added}*
 
