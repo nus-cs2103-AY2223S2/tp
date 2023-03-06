@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.customer.exceptions.DuplicateCustomerException;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
@@ -88,6 +89,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Customer> customers = FXCollections.observableArrayList();
+        private final ObservableList<Order> orders = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Customer> customers) {
             this.customers.setAll(customers);
@@ -96,6 +98,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Customer> getCustomerList() {
             return customers;
+        }
+
+        @Override
+        public ObservableList<Order> getOrderList() {
+            return orders;
         }
     }
 

@@ -21,6 +21,7 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.ReadOnlyUserPrefs;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class AddCustomerCommandTest {
@@ -116,6 +117,11 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void addOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +153,31 @@ public class AddCustomerCommandTest {
 
         @Override
         public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOrder(Order target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrder(Order target, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

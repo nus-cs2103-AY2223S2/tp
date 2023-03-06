@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.loyaltylift.commons.core.GuiSettings;
 import seedu.loyaltylift.commons.core.LogsCenter;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
+    private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -87,6 +90,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== Person List ================================================================================
+
     @Override
     public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
@@ -111,6 +116,32 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    //=========== Order List =================================================================================
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void deleteOrder(Order target) {
+        addressBook.removeOrder(target);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
+    }
+
     //=========== Filtered Customer List Accessors =============================================================
 
     /**
@@ -126,6 +157,23 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Order List Accessors ==============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +192,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredCustomers.equals(other.filteredCustomers);
+                && filteredCustomers.equals(other.filteredCustomers)
+                && filteredOrders.equals(other.filteredOrders);
     }
 
 }

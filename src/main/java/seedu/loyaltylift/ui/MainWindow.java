@@ -21,7 +21,9 @@ import seedu.loyaltylift.logic.commands.CommandResult;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.ui.customer.CustomerInfo;
+import seedu.loyaltylift.ui.order.OrderInfo;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane orderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,6 +138,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(), this::showCustomerInfo);
         customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), this::showOrderInfo);
+        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         userCommandBox.getChildren().add(commandBox.getRoot());
@@ -243,5 +252,16 @@ public class MainWindow extends UiPart<Stage> {
 
         CustomerInfo customerInfo = new CustomerInfo(customer);
         infoPane.getChildren().add(customerInfo.getRoot());
+    }
+
+    /**
+     * Handles the event where a OrderCard is clicked and the customer info needs to be shown.
+     * @param order The order to be displayed on the information pane.
+     */
+    private void showOrderInfo(Order order) {
+        infoPane.getChildren().clear();
+
+        OrderInfo orderInfo = new OrderInfo(order);
+        infoPane.getChildren().add(orderInfo.getRoot());
     }
 }
