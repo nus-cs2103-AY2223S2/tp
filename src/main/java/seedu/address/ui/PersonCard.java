@@ -33,11 +33,6 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label address;
-
-    @FXML
-    private Label telegramHandle;
 
     @FXML
     private Label email;
@@ -61,14 +56,22 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        telegramHandle.setText(person.getTelegramHandle().value);
-        address.setText(person.getAddress().value);
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)
-                .forEach(groupTag -> groupTags.getChildren().add(new Label(groupTag.tagName)));
+                .forEach(groupTag -> {
+                    Label temp = new Label(groupTag.tagName);
+                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
+                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
+                    groupTags.getChildren().add(temp);
+                });
         person.getImmutableModuleTags().stream()
                 .sorted(ModuleTag::compareTo)
-                .forEach(moduleTag -> moduleTags.getChildren().add(new Label(moduleTag.tagName)));
+                .forEach(moduleTag -> {
+                    Label temp = new Label(moduleTag.tagName);
+                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
+                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
+                    moduleTags.getChildren().add(temp);
+                });
     }
 
     @Override

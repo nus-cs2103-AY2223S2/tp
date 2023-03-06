@@ -1,0 +1,19 @@
+#name {
+    -fx-font-family: 'SansSerif Bold Italic', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 23px;
+    -fx-text-fill: #FFFFFF;
+}
+
+#phone, #email, #address, #telegramHandle, #groupTags, #moduleTags {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14px;
+    -fx-text-fill: #C7C7C7;
+    -fx-padding: 2;
+    -fx-wrap-text: true;
+}
+
+#userProfilePane {
+    -fx-background-radius: 10;
+    -fx-background-color: transparent;
+}
