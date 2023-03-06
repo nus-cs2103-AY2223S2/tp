@@ -23,7 +23,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
    1. Saving the data
    1. Editing the data file
 3. [Frequently Asked Questions (FAQ)](#faq)
-4. [Command Summary](#command-summary) 
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
