@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Pawan Kishor Patil
 
-<img src="images/pawan.png" width="200px">
+<img src="images/pawanpatil19.png" width="200px">
 
 [[github](http://github.com/PawanPatil19)]
-[[portfolio](team/pawan.md)]
+[[portfolio](team/pawanpatil19.md)]
 
 * Role: Team Member
 * Responsibilities: TBD
