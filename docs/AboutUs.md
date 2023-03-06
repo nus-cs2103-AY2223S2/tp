@@ -13,8 +13,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/sfcoding123.png" width="200px">
 
-[[github](http://github.com/SFCoding123]
+[github](http://github.com/SFCoding123]
 [[portfolio](team/johndoe.md)]
+
+* Role: Team Lead
+* Responsibilities: Project Management and Testing
 
 ### Wei De
 
