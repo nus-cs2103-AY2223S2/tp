@@ -32,7 +32,6 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withLanguages("Python")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withProfile("benson-meier")
@@ -50,6 +49,7 @@ public class TypicalPersons {
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
+            .withLanguages("Python")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withProfile("elle-meyer")
@@ -63,6 +63,7 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com")
+            .withLanguages("Python")
             .withAddress("4th street").build();
 
     // Manually added
