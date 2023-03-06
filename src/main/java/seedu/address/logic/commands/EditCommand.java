@@ -184,7 +184,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
