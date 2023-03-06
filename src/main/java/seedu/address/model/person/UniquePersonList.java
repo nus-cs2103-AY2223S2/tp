@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -107,6 +106,10 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the backing list as a list sorted by name.
+     * @return A sorted list.
+     */
     public ObservableList<Person> asSortedByNameList() {
         ObservableList<Person> internalSortedByNameList = FXCollections.observableArrayList(internalList);
         Collections.sort(internalSortedByNameList, new PersonComparatorByName());
