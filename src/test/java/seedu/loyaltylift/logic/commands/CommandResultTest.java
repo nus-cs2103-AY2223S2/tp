@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 public class CommandResultTest {
     @Test
     public void equals() {

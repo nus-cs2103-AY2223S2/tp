@@ -6,6 +6,7 @@ import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseSu
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 
 public class ViewCustomerCommandParserTest {
