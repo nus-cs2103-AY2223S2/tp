@@ -36,7 +36,6 @@ public class RecipeCard extends UiPart<Region> {
     private Label desc;
     @FXML
     private FlowPane tags;
-//    hi
 
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
