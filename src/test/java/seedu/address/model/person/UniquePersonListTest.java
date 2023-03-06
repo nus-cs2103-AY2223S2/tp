@@ -7,7 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.EMPTY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -166,5 +169,62 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void sort_name() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(EMPTY);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(BENSON);
+        UniquePersonList sortByNameList = new UniquePersonList();
+        sortByNameList.add(ALICE);
+        sortByNameList.add(BENSON);
+        sortByNameList.add(CARL);
+        sortByNameList.add((EMPTY));
+        uniquePersonList.sort("name");
+        assertEquals(uniquePersonList, sortByNameList);
+    }
+    @Test
+    public void sort_phone() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(EMPTY);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(BENSON);
+        UniquePersonList sortByPhoneList = new UniquePersonList();
+        sortByPhoneList.add(ALICE);
+        sortByPhoneList.add(CARL);
+        sortByPhoneList.add(BENSON);
+        sortByPhoneList.add(EMPTY);
+        uniquePersonList.sort("phone");
+        assertEquals(uniquePersonList, sortByPhoneList);
+    }
+    @Test
+    public void sort_email() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(EMPTY);
+        uniquePersonList.add(BENSON);        
+        UniquePersonList sortByEmailList = new UniquePersonList();
+        sortByEmailList.add(ALICE);
+        sortByEmailList.add(CARL);
+        sortByEmailList.add(BENSON);
+        sortByEmailList.add(EMPTY);
+        uniquePersonList.sort("email");
+        assertEquals(uniquePersonList, sortByEmailList);
+    }
+    @Test
+    public void sort_address() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(EMPTY);
+        uniquePersonList.add(BENSON);
+        UniquePersonList sortByAddressList = new UniquePersonList();
+        sortByAddressList.add(ALICE);
+        sortByAddressList.add(BENSON);
+        sortByAddressList.add(CARL);
+        sortByAddressList.add(EMPTY);
+        uniquePersonList.sort("address");
+        assertEquals(uniquePersonList, sortByAddressList);
     }
 }

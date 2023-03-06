@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -140,52 +141,38 @@ public class UniquePersonList implements Iterable<Person> {
      * @param category
      */
     public void sort(String category) {
-        switch (category) {
-        case "name":
-            internalList.sort((Person a, Person b) -> {
-                if (a.getName().toString().isEmpty()) {
-                    return 1;
-                } else if (b.getName().toString().isEmpty()) {
-                    return -1;
-                } else {
-                    return a.getName().toString().compareTo(b.getName().toString());
-                }
-            });
-            break;
-        case "phone":
+        if (category.equals("name")) {
+            internalList.sort(Comparator.comparing((Person a) -> a.getName().toString().toLowerCase()));
+        } else if (category.equals("phone")) {
             internalList.sort((Person a, Person b) -> {
                 if (a.getPhone().toString().isEmpty()) {
                     return 1;
                 } else if (b.getPhone().toString().isEmpty()) {
                     return -1;
                 } else {
-                    return a.getPhone().toString().compareTo(b.getPhone().toString());
+                    return a.getPhone().toString().toLowerCase().compareTo(b.getPhone().toString().toLowerCase());
                 }
             });
-            break;
-        case "email":
+        } else if (category.equals("email")) {
             internalList.sort((Person a, Person b) -> {
                 if (a.getEmail().toString().isEmpty()) {
                     return 1;
                 } else if (b.getEmail().toString().isEmpty()) {
                     return -1;
                 } else {
-                    return a.getEmail().toString().compareTo(b.getEmail().toString());
+                    return a.getEmail().toString().toLowerCase().compareTo(b.getEmail().toString().toLowerCase());
                 }
             });
-            break;
-        case "address":
+        } else if (category.equals("address")) {
             internalList.sort((Person a, Person b) -> {
                 if (a.getAddress().toString().isEmpty()) {
                     return 1;
                 } else if (b.getAddress().toString().isEmpty()) {
                     return -1;
                 } else {
-                    return a.getAddress().toString().compareTo(b.getAddress().toString());
+                    return a.getAddress().toString().toLowerCase().compareTo(b.getAddress().toString().toLowerCase());
                 }
             });
-            break;
-        default:
         }
     }
 }

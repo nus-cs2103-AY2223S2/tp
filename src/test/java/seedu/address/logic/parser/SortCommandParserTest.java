@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -56,4 +58,9 @@ class SortCommandParserTest {
         assertParseSuccess(parser, "  address  ", expectedSortCommand);
     }
 
+    @Test
+    public void parse_invalidCategory_throwsParseException() {
+        assertParseFailure(parser, "sort invalid",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
 }

@@ -93,6 +93,12 @@ public class TypicalPersons {
             .withLanguages(VALID_LANGUAGE_CPLUSPLUS)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+    public static final Person EMPTY = new PersonBuilder().withName("Empty Contact")
+        .withProfile("")
+        .withPhone("")
+        .withEmail("")
+        .withAddress("")
+        .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
