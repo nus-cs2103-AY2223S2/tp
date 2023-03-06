@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should be 9 characters, and it should not be blank. \n" +
-            "The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].";
+            "NRIC should be 9 characters, and it should not be blank. \n"
+            + "The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].";
 
     /*
      * The first character of the NRIC must be 9 digits long.
