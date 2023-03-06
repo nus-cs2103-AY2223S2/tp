@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -172,11 +172,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new client. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new client. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -265,7 +265,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Provide a way to view all clients records easily and compare and analyze their financial information.
+* Provide a way to view all clients' records easily and compare and analyze their financial information.
 * Keep track of client information such as financial goals, current financial status, and investment plans purchased.
 * Make it easier to remind financial advisors on follow-up tasks and future advising sessions.
 * Personalized recommendations: propose personalized financial advice and recommendations tailored to the student’s unique needs and circumstances
@@ -274,51 +274,137 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new client               |                                                                        |
-| `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many clients in the address book | sort clients by name           | locate a client easily                                                 |
+#### [Epic] As a financial advisor, I can easily find my client
+| Priority | As a …​                          | I can …​                                                | So that I can…​                                      |
+|----------|----------------------------------|---------------------------------------------------------|------------------------------------------------------|
+| `***`    | As a financial advisor           | easily search for clients by name or other criteria     | quickly access their information                     | 
 
-*{More to be added}*
+#### [Epic] As a financial advisor, I can manage my client’s financial goals
+| Priority | As a …​                          | I can …​                                                 | So that I can…​                                      |
+|----------|----------------------------------|----------------------------------------------------------|------------------------------------------------------|
+| `***`    | As a financial advisor           | create and store client profiles                         | easily access their information                      |
+| `***`    | As a financial advisor           | view all my clients' financial information in one place  | make comparisons and analyze their financial status  |
+| `***`    | As a financial advisor           | add and update client financial goals                    | have a clear understanding of their objectives       |
+| `***`    | As a financial advisor           | remove client’s information from my client list          | have a well-updated contact list                     |
+| `**`     | As a financial advisor           | track my client interactions and notes                   | have a clear history of my advising sessions         |
+
+
+##### [Epic] As a financial advisor, I can manage my client investment and insurance plans
+| Priority | As a …​                          | I can …​                                                 | So that I can…​                                                                              |
+|----------|----------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | keep track of my clients' investment and insurance plans | provide relevant advice                                                                      |
+| `***`    | As a financial advisor           | input my clients' insurance and investment plans         | ensure they have adequate coverage and help them find more cost-effective options if needed  |
+| `***`    | As a financial advisor           | remove my client’s insurance and investment plans        | have a well-updated plan list                                                                |
+
+#### [Epic] As a financial advisor, I can create reminders for myself and clients
+| Priority | As a …​                          | I can …​                                                        | So that I can…​                        |
+|----------|----------------------------------|-----------------------------------------------------------------|----------------------------------------|
+| `***`    | As a financial advisor           | set reminders for follow-up tasks and future advising sessions  | don't miss any important appointments  |
+| `***`    | As a financial advisor           | send automated reminders to clients about their financial goals | stay on track.                         |
+
+### **General**
+| Priority | As a …​                          | I can …​                                                | So that I can…​                                                             |
+|----------|----------------------------------|---------------------------------------------------------|-----------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | generate reports on client financial information        | analyze trends and make informed decisions                                  |
+| `***`    | As a financial advisor           | share client information with colleagues                | collaborate and provide the best advice.                                    |
+| `***`    | As a financial advisor           | store client financial documents securely               | ensure their sensitive information is protected                             |
+| `***`    | As a financial advisor           | access the platform on any device                       | manage my clients' information even when I am on-the-go                     |
+| `***`    | As a financial advisor           | create custom categories for client information         | I can organize and categorize their data in a way that makes sense to me    |
+| `***`    | As a financial advisor           | view a summary of my clients' overall financial health  | I can quickly assess their current situation and make recommendations       |
+| `***`    | As a financial advisor           | access real-time market data                            | make informed recommendations and stay up-to-date on current market trends. |
+
+### **Novice**
+| Priority | As a …​                          | I can …​                                                   | So that I can…​                                                                       |
+|----------|----------------------------------|------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | view clients' information in a visual and intuitive format | quickly understand their financial situation and recommend a plan of action           |
+| `***`    | As a financial advisor           | have access to a library of pre-written financial plans    | provide my clients with best-practices advice and recommendations                     |
+| `***`    | As a financial advisor           | track my clients' investment performance                   | monitor the success of my advice and identify areas for improvement.                  |
+
+### **Expert**
+| Priority | As a …​                          | I can …​                                                                            | So that I can…​                                                          |
+|----------|----------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `***`    | As a financial advisor           | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice                            |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Advis.io` and the **Actor** is the `user (Financial Advisor)`, unless
+specified otherwise)
 
-**Use case: Delete a client**
+**Use case: Manage client’s personal information**
 
 **MSS**
 
-1.  User requests to list clients
-2.  AddressBook shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  AddressBook deletes the client
+1. Actor inputs the client’s personal information
+2. System confirms and creates the client profile
+3. Use case ends
 
-    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The financial advisor input the wrong format for the client’s information and tags
+* 1b. The system requests for the actor to input the correct data.
+* 1c. Steps 1a-1b are repeated until the data entered are correct.
+* 1d. Use case resumes from step 2.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: Manage client’s policy**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. Actor inputs client’s personal information
+2. System confirms and creates the client profile
+3. Use case ends
 
-*{More to be added}*
+**Use case: Create Reminder**
+
+**MSS**
+
+1. The financial advisor selects the client for whom they want to create a reminder.
+2. The system requests for the type of reminder and the date and time it should be set for.
+3. The financial advisor enters the details of the reminder.
+4. The system saves the reminder and confirms the creation of the reminder.
+5. Use case ends.
+
+**Extensions**
+
+* 3a. The financial advisor enters an invalid type of reminder or an invalid date and time.
+* 3a1. The system requests for the correct data.
+* 3a2. The financial advisor enters the correct data.
+* 3a3. Steps 3a1-3a2 are repeated until the data entered are correct.
+* 3a4. Use case resumes from step 4.
+
+
+**Use case: Find Client**
+
+**MSS**
+
+1. The financial advisor enters the name, account number, or any other relevant information of the client they want to
+   find.
+2. The system searches for the client based on the entered information.
+3. The system displays a list of clients matching the entered information.
+4. The financial advisor selects the desired client from the list.
+5. The system displays the client's information and account details.
+6. Use case ends.
+
+
+**Extensions**
+
+* 2a. The system does not find any clients matching the entered information.
+* 2a1. The system displays a message indicating that no clients were found and prompts the financial advisor to enter
+  different information.
+* 2a2. Use case resumes from step 1.
+
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  As a financial advisor, I can access the platform offline, so that I can manage client information even when I don't have an internet connection.
+5.  As a user, I want the application to have a user-friendly interface, so that I can navigate the platform with ease and efficiency.
+6.  As a user, I want the application to be easily scalable, so that it can handle a growing client base.
 
 *{More to be added}*
 
@@ -342,33 +428,33 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a client
+### Deleting a person
 
-1. Deleting a client while all clients are being shown
+1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -376,6 +462,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
