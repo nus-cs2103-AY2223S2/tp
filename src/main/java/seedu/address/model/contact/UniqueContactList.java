@@ -88,13 +88,13 @@ public class UniqueContactList implements Iterable<Contact> {
      * Replaces the contents of this list with {@code Contacts}.
      * {@code Contacts} must not contain duplicate Contacts.
      */
-    public void setContacts(List<Contact> Contacts) {
-        requireAllNonNull(Contacts);
-        if (!ContactsAreUnique(Contacts)) {
+    public void setContacts(List<Contact> contacts) {
+        requireAllNonNull(contacts);
+        if (!ContactsAreUnique(contacts)) {
             throw new DuplicateContactException();
         }
 
-        internalList.setAll(Contacts);
+        internalList.setAll(contacts);
     }
 
     /**
@@ -124,10 +124,10 @@ public class UniqueContactList implements Iterable<Contact> {
     /**
      * Returns true if {@code Contacts} contains only unique Contacts.
      */
-    private boolean ContactsAreUnique(List<Contact> Contacts) {
-        for (int i = 0; i < Contacts.size() - 1; i++) {
-            for (int j = i + 1; j < Contacts.size(); j++) {
-                if (Contacts.get(i).isSameContact(Contacts.get(j))) {
+    private boolean ContactsAreUnique(List<Contact> contacts) {
+        for (int i = 0; i < contacts.size() - 1; i++) {
+            for (int j = i + 1; j < contacts.size(); j++) {
+                if (contacts.get(i).isSameContact(contacts.get(j))) {
                     return false;
                 }
             }
