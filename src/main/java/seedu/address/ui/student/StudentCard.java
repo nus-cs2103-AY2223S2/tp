@@ -62,6 +62,8 @@ public class StudentCard extends UiPart<Region>  {
     private Label cca;
     @FXML
     private Circle circle;
+    @FXML
+    private Label className;
 
 
     /**
@@ -71,6 +73,7 @@ public class StudentCard extends UiPart<Region>  {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
+        className.setText(student.getStudentClass().value);
         index.setText(student.getIndexNumber().value);
         sex.setText(student.getSex().value);
         name.setText(student.getName().fullName);

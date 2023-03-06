@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -173,5 +174,41 @@ public class ParserUtil {
             throw new ParseException(CCA.MESSAGE_CONSTRAINTS);
         }
         return new CCA(trimmedCca);
+    }
+
+    public static StudentClass parseStudentClass(String sc) throws ParseException {
+        requireNonNull(sc);
+        String trimmedSc = sc.trim();
+        if (!StudentClass.isValidStudentClass(trimmedSc)) {
+            throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentClass(trimmedSc);
+    }
+    public static Test parseTest(String test) throws ParseException {
+        requireNonNull(test);
+        String trimmedTest = test.trim();
+        if (!Test.isValidTest(trimmedTest)) {
+            throw new ParseException(Test.MESSAGE_CONSTRAINTS);
+        }
+        //Please edit this
+        return new Test(trimmedTest, LocalDate.now(), 20, 100, 50);
+    }
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        //Please edit this
+        return new Attendance(attendance);
+    }
+    public static Homework parseHomework(String homework) throws ParseException {
+        requireNonNull(homework);
+        String trimmedHomework = homework.trim();
+        if (!Homework.isValidHomework(trimmedHomework)) {
+            throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
+        }
+        //Please edit this
+        return new Homework(homework, LocalDate.now(), 20,100,true);
     }
 }

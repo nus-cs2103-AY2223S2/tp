@@ -22,9 +22,14 @@ public class Student extends Person {
     private final Age age;
     private final Image image;
     private final CCA cca;
+    private final StudentClass sc;
+    private Attendance attendance;
+    private Homework homework;
+    private Test test;
 
-    public Student(Name name, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age, Image image, Email email, Phone phone,
-                   CCA cca, Address address, Set<Tag> tags) {
+
+    public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age, Image image, Email email, Phone phone,
+                   CCA cca, Address address, Attendance attendance, Homework homework, Test test, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
@@ -32,6 +37,10 @@ public class Student extends Person {
         this.age = age;
         this.image = image;
         this.cca  = cca;
+        this.sc = sc;
+        this.attendance = attendance;
+        this.homework = homework;
+        this.test = test;
     }
 
     public IndexNumber getIndexNumber() {
@@ -52,6 +61,7 @@ public class Student extends Person {
     public CCA getCCA() {
         return cca;
     }
+    public StudentClass getStudentClass() { return sc; }
 
     @Override
     public boolean equals(Object other) {
@@ -65,6 +75,7 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
+                && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getIndexNumber().equals(getIndexNumber())
                 && otherStudent.getSex().equals(getSex())
                 && otherStudent.getParentName().equals(getParentName())
@@ -80,6 +91,8 @@ public class Student extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Student Class: ")
+                .append(getStudentClass())
                 .append("; Index Number: ")
                 .append(getIndexNumber())
                 .append("; Sex: ")

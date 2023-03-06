@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = "student " + COMMAND_WORD + ": Adds a student to the address book. "
+    public static final String MESSAGE_USAGE = "student CLASS_NAME " +  COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER "
@@ -24,9 +24,9 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
             + PREFIX_CCA + "CCA "
             + "]\n"
-            + "Example: " + "student " + COMMAND_WORD + " "
+            + "Example: " + "student 1A " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Cow "
-            + PREFIX_INDEXNUMBER + "25 "
+            + PREFIX_INDEXNUMBER + "13 "
             + PREFIX_SEX + "M "
             + PREFIX_PARENTNAME + "Tan Ah Choi "
             + PREFIX_AGESTUDENT + "14 "

@@ -37,11 +37,15 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-                <Text text = "Index: " fill="burlywood" />
+                <Text text = "Index:" fill="burlywood" />
                 <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
                 <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
             </HBox>
             <FlowPane fx:id="tags" />
+            <HBox>
+                <Text text = "Class:    " fill="burlywood" />
+                <Label fx:id="className" styleClass="cell_small_label" text="\$class" />
+            </HBox>
             <HBox>
                 <Text text = "Parent/Next of Kin Name:    " fill="burlywood" />
                 <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,15 @@ public class ArgumentMultimap {
                 case "a/":
                     Optional<String> missingAddress = Optional.of("Insert student Address here!");
                     return missingAddress;
+                case "att/":
+                    Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
+                    return missingAttendance;
+                case "hw/":
+                    Optional<String> missingHomework = Optional.of("Insert student homework here!");
+                    return missingHomework;
+                case "test/":
+                    Optional<String> missingTest = Optional.of("Insert student test here!");
+                    return missingTest;
                 default:
                     List<String> values = getAllValues(prefix);
                     return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
