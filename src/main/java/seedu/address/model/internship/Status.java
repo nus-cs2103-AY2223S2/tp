@@ -57,7 +57,7 @@ public class Status {
      */
     @Override
     public String toString() {
-        return fullStatus;
+        return fullStatus.toUpperCase();
     }
 
 
