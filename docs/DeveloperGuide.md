@@ -317,6 +317,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  User requests to list patients.
+2.  Medimate shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  Medimate deletes the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Medimate shows an error message.
+
+      Use case resumes at step 2.
+
+*{More to be added}*
+
 **Use case: Edit a patient particulars**
 
 **MSS**
@@ -325,22 +351,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MediMate ask for type of details.
 3. User chose the type and enter the new details.
 4. MediMate record the details.
-  Use case ends.
+   
+   Use case ends.
+
 **Extensions**
 
 * 1a. User enter wrong input format. 
   * 1a1. Medimate give correct format and ask user to input again.
   * 1a2. User enters the input with correct format.
-  Use Case ends.
+    
+    Use Case ends.
   
 * 1b. Patient does not exist.
     * 1b1. Medimate reminds user to check for patient name.
     * 1b2. User enters the input with correct format
-    Use Case ends.
+      
+      Use Case ends.
       
 * 3a. User enter Invalid type.
     * 3a1. Medimate give the available types and ask user to input again.
-    Use Case ends.
+      
+      Use Case ends.
 
 **Use case: Find a patient particulars**
 
@@ -350,13 +381,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Medimate ask for the type of details.
 3. User chose the type of details.
 4. Medimate display the patient.
-  Use case ends.
-   **Extensions**
+   
+   Use case ends.
+
+**Extensions**
 
 * 1a. User enter wrong input format.
     * 1a1. Medimate give correct format and ask user to input again.
     * 1a2. User enters the input with correct format.
+      
       Use Case ends.
+
 
 * 1b. Patient does not exist.
     * 1b1. Medimate reminds user to check for patient name.
@@ -367,13 +402,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *  3a. User chose Invalid type
    * 3a1. Medimate give the available types and ask user to input again
-      Use Case ends.
+     Use Case ends.
+
+
+**Use case:  Add a patient**
+
+**MSS**
+
+1.  User requests to add a patient and inputs his information.
+2.  Medimate adds the patient.
+
+    Use Case ends.
+
+**Extensions**
+
+* 1a. User input format is wrong.
+  * 1a1.  Medimate asks User for another correct input of the patient’s information.
+  * 1a2. User inputs a new line of patient’s information with the correct format.
+    
+    Use Case resumes at step 2.
+
+**Use case:  List patients by their booked schedules**
+
+**MSS**
+
+1. User requests to list all patients based on their scheduled time
+2. Medimate displays a list of all patients sorted in order based on scheduled time
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
 
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
