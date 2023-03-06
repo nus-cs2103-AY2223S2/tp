@@ -80,8 +80,6 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private CareFlowModel initModelManager(CareFlowStorage careFlowStorage, ReadOnlyUserPrefs userPrefs) {
-//        Optional<ReadOnlyAddressBook> addressBookOptional;
-//        ReadOnlyAddressBook initialData;
         Optional<ReadOnlyPatientRecord> patientRecordOptional;
         Optional<ReadOnlyDrugInventory> drugInventoryOptional;
 
