@@ -18,7 +18,7 @@ import seedu.address.logic.parser.patientparser.PatientParser;
  * operation type. ie. operation type can be "p", "d" or "g"
  */
 public class CareFlowParser {
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<opType>[pdg])(?<commandWord>\\S+)"
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<opType>[pdg])\\s(?<commandWord>\\S+)"
             + "(?<arguments>.*)");
 
     /**

@@ -23,7 +23,7 @@ public class FindCommand extends Command {
             + ": Finds all drug(s) whose trade name contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " Panadol";
 
     private final TradeNameContainsKeywordsPredicate predicate;
 
