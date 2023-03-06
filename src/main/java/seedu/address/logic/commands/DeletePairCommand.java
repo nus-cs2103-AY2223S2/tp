@@ -12,7 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -64,13 +65,10 @@ public class DeletePairCommand extends Command {
 
         try {
             elderly = model.getElderly(elderlyNric);
-        } catch (PersonNotFoundException e) {
-            throw new CommandException(MESSAGE_ELDERLY_NOT_FOUND);
-        }
-
-        try {
             volunteer = model.getVolunteer(volunteerNric);
-        } catch (PersonNotFoundException e) {
+        } catch (ElderlyNotFoundException e) {
+            throw new CommandException(MESSAGE_ELDERLY_NOT_FOUND);
+        } catch (VolunteerNotFoundException e) {
             throw new CommandException(MESSAGE_VOLUNTEER_NOT_FOUND);
         }
 

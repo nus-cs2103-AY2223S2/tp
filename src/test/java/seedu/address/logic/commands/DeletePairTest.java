@@ -21,7 +21,8 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.exceptions.PairNotFoundException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.PairBuilder;
 
@@ -117,7 +118,7 @@ public class DeletePairTest {
             if (pair.getElderly().getNric().equals(nric)) {
                 return pair.getElderly();
             } else {
-                throw new PersonNotFoundException();
+                throw new ElderlyNotFoundException();
             }
         }
 
@@ -126,7 +127,7 @@ public class DeletePairTest {
             if (pair.getVolunteer().getNric().equals(nric)) {
                 return pair.getVolunteer();
             } else {
-                throw new PersonNotFoundException();
+                throw new VolunteerNotFoundException();
             }
         }
 
