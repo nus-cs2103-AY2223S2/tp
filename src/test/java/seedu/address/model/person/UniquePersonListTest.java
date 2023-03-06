@@ -204,7 +204,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(CARL);
         uniquePersonList.add(EMPTY);
-        uniquePersonList.add(BENSON);        
+        uniquePersonList.add(BENSON);
         UniquePersonList sortByEmailList = new UniquePersonList();
         sortByEmailList.add(ALICE);
         sortByEmailList.add(CARL);
