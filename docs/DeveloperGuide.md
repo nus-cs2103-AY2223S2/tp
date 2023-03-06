@@ -317,30 +317,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Edit a patient particulars**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
+1. User request to Edit a patient details.
+2. MediMate ask for type of details.
+3. User chose the type and enter the new details.
+4. MediMate record the details.
+  Use case ends.
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enter wrong input format. 
+  * 1a1. Medimate give correct format and ask user to input again.
+  * 1a2. User enters the input with correct format.
+  Use Case ends.
+  
+* 1b. Patient does not exist.
+    * 1b1. Medimate reminds user to check for patient name.
+    * 1b2. User enters the input with correct format
+    Use Case ends.
+      
+* 3a. User enter Invalid type.
+    * 3a1. Medimate give the available types and ask user to input again.
+    Use Case ends.
 
+**Use case: Find a patient particulars**
+
+**MSS**
+
+1. User request to find a patient using his details.
+2. Medimate ask for the type of details.
+3. User chose the type of details.
+4. Medimate display the patient.
   Use case ends.
+   **Extensions**
 
-* 3a. The given index is invalid.
+* 1a. User enter wrong input format.
+    * 1a1. Medimate give correct format and ask user to input again.
+    * 1a2. User enters the input with correct format.
+      Use Case ends.
 
-    * 3a1. AddressBook shows an error message.
+* 1b. Patient does not exist.
+    * 1b1. Medimate reminds user to check for patient name.
+    * 1b2. User enter the input with correct format. 
+   
+      Use Case ends.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+*  3a. User chose Invalid type
+   * 3a1. Medimate give the available types and ask user to input again
+      Use Case ends.
+
 
 ### Non-Functional Requirements
 
