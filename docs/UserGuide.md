@@ -19,6 +19,11 @@ _Details coming soon ..._
     * unmark
     * exit
 1. [Assignments](#Assignments)
+    * add
+    * delete
+    * grade
+    * ungrade
+    * exit
 1. [Class List](#Class-List)
 1. [CSV Parser](#csv-parser)
 
@@ -51,6 +56,47 @@ Exits the attendance system.<br>
 Format: `exit`
 
 ## Assignments
+
+Directs you to the assignment system. Within the assignment system, you can call:
+* add
+* delete
+* grade
+* ungrade
+* list
+* exit
+
+### Add Assignment: `add`
+Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
+<br>
+Format: `Format: add {name} {start_date} {end_date} {percent_weightage} {total_marks}`<br>
+Example:
+* `add lab1 01-03-2023 15-03-2023 20 100`
+
+### Delete Assignment: `delete`
+Deletes the assignment of assignment_id you provided.<br>
+Format: `delete {assignment_id}`<br>
+Example:
+* `delete 1`
+
+### Grade Assignment: `grade`
+Grades the assignment of assignment_id and student_id with a score you provide.<br>
+Format: `grade {assignment_id} {student_id} {score}`<br>
+Example:
+* `grade 1 2 20`
+
+### Ungrade Assignment: `ungrade`
+Removes the grade of the assignment of assignment_id and student_id.<br>
+Format: `ungrade {assignment_id} {student_id}`<br>
+Example:
+* `ungrade 1 2`
+
+### List all assignments: `list`
+Lists all assignments and their respective information
+Format: `list`
+
+### Exit assignment system: `exit`
+Exits the assignment system.<br>
+Format: `exit`
 
 ## Class List
 `class_list`
