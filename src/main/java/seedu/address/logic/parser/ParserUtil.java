@@ -9,7 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.BusinessSize;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -92,6 +96,11 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String businessSize} into an {@code BusinessSize}.
+     *
+     * @throws ParseException if the given {@code businessSize} is invalid.
+     */
     public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
         requireNonNull(businessSize);
         if (!BusinessSize.isValidBusinessSize(businessSize)) {
