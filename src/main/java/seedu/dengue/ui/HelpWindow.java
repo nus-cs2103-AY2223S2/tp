@@ -16,7 +16,18 @@ import seedu.dengue.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide:\n" + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "The following are the available commands for this application:\n"
+            + "add, list, edit, find, delete, clear, exit\n"
+            + "Formatting:\n"
+            + "add: add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE\n"
+            + "list: list\n"
+            + "edit: edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE]\n"
+            + "find: find KEYWORD [MORE_KEYWORDS]\n"
+            + "delete: delete INDEX\n"
+            + "clear: clear\n"
+            + "exit: exit\n"
+            + "If you want more information, you can refer to the user guide:\n"
+            + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
