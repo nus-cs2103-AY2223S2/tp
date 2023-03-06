@@ -54,4 +54,5 @@ public class TagCommand extends Command {
                 || (other instanceof TagCommand // instanceof handles nulls
                 && targetIndex.equals(((TagCommand) other).targetIndex) && tagToAdd.equals(((TagCommand) other).tagToAdd));
     }
+    
 }

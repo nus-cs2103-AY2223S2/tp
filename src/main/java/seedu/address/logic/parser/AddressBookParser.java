@@ -72,7 +72,7 @@ public class AddressBookParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
-        
+
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
 
