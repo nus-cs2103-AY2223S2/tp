@@ -80,10 +80,10 @@ public class PersonBuilder {
         this.phone = new Phone(phone);
         return this;
     }
+    
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
