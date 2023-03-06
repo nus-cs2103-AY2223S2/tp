@@ -20,7 +20,6 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-//  private static final String ICON_APPLICATION = "/images/cookHub.png";
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
