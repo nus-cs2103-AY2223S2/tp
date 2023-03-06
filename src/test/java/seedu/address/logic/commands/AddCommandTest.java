@@ -38,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validClient);
         ModelStub modelStub = new ModelStubWithPerson(validClient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the client being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Client> personsAdded = new ArrayList<>();
+        final ArrayList<Client> clientsAdded = new ArrayList<>();
 
         @Override
         public boolean hasClient(Client client) {
             requireNonNull(client);
-            return personsAdded.stream().anyMatch(client::isSameClient);
+            return clientsAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override
         public void addClient(Client client) {
             requireNonNull(client);
-            personsAdded.add(client);
+            clientsAdded.add(client);
         }
 
         @Override
