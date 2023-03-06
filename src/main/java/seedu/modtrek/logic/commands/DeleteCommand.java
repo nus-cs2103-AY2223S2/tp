@@ -6,7 +6,6 @@ import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
@@ -53,11 +52,11 @@ public class DeleteCommand extends Command {
     /**
      * Instantiates a new Delete command.
      *
-     * @param isALl       the is a ll
+     * @param isAll a flag for whether it is a "delete all" command
      * @param targetCodes the target codes
      */
-    public DeleteCommand(boolean isALl, Set<Code> targetCodes) {
-        this.isAll = isALl;
+    public DeleteCommand(boolean isAll, Set<Code> targetCodes) {
+        this.isAll = isAll;
         this.targetCodes = targetCodes;
     }
 
@@ -69,8 +68,6 @@ public class DeleteCommand extends Command {
             model.setDegreeProgression(new DegreeProgression());
             return new CommandResult(MESSAGE_DELETE_ALL_MODULES_SUCCESS);
         }
-
-        ObservableList<Module> lastShownList = model.getFilteredModuleList();
 
         Set<Code> codesFound = new HashSet<>();
         Set<Code> codesNotFound = new HashSet<>();
