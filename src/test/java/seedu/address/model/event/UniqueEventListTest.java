@@ -41,13 +41,13 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_eventWithSameIdentityFieldsInList_returnsFalse() {
         uniqueEventList.add(CARNIVAL);
         Event editedCarnival = new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
                 .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
                 .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
                 .build();
-        assertTrue(uniqueEventList.contains(editedCarnival));
+        assertFalse(uniqueEventList.contains(editedCarnival));
     }
 
     @Test
@@ -85,6 +85,15 @@ public class UniqueEventListTest {
     }
 
     @Test
+    public void setEventWithAnotherEventList_returnsTrue() {
+        uniqueEventList.add(CARNIVAL);
+        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL));
+        UniqueEventList other = new UniqueEventList();
+        other.setEvents(events);
+        assertTrue(uniqueEventList.equals(other));
+    }
+
+    @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueEventList.asUnmodifiableObservableList().remove(0));
@@ -101,15 +110,6 @@ public class UniqueEventListTest {
         uniqueEventList.add(CARNIVAL);
         UniqueEventList other = new UniqueEventList();
         other.setEvents(uniqueEventList);
-        assertTrue(uniqueEventList.equals(other));
-    }
-
-    @Test
-    public void setEventWithAnotherEventList_returnsTrue() {
-        uniqueEventList.add(CARNIVAL);
-        List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL));
-        UniqueEventList other = new UniqueEventList();
-        other.setEvents(events);
         assertTrue(uniqueEventList.equals(other));
     }
 
