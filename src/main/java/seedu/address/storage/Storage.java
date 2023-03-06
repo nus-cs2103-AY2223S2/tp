@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.flight.Flight;
 
 /**
  * API of the Storage component
@@ -32,6 +33,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
+    // ================ Pilot methods ==============================
+
     /**
      * Returns the path to the pilot manager file.
      *
@@ -47,12 +50,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Optional<? extends ReadOnlyIdentifiableManager<Pilot>> readPilotManager() throws DataConversionException,
                                                          IOException;
 
-    /* Location related methods */
-
     /**
      * Saves the pilot manager to the {@code Storage::getLocationManagerFilePath}
      */
     void savePilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) throws IOException;
+
+    // ================ Location methods ==============================
 
     /**
      * Retrieves the file path to location manager.
@@ -74,4 +77,32 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @throws IOException when the file cannot be saved
      */
     void saveLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) throws IOException;
+
+    // ================ Flight methods ==============================
+
+    /**
+     * Returns the path to the flight manager file.
+     *
+     * @return the path to the flight manager file.
+     */
+    Path getFlightManagerFilePath();
+
+    /**
+     * Reads the flight manager from the {@code Storage::getFlightManagerFilePath}
+     *
+     * @return the flight manager
+     * @throws DataConversionException when the file cannot be converted
+     * @throws IOException when the file cannot be read
+     */
+    Optional<? extends ReadOnlyIdentifiableManager<Flight>> readFlightManager() throws DataConversionException,
+            IOException;
+
+    /**
+     * Saves the flight manager to the {@code Storage::getFlightManagerFilePath}
+     *
+     * @param flightManager the flight manager
+     * @throws IOException when the file cannot be saved
+     */
+    void saveFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager) throws IOException;
+
 }

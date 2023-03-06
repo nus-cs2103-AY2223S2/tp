@@ -22,6 +22,17 @@ public class Flight implements Identifiable {
         this.id = UUID.randomUUID().toString();
     }
 
+    /**
+     * Creates a flight with a given id as its id
+     *
+     * @param id the id for the flight
+     * @param code the code of the flight
+     */
+    public Flight(String id, String code) {
+        this.code = code;
+        this.id = id;
+    }
+
     public String getCode() {
         return this.code;
     }

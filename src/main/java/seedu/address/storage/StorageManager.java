@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.flight.Flight;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
 
@@ -25,6 +26,7 @@ public class StorageManager implements Storage {
 
     private final IdentifiableStorage<Pilot> pilotStorage;
     private final IdentifiableStorage<Location> locationStorage;
+    private final IdentifiableStorage<Flight> flightStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -32,11 +34,13 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           IdentifiableStorage<Pilot> pilotStorage,
-                          IdentifiableStorage<Location> locationStorage) {
+                          IdentifiableStorage<Location> locationStorage,
+                          IdentifiableStorage<Flight> flightStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.pilotStorage = pilotStorage;
         this.locationStorage = locationStorage;
+        this.flightStorage = flightStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -173,5 +177,49 @@ public class StorageManager implements Storage {
             throws IOException {
         logger.fine("Attempting to saving locations to data file: " + filePath);
         locationStorage.save(locationManager, filePath);
+    }
+
+    // ================ Flight methods ==============================
+
+    @Override
+    public Path getFlightManagerFilePath() {
+        return flightStorage.getPath();
+    }
+
+    @Override
+    public Optional<? extends ReadOnlyIdentifiableManager<Flight>> readFlightManager()
+            throws DataConversionException, IOException {
+        return readFlightManager(flightStorage.getPath());
+    }
+
+    /**
+     * Reads the flight manager from the given file path.
+     *
+     * @param filePath the file path to read from
+     * @return the flight manager
+     * @throws DataConversionException if the file is not in the correct format.
+     * @throws IOException             if there was any problem when reading from the file.
+     */
+    public Optional<? extends ReadOnlyIdentifiableManager<Flight>> readFlightManager(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return flightStorage.read(filePath);
+    }
+
+    @Override
+    public void saveFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager) throws IOException {
+        saveFlightManager(flightManager, flightStorage.getPath());
+    }
+
+    /**
+     * Saves the flight manager to the given file path.
+     *
+     * @param flightManager the flight manager to save
+     * @param filePath     the file path to save to
+     * @throws IOException if there was any problem writing to the file.
+     */
+    public void saveFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager, Path filePath) throws IOException {
+        logger.fine("Attempting to saving flights to data file: " + filePath);
+        flightStorage.save(flightManager, filePath);
     }
 }
