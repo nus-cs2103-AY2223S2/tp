@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -150,7 +150,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single client.
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Client client;
@@ -163,12 +163,12 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Client client) {
             requireNonNull(client);
-            return this.client.isSamePerson(client);
+            return this.client.isSameClient(client);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the client being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Client> personsAdded = new ArrayList<>();
@@ -176,7 +176,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Client client) {
             requireNonNull(client);
-            return personsAdded.stream().anyMatch(client::isSamePerson);
+            return personsAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override

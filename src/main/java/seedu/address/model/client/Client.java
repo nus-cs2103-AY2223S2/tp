@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
@@ -61,10 +61,10 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
      */
-    public boolean isSamePerson(Client otherClient) {
+    public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
@@ -74,8 +74,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
      */
     @Override
     public boolean equals(Object other) {

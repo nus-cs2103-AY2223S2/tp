@@ -8,10 +8,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of clients.
  */
 public class ClientListPanel extends UiPart<Region> {
     private static final String FXML = "ClientListPanel.fxml";
@@ -21,7 +21,7 @@ public class ClientListPanel extends UiPart<Region> {
     private ListView<Client> clientListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
     public ClientListPanel(ObservableList<Client> clientList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ClientListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
      */
     class ClientListViewCell extends ListCell<Client> {
         @Override

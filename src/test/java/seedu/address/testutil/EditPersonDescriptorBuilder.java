@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.*;
+import seedu.address.model.client.Client;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code client}'s details
      */
     public EditPersonDescriptorBuilder(Client client) {
         descriptor = new EditPersonDescriptor();

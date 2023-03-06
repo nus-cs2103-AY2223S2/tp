@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Client}.
  */
 public class ClientCard extends UiPart<Region> {
 
@@ -42,7 +42,7 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
  * The API of the Model component.
@@ -53,34 +53,34 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     boolean hasPerson(Client client);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given client.
+     * The client must exist in the address book.
      */
     void deletePerson(Client target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given client.
+     * {@code client} must not already exist in the address book.
      */
     void addPerson(Client client);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given client {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The client identity of {@code editedPerson} must not be the same as another existing client in the address book.
      */
     void setPerson(Client target, Client editedClient);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Client> predicate);
