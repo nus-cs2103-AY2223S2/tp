@@ -308,28 +308,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. PlanEase detects the event description is missing.
 
-  - 1a1. PlanEase prompts User of invalid inputs and requests for the event description.
+  - 1a1. PlanEase prompts User of invalid inputs.
 
   Use case ends.
 
 - 1b. PlanEase detects that the datetime range or format is not valid.
 
-  - 1b1. PlanEase prompts User of invalid inputs and requests for valid datetime inputs.
+  - 1b1. PlanEase prompts User of invalid inputs.
 
   Use case ends.
   
 - 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
 
-  - 1c1. PlanEase prompts User of invalid number of datetime inputs and requests for only 2 datetime inputs.
+  - 1c1. PlanEase prompts User of invalid number of datetime inputs.
 
   Use case ends.
   
-- 1d. PlanEase detects that the User has used invalid tag(s).
+- 1d. PlanEase detects that the User has used invalid prefix(es).
 
-  - 1d1. PlanEase prompts User of invalid tag(s) used and requests for valid input.
+  - 1d1. PlanEase prompts User of invalid prefix(es) used.
 
   Use case ends.
 
+- 1e. PlanEase detects that event already exist(s).
+
+  - 1e1. PlanEase prompts User of duplicate event used.
+
+  Use case ends.
+  
 <br>
 
 **Use case: List all events**
@@ -358,7 +364,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 1a1. PlanEase shows an error message.
 
-  Use case ends
+  Use case ends.
 
 <br>
 
@@ -377,13 +383,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 1a1. PlanEase shows an error message.
 
-  Use case ends
+  Use case ends.
 
 - 1b. The given contact name exists in the address book.
 
   - 1b1. PlanEase shows an error message.
 
-  Use case ends
+  Use case ends.
+  
+- 1c. The prefix(es) used are invalid.
+
+  - 1c1. PlanEase shows an error message.
+
+  Use case ends.
   
 
 ### Non-Functional Requirements
