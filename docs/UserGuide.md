@@ -30,116 +30,114 @@ Some example commands you can try:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.e.g. if you specify  `p/12341234 p/56785678`, only  `p/56785678`  will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as  `help`,  `list`,  `exit`  and  `clear`) will be ignored. e.g. if the command specifies  `help 123`, it will be interpreted as  `help`.
 
-## [features below are coming soon]
-
-## Viewing help
+## Viewing help [coming soon]
 
 Type **`help`**  and press Enter. This will open the help window to show all the commands available.
 
-## Post a new job listing
+## Post a new job listing [coming soon]
 
 Type **`new`**
 
 | Recruiter | post a new job posting | I can start attracting applicants. |
 | --------- | ---------------------- | ---------------------------------- |
 
-## Viewing job listing information
+## Viewing job listing information [coming soon]
 
 | Recruiter | list out information regarding a job offer | I can confirm the information |
 | --------- | ------------------------------------------ | ----------------------------- |
 
-## Editing a job listing
+## Editing a job listing [coming soon]
 
 | Recruiter | update job listings | it reflects the most updated information |
 | --------- | ------------------- | ---------------------------------------- |
 
-## Tagging a job listing
+## Tagging a job listing [coming soon]
 
 | Recruiter | add tag indicating relevant hiring department to the job listing |     |
 | --------- | ---------------------------------------------------------------- | --- |
 | Recruiter | view the tag attached to the job listing                         |     |
 | Recruiter | change the tag attached to the job listing                       |     |
 
-## Deleting a job listing
+## Deleting a job listing [coming soon]
 
 | Recruiter | delete outdated job listing                             | the information is accurate                  |
 | --------- | ------------------------------------------------------- | -------------------------------------------- |
 | Recruiter | auto-remove job listings from view if they are expired  | viewing job listings won't be cluttered      |
 | Recruiter | auto-remove job listings from view if vacancy fulfilled | the current list of jobs are still available |
 
-## Viewing all job listings
+## Viewing all job listings [coming soon]
 
 | Recruiter | view all job listings |     |
 | --------- | --------------------- | --- |
 
-## Searching job listings
+## Searching job listings [coming soon]
 
 | Recruiter | search job listings by title |     |
 | --------- | ---------------------------- | --- |
 
-## Sorting job listings
+## Sorting job listings [coming soon]
 
-### By expiry date
+### By expiry date [coming soon]
 
 | Recruiter | sort job listings by their expiry date | finding the most urgent job listing can be easy |
 | --------- | -------------------------------------- | ----------------------------------------------- |
 
-## Add applicant information
+## Add applicant information [coming soon]
 
 Type **`new`**
 
 | As a recruiter who receives thousands of applications each day. | store all information about my applicants | I don't lose track of any applicants. |
 | --------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
 
-## Viewing applicants for each job listing
+## Viewing applicants for each job listing [coming soon]
 
 | Recruiter | view applicants for each job listing | I know who has applied for each job |
 | --------- | ------------------------------------ | ----------------------------------- |
 
-## Adding applicants to each job listing
+## Adding applicants to each job listing [coming soon]
 
 | Recruiter | add applicants to job listing                                   |                                         |
 | --------- | --------------------------------------------------------------- | --------------------------------------- |
 | Recruiter | prevent applicants from applying to the same job more than once | the list of applicants is not cluttered |
 
-## Viewing applicant details
+## Viewing applicant details [coming soon]
 
 | Recruiter | view applicant details | I can make sure it’s updated |
 | --------- | ---------------------- | ---------------------------- |
 
-## Removing applicants from each job listing
+## Removing applicants from each job listing [coming soon]
 
 | Recruiter | remove disqualified applicant | the database stays clean |
 | --------- | ----------------------------- | ------------------------ |
 
-## Updating applicant details and status
+## Updating applicant details and status [coming soon]
 
 | Recruiter | update applicant status  | it’s easy for me to track the progress of each applicant |
 | --------- | ------------------------ | -------------------------------------------------------- |
 | Recruiter | update applicant details | each applicant’s info is updated                         |
 
-## Viewing all applicants
+## Viewing all applicants [coming soon]
 
 | Recruiter | view all applicants |     |
 | --------- | ------------------- | --- |
 
-### By name
+### By name [coming soon]
 
-### By number of applicants
+### By number of applicants [coming soon]
 
-### By tag
+### By tag [coming soon]
 
 | A recruiter from a particular department | filter the job listings according to the tag |     |
 | ---------------------------------------- | -------------------------------------------- | --- |
 
-## Exiting the program
+## Exiting the program [coming soon]
 
-## Saving the data
+## Saving the data [coming soon]
 
 | Recruiter | come back to the programme and continue from where I left off | I won't lose my progress |
 | --------- | ------------------------------------------------------------- | ------------------------ |
 
-## Importing the data
+## Importing the data [coming soon]
 
 ---
 
