@@ -19,7 +19,9 @@ import trackr.model.AddressBook;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
+import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 import trackr.model.util.SampleDataUtil;
 import trackr.storage.AddressBookStorage;
@@ -75,22 +77,36 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyTaskList intitalTaskListData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            taskListOptional = storage.readTaskList();
+            if (!taskListOptional.isPresent()) {
+                logger.info("Task list data file not found. Will be starting with a sample TaskList.");
+            }
+            intitalTaskListData = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+
+            logger.warning("Task list data file not in the correct format. Will be starting with an empty TaskList");
+            initialTaskListData = new TaskList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+
+            logger.warning("Problem while reading from the task list file. Will be starting with an empty TaskList");
+            initialTaskListData = new TaskList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, intitalTaskListData, userPrefs);
     }
 
     private void initLogging(Config config) {
