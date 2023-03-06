@@ -81,7 +81,7 @@ public class ModelManager implements Model {
 
         this.planeManager = new IdentifiableManager<>(planeManager);
         filteredPlanes = new FilteredList<>(this.planeManager.getItemList());
-;
+
         itemsList = FXCollections.observableArrayList();
         setOperationMode(userPrefs.getOperationMode());
     }
@@ -91,8 +91,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
-                new IdentifiableManager<>(),
-                new IdentifiableManager<>(),
+                new IdentifiableManager<>(), new IdentifiableManager<>(),
                 new IdentifiableManager<>());
     }
 
@@ -422,7 +421,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredCrew.setPredicate(predicate);
     }
-
 
     //=========== Plane ========================================================
     @Override

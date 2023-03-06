@@ -247,7 +247,6 @@ public interface Model {
 
     void updateFilteredLocationList(Predicate<Location> predicate);
 
-
     /* Crew-related functions */
 
     /**
@@ -315,5 +314,4 @@ public interface Model {
     void setPlane(Plane target, Plane editedPlane);
     ObservableList<Plane> getFilteredPlaneList();
     void updateFilteredPlaneList(Predicate<Plane> predicate);
-
 }

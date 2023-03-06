@@ -72,12 +72,12 @@ public class MainApp extends Application {
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
         IdentifiableStorage<Location> locationStorage =
                 new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
-        IdentifiableStorage<Plane> planeStorage =
-                new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage, planeStorage);
         IdentifiableStorage<Crew> crewStorage =
                 new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage, crewStorage);
+        IdentifiableStorage<Plane> planeStorage =
+                new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage,
+                crewStorage, planeStorage);
 
         initLogging(config);
 
@@ -151,8 +151,7 @@ public class MainApp extends Application {
             planeManager = new IdentifiableManager<>();
         }
 
-        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, crewManager);
-        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, planeManager);
+        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, crewManager, planeManager);
     }
 
     private void initLogging(Config config) {
