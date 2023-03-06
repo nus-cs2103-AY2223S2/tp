@@ -59,4 +59,3 @@ We are a team based in the [School of Computing, National University of Singapor
 - Role: Developer
 - Responsibilities: Secretary
 - In-charge of: Department features
-
