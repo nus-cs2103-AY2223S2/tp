@@ -1,6 +1,11 @@
 package bookopedia.model.person;
 
-import static bookopedia.logic.commands.CommandTestUtil.*;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static bookopedia.testutil.Assert.assertThrows;
 import static bookopedia.testutil.TypicalPersons.ALICE;
 import static bookopedia.testutil.TypicalPersons.BOB;
