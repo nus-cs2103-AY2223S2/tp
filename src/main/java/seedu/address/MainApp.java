@@ -16,18 +16,27 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.IdentifiableManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.location.Location;
+import seedu.address.model.pilot.Pilot;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.IdentifiableStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.json.storage.JsonCrewManagerStorage;
+import seedu.address.storage.json.storage.JsonLocationManagerStorage;
+import seedu.address.storage.json.storage.JsonPilotManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +66,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        IdentifiableStorage<Pilot> pilotStorage =
+            new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
+        IdentifiableStorage<Location> locationStorage =
+                new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
+        IdentifiableStorage<Crew> crewStorage =
+                new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage, crewStorage);
 
         initLogging(config);
 
@@ -75,22 +90,55 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook addressBook;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            addressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            addressBook = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            addressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ReadOnlyIdentifiableManager<Pilot> pilotManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
+        ReadOnlyIdentifiableManager<Location> locationManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
+        ReadOnlyIdentifiableManager<Crew> crewManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Crew>> crewManagerOptional;
+
+        try {
+            pilotManagerOptional = storage.readPilotManager();
+            locationManagerOptional = storage.readLocationManager();
+            crewManagerOptional = storage.readCrewManager();
+            if (pilotManagerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample PilotManager");
+                pilotManager = new IdentifiableManager<>();
+                locationManager = new IdentifiableManager<>();
+                crewManager = new IdentifiableManager<>();
+            } else {
+                pilotManager = pilotManagerOptional.get();
+                locationManager = locationManagerOptional.get();
+                crewManager = crewManagerOptional.get();
+            }
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
+            pilotManager = new IdentifiableManager<>();
+            locationManager = new IdentifiableManager<>();
+            crewManager = new IdentifiableManager<>();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty PilotManager");
+            pilotManager = new IdentifiableManager<>();
+            locationManager = new IdentifiableManager<>();
+            crewManager = new IdentifiableManager<>();
+        }
+
+        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, crewManager);
     }
 
     private void initLogging(Config config) {
@@ -120,7 +168,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                               + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +196,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                               + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
