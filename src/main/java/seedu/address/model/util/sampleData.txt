@@ -5,7 +5,7 @@ Chun Ye|81516079|chunye@gmail.com|825 Upper Thomson Road|@chunye|Study|BT1101 CS
 Maxwell Neal|82103515|maxwellneal@gmail.com|50 Neil Road|@maxwellneal|Study|CS3216 CS1010 CS3223 CS3245 CS3281 CS2113T
 Clark Kee|81342028|clarkkee@gmail.com|10 Eu Tong Sen Street|@clarkkee|NUS|CS2107 CS3282 CE3102 BT2101 CS3244R CS3236
 Ang Djit Sun|82386142|angdjitsun@gmail.com|2450 Ang Mo Kio Avenue 8|@angdjitsun|NS|CS2101 CS3233 CS2309 CS3219 CS1231 CS2107
-Melania Walker|82724009|melaniawalker@gmail.com|Millenia Walk|@melaniawalker|Enemy|BT1101 IS2103 CS2108 BT2101 CS2102 CS3241R
+Melania Walker|82724009|melaniawalker@gmail.com|9 Raffles Blvd|@melaniawalker|Enemy|BT1101 IS2103 CS2108 BT2101 CS2102 CS3241R
 Kevin Ho|99997496|kevinho@gmail.com|900 Upper Serangoon Road|@kevinho|NUS|CS2220 CS3223 CS3242 CS3203 CE3165 CS3281
 Albert Blackmore|83218989|albertblackmore@gmail.com|2 Blackmore Drive|@albertblackmore|TA|CS3235 IS1103 CS3242 CE3132 CS2103 BT3101
 Pearl Outram|83340122|pearloutram@gmail.com|10 Outram Road|@pearloutram|Groupmate Study NUS|IS2103 CS3235 CE2407 IS2102 CE2409 CS3241R
@@ -23,7 +23,7 @@ Vernon Lee|84584193|vernonlee@gmail.com|90 Bartley Road|@vernonlee|CCA|CS3245 CS
 Albert Park|89760441|albertpark@gmail.com|2 Blackmore Drive|@albertpark|TA|CS2113T CE3115 IS3221 CS3241 BT2102 CE3116
 Wang Kok|84845775|wangkok@gmail.com|10 Sengkang Central|@wangkok|NUS|CE3155 CS1101S CS1020 CS3203 CE3165 CS3234
 Benjamin Coolen|85251110|benjamincoolen@gmail.com|31 Bencoolen Street|@benjamincoolen|TA|CS2106 CS1010R CS3242 CS2040 CS1101S CS3247
-Soon Teck|85371271|soonteck@gmail.com|Suntec City|@soonteck|Enemy|BT1101 CS1010XCP CS1020 CE3165 IS2101 CS3247
+Soon Teck|85371271|soonteck@gmail.com|3 Temasek Blvd|@soonteck|Enemy|BT1101 CS1010XCP CS1020 CE3165 IS2101 CS3247
 Zhang Yi|86392515|zhangyi@gmail.com|70 Airport Boulevard|@zhangyi||CS3230 CS3233 BT3102 CS1101S CE3116
 Sallim Mattar|86428763|sallimmattar@gmail.com|60 Merpati Road|@sallimmattar|TA|IS1103 CS3223 CS2105 CS3245R CS1010S CS3243
 Gwon Se Rang|86543689|gwonserang@gmail.com|600 Upper Serangoon Road|@gwonserang|CCA NUS|CE2112 CE3132 CS2108 IS2101 CS3281
@@ -44,12 +44,12 @@ Yio Chu Kang|88175384|yiochukang@gmail.com|3000 Ang Mo Kio Avenue 8|@yiochukang|
 Novena Thomson|88255530|novenathomson@gmail.com|250 Thomson Road|@novenathomson|NS|CE2155 CS1010R IS3221 IS3251 CE3165 CS2113
 Steven Tan|88474114|steventan@gmail.com|92 Stevens Road|@steventan|TA Study|CS3240 CS2101 CS3245R CS3234 CS2010 CS3247
 Ang Mo Kio|88491592|angmokio@gmail.com|2450 Ang Mo Kio Avenue 8|@angmokio|NS|CE2183 CS3241 BT2010 IS3103 CS3234 IS2101
-Illyas Alhaq|88713629|illyasalhaq@gmail.com|Elias Mall|@illyasalhaq|Enemy|CS2106 CS1010X CS1010 BT2010 CS3219 CS3210
+Illyas Alhaq|88713629|illyasalhaq@gmail.com|625 Elias Road|@illyasalhaq|Enemy|CS2106 CS1010X CS1010 BT2010 CS3219 CS3210
 Lavender Crawford|83340546|lavendercrawford@gmail.com|50 Kallang Road|@lavendercrawford|Groupmate|IS3106 CS1010X CS2102 CS1010J CS2103T CS2113T
 Ferra Park|88898954|ferrapark@gmail.com|250 Race Course Road|@ferrapark|NUS|CE2155 IS3150 CS1010XCP CS2105 CS1010R CS3243
 Hong Shan|91345682|hongshan@gmail.com|920 Tiong Bahru Road|@hongshan|Groupmate|CS2107 BT2010 CS3235 CE3121 CS2220 BT2101
 Jing Kai Xiu|89275577|jingkaixiu@gmail.com|1 Cashew Road|@jingkaixiu|TA|CE2183 IS2103 CS2102 CS2040C CS3103 CE2409
-Marina Wan|89514701|marinawan@gmail.com|Marina One|@marinawan|Enemy|CE2134 CE2112 BT2010 CS2100 IS3103 CS1101S
+Marina Wan|89514701|marinawan@gmail.com|7 Straits View|@marinawan|Enemy|CE2134 CE2112 BT2010 CS2100 IS3103 CS1101S
 Joo Koon|84709651|jookoon@gmail.com|91 Joo Koon Circle|@jookoon|Groupmate|CE3101 IS1103 CE2112 CS2108 CS3103 CS2113T
 Ewan MacPherson|89811264|ewanmacpherson@gmail.com|171 Paya Lebar Road|@ewanmacpherson|TA CCA|CE2183 CS3216 IS3106 CS2309 BT3103 CS3282
 Soo Teck|89974126|sooteck@gmail.com|21 Punggol Way|@sooteck||CS3230 CS3235 CS1010S CS3244R CS1020 CS3236R
@@ -57,7 +57,7 @@ Leedon Holland|91345121|leedonholland@gmail.com|200 Holland Avenue|@leedonhollan
 Bart Lee|82630347|bartlee@gmail.com|90 Bartley Road|@bartlee|CCA|CE2183 CS1010XCP CS1010R CS3223 CS3245 CS3211
 Jubilee Ang|91803854|jubileeang@gmail.com|2450 Ang Mo Kio Avenue 8|@jubileeang|NS|BT1101 CS3230 IS3261 IS3251 CS3217 CS2107
 Marina Bay|91821364|marinabay@gmail.com|21 Park Street|@marinabay|NS Study|BT2010 IS3261 CE3155 CS3249 CS2010 CS2107
-Travis Scott|91926625|travisscott@gmail.com|123456|@travisscott||BT1101 CS2220 CS3211 IS3103 CS3243 CS2104
+Travis Scott|91926625|travisscott@gmail.com|Ang Mo Kio Avenue 3|@travisscott||BT1101 CS2220 CS3211 IS3103 CS3243 CS2104
 Nee Soon|92209070|neesoon@gmail.com|301 Yishun Avenue 2|@neesoon|NS|CS3241R CE3132 CS1231 CS1010E CS2010 CS3247
 Scott Newton|92711938|scottnewton@gmail.com|49 Scotts Road|@scottnewton|TA NS|CS1010XCP CS3233 BT3102 CS2108 CS2309 CE3116
 Tim Holland|92811677|timholland@gmail.com|200 Holland Avenue|@timholland|CCA|CE3101 CS1010X IS2102 CS2030 CS1101S CE3165
@@ -67,7 +67,7 @@ Nurul Khatibah Abdul Ibrahim|93395405|nurulkhatibahabdulibrahim@gmail.com|201 Yi
 Khadijah Al Junied|93562949|khadijahaljunied@gmail.com|81 Lorong 25 Geylang|@khadijahaljunied|Groupmate|IS3106 CS1010 CS2102 CS3219 CS3282 CS3241R
 Glenn Napier|93637999|glennnapier@gmail.com|2 Napier Road|@glennnapier|Study|BT3102 CS1010E IS2102 CS2107 CS2104
 Sam Kee|93786094|samkee@gmail.com|10 Sentul Crescent|@samkee||CS2105 CS1010 CS2100 CS3249 CS3203
-Juan Fullerton|94185466|juanfullerton@gmail.com|One Fullerton|@juanfullerton|Enemy|CE3101 CS2100 CS2102 CS2030 CS2107 CS3241R
+Juan Fullerton|94185466|juanfullerton@gmail.com|1 Fullerton Rd|@juanfullerton|Enemy|CE3101 CS2100 CS2102 CS2030 CS2107 CS3241R
 Edward Anson|94761978|edwardanson@gmail.com|80 Shenton Way|@edwardanson|CCA|CS2106 CS1010XCP CS1010X CS3223 BT2101 CS3282
 Teck Lee|94896602|tecklee@gmail.com|101 Ponggol Seventeenth Avenue|@tecklee||IS3106 CS3241 CS3242 CS3245R CS3281 CS2113
 San Gi Chim|95112329|sangichim@gmail.com|10 Bukit Batok Central|@sangichim|NS|CS2220 CE3121 CE3132 IS3240 IS3103 CS1101S
@@ -75,17 +75,17 @@ Edward Richards|92463693|edwardrichards@gmail.com|301 South Buona Vista Road|@ed
 Steven Whitley|95513831|stevenwhitley@gmail.com|92 Stevens Road|@stevenwhitley|TA Study|IS3150 BT2010 BT3103 IS2102 CS3234 CS2107
 Amirah Tee|95556298|amirahtee@gmail.com|70 Woodlands Avenue 7|@amirahtee|NS|CE3121 CS1010 CS3223 CE2112 CS3241 BT3101
 Ang Mei Hua|95658596|angmeihua@gmail.com|91 Ang Mo Kio Avenue 4|@angmeihua|Study|CS2105 CE2407 CE1102 BT2101 CE3165 CS2103T
-Wisteria Chung|95954770|wisteriachung@gmail.com|Wisteria Mall|@wisteriachung|Enemy|CE2155 IS3150 CS2103 BT3103 CS3103 CS2113T
+Wisteria Chung|95954770|wisteriachung@gmail.com|598 Yishun Ring Rd|@wisteriachung|Enemy|CE2155 IS3150 CS2103 BT3103 CS3103 CS2113T
 Seth Summers|96040331|sethsummers@gmail.com|1 Somerset Road|@sethsummers|NS|IS1103 CE3121 BT3103 CS2102 CS1020 CS3210
 Maya Takashi|96146775|mayatakashi@gmail.com|Ngee Ann City|@mayatakashi|Enemy|IS3150 CS1010R CS2040 CS2030 CS3210 CS3247
 May See|96306065|maysee@gmail.com|30 Simei Street 3|@maysee|Groupmate|BT1101 CS2101 CS2105 IS3251 CS3210 CS2104
 Choa Chu Kang|96363171|choachukang@gmail.com|10 Choa Chu Kang Avenue 4|@choachukang|NS JC|CE2183 IS2103 CS2309 CS2040 CS3245 CE3102
 Dong Yu Lang|97099012|dongyulang@gmail.com|10 Jurong East Street 12|@dongyulang|NS|BT1101 IS3150 CS2105 BT2010 IS3103 CE3116
 Dakota Windsor|97464766|dakotawindsor@gmail.com|201 Old Airport Road|@dakotawindsor|CCA|CS2101 CE1101 CS1010X CE2112 CS3241 CS2040C
-Thomas Nakayama|97530782|thomasnakayama@gmail.com|Zhongshan Mall|@thomasnakayama|Enemy|IS2103 CS2102 CS2040C CS3282 CS3281 CS2104
+Thomas Nakayama|97530782|thomasnakayama@gmail.com|20 Ah Hood Rd|@thomasnakayama|Enemy|IS2103 CS2102 CS2040C CS3282 CS3281 CS2104
 Nicholas Tan Bin|97689351|nicholastanbin@gmail.com|20 Tampines Central 1|@nicholastanbin|TA Groupmate|IS3106 CS2105 BT3103 CE3115 CS3211 CE3116
 Nicole Windsor|97728343|nicolewindsor@gmail.com|20 Republic Avenue|@nicolewindsor|CCA|CS3249 CS1010S IS3261 BT2101 IS3240 CS1010J
-Syed Alwi Mustafa|98151962|syedalwimustafa@gmail.com|Mustafa Centre|@syedalwimustafa|Enemy|CS3240 CS2309 CS3243 CS2104 CS2113
+Syed Alwi Mustafa|98151962|syedalwimustafa@gmail.com|145 Syed Alwi Rd|@syedalwimustafa|Enemy|CS3240 CS2309 CS3243 CS2104 CS2113
 Shannon Wei|98238477|shannonwei@gmail.com|2 Park Street|@shannonwei|Study|CS3230 CS3244 CS1010S CS1010E CS3217 BT2102
 Mary Meng|93816073|marymeng@gmail.com|60 Marymount Road|@marymeng|CCA|CS2106 CS3282 CS2108 CS3203 CS2103T CS2104
 Alex Quentin|98308491|alexquentin@gmail.com|301 Commonwealth Avenue|@alexquentin|Groupmate|CS3242 CS3244R BT2102 CS3219 CS2104 CS3247
