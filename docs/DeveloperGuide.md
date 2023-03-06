@@ -305,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | expert user             | enter short-form CLI commands                                               | so that I am more efficient                                            |
 | `*`      | experienced designer    | export to .txt files                                                        | so that others can use my creations                                    |
 
-*{More to be added}*
+The user stories are not limited to those in this list. More can be added in the future as new features are developed.
 
 ### Use cases
 
