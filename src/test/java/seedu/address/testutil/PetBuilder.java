@@ -3,24 +3,22 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class PetBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_OWNER_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Amy Bee Woof";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    private OwnerName ownerName;
     private Name name;
     private Phone phone;
     private Email email;
@@ -30,7 +28,8 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public PetBuilder() {
+        ownerName = new OwnerName(DEFAULT_OWNER_NAME);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -41,18 +40,26 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PetBuilder(Pet personToCopy) {
+        ownerName = personToCopy.getOwnerName();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public PetBuilder withOwnerName(String ownerName) {
+        this.ownerName = new OwnerName(ownerName);
+        return this;
+    }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public PetBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -60,7 +67,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PetBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -68,7 +75,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public PetBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -76,7 +83,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public PetBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -84,13 +91,13 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public PetBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Pet build() {
+        return new Pet(ownerName, name, phone, email, address, tags);
     }
 
 }

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.pet.exceptions.DuplicatePersonException;
-import seedu.address.model.pet.exceptions.PersonNotFoundException;
+import seedu.address.model.pet.exceptions.DuplicatePetException;
+import seedu.address.model.pet.exceptions.PetNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniquePetList implements Iterable<Pet> {
     public void add(Pet toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePetException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniquePetList implements Iterable<Pet> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new PetNotFoundException();
         }
 
         if (!target.isSamePet(editedPet) && contains(editedPet)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePetException();
         }
 
         internalList.set(index, editedPet);
@@ -75,7 +75,7 @@ public class UniquePetList implements Iterable<Pet> {
     public void remove(Pet toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new PetNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniquePetList implements Iterable<Pet> {
     public void setPets(List<Pet> pets) {
         requireAllNonNull(pets);
         if (!petsAreUnique(pets)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePetException();
         }
 
         internalList.setAll(pets);

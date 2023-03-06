@@ -12,7 +12,7 @@ import seedu.address.model.pet.UniquePetList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PetPal implements ReadOnlyPetPal {
 
     private final UniquePetList pets;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         pets = new UniquePetList();
     }
 
-    public AddressBook() {}
+    public PetPal() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PetPal(ReadOnlyPetPal toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPetPal newData) {
         requireNonNull(newData);
 
         setPets(newData.getPetList());
@@ -89,7 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Pet key) {
+    public void removePet(Pet key) {
         pets.remove(key);
     }
 
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && pets.equals(((AddressBook) other).pets));
+                || (other instanceof PetPal // instanceof handles nulls
+                && pets.equals(((PetPal) other).pets));
     }
 
     @Override

@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +18,15 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static OwnerName parseOwnerName(String ownerName) throws ParseException {
+        requireNonNull(ownerName);
+        String trimmedOwnerName = ownerName.trim();
+        if (!OwnerName.isValidName(trimmedOwnerName)) {
+            throw new ParseException(OwnerName.MESSAGE_CONSTRAINTS);
+        }
+        return new OwnerName(trimmedOwnerName);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
