@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.ModuleTag;
+
+import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -45,6 +48,12 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        toAdd.setCommonModules(userModuleTags);
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
