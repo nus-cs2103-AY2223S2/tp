@@ -3,7 +3,9 @@ package seedu.address.model.crew;
 import seedu.address.model.crew.exceptions.InvalidCrewRankException;
 import seedu.address.model.pilot.exceptions.InvalidPilotRankException;
 
-
+/**
+ * Represents the rank of a crew.
+ */
 public enum CrewRank {
     CABIN_SERVICE_DIRECTOR,
     SENIOR_FLIGHT_ATTENDANT,
@@ -22,17 +24,16 @@ public enum CrewRank {
      */
     public String toString() {
         switch (this) {
-            case CABIN_SERVICE_DIRECTOR:
-                return CABIN_SERVICE_DIRECTOR_STRING;
-            case SENIOR_FLIGHT_ATTENDANT:
-                return SENIOR_FLIGHT_ATTENDANT_STRING;
-            case FLIGHT_ATTENDANT:
-                return FLIGHT_ATTENDANT_STRING;
-            case TRAINEE:
-                return TRAINEE_STRING;
-
-            default:
-                throw new InvalidPilotRankException(this);
+        case CABIN_SERVICE_DIRECTOR:
+            return CABIN_SERVICE_DIRECTOR_STRING;
+        case SENIOR_FLIGHT_ATTENDANT:
+            return SENIOR_FLIGHT_ATTENDANT_STRING;
+        case FLIGHT_ATTENDANT:
+            return FLIGHT_ATTENDANT_STRING;
+        case TRAINEE:
+            return TRAINEE_STRING;
+        default:
+            throw new InvalidPilotRankException(this);
         }
     }
 
@@ -44,16 +45,16 @@ public enum CrewRank {
      */
     public static CrewRank fromString(String rank) {
         switch (rank) {
-            case CABIN_SERVICE_DIRECTOR_STRING:
-                return CABIN_SERVICE_DIRECTOR;
-            case SENIOR_FLIGHT_ATTENDANT_STRING:
-                return SENIOR_FLIGHT_ATTENDANT;
-            case FLIGHT_ATTENDANT_STRING:
-                return FLIGHT_ATTENDANT;
-            case TRAINEE_STRING:
-                return TRAINEE;
-            default:
-                throw new InvalidCrewRankException(rank);
+        case CABIN_SERVICE_DIRECTOR_STRING:
+            return CABIN_SERVICE_DIRECTOR;
+        case SENIOR_FLIGHT_ATTENDANT_STRING:
+            return SENIOR_FLIGHT_ATTENDANT;
+        case FLIGHT_ATTENDANT_STRING:
+            return FLIGHT_ATTENDANT;
+        case TRAINEE_STRING:
+            return TRAINEE;
+        default:
+            throw new InvalidCrewRankException(rank);
         }
     }
 
@@ -64,16 +65,16 @@ public enum CrewRank {
      */
     public int toIndex() {
         switch (this) {
-            case CABIN_SERVICE_DIRECTOR:
-                return 0;
-            case SENIOR_FLIGHT_ATTENDANT:
-                return 1;
-            case FLIGHT_ATTENDANT:
-                return 2;
-            case TRAINEE:
-                return 3;
-            default:
-                throw new InvalidCrewRankException(this);
+        case CABIN_SERVICE_DIRECTOR:
+            return 0;
+        case SENIOR_FLIGHT_ATTENDANT:
+            return 1;
+        case FLIGHT_ATTENDANT:
+            return 2;
+        case TRAINEE:
+            return 3;
+        default:
+            throw new InvalidCrewRankException(this);
         }
     }
 
@@ -85,16 +86,16 @@ public enum CrewRank {
      */
     public static CrewRank fromIndex(int index) {
         switch (index) {
-            case 0:
-                return CABIN_SERVICE_DIRECTOR;
-            case 1:
-                return SENIOR_FLIGHT_ATTENDANT;
-            case 2:
-                return FLIGHT_ATTENDANT;
-            case 3:
-                return TRAINEE;
-            default:
-                throw new InvalidCrewRankException(index);
+        case 0:
+            return CABIN_SERVICE_DIRECTOR;
+        case 1:
+            return SENIOR_FLIGHT_ATTENDANT;
+        case 2:
+            return FLIGHT_ATTENDANT;
+        case 3:
+            return TRAINEE;
+        default:
+            throw new InvalidCrewRankException(index);
         }
     }
 }

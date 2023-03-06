@@ -78,7 +78,8 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(), new IdentifiableManager<>(), new IdentifiableManager<>());
+        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
+                new IdentifiableManager<>(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -108,20 +109,20 @@ public class ModelManager implements Model {
     public void setOperationMode(OperationMode mode) {
         this.userPrefs.setOperationMode(mode);
         switch (mode) {
-            case PILOT:
-                rebind(filteredPilots);
-                break;
-            case PLANE:
-            case FLIGHT:
-            case CREW:
-                rebind(filteredCrew);
-                break;
-            case LOCATION:
-                rebind(filteredLocations);
-                break;
-            default:
-                logger.warning("Unknown operation mode: " + mode);
-                break;
+        case PILOT:
+            rebind(filteredPilots);
+            break;
+        case PLANE:
+        case FLIGHT:
+        case CREW:
+            rebind(filteredCrew);
+            break;
+        case LOCATION:
+            rebind(filteredLocations);
+            break;
+        default:
+            logger.warning("Unknown operation mode: " + mode);
+            break;
         }
     }
 
@@ -341,9 +342,9 @@ public class ModelManager implements Model {
     //=========== CrewManager ==================================================================================
 
     @Override
-    public void setCrewManager(ReadOnlyIdentifiableManager Crew) {
-        requireNonNull(Crew);
-        this.crewManager.resetData(Crew);
+    public void setCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) {
+        requireNonNull(crewManager);
+        this.crewManager.resetData(crewManager);
     }
 
     @Override

@@ -6,12 +6,9 @@ import java.util.Set;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.pilot.addpilot.AddPilotCommand;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.CrewRank;
-import seedu.address.model.location.Location;
-import seedu.address.model.pilot.Pilot;
-import seedu.address.model.pilot.PilotRank;
+
 
 /**
  * The factory that creates {@code AddLocationCommand}.
