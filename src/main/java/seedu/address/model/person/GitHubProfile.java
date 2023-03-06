@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class GitHubProfile {
     /** As specified in form validation on <a href="https://github.com/join">Join GitHub</a> */
     public static final String MESSAGE_CONSTRAINTS =
-            "Username is too long (maximum is 39 characters). Username may only contain alphanumeric characters or "
-            + "single hyphens, and cannot begin or end with a hyphen.";
+            "Username may only contain alphanumeric characters or single hyphens, cannot begin or end with a "
+            + "hyphen, and may not exceed 39 characters.";
     /**
      * May only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen. Maximum 39
-     * characters.
+     * characters. May be empty.
      */
-    public static final String VALIDATION_REGEX = "^(?=.{1,39}$)(?!-)(?!.*--)[-a-zA-Z0-9]+(?<!-)$";
+    public static final String VALIDATION_REGEX = "^(?=.{1,39}$)(?!-)(?!.*--)[-a-zA-Z0-9]+(?<!-)$|^$";
 
     public final String value;
 
