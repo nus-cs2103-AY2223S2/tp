@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
@@ -15,11 +16,11 @@ public class ListingBuilder {
     public static final String DEFAULT_DESCRIPTION =
             "This is a default job jobDescription! "
             + "In this job you are expected to do these things: thing1, thing2 and thing3.";
-    public static final ArrayList<String> DEFAULT_APPLICANTS = new ArrayList<>();
+    public static final ArrayList<Applicant> DEFAULT_APPLICANTS = new ArrayList<>();
 
     private JobTitle jobTitle;
     private JobDescription jobDescription;
-    private ArrayList<String> applicants;
+    private ArrayList<Applicant> applicants;
 
     /**
      * Creates a {@code ListingBuilder} with the default details.
@@ -59,8 +60,8 @@ public class ListingBuilder {
      * Sets the {@code applicants} of the {@code Listing} that we are building.
      *
      */
-    public ListingBuilder withApplicants(ArrayList<String> applicants) {
-        this.applicants = new ArrayList<String>(applicants);
+    public ListingBuilder withApplicants(ArrayList<Applicant> applicants) {
+        this.applicants = new ArrayList<Applicant>(applicants);
         return this;
     }
 

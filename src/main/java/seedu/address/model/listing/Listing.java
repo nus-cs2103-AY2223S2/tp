@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
+import seedu.address.model.applicant.Applicant;
+
 /**
  * Represents a Listing in GoodMatch.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -17,12 +19,12 @@ public class Listing {
     private String uniqueID = UUID.randomUUID().toString();
 
     // Optional fields
-    private ArrayList<String> applicants = new ArrayList<>(); // TODO: Update when Applicant class is added
+    private ArrayList<Applicant> applicants = new ArrayList<>(); // TODO: Update when Applicant class is added
 
     /**
      * Every field must be present and not null.
      */
-    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<String> applicants) {
+    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<Applicant> applicants) {
         requireAllNonNull(jobTitle, jobDescription, applicants);
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
@@ -37,7 +39,7 @@ public class Listing {
         return jobDescription;
     }
 
-    public ArrayList<String> getApplicants() {
+    public ArrayList<Applicant> getApplicants() {
         return applicants;
     }
 
@@ -90,11 +92,11 @@ public class Listing {
                 .append("; JobDescription: ")
                 .append(getDescription());
 
-        ArrayList<String> applicants = getApplicants();
+        ArrayList<Applicant> applicants = getApplicants();
         if (!applicants.isEmpty()) {
             builder.append("; Applicants: ");
             for (int index = 0; index < applicants.size(); index++) {
-                String applicant = applicants.get(index);
+                String applicant = applicants.get(index).toString();
                 //work on the element
                 if (index != applicants.size() - 1) {
                     applicant += ", ";

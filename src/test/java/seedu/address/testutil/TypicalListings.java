@@ -19,19 +19,18 @@ public class TypicalListings {
     public static final Listing CHICKEN_RICE_UNCLE = new ListingBuilder()
             .withTitle("Chicken Rice Uncle")
             .withDescription("Make delicious chicken rice!")
-            .withApplicants(new ArrayList<>(Arrays.asList("Tom", "Dick", "Harry")))
+            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
             .build();
     public static final Listing TOILET_CLEANER = new ListingBuilder()
             .withTitle("Toilet Cleaner")
             .withDescription("Cleans toilets really quickly and well")
-            .withApplicants(new ArrayList<>(Arrays.asList("Naruto", "Sasuke", "Sakura")))
+            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
             .build();
     public static final Listing SOFTWARE_DEVELOPER = new ListingBuilder()
             .withTitle(VALID_TITLE)
             .withDescription(VALID_DESCRIPTION)
             .withApplicants(VALID_APPLICANTS)
             .build();
-
 
     private TypicalListings() {} // prevents instantiation
 
