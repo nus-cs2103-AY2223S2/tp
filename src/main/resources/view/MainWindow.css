@@ -1,45 +1,36 @@
-.my-command-pane {
-     -fx-text-fill: #212121;
-     -fx-padding:15 10 10 2;
-     -fx-background-color: transparent;
-     -fx-focus-color: transparent;
-}
-
-.my-command-content {
-     -fx-font-family: "SansSerif";
-     -fx-font-size: 12pt;
-     -fx-text-fill: #000000;
-     -fx-prompt-text-fill: #212121;
-     -fx-padding:10;
-     -fx-control-inner-background: rgba(255, 255, 255, 0.4);
-}
-
-.my-result-card {
+.command-box {
+    -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-padding:5 10 10 2;
-    -fx-focus-color: transparent;
+    -fx-background-radius: 0 0 5 5;
 }
 
-.my-result-content {
-     -fx-font-family: "SansSerif";
-     -fx-font-size: 10pt;
-     -fx-text-fill: #212121;
-     -fx-prompt-text-fill: #212121;
-     -fx-border-radius: 3;
-     -fx-control-inner-background: rgba(255, 255, 255, 0.2);
+.person-card-box {
+    -fx-background-color: #e63946;
+    -fx-background-radius: 0 5 0 5;
+    -fx-padding: 3;
 }
 
-.background {
-    -fx-border-radius: 20;
-    -fx-background-image: url('../images/purple_bg.png');
-    -fx-background-color: #FFFFFF;
-    -fx-opacity: 0.85; /*reduce opacity of the bg image*/
+.person-card-upper-box-element {
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 5;
 }
 
-.contacts-pane {
-    -fx-padding:5 10 10 2;
-    -fx-border-radius: 10;
+.person-card-lower-box-element {
+    -fx-text-fill: #5e5e5e;
 }
 
+.person-list-panel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+}
 
+.result-display-panel {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
+.result-display-text {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

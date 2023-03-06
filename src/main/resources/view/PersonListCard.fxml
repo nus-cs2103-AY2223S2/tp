@@ -20,28 +20,25 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: #e63946; -fx-background-radius: 0 5 0 5; -fx-padding: 3;">
-        <Label fx:id="id" textFill="WHITE">
+      <HBox alignment="CENTER_LEFT" spacing="5"  styleClass="person-card-box">
+        <Label fx:id="id" styleClass="person-card-upper-box-element">
           <minWidth>
-            <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
-               <font>
-                  <Font size="15.0" />
-               </font>
         </Label>
-        <Label fx:id="name" text="\$first" textFill="WHITE">
+        <Label fx:id="name" text="\$first" styleClass="person-card-upper-box-element">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
       </HBox>
+
       <FlowPane fx:id="groupTags">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin></FlowPane>
-      <Label fx:id="phone" text="\$phone" textFill="#5e5e5e" />
-      <Label fx:id="address" text="\$address" textFill="#5e5e5e" />
-      <Label fx:id="email" text="\$email" textFill="#5e5e5e" />
+      <Label fx:id="phone" text="\$phone" styleClass="person-card-lower-box-element" />
+      <Label fx:id="address" text="\$address" styleClass="person-card-lower-box-element" />
+      <Label fx:id="email" text="\$email" styleClass="person-card-lower-box-element" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

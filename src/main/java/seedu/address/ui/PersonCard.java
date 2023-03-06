@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -57,7 +56,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(groupTag -> groupTag.tagName))
                 .forEach(groupTag -> {
                     Label temp = new Label(groupTag.tagName);
-                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000;  -fx-padding: 2 5 2 5; -fx-background-radius: 5;");
+                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
+                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
                     groupTags.getChildren().add(temp);
                 });
     }
