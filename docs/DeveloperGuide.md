@@ -283,7 +283,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FastTrack` and the **Actor** is the `user`, unless specified otherwise)
+
+**Precondition: The user has launched the FastTrack application**
+
+**UC1: Add category**
+
+**MSS**
+
+1. User requests to add a new category to FastTrack.
+2. User enters the add command with the category name.
+3. FastTrack adds the new category.
+4. FastTrack responds with a success message indicating the category has been successfully added.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The user does not enter the required category name.
+  * 2a1. FastTrack responds telling the user that a name is required and the command is invalid.
+  * 2a2. User enters add command with the category name.
+  * 2a3. Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+    Use case resumes at step 3.
+
+* 2b. The category name already exists
+  * 2b1. FastTrack informs the user that the category name has already been used and prompts the user for a different category name.
+  * 2b2. User enters add command with the category name.
+  * 2b3. Steps 2b1-2b2 are repeated until the data entered are correct.
+    
+    Use case resumes at step 3.
+
+**UC2: Delete a Category**
+
+**MSS**
+
+1. User lists all categories using UC4.
+2. User requests to delete a category from FastTrack.
+3. User enters the delete command with the index i of the category to be deleted.
+4. FastTrack deletes the category at index i.
+5. FastTrack displays a success message to the user indicating the category has been successfully deleted.
+  
+   Use case ends.
+
+**Extensions**
+* 3a. The user selects an invalid category index (the index is out of bounds of the list)
+    * 3a1. FastTrack displays an error message telling the user to key in a valid index.
+    * 3a2. User enters delete command with the category index.
+    * 3a3. Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes at step 4.
 
 **Use case: UC5 - Add an expense**
 
@@ -292,8 +340,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User wants to add an expense to be tracked.
 2.  User keys in the command to add an expense to be tracked.
 3.  FastTrack responds with a successfully added message.
-
-    Use case ends.
 
 **Extensions**
 
@@ -324,6 +370,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case resumes from step 4.
 
+
+**MSS**
+
+**Use case: UC7 - List all expense**
+
+**MSS**
+
+1.  User requests to list all expense.
+2.  FastTrack displays all expenses added by user.
+
+    Use case ends.
+
+**Use case: UC8 - List all expense in a given category**
+
+**MSS**
+
+1.  User requests to list all expense in a given category. 
+2.  FastTrack displays all expenses in a given category added by user.
+   Use case ends.
+
+* 1a. User does not enter a category.
+  * 1a1. FastTrack displays error message.
+
+      Use case ends.
+
+* 1b. The given cateogry is invalid.
+
+    * 1b1. FastTrack displays an error message.
+
+      Use case ends.
+
+**Use case: UC9 - List all expense in the past week**
+
+**MSS**
+
+1.  User requests to list all expense in the past week.
+2.  FastTrack displays all expenses added by user in the past week .
+
+    Use case ends.
+
+**Use case: UC10 - Find an expense**
+
+**MSS**
+
+1.  User requests to find an expense.
+2.  FastTrack displays all expenses related to the keyword provided.
+
+    Use case ends.
+    
 **Use case: UC11 - Clear all expenses from the expense log**
 
 **MSS**
@@ -342,21 +437,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FastTrack exits and is closed.
 
     Use case ends.
-
-*{More to be added}*
-
+    
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 expenses without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. FastTrack should be designed in a modular, scalable manner to enable easy addition of new features in the future.
+5. The code should be well-organized and well-documented to ensure ease of maintenance and debugging.
+6. FastTrack should protect user data from unauthorized access or modification.
+7. Any modification to the data will result in a prompt update to the user interface.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
