@@ -45,7 +45,7 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
-     * Resets the existing data of this {@code SoConnect} with {@code newData}.
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskList newData) {
         requireNonNull(newData);
