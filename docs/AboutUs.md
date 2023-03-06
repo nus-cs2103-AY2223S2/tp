@@ -49,6 +49,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Class List: Insertion, Deletion and Grouping of Students (Class List)
 
+### Li Chengyue
+
+<img src="images/chunzkok.png" width="200px">
+
+[[github](http://github.com/cyli133)]
+[[portfolio](team/chengyue.md)]
+
+* Role: Developer
+* Responsibilities: Minimum features
+
 
 ### Jean Doe
 
