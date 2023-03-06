@@ -9,10 +9,18 @@ import java.util.Objects;
 public class Applicant {
     private final Name name;
 
+    /**
+     * Creates an Applicant with a name
+     * @param name name of the Applicant
+     */
     public Applicant(Name name) {
         this.name = name;
     }
 
+    /**
+     * Get the name of the applicant
+     * @return The name of the applicant
+     */
     public Name getName() {
         return name;
     }
