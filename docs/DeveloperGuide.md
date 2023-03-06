@@ -285,28 +285,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC7 - List all expense**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all expense.
+2.  FastTrack displays all expenses added by user.
+
+    Use case ends.
+
+**Use case: UC8 - List all expense in a given category**
+
+**MSS**
+
+1.  User requests to list all expense in a given category. 
+2.  FastTrack displays all expenses in a given category added by user.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User does not enter a category.
+  * 1a1. FastTrack displays error message.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. The given cateogry is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 1b1. FastTrack displays an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+**Use case: UC9 - List all expense in the past week**
+
+**MSS**
+
+1.  User requests to list all expense in the past week.
+2.  FastTrack displays all expenses added by user in the past week .
+
+    Use case ends.
+
+**Use case: UC10 - Find an expense**
+
+**MSS**
+
+1.  User requests to find an expense.
+2.  FastTrack displays all expenses related to the keyword provided.
+
+    Use case ends.
 
 *{More to be added}*
 
