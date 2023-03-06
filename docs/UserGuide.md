@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for Paidlancers
+title: User Guide
 ---
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
