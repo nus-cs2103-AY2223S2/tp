@@ -79,12 +79,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     /* Plane related methods */
     Path getPlaneManagerFilePath();
 
-    /**
-     * Reads the pilot manager from the {@code Storage::getPilotManagerFilePath}
-     *
-     * @return the pilot manager.
-     */
     Optional<? extends ReadOnlyIdentifiableManager<Plane>> readPlaneManager() throws DataConversionException,
             IOException;
+
+    void savePlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) throws IOException;
 
 }

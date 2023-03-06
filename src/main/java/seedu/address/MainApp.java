@@ -36,6 +36,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.json.storage.JsonLocationManagerStorage;
 import seedu.address.storage.json.storage.JsonPilotManagerStorage;
+import seedu.address.storage.json.storage.JsonPlaneManagerStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -69,7 +70,9 @@ public class MainApp extends Application {
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
         IdentifiableStorage<Location> locationStorage =
                 new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage);
+        IdentifiableStorage<Plane> planeStorage =
+                new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage, planeStorage);
 
         initLogging(config);
 

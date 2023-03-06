@@ -6,19 +6,17 @@ import static java.util.Objects.requireNonNull;
  * Represents a plane's age in the Wingman app.
  */
 public class PlaneAge {
-    private final String planeAge;
+    private final int planeAge;
 
     /**
      * Creates a plane age.
      * @param planeAge the age of the plane.
      */
-    public PlaneAge(String planeAge) {
-        requireNonNull(planeAge);
+    public PlaneAge(int planeAge) {
         this.planeAge = planeAge;
     }
 
-    @Override
-    public String toString() {
+    public int toInteger() {
         return this.planeAge;
     }
 
@@ -26,7 +24,6 @@ public class PlaneAge {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof PlaneAge
-                && planeAge.equals(((PlaneAge) other).planeAge));
+                && planeAge == (((PlaneAge) other).planeAge));
     }
-
 }

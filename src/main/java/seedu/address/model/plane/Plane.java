@@ -9,16 +9,16 @@ import seedu.address.model.item.Identifiable;
  * Represents a plane in the Wingman app.
  */
 public class Plane implements Identifiable {
-    private final PlaneModel model;
-    private final PlaneAge age;
     private final String id;
+    private final String model;
+    private final int age;
 
     /**
      * Creates a plane with a random UUID as its id.
      * @param model the model of the plane.
      * @param age   the age of the plane.
      */
-    public Plane(PlaneModel model, PlaneAge age) {
+    public Plane(String model, int age) {
         this.model = model;
         this.age = age;
         this.id = UUID.randomUUID().toString();
@@ -30,7 +30,7 @@ public class Plane implements Identifiable {
      * @param age   the age of the plane.
      * @param id    the id of the plane.
      */
-    public Plane(PlaneModel model, PlaneAge age, String id) {
+    public Plane(String id, String model, int age) {
         this.model = model;
         this.age = age;
         this.id = id;
@@ -40,7 +40,7 @@ public class Plane implements Identifiable {
      * Returns the model of the plane.
      * @return the model of the plane.
      */
-    public PlaneModel getModel() {
+    public String getModel() {
         return this.model;
     }
 
@@ -48,7 +48,7 @@ public class Plane implements Identifiable {
      * Returns the age of the plane.
      * @return the age of the plane.
      */
-    public PlaneAge getAge() {
+    public int getAge() {
         return this.age;
     }
 
@@ -61,5 +61,4 @@ public class Plane implements Identifiable {
     public String getId() {
         return this.id;
     }
-
 }

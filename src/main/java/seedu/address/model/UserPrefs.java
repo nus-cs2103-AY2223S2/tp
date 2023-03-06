@@ -17,6 +17,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
     private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
+    private Path planeManagerFilePath = Paths.get("data", "planemanager.json");
+
     private int operationModeId = 0;
 
     /**
@@ -111,6 +113,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setLocationManagerFilePath(Path locationManagerFilePath) {
         requireNonNull(locationManagerFilePath);
         this.locationManagerFilePath = locationManagerFilePath;
+    }
+
+    // =================== PlaneManager ===================
+    @Override
+    public Path getPlaneManagerFilePath() {
+        return planeManagerFilePath;
+    }
+
+    @Override
+    public void setPlaneManagerFilePath(Path planeManagerFilePath) {
+        requireNonNull(planeManagerFilePath);
+        this.planeManagerFilePath = planeManagerFilePath;
     }
 
     // =================== Generic ===================
