@@ -309,16 +309,46 @@ The user stories are not limited to those in this list. More can be added in the
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Reroll` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Edit an entity**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list entities based on classification
+2. Reroll shows a list of entities
+3. User enters edit mode for specified entity
+4. User requests to replace specified field with new value
+5. Reroll edits the specified entity and display it
+
+   Steps 4-5 are repeated for as many fields as required.
+6. User exits edit mode
+
+    Use case ends  
+
+**Extensions**
+
+* 2a.The list is empty.
+
+    Use case ends
+* 3a. The given name is invalid
+  * 3a1. Reroll shows an error message.
+  
+    Use case resumes at step 2
+* 4a. The given fields are invalid
+  * 4a.1 Reroll shows an error message and exits edit mode
+  
+    Use case resumes at step 2
+
+
+**Use case: Delete an entity**
+
+**MSS**
+
+1.  User requests to list entities based on classification
+2.  Reroll shows a list of entities
+3.  User requests to delete a specific entity in the list by name
+4.  Reroll deletes the entity
 
     Use case ends.
 
@@ -328,9 +358,9 @@ The user stories are not limited to those in this list. More can be added in the
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Reroll shows an error message.
 
       Use case resumes at step 2.
 
