@@ -1,12 +1,8 @@
 package seedu.address.model.drug;
 
-import javafx.geometry.Side;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Represents a Drug in the drug inventory

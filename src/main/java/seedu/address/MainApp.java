@@ -23,11 +23,14 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.CareFlowStorage;
+import seedu.address.storage.CareFlowStorageManager;
+import seedu.address.storage.DrugInventoryStorage;
+import seedu.address.storage.JsonDrugInventoryStorage;
+import seedu.address.storage.JsonPatientRecordStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.PatientRecordStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -43,7 +46,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected CareFlowLogic logic;
-    protected Storage storage;
+    protected CareFlowStorage storage;
     protected CareFlowModel model;
     protected Config config;
 
@@ -57,12 +60,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        PatientRecordStorage patientRecordStorage = new JsonPatientRecordStorage(userPrefs.getPatientRecordFilePath());
+        DrugInventoryStorage drugInventoryStorage = new JsonDrugInventoryStorage(userPrefs.getDrugInventoryFilePath());
+        storage = new CareFlowStorageManager(patientRecordStorage, drugInventoryStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storage,userPrefs);
 
         logic = new CareFlowLogicManager(model, storage);
 
@@ -74,35 +79,37 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private CareFlowModel initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private CareFlowModel initModelManager(CareFlowStorage careFlowStorage, ReadOnlyUserPrefs userPrefs) {
 //        Optional<ReadOnlyAddressBook> addressBookOptional;
 //        ReadOnlyAddressBook initialData;
         Optional<ReadOnlyPatientRecord> patientRecordOptional;
         Optional<ReadOnlyDrugInventory> drugInventoryOptional;
+
         ReadOnlyPatientRecord initialDataPatient;
         ReadOnlyDrugInventory initialDataDrug;
 
-//        try {
-            // to be changed
-//            addressBookOptional = storage.readAddressBook();
-//            if (!addressBookOptional.isPresent()) {
-//                logger.info("Data file not found. Will be starting with a sample AddressBook");
-//            }
-//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-//            initialDataPatient = ?
-//            initialDataDrug = ?
-//        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-//            initialData = new AddressBook();
+        try {
+            patientRecordOptional = storage.readPatientRecord();
+            drugInventoryOptional = storage.readDrugInventory();
+            if (patientRecordOptional.isEmpty()) {
+                logger.info("Patient data file not found. Will be starting with a sample Patient Record");
+            }
+            if(drugInventoryOptional.isEmpty()) {
+                logger.info("Drug data file not found. Will be starting with a sample Drug Inventory");
+            }
+            initialDataPatient = patientRecordOptional.orElseGet(SampleDataUtil::getSamplePatientRecord);
+            initialDataDrug = drugInventoryOptional.orElseGet(SampleDataUtil::getSampleDrugInventory);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with empty Patient Record and Drug " +
+                    "Inventory");
             initialDataPatient = new PatientRecord();
             initialDataDrug = new DrugInventory();
-//        } catch (IOException e) {
-
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-//            initialData = new AddressBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with a empty Patient Record and " +
+                    "Drug Inventory");
             initialDataPatient = new PatientRecord();
             initialDataDrug = new DrugInventory();
-//        }
+        }
         return new CareFlowModelManager(initialDataPatient, initialDataDrug, userPrefs);
     }
 

@@ -13,8 +13,9 @@ import seedu.address.model.drug.Drug;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
-import seedu.address.storage.Storage;
+import seedu.address.storage.CareFlowStorage;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -23,13 +24,14 @@ public class CareFlowLogicManager implements CareFlowLogic{
     private final Logger logger = LogsCenter.getLogger(CareFlowLogicManager.class);
 
     private final CareFlowModel model;
-    private final Storage storage;
+//    private final Storage storage;
+    private final CareFlowStorage storage;
     private final CareFlowParser careFlowParser;
 
     /**
      * Constructs a {@code CareFlowLogicManager} with the given {@code CareFlowModel} and {@code Storage}.
      */
-    public CareFlowLogicManager(CareFlowModel model, Storage storage) {
+    public CareFlowLogicManager(CareFlowModel model, CareFlowStorage storage) {
         this.model = model;
         this.storage = storage;
         this.careFlowParser = new CareFlowParser();
@@ -42,13 +44,12 @@ public class CareFlowLogicManager implements CareFlowLogic{
         Command command = careFlowParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-//        try {
-            // specific storage methods to be created ltr
-//            storage.savePatientRecord(model.getPatientRecord());
-//            storage.saveDrugInventory(model.getDrugInventory());
-//        } catch (IOException e) {
-//            throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);
-//        }
+        try {
+            storage.savePatientRecord(model.getPatientRecord());
+            storage.saveDrugInventory(model.getDrugInventory());
+        } catch (IOException e) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);
+        }
         return commandResult;
     }
 

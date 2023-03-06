@@ -1,0 +1,12 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 740.0,
+    "windowHeight" : 600.0,
+    "windowCoordinates" : {
+      "x" : 350,
+      "y" : 83
+    }
+  },
+  "patientRecordFilePath" : "data/patientRecord.json",
+  "drugInventoryFilePath" : "data/drugInventory.json"
+}

@@ -14,7 +14,7 @@ public class Purpose {
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,
      * followed by 0 or more alphabetical or whitespace characters.
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s]*";
+    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s,.-]*";
 
     public final String purpose;
 

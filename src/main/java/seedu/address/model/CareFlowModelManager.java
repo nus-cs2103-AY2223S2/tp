@@ -32,7 +32,7 @@ public class CareFlowModelManager implements CareFlowModel{
         requireAllNonNull(drugInventory, patientRecord, userPrefs);
         logger.fine(String.format(LOGGER_MESSAGE, patientRecord, drugInventory, userPrefs));
 
-        this.careFlow = new CareFlow();
+        this.careFlow = new CareFlow(patientRecord, drugInventory);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPatients = new FilteredList<>(this.careFlow.getPatientList());
         this.filteredDrugs = new FilteredList<>(this.careFlow.getDrugList());
@@ -68,28 +68,23 @@ public class CareFlowModelManager implements CareFlowModel{
 
     @Override
     public Path getPatientRecordFilePath() {
-//        return userPrefs.getPatientRecordFilePath();
-        return null;
+        return userPrefs.getPatientRecordFilePath();
     }
     @Override
     public void setPatientRecordFilePath(Path patientRecordFilePath) {
         requireNonNull(patientRecordFilePath);
-        // implement ltr
-        // userPrefs.setPatientRecordFilePath(patientRecordFilePath);
+         userPrefs.setPatientRecordFilePath(patientRecordFilePath);
     }
 
     @Override
     public Path getDrugInventoryFilePath() {
-//        return userPrefs.getDrugInventoryFilePath();
-        return null;
+        return userPrefs.getDrugInventoryFilePath();
     }
 
     @Override
     public void setDrugInventoryFilePath(Path drugInventoryFilePath) {
         requireNonNull(drugInventoryFilePath);
-        // implementation here
-        // implement ltr
-//        userPrefs.setDrugInventoryFilePath(drugInventoryFilePath);
+        userPrefs.setDrugInventoryFilePath(drugInventoryFilePath);
     }
 
     //=========== Patient Record & Drug Inventory =========================================================

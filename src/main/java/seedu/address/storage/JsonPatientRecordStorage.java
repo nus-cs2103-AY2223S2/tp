@@ -42,20 +42,18 @@ public class JsonPatientRecordStorage implements PatientRecordStorage {
     @Override
     public Optional<ReadOnlyPatientRecord> readPatientRecord(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
+        Optional<JsonSerializablePatientRecord> jsonPatientRecord = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePatientRecord.class);
+        if (!jsonPatientRecord.isPresent()) {
+            return Optional.empty();
+        }
 
-//        Optional<JsonSerializablePatientRecord> jsonPatientRecord = JsonUtil.readJsonFile(
-//                filePath, JsonSerializablePatientRecord.class);
-//        if (!jsonPatientRecord.isPresent()) {
-//            return Optional.empty();
-//        }
-//
-//        try {
-//            return Optional.of(jsonPatientRecord.get().toModelType());
-//        } catch (IllegalValueException ive) {
-//            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-//            throw new DataConversionException(ive);
-//        }
-        return Optional.empty();
+        try {
+            return Optional.of(jsonPatientRecord.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
@@ -69,6 +67,6 @@ public class JsonPatientRecordStorage implements PatientRecordStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-//        JsonUtil.saveJsonFile(new SerializableCareFlow());
+        JsonUtil.saveJsonFile(new JsonSerializablePatientRecord(patientRecord), filePath);
     }
 }

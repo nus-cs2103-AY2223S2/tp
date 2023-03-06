@@ -22,7 +22,7 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path patientSaveLocation, Path drugSaveLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(patientSaveLocation).toString()
+        saveLocationStatus.setText(Paths.get(".").resolve(patientSaveLocation).toString() + "\t"
                         + Paths.get(".").resolve(drugSaveLocation).toString()
                 );
     }

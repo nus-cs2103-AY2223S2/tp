@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.drug.Drug;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Patient;
 
 /**
@@ -32,17 +31,17 @@ public class PatientDrugListPanel extends UiPart<Region> {
 
         // PERSON LIST
         patientListView.setItems(patientList);
-//        patientListView.setCellFactory(listView -> new PatientListViewCell());
+        patientListView.setCellFactory(listView -> new PatientListViewCell());
 
         // DRUG LIST
         drugListView.setItems(drugList);
-//        drugListView.setCellFactory(listView -> new DrugListViewCell());
+        drugListView.setCellFactory(listView -> new DrugListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
-    class PersonListViewCell extends ListCell<Patient> {
+    class PatientListViewCell extends ListCell<Patient> {
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);
@@ -51,7 +50,7 @@ public class PatientDrugListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(patient, getIndex() + 1).getRoot());
+                setGraphic(new PatientCard(patient, getIndex() + 1).getRoot());
             }
         }
     }

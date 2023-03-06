@@ -1,24 +1,17 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.drug.Direction;
 import seedu.address.model.drug.Drug;
-import seedu.address.model.drug.Purpose;
-import seedu.address.model.drug.StorageCount;
-import seedu.address.model.drug.TradeName;
 
 /**
  * An UI component that displays information of a {@code Drug}.
  */
 public class DrugCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "DrugListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,8 +39,6 @@ public class DrugCard extends UiPart<Region> {
     private Label sideEffects;
     @FXML
     private Label storageCount;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code DrugCode} with the given {@code Drug} and index to display.
@@ -56,12 +47,12 @@ public class DrugCard extends UiPart<Region> {
         super(FXML);
         this.drug = drug;
         id.setText(displayedIndex + ". ");
-        activeIngredient.setText(this.drug.getTradeName().tradeName);
-        direction.setText(this.drug.getActiveIngredient().value);
-        direction.setText(this.drug.getDirection().value);
-        purposes.setText(this.drug.getPurposes().purpose);
-        sideEffects.setText(this.drug.getSideEffects().sideEffect);
-        storageCount.setText(this.drug.getStorageCount().count.toString());
+        tradeName.setText(this.drug.getTradeName().tradeName);
+        activeIngredient.setText("Active Ingredient: "+ this.drug.getActiveIngredient().value);
+        direction.setText("Direction: " + this.drug.getDirection().value);
+        purposes.setText("Purposes: "+ this.drug.getPurposes().purpose);
+        sideEffects.setText("Side Effects: " + this.drug.getSideEffects().sideEffect);
+        storageCount.setText("Storage: " + this.drug.getStorageCount().count.toString());
     }
 
     @Override
