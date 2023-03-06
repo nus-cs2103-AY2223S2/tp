@@ -2,11 +2,8 @@ package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_NO_MODULES;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -15,7 +12,6 @@ import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
-import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * Deletes a module identified using module code from ModTrek.
