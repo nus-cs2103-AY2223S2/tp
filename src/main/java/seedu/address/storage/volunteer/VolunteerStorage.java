@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyVolunteer;
 
 /**
@@ -22,12 +23,13 @@ public interface VolunteerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyVolunteer> readVolunteer() throws DataConversionException, IOException;
+    Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
     /**
      * @see #getVolunteerFilePath()
      */
-    Optional<ReadOnlyVolunteer> readVolunteer(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyVolunteer} to the storage.

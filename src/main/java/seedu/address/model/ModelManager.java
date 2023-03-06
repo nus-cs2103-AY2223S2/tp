@@ -158,7 +158,7 @@ public class ModelManager implements Model {
     @Override
     public void addVolunteer(Volunteer person) {
         friendlyLink.addVolunteer(person);
-        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
     }
 
     @Override
@@ -248,9 +248,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+    public void updateFilteredVolunteerList(Predicate<Volunteer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredVolunteers.setPredicate(predicate);
     }
 
     //=========== Filtered Pair List Accessors =============================================================

@@ -12,23 +12,23 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.person.Volunteer;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.storage.JsonSerializable;
 
 /**
  * An Immutable Volunteer that is serializable to JSON format.
  */
 @JsonRootName(value = "volunteers")
-public class JsonSerializableVolunteer {
+public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink> {
     public static final String MESSAGE_DUPLICATE_VOLUNTEER = "Volunteer list contains duplicate volunteer(s).";
 
-    private final List<JsonAdaptedPerson> volunteer = new ArrayList<>();
+    private final List<JsonAdaptedVolunteer> volunteers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableVolunteer} with the given volunteer.
      */
     @JsonCreator
-    public JsonSerializableVolunteer(@JsonProperty("volunteers") List<JsonAdaptedPerson> volunteer) {
-        serializeEntities(this.volunteer, volunteer);
+    public JsonSerializableVolunteer(@JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteer) {
+        serializeEntities(this.volunteers, volunteer);
     }
 
     /**
@@ -37,11 +37,11 @@ public class JsonSerializableVolunteer {
      * @param source future changes to this will not affect the created {@code JsonSerializableVolunteer}.
      */
     public JsonSerializableVolunteer(ReadOnlyVolunteer source) {
-        serializeEntities(volunteer,
-                source.getVolunteerList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        serializeEntities(volunteers,
+                source.getVolunteerList().stream().map(JsonAdaptedVolunteer::new).collect(Collectors.toList()));
     }
 
-    private void serializeEntities(List<JsonAdaptedPerson> entities, List<JsonAdaptedPerson> source) {
+    private void serializeEntities(List<JsonAdaptedVolunteer> entities, List<JsonAdaptedVolunteer> source) {
         entities.addAll(source);
     }
 
@@ -50,17 +50,14 @@ public class JsonSerializableVolunteer {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public FriendlyLink toModelType() throws IllegalValueException {
-        FriendlyLink friendlyLink = new FriendlyLink();
-        unserializeEntities(volunteer, friendlyLink);
+    public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
+        unserializeEntities(friendlyLink);
         return friendlyLink;
     }
 
-    private void unserializeEntities(
-            List<JsonAdaptedPerson> entity, FriendlyLink friendlyLink) throws IllegalValueException {
-        for (JsonAdaptedPerson jsonAdaptedPerson : entity) {
-            // TODO: Check if there is a need to cast
-            Volunteer volunteer = (Volunteer) jsonAdaptedPerson.toModelType();
+    private void unserializeEntities(FriendlyLink friendlyLink) throws IllegalValueException {
+        for (JsonAdaptedVolunteer jsonAdaptedVolunteer : volunteers) {
+            Volunteer volunteer = jsonAdaptedVolunteer.toModelType(friendlyLink);
             if (friendlyLink.hasVolunteer(volunteer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VOLUNTEER);
             }

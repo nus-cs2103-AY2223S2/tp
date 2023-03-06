@@ -9,64 +9,51 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyVolunteer;
+import seedu.address.storage.JsonAppStorage;
 
 /**
  * A class to access volunteer. data stored as a json file on the hard disk.
  */
-public class JsonVolunteerStorage implements VolunteerStorage {
+public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, FriendlyLink, JsonSerializableVolunteer>
+        implements VolunteerStorage {
 
     private static final Logger logger =
             LogsCenter.getLogger(seedu.address.storage.volunteer.JsonVolunteerStorage.class);
 
-    private final Path filePath;
-
     public JsonVolunteerStorage(Path filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
     @Override
     public Path getVolunteerFilePath() {
-        return filePath;
+        return super.getFilePath();
     }
 
 
     @Override
-    public Optional<ReadOnlyVolunteer> readVolunteer() throws DataConversionException {
-        return readVolunteer(filePath);
+    public Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink) throws DataConversionException {
+        return super.read(JsonSerializableVolunteer.class, logger, friendlyLink);
     }
 
     /**
-     * Similar to {@link #readVolunteer()}.
+     * Similar to {@link VolunteerStorage#readVolunteer(FriendlyLink)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath     location of the data. Cannot be null.
+     * @param friendlyLink the cache the volunteer list will be read to.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
-
-        Optional<JsonSerializableVolunteer> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableVolunteer.class);
-
-
-        if (jsonAddressBook.isEmpty()) {
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
-        }
+    public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
+            throws DataConversionException {
+        return super.read(filePath, JsonSerializableVolunteer.class, logger, friendlyLink);
     }
 
     @Override
     public void saveVolunteer(ReadOnlyVolunteer friendlyLink) throws IOException {
-        saveVolunteer(friendlyLink, filePath);
+        saveVolunteer(friendlyLink, super.getFilePath());
     }
 
     /**

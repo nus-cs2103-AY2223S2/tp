@@ -13,47 +13,50 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Nric;
-import seedu.address.testutil.TypicalVolunteers;
+import seedu.address.testutil.TypicalElderly;
 
-public class DeleteVolunteerCommandTest {
-    private final Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+class DeleteElderlyCommandTest {
+
+    private final Model model = new ModelManager(
+            getTypicalFriendlyLink(), new UserPrefs()
+    );
 
     @Test
     public void execute_validNric_success() {
-        Volunteer volunteerToDelete = TypicalVolunteers.getTypicalVolunteers().get(0);
-        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(volunteerToDelete.getNric());
+        Elderly elderlyToDelete = TypicalElderly.getTypicalElderly().get(0);
+        DeleteElderlyCommand deleteElderlyCommand =
+                new DeleteElderlyCommand(elderlyToDelete.getNric());
 
         String expectedMessage = String.format(
-                DeleteVolunteerCommand.MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete
+                DeleteElderlyCommand.MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete
         );
-
         ModelManager expectedModel = new ModelManager(model.getFriendlyLink(), new UserPrefs());
-        expectedModel.deleteVolunteer(volunteerToDelete);
-
-        assertCommandSuccess(deleteVolunteerCommand, model, expectedMessage, expectedModel);
+        expectedModel.deleteElderly(elderlyToDelete);
+        assertCommandSuccess(deleteElderlyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidNric_throwsCommandException() {
         Nric invalidNric = new Nric("T9999999I");
-        DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(invalidNric);
+        DeleteElderlyCommand deleteElderlyCommand = new DeleteElderlyCommand(invalidNric);
 
-        assertCommandFailure(deleteVolunteerCommand, model, Messages.MESSAGE_NRIC_NOT_EXIST);
+        assertCommandFailure(deleteElderlyCommand, model, Messages.MESSAGE_NRIC_NOT_EXIST);
     }
+
     @Test
     public void equals() {
         Nric firstNric = new Nric("S1234567I");
         Nric secondNric = new Nric("S7654321I");
-        DeleteVolunteerCommand deleteFirstCommand = new DeleteVolunteerCommand(firstNric);
-        DeleteVolunteerCommand deleteSecondCommand = new DeleteVolunteerCommand(secondNric);
+        DeleteElderlyCommand deleteFirstCommand = new DeleteElderlyCommand(firstNric);
+        DeleteElderlyCommand deleteSecondCommand = new DeleteElderlyCommand(secondNric);
 
         // same object -> returns true
         assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
-        DeleteVolunteerCommand deleteFirstCommandCopy = new DeleteVolunteerCommand(firstNric);
+        DeleteElderlyCommand deleteFirstCommandCopy = new DeleteElderlyCommand(firstNric);
         assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
