@@ -17,7 +17,7 @@ public class EventToContainsKeywordsPredicate implements Predicate<Task> {
     public boolean test(Task task) {
         if (task instanceof Event) {
             Event event = (Event) task;
-            String date = event.getFrom().getValue();
+            String date = event.getTo().getValue();
             return date.contains(keyphrase);
         }
         return false;
