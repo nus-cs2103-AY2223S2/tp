@@ -13,6 +13,10 @@
     font-family: 'Lexend Deca SemiBold';
     src: url("/fonts/LexendDeca-SemiBold.ttf");
 }
+@font-face {
+    font-family: 'Courier Prime Bold';
+    src: url("/fonts/CourierPrime-Bold.ttf");
+}
 
 .h1 {
     -fx-font-size: 24;

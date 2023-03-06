@@ -1,6 +1,6 @@
 .system-dialog-container {
     -fx-spacing: 10;
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 0 0 15 0;
 }
 
 .system-dialog-response-indicator {
@@ -16,4 +16,8 @@
 
 .system-dialog-response-indicator-error {
     -fx-background-color: -red;
+}
+
+.system-dialog-text {
+    -fx-padding: 3 0;
 }

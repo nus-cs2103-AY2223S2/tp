@@ -39,6 +39,9 @@ public class CliSection extends UiPart<Region> {
             return;
         }
 
+        /* Remove the initial welcome dialog shown on cliScreen on app launch */
+        cliScreen.getChildren().remove(cliScreen.lookup("#cli-screen-welcome-dialog"));
+
         addUserDialog(commandText);
 
         /* TODO: Call execute() here... */

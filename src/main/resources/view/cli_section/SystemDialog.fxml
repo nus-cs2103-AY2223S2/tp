@@ -12,5 +12,5 @@
     </stylesheets>
 
     <HBox fx:id="systemDialogResponseIndicator" styleClass="system-dialog-response-indicator" />
-    <Label fx:id="systemDialogText" wrapText="true" />
+    <Label fx:id="systemDialogText" wrapText="true" styleClass="system-dialog-text" />
 </HBox>
