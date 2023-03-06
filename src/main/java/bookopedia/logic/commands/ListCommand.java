@@ -6,13 +6,13 @@ import static java.util.Objects.requireNonNull;
 import bookopedia.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all deliveries in Bookopedia to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all deliveries and their respective details";
 
 
     @Override
