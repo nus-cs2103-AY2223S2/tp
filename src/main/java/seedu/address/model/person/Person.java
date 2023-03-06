@@ -39,6 +39,9 @@ public class Person {
         this.time = time;
     }
 
+    /**
+     * Alternative constructor for person with scheduled time.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -64,8 +67,12 @@ public class Person {
         return address;
     }
 
-    public LocalDateTime getTime() {return time;}
+    public LocalDateTime getTime() { return time; }
 
+    /**
+     * check if the person has scheduled time.
+     * @return true if the person has time.
+     */
     public boolean hasTime() {
         return this.time != null;
     }

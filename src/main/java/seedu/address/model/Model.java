@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 
@@ -90,5 +89,5 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the persons arranged by scheduled time */
-   void updateScheduledList(Predicate<Person> predicate);
+    void updateScheduledList(Predicate<Person> predicate);
 }

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.scene.control.Label;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-   private LocalDateTime time = null;
+    private LocalDateTime time = null;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -58,7 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        if(source.hasTime()) {
+        if (source.hasTime()) {
             time = source.getTime();
         }
         tagged.addAll(source.getTags().stream()
@@ -111,7 +110,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if(time == null) {
+        if (time == null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         } else {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time);

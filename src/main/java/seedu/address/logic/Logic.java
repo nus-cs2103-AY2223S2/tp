@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-   /** Returns an unmodifiable view of the filtered person list */
-   ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.
