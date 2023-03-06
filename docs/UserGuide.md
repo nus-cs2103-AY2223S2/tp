@@ -12,8 +12,8 @@ TODO: Installation guide
 > 
 > - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
 >   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-> - Items with `…` after them can be used multiple times including zero times.  
->   e.g. `[t/TAG]…` can be used as  <code> </code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+> - Items with `...` after them can be used multiple times including zero times.  
+>   e.g. `[t/TAG]...` can be used as  <code> </code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 > - Items in square brackets are optional.  
 >   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 > - Parameters can be in any order.  
@@ -57,7 +57,7 @@ Deletes the specified student from the address book.
 
 - Deletes the student at the specified `INDEX`.
 - The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, …
+- The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 
