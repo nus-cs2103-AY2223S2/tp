@@ -39,17 +39,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Kok Chun Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chunzkok.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chunzkok)]
+[[portfolio](team/chunzkok.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Class List: Insertion, Deletion and Grouping of Students (Class List)
 
-### James Doe
+
+### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
