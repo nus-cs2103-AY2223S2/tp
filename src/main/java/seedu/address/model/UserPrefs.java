@@ -156,5 +156,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
-
 }
