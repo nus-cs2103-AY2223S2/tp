@@ -7,6 +7,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -63,10 +64,14 @@ public class JsonPatientRecordStorage implements PatientRecordStorage {
 
     @Override
     public void savePatientRecord(ReadOnlyPatientRecord patientRecord, Path filePath) throws IOException {
+
         requireNonNull(patientRecord);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePatientRecord(patientRecord), filePath);
+        File file = new File("data/patientRecord.json");
+        if (file.exists()) {
+            JsonUtil.saveJsonFile(new JsonSerializablePatientRecord(patientRecord), filePath);
+        }
     }
 }

@@ -24,6 +24,9 @@ public class Patient extends Person {
         this.birthDate = birthDate;
         this.gender = gender;
         this.ic = ic;
+        // initialise drugAllergy and emergencyContact
+        this.drugAllergy = Optional.empty();
+        this.emergencyContact = Optional.empty();
     }
 
     /**
