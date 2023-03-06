@@ -85,7 +85,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX]…​`
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any numbers of event index (including 0)
+A person can have any number of events (including 0)
 </div>
 
 Examples:
