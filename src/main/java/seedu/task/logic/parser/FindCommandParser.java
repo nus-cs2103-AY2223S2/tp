@@ -52,22 +52,22 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            parseForFindCommand(PREFIX_NAME, argMultimap);
+            return parseForFindCommand(PREFIX_NAME, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            parseForFindCommand(PREFIX_DESCRIPTION, argMultimap);
+            return parseForFindCommand(PREFIX_DESCRIPTION, argMultimap);
         }
         if (parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).isPresent()) {
-            parseForFindCommand(PREFIX_TAG, argMultimap);
+            return parseForFindCommand(PREFIX_TAG, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            parseForFindCommand(PREFIX_DEADLINE, argMultimap);
+            return parseForFindCommand(PREFIX_DEADLINE, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_FROM).isPresent()) {
-            parseForFindCommand(PREFIX_FROM, argMultimap);
+            return parseForFindCommand(PREFIX_FROM, argMultimap);
         }
         if (argMultimap.getValue(PREFIX_TO).isPresent()) {
-            parseForFindCommand(PREFIX_TO, argMultimap);
+            return parseForFindCommand(PREFIX_TO, argMultimap);
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
