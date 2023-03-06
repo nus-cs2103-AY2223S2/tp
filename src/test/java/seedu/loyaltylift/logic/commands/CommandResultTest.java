@@ -3,9 +3,12 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.Objects;
 
 public class CommandResultTest {
     @Test
@@ -33,6 +36,28 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, null)));
+    }
+
+    @Test
+    public void getCustomerIndex() {
+        Integer index = 1;
+        CommandResult commandResult = new CommandResult("feedback", false, false, index);
+        assertEquals(commandResult.getCustomerIndex(), index);
+
+        CommandResult nullCommandResult = new CommandResult("feedback", false, false, null);
+        assertNull(nullCommandResult.getCustomerIndex());
+    }
+
+    @Test
+    public void isShowCustomerSelection() {
+        CommandResult falseCommandResult = new CommandResult("feedback");
+        assertFalse(falseCommandResult.isShowCustomerSelection());
+
+        CommandResult secondFalseCommandResult = new CommandResult("feedback", true, true, null);
+        assertFalse(secondFalseCommandResult.isShowCustomerSelection());
+
+        CommandResult trueCommandResult = new CommandResult("feedback", true, true, 0);
+        assertTrue(trueCommandResult.isShowCustomerSelection());
     }
 
     @Test
