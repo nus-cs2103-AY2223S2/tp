@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
+import static seedu.modtrek.testutil.TypicalModules.CS1101S;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +49,10 @@ public class ModTrekParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + "CS1101S");
-        assertEquals(new DeleteCommand(new Code("CS1101S")), command);
+                DeleteCommand.COMMAND_WORD + " " + "/m CS1101S");
+        Set<Code> codesToDelete = new HashSet<>();
+        codesToDelete.add(CS1101S.getCode());
+        assertEquals(new DeleteCommand(false, codesToDelete), command);
     }
 
     @Test

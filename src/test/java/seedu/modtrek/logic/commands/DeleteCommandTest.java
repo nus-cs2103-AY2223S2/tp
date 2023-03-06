@@ -10,11 +10,16 @@ import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.ST2334;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
+import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
 
 class DeleteCommandTest {
@@ -23,13 +28,15 @@ class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Module personToDelete = model.getFilteredModuleList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(CS2100.getCode());
+        Module moduleToDelete = model.getFilteredModuleList().get(0);
+        Set<Code> codesToDelete = new HashSet<>();
+        codesToDelete.add(CS2100.getCode());
+        DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, codesToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
-        expectedModel.deleteModule(personToDelete);
+        expectedModel.deleteModule(moduleToDelete);
         showNoModule(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -37,20 +44,37 @@ class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(CS1101S.getCode());
+        Set<Code> codesToDelete = new HashSet<>();
+        codesToDelete.add(CS1101S.getCode());
+        DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
         assertCommandFailure(deleteCommand, model, String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, CS1101S.getCode()));
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        Module personToDelete = model.getFilteredModuleList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(CS2100.getCode());
+        Module moduleToDelete = model.getFilteredModuleList().get(0);
+        Set<Code> codesToDelete = new HashSet<>();
+        codesToDelete.add(CS2100.getCode());
+        DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, codesToDelete);
 
         Model expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
-        expectedModel.deleteModule(personToDelete);
+        expectedModel.deleteModule(moduleToDelete);
+        showNoModule(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validAllKeyword_success() {
+        Set<Code> codesToDelete = new HashSet<>();
+        DeleteCommand deleteCommand = new DeleteCommand(true, codesToDelete);
+
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_ALL_MODULES_SUCCESS;
+
+        Model expectedModel = new ModelManager(new DegreeProgression(), new UserPrefs());
         showNoModule(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -58,14 +82,18 @@ class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(CS2100.getCode());
-        DeleteCommand deleteSecondCommand = new DeleteCommand(ST2334.getCode());
+        Set<Code> codesToDelete = new HashSet<>();
+        codesToDelete.add(CS2100.getCode());
+        Set<Code> codesToDelete2 = new HashSet<>();
+        codesToDelete.add(ST2334.getCode());
+        DeleteCommand deleteFirstCommand = new DeleteCommand(false, codesToDelete);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(false, codesToDelete2);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(CS2100.getCode());
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(false, codesToDelete);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -74,7 +102,7 @@ class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

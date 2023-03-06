@@ -106,4 +106,16 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code Collection<String> codes} into a {@code Set<Code>}.
+     */
+    public static Set<Code> parseCodes(Collection<String> codes) throws ParseException {
+        requireNonNull(codes);
+        final Set<Code> codeSet = new HashSet<>();
+        for (String code : codes) {
+            codeSet.add(parseCode(code));
+        }
+        return codeSet;
+    }
 }
