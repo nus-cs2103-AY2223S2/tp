@@ -9,8 +9,8 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
+import static seedu.task.model.task.Date.MESSAGE_INVALID_DATE;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -20,9 +20,13 @@ import java.util.stream.Stream;
 import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.DeadlineDateContainsKeywordsPredicate;
 import seedu.task.model.task.DescContainsAllKeywordsPredicate;
 import seedu.task.model.task.DescContainsKeywordsPredicate;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.EventFromContainsKeywordsPredicate;
+import seedu.task.model.task.EventToContainsKeywordsPredicate;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.NameContainsAllKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
@@ -51,34 +55,40 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Set<Name> names = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            if (!argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
-                return new FindCommand(new NameContainsKeywordsPredicate(name.toString()));
+            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+                return new FindCommand(new NameContainsAllKeywordsPredicate(ParserUtil.parseNamesToList(names)));
             }
-            return new FindCommand(new NameContainsAllKeywordsPredicate(ParserUtil.parseNamesToList(names)));
+            return new FindCommand(new NameContainsKeywordsPredicate(name.toString()));
+
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             Set<Description> descriptions = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
             Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-            if (!argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
-                return new FindCommand(new DescContainsKeywordsPredicate(description.toString()));
+            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+                return new FindCommand(new DescContainsAllKeywordsPredicate(ParserUtil.parseDescriptionsToList(descriptions)));
             }
-            return new FindCommand(new DescContainsAllKeywordsPredicate(ParserUtil.parseDescriptionsToList(descriptions)));
+            return new FindCommand(new DescContainsKeywordsPredicate(description.toString()));
+
         }
         if (parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).isPresent()) {
             Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            if (!argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
-                return new FindCommand(new TagsContainsKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
+            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+                return new FindCommand(new TagsContainsAllKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
             }
-            return new FindCommand(new TagsContainsAllKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
+            return new FindCommand(new TagsContainsKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
+
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-
+            String date = Date.parseFindDate(argMultimap.getValue(PREFIX_DEADLINE).get());
+            return new FindCommand(new DeadlineDateContainsKeywordsPredicate(date));
         }
         if (argMultimap.getValue(PREFIX_FROM).isPresent()) {
-
+            String date = Date.parseFindDate(argMultimap.getValue(PREFIX_FROM).get());
+            return new FindCommand(new EventFromContainsKeywordsPredicate(date));
         }
         if (argMultimap.getValue(PREFIX_TO).isPresent()) {
-
+            String date = Date.parseFindDate(argMultimap.getValue(PREFIX_TO).get());
+            return new FindCommand(new EventToContainsKeywordsPredicate(date));
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
