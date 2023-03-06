@@ -5,7 +5,7 @@ import seedu.task.model.tag.Tag;
 /**
  * Encapsulate a tag-occurrence unit to facilitate sorting
  */
-public class TagComparator implements Comparable<TagComparator>{
+public class TagComparator implements Comparable<TagComparator> {
 
     private Tag name;
     private int occurrences;
