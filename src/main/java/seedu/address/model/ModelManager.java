@@ -123,7 +123,12 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_EVENTS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -154,6 +159,12 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
     //=========== Utils =============================================================
 
     @Override
@@ -174,6 +185,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredEvents.equals(other.filteredEvents);
-
     }
 }

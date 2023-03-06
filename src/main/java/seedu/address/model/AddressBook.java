@@ -125,12 +125,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         events.add(e);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeEvent(Event key) {
+        events.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return persons.asUnmodifiableObservableList().size() + " persons "
+                + events.asUnmodifiableObservableList().size() + " events";
     }
 
     @Override

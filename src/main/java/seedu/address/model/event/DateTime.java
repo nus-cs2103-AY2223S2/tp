@@ -18,7 +18,7 @@ public class DateTime {
     /**
      * Constructs a {@code DateTime}.
      *
-     * @param dateTime A valid phone number.
+     * @param dateTime A valid date-time.
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);

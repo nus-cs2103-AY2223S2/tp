@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -62,6 +63,17 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Removes the equivalent event from the list.
+     * The event must exist in the list.
+     */
+    public void remove(Event toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EventNotFoundException();
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
@@ -88,7 +100,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Returns true if {@code events} contains only unique events.
      */
-    private boolean eventsAreUnique(List<Event> events) {
+    public boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
                 if (events.get(i).isSameEvent(events.get(j))) {
