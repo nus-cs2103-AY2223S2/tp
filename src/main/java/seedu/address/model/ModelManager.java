@@ -112,6 +112,7 @@ public class ModelManager implements Model {
             rebind(filteredPilots);
             break;
         case PLANE:
+            rebind(filteredPlanes);
         case FLIGHT:
         case CREW:
         case LOCATION:
@@ -359,7 +360,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePlane(String id) {
-        // planeManager.removeItem(id);
+        planeManager.removeItem(id);
     }
 
     @Override
