@@ -13,7 +13,7 @@ public class AddressBookBuilder {
     private AddressBook addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook(persons);
+        addressBook = new AddressBook();
     }
 
     public AddressBookBuilder(AddressBook addressBook) {
