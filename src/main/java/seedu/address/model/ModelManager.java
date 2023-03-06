@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
+    private ObservableList<Person> persons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,7 +37,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        persons = FXCollections.observableArrayList(addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(persons);
     }
 
     public ModelManager() {
@@ -127,18 +130,17 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        persons.setAll(addressBook.getPersonList());
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
     public void updateScheduledList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        FilteredList<Person> newFilteredList = new FilteredList<>(addressBook.getPersonList());
-        newFilteredList.setPredicate(predicate);
-        SortedList<Person> newSortedList = new SortedList<>(newFilteredList, new TimeComparator());
-        System.out.println(newSortedList);
-        filteredPersons = new FilteredList<>(newSortedList);
+        persons.setAll(addressBook.getPersonList());
         filteredPersons.setPredicate(predicate);
+        SortedList<Person> newSortedList = new SortedList<>(filteredPersons, new TimeComparator());
+        persons.setAll(newSortedList);
     }
 
     @Override

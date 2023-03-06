@@ -1,8 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.model.util.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SCHEDULED;
 
+//import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 
 /**
@@ -19,6 +20,8 @@ public class ListTime extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateScheduledList(PREDICATE_SCHEDULED);
-        return new CommandResult(MESSAGE_SUCCESS);
+        //return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(
+            String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size()));
     }
 }

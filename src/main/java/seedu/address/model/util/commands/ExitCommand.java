@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.model.util.commands;
 
 import seedu.address.model.Model;
 
