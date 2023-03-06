@@ -1,9 +1,9 @@
 package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.loyaltylift.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

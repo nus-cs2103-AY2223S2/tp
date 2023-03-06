@@ -8,15 +8,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.loyaltylift.model.customer.exceptions.DuplicatePersonException;
-import seedu.loyaltylift.model.customer.exceptions.PersonNotFoundException;
+import seedu.loyaltylift.model.customer.exceptions.CustomerNotFoundException;
+import seedu.loyaltylift.model.customer.exceptions.DuplicateCustomerException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of customers that enforces uniqueness between its elements and does not allow nulls.
+ * A customer is considered unique by comparing using {@code Customer#isSameCustomer(Customer)}.
+ * As such, adding and updating of customers uses Customer#isSameCustomer(Customer)
+ * for equality so as to ensure that the customer being added or updated is unique in terms of identity in the
+ * UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so as to ensure
+ * that the customer with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +30,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent customer as the given argument.
      */
     public boolean contains(Customer toCheck) {
         requireNonNull(toCheck);
@@ -37,45 +38,45 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a customer to the list.
+     * The customer must not already exist in the list.
      */
     public void add(Customer toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateCustomerException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the customer {@code target} in the list with {@code editedCustomer}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the list.
      */
-    public void setCustomer(Customer target, Customer editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new CustomerNotFoundException();
         }
 
-        if (!target.isSameCustomer(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameCustomer(editedCustomer) && contains(editedCustomer)) {
+            throw new DuplicateCustomerException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedCustomer);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent customer from the list.
+     * The customer must exist in the list.
      */
     public void remove(Customer toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new CustomerNotFoundException();
         }
     }
 
@@ -85,16 +86,16 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code customers}.
+     * {@code customers} must not contain duplicate customers.
      */
-    public void setCustomers(List<Customer> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
+    public void setCustomers(List<Customer> customers) {
+        requireAllNonNull(customers);
+        if (!customersAreUnique(customers)) {
+            throw new DuplicateCustomerException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(customers);
     }
 
     /**
@@ -122,12 +123,12 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code customers} contains only unique customers.
      */
-    private boolean personsAreUnique(List<Customer> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameCustomer(persons.get(j))) {
+    private boolean customersAreUnique(List<Customer> customers) {
+        for (int i = 0; i < customers.size() - 1; i++) {
+            for (int j = i + 1; j < customers.size(); j++) {
+                if (customers.get(i).isSameCustomer(customers.get(j))) {
                     return false;
                 }
             }

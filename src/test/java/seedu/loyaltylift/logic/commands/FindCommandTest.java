@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.loyaltylift.testutil.TypicalPersons.CARL;
-import static seedu.loyaltylift.testutil.TypicalPersons.ELLE;
-import static seedu.loyaltylift.testutil.TypicalPersons.FIONA;
-import static seedu.loyaltylift.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalCustomers.CARL;
+import static seedu.loyaltylift.testutil.TypicalCustomers.ELLE;
+import static seedu.loyaltylift.testutil.TypicalCustomers.FIONA;
+import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,12 +50,12 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different customer -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noCustomerFound() {
         String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -65,7 +65,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleCustomersFound() {
         String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);

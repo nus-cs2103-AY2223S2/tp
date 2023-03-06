@@ -8,7 +8,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalPersons.AMY;
+import static seedu.loyaltylift.testutil.TypicalCustomers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,7 +30,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.storage.JsonAddressBookStorage;
 import seedu.loyaltylift.storage.JsonUserPrefsStorage;
 import seedu.loyaltylift.storage.StorageManager;
-import seedu.loyaltylift.testutil.PersonBuilder;
+import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -81,15 +81,15 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Customer expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addCustomer(expectedPerson);
+        expectedModel.addCustomer(expectedCustomer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCustomerList().remove(0));
     }
 

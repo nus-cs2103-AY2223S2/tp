@@ -21,31 +21,31 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.ReadOnlyUserPrefs;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.testutil.PersonBuilder;
+import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullCustomer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Customer validPerson = new PersonBuilder().build();
+    public void execute_customerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
+        Customer validCustomer = new CustomerBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Customer validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateCustomer_throwsCommandException() {
+        Customer validCustomer = new CustomerBuilder().build();
+        AddCommand addCommand = new AddCommand(validCustomer);
+        ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Customer alice = new PersonBuilder().withName("Alice").build();
-        Customer bob = new PersonBuilder().withName("Bob").build();
+        Customer alice = new CustomerBuilder().withName("Alice").build();
+        Customer bob = new CustomerBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -71,7 +71,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different customer -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -110,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addCustomer(Customer person) {
+        public void addCustomer(Customer customer) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,7 +125,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasCustomer(Customer person) {
+        public boolean hasCustomer(Customer customer) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +135,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setCustomer(Customer target, Customer editedPerson) {
+        public void setCustomer(Customer target, Customer editedCustomer) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,39 +151,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single customer.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Customer person;
+    private class ModelStubWithCustomer extends ModelStub {
+        private final Customer customer;
 
-        ModelStubWithPerson(Customer person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithCustomer(Customer customer) {
+            requireNonNull(customer);
+            this.customer = customer;
         }
 
         @Override
-        public boolean hasCustomer(Customer person) {
-            requireNonNull(person);
-            return this.person.isSameCustomer(person);
+        public boolean hasCustomer(Customer customer) {
+            requireNonNull(customer);
+            return this.customer.isSameCustomer(customer);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the customer being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Customer> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCustomerAdded extends ModelStub {
+        final ArrayList<Customer> customersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasCustomer(Customer person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameCustomer);
+        public boolean hasCustomer(Customer customer) {
+            requireNonNull(customer);
+            return customersAdded.stream().anyMatch(customer::isSameCustomer);
         }
 
         @Override
-        public void addCustomer(Customer person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addCustomer(Customer customer) {
+            requireNonNull(customer);
+            customersAdded.add(customer);
         }
 
         @Override

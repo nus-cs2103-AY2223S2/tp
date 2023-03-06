@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.loyaltylift.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Customer> {
     private final List<String> keywords;
@@ -16,9 +16,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
     }
 
     @Override
-    public boolean test(Customer person) {
+    public boolean test(Customer customer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(customer.getName().fullName, keyword));
     }
 
     @Override

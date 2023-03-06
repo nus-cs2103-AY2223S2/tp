@@ -3,10 +3,10 @@ package seedu.loyaltylift.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalPersons.ALICE;
-import static seedu.loyaltylift.testutil.TypicalPersons.HOON;
-import static seedu.loyaltylift.testutil.TypicalPersons.IDA;
-import static seedu.loyaltylift.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
+import static seedu.loyaltylift.testutil.TypicalCustomers.HOON;
+import static seedu.loyaltylift.testutil.TypicalCustomers.IDA;
+import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,14 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readAddressBook_invalidCustomerAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidCustomerAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidCustomerAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("invalidAndValidCustomerAddressBook.json"));
     }
 
     @Test

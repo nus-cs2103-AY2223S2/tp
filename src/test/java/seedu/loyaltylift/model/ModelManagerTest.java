@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalPersons.ALICE;
-import static seedu.loyaltylift.testutil.TypicalPersons.BENSON;
+import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
+import static seedu.loyaltylift.testutil.TypicalCustomers.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCustomer_nullCustomer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasCustomer(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasCustomer_customerNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasCustomern_customerInAddressBook_returnsTrue() {
         modelManager.addCustomer(ALICE);
         assertTrue(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
