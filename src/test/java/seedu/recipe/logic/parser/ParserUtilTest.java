@@ -19,7 +19,7 @@ import seedu.recipe.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = "This is some !@% invalid description";
-    private static final String INVALID_INGREDIENT = "salt & pepper";
+    private static final Collection<String> INVALID_INGREDIENT = new HashSet<String>(Arrays.asList("&salt"));
     private static final String INVALID_STEP = "Mix the cookie batter in the %^&, Do this next";
     private static final String INVALID_TITLE = "~~Mala Xiangguo~~";
 //    private static final String INVALID_TAG = "#friend";

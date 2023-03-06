@@ -57,19 +57,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code step} is invalid.
      */
-    public static ArrayList<Step> parseSteps(String steps) throws ParseException {
+    public static Set<Step> parseSteps(Collection<String> steps) throws ParseException {
         requireNonNull(steps);
-        String trimmedSteps = steps.trim();
-        if (!Step.isValidStep(trimmedSteps)) {
-            throw new ParseException(Step.MESSAGE_CONSTRAINTS);
+        final Set<Step> stepSet = new HashSet<>();
+        for (String stepName : steps) {
+            stepSet.add(parseStepHelper(stepName));
         }
-        ArrayList<Step> listOfSteps = new ArrayList<>();
-        String[] tempSteps = trimmedSteps.split(",");
-        for (int i = 0; i < tempSteps.length; i++) {
-            Step currentStep = parseStepHelper(tempSteps[i]);
-            listOfSteps.add(currentStep);
-        }
-        return listOfSteps;
+        return stepSet;
     }
 
     /**
@@ -81,7 +75,7 @@ public class ParserUtil {
     public static Step parseStepHelper(String step) throws ParseException {
         requireNonNull(step);
         String trimmedStep = step.trim();
-        if (!Tag.isValidTagName(trimmedStep)) {
+        if (!Step.isValidStep(trimmedStep)) {
             throw new ParseException(Step.MESSAGE_CONSTRAINTS);
         }
         return new Step(trimmedStep);
@@ -93,20 +87,15 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ingredients} is invalid.
      */
-    public static ArrayList<Ingredient> parseIngredients(String ingredients) throws ParseException {
+    public static Set<Ingredient> parseIngredients(Collection<String> ingredients) throws ParseException {
         requireNonNull(ingredients);
-        String trimmedIngredients = ingredients.trim();
-        if (!Ingredient.isValidIngredient(trimmedIngredients)) {
-            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        final Set<Ingredient> ingredientSet = new HashSet<>();
+        for (String tagName : ingredients) {
+            ingredientSet.add(parseIngredientHelper(tagName));
         }
-        ArrayList<Ingredient> listOfIngredients = new ArrayList<>();
-        String[] tempIngredients = trimmedIngredients.split(",");
-        for (int i = 0; i < tempIngredients.length; i++) {
-            Ingredient currentIngredient = parseIngredientHelper(tempIngredients[i]);
-            listOfIngredients.add(currentIngredient);
-        }
-        return listOfIngredients;
+        return ingredientSet;
     }
+
 
     /**
      * Parses a {@code String ingredients} into an {@code Ingredient}.
