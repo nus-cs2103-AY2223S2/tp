@@ -29,11 +29,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### See Wei Xun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/swx0.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/swx0)] [[portfolio](team/swx0.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+### Chen Jiarui
+
+<img src="images/chen-jerry-junior.png" width="200px">
+
+[[github](http://github.com/chen-jerry-junior)] [[portfolio](team/chen-jerry-junior.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -48,12 +57,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### William Chau Wei Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/willcwx.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/willcwx)]
+[[portfolio](team/willcwx.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing, Integration
