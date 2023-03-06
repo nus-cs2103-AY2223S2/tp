@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -24,8 +26,10 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,6 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
+            + "[" + PREFIX_WEIGHT + "WEIGHT] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -95,16 +101,17 @@ public class EditCommand extends Command {
      */
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
         assert clientToEdit != null;
-
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
+        Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Appointment> updatedAppointment =
                 editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
-
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
+                updatedGender, updatedTags);
     }
 
     @Override
@@ -134,6 +141,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Weight weight;
+        private Gender gender;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
 
@@ -148,6 +157,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setWeight(toCopy.weight);
+            setGender(toCopy.gender);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
         }
@@ -190,6 +201,21 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+        public void setWeight(Weight weight) {
+            this.weight = weight;
+        }
+
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
+        }
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
 
         /**
          * Sets {@code appointments} to this object's {@code appointments}.
@@ -244,6 +270,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getWeight().equals(e.getWeight())
+                    && getGender().equals(e.getGender())
                     && getAppointments().equals(e.getAppointments())
                     && getTags().equals(e.getTags());
         }

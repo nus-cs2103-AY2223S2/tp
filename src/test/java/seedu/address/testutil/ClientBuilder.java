@@ -7,8 +7,10 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +23,16 @@ public class ClientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-
+    public static final String DEFAULT_WEIGHT = "50.00";
+    public static final String DEFAULT_GENDER = "F";
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Appointment> appointments;
     private Set<Tag> tags;
+    private Weight weight;
+    private Gender gender;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -37,18 +42,22 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        weight = new Weight(DEFAULT_WEIGHT);
+        gender = new Gender(DEFAULT_GENDER);
         appointments = new HashSet<>();
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
+     * Initializes the ClientBuilder with the data of {@code personToCopy}.
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
+        weight = clientToCopy.getWeight();
+        gender = clientToCopy.getGender();
         appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
     }
@@ -101,9 +110,23 @@ public class ClientBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code Weight} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
+        return this;
+    }
+    /**
+     * Sets the {@code Gender} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
 
     public Client build() {
-        return new Client(name, phone, email, address, appointments, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, tags);
     }
 
 }

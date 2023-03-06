@@ -14,8 +14,10 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +31,9 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String weight;
+    private final String gender;
+
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -39,11 +44,14 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+            @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.weight = weight;
+        this.gender = gender;
         if (appointments != null) {
             this.appointments.addAll(appointments);
         }
@@ -60,6 +68,8 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        weight = source.getWeight().value;
+        gender = source.getGender().value;
         appointments.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
@@ -115,9 +125,25 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        if (weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        final Weight modelWeight = new Weight(weight);
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
+                modelWeight, modelGender, modelTags);
     }
 
 }

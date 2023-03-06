@@ -39,6 +39,10 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label weight;
+    @FXML
+    private Label gender;
+    @FXML
     private FlowPane appointments;
     @FXML
     private FlowPane tags;
@@ -54,6 +58,8 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
+        weight.setText(client.getWeight().value + " Kg");
+        gender.setText(client.getGender().value);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));

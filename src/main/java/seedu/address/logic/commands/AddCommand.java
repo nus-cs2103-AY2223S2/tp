@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
@@ -25,6 +27,8 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_WEIGHT + "WEIGHT "
+            + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -32,6 +36,8 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_WEIGHT + "23.2 "
+            + PREFIX_GENDER + "M "
             + PREFIX_APPOINTMENT + "13-12-2200"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
@@ -52,8 +58,8 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasClient(toAdd)) {
+
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

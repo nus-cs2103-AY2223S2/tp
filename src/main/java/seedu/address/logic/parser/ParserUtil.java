@@ -12,8 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +96,34 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+    /**
+     * Parses a {@code String Weight} into an {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
+     */
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        return new Weight(trimmedWeight);
+    }
+    /**
+     * Parses a {@code String Gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
     }
 
     /**

@@ -265,10 +265,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with 
-targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and 
-inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as 
-adding fitness routines to each client with checkboxes for easy access and to check if they have completed their 
+**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
+targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
+inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as
+adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
 
@@ -347,6 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
+
    Use case ends.
 
 **Extensions**
@@ -360,10 +361,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-  
+
+
       Use case ends.
 
-> **Use case: UC03 - List clients**
+
+
+**Use case: UC03 - List clients**
+
 
 **MSS**
 
@@ -410,6 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FitBook displays that the list is cleared.
 
    Use case ends.
+
 
 **Extensions**
 
