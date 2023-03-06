@@ -1,5 +1,9 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Person's business size in the address book.
+ * Guarantees: is valid as declared in {@link #isValidBusinessSize(String)} (String)}
+ */
 public class BusinessSize {
 
 
