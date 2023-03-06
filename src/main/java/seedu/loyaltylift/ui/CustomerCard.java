@@ -50,8 +50,8 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
 
-        Tag customerTypeTag = new Tag(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
-        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
+        Badge customerTypeBadge = new Badge(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
+        customerTypePlaceholder.getChildren().add(customerTypeBadge.getRoot());
 
         this.isSelected = false;
     }

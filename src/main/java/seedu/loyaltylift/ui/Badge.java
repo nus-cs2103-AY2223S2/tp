@@ -8,9 +8,9 @@ import javafx.scene.paint.Color;
 /**
  * A small label that displays a text with a rounded background box.
  */
-public class Tag extends UiPart<StackPane> {
+public class Badge extends UiPart<StackPane> {
 
-    private static final String FXML = "Tag.fxml";
+    private static final String FXML = "Badge.fxml";
 
     @FXML
     private Label tag;
@@ -21,7 +21,7 @@ public class Tag extends UiPart<StackPane> {
      * @param textColor Color of the text to be displayed.
      * @param text The text to be displayed.
      */
-    public Tag(Color backgroundColor, Color textColor, String text) {
+    public Badge(Color backgroundColor, Color textColor, String text) {
         super(FXML);
 
         this.getRoot().setStyle("-fx-background-color: " + colorToHex(backgroundColor));

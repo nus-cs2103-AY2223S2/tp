@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.ui.Tag;
+import seedu.loyaltylift.ui.Badge;
 import seedu.loyaltylift.ui.UiPart;
 
 /**
@@ -36,8 +36,8 @@ public class CustomerInfo extends UiPart<ScrollPane> {
 
         customerName.setText(customer.getName().fullName.toUpperCase());
 
-        Tag customerTypeTag = new Tag(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
-        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
+        Badge customerTypeBadge = new Badge(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
+        customerTypePlaceholder.getChildren().add(customerTypeBadge.getRoot());
 
         // General Info
         CustomerGeneralInfo customerGeneralInfo = new CustomerGeneralInfo(customer);
