@@ -19,18 +19,18 @@ Given below are my contributions to the project.
   * Setup team repo and project dashboard.
 
 * **Enhancements to existing features**:
-  * 
+  *
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the delivery tasking management system features `view` and `add`.
   * Developer Guide:
-    * 
+    *
 
 * **Community**:
-  * 
+  *
 
 * **Tools**:
-  * 
+  *
 
 * _{you can add/remove categories in the list above}_
