@@ -24,7 +24,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String studentId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -32,25 +32,27 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("studentId") String studentId,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.studentId = studentId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
+     *
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getStudentId().value;
+        studentId = source.getStudentId().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -91,13 +93,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (studentId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        if (!StudentId.isValidAddress(address)) {
+        if (!StudentId.isValidStudentId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        final StudentId modelStudentId = new StudentId(address);
+        final StudentId modelStudentId = new StudentId(studentId);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelStudentId, modelTags);
