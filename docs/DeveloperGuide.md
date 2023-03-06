@@ -270,14 +270,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                 | I want to …​                                                                | So that I can…​                                                        |
+|----------|-------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | TTRPG facilitator       | add entity                                                                  | have entities                                                          |
+| `* * *`  | TTRPG facilitator       | edit entity stats                                                           | update stats over time                                                 |
+| `* * *`  | TTRPG facilitator       | delete entity                                                               | remove unwanted entities                                               |
+| `* * *`  | TTRPG player            | save my character sheets                                                    | locate details of persons without having to go through the entire list |
+| `* * *`  | TTRPG player            | hide private contact details                                                | minimize chance of someone else seeing them by accident                |
+| `* *`    | new user                | get more help on commands                                                   | learn how to use the app                                               |
+|          | TTRPG facilitator       | search for specific entities                                                | get details of a desired entity                                        |
+|          | TTRPG facilitator       | sort and filter entity sheets by various tags and categories                | have easy access to similar entities                                   |
+|          | TTRPG facilitator       | tag Creature and Character sheets                                           | organize entities into groups for easier locating                      |
+|          | TTRPG facilitator       | track the effects of rests(restoration actions) on my players               | automate the process                                                   |
+|          | TTRPG facilitator       | quickly refer to the instructions                                           | easily settle disputes in my players                                   |
+|          | TTRPG facilitator       | design custom Scenario on the fly                                           | have easy reference to relevant entities                               |
+|          | TTRPG player            | access the character templates                                              | have an idea of what is needed during character creation               |
+|          | TTRPG player            | quickly create a character sheet myself and send it to the RPG facilitator  | allow the facilitator easy access to my character                      |
+|          | TTRPG Scenario Designer | save ideas for various entities when they occur to me                       | have a store of ideas and WIP concepts                                 |
+|          | new user                | play around with sample data                                                | experience the features of the app                                     |
+|          | TTRPG facilitator       | import files created by others                                              | make use of entities others have created                               |
+|          | TTRPG facilitator       | input my dice rolls                                                         | automatically calculate roll effects                                   |
+|          | TTRPG facilitator       | use digital dice                                                            | do not rely on physical dice                                           |
+|          | TTRPG facilitator       | randomize stats of entities                                                 | generate different entities automatically                              |
+|          | TTRPG facilitator       | change the instructions sheet                                               | easily implement house rules                                           |
+|          | TTRPG facilitator       | organise DnD games digitally                                                | conduct a session without a physical venue                             |
+|          | TTRPG player            | import my character sheet from the TTRPG facilitator                        | have easy access to a usable character                                 |
+|          | TTRPG player            | read up on the character sheets my RPG facilitator has made in my own timev | refresh my memory easily                                               |
+|          | TTRPG player            | refresh my knowledge of game rules by reading the instructions              | play without an external copy of the rules                             |
+|          | TTRPG player            | view logs of the entities                                                   | keep up with history                                                   |
+|          | TTRPG player            | catch up on the story so far by referring to the stored storyline recaps    | keep up to date with the story                                         |
+|          | expert user             | enter short-form CLI commands                                               | so that I am more efficient                                            |
+|          | experienced designer    | export to .txt files                                                        | so that others can use my creations                                    |
 
 *{More to be added}*
 
