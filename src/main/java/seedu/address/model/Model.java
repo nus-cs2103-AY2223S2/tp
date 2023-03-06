@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -202,7 +203,7 @@ public interface Model {
     void updateFilteredPilotList(Predicate<Pilot> predicate);
 
 
-    /* Location-related functions */
+    // ================ Location methods ==============================
 
     /**
      * Returns true if the location is in the location list
@@ -239,4 +240,87 @@ public interface Model {
     ObservableList<Location> getFilteredLocationList();
 
     void updateFilteredLocationList(Predicate<Location> predicate);
+
+    // ================ Flight methods ==============================
+
+    /**
+     * Returns the flight manager
+     *
+     * @return flight manager
+     */
+    ReadOnlyIdentifiableManager<Flight> getFlightManager();
+
+    /**
+     * Returns the flight manager file path
+     *
+     * @return flight manager file path
+     */
+    Path getFlightManagerFilePath();
+
+    /**
+     * Sets the flight manager file path
+     *
+     * @param FlightManagerFilePath flight manager file path
+     */
+    void setFlightManagerFilePath(Path FlightManagerFilePath);
+
+    /**
+     * Replaces the current flight manager's data with data in {@code flightManager}
+     *
+     * @param flightManager the flight manager to replace with
+     */
+    void setFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager);
+
+    /**
+     * Returns true if a flight with the same identity as {@code flight} exists in Wingman
+     *
+     * @param flight
+     * @return true if flight exists, false otherwise
+     */
+    boolean hasFlight(Flight flight);
+
+    /**
+     * Deletes the given flight, if the flight exists in Wingman
+     *
+     * @param target flight to be deleted
+     */
+    void deleteFlight(Flight target);
+
+    /**
+     * Deletes the flight with the given id
+     *
+     * @param id identifier of flight to be deleted
+     */
+    void deleteFlight(String id);
+
+    /**
+     * Adds the given flight
+     *
+     * @param flight flight to be added
+     */
+    void addFlight(Flight flight);
+
+    /**
+     * Replaces the given flight {@code target} with {@code editedFlight}
+     * {@code target} must exist in Wingman
+     * The flight identity of {@code editedFlight} must not be the same as another existing flight in Wingman
+     *
+     * @param target the flight to be replaced
+     * @param editedFlight the flight to replace with
+     */
+    void setFlight(Flight target, Flight editedFlight);
+
+    /**
+     * Returns an unmodifiable view of the filtered flight list
+     * @return unmodifiable view of the filtered flight list
+     */
+    ObservableList<Flight> getFilteredFlightList();
+
+    /**
+     * Updates the filter of the filtered flight list to filter by the given {@code predicate}
+     *
+     * @param predicate the new predicate to use
+     * @throws NullPointerException if {@code predicate} is null
+     */
+    void updateFilteredFlightList(Predicate<Flight> predicate);
 }
