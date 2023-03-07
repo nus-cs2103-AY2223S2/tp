@@ -29,14 +29,16 @@ public class Customer {
      * Every field must be present and not null.
      */
     public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(customerType, name, phone, email, address, tags);
+        this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.customerType = customerType;
     }
+
+    public CustomerType getCustomerType() { return customerType; }
 
     public Name getName() {
         return name;
@@ -53,8 +55,6 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
-
-    public CustomerType getCustomerType() { return customerType; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -96,19 +96,22 @@ public class Customer {
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
-                && otherCustomer.getTags().equals(getTags());
+                && otherCustomer.getTags().equals(getTags())
+                && otherCustomer.getCustomerType().equals(getCustomerType());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(customerType, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getCustomerType())
+                .append(": ")
+                .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

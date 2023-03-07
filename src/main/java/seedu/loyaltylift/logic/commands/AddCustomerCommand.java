@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ public class AddCustomerCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book. "
             + "Parameters: "
+            + PREFIX_CUSTOMER_TYPE + "ind "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "

@@ -100,8 +100,10 @@ public class EditCustomerCommand extends Command {
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
         Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
+        CustomerType updatedCustomerType =
+                editCustomerDescriptor.getCustomerType().orElse(customerToEdit.getCustomerType());
 
-        return new Customer(CustomerType.INDIVIDUAL, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Customer(updatedCustomerType, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -132,6 +134,7 @@ public class EditCustomerCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private CustomerType customerType;
 
         public EditCustomerDescriptor() {}
 
@@ -145,6 +148,7 @@ public class EditCustomerCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setCustomerType(toCopy.customerType);
         }
 
         /**
@@ -203,6 +207,14 @@ public class EditCustomerCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setCustomerType(CustomerType customerTypec) {
+            this.customerType = customerTypec;
+        }
+
+        public Optional<CustomerType> getCustomerType() {
+            return Optional.ofNullable(customerType);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -222,7 +234,8 @@ public class EditCustomerCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getCustomerType().equals(e.getCustomerType());
         }
     }
 }
