@@ -27,31 +27,22 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Member
 * Responsibilities: To be added
 
-### Johnny Doe
-
-<img src="images/jeremykhoo-nus.png" width="200px">
-
-[[github](http://github.com/jeremykhoo-NUS)] [[portfolio](team/jeremykhoo-NUS.md)]
-
-* Role: Developer
-* Responsibilities: code
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Kelvin Chua
 
 <img src="images/chuakid.png" width="200px">
 
 [[github](http://github.com/chuakid)]
 [[portfolio](team/chuakid.md)]
+
+- Role: To Be Added
+- Responsibilities: To Be Added
+
+### Ethan Tan
+
+<img src="images/thedesazlies.png" width="200px">
+
+[[github](http://github.com/thedesalizes)]
+[[portfolio](team/thedesalizes.md)]
 
 - Role: To Be Added
 - Responsibilities: To Be Added
