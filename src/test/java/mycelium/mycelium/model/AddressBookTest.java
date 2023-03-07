@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -88,7 +89,9 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
+        // TODO update the constructor here to take in a list of projects too
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
@@ -96,6 +99,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Project> getProjectList() {
+            return projects;
         }
     }
 

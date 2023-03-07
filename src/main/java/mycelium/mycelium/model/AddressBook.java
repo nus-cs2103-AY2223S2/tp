@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.UniquePersonList;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.UniqueProjectList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,16 +17,21 @@ import mycelium.mycelium.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueProjectList projects;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
+        projects = new UniqueProjectList();
     }
 
     public AddressBook() {
@@ -60,7 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -76,9 +84,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -107,15 +117,58 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public boolean hasProject(Project project) {
+        return projects.contains(project);
+    }
+
+    public void removeProject(Project project) {
+        projects.remove(project);
+    }
+
+    public void addProject(Project project) {
+        projects.add(project);
+    }
+
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons));
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((persons == null) ? 0 : persons.hashCode());
+        result = prime * result + ((projects == null) ? 0 : projects.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        AddressBook other = (AddressBook) obj;
+        if (persons == null) {
+            if (other.persons != null) {
+                return false;
+            }
+        } else if (!persons.equals(other.persons)) {
+            return false;
+        }
+        if (projects == null) {
+            if (other.projects != null) {
+                return false;
+            }
+        } else if (!projects.equals(other.projects)) {
+            return false;
+        }
+        return true;
     }
 }

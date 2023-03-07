@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Project> filteredProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
     }
 
     public ModelManager() {
@@ -147,4 +150,29 @@ public class ModelManager implements Model {
             && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public boolean hasProject(Project project) {
+        return addressBook.hasProject(project);
+    }
+
+    @Override
+    public void deleteProject(Project project) {
+        addressBook.removeProject(project);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        addressBook.addProject(project);
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
 }
