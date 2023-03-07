@@ -1,5 +1,6 @@
 package seedu.modtrek.ui.graphics_section;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 import seedu.modtrek.ui.module_list.ModuleList;
 
@@ -26,21 +28,21 @@ public class GraphicsSection extends UiPart<Region> {
     @FXML
     private GridPane moduleList;
 
-    public GraphicsSection() {
+    public GraphicsSection(ObservableList<Module> modules) {
         super(FXML);
-        displayModuleList();
+        displayModuleList(modules);
     }
 
     // TODO: next iteration
     public void displayProgress() {
     }
 
-    public void displayModuleList(/* SomeKindOfList<Modules> modules */) {
+    public void displayModuleList(ObservableList<Module> modules) {
         sectionHeaderTitle.setText("Your Modules");
         sectionHeaderSubtitle.setText("in total");
 
         // TODO: render ModuleList dynamically
-        ModuleList moduleList = new ModuleList();
+        ModuleList moduleList = new ModuleList(modules);
         sectionBody.getChildren().add(moduleList.getRoot());
     }
 }

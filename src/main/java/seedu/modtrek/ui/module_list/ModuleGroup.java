@@ -4,7 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+
+import seedu.modtrek.model.module.Module;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.ui.UiPart;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ModuleGroup extends UiPart<Region> {
     private static final String FXML = "module_list/ModuleGroup.fxml";
@@ -15,14 +21,14 @@ public class ModuleGroup extends UiPart<Region> {
     @FXML
     private GridPane moduleCardGroup;
 
-    public ModuleGroup(String groupTitle /* TODO: pass in module data instead, consisting of title and modules */) {
+    public ModuleGroup(SemYear sy, ArrayList<Module> modules /* TODO: pass in module data instead, consisting of title and modules */) {
         super(FXML);
-        moduleGroupTitle.setText(groupTitle);
-        displayModuleCards();
+        moduleGroupTitle.setText(sy.toString());
+        displayModuleCards(modules);
     }
 
-    public void displayModuleCards() {
-        int NUM_MODULES = 5;
+    public void displayModuleCards(ArrayList<Module> modules) {
+        int NUM_MODULES = modules.size();
 
         /*
         * Position variables to keep track of the current free position (col, row) to add a ModuleCard on the GridPane.
@@ -34,7 +40,7 @@ public class ModuleGroup extends UiPart<Region> {
         int row = 0;
 
         for (int i = 0; i < NUM_MODULES; i++) {
-            ModuleCard moduleCard = new ModuleCard("CS2103T", "4", "A+", new String[]{"FDN"});
+            ModuleCard moduleCard = new ModuleCard(modules.get(i) /* new String[]{"FDN"} */);
             GridPane.setConstraints(moduleCard.getRoot(), col, row);
 
             /* Update the position variables */
