@@ -35,6 +35,10 @@ public interface Logic {
 
     Person getProtagonist();
 
+    String getCurrentTab();
+
+    void setCurrentTab(String tab);
+
     /**
      * Returns the user prefs' address book file path.
      */

@@ -12,6 +12,8 @@ public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
 
+    private DetailedInfo detailedInfo;
+
     @FXML
     private Label name;
 
@@ -19,25 +21,20 @@ public class InfoTab extends UiPart<Region> {
     private Label identity;
 
     @FXML
-    private StackPane detailedInfo;
+    private StackPane detailedInfoPlaceholder;
 
-    private InfoContact infoContact;
-    private InfoModule infoModule;
-    private InfoSkill infoSkill;
-
-    public InfoTab(Person protagonist) {
+    public InfoTab(Person protagonist, String tab) {
         super(FXML);
-        infoContact = new InfoContact();
-        infoModule = new InfoModule();
-        infoSkill = new InfoSkill();
+        if (tab.equals("c")) {
+            detailedInfo = new DetailedContact();
+        } else if (tab.equals("m")) {
+            detailedInfo = new DetailedModule();
+        } else {
+            detailedInfo = new DetailedSkill();
+        }
+
         name.setText(protagonist.getName().fullName);
-        detailedInfo.getChildren().add(infoContact.getRoot());
+        detailedInfoPlaceholder.getChildren().add(detailedInfo.getRoot());
     }
 
 }
-
-/*
-Upper tab and lower tab
-upper is the contact/modules/tags
-lower is the info
- */

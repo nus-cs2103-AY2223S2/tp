@@ -11,6 +11,9 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    /** Hidden code number to facilitate interaction with UI */
+    private int code;
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -27,6 +30,16 @@ public class CommandResult {
     }
 
     /**
+     *
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, int code) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.code = code;
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
@@ -36,6 +49,10 @@ public class CommandResult {
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public int getCode() {
+        return code;
     }
 
     public boolean isShowHelp() {

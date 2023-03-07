@@ -12,6 +12,6 @@
             <Label fx:id="identity" alignment="CENTER" text="Label" />
          </children>
       </VBox>
-      <StackPane fx:id="detailedInfo" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="detailedInfoPlaceholder" prefHeight="150.0" prefWidth="200.0" />
    </children>
 </VBox>

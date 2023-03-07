@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private Person protagonist;
+    private String currentTab;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         protagonist = filteredPersons.get(0);
-
+        currentTab = "c";
     }
 
     public ModelManager() {
@@ -139,6 +140,16 @@ public class ModelManager implements Model {
 
     public void setProtagonist(Person protagonist) {
         this.protagonist = protagonist;
+    }
+
+    //=========== InfoTab ====================================================================================
+
+    public String getCurrentTab() {
+        return currentTab;
+    }
+
+    public void setCurrentTab(String tab) {
+        currentTab = tab;
     }
 
     @Override

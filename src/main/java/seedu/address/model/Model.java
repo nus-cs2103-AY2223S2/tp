@@ -89,4 +89,8 @@ public interface Model {
 
     void setProtagonist(Person protagonist);
 
+    String getCurrentTab();
+
+    void setCurrentTab(String tab);
+
 }

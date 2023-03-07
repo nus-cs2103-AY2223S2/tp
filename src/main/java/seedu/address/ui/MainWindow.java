@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        infoTab = new InfoTab(logic.getProtagonist());
+        infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
         infoTabPlaceholder.getChildren().add(infoTab.getRoot());
     }
 
@@ -186,8 +186,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            infoTab = new InfoTab(logic.getProtagonist());
-            infoTabPlaceholder.getChildren().set(0,infoTab.getRoot());
+            infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+            infoTabPlaceholder.getChildren().set(0, infoTab.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

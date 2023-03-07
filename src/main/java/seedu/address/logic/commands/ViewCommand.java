@@ -22,7 +22,9 @@ public class ViewCommand extends Command {
             + "by the index number used in the displayed person list "
             + "or by different tab names (c/m/s)\n";
 
-    public static final String MESSAGE_SUCCESS = "Viewing %1$d";
+    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing %1$d";
+
+    public static final String MESSAGE_CHANGE_TAB_SUCCESS = "Viewing %1$s";
 
     private final Index index;
 
@@ -31,12 +33,12 @@ public class ViewCommand extends Command {
     public ViewCommand(Index index) {
         requireNonNull(index);
         this.index = index;
-        this.tab = "c";
+        this.tab = "default";
     }
 
     public ViewCommand(String tab) {
         requireNonNull(tab);
-        this.index = Index.fromZeroBased(-1);
+        this.index = Index.fromZeroBased(0);
         this.tab = tab;
     }
 
@@ -45,16 +47,19 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() == -1) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased()));
+        if (tab.equals("c") || tab.equals("m") || tab.equals("s")) { // If it is view tab
+            model.setCurrentTab(tab);
+            return new CommandResult(String.format(MESSAGE_CHANGE_TAB_SUCCESS, tab));
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
+        // View index
         Person protagonist = lastShownList.get(index.getZeroBased());
         model.setProtagonist(protagonist);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, index.getOneBased()));
     }
 }
