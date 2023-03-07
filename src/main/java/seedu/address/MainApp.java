@@ -93,6 +93,116 @@ public class MainApp extends Application {
     }
 
     /**
+     * Read pilot manager from data.
+     * @param storage the storage object
+     * @return the pilot manager
+     */
+    private ReadOnlyIdentifiableManager<Pilot> readPilotManager(Storage storage) {
+        ReadOnlyIdentifiableManager<Pilot> pilotManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
+        try {
+            pilotManagerOptional = storage.readPilotManager();
+            if (pilotManagerOptional.isEmpty()) {
+                pilotManager = new IdentifiableManager<>();
+            } else {
+                logger.info("Data file for pilot manager found.");
+                pilotManager = pilotManagerOptional.get();
+            }
+        } catch (DataConversionException | IOException e) {
+            pilotManager = new IdentifiableManager<>();
+        }
+        return pilotManager;
+    }
+
+    /**
+     * Read location manager from data.
+     * @param storage the storage object
+     * @return the location manager
+     */
+    private ReadOnlyIdentifiableManager<Location> readLocationManager(Storage storage) {
+        ReadOnlyIdentifiableManager<Location> locationManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
+        try {
+            locationManagerOptional = storage.readLocationManager();
+            if (locationManagerOptional.isEmpty()) {
+                locationManager = new IdentifiableManager<>();
+            } else {
+                logger.info("Data file for location manager found.");
+                locationManager = locationManagerOptional.get();
+            }
+        } catch (DataConversionException | IOException e) {
+            locationManager = new IdentifiableManager<>();
+        }
+        return locationManager;
+    }
+
+    /**
+     * Read crew manager from data.
+     * @param storage the storage object
+     * @return the crew manager
+     */
+    private ReadOnlyIdentifiableManager<Crew> readCrewManager(Storage storage) {
+        ReadOnlyIdentifiableManager<Crew> crewManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Crew>> crewManagerOptional;
+        try {
+            crewManagerOptional = storage.readCrewManager();
+            if (crewManagerOptional.isEmpty()) {
+                crewManager = new IdentifiableManager<>();
+            } else {
+                logger.info("Data file for pilot manager found.");
+                crewManager = crewManagerOptional.get();
+            }
+        } catch (DataConversionException | IOException e) {
+            crewManager = new IdentifiableManager<>();
+        }
+        return crewManager;
+    }
+
+    /**
+     * Read plane manager from data.
+     * @param storage the storage object
+     * @return the plane manager
+     */
+    private ReadOnlyIdentifiableManager<Plane> readPlaneManager(Storage storage) {
+        ReadOnlyIdentifiableManager<Plane> planeManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Plane>> crewManagerOptional;
+        try {
+            crewManagerOptional = storage.readPlaneManager();
+            if (crewManagerOptional.isEmpty()) {
+                planeManager = new IdentifiableManager<>();
+            } else {
+                logger.info("Data file for pilot manager found.");
+                planeManager = crewManagerOptional.get();
+            }
+        } catch (DataConversionException | IOException e) {
+            planeManager = new IdentifiableManager<>();
+        }
+        return planeManager;
+    }
+
+    /**
+     * Read flight manager from data.
+     * @param storage the storage object
+     * @return flight plane manager
+     */
+    private ReadOnlyIdentifiableManager<Flight> readFlightManager(Storage storage) {
+        ReadOnlyIdentifiableManager<Flight> flightManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Flight>> flightManagerOptional;
+        try {
+            flightManagerOptional = storage.readFlightManager();
+            if (flightManagerOptional.isEmpty()) {
+                flightManager = new IdentifiableManager<>();
+            } else {
+                logger.info("Data file for pilot manager found.");
+                flightManager = flightManagerOptional.get();
+            }
+        } catch (DataConversionException | IOException e) {
+            flightManager = new IdentifiableManager<>();
+        }
+        return flightManager;
+    }
+
+    /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
@@ -114,53 +224,12 @@ public class MainApp extends Application {
             addressBook = new AddressBook();
         }
 
-        ReadOnlyIdentifiableManager<Pilot> pilotManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
-        ReadOnlyIdentifiableManager<Location> locationManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
-        ReadOnlyIdentifiableManager<Crew> crewManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Crew>> crewManagerOptional;
-        ReadOnlyIdentifiableManager<Plane> planeManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Plane>> planeManagerOptional;
-        ReadOnlyIdentifiableManager<Flight> flightManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Flight>> flightManagerOptional;
+        ReadOnlyIdentifiableManager<Pilot> pilotManager = readPilotManager(storage);
+        ReadOnlyIdentifiableManager<Location> locationManager = readLocationManager(storage);
+        ReadOnlyIdentifiableManager<Crew> crewManager = readCrewManager(storage);
+        ReadOnlyIdentifiableManager<Plane> planeManager = readPlaneManager(storage);
+        ReadOnlyIdentifiableManager<Flight> flightManager = readFlightManager(storage);
 
-        try {
-            pilotManagerOptional = storage.readPilotManager();
-            locationManagerOptional = storage.readLocationManager();
-            crewManagerOptional = storage.readCrewManager();
-            planeManagerOptional = storage.readPlaneManager();
-            flightManagerOptional = storage.readFlightManager();
-
-            if (pilotManagerOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample PilotManager");
-                pilotManager = new IdentifiableManager<>();
-                locationManager = new IdentifiableManager<>();
-                crewManager = new IdentifiableManager<>();
-                planeManager = new IdentifiableManager<>();
-                flightManager = new IdentifiableManager<>();
-            } else {
-                pilotManager = pilotManagerOptional.get();
-                locationManager = locationManagerOptional.get();
-                crewManager = crewManagerOptional.get();
-                planeManager = planeManagerOptional.get();
-                flightManager = flightManagerOptional.get();
-            }
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
-            pilotManager = new IdentifiableManager<>();
-            locationManager = new IdentifiableManager<>();
-            crewManager = new IdentifiableManager<>();
-            planeManager = new IdentifiableManager<>();
-            flightManager = new IdentifiableManager<>();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PilotManager");
-            pilotManager = new IdentifiableManager<>();
-            locationManager = new IdentifiableManager<>();
-            crewManager = new IdentifiableManager<>();
-            planeManager = new IdentifiableManager<>();
-            flightManager = new IdentifiableManager<>();
-        }
         return new ModelManager(addressBook, userPrefs,
                                 pilotManager, locationManager, crewManager, planeManager, flightManager);
     }
