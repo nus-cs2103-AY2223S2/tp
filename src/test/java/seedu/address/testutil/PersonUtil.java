@@ -59,4 +59,19 @@ public class PersonUtil {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns the part of command string for the given {@code person}'s name and phone number.
+     */
+    public static String getPersonNameAndPhoneNumber(Person person) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NAME + person.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        person.getNotes().stream().forEach(
+                s -> sb.append(PREFIX_NOTE + s.tagName + " ")
+        );
+        return sb.toString();
+    }
+
+
 }
