@@ -16,7 +16,7 @@ public class ProjectBuilder {
     public static final Email DEFAULT_CLIENT_EMAIL = new Email("ruido@gossum.co");
     public static final String DEFAULT_SOURCE = "fiverr";
     public static final String DEFAULT_DESCRIPTION = "Do this, and then that, and finally those.";
-    public static final Date DEFAULT_ACCEPTED_ON = new Date();
+    public static final Date DEFAULT_ACCEPTED_ON = new Date(0);
     private String name = DEFAULT_NAME;
     private ProjectStatus status = DEFAULT_STATUS;
     private Email clientEmail = DEFAULT_CLIENT_EMAIL;

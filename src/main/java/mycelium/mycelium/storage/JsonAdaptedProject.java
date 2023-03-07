@@ -1,6 +1,7 @@
 package mycelium.mycelium.storage;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -16,7 +17,7 @@ import mycelium.mycelium.model.project.ProjectStatus;
  * Jackson friendly version of {@link Project}.
  */
 public class JsonAdaptedProject {
-    private static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing";
     private final String name;
     private final ProjectStatus status;
     private final String clientEmail;
@@ -87,5 +88,25 @@ public class JsonAdaptedProject {
             description,
             acceptedOn,
             Optional.ofNullable(deadline));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        JsonAdaptedProject that = (JsonAdaptedProject) o;
+        return Objects.equals(name, that.name) && status == that.status && Objects.equals(clientEmail,
+            that.clientEmail) && Objects.equals(source, that.source) && Objects.equals(description,
+            that.description) && Objects.equals(acceptedOn, that.acceptedOn) && Objects.equals(deadline,
+            that.deadline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
 }

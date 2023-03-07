@@ -75,9 +75,9 @@ public class ProjectTest {
             Map.entry("same name with diff description",
                 Pair.of(defaultProject, new ProjectBuilder().withDescription("Different description").build())),
             Map.entry("same name with diff acceptedOn",
-                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(new Date(0)).build())),
+                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(new Date()).build())),
             Map.entry("same name with diff deadline",
-                Pair.of(defaultProject, new ProjectBuilder().withDeadline(new Date(0)).build()))
+                Pair.of(defaultProject, new ProjectBuilder().withDeadline(new Date()).build()))
         );
         notEqualCases.forEach((desc, tt) -> {
             assertFalse(tt.first.equals(tt.second), "While testing case: " + desc);
