@@ -11,7 +11,7 @@ public enum Interval {
     MONTHLY("monthly"),
     YEARLY("yearly");
 
-    public final String value;
+    private final String value;
 
     private Interval(String value) {
         this.value = value;
