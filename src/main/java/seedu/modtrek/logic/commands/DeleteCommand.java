@@ -1,17 +1,16 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_NO_MODULES;
+import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
-import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * Deletes a module identified using module code from ModTrek.
@@ -34,12 +33,12 @@ public class DeleteCommand extends Command {
     /**
      * The constant MESSAGE_DELETE_MODULE_SUCCESS.
      */
-    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Modules: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module(s): %1$s";
 
     /**
      * The constant MESSAGE_DELETE_MODULE_NOT_FOUND.
      */
-    public static final String MESSAGE_DELETE_MODULE_NOT_FOUND = "Could not find Module to delete: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_NOT_FOUND = "Could not find Module(s) to delete: %1$s";
 
     /**
      * The constant MESSAGE_DELETE_ALL_MODULES_SUCCESS.
@@ -53,11 +52,11 @@ public class DeleteCommand extends Command {
     /**
      * Instantiates a new Delete command.
      *
-     * @param isALl       the is a ll
+     * @param isAll a flag for whether it is a "delete all" command
      * @param targetCodes the target codes
      */
-    public DeleteCommand(boolean isALl, Set<Code> targetCodes) {
-        this.isAll = isALl;
+    public DeleteCommand(boolean isAll, Set<Code> targetCodes) {
+        this.isAll = isAll;
         this.targetCodes = targetCodes;
     }
 
@@ -70,19 +69,23 @@ public class DeleteCommand extends Command {
             return new CommandResult(MESSAGE_DELETE_ALL_MODULES_SUCCESS);
         }
 
-        ObservableList<Module> lastShownList = model.getFilteredModuleList();
-
+        Set<Code> codesFound = new HashSet<>();
+        Set<Code> codesNotFound = new HashSet<>();
         for (Code code : targetCodes) {
-            try {
-                Module moduleToDelete = new Module(code);
-                model.deleteModule(moduleToDelete);
-            } catch (ModuleNotFoundException e) {
-                throw new CommandException(String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, code));
+            Module moduleToDelete = new Module(code);
+            if (!model.hasModule(moduleToDelete)) {
+                codesNotFound.add(code);
+                continue;
             }
+            codesFound.add(code);
+            model.deleteModule(moduleToDelete);
         }
 
-        model.updateFilteredModuleList(PREDICATE_SHOW_NO_MODULES);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCodes));
+        String deletedModules = String.format(MESSAGE_DELETE_MODULE_SUCCESS, codesFound);
+        String notFoundModules = String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, codesNotFound);
+
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        return new CommandResult(deletedModules + "\n" + notFoundModules);
     }
 
     @Override

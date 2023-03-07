@@ -127,7 +127,7 @@ class EditCommandTest {
                 .withCode(VALID_CODE_MA2002).build();
         EditCommand editCommand = new EditCommand(CS1101S.getCode(), descriptor);
 
-        assertCommandFailure(editCommand, model, MESSAGE_EDIT_MODULE_FAIL);
+        assertCommandFailure(editCommand, model, String.format(MESSAGE_EDIT_MODULE_FAIL, CS1101S.getCode()));
     }
 
     @Test

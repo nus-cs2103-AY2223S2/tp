@@ -1,7 +1,6 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
@@ -31,10 +30,9 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the module identified. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: MODULE CODE "
-            + "[" + PREFIX_CODE + "CODE] "
             + "[" + PREFIX_CREDIT + "CREDITS] "
             + "[" + PREFIX_SEMYEAR + "SEMESTER-YEAR] "
             + "[" + PREFIX_GRADE + "GRADE] "
@@ -72,7 +70,7 @@ public class EditCommand extends Command {
         Module moduleToEdit = new Module(code);
         int index = lastShownList.indexOf(moduleToEdit);
         if (index < 0) {
-            throw new CommandException(MESSAGE_EDIT_MODULE_FAIL);
+            throw new CommandException(String.format(MESSAGE_EDIT_MODULE_FAIL, moduleToEdit.getCode()));
         }
         moduleToEdit = lastShownList.get(index);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
