@@ -253,17 +253,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product scope (v1.1)
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS students who want to connect with seniors/other students with common academic paths
+* Freshmen looking to get advice from their seniors in the same course or taken the same modules
+* Students who want to get internship advice from others who have worked in that company
+* Students who want to know more about their friends and seniors' schedules to be able to find time to connect with them
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Being able to find contacts with similar traits and being able to view their schedule to find an appropriate time to connect with them.
 
 
 ### User stories
