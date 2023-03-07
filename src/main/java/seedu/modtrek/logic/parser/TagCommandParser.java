@@ -35,9 +35,9 @@ public class TagCommandParser implements Parser<TagCommand> {
             String preamble = argMultimap.getPreamble();
             String[] preambleParts = preamble.split(" ");
             code = ParserUtil.parseCode(preambleParts[0]);
-            if (preambleParts[1].toLowerCase(Locale.ROOT).equals("include")) {
+            if (preambleParts.length > 1 && preambleParts[1].toLowerCase(Locale.ROOT).equals("include")) {
                 isInclude = true;
-            } else if (preambleParts[1].toLowerCase(Locale.ROOT).equals("remove")) {
+            } else if (preambleParts.length > 1 && preambleParts[1].toLowerCase(Locale.ROOT).equals("remove")) {
                 isInclude = false;
             } else {
                 throw new ParseException("Did not specify include/remove tags");
