@@ -48,8 +48,8 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList(predicate);
         List<Person> personList = model.getFilteredPersonList();
 
-        if (personList.size() < 1) {
-            return new CommandResult(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+        if (personList.size() <= 0) {
+            throw new CommandException(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
         }
 
         Person personToDelete = personList.get(0);
