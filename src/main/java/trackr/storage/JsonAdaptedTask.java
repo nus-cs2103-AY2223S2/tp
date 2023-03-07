@@ -1,8 +1,5 @@
 package trackr.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,7 +19,6 @@ class JsonAdaptedTask {
     private final String name;
     private final String deadline;
     private final String status;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
