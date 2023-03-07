@@ -3,13 +3,15 @@ package seedu.address.model.opening;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Opening's status in the address book.
+ */
 public class Status {
     public static final String MESSAGE_CONSTRAINTS =
             "Statuses should only match the following: FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * The enum of all possible statuses.
      */
     public static enum StatusEnum {
         FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED
@@ -56,5 +58,5 @@ public class Status {
     @Override
     public int hashCode() {
         return fullStatus.hashCode();
-    } 
+    }
 }

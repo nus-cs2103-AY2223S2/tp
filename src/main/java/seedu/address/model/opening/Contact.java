@@ -9,6 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Contact {
 
+    public static final String VALIDATION_REGEX_PHONE = "\\d{3,}";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Contacts should either only contain numbers "
             + "and be at least 3 digits long, "
@@ -32,7 +33,6 @@ public class Contact {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX_EMAIL = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
-    public static final String VALIDATION_REGEX_PHONE = "\\d{3,}";
 
     public final String value;
 

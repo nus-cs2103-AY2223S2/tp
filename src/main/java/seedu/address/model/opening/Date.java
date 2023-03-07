@@ -6,8 +6,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Represents an Opening's date in the address book.
+ */
 public class Date {
- 
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should only be in the format yyyy-MM-dd e.g. 2023-01-01";
 
@@ -53,5 +55,5 @@ public class Date {
     @Override
     public int hashCode() {
         return fullDate.hashCode();
-    } 
+    }
 }
