@@ -9,6 +9,7 @@ import java.util.Set;
 import bookopedia.commons.core.index.Index;
 import bookopedia.commons.util.StringUtil;
 import bookopedia.logic.parser.exceptions.ParseException;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -120,5 +121,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code DeliveryStatus}.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static DeliveryStatus parseDeliveryStatus(String status) throws ParseException {
+        requireNonNull(status);
+        try {
+            return DeliveryStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException exception) {
+            throw new ParseException(DeliveryStatus.MESSAGE_CONSTRAINTS);
+        }
     }
 }
