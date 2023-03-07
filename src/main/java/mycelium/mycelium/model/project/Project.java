@@ -1,6 +1,7 @@
 package mycelium.mycelium.model.project;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 import mycelium.mycelium.model.person.Email;
@@ -122,77 +123,27 @@ public class Project implements IsSame<Project> {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((status == null) ? 0 : status.hashCode());
-        result = prime * result + ((clientEmail == null) ? 0 : clientEmail.hashCode());
-        result = prime * result + ((source == null) ? 0 : source.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((acceptedOn == null) ? 0 : acceptedOn.hashCode());
-        result = prime * result + ((deadline == null) ? 0 : deadline.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Project project = (Project) o;
+        return Objects.equals(name, project.name)
+            && status == project.status
+            && Objects.equals(clientEmail,
+            project.clientEmail)
+            && Objects.equals(source, project.source)
+            && Objects.equals(description, project.description)
+            && Objects.equals(acceptedOn, project.acceptedOn)
+            && Objects.equals(deadline, project.deadline);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Project other = (Project) obj;
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (status != other.status) {
-            return false;
-        }
-        if (clientEmail == null) {
-            if (other.clientEmail != null) {
-                return false;
-            }
-        } else if (!clientEmail.equals(other.clientEmail)) {
-            return false;
-        }
-        if (source == null) {
-            if (other.source != null) {
-                return false;
-            }
-        } else if (!source.equals(other.source)) {
-            return false;
-        }
-        if (description == null) {
-            if (other.description != null) {
-                return false;
-            }
-        } else if (!description.equals(other.description)) {
-            return false;
-        }
-        if (acceptedOn == null) {
-            if (other.acceptedOn != null) {
-                return false;
-            }
-        } else if (!acceptedOn.equals(other.acceptedOn)) {
-            return false;
-        }
-        if (deadline == null) {
-            if (other.deadline != null) {
-                return false;
-            }
-        } else if (!deadline.equals(other.deadline)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
 }
 
