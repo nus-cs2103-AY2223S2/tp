@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyUserData;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the UserData level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class UserData implements ReadOnlyUserData {
@@ -83,6 +83,9 @@ public class UserData implements ReadOnlyUserData {
         return user.hashCode();
     }
 
+    /**
+     * Currently not in use. Use SetUser if you want to edit the user.
+     */
     public void addUser(User user) {
         this.user.add(user);
     }

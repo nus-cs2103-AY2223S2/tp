@@ -3,11 +3,17 @@ package seedu.address.model.user;
 
 import java.util.Set;
 
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.*;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Favorite;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
 
 
@@ -17,8 +23,7 @@ import seedu.address.model.tag.Tag;
 public class User extends Person {
 
     private Person user;
-    // todo: Add Event schedule
-
+    //todo: Add event list.
 
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
                 Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,

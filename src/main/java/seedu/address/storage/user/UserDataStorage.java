@@ -5,9 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 
+/**
+ * Represents a storage for {@link seedu.address.model.user.UserData}.
+ */
 public interface UserDataStorage {
     /**
      * Returns the file path of the data file.
@@ -15,7 +17,7 @@ public interface UserDataStorage {
     Path getUserDataFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns UserData as a {@link ReadOnlyUserData}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -29,10 +31,10 @@ public interface UserDataStorage {
 
     /**
      * Saves the given {@link ReadOnlyUserData} to the storage.
-     * @param addressBook cannot be null.
+     * @param userData cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserData(ReadOnlyUserData addressBook) throws IOException;
+    void saveUserData(ReadOnlyUserData userData) throws IOException;
 
     /**
      * @see #saveUserData(ReadOnlyUserData)

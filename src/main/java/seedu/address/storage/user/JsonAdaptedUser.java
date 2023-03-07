@@ -1,21 +1,34 @@
 package seedu.address.storage.user;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.user.User;
-import seedu.address.storage.addressbook.JsonAdaptedNusMod;
-import seedu.address.storage.addressbook.JsonAdaptedTag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CommunicationChannel;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Favorite;
+import seedu.address.model.person.fields.Gender;
+import seedu.address.model.person.fields.Major;
+import seedu.address.model.person.fields.Modules;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.NusMod;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Race;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.user.User;
+import seedu.address.storage.addressbook.JsonAdaptedNusMod;
+import seedu.address.storage.addressbook.JsonAdaptedTag;
+
+/**
+ * Jackson-friendly version of {@link User}.
+ */
 public class JsonAdaptedUser {
     private final String name;
     private final String phone;
@@ -62,6 +75,9 @@ public class JsonAdaptedUser {
         }
     }
 
+    /**
+     * Converts a given {@code User} into this class for Jackson use.
+     */
     public JsonAdaptedUser(User source) {
         this.name = source.getName().fullName;
         this.phone = source.getPhone().value;

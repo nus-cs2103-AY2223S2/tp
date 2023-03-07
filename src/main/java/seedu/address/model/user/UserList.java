@@ -1,20 +1,16 @@
 package seedu.address.model.user;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
- * This class exists because I cannot find a way of making an unmodifiable standalone value for Users. So a list it is.
+ * This class exists because I cannot find a way of making an unmodifiable/observable standalone value for Users.
  */
 public class UserList implements Iterable<User> {
 
@@ -23,8 +19,7 @@ public class UserList implements Iterable<User> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Currently not in use. Use SetUser if you want to edit the user.
      */
     public void add(User toAdd) {
         requireNonNull(toAdd);
@@ -32,14 +27,16 @@ public class UserList implements Iterable<User> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the user object with the new user replacement
+     */
     public void setUser(User replacement) {
         requireNonNull(replacement);
         internalList.set(0, replacement);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code user}.
      */
     public void setUserList(List<User> user) {
         requireAllNonNull(user);
