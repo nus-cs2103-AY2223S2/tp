@@ -44,7 +44,7 @@ In a conventional application cycle, the large influx of applicants makes it cha
 | Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>e.g. if the command specifies `help 123`, it will be interpreted as `help`.                     |
 
 ---
-
+// Additional features: can list out the tag(skillset) of the applicants.
 ### **Command**
 
 ### 1. Viewing help: `help`

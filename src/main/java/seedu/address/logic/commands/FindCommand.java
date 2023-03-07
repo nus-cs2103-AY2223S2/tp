@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,16 +20,25 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private NameContainsKeywordsPredicate namePredicate = null;
+    private PhoneContainsKeywordsPredicate phonePredicate = null;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameContainsKeywordsPredicate namePredicate) {
+        this.namePredicate = namePredicate;
+    }
+
+    public FindCommand(PhoneContainsKeywordsPredicate phonePredicate) {
+        this.phonePredicate = phonePredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        if (namePredicate == null) {
+            model.updateFilteredPersonList(phonePredicate);
+        } else {
+            model.updateFilteredPersonList(namePredicate);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -37,6 +47,8 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && namePredicate.equals(((FindCommand) other).namePredicate))
+                || (other instanceof FindCommand
+                && phonePredicate.equals(((FindCommand) other).phonePredicate)); // state check
     }
 }
