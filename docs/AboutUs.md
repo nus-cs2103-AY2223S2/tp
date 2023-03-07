@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and deadlines
 
-### Jane Doe
+### Chew Chun Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nerdyboy98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/nerdyboy98)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Member
+* Responsibilities: Help and Sorting of events
 
 ### Johnny Doe
 
