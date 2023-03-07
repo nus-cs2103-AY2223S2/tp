@@ -39,7 +39,15 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label weight;
+    @FXML
+    private Label gender;
+    @FXML
+    private FlowPane appointments;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private Label calorie;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -52,9 +60,30 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
+        weight.setText(client.getWeight().value + " Kg");
+        gender.setText(client.getGender().value);
+        setCalorieCondition(client, calorie);
+        client.getAppointments().stream()
+                .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
+                .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Sets the calorie to be displayed.
+     * If calorie value is 0000, remove display.
+     *
+     * @param client The current client.
+     * @param calorie The recommended calorie intake of the client.
+     */
+    private void setCalorieCondition(Client client, Label calorie) {
+        if (!client.getCalorie().value.equals("0000")) {
+            calorie.setText("Rec Calories intake: " + client.getCalorie().value + " cal");
+        } else {
+            calorie.setManaged(false);
+        }
     }
 
     @Override

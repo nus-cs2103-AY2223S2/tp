@@ -265,10 +265,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with 
-targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and 
-inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as 
-adding fitness routines to each client with checkboxes for easy access and to check if they have completed their 
+**Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
+targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
+inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as
+adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
 
@@ -347,6 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
+
    Use case ends.
 
 **Extensions**
@@ -360,10 +361,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-  
+
+
       Use case ends.
 
-> **Use case: UC03 - List clients**
+
+
+**Use case: UC03 - List clients**
+
 
 **MSS**
 
@@ -411,6 +416,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+
 **Extensions**
 
 * 1a. The list is empty in the database.
@@ -429,14 +435,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 > **Use case: UC07 - Find**
 
-//TODO By Kalaris
-
 **MSS**
 
-1. User requests to exit the application.
-2. FitBook exits the program.
+1. User requests to find a client.
+2. FitBook displays the list of matching clients.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. The input does not match any client in the database.
+    * 1a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+* 2a. The list is empty in the database.
+    * 2a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+* 3a. The find command has incorrect format.
+    * 3a1. FitBook displays an error that the find format is wrong.
+
+      Use case ends.
 
 *{More to be added}
 

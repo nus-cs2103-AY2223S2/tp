@@ -107,7 +107,6 @@ public class FitBookModelManager implements FitBookModel {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
     }
 
