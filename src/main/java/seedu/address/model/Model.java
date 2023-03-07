@@ -124,6 +124,19 @@ public interface Model {
     void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
     /**
+     * Adds the given pair.
+     * {@code pair} must not already exist in the address book.
+     */
+    void addPair(Pair pair);
+
+    /**
+     * Adds the given pair.
+     * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * must not already exist in the address book.
+     */
+    void addPair(Nric elderlyNric, Nric volunteerNric);
+
+    /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
      */
     boolean hasPair(Pair pair);
@@ -140,12 +153,6 @@ public interface Model {
      * must exist in the address book.
      */
     void deletePair(Nric elderlyNric, Nric volunteerNric);
-
-    /**
-     * Adds the given pair.
-     * {@code pair} must not already exist in the address book.
-     */
-    void addPair(Pair pair);
 
     /**
      * Replaces the given pair {@code target} with {@code editedPair}.

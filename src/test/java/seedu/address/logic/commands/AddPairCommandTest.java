@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
@@ -42,7 +43,9 @@ public class AddPairCommandTest {
         Volunteer volunteer = validPair.getVolunteer();
         ModelStubAcceptingPairAdded modelStub = new ModelStubAcceptingPairAdded(elderly, volunteer);
         CommandResult commandResult = new AddPairCommand(elderly.getNric(), volunteer.getNric()).execute(modelStub);
-        assertEquals(String.format(AddPairCommand.MESSAGE_SUCCESS, validPair), commandResult.getFeedbackToUser());
+        String expectedMessage = String.format(AddPairCommand.MESSAGE_ADD_PAIR_SUCCESS,
+                elderly.getNric(), volunteer.getNric());
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(validPair, modelStub.pair);
     }
 
@@ -54,8 +57,9 @@ public class AddPairCommandTest {
         Nric volunteerNric = validPair.getVolunteer().getNric();
         AddPairCommand addPairCommand = new AddPairCommand(elderlyNric, volunteerNric);
 
+        String expectedMessage = String.format(AddPairCommand.MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric);
         assertThrows(CommandException.class,
-                AddPairCommand.MESSAGE_DUPLICATE_PAIR, () -> addPairCommand.execute(modelStub));
+                expectedMessage, () -> addPairCommand.execute(modelStub));
     }
 
     @Test
@@ -106,6 +110,15 @@ public class AddPairCommandTest {
             requireNonNull(pair);
             return this.pair.isSamePair(pair);
         }
+
+        @Override
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+            if (pair.getElderly().getNric().equals(elderlyNric)
+                && pair.getVolunteer().getNric().equals(volunteerNric)) {
+                throw new DuplicatePairException();
+            }
+        }
+
     }
 
     /**
@@ -132,6 +145,16 @@ public class AddPairCommandTest {
         public void addPair(Pair pair) {
             requireNonNull(pair);
             this.pair = pair;
+        }
+
+        @Override
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+            if (pair != null
+                    && pair.getElderly().getNric().equals(elderlyNric)
+                    && pair.getVolunteer().getNric().equals(volunteerNric)) {
+                throw new DuplicatePairException();
+            }
+            this.pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
         }
 
         @Override
