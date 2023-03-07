@@ -37,6 +37,15 @@ public class Address {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if address is empty.
+     *
+     * @return {@code true} if address is empty.
+     */
+    public boolean isAddressEmpty() {
+        return value.equals("");
+    }
+
     @Override
     public String toString() {
         return value;
