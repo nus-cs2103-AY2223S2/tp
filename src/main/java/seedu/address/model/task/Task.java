@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import seedu.address.model.person.Person;
+
 /**
  * This class is the parent class of tasks that make up the tasklist.
  */
@@ -56,6 +58,15 @@ public class Task {
         String str = "";
         str = String.format("[" + statusIcon + "] " + this.description);
         return str;
+    }
+
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getDescription().equals(getDescription());
     }
 
     @Override
