@@ -1,6 +1,7 @@
 # AutoM8
 
 [![CI Status](https://github.com/AY2223S2-CS2103-W17-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103-W17-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103-W17-4/tp/branch/master/graph/badge.svg?token=XXJ15FVPPS)](https://codecov.io/gh/AY2223S2-CS2103-W17-4/tp)
 
 *UI Image to be added soon*
 

@@ -257,71 +257,470 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Auto repair shop owners who want to keep track of their customers, vehicles, logistics and appointments
+* prefers desktop apps over other types
+* fast typist
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable interacting with CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: AutoM8 provides a platform that allows auto repair shop owners to manage their customer information, service details and logistics
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                  |
+| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | Auto repair shop owner                     | add appointments I'm attending                | Keep track of appointments for the day                           |
+| `* * *`  | Auto repair shop owner                     | add vehicle I want to fix                     | Keep track of vehicle                                            |
+| `* * *`  | Auto repair shop owner                     | add spare parts                               | Keep track of how many spare parts remaining                     |
+| `* * *`  | Auto repair shop owner                     | add customer                                  | Keep track of customer details                                   |
+| `* * *`  | Auto repair shop owner                     | map which car plate belongs to which customer | hand the right car to the appropriate owner                      |
+| `* * *`  | Auto repair shop owner                     | delete a contact                              | remove entries I no longer need                                  |
+| `* * *`  | Auto repair shop owner                     | find a contact                                | locate details of that contact without searching the entire list |
+| `* * *`  | Auto repair shop owner                     | sort vehicles by brand                        | divide the vehicles                                              |
+| `* * *`  | Auto repair shop owner                     | edit a contact                                | make changes in case of mistakes                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+AutoM8 provides the necessary features that support the management of customer, vehicle, servicing, appointment information such as adding, deleting, listing, sorting, finding and editing. The Use Cases listed below demonstrate their usages.
 
-**Use case: Delete a person**
+(For all use cases below, the **System** is `AutoM8` and the **Actor** is the `user`, unless specified otherwise)
+<br/><br/>
+
+**Use case: UC01 - Listing all customers**
 
 **MSS**
+1. User requests to list out all customers.
+2. AutoM8 shows a list of all customers.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+- 2a. The list is empty.  
   Use case ends.
+  <br/><br/>
 
-* 3a. The given index is invalid.
+**Use case: UC02 - Listing all vehicles**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to list out all vehicles.
+2. AutoM8 shows a list of all vehicles.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.  
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC03 - Listing all customer appointments**
+
+**MSS**
+1. User requests to list out all customer appointments.
+2. AutoM8 shows a list of all customer appointments.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.  
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC04 - Listing all spare parts**
+
+**MSS**
+1. User requests to list out all spare parts.
+2. AutoM8 shows a list of all spare parts.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.  
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC05 - Listing all service**
+
+**MSS**
+1. User requests to list out all service .
+2. AutoM8 shows a list of all service.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.  
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC06 - Adding a customer**
+
+**MSS**
+
+1. User requests to add a customer as a contact.
+2. User inputs the information of the customer.
+3. AutoM8 adds the customer as a contact.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given name already exists in AutoM8.
+    - 3a1. AutoM8 shows an error message.  
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC07 - Adding a vehicle**
+
+**MSS**
+
+1. User requests to add a vehicle into the list.
+2. User inputs the information of the vehicle.
+3. AutoM8 adds the vehicle as a contact.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given plate number already exists in AutoM8.
+    - 3a1. AutoM8 shows an error message.  
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC08 - Adding a customer appointment**
+
+**MSS**
+
+1. User requests to add a customer appointment into a list.
+2. User inputs the information of the customer appointment.
+3. AutoM8 adds the customer appointment into the list.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given customer already has an appointment in AutoM8.
+    - 3a1. AutoM8 shows an error message.  
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC09 - Adding a service to a vehicle**
+
+**MSS**
+
+1. User requests to add a service into a list.
+2. User inputs the information of the service.
+3. AutoM8 adds the service into the book.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given vehicle plate number already has a service assigned in AutoM8.
+    - 3a1. AutoM8 shows an error message.  
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC10 - Adding a spare part**
+
+**MSS**
+
+1. User requests to add a spare parts into a list.
+2. User inputs the information of the spare part.
+3. AutoM8 adds the spare part into the list.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The specified spare part name already exist in the list.
+    - 3a1. AutoM8 shows an error message.  
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC11 - Editing a customer's details**
+
+**MSS**
+
+1. User requests to <u>list contacts (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to edit a contact on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the contact's details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
 
       Use case resumes at step 2.
+      <br/><br/>
 
-*{More to be added}*
+**Use case: UC12 - Editing a vehicle's details**
+
+**MSS**
+
+1. User requests to <u>list vehicle contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicles.
+3. User requests to edit a vehicle on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the vehicle's details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC13 - Editing spare part's details**
+
+**MSS**
+
+1. User requests to <u>list spare parts as contacts (UC04)</u>.
+2. AutoM8 shows a list of spare parts.
+3. User requests to edit a spare part on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the spare part details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC14 - Editing an appointment detail**
+
+**MSS**
+
+1. User requests to <u>list appointment as contacts (UC03)</u>.
+2. AutoM8 shows a list of appointments.
+3. User requests to edit an appointment on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the the appointment details.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC15 - Editing a service detail**
+
+**MSS**
+
+1. User requests to <u>list of service as contacts (UC05)</u>.
+2. AutoM8 shows a list of service.
+3. User requests to edit a service on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the the appointment details.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC16 - Deleting a customer**
+
+**MSS**
+1. User requests to <u>list customers (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to delete a customer at a given index.
+4. AutoM8 deletes the customer at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC17 - Deleting a vehicle**
+
+**MSS**
+1. User requests to <u>list of vehicles (UC02)</u>.
+2. AutoM8 shows a list of vehicle.
+3. User requests to delete a vehicle at a given index.
+4. AutoM8 deletes the contact at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC18 - Deleting a customer appointment**
+
+**MSS**
+1. User requests to <u>list of appointments (UC03)</u>.
+2. AutoM8 shows a list of appointments.
+3. User requests to delete an appointment at a given index.
+4. AutoM8 deletes the appointment at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC19 - Deleting a spare part**
+
+**MSS**
+1. User requests to <u>list of spare parts (UC04)</u>.
+2. AutoM8 shows a list of spare parts.
+3. User requests to delete a spare part at a given index.
+4. AutoM8 deletes the contact at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC20 - Sorting vehicles**
+
+**MSS**
+1. User requests to <u>list vehicles (UC01)</u>.
+2. AutoM8 shows a list of vehicles.
+3. User requests to sort vehicles in list.
+4. AutoM8 sorts vehicles according to user's requirements.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. No fields are specified.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC21 - Find a customer**
+
+**MSS**
+
+1. User requests to <u>list of customer as contacts (UC01)</u>.
+2. AutoM8 shows a list of customer.
+3. User requests to find customer on the list.
+4. AutoM8 find customer according to user's requirements.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC22 - Find a vehicle**
+
+**MSS**
+
+1. User requests to <u>list of vehicle as contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicle.
+3. User requests to find vehicle on the list.
+4. AutoM8 find vehicle according to user's requirements.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.  
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC23 - Exiting the application**
+
+**MSS**
+
+1. User requests to exit AutoM8.
+2. AutoM8 closes.
+
+   Use case ends.
+   <br/><br/>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The application should be _free_.
+2. It should be easy to understand and use, even for users with little to no experience.
+3. Offline application used by each person.
+4. The application should be able to operate on any _mainstream OS_ such as Linux, MacOS and Windows so long as Java 11 or above is installed.
+5. The product should be highly testable.
+6. Use of clear and concise English should be observed in the documentation
+7. This product does not necessarily need to be installed but can run as an executable.
+8. Contain clear and easy to understand error messages
+9. Should be able to support up to 1000 persons without any noticeable lag in performance for typical usage.
+10. A user that possess above average typing speed for regular text (i.e. not code, not system admin commands) should be able to achieve majority of the task faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Vehicle**: A 4-wheel machine used to transport people
+* **Plate number**: An identifier put on the front and back of a vehicle
+* **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
 
 --------------------------------------------------------------------------------------------------------------------
 
