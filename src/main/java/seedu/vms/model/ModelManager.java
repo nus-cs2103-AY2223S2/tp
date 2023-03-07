@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final AppointmentManager appointmentManager = new AppointmentManager();
+        private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
 
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
 
+        appointmentManager = new AppointmentManager();
         this.vaxTypeManager = vaxTypeManager;
     }
 
@@ -125,6 +127,13 @@ public class ModelManager implements Model {
         requireAllNonNull(editedPatient);
 
         addressBook.set(id, editedPatient);
+    }
+
+    //=========== AppointmentManager ==========================================================================
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentManager.add(appointment);
     }
 
     //=========== Filtered Patient List Accessors =============================================================
