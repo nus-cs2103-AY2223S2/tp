@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
@@ -178,5 +179,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String calorie} into an {@code Calorie}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code calorie} is invalid.
+     */
+    public static Calorie parseCalorie(String calorie) throws ParseException {
+        requireNonNull(calorie);
+        String trimmedCalorie = calorie.trim();
+        if (!Calorie.isValidCalorie(trimmedCalorie)) {
+            throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
+        }
+        return new Calorie(trimmedCalorie);
     }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_DATE_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -37,7 +38,7 @@ public class ClientTest {
         // same name, all other attributes different -> returns true
         Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .withAppointments(VALID_APPOINTMENT_DATE_ONE).build();
+                .withAppointments(VALID_APPOINTMENT_DATE_ONE).withCalorie(VALID_CALORIE_BOB).build();
         assertTrue(ALICE.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -87,6 +88,9 @@ public class ClientTest {
         // different address -> returns false
         editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different calorie -> returns false
+        editedAlice = new ClientBuilder(ALICE).withCalorie(VALID_CALORIE_BOB).build();
 
         //different weight -> returns false
         editedAlice = new ClientBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).build();

@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -40,6 +41,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
         descriptor.setAddress(client.getAddress());
+        descriptor.setCalorie(client.getCalorie());
         descriptor.setWeight(client.getWeight());
         descriptor.setGender(client.getGender());
         descriptor.setAppointments(client.getAppointments());
@@ -101,6 +103,14 @@ public class EditClientDescriptorBuilder {
     public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Calorie} of the {@code EditClientDescriptorBuilder} that we are building.
+     */
+    public EditClientDescriptorBuilder withCalorie(String calorie) {
+        descriptor.setCalorie(new Calorie(calorie));
         return this;
     }
 
