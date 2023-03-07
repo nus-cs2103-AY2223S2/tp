@@ -35,7 +35,7 @@ public class SampleDataUtil {
                     getTagSet("colleagues", "friends")),
             new Client(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getAppointmentSet("12-12-2019"),
-                new Weight("30"), new Gender("M"),  new Calorie("1100"), new Goal("lose weight"),
+                new Weight("30"), new Gender("M"), new Calorie("1100"), new Goal("lose weight"),
                     getTagSet("neighbours")),
             new Client(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getAppointmentSet("12-12-2019"),

@@ -74,9 +74,8 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedClient client =
-
                 new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_APPOINTMENTS,
-                        VALID_WEIGHT, VALID_GENDER, VALID_GOAL,VALID_CALORIE, VALID_TAGS);
+                        VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_CALORIE, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
