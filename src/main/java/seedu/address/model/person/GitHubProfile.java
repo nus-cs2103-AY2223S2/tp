@@ -38,6 +38,9 @@ public class GitHubProfile {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isEmptyProfile() {
+        return value.equals("");
+    }
 
     @Override
     public String toString() {
