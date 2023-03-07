@@ -341,13 +341,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. 
 
 *{More to be added}*
 
 ### Glossary
 
+* **Actor**: In the context of use cases, the actor is a role that a person play when using the system.
+* **API**: (Application Programming Interface) How separate components of the program communicate with each other.
+* **Architecture**: Referring to software architecture, showing overall organization of the system.
+* **Framework**: A set of pre-written code containing predefined classes and functions that helps developers build a software.
+* **GUI**: (Graphical User Interface) A Ui using icons, menu, and mouse to interact with the system.
+* **JavaFX**: A framework used to create user interfaces in java.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Parsing**: In the context of our program, parsing is to transform a piece of user input into something that can be run by our program
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Sequence Diagrams**: User to model the interactions between entities in a system within a specific scenario.
+* **UI**: (User Interface) Where the human interacts with the program.
 
 --------------------------------------------------------------------------------------------------------------------
 
