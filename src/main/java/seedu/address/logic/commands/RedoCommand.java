@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
-public class RedoCommand extends Command{
+/**
+ * Command to redo an action
+ */
+public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
 
     public static final String MESSAGE_REDO_SUCCESS = "Redo success";
@@ -14,7 +16,7 @@ public class RedoCommand extends Command{
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (! model.canRedo()) {
+        if (!model.canRedo()) {
             throw new CommandException(Messages.MESSAGE_CANNOT_REDO);
         }
         model.redo();

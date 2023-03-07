@@ -47,6 +47,10 @@ public class VersionedAddressBook extends AddressBook {
         return addressBookStateList.get(currentStatePointer);
     }
 
+    /**
+     * Move currentStatePointer one after
+     * Return the target AddressBook (Not clone yet)
+     */
     public AddressBook redo() {
         currentStatePointer++;
         return addressBookStateList.get(currentStatePointer);
@@ -64,6 +68,9 @@ public class VersionedAddressBook extends AddressBook {
         return true;
     }
 
+    /**
+     * @return true if we can redo AddressBook
+     */
     public boolean canRedo() {
         if (currentStatePointer == addressBookStateList.size() - 1) {
             return false;

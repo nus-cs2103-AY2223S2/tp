@@ -146,8 +146,10 @@ public class ModelManager implements Model {
         setAddressBook(ab);
     }
 
-    // todo
-    public void redo(){
+    /**
+     * Redo and checkout the version of AddressBook that we want
+     */
+    public void redo() {
         AddressBook ab = versionedAddressBook.redo();
         setAddressBook(ab);
     }
