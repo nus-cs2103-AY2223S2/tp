@@ -102,22 +102,22 @@ This guide is intended primarily for developers who want to work on the **EduMat
 ## **Using the Guide**
 ### **What Do the Emojis Mean**
 
-| Emoji                 | GFMD form               | What does it mean                           |
-|-----------------------|-------------------------|---------------------------------------------|
-| :sparkles:            | `:sparkles:`            | Completed feature                           |
-| :construction:        | `:construction:`        | Feature under construction                  |
-| :question:            | `:question:`            | Frequently asked question (FAQ)             |
-| :white_check_mark:    | `:white_check_mark:`    | What the developer should do                |
-| :exclamation:         | `:exclamation:`         | Warning to the developer                    |
-| :x:                   | `:x:`                   | Strong warning to the developer             |
-| :bulb:                | `:bulb:`                | Tip for the developer                       |
-| :information_source:  | `:information_source:`  | Information for the developer               |
-| :goal_net:            | `:goal_net:`            | Error handling                              |
-| :art:                 | `:art:`                 | Consideration made for code cleanliness     |
-| :technologist:        | `:technologist:`        | Consideration made for developer experience |
-| :children_crossing:   | `:children_crossing:`   | Consideration made for user experience      |
-| :zap:                 | `:zap:`                 | Consideration made for performance          |
-| :seedling:            | `:seedling:`            | Consideration made for future development   |
+| Emoji                | GFMD form              | What does it mean                           |
+|----------------------|------------------------|---------------------------------------------|
+| :sparkles:           | `:sparkles:`           | Completed feature                           |
+| :construction:       | `:construction:`       | Feature under construction                  |
+| :question:           | `:question:`           | Frequently asked question (FAQ)             |
+| :white_check_mark:   | `:white_check_mark:`   | What the developer should do                |
+| :exclamation:        | `:exclamation:`        | Warning to the developer                    |
+| :x:                  | `:x:`                  | Strong warning to the developer             |
+| :bulb:               | `:bulb:`               | Tip for the developer                       |
+| :information_source: | `:information_source:` | Information for the developer               |
+| :goal_net:           | `:goal_net:`           | Error handling                              |
+| :art:                | `:art:`                | Consideration made for code cleanliness     |
+| :computer:           | `:computer:`           | Consideration made for developer experience |
+| :children_crossing:  | `:children_crossing:`  | Consideration made for user experience      |
+| :zap:                | `:zap:`                | Consideration made for performance          |
+| :seedling:           | `:seedling:`           | Consideration made for future development   |
 
 ---
 
@@ -262,7 +262,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 ---
 
 ## **Architecture**
-| ![Architecture Diagram](images/ArchitectureDiagram.png)                               |
+| ![](images/ArchitectureDiagram.png)                                                   |
 |---------------------------------------------------------------------------------------|
 | _Figure 4.1.1_ ***Architecture Diagram*** explaining the high-level design of the App |
 
@@ -547,7 +547,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-secondary">
 
-:art: :technologist: :children_crossing: :zap: :seedling: Use `<div markdown="span" class="alert alert-secondary"></div>` to show the developer what consideration has been made
+:art: :computer: :children_crossing: :zap: :seedling: Use `<div markdown="span" class="alert alert-secondary"></div>` to show the developer what consideration has been made
 
 </div>
 
