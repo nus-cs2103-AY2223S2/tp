@@ -1,5 +1,5 @@
 {
-  "students": [ {
+  "persons": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
@@ -8,7 +8,7 @@
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "studentId": "pauline@example.com",
+    "email": "pauline@example.com",
     "studentId": "4th street"
   } ]
 }

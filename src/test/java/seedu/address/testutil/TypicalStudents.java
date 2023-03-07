@@ -35,7 +35,7 @@ public class TypicalStudents {
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withStudentId("A6789123H").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withStudentId("A8905678J").withTags("friends").build();
+            .withEmail("cornelia@example.com").withStudentId("A8905678J").withTags("CS2105").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withStudentId("A3456129K").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
