@@ -7,7 +7,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
-import arb.model.ProjectStub;
+import arb.model.project.Project;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
 import javafx.collections.ObservableList;
@@ -43,7 +43,7 @@ public interface Logic {
     ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered list of projects */
-    ObservableList<ProjectStub> getFilteredProjectList();
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -3,26 +3,27 @@ package arb.model.project;
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a Project in the address book.
- * Guarantees: details are present and not null; field values are validated & immutable.
+ * Guarantees: title and status is present and not null; field values are validated & immutable.
  */
 public class Project {
 
-    // Details fields
+    // Details fields. Deadline is optional.
     private final Title title;
-    private final Deadline deadline;
+    private final Optional<Deadline> deadline;
     private final Status status;
 
     /**
      * Constructs a {@code Project}.
-     * Every field must be present and not null.
+     * Title must be present and not null.
      */
     public Project(Title title, Deadline deadline) {
-        requireAllNonNull(title, deadline);
+        requireAllNonNull(title);
         this.title = title;
-        this.deadline = deadline;
+        this.deadline = Optional.ofNullable(deadline);
         status = new Status();
     }
 
@@ -30,12 +31,33 @@ public class Project {
         return title;
     }
 
+    /**
+     * Checks if this project has a deadline.
+     * @return True if this project has a deadline, false otherwise.
+     */
+    public boolean isDeadlinePresent() {
+        return deadline.isPresent();
+    }
+
     public Deadline getDeadline() {
-        return deadline;
+        return deadline.orElse(null);
     }
 
     public Status getStatus() {
         return status;
+    }
+
+    /**
+     * Returns true if both projects have the same title.
+     * This defines a weaker notion of equality between two projects.
+     */
+    public boolean isSameProject(Project otherProject) {
+        if (otherProject == this) {
+            return true;
+        }
+
+        return otherProject != null
+                && otherProject.getTitle().equals(getTitle());
     }
 
     @Override
@@ -54,13 +76,22 @@ public class Project {
         }
 
         Project otherProject = (Project) other;
-        return otherProject.getTitle().equals(getTitle())
-                && otherProject.getDeadline().equals(getDeadline())
-                && otherProject.getStatus().equals(getStatus());
+
+        boolean isTitleEqual = otherProject.getTitle().equals(getTitle());
+        boolean isStatusEqual = otherProject.getStatus().equals(getStatus());
+
+        boolean isDeadlineEqual;
+        if (!isDeadlinePresent()) {
+            isDeadlineEqual = otherProject.getDeadline() == null;
+        } else {
+            isDeadlineEqual = getDeadline().equals(otherProject.getDeadline());
+        }
+        
+        return isTitleEqual && isStatusEqual && isDeadlineEqual;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline);
+        return Objects.hash(title, deadline, status);
     }
 }

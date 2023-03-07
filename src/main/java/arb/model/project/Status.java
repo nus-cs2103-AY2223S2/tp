@@ -45,7 +45,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return Boolean.toString(isDone);
+        return isDone ? "DONE" : "NOT DONE";
     }
 
     @Override

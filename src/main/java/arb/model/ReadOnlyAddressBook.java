@@ -1,6 +1,7 @@
 package arb.model;
 
 import arb.model.client.Client;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 
 /**
@@ -18,6 +19,6 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the projects list.
      * This list will not contain any duplicate projects.
      */
-    ObservableList<ProjectStub> getProjectList();
+    ObservableList<Project> getProjectList();
 
 }

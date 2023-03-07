@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import arb.model.project.exceptions.ProjectNotFoundException;
-import arb.model.ProjectStub;
 import arb.model.project.exceptions.DuplicateProjectException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,16 +22,16 @@ import javafx.collections.ObservableList;
  *
  * @see Project#isSameProject(Project)
  */
-public class UniqueProjectList implements Iterable<ProjectStub> {
+public class UniqueProjectList implements Iterable<Project> {
 
-    private final ObservableList<ProjectStub> internalList = FXCollections.observableArrayList();
-    private final ObservableList<ProjectStub> internalUnmodifiableList =
+    private final ObservableList<Project> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.
      */
-    public boolean contains(ProjectStub toCheck) {
+    public boolean contains(Project toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
@@ -41,7 +40,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
      * Adds a project to the list.
      * The project must not already exist in the list.
      */
-    public void add(ProjectStub toAdd) {
+    public void add(Project toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateProjectException();
@@ -54,7 +53,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
      * {@code target} must exist in the list.
      * The project identity of {@code editedProject} must not be the same as another existing project in the list.
      */
-    public void setProject(ProjectStub target, ProjectStub editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
         int index = internalList.indexOf(target);
@@ -73,7 +72,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
      * Removes the equivalent project from the list.
      * The project must exist in the list.
      */
-    public void remove(ProjectStub toRemove) {
+    public void remove(Project toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ProjectNotFoundException();
@@ -89,7 +88,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
      * Replaces the contents of this list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
      */
-    public void setProjects(List<ProjectStub> projects) {
+    public void setProjects(List<Project> projects) {
         requireAllNonNull(projects);
         if (!projectsAreUnique(projects)) {
             throw new DuplicateProjectException();
@@ -101,12 +100,12 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<ProjectStub> asUnmodifiableObservableList() {
+    public ObservableList<Project> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<ProjectStub> iterator() {
+    public Iterator<Project> iterator() {
         return internalList.iterator();
     }
 
@@ -125,7 +124,7 @@ public class UniqueProjectList implements Iterable<ProjectStub> {
     /**
      * Returns true if {@code projects} contains only unique projects.
      */
-    private boolean projectsAreUnique(List<ProjectStub> projects) {
+    private boolean projectsAreUnique(List<Project> projects) {
         for (int i = 0; i < projects.size() - 1; i++) {
             for (int j = i + 1; j < projects.size(); j++) {
                 if (projects.get(i).isSameProject(projects.get(j))) {

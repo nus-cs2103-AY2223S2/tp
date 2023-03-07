@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import arb.commons.core.GuiSettings;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 
 /**
@@ -15,7 +16,7 @@ public interface Model {
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     
     /** {@code Predicate} for filtered project list that always evaluates to true */
-    Predicate<ProjectStub> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -63,7 +64,7 @@ public interface Model {
     /**
      * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
-    boolean hasProject(ProjectStub project);
+    boolean hasProject(Project project);
 
     /**
      * Deletes the given client.
@@ -75,7 +76,7 @@ public interface Model {
      * Deletes the given project.
      * The project must exist in the address book.
      */
-    void deleteProject(ProjectStub target);
+    void deleteProject(Project target);
 
     /**
      * Adds the given client.
@@ -87,7 +88,7 @@ public interface Model {
      * Adds the given project.
      * {@code project} must not already exist in the address book.
      */
-    void addProject(ProjectStub project);
+    void addProject(Project project);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
@@ -101,13 +102,13 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
      */
-    void setProject(ProjectStub target, ProjectStub editedProject);
+    void setProject(Project target, Project editedProject);
 
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered project list */
-    ObservableList<ProjectStub> getFilteredProjectList();
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
@@ -119,5 +120,5 @@ public interface Model {
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredProjectList(Predicate<ProjectStub> predicate);
+    void updateFilteredProjectList(Predicate<Project> predicate);
 }

@@ -3,7 +3,7 @@ package arb.ui;
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
-import arb.model.ProjectStub;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -18,12 +18,12 @@ public class ProjectListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ProjectListPanel.class);
 
     @FXML
-    private ListView<ProjectStub> projectListView;
+    private ListView<Project> projectListView;
 
     /**
      * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
-    public ProjectListPanel(ObservableList<ProjectStub> projectList) {
+    public ProjectListPanel(ObservableList<Project> projectList) {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
@@ -32,9 +32,9 @@ public class ProjectListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */
-    class ProjectListViewCell extends ListCell<ProjectStub> {
+    class ProjectListViewCell extends ListCell<Project> {
         @Override
-        protected void updateItem(ProjectStub project, boolean empty) {
+        protected void updateItem(Project project, boolean empty) {
             super.updateItem(project, empty);
 
             if (empty || project == null) {

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -22,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
-    private final FilteredList<ProjectStub> filteredProjects;
+    private final FilteredList<Project> filteredProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -96,7 +97,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasProject(ProjectStub project) {
+    public boolean hasProject(Project project) {
         requireNonNull(project);
         return addressBook.hasProject(project);
     }
@@ -107,7 +108,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteProject(ProjectStub target) {
+    public void deleteProject(Project target) {
         addressBook.removeProject(target);
     }
 
@@ -118,7 +119,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addProject(ProjectStub project) {
+    public void addProject(Project project) {
         addressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
@@ -131,7 +132,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setProject(ProjectStub target, ProjectStub editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
@@ -149,7 +150,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<ProjectStub> getFilteredProjectList() {
+    public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
     }
 
@@ -160,7 +161,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredProjectList(Predicate<ProjectStub> predicate) {
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
     }

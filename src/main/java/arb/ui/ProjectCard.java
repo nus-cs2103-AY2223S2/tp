@@ -1,10 +1,11 @@
 package arb.ui;
 
-import arb.model.ProjectStub;
+import arb.model.project.Project;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -21,10 +22,12 @@ public class ProjectCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final ProjectStub project;
+    public final Project project;
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private VBox contentsPane;
     @FXML
     private Label title;
     @FXML
@@ -37,13 +40,19 @@ public class ProjectCard extends UiPart<Region> {
     /**
      * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
      */
-    public ProjectCard(ProjectStub project, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        title.setText(project.getTitle());
-        deadline.setText(project.getDeadline());
-        status.setText(project.getStatus());
+        title.setText(project.getTitle().title);
+
+        if (project.isDeadlinePresent()) {
+            deadline.setText(project.getDeadline().dueDate);
+        } else {
+            contentsPane.getChildren().remove(deadline);
+        }
+
+        status.setText("Status: " + project.getStatus());
     }
 
     @Override

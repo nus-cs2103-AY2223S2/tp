@@ -13,7 +13,7 @@ import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
 import arb.model.Model;
-import arb.model.ProjectStub;
+import arb.model.project.Project;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
 import arb.storage.Storage;
@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
     }    
     
     @Override
-    public ObservableList<ProjectStub> getFilteredProjectList() {
+    public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
     }
 

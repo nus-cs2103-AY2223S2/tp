@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import arb.model.client.Client;
 import arb.model.client.UniqueClientList;
+import arb.model.project.Project;
 import arb.model.project.UniqueProjectList;
 import javafx.collections.ObservableList;
 
@@ -51,7 +52,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.clients.setClients(clients);
     }
 
-    public void setProjects(List<ProjectStub> projects) {
+    /**
+     * Replaces the contents of the project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    public void setProjects(List<Project> projects) {
         this.projects.setProjects(projects);
     }
 
@@ -75,7 +80,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.contains(client);
     }
 
-    public boolean hasProject(ProjectStub project) {
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
+    public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
     }
@@ -88,7 +96,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.add(p);
     }
 
-    public void addProject(ProjectStub p) {
+    /**
+     * Adds a project to the address book.
+     * The project must not already exist in the address book.
+     */
+    public void addProject(Project p) {
         projects.add(p);
     }
 
@@ -103,21 +115,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.setClient(target, editedClient);
     }
 
-    public void setProject(ProjectStub target, ProjectStub editedProject) {
+    /**
+     * Replaces the given project {@code target} in the list with {@code editedProject}.
+     * {@code target} must exist in the address book.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
+     */
+    public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
         projects.setProject(target, editedProject);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from the client list in this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeClient(Client key) {
         clients.remove(key);
     }
 
-    public void removeProject(ProjectStub key) {
+    /**
+     * Removes {@code key} from the project list in this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeProject(Project key) {
         projects.remove(key);
     }
 
@@ -136,7 +157,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<ProjectStub> getProjectList() {
+    public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();
     }
 
