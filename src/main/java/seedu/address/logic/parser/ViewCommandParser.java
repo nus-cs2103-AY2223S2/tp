@@ -9,6 +9,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Parse input arguments and creates a new {@code ViewCommand} object
  */
@@ -20,15 +23,18 @@ public class ViewCommandParser {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VIEW);
+        List<Index> indexList = new ArrayList<>();
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
+        String[] parsedIndexList = args.trim().split("\\s+");
+        for (String i: parsedIndexList) {
+            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(i, PREFIX_VIEW);
+            try {
+                indexList.add(ParserUtil.parseIndex(argumentMultimap.getPreamble()));
+            } catch (IllegalValueException ive) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
+            }
         }
 
-        return new ViewCommand(index);
+        return new ViewCommand(indexList);
     }
 }
