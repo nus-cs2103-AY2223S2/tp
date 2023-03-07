@@ -1,15 +1,16 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.List;
 
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.logic.commands.exceptions.CommandException;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.Messages;
-import seedu.address.model.person.Remark;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -28,8 +29,6 @@ public class RemarkCommand extends Command {
             + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Likes to swim.";
-
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
     private final Index index;
     private final Remark remark;
@@ -57,7 +56,7 @@ public class RemarkCommand extends Command {
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
