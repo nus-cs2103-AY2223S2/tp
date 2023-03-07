@@ -6,6 +6,12 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+Pied Piper is a desktop application for managing projects with a significant level of complexity. It functions
+via a Command-Line Interface (CLI) that allows more efficient management of events.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
@@ -337,7 +343,6 @@ _{Explain here how the data archiving feature will be implemented}_
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
