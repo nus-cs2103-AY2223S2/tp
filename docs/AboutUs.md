@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shi Wen Hong
 
-<img src="images/people/jinbesan.png" width="200px">
+<img src="images/jinbesan.png" width="200px">
 
 [[github](http://github.com/jinbesan)]
 [[portfolio](team/gitsac.md)]
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Randall Ng Hong Rong
 
-<img src="images/people/randall.png" width="200px">
+<img src="images/randallnhr.png" width="200px">
 
 [[github](http://github.com/randallnhr)] 
 [[portfolio](team/randallnhr.md)]

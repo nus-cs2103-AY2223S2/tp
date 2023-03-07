@@ -4,7 +4,7 @@
 ![UiMockup](docs/images/Ui.png)
 
 # FastTrack
-FastTrack is specifically designed to cater to the needs of tech-savvy NUS undergraduate students who are on a tight budget. 
+FastTrack is specifically designed to cater to the needs of tech-savvy NUS computing students who are on a tight budget. 
 With our expense tracking features, students can easily track their daily expenses and ensure that they are not overspending. 
 The Command Line Interface (CLI) and batch logging features make it easy to enter expenses quickly and efficiently.
 which is ideal stressed out undergraduates with limited free times.
