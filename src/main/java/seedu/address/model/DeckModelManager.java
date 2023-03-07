@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.powercard.PowerCard;
@@ -21,24 +23,26 @@ import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 public class DeckModelManager implements DeckModel {
     private static final Logger logger = LogsCenter.getLogger(DeckModelManager.class);
     private PowerDeck selectedDeck = null;
-    private final ArrayList<PowerDeck> powerDecks = new ArrayList<>();
+    private final ArrayList<PowerDeck> powerDecks;
     private final UserPrefs userPrefs;
-    //  private final FilteredList<PowerCard> filteredCards;
+    private final FilteredList<PowerCard> filteredCards;
 
     /**
      * Initializes a CardModelManager with the given deck and userPrefs.
      */
-    public DeckModelManager(ReadOnlyUserPrefs userPrefs) {
+    public DeckModelManager(ArrayList<PowerDeck> powerDecks, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(userPrefs);
 
         logger.fine("Initializing with user prefs " + userPrefs);
-
+        this.powerDecks = powerDecks;
         this.userPrefs = new UserPrefs(userPrefs);
-        //      filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
+        filteredCards = new FilteredList<>((this.selectedDeck != null)
+                ? this.selectedDeck.getCardList()
+                : FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
     }
 
     public DeckModelManager() {
-        this(new UserPrefs());
+        this(new ArrayList<PowerDeck>(), new UserPrefs());
     }
 
 
