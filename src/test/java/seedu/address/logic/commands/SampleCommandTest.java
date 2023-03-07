@@ -13,8 +13,8 @@ import seedu.address.model.UserPrefs;
  * Contains integration tests (interaction with the Model) and unit tests for SampleCommand.
  */
 public class SampleCommandTest {
-    private final static int SAMPLE_SIZE = 25;
-    private final static SampleCommand SAMPLE_COMMAND = new SampleCommand(SAMPLE_SIZE);
+    private static final int SAMPLE_SIZE = 25;
+    private static final SampleCommand SAMPLE_COMMAND = new SampleCommand(SAMPLE_SIZE);
 
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
 

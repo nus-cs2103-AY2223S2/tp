@@ -40,6 +40,9 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses an integer.
+     */
     public static int parseInt(String intString) throws ParseException {
         String trimmedInt = intString.trim();
         if (trimmedInt.isEmpty() || !StringUtil.isNonZeroUnsignedInteger(trimmedInt)) {
