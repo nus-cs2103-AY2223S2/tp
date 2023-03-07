@@ -3,8 +3,9 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.net.URI;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * Represents a Meeting's location in the address book.
@@ -32,7 +33,7 @@ public class Location {
         requireNonNull(location);
         checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
         meetingLocation = location;
-        isVirtualLocation = isValidUrl(location);
+        isVirtualLocation = isValidVirtualLocation(location);
     }
 
     public boolean isVirtualLocation() {
@@ -55,10 +56,14 @@ public class Location {
      * @param url A string to test if it is a URL.
      * @return True if string is a valid URL, false otherwise.
      */
-    private boolean isValidUrl(String url) {
+    public static boolean isValidVirtualLocation(String url) {
+        if (!isValidLocation(url)) {
+            return false;
+        }
+
         try {
-            new URI(url);
-        } catch (URISyntaxException e) {
+            new URL(url).toURI();
+        } catch (MalformedURLException | URISyntaxException e) {
             return false;
         }
 
