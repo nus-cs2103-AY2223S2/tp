@@ -2,12 +2,7 @@ package seedu.vms.model.patient;
 
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.vms.model.tag.Tag;
 
 /**
  * Represents a Patient in the address book.
@@ -18,22 +13,14 @@ public class Patient {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(Name name, Phone phone) {
+        requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -42,22 +29,6 @@ public class Patient {
 
     public Phone getPhone() {
         return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -89,16 +60,13 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getEmail().equals(getEmail())
-                && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getTags().equals(getTags());
+                && otherPatient.getPhone().equals(getPhone());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone);
     }
 
     @Override
@@ -107,16 +75,8 @@ public class Patient {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Email: ");
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 
