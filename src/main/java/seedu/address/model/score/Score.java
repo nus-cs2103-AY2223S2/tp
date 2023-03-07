@@ -1,5 +1,7 @@
 package seedu.address.model.score;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,8 +15,8 @@ import seedu.address.model.score.exceptions.BadDateException;
  */
 public class Score {
     // Identity field(s)
-    public final String scoreName;
-    public final int scoreValue;
+    public final Title scoreName;
+    public final Integer scoreValue;
     public final LocalDateTime scoreDate;
 
     /**
@@ -24,10 +26,13 @@ public class Score {
      * @param scoreValue A valid Score value.
      * @param scoreDate A valid Score date.
      */
-    public Score(String scoreName, int scoreValue, String scoreDate) {
+    public Score(Title scoreName, Integer scoreValue, String scoreDate) {
+        requireAllNonNull(scoreName, scoreValue, scoreDate);
+
         this.scoreName = scoreName;
         this.scoreValue = scoreValue;
 
+        // Maybe can shift this validation when adding a score. TODO
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             this.scoreDate = LocalDateTime.parse(scoreDate, formatter);
@@ -39,7 +44,7 @@ public class Score {
     /**
      * Returns the score name.
      */
-    public String getScoreName() {
+    public Title getScoreName() {
         return scoreName;
     }
 
