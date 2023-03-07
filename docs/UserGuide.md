@@ -6,7 +6,7 @@ title: User Guide
 Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,15 +15,15 @@ _Details coming soon ..._
 
 ## Feature summary
 1. [Attendance](#Attendance)
-    * mark
-    * unmark
-    * exit
+   * mark
+   * unmark
+   * exit
 1. [Assignments](#Assignments)
-    * add
-    * delete
-    * grade
-    * ungrade
-    * exit
+   * add
+   * delete
+   * grade
+   * ungrade
+   * exit
 1. [Class List](#Class-List)
 1. [CSV Parser](#csv-parser)
 
@@ -116,7 +116,7 @@ Creates a class list to store the information about a group of students.
 
 Format: `create LIST_NAME [STUDENT_NAMES]`
 - The argument `LIST_NAME` should be the name of the new class list
-The argument `[STUDENT_NAMES]` should consist of a sequence of student names, separated by commas.
+  The argument `[STUDENT_NAMES]` should consist of a sequence of student names, separated by commas.
 
 
 Examples:
@@ -164,6 +164,33 @@ Format: `delete STUDENT_NAME CLASS_LIST`
 Examples:
 - `delete Tom cs2103t-t14` removes Tom from the class list CS2103T-T14
 - `delete Harry cs6244` removes Harry from the class list CS6244
+
+### Listing all students : `list` [coming soon]
+List the students in the class.
+
+Format: `list CLASS_NAME`
+- List the students in tutorial class indicated by the argument class name
+- There should only be one string following list and nothing else.​
+- The argument class name is not case-sensitive.
+
+
+Examples:
+ - Li Chengyue A0123456K
+
+
+### Find a particular student : `find` [coming soon]
+List the students in the class.
+
+Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
+- Flag -id refers to find by student number
+- Flag -n refers to find by name
+- The format of the command follows find flag String
+- The name or student number of the student are not case-sensitive
+
+
+Examples:
+- find -name john lee
+- find -id a0123456b
 
 
 ## CSV Parser
