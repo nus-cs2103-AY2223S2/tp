@@ -31,10 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jayanth Balasubramanian
 
-<img src="images/Jayanth-Balasubramanian.png" width="200px">
+<img src="images/jayanth-balasubramanian.png" width="200px">
 
 [[github](https://github.com/Jayanth-Balasubramanian)]
-[[portfolio](team/Jayanth-Balasubramanian.md)]
+[[portfolio](team/jayanth-balasubramanian.md)]
 
 * Role: Team Lead
 * Responsibilities: UI, Git expert
