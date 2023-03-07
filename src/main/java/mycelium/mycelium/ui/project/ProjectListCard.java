@@ -1,5 +1,7 @@
 package mycelium.mycelium.ui.project;
 
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -20,7 +22,7 @@ public class ProjectListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Project project = new Project();
+    public final Project project;
 
     @FXML
     private Label id;
@@ -44,14 +46,15 @@ public class ProjectListCard extends UiPart<Region> {
      */
     public ProjectListCard(Project p, int displayedIndex) {
         super(FXML);
+        project = p;
         id.setText(displayedIndex + ". ");
-        name.setText(project.name);
-        status.setText(project.status.toString());
-        email.setText(project.clientEmail.toString());
-        source.setText(project.source);
-        description.setText(project.description);
-        acceptedOn.setText(project.acceptedOn.toString());
-        deadline.setText(project.deadline.toString());
+        name.setText(p.name);
+        status.setText(p.status.toString());
+        email.setText(p.clientEmail.toString());
+        source.setText(p.source);
+        description.setText(p.description);
+        acceptedOn.setText(p.acceptedOn.toString());
+        deadline.setText(p.deadline.map(Date::toString).orElse("No Deadline"));
     }
 
     @Override

@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        projectListPanel = new ListPanel<Project>(null, ProjectListCard::new);
+        projectListPanel = new ListPanel<Project>(Project.generateStub(), ProjectListCard::new);
         personListPanel = new ListPanel<Person>(logic.getFilteredPersonList(), PersonListCard::new);
         projectTab = new TabPage("Projects", projectListPanel);
         clientTab = new TabPage("Client", personListPanel);
