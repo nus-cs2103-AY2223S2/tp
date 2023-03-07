@@ -65,9 +65,9 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2023"), new TaskStatus()),
-            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2023"), new TaskStatus("D")),
-            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2023"), new TaskStatus("N")),
+            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"), new TaskStatus()),
+            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"), new TaskStatus("D")),
+            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"), new TaskStatus("N")),
         };
     }
 
