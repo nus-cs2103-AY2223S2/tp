@@ -2,12 +2,15 @@
 /.gradle/
 /build/
 src/main/resources/docs/
-bin
 
 # IDEA files
 /.idea/
 /out/
 /*.iml
+
+# VSCode files
+.vscode
+bin
 
 # Storage/log files
 /data/

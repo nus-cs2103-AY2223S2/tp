@@ -257,42 +257,45 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* looking to form teams for hackathons/competitions/projects
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: group based on expertise/competence/availability/goals to find better teammates
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                        | So that I can…​                                                       |
+|----------|-----------------|-----------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user        | delete the sample contacts                          | start finding actual teammates                                        |
+| `* * *`  | new user        | delete a contact                                    | remove contact deemed unsuitable for any team                         |
+| `* * *`  | normal user     | add a contact                                       | find their info for later use                                         |
+| `* * *`  | normal user     | add tags to contacts                                | see what their proficiencies are and what they are look to accomplish |
+| `* * *`  | normal user     | edit a contact                                      | rectify changes or mistakes                                           |
+| `* * *`  | normal user     | view contact list                                   | see all my contacts                                                   |
+| `* *`    | first time user | see some sample contacts when I open the app        | easily try out its features without needing to add my data first      |
+| `* *`    | first time user | see a help message explaining features to try first | start by trying features that are more suited for new users           |
+| `* *`    | forgetful user  | have a clear contact list for my social hub         | Have quick access to my contact lists to find the target person       |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeamBuilder` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list contacts
+2.  TeamBuilder shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  TeamBuilder deletes the person
 
     Use case ends.
 
@@ -304,7 +307,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamBuilder shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TeamBuilder shows a list of contacts
+3.  User requests to edit a specific contact in the list
+4.  TeamBuilder edit the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TeamBuilder shows an error message.
 
       Use case resumes at step 2.
 
