@@ -9,6 +9,18 @@ import seedu.address.model.item.Identifiable;
  * Represents a Pilot in the Wingman app.
  */
 public class Pilot implements Identifiable {
+    private static final String UUID_STRING = "UUID";
+
+    private static final String NAME_STRING = "Name";
+
+    private static final String GENDER_STRING = "Gender";
+
+    private static final String AGE_STRING = "Age";
+
+    private static final String RANK_STRING = "Rank";
+
+    private static final String FLIGHT_HR_STRING = "Flight Hour";
+
     private final String name;
 
     private final int age;
@@ -101,12 +113,12 @@ public class Pilot implements Identifiable {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-            "UUID: " + id,
-            "Name: " + name,
-            "Gender: " + gender,
-            "Age: " + age,
-            "Rank: " + rank,
-            "Flight Hour: " + flightHour
+            String.format("%s: %s", UUID_STRING, id),
+            String.format("%s: %s", NAME_STRING, name),
+            String.format("%s: %s", GENDER_STRING, gender),
+            String.format("%s: %s", AGE_STRING, age),
+            String.format("%s: %s", RANK_STRING, rank),
+            String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
         );
     }
 

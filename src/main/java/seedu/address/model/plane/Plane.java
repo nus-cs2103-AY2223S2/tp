@@ -9,6 +9,9 @@ import seedu.address.model.item.Identifiable;
  * Represents a plane in the Wingman app.
  */
 public class Plane implements Identifiable {
+    private static final String UUID_STRING = "UUID";
+    private static final String MODEL_STRING = "Model";
+    private static final String AGE_STRING = "Age";
     private final String id;
     private final String model;
     private final int age;
@@ -53,9 +56,11 @@ public class Plane implements Identifiable {
     }
 
     public List<String> getDisplayList() {
-        return List.of("UUID: " + id,
-                "Model: " + model,
-                "Age: " + age);
+        return List.of(
+                String.format("%s: %s", UUID_STRING, id),
+                String.format("%s: %s", MODEL_STRING, model),
+                String.format("%s: %s", AGE_STRING, age)
+        );
     }
 
     public String getId() {
@@ -64,6 +69,7 @@ public class Plane implements Identifiable {
 
     @Override
     public String toString() {
-        return "ID: " + id + " Model: " + model + " Age: " + age;
+        return String.format("%s: %s %s: %s %s: %s",
+                UUID_STRING, id, MODEL_STRING, model, AGE_STRING, age);
     }
 }

@@ -10,6 +10,8 @@ import seedu.address.model.item.Identifiable;
  *  arrive at.
  */
 public class Location implements Identifiable {
+    private static final String NAME_STRING = "Name";
+    private static final String ID_STRING = "ID";
     private final String name;
     private final String id;
 
@@ -51,7 +53,9 @@ public class Location implements Identifiable {
 
     @Override
     public List<String> getDisplayList() {
-        return List.of("Name: " + getName(), "ID: " + getId());
+        return List.of(
+                String.format("%s: %s", NAME_STRING, name),
+                String.format("%s: %s", ID_STRING, id));
     }
 
     /**
