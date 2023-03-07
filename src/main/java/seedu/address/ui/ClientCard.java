@@ -75,8 +75,8 @@ public class ClientCard extends UiPart<Region> {
      * Sets the calorie to be displayed.
      * If calorie value is 0000, remove display.
      *
-     * @param client The current client
-     * @param calorie The recommended calorie intake of the client
+     * @param client The current client.
+     * @param calorie The recommended calorie intake of the client.
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
