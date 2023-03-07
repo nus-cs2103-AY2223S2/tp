@@ -462,6 +462,68 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
       Use case resumes at step 1.
 
+#### UC-VAC-001 - Add vaccination type
+
+##### MSS
+
+1. User enters command to add a vaccination type.
+2. VMS adds the vaccination type.<br>
+    Use case ends.
+
+##### Extensions
+
+* 2a. Command contains syntax errors
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type already exists.
+  * 2b1. VMS shows an error message.<br>
+      Use case resumes from step 1.
+
+#### UC-VAC-002 - List vaccination types
+
+##### MSS
+
+1. User enters the command to list vaccination types.
+2. VMS lists all available vaccination types.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+
+#### UC-VAC-003 - Update vaccination type
+
+##### MSS
+
+1. User enters command to update a vaccination type.
+2. VMS updates the vaccination type.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type does not exist.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+
+#### UC-VAC-004 - Delete vaccination type
+
+##### MSS
+
+1. User enters command to delete a vaccination type.
+2. VMS deletes the vaccination type.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type does not exist.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
