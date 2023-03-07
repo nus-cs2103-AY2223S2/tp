@@ -14,21 +14,27 @@ public class HelpCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success_with_none_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, ListType.NONE);
-        assertCommandSuccess(new HelpCommand(), ListType.NONE, model, expectedCommandResult, expectedModel);
+    public void execute_helpSuccess_withCurrentListTypeNone() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.NONE, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
     @Test
-    public void execute_help_success_with_client_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, ListType.CLIENT);
-        assertCommandSuccess(new HelpCommand(), ListType.CLIENT, model, expectedCommandResult, expectedModel);
+    public void execute_helpSuccess_withCurrentListTypeClient() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.CLIENT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
     @Test
-    public void execute_help_success_with_project_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, ListType.PROJECT);
-        assertCommandSuccess(new HelpCommand(), ListType.PROJECT, model, expectedCommandResult, expectedModel);
+    public void execute_helpSuccess_withCurrentListTypeProject() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.PROJECT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
 }

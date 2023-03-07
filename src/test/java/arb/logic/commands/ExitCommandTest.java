@@ -14,21 +14,27 @@ public class ExitCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_exit_success_with_none_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.NONE);
-        assertCommandSuccess(new ExitCommand(), ListType.NONE, model, expectedCommandResult, expectedModel);
+    public void execute_exitSuccess_withCurrentListTypeNone() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
+                ListType.NONE);
+        assertCommandSuccess(new ExitCommand(), ListType.NONE, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
     @Test
-    public void execute_exit_success_with_client_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.CLIENT);
-        assertCommandSuccess(new ExitCommand(), ListType.CLIENT, model, expectedCommandResult, expectedModel);
+    public void execute_exitSuccess_withCurrentListTypeClient() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
+                ListType.NONE);
+        assertCommandSuccess(new ExitCommand(), ListType.CLIENT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
     @Test
-    public void execute_exit_success_with_project_list_type() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.PROJECT);
-        assertCommandSuccess(new ExitCommand(), ListType.PROJECT, model, expectedCommandResult, expectedModel);
+    public void execute_exitSuccess_withCurrentListTypeProject() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
+                ListType.NONE);
+        assertCommandSuccess(new ExitCommand(), ListType.PROJECT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
 
 }

@@ -1,9 +1,9 @@
 package arb.model.project;
 
-import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
-import static arb.testutil.TypicalProjects.SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.testutil.TypicalProjects.OIL_PAINTING;
+import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -69,7 +69,8 @@ public class ProjectTest {
         assertFalse(SKY_PAINTING.isSameProject(editedSkyPainting));
 
         // name differs in case, all other attributes same -> returns false
-        Project editedOilPainting = new ProjectBuilder(OIL_PAINTING).withTitle(VALID_TITLE_OIL_PAINTING.toLowerCase()).build();
+        Project editedOilPainting = new ProjectBuilder(OIL_PAINTING)
+                .withTitle(VALID_TITLE_OIL_PAINTING.toLowerCase()).build();
         assertFalse(OIL_PAINTING.isSameProject(editedOilPainting));
 
         // name has trailing spaces, all other attributes same -> returns false

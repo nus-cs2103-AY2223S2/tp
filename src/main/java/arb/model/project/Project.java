@@ -86,7 +86,7 @@ public class Project {
         } else {
             isDeadlineEqual = getDeadline().equals(otherProject.getDeadline());
         }
-        
+
         return isTitleEqual && isStatusEqual && isDeadlineEqual;
     }
 

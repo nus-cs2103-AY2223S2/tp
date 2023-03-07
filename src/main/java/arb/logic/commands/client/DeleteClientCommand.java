@@ -34,7 +34,7 @@ public class DeleteClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ListType currentListType) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
@@ -44,7 +44,7 @@ public class DeleteClientCommand extends Command {
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete), currentListType);
+        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete), ListType.CLIENT);
     }
 
     @Override

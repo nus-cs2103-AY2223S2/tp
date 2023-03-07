@@ -1,11 +1,11 @@
 package arb.model;
 
-import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
-import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

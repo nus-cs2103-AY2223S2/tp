@@ -2,8 +2,8 @@ package arb.model.project;
 
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.testutil.Assert.assertThrows;
-import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static arb.testutil.TypicalProjects.OIL_PAINTING;
+import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import arb.model.project.exceptions.ProjectNotFoundException;
 import arb.model.project.exceptions.DuplicateProjectException;
+import arb.model.project.exceptions.ProjectNotFoundException;
 import arb.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {

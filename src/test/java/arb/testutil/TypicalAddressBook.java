@@ -7,9 +7,13 @@ import arb.model.AddressBook;
 import arb.model.client.Client;
 import arb.model.project.Project;
 
+/**
+ * A utility class containing both a list of {@code Client} objects
+ * and a list of {@code Project} objects to be used in tests.
+ */
 public class TypicalAddressBook {
 
-    private TypicalAddressBook() {}
+    private TypicalAddressBook() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical clients and projects.

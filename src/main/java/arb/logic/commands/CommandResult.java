@@ -20,24 +20,24 @@ public class CommandResult {
     private final boolean exit;
 
     /** What type of list should be shown to the user. */
-    private final ListType listType;
+    private final ListType listToBeShown;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ListType listType) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ListType listToBeShown) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.listType = listType;
+        this.listToBeShown = listToBeShown;
         this.exit = exit;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and
-     * {@code listType}, with all other fields set to their default value.
+     * {@code listToBeShown}, with all other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, ListType listType) {
-        this(feedbackToUser, false, false, listType);
+    public CommandResult(String feedbackToUser, ListType listToBeShown) {
+        this(feedbackToUser, false, false, listToBeShown);
     }
 
     public String getFeedbackToUser() {
@@ -52,8 +52,8 @@ public class CommandResult {
         return exit;
     }
 
-    public ListType getListType() {
-        return listType;
+    public ListType getListToBeShown() {
+        return listToBeShown;
     }
 
     @Override
@@ -71,12 +71,12 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && listType == otherCommandResult.listType;
+                && listToBeShown == otherCommandResult.listToBeShown;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, listType);
+        return Objects.hash(feedbackToUser, showHelp, exit, listToBeShown);
     }
 
 }

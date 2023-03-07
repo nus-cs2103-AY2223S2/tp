@@ -37,7 +37,8 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -45,7 +46,8 @@ public class DeleteClientCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -61,7 +63,8 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoClient(expectedModel);
 
-        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -74,7 +77,8 @@ public class DeleteClientCommandTest {
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

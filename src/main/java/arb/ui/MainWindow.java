@@ -186,8 +186,8 @@ public class MainWindow extends UiPart<Stage> {
         this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
     }
 
-    private void swapList(ListType listType) {
-        switch (listType) {
+    private void swapList(ListType listToBeShown) {
+        switch (listToBeShown) {
         case NONE:
             break;
         case PROJECT:
@@ -218,9 +218,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            } 
-            
-            swapList(commandResult.getListType());
+            }
+
+            swapList(commandResult.getListToBeShown());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

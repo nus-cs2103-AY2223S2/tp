@@ -18,9 +18,9 @@ public class ClearClientCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model, ListType currentListType) {
+    public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESS, currentListType);
+        return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 }

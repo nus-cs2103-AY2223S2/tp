@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 public interface Model {
     /** {@code Predicate} for filtered client list that always evaluates to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-    
+
     /** {@code Predicate} for filtered project list that always evaluates to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
@@ -100,7 +100,8 @@ public interface Model {
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
      * {@code target} must exist in the address book.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
+     * The project identity of {@code editedProject} must not be the same as another existing project
+     * in the address book.
      */
     void setProject(Project target, Project editedProject);
 

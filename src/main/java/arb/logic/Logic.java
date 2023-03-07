@@ -7,9 +7,9 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
-import arb.model.project.Project;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 
 /**

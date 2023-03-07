@@ -47,7 +47,7 @@ public class AddClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ListType currentListType) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
 
         if (model.hasClient(toAdd)) {
@@ -55,7 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), currentListType);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.CLIENT);
     }
 
     @Override

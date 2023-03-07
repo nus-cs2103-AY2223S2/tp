@@ -13,10 +13,10 @@ public abstract class Command {
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param currentListType {@code ListType} that is currently being shown to the user.
+     * @param currentListBeingShown {@code ListType} that is currently being shown to the user.
      * @return feedback message of the operation result for display.
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model, ListType currentListType) throws CommandException;
+    public abstract CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException;
 
 }

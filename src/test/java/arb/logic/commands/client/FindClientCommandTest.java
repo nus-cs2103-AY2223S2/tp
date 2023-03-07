@@ -2,10 +2,10 @@ package arb.logic.commands.client;
 
 import static arb.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalClients.CARL;
 import static arb.testutil.TypicalClients.ELLE;
 import static arb.testutil.TypicalClients.FIONA;
-import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -61,7 +61,7 @@ public class FindClientCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, ListType.CLIENT, ListType.CLIENT, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
@@ -71,7 +71,7 @@ public class FindClientCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, ListType.CLIENT, ListType.CLIENT, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 

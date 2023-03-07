@@ -18,7 +18,8 @@ public class ClearClientCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, model, ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
+                ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -27,7 +28,8 @@ public class ClearClientCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
-        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, model, ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
+                ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

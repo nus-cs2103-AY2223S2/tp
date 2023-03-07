@@ -46,7 +46,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -67,7 +68,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
-        assertCommandSuccess(editClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -79,7 +81,8 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -96,7 +99,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, ListType.CLIENT, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -105,7 +109,8 @@ public class EditClientCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_CLIENT, descriptor);
 
-        assertCommandFailure(editClientCommand, ListType.CLIENT, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -117,7 +122,8 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editClientCommand, ListType.CLIENT, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -126,7 +132,8 @@ public class EditClientCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editClientCommand, ListType.CLIENT, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -143,7 +150,8 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editClientCommand, ListType.CLIENT, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

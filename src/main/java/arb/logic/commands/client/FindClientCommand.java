@@ -29,12 +29,12 @@ public class FindClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ListType currentListType) {
+    public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()),
-                currentListType);
+                ListType.CLIENT);
     }
 
     @Override

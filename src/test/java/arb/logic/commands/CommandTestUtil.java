@@ -58,7 +58,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME + "watercolour painting&"; // '&' not allowed in titles
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME
+            + "watercolour painting&"; // '&' not allowed in titles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -80,10 +81,10 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, ListType listType, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,
+            Model actualModel, CommandResult expectedCommandResult, Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel, listType);
+            CommandResult result = command.execute(actualModel, currentListBeingShown);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -93,12 +94,13 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
+     * that takes a string {@code expectedMessage}, {@code currentListBeingShown} and {@code listToBeShown}.
      */
-    public static void assertCommandSuccess(Command command, ListType listType, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, listType);
-        assertCommandSuccess(command, listType, actualModel, expectedCommandResult, expectedModel);
+    public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,
+            Model actualModel, String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, listToBeShown);
+        assertCommandSuccess(command, currentListBeingShown, listToBeShown, actualModel, expectedCommandResult,
+                expectedModel);
     }
 
     /**
@@ -107,13 +109,15 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered client list and selected client in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, ListType listType, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, ListType currentListBeingShown, Model actualModel,
+            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, listType));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel,
+                currentListBeingShown));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }

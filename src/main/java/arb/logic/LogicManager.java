@@ -13,9 +13,9 @@ import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
 import arb.model.Model;
-import arb.model.project.Project;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import arb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -71,8 +71,8 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
-    }    
-    
+    }
+
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
