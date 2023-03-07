@@ -12,7 +12,7 @@ import seedu.recipe.model.recipe.Recipe;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Recipe> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

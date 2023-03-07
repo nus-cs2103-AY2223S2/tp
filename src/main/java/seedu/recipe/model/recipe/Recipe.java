@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a Recipe in the address book.
+ * Represents a Recipe in the recipe book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Recipe {
@@ -60,8 +60,8 @@ public class Recipe {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both recipes have the same identity and data fields.
+     * This defines a stronger notion of equality between two recipes.
      */
     @Override
     public boolean equals(Object other) {
