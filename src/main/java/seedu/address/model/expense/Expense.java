@@ -2,6 +2,21 @@ package seedu.address.model.expense;
 
 import java.util.Date;
 
+/**
+ * Represents an Expense in the address book.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
+ * TODO: Change Category to Category class
+ * 
+ * @author shirsho-12
+ * @version 1.0
+ * 
+ * @param name     Name of the expense
+ * @param amount   Amount of the expense
+ * @param date     Date of the expense
+ * @param category Category of the expense
+ * @return Expense object
+ */
 public class Expense {
     private String name;
     private double amount;
@@ -9,6 +24,14 @@ public class Expense {
     // TODO: Change to Category class
     private String category;
 
+    /**
+     * Constructor for Expense class.
+     * 
+     * @param name     Name of the expense
+     * @param amount   Amount of the expense
+     * @param date     Date of the expense
+     * @param category Category of the expense
+     */
     public Expense(String name, double amount, Date date, String category) {
         this.name = name;
         this.amount = amount;
@@ -34,12 +57,12 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense{" +
-                "name='" + name + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                ", category='" + category + '\'' +
-                '}';
+        return "Expense{"
+                + "name='" + name + '\''
+                + ", amount=" + amount
+                + ", date=" + date
+                + ", category='" + category + '\''
+                + '}';
     }
 
     @Override
@@ -71,9 +94,12 @@ public class Expense {
         long temp;
         result = name != null ? name.hashCode() : 0;
         temp = Double.doubleToLongBits(amount);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result
+                + (int) (temp ^ (temp >>> 32));
+        result = 31 * result
+                + (date != null ? date.hashCode() : 0);
+        result = 31 * result
+                + (category != null ? category.hashCode() : 0);
         return result;
     }
 
