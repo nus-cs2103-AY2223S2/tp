@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import mycelium.mycelium.ui.common.UiPart;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
