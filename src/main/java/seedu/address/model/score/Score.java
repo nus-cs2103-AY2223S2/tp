@@ -29,7 +29,7 @@ public class Score {
         this.scoreValue = scoreValue;
 
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             this.scoreDate = LocalDateTime.parse(scoreDate, formatter);
         } catch (DateTimeParseException e) {
             throw new BadDateException();
