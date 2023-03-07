@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The student does not exist in the list
 
     * 3a1. CLipboard shows an error message.
-      
+
       Use case resumes at step 2.
 
 **Use case: Delete a student**
