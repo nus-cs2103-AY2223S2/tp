@@ -263,19 +263,9 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-<div style="width:60%;
-    margin: 0 20%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/ArchitectureDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.1.1</i>
-<b>Architecture Diagram</b> explaining the high-level design of the App
-</span>
-</div>
+|   <img src="images/ArchitectureDiagram.png" style="width:40vw; margin:0 25vw">    |
+|:---------------------------------------------------------------------------------:|
+| _Figure 4.1.1_ *Architecture Diagram* explaining the high-level design of the App |
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -299,19 +289,10 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<div style="width: 90%;
-    margin: 0 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/ArchitectureSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.1.2</i>
-<b>Sequence Diagram</b> for the command `delete 1`
-</span>
-</div>
+
+| <img src="images/ArchitectureSequenceDiagram.png" style="width:90vw"> |
+|:---------------------------------------------------------------------:|
+|     _Figure 4.1.2_ *Sequence Diagram* for the command `delete 1`      |
 
 Each of the four main components (also shown in the diagram above),
 
@@ -320,19 +301,9 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<div style="width: 90%;
-    margin: 0 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/ComponentManagers.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.1.3</i>
-<b>Class Diagram</b> for Component Managers
-</span>
-</div>
+| <img src="images/ComponentManagers.png" style="width:90vw"> |
+|:-----------------------------------------------------------:|
+|    _Figure 4.1.3_ *Class Diagram* for Component Managers    |
 
 The sections below give more details of each component.
 
@@ -342,19 +313,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-<div style="width: 90%;
-    margin: 0 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/UiClassDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.2.1</i>
-<b>Class Diagram</b> for UI Components
-</span>
-</div>          
+| <img src="images/UiClassDiagram.png" style="width:90vw">  |
+|:---------------------------------------------------------:|
+|     _Figure 4.2.1_ *Class Diagram* for UI Components      |
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -375,20 +336,9 @@ The `UI` component,
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<div style="width: 90%;
-    margin: 0 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/ModelClassDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.3.1</i>
-<b>Class Diagram</b> for Model Components
-</span>
-</div>
-
+| <img src="images/ModelClassDiagram.png" style="width:90vw"> |
+|:-----------------------------------------------------------:|
+|     _Figure 4.3.1_ *Class Diagram* for Model Components     |
 
 The `Model` component,
 
@@ -401,9 +351,9 @@ The `Model` component,
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EduMate`, which `Person` references. This allows `EduMate` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-| ![](images/BetterModelClassDiagram.png)             |
-|-----------------------------------------------------|
-| _Figure 4.3.x_ *Class Diagram* for Model Components |
+| <img src="images/BetterModelClassDiagram.png" style="width:90vw"> |
+|:-----------------------------------------------------------------:|
+|        _Figure 4.3.1_ *Class Diagram* for Model Components        |
 
 </div>
 
@@ -429,19 +379,9 @@ The `Model` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/LogicClassDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.1</i>
-<b>Class Diagram</b> for Logic Components
-</span>
-</div>
+| <img src="images/LogicClassDiagram.png" style="width:90vw"> |
+|:-----------------------------------------------------------:|
+|     _Figure 4.4.1_ *Class Diagram* for Logic Components     |
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
@@ -454,33 +394,13 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/AddSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.2</i>
-<b>Sequence Diagram</b> for a typical `add` command
-</span>
-</div>                                             
+| <img src="images/AddSequenceDiagram.png" style="width:90vw">  |
+|:-------------------------------------------------------------:|
+| _Figure 4.4.2_ *Sequence Diagram* for a typical `add` command |
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/AddParserSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.2a</i>
-<b>Sequence Diagram</b> for parsing `AddCommand` arguments
-</span>
-</div>
+|  <img src="images/AddParserSequenceDiagram.png" style="width:90vw">   |
+|:---------------------------------------------------------------------:|
+| _Figure 4.4.2a_ *Sequence Diagram* for parsing `AddCommand` arguments |
 
 <div markdown="span" class="alert alert-info">
 
@@ -492,33 +412,13 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/EditSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.3</i>
-<b>Sequence Diagram</b> for a typical `edit` command
-</span>
-</div>
+| <img src="images/EditSequenceDiagram.png" style="width:90vw">  |
+|:--------------------------------------------------------------:|
+| _Figure 4.4.3_ *Sequence Diagram* for a typical `edit` command |
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/EditParserSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.3a</i>
-<b>Sequence Diagram</b> for parsing `EditCommand` arguments
-</span>
-</div>
+|  <img src="images/EditParserSequenceDiagram.png" style="width:90vw">   |
+|:----------------------------------------------------------------------:|
+| _Figure 4.4.3a_ *Sequence Diagram* for parsing `EditCommand` arguments |
 
 <div markdown="span" class="alert alert-info">
 
@@ -530,19 +430,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/DeleteSequenceDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.4</i>
-<b>Sequence Diagram</b> for a typical `delete` command
-</span>
-</div>
+|  <img src="images/DeleteSequenceDiagram.png" style="width:90vw">  |
+|:-----------------------------------------------------------------:|
+| _Figure 4.4.4a_ *Sequence Diagram* for a typical `delete` command |
 
 <div markdown="span" class="alert alert-info">
 
@@ -578,19 +468,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/ParserClasses.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.4.x</i>
-<b>Class Diagram</b> for Parser Components
-</span>
-</div>
+| <img src="images/ParserClasses.png" style="width:90vw"> |
+|:-------------------------------------------------------:|
+|  _Figure 4.4.x_ *Class Diagram* for Parser Components   |
 
 How the parsing works:
 * When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
@@ -610,19 +490,9 @@ How the parsing works:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<div style="width: 90%;
-    margin: 1rem 5%;
-    text-align: center;
-    display: grid
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/StorageClassDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<br>
-<span>
-<i>Figure 4.5.1</i>
-<b>Class Diagram</b> for Storage Components
-</span>
-</div>
+| <img src="images/StorageClassDiagram.png" style="width:90vw"> |
+|:-------------------------------------------------------------:|
+|     _Figure 4.5.1_ *Class Diagram* for Storage Components     |
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
