@@ -217,17 +217,15 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Import data from CSV : `import`
+### Import data from CSV : `[coming in v1.3]`
 
 Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
 
-Format: `import`
+_Details coming soon ..._
 
-### Export data to CSV `[coming in v1.3]`
+### Export data to CSV `export`
 
 Opens a file chooser to select a directory where you can save the data to a CSV file.
-
-_Details coming soon ..._
 
 Format: `export`
 
