@@ -18,7 +18,7 @@ public class Location {
      * The first character of the location must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{ASCII} ]*";
 
     private final String meetingLocation;
     private final boolean isVirtualLocation;
