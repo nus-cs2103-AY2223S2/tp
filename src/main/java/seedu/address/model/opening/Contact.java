@@ -9,7 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Contact {
 
-    public static final String VALIDATION_REGEX_PHONE = "\\d{3,}";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Contacts should either only contain numbers "
             + "and be at least 3 digits long, "
@@ -51,7 +50,7 @@ public class Contact {
      * Returns if a given string is a valid contact.
      */
     public static boolean isValidContact(String test) {
-        return test.matches(VALIDATION_REGEX_EMAIL) || test.matches(VALIDATION_REGEX_PHONE);
+        return test.matches(VALIDATION_REGEX_EMAIL);
     }
 
     @Override
