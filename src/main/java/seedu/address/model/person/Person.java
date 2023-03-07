@@ -106,7 +106,7 @@ public class Person {
      * Only for use for UserData. Should not be used anywhere else.
      */
     public Person() {
-        this.name = new Name("Bob");
+        this.name = new Name("Neo");
         this.isFavorite = new Favorite(false);
         this.phone = new Phone("");
         this.email = new Email("");
