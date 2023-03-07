@@ -46,7 +46,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Lakki Reddy";
+    -fx-font-family: "Leckerli One";
 }
 
 .tab-pane {
@@ -54,9 +54,10 @@
 }
 
 .tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0 0 0 1;
     -fx-min-height: 0;
     -fx-max-height: 0;
+    -fx-background-radius: 10;
 }
 
 .table-view {
@@ -111,6 +112,8 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: derive(#F88017, 20%);
+    -fx-background-radius: 10 10 10 10;
 }
 
 .list-cell:filled:even {

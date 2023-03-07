@@ -51,7 +51,7 @@
         </Pane>
 
         <HBox fx:id="clientListHolder" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-          <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefHeight="200" prefWidth="500" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+          <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefHeight="200" prefWidth="400" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
@@ -67,7 +67,7 @@
                 <Insets bottom="5.0" />
               </padding>
             </Pane>
-            <StackPane fx:id="clientListPanelPlaceholder"  style="-fx-background-radius: 10 10 0 0;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="clientListPanelPlaceholder" style="-fx-background-radius: 10 10 0 0;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
 
