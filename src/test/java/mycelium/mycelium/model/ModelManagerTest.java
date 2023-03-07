@@ -10,13 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.testutil.AddressBookBuilder;
+import mycelium.mycelium.testutil.ProjectBuilder;
 
 public class ModelManagerTest {
 
@@ -91,6 +95,85 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProject(null));
+    }
+
+    @Test
+    public void hasProject_projectNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasProject(new ProjectBuilder().build()));
+    }
+
+    @Test
+    public void hasProject_projectInAddressBook_returnsTrue() {
+        Project project = new ProjectBuilder().build();
+        modelManager.addProject(project);
+
+        Map<String, Project> cases = Map.ofEntries(
+            Map.entry("same reference", project),
+            Map.entry("same fields", new ProjectBuilder().withName(project.getName()).build()),
+            Map.entry("same name diff email", new ProjectBuilder().withClientEmail("chungus@chungus.org").build())
+        );
+
+        cases.forEach((desc, tt) -> {
+            assertTrue(modelManager.hasProject(project), "While testing case: " + desc);
+        });
+    }
+
+    @Test
+    public void deleteProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteProject(null));
+    }
+
+    @Test
+    public void deleteProject_projectNotInAddressBook_nothingHappens() {
+        Project project = new ProjectBuilder().build();
+        assertFalse(modelManager.hasProject(project));
+        modelManager.deleteProject(project);
+        assertFalse(modelManager.hasProject(project));
+    }
+
+    @Test
+    public void deleteProject_projectInAddressBook_success() {
+        Project project = new ProjectBuilder().build();
+        modelManager.addProject(project);
+        modelManager.deleteProject(project);
+        assertFalse(modelManager.hasProject(project));
+    }
+
+    @Test
+    public void addProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addProject(null));
+    }
+
+    @Test
+    public void addProject_projectInAddressBook_throwsDuplicateProjectException() {
+        Project project = new ProjectBuilder().build();
+        modelManager.addProject(project);
+        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(project));
+    }
+
+    @Test
+    public void addProject_projectWithSameIdentityFieldsInAddressBook_throwsDuplicateProjectException() {
+        Project project = new ProjectBuilder().build();
+        modelManager.addProject(project);
+        Project editedProject = new ProjectBuilder(project).withClientEmail("chungus@chungus.org").build();
+        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(editedProject));
+    }
+
+    @Test
+    public void addProject_projectNotInAddressBook_success() {
+        Project project = new ProjectBuilder().build();
+        modelManager.addProject(project);
+        assertTrue(modelManager.hasProject(project));
+    }
+
+    @Test
+    public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProjectList().remove(0));
     }
 
     @Test

@@ -22,7 +22,8 @@ public interface ProjectModel {
     void deleteProject(Project project);
 
     /**
-     * Adds a project to Mycelium. If a project with the same name already exists, it is overwritten.
+     * Adds a project to Mycelium. If a project with the same name already exists, then a {@code
+     * DuplicateProjectException} is thrown.
      *
      * @param project The new project
      */
