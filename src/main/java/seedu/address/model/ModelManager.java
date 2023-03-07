@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -33,7 +34,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     // pilot manager
-
     private final IdentifiableManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
     // TODO: migrate this to the ui layer -> this probably should be there.
@@ -50,6 +50,10 @@ public class ModelManager implements Model {
     private final IdentifiableManager<Plane> planeManager;
     private final FilteredList<Plane> filteredPlanes;
 
+    // flight manager
+    private final IdentifiableManager<Flight> flightManager;
+    private final FilteredList<Flight> filteredFlights;
+
     // general utilities
     private final ObservableList<Identifiable> itemsList;
     private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
@@ -58,10 +62,12 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyUserPrefs userPrefs, ReadOnlyIdentifiableManager<Pilot> pilotManager,
+                        ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyIdentifiableManager<Pilot> pilotManager,
                         ReadOnlyIdentifiableManager<Location> locationManager,
                         ReadOnlyIdentifiableManager<Crew> crewManager,
-                        ReadOnlyIdentifiableManager<Plane> planeManager) {
+                        ReadOnlyIdentifiableManager<Plane> planeManager,
+                        ReadOnlyIdentifiableManager<Flight> flightManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -82,6 +88,9 @@ public class ModelManager implements Model {
         this.planeManager = new IdentifiableManager<>(planeManager);
         filteredPlanes = new FilteredList<>(this.planeManager.getItemList());
 
+        this.flightManager = new IdentifiableManager<>(flightManager);
+        filteredFlights = new FilteredList<>(this.flightManager.getItemList());
+
         itemsList = FXCollections.observableArrayList();
         setOperationMode(userPrefs.getOperationMode());
     }
@@ -92,7 +101,7 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
                 new IdentifiableManager<>(), new IdentifiableManager<>(),
-                new IdentifiableManager<>());
+                new IdentifiableManager<>(), new IdentifiableManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -129,6 +138,8 @@ public class ModelManager implements Model {
             rebind(filteredPlanes);
             break;
         case FLIGHT:
+            rebind(filteredFlights);
+            break;
         case CREW:
             rebind(filteredCrew);
             break;
@@ -230,6 +241,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
     //=========== Pilot ========================================================
 
     @Override
@@ -292,6 +304,7 @@ public class ModelManager implements Model {
         filteredPilots.setPredicate(predicate);
     }
 
+
     //=========== Location ========================================================
 
     @Override
@@ -353,7 +366,8 @@ public class ModelManager implements Model {
         filteredLocations.setPredicate(predicate);
     }
 
-    //=========== CrewManager ==================================================================================
+
+    //=========== Crew ========================================================
 
     @Override
     public void setCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) {
@@ -422,7 +436,9 @@ public class ModelManager implements Model {
         filteredCrew.setPredicate(predicate);
     }
 
+
     //=========== Plane ========================================================
+
     @Override
     public void setPlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) {
         this.planeManager.resetData(planeManager);
@@ -476,6 +492,60 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPlanes.setPredicate(predicate);
     }
+
+
+    //=========== Flight ========================================================
+
+    @Override
+    public ReadOnlyIdentifiableManager<Flight> getFlightManager() {
+        return flightManager;
+    };
+    @Override
+    public Path getFlightManagerFilePath() {
+        return userPrefs.getFlightManagerFilePath();
+    };
+    @Override
+    public void setFlightManagerFilePath(Path flightManagerFilePath) {
+        requireNonNull(flightManagerFilePath);
+        userPrefs.setFlightManagerFilePath(flightManagerFilePath);
+    };
+    @Override
+    public void setFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager) {
+        this.flightManager.resetData(flightManager);
+    };
+    @Override
+    public boolean hasFlight(Flight flight) {
+        requireNonNull(flight);
+        return flightManager.hasItem(flight);
+    };
+    @Override
+    public void deleteFlight(Flight target) {
+        flightManager.removeItem(target);
+    };
+    @Override
+    public void deleteFlight(String id) {
+        flightManager.removeItem(id);
+    };
+    @Override
+    public void addFlight(Flight flight) {
+        requireNonNull(flight);
+        flightManager.addItem(flight);
+    };
+    @Override
+    public void setFlight(Flight target, Flight editedFlight) {
+        requireAllNonNull(target, editedFlight);
+        flightManager.setItem(target, editedFlight);
+    };
+    @Override
+    public ObservableList<Flight> getFilteredFlightList() {
+        return filteredFlights;
+    };
+    @Override
+    public void updateFilteredFlightList(Predicate<Flight> predicate) {
+        requireNonNull(predicate);
+        filteredFlights.setPredicate(predicate);
+    };
+
 
     //=========== Generic ========================================================
 

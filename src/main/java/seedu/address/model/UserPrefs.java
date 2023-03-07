@@ -19,6 +19,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
     private Path crewManagerFilePath = Paths.get("data", "crewmanager.json");
     private Path planeManagerFilePath = Paths.get("data", "planemanager.json");
+    private Path flightManagerFilePath = Paths.get("data", "flightmanager.json");
 
     private int operationModeId = 0;
     /**
@@ -42,8 +43,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
+        setLocationManagerFilePath(newUserPrefs.getLocationManagerFilePath());
         setCrewManagerFilePath(newUserPrefs.getCrewManagerFilePath());
         setPlaneManagerFilePath(newUserPrefs.getPlaneManagerFilePath());
+        setFlightManagerFilePath(newUserPrefs.getFlightManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -63,6 +66,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
+
 
     // =================== OperationMode ===================
 
@@ -85,6 +89,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.operationModeId = operationMode.toInt();
     }
 
+
     // =================== PilotManager ===================
 
     @Override
@@ -92,18 +97,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return this.pilotManagerFilePath;
     }
 
-    /**
-     * Sets the user prefs' pilot manager file path.
-     *
-     * @param pilotManagerFilePath the new pilot manager file path
-     */
     @Override
     public void setPilotManagerFilePath(Path pilotManagerFilePath) {
         requireNonNull(pilotManagerFilePath);
         this.pilotManagerFilePath = pilotManagerFilePath;
     }
 
+
     // =================== LocationManager ===================
+
     @Override
     public Path getLocationManagerFilePath() {
         return locationManagerFilePath;
@@ -114,6 +116,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(locationManagerFilePath);
         this.locationManagerFilePath = locationManagerFilePath;
     }
+
 
     // =================== CrewManager ===================
 
@@ -132,7 +135,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.crewManagerFilePath = crewManagerFilePath;
     }
 
+
     // =================== PlaneManager ===================
+
     @Override
     public Path getPlaneManagerFilePath() {
         return this.planeManagerFilePath;
@@ -144,7 +149,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.planeManagerFilePath = planeManagerFilePath;
     }
 
+
+    // =================== FlightManager ===================
+
+    @Override
+    public Path getFlightManagerFilePath() {
+        return this.flightManagerFilePath;
+    }
+
+    @Override
+    public void setFlightManagerFilePath(Path flightManagerFilePath) {
+        requireNonNull(flightManagerFilePath);
+        this.flightManagerFilePath = flightManagerFilePath;
+    }
+
+
     // =================== Generic ===================
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
