@@ -271,14 +271,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                  |
+| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | Auto repair shop owner                     | add appointments I'm attending                | Keep track of appointments for the day                           |
+| `* * *`  | Auto repair shop owner                     | add vehicle I want to fix                     | Keep track of vehicle                                            |
+| `* * *`  | Auto repair shop owner                     | add spare parts                               | Keep track of how many spare parts remaining                     |
+| `* * *`  | Auto repair shop owner                     | add customer                                  | Keep track of customer details                                   |
+| `* * *`  | Auto repair shop owner                     | map which car plate belongs to which customer | hand the right car to the appropriate owner                      |
+| `* * *`  | Auto repair shop owner                     | delete a contact                              | remove entries I no longer need                                  |
+| `* * *`  | Auto repair shop owner                     | find a contact                                | locate details of that contact without searching the entire list |
+| `* * *`  | Auto repair shop owner                     | sort vehicles by brand                        | divide the vehicles                                              |
+| `* * *`  | Auto repair shop owner                     | edit a contact                                | make changes in case of mistakes                                 |
 
 *{More to be added}*
 
@@ -495,7 +498,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 2. AutoM8 shows a list of spare parts.
 3. User requests to edit a spare part on the list.
 4. User inputs the updated information.
-5. AutoM8 updates the the spare part details.
+5. AutoM8 updates the spare part details.
 
    Use case ends.
 
@@ -716,7 +719,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Vehicle**: A 4-wheel machine used to transport people
-* **Plate number**: An identifier put on the front and back a vehicle
+* **Plate number**: An identifier put on the front and back of a vehicle
 * **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
 
 --------------------------------------------------------------------------------------------------------------------
