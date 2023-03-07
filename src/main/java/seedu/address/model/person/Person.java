@@ -102,6 +102,7 @@ public class Person {
         switch (this.status) {
         case APPLIED:
         case SHORTLISTED:
+        case ACCEPTED:
             this.status = Status.REJECTED;
             return true;
         default:
