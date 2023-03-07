@@ -79,14 +79,14 @@ public class LogicManager implements Logic {
                 storage.saveLocationManager(model.getLocationManager());
                 break;
             case PLANE:
+                storage.savePlaneManager(model.getPlaneManager());
+                break;
             case FLIGHT:
                 storage.saveFlightManager(model.getFlightManager());
                 break;
             case CREW:
-                throw new CommandException(
-                    "Operation mode not supported yet: " + getOperationMode()
-                        + "Check LogicManager.java's save() method."
-                );
+                storage.saveCrewManager(model.getCrewManager());
+                break;
             default:
                 throw new CommandException("Unknown operation mode");
             }

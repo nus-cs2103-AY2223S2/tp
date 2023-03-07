@@ -43,6 +43,12 @@ public interface ReadOnlyUserPrefs {
      */
     void setLocationManagerFilePath(Path locationManagerFilePath);
 
+    Path getCrewManagerFilePath();
+    void setCrewManagerFilePath(Path crewManagerFilePath);
+
+    Path getPlaneManagerFilePath();
+    void setPlaneManagerFilePath(Path planeManagerFilePath);
+
     /**
      * Returns the file path of the flightManager
      *
@@ -56,5 +62,4 @@ public interface ReadOnlyUserPrefs {
      * @param flightManagerFilePath the new flight manager file path
      */
     void setFlightManagerFilePath(Path flightManagerFilePath);
-
 }

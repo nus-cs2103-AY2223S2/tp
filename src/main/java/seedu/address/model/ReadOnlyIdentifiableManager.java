@@ -50,4 +50,5 @@ public interface ReadOnlyIdentifiableManager<T extends Identifiable> {
      * @return an unmodifiable view of the items list
      */
     ObservableList<T> getItemList();
+
 }

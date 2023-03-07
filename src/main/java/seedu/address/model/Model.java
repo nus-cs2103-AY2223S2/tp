@@ -6,10 +6,12 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 
 /**
  * The API of the Model component.
@@ -24,6 +26,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to false
      */
     Predicate<Pilot> PREDICATE_SHOW_ALL_PILOTS = unused -> false;
+
+    /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Crew> PREDICATE_SHOW_ALL_CREW = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -120,6 +127,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
     // ================ Pilot methods ==============================
 
     /**
@@ -127,7 +135,6 @@ public interface Model {
      *
      * @return the person manager.
      */
-
     ReadOnlyIdentifiableManager<Pilot> getPilotManager();
 
     /**
@@ -240,6 +247,78 @@ public interface Model {
     ObservableList<Location> getFilteredLocationList();
 
     void updateFilteredLocationList(Predicate<Location> predicate);
+
+
+    // ================ Crew methods ==============================
+
+    /**
+     * Returns the crew manager file path.
+     *
+     * @return the crew manager file path.
+     */
+    Path getCrewManagerFilePath();
+
+    /**
+     * Sets the crew manager file path.
+     *
+     * @param crewManagerFilePath the crew manager file path.
+     */
+    void setCrewManagerFilePath(Path crewManagerFilePath);
+
+    void setCrewManager(ReadOnlyIdentifiableManager<Crew> manager);
+
+    /**
+     * Returns the crew manager.
+     *
+     * @return the crew manager.
+     */
+    ReadOnlyIdentifiableManager<Crew> getCrewManager();
+
+    boolean hasCrew(Crew crew);
+
+    boolean hasCrew(String id);
+
+    /**
+     * Add a crew to the crew list.
+     *
+     * @param crew the crew to be added.
+     */
+    void addCrew(Crew crew);
+
+    /**
+     * Deletes a crew to the crew list.
+     *
+     * @param crew the crew to be deleted.
+     */
+    void deleteCrew(Crew crew);
+
+    /**
+     * Deletes a crew to the crew list.
+     *
+     * @param id the id of the crew to be deleted.
+     */
+    void deleteCrew(String id);
+
+    void setCrew(Crew target, Crew editedCrew);
+
+    void updateFilteredCrewList(Predicate<Crew> predicate);
+
+    ObservableList<Crew> getFilteredCrewList();
+
+
+    // ================ Plane methods ==============================
+
+    void setPlaneManager(ReadOnlyIdentifiableManager<Plane> manager);
+    ReadOnlyIdentifiableManager<Plane> getPlaneManager();
+    void addPlane(Plane plane);
+    void deletePlane(Plane plane);
+    void deletePlane(String id);
+    boolean hasPlane(Plane plane);
+    boolean hasPlane(String id);
+    void setPlane(Plane target, Plane editedPlane);
+    ObservableList<Plane> getFilteredPlaneList();
+    void updateFilteredPlaneList(Predicate<Plane> predicate);
+
 
     // ================ Flight methods ==============================
 

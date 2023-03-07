@@ -17,14 +17,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path pilotManagerFilePath = Paths.get("data", "pilotmanager.json");
     private Path locationManagerFilePath = Paths.get("data", "locationmanager.json");
+    private Path crewManagerFilePath = Paths.get("data", "crewmanager.json");
+    private Path planeManagerFilePath = Paths.get("data", "planemanager.json");
     private Path flightManagerFilePath = Paths.get("data", "flightmanager.json");
-    private int operationModeId = 0;
 
+    private int operationModeId = 0;
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {
-    }
+    public UserPrefs() {}
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -43,6 +44,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
         setLocationManagerFilePath(newUserPrefs.getLocationManagerFilePath());
+        setCrewManagerFilePath(newUserPrefs.getCrewManagerFilePath());
+        setPlaneManagerFilePath(newUserPrefs.getPlaneManagerFilePath());
         setFlightManagerFilePath(newUserPrefs.getFlightManagerFilePath());
     }
 
@@ -59,11 +62,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
+
 
     // =================== OperationMode ===================
 
@@ -86,6 +89,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.operationModeId = operationMode.toInt();
     }
 
+
     // =================== PilotManager ===================
 
     @Override
@@ -99,7 +103,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.pilotManagerFilePath = pilotManagerFilePath;
     }
 
+
     // =================== LocationManager ===================
+
     @Override
     public Path getLocationManagerFilePath() {
         return locationManagerFilePath;
@@ -110,6 +116,39 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(locationManagerFilePath);
         this.locationManagerFilePath = locationManagerFilePath;
     }
+
+
+    // =================== CrewManager ===================
+
+    @Override
+    public Path getCrewManagerFilePath() {
+        return this.crewManagerFilePath;
+    }
+
+    /**
+     * Sets the user prefs' crew manager file path.
+     *
+     * @param crewManagerFilePath the new crew manager file path
+     */
+    public void setCrewManagerFilePath(Path crewManagerFilePath) {
+        requireNonNull(crewManagerFilePath);
+        this.crewManagerFilePath = crewManagerFilePath;
+    }
+
+
+    // =================== PlaneManager ===================
+
+    @Override
+    public Path getPlaneManagerFilePath() {
+        return this.planeManagerFilePath;
+    }
+
+    @Override
+    public void setPlaneManagerFilePath(Path planeManagerFilePath) {
+        requireNonNull(planeManagerFilePath);
+        this.planeManagerFilePath = planeManagerFilePath;
+    }
+
 
     // =================== FlightManager ===================
 
@@ -124,7 +163,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.flightManagerFilePath = flightManagerFilePath;
     }
 
+
     // =================== Generic ===================
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -137,7 +178,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                   && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
@@ -152,5 +193,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
-
 }
