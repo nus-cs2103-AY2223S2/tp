@@ -21,12 +21,14 @@ public class CustomerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private CustomerType customerType;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -37,6 +39,7 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        customerType = DEFAULT_CUSTOMER_TYPE;
     }
 
     /**
@@ -48,6 +51,7 @@ public class CustomerBuilder {
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
         tags = new HashSet<>(customerToCopy.getTags());
+        customerType = customerToCopy.getCustomerType();
     }
 
     /**
@@ -90,8 +94,16 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code CustomerType} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
+        return this;
+    }
+
     public Customer build() {
-        return new Customer(CustomerType.INDIVIDUAL, name, phone, email, address, tags);
+        return new Customer(customerType, name, phone, email, address, tags);
     }
 
 }
