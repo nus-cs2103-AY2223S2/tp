@@ -11,11 +11,12 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of contacts by the given category. "
+    public static final String MESSAGE_SUCCESS = "Sorted all persons by ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Sorts the list of contacts by the given category. "
         + "Sorts by name if none is given.\n"
         + "Parameters: [KEYWORD]\n"
-        + "Example: " + COMMAND_WORD + " address";
+        + "Example: \"" + COMMAND_WORD + " address\" will sort the list by address.";
 
     private final String category;
 
@@ -26,7 +27,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortPersonList(category);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + category + ".");
     }
 
     @Override

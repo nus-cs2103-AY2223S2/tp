@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.model.person.Person.CATEGORY_ADDRESS;
+import static seedu.address.model.person.Person.CATEGORY_EMAIL;
+import static seedu.address.model.person.Person.CATEGORY_GITHUB;
+import static seedu.address.model.person.Person.CATEGORY_NAME;
+import static seedu.address.model.person.Person.CATEGORY_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -182,7 +187,7 @@ public class UniquePersonListTest {
         sortByNameList.add(BENSON);
         sortByNameList.add(CARL);
         sortByNameList.add((EMPTY));
-        uniquePersonList.sort("name");
+        uniquePersonList.sort(CATEGORY_NAME);
         assertEquals(uniquePersonList, sortByNameList);
     }
     @Test
@@ -196,7 +201,7 @@ public class UniquePersonListTest {
         sortByPhoneList.add(CARL);
         sortByPhoneList.add(BENSON);
         sortByPhoneList.add(EMPTY);
-        uniquePersonList.sort("phone");
+        uniquePersonList.sort(CATEGORY_PHONE);
         assertEquals(uniquePersonList, sortByPhoneList);
     }
     @Test
@@ -210,7 +215,7 @@ public class UniquePersonListTest {
         sortByEmailList.add(CARL);
         sortByEmailList.add(BENSON);
         sortByEmailList.add(EMPTY);
-        uniquePersonList.sort("email");
+        uniquePersonList.sort(CATEGORY_EMAIL);
         assertEquals(uniquePersonList, sortByEmailList);
     }
     @Test
@@ -224,7 +229,22 @@ public class UniquePersonListTest {
         sortByAddressList.add(BENSON);
         sortByAddressList.add(CARL);
         sortByAddressList.add(EMPTY);
-        uniquePersonList.sort("address");
+        uniquePersonList.sort(CATEGORY_ADDRESS);
         assertEquals(uniquePersonList, sortByAddressList);
+    }
+
+    @Test
+    public void sort_profile() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(EMPTY);
+        uniquePersonList.add(BENSON);
+        UniquePersonList sortByProfileList = new UniquePersonList();
+        sortByProfileList.add(ALICE);
+        sortByProfileList.add(BENSON);
+        sortByProfileList.add(CARL);
+        sortByProfileList.add(EMPTY);
+        uniquePersonList.sort(CATEGORY_GITHUB);
+        assertEquals(uniquePersonList, sortByProfileList);
     }
 }
