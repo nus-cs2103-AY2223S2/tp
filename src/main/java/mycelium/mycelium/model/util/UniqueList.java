@@ -41,8 +41,6 @@ public class UniqueList<T extends IsSame<T>> implements Iterable<T> {
         internalList.add(toAdd);
     }
 
-    // TODO a "set" method
-
     /**
      * Removes an item from the list. Note that the item to remove to checked via {@link IsSame}, not {@code equals}.
      */
