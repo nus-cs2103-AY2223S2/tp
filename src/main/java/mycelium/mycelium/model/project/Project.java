@@ -4,11 +4,12 @@ import java.util.Date;
 import java.util.Optional;
 
 import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.util.IsSame;
 
 /**
  * Represents a project.
  */
-public class Project {
+public class Project implements IsSame<Project> {
     /**
      * The project's name
      */
@@ -113,7 +114,7 @@ public class Project {
      * @param other The other project
      * @return True if the two projects refer to the same physical project
      */
-    public boolean isSameProject(Project other) {
+    public boolean isSame(Project other) {
         if (this == other) {
             return true;
         }

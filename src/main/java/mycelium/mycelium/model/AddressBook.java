@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.UniquePersonList;
 import mycelium.mycelium.model.project.Project;
-import mycelium.mycelium.model.project.UniqueProjectList;
+import mycelium.mycelium.model.util.UniqueList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +17,7 @@ import mycelium.mycelium.model.project.UniqueProjectList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueProjectList projects;
+    private final UniqueList<Project> projects;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -31,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        projects = new UniqueProjectList();
+        projects = new UniqueList<>();
     }
 
     public AddressBook() {

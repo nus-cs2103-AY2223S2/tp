@@ -13,7 +13,7 @@ import mycelium.mycelium.testutil.ProjectBuilder;
 
 public class ProjectTest {
     @Test
-    public void isSameProject() {
+    public void isSame() {
         Project defaultProject = new ProjectBuilder().build();
 
         Map<String, Pair<Project, Project>> sameCases = Map.ofEntries(
@@ -33,7 +33,7 @@ public class ProjectTest {
                 Pair.of(defaultProject, new ProjectBuilder().withDeadline(new Date(0)).build()))
         );
         sameCases.forEach((desc, tt) -> {
-            assertTrue(tt.first.isSameProject(tt.second), "While testing case: " + desc);
+            assertTrue(tt.first.isSame(tt.second), "While testing case: " + desc);
         });
 
         Map<String, Pair<Project, Project>> notSameCases = Map.ofEntries(
@@ -44,7 +44,7 @@ public class ProjectTest {
             Map.entry("against null", Pair.of(defaultProject, null))
         );
         notSameCases.forEach((desc, tt) -> {
-            assertFalse(tt.first.isSameProject(tt.second), "While testing case: " + desc);
+            assertFalse(tt.first.isSame(tt.second), "While testing case: " + desc);
         });
     }
 
