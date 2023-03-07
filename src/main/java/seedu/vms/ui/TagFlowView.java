@@ -28,7 +28,7 @@ public class TagFlowView extends FlowPane {
     }
 
 
-    private static Label formLabel(String text) {
+    private Label formLabel(String text) {
         Label label = new Label(text);
         label.setWrapText(true);
         label.getStyleClass().add(TAG_STYLE_CLASS);
