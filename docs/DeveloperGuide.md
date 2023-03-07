@@ -672,49 +672,49 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use ```<div markdown="span" class="alert alert-primary"></div>``` to show tips for the developer
+:bulb: Use `alert-primary` to show tips for the developer
 
 </div>
 
 <div markdown="span" class="alert alert-secondary">
 
-:art: :computer: :children_crossing: :zap: :seedling: Use ```<div markdown="span" class="alert alert-secondary"></div>``` to show the developer what consideration has been made
+:art: :computer: :children_crossing: :zap: :seedling: Use `alert-secondary` to show the developer what consideration has been made
 
 </div>
 
 <div markdown="span" class="alert alert-success">
 
-:white_check_mark: Use ```<div markdown="span" class="alert alert-success"></div>``` to tell the developer what should be done
+:white_check_mark: Use `alert-success` to tell the developer what should be done
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Use ```<div markdown="span" class="alert alert-info"></div>``` to show information for the developer
+:information_source: Use `alert-info` to show information for the developer
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: Use ```<div markdown="span" class="alert alert-warning"></div>``` to warn the user about performing a certain action
+:exclamation: Use `alert-warning` to warn the user about performing a certain action
 
 </div>
 
 <div markdown="span" class="alert alert-danger">
 
-:x: Use ```<div markdown="span" class="alert alert-danger"></div>``` to _**strongly**_ warn the user about performing a certain action
+:x: Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
 
 </div>
 
 <div markdown="span" class="alert alert-light">
 
-:sparkles: Use ```<div markdown="span" class="alert alert-light"></div>``` to indicate a completed feature
+:sparkles: Use `alert-light` to indicate a completed feature
 
 </div>
 
 <div markdown="span" class="alert alert-dark">
 
-:construction: Use ```<div markdown="span" class="alert alert-dark"></div>``` to indicate a feature under development
+:construction: Use `alert-dark` to indicate a feature under development
 
 </div>
 
