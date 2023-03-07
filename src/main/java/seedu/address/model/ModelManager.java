@@ -85,6 +85,15 @@ public class ModelManager implements Model {
         commit();
     }
 
+    /**
+     * Overload
+     * This version doesn't do commit
+     * @param addressBook
+     */
+    public void setAddressBook(AddressBook addressBook) {
+        this.addressBook.resetData(addressBook.clone());
+    }
+
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
@@ -125,19 +134,14 @@ public class ModelManager implements Model {
         return versionedAddressBook.canUndo();
     }
 
-    /**
-     * Overload
-     * This version doesn't do commit
-     * @param addressBook
-     */
-    public void setAddressBook(AddressBook addressBook) {
-        this.addressBook.resetData(addressBook.clone());
+    public boolean canRedo() {
+        return false;
     }
 
-    public boolean canRedo() {return false;}
-
-    //
-    public void undo(){
+    /**
+     * Undo and checkout the version of AddressBook that we want
+     */
+    public void undo() {
         AddressBook ab = versionedAddressBook.undo();
         setAddressBook(ab);
     }

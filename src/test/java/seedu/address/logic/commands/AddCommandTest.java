@@ -154,10 +154,20 @@ public class AddCommandTest {
 
         }
 
+        @Override
+        public boolean canUndo() {
+            return false;
+        }
+
         //todo
         @Override
         public void undo() {
 
+        }
+
+        @Override
+        public boolean canRedo() {
+            return false;
         }
 
         //todo

@@ -53,8 +53,12 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     //=============== helper function ===========================================================
+
+    /**
+     * @return true if we can undo AddressBook
+     */
     public boolean canUndo() {
-        if(currentStatePointer == 0) {
+        if (currentStatePointer == 0) {
             return false;
         }
         return true;
