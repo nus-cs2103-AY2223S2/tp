@@ -31,8 +31,8 @@ public class TagCommand extends Command {
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds tags to the module identified "
-            + "Parameters: CODE (module code) "
-            + "Example: " + COMMAND_WORD + " CS1101S "
+            + "Parameters: CODE (module code) include/remove"
+            + "Example: " + COMMAND_WORD + " CS1101S " + "include "
             + "/t UNIVERSITY LEVEL REQUIREMENTS";
 
     /**
@@ -47,22 +47,24 @@ public class TagCommand extends Command {
     /**
      * The constant MESSAGE_ADD_TAG_FAILURE.
      */
-    public static final String MESSAGE_ADD_TAG_FAILURE = "Oops tag is empty";
+    public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
 
     private final Code code;
-    private final Tag tag;
+    private final boolean isInclude;
+    private final Set<Tag> tags;
 
     /**
      * Instantiates a new Tag command.
-     *
-     * @param code of the module in the filtered module list to edit the tag
-     * @param tag  of the module to be updated to
+     *  @param code of the module in the filtered module list to edit the tag
+     * @param isInclude boolean to indicate if tags are to be removed or added
+     * @param tags  of the module to be updated to
      */
-    public TagCommand(Code code, Tag tag) {
-        requireAllNonNull(code, tag);
+    public TagCommand(Code code, boolean isInclude, Set<Tag> tags) {
+        requireAllNonNull(code, tags);
 
         this.code = code;
-        this.tag = tag;
+        this.isInclude = isInclude;
+        this.tags = tags;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -77,7 +79,11 @@ public class TagCommand extends Command {
         }
 
         Set<Tag> newTags = moduleToEdit.getModifiableTags();
-        newTags.add(tag);
+        if (isInclude) {
+            newTags.addAll(tags);
+        } else {
+            newTags.removeAll(tags);
+        }
 
         Module editedModule = new Module(
                 moduleToEdit.getCode(), moduleToEdit.getCredit(), moduleToEdit.getSemYear(),
@@ -92,11 +98,11 @@ public class TagCommand extends Command {
     /**
      * Generates a command execution success message based on whether
      * the tag is added to or removed from
-     * {@code moduleToEdit}.
+     * {@code editedModule}.
      */
-    private String generateSuccessMessage(Module moduleToEdit) {
-        String message = !tag.tagName.isEmpty() ? MESSAGE_ADD_TAG_SUCCESS : MESSAGE_ADD_TAG_FAILURE;
-        return String.format(message, moduleToEdit.getCode().toString());
+    private String generateSuccessMessage(Module editedModule) {
+        String message = isInclude ? MESSAGE_ADD_TAG_SUCCESS : MESSAGE_REMOVE_TAG_SUCCESS;
+        return String.format(message, editedModule.getCode().toString());
     }
 
     @Override
@@ -114,6 +120,6 @@ public class TagCommand extends Command {
         // state check
         TagCommand e = (TagCommand) other;
         return code.equals(e.code)
-                && tag.equals(e.tag);
+                && tags.equals(e.tags);
     }
 }

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Locale;
+import java.util.Set;
+
 import seedu.modtrek.logic.commands.TagCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
@@ -26,14 +29,25 @@ public class TagCommandParser implements Parser<TagCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Code code;
+        boolean isInclude;
 
         try {
-            code = ParserUtil.parseCode(argMultimap.getPreamble());
+            String preamble = argMultimap.getPreamble();
+            String[] preambleParts = preamble.split(" ");
+            code = ParserUtil.parseCode(preambleParts[0]);
+            if (preambleParts[1].toLowerCase(Locale.ROOT).equals("include")) {
+                isInclude = true;
+            } else if (preambleParts[1].toLowerCase(Locale.ROOT).equals("remove")) {
+                isInclude = false;
+            } else {
+                throw new ParseException("Did not specify include/remove tags");
+            }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
         }
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        return new TagCommand(code, tag);
+        Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        return new TagCommand(code, isInclude, tag);
     }
 }
