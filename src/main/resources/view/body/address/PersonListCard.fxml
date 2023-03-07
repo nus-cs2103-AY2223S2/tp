@@ -12,7 +12,7 @@
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <HBox spacing="10" styleClass="pa" maxWidth="280">
     <VBox spacing="10" alignment="TOP_CENTER">
-      <Label fx:id="id" styleClass="cell_big_label">
+      <Label fx:id="id" styleClass="label-h6">
         <minWidth>
           <!-- Ensures that the label text is never truncated -->
           <Region fx:constant="USE_PREF_SIZE" />
@@ -22,9 +22,9 @@
         <Image url="/images/star.png"/>
       </ImageView>
     </VBox>
-    <VBox minHeight="72" spacing="5" HBox.hgrow="ALWAYS">
-      <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+    <VBox spacing="5" HBox.hgrow="ALWAYS">
+      <Label fx:id="name" text="\$first" styleClass="label-h6" />
+      <Label fx:id="phone" styleClass="label-hp" text="\$phone" />
       <FlowPane fx:id="tags" />
     </VBox>
   </HBox>
