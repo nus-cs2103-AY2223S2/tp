@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class StudentIdTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,13 +14,13 @@ public class AddressTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidStudentId_throwsIllegalArgumentException() {
         String invalidAddress = "";
         assertThrows(IllegalArgumentException.class, () -> new StudentId(invalidAddress));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidStudentId() {
         // null address
         assertThrows(NullPointerException.class, () -> StudentId.isValidStudentId(null));
 

@@ -16,7 +16,7 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STUDENTID = "A0345678M";
 
     private Name name;
     private Phone phone;
@@ -31,7 +31,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        studentId = new StudentId(DEFAULT_ADDRESS);
+        studentId = new StudentId(DEFAULT_STUDENTID);
         tags = new HashSet<>();
     }
 
@@ -65,7 +65,7 @@ public class StudentBuilder {
     /**
      * Sets the {@code StudentId} of the {@code Student} that we are building.
      */
-    public StudentBuilder withAddress(String address) {
+    public StudentBuilder withStudentId(String address) {
         this.studentId = new StudentId(address);
         return this;
     }

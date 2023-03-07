@@ -3,8 +3,8 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2105;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
@@ -29,20 +29,20 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_studentNotInList_returnsFalse() {
         assertFalse(uniqueStudentList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_studentInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
         assertTrue(uniqueStudentList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_CS2105)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_CS2105)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
@@ -115,7 +115,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsStudentNotFoundException() {
+    public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
         assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.remove(ALICE));
     }
 
