@@ -12,6 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
 import mycelium.mycelium.MainApp;
+import mycelium.mycelium.ui.common.UiPart;
 
 public class UiPartTest {
 

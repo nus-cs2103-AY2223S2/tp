@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui;
+package mycelium.mycelium.ui.common;
 
 import javafx.stage.Stage;
 

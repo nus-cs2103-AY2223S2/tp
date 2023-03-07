@@ -17,6 +17,13 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.ui.common.ListPanel;
+import mycelium.mycelium.ui.common.TabPage;
+import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.person.PersonListCard;
+import mycelium.mycelium.ui.project.Project;
+import mycelium.mycelium.ui.project.ProjectListCard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ListPanel<Person> personListPanel;
+    private ListPanel<Project> projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -115,10 +123,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        projectTab = new TabPage("Projects");
-        clientTab = new TabPage("Client");
-        clientTab.fillInnerContent(personListPanel.getRoot());
+        projectListPanel = new ListPanel<Project>(null, ProjectListCard::new);
+        personListPanel = new ListPanel<Person>(logic.getFilteredPersonList(), PersonListCard::new);
+        projectTab = new TabPage("Projects", projectListPanel);
+        clientTab = new TabPage("Client", personListPanel);
+        projectTab.fillInnerContent();
+        clientTab.fillInnerContent();
         tabPane.getTabs().addAll(projectTab.getRoot(), clientTab.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -171,8 +181,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
+    public ListPanel<Person> getPersonListPanel() {
         return personListPanel;
+    }
+
+    public ListPanel<Project> getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**
