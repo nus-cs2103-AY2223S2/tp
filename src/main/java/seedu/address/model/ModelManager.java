@@ -143,6 +143,11 @@ public class ModelManager implements Model {
         this.userData.addUser(user);
     }
 
+    @Override
+    public void setUser(User user) {
+        this.userData.setUser(user);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

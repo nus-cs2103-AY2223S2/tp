@@ -32,9 +32,9 @@ public class UserList implements Iterable<User> {
         internalList.add(toAdd);
     }
 
-    public void setUser(UserList replacement) {
+    public void setUser(User replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalList.set(0, replacement);
     }
 
     /**

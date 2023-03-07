@@ -49,7 +49,7 @@ public class JsonSerializableUserData {
             User user = jsonAdaptedUser.toModelType();
             ArrayList<User> userList = new ArrayList<>();
             userList.add(user);
-            userData.setUser(userList);
+            userData.setUserList(userList);
         }
         return userData;
     }

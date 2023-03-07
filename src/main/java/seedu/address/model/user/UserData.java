@@ -40,10 +40,9 @@ public class UserData implements ReadOnlyUserData {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the user with {@code user}.
      */
-    public void setUser(List<User> user) {
+    public void setUser(User user) {
         this.user.setUser(user);
     }
 
@@ -53,7 +52,7 @@ public class UserData implements ReadOnlyUserData {
     public void resetData(ReadOnlyUserData newData) {
         requireNonNull(newData);
 
-        setUser(newData.getUser());
+        setUser(newData.getUser().get(0));
     }
 
     //// util methods
@@ -82,5 +81,9 @@ public class UserData implements ReadOnlyUserData {
 
     public void addUser(User user) {
         this.user.add(user);
+    }
+
+    public void setUserList(List<User> user) {
+        this.user = new UserList();
     }
 }

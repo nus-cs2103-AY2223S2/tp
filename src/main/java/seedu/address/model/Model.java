@@ -105,4 +105,6 @@ public interface Model {
     ReadOnlyUserData getUserData();
 
     void addUser(User user);
+
+    void setUser(User user);
 }
