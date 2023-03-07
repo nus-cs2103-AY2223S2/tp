@@ -8,10 +8,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class UniqueDepartmentList implements Iterable<Department>{
-    private final List<Department> departments;
+    private final List<Department> internalList;
 
     UniqueDepartmentList() {
-        this.departments = new ArrayList<>();
+        this.internalList = new ArrayList<>();
     }
 
     /**
@@ -19,7 +19,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
      */
     public boolean contains(Department toCheck) {
         requireNonNull(toCheck);
-        return departments.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -31,7 +31,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
         if (contains(toAdd)) {
             //throw new DuplicateDepartmentException();
         }
-        departments.add(toAdd);
+        internalList.add(toAdd);
     }
 
     /**
@@ -42,7 +42,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
     public void setDepartment(Department target, Department editedDepartment) {
         requireAllNonNull(target, editedDepartment);
 
-        int index = departments.indexOf(target);
+        int index = internalList.indexOf(target);
         if (index == -1) {
             // throw new DepartmentNotFoundException();
         }
@@ -51,7 +51,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
             // throw new DuplicateDepartmentException();
         }
 
-        departments.set(index, editedDepartment);
+        internalList.set(index, editedDepartment);
     }
 
     /**
@@ -60,48 +60,48 @@ public class UniqueDepartmentList implements Iterable<Department>{
      */
     public void remove(Department toRemove) {
         requireNonNull(toRemove);
-        if (!departments.remove(toRemove)) {
+        if (!internalList.remove(toRemove)) {
             // throw new DepartmentNotFoundException();
         }
     }
 
     /**
      * Replaces the contents of this list with {@code d}.
-     * {@code d} must not contain duplicate departments.
+     * {@code d} must not contain duplicate internalList.
      */
     public void setDepartments(List<Department> d) {
         requireAllNonNull(d);
-        if (!departmentsAreUnique(d)) {
+        if (!internalListAreUnique(d)) {
             // throw new DuplicateDepartmentException();
         }
 
-        // Replace department with new set of departments
+        // Replace department with new set of internalList
         // d.setAll(d);
     }
 
     @Override
     public Iterator<Department> iterator() {
-        return departments.iterator();
+        return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueDepartmentList // instanceof handles nulls
-                && departments.equals(((UniqueDepartmentList) other).departments));
+                && internalList.equals(((UniqueDepartmentList) other).internalList));
     }
 
     /**
-     * Returns true if {@code d} contains only unique departments.
+     * Returns true if {@code d} contains only unique internalList.
      */
-    private boolean departmentsAreUnique(List<Department> d) {
-        if (d == null) {
+    private boolean internalListAreUnique(List<Department> departments) {
+        if (departments == null) {
             return true; // Maybe replace with assertion?
         }
 
-        for (int i = 0; i < d.size() - 1; i++) {
-            for (int j = i + 1; j < d.size(); j++) {
-                if (d.get(i).equals(d.get(j))) {
+        for (int i = 0; i < departments.size() - 1; i++) {
+            for (int j = i + 1; j < departments.size(); j++) {
+                if (departments.get(i).equals(departments.get(j))) {
                     return false;
                 }
             }
