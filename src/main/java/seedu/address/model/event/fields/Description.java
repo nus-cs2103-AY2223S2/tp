@@ -22,5 +22,7 @@ public class Description {
         return this.description;
     }
 
-    public static boolean isValidDescription(String description) { return !description.equals(VALIDATION);}
+    public static boolean isValidDescription(String description) {
+        return !description.equals(VALIDATION);
+    }
 }
