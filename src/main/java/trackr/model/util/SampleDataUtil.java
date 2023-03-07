@@ -6,12 +6,18 @@ import java.util.stream.Collectors;
 
 import trackr.model.AddressBook;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
+import trackr.model.TaskList;
 import trackr.model.person.Address;
 import trackr.model.person.Email;
 import trackr.model.person.Name;
 import trackr.model.person.Person;
 import trackr.model.person.Phone;
 import trackr.model.tag.Tag;
+import trackr.model.task.Task;
+import trackr.model.task.TaskDeadline;
+import trackr.model.task.TaskName;
+import trackr.model.task.TaskStatus;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -55,6 +61,22 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2023"), new TaskStatus()),
+            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2023"), new TaskStatus("D")),
+            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2023"), new TaskStatus("N")),
+        };
+    }
+
+    public static ReadOnlyTaskList getSampleTaskList() {
+        TaskList sampleTl = new TaskList();
+        for (Task sampleTask : getSampleTasks()) {
+            sampleTl.addTask(sampleTask);
+        }
+        return sampleTl;
     }
 
 }

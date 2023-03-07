@@ -29,8 +29,7 @@ public class TaskDeadline {
         requireNonNull(deadline);
         checkArgument(isValidTaskDeadline(deadline), MESSAGE_CONSTRAINTS);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDateDeadline = LocalDate.parse(deadline, dtf);
-        taskDeadline = localDateDeadline;
+        taskDeadline = LocalDate.parse(deadline, dtf);
     }
 
     /**
@@ -46,6 +45,15 @@ public class TaskDeadline {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns the deadline stored in "dd/MM/yyyy" format for json storage.
+     * @return A string representation of the deadline.
+     */
+    public String toJsonString() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return taskDeadline.format(dtf);
     }
 
     /**

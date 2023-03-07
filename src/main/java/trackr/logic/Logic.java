@@ -8,7 +8,9 @@ import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
 import trackr.model.person.Person;
+import trackr.model.task.Task;
 
 /**
  * API of the Logic component
@@ -34,9 +36,19 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the TaskList.
+     *
+     * @see trackr.model.Model#getTaskList()
      */
-    Path getAddressBookFilePath();
+    ReadOnlyTaskList getTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns the user prefs' trackr file path.
+     */
+    Path getTrackrFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
