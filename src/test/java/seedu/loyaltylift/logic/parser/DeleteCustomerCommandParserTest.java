@@ -18,7 +18,7 @@ import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
  */
 public class DeleteCustomerCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteCustomerCommandParser parser = new DeleteCustomerCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
