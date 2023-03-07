@@ -80,6 +80,8 @@ public class LogicManager implements Logic {
                 break;
             case PLANE:
             case FLIGHT:
+                storage.saveFlightManager(model.getFlightManager());
+                break;
             case CREW:
                 throw new CommandException(
                     "Operation mode not supported yet: " + getOperationMode()

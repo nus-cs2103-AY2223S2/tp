@@ -109,29 +109,36 @@ public class MainApp extends Application {
         Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
         ReadOnlyIdentifiableManager<Location> locationManager;
         Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
+        ReadOnlyIdentifiableManager<Flight> flightManager;
+        Optional<? extends ReadOnlyIdentifiableManager<Flight>> flightManagerOptional;
 
         try {
             pilotManagerOptional = storage.readPilotManager();
             locationManagerOptional = storage.readLocationManager();
+            flightManagerOptional = storage.readFlightManager();
             if (pilotManagerOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample PilotManager");
                 pilotManager = new IdentifiableManager<>();
                 locationManager = new IdentifiableManager<>();
+                flightManager = new IdentifiableManager<>();
             } else {
                 pilotManager = pilotManagerOptional.get();
                 locationManager = locationManagerOptional.get();
+                flightManager = flightManagerOptional.get();
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
             locationManager = new IdentifiableManager<>();
+            flightManager = new IdentifiableManager<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PilotManager");
             pilotManager = new IdentifiableManager<>();
             locationManager = new IdentifiableManager<>();
+            flightManager = new IdentifiableManager<>();
         }
 
-        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager);
+        return new ModelManager(addressBook, userPrefs, pilotManager, locationManager, flightManager);
     }
 
     private void initLogging(Config config) {

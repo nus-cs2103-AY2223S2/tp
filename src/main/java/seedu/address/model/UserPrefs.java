@@ -42,6 +42,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setPilotManagerFilePath(newUserPrefs.getPilotManagerFilePath());
+        setLocationManagerFilePath(newUserPrefs.getLocationManagerFilePath());
+        setFlightManagerFilePath(newUserPrefs.getFlightManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -91,11 +93,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return this.pilotManagerFilePath;
     }
 
-    /**
-     * Sets the user prefs' pilot manager file path.
-     *
-     * @param pilotManagerFilePath the new pilot manager file path
-     */
     @Override
     public void setPilotManagerFilePath(Path pilotManagerFilePath) {
         requireNonNull(pilotManagerFilePath);
@@ -121,11 +118,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return this.flightManagerFilePath;
     }
 
-    /**
-     * Sets the user pref's flight manager file path.
-     *
-     * @param flightManagerFilePath the new flight manager file path
-     */
     @Override
     public void setFlightManagerFilePath(Path flightManagerFilePath) {
         requireNonNull(flightManagerFilePath);
