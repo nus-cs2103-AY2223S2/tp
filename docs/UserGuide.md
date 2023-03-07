@@ -38,44 +38,44 @@ Pied Piper is a task management app to help project team leaders stay organized 
 * Words within `Curly Brackert {}` are must have parameters.
 
 * Extraneous parameters for commands that do not take in parameters (such as `view`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `view 123`, it will be interpreted as `view`.
 
 </div>
 
-### Creating a group: `create`
+### Creating a deadline: `deadline task`
 
-Pied Piper creates a new group
+Pied Piper creates a new deadline
 
-Format: `create n/{GROUP_NAME}`
+Format: `dedline task/{TASK_NAME} by/{DD/MM/YYYY}`
 
-
-Example:
-* `create n/CS2105TGroup5`
-
-### Adding people to a group: `add`
-
-Adds a person to a group with a role
-
-Format: `add n/{NAME} i/{MEMBER_ID} r/{ROLE}`
 
 Example:
-* `add n/John Doe i/1001 r/Leader`
+* `deadline task/Complete Assignment by/12/09/2021`
 
-### Assigning task to person: `assign`
+### Assigning roles to members: `role`
+
+Gives a role to a member
+
+Format: `role n/{MEMBER_NAME} r/{ROLE}`
+
+Example:
+* `role n/John Doe r/Leader`
+
+### Assigning task to member: `assign`
 
 Assign a task to a person
 
-Format: `assign n/{GROUP_NAME} t/TASK_NAME} i{MEMBER_ID}`
+Format: `assign  t/{TASK_ID} n/{MEMBER_NAME}`
 
 Examples:
-*  `assign n/CS2103TGroup5 t/Create Github repository i/2`
+*  `assign t/1 n/John Doe`
 
 
 ### Delete a task: `delete`
 
 deletes an existing task
 
-Format: `delete n/{GROUP_NAME} t/{TASK_NAME} i/{MEMBER_ID}`
+Format: `delete  i/1`
 
 Examples:
 * `delete n/T15 i/1`
@@ -100,9 +100,9 @@ Format: `view`
 
 Action | Format, Examples
 --------|------------------
-**Create** | `create n/{GROUP_NAME}` <br> e.g., `create n/CS2103TGroup5`
-**Add** | `add n/{NAME} i/{MEMBER_ID} r/{ROLE}` <br> e.g., `add n/John Doe i/1001 r/Leader`
-**Assign** | `assign n/{GROUP_NAME} t/{TASK_NAME} i/{MEMBER_ID}`<br> e.g., `assign n/CS2103TGroup5 t/Create repository i/2`
-**Delete** | `delete n/{GROUP_NAME} i/{TASK_INDEX}`<br> e.g.,`delete n/T15 i/1`
+**Deadline** | `deadline task/{TASK_NAME}  by/{DD/MM/YYYY}` <br> e.g., `deadline task/Complete Assignment by/12/09/2021`
+**Role** | `role n/{MEMBER_NAME} r/{ROLE}` <br> e.g., `role n/John Doe r/Leader`
+**Assign** | `assign  t/{TASK_ID} n/{MEMBER_NAME}`<br> e.g., `assign t/1 n/John Doe`
+**Delete** | `delete  i/{TASK_ID}`<br> e.g.,`delete  i/1`
 **View** | `view`
 
