@@ -145,7 +145,8 @@ public class ModelManager implements Model {
         try {
             addressBook.removeProject(project);
         } catch (ItemNotFoundException e) {
-            logger.warning(String.format("Requested project with name %s not found in address book, ignoring...",
+            logger.warning(String.format(
+                "Requested deletion for project with name %s not found in address book, ignoring...",
                 project.getName()));
         }
     }
