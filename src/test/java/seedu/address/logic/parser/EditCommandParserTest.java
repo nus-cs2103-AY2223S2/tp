@@ -61,11 +61,11 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
-    private static final String NAME_EMPTY = " " + PREFIX_NAME; // '&' not allowed in names
-    private static final String PROFILE_EMPTY = " " + PREFIX_PROFILE; // '^' not allowed in profile
-    private static final String PHONE_EMPTY = " " + PREFIX_PHONE; // 'a' not allowed in phones
-    private static final String EMAIL_EMPTY = " " + PREFIX_EMAIL; // missing '@' symbol
-    private static final String ADDRESS_EMPTY = " " + PREFIX_ADDRESS; // " " not allowed for addresses
+    private static final String NAME_EMPTY = " " + PREFIX_NAME;
+    private static final String PROFILE_EMPTY = " " + PREFIX_PROFILE;
+    private static final String PHONE_EMPTY = " " + PREFIX_PHONE;
+    private static final String EMAIL_EMPTY = " " + PREFIX_EMAIL;
+    private static final String ADDRESS_EMPTY = " " + PREFIX_ADDRESS;
     private static final String LANGUAGE_EMPTY = " " + PREFIX_LANGUAGE;
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String MESSAGE_INVALID_FORMAT =

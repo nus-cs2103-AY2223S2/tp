@@ -98,8 +98,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Parses {@code Collection<String> languages} into a {@code Set<Language>} if {@code languages} is non-empty.
-     * If {@code languages} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Language>} containing zero languages.
+     * If {@code languages} contain only one element which is an empty string, it will be return
+     * {@code Optional.empty()}.
      */
     private Optional<Set<Language>> parseLanguagesForEdit(Collection<String> languages) throws ParseException {
         assert languages != null;

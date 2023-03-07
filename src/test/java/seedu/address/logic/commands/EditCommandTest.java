@@ -69,8 +69,6 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        System.out.println(model);
-
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
