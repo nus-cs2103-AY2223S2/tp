@@ -7,10 +7,8 @@ import java.util.Date;
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
  * TODO: Change Category to Category class
- * 
  * @author shirsho-12
  * @version 1.0
- * 
  * @param name     Name of the expense
  * @param amount   Amount of the expense
  * @param date     Date of the expense
@@ -26,7 +24,6 @@ public class Expense {
 
     /**
      * Constructor for Expense class.
-     * 
      * @param name     Name of the expense
      * @param amount   Amount of the expense
      * @param date     Date of the expense
