@@ -281,18 +281,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
+### User Stories
+
+**Priorities**: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
+| Priority | As a …​ | I want to …​                  | So that I can…​                                                     |
+| -------- | ---- |-------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user | create tasks                  | keep track of the tasks I need to accomplish                        |
+| `* * *`  | user | delete tasks                  | remove tasks that are outdated or specified incorrectly             |
+| `* * *`  | user | view each team member's tasks | have a clear and easily understandable list of what they have to do |
+| `* * *`  | user | assign tasks                  | keep track of who is responsible for which task                     |
+| `* * *`  | user | assign roles                  | remember the responsibilities of each member                        |
+
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Pied Piper` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Pied Piper shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Pied Piper deletes the person
 
     Use case ends.
 
@@ -304,11 +317,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Pied Piper shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Create a task**
+
+**MSS**
+
+1. User requests to add a specific task in the list
+2. Pied Piper adds the task
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task already exists.
+
+  Use case ends.
+
+* 1a. The given specifications are invalid.
+
+    * 1a1. Pied Piper shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
