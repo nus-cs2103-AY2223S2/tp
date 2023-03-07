@@ -28,6 +28,7 @@ import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.BOB;
+import static bookopedia.testutil.TypicalPersons.OPTIONAL_AMY;
 
 import org.junit.jupiter.api.Test;
 
@@ -83,19 +84,18 @@ public class AddCommandParserTest {
     }
 
     @Test
+    public void parse_emptyEmailAndPhone_success() {
+        // empty Email and Phone
+        Person expectedPerson = new PersonBuilder(OPTIONAL_AMY).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix

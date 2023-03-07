@@ -3,6 +3,7 @@ package bookopedia.storage;
 import static bookopedia.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static bookopedia.testutil.Assert.assertThrows;
 import static bookopedia.testutil.TypicalPersons.BENSON;
+import static bookopedia.testutil.TypicalPersons.OPTIONAL_AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class JsonAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+
+        person = new JsonAdaptedPerson(OPTIONAL_AMY);
+        assertEquals(OPTIONAL_AMY, person.toModelType());
     }
 
     @Test
