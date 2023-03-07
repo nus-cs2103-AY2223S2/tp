@@ -29,16 +29,16 @@ _More details coming soon ..._
   e.g. in `outcome o/STATUS`, `STATUS` is a parameter which can be used as `outcome o/ongoing`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME_OF_COMPANY [d/KEY_DATES]` can be used as `n/Google t/Interview@20230401` or as `n/Google`.
+  e.g `n/NAME_OF_COMPANY [d/KEY_DATES]` can be used as `n/Google d/Interview@20230401` or as `n/Google`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[d/KEY_DATES]…​` can be used as ` ` (i.e. 0 times), `d/Interview@20230401`, `d/Interview@20230401 d/OA@20230502` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `/n POSITION /c COMPANY`, `/c COMPANY /n POSITION` is also acceptable.
+  e.g. if the command specifies `p/POSITION n/NAME_OF_COMPANY`, `n/NAME_OF_COMPANY p/POSITION` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `c/12341234 c/56785678`, only `c/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
