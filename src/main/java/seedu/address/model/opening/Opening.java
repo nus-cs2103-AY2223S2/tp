@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Opening in the Openings list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Opening {
@@ -16,7 +16,7 @@ public class Opening {
     // Identity fields
     private final Position position;
     private final Company company;
-    private final Contact contact;
+    private final Email email;
 
     // Data fields
     private final Status status;
@@ -25,11 +25,11 @@ public class Opening {
     /**
      * Every field must be present and not null.
      */
-    public Opening(Position position, Company company, Contact contact, Status status, Set<Date> dates) {
-        requireAllNonNull(position, company, contact, status, dates);
+    public Opening(Position position, Company company, Email email, Status status, Set<Date> dates) {
+        requireAllNonNull(position, company, email, status, dates);
         this.position = position;
         this.company = company;
-        this.contact = contact;
+        this.email = email;
         this.status = status;
         this.dates.addAll(dates);
     }
@@ -42,8 +42,8 @@ public class Opening {
         return company;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Email getContact() {
+        return email;
     }
 
     public Status getStatus() {
@@ -97,7 +97,7 @@ public class Opening {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(position, company, contact, status, dates);
+        return Objects.hash(position, company, email, status, dates);
     }
 
     @Override
