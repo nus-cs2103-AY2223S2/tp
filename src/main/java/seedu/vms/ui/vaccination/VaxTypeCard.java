@@ -60,6 +60,8 @@ public class VaxTypeCard extends UiPart<Region> {
             case NONE:
                 styleClasses = List.of(STYLE_CLASS_NONE_TAG);
                 break;
+            default:
+                throw new AssertionError(String.format("Unrecognized requirement type"));
             }
             box.getChildren().add(new TagFlowView(req.getReqSet(), styleClasses));
         }
