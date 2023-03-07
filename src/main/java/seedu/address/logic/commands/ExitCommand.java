@@ -9,9 +9,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String EXIT_CONFIRMATION = "Are you sure that you want to exit InternEase?";
-
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting InternEase as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override
     public CommandResult execute(Model model) {
