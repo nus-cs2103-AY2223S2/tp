@@ -34,7 +34,7 @@ public class FindClientCommand extends Command {
         model.updateFilteredClientList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()),
-                ListType.CLIENT);
+                currentListType);
     }
 
     @Override

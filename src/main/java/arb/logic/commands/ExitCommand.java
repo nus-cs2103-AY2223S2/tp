@@ -14,7 +14,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ListType currentListType) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.NONE);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, currentListType);
     }
 
 }

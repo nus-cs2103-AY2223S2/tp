@@ -55,7 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.CLIENT);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), currentListType);
     }
 
     @Override

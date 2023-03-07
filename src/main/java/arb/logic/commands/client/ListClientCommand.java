@@ -22,6 +22,6 @@ public class ListClientCommand extends Command {
     public CommandResult execute(Model model, ListType currentListType) {
         requireNonNull(model);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
+        return new CommandResult(MESSAGE_SUCCESS, currentListType);
     }
 }

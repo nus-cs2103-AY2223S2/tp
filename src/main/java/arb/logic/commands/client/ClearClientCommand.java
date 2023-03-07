@@ -21,6 +21,6 @@ public class ClearClientCommand extends Command {
     public CommandResult execute(Model model, ListType currentListType) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
+        return new CommandResult(MESSAGE_SUCCESS, currentListType);
     }
 }

@@ -4,7 +4,9 @@ import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalClients.HOON;
 import static arb.testutil.TypicalClients.IDA;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalProjects.PUBLIC_PAINTING;
+import static arb.testutil.TypicalProjects.PORTRAIT_PROJECT;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -74,6 +76,8 @@ public class JsonAddressBookStorageTest {
         // Modify data, overwrite exiting file, and read back
         original.addClient(HOON);
         original.removeClient(ALICE);
+        original.addProject(PUBLIC_PAINTING);
+        original.removeProject(PORTRAIT_PROJECT);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
