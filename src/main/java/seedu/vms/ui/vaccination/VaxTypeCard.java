@@ -17,6 +17,9 @@ import seedu.vms.ui.UiPart;
  */
 public class VaxTypeCard extends UiPart<Region> {
     private static final String FXML_FILE = "VaxTypeCard.fxml";
+    private static final String STYLE_CLASS_ALL_TAG = "tag-color-all";
+    private static final String STYLE_CLASS_ANY_TAG = "tag-color-any";
+    private static final String STYLE_CLASS_NONE_TAG = "tag-color-none";
 
     @FXML private Label titleLabel;
     @FXML private Label ageRangeLabel;
@@ -46,7 +49,19 @@ public class VaxTypeCard extends UiPart<Region> {
 
     private void addAllReq(VBox box, List<Requirement> reqs) {
         for (Requirement req : reqs) {
-            box.getChildren().add(new TagFlowView(req.getReqSet()));
+            List<String> styleClasses = List.of();
+            switch (req.getReqType()) {
+            case ALL:
+                styleClasses = List.of(STYLE_CLASS_ALL_TAG);
+                break;
+            case ANY:
+                styleClasses = List.of(STYLE_CLASS_ANY_TAG);
+                break;
+            case NONE:
+                styleClasses = List.of(STYLE_CLASS_NONE_TAG);
+                break;
+            }
+            box.getChildren().add(new TagFlowView(req.getReqSet(), styleClasses));
         }
     }
 }
