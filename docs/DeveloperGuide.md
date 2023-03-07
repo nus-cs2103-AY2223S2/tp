@@ -368,17 +368,19 @@ The user stories are not limited to those in this list. More can be added in the
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 500 _entities_ without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The application is not required to be compatible with any existing tracking applications.
+5. The application should be usable by new players not familiar with RPG trackers.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Entities**: General term for __characters__, _mobs_ and _items_
+* **Characters**: Characters, typically humans, that are controlled by players participating in a table-top RPG game
+* **Mobs**: Non-player characters (NPCS) that are typically monsters
+* **Items**: Weapons, armor or tools that players can keep and use
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
