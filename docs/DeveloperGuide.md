@@ -401,6 +401,10 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Clients**: A person who has commissioned the user
+* **Project**: A piece of (art)work to be completed
+* **Contact info**: Email, Phone Number, Social media
+* **Project status**: How close to completion a project is
 
 --------------------------------------------------------------------------------------------------------------------
 
