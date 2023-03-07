@@ -23,6 +23,10 @@ public class Doctor extends Person {
         this.yoe = yoe;
     }
 
-    public Specialty getSpecialty() { return specialty; }
-    public Yoe getYoe() { return yoe; }
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+    public Yoe getYoe() {
+        return yoe;
+    }
 }
