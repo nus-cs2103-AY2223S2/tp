@@ -1,16 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.results;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.logic.commands.results.ExitCommandResult;
-import seedu.address.logic.commands.results.HelpCommandResult;
-import seedu.address.logic.commands.results.LoadCommandResult;
-import seedu.address.logic.commands.results.SaveCommandResult;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
