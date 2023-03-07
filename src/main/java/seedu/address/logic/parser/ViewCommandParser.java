@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Parse input arguments and creates a new {@code ViewCommand} object
@@ -31,7 +31,8 @@ public class ViewCommandParser {
             try {
                 indexList.add(ParserUtil.parseIndex(argumentMultimap.getPreamble()));
             } catch (IllegalValueException ive) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
             }
         }
 
