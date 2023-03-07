@@ -8,9 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.

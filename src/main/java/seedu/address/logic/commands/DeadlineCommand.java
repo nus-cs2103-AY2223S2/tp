@@ -1,17 +1,15 @@
 package seedu.address.logic.commands;
 
-
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.*;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.DeadlineTask;
 
 public class DeadlineCommand extends Command {
+
     public static final String COMMAND_WORD = "deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task with the specified deadline "
@@ -27,6 +25,9 @@ public class DeadlineCommand extends Command {
 
     private final DeadlineTask toAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code DeadlineTask}
+     */
     public DeadlineCommand(DeadlineTask task) {
         requireNonNull(task);
         toAdd = task;
