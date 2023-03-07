@@ -19,6 +19,8 @@ public class VaxTypeCard extends UiPart<Region> {
     private static final String FXML_FILE = "VaxTypeCard.fxml";
 
     @FXML private Label titleLabel;
+    @FXML private Label ageRangeLabel;
+    @FXML private Label spacingLabel;
     @FXML private VBox groupBox;
     @FXML private VBox allergyBox;
     @FXML private VBox historyBox;
@@ -32,6 +34,10 @@ public class VaxTypeCard extends UiPart<Region> {
     public VaxTypeCard(VaxType vaxType) {
         super(FXML_FILE);
         titleLabel.setText(vaxType.getName());
+        ageRangeLabel.setText(String.format("%d ~ %d",
+                vaxType.getMinAge(),
+                vaxType.getMaxAge()));
+        spacingLabel.setText(String.valueOf(vaxType.getMinSpacing()));
         groupBox.getChildren().add(new TagFlowView(vaxType.getGroups()));
         addAllReq(allergyBox, vaxType.getAllergyReqs());
         addAllReq(historyBox, vaxType.getHistoryReqs());
