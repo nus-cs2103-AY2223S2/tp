@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +42,8 @@ public class StudentCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView displayPhoto;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -52,6 +56,7 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
+        displayPhoto.setImage(new Image(this.getClass().getResourceAsStream("/images/studenticon.png")));
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
