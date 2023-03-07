@@ -26,7 +26,7 @@ _More details coming soon ..._
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `outcome /o STATUS`, `STATUS` is a parameter which can be used as `outcome /o ongoing`.
+  e.g. in `outcome o/STATUS`, `STATUS` is a parameter which can be used as `outcome o/ongoing`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME_OF_COMPANY [d/KEY_DATES]` can be used as `n/Google t/Interview@20230401` or as `n/Google`.
