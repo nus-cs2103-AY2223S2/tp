@@ -136,45 +136,61 @@ public class Project {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Project other = (Project) obj;
         if (name == null) {
-            if (other.name != null)
+            if (other.name != null) {
                 return false;
-        } else if (!name.equals(other.name))
+            }
+        } else if (!name.equals(other.name)) {
             return false;
-        if (status != other.status)
+        }
+        if (status != other.status) {
             return false;
+        }
         if (clientEmail == null) {
-            if (other.clientEmail != null)
+            if (other.clientEmail != null) {
                 return false;
-        } else if (!clientEmail.equals(other.clientEmail))
+            }
+        } else if (!clientEmail.equals(other.clientEmail)) {
             return false;
+        }
         if (source == null) {
-            if (other.source != null)
+            if (other.source != null) {
                 return false;
-        } else if (!source.equals(other.source))
+            }
+        } else if (!source.equals(other.source)) {
             return false;
+        }
         if (description == null) {
-            if (other.description != null)
+            if (other.description != null) {
                 return false;
-        } else if (!description.equals(other.description))
+            }
+        } else if (!description.equals(other.description)) {
             return false;
+        }
         if (acceptedOn == null) {
-            if (other.acceptedOn != null)
+            if (other.acceptedOn != null) {
                 return false;
-        } else if (!acceptedOn.equals(other.acceptedOn))
+            }
+        } else if (!acceptedOn.equals(other.acceptedOn)) {
             return false;
+        }
         if (deadline == null) {
-            if (other.deadline != null)
+            if (other.deadline != null) {
                 return false;
-        } else if (!deadline.equals(other.deadline))
+            }
+        } else if (!deadline.equals(other.deadline)) {
             return false;
+        }
         return true;
     }
 }
