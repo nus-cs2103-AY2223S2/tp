@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.User;
 
@@ -31,6 +32,6 @@ public class UserCommand extends Command {
         if (user == null) {
             throw new CommandException(UNREGISTERED_MESSAGE);
         }
-        return new CommandResult(SHOWING_USER_PROFILE_MESSAGE, false, false, true);
+        return new CommandResult(SHOWING_USER_PROFILE_MESSAGE);
     }
 }
