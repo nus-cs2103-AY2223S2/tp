@@ -1,11 +1,11 @@
-package seedu.address.ui;
+package seedu.address.ui.InfoPanel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
+import seedu.address.ui.UiPart;
 
 
 public class InfoTab extends UiPart<Region> {
@@ -21,9 +21,17 @@ public class InfoTab extends UiPart<Region> {
     @FXML
     private StackPane detailedInfo;
 
+    private InfoContact infoContact;
+    private InfoModule infoModule;
+    private InfoSkill infoSkill;
+
     public InfoTab(Person protagonist) {
         super(FXML);
+        infoContact = new InfoContact();
+        infoModule = new InfoModule();
+        infoSkill = new InfoSkill();
         name.setText(protagonist.getName().fullName);
+        detailedInfo.getChildren().add(infoContact.getRoot());
     }
 
 }

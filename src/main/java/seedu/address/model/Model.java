@@ -87,4 +87,6 @@ public interface Model {
 
     Person getProtagonist();
 
+    void setProtagonist(Person protagonist);
+
 }

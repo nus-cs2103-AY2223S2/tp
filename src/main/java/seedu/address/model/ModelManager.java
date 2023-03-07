@@ -131,10 +131,14 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Protagonist Accessors ======================================================================
+    //=========== Protagonist ================================================================================
 
     public Person getProtagonist() {
         return protagonist;
+    }
+
+    public void setProtagonist(Person protagonist) {
+        this.protagonist = protagonist;
     }
 
     @Override
