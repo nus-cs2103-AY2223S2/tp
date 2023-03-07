@@ -21,7 +21,9 @@ import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
 import mycelium.mycelium.testutil.PersonBuilder;
+import mycelium.mycelium.testutil.ProjectBuilder;
 
 public class AddressBookTest {
 
@@ -29,7 +31,10 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
+        // Here, we're just checking that all the default lists are empty. This is because they are meant to be
+        // populated after initialization by external sources, e.g. JSON files.
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getProjectList());
     }
 
     @Test
@@ -50,9 +55,19 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        AddressBookStub newData = new AddressBookStub(newPersons, List.of());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
+        List<Project> newProjects = List.of(
+            new ProjectBuilder().build(),
+            new ProjectBuilder().build()
+        );
+        AddressBookStub newData = new AddressBookStub(List.of(), newProjects);
+        assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -84,6 +99,36 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasProject(null));
+    }
+
+    @Test
+    public void hasProject_projectNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasProject(new ProjectBuilder().build()));
+    }
+
+    @Test
+    public void hasProject_projectInAddressBook_returnsTrue() {
+        Project project = new ProjectBuilder().build();
+        addressBook.addProject(project);
+        assertTrue(addressBook.hasProject(project));
+    }
+
+    @Test
+    public void hasProject_projectWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        Project project = new ProjectBuilder().build();
+        addressBook.addProject(project);
+        Project editedProject = new ProjectBuilder(project).withClientEmail("chungus@chungus.org").build();
+        assertTrue(addressBook.hasProject(editedProject));
+    }
+
+    @Test
+    public void getProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
@@ -92,8 +137,9 @@ public class AddressBookTest {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
         // TODO update the constructor here to take in a list of projects too
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Project> projects) {
             this.persons.setAll(persons);
+            this.projects.setAll(projects);
         }
 
         @Override

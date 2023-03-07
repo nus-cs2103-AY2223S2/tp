@@ -32,6 +32,19 @@ public class ProjectBuilder {
     }
 
     /**
+     * Constructs a new {@code PersonBuilder} using existing fields on some {@code Project}.
+     */
+    public ProjectBuilder(Project project) {
+        this.name = project.getName();
+        this.status = project.getStatus();
+        this.clientEmail = project.getClientEmail();
+        this.source = project.getSource();
+        this.description = project.getDescription();
+        this.acceptedOn = project.getAcceptedOn();
+        this.deadline = project.getDeadline().orElse(null);
+    }
+
+    /**
      * Sets the project's name.
      */
     public ProjectBuilder withName(String name) {
