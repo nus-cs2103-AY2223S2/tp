@@ -18,6 +18,8 @@ public class TaskDeadline {
                     + "and it should not be blank"
                     + "and deadline should be today or after today's date.";
 
+    public static final String VALIDATION_REGEX = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
+
     public final LocalDate taskDeadline;
 
     /**
@@ -38,8 +40,12 @@ public class TaskDeadline {
      * the parsed date is today's date or after today's date.
      */
     public static boolean isValidTaskDeadline(String test) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
         try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDateTest = LocalDate.parse(test, dtf);
             return localDateTest.isAfter(LocalDate.now()) || localDateTest.isEqual(LocalDate.now());
         } catch (DateTimeParseException e) {
