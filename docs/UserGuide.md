@@ -91,7 +91,7 @@ Example:
 * `ungrade 1 2`
 
 ### List all assignments: `list`
-Lists all assignments and their respective information
+Lists all assignments and their respective information.
 Format: `list`
 
 ### Exit assignment system: `exit`
