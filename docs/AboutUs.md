@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Glenn Ong JunJie
 
-<img src="images/GlennOngJunJie.png" width="200px">
+<img src="images/glennongjunjie.png" width="200px">
 
 [[github](https://github.com/GlennOngJunJie)]
-[[portfolio](team/GlennOngJunJie.md)]
+[[portfolio](team/glennongjunjie.md)]
 
 * Role: Team Member
 * Responsibilities: ??
