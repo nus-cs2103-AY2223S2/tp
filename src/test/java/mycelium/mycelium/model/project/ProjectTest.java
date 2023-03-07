@@ -1,15 +1,20 @@
 package mycelium.mycelium.model.project;
 
+import static mycelium.mycelium.testutil.Assert.assertDatesAlmostEqual;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
+
 
 public class ProjectTest {
     @Test
@@ -82,5 +87,16 @@ public class ProjectTest {
         notEqualCases.forEach((desc, tt) -> {
             assertFalse(tt.first.equals(tt.second), "While testing case: " + desc);
         });
+    }
+
+    @Test
+    public void constructor_minimalFields_isOk() {
+        Project project = new Project("my awesome project", new Email("chungus@chungus.org"));
+        assertEquals(project.getName(), "my awesome project");
+        assertEquals(project.getClientEmail(), new Email("chungus@chungus.org"));
+        assertEquals(project.getSource(), "");
+        assertEquals(project.getDescription(), "");
+        assertDatesAlmostEqual(project.getAcceptedOn(), new Date());
+        assertEquals(project.getDeadline(), Optional.empty());
     }
 }
