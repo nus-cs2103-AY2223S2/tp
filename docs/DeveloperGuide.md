@@ -272,7 +272,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                           | I want to …​                                                                                | So that I can …​                                                                   |
 | -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| `* * *`  | Receptionist that prefers typing | be able to access all features through CLI                                                 | improve my productivity                                                           |
 | `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
 | `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
 | `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
@@ -306,6 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Receptionist                     | find patients who did not come                                                             | send them a reminder to take their vaccination                                    |
 | `*`      | Receptionist                     | archive/hide unused data                                                                   | am not distracted by irrelevant data                                              |
 | `*`      | Receptionist                     | undo my latest action                                                                      | do not accidentally nuke all data                                                 |
+| `*`      | User                             | view the records that I have deleted                                                       | so that I can add them back when needed                                           | <!-- soft delete !>
 
 ### Use cases
 
@@ -328,7 +328,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. VMS shows a the list of patients with their corresponding IDs.
 
   Use case ends.
-
 
 **Use case: Update a patient**
 
@@ -452,8 +451,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
-5. VMS should auto save to prevent data loss if something crashes. (Specific implementation can be found in [#18](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/18))
+4. Should auto save to prevent data loss if application crashes.
+5. All functionalities should be accessible through CLI.
 
 ### Glossary
 
