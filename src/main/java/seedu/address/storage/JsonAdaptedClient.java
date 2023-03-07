@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -32,6 +33,7 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String calorie;
     private final String weight;
     private final String gender;
     private final String goal;
@@ -47,11 +49,13 @@ class JsonAdaptedClient {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("goal") String goal, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.calorie = calorie;
         this.weight = weight;
         this.gender = gender;
         this.goal = goal;
@@ -71,6 +75,7 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        calorie = source.getCalorie().value;
         weight = source.getWeight().value;
         gender = source.getGender().value;
         goal = source.getGoal().value;
@@ -129,6 +134,13 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        if (calorie == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Calorie.class.getSimpleName()));
+        }
+        if (!Calorie.isValidCalorie(calorie)) {
+            throw new IllegalValueException(Calorie.MESSAGE_CONSTRAINTS);
+        }
+        final Calorie modelCalorie = new Calorie(calorie);
         if (weight == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
         }
@@ -150,7 +162,8 @@ class JsonAdaptedClient {
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelGoal, modelTags);
+                modelWeight, modelGender, modelCalorie, modelGoal, modelTags);
+
     }
 
 }

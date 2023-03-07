@@ -26,17 +26,19 @@ public class Client {
     private final Goal goal;
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final Calorie calorie;
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Appointment> appointments,
-                  Weight weight, Gender gender, Goal goal, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, appointments, weight, gender, goal, tags);
+                  Weight weight, Gender gender, Calorie calorie, Goal goal, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.calorie = calorie;
         this.appointments.addAll(appointments);
         this.tags.addAll(tags);
         this.weight = weight;
@@ -58,6 +60,10 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Calorie getCalorie() {
+        return calorie;
     }
 
     public Weight getWeight() {
@@ -122,13 +128,14 @@ public class Client {
                 && otherClient.getGender().equals(getGender())
                 && otherClient.getAppointments().equals(getAppointments())
                 && otherClient.getTags().equals(getTags())
-                && otherClient.getGoal().equals(getGoal());
+                && otherClient.getGoal().equals(getGoal())
+                && otherClient.getCalorie().equals(getCalorie());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, appointments, weight, gender, goal, tags);
+        return Objects.hash(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
     }
 
     @Override
@@ -141,6 +148,8 @@ public class Client {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Calorie: ")
+                .append(getCalorie())
                 .append("; Weight: ")
                 .append(getWeight())
                 .append(" Kg")

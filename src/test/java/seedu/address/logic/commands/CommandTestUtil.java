@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
@@ -46,6 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_GOAL_BOB = "lose weight";
     public static final String VALID_GOAL_AMY = "lose weight";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_CALORIE_AMY = "2101";
+    public static final String VALID_CALORIE_BOB = "2100";
     public static final String VALID_APPOINTMENT_DATE_ONE = "13-01-2020";
     public static final String VALID_APPOINTMENT_DATE_TWO = "14-12-2021";
 
@@ -65,6 +68,8 @@ public class CommandTestUtil {
     public static final String GOAL_DESC_AMY = " " + PREFIX_GOAL + VALID_GOAL_AMY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String CALORIE_DESC_AMY = " " + PREFIX_CALORIE + VALID_CALORIE_AMY;
+    public static final String CALORIE_DESC_BOB = " " + PREFIX_CALORIE + VALID_CALORIE_BOB;
     public static final String APPOINTMENT_DESC_DATE_ONE = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_DATE_ONE;
     public static final String APPOINTMENT_DESC_DATE_TWO = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_DATE_TWO;
 
@@ -72,11 +77,11 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_CALORIE_DESC = " " + PREFIX_CALORIE + "Lol";
     public static final String INVALID_APPOINTMENT_DESC =
             " " + PREFIX_APPOINTMENT + "11a-11-2020"; // 'a' not allowed in appointment
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "g";
-
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "-23";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -89,12 +94,13 @@ public class CommandTestUtil {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE).withGoal(VALID_GOAL_AMY)
-                .build();
+                .withCalorie(VALID_CALORIE_AMY).withGender(VALID_GENDER_AMY).withWeight(VALID_WEIGHT_AMY).build();
+
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB).withGoal(VALID_GOAL_BOB)
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withCalorie(VALID_CALORIE_BOB).build();
     }
 
     /**

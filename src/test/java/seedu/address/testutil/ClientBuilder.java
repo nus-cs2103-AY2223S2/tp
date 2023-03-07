@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -24,13 +25,16 @@ public class ClientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_CALORIE = "2000";
     public static final String DEFAULT_WEIGHT = "50.00";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_GOAL = "lose weight";
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Calorie calorie;
     private Set<Appointment> appointments;
     private Set<Tag> tags;
     private Weight weight;
@@ -45,6 +49,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        calorie = new Calorie(DEFAULT_CALORIE);
         weight = new Weight(DEFAULT_WEIGHT);
         gender = new Gender(DEFAULT_GENDER);
         goal = new Goal(DEFAULT_GOAL);
@@ -60,6 +65,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
+        calorie = clientToCopy.getCalorie();
         weight = clientToCopy.getWeight();
         gender = clientToCopy.getGender();
         goal = clientToCopy.getGoal();
@@ -137,9 +143,16 @@ public class ClientBuilder {
         this.goal = new Goal(goal);
         return this;
     }
+    /**
+     * Sets the {@code Calorie} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withCalorie(String calorie) {
+        this.calorie = new Calorie(calorie);
+        return this;
+    }
 
     public Client build() {
-        return new Client(name, phone, email, address, appointments, weight, gender, goal, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
     }
 
 }

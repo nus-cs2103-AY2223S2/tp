@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
@@ -34,7 +36,7 @@ import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Edits the details of an existing client in the FitBook.
  */
 public class EditCommand extends Command {
 
@@ -48,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CALORIE + "CALORIE] "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
@@ -58,7 +61,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FitBook.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -106,6 +109,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Calorie updatedCalorie = editClientDescriptor.getCalorie().orElse(clientToEdit.getCalorie());
         Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Goal updatedGoal = editClientDescriptor.getGoal().orElse(clientToEdit.getGoal());
@@ -113,7 +117,7 @@ public class EditCommand extends Command {
         Set<Appointment> updatedAppointment =
                 editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
-                updatedGender, updatedGoal, updatedTags);
+                updatedGender, updatedCalorie, updatedGoal, updatedTags);
     }
 
     @Override
@@ -143,6 +147,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Calorie calorie;
         private Weight weight;
         private Gender gender;
         private Goal goal;
@@ -160,6 +165,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setCalorie(toCopy.calorie);
             setWeight(toCopy.weight);
             setGender(toCopy.gender);
             setGoal(toCopy.goal);
@@ -171,7 +177,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, gender, weight, goal, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, gender, weight,
+                    calorie, goal, tags);
         }
 
         public void setName(Name name) {
@@ -261,6 +268,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setCalorie(Calorie calorie) {
+            this.calorie = calorie;
+        }
+
+        public Optional<Calorie> getCalorie() {
+            return Optional.ofNullable(calorie);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -280,6 +295,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags())
+                    && getCalorie().equals(e.getCalorie())
                     && getWeight().equals(e.getWeight())
                     && getGender().equals(e.getGender())
                     && getAppointments().equals(e.getAppointments())
