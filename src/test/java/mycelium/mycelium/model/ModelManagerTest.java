@@ -178,6 +178,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
+        // TODO account for Project and Client too
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
