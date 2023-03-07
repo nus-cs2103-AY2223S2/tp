@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.pair;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +9,7 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
+import seedu.address.storage.JsonSerializable;
 
 /**
  * Jackson-friendly version of {@link Pair}.

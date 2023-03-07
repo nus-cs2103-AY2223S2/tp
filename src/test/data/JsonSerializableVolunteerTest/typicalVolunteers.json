@@ -1,61 +1,60 @@
 {
-  "_comment": "FriendlyLink save file which contains the same Person values as in TypicalPersons#getTypicalFriendlyLink()",
-  "persons" : [ {
+  "_comment": "Volunteers save file which contains the same Volunteer values as in TypicalVolunteers#getTypicalVolunteers()",
+  "volunteers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "nric" : "S1234567A",
-    "age" : "35",
+    "nric" : "S9673908G",
+    "age" : "20",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "nric" : "S2222222W",
-    "age" : "45",
+    "nric" : "S6878241D",
+    "age" : "23",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "nric" : "T5454545D",
-    "age" : "23",
+    "nric" : "S3634466J",
+    "age" : "31",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "nric" : "T3434343E",
-    "age" : "50",
+    "nric" : "S0203151E",
+    "age" : "25",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "nric" : "S2323232R",
-    "age" : "30",
+    "nric" : "S7238791J",
+    "age" : "28",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "nric" : "S2020202Q",
-    "age" : "18",
+    "nric" : "S3576311B",
+    "age" : "26",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "nric" : "T5656565A",
-    "age" : "28",
+    "nric" : "S1262951F",
+    "age" : "24",
     "tagged" : [ ]
-  } ],
-  "pairs": []
+  } ]
 }

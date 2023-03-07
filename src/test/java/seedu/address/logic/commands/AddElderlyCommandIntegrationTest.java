@@ -7,6 +7,7 @@ import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -40,7 +41,7 @@ public class AddElderlyCommandIntegrationTest {
     public void execute_duplicateElderly_throwsCommandException() {
         Elderly elderlyInList = model.getFriendlyLink().getElderlyList().get(0);
         assertCommandFailure(new AddElderlyCommand(elderlyInList), model,
-                AddElderlyCommand.MESSAGE_DUPLICATE_ELDERLY);
+                Messages.MESSAGE_DUPLICATE_ELDERLY);
     }
 
 }

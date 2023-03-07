@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import java.nio.file.Path;
 
@@ -10,8 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.FriendlyLink;
+import seedu.address.model.ReadOnlyElderly;
+import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.pair.JsonPairStorage;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
 
 public class StorageManagerTest {
@@ -23,7 +29,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(getTempFilePath("friendlylink"));
+        JsonPairStorage friendlyLinkStorage = new JsonPairStorage(getTempFilePath("friendlylink"));
         JsonElderlyStorage elderlyStorage = new JsonElderlyStorage(getTempFilePath("elderly"));
         JsonVolunteerStorage volunteerStorage = new JsonVolunteerStorage(getTempFilePath("volunteer"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
@@ -48,23 +54,45 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    // TODO: change
-    /* @Test
-    public void friendlyLinkReadSave() throws Exception {
-        /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonFriendlyLinkStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonFriendlyLinkStorageTest} class.
-         */
-    /*    FriendlyLink original = getTypicalFriendlyLink();
-        storageManager.saveFriendlyLink(original);
-        ReadOnlyFriendlyLink retrieved = storageManager.readFriendlyLink(new FriendlyLink()).get();
-        assertEquals(original, new FriendlyLink(retrieved));
-    } */
+    /*
+     * Note: Next 3 test cases are integration tests that verifies the StorageManager is properly wired to the
+     * storage classes.
+     * More extensive testing of UserPref saving/reading is done in the storage classes test files.
+     */
+
+    // TODO: pairReadSave(), follow implementations below
 
     @Test
-    public void getFriendlyLinkFilePath() {
-        assertNotNull(storageManager.getFriendlyLinkFilePath());
+    public void elderlyReadSave() throws Exception {
+        FriendlyLink original = getTypicalFriendlyLink();
+        storageManager.saveElderly(original);
+        ReadOnlyElderly retrieved = storageManager.readElderly(new FriendlyLink()).get();
+        assertEquals(original.getElderlyList(),
+                new FriendlyLink((ReadOnlyFriendlyLink) retrieved).getElderlyList());
+    }
+
+    @Test
+    public void volunteerReadSave() throws Exception {
+        FriendlyLink original = getTypicalFriendlyLink();
+        storageManager.saveVolunteer(original);
+        ReadOnlyVolunteer retrieved = storageManager.readVolunteer(new FriendlyLink()).get();
+        assertEquals(original.getVolunteerList(),
+                new FriendlyLink((ReadOnlyFriendlyLink) retrieved).getVolunteerList());
+    }
+
+    @Test
+    public void getElderlyFilePath() {
+        assertNotNull(storageManager.getElderlyFilePath());
+    }
+
+    @Test
+    public void getVolunteerFilePath() {
+        assertNotNull(storageManager.getVolunteerFilePath());
+    }
+
+    @Test
+    public void getPairFilePath() {
+        assertNotNull(storageManager.getPairFilePath());
     }
 
 }

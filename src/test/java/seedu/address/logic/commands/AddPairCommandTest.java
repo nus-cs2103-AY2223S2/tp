@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -146,7 +145,7 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public ReadOnlyFriendlyLink getFriendlyLink() {
+        public FriendlyLink getFriendlyLink() {
             return new FriendlyLink();
         }
     }

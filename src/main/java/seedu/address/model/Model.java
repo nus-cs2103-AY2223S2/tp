@@ -15,9 +15,7 @@ import seedu.address.model.person.information.Nric;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLY = unused -> true;
-    Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEER = unused -> true;
-    Predicate<Pair> PREDICATE_SHOW_ALL_PAIR = unused -> true;
+    Predicate<?> PREDICATE_SHOW_ALL = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -52,10 +50,10 @@ public interface Model {
     /**
      * Replaces FriendlyLink database data with the data in {@code friendlyLink}.
      */
-    void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink);
+    void setFriendlyLink(FriendlyLink friendlyLink);
 
     /** Returns the FriendlyLink */
-    ReadOnlyFriendlyLink getFriendlyLink();
+    FriendlyLink getFriendlyLink();
 
     /**
      * Retrieves the elderly with the given Nric.

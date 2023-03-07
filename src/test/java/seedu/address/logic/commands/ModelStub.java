@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
@@ -48,12 +48,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink newData) {
+    public void setFriendlyLink(FriendlyLink newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyFriendlyLink getFriendlyLink() {
+    public FriendlyLink getFriendlyLink() {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -34,9 +34,7 @@ public class Volunteer extends Person {
             return false;
         }
         Volunteer otherVolunteer = (Volunteer) other;
-        return super.equals(otherVolunteer)
-                && getNric().equals(otherVolunteer.getNric())
-                && getAge().equals(otherVolunteer.getAge());
+        return super.equals(otherVolunteer);
     }
 
     @Override

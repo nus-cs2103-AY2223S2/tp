@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ELDERLY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PAIR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VOLUNTEER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
+
+import java.util.function.Predicate;
 
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * Lists all elderly, volunteers and pairs in FriendlyLink.
@@ -17,11 +20,12 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all elderly, volunteers and pairs";
 
     @Override
+    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLY);
-        model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEER);
-        model.updateFilteredPairList(PREDICATE_SHOW_ALL_PAIR);
+        model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        model.updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -16,7 +16,7 @@ import seedu.address.model.person.information.Nric;
  * Wraps all data at the friendly-link level
  * Duplicates are not allowed (by .isSamePerson, .isSamePair comparison)
  */
-public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, ReadOnlyVolunteer {
+public class FriendlyLink implements ReadOnlyFriendlyLink {
     private final UniquePersonList<Elderly> elderly;
     private final UniquePersonList<Volunteer> volunteers;
     private final UniquePairList pairs;
@@ -37,7 +37,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink, ReadOnlyElderly, Read
     public FriendlyLink() {}
 
     /**
-     * Creates an FriendlyLink using the Persons in the {@code toBeCopied}
+     * Creates an FriendlyLink using the data in the {@code toBeCopied}
      */
     public FriendlyLink(ReadOnlyFriendlyLink toBeCopied) {
         this();

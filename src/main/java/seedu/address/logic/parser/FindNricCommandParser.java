@@ -11,7 +11,7 @@ import seedu.address.model.person.NricMatchesKeywordsPredicate;
  */
 public class FindNricCommandParser implements Parser<FindNricCommand> {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find_nric";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the person whose nric matches"
             + "the specified nric (case-insensitive) and displays them as a list with index numbers.\n"

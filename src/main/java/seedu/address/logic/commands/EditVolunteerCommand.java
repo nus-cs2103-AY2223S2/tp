@@ -8,13 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VOLUNTEER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -71,6 +72,7 @@ public class EditVolunteerCommand extends Command {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editVolunteerDescriptor.isAnyFieldEdited()) {
             throw new CommandException(Messages.MESSAGE_NOT_EDITED);
@@ -91,7 +93,7 @@ public class EditVolunteerCommand extends Command {
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEER);
+        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
         return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
 

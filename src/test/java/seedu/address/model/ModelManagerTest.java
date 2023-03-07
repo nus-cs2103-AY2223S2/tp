@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ELDERLY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VOLUNTEER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalElderly.CARL;
@@ -16,11 +15,14 @@ import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.FriendlyLinkBuilder;
 import seedu.address.testutil.TypicalElderly;
 
@@ -180,6 +182,7 @@ public class ModelManagerTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void equals() {
         FriendlyLink friendlyLink = new FriendlyLinkBuilder().withElderly(ALICE).withElderly(CARL)
                 .withVolunteer(DANIEL).withVolunteer(BENSON).build();
@@ -216,8 +219,8 @@ public class ModelManagerTest {
         // TODO: different filteredPairList -> returns false
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLY);
-        modelManager.updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEER);
+        modelManager.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        modelManager.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
 
         // TODO: reset pair list in modelManager to initial state for upcoming tests
 

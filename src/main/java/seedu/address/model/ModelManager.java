@@ -83,12 +83,12 @@ public class ModelManager implements Model {
     //=========== FriendlyLink ================================================================================
 
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
+    public void setFriendlyLink(FriendlyLink friendlyLink) {
         this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
-    public ReadOnlyFriendlyLink getFriendlyLink() {
+    public FriendlyLink getFriendlyLink() {
         return friendlyLink;
     }
 
@@ -111,9 +111,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addElderly(Elderly elderly) {
         friendlyLink.addElderly(elderly);
-        updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLY);
+        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
     }
 
     @Override
@@ -142,9 +143,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addVolunteer(Volunteer volunteer) {
         friendlyLink.addVolunteer(volunteer);
-        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEER);
+        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
     }
 
     @Override

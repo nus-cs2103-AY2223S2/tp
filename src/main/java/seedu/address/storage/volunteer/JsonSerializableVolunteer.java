@@ -24,7 +24,7 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
     private final List<JsonAdaptedVolunteer> volunteers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableVolunteer} with the given volunteer.
+     * Constructs a {@code JsonSerializableVolunteer} with the given volunteers.
      */
     @JsonCreator
     public JsonSerializableVolunteer(@JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteer) {
@@ -46,7 +46,7 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
     }
 
     /**
-     * Converts this address book into the model's {@code Volunteer} object.
+     * Converts this volunteer list into the model's {@code Volunteer} object and adds it to the application cache.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

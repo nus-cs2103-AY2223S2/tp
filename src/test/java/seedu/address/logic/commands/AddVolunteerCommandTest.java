@@ -10,9 +10,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.VolunteerBuilder;
 
@@ -42,7 +42,7 @@ public class AddVolunteerCommandTest {
         ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
         assertThrows(CommandException.class,
-                AddVolunteerCommand.MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
+                Messages.MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public ReadOnlyFriendlyLink getFriendlyLink() {
+        public FriendlyLink getFriendlyLink() {
             return new FriendlyLink();
         }
     }

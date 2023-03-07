@@ -177,7 +177,7 @@ public class FriendlyLinkTest {
     /**
      * A stub ReadOnlyFriendlyLink whose persons list can violate interface constraints.
      */
-    private static class FriendlyLinkStub implements ReadOnlyFriendlyLink, ReadOnlyVolunteer, ReadOnlyElderly {
+    private static class FriendlyLinkStub implements ReadOnlyFriendlyLink {
         private final ObservableList<Elderly> elderly = FXCollections.observableArrayList();
         private final ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
         private final ObservableList<Pair> pairs = FXCollections.observableArrayList();

@@ -91,4 +91,28 @@ public abstract class Person {
                 && otherPerson.getNric().equals(getNric());
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) other;
+        return otherPerson.getName().equals(name)
+                && otherPerson.getPhone().equals(phone)
+                && otherPerson.getEmail().equals(email)
+                && otherPerson.getAddress().equals(address)
+                && otherPerson.getNric().equals(nric)
+                && otherPerson.getAge().equals(age)
+                && otherPerson.getTags().equals(tags);
+    }
+
 }

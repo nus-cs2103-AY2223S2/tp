@@ -52,15 +52,9 @@ public class Elderly extends Person {
             return false;
         }
 
-        Elderly otherPerson = (Elderly) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getNric().equals(getNric())
-                && otherPerson.getAge().equals(getAge())
-                && otherPerson.getRiskLevel().equals(getRiskLevel())
-                && otherPerson.getTags().equals(getTags());
+        Elderly otherElderly = (Elderly) other;
+        return super.equals(otherElderly)
+                && otherElderly.getRiskLevel().equals(riskLevel);
     }
 
     @Override

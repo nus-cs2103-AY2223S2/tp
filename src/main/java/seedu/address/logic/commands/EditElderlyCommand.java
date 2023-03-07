@@ -9,13 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ELDERLY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -74,6 +75,7 @@ public class EditElderlyCommand extends Command {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editElderlyDescriptor.isAnyFieldEdited()) {
             throw new CommandException(Messages.MESSAGE_NOT_EDITED);
@@ -94,7 +96,7 @@ public class EditElderlyCommand extends Command {
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
-        model.updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLY);
+        model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
         return new CommandResult(String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
     }
 

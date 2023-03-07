@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVolunteers.ALICE;
+import static seedu.address.testutil.TypicalVolunteers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +18,6 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
 import seedu.address.testutil.TestUtil;
-import seedu.address.testutil.TypicalVolunteers;
 
 public class JsonVolunteerStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonVolunteerStorageTest");
@@ -72,14 +73,14 @@ public class JsonVolunteerStorageTest {
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
 
         // Modify data, overwrite exiting file, and read back
-        original.removeVolunteer(TypicalVolunteers.ALICE);
-        original.addVolunteer(TypicalVolunteers.ALICE);
+        original.removeVolunteer(ALICE);
+        original.addVolunteer(ALICE);
         jsonVolunteerStorage.saveVolunteer(original, filePath);
         readBack = jsonVolunteerStorage.readVolunteer(filePath, new FriendlyLink()).get();
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
 
         // Save and read without specifying file path
-        original.addVolunteer(TypicalVolunteers.AMY);
+        original.addVolunteer(AMY);
         jsonVolunteerStorage.saveVolunteer(original); // file path not specified
         readBack = jsonVolunteerStorage.readVolunteer(new FriendlyLink()).get(); // file path not specified
         assertEquals(original.getVolunteerList(), readBack.getVolunteerList());
@@ -92,12 +93,12 @@ public class JsonVolunteerStorageTest {
     }
 
     /**
-     * Saves {@code friendlyLink} at the specified {@code filePath}.
+     * Saves {@code volunteer} at the specified {@code filePath}.
      */
-    private void saveVolunteer(ReadOnlyVolunteer friendlyLink, String filePath) {
+    private void saveVolunteer(ReadOnlyVolunteer volunteer, String filePath) {
         try {
             new JsonVolunteerStorage(Paths.get(filePath))
-                    .saveVolunteer(friendlyLink, addToTestDataPathIfNotNull(filePath));
+                    .saveVolunteer(volunteer, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

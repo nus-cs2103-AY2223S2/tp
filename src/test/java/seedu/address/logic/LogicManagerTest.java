@@ -27,14 +27,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyElderly;
-import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Volunteer;
-import seedu.address.storage.JsonFriendlyLinkStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.pair.JsonPairStorage;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
 import seedu.address.testutil.VolunteerBuilder;
 
@@ -49,8 +49,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFriendlyLinkStorage friendlyLinkStorage =
-                new JsonFriendlyLinkStorage(temporaryFolder.resolve("friendlylink.json"));
+        JsonPairStorage friendlyLinkStorage =
+                new JsonPairStorage(temporaryFolder.resolve("friendlylink.json"));
         JsonElderlyStorage elderlyStorage =
                 new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
         JsonVolunteerStorage volunteerStorage =
@@ -83,8 +83,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonFriendlyLinkIoExceptionThrowingStub
-        JsonFriendlyLinkStorage friendlyLinkStorage =
-                new JsonFriendlyLinkIoExceptionThrowingStub(
+        JsonPairStorage friendlyLinkStorage =
+                new JsonPairIoExceptionThrowingStub(
                         temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonElderlyStorage elderlyStorage =
                 new JsonElderlyStorage(
@@ -174,13 +174,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonFriendlyLinkIoExceptionThrowingStub extends JsonFriendlyLinkStorage {
-        private JsonFriendlyLinkIoExceptionThrowingStub(Path filePath) {
+    private static class JsonPairIoExceptionThrowingStub extends JsonPairStorage {
+        private JsonPairIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, Path filePath) throws IOException {
+        public void savePair(ReadOnlyPair friendlyLink, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

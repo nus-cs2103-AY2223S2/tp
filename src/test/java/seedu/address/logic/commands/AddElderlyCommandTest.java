@@ -10,9 +10,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.person.Elderly;
 import seedu.address.testutil.ElderlyBuilder;
 
@@ -42,8 +42,7 @@ public class AddElderlyCommandTest {
         AddElderlyCommand addElderlyCommand = new AddElderlyCommand(validElderly);
         ModelStub modelStub = new ModelStubWithElderly(validElderly);
 
-        assertThrows(CommandException.class,
-                AddElderlyCommand.MESSAGE_DUPLICATE_ELDERLY, () ->
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_ELDERLY, () ->
                         addElderlyCommand.execute(modelStub));
     }
 
@@ -108,7 +107,7 @@ public class AddElderlyCommandTest {
         }
 
         @Override
-        public ReadOnlyFriendlyLink getFriendlyLink() {
+        public FriendlyLink getFriendlyLink() {
             return new FriendlyLink();
         }
     }

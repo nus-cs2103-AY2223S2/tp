@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
@@ -98,7 +98,7 @@ public class SampleDataUtil {
 
     // TODO: getSamplePairs()
 
-    public static ReadOnlyFriendlyLink getSampleFriendlyLink() {
+    public static ReadOnlyPair getSampleFriendlyLink() {
         FriendlyLink sampleFl = new FriendlyLink();
 
         for (Volunteer sampleVolunteer : getSampleVolunteers()) {
