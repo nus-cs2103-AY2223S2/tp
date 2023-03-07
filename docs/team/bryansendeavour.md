@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * to be added soon
-  
+
 
 * **Enhancements to existing features**:
 

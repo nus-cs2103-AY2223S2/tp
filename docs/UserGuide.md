@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for Paidlancers
+title: User Guide
 ---
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
@@ -96,7 +96,7 @@ Displays the rate tagged to an event.
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-**Example**: 
+**Example**:
 - `rate 2` returns the rate of `2nd event` in the event list.
 
 
@@ -111,32 +111,32 @@ Tags a rate to an event.
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-**Example**: 
+**Example**:
 - `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list.
 
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Marks a specified event in the address book as done. 
+Marks a specified event in the address book as done.
 
-**Format**: `mark INDEX`  
+**Format**: `mark INDEX`
 
-- Marks the event at the specified `INDEX` as done. 
+- Marks the event at the specified `INDEX` as done.
 
-The event must not be marked as done beforehand.  
+The event must not be marked as done beforehand.
 
-**Example**:  
+**Example**:
 - `mark 2` marks the `2nd event` as done.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
-Creates a new event  
+Creates a new event
 
-**Format**: `newevent NAME`  
+**Format**: `newevent NAME`
 
-- Creates a new event with the specified event `NAME` 
+- Creates a new event with the specified event `NAME`
 
-**Example**: 
+**Example**:
 - `newevent Singing` creates an event that has the name “Singing”.
 
 ### List all Events: `listevent` <a id = "list-all-events"></a>
@@ -155,7 +155,7 @@ Deletes the specified event from the event book.
 - Deletes the event at the specified INDEX
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
-  
+
 **Example**:
   - `deleteevent 2` deletes the `2nd event` in the event list.
 
@@ -168,34 +168,34 @@ Adds a starting time and ending time to the specified event in the event book.
  - Adds starting and ending time to the event at the specified INDEX
     - The `INDEX` refers to the index number shown in the displayed event list.
     - The `INDEX` must be a positive integer 1, 2, 3, …​
-  
+
 **Example**:
 - `adddate 2 /from 03/03/03 /to 04/03/03`
-  
+
 The event must not have time associated with it beforehand.
 
 ### Saving the data
 
-Paidlancer data are saved in the hard disk automatically exiting the program. There is no need to save manually.
+Paidlancers data are saved in the hard disk automatically exiting the program. There is no need to save manually.
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?  
+**Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
 (#add-a-contact)
 
 ## Command Summary
-|                        Commands                        |               Command Format                |                                Example Usage                                |
-|:------------------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
-|      [Add a Contact](#add-a-contact)       |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
-| [Listing All Contact](#list-all-contacts) |                `listcontact`                |                                `listcontact`                                |
-| [Link Contact to Event](#link-contact-to-event)  |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
-|             [View Rate](#view-rate)              |                `rate INDEX`                 |                                  `rate 2`                                   |  
-|            [Tag a rate](#tag-rate)            |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
-|    [Marks Event as Done](#mark-event)    |                `mark INDEX`                 |                                  `mark 2`                                   |
-|   [Create a new Event](#create-new-event)    |               `newevent NAME`               |                             `newevent Singing`                              |
-|     [View Event List](#list-all-events)     |                 `listevent`                 |                                 `listevent`                                 |
-|    [Delete an Event](#delete-an-event)    |               `deleteevent 2`               |                               `deleteevent 2`                               |
-|  [Add Date to Event](#add-date-to-an-event)   | `adddate INDEX /from dd/MM/yy /to dd/MM/yy` |                   `adddate 2 /from 03/03/03 /to 04/03/03`                   |
+|                    Commands                     |               Command Format                |                                Example Usage                                |
+|:-----------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
+|         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
+|    [Listing All Contact](#list-all-contacts)    |                `listcontact`                |                                `listcontact`                                |
+| [Link Contact to Event](#link-contact-to-event) |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
+|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
+|             [Tag a rate](#tag-rate)             |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
+|       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
+|     [Create a new Event](#create-new-event)     |               `newevent NAME`               |                             `newevent Singing`                              |
+|       [View Event List](#list-all-events)       |                 `listevent`                 |                                 `listevent`                                 |
+|       [Delete an Event](#delete-an-event)       |               `deleteevent 2`               |                               `deleteevent 2`                               |
+|   [Add Date to Event](#add-date-to-an-event)    | `adddate INDEX /from dd/MM/yy /to dd/MM/yy` |                   `adddate 2 /from 03/03/03 /to 04/03/03`                   |
 
 [Back to top](#)
