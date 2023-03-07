@@ -24,7 +24,7 @@ public class Pair<A, B> {
      * Creates a new {@code Pair}. Just a convenience method.
      */
     public static <S, T> Pair<S, T> of(S first, T second) {
-        return new Pair(first, second);
+        return new Pair<>(first, second);
     }
 
     @Override
