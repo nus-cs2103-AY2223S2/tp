@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.parser;
 
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,7 +33,7 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
      */
     public AddCustomerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_CUSTOMER_TYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -44,8 +45,10 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        CustomerType customerType = ParserUtil.parseCustomerType(
+                argMultimap.getValue(PREFIX_CUSTOMER_TYPE).or(() -> java.util.Optional.of("INDIVIDUAL")).get());
 
-        Customer customer = new Customer(CustomerType.INDIVIDUAL, name, phone, email, address, tagList);
+        Customer customer = new Customer(customerType, name, phone, email, address, tagList);
 
         return new AddCustomerCommand(customer);
     }

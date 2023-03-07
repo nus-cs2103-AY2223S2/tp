@@ -36,10 +36,10 @@ class JsonAdaptedCustomer {
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
      */
     @JsonCreator
-    public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("customerType") String customerType) {
+    public JsonAdaptedCustomer(@JsonProperty("customerType") String customerType, @JsonProperty("name") String name,
+                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                               @JsonProperty("address") String address,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.customerType = CustomerType.valueOf(customerType);
         this.name = name;
         this.phone = phone;
