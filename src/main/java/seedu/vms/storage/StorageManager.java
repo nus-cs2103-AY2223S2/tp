@@ -11,7 +11,7 @@ import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxTypeManager;
-import seedu.vms.storage.vaccination.VaxTypeLoader;
+import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -20,13 +20,18 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private VaxTypeStorage vaxTypeStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(
+                AddressBookStorage addressBookStorage,
+                VaxTypeStorage vaxTypeStorage,
+                UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
+        this.vaxTypeStorage = vaxTypeStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -80,15 +85,19 @@ public class StorageManager implements Storage {
     // ================ Vax Type methods ==============================
 
     @Override
-    public VaxTypeManager loadDefaultVaxTypes() {
+    public VaxTypeManager loadDefaultVaxTypes() throws RuntimeException {
         logger.fine("Attempting to load default vaccination types");
-        try {
-            return VaxTypeLoader.load();
-        } catch (Throwable ex) {
-            // should never happen but present just to be safe
-            logger.warning("Unable to load defaults");
-            return new VaxTypeManager();
-        }
+        return vaxTypeStorage.loadDefaultVaxTypes();
+    }
+
+    @Override
+    public VaxTypeManager loadUserVaxTypes() throws IOException {
+        return vaxTypeStorage.loadUserVaxTypes();
+    }
+
+    @Override
+    public void saveVaxTypes(VaxTypeManager manager) throws IOException {
+        vaxTypeStorage.saveVaxTypes(manager);
     }
 
 }

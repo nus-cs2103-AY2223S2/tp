@@ -2,6 +2,7 @@ package seedu.vms.model.vaccination;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -78,5 +79,30 @@ public class VaxType {
     @Override
     public String toString() {
         return name;
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof VaxType)) {
+            return false;
+        }
+
+        VaxType casted = (VaxType) other;
+        return name.equals(casted.name) && groups.equals(casted.groups)
+                && minAge == casted.minAge && maxAge == casted.maxAge
+                && minSpacing == casted.minSpacing
+                && allergyReqs.equals(casted.allergyReqs)
+                && historyReqs.equals(casted.historyReqs);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
     }
 }

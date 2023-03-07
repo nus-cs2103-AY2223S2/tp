@@ -8,6 +8,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
  * The API of the Model component.
@@ -90,4 +91,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /** Returns the {@code VaxTypeManager} the model is using. */
+    VaxTypeManager getVaxTypeManager();
 }

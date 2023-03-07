@@ -149,6 +149,11 @@ public class ModelManager implements Model {
         return vaxTypeManager.asUnmodifiableObservableMap();
     }
 
+    @Override
+    public VaxTypeManager getVaxTypeManager() {
+        return vaxTypeManager;
+    }
+
     //=========== Misc methods ================================================================================
 
     @Override

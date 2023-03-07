@@ -42,6 +42,11 @@ public class Requirement {
     }
 
 
+    public RequirementType getReqType() {
+        return reqType;
+    }
+
+
     public HashSet<String> getReqSet() {
         return new HashSet<>(reqSet);
     }
