@@ -9,7 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -97,7 +99,7 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
                 }
             }
         }
-        throw new PersonNotFoundException();
+        throw new ElderlyNotFoundException();
     }
 
     /**
@@ -117,7 +119,7 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
                 }
             }
         }
-        throw new PersonNotFoundException();
+        throw new VolunteerNotFoundException();
     }
 
     public void setPersons(UniquePersonList<T> replacement) {

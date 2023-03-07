@@ -135,6 +135,13 @@ public interface Model {
     void deletePair(Pair target);
 
     /**
+     * Deletes the given pair.
+     * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * must exist in the address book.
+     */
+    void deletePair(Nric elderlyNric, Nric volunteerNric);
+
+    /**
      * Adds the given pair.
      * {@code pair} must not already exist in the address book.
      */

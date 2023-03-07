@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteElderlyCommand;
+import seedu.address.logic.commands.DeletePairCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.EditVolunteerCommand;
@@ -54,26 +55,29 @@ public class FriendlyLinkParser {
         case AddVolunteerCommand.COMMAND_WORD:
             return new AddVolunteerCommandParser().parse(arguments);
 
+        case AddPairCommand.COMMAND_WORD:
+            return new AddPairCommandParser().parse(arguments);
+
         case EditElderlyCommand.COMMAND_WORD:
             return new EditElderlyCommandParser().parse(arguments);
 
         case EditVolunteerCommand.COMMAND_WORD:
             return new EditVolunteerCommandParser().parse(arguments);
 
+        case DeleteElderlyCommand.COMMAND_WORD:
+            return new DeleteElderlyCommandParser().parse(arguments);
+
         case DeleteVolunteerCommand.COMMAND_WORD:
             return new DeleteVolunteerCommandParser().parse(arguments);
 
-        case DeleteElderlyCommand.COMMAND_WORD:
-            return new DeleteElderlyCommandParser().parse(arguments);
+        case DeletePairCommand.COMMAND_WORD:
+            return new DeletePairCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case AddPairCommand.COMMAND_WORD:
-            return new AddPairCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

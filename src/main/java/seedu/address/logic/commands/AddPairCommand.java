@@ -23,10 +23,10 @@ public class AddPairCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in FriendlyLink. "
             + "Parameters: "
             + PREFIX_NRIC_ELDERLY + "ELDERLY ID "
-            + PREFIX_NRIC_VOLUNTEER + "VOLUNTEER ID "
+            + PREFIX_NRIC_VOLUNTEER + "VOLUNTEER ID \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NRIC_ELDERLY + "1234 "
-            + PREFIX_NRIC_VOLUNTEER + "5678 ";
+            + PREFIX_NRIC_ELDERLY + "s02133334I "
+            + PREFIX_NRIC_VOLUNTEER + "T2245343a ";
 
     public static final String MESSAGE_SUCCESS = "New pair added: %1$s";
 

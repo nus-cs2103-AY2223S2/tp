@@ -118,8 +118,10 @@ public class UniquePairListTest {
     @Test
     public void remove_existingPair_removesPair() {
         uniquePairList.add(PAIR1);
+        uniquePairList.add(PAIR2);
         uniquePairList.remove(PAIR1);
         UniquePairList expectedUniquePairList = new UniquePairList();
+        expectedUniquePairList.add(PAIR2);
         assertEquals(expectedUniquePairList, uniquePairList);
     }
 

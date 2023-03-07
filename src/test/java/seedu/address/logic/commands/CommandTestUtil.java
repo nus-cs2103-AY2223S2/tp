@@ -58,6 +58,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_SINGLE = "single";
     public static final String VALID_TAG_STRONG = "strong";
 
+    public static final String INVALID_NRIC = "S1234325252B"; // nric has exactly 8 characters
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -85,9 +87,9 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "S1234567890B";
-    public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + "S1234567890B";
-    public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + "S1234567890B";
+    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + INVALID_NRIC;
+    public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
+    public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "1835";
     public static final String INVALID_RISK_DESC = " " + PREFIX_RISK + "safe";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "single*"; // '*' not allowed in tags

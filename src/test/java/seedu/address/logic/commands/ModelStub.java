@@ -73,6 +73,11 @@ class ModelStub implements Model {
     }
 
     @Override
+    public void deletePair(Nric elderlyNric, Nric volunteerNric) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setPair(Pair target, Pair editedPair) {
         throw new AssertionError("This method should not be called.");
     }
