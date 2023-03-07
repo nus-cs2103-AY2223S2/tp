@@ -9,11 +9,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Nguyen Hong Ngoc
+
+<img src="images/rubynguyen07.png" width="200px">
+
+[[github](http://github.com/RubyNguyen07)]
+[[portfolio](team/rubynguyen07.md)]
+
+* Role: Developer
+* Responsibilities: UI for Clients view
+
 ### Douglas Chow
 
 <img src="images/douglch.png" width="200px">
 
-[[github](http://github.com/douglch)] 
+[[github](http://github.com/douglch)]
 [[portfolio](team/douglch.md)]
 
 * Role: In charge of `Client`
@@ -38,3 +48,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Writing and testing the GUI for the Project Panel
+
+### Sachin Kalinga
+
+<img src="images/sachindavid96.png" width="200px">
+
+[[github](http://github.com/sachindavid96)]
+[[portfolio](team/sachindavid96.md)]
+
+* Role: Developer
+* Responsibilities: Implementing the Parser
