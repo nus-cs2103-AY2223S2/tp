@@ -87,8 +87,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TAA shows an error message.
 
       Use case resumes at step 2.
-      
- 
+
+
 *{More to be added}*
 
 ### Glossary
