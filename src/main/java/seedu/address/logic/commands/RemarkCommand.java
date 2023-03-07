@@ -21,7 +21,6 @@ public class RemarkCommand extends Command {
 
     private final Index index;
     private final Remark remark;
-    
     public static final String MESSAGE_USAGE = COMMAND_WORD
     + ": Edits the remark of the person identified "
     + "by the index number used in the last person listing. "
