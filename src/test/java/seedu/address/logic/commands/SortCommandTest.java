@@ -52,34 +52,34 @@ class SortCommandTest {
     public void execute_sortByName() {
         expectedModel.sortPersonList(CATEGORY_NAME);
         assertCommandSuccess(new SortCommand(CATEGORY_NAME), model, SortCommand.MESSAGE_SUCCESS
-            + CATEGORY_NAME + ".", expectedModel);
+            + CATEGORY_NAME, expectedModel);
     }
 
     @Test
     public void execute_sortByPhone() {
         expectedModel.sortPersonList(CATEGORY_PHONE);
         assertCommandSuccess(new SortCommand(CATEGORY_PHONE), model, SortCommand.MESSAGE_SUCCESS
-            + CATEGORY_PHONE + ".", expectedModel);
+            + CATEGORY_PHONE, expectedModel);
     }
 
     @Test
     public void execute_sortByEmail() {
         expectedModel.sortPersonList(CATEGORY_EMAIL);
         assertCommandSuccess(new SortCommand(CATEGORY_EMAIL), model, SortCommand.MESSAGE_SUCCESS
-            + CATEGORY_EMAIL + ".", expectedModel);
+            + CATEGORY_EMAIL, expectedModel);
     }
 
     @Test
     public void execute_sortByAddress() {
         expectedModel.sortPersonList(CATEGORY_ADDRESS);
         assertCommandSuccess(new SortCommand(CATEGORY_ADDRESS), model, SortCommand.MESSAGE_SUCCESS
-            + CATEGORY_ADDRESS + ".", expectedModel);
+            + CATEGORY_ADDRESS, expectedModel);
     }
 
     @Test
     public void execute_sortByGithub() {
         expectedModel.sortPersonList(CATEGORY_GITHUB);
         assertCommandSuccess(new SortCommand(CATEGORY_GITHUB), model, SortCommand.MESSAGE_SUCCESS
-            + CATEGORY_GITHUB + ".", expectedModel);
+            + CATEGORY_GITHUB, expectedModel);
     }
 }
