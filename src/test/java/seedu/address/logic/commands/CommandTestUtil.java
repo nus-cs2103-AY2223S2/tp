@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_WEIGHT_BOB = "26";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GOAL_BOB = "lose weight";
+    public static final String VALID_GOAL_AMY = "lose weight";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_APPOINTMENT_DATE_ONE = "13-01-2020";
     public static final String VALID_APPOINTMENT_DATE_TWO = "14-12-2021";
@@ -58,6 +61,8 @@ public class CommandTestUtil {
     public static final String WEIGHT_DESC_BOB = " " + PREFIX_WEIGHT + VALID_WEIGHT_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String GOAL_DESC_BOB = " " + PREFIX_GOAL + VALID_GOAL_BOB;
+    public static final String GOAL_DESC_AMY = " " + PREFIX_GOAL + VALID_GOAL_AMY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String APPOINTMENT_DESC_DATE_ONE = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_DATE_ONE;
@@ -83,10 +88,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE).build();
+                .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE).withGoal(VALID_GOAL_AMY)
+                .build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB)
+                .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB).withGoal(VALID_GOAL_BOB)
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }

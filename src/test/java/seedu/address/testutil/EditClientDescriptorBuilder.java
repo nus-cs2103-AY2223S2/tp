@@ -10,6 +10,7 @@ import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -42,6 +43,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setAddress(client.getAddress());
         descriptor.setWeight(client.getWeight());
         descriptor.setGender(client.getGender());
+        descriptor.setGoal(client.getGoal());
         descriptor.setAppointments(client.getAppointments());
         descriptor.setTags(client.getTags());
     }
@@ -91,6 +93,13 @@ public class EditClientDescriptorBuilder {
      */
     public EditClientDescriptorBuilder withGender(String gender) {
         descriptor.setGender(new Gender(gender));
+        return this;
+    }
+    /**
+     * Sets the {@code goal} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withGoal(String goal) {
+        descriptor.setGoal(new Goal(goal));
         return this;
     }
 

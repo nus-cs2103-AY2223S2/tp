@@ -13,6 +13,7 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -111,6 +112,7 @@ public class ParserUtil {
         }
         return new Weight(trimmedWeight);
     }
+
     /**
      * Parses a {@code String Gender} into an {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
@@ -124,6 +126,21 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String Goal} into an {@code Goal}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code goal} is invalid.
+     */
+    public static Goal parseGoal(String goal) throws ParseException {
+        requireNonNull(goal);
+        String trimmedGoal = goal.trim();
+        if (!Goal.isValidGoal(trimmedGoal)) {
+            throw new ParseException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        return new Goal(trimmedGoal);
     }
 
     /**

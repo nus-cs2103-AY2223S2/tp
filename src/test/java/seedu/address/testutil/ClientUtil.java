@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,6 +41,7 @@ public class ClientUtil {
         sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
         sb.append(PREFIX_WEIGHT + client.getWeight().value + " ");
         sb.append(PREFIX_GENDER + client.getGender().value + " ");
+        sb.append(PREFIX_GOAL + client.getGoal().value + " ");
         client.getAppointments().stream().forEach(
                 s -> sb.append(PREFIX_APPOINTMENT + s.appointmentTime + " ")
         );

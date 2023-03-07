@@ -8,6 +8,7 @@ import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -25,6 +26,7 @@ public class ClientBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_WEIGHT = "50.00";
     public static final String DEFAULT_GENDER = "F";
+    public static final String DEFAULT_GOAL = "lose weight";
     private Name name;
     private Phone phone;
     private Email email;
@@ -33,6 +35,7 @@ public class ClientBuilder {
     private Set<Tag> tags;
     private Weight weight;
     private Gender gender;
+    private Goal goal;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -44,6 +47,7 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         weight = new Weight(DEFAULT_WEIGHT);
         gender = new Gender(DEFAULT_GENDER);
+        goal = new Goal(DEFAULT_GOAL);
         appointments = new HashSet<>();
         tags = new HashSet<>();
     }
@@ -58,6 +62,7 @@ public class ClientBuilder {
         address = clientToCopy.getAddress();
         weight = clientToCopy.getWeight();
         gender = clientToCopy.getGender();
+        goal = clientToCopy.getGoal();
         appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
     }
@@ -125,8 +130,16 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Goal} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withGoal(String goal) {
+        this.goal = new Goal(goal);
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, appointments, weight, gender, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, goal, tags);
     }
 
 }

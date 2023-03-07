@@ -27,6 +27,7 @@ import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -107,11 +108,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
+        Goal updatedGoal = editClientDescriptor.getGoal().orElse(clientToEdit.getGoal());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Appointment> updatedAppointment =
                 editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
-                updatedGender, updatedTags);
+                updatedGender, updatedGoal, updatedTags);
     }
 
     @Override
@@ -143,6 +145,7 @@ public class EditCommand extends Command {
         private Address address;
         private Weight weight;
         private Gender gender;
+        private Goal goal;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
 
@@ -159,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setWeight(toCopy.weight);
             setGender(toCopy.gender);
+            setGoal(toCopy.goal);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
         }
@@ -167,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, gender, weight, goal, tags);
         }
 
         public void setName(Name name) {
@@ -214,6 +218,12 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+        public void setGoal(Goal goal) {
+            this.goal = goal;
+        }
+        public Optional<Goal> getGoal() {
+            return Optional.ofNullable(goal);
         }
 
 

@@ -15,6 +15,7 @@ import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -33,6 +34,7 @@ class JsonAdaptedClient {
     private final String address;
     private final String weight;
     private final String gender;
+    private final String goal;
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -45,13 +47,14 @@ class JsonAdaptedClient {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("goal") String goal, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.weight = weight;
         this.gender = gender;
+        this.goal = goal;
         if (appointments != null) {
             this.appointments.addAll(appointments);
         }
@@ -70,6 +73,7 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         weight = source.getWeight().value;
         gender = source.getGender().value;
+        goal = source.getGoal().value;
         appointments.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
@@ -139,11 +143,14 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
-
+        if (!Goal.isValidGoal(goal)) {
+            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        final Goal modelGoal = new Goal(goal);
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelTags);
+                modelWeight, modelGender, modelGoal, modelTags);
     }
 
 }

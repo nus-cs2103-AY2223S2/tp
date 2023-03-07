@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "weight": "23",
     "gender": "m",
+    "goal": "lose weight",
     "appointments": [ "12-12-2020" ],
     "tagged": [ "friends" ]
   }, {
@@ -15,6 +16,7 @@
     "address": "4th street",
     "weight": "23",
     "gender": "m",
+    "goal": "lose weight",
     "appointments": [ "11-12-2020" ]
   } ]
 }

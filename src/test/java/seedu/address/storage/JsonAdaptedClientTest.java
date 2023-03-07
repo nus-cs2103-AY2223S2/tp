@@ -27,6 +27,7 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_WEIGHT = "0";
     private static final String INVALID_GENDER = " ";
+    private static final String INVALID_GOAL = " ";
     private static final String INVALID_APPOINTMENT = "af-15-2142";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -35,6 +36,7 @@ public class JsonAdaptedClientTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
     private static final String VALID_GENDER = BENSON.getGender().toString();
+    private static final String VALID_GOAL = BENSON.getGoal().toString();
 
     private static final List<JsonAdaptedAppointment> VALID_APPOINTMENTS = BENSON.getAppointments().stream()
             .map(JsonAdaptedAppointment::new)
@@ -53,7 +55,7 @@ public class JsonAdaptedClientTest {
     public void toFitBookModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -61,7 +63,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -71,7 +73,7 @@ public class JsonAdaptedClientTest {
         JsonAdaptedClient client =
 
                 new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_APPOINTMENTS,
-                        VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -79,7 +81,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -88,7 +90,7 @@ public class JsonAdaptedClientTest {
     public void toFitBookModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -96,7 +98,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -105,7 +107,7 @@ public class JsonAdaptedClientTest {
     public void toFitBookModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -113,7 +115,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -121,7 +123,7 @@ public class JsonAdaptedClientTest {
     public void toFitBookModelType_invalidWeight_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_APPOINTMENTS, INVALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        VALID_APPOINTMENTS, INVALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Weight.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -129,7 +131,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullWeight_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_APPOINTMENTS, null, VALID_GENDER, VALID_TAGS);
+                VALID_APPOINTMENTS, null, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -137,7 +139,7 @@ public class JsonAdaptedClientTest {
     public void toFitBookModelType_invalidGender_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_APPOINTMENTS, VALID_WEIGHT, INVALID_GENDER, VALID_TAGS);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, INVALID_GENDER, VALID_GOAL, VALID_TAGS);
         String expectedMessage = Gender.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -145,7 +147,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toFitBookModelType_nullGender_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_APPOINTMENTS, VALID_WEIGHT, null, VALID_TAGS);
+                VALID_APPOINTMENTS, VALID_WEIGHT, null, VALID_GOAL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
@@ -156,7 +158,7 @@ public class JsonAdaptedClientTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, invalidTags);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, invalidTags);
         assertThrows(IllegalValueException.class, client::toFitBookModelType);
     }
 
@@ -166,7 +168,7 @@ public class JsonAdaptedClientTest {
         invalidAppointments.add(new JsonAdaptedAppointment(INVALID_APPOINTMENT));
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_TAGS);
         assertThrows(IllegalValueException.class, client::toFitBookModelType);
     }
 }
