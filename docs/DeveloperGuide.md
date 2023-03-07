@@ -6,10 +6,24 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
+
+The product addresses several challenges faced by managers in the current office environment, such as work overload 
+among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual 
+tasks like typing and sending emails.
+
+OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing 
+managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and 
+communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that 
+emails are sent during working hours, so that subordinates will not be disturbed outside of work.
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+OfficeConnect is a brownfield Java project based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) 
+by [se-education.org](https://se-education.org).
+* Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,6 +271,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* holds a managerial role
 * has a need to manage a significant number of subordinates
 * has a need to assign large number of tasks to subordinates
 * prefer desktop apps over other types
@@ -264,8 +279,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * manage tasks and contacts faster than a typical mouse/GUI driven app
+* able to view all upcoming tasks to be completed at one glance
 * allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 
@@ -296,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 
-> addtask n/Finish report 
+> addtask n/Finish report
 - Task added: Finish report
 
 > listtask
@@ -324,40 +340,124 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `OfficeConnect` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="span" class="alert alert-info">
 
-**Use case: Assign a task to a person**
+:information_source: **Note:** For all use cases below, the **System** is the `OfficeConnect` and the 
+**Actor** is the `user`, unless specified otherwise.
 
-# Main Success Scenario (MSS)
+</div>
 
-1. User opens OfficeConnect.
-2. System list persons
-3. User inputs one of the options.
-4. System executes the selected option.
-5. If the inputs option is to add a person or task, the system prompts the user to enter the necessary information.
-6. If the inputs option is to list persons or tasks, the system displays a list of persons or tasks.
-7. If the inputs option is to find a person or task, the system prompts the user to enter a keyword to search for and displays a list of persons or tasks that match the keyword.
-8. If the inputs option is to assign a task, the system prompts the user to select a person and a task from a list of persons and tasks, respectively, and assigns the task to the selected person.
-9. If the inputs option is to delete a person or task, the system prompts the user to select a person or task from a list of persons or tasks, respectively, and deletes the selected person or task.
-10. If the inputs option is to clear the screen, the system clears the screen.
-11. If the inputs option is to quit the application, the system saves the data and exits.
+**Use case 1: Add a person**
 
-## Extensions
+**Main Success Scenario (MSS):**
 
-2a. If the user inputs an invalid option, the system displays an error message and displays the main menu again.
+1. User requests to add a person.
 
-5a. If the user enters invalid information when adding a person or task, the system displays an error message and prompts the user to re-enter the information.
+2. OfficeConnect adds the person to the contact list.
 
-6a. If there are no persons or tasks to list, the system displays a message indicating that there are no persons or tasks to list.
+3. OfficeConnect informs user has been successfully added.
+   
+    Use case ends.
 
-7a. If there are no persons or tasks that match the keyword, the system displays a message indicating that there are no persons or tasks that match the keyword.
+**Extensions**
 
-8a. If the user inputs an invalid person or task when assigning a task, the system displays an error message and prompts the user to re-select.
+* 1a. User enters incomplete or invalid data. 
 
-9a. If the user inputs an invalid person or task when deleting a person or task, the system displays an error message and prompts the user to re-select.
+  * 1a1. OfficeConnect shows an error message.
 
-11a. If the system is unable to save the data, the system displays an error message and exits without saving.
+    Use case ends. 
+---
+**Use case 2: Delete a person**
 
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to delete a specific person in the list.
+
+4. OfficeConnect deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. OfficeConnect shows an error message. 
+  
+    Use case resumes at step 2.
+---
+**Use case 3: Delete a task**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list tasks.
+
+2. OfficeConnect shows a list of tasks.
+
+3. User requests to delete a specific task in the list.
+
+4. OfficeConnect deletes the task.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+---
+**Use case 4: Assign a task to a person**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to list tasks.
+
+4. OfficeConnect shows a list of tasks.
+
+5. User requests to assign a specific task to a specific person.
+
+6. OfficeConnect assigns the task to the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty. 
+
+    Use case ends.
+
+* 4a. The list is empty.
+
+    Use case ends.
+
+* 5a. The given person index is invalid.
+
+  * 5a1. OfficeConnect shows an error message. 
+  
+    Use case resumes at step 2.
+
+* 5b. The given task index is invalid.
+
+  * 5b1. OfficeConnect shows an error message.
+
+    Use case resumes at step 4.
 
 ### Non-Functional Requirements
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
@@ -369,7 +469,10 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 ### Glossary
 
+#### *M*
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+#### *P*
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
