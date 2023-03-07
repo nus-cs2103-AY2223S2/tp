@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -17,13 +19,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean isExit;
 
+    /** The path to the auxiliary save file, if any */
+    private final Optional<Path> filePath;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isShowUserProfile) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, Path filePath) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
+        this.filePath = Optional.of(filePath);
     }
 
     /**
@@ -31,7 +37,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +50,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return isExit;
+    }
+
+    public Optional<Path> getPath() {
+        return filePath;
     }
 
 
