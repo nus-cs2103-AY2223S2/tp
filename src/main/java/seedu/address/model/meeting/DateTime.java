@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+import seedu.address.model.meeting.exceptions.InvalidEndDateTimeException;
+
 /**
  * Represents a Meetings's date/time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
@@ -34,7 +36,7 @@ public class DateTime {
      * Inputs in addition to formats like dd/MM/yyyy are allowed for semantics
      * such as "next monday".
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{ASCII} ]*";
 
     private final LocalDateTime meetingDateTime;
 
@@ -81,9 +83,15 @@ public class DateTime {
         }
 
         try {
-            LocalDateTime end = LocalDateTime.parse(startDateTime,
+            LocalDateTime end = LocalDateTime.parse(endDateTime,
                     DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
-            meetingDuration = Duration.between(meetingDateTime, end);
+            Duration duration = Duration.between(meetingDateTime, end);
+
+            if (duration.isNegative() || duration.isZero()) {
+                throw new InvalidEndDateTimeException();
+            } else {
+                meetingDuration = duration;
+            }
         } catch (DateTimeParseException e) {
             throw new DateTimeException("Unable to recognise '" + endDateTime + "' as valid date/time.");
         } catch (DateTimeException | ArithmeticException e) {
