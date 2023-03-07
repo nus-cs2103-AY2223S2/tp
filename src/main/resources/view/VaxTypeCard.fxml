@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane gridLinesVisible="true" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="300.0" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane gridLinesVisible="true" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
-      <ColumnConstraints hgrow="NEVER" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="170.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label fx:id="titleLabel" minHeight="-Infinity" styleClass="card-title" GridPane.columnSpan="2147483647" />
+      <Label fx:id="titleLabel" maxWidth="390.0" minHeight="-Infinity" styleClass="card-title" wrapText="true" GridPane.columnSpan="2147483647" />
       <Label styleClass="card-attribute-label" text="Group" wrapText="true" GridPane.rowIndex="1" />
       <Label minHeight="-Infinity" styleClass="card-attribute-label" text="Allergy requirements" wrapText="true" GridPane.rowIndex="2" />
       <Label minHeight="-Infinity" styleClass="card-attribute-label" text="History requirements" wrapText="true" GridPane.rowIndex="3" />
