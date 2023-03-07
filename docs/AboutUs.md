@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Titus Lowe
 
-<img src="images/titus.png" width="200px">
+<img src="images/tituswe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/tituswe)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Anunaya Joshi
 
-<img src="images/anun.png" width="200px">
+<img src="images/anunayajoshi.png" width="200px">
 
 [[github](http://github.com/anunayajoshi)]
 [[portfolio](team/anunayajoshi.md)]

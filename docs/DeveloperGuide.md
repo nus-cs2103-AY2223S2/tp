@@ -265,7 +265,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Provide a way to view all clients records easily and compare and analyze their financial information.
+* Provide a way to view all clients' records easily and compare and analyze their financial information.
 * Keep track of client information such as financial goals, current financial status, and investment plans purchased.
 * Make it easier to remind financial advisors on follow-up tasks and future advising sessions.
 * Personalized recommendations: propose personalized financial advice and recommendations tailored to the student’s unique needs and circumstances
@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | As a financial advisor           | track my client interactions and notes                   | have a clear history of my advising sessions         |
 
 
-#### [Epic] As a financial advisor, I can manage my client investment and insurance plans
+##### [Epic] As a financial advisor, I can manage my client investment and insurance plans
 | Priority | As a …​                          | I can …​                                                 | So that I can…​                                                                              |
 |----------|----------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | `***`    | As a financial advisor           | keep track of my clients' investment and insurance plans | provide relevant advice                                                                      |
@@ -334,7 +334,7 @@ specified otherwise)
 
 **MSS**
 
-1. Actor inputs client’s personal information
+1. Actor inputs the client’s personal information
 2. System confirms and creates the client profile
 3. Use case ends
 
