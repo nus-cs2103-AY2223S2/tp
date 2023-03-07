@@ -6,14 +6,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.SaveCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.results.SaveCommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SaveCommandTest {
 

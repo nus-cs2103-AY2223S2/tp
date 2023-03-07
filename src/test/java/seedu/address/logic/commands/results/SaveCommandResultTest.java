@@ -3,10 +3,10 @@ package seedu.address.logic.commands.results;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
 
 public class SaveCommandResultTest {
     private static final String FEEDBACK = "feedback";
