@@ -3,6 +3,7 @@ package mycelium.mycelium.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.Person;
@@ -144,40 +145,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((persons == null) ? 0 : persons.hashCode());
-        result = prime * result + ((projects == null) ? 0 : projects.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AddressBook that = (AddressBook) o;
+        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        AddressBook other = (AddressBook) obj;
-        if (persons == null) {
-            if (other.persons != null) {
-                return false;
-            }
-        } else if (!persons.equals(other.persons)) {
-            return false;
-        }
-        if (projects == null) {
-            if (other.projects != null) {
-                return false;
-            }
-        } else if (!projects.equals(other.projects)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(persons, projects);
     }
 }

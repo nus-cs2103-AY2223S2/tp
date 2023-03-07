@@ -129,6 +129,8 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
     }
 
+    // TODO add tests for AddressBook#equals
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
