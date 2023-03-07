@@ -25,7 +25,7 @@ class JsonAdaptedCustomer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
 
-    private final CustomerType customerType;
+    private final String customerType;
     private final String name;
     private final String phone;
     private final String email;
@@ -40,7 +40,7 @@ class JsonAdaptedCustomer {
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.customerType = CustomerType.valueOf(customerType);
+        this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,7 +54,7 @@ class JsonAdaptedCustomer {
      * Converts a given {@code Customer} into this class for Jackson use.
      */
     public JsonAdaptedCustomer(Customer source) {
-        customerType = source.getCustomerType();
+        customerType = source.getCustomerType().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -73,6 +73,12 @@ class JsonAdaptedCustomer {
         if (customerType == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, CustomerType.class.getSimpleName()));
+        }
+        final CustomerType modelCustomerType;
+        try {
+            modelCustomerType = CustomerType.valueOf(customerType); // should not be stored as friendly user string
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
 
         final List<Tag> customerTags = new ArrayList<>();
@@ -113,7 +119,7 @@ class JsonAdaptedCustomer {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(customerType, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
