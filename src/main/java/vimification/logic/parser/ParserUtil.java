@@ -8,7 +8,6 @@ import java.util.Set;
 
 import vimification.commons.core.index.Index;
 import vimification.commons.util.StringUtil;
-import vimification.logic.parser.exceptions.ParseException;
 import vimification.model.person.Address;
 import vimification.model.person.Email;
 import vimification.model.person.Name;
@@ -25,7 +24,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
      * whitespaces will be trimmed.
-     * 
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {

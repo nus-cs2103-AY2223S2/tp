@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import vimification.commons.core.GuiSettings;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.logic.parser.exceptions.ParseException;
+import vimification.logic.parser.ParseException;
 import vimification.model.ReadOnlyAddressBook;
 import vimification.model.person.Person;
 
@@ -16,7 +16,7 @@ import vimification.model.person.Person;
 public interface Logic {
     /**
      * Executes the command and returns the result.
-     * 
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.

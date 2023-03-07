@@ -3,7 +3,6 @@ package vimification.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import vimification.logic.commands.Command;
-import vimification.logic.parser.exceptions.ParseException;
 
 /**
  * Contains helper methods for testing command parsers.

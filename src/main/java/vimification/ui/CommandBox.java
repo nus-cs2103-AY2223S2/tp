@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.logic.parser.exceptions.ParseException;
+import vimification.logic.parser.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

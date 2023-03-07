@@ -15,7 +15,6 @@ import vimification.logic.commands.ExitCommand;
 import vimification.logic.commands.FindCommand;
 import vimification.logic.commands.HelpCommand;
 import vimification.logic.commands.ListCommand;
-import vimification.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.

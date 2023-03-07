@@ -15,7 +15,7 @@ import vimification.commons.core.LogsCenter;
 import vimification.logic.Logic;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.logic.parser.exceptions.ParseException;
+import vimification.logic.parser.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar and space where
@@ -78,7 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * 
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {

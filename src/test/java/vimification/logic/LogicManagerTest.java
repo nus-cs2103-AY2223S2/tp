@@ -21,7 +21,7 @@ import vimification.logic.commands.AddCommand;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.ListCommand;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.logic.parser.exceptions.ParseException;
+import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ModelManager;
 import vimification.model.ReadOnlyAddressBook;
@@ -101,7 +101,7 @@ public class LogicManagerTest {
      * Executes the command and confirms that - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * 
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
@@ -114,7 +114,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is
      * correct.
-     * 
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -124,7 +124,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message
      * is correct.
-     * 
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -134,7 +134,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is
      * correct.
-     * 
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand,
@@ -148,7 +148,7 @@ public class LogicManagerTest {
      * Executes the command and confirms that - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * 
+     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand,

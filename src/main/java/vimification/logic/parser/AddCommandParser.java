@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import vimification.logic.commands.AddCommand;
-import vimification.logic.parser.exceptions.ParseException;
 import vimification.model.person.Address;
 import vimification.model.person.Email;
 import vimification.model.person.Name;
@@ -27,7 +26,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand and returns an
      * AddCommand object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {

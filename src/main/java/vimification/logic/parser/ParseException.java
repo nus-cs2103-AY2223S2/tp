@@ -1,4 +1,4 @@
-package vimification.logic.parser.exceptions;
+package vimification.logic.parser;
 
 import vimification.commons.exceptions.IllegalValueException;
 

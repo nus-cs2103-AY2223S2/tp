@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.logic.parser.exceptions.ParseException;
 import vimification.model.person.Address;
 import vimification.model.person.Email;
 import vimification.model.person.Name;

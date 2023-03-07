@@ -22,7 +22,6 @@ import vimification.logic.commands.ExitCommand;
 import vimification.logic.commands.FindCommand;
 import vimification.logic.commands.HelpCommand;
 import vimification.logic.commands.ListCommand;
-import vimification.logic.parser.exceptions.ParseException;
 import vimification.model.person.NameContainsKeywordsPredicate;
 import vimification.model.person.Person;
 import vimification.testutil.EditPersonDescriptorBuilder;

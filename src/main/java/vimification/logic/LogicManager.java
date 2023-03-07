@@ -11,7 +11,7 @@ import vimification.logic.commands.Command;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.AddressBookParser;
-import vimification.logic.parser.exceptions.ParseException;
+import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ReadOnlyAddressBook;
 import vimification.model.person.Person;
