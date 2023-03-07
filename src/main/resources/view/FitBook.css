@@ -12,6 +12,12 @@
 }
 
 @font-face {
+    font-family: 'Aclonica';
+    font-weight: bold;
+    src: url('../font/Aclonica-Regular.ttf');
+}
+
+@font-face {
     font-family: 'Lakki Reddy';
     font-weight: bold;
     src: url('../font/LakkiReddy-Regular.ttf');
@@ -226,7 +232,7 @@
 
 .menu-bar .label {
     -fx-font-size: 12pt;
-    -fx-font-family: "Intel";
+    -fx-font-family: "Aclonica";
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-opacity: 1;
@@ -379,10 +385,14 @@
     -fx-background-insets: 0;
     -fx-border-color: derive(#F88017, 50%);
     -fx-border-insets: 0;
-    -fx-border-width: 2;
+    -fx-border-bottom: solid;
+    -fx-border-top: none;
+    -fx-border-left: none;
+    -fx-border-right: none;
+    -fx-border-width: 0 0 2 0;
     -fx-border-radius: 10;
     -fx-font-family: "Intel";
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: black;
 }
 
@@ -402,8 +412,19 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-padding: 1 4 1 4;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-font-family: "Aclonica";
+}
+
+#appointments .label {
+    -fx-text-fill: white;
+    -fx-background-color: #FF0000;
+    -fx-padding: 1 4 1 4;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-font-family: "Aclonica";
 }
