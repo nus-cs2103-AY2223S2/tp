@@ -9,5 +9,5 @@ import seedu.vms.model.ReadOnlyStorageModel;
  * only appointment storage model.
  */
 
-public interface ReadOnlyAppointmentManager extends ReadOnlyStorageModel<Appointment>  {
+public interface ReadOnlyAppointmentManager extends ReadOnlyStorageModel<Appointment> {
 }

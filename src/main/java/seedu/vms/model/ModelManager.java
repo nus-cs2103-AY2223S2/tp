@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-        private final AppointmentManager appointmentManager;
+    private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
 

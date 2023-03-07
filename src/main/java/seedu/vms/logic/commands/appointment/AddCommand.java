@@ -2,8 +2,8 @@ package seedu.vms.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
@@ -27,7 +27,8 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_PATIENT + " A01234567X ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the appointment manager";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
+            + " in the appointment manager";
 
     private final Appointment toAdd;
 

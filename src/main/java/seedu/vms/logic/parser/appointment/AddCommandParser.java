@@ -1,20 +1,20 @@
 package seedu.vms.logic.parser.appointment;
 
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.vms.logic.commands.appointment.AddCommand;
-import seedu.vms.model.appointment.Appointment;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.Prefix;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.appointment.Appointment;
 
 /**
  * Parses input arguments and creates a new AddCommand object
