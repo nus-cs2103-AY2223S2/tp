@@ -1,7 +1,6 @@
 package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -15,7 +14,7 @@ import java.util.Set;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
-import arb.logic.commands.client.EditClientCommand.EditPersonDescriptor;
+import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
 import arb.logic.parser.Parser;
@@ -36,7 +35,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
     public EditClientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         Index index;
 
@@ -47,26 +46,23 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
                     EditClientCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditClientDescriptor editClientDescriptor = new EditClientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editClientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editClientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditClientCommand(index, editPersonDescriptor);
+        return new EditClientCommand(index, editClientDescriptor);
     }
 
     /**

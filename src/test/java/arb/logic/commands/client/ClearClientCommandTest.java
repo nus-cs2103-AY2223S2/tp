@@ -1,7 +1,7 @@
 package arb.logic.commands.client;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static arb.testutil.TypicalPersons.getTypicalAddressBook;
+import static arb.testutil.TypicalClients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
