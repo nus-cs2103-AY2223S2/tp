@@ -150,7 +150,9 @@ public class UniquePersonList implements Iterable<Person> {
             internalList.sort(Comparator.comparing((Person a) -> a.getName().toString().toLowerCase()));
         } else if (category.equals(CATEGORY_PHONE)) {
             internalList.sort((Person a, Person b) -> {
-                if (a.getPhone().toString().isEmpty()) {
+                if (a.getPhone().toString().isEmpty() && b.getPhone().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getPhone().toString().isEmpty()) {
                     return 1;
                 } else if (b.getPhone().toString().isEmpty()) {
                     return -1;
@@ -160,7 +162,9 @@ public class UniquePersonList implements Iterable<Person> {
             });
         } else if (category.equals(CATEGORY_EMAIL)) {
             internalList.sort((Person a, Person b) -> {
-                if (a.getEmail().toString().isEmpty()) {
+                if (a.getEmail().toString().isEmpty() && b.getEmail().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getEmail().toString().isEmpty()) {
                     return 1;
                 } else if (b.getEmail().toString().isEmpty()) {
                     return -1;
@@ -170,7 +174,9 @@ public class UniquePersonList implements Iterable<Person> {
             });
         } else if (category.equals(CATEGORY_ADDRESS)) {
             internalList.sort((Person a, Person b) -> {
-                if (a.getAddress().toString().isEmpty()) {
+                if (a.getAddress().toString().isEmpty() && b.getAddress().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getAddress().toString().isEmpty()) {
                     return 1;
                 } else if (b.getAddress().toString().isEmpty()) {
                     return -1;
@@ -180,7 +186,9 @@ public class UniquePersonList implements Iterable<Person> {
             });
         } else if (category.equals(CATEGORY_GITHUB)) {
             internalList.sort((Person a, Person b) -> {
-                if (a.getProfile().toString().isEmpty()) {
+                if (a.getProfile().toString().isEmpty() && b.getProfile().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getProfile().toString().isEmpty()) {
                     return 1;
                 } else if (b.getProfile().toString().isEmpty()) {
                     return -1;
