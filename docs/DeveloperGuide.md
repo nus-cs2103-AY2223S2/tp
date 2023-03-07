@@ -266,11 +266,11 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 <div style="width:60%;
     margin: 0 20%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/ArchitectureDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.1.1</i>
 <b>Architecture Diagram</b> explaining the high-level design of the App
@@ -302,11 +302,11 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <div style="width: 90%;
     margin: 0 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/ArchitectureSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.1.2</i>
 <b>Sequence Diagram</b> for the command `delete 1`
@@ -323,11 +323,11 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <div style="width: 90%;
     margin: 0 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/ComponentManagers.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.1.3</i>
 <b>Class Diagram</b> for Component Managers
@@ -345,11 +345,11 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 <div style="width: 90%;
     margin: 0 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/UiClassDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.2.1</i>
 <b>Class Diagram</b> for UI Components
@@ -378,11 +378,11 @@ The `UI` component,
 <div style="width: 90%;
     margin: 0 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/ModelClassDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.3.1</i>
 <b>Class Diagram</b> for Model Components
@@ -432,11 +432,11 @@ Here's a (partial) class diagram of the `Logic` component:
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/LogicClassDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.1</i>
 <b>Class Diagram</b> for Logic Components
@@ -457,25 +457,25 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/AddSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.2</i>
 <b>Sequence Diagram</b> for a typical `add` command
 </span>
-</div>                                             |
+</div>                                             
 
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/AddParserSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.2a</i>
 <b>Sequence Diagram</b> for parsing `AddCommand` arguments
@@ -495,11 +495,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/EditSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.3</i>
 <b>Sequence Diagram</b> for a typical `edit` command
@@ -509,11 +509,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/EditParserSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.3a</i>
 <b>Sequence Diagram</b> for parsing `EditCommand` arguments
@@ -533,11 +533,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/DeleteSequenceDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.4</i>
 <b>Sequence Diagram</b> for a typical `delete` command
@@ -581,11 +581,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/ParserClasses.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.4.x</i>
 <b>Class Diagram</b> for Parser Components
@@ -613,11 +613,11 @@ How the parsing works:
 <div style="width: 90%;
     margin: 1rem 5%;
     text-align: center;
-    display: grid;
-    gap: 1rem;
+    display: grid
     grid-template-columns: repeat(auto-fill, fr);">
 <img src="images/StorageClassDiagram.png"
     style="margin-left:auto; margin-right:auto">
+<br>
 <span>
 <i>Figure 4.5.1</i>
 <b>Class Diagram</b> for Storage Components
