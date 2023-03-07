@@ -16,7 +16,7 @@ Tuition center admin managing system (TCAMS) is a **desktop application designed
 
 
 ## Value Proposition
-Manage tutors and tutees faster than a typical mouse/GUI driven app
+Manage tutors and tutees faster than a typical mouse/GUI driven app.
 
 
 ## Acknowledgements:  
