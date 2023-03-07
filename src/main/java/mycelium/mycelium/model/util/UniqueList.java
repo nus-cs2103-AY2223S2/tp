@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
 import mycelium.mycelium.model.util.exceptions.ItemNotFoundException;
 
@@ -40,13 +41,16 @@ public class UniqueList<T extends IsSame<T>> implements Iterable<T> {
     // TODO a "set" method
 
     /**
-     * Removes an item from the list.
+     * Removes an item from the list. Note that the item to remove to checked via {@link IsSame}, not {@code equals}.
      */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        FilteredList<T> filtered = internalList.filtered(toRemove::isSame);
+        if (filtered.size() == 0) {
             throw new ItemNotFoundException(toRemove);
         }
+        assert filtered.size() == 1 : "Invariant violated: list contains duplicate items";
+        assert internalList.remove(filtered.get(0)) : "Invariant violated: list does not contain item to remove";
     }
 
     /**
