@@ -13,23 +13,60 @@ public class TaskBuilder {
     public static final String RANDOM_TASK_SUBJECT = "Random Subject";
     public static final String RANDOM_TASK_CONTENT = "Random Content ABC";
     public static final boolean RANDOM_TASK_STATUS = true;
+    public static final String DEFAULT_SUBJECT = "Sports";
+    public static final String DEFAULT_CONTENT = "Play football";
+    public static final boolean DEFAULT_STATUS = false;
 
-    private final Subject subject;
+    private Subject subject;
     private final Content content;
     private final Status status;
 
-    private TaskBuilder() {
-        subject = new Subject(RANDOM_TASK_SUBJECT);
-        content = new Content(RANDOM_TASK_CONTENT);
-        status = new Status(RANDOM_TASK_STATUS);
+    /**
+     * Creates a {@code TaskBuilder} with the default details.
+     */
+    public TaskBuilder() {
+        subject = new Subject(DEFAULT_SUBJECT);
+        content = new Content(DEFAULT_CONTENT);
+        status = new Status(DEFAULT_STATUS);
+    }
 
+    /**
+     * Initializes the TaskBuilder with the data of {@code taskToCopy}.
+     */
+    public TaskBuilder(Task taskToCopy) {
+        subject = taskToCopy.getSubject();
+        content = taskToCopy.getContent();
+        status = taskToCopy.getStatus();
     }
 
     private Task buildRandomTask() {
-        return new Task(subject, content, status);
+        return new Task(new Subject(RANDOM_TASK_SUBJECT), new Content(RANDOM_TASK_CONTENT),
+            new Status(RANDOM_TASK_STATUS));
     }
 
+    /**
+     * generate a random task
+     */
     public static Task ofRandomTask() {
         return new TaskBuilder().buildRandomTask();
+
+    }
+
+
+    /**
+     * Sets the {@code Subject} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withSubject(String subject) {
+        this.subject = new Subject(subject);
+        return this;
+    }
+
+    /**
+     * Sets Task to be created
+     *
+     * @return Task containing specified {@code Subject, @code Content, @code Status}
+     */
+    public Task build() {
+        return new Task(subject, content, status);
     }
 }
