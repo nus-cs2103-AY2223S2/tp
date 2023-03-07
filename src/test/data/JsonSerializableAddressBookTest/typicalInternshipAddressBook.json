@@ -1,0 +1,42 @@
+{
+  "_comment": "InternBuddy save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
+  "internships" : [ {
+      "companyName" : "Amazon",
+      "role" : "Cloud Architect",
+      "status" : "assessment",
+      "date" : "2023-02-01",
+      "tagged" : [ "aws", "back" ]
+  }, {
+    "companyName" : "Food Panda",
+    "role" : "Back end Developer",
+    "status" : "assessment",
+    "date" : "2023-02-02"
+  }, {
+    "companyName" : "Goldman",
+    "role" : "Cyber Security Analyst",
+    "status" : "offered",
+    "date" : "2023-02-03"
+  }, {
+    "companyName" : "Grab",
+    "role" : "Front end Engineer",
+    "status" : "rejected",
+    "date" : "2023-02-04"
+  }, {
+    "companyName" : "Riot Games",
+    "role" : "Game Client Developer",
+    "status" : "interview",
+    "date" : "2023-02-05",
+    "tagged" : [ "game", "developer" ]
+  }, {
+    "companyName" : "Samsung",
+    "role" : "Android Developer",
+    "status" : "applied",
+    "date" : "2023-02-06"
+  }, {
+    "companyName" : "Supercell Games",
+    "role" : "Game Designer",
+    "status" : "new",
+    "date" : "2023-02-07",
+    "tagged" : [ "design", "game" ]
+  } ]
+}

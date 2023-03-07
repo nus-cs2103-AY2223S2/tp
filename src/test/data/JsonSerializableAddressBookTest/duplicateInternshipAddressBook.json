@@ -1,0 +1,15 @@
+{
+  "internships": [ {
+    "companyName": "Google",
+    "role": "Software Engineer",
+    "status": "applied",
+    "date": "2023-02-01",
+    "tagged": [ "Go" ]
+  }, {
+    "companyName": "Google",
+    "role": "Software Engineer",
+    "status": "applied",
+    "date": "2023-02-01",
+    "tagged": [ "Java" ]
+  } ]
+}
