@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
+import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 
@@ -52,7 +53,7 @@ public class JsonAdaptedProject {
     public JsonAdaptedProject(Project project) {
         name = project.getName();
         status = project.getStatus();
-        clientEmail = project.getClientEmail();
+        clientEmail = project.getClientEmail().value;
         source = project.getSource();
         description = project.getDescription();
         acceptedOn = project.getAcceptedOn();
@@ -79,6 +80,12 @@ public class JsonAdaptedProject {
         assertField(description != null, "description");
         assertField(acceptedOn != null, "acceptedOn");
         // NOTE: it is okay for the deadline to be null.
-        return new Project(name, status, clientEmail, source, description, acceptedOn, Optional.ofNullable(deadline));
+        return new Project(name,
+            status,
+            new Email(clientEmail),
+            source,
+            description,
+            acceptedOn,
+            Optional.ofNullable(deadline));
     }
 }

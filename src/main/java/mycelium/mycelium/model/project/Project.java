@@ -3,6 +3,8 @@ package mycelium.mycelium.model.project;
 import java.util.Date;
 import java.util.Optional;
 
+import mycelium.mycelium.model.person.Email;
+
 /**
  * Represents a project.
  */
@@ -21,7 +23,7 @@ public class Project {
      * The email of the client who submitted this project. We only keep the client's email here for more convenient
      * (de)serializing.
      */
-    private final String clientEmail;
+    private final Email clientEmail;
 
     /**
      * The project's source, e.g. Fiverr
@@ -48,7 +50,7 @@ public class Project {
      */
     public Project(String name,
                    ProjectStatus status,
-                   String clientEmail,
+                   Email clientEmail,
                    String source,
                    String description,
                    Date acceptedOn,
@@ -70,7 +72,7 @@ public class Project {
         return status;
     }
 
-    public String getClientEmail() {
+    public Email getClientEmail() {
         return clientEmail;
     }
 
