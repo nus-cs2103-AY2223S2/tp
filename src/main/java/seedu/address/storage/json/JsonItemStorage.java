@@ -13,23 +13,23 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileHelper;
 import seedu.address.commons.util.JsonHelper;
-import seedu.address.model.ReadOnlyIdentifiableManager;
-import seedu.address.model.item.Identifiable;
-import seedu.address.storage.IdentifiableStorage;
+import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.item.Item;
+import seedu.address.storage.ItemStorage;
 
 /**
  * Represents the base class for the persistent storage of a
- * {@link ReadOnlyIdentifiableManager}. Extend this class to use the features
+ * {@link ReadOnlyItemManager}. Extend this class to use the features
  * provided by this.
  *
- * @param <T> the type of the {@link Identifiable} to be stored.
+ * @param <T> the type of the {@link Item} to be stored.
  * @param <F> the type of the {@link JsonAdaptedModel} to be stored.
- * @param <M> the type of the {@link JsonIdentifiableManager} to be stored.
+ * @param <M> the type of the {@link JsonItemManager} to be stored.
  */
-public abstract class JsonIdentifiableStorage<T extends Identifiable,
-                                                     F extends JsonAdaptedModel<T>,
-                                                     M extends JsonIdentifiableManager<T, F>>
-        implements IdentifiableStorage<T> {
+public abstract class JsonItemStorage<T extends Item,
+        F extends JsonAdaptedModel<T>,
+        M extends JsonItemManager<T, F>>
+        implements ItemStorage<T> {
 
     /**
      * The logger to be used by this class.
@@ -55,8 +55,8 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
      *
      * @param filePath the path to the file to be read from and written to.
      */
-    public JsonIdentifiableStorage(Path filePath) {
-        this(filePath, JsonHelper.INSTANCE, FileHelper.INSTANCE, LogsCenter.getLogger(JsonIdentifiableStorage.class));
+    public JsonItemStorage(Path filePath) {
+        this(filePath, JsonHelper.INSTANCE, FileHelper.INSTANCE, LogsCenter.getLogger(JsonItemStorage.class));
     }
 
     /**
@@ -66,8 +66,8 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
      * @param jsonHelper the JsonHelper to be used.
      * @param fileHelper the FileHelper to be used.
      */
-    protected JsonIdentifiableStorage(Path filePath, JsonHelper jsonHelper,
-                                      FileHelper fileHelper, Logger logger) {
+    protected JsonItemStorage(Path filePath, JsonHelper jsonHelper,
+                              FileHelper fileHelper, Logger logger) {
         this.filePath = filePath;
         this.jsonHelper = jsonHelper;
         this.fileHelper = fileHelper;
@@ -75,24 +75,24 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     }
 
     /**
-     * Gets the class of the {@link JsonIdentifiableManager} that was used, i
+     * Gets the class of the {@link JsonItemManager} that was used, i
      * .e. gets the class of the {@code M} type parameter. This is needed
      * because the information about the type parameter is erased at runtime.
      *
-     * @return the class of the {@link JsonIdentifiableManager} that was used.
+     * @return the class of the {@link JsonItemManager} that was used.
      */
     protected abstract Class<M> getManagerClass();
 
     /**
-     * Creates a new {@link JsonIdentifiableManager} from the given
-     * {@link ReadOnlyIdentifiableManager}. This is needed because we cannot
+     * Creates a new {@link JsonItemManager} from the given
+     * {@link ReadOnlyItemManager}. This is needed because we cannot
      * specify a constructor for the {@code M} type parameter.
      *
-     * @param modelManager the {@link ReadOnlyIdentifiableManager} to be used
-     *                     to create the new {@link JsonIdentifiableManager}.
-     * @return a new {@link JsonIdentifiableManager} created from the given
+     * @param modelManager the {@link ReadOnlyItemManager} to be used
+     *                     to create the new {@link JsonItemManager}.
+     * @return a new {@link JsonItemManager} created from the given
      */
-    protected abstract M createManager(ReadOnlyIdentifiableManager<T> modelManager);
+    protected abstract M createManager(ReadOnlyItemManager<T> modelManager);
 
     @Override
     public Path getPath() {
@@ -100,13 +100,13 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     }
 
     @Override
-    public Optional<? extends ReadOnlyIdentifiableManager<T>> read()
+    public Optional<? extends ReadOnlyItemManager<T>> read()
             throws DataConversionException, IOException {
         return read(filePath);
     }
 
     @Override
-    public Optional<? extends ReadOnlyIdentifiableManager<T>> read(Path filePath)
+    public Optional<? extends ReadOnlyItemManager<T>> read(Path filePath)
             throws DataConversionException, IOException {
         requireNonNull(filePath);
         Optional<M> jsonManager = jsonHelper.readJsonFile(filePath, getManagerClass());
@@ -123,16 +123,16 @@ public abstract class JsonIdentifiableStorage<T extends Identifiable,
     }
 
     @Override
-    public void save(ReadOnlyIdentifiableManager<T> identifiableManager)
+    public void save(ReadOnlyItemManager<T> itemManager)
             throws IOException {
-        save(identifiableManager, filePath);
+        save(itemManager, filePath);
     }
 
     @Override
-    public void save(ReadOnlyIdentifiableManager<T> identifiableManager,
+    public void save(ReadOnlyItemManager<T> itemManager,
                      Path filePath) throws IOException {
-        requireAllNonNull(identifiableManager, filePath);
+        requireAllNonNull(itemManager, filePath);
         fileHelper.createIfMissing(filePath);
-        jsonHelper.saveJsonFile(createManager(identifiableManager), filePath);
+        jsonHelper.saveJsonFile(createManager(itemManager), filePath);
     }
 }

@@ -2,16 +2,16 @@ package seedu.address.storage.json.storage;
 
 import java.nio.file.Path;
 
-import seedu.address.model.ReadOnlyIdentifiableManager;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;
-import seedu.address.storage.json.JsonIdentifiableStorage;
+import seedu.address.storage.json.JsonItemStorage;
 import seedu.address.storage.json.adapted.JsonAdaptedCrew;
 import seedu.address.storage.json.serializable.JsonSerializableCrewManager;
 
 /**
  * Represents a storage for {@link Crew}s.
  */
-public class JsonCrewManagerStorage extends JsonIdentifiableStorage<Crew,
+public class JsonCrewManagerStorage extends JsonItemStorage<Crew,
         JsonAdaptedCrew, JsonSerializableCrewManager> {
     /**
      * Creates a new JsonIdentifiableStorage object.
@@ -28,7 +28,7 @@ public class JsonCrewManagerStorage extends JsonIdentifiableStorage<Crew,
     }
 
     @Override
-    protected JsonSerializableCrewManager createManager(ReadOnlyIdentifiableManager<Crew> modelManager) {
+    protected JsonSerializableCrewManager createManager(ReadOnlyItemManager<Crew> modelManager) {
         return JsonSerializableCrewManager.from(modelManager);
     }
 }

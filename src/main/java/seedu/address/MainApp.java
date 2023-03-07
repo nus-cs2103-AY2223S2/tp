@@ -16,11 +16,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
-import seedu.address.model.IdentifiableManager;
+import seedu.address.model.ItemManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyIdentifiableManager;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.crew.Crew;
@@ -30,7 +30,7 @@ import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.IdentifiableStorage;
+import seedu.address.storage.ItemStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -70,15 +70,15 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        IdentifiableStorage<Pilot> pilotStorage =
+        ItemStorage<Pilot> pilotStorage =
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
-        IdentifiableStorage<Location> locationStorage =
+        ItemStorage<Location> locationStorage =
                 new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
-        IdentifiableStorage<Crew> crewStorage =
+        ItemStorage<Crew> crewStorage =
                 new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
-        IdentifiableStorage<Plane> planeStorage =
+        ItemStorage<Plane> planeStorage =
                 new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
-        IdentifiableStorage<Flight> flightStorage =
+        ItemStorage<Flight> flightStorage =
                 new JsonFlightManagerStorage(userPrefs.getFlightManagerFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage,
                 crewStorage, planeStorage, flightStorage);
@@ -97,19 +97,19 @@ public class MainApp extends Application {
      * @param storage the storage object
      * @return the pilot manager
      */
-    private ReadOnlyIdentifiableManager<Pilot> readPilotManager(Storage storage) {
-        ReadOnlyIdentifiableManager<Pilot> pilotManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Pilot>> pilotManagerOptional;
+    private ReadOnlyItemManager<Pilot> readPilotManager(Storage storage) {
+        ReadOnlyItemManager<Pilot> pilotManager;
+        Optional<? extends ReadOnlyItemManager<Pilot>> pilotManagerOptional;
         try {
             pilotManagerOptional = storage.readPilotManager();
             if (pilotManagerOptional.isEmpty()) {
-                pilotManager = new IdentifiableManager<>();
+                pilotManager = new ItemManager<>();
             } else {
                 logger.info("Data file for pilot manager found.");
                 pilotManager = pilotManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
-            pilotManager = new IdentifiableManager<>();
+            pilotManager = new ItemManager<>();
         }
         return pilotManager;
     }
@@ -119,19 +119,19 @@ public class MainApp extends Application {
      * @param storage the storage object
      * @return the location manager
      */
-    private ReadOnlyIdentifiableManager<Location> readLocationManager(Storage storage) {
-        ReadOnlyIdentifiableManager<Location> locationManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Location>> locationManagerOptional;
+    private ReadOnlyItemManager<Location> readLocationManager(Storage storage) {
+        ReadOnlyItemManager<Location> locationManager;
+        Optional<? extends ReadOnlyItemManager<Location>> locationManagerOptional;
         try {
             locationManagerOptional = storage.readLocationManager();
             if (locationManagerOptional.isEmpty()) {
-                locationManager = new IdentifiableManager<>();
+                locationManager = new ItemManager<>();
             } else {
                 logger.info("Data file for location manager found.");
                 locationManager = locationManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
-            locationManager = new IdentifiableManager<>();
+            locationManager = new ItemManager<>();
         }
         return locationManager;
     }
@@ -141,19 +141,19 @@ public class MainApp extends Application {
      * @param storage the storage object
      * @return the crew manager
      */
-    private ReadOnlyIdentifiableManager<Crew> readCrewManager(Storage storage) {
-        ReadOnlyIdentifiableManager<Crew> crewManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Crew>> crewManagerOptional;
+    private ReadOnlyItemManager<Crew> readCrewManager(Storage storage) {
+        ReadOnlyItemManager<Crew> crewManager;
+        Optional<? extends ReadOnlyItemManager<Crew>> crewManagerOptional;
         try {
             crewManagerOptional = storage.readCrewManager();
             if (crewManagerOptional.isEmpty()) {
-                crewManager = new IdentifiableManager<>();
+                crewManager = new ItemManager<>();
             } else {
                 logger.info("Data file for pilot manager found.");
                 crewManager = crewManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
-            crewManager = new IdentifiableManager<>();
+            crewManager = new ItemManager<>();
         }
         return crewManager;
     }
@@ -163,19 +163,19 @@ public class MainApp extends Application {
      * @param storage the storage object
      * @return the plane manager
      */
-    private ReadOnlyIdentifiableManager<Plane> readPlaneManager(Storage storage) {
-        ReadOnlyIdentifiableManager<Plane> planeManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Plane>> crewManagerOptional;
+    private ReadOnlyItemManager<Plane> readPlaneManager(Storage storage) {
+        ReadOnlyItemManager<Plane> planeManager;
+        Optional<? extends ReadOnlyItemManager<Plane>> crewManagerOptional;
         try {
             crewManagerOptional = storage.readPlaneManager();
             if (crewManagerOptional.isEmpty()) {
-                planeManager = new IdentifiableManager<>();
+                planeManager = new ItemManager<>();
             } else {
                 logger.info("Data file for pilot manager found.");
                 planeManager = crewManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
-            planeManager = new IdentifiableManager<>();
+            planeManager = new ItemManager<>();
         }
         return planeManager;
     }
@@ -185,19 +185,19 @@ public class MainApp extends Application {
      * @param storage the storage object
      * @return flight plane manager
      */
-    private ReadOnlyIdentifiableManager<Flight> readFlightManager(Storage storage) {
-        ReadOnlyIdentifiableManager<Flight> flightManager;
-        Optional<? extends ReadOnlyIdentifiableManager<Flight>> flightManagerOptional;
+    private ReadOnlyItemManager<Flight> readFlightManager(Storage storage) {
+        ReadOnlyItemManager<Flight> flightManager;
+        Optional<? extends ReadOnlyItemManager<Flight>> flightManagerOptional;
         try {
             flightManagerOptional = storage.readFlightManager();
             if (flightManagerOptional.isEmpty()) {
-                flightManager = new IdentifiableManager<>();
+                flightManager = new ItemManager<>();
             } else {
                 logger.info("Data file for pilot manager found.");
                 flightManager = flightManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
-            flightManager = new IdentifiableManager<>();
+            flightManager = new ItemManager<>();
         }
         return flightManager;
     }
@@ -224,11 +224,11 @@ public class MainApp extends Application {
             addressBook = new AddressBook();
         }
 
-        ReadOnlyIdentifiableManager<Pilot> pilotManager = readPilotManager(storage);
-        ReadOnlyIdentifiableManager<Location> locationManager = readLocationManager(storage);
-        ReadOnlyIdentifiableManager<Crew> crewManager = readCrewManager(storage);
-        ReadOnlyIdentifiableManager<Plane> planeManager = readPlaneManager(storage);
-        ReadOnlyIdentifiableManager<Flight> flightManager = readFlightManager(storage);
+        ReadOnlyItemManager<Pilot> pilotManager = readPilotManager(storage);
+        ReadOnlyItemManager<Location> locationManager = readLocationManager(storage);
+        ReadOnlyItemManager<Crew> crewManager = readCrewManager(storage);
+        ReadOnlyItemManager<Plane> planeManager = readPlaneManager(storage);
+        ReadOnlyItemManager<Flight> flightManager = readFlightManager(storage);
 
         return new ModelManager(addressBook, userPrefs,
                                 pilotManager, locationManager, crewManager, planeManager, flightManager);

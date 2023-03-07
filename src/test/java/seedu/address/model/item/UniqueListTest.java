@@ -16,7 +16,7 @@ import seedu.address.model.item.exceptions.ItemDuplicateException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 public class UniqueListTest {
-    private UniqueList<IdentifiableStub> list;
+    private UniqueList<ItemStub> list;
 
     @BeforeEach
     void setUp() {
@@ -25,32 +25,32 @@ public class UniqueListTest {
 
     @Test
     void constructor_shouldCreateEmptyList() {
-        UniqueList<IdentifiableStub> list = new UniqueList<>();
+        UniqueList<ItemStub> list = new UniqueList<>();
         assertTrue(list.asUnmodifiableObservableList().isEmpty());
     }
 
     @Test
     void fromObservableList_validList_shouldCreateListWithSameElements() {
-        ObservableList<IdentifiableStub> observableList = FXCollections.observableArrayList(
-                new IdentifiableStub("a"),
-                new IdentifiableStub("b")
+        ObservableList<ItemStub> observableList = FXCollections.observableArrayList(
+                new ItemStub("a"),
+                new ItemStub("b")
         );
-        UniqueList<IdentifiableStub> list = UniqueList.fromObservableList(observableList);
+        UniqueList<ItemStub> list = UniqueList.fromObservableList(observableList);
         assertEquals(2, list.asUnmodifiableObservableList().size());
     }
 
     @Test
     void fromObservableList_duplicatedList_shouldThrowItemDuplicateException() {
-        ObservableList<IdentifiableStub> observableList = FXCollections.observableArrayList(
-                new IdentifiableStub("a"),
-                new IdentifiableStub("a")
+        ObservableList<ItemStub> observableList = FXCollections.observableArrayList(
+                new ItemStub("a"),
+                new ItemStub("a")
         );
         assertThrows(ItemDuplicateException.class, () ->
                 UniqueList.fromObservableList(observableList));
         try {
             UniqueList.fromObservableList(observableList);
         } catch (ItemDuplicateException e) {
-            assertEquals(IdentifiableStub.class, e.getDuplicatedClass());
+            assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }
 
@@ -61,8 +61,8 @@ public class UniqueListTest {
 
     @Test
     void fromObservableList_nullItem_shouldThrowNullPointerException() {
-        ObservableList<IdentifiableStub> observableList = FXCollections.observableArrayList(
-                new IdentifiableStub("a"),
+        ObservableList<ItemStub> observableList = FXCollections.observableArrayList(
+                new ItemStub("a"),
                 null
         );
         assertThrows(NullPointerException.class, () ->
@@ -71,19 +71,19 @@ public class UniqueListTest {
 
     @Test
     void add_validItem_shouldAddItem() {
-        this.list.add(new IdentifiableStub("a"));
+        this.list.add(new ItemStub("a"));
         assertEquals(1, this.list.asUnmodifiableObservableList().size());
     }
 
     @Test
     void add_duplicatedItem_shouldThrowItemDuplicateException() {
-        this.list.add(new IdentifiableStub("a"));
+        this.list.add(new ItemStub("a"));
         assertThrows(ItemDuplicateException.class, () ->
-                this.list.add(new IdentifiableStub("a")));
+                this.list.add(new ItemStub("a")));
         try {
-            this.list.add(new IdentifiableStub("a"));
+            this.list.add(new ItemStub("a"));
         } catch (ItemDuplicateException e) {
-            assertEquals(IdentifiableStub.class, e.getDuplicatedClass());
+            assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }
 
@@ -94,21 +94,21 @@ public class UniqueListTest {
 
     @Test
     void contains_validItem_shouldReturnTrue() {
-        IdentifiableStub item = new IdentifiableStub("a");
+        ItemStub item = new ItemStub("a");
         this.list.add(item);
         assertTrue(this.list.contains(item));
     }
 
     @Test
     void contains_nullItem_shouldThrowNullPointerException() {
-        assertThrows(NullPointerException.class, () -> this.list.contains((IdentifiableStub) null));
+        assertThrows(NullPointerException.class, () -> this.list.contains((ItemStub) null));
     }
 
     @Test
     void setItem_validItem_shouldReplaceItem() {
-        IdentifiableStub item = new IdentifiableStub("a");
+        ItemStub item = new ItemStub("a");
         this.list.add(item);
-        IdentifiableStub newItem = new IdentifiableStub("b");
+        ItemStub newItem = new ItemStub("b");
         this.list.setItem(item, newItem);
         assertTrue(this.list.contains(newItem));
         assertFalse(this.list.contains(item));
@@ -116,8 +116,8 @@ public class UniqueListTest {
 
     @Test
     void setItem_nullItem_shouldThrowNullPointerException() {
-        IdentifiableStub target = new IdentifiableStub("a");
-        IdentifiableStub editedItem = new IdentifiableStub("b");
+        ItemStub target = new ItemStub("a");
+        ItemStub editedItem = new ItemStub("b");
         assertThrows(NullPointerException.class, () -> this.list.setItem(target,
                 null));
         assertThrows(NullPointerException.class, () -> this.list.setItem(null,
@@ -128,23 +128,23 @@ public class UniqueListTest {
 
     @Test
     void setItem_itemNotInList_shouldThrowItemNotFoundException() {
-        IdentifiableStub target = new IdentifiableStub("a");
-        IdentifiableStub editedItem = new IdentifiableStub("b");
+        ItemStub target = new ItemStub("a");
+        ItemStub editedItem = new ItemStub("b");
         assertThrows(ItemNotFoundException.class, () -> this.list.setItem(target,
                 editedItem));
     }
 
     @Test
     void setItem_sameItem_shouldNotThrowException() {
-        IdentifiableStub item = new IdentifiableStub("a");
+        ItemStub item = new ItemStub("a");
         this.list.add(item);
         assertDoesNotThrow(() -> this.list.setItem(item, item));
     }
 
     @Test
     void setItem_itemAlreadyInList_shouldThrowItemDuplicateException() {
-        IdentifiableStub item = new IdentifiableStub("a");
-        IdentifiableStub item2 = new IdentifiableStub("b");
+        ItemStub item = new ItemStub("a");
+        ItemStub item2 = new ItemStub("b");
         this.list.add(item);
         this.list.add(item2);
         assertThrows(ItemDuplicateException.class, () -> this.list.setItem(item,
@@ -152,13 +152,13 @@ public class UniqueListTest {
         try {
             this.list.setItem(item, item2);
         } catch (ItemDuplicateException e) {
-            assertEquals(IdentifiableStub.class, e.getDuplicatedClass());
+            assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }
 
     @Test
     void remove_validItem_shouldRemoveItem() {
-        IdentifiableStub item = new IdentifiableStub("a");
+        ItemStub item = new ItemStub("a");
         this.list.add(item);
         this.list.remove(item);
         assertFalse(this.list.contains(item));
@@ -166,25 +166,25 @@ public class UniqueListTest {
 
     @Test
     void remove_nullItem_shouldThrowNullPointerException() {
-        assertThrows(NullPointerException.class, () -> this.list.remove((IdentifiableStub) null));
+        assertThrows(NullPointerException.class, () -> this.list.remove((ItemStub) null));
     }
 
     @Test
     void remove_itemNotInList_shouldThrowItemNotFoundException() {
-        IdentifiableStub item = new IdentifiableStub("a");
+        ItemStub item = new ItemStub("a");
         assertThrows(ItemNotFoundException.class, () -> this.list.remove(item));
     }
 
     @Test
     void setItems_validItems_shouldReplaceItems() {
-        IdentifiableStub item = new IdentifiableStub("a");
-        IdentifiableStub item2 = new IdentifiableStub("b");
+        ItemStub item = new ItemStub("a");
+        ItemStub item2 = new ItemStub("b");
         this.list.add(item);
         this.list.add(item2);
 
-        IdentifiableStub newItem = new IdentifiableStub("c");
-        IdentifiableStub newItem2 = new IdentifiableStub("d");
-        ObservableList<IdentifiableStub> items = FXCollections.observableArrayList(
+        ItemStub newItem = new ItemStub("c");
+        ItemStub newItem2 = new ItemStub("d");
+        ObservableList<ItemStub> items = FXCollections.observableArrayList(
                 newItem,
                 newItem2
         );
@@ -199,14 +199,14 @@ public class UniqueListTest {
 
     @Test
     void setItems_uniqueList_shouldReplaceItems() {
-        IdentifiableStub item = new IdentifiableStub("a");
-        IdentifiableStub item2 = new IdentifiableStub("b");
+        ItemStub item = new ItemStub("a");
+        ItemStub item2 = new ItemStub("b");
         this.list.add(item);
         this.list.add(item2);
 
-        IdentifiableStub newItem = new IdentifiableStub("c");
-        IdentifiableStub newItem2 = new IdentifiableStub("d");
-        UniqueList<IdentifiableStub> items = new UniqueList<>();
+        ItemStub newItem = new ItemStub("c");
+        ItemStub newItem2 = new ItemStub("d");
+        UniqueList<ItemStub> items = new UniqueList<>();
         items.add(newItem);
         items.add(newItem2);
 
@@ -220,9 +220,9 @@ public class UniqueListTest {
 
     @Test
     void itemsHaveDuplicate_hasDuplicate_shouldReturnTrue() {
-        IdentifiableStub item = new IdentifiableStub("a");
-        IdentifiableStub item2 = new IdentifiableStub("a");
-        ObservableList<IdentifiableStub> items = FXCollections.observableArrayList(
+        ItemStub item = new ItemStub("a");
+        ItemStub item2 = new ItemStub("a");
+        ObservableList<ItemStub> items = FXCollections.observableArrayList(
                 item,
                 item2
         );
@@ -231,19 +231,19 @@ public class UniqueListTest {
 
     @Test
     void itemsHaveDuplicate_noDuplicate_shouldReturnFalse() {
-        IdentifiableStub item = new IdentifiableStub("a");
-        IdentifiableStub item2 = new IdentifiableStub("b");
-        ObservableList<IdentifiableStub> items = FXCollections.observableArrayList(
+        ItemStub item = new ItemStub("a");
+        ItemStub item2 = new ItemStub("b");
+        ObservableList<ItemStub> items = FXCollections.observableArrayList(
                 item,
                 item2
         );
         assertFalse(UniqueList.itemsHaveDuplicate(items));
     }
 
-    private static class IdentifiableStub implements Identifiable {
+    private static class ItemStub implements Item {
         private final String id;
 
-        public IdentifiableStub(String id) {
+        public ItemStub(String id) {
             this.id = id;
         }
 

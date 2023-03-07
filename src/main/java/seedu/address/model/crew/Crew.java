@@ -3,12 +3,12 @@ package seedu.address.model.crew;
 import java.util.List;
 import java.util.UUID;
 
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 /**
  * Represents a Crew in the Wingman app.
  */
-public class Crew implements Identifiable {
+public class Crew implements Item {
     private static final String ID_STRING = "ID";
     private static final String NAME_STRING = "Name";
     private static final String RANK_STRING = "Rank";

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyIdentifiableManager;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.crew.Crew;
@@ -50,13 +50,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      *
      * @return the pilot manager.
      */
-    Optional<? extends ReadOnlyIdentifiableManager<Pilot>> readPilotManager() throws DataConversionException,
+    Optional<? extends ReadOnlyItemManager<Pilot>> readPilotManager() throws DataConversionException,
                                                          IOException;
 
     /**
      * Saves the pilot manager to the {@code Storage::getLocationManagerFilePath}
      */
-    void savePilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) throws IOException;
+    void savePilotManager(ReadOnlyItemManager<Pilot> pilotManager) throws IOException;
 
 
     // ================ Location methods ==============================
@@ -72,7 +72,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      *
      * @return the location manager.
      */
-    Optional<? extends ReadOnlyIdentifiableManager<Location>> readLocationManager() throws DataConversionException,
+    Optional<? extends ReadOnlyItemManager<Location>> readLocationManager() throws DataConversionException,
             IOException;
 
     /**
@@ -80,7 +80,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @param locationManager the location manager
      * @throws IOException when the file cannot be saved
      */
-    void saveLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) throws IOException;
+    void saveLocationManager(ReadOnlyItemManager<Location> locationManager) throws IOException;
 
 
     // ================ Crew methods ==============================
@@ -97,24 +97,24 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      *
      * @return the crew manager.
      */
-    Optional<? extends ReadOnlyIdentifiableManager<Crew>> readCrewManager() throws DataConversionException,
+    Optional<? extends ReadOnlyItemManager<Crew>> readCrewManager() throws DataConversionException,
             IOException;
 
 
     /**
      * Saves the crew manager to the {@code Storage::getCrewManagerFilePath}
      */
-    void saveCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) throws IOException;
+    void saveCrewManager(ReadOnlyItemManager<Crew> crewManager) throws IOException;
 
 
     // ================ Plane methods ==============================
 
     Path getPlaneManagerFilePath();
 
-    Optional<? extends ReadOnlyIdentifiableManager<Plane>> readPlaneManager() throws DataConversionException,
+    Optional<? extends ReadOnlyItemManager<Plane>> readPlaneManager() throws DataConversionException,
             IOException;
 
-    void savePlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) throws IOException;
+    void savePlaneManager(ReadOnlyItemManager<Plane> planeManager) throws IOException;
 
 
     // ================ Flight methods ==============================
@@ -133,7 +133,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @throws DataConversionException when the file cannot be converted
      * @throws IOException when the file cannot be read
      */
-    Optional<? extends ReadOnlyIdentifiableManager<Flight>> readFlightManager() throws DataConversionException,
+    Optional<? extends ReadOnlyItemManager<Flight>> readFlightManager() throws DataConversionException,
             IOException;
 
     /**
@@ -142,5 +142,5 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
      * @param flightManager the flight manager
      * @throws IOException when the file cannot be saved
      */
-    void saveFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager) throws IOException;
+    void saveFlightManager(ReadOnlyItemManager<Flight> flightManager) throws IOException;
 }

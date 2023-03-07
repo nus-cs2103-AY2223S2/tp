@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 import seedu.address.ui.UiPart;
 
 /**
@@ -20,14 +20,14 @@ public class ItemListPanel extends UiPart<Region> {
     private final Logger logger;
 
     @FXML
-    private ListView<Identifiable> itemList;
+    private ListView<Item> itemList;
 
     /**
      * Creates a {@code ItemListPanel} with the given {@code ObservableList}.
      *
      * @param itemList The list of items to be displayed.
      */
-    public ItemListPanel(ObservableList<Identifiable> itemList) {
+    public ItemListPanel(ObservableList<Item> itemList) {
         this(LogsCenter.getLogger(ItemListPanel.class), itemList);
     }
 
@@ -38,7 +38,7 @@ public class ItemListPanel extends UiPart<Region> {
      * @param itemList The list of items to be displayed.
      */
     public ItemListPanel(Logger logger,
-        ObservableList<Identifiable> itemList) {
+        ObservableList<Item> itemList) {
         super(FXML);
         this.logger = logger;
         this.itemList.setItems(itemList);

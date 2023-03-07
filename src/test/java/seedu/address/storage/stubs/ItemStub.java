@@ -1,11 +1,11 @@
 package seedu.address.storage.stubs;
 
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 /**
  * Represents the stub for an {@code Identifiable} object.
  */
-public class IdentifiableStub implements Identifiable {
+public class ItemStub implements Item {
     /**
      * The id of the {@code Identifiable} object.
      */
@@ -16,7 +16,7 @@ public class IdentifiableStub implements Identifiable {
      *
      * @param id The id of the {@code Identifiable} object.
      */
-    public IdentifiableStub(String id) {
+    public ItemStub(String id) {
         this.id = id;
     }
 
