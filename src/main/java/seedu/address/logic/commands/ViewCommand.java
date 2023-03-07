@@ -2,21 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ViewCommandParser;
-import seedu.address.model.Model;
-import seedu.address.model.person.MatchNamePredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.MatchNamePredicate;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Views a person's contact details
@@ -54,11 +51,13 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_VIEW_INVALID_PERSON_CONTACT_DETAILS);
         }
 
-        List<Name> nameList = index.stream().filter(x -> validateIndex(x, lastShownList)).map(x -> lastShownList.get(x.getZeroBased()).getName()).collect(Collectors.toList());
+        List<Name> nameList = index.stream().filter(x -> validateIndex(x, lastShownList))
+                .map(x -> lastShownList.get(x.getZeroBased()).getName()).collect(Collectors.toList());
         MatchNamePredicate predicate = new MatchNamePredicate(nameList);
         model.updateFilteredPersonList(predicate);
         StringBuilder sb = new StringBuilder();
-        nameList.stream().forEach(x -> sb.append(String.format(Messages.MESSAGE_VIEW_PERSON_CONTACT_DETAILS, x) + "\n"));
+        nameList.stream().forEach(x -> sb.append(
+                String.format(Messages.MESSAGE_VIEW_PERSON_CONTACT_DETAILS, x) + "\n"));
         return new CommandResult(sb.toString());
     }
 
