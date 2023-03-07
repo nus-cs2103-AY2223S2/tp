@@ -1,19 +1,22 @@
 package seedu.address.model.meeting;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Meeting in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Meeting {
-
     // Identity fields
     private final Title title;
     private final DateTime dateTime;
-    private final Attendees attendees;
+    private final Set<Person> attendees = new HashSet<>();
 
     // Data fields
     private final Location location;
@@ -22,11 +25,11 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Title title, DateTime dateTime, Attendees attendees, Location location, Description description) {
+    public Meeting(Title title, DateTime dateTime, Set<Person> attendees, Location location, Description description) {
         requireAllNonNull(title, dateTime, attendees, location, description);
         this.title = title;
         this.dateTime = dateTime;
-        this.attendees = attendees;
+        this.attendees.addAll(attendees);
         this.location = location;
         this.description = description;
     }
@@ -39,7 +42,7 @@ public class Meeting {
         return dateTime;
     }
 
-    public Attendees getAttendees() {
+    public Set<Person> getAttendees() {
         return attendees;
     }
 
@@ -60,11 +63,10 @@ public class Meeting {
             return true;
         }
 
-        boolean hasSameTitle = otherMeeting.getTitle().equals(getTitle());
-        boolean hasSameDateTime = otherMeeting.getDateTime().equals(getDateTime());
-        boolean hasSameAttendees = otherMeeting.getAttendees().equals(getAttendees());
-
-        return otherMeeting != null && hasSameTitle && hasSameDateTime && hasSameAttendees;
+        return otherMeeting != null
+                && otherMeeting.getTitle().equals(getTitle())
+                && otherMeeting.getDateTime().equals(getDateTime())
+                && otherMeeting.getAttendees().equals(getAttendees());
     }
 
     /**
