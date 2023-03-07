@@ -1,6 +1,7 @@
 package mycelium.mycelium.model;
 
 import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 
 /**
@@ -13,5 +14,7 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    ObservableList<Client> getClientList();
 
 }
