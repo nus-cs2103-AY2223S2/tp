@@ -10,15 +10,25 @@ import javafx.collections.ObservableList;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
 import mycelium.mycelium.model.util.exceptions.ItemNotFoundException;
 
-public class UniqueList<T extends IsSame<T>> implements Iterable<T>{
+/**
+ * A list with invariant that every item is unique. The items must implement {@link IsSame}, which is used to check
+ * if uniqueness is violated, rather than {@code equals}.
+ */
+public class UniqueList<T extends IsSame<T>> implements Iterable<T> {
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Checks if the current list contains some object.
+     */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
     }
 
+    /**
+     * Adds an item to the list.
+     */
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -29,6 +39,9 @@ public class UniqueList<T extends IsSame<T>> implements Iterable<T>{
 
     // TODO a "set" method
 
+    /**
+     * Removes an item from the list.
+     */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -36,6 +49,9 @@ public class UniqueList<T extends IsSame<T>> implements Iterable<T>{
         }
     }
 
+    /**
+     * Returns an immutable reference to the internal list.
+     */
     public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }

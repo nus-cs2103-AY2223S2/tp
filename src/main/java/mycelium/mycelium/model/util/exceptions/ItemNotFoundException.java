@@ -1,6 +1,9 @@
 package mycelium.mycelium.model.util.exceptions;
 
-public class ItemNotFoundException extends  RuntimeException{
+/**
+ * Signals that some requested item was not available.
+ */
+public class ItemNotFoundException extends RuntimeException {
 
     public ItemNotFoundException() {
         super(String.format("A requested item was not found."));

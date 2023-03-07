@@ -1,6 +1,9 @@
 package mycelium.mycelium.model.util.exceptions;
 
-public class DuplicateItemException extends RuntimeException{
+/**
+ * Signals that a duplicate item cannot be allowed.
+ */
+public class DuplicateItemException extends RuntimeException {
     public DuplicateItemException() {
         super(String.format("Operation would result in duplicate item."));
     }
