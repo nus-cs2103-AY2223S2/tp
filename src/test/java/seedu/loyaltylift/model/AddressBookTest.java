@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.customer.exceptions.DuplicateCustomerException;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class AddressBookTest {

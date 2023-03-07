@@ -30,7 +30,7 @@ public class CreatedDate {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid created date.
      */
     public static boolean isValidCreatedDate(Date test) {
         Date now = new Date();

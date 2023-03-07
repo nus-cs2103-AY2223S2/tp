@@ -58,7 +58,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isShowCustomerSelection() { return customerIndex != null; }
+    public boolean isShowCustomerSelection() {
+        return customerIndex != null;
+    }
 
     @Override
     public boolean equals(Object other) {

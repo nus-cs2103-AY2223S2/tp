@@ -11,11 +11,11 @@ import java.util.Objects;
  */
 public class Order {
 
-  private final Name name;
-  private final Quantity quantity;
-  private final Status status;
-  private final Address address;
-  private final CreatedDate createdDate;
+    private final Name name;
+    private final Quantity quantity;
+    private final Status status;
+    private final Address address;
+    private final CreatedDate createdDate;
 
     /**
      * Order constructor with created date set to today.
@@ -35,7 +35,7 @@ public class Order {
         this.address = address;
         this.createdDate = createdDate;
     }
-  
+
     public Name getName() {
         return name;
     }
@@ -56,7 +56,7 @@ public class Order {
         return createdDate;
     }
 
-  
+
     /**
      * Returns true if both orders have the same name.
      * This defines a weaker notion of equality between two orders.
