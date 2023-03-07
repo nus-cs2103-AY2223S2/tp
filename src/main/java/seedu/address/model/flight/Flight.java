@@ -1,10 +1,14 @@
 package seedu.address.model.flight;
 
-import seedu.address.model.item.Identifiable;
-
 import java.util.List;
 import java.util.UUID;
 
+import seedu.address.model.item.Identifiable;
+
+
+/**
+ * Represents a flight object in wingman
+ */
 public class Flight implements Identifiable {
     private final String code;
     private final String id;

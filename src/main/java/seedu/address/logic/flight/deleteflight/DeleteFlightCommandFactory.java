@@ -1,12 +1,12 @@
 package seedu.address.logic.flight.deleteflight;
 
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.pilot.deletepilot.DeletePilotCommand;
 
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * The factory that's responsible for creating a {@code DeleteFlightCommand}.

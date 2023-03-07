@@ -1,12 +1,14 @@
 package seedu.address.storage.json.storage;
 
+import java.nio.file.Path;
+
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.flight.Flight;
 import seedu.address.storage.json.JsonIdentifiableStorage;
 import seedu.address.storage.json.adapted.JsonAdaptedFlight;
 import seedu.address.storage.json.serializable.JsonSerializableFlightManager;
 
-import java.nio.file.Path;
+
 
 /**
  * Represents a storage for {@link Flight}s.

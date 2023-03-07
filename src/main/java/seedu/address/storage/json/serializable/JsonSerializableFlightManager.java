@@ -1,15 +1,18 @@
 package seedu.address.storage.json.serializable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.flight.Flight;
 import seedu.address.storage.json.JsonIdentifiableManager;
 import seedu.address.storage.json.adapted.JsonAdaptedFlight;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Represents a serializable manager of flights.

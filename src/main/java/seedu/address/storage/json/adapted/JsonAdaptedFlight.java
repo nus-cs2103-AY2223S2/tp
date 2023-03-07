@@ -3,6 +3,7 @@ package seedu.address.storage.json.adapted;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.flight.Flight;
 import seedu.address.storage.json.JsonAdaptedModel;

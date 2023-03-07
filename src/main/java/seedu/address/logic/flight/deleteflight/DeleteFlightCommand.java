@@ -1,12 +1,12 @@
 package seedu.address.logic.flight.deleteflight;
 
+import java.util.Optional;
+
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
-
-import java.util.Optional;
 
 /**
  * The command that deletes a flight from Wingman

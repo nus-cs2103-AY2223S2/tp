@@ -10,9 +10,9 @@ import seedu.address.model.ReadOnlyIdentifiableManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.flight.Flight;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.Pilot;
-import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.Plane;
 
 /**

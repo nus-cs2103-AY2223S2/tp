@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.flight.Flight;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Identifiable;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -339,9 +339,9 @@ public interface Model {
     /**
      * Sets the flight manager file path
      *
-     * @param FlightManagerFilePath flight manager file path
+     * @param flightManagerFilePath flight manager file path
      */
-    void setFlightManagerFilePath(Path FlightManagerFilePath);
+    void setFlightManagerFilePath(Path flightManagerFilePath);
 
     /**
      * Replaces the current flight manager's data with data in {@code flightManager}

@@ -1,12 +1,14 @@
 package seedu.address.logic.flight.addflight;
 
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.flight.Flight;
 
-import java.util.Optional;
-import java.util.Set;
+
 
 /**
  * The factory that creates {@code AddLocationCommand}.
