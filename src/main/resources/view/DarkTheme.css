@@ -307,12 +307,12 @@
     -fx-padding: 8 1 8 1;
 }
 
-.card-title {
-    -fx-font-size: 16;
-    -fx-font-weight: bold;
+.label.card-title {
+    -fx-font-size: 20;
+    -fx-text-fill: rgb(224, 152, 19);
 }
 
-.card-attribute-label {
+.label.card-attribute-label {
     -fx-font-size: 11;
 }
 
