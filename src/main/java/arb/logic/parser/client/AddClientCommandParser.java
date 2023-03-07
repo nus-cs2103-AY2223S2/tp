@@ -6,6 +6,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -42,8 +43,19 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        
+        Optional<String> phoneString = argMultimap.getValue(PREFIX_PHONE);
+        Phone phone = null;
+        if (phoneString.isPresent()) {
+            phone = ParserUtil.parsePhone((phoneString.get()));
+        }
+
+        Optional<String> emailString = argMultimap.getValue(PREFIX_EMAIL);
+        Email email = null;
+        if (emailString.isPresent()) {
+            email = ParserUtil.parseEmail(emailString.get());
+        }
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Client client = new Client(name, phone, email, tagList);

@@ -1,6 +1,7 @@
 package arb.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import arb.model.client.Client;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Client}.
@@ -29,6 +31,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox contentsPane;;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -49,8 +53,19 @@ public class ClientCard extends UiPart<Region> {
         this.client = client;
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
-        phone.setText(client.getPhone().value);
-        email.setText(client.getEmail().value);
+
+        if (client.isPhonePresent()) {
+            phone.setText(client.getPhone().value);
+        } else {
+            contentsPane.getChildren().remove(phone);
+        }
+        
+        if (client.isEmailPresent()) {
+            email.setText(client.getEmail().value);
+        } else {
+            contentsPane.getChildren().remove(email);
+        }
+        
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
