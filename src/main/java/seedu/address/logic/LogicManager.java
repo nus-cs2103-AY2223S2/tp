@@ -7,11 +7,13 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EduMateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.EduMate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
@@ -45,11 +47,24 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = eduMateParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        Path filePath = commandResult.getFilePath().orElseGet(model::getEduMateFilePath);
 
         try {
+            if (commandResult.isSave()) {
+                storage.saveEduMate(model.getEduMate(), filePath);
+            } else if (commandResult.isLoad()) {
+                ReadOnlyEduMate readOnlyEduMate = storage.readEduMate(filePath).orElseGet(EduMate::new);
+                model.setEduMate(readOnlyEduMate);
+            }
             storage.saveEduMate(model.getEduMate());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        } catch (DataConversionException dce) {
+            String message = String.format(
+                    "Data file at %s not in the correct format. Will be starting with an empty EduMate",
+                    filePath.toString());
+            logger.warning(message);
+            throw new CommandException(message, dce);
         }
 
         return commandResult;
