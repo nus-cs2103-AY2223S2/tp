@@ -44,7 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_WEIGHT_BOB = "26";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_AMY = "F";
-    public static final String VALID_GOAL_BOB = "lose weight";
+    public static final String VALID_GOAL_BOB = "gain weight";
     public static final String VALID_GOAL_AMY = "lose weight";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_CALORIE_AMY = "2101";

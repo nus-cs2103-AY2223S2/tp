@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -54,6 +55,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_GOAL + "GOAL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -233,7 +235,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(goal);
         }
 
-
         /**
          * Sets {@code appointments} to this object's {@code appointments}.
          * A defensive copy of {@code appointments} is used internally.
@@ -295,10 +296,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getCalorie().equals(e.getCalorie())
                     && getWeight().equals(e.getWeight())
                     && getGender().equals(e.getGender())
+                    && getGoal().equals(e.getGoal())
+                    && getCalorie().equals(e.getCalorie())
                     && getAppointments().equals(e.getAppointments())
                     && getTags().equals(e.getTags());
         }

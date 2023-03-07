@@ -65,6 +65,7 @@ public class ClientUtil {
         descriptor.getCalorie().ifPresent(address -> sb.append(PREFIX_CALORIE).append(address.value).append(" "));
         descriptor.getWeight().ifPresent(weight -> sb.append(PREFIX_WEIGHT).append(weight.value).append(" "));
         descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+        descriptor.getGoal().ifPresent(goal -> sb.append(PREFIX_GOAL).append(goal.value).append(" "));
         if (descriptor.getAppointments().isPresent()) {
             Set<Appointment> appointments = descriptor.getAppointments().get();
             if (appointments.isEmpty()) {

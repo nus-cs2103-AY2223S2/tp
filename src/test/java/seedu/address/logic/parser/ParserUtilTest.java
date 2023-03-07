@@ -19,6 +19,7 @@ import seedu.address.model.client.Appointment;
 import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -34,7 +35,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_WEIGHT = "-23";
     private static final String INVALID_GENDER = "H";
-
+    private static final String INVALID_GOAL = " ";
     private static final String INVALID_APPOINTMENT = "235236";
 
 
@@ -47,7 +48,7 @@ public class ParserUtilTest {
     private static final String VALID_CALORIE = "2000";
     private static final String VALID_WEIGHT = "23";
     private static final String VALID_GENDER = "m";
-
+    private static final String VALID_GOAL = "lose weight";
     private static final String VALID_APPOINTMENT_1 = "10-10-2023";
     private static final String VALID_APPOINTMENT_2 = "11-12-2020";
 
@@ -234,6 +235,21 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseGoal_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGoal((String) null));
+    }
+
+    @Test
+    public void parseGoal_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGoal(INVALID_GOAL));
+    }
+
+    @Test
+    public void parseGoal_validValueWithoutWhitespace_returnsGoal() throws Exception {
+        Goal expectedGoal = new Goal(VALID_GOAL);
+        assertEquals(expectedGoal, ParserUtil.parseGoal(VALID_GOAL));
+    }
+    @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
@@ -325,7 +341,6 @@ public class ParserUtilTest {
         Set<Appointment> expectedAppointmentSet =
                 new HashSet<Appointment>(Arrays.asList(new Appointment(VALID_APPOINTMENT_1),
                         new Appointment(VALID_APPOINTMENT_2)));
-
         assertEquals(actualAppointmentSet, expectedAppointmentSet);
     }
 

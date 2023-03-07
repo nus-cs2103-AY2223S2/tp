@@ -155,6 +155,9 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
+        if (goal == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
+        }
         if (!Goal.isValidGoal(goal)) {
             throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
         }

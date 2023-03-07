@@ -16,6 +16,7 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Gender;
+import seedu.address.model.client.Goal;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
@@ -167,20 +168,20 @@ public class JsonAdaptedClientTest {
 
     @Test
     public void toFitBookModelType_invalidCalorie_throwsIllegalValueException() {
-        JsonAdaptedClient person =
+        JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, INVALID_CALORIE, VALID_TAGS);
         String expectedMessage = Calorie.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toFitBookModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
 
     @Test
     public void toFitBookModelType_nullCalorie_throwsIllegalValueException() {
-        JsonAdaptedClient person =
+        JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Calorie.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toFitBookModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
 
     @Test
@@ -194,21 +195,19 @@ public class JsonAdaptedClientTest {
     }
     @Test
     public void toFitBookModelType_invalidGoals_throwsIllegalValueException() {
-        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_APPOINTMENT));
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, INVALID_GOAL, VALID_CALORIE, VALID_TAGS);
-        assertThrows(IllegalValueException.class, client::toFitBookModelType);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, INVALID_GOAL, VALID_CALORIE, VALID_TAGS);
+        String expectedMessage = Goal.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
     @Test
     public void toFitBookModelType_nullGoals_throwsIllegalValueException() {
-        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_APPOINTMENT));
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, null, VALID_CALORIE, VALID_TAGS);
-        assertThrows(IllegalValueException.class, client::toFitBookModelType);
+                        VALID_APPOINTMENTS, VALID_WEIGHT, VALID_GENDER, null, VALID_CALORIE, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, client::toFitBookModelType);
     }
 
 }
