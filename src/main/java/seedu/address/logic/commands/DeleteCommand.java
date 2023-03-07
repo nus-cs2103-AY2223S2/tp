@@ -48,7 +48,7 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList(predicate);
         List<Person> personList = model.getFilteredPersonList();
 
-        if (personList.size() <= 0) {
+        if (personList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
         }
 
