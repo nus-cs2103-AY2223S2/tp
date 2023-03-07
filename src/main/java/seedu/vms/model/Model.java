@@ -96,5 +96,5 @@ public interface Model {
      * Adds the given appointment.
      * {@code appointment} must not already exist in the appointment manager.
      */
-    void addAppointment(Appointment Appointment);
+    void addAppointment(Appointment appointment);
 }
