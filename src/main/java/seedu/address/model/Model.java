@@ -17,7 +17,7 @@ import seedu.address.model.person.information.Nric;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLYS = unused -> true;
+    Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLY = unused -> true;
     Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
 
     /**
@@ -161,6 +161,13 @@ public interface Model {
      * The pair must exist in the address book.
      */
     void deletePair(Pair target);
+
+    /**
+     * Deletes the given pair.
+     * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * must exist in the address book.
+     */
+    void deletePair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Adds the given pair.

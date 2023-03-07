@@ -64,8 +64,6 @@ public class LogicManager implements Logic {
         return model.getFriendlyLink();
     }
 
-
-
     @Override
     public Path getFriendlyLinkFilePath() {
         return model.getFriendlyLinkFilePath();
