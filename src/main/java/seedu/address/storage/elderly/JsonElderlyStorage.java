@@ -58,11 +58,11 @@ public class JsonElderlyStorage extends JsonAppStorage<ReadOnlyElderly, Friendly
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveElderly(ReadOnlyElderly friendlyLink, Path filePath) throws IOException {
-        requireNonNull(friendlyLink);
+    public void saveElderly(ReadOnlyElderly entity, Path filePath) throws IOException {
+        requireNonNull(entity);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableElderly(friendlyLink), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableElderly(entity), filePath);
     }
 }

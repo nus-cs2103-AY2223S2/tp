@@ -15,8 +15,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,10 +62,10 @@ public class TypicalElderly {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Elderly AMY = new ElderlyBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_SINGLE)
             .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISKLEVEL_AMY).build();
     public static final Elderly BOB = new ElderlyBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG)
             .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB).build();
 
     // TODO: Replace magic strings

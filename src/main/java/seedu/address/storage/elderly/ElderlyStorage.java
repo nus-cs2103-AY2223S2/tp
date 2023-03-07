@@ -9,11 +9,11 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 
 /**
- * Storage class for handling serializing and unserializing of the elderly entity
+ * Storage class for handling serializing and unserializing of the elderly entity.
  */
 public interface ElderlyStorage {
     /**
-     * Returns the file path of the data file.
+     * Returns the file path of the elderly data file.
      */
     Path getElderlyFilePath();
 

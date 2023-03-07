@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,7 +16,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
 import seedu.address.storage.elderly.JsonElderlyStorage;
-import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalElderly;
 
 public class JsonElderlyStorageTest {
@@ -63,7 +63,7 @@ public class JsonElderlyStorageTest {
     @Test
     public void readAndSaveElderly_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempElderly.json");
-        FriendlyLink original = TestUtil.getTypicalFriendlyLink();
+        FriendlyLink original = getTypicalFriendlyLink();
         JsonElderlyStorage jsonElderlyStorage = new JsonElderlyStorage(filePath);
 
         // Save in new file and read back
@@ -92,12 +92,12 @@ public class JsonElderlyStorageTest {
     }
 
     /**
-     * Saves {@code friendlyLink} at the specified {@code filePath}.
+     * Saves {@code elderly} at the specified {@code filePath}.
      */
-    private void saveElderly(ReadOnlyElderly friendlyLink, String filePath) {
+    private void saveElderly(ReadOnlyElderly elderly, String filePath) {
         try {
             new JsonElderlyStorage(Paths.get(filePath))
-                    .saveElderly(friendlyLink, addToTestDataPathIfNotNull(filePath));
+                    .saveElderly(elderly, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

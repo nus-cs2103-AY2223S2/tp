@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
@@ -37,22 +38,6 @@ public class Elderly extends Person {
     }
 
     /**
-     * Returns true if both elderly have the same name and NRIC.
-     * This defines a weaker notion of equality between two elderly.
-     * Used to detect if the new elderly is "Duplicate" of existing ones
-     * in the database. If duplicate, cannot add.
-     */
-    // Two elderly are the same if same name and age
-    public boolean isSamePerson(Elderly otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getNric().equals(getNric());
-    }
-
-    /**
      * Returns true if both elderly have the same identity and data fields.
      * This defines a stronger notion of equality between two elderly.
      * But is currently not used anywhere.
@@ -67,15 +52,16 @@ public class Elderly extends Person {
             return false;
         }
 
-        Elderly otherPerson = (Elderly) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getNric().equals(getNric())
-                && otherPerson.getAge().equals(getAge())
-                && otherPerson.getRiskLevel().equals(getRiskLevel())
-                && otherPerson.getTags().equals(getTags());
+        Elderly otherElderly = (Elderly) other;
+        return super.equals(otherElderly)
+                && otherElderly.getRiskLevel().equals(riskLevel);
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
+                getNric(), getAge(), getRiskLevel(), getTags());
     }
 
     @Override

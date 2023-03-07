@@ -13,7 +13,7 @@ import seedu.address.model.ReadOnlyVolunteer;
  */
 public interface VolunteerStorage {
     /**
-     * Returns the file path of the data file.
+     * Returns the file path of the volunteers data file.
      */
     Path getVolunteerFilePath();
 

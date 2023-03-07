@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Person}.
  */
-public class JsonAdaptedPerson {
+public abstract class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     private final String name;
@@ -68,27 +68,9 @@ public class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
     }
 
-    /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
-     */
-    // TODO: delete when no longer needed
-    public Person toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
-        final Name modelName = getModelName();
-        final Phone modelPhone = getModelPhone();
-        final Email modelEmail = getModelEmail();
-        final Address modelAddress = getModelAddress();
-        final Nric modelNric = getModelNric();
-        final Age modelAge = getModelAge();
-        final Set<Tag> modelTags = getTagSet(friendlyLink);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelNric, modelAge, modelTags);
-    }
-
-    public Nric getModelNric() throws IllegalValueException {
+    public Nric getModelNric(String missingFieldMessageFormat) throws IllegalValueException {
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Nric.class.getSimpleName()));
         }
         if (!Nric.isValidNric(nric)) {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
@@ -96,9 +78,9 @@ public class JsonAdaptedPerson {
         return new Nric(nric);
     }
 
-    public Age getModelAge() throws IllegalValueException {
+    public Age getModelAge(String missingFieldMessageFormat) throws IllegalValueException {
         if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
@@ -106,9 +88,9 @@ public class JsonAdaptedPerson {
         return new Age(age);
     }
 
-    protected Address getModelAddress() throws IllegalValueException {
+    protected Address getModelAddress(String missingFieldMessageFormat) throws IllegalValueException {
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -116,9 +98,9 @@ public class JsonAdaptedPerson {
         return new Address(address);
     }
 
-    protected Email getModelEmail() throws IllegalValueException {
+    protected Email getModelEmail(String missingFieldMessageFormat) throws IllegalValueException {
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -126,9 +108,9 @@ public class JsonAdaptedPerson {
         return new Email(email);
     }
 
-    protected Phone getModelPhone() throws IllegalValueException {
+    protected Phone getModelPhone(String missingFieldMessageFormat) throws IllegalValueException {
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -136,9 +118,9 @@ public class JsonAdaptedPerson {
         return new Phone(phone);
     }
 
-    protected Name getModelName() throws IllegalValueException {
+    protected Name getModelName(String missingFieldMessageFormat) throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);

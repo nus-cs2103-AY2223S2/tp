@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
@@ -16,9 +15,7 @@ import seedu.address.model.person.information.Nric;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Elderly> PREDICATE_SHOW_ALL_ELDERLY = unused -> true;
-    Predicate<Volunteer> PREDICATE_SHOW_ALL_VOLUNTEERS = unused -> true;
+    Predicate<?> PREDICATE_SHOW_ALL = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +50,10 @@ public interface Model {
     /**
      * Replaces FriendlyLink database data with the data in {@code friendlyLink}.
      */
-    void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink);
+    void setFriendlyLink(FriendlyLink friendlyLink);
 
     /** Returns the FriendlyLink */
-    ReadOnlyFriendlyLink getFriendlyLink();
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the FriendlyLink database.
-     */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the FriendlyLink database.
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the FriendlyLink database.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the FriendlyLink database.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the
-     * FriendlyLink database.
-     */
-    void setPerson(Person target, Person editedPerson);
+    FriendlyLink getFriendlyLink();
 
     /**
      * Retrieves the elderly with the given Nric.
@@ -119,12 +91,12 @@ public interface Model {
     void addElderly(Elderly elderly);
 
     /**
-     * Replaces the given elderly {@code target} with {@code editedPerson}.
+     * Replaces the given elderly {@code target} with {@code editedElderly}.
      * {@code target} must exist in the friendly link database.
-     * The elderly identity of {@code editedPerson} must not be the same as another existing elderly in the
+     * The elderly identity of {@code editedElderly} must not be the same as another existing elderly in the
      * friendly link database.
      */
-    void setElderly(Elderly target, Elderly editedPerson);
+    void setElderly(Elderly target, Elderly editedElderly);
 
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
@@ -149,7 +121,7 @@ public interface Model {
      * The volunteer identity of {@code editedVolunteer} must not be the same as another existing volunteer in the
      * friendly link database.
      */
-    void setVolunteer(Volunteer target, Volunteer editedPerson);
+    void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in the address book.
@@ -182,17 +154,6 @@ public interface Model {
      */
     void setPair(Pair target, Pair editedPair);
 
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-
     /** Returns an unmodifiable view of the filtered elderly list */
     ObservableList<Elderly> getFilteredElderlyList();
 
@@ -203,11 +164,11 @@ public interface Model {
     void updateFilteredElderlyList(Predicate<Elderly> predicate);
 
 
-    /** Returns an unmodifiable view of the filtered volunteers list */
+    /** Returns an unmodifiable view of the filtered volunteer list */
     ObservableList<Volunteer> getFilteredVolunteerList();
 
     /**
-     * Updates the filter of the filtered volunteers list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredVolunteerList(Predicate<Volunteer> predicate);

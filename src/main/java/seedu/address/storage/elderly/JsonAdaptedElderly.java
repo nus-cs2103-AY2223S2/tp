@@ -29,7 +29,7 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
     private final String riskLevel;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedElderly} with the given elderly details.
      */
     @JsonCreator
     public JsonAdaptedElderly(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -50,26 +50,25 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted elderly object into the model's {@code Elderly} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted elderly.
      */
     public Elderly toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
-        Name modelName = super.getModelName();
-        Phone modelPhone = super.getModelPhone();
-        Email modelEmail = super.getModelEmail();
-        Address modelAddress = super.getModelAddress();
+        Name modelName = super.getModelName(MISSING_FIELD_MESSAGE_FORMAT);
+        Phone modelPhone = super.getModelPhone(MISSING_FIELD_MESSAGE_FORMAT);
+        Email modelEmail = super.getModelEmail(MISSING_FIELD_MESSAGE_FORMAT);
+        Address modelAddress = super.getModelAddress(MISSING_FIELD_MESSAGE_FORMAT);
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
-        Nric modelNric = super.getModelNric();
-        Age modelAge = super.getModelAge();
-
+        Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
+        Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
 
         if (riskLevel == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     RiskLevel.class.getSimpleName()));
         }
         if (!RiskLevel.isValidRisk(riskLevel)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(RiskLevel.MESSAGE_CONSTRAINTS);
         }
 
         return new Elderly(modelName, modelPhone, modelEmail, modelAddress,

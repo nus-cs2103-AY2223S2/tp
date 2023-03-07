@@ -19,12 +19,17 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.person.Volunteer;
+import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -50,8 +55,8 @@ public class CommandTestUtil {
     public static final String VALID_RISKLEVEL_AMY = "LOW";
     public static final String VALID_RISKLEVEL_BOB = "MEDIUM";
 
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_SINGLE = "single";
+    public static final String VALID_TAG_STRONG = "strong";
 
     public static final String INVALID_NRIC = "S1234325252B"; // nric has exactly 8 characters
 
@@ -67,11 +72,11 @@ public class CommandTestUtil {
     public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
 
-    public static final String RISK_DESC_AMY = " " + PREFIX_ADDRESS + VALID_RISKLEVEL_AMY;
-    public static final String RISK_DESC_BOB = " " + PREFIX_ADDRESS + VALID_RISKLEVEL_BOB;
+    public static final String RISK_DESC_AMY = " " + PREFIX_RISK + VALID_RISKLEVEL_AMY;
+    public static final String RISK_DESC_BOB = " " + PREFIX_RISK + VALID_RISKLEVEL_BOB;
 
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_SINGLE = " " + PREFIX_TAG + VALID_TAG_SINGLE;
+    public static final String TAG_DESC_STRONG = " " + PREFIX_TAG + VALID_TAG_STRONG;
 
     public static final String NRIC_ELDERLY_DESC_AMY = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_AMY;
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;
@@ -83,27 +88,41 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + INVALID_NRIC;
+    public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
+    public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "1835";
     public static final String INVALID_RISK_DESC = " " + PREFIX_RISK + "safe";
-    public static final String INVALID_ELDERLY_NRIC_DESC_AMY = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
-    public static final String INVALID_ELDERLY_NRIC_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
-    public static final String INVALID_VOLUNTEER_NRIC_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
-    public static final String INVALID_VOLUNTEER_NRIC_DESC_BOB = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "single*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditElderlyDescriptor DESC_ELDERLY_AMY;
+    public static final EditElderlyDescriptor DESC_ELDERLY_BOB;
+
+    public static final EditVolunteerDescriptor DESC_VOLUNTEER_AMY;
+    public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISKLEVEL_AMY)
+                .withTags(VALID_TAG_STRONG).build();
+
+        DESC_ELDERLY_BOB = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+
+        DESC_VOLUNTEER_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withTags(VALID_TAG_STRONG).build();
+
+        DESC_VOLUNTEER_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
     }
 
     /**
@@ -136,29 +155,47 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered volunteer, elderly and pair lists in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         FriendlyLink expectedFriendlyLink = new FriendlyLink(actualModel.getFriendlyLink());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Elderly> expectedFilteredElderlyList = new ArrayList<>(actualModel.getFilteredElderlyList());
+        List<Volunteer> expectedFilteredVolunteerList = new ArrayList<>(actualModel.getFilteredVolunteerList());
+        List<Pair> expectedFilteredPairList = new ArrayList<>(actualModel.getFilteredPairList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedFriendlyLink, actualModel.getFriendlyLink());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredElderlyList, actualModel.getFilteredElderlyList());
+        assertEquals(expectedFilteredVolunteerList, actualModel.getFilteredVolunteerList());
+        assertEquals(expectedFilteredPairList, actualModel.getFilteredPairList());
     }
+
+    /**
+     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}.
+     */
+    public static void showVolunteerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredVolunteerList().size());
+
+        Volunteer volunteer = model.getFilteredVolunteerList().get(targetIndex.getZeroBased());
+        final String[] splitName = volunteer.getName().fullName.split("\\s+");
+        model.updateFilteredVolunteerList(new NameContainsKeywordsPredicate<>(Collections.singletonList(splitName[0])));
+
+        assertEquals(1, model.getFilteredVolunteerList().size());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showElderlyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredElderlyList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        Elderly elderly = model.getFilteredElderlyList().get(targetIndex.getZeroBased());
+        final String[] splitName = elderly.getName().fullName.split("\\s+");
+        model.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Collections.singletonList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredElderlyList().size());
     }
 }

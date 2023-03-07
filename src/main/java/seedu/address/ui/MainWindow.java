@@ -31,7 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private VolunteerListPanel volunteerListPanel;
+    private ElderlyListPanel elderlyListPanel;
     private PairListPanel pairListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,7 +44,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane volunteerListPanelPlaceholder;
+
+    @FXML
+    private StackPane elderlyListPanelPlaceholder;
 
     @FXML
     private StackPane pairListPanelPlaceholder;
@@ -114,9 +118,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList());
+        elderlyListPanel = new ElderlyListPanel(logic.getFilteredElderlyList());
         pairListPanel = new PairListPanel(logic.getFilteredPairList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
+        elderlyListPanelPlaceholder.getChildren().add(elderlyListPanel.getRoot());
         pairListPanelPlaceholder.getChildren().add(pairListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -169,8 +175,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public VolunteerListPanel getVolunteerListPanel() {
+        return volunteerListPanel;
+    }
+
+    public ElderlyListPanel getElderlyListPanel() {
+        return elderlyListPanel;
     }
 
     /**

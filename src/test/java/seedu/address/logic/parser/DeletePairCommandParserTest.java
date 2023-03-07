@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ELDERLY_NRIC_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_VOLUNTEER_NRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ELDERLY_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_VOLUNTEER_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_AMY;
@@ -62,12 +62,12 @@ public class DeletePairCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid elderly nric followed by valid volunteer nric
         assertParseFailure(parser,
-                PREAMBLE_WHITESPACE + INVALID_ELDERLY_NRIC_DESC_AMY + NRIC_VOLUNTEER_DESC_BOB,
+                PREAMBLE_WHITESPACE + INVALID_ELDERLY_NRIC_DESC + NRIC_VOLUNTEER_DESC_BOB,
                 Nric.MESSAGE_CONSTRAINTS);
 
         // valid elderly nric followed by invalid volunteer nric
         assertParseFailure(parser,
-                PREAMBLE_WHITESPACE + NRIC_ELDERLY_DESC_AMY + INVALID_VOLUNTEER_NRIC_DESC_BOB,
+                PREAMBLE_WHITESPACE + NRIC_ELDERLY_DESC_AMY + INVALID_VOLUNTEER_NRIC_DESC,
                 Nric.MESSAGE_CONSTRAINTS);
     }
 
@@ -82,8 +82,8 @@ public class DeletePairCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE + INVALID_ELDERLY_NRIC_DESC_AMY + NRIC_ELDERLY_DESC_AMY
-                        + INVALID_VOLUNTEER_NRIC_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB,
+                PREAMBLE_WHITESPACE + NRIC_ELDERLY_DESC_AMY
+                        + INVALID_VOLUNTEER_NRIC_DESC + NRIC_VOLUNTEER_DESC_BOB,
                 new DeletePairCommand(new Nric(VALID_NRIC_AMY), new Nric(VALID_NRIC_BOB)));
     }
 }

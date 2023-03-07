@@ -4,21 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.CARL;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalVolunteers.BENSON;
+import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.FriendlyLinkBuilder;
+import seedu.address.testutil.TypicalElderly;
 
 public class ModelManagerTest {
 
@@ -75,37 +81,71 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasElderly_nullElderly_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasElderly(null));
     }
 
     @Test
-    public void hasPerson_personNotInFriendlyLink_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer(null));
     }
 
     @Test
-    public void hasPerson_personInFriendlyLink_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasElderly_elderlyNotInFriendlyLink_returnsFalse() {
+        assertFalse(modelManager.hasElderly(ALICE));
     }
 
     @Test
-    public void setPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, null));
-        assertThrows(NullPointerException.class, () -> modelManager.setPerson(ALICE, null));
-        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, ALICE));
+    public void hasVolunteer_volunteerNotInFriendlyLink_returnsFalse() {
+        assertFalse(modelManager.hasVolunteer(DANIEL));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void hasElderly_elderlyInFriendlyLink_returnsTrue() {
+        modelManager.addElderly(TypicalElderly.ALICE);
+        assertTrue(modelManager.hasElderly(TypicalElderly.ALICE));
     }
 
     @Test
-    public void updateFilteredPersonList_nullPredicate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPersonList(null));
+    public void hasVolunteer_volunteerInFriendlyLink_returnsTrue() {
+        modelManager.addVolunteer(DANIEL);
+        assertTrue(modelManager.hasVolunteer(DANIEL));
     }
+
+    @Test
+    public void setElderly_nullElderly_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setElderly(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setElderly(ALICE, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setElderly(null, ALICE));
+    }
+
+    @Test
+    public void setVolunteer_nullVolunteer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setVolunteer(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setVolunteer(DANIEL, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setVolunteer(null, DANIEL));
+    }
+
+    @Test
+    public void getFilteredElderlyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredElderlyList().remove(0));
+    }
+
+    @Test
+    public void getFilteredVolunteerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredVolunteerList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredElderlyList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredElderlyList(null));
+    }
+
+    @Test
+    public void updateFilteredVolunteerList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredVolunteerList(null));
+    }
+
 
     @Test
     public void hasPair_nullPair_throwsNullPointerException() {
@@ -142,8 +182,10 @@ public class ModelManagerTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void equals() {
-        FriendlyLink friendlyLink = new FriendlyLinkBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder().withElderly(ALICE).withElderly(CARL)
+                .withVolunteer(DANIEL).withVolunteer(BENSON).build();
         FriendlyLink differentFriendlyLink = new FriendlyLink();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -164,17 +206,23 @@ public class ModelManagerTest {
         // different friendlyLink -> returns false
         assertNotEquals(modelManager, new ModelManager(differentFriendlyLink, userPrefs));
 
-        // different filteredPersonList -> returns false
+        // different filteredElderlyList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
+        assertNotEquals(modelManager, new ModelManager(friendlyLink, userPrefs));
+
+        // different filteredVolunteerList -> returns false
+        keywords = DANIEL.getName().fullName.split("\\s+");
+        modelManager.updateFilteredVolunteerList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(friendlyLink, userPrefs));
 
         // TODO: different filteredPairList -> returns false
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        modelManager.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
 
-        // TODO: resets modelManager to initial state for upcoming tests
+        // TODO: reset pair list in modelManager to initial state for upcoming tests
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

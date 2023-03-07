@@ -27,7 +27,7 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedVolunteer} with the given volunteer details.
      */
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -51,13 +51,13 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Volunteer toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
-        Name modelName = super.getModelName();
-        Phone modelPhone = super.getModelPhone();
-        Email modelEmail = super.getModelEmail();
-        Address modelAddress = super.getModelAddress();
+        Name modelName = super.getModelName(MISSING_FIELD_MESSAGE_FORMAT);
+        Phone modelPhone = super.getModelPhone(MISSING_FIELD_MESSAGE_FORMAT);
+        Email modelEmail = super.getModelEmail(MISSING_FIELD_MESSAGE_FORMAT);
+        Address modelAddress = super.getModelAddress(MISSING_FIELD_MESSAGE_FORMAT);
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
-        Nric modelNric = super.getModelNric();
-        Age modelAge = super.getModelAge();
+        Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
+        Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
 
         return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
                 modelNric, modelAge, modelTags);

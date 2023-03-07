@@ -7,36 +7,72 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.AddPairCommand;
+import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditElderlyCommand;
+import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.EditVolunteerCommand;
+import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pair.Pair;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.ElderlyUtil;
 import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.PairUtil;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.VolunteerBuilder;
+import seedu.address.testutil.VolunteerUtil;
 
 public class FriendlyLinkParserTest {
 
     private final FriendlyLinkParser parser = new FriendlyLinkParser();
+
+    @Test
+    public void parseCommand_addElderly() throws Exception {
+        Elderly elderly = new ElderlyBuilder().build();
+        AddElderlyCommand command = (AddElderlyCommand) parser
+                .parseCommand(ElderlyUtil.getAddElderlyCommand(elderly));
+        assertEquals(new AddElderlyCommand(elderly), command);
+    }
+
+    @Test
+    public void parseCommand_addVolunteer() throws Exception {
+        Volunteer volunteer = new VolunteerBuilder().build();
+        AddVolunteerCommand command = (AddVolunteerCommand) parser
+                .parseCommand(VolunteerUtil.getAddVolunteerCommand(volunteer));
+        assertEquals(new AddVolunteerCommand(volunteer), command);
+    }
+
+    @Test
+    public void parseCommand_editElderly() throws Exception {
+        Elderly elderly = new ElderlyBuilder().build();
+        EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder(elderly).build();
+        EditElderlyCommand command = (EditElderlyCommand) parser.parseCommand(ElderlyUtil
+                .getEditElderlyCommand(INDEX_FIRST_PERSON.getOneBased(), descriptor));
+        assertEquals(new EditElderlyCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editVolunteer() throws Exception {
+        Volunteer volunteer = new VolunteerBuilder().build();
+        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder(volunteer).build();
+        EditVolunteerCommand command = (EditVolunteerCommand) parser.parseCommand(VolunteerUtil
+                .getEditVolunteerCommand(INDEX_FIRST_PERSON.getOneBased(), descriptor));
+        assertEquals(new EditVolunteerCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
 
     @Test
     public void parseCommand_deleteElderly() throws Exception {
@@ -61,26 +97,9 @@ public class FriendlyLinkParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-    }
-
-    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

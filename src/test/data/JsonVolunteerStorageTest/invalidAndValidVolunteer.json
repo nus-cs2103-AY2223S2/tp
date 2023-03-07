@@ -12,7 +12,9 @@
       "name": "Volunteer With Invalid Phone Field",
       "phone": "948asdf2424",
       "email": "hans@example.com",
-      "address": "4th street"
+      "address": "4th street",
+      "age": "67",
+      "nric": "t0046357K"
     }
   ]
 }

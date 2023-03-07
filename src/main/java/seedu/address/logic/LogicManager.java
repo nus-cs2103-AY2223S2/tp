@@ -13,10 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FriendlyLinkParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.storage.Storage;
 
@@ -49,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveFriendlyLink(model.getFriendlyLink());
+            storage.savePair(model.getFriendlyLink());
             storage.saveElderly(model.getFriendlyLink());
             storage.saveVolunteer(model.getFriendlyLink());
         } catch (IOException ioe) {
@@ -60,7 +59,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFriendlyLink getFriendlyLink() {
+    public ReadOnlyPair getFriendlyLink() {
         return model.getFriendlyLink();
     }
 
@@ -79,11 +78,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    // --- The following are directly appended to the UI.
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
+    // --- The following are displayed in the UI.
     @Override
     public ObservableList<Elderly> getFilteredElderlyList() {
         return model.getFilteredElderlyList();
