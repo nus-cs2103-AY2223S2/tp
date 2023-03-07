@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+
+    private final UniqueStudentList students;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        students = new UniqueStudentList();
     }
 
     public AddressBook() {}
@@ -47,6 +52,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setStudents(List<Student> students) {this.students.setStudents(students);}
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -65,6 +72,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
+    }
 
     /**
      * Adds a person to the address book.
@@ -74,6 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+    public void addStudent(Student s) {students.add(s);}
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -85,6 +97,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+        students.setStudent(target, editedStudent);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -93,6 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void removeStudent(Student key) { students.remove(key);}
     //// util methods
 
     @Override
@@ -106,6 +124,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Student> getStudentList() {return students.asUnmodifiableObservableList();}
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

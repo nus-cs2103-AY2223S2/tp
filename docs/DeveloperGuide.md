@@ -276,7 +276,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * This product mainly targets secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
 
-**Value proposition**: 
+**Value proposition**:
 
 * Have many students in different classes / co-curricular activities (CCAs) that have different phone number that needs to be kept track of
 * Need to keep track of students’ parents / next-of-kins’ contact details for consent forms
@@ -462,14 +462,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 + 1a. User did not enter **ALL COMPULSORY** details.
     + 1a1. System displays an error message.
-  
+
       Use case ends.
 
 + 1b. User keys in invalid **COMPULSORY** information
     + 1b1. System displays an error message with an example on how to use the command.
 
       Use case ends.
-    
+
 **Use Case: UC07 - Deleting `student` or `student information` from the `database`**
 
 **MSS:**

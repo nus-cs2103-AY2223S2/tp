@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +37,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
     }
+
 
     public Name getName() {
         return name;
