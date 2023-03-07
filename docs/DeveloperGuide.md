@@ -91,6 +91,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+### Non-functional requirements
+* All aspects of the system should work on Mac, Windows, and Linux operating systems.
+* The system should be easy to use by anyone who can type fast.
+* The system should not crash or corrupt files under any input text.
+* The system should respond within 1 second.
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
