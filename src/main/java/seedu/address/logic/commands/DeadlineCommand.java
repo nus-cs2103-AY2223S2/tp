@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
-import seedu.address.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.task.DeadlineTask;
 
+/**
+ * Adds a DeadlineTask to the address book.
+ */
 public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";
