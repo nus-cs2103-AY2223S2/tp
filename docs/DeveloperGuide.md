@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of patients
-* has a need to manage paitent schedules
+* has a need to manage patient schedules
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -266,12 +266,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: VMS provides an efficient solution for managing vaccine stock, determining patient suitability and scheduling appointments, and improving administrative efficiency and patient care. The system is optimised for typist, making it an ideal choice for busy administrative staff who type fast and prefer a CLI-first design.
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                                | So that I can…​                                                                    |
+| Priority | As a …​                           | I want to …​                                                                                | So that I can …​                                                                   |
 | -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | `* * *`  | Receptionist that prefers typing | be able to access all features through CLI                                                 | improve my productivity                                                           |
 | `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
@@ -287,10 +286,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Expert user                      | enter arguments in masses (MassOps)                                                        | type less                                                                         |
 | `* *`    | Receptionist                     | check what is the next free appointment slot                                               | choose the best time for the patient                                              |
 | `* *`    | New user wanting to use the app  | purge all the current data                                                                 | get rid of sample/experiment data                                                 |
-| `* *`    | Expert user                      | enter shorterned command names to perform the same command                                 | type less                                                                         |
+| `* *`    | Expert user                      | enter shortened command names to perform the same command                                  | type less                                                                         |
 | `*`      | Receptionist                     | check the appointment schedule                                                             | see when an open slot is                                                          |
 | `*`      | Receptionist                     | check the status of patients                                                               | know when to let the next waiting in line in                                      |
-| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next patient in quicker                                    |
+| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next patient in quicker                                   |
 | `*`      | Receptionist                     | view the appointments made for the day                                                     | roughly know how many patients to expect that day to allocate enough vaccinations |
 | `*`      | Receptionist                     | see the status of all patients                                                             | know where they are                                                               |
 | `*`      | Receptionist                     | check the list of patients                                                                 | prepare the correct number of vaccinations                                        |
@@ -308,8 +307,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Receptionist                     | archive/hide unused data                                                                   | am not distracted by irrelevant data                                              |
 | `*`      | Receptionist                     | undo my latest action                                                                      | do not accidentally nuke all data                                                 |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `Vms` and the **Actor** is the `user`, unless specified otherwise)
@@ -318,29 +315,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add patient.
-2.  VMS adds the patient.
+1. User requests to add patient.
+2. VMS adds the patient.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: Read patient list**
 
 **MSS**
 
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
 
-    Use case ends.
+  Use case ends.
 
 
 **Use case: Update a patient**
 
 **MSS**
 
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
-3.  User requests to update a specific patient in the list with the args.
-4.  VMS updates the patients
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
+3. User requests to update a specific patient in the list with the args.
+4. VMS updates the patients
 
     Use case ends.
 
@@ -352,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
@@ -360,10 +357,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
-3.  User requests to delete a specific patient in the list.
-4.  VMS soft deletes the patient.
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
+3. User requests to delete a specific patient in the list.
+4. VMS soft deletes the patient.
 
     Use case ends.
 
@@ -375,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
@@ -391,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. timing format or patient ID is invalid.
 
-    * 2a1. VMS shows an error message.
+  * 2a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
@@ -399,8 +396,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
 
     Use case ends.
 
@@ -408,10 +405,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
-3.  User requests to update a specific appointment in the list using the ID with the args.
-4.  VMS update the appointment.
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
+3. User requests to update a specific appointment in the list using the ID with the args.
+4. VMS update the appointment.
 
     Use case ends.
 
@@ -423,19 +420,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
-
 
 **Use case: Delete an appointment**
 
 **MSS**
 
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
-3.  User requests to delete a specific appointment in the list.
-4.  VMS deletes the appointment.
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
+3. User requests to delete a specific appointment in the list.
+4. VMS deletes the appointment.
 
     Use case ends.
 
@@ -447,21 +443,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
-5.  VMS should auto save to prevent data loss if something crashes. (Specific implementation can be found in [#18](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/18))
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
+5. VMS should auto save to prevent data loss if something crashes. (Specific implementation can be found in [#18](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/18))
 
 ### Glossary
 
