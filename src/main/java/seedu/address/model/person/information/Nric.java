@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should follow the valid format, and should be 9 characters long";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{9}$";
+    public static final String VALIDATION_REGEX = "^[STFG]\\d{7}[A-Z]$";
     public final String value;
 
     /**
@@ -40,7 +40,7 @@ public class Nric {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Nric // instanceof handles nulls
-                && value.equals(((Nric) other).value)); // state check
+                && value.equalsIgnoreCase(((Nric) other).value)); // state check
     }
 
     @Override

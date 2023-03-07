@@ -162,24 +162,24 @@ Format: `find_nric NRIC`
 
 Deletes the specified elderly from FriendlyLink.
 
-Format: `delete enr/NRIC`
+Format: `delete_elderly NRIC`
 
 * Deletes the elderly with the specified NRIC `NRIC`.
 
 Examples:
-* `delete_elderly enr/S8238657A` deletes the elderly with NRIC `S8238657A`.
+* `delete_elderly S8238657A` deletes the elderly with NRIC `S8238657A`.
 
 
 ### Deleting a volunteer : `delete_volunteer`
 
 Deletes the specified volunteer from FriendlyLink.
 
-Format: `delete vnr/NRIC`
+Format: `delete_volunteer NRIC`
 
 * Deletes the volunteer with the specified NRIC `NRIC`.
 
 Examples:
-* `delete_volunteer vnr/S8238658J` deletes the volunteer with NRIC `S8238658J`.
+* `delete_volunteer S8238658J` deletes the volunteer with NRIC `S8238658J`.
 
 
 ### Pair volunteer and elderly: `add_pair`
@@ -246,8 +246,8 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 | **Add Elderly**      | `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…` <br> e.g.,`add_elderly n/John Doe p/98765432 e/johnd@example.com a/John St, blk 123, #01-01 enr/S1234567C ag/68 r/HIGH` |
 | **Add Volunteer**    | `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…` <br> e.g.,`add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`     |
 | **Add Pair**         | `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `add_pair enr/S2235243I vnr/t0123423a`                                                                                                               |
-| **Delete Elderly**   | `delete_elderly enr/NRIC`<br> e.g., `delete_elderly vnr/S8238655C`                                                                                                                                            |
-| **Delete Volunteer** | `delete_volunteer vnr/NRIC`<br> e.g., `delete_volunteer vnr/S8238658J`                                                                                                                                        |
+| **Delete Elderly**   | `delete_elderly NRIC`<br> e.g., `delete_elderly S8238655C`                                                                                                                                                    |
+| **Delete Volunteer** | `delete_volunteer NRIC`<br> e.g., `delete_volunteer S8238658J`                                                                                                                                                |
 | **Delete Pair**      | `delete_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `delete_pair vnr/t0123423a enr/S2235243I`                                                                                                         |
 | **Find by NRIC**     | `find_nric NRIC`<br> e.g., `find_nric T1234567I`                                                                                                                                                              |
 | **Help**             | `help`                                                                                                                                                                                                        |
