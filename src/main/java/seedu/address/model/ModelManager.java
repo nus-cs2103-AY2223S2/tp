@@ -135,7 +135,7 @@ public class ModelManager implements Model {
     }
 
     public boolean canRedo() {
-        return false;
+        return versionedAddressBook.canRedo();
     }
 
     /**
@@ -147,7 +147,10 @@ public class ModelManager implements Model {
     }
 
     // todo
-    public void redo(){}
+    public void redo(){
+        AddressBook ab = versionedAddressBook.redo();
+        setAddressBook(ab);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
