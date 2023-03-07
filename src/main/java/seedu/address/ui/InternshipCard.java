@@ -49,9 +49,33 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         companyName.setText(internship.getCompanyName().fullCompanyName);
-        role.setText(internship.getRole().fullRole);
-        status.setText(internship.getStatus().toString());
-        date.setText(internship.getDate().fullDate);
+        role.setText("Role: " + internship.getRole().fullRole);
+        status.setText("Status: " + internship.getStatus().toString());
+        String internshipStatus = internship.getStatus().toString();
+        String dateLabel;
+        switch (internshipStatus) {
+        case "new":
+            dateLabel = "Date added: ";
+            break;
+        case "applied":
+            dateLabel = "Date applied: ";
+            break;
+        case "assessment":
+            dateLabel = "Date of assessment: ";
+            break;
+        case "interview":
+            dateLabel = "Date of interview: ";
+            break;
+        case "offered":
+            dateLabel = "Date of notice of offer: ";
+            break;
+        case "rejected":
+            dateLabel = "Date of notice of rejection: ";
+            break;
+        default:
+            dateLabel = "Date: ";
+        }
+        date.setText(dateLabel + internship.getDate().fullDate);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
