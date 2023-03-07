@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/bojie3.png" width="200px">
 
-[[github](http://github.com/bojie3)] 
+[[github](http://github.com/bojie3)]
 [[portfolio](team/bojie3.md)]
 
 * Role: Developer
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/cyli133.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Gu Haiwei
 
@@ -55,5 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/williamhaiweigu.md)]
 
 * Role: Developer
-* Responsibilities: 
-
+* Responsibilities:
