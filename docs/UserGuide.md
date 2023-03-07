@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic Addressbook (ArB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic addressbook (ArB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
 
 ## Table of Contents
 {:toc}
@@ -14,24 +14,22 @@ Artistic Addressbook (ArB) is a **desktop app for managing contacts, optimized f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `arb.jar` from [here](https://github.com/se-edu/artistic addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your artistic addressbook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list clients` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the Artistic addressbook.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
+   * `delete client 3` : Deletes the 3rd client shown in the current client list.
 
    * `exit` : Exits the app.
 
@@ -81,6 +79,14 @@ All commands case insensitive
 
 </div>
 
+### Viewing help: `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Adding a client: `add client`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client.
@@ -122,12 +128,6 @@ Shows a list of all projects in the application.
 
 Format: `list project`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
 ### Editing a client : `edit client`
 
 Edits the client at the given index of the client list, changing only the given field(s).
@@ -163,43 +163,44 @@ Format: `delete client <index>`
 Example:
 *  `delete client 1` Deletes the first client in the list (if there is one).
 
-### Locating persons by name: `find`
+### Deleting a project : `delete project INDEX`
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified project from the artistic artistic addressbook.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` project followed by `delete 2` deletes the 2nd project in the list of projects
 
-### Clearing all entries : `clear`
+### Mark a project as done : `mark INDEX`
 
-Clears all entries from the address book.
+Marks the specified project as done from the artistic artistic addressbook.
 
-Format: `clear`
+Format: `mark INDEX`
+
+* Marks a specified project at a specified `INDEX` from the list of projects as done.
+* The index refers to the index number shown in the displayed list of projects.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list project` followed by `mark 2` marks the 2nd project in the list of projects as done
+
+### Unmark a project as done : `unmark INDEX`
+
+Unmarks the specified project as undone from the artistic artistic addressbook.
+
+Format: `unmark INDEX`
+
+* Unmarks a specified project at a specified `INDEX` from the list of projects as undone.
+* The index refers to the index number shown in the displayed list of projects.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list project` followed by `unmark 2` marks the 2nd project in the list of projects as not done
 
 ### Exiting the program : `exit`
 
@@ -209,14 +210,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Artistic addressbook's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Artistic addressbook's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, artistic addressbook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -228,7 +229,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous artistic addressbook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
