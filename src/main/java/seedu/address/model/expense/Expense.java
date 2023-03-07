@@ -9,11 +9,6 @@ import java.util.Date;
  * TODO: Change Category to Category class
  * @author shirsho-12
  * @version 1.0
- * @param name     Name of the expense
- * @param amount   Amount of the expense
- * @param date     Date of the expense
- * @param category Category of the expense
- * @return Expense object
  */
 public class Expense {
     private String name;
