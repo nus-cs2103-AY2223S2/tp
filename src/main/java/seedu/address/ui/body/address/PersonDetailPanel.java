@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -32,6 +33,8 @@ public class PersonDetailPanel extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private VBox dataContainer;
+    @FXML
+    private ImageView star;
 
     /**
      * Creates a blank {@code PersonDetailPanel}.
@@ -50,6 +53,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         name.setText(person.getName().toString());
         tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
+        star.setVisible(person.getIsFavorite().getFavoriteStatus());
     }
 
     /**
@@ -61,9 +65,10 @@ public class PersonDetailPanel extends UiPart<Region> {
      */
     public void setDisplayedIndex(int index) {
         if (index < 1) {
-            id.setText("Select a contact.");
+            id.setText("Select a contact");
+            star.setVisible(false);
         } else {
-            id.setText(String.format("Index: %d", index));
+            id.setText(String.format("Index %d", index));
         }
     }
 

@@ -487,6 +487,25 @@
     -fx-text-fill: black;
 }
 
+.tag-default {
+    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-radius: 5;
+    -fx-padding: 2 4 2 4;
+}
+
+.tag-dark {
+    -fx-background-color: #2c2c2c;
+    -fx-background-radius: 5;
+    -fx-padding: 2 4 2 4;
+}
+
+.tag-light {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-padding: 2 4 2 4;
+    -fx-text-fill: black;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
