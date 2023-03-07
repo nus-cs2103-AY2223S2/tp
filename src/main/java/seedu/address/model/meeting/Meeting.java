@@ -64,7 +64,7 @@ public class Meeting {
         boolean hasSameDateTime = otherMeeting.getDateTime().equals(getDateTime());
         boolean hasSameAttendees = otherMeeting.getAttendees().equals(getAttendees());
 
-        return otherMeeting != null && hasSameDateTime && hasSameDateTime && hasSameAttendees;
+        return otherMeeting != null && hasSameTitle && hasSameDateTime && hasSameAttendees;
     }
 
     /**
