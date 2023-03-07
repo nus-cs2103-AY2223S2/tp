@@ -19,6 +19,7 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
@@ -138,6 +139,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPatient(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointment(Appointment Appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
