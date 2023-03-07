@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,7 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="FitBook" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -71,7 +69,6 @@
           </VBox>
         </HBox>
 
-
         <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="50" prefHeight="100" maxHeight="120" maxWidth="1.7976931348623157E308">
           <padding>
@@ -81,7 +78,6 @@
             <Insets />
           </VBox.margin>
         </StackPane>
-
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="pane-with-border">
           <VBox.margin>
