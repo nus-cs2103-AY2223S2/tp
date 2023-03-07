@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+
 /**
  * This class is the parent class of tasks that make up the tasklist.
  */
@@ -56,6 +57,19 @@ public class Task {
         String str = "";
         str = String.format("[" + statusIcon + "] " + this.description);
         return str;
+    }
+
+    /**
+     * Returns true if both tasks have the same description.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getDescription().equals(getDescription());
     }
 
     @Override
