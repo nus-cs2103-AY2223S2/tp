@@ -356,6 +356,21 @@ _{Explain here how the data archiving feature will be implemented}_
   
     Use case resumes at step 2.
 
+**Use Case: view tasks**
+
+
+**MSS**
+1. User requests to view all tasks
+2. Pied Piper displays all existing tasks as a numbered list
+
+    Use case ends
+
+**Extensions**
+* 1a. No existing tasks
+  * 1a1. Display message to user that there are no existing tasks
+  
+    Use case ends
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
