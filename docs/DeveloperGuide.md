@@ -323,29 +323,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Vms` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `VMS` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Add a patient**
+#### UC-PAT-001 - Add patient
 
-**MSS**
+##### MSS
 
 1. User requests to add patient.
 2. VMS adds the patient.
 
   Use case ends.
 
-**Use case: Read patient list**
+#### UC-PAT-002 - List patients
 
-**MSS**
+##### MSS
 
 1. User requests to list patients.
 2. VMS shows a the list of patients with their corresponding IDs.
 
   Use case ends.
 
-**Use case: Update a patient**
+#### UC-PAT-003 - Update patient
 
-**MSS**
+##### MSS
 
 1. User requests to list patients.
 2. VMS shows a the list of patients with their corresponding IDs.
@@ -354,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -366,9 +366,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Delete a patient**
+#### UC-PAT-004 - Delete patient
 
-**MSS**
+##### MSS
 
 1. User requests to list patients.
 2. VMS shows a the list of patients with their corresponding IDs.
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -389,7 +389,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Add an appointment**
+#### UC-APT-001 - Add appointment
+
+##### MSS
 
 1. User request to add an appointment.
 2. User enters the start and end timing of the appointment, and the associated patient.
@@ -397,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. timing format or patient ID is invalid.
 
@@ -405,18 +407,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Read Appointment List**
+#### UC-APT-002 - View appointments
 
-**MSS**
+##### MSS
 
 1. User requests to list appointments.
 2. VMS shows a list of appointments.
 
     Use case ends.
 
-**Use case: Update an appointment**
+#### UC-APT-003 - Update appointment
 
-**MSS**
+##### MSS
 
 1. User requests to list appointments.
 2. VMS shows a list of appointments.
@@ -425,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -437,9 +439,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Delete an appointment**
+#### UC-APT-004 - Delete appointment
 
-**MSS**
+##### MSS
 
 1. User requests to list appointments.
 2. VMS shows a list of appointments.
@@ -448,7 +450,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
