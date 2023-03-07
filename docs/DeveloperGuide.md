@@ -3,24 +3,24 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-- [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
+- [Acknowledgements](#**acknowledgements**)
+- [Setting up, getting started](#**setting-up-getting-started**)
+- [Design](#**design**)
    <!-- - [Architecture](#architecture)
    - [UI component](#ui-component)
    - [Logic component](#logic-component)
    - [Model component](#model-component)
    - [Storgae component](#storage-component)
    - [Common classes](#common-classes) -->
-- [Implementation](#implementation)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: Requirements](#appendix-requirements)
-   - [Product scope](#product-scope)
-   - [User stories](#user-stories)
-   - [Use cases](#use-cases)
-   - [Non-Functional Requirements](#non-functional-requirements)
-   - [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Implementation](#**implementation**)
+- [Documentation, logging, testing, configuration, dev-ops](#**documentation-logging-testing-configuration-dev-ops**)
+- [Appendix: Requirements](#**appendix-requirements**)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#**appendix-instructions-for-manual-testing**)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -421,8 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. System displays an empty list.
       
       Use case ends.
-
-**Use case: UC5 - List Contacts**
+<!-- **Use case: UC5 - List Contacts**
 
 **MSS**
 
@@ -441,9 +440,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
       
-      Use case ends.
+      Use case ends. -->
 
-**Use case: UC6 - Link contact and event**
+**Use case: UC5 - Link contact and event**
 
 **MSS**
 
@@ -476,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+**Use case: UC6 - Display Rate**
 
 **MSS**
 
@@ -498,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC8 - Tag a rate to an Event**
+**Use case: UC7 - Tag a rate to an Event**
 
 **MSS**
 
@@ -530,12 +529,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC9 - Add Contact**
+**Use case: UC8 - Add Contact**
 
 **MSS**
 
-1.  User requests to add a contact to the list of contact.
-2.  System adds the contact and displays information of the contact added.
+1.  User requests to add a contact to an event.
+2.  System adds the contact to the event and displays information of the contact and event.
 
    Use case ends.
 
@@ -551,7 +550,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case resumes at step 1.
 
-**Use case: UC10 - Add Date to Event**
+**Use case: UC9 - Add Date to Event**
 
 **MSS**
 
@@ -654,3 +653,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[Back to top](#)
