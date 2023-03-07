@@ -15,9 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +30,13 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_CALORIE = "012";
+
+    private static final String INVALID_WEIGHT = "-23";
+    private static final String INVALID_GENDER = "H";
+
+    private static final String INVALID_APPOINTMENT = "235236";
+
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +44,12 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_CALORIE = "2000";
+    private static final String VALID_WEIGHT = "23";
+    private static final String VALID_GENDER = "m";
+
+    private static final String VALID_APPOINTMENT_1 = "10-10-2023";
+    private static final String VALID_APPOINTMENT_2 = "11-12-2020";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -103,6 +120,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseCalorie_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCalorie((String) null));
+    }
+
+    @Test
+    public void parseCalorie_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE));
+    }
+
+    @Test
+    public void parseCalorie_validValueWithoutWhitespace_returnsCalorie() throws Exception {
+        Calorie expectedCalorie = new Calorie(VALID_CALORIE);
+        assertEquals(expectedCalorie, ParserUtil.parseCalorie(VALID_CALORIE));
+    }
+
+    @Test
+    public void parseCalorie_validValueWithWhitespace_returnsTrimmedCalorie() throws Exception {
+        String calorieWithWhitespace = WHITESPACE + VALID_CALORIE + WHITESPACE;
+        Calorie expectedCalorie = new Calorie(VALID_CALORIE);
+        assertEquals(expectedCalorie, ParserUtil.parseCalorie(calorieWithWhitespace));
+    }
+
+    @Test
     public void parseAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
     }
@@ -146,6 +186,51 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseWeight_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWeight((String) null));
+    }
+
+    @Test
+    public void parseWeight_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT));
+    }
+
+    @Test
+    public void parseWeight_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Weight expectedWeight = new Weight(VALID_WEIGHT);
+        assertEquals(expectedWeight, ParserUtil.parseWeight(VALID_WEIGHT));
+    }
+
+    @Test
+    public void parseWeight_validValueWithWhitespace_returnsTrimmedWeight() throws Exception {
+        String weightWithWhitespace = WHITESPACE + VALID_WEIGHT + WHITESPACE;
+        Weight expectedWeight = new Weight(VALID_WEIGHT);
+        assertEquals(expectedWeight, ParserUtil.parseWeight(weightWithWhitespace));
+    }
+    @Test
+    public void parseGender_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
+    }
+
+    @Test
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGender(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithoutWhitespace_returnsGender() throws Exception {
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(VALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithWhitespace_returnsTrimmedGender() throws Exception {
+        String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
     }
 
     @Test
@@ -193,4 +278,55 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseAppointment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    }
+
+    @Test
+    public void parseAppointment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointment(INVALID_APPOINTMENT));
+    }
+
+    @Test
+    public void parseAppointment_validValueWithoutWhitespace_returnsAppointment() throws Exception {
+        Appointment expectedAppointment = new Appointment(VALID_APPOINTMENT_1);
+        assertEquals(expectedAppointment, ParserUtil.parseAppointment(VALID_APPOINTMENT_1));
+    }
+
+    @Test
+    public void parseAppointment_validValueWithWhitespace_returnsTrimmedAppointment() throws Exception {
+        String appointmentWithWhitespace = WHITESPACE + VALID_APPOINTMENT_1 + WHITESPACE;
+        Appointment expectedAppointment = new Appointment(VALID_APPOINTMENT_1);
+        assertEquals(expectedAppointment, ParserUtil.parseAppointment(appointmentWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointments_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointments(null));
+    }
+
+    @Test
+    public void parseAppointments_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, INVALID_APPOINTMENT)));
+    }
+
+    @Test
+    public void parseAppointments_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAppointments(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAppointments_collectionWithValidTags_returnsAppointmentSet() throws Exception {
+        Set<Appointment> actualAppointmentSet =
+                ParserUtil.parseAppointments(Arrays.asList(VALID_APPOINTMENT_1, VALID_APPOINTMENT_2));
+        Set<Appointment> expectedAppointmentSet =
+                new HashSet<Appointment>(Arrays.asList(new Appointment(VALID_APPOINTMENT_1),
+                        new Appointment(VALID_APPOINTMENT_2)));
+
+        assertEquals(actualAppointmentSet, expectedAppointmentSet);
+    }
+
 }

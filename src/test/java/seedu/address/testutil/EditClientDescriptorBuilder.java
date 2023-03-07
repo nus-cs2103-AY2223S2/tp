@@ -6,11 +6,16 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Appointment;
+import seedu.address.model.client.Calorie;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Weight;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * A utility class to help with building EditClientDescriptor objects.
@@ -36,6 +41,10 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
         descriptor.setAddress(client.getAddress());
+        descriptor.setCalorie(client.getCalorie());
+        descriptor.setWeight(client.getWeight());
+        descriptor.setGender(client.getGender());
+        descriptor.setAppointments(client.getAppointments());
         descriptor.setTags(client.getTags());
     }
 
@@ -72,12 +81,46 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code weight} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withWeight(String weight) {
+        descriptor.setWeight(new Weight(weight));
+        return this;
+    }
+
+    /**
+     * Sets the {@code gender} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditClientDescriptor}
      * that we are building.
      */
     public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Calorie} of the {@code EditClientDescriptorBuilder} that we are building.
+     */
+    public EditClientDescriptorBuilder withCalorie(String calorie) {
+        descriptor.setCalorie(new Calorie(calorie));
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditClientDescriptor}
+     * that we are building.
+     */
+    public EditClientDescriptorBuilder withAppointments(String... appointments) {
+        Set<Appointment> appointmentSet = Stream.of(appointments).map(Appointment::new).collect(Collectors.toSet());
+        descriptor.setAppointments(appointmentSet);
         return this;
     }
 

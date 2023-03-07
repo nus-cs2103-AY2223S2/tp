@@ -17,14 +17,14 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private FitBookStorage addressBookStorage;
+    private FitBookStorage fitBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code FitBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(FitBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(FitBookStorage fitBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.fitBookStorage = fitBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getFitBookFilePath() {
-        return addressBookStorage.getFitBookFilePath();
+        return fitBookStorage.getFitBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyFitBook> readFitBook() throws DataConversionException, IOException {
-        return readFitBook(addressBookStorage.getFitBookFilePath());
+        return readFitBook(fitBookStorage.getFitBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyFitBook> readFitBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readFitBook(filePath);
+        return fitBookStorage.readFitBook(filePath);
     }
 
     @Override
-    public void saveFitBook(ReadOnlyFitBook addressBook) throws IOException {
-        saveFitBook(addressBook, addressBookStorage.getFitBookFilePath());
+    public void saveFitBook(ReadOnlyFitBook fitBook) throws IOException {
+        saveFitBook(fitBook, fitBookStorage.getFitBookFilePath());
     }
 
     @Override
-    public void saveFitBook(ReadOnlyFitBook addressBook, Path filePath) throws IOException {
+    public void saveFitBook(ReadOnlyFitBook fitBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveFitBook(addressBook, filePath);
+        fitBookStorage.saveFitBook(fitBook, filePath);
     }
 
 }

@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.function.Executable;
 
+import seedu.address.model.client.Client;
+
 /**
  * A set of assertion methods useful for writing tests.
  */
@@ -30,5 +32,15 @@ public class Assert {
             Executable executable) {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
+    }
+
+    /**
+     * Asserts that the {@code executable} is not equal with the {@code expectedArray}.
+     *
+     * @param expectedArray The expected array to compare.
+     * @param executable The array executable.
+     */
+    public static void assertArrayNotEquals(Client[] expectedArray, Client[] executable) {
+        Assertions.assertFalse(expectedArray.equals(executable));
     }
 }
