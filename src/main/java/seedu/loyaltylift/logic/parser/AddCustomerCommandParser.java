@@ -22,7 +22,7 @@ import seedu.loyaltylift.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCustomerCommand object
  */
-public class AddCommandParser implements Parser<AddCustomerCommand> {
+public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCustomerCommand

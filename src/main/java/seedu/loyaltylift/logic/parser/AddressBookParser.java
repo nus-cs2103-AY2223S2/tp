@@ -46,19 +46,19 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddCustomerCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddCustomerCommandParser().parse(arguments);
 
         case EditCustomerCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCustomerCommandParser().parse(arguments);
 
         case DeleteCustomerCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteCustomerCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCustomerCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindCustomerCommandParser().parse(arguments);
 
         case ListCustomerCommand.COMMAND_WORD:
             return new ListCustomerCommand();

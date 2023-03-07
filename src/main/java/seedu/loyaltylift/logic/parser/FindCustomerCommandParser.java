@@ -11,7 +11,7 @@ import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCustomerCommand object
  */
-public class FindCommandParser implements Parser<FindCustomerCommand> {
+public class FindCustomerCommandParser implements Parser<FindCustomerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCustomerCommand

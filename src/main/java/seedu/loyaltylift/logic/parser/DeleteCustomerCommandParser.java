@@ -9,7 +9,7 @@ import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteCustomerCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteCustomerCommand> {
+public class DeleteCustomerCommandParser implements Parser<DeleteCustomerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCustomerCommand
