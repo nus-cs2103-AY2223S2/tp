@@ -15,7 +15,7 @@ You can reach us at these emails :
 
 ### Zhu Yufan
 
-<img src="images/yufan.png" width="200px">
+<img src="images/yufannnn.png" width="200px">
 
 [[homepage](https://blog.zyf.ninja/)]
 [[github](https://github.com/Yufannnn)]

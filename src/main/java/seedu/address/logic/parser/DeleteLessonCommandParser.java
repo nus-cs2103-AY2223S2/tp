@@ -2,49 +2,39 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.CreateLessonCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new CreateHomeworkCommand object
+ * Parses input arguments and creates a new DeleteLessonCommand object
  */
-public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
+public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
+     * Parses the given {@code String} of arguments in the context of the DeleteLessonCommand
      * and returns a CreateHomeworkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CreateLessonCommand parse(String args) throws ParseException {
+    public DeleteLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_LESSON, PREFIX_STARTTIME, PREFIX_ENDTIME);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LESSON, PREFIX_STARTTIME, PREFIX_ENDTIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                CreateLessonCommand.MESSAGE_USAGE));
+                DeleteLessonCommand.MESSAGE_USAGE));
         }
 
-        String lessonName = argMultimap.getValue(PREFIX_LESSON).get();
-        LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
-        LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-
-        if (endTime.isBefore(startTime)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateLessonCommand.MESSAGE_DATE));
-        }
-
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
@@ -56,8 +46,8 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
             nameKeywords.set(i, name);
         }
 
-        return new CreateLessonCommand(new NameContainsKeywordsPredicate(nameKeywords),
-            lessonName, startTime, endTime);
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        return new DeleteLessonCommand(new NameContainsKeywordsPredicate(nameKeywords), index);
     }
 
     /**

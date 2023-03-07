@@ -193,18 +193,6 @@ public class Student {
     }
 
     /**
-     * Adds a lesson to the lesson list
-     * @param lesson the lesson to be added
-     */
-    public void addLesson(Lesson lesson) {
-        for (Lesson l : this.lessonsList) {
-            if (l.equals(lesson)) {
-                return;
-            }
-        }
-        this.lessonsList.add(lesson);
-    }
-    /**
      * Marks a homework as done from the homework list.
      *
      * @param index index of homework to be marked as done
@@ -223,6 +211,66 @@ public class Student {
         Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
         homeworkToMarkAsUndone.markAsUndone();
     }
+    /**
+     * Returns a homework from the homework list.
+     *
+     * @param index index of homework to be returned
+     * @return homework
+     */
+
+    public Lesson getLesson(Index index) {
+        return this.lessonsList.getLesson(index.getZeroBased());
+    }
+
+    /**
+     * Deletes a homework from the homework list.
+     *
+     * @param index index of homework to be deleted
+     */
+    public void deleteLesson(Index index) {
+        Lesson lessonToDelete = this.lessonsList.getLesson(index.getZeroBased());
+        this.lessonsList.remove(lessonToDelete);
+    }
+    /**
+     * Adds a lesson to the lesson list
+     * @param lesson the lesson to be added
+     */
+    public void addLesson(Lesson lesson) {
+        for (Lesson l : this.lessonsList) {
+            if (l.equals(lesson)) {
+                return;
+            }
+        }
+        this.lessonsList.add(lesson);
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    @SafeVarargs
+    public final List<Lesson> getFilteredLessonsList(Predicate<Lesson>... predicates) {
+        List<Lesson> filteredLessonsList = new ArrayList<>();
+
+        for (Lesson l : lessonsList) {
+            boolean allPredicatesMatch = true;
+            for (Predicate<Lesson> predicate : predicates) {
+                if (!predicate.test(l)) {
+                    allPredicatesMatch = false;
+                    break;
+                }
+            }
+            if (allPredicatesMatch) {
+                filteredLessonsList.add(l);
+            }
+        }
+
+        return Collections.unmodifiableList(filteredLessonsList);
+    }
+
+
 
     /**
      * Returns true if both persons have the same name.
@@ -304,5 +352,9 @@ public class Student {
 
     public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         homeworkList.updateFilteredHomeworkList(homeworkStatusPredicate);
+    }
+
+    public boolean hasLesson() {
+        return this.lessonsList.hasLesson();
     }
 }

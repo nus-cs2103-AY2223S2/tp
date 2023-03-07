@@ -29,8 +29,10 @@ public class CreateLessonCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + "n/John Doe "
         + "l/H2 Math Lesson "
-        + "start/2023-03-01T12:00"
-        + "end/2023-03-01T14:00";
+        + "start/2023-03-01 12:00 "
+        + "end/2023-03-01 14:00";
+
+    public static final String MESSAGE_DATE = "endTime must be after startTime, both in the format YYYY-MM-DD HH:mm";
 
     private final String lessonName;
     private final LocalDateTime startTime;
