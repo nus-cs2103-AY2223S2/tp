@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Auto repair shop owners who want to keep track of their customers, vehicles, logistics and appointments
+* prefers desktop apps over other types
+* fast typist
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable interacting with CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: AutoM8 provides a platform that allows auto repair shop owners to manage their customer information, service details and logistics
+
 
 
 ### User stories
@@ -280,8 +281,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
-
-### Use cases
 
 ### Use cases
 
@@ -716,7 +715,9 @@ AutoM8 provides the necessary features that support the management of customer, 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Vehicle**: A 
+* **Plate number**: 
+* **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
 
 --------------------------------------------------------------------------------------------------------------------
 
