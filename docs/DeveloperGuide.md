@@ -107,9 +107,9 @@ This guide is intended primarily for developers who want to work on the **EduMat
 | :sparkles:           | `:sparkles:`           | Completed feature                           |
 | :construction:       | `:construction:`       | Feature under construction                  |
 | :question:           | `:question:`           | Frequently asked question (FAQ)             |
-| :white_check_mark:   | `:white_check_mark:`   | What the developer should do                |
-| :exclamation:        | `:exclamation:`        | Warning to the developer                    |
-| :x:                  | `:x:`                  | Strong warning to the developer             |
+| :heavy_check_mark:   | `:heavy_check_mark:`   | What the developer should do                |
+| :warning:            | `:warning:`            | Warning to the developer                    |
+| :no_entry:           | `:no_entry:`           | Strong warning to the developer             |
 | :bulb:               | `:bulb:`               | Tip for the developer                       |
 | :information_source: | `:information_source:` | Information for the developer               |
 | :goal_net:           | `:goal_net:`           | Error handling                              |
@@ -161,13 +161,13 @@ The `master` branch represents stable released versions of the **EduMate** softw
 
 <div markdown="span" class="alert alert-danger">
 
-:x: You must not merge a PR into the branch if it fails some tests.
+:no_entry: You must not merge a PR into the branch if it fails some tests.
 
 </div>
 
 <div markdown="span" class="alert alert-success">
 
-:white_check_mark: Instead, you should fork from this master branch into your own repo and work on new features on a branch off your own repo. Your `master` branch should always be synced with the upstream `master` branch.
+:heavy_check_mark: Instead, you should fork from this master branch into your own repo and work on new features on a branch off your own repo. Your `master` branch should always be synced with the upstream `master` branch.
 
 </div>
 
@@ -177,7 +177,7 @@ Once you've made changes to your branch, create a Pull Request (PR) on the upstr
 
 <div markdown="span" class="alert alert-danger">
 
-:x: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
+:no_entry: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
 
 </div>
 
@@ -253,7 +253,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: Try not to alter this data too much, as some persons (like Albert Park) are used in testing.
+:warning: Try not to alter this data too much, as some persons (like Albert Park) are used in testing.
 
 </div>
 
@@ -554,7 +554,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-success">
 
-:white_check_mark: Use `alert-success` to tell the developer what should be done
+:heavy_check_mark: Use `alert-success` to tell the developer what should be done
 
 </div>
 
@@ -566,13 +566,13 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: Use `alert-warning` to warn the user about performing a certain action
+:warning: Use `alert-warning` to warn the user about performing a certain action
 
 </div>
 
 <div markdown="span" class="alert alert-danger">
 
-:x: Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
+:no_entry: Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
 
 </div>
 
