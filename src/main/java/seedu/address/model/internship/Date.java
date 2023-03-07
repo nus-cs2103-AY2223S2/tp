@@ -36,7 +36,7 @@ public class Date {
     public static boolean isValidDate(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
-        };
+        }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         df.setLenient(false);
         try {
