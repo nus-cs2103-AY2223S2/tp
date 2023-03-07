@@ -715,8 +715,8 @@ AutoM8 provides the necessary features that support the management of customer, 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Vehicle**: A 
-* **Plate number**: 
+* **Vehicle**: A 4-wheel machine used to transport people
+* **Plate number**: An identifier put on the front and back a vehicle
 * **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
 
 --------------------------------------------------------------------------------------------------------------------
