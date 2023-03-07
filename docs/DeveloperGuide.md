@@ -343,6 +343,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
+### Use case: UC3 - Edit an Expense
+
+**MSS**
+
+1. The user lists all expenses using UC7.
+2. The user selects the expense they want to edit from the list of expenses.
+3. User keys in the command to edit the expense.
+4. FastTrack responds with a success message indicating the expense has been successfully edited.
+
+**Extensions**
+* 2a. The user selects an expense that does not exist. 
+    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense. 
+* 2b. The user tries to save an expense with invalid or missing data.
+    * 2b1. FastTrack displays an error message indicating the fields that need to be corrected.
+
+**Precondition: The user has created at least one expense in the app**
+### Use case: UC4 - List all Categories
+
+**MSS**
+
+1.  User requests to list all categories. 
+2.  FastTrack displays all categories.
+   
+   Use case ends.
+  
+
+**Extensions**
+* 2a. The user does not have any categories.
+    * 2a1. FastTrack only displays the Misc category
+      
 ### Use case: UC5 - Add an expense
 
 **MSS**
