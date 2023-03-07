@@ -41,7 +41,7 @@ public class UserList implements Iterable<User> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setUser(List<User> user) {
+    public void setUserList(List<User> user) {
         requireAllNonNull(user);
         internalList.setAll(user);
     }

@@ -46,13 +46,17 @@ public class UserData implements ReadOnlyUserData {
         this.user.setUser(user);
     }
 
+    public void setUserList(List<User> userList) {
+        this.user.setUserList(userList);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyUserData newData) {
         requireNonNull(newData);
 
-        setUser(newData.getUser().get(0));
+        setUserList(newData.getUser());
     }
 
     //// util methods
@@ -81,9 +85,5 @@ public class UserData implements ReadOnlyUserData {
 
     public void addUser(User user) {
         this.user.add(user);
-    }
-
-    public void setUserList(List<User> user) {
-        this.user = new UserList();
     }
 }
