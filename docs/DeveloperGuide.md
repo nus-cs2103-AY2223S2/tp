@@ -401,19 +401,9 @@ The `Model` component,
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EduMate`, which `Person` references. This allows `EduMate` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<div style="width: 90%;
-    margin: 0 5%;
-    text-align: center;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, fr);">
-<img src="images/BetterModelClassDiagram.png"
-    style="margin-left:auto; margin-right:auto">
-<span>
-<i>Figure 4.3.x</i>
-Improved <b>Class Diagram</b> for Model Components
-</span>
-</div>
+| ![](images/BetterModelClassDiagram.png)             |
+|-----------------------------------------------------|
+| _Figure 4.3.x_ *Class Diagram* for Model Components |
 
 </div>
 
@@ -440,7 +430,7 @@ Improved <b>Class Diagram</b> for Model Components
 Here's a (partial) class diagram of the `Logic` component:
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -465,7 +455,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -479,7 +469,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 </div>                                             |
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -503,7 +493,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -517,7 +507,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 </div>
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -541,7 +531,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -589,7 +579,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
@@ -621,7 +611,7 @@ How the parsing works:
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <div style="width: 90%;
-    margin: 0 5%;
+    margin: 1rem 5%;
     text-align: center;
     display: grid;
     gap: 1rem;
