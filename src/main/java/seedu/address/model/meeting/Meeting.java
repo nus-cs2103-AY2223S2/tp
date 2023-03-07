@@ -97,14 +97,14 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return getTitle() +
-                "; Date/Time: " +
-                getDateTime() +
-                "; Attendees: " +
-                getAttendees() +
-                "; Location: " +
-                getLocation() +
-                "; Description: " +
-                getDescription();
+        return getTitle()
+                + "; Date/Time: "
+                + getDateTime()
+                + "; Attendees: "
+                + getAttendees()
+                + "; Location: "
+                + getLocation()
+                + "; Description: "
+                + getDescription();
     }
 }
