@@ -32,7 +32,7 @@ _Details coming soon ..._
 # Features
 
 ## Attendance
-Directs you to the attendance system. Within the attendance system, you can call:
+Directs you to the attendance system. Within the attendance system, you can make the following calls:
 * mark
 * unmark
 * exit
@@ -91,7 +91,7 @@ Example:
 * `ungrade 1 2`
 
 ### List all assignments: `list`
-Lists all assignments and their respective information
+Lists all assignments and their respective information.
 Format: `list`
 
 ### Exit assignment system: `exit`
