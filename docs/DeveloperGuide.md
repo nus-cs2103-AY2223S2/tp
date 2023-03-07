@@ -25,13 +25,16 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage many contacts, groups and classes
+* relatively more tech-savvy than the average population, able to perform complex tasks on digital platforms
 * prefers typing to mouse interactions
+* need to be able to easily aggregate and analyze students' statistics
 * is reasonably comfortable using CLI apps
+* can type fast
 
-**Value proposition**: get teaching assistant tasks done more conveniently and quickly as compared to traditional GUI apps
+**Value proposition**: 
+* Get teaching assistant tasks done more conveniently and quickly as compared to traditional GUI apps
+* Features are fully customized for teaching assistants in NUS to ensure user-friendliness for this particular group
 
 ### User stories
 
