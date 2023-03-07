@@ -1,4 +1,7 @@
 package mycelium.mycelium.model.project.exceptions;
 
-public class ProjectNotFoundException extends RuntimeException{
+/**
+ * Signals that a requested project could not be found.
+ */
+public class ProjectNotFoundException extends RuntimeException {
 }
