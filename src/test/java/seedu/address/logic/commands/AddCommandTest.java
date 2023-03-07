@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalUser;
 
 public class AddCommandTest {
 
@@ -34,6 +35,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+
         Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
@@ -146,7 +148,7 @@ public class AddCommandTest {
 
         @Override
         public User getUser() {
-            throw new AssertionError("This method should not be called.");
+            return TypicalUser.LINUS;
         }
 
         @Override
