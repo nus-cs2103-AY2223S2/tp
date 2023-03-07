@@ -192,4 +192,23 @@ public class JsonAdaptedClientTest {
                         invalidAppointments, VALID_WEIGHT, VALID_GENDER, VALID_GOAL, VALID_CALORIE, VALID_TAGS);
         assertThrows(IllegalValueException.class, client::toFitBookModelType);
     }
+    @Test
+    public void toFitBookModelType_invalidGoals_throwsIllegalValueException() {
+        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
+        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_APPOINTMENT));
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, INVALID_GOAL, VALID_CALORIE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, client::toFitBookModelType);
+    }
+    @Test
+    public void toFitBookModelType_nullGoals_throwsIllegalValueException() {
+        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
+        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_APPOINTMENT));
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        invalidAppointments, VALID_WEIGHT, VALID_GENDER, null, VALID_CALORIE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, client::toFitBookModelType);
+    }
+
 }
