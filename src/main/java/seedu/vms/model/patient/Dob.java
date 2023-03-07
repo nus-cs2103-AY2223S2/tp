@@ -25,12 +25,15 @@ public class Dob {
      * Constructs an {@code Dob}.
      *
      * @param dob A valid date of birth.
-     * @throws ParseException
      */
-    public Dob(String dob) throws ParseException {
+    public Dob(String dob) {
         requireNonNull(dob);
         checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
-        value = parseDate(dob);
+        try {
+            value = parseDate(dob);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

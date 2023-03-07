@@ -2,25 +2,41 @@ package seedu.vms.model.patient;
 
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Patient in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null,
+ * field values are validated,
+ * immutable.
  */
 public class Patient {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
+    private final Dob dateOfBirth;
+
+    // Medical fields
+    private final BloodType bloodType;
+    private final Set<Allergy> allergies = new HashSet<>();
+    private final Set<Vaccine> vaccines = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone) {
-        requireAllNonNull(name, phone);
+    public Patient(Name name, Phone phone, Dob dob, BloodType bloodType, Set<Allergy> allergies,
+            Set<Vaccine> vaccines) {
+        requireAllNonNull(name, phone, dob, bloodType, allergies, vaccines);
         this.name = name;
         this.phone = phone;
+        this.dateOfBirth = dob;
+        this.bloodType = bloodType;
+        this.allergies.addAll(allergies);
+        this.vaccines.addAll(vaccines);
     }
 
     public Name getName() {
@@ -29,6 +45,32 @@ public class Patient {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public Dob getDob() {
+        return dateOfBirth;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    /**
+     * Returns an immutable allergies set,
+     * which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Allergy> getAllergy() {
+        return Collections.unmodifiableSet(allergies);
+    }
+
+    /**
+     * Returns an immutable vaccine set,
+     * which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Vaccine> getVaccine() {
+        return Collections.unmodifiableSet(vaccines);
     }
 
     /**
@@ -60,13 +102,22 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone());
+                && otherPatient.getPhone().equals(getPhone())
+                && otherPatient.getDob().equals(getDob())
+                && otherPatient.getBloodType().equals(getBloodType())
+                && otherPatient.getAllergy().equals(getAllergy())
+                && otherPatient.getVaccine().equals(getVaccine());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone);
+        return Objects.hash(name,
+                phone,
+                dateOfBirth,
+                bloodType,
+                allergies,
+                vaccines);
     }
 
     @Override
@@ -75,8 +126,21 @@ public class Patient {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ");
+                .append("; DateOfBirth: ")
+                .append(getDob())
+                .append("; BloodType: ")
+                .append(getBloodType());
 
+        Set<Allergy> allergySet = getAllergy();
+        if (!allergySet.isEmpty()) {
+            builder.append("; Allergies: ");
+            allergySet.forEach(builder::append);
+        }
+        Set<Vaccine> vaccineSet = getVaccine();
+        if (!vaccineSet.isEmpty()) {
+            builder.append("; Vaccines: ");
+            vaccineSet.forEach(builder::append);
+        }
         return builder.toString();
     }
 

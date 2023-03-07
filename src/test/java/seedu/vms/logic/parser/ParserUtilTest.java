@@ -1,24 +1,43 @@
 package seedu.vms.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
+import seedu.vms.model.patient.Vaccine;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_DOB = " ";
+    private static final String INVALID_BLOODTYPE = "example.com";
+    private static final String INVALID_ALLERGY = "#potato";
+    private static final String INVALID_VACCINE = "#ameravax";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_DOB = "123 Main Street #0505";
+    private static final String VALID_BLOODTYPE = "rachel@example.com";
+    private static final String VALID_ALLERGY_1 = "seafood";
+    private static final String VALID_ALLERGY_2 = "gluten";
+    private static final String VALID_VACCINE_1 = "moderna";
+    private static final String VALID_VACCINE_2 = "chinavax";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -100,6 +119,148 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseDob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDob((String) null));
+    }
+
+    @Test
+    public void parseDob_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDob(INVALID_DOB));
+    }
+
+    @Test
+    public void parseDob_validValueWithoutWhitespace_returnsDob() throws Exception {
+        Dob expectedDob = new Dob(VALID_DOB);
+        assertEquals(expectedDob, ParserUtil.parseDob(VALID_DOB));
+    }
+
+    @Test
+    public void parseDob_validValueWithWhitespace_returnsTrimmedDob() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_DOB + WHITESPACE;
+        Dob expectedDob = new Dob(VALID_DOB);
+        assertEquals(expectedDob, ParserUtil.parseDob(addressWithWhitespace));
+    }
+
+    @Test
+    public void parseBloodType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBloodType((String) null));
+    }
+
+    @Test
+    public void parseBloodType_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBloodType(INVALID_BLOODTYPE));
+    }
+
+    @Test
+    public void parseBloodType_validValueWithoutWhitespace_returnsBloodType() throws Exception {
+        BloodType expectedBloodType = new BloodType(VALID_BLOODTYPE);
+        assertEquals(expectedBloodType, ParserUtil.parseBloodType(VALID_BLOODTYPE));
+    }
+
+    @Test
+    public void parseBloodType_validValueWithWhitespace_returnsTrimmedBloodType() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_BLOODTYPE + WHITESPACE;
+        BloodType expectedBloodType = new BloodType(VALID_BLOODTYPE);
+        assertEquals(expectedBloodType, ParserUtil.parseBloodType(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseAllergy_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAllergy(null));
+    }
+
+    @Test
+    public void parseAllergy_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAllergy(INVALID_ALLERGY));
+    }
+
+    @Test
+    public void parseAllergy_validValueWithoutWhitespace_returnsAllergy() throws Exception {
+        Allergy expectedAllergy = new Allergy(VALID_ALLERGY_1);
+        assertEquals(expectedAllergy, ParserUtil.parseAllergy(VALID_ALLERGY_1));
+    }
+
+    @Test
+    public void parseAllergy_validValueWithWhitespace_returnsTrimmedAllergy() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_ALLERGY_1 + WHITESPACE;
+        Allergy expectedAllergy = new Allergy(VALID_ALLERGY_1);
+        assertEquals(expectedAllergy, ParserUtil.parseAllergy(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseAllergies_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAllergies(null));
+    }
+
+    @Test
+    public void parseAllergies_collectionWithInvalidAllergies_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseAllergies(Arrays.asList(VALID_ALLERGY_1, INVALID_ALLERGY)));
+    }
+
+    @Test
+    public void parseAllergies_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAllergies(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAllergies_collectionWithValidAllergies_returnsAllergySet() throws Exception {
+        Set<Allergy> actualAllergySet = ParserUtil.parseAllergies(Arrays.asList(VALID_ALLERGY_1, VALID_ALLERGY_2));
+        Set<Allergy> expectedAllergySet = new HashSet<Allergy>(
+                Arrays.asList(new Allergy(VALID_ALLERGY_1), new Allergy(VALID_ALLERGY_2)));
+
+        assertEquals(expectedAllergySet, actualAllergySet);
+    }
+
+    @Test
+    public void parseVaccine_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVaccine(null));
+    }
+
+    @Test
+    public void parseVaccine_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVaccine(INVALID_VACCINE));
+    }
+
+    @Test
+    public void parseVaccine_validValueWithoutWhitespace_returnsVaccine() throws Exception {
+        Vaccine expectedVaccine = new Vaccine(VALID_VACCINE_1);
+        assertEquals(expectedVaccine, ParserUtil.parseVaccine(VALID_VACCINE_1));
+    }
+
+    @Test
+    public void parseVaccine_validValueWithWhitespace_returnsTrimmedVaccine() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_VACCINE_1 + WHITESPACE;
+        Vaccine expectedVaccine = new Vaccine(VALID_VACCINE_1);
+        assertEquals(expectedVaccine, ParserUtil.parseVaccine(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseVaccines_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVaccines(null));
+    }
+
+    @Test
+    public void parseVaccines_collectionWithInvalidVaccines_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseVaccines(Arrays.asList(VALID_VACCINE_1, INVALID_VACCINE)));
+    }
+
+    @Test
+    public void parseVaccines_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseVaccines(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseVaccines_collectionWithValidVaccines_returnsVaccineSet() throws Exception {
+        Set<Vaccine> actualVaccineSet = ParserUtil.parseVaccines(Arrays.asList(VALID_VACCINE_1, VALID_VACCINE_2));
+        Set<Vaccine> expectedVaccineSet = new HashSet<Vaccine>(
+                Arrays.asList(new Vaccine(VALID_VACCINE_1), new Vaccine(VALID_VACCINE_2)));
+
+        assertEquals(expectedVaccineSet, actualVaccineSet);
     }
 
     @Test

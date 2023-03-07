@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -54,10 +55,10 @@ public class EditCommandTest {
 
         PatientBuilder patientInList = new PatientBuilder(lastPatient);
         Patient editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .build();
+                .withAllergies(VALID_ALLERGY_GLUTEN).build();
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withPhone(VALID_PHONE_BOB).withAllergies(VALID_ALLERGY_GLUTEN).build();
         EditCommand editCommand = new EditCommand(indexLastPatient, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
