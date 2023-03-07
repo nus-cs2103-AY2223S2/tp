@@ -11,12 +11,18 @@ import seedu.address.model.tag.Tag;
  */
 public class Doctor extends Person {
     // Identity fields
-
+    private final Specialty specialty;
+    private final Yoe yoe;
     /**
      * Every field must be present and not null.
      */
-    public Doctor(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Doctor(Name name, Phone phone, Email email, Specialty specialty, Yoe yoe, Set<Tag> tags) {
         super(name, phone, email, tags);
-        requireAllNonNull(name, phone, email, tags);
+        requireAllNonNull(name, phone, email, specialty, yoe, tags);
+        this.specialty = specialty;
+        this.yoe = yoe;
     }
+
+    public Specialty getSpecialty() { return specialty; }
+    public Yoe getYoe() { return yoe; }
 }
