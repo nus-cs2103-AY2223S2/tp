@@ -46,7 +46,21 @@ public class Project {
     private final Optional<Date> deadline;
 
     /**
-     * Every field must be present and not null.
+     * Creates a new project from the minimal set of required fields. The remaining fields are filled with default
+     * values.
+     */
+    public Project(String name, Email clientEmail) {
+        this.name = name;
+        this.status = ProjectStatus.NOT_STARTED;
+        this.clientEmail = clientEmail;
+        this.source = "";
+        this.description = "";
+        this.acceptedOn = new Date();
+        this.deadline = Optional.empty();
+    }
+
+    /**
+     * Creates a new {@code Project} with every field present and not null.
      */
     public Project(String name,
                    ProjectStatus status,
