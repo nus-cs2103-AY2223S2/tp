@@ -17,21 +17,21 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = "COMMAND LIST\n"
-            +"\n"
+            + "\n"
             + "1. Adding a person: add\n"
-            + "Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] " +
-            "[g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
-            + "2. Listing all persons\n" +
-            "Format: list [t/TAG]\n\n"
+            + "Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
+            + "[g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
+            + "2. Listing all persons\n"
+            + "Format: list [t/TAG]\n\n"
             + "3. Editing a person : edit\n"
-            + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] " +
-            "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
+            + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
+            + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "4. Locating persons by name or tag: find\n"
             + "Format: find KEYWORD [MORE_KEYWORDS]… [t/TAG]…\n\n"
             + "5. Deleting a person : delete\n"
             + "Format: delete INDEX\n\n"
-            + "6. Sorting persons (by other fields) : sort\n" +
-            "Format: sort [CATEGORY]\n\n"
+            + "6. Sorting persons (by other fields) : sort\n"
+            + "Format: sort [CATEGORY]\n\n"
             + "7. Exiting the program : exit\n\n"
             + "For more info: " + USERGUIDE_URL;
 
