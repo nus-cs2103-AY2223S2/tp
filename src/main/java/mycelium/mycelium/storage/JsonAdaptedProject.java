@@ -18,7 +18,7 @@ public class JsonAdaptedProject {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing";
     private final String name;
     private final ProjectStatus status;
-    private final String client; // TODO this should be the client's email instead?
+    private final String clientEmail;
     private final String source;
     private final String description;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
@@ -32,14 +32,14 @@ public class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("name") String name,
                               @JsonProperty("status") ProjectStatus status,
-                              @JsonProperty("client") String client,
+                              @JsonProperty("clientEmail") String clientEmail,
                               @JsonProperty("source") String source,
                               @JsonProperty("description") String description,
                               @JsonProperty("acceptedOn") Date acceptedOn,
                               @JsonProperty("deadline") Date deadline) {
         this.name = name;
         this.status = status;
-        this.client = client;
+        this.clientEmail = clientEmail;
         this.source = source;
         this.description = description;
         this.acceptedOn = acceptedOn;
@@ -52,7 +52,7 @@ public class JsonAdaptedProject {
     public JsonAdaptedProject(Project project) {
         name = project.getName();
         status = project.getStatus();
-        client = project.getClient(); // TODO update to actual client's email
+        clientEmail = project.getClientEmail();
         source = project.getSource();
         description = project.getDescription();
         acceptedOn = project.getAcceptedOn();
@@ -74,11 +74,11 @@ public class JsonAdaptedProject {
     public Project toModelType() throws IllegalValueException {
         assertField(name != null, "name");
         assertField(status != null, "status");
-        assertField(client != null, "client");
+        assertField(clientEmail != null, "clientEmail");
         assertField(source != null, "source");
         assertField(description != null, "description");
         assertField(acceptedOn != null, "acceptedOn");
         // NOTE: it is okay for the deadline to be null.
-        return new Project(name, status, client, source, description, acceptedOn, Optional.ofNullable(deadline));
+        return new Project(name, status, clientEmail, source, description, acceptedOn, Optional.ofNullable(deadline));
     }
 }

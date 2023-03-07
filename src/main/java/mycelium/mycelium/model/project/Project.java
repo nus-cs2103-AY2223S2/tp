@@ -18,9 +18,10 @@ public class Project {
     private final ProjectStatus status;
 
     /**
-     * The client who submitted this project
+     * The email of the client who submitted this project. We only keep the client's email here for more convenient
+     * (de)serializing.
      */
-    private final String client; // TODO update to actual Client class
+    private final String clientEmail;
 
     /**
      * The project's source, e.g. Fiverr
@@ -47,14 +48,14 @@ public class Project {
      */
     public Project(String name,
                    ProjectStatus status,
-                   String client,
+                   String clientEmail,
                    String source,
                    String description,
                    Date acceptedOn,
                    Optional<Date> deadline) {
         this.name = name;
         this.status = status;
-        this.client = client;
+        this.clientEmail = clientEmail;
         this.source = source;
         this.description = description;
         this.acceptedOn = acceptedOn;
@@ -69,8 +70,8 @@ public class Project {
         return status;
     }
 
-    public String getClient() {
-        return client;
+    public String getClientEmail() {
+        return clientEmail;
     }
 
     public String getSource() {
@@ -90,7 +91,8 @@ public class Project {
     }
 
     /**
-     * Checks if two projects refer to the same project
+     * Checks if two projects refer to the same project. For now, two projects are considered the same if they have
+     * the same name.
      *
      * @param other The other project
      * @return True if the two projects refer to the same physical project
