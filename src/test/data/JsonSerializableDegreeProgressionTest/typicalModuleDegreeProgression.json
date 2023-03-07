@@ -1,0 +1,46 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "modules" : [ {
+    "code" : "CS2100",
+    "credit" : "4",
+    "semYear" : "Y1S2",
+    "grade" : "A",
+    "tagged" : [ "COMPUTER_SCIENCE_FOUNDATION" ]
+  }, {
+    "code" : "ST2334",
+    "credit" : "4",
+    "semYear" : "Y1S2",
+    "grade" : "A",
+    "tagged" : [ "MATHEMATICS_AND_SCIENCES" ]
+  }, {
+    "code" : "MA1521",
+    "credit" : "4",
+    "semYear" : "Y1S1",
+    "grade" : "A",
+    "tagged" : [ ]
+  }, {
+    "code" : "GEA1000",
+    "credit" : "4",
+    "semYear" : "Y1S2",
+    "grade" : "A",
+    "tagged" : [ ]
+  }, {
+    "code" : "CS1231",
+    "credit" : "4",
+    "semYear" : "Y1S1",
+    "grade" : "A+",
+    "tagged" : [ "COMPUTER_SCIENCE_FOUNDATION" ]
+  }, {
+    "code" : "CS1010R",
+    "credit" : "1",
+    "semYear" : "Y1S2",
+    "grade" : "A+",
+    "tagged" : [ ]
+  }, {
+    "code" : "IS1103",
+    "credit" : "4",
+    "semYear" : "Y1S2",
+    "grade" : "A",
+    "tagged" : [ ]
+  } ]
+}
