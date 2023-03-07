@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 public class User extends Person {
 
     private Person user;
-    //todo: Add event list.
+    //todo: Add event list!
 
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
                 Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
