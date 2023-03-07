@@ -41,6 +41,10 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
         LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
 
+        if (endTime.isBefore(startTime)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateLessonCommand.MESSAGE_DATE));
+        }
+
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
