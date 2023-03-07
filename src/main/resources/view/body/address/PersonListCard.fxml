@@ -10,7 +10,7 @@
 
 <HBox id="cardPane" fx:id="cardPane" styleClass="ph"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <HBox spacing="10" styleClass="pa" maxWidth="280">
+  <HBox spacing="10" styleClass="pa" maxWidth="240">
     <VBox spacing="10" alignment="TOP_CENTER">
       <Label fx:id="id" styleClass="label-h6">
         <minWidth>
