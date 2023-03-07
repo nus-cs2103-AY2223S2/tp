@@ -32,7 +32,7 @@ _Details coming soon ..._
 # Features
 
 ## Attendance
-Directs you to the attendance system. Within the attendance system, you can call:
+Directs you to the attendance system. Within the attendance system, you can make the following calls:
 * mark
 * unmark
 * exit
