@@ -38,7 +38,9 @@ public class Customer {
         this.tags.addAll(tags);
     }
 
-    public CustomerType getCustomerType() { return customerType; }
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
 
     public Name getName() {
         return name;
