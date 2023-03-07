@@ -5,6 +5,9 @@ package seedu.address.logic.commands.results;
  */
 public class HelpCommandResult extends CommandResult {
 
+    /**
+     * Constructs a {@code HelpCommandResult} with the specified fields.
+     */
     public HelpCommandResult(String feedbackToUser) {
         super(feedbackToUser);
     }

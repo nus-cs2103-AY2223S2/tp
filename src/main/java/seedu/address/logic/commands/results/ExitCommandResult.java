@@ -5,6 +5,9 @@ package seedu.address.logic.commands.results;
  */
 public class ExitCommandResult extends CommandResult {
 
+    /**
+     * Constructs a {@code ExitCommandResult} with the specified fields.
+     */
     public ExitCommandResult(String feedbackToUser) {
         super(feedbackToUser);
     }

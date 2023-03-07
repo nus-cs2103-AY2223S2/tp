@@ -14,6 +14,9 @@ public class LoadCommandResult extends CommandResult {
     /** Path to save the EduMate */
     private final Path filePath;
 
+    /**
+     * Constructs a {@code LoadCommandResult} with the specified fields.
+     */
     public LoadCommandResult(String feedbackToUser, Path filePath) {
         super(feedbackToUser);
         requireNonNull(filePath);

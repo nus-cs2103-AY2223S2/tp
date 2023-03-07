@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.nio.file.Path;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.SaveCommandResult;
 import seedu.address.model.Model;
-
-import java.nio.file.Path;
 
 /**
  * Saves the EduMate into a file.
