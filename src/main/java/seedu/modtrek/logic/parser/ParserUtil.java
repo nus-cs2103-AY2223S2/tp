@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -28,7 +29,7 @@ public class ParserUtil {
      */
     public static Code parseCode(String code) throws ParseException {
         requireNonNull(code);
-        String trimmedName = code.trim();
+        String trimmedName = code.trim().toUpperCase(Locale.ROOT);
         if (!Code.isValidCode(trimmedName)) {
             throw new ParseException(Code.MESSAGE_CONSTRAINTS);
         }
@@ -58,7 +59,7 @@ public class ParserUtil {
      */
     public static SemYear parseSemYear(String semYear) throws ParseException {
         requireNonNull(semYear);
-        String trimmedAddress = semYear.trim();
+        String trimmedAddress = semYear.trim().toUpperCase(Locale.ROOT);
         if (!SemYear.isValidSemYear(trimmedAddress)) {
             throw new ParseException(SemYear.MESSAGE_CONSTRAINTS);
         }
@@ -73,7 +74,7 @@ public class ParserUtil {
      */
     public static Grade parseGrade(String grade) throws ParseException {
         requireNonNull(grade);
-        String trimmedGrade = grade.trim();
+        String trimmedGrade = grade.trim().toUpperCase(Locale.ROOT);
         if (!Grade.isValidGrade(trimmedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
