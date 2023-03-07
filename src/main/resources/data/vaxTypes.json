@@ -15,14 +15,14 @@
         {
           "reqType": "NONE",
           "reqSet": [
-            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
-            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
-            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
             "Cholesterol",
             "Sucrose",
             "Phosphate",
             "Tromethamine",
-            "Tris(hydroxymethyl)aminoethane hydrochloride"
+            "Tromethamine hydrochloride"
           ]
         }
       ]
@@ -46,14 +46,14 @@
         {
           "reqType": "NONE",
           "reqSet": [
-            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
-            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
-            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
             "Cholesterol",
             "Sucrose",
             "Phosphate",
             "Tromethamine",
-            "Tris(hydroxymethyl)aminoethane hydrochloride"
+            "Tromethamine hydrochloride"
           ]
         }
       ]
@@ -77,14 +77,14 @@
         {
           "reqType": "NONE",
           "reqSet": [
-            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
-            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
-            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
             "Cholesterol",
             "Sucrose",
             "Phosphate",
             "Tromethamine",
-            "Tris(hydroxymethyl)aminoethane hydrochloride"
+            "Tromethamine hydrochloride"
           ]
         }
       ]
@@ -108,14 +108,14 @@
         {
           "reqType": "NONE",
           "reqSet": [
-            "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
-            "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
-            "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
             "Cholesterol",
             "Sucrose",
             "Phosphate",
             "Tromethamine",
-            "Tris(hydroxymethyl)aminoethane hydrochloride"
+            "Tromethamine hydrochloride"
           ]
         }
       ]
@@ -139,9 +139,9 @@
           "reqType": "NONE",
           "reqSet": [
             "SM-102",
-            "(polyethylene glycol)-2000 dimyristoyl glycerol",
+            "DMG-PEG 2000",
             "Cholesterol",
-            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "DSPC",
             "Tromethamine",
             "Tromethamine hydrochloride",
             "Acetic acid",
@@ -171,9 +171,9 @@
           "reqType": "NONE",
           "reqSet": [
             "SM-102",
-            "(polyethylene glycol)-2000 dimyristoyl glycerol",
+            "DMG-PEG 2000",
             "Cholesterol",
-            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "DSPC",
             "Tromethamine",
             "Tromethamine hydrochloride",
             "Acetic acid",
@@ -203,9 +203,9 @@
           "reqType": "NONE",
           "reqSet": [
             "SM-102",
-            "(polyethylene glycol)-2000 dimyristoyl glycerol",
+            "DMG-PEG 2000",
             "Cholesterol",
-            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "DSPC",
             "Tromethamine",
             "Tromethamine hydrochloride",
             "Acetic acid",
@@ -235,9 +235,9 @@
           "reqType": "NONE",
           "reqSet": [
             "SM-102",
-            "(polyethylene glycol)-2000 dimyristoyl glycerol",
+            "DMG-PEG 2000",
             "Cholesterol",
-            "1,2-distearoyl-sn-glycero-3-phosphocholine",
+            "DSPC",
             "Tromethamine",
             "Tromethamine hydrochloride",
             "Acetic acid",
@@ -267,15 +267,15 @@
           "reqSet": [
             "Matrix-M1 adjuvant",
             "Phosphatidylcholine",
-            "Potassium dihydrogen phosphate",
-            "potassium chloride",
-            "Disodium hydrogen phosphate dihydrate",
-            "Disodium hydrogen phosphate heptahydrate",
-            "Sodium dihydrogen phosphate monohydrate",
-            "Sodium chloride",
+            "MKP",
+            "KCl",
+            "CAS-10028-24-7",
+            "CAS-7782-85-6",
+            "CAS-10049-21-5",
+            "NaCl",
             "Polysorbate 80",
-            "Sodium hydroxide",
-            "Hydrochloric acid"
+            "NaOH",
+            "HCl"
           ]
         }
       ]
@@ -301,15 +301,15 @@
           "reqSet": [
             "Matrix-M1 adjuvant",
             "Phosphatidylcholine",
-            "Potassium dihydrogen phosphate",
-            "potassium chloride",
-            "Disodium hydrogen phosphate dihydrate",
-            "Disodium hydrogen phosphate heptahydrate",
-            "Sodium dihydrogen phosphate monohydrate",
-            "Sodium chloride",
+            "MKP",
+            "KCl",
+            "CAS-10028-24-7",
+            "CAS-7782-85-6",
+            "CAS-10049-21-5",
+            "NaCl",
             "Polysorbate 80",
-            "Sodium hydroxide",
-            "Hydrochloric acid"
+            "NaOH",
+            "HCl"
           ]
         }
       ]
@@ -335,15 +335,15 @@
           "reqSet": [
             "Matrix-M1 adjuvant",
             "Phosphatidylcholine",
-            "Potassium dihydrogen phosphate",
-            "potassium chloride",
-            "Disodium hydrogen phosphate dihydrate",
-            "Disodium hydrogen phosphate heptahydrate",
-            "Sodium dihydrogen phosphate monohydrate",
-            "Sodium chloride",
+            "MKP",
+            "KCl",
+            "CAS-10028-24-7",
+            "CAS-7782-85-6",
+            "CAS-10049-21-5",
+            "NaCl",
             "Polysorbate 80",
-            "Sodium hydroxide",
-            "Hydrochloric acid"
+            "NaOH",
+            "HCl"
           ]
         }
       ]
@@ -369,15 +369,15 @@
           "reqSet": [
             "Matrix-M1 adjuvant",
             "Phosphatidylcholine",
-            "Potassium dihydrogen phosphate",
-            "potassium chloride",
-            "Disodium hydrogen phosphate dihydrate",
-            "Disodium hydrogen phosphate heptahydrate",
-            "Sodium dihydrogen phosphate monohydrate",
-            "Sodium chloride",
+            "MKP",
+            "KCl",
+            "CAS-10028-24-7",
+            "CAS-7782-85-6",
+            "CAS-10049-21-5",
+            "NaCl",
             "Polysorbate 80",
-            "Sodium hydroxide",
-            "Hydrochloric acid"
+            "NaOH",
+            "HCl"
           ]
         }
       ]
