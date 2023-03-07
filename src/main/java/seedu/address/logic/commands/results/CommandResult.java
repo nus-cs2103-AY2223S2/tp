@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.results;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,70 +13,72 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean isShowHelp;
-
-    /** The application should exit. */
-    private final boolean isExit;
-
-    /** The path to the auxiliary save file, if any */
-    private final Optional<Path> filePath;
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, Path filePath) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.isShowHelp = isShowHelp;
-        this.isExit = isExit;
-        this.filePath = Optional.of(filePath);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this.feedbackToUser = requireNonNull(feedbackToUser);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
+    /**
+     * Returns false by default.
+     * Overridden by the HelpCommand.
+     */
     public boolean isShowHelp() {
-        return isShowHelp;
+        return false;
     }
 
+    /**
+     * Returns false by default.
+     * Overridden by the ExitCommand.
+     */
     public boolean isExit() {
-        return isExit;
+        return false;
     }
 
-    public Optional<Path> getPath() {
-        return filePath;
+    /**
+     * Returns false by default.
+     * Overridden by the SaveCommand.
+     */
+    public boolean isSave() {
+        return false;
+    }
+
+    /**
+     * Returns false by default.
+     * Overridden by the LoadCommand.
+     */
+    public boolean isLoad() {
+        return false;
+    }
+
+    /**
+     * Returns Optional.empty by default.
+     * Overridden by SaveCommand and LoadCommand.
+     */
+    public Optional<Path> getFilePath() {
+        return Optional.empty();
     }
 
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
-            return false;
-        }
-
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && isShowHelp == otherCommandResult.isShowHelp
-                && isExit == otherCommandResult.isExit;
+        return other == this // short circuit if same object
+                || (other instanceof CommandResult // instanceof handles nulls
+                && feedbackToUser.equals(((CommandResult) other).feedbackToUser)
+                && isShowHelp() == ((CommandResult) other).isShowHelp()
+                && isExit() == ((CommandResult) other).isExit()
+                && isLoad() == ((CommandResult) other).isLoad()
+                && isSave() == ((CommandResult) other).isSave());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, isShowHelp, isExit);
+        return Objects.hash(feedbackToUser, isShowHelp(), isExit(), isSave(), isLoad());
     }
 
 }
