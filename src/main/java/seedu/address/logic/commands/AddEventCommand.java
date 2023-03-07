@@ -32,26 +32,26 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the Calendar!";
 
-    private final Event toAdd;
+    private final Event toDo;
 
     /**
      * Creates an AddEventCommand to add the specified {@code Event}
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);
-        toAdd = event;
+        toDo = event;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //if (model.hasEvent(toAdd)) {
+        //if (model.hasEvent(toDo)) {
         //    throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         //}
 
         //model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDo));
     }
 
     /**
@@ -68,6 +68,6 @@ public class AddEventCommand extends Command {
         }
 
         AddEventCommand otherCommand = (AddEventCommand) other;
-        return toAdd.equals(otherCommand.toAdd);
+        return toDo.equals(otherCommand.toDo);
     }
 }

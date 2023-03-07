@@ -35,7 +35,28 @@ public class ParserUtil {
     /**
      * Formatter for String to LocalDateTime.
      */
-    private static DateTimeFormatter strFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static DateTimeFormatter nonRecurringFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+
+    /**
+     * Formatter for String to LocalDateTime for Daily Recurring Events
+     */
+    private static DateTimeFormatter dailyFormatter = DateTimeFormatter.ofPattern("HHmm");
+
+    /**
+     * Formatter for String to LocalDateTime for Weekly Recurring Events
+     */
+    private static DateTimeFormatter weeklyFormatter = DateTimeFormatter.ofPattern("EEEE HHmm");
+
+    /**
+     * Formatter for String to LocalDateTime for Monthly Recurring Events
+     */
+    private static DateTimeFormatter monthlyFormatter = DateTimeFormatter.ofPattern("dd HHmm");
+
+    /**
+     * Formatter for String to LocalDateTime for Yearly Recurring Events
+     */
+    private static DateTimeFormatter yearlyFormatter = DateTimeFormatter.ofPattern("MM-dd HHmm");
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

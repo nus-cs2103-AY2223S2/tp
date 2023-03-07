@@ -51,7 +51,7 @@ public abstract class Event {
 
     /**
      * Returns true if both Events have same Description.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two Events.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
@@ -64,15 +64,20 @@ public abstract class Event {
 
     /**
      * Returns true if both Events have same Description, and data fields.
-     * This defines a Stronger notion of equality between two persons.
+     * This defines a Stronger notion of equality between two Events.
      */
-    public boolean equals(Event otherEvent) {
-        if (otherEvent == this) {
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
             return true;
         }
 
-        return otherEvent != null
-                && otherEvent.getDescription().equals(getDescription())
+        if (!(other instanceof Event)) {
+            return false;
+        }
+
+        Event otherEvent = (Event) other;
+        return otherEvent.getDescription().equals(getDescription())
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
                 && otherEvent.getEndDateTime().equals(getEndDateTime())
                 && otherEvent.getRecurrence().equals(getRecurrence());

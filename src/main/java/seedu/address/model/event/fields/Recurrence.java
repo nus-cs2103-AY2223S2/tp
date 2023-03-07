@@ -12,7 +12,13 @@ import seedu.address.model.event.enums.Interval;
 public class Recurrence {
 
     public static final String MESSAGE_CONSTRAINTS = "Interval must be either: "
-            + "Daily, Weekly, Monthly or None";
+            + "Daily, Weekly, Monthly, Yearly or None";
+
+    public static final String NONE_CASE = "none";
+    public static final String DAILY_CASE = "daily";
+    public static final String WEEKLY_CASE = "weekly";
+    public static final String MONTHLY_CASE = "monthly";
+    public static final String YEARLY_CASE = "yearly";
 
     public final Interval interval;
 
@@ -24,19 +30,19 @@ public class Recurrence {
     public Recurrence(String interval) {
         switch (interval.toLowerCase(Locale.ROOT)) {
 
-        case "none":
+        case NONE_CASE:
             this.interval = Interval.NONE;
             break;
-        case "daily":
+        case DAILY_CASE:
             this.interval = Interval.DAILY;
             break;
-        case "weekly":
+        case WEEKLY_CASE:
             this.interval = Interval.WEEKLY;
             break;
-        case "monthly":
+        case MONTHLY_CASE:
             this.interval = Interval.MONTHLY;
             break;
-        case "yearly":
+        case YEARLY_CASE:
             this.interval = Interval.YEARLY;
             break;
         default:
@@ -49,8 +55,9 @@ public class Recurrence {
      */
     public static boolean isValidInterval(String trimmedInterval) {
         String lowerCaseInterval = trimmedInterval.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseInterval, "daily")
-                || Objects.equals(lowerCaseInterval, "weekly") || Objects.equals(lowerCaseInterval, "monthly");
+        return Objects.equals(lowerCaseInterval, DAILY_CASE)
+                || Objects.equals(lowerCaseInterval, WEEKLY_CASE)
+                || Objects.equals(lowerCaseInterval, MONTHLY_CASE) || Objects.equals(lowerCaseInterval, YEARLY_CASE);
     }
 
     public boolean isRecurring() {

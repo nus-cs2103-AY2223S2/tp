@@ -11,9 +11,13 @@ public enum Interval {
     MONTHLY("monthly"),
     YEARLY("yearly");
 
-    private final String value;
+    public final String value;
 
     private Interval(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

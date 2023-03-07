@@ -10,7 +10,7 @@ public class Description {
             "Description should only contain alphanumeric characters and spaces, "
                     + "and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION = "";
 
     public final String description;
 
@@ -22,7 +22,5 @@ public class Description {
         return this.description;
     }
 
-    public static boolean isValidDescription(String description) {
-        return description.matches(VALIDATION_REGEX);
-    }
+    public static boolean isValidDescription(String description) { return !description.equals(VALIDATION);}
 }
