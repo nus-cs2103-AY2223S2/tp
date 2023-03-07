@@ -8,7 +8,7 @@ public enum CustomerType {
     INDIVIDUAL,
     ENTERPRISE;
 
-    public static final String MESSAGE_FAIL_CONVERSION = "NO SUCH CUSTOMER TYPE";
+    public static final String MESSAGE_FAIL_CONVERSION = "Unrecognised customer type";
 
     /**
      * Returns CustomerType based on the given {@code customerType}.
