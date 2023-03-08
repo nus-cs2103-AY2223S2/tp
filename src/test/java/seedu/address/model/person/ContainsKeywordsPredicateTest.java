@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.testutil.PersonBuilder;
 
@@ -23,37 +22,37 @@ public class ContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         createEquals(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_MODULE_TAG,
+                Prefix.MODULE_TAG,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
         createEquals(
-                CliSyntax.PREFIX_GROUP_TAG,
+                Prefix.GROUP_TAG,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
@@ -89,7 +88,7 @@ public class ContainsKeywordsPredicateTest {
     @Test
     public void test_containsKeywords_returnsTrue() {
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 new PersonBuilder().withName("Albert Bart").build(),
                 Collections.singletonList("Albert"),
                 Arrays.asList("Albert", "Bart"),
@@ -98,7 +97,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 new PersonBuilder().withPhone("89760441").build(),
                 Collections.singletonList("89760441"), // Full number
                 Arrays.asList("8976", "0441"), // Number split into 2 parts by user
@@ -107,7 +106,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 new PersonBuilder().withEmail("albertpark@gmail.com").build(),
                 Collections.singletonList("albertpark@gmail.com"),
                 Arrays.asList("albertpark", "@gmail.com"),
@@ -116,7 +115,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 new PersonBuilder().withAddress("2 Blackmore Drive").build(),
                 Collections.singletonList("Blackmore"),
                 Arrays.asList("2", "Blackmore", "Drive"),
@@ -125,7 +124,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 new PersonBuilder().withTelegramHandle("@albertpark").build(),
                 Collections.singletonList("@albertpark"),
                 Arrays.asList("@albert", "park"),
@@ -134,7 +133,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_GROUP_TAG,
+                Prefix.GROUP_TAG,
                 new PersonBuilder().withGroupTags("TA", "CCA").build(),
                 Collections.singletonList("TA"),
                 Arrays.asList("TA", "CCA"),
@@ -143,7 +142,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                CliSyntax.PREFIX_MODULE_TAG,
+                Prefix.MODULE_TAG,
                 new PersonBuilder().withModuleTags("CE2183", "CS1010R").build(),
                 Collections.singletonList("CE2183"),
                 Arrays.asList("CE2183", "CS1010R"),
@@ -181,7 +180,7 @@ public class ContainsKeywordsPredicateTest {
                 .withModuleTags("CS2030S", "CS2103T", "CS2101").withGroupTags("TA", "CCA").build();
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 person,
                 emptyList,
                 List.of("Carol"),
@@ -189,7 +188,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 person,
                 emptyList,
                 List.of("@alice"),
@@ -197,7 +196,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 person,
                 emptyList,
                 List.of("albertpark@gmail.com"),
@@ -205,7 +204,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 person,
                 emptyList,
                 List.of("Side", "Drive"),
@@ -213,7 +212,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 person,
                 emptyList,
                 List.of("67890"),
@@ -221,7 +220,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_MODULE_TAG,
+                Prefix.MODULE_TAG,
                 person,
                 emptyList,
                 List.of("CS3230"),
@@ -229,7 +228,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                CliSyntax.PREFIX_GROUP_TAG,
+                Prefix.GROUP_TAG,
                 person,
                 emptyList,
                 List.of("Study"),

@@ -22,7 +22,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -41,13 +40,13 @@ public class FindCommandTest {
     public void equals() {
         List<String> firstKeyword = Collections.singletonList("first");
         List<String> secondKeyword = Collections.singletonList("second");
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_NAME);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_PHONE);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_EMAIL);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_TELEGRAM_HANDLE);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_ADDRESS);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_MODULE_TAG);
-        createEquals(firstKeyword, secondKeyword, CliSyntax.PREFIX_GROUP_TAG);
+        createEquals(firstKeyword, secondKeyword, Prefix.NAME);
+        createEquals(firstKeyword, secondKeyword, Prefix.PHONE);
+        createEquals(firstKeyword, secondKeyword, Prefix.EMAIL);
+        createEquals(firstKeyword, secondKeyword, Prefix.TELEGRAM_HANDLE);
+        createEquals(firstKeyword, secondKeyword, Prefix.ADDRESS);
+        createEquals(firstKeyword, secondKeyword, Prefix.MODULE_TAG);
+        createEquals(firstKeyword, secondKeyword, Prefix.GROUP_TAG);
     }
 
     public void createEquals(List<String> firstKeyword, List<String> secondKeyword, Prefix prefix) {
@@ -78,13 +77,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_NAME);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_ADDRESS);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_EMAIL);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_PHONE);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_GROUP_TAG);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_MODULE_TAG);
-        createZeroKeywordsNoPersonFound(CliSyntax.PREFIX_TELEGRAM_HANDLE);
+        createZeroKeywordsNoPersonFound(Prefix.NAME);
+        createZeroKeywordsNoPersonFound(Prefix.ADDRESS);
+        createZeroKeywordsNoPersonFound(Prefix.EMAIL);
+        createZeroKeywordsNoPersonFound(Prefix.PHONE);
+        createZeroKeywordsNoPersonFound(Prefix.GROUP_TAG);
+        createZeroKeywordsNoPersonFound(Prefix.MODULE_TAG);
+        createZeroKeywordsNoPersonFound(Prefix.TELEGRAM_HANDLE);
     }
 
     public void createZeroKeywordsNoPersonFound(Prefix prefix) {
@@ -99,31 +98,31 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         createMultipleKeywordsMultiplePersonsFound(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 "Kee Edward Canning",
                 Arrays.asList(CLARK, EDWARD, FORD),
                 3
         );
         createMultipleKeywordsMultiplePersonsFound(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 "albertpark bartlee clarkkee",
                 Arrays.asList(ALBERT, BART, CLARK),
                 3
         );
         createMultipleKeywordsMultiplePersonsFound(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 "91 Joo Koon Circle",
                 Arrays.asList(ANG, JOOKOON),
                 2
         );
         createMultipleKeywordsMultiplePersonsFound(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 "92463693 88032666 83340546",
                 Arrays.asList(EDWARD, FORD, LAVENDER),
                 3
         );
         createMultipleKeywordsMultiplePersonsFound(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 "@kevinho @jookoon @isaacnewton",
                 Arrays.asList(ISAAC, JOOKOON, KEVIN),
                 3

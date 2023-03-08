@@ -23,7 +23,9 @@ public class PersonTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getGroupTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getImmutableGroupTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getImmutableModuleTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getImmutableCommonModuleTags().remove(0));
     }
 
     @Test

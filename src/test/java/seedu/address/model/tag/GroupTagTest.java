@@ -73,7 +73,7 @@ public class GroupTagTest {
 
     @Test
     public void toString_validTag_success() {
-        assertEquals(String.format("[%s]", GROUP_TAG_STRING), GROUP_TAG.toString());
+        assertEquals(String.format("%s", GROUP_TAG_STRING), GROUP_TAG.toString());
     }
 
 }
