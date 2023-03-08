@@ -20,7 +20,7 @@ public class DateTimeParser {
      */
     public static LocalDateTime parseDateTime(String dateTimeString) throws ParseException {
         // Format DD/MM/YYYY HH:MM
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("DD/MM/YYYY HH:MM");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         try {
             return LocalDateTime.parse(dateTimeString, format);
         } catch (DateTimeParseException e) {
