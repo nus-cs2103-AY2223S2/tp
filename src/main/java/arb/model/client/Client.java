@@ -94,7 +94,7 @@ public class Client {
 
         boolean isNameEqual = otherClient.getName().equals(getName());
         boolean isTagsEqual = otherClient.getTags().equals(getTags());
-        
+
         boolean isPhoneEqual;
 
         if (!isPhonePresent()) {
@@ -110,7 +110,7 @@ public class Client {
         } else {
             isEmailEqual = getEmail().equals(otherClient.getEmail());
         }
-        
+
         return isNameEqual && isTagsEqual && isPhoneEqual && isEmailEqual;
     }
 

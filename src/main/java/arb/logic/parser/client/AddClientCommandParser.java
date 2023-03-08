@@ -43,7 +43,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        
+
         Optional<String> phoneString = argMultimap.getValue(PREFIX_PHONE);
         Phone phone = null;
         if (phoneString.isPresent()) {

@@ -58,13 +58,13 @@ public class ClientCard extends UiPart<Region> {
         } else {
             contentsPane.getChildren().remove(phone);
         }
-        
+
         if (client.isEmailPresent()) {
             email.setText(client.getEmail().value);
         } else {
             contentsPane.getChildren().remove(email);
         }
-        
+
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
