@@ -54,7 +54,7 @@ class JsonAdaptedTask {
         if (!TaskName.isValidTaskName(taskName)) {
             throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        final TaskName modelName = new TaskName(taskName);
+        final TaskName modelTaskName = new TaskName(taskName);
 
         if (taskDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -63,7 +63,7 @@ class JsonAdaptedTask {
         if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
             throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
-        final TaskDeadline modelDeadline = new TaskDeadline(taskDeadline);
+        final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
 
         if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -72,9 +72,9 @@ class JsonAdaptedTask {
         if (!TaskStatus.isValidTaskStatus(taskStatus)) {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
-        final TaskStatus modelStatus = new TaskStatus(taskStatus);
+        final TaskStatus modelTaskStatus = new TaskStatus(taskStatus);
 
-        return new Task(modelName, modelDeadline, modelStatus);
+        return new Task(modelTaskName, modelTaskDeadline, modelTaskStatus);
     }
 
 }
