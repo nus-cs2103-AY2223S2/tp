@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lee Wei Chong Stefan's Project Portfolio Page
+title: Kim Young Jin's Project Portfolio Page
 ---
 
 ### Project: Fast Army Internal Lookup System
@@ -9,26 +9,19 @@ Fast Army Internal Lookup System is a desktop address book application built to 
 
 Given below are my contributions to the project.
 
-- **New Feature**:
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jugheadjones10&breakdown=true)
+
+- **Enhancements implemented**:
   - *to be added soon*
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=rexcyrio&breakdown=true)
-
-- **Project management**:
+- **Contributions to the UG**:
   - *to be added soon*
 
-- **Enhancements to existing features**:
+- **Contributions to the DG**:
   - *to be added soon*
 
-- **Documentation**:
-  - User Guide:
-    - *to be added soon*
-
-  - Developer Guide:
-    - *to be added soon*
-
-- **Community**:
+- **Testing contributed**:
   - *to be added soon*
 
-- **Tools**:
+- **Review/mentoring contributions**:
   - *to be added soon*

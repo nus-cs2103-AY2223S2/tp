@@ -30,37 +30,37 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `fails.jar` from [~~here~~](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases) (*coming soon*).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the *home folder* for your FAILS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fails.jar` command to run the application.<br>
+  A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+  ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+  Some example commands you can try:
 
-   - `list` : Lists all contacts.
+    - `list` : Lists all contacts.
 
-   - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
+    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
 
-     | Field        | Value                          |
-     |--------------|--------------------------------|
-     | name         | Jaden Ng                       |
-     | phone number | 91297723                       |
-     | email        | jadend@gmail.com               |
-     | address      | Smith street, block 13, #07-04 |
-     | rank         | 3SG                            |
-     | unit         | alpha                          |
-     | company      | SIR                            |
-     | platoon      | 4                              |
+      | Field        | Value                          |
+      |--------------|--------------------------------|
+      | name         | Jaden Ng                       |
+      | phone number | 91297723                       |
+      | email        | jadend@gmail.com               |
+      | address      | Smith street, block 13, #07-04 |
+      | rank         | 3SG                            |
+      | unit         | alpha                          |
+      | company      | SIR                            |
+      | platoon      | 4                              |
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
+    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   - `clear` : Deletes all contacts.
+    - `clear` : Deletes all contacts.
 
-   - `exit` : Exits the app.
+    - `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -96,13 +96,13 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<!-- ![help message](images/helpMessage.png) -->
 
 Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the FAILS.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]`
 
@@ -142,13 +142,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the FAILS.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the FAILS.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -187,7 +187,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the FAILS.
 
 Format: `delete INDEX`
 
@@ -197,12 +197,12 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
+- `list` followed by `delete 2` deletes the 2nd person in the FAILS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the FAILS.
 
 Format: `clear`
 
@@ -214,28 +214,28 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FAILS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FAILS data is saved as a JSON file `[JAR file location]/data/fails.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:** If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, FAILS will discard all data and start with an empty data file at the next run.
 
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+(*coming soon*)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FAILS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
