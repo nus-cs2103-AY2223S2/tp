@@ -42,12 +42,13 @@ public class TagCommandParser implements Parser<TagCommand> {
             } else {
                 throw new ParseException("Did not specify include/remove tags");
             }
+            Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            if (tag.isEmpty()) {
+                throw new ParseException("Did not specify prefix /t");
+            }
+            return new TagCommand(code, isInclude, tag);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
         }
-
-        Set<Tag> tag = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        return new TagCommand(code, isInclude, tag);
     }
 }
