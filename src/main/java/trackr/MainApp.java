@@ -26,9 +26,11 @@ import trackr.model.UserPrefs;
 import trackr.model.util.SampleDataUtil;
 import trackr.storage.AddressBookStorage;
 import trackr.storage.JsonAddressBookStorage;
+import trackr.storage.JsonTaskListStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.Storage;
 import trackr.storage.StorageManager;
+import trackr.storage.TaskListStorage;
 import trackr.storage.UserPrefsStorage;
 import trackr.ui.Ui;
 import trackr.ui.UiManager;
@@ -59,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        storage = new StorageManager(addressBookStorage, taskListStorage, userPrefsStorage);
 
         initLogging(config);
 
