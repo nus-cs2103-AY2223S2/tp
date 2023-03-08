@@ -9,8 +9,6 @@ import seedu.address.logic.commands.tank.TankAddCommand;
 import seedu.address.logic.commands.tank.TankCommand;
 import seedu.address.logic.commands.tank.TankDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.tank.TankAddCommandParser;
-import seedu.address.logic.parser.tank.TankDeleteCommandParser;
 
 /**
  * Parses user input for {@code Task} commands.
@@ -20,7 +18,7 @@ public class TankParser {
     /**
      * Used for separation of task command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<taskCommandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<tankCommandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into {@code Task} command for execution.

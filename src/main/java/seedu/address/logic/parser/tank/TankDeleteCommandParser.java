@@ -2,7 +2,7 @@ package seedu.address.logic.parser.tank;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.task.TaskDeleteCommand;
+import seedu.address.logic.commands.tank.TankDeleteCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code TaskDeleteCommand} object.
  */
-public class TankDeleteCommandParser implements Parser<TaskDeleteCommand> {
+public class TankDeleteCommandParser implements Parser<TankDeleteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code TaskDeleteCommand}
