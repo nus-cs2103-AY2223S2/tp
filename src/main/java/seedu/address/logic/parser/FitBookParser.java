@@ -15,7 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListClientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -60,9 +60,8 @@ public class FitBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
+        case ListClientsCommand.COMMAND_WORD:
+            return new ListClientsCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

@@ -23,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+    private static final String TITLE = "FitBook";
 
     private static final String FXML = "MainWindow.fxml";
 
