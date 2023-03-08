@@ -9,8 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -20,10 +23,17 @@ import seedu.address.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an addDoctor command string for adding the {@code doctor}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddDoctorCommand(Doctor doctor) {
+        return AddDoctorCommand.COMMAND_WORD + " " + getPersonDetails(doctor);
+    }
+
+    /**
+     * Returns an addPatient command string for adding the {@code patient}.
+     */
+    public static String getAddPatientCommand(Patient patient) {
+        return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
     }
 
     /**

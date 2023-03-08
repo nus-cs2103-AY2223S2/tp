@@ -97,6 +97,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -126,5 +127,9 @@ public class Person {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public boolean isDoctor() {
+        return false;
     }
 }
