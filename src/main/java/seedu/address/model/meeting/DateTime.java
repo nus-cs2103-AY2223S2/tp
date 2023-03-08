@@ -4,14 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
-
-import seedu.address.model.meeting.exceptions.InvalidEndDateTimeException;
 
 /**
  * Represents a Meetings's date/time in the address book.
@@ -55,13 +52,9 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        try {
-            meetingDateTime = LocalDateTime.parse(dateTime,
-                    DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
-            meetingDuration = Duration.ZERO;
-        } catch (DateTimeParseException e) {
-            throw new DateTimeException("Unable to recognise '" + dateTime + "' as valid date/time.");
-        }
+        meetingDateTime = LocalDateTime.parse(dateTime,
+                DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
+        meetingDuration = Duration.ZERO;
     }
 
     /**
@@ -75,42 +68,48 @@ public class DateTime {
         checkArgument(isValidDateTime(startDateTime), MESSAGE_CONSTRAINTS);
         checkArgument(isValidDateTime(endDateTime), MESSAGE_CONSTRAINTS);
 
-        try {
-            meetingDateTime = LocalDateTime.parse(startDateTime,
-                    DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
-        } catch (DateTimeParseException e) {
-            throw new DateTimeException("Unable to recognise '" + startDateTime + "' as valid date/time.");
-        }
+        meetingDateTime = stringToLocalDateTime(startDateTime);
+        LocalDateTime end = stringToLocalDateTime(endDateTime);
 
-        try {
-            LocalDateTime end = LocalDateTime.parse(endDateTime,
-                    DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
-            Duration duration = Duration.between(meetingDateTime, end);
+        checkArgument(isValidDuration(meetingDateTime, end), MESSAGE_CONSTRAINTS);
 
-            if (duration.isNegative() || duration.isZero()) {
-                throw new InvalidEndDateTimeException();
-            } else {
-                meetingDuration = duration;
-            }
-        } catch (DateTimeParseException e) {
-            throw new DateTimeException("Unable to recognise '" + endDateTime + "' as valid date/time.");
-        } catch (DateTimeException | ArithmeticException e) {
-            throw new DateTimeException("Unable to calculate the duration between " + startDateTime
-                    + " and " + endDateTime);
-        }
+        meetingDuration = Duration.between(meetingDateTime, end);
+    }
+
+    public String getDateTime() {
+        return meetingDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT));
     }
 
     /**
-     * Returns true if a given string is a valid title.
+     * Returns true if a given string is a valid date/time.
      */
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !stringToLocalDateTime(test).equals(LocalDateTime.MIN);
+    }
+
+    /**
+     * Returns true if a given string is a valid date/time.
+     */
+    public static boolean isValidDuration(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return !Duration.between(startDateTime, endDateTime).isNegative()
+                && !Duration.between(startDateTime, endDateTime).isZero();
+    }
+
+    private static LocalDateTime stringToLocalDateTime(String dateTime) {
+        try {
+            return LocalDateTime.parse(dateTime,
+                    DateTimeFormatter.ofPattern(String.format("%s %s", DATE_FORMAT, TIME_FORMAT)));
+        } catch (DateTimeParseException e) {
+            return LocalDateTime.MIN;
+        }
     }
 
     @Override
     public String toString() {
         String end = meetingDuration != null && !meetingDuration.isZero()
-                ? meetingDateTime.plus(meetingDuration).toString() : "";
+                ? meetingDateTime.plus(meetingDuration).format(
+                        DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
+                : "";
 
         if (!end.isEmpty()) {
             return meetingDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
