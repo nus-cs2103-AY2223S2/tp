@@ -1,10 +1,7 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
@@ -13,14 +10,14 @@ import seedu.address.model.patient.Patient;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditCommand.EditPatientDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditPatientDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditPatientDescriptor descriptor) {
+        this.descriptor = new EditPatientDescriptor(descriptor);
     }
 
     /**
@@ -28,7 +25,7 @@ public class EditPersonDescriptorBuilder {
      * {@code patient}'s details
      */
     public EditPersonDescriptorBuilder(Patient patient) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCommand.EditPatientDescriptor();
         descriptor.setName(patient.getName());
     }
 
@@ -41,7 +38,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditPatientDescriptor build() {
         return descriptor;
     }
 }
