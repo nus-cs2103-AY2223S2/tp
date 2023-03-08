@@ -173,6 +173,13 @@ public class ParserUtil {
     }
 
 
+    /*
+     * ========================================================================
+     * Vaccination
+     * ========================================================================
+     */
+
+
     /**
      * Parses vaccination type names.
      *
@@ -185,5 +192,22 @@ public class ParserUtil {
             throw new ParseException(VaxName.MESSAGE_CONSTRAINT);
         }
         return new VaxName(name);
+    }
+
+
+    /*
+     * ========================================================================
+     * Basic
+     * ========================================================================
+     */
+
+
+    public static int parseInteger(String intString) throws ParseException {
+        try {
+            return Integer.parseInt(intString);
+        } catch (NumberFormatException numEx) {
+            // TODO: make this nicer
+            throw new ParseException("Must be an integer between -2147483647 to 2147483647");
+        }
     }
 }

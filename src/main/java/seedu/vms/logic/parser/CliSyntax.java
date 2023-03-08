@@ -17,4 +17,14 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGY = new Prefix("a");
     public static final Prefix PREFIX_VACCINATION = new Prefix("v");
 
+    /*
+     * ========================================================================
+     * Vaccination
+     * ========================================================================
+     */
+
+    public static final Prefix PREFIX_MIN_AGE = new Prefix("lal");
+    public static final Prefix PREFIX_MAX_AGE = new Prefix("ual");
+    public static final Prefix PREFIX_MIN_SPACING = new Prefix("s");
+
 }
