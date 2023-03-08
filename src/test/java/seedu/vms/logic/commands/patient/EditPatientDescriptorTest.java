@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_GLUTEN;
+import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_SEAFOOD;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_DOB_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -52,7 +52,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAllergies(VALID_ALLERGY_GLUTEN).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAllergies(VALID_ALLERGY_SEAFOOD).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

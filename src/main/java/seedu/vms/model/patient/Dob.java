@@ -18,6 +18,8 @@ public class Dob {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Date of birth can take any date earlier than today, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS2 =
+        "Date oan today, and it should not be blank";
 
     public final LocalDateTime value;
 
@@ -28,11 +30,11 @@ public class Dob {
      */
     public Dob(String dob) {
         requireNonNull(dob);
-        checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS2);
         try {
             value = parseDate(dob);
         } catch (ParseException e) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS2);
         }
     }
 

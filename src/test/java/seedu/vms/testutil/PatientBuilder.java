@@ -19,8 +19,8 @@ public class PatientBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_DOB = "1998-05-23";
-    public static final String DEFAULT_BLOODTYPE = "A+";
+    public static final String DEFAULT_DOB = "1998-05-22";
+    public static final String DEFAULT_BLOODTYPE = "A-";
 
     private Name name;
     private Phone phone;

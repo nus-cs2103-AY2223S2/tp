@@ -65,7 +65,7 @@ public class CommandTestUtil {
     // '*' not allowed in allergy
     public static final String INVALID_ALLERGY_DESC = " " + DELIMITER + PREFIX_ALLERGY + " " + "seafood*";
     // '*' not allowed in vaccine
-    public static final String INVALID_VACCINE_DESC = " " + DELIMITER + PREFIX_ALLERGY + " " + "moderna*";
+    public static final String INVALID_VACCINE_DESC = " " + DELIMITER + PREFIX_VACCINATION + " " + "moderna*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

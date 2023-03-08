@@ -3,6 +3,7 @@ package seedu.vms.logic.parser.patient;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.vms.logic.commands.CommandTestUtil.ALLERGY_DESC_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.ALLERGY_DESC_SEAFOOD;
+import static seedu.vms.logic.commands.CommandTestUtil.BLOODTYPE_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.BLOODTYPE_DESC_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.DOB_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.DOB_DESC_BOB;
@@ -62,7 +63,7 @@ public class AddCommandParserTest {
                 + BLOODTYPE_DESC_BOB + ALLERGY_DESC_GLUTEN, new AddCommand(expectedPatient));
 
         // multiple bloodtypees - last bloodtype accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + DOB_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + BLOODTYPE_DESC_AMY
                 + BLOODTYPE_DESC_BOB + ALLERGY_DESC_GLUTEN, new AddCommand(expectedPatient));
 
         // multiple allergy - all accepted
@@ -78,7 +79,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero allergy
         Patient expectedPatient = new PatientBuilder(AMY).withAllergies().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + DOB_DESC_AMY + DOB_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + DOB_DESC_AMY + BLOODTYPE_DESC_AMY,
                 new AddCommand(expectedPatient));
     }
 

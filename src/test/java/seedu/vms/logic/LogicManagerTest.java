@@ -87,7 +87,7 @@ public class LogicManagerTest {
                 PHONE_DESC_AMY,
                 DOB_DESC_AMY,
                 BLOODTYPE_DESC_AMY);
-        Patient expectedPatient = new PatientBuilder(AMY).withAllergies().build();
+        Patient expectedPatient = new PatientBuilder(AMY).withAllergies().withVaccines().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

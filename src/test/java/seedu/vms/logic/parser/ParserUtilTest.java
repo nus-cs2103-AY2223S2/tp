@@ -32,8 +32,8 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_DOB = "123 Main Street #0505";
-    private static final String VALID_BLOODTYPE = "rachel@example.com";
+    private static final String VALID_DOB = "2001-02-23";
+    private static final String VALID_BLOODTYPE = "A+";
     private static final String VALID_ALLERGY_1 = "seafood";
     private static final String VALID_ALLERGY_2 = "gluten";
     private static final String VALID_VACCINE_1 = "moderna";

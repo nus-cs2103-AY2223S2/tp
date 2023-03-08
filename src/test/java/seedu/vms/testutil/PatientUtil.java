@@ -35,7 +35,7 @@ public class PatientUtil {
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_DOB + patient.getDob().value + " ");
-        sb.append(PREFIX_BLOODTYPE + patient.getBloodType().value + " ");
+        sb.append(PREFIX_BLOODTYPE + patient.getBloodType().toString() + " ");
         patient.getAllergy().stream().forEach(
                 s -> sb.append(PREFIX_ALLERGY + s.toString() + " "));
         patient.getVaccine().stream().forEach(
@@ -50,8 +50,9 @@ public class PatientUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getDob().ifPresent(email -> sb.append(PREFIX_DOB).append(email.value).append(" "));
-        descriptor.getBloodType().ifPresent(address -> sb.append(PREFIX_BLOODTYPE).append(address.value).append(" "));
+        descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob.value).append(" "));
+        descriptor.getBloodType()
+                .ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.toString()).append(" "));
         if (descriptor.getAllergies().isPresent()) {
             Set<Allergy> allergies = descriptor.getAllergies().get();
             if (allergies.isEmpty()) {
