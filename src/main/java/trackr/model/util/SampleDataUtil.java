@@ -20,7 +20,7 @@ import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Trackr} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
