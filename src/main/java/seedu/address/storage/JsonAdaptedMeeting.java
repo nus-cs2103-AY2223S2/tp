@@ -15,7 +15,6 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Location;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.Title;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -35,8 +34,9 @@ public class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("title") String title, @JsonProperty("dateTime") String dateTime,
-                             @JsonProperty("location") String location, @JsonProperty("description") String description,
-                             @JsonProperty("attendees") List<JsonAdaptedPerson> attendees) {
+                              @JsonProperty("attendees") List<JsonAdaptedPerson> attendees,
+                              @JsonProperty("location") String location,
+                              @JsonProperty("description") String description) {
         this.title = title;
         this.dateTime = dateTime;
         this.location = location;
@@ -74,7 +74,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
 
