@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.io.FileNotFoundException;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
 import seedu.address.model.client.Client;
@@ -59,7 +61,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(FitBookModel model) throws CommandException {
+    public CommandResult execute(FitBookModel model) throws CommandException , FileNotFoundException {
         requireNonNull(model);
         if (model.hasClient(toAdd)) {
 

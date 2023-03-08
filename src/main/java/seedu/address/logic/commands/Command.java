@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.io.FileNotFoundException;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitBookModel;
 
@@ -15,6 +17,6 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(FitBookModel model) throws CommandException;
+    public abstract CommandResult execute(FitBookModel model) throws CommandException, FileNotFoundException;
 
 }
