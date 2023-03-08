@@ -27,7 +27,7 @@ import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.person.Person;
-import seedu.sudohr.storage.JsonAddressBookStorage;
+import seedu.sudohr.storage.JsonSudoHrStorage;
 import seedu.sudohr.storage.JsonUserPrefsStorage;
 import seedu.sudohr.storage.StorageManager;
 import seedu.sudohr.testutil.PersonBuilder;
@@ -43,8 +43,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonSudoHrStorage addressBookStorage =
+                new JsonSudoHrStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -70,9 +70,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonSudoHrIoExceptionThrowingStub
+        JsonSudoHrStorage addressBookStorage =
+                new JsonSudoHrIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -149,8 +149,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonSudoHrIoExceptionThrowingStub extends JsonSudoHrStorage {
+        private JsonSudoHrIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

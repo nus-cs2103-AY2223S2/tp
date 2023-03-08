@@ -11,7 +11,7 @@ import seedu.sudohr.model.SudoHr;
 /**
  * Represents a storage for {@link SudoHr}.
  */
-public interface AddressBookStorage {
+public interface SudoHrStorage {
 
     /**
      * Returns the file path of the data file.

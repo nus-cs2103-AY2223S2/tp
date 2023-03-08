@@ -18,8 +18,8 @@ import seedu.sudohr.logic.LogicManager;
 import seedu.sudohr.model.*;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.util.SampleDataUtil;
-import seedu.sudohr.storage.AddressBookStorage;
-import seedu.sudohr.storage.JsonAddressBookStorage;
+import seedu.sudohr.storage.SudoHrStorage;
+import seedu.sudohr.storage.JsonSudoHrStorage;
 import seedu.sudohr.storage.JsonUserPrefsStorage;
 import seedu.sudohr.storage.Storage;
 import seedu.sudohr.storage.StorageManager;
@@ -52,8 +52,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SudoHrStorage sudoHrStorage = new JsonSudoHrStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(sudoHrStorage, userPrefsStorage);
 
         initLogging(config);
 
