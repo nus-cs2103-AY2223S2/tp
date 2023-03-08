@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ModuleCode;
 
 /**
  * Represents a Student in the address book.
@@ -23,16 +24,30 @@ public class Student {
     // Data fields
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<ModuleCode> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, tags);
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules) {
+        requireAllNonNull(name, phone, email, studentId, modules);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
+        this.modules.addAll(modules);
+    }
+
+    /**
+     * With tags field.
+     */
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, studentId, modules);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.studentId = studentId;
+        this.modules.addAll(modules);
         this.tags.addAll(tags);
     }
 
@@ -59,6 +74,15 @@ public class Student {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    /**
+     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ModuleCode> getModules() {
+        return Collections.unmodifiableSet(modules);
+    }
+
 
     /**
      * Returns true if both persons have the same name.
@@ -111,6 +135,12 @@ public class Student {
                 .append(getEmail())
                 .append("; StudentId: ")
                 .append(getStudentId());
+
+        Set<ModuleCode> modules = getModules();
+        if (!modules.isEmpty()) {
+            builder.append("; Modules: ");
+            modules.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

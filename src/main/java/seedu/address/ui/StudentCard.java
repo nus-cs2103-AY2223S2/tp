@@ -57,6 +57,9 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
         displayPhoto.setImage(new Image(this.getClass().getResourceAsStream("/images/studenticon.png")));
+        student.getModules().stream()
+                .sorted(Comparator.comparing(module -> module.tagName))
+                .forEach(module -> tags.getChildren().add(new Label(module.tagName)));
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

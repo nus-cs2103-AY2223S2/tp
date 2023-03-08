@@ -14,6 +14,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ModuleCode;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +121,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String module} into a {@code <Module>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static ModuleCode parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Tag.isValidTagName(trimmedModule)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModule);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<ModuleCode> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final Set<ModuleCode> moduleSet = new HashSet<>();
+
+        for (String moduleName : modules) {
+            moduleSet.add(parseModule(moduleName));
+        }
+        return moduleSet;
     }
 }

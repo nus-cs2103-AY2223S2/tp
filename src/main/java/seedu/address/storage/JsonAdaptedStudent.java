@@ -15,6 +15,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
+import seedu.address.model.tag.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,6 +68,7 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
+        final List<ModuleCode> personModules = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -105,8 +107,11 @@ class JsonAdaptedStudent {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
+        final Set<ModuleCode> modelModules = new HashSet<>(personModules);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelEmail, modelStudentId, modelTags);
+
+        return new Student(modelName, modelPhone, modelEmail, modelStudentId, modelModules, modelTags);
     }
 
 }
