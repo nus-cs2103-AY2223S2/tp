@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.DuplicateHomeworkException;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
  * Adds an assignment to a student.
@@ -64,7 +64,7 @@ public class CreateHomeworkCommand extends Command {
             for (Student student : studentList) {
                 student.addHomework(homework);
             }
-        } catch (DuplicateHomeworkException e) {
+        } catch (DuplicateEntryException e) {
             throw new CommandException(e.getMessage());
         }
 
