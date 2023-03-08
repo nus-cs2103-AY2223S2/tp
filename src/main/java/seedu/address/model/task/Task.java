@@ -6,13 +6,15 @@ package seedu.address.model.task;
  */
 
 public class Task {
-    protected String description;
+
     protected boolean isDone;
+    private final TaskDescription description;
+
 
     /**
      * The constructor of the Task that takes in description of the task.
      */
-    public Task(String description) {
+    public Task(TaskDescription description) {
         this.description = description;
         this.isDone = false;
     }
@@ -20,9 +22,9 @@ public class Task {
     /**
      * Supplies description of the current task when requested.
      *
-     * @return String description of the task
+     * @return TaskDescription description of the task
      */
-    public String getDescription() {
+    public TaskDescription getDescription() {
         return this.description;
     }
 
