@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.Repository;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Subject;
@@ -44,11 +45,28 @@ public class TaskBuilder {
             new Status(RANDOM_TASK_STATUS));
     }
 
+    private Task buildRandomTaskWithIndex(int index) {
+        return new Task(new Subject(RANDOM_TASK_SUBJECT + " " + index),
+            new Content(RANDOM_TASK_CONTENT + " " + index),
+            new Status(RANDOM_TASK_STATUS));
+    }
+
     /**
-     * generate a random task
+     * Generates a random task
      */
     public static Task ofRandomTask() {
         return new TaskBuilder().buildRandomTask();
+
+    }
+    /**
+     * Generates a random list of tasks
+     */
+    public static Repository<Task> ofRandomTaskBook(int size) {
+        Repository<Task> taskRepository = new Repository<>();
+        for (int i = 0; i < size; i++) {
+            taskRepository.addItem(new TaskBuilder().buildRandomTaskWithIndex(i));
+        }
+        return taskRepository;
 
     }
 
@@ -69,4 +87,6 @@ public class TaskBuilder {
     public Task build() {
         return new Task(subject, content, status);
     }
+
+
 }

@@ -13,7 +13,14 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyRepository;
+import seedu.address.model.Repository;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class StorageManagerTest {
 
@@ -25,8 +32,10 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTaskStorage taskStorage = new JsonTaskStorage(getTempFilePath("test_task"));
+        JsonPersonTaskStorage personTaskStorage = new JsonPersonTaskStorage(getTempFilePath("test_person_task"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage, personTaskStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -58,6 +67,33 @@ public class StorageManagerTest {
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
+    }
+
+    @Test
+    public void taskBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskStorage} class.
+         */
+        Repository<Task> original = TaskBuilder.ofRandomTaskBook(10);
+        storageManager.saveTaskBook(original);
+        ReadOnlyRepository<Task> retrieved = storageManager.readTaskBook().get();
+        assertEquals(original, Repository.of(retrieved));
+    }
+    @Test
+    public void personTaskBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonPersonTaskStorage} class.
+         */
+        Task task = TaskBuilder.ofRandomTask();
+        Person person = new PersonBuilder().build();
+        Repository<PersonTask> original = new Repository<>();
+        original.addItem(new PersonTask(person.getId(), task.getId()));
+        storageManager.savePersonTaskBook(original);
+
+        ReadOnlyRepository<PersonTask> retrieved = storageManager.readPersonTaskBook().get();
+        assertEquals(original, Repository.of(retrieved));
     }
 
     @Test
