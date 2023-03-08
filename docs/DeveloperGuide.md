@@ -255,35 +255,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target Coach profile**: Sports Coaches 
+**Target Coach profile**: Sports Coaches
 
 * has a need to manage a significant number of contacts of their students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* requires to organise their coaching schedule on a frequent basis 
+* requires to organise their coaching schedule on a frequent basis
 
-**Value proposition**: 
+**Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
-* contacts are specially catered towards sport athletes 
-* makes scheduling of session more convenient than on calenders
+* contacts are specially catered towards sport athletes
+* makes scheduling of session more convenient than on calendars
 
 
 ### Coach stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                 | So that I can…​                                                       |
-|----------|-------------------------------------|------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new coach                           | see usage instructions       | refer to instructions when I forget how to use the App                |
-| `* * *`  | coach                               | add a new student            | record his/her profile                                                |
-| `* * *`  | coach                               | delete a student             | remove students that I no longer teach                                |
-| `* * *`  | coach                               | edit a student               | update a student's details                                            |  
-| `* *`    | coach                               | find a student by name       | locate details of student without having to go through the entire list |                    
-| `* *`    | coach                               | hide private contact details | minimize chance of someone else seeing them by accident               |
-| `*`      | coach with many students | sort students by name        | locate a student easily                                               |
-| `*`      | coach with many training sessions   | I would like to view my schedule as a calendar                             | to better plan my week.   |
+| Priority | As a …​                           | I want to …​                 | So that I can…​                                                 |
+|----------|-----------------------------------|------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new coach                         | see usage instructions       | refer to instructions when I forget how to use the App                |
+| `* * *`  | coach                             | add a new student            | record his/her profile                                                |
+| `* * *`  | coach                             | delete a student             | remove students that I no longer teach                                |
+| `* * *`  | coach                             | edit a student               | update a student's details                                            |
+| `* *`    | coach                             | find a student by name       | locate details of student without having to go through the entire list |
+| `* *`    | coach                             | hide private contact details | minimize chance of someone else seeing them by accident               |
+| `*`      | coach with many students          | sort students by name        | locate a student easily                                               |
+| `*`      | coach with many training sessions | I would like to view my schedule as a calendar                             | to better plan my week.   |
 
 *{More to be added}*
 

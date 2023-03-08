@@ -155,6 +155,12 @@ Exits the program.
 
 Format: `exit`
 
+### Sorting the contact list : `sort`
+
+Sorts all entries in the address book.
+
+Format: `sort`
+
 ### Saving the data
 
 SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -166,10 +172,6 @@ SportSync data are saved as a JSON file `[JAR file location]/data/sportsync.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
 </div>
-
-### Sort `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ### Group by `[coming in v2.0]`
 

@@ -16,7 +16,10 @@ Given below are my contributions to the project.
     * Highlights:
     * Credits:
 
-* **New Feature**:
+* **New Feature**: Added the ability to sort the contact list.
+  * What it does: Calling sort will automatically sort the list of contacts in alphabetical order.
+  * Justification: This feature gives convenience to the user by letting them know where a specific contact can be found in relation to others.
+  * Highlights: Implementing this feature involved understanding the complex code flow and the relationship between many classes.
 
 * **Code contributed**: [RepoSense link]()
 
