@@ -16,7 +16,7 @@ public class VaxType {
     public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
     public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
-    private final String name;
+    private final VaxName name;
     private final HashSet<String> groups;
     private final int minAge;
     private final int maxAge;
@@ -28,7 +28,7 @@ public class VaxType {
     /**
      * Constructs a {@code VaxType}.
      */
-    public VaxType(String name, HashSet<String> groups,
+    public VaxType(VaxName name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         this.name = name;
@@ -41,8 +41,19 @@ public class VaxType {
     }
 
 
+    /**
+     * Constructs a {@code VaxType}. The given name is converted to a
+     * {@code VaxName}.
+     */
+    public VaxType(String name, HashSet<String> groups,
+            int minAge, int maxAge, int minSpacing,
+            List<Requirement> allergyReqs, List<Requirement> historyReqs) {
+        this(new VaxName(name), groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+    }
+
+
     public String getName() {
-        return name;
+        return name.toString();
     }
 
 
@@ -78,7 +89,7 @@ public class VaxType {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
 
