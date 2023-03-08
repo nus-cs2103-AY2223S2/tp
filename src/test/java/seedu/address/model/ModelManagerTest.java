@@ -136,15 +136,15 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         createEqualsFilteredList(
-                Prefix.NAME, ALBERT.getName().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                Prefix.EMAIL, ALBERT.getEmail().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                Prefix.PHONE, ALBERT.getPhone().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                Prefix.ADDRESS, ALBERT.getAddress().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.ADDRESS, ALBERT.getAddress().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().value.split("\\s+"),
+                Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
                 eduMate, userPrefs);
 
         createEqualsFilteredList(

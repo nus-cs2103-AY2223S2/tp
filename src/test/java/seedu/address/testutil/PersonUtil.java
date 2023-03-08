@@ -27,11 +27,11 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Prefix.NAME + person.getName().value + " ");
-        sb.append(Prefix.PHONE + person.getPhone().value + " ");
-        sb.append(Prefix.EMAIL + person.getEmail().value + " ");
-        sb.append(Prefix.ADDRESS + person.getAddress().value + " ");
-        sb.append(Prefix.TELEGRAM_HANDLE + person.getTelegramHandle().value + " ");
+        sb.append(Prefix.NAME + person.getName().getValue() + " ");
+        sb.append(Prefix.PHONE + person.getPhone().getValue() + " ");
+        sb.append(Prefix.EMAIL + person.getEmail().getValue() + " ");
+        sb.append(Prefix.ADDRESS + person.getAddress().getValue() + " ");
+        sb.append(Prefix.TELEGRAM_HANDLE + person.getTelegramHandle().getValue() + " ");
         person.getImmutableGroupTags().stream().forEach(
             s -> sb.append(Prefix.GROUP_TAG + s.tagName + " ")
         );
@@ -46,12 +46,12 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(Prefix.NAME).append(name.value).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(Prefix.PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(Prefix.EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(Prefix.ADDRESS).append(address.value).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(Prefix.NAME).append(name.getValue()).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(Prefix.PHONE).append(phone.getValue()).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(Prefix.EMAIL).append(email.getValue()).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(Prefix.ADDRESS).append(address.getValue()).append(" "));
         descriptor.getTelegramHandle().ifPresent(telegramHandle -> sb.append(Prefix.TELEGRAM_HANDLE)
-                .append(telegramHandle.value).append(" "));
+                .append(telegramHandle.getValue()).append(" "));
         if (descriptor.getGroupTags().isPresent()) {
             Set<GroupTag> groupTags = descriptor.getGroupTags().get();
             if (groupTags.isEmpty()) {
