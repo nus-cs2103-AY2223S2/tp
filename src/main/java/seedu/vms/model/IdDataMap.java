@@ -149,6 +149,11 @@ public class IdDataMap<T> {
     }
 
 
+    public IdData<T> get(int id) {
+        return internalMap.get(id);
+    }
+
+
     /**
      * Returns an unmodifiable map view of this data map.
      *
