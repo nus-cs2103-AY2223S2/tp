@@ -8,6 +8,7 @@ import arb.logic.Logic;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.ListType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
+    private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane clientListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+        setCurrentlyShownList(ListType.CLIENT);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -167,6 +170,35 @@ public class MainWindow extends UiPart<Stage> {
         return clientListPanel;
     }
 
+    public ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
+    }
+
+    private void showClientList() {
+        this.logic.setListType(ListType.CLIENT);
+        this.listPanelPlaceholder.getChildren().clear();
+        this.listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+    }
+
+    private void showProjectList() {
+        this.logic.setListType(ListType.PROJECT);
+        this.listPanelPlaceholder.getChildren().clear();
+        this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    }
+
+    private void setCurrentlyShownList(ListType listToBeShown) {
+        switch (listToBeShown) {
+        case PROJECT:
+            showProjectList();
+            break;
+        case CLIENT:
+            showClientList();
+            break;
+        default:
+            break;
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -185,6 +217,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            setCurrentlyShownList(commandResult.getListToBeShown());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

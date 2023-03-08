@@ -16,6 +16,7 @@ import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.AddressBook;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
@@ -35,6 +36,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_TITLE_SKY_PAINTING = "Sky Painting";
+    public static final String VALID_TITLE_OIL_PAINTING = "Oil Painting";
+    public static final String VALID_DEADLINE_SKY_PAINTING = "2023-02-02";
+    public static final String VALID_DEADLINE_OIL_PAINTING = "2023-05-05";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -44,10 +50,16 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String TITLE_DESC_SKY_PAINTING = " " + PREFIX_NAME + VALID_TITLE_SKY_PAINTING;
+    public static final String TITLE_DESC_OIL_PAINTING = " " + PREFIX_NAME + VALID_TITLE_OIL_PAINTING;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME
+            + "watercolour painting&"; // '&' not allowed in titles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -69,10 +81,10 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,
+            Model actualModel, CommandResult expectedCommandResult, Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, currentListBeingShown);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -82,12 +94,13 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
+     * that takes a string {@code expectedMessage}, {@code currentListBeingShown} and {@code listToBeShown}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,
+            Model actualModel, String expectedMessage, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, listToBeShown);
+        assertCommandSuccess(command, currentListBeingShown, listToBeShown, actualModel, expectedCommandResult,
+                expectedModel);
     }
 
     /**
@@ -96,13 +109,15 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered client list and selected client in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, ListType currentListBeingShown, Model actualModel,
+            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel,
+                currentListBeingShown));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }

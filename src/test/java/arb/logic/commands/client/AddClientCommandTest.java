@@ -17,10 +17,12 @@ import arb.commons.core.GuiSettings;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.AddressBook;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.ReadOnlyUserPrefs;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import arb.testutil.ClientBuilder;
 import javafx.collections.ObservableList;
 
@@ -36,7 +38,7 @@ public class AddClientCommandTest {
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new ClientBuilder().build();
 
-        CommandResult commandResult = new AddClientCommand(validClient).execute(modelStub);
+        CommandResult commandResult = new AddClientCommand(validClient).execute(modelStub, ListType.CLIENT);
 
         assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
@@ -49,7 +51,7 @@ public class AddClientCommandTest {
         ModelStub modelStub = new ModelStubWithClient(validClient);
 
         assertThrows(CommandException.class,
-                AddClientCommand.MESSAGE_DUPLICATE_CLIENT, () -> addClientCommand.execute(modelStub));
+                AddClientCommand.MESSAGE_DUPLICATE_CLIENT, () -> addClientCommand.execute(modelStub, ListType.CLIENT));
     }
 
     @Test
@@ -116,6 +118,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void addProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -131,7 +138,17 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteClient(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProject(Project target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -141,12 +158,27 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Client> getFilteredClientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -8,7 +8,7 @@ import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,6 +20,7 @@ import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.model.AddressBook;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
@@ -45,7 +46,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -66,7 +68,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -78,7 +81,8 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -95,7 +99,8 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -104,7 +109,8 @@ public class EditClientCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_CLIENT, descriptor);
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -116,7 +122,8 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -125,7 +132,8 @@ public class EditClientCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -142,7 +150,8 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

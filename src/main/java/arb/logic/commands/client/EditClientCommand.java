@@ -19,6 +19,7 @@ import arb.commons.util.CollectionUtil;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 import arb.model.client.Email;
@@ -65,7 +66,7 @@ public class EditClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
@@ -82,7 +83,7 @@ public class EditClientCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), ListType.CLIENT);
     }
 
     /**
