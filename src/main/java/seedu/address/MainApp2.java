@@ -26,8 +26,8 @@ import seedu.address.storage.JsonListingBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage2;
 import seedu.address.storage.ListingBookStorage;
 import seedu.address.storage.StorageManager2;
-import seedu.address.storage.UserPrefsStorage2;
 import seedu.address.storage.Storage2;
+import seedu.address.storage.UserPrefsStorage2;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager2;
 
