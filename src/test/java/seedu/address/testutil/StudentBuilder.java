@@ -8,6 +8,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
+import seedu.address.model.tag.ModuleCode;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,6 +26,7 @@ public class StudentBuilder {
     private Phone phone;
     private Email email;
     private StudentId studentId;
+    private Set<ModuleCode> modules;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +37,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_STUDENTID);
+        modules = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -46,6 +49,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         studentId = studentToCopy.getStudentId();
+        modules = new HashSet<>(studentToCopy.getModules());
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -54,6 +58,14 @@ public class StudentBuilder {
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
+     */
+    public StudentBuilder withModules(String ... modules) {
+        this.modules = SampleDataUtil.getModuleSet(modules);
         return this;
     }
 
@@ -90,7 +102,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, studentId, tags);
+        return new Student(name, phone, email, studentId, modules, tags);
     }
 
 }
