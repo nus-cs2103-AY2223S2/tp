@@ -4,12 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
@@ -22,7 +19,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.NewContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -30,13 +26,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -97,14 +91,6 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-
-//        model = new ModelManager();
-//        //Execute newContact command
-//        String newContactCommand = NewContactCommand.COMMAND_WORD + NAME_DESC_ALICE + PHONE_DESC_ALICE;
-//        Contact expectedContact = new ContactBuilder(ALICE).build();
-//        ModelManager expectedModel1 = new ModelManager();
-//        expectedModel1.addContact(expectedContact);
-//        assertCommandFailure(newContactCommand, CommandException.class, expectedMessage, expectedModel1);
     }
 
     @Test
