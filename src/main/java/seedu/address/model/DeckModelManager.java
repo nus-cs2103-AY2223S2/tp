@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -25,7 +24,7 @@ public class DeckModelManager implements DeckModel {
     private PowerDeck selectedDeck = null;
     private final ArrayList<PowerDeck> powerDecks;
     private final UserPrefs userPrefs;
-    private final FilteredList<PowerCard> filteredCards;
+    private FilteredList<PowerCard> filteredCards = null;
 
     /**
      * Initializes a CardModelManager with the given deck and userPrefs.
@@ -36,9 +35,6 @@ public class DeckModelManager implements DeckModel {
         logger.fine("Initializing with user prefs " + userPrefs);
         this.powerDecks = powerDecks;
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCards = new FilteredList<>((this.selectedDeck != null)
-                ? this.selectedDeck.getCardList()
-                : FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
     }
 
     public DeckModelManager() {
@@ -176,5 +172,6 @@ public class DeckModelManager implements DeckModel {
     @Override
     public void selectDeck(int deckIndex) {
         this.selectedDeck = this.powerDecks.get(deckIndex);
+        this.filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
     }
 }
