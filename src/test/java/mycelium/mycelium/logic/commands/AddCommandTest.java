@@ -20,6 +20,7 @@ import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
 import mycelium.mycelium.model.ReadOnlyUserPrefs;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.Assert;
 import mycelium.mycelium.testutil.PersonBuilder;
 
@@ -48,7 +49,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         Assert.assertThrows(CommandException.class,
-            AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -146,6 +147,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

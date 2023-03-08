@@ -24,3 +24,4 @@ docs/_site/
 
 .fake
 /.vscode/
+/bin/
