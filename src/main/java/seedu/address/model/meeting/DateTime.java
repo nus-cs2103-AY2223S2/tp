@@ -109,13 +109,16 @@ public class DateTime {
 
     @Override
     public String toString() {
-        String end = meetingDuration != null ? meetingDateTime.plus(meetingDuration).toString() : "";
+        String end = meetingDuration != null && !meetingDuration.isZero()
+                ? meetingDateTime.plus(meetingDuration).toString() : "";
 
         if (!end.isEmpty()) {
-            return meetingDateTime + " to " + end;
+            return meetingDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT))
+                    + " to "
+                    + end;
         }
 
-        return meetingDateTime.toString();
+        return meetingDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT + " " + TIME_FORMAT));
     }
 
     @Override
