@@ -20,6 +20,9 @@ public class TaskDeadline {
 
     public static final String VALIDATION_REGEX = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
 
+    private static final DateTimeFormatter DTF_INPUT_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter DTF_OUTPUT_DATE = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+
     public final LocalDate taskDeadline;
 
     /**
@@ -45,9 +48,8 @@ public class TaskDeadline {
         }
 
         try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDateTest = LocalDate.parse(test, dtf);
-            return localDateTest.isAfter(LocalDate.now()) || localDateTest.isEqual(LocalDate.now());
+            LocalDate.parse(test, DTF_INPUT_DATE);
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -58,8 +60,7 @@ public class TaskDeadline {
      * @return A string representation of the deadline.
      */
     public String toJsonString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return taskDeadline.format(dtf);
+        return taskDeadline.format(DTF_INPUT_DATE);
     }
 
     /**
@@ -68,8 +69,7 @@ public class TaskDeadline {
      */
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-        return taskDeadline.format(dtf);
+        return taskDeadline.format(DTF_OUTPUT_DATE);
     }
 
     @Override
