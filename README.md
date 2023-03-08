@@ -6,7 +6,7 @@
 * This is **a project by CS2103T Group W13-2**.<br>
   Example usage:
   * for student coaches to manage training sessions with student athletes
-* The project simulates an ongoing software project for a desktop application (called _Unibook_) used for student coaches to manage training sessions with student athletes.
+* The project simulates an ongoing software project for a desktop application (called _SportSync_) used for student coaches to manage training sessions with student athletes.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base.
   * It comes with a **reasonable level of user and developer documentation**.
 
