@@ -78,11 +78,11 @@ public class JsonAdaptedVaxType {
      *
      * @throws IllegalValueException if name field is missing.
      */
-    public VaxType toModelType(VaxTypeManager storage) throws IllegalValueException {
+    public VaxType toModelType(VaxTypeManager manager) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }
-        VaxTypeBuilder builder = VaxTypeBuilder.of(storage, name);
+        VaxTypeBuilder builder = VaxTypeBuilder.of(name);
 
         if (groups != null) {
             builder = builder.setGroups(new HashSet<>(groups));
@@ -108,7 +108,7 @@ public class JsonAdaptedVaxType {
             builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
-        return builder.build();
+        return builder.create(manager);
     }
 
 
