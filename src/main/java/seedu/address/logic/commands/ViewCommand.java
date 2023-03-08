@@ -49,7 +49,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Person person = retrievePerson(model);
         System.out.println(person);
-        return new CommandResult(person.toString(), false, false, true);
+        return new CommandResult(person.toString(), false, false, person, true);
     }
 
     /**

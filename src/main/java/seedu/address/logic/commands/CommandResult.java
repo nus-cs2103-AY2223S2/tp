@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.person.Person;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -8,6 +10,10 @@ import java.util.Objects;
  * Represents the result of a command execution.
  */
 public class CommandResult {
+
+    private final Person displayPerson;
+
+    private final boolean toShowNewPerson;
 
     private final String feedbackToUser;
 
@@ -24,6 +30,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
+        this.displayPerson = null;
+        this.toShowNewPerson = false;
+    }
+
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, Person person,
+                         boolean personToChange) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.isShowHelp = isShowHelp;
+        this.isExit = isExit;
+        this.displayPerson = person;
+        this.toShowNewPerson = true;
     }
 
     /**
@@ -46,6 +63,13 @@ public class CommandResult {
         return isExit;
     }
 
+    public boolean isToShowNewPerson() {
+        return toShowNewPerson;
+    }
+
+    public Person getDisplayPerson() {
+        return displayPerson;
+    }
 
     @Override
     public boolean equals(Object other) {
