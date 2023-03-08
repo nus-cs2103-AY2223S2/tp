@@ -1,5 +1,7 @@
 package mycelium.mycelium.testutil;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.function.Executable;
 
@@ -30,5 +32,13 @@ public class Assert {
                                     Executable executable) {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
+    }
+
+    public static void assertDatesAlmostEqual(Date a, Date b) {
+        Assertions.assertTrue(Math.abs(a.getTime() - b.getTime()) < 1000);
+    }
+
+    public static void assertDatesAlmostEqual(Date a, Date b, String message) {
+        Assertions.assertTrue(Math.abs(a.getTime() - b.getTime()) < 1000, message);
     }
 }
