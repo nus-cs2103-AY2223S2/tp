@@ -34,7 +34,6 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
-
     private static final EditPersonDescriptor EDIT_PERSON_DESCRIPTOR = new EditPersonDescriptor();
 
     private Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());

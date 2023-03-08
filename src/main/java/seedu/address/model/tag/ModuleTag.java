@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * Represents a ModuleTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class ModuleTag extends Tag {
+public class ModuleTag extends Tag implements Comparable<ModuleTag> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "NUS Modules should have 2 - 3 letter prefix, followed by 4 digits and optional 1 - 3 alphabets";
@@ -54,7 +54,11 @@ public class ModuleTag extends Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName;
     }
 
+    @Override
+    public int compareTo(ModuleTag otherModuleTag) {
+        return tagName.compareTo(otherModuleTag.tagName);
+    }
 }

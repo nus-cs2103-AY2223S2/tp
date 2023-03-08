@@ -16,7 +16,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.testutil.EduMateBuilder;
@@ -137,25 +136,25 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         createEqualsFilteredList(
-                CliSyntax.PREFIX_NAME, ALBERT.getName().fullName.split("\\s+"), eduMate, userPrefs);
+                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                CliSyntax.PREFIX_EMAIL, ALBERT.getEmail().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                CliSyntax.PREFIX_PHONE, ALBERT.getPhone().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                CliSyntax.PREFIX_ADDRESS, ALBERT.getAddress().value.split("\\s+"), eduMate, userPrefs);
+                Prefix.ADDRESS, ALBERT.getAddress().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE, ALBERT.getTelegramHandle().telegramHandle.split("\\s+"),
+                Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
                 eduMate, userPrefs);
 
         createEqualsFilteredList(
-                CliSyntax.PREFIX_MODULE_TAG,
-                ALBERT.getModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                Prefix.MODULE_TAG,
+                ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
 
         createEqualsFilteredList(
-                CliSyntax.PREFIX_GROUP_TAG,
-                ALBERT.getGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                Prefix.GROUP_TAG,
+                ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs);
 
         // resets modelManager to initial state for upcoming tests

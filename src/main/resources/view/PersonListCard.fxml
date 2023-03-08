@@ -31,11 +31,16 @@
                   <Font name="System Bold" size="15.0" />
                </font></Label>
       </HBox>
-
       <FlowPane fx:id="groupTags">
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
-            </VBox.margin></FlowPane>
+            </VBox.margin>
+      </FlowPane>
+      <FlowPane fx:id="moduleTags">
+            <VBox.margin>
+                <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
+      </FlowPane>
       <Label fx:id="phone" text="\$phone" styleClass="person-card-lower-box-element" />
       <Label fx:id="address" text="\$address" styleClass="person-card-lower-box-element" />
       <Label fx:id="email" text="\$email" styleClass="person-card-lower-box-element" />

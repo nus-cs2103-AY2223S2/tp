@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * Represents a GroupTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class GroupTag extends Tag {
+public class GroupTag extends Tag implements Comparable<GroupTag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Group Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -53,7 +53,12 @@ public class GroupTag extends Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName;
+    }
+
+    @Override
+    public int compareTo(GroupTag otherGroupTag) {
+        return tagName.compareTo(otherGroupTag.tagName);
     }
 
 }

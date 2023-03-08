@@ -72,37 +72,37 @@ public class EduMateParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         createParseCommandFind(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 Arrays.asList("n/Richard", "Komyo", "Eusoff"),
                 Arrays.asList("Richard", "Komyo", "Eusoff")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 Arrays.asList("p/89760441", "92752656", "82630347"),
                 Arrays.asList("89760441", "92752656", "82630347")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 Arrays.asList("a/91", "Ang", "Mo", "Kio", "Avenue", "4"),
                 Arrays.asList("91", "Ang", "Mo", "Kio", "Avenue", "4")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 Arrays.asList("e/angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com"),
                 Arrays.asList("angmeihua@gmail.com", "albertpark@gmail.com", "bartlee@gmail.com")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 Arrays.asList("t/@albertpark", "@angmeihua", "@bartlee"),
                 Arrays.asList("@albertpark", "@angmeihua", "@bartlee")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_GROUP_TAG,
+                Prefix.GROUP_TAG,
                 Arrays.asList("g/CCA", "TA", "Study"),
                 Arrays.asList("CCA", "TA", "Study")
         );
         createParseCommandFind(
-                CliSyntax.PREFIX_MODULE_TAG,
+                Prefix.MODULE_TAG,
                 Arrays.asList("m/CS3233", "CS3245", "CS3211"),
                 Arrays.asList("CS3233", "CS3245", "CS3211")
         );

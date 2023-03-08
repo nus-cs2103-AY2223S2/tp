@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,11 +54,17 @@ public class EduMate implements ReadOnlyEduMate {
     }
 
     /**
+     * Replaces the contents of the person list with an empty list of persons.
+     */
+    public void resetPersons() {
+        this.persons.setPersons(new ArrayList<>());
+    }
+
+    /**
      * Sets the user of the Address Book.
      */
     public void setUser(User user) {
         requireNonNull(user);
-
         this.user = user;
     }
 
