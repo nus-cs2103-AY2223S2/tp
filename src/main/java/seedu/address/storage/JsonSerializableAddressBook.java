@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.commands.GroupCommand.MESSAGE_DUPLICATE_TAG;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.logic.commands.GroupCommand.MESSAGE_DUPLICATE_TAG;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

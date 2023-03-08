@@ -1,7 +1,5 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.person.Name;
-
 import java.util.Locale;
 
 import static java.util.Objects.requireNonNull;

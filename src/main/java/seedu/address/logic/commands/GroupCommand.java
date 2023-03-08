@@ -4,9 +4,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
+
+/**
+ * Adds a group to the address book.
+ */
 public class GroupCommand extends Command {
     public static final String COMMAND_WORD = "group";
 

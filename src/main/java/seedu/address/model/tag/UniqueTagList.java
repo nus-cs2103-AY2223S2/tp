@@ -3,7 +3,6 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,8 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
-import seedu.address.model.tag.exceptions.DuplicateTagException;
-import seedu.address.model.tag.exceptions.TagNotFoundException;
+
 
 /**
  * A list of tags that enforces uniqueness between its elements and does not allow nulls.
@@ -71,17 +69,6 @@ public class UniqueTagList implements Iterable<Tag> {
         internalList.set(index, editedTag);
     }
 
-    /**
-     * Removes the equivalent tag from the list.
-     * The tag must exist in the list.
-     */
-    public void remove(Tag toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new TagNotFoundException();
-        }
-    }
-
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -93,7 +80,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
-        if (!TagsAreUnique(tags)) {
+        if (!tagsAreUnique(tags)) {
             throw new DuplicateTagException();
         }
 
@@ -127,7 +114,7 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Returns true if {@code tags} contains only unique tags.
      */
-    private boolean TagsAreUnique(List<Tag> Tags) {
+    private boolean tagsAreUnique(List<Tag> Tags) {
         for (int i = 0; i < Tags.size() - 1; i++) {
             for (int j = i + 1; j < Tags.size(); j++) {
                 if (Tags.get(i).isSameTag(Tags.get(j))) {
@@ -136,9 +123,5 @@ public class UniqueTagList implements Iterable<Tag> {
             }
         }
         return true;
-    }
-
-    public void sort() {
-        internalList.sort(Comparator.comparing(Tag -> Tag.getTag().toString()));
     }
 }
