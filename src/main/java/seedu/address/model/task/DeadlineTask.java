@@ -1,16 +1,11 @@
 package seedu.address.model.task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /**
  * This class is for tasks that have a deadline.
  */
 public class DeadlineTask extends Task {
 
-    protected LocalDate date;
-    protected String formattedDate;
-    protected DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final Date deadlineDate;
 
     /**
      * Constructor for a DeadlineTask that takes in a String description as well as String date
@@ -19,32 +14,25 @@ public class DeadlineTask extends Task {
      * @param description The description of the EventTask.
      * @param date The date of the event.
      */
-    public DeadlineTask(String description, String date) {
+    public DeadlineTask(TaskDescription description, Date date) {
         super(description);
-        this.date = getLocalDate(date);
-        this.formattedDate = this.date.format(dateTimeFormatter);
+        this.deadlineDate = date;
     }
 
 
     /**
-     * Parses through String to obtain a LocalDate object
+     * Supplies deadline date of the current task when requested.
      *
-     * @param date String representation of time
-     * @return LocalDate Object of specified time
+     * @return Date deadline date of the task
      */
-    public LocalDate getLocalDate(String date) {
-        String[] dateStr = date.split("/", 3);
-        if (dateStr.length < 3) {
-            throw new RuntimeException("Specification of the EventTask date is incorrect\n");
-        }
-        return LocalDate.of(Integer.valueOf(dateStr[2]), Integer.valueOf(dateStr[1]), Integer.valueOf(dateStr[0]));
-
+    public Date getDate() {
+        return this.deadlineDate;
     }
 
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (Before: " + formattedDate + ")";
+        return "[D]" + super.toString() + " (Before: " + deadlineDate + ")";
     }
 
     /**
@@ -62,8 +50,8 @@ public class DeadlineTask extends Task {
             return false;
         }
         DeadlineTask checkedObj = (DeadlineTask) obj;
-        boolean isSameDescription = this.description.equals(checkedObj.description);
-        boolean isSameDate = this.date.equals(checkedObj.date);
+        boolean isSameDescription = this.getDescription().equals(checkedObj.getDescription());
+        boolean isSameDate = this.getDate().equals(checkedObj.getDate());
         boolean isSame = isSameDescription && isSameDate;
 
         if (isSame) {

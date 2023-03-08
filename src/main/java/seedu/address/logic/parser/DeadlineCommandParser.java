@@ -9,7 +9,9 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Parses input arguments and creates a new DeadlineCommand object
@@ -30,10 +32,10 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        String description = argMultimap.getValue(PREFIX_TASK).get();
-        String date = argMultimap.getValue(PREFIX_DATE).get();
+        TaskDescription description = ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK).get());
+        Date deadlineDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
-        DeadlineTask deadlineTask = new DeadlineTask(description, date);
+        DeadlineTask deadlineTask = new DeadlineTask(description, deadlineDate);
 
         return new DeadlineCommand(deadlineTask);
     }
