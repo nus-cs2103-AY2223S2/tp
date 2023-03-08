@@ -8,28 +8,28 @@ import javafx.scene.layout.Region;
 import seedu.address.model.patient.Patient;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of patients.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+public class PatientListPanel extends UiPart<Region> {
+    private static final String FXML = "PatientListPanel.fxml";
 
     @FXML
-    private ListView<Patient> personListView;
+    private ListView<Patient> patientListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Patient> patientList) {
+    public PatientListPanel(ObservableList<Patient> patientList) {
         super(FXML);
-        personListView.setItems(patientList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        patientListView.setItems(patientList);
+        patientListView.setCellFactory(listView -> new PatientListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using
-     * a {@code PersonCard}.
+     * a {@code PatientCard}.
      */
-    class PersonListViewCell extends ListCell<Patient> {
+    class PatientListViewCell extends ListCell<Patient> {
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);

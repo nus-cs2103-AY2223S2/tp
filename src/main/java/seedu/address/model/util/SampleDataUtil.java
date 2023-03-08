@@ -9,7 +9,7 @@ import seedu.address.model.patient.Patient;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Patient[] getSamplePersons() {
+    public static Patient[] getSamplePatients() {
         return new Patient[] {
                 new Patient(new Name("Alex Yeoh")),
                 new Patient(new Name("Bernice Yu")),
@@ -22,8 +22,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Patient samplePatient : getSamplePersons()) {
-            sampleAb.addPerson(samplePatient);
+        for (Patient samplePatient : getSamplePatients()) {
+            sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
     }
