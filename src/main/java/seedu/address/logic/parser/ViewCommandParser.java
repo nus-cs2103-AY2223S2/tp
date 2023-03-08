@@ -15,17 +15,17 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
-     * @param userInput
+     * @param args
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override
-    public ViewCommand parse(String userInput) throws ParseException {
+    public ViewCommand parse(String args) throws ParseException {
         // shows user information
-        if (userInput.isEmpty()) {
+        if (args.isEmpty()) {
             return new ViewCommand();
         }
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(
-                userInput, Prefix.NAME);
+                args, Prefix.NAME);
         // show user by querying name
         if (argumentMultimap.getValue(Prefix.NAME).isPresent()) {
             String name = argumentMultimap.getValue(Prefix.NAME).get();
