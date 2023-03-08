@@ -36,8 +36,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        protagonist = filteredPersons.get(0);
-        currentTab = "c";
+        if (filteredPersons.size() == 0) { // fresh database
+            protagonist = null;
+            currentTab = null;
+        } else {
+            protagonist = filteredPersons.get(0);
+            currentTab = "c";
+        }
     }
 
     public ModelManager() {

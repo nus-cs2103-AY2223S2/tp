@@ -38,8 +38,10 @@ public class InfoTab extends UiPart<Region> {
             detailedInfo = new DetailedSkill();
         }
 
-        name.setText(protagonist.getName().fullName);
-        detailedInfoPlaceholder.getChildren().add(detailedInfo.getRoot());
+        if (protagonist != null) {
+            name.setText(protagonist.getName().fullName);
+            detailedInfoPlaceholder.getChildren().add(detailedInfo.getRoot());
+        }
     }
 
 }
