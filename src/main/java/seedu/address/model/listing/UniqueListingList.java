@@ -1,23 +1,22 @@
 package seedu.address.model.listing;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.ListingBook;
-import seedu.address.model.listing.exceptions.DuplicateListingException;
-import seedu.address.model.listing.exceptions.ListingNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.listing.exceptions.DuplicateListingException;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
 
 /**
  * A list of listing that enforces uniqueness between its elements and does not allow nulls.
- * A listing is considered unique by comparing using {@code Listing#isSameListing(Listing)}. As such, adding and updating of
- * persons uses Listing#isSameListing(Listing) for equality so as to ensure that the listing being added or updated is
- * unique in terms of identity in the UniqueListingList. However, the removal of a listing uses Listing#equals(Object) so
- * as to ensure that the listing with exactly the same fields will be removed.
+ * A listing is considered unique by comparing using {@code Listing#isSameListing(Listing)}. As such, adding and
+ * updating of persons uses Listing#isSameListing(Listing) for equality so as to ensure that the listing being added or
+ * updated is unique in terms of identity in the UniqueListingList. However, the removal of a listing uses
+ * Listing#equals(Object) so as to ensure that the listing with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

@@ -1,20 +1,17 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.applicant.Name;
-
-import javax.print.attribute.standard.JobSheets;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Listing}.
@@ -65,7 +62,8 @@ class JsonAdaptedListing {
         }
 
         if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobTitle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidTitle(title)) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
@@ -73,7 +71,8 @@ class JsonAdaptedListing {
         final JobTitle modelTitle = new JobTitle(title);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                JobDescription.class.getSimpleName()));
         }
         if (!JobDescription.isValidDescription(description)) {
             throw new IllegalValueException(JobDescription.MESSAGE_CONSTRAINTS);

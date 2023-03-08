@@ -1,5 +1,10 @@
 package seedu.address;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -26,10 +31,7 @@ import seedu.address.storage.UserPrefsStorage2;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager2;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
+
 
 /**
  * Runs the application.

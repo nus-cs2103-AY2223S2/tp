@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyListingBook;
 import seedu.address.model.ReadOnlyUserPrefs2;
 import seedu.address.model.UserPrefs2;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  * API of the Storage component
