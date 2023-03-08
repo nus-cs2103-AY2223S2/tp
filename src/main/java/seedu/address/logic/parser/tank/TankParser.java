@@ -36,14 +36,13 @@ public class TankParser {
         final String tankCommandWord = matcher.group("tankCommandWord");
         final String arguments = matcher.group("arguments");
         switch (tankCommandWord) {
-            case TankAddCommand.TANK_COMMAND_WORD:
-                return new TankAddCommandParser().parse(arguments);
-
-            case TankDeleteCommand.TANK_COMMAND_WORD:
-                return new TankDeleteCommandParser().parse(arguments);
-
-            default:
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TankCommand.MESSAGE_USAGE));
+        case TankAddCommand.TANK_COMMAND_WORD:
+            return new TankAddCommandParser().parse(arguments);
+        case TankDeleteCommand.TANK_COMMAND_WORD:
+            return new TankDeleteCommandParser().parse(arguments);
+        default:
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    TankCommand.MESSAGE_USAGE));
         }
     }
 

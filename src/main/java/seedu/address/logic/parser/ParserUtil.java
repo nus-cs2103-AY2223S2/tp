@@ -139,6 +139,12 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    /**
+     * Parses a {@code String} into an {@code TankName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code fullTankName} is invalid.
+     */
     public static TankName parseTankName(String fullTankName) throws ParseException {
         requireNonNull(fullTankName);
         String trimmedDescription = fullTankName.trim();
