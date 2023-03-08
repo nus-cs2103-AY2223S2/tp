@@ -29,7 +29,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_SUBJECT).get());
+        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Task task = new Task(subject, content, status);
