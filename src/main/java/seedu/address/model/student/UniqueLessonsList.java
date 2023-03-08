@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
+import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**
@@ -49,9 +50,15 @@ public class UniqueLessonsList implements Iterable<Lesson> {
     public void add(Lesson toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new ConflictingLessonsException();
+            throw new DuplicateLessonException();
+        }
+        for (Lesson lesson : internalList) {
+            if (lesson.isSameTimeLesson(toAdd)) {
+                throw new ConflictingLessonsException();
+            }
         }
         internalList.add(toAdd);
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -65,6 +72,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         if (!internalList.remove(toRemove)) {
             throw new LessonNotFoundException();
         }
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -88,8 +96,8 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         if (!lessonsAreCompatible(lessons)) {
             throw new ConflictingLessonsException();
         }
-
         internalList.setAll(lessons);
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -126,5 +134,23 @@ public class UniqueLessonsList implements Iterable<Lesson> {
             }
         }
         return true;
+    }
+
+    /**
+     * Checks the number of lessons in the list
+     * @return an int that is the number of lessons in the list
+     */
+    public int size() {
+        return this.internalList.size();
+    }
+
+    public List<Lesson> getSortedLessonsList() {
+        List<Lesson> tempList = internalList;
+        tempList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        return tempList;
+    }
+
+    public boolean hasLesson() {
+        return this.internalList.size() != 0;
     }
 }

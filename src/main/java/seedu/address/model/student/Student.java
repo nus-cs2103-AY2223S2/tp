@@ -249,18 +249,27 @@ public class Student {
      *
      * @return list of filtered homework
      */
-    public List<Lesson> getFilteredLessonsList(Predicate<Lesson> predicate) {
+    @SafeVarargs
+    public final List<Lesson> getFilteredLessonsList(Predicate<Lesson>... predicates) {
         List<Lesson> filteredLessonsList = new ArrayList<>();
 
-        // filter lessons list for lessons that matches predicate
         for (Lesson l : lessonsList) {
-            if (predicate.test(l)) {
+            boolean allPredicatesMatch = true;
+            for (Predicate<Lesson> predicate : predicates) {
+                if (!predicate.test(l)) {
+                    allPredicatesMatch = false;
+                    break;
+                }
+            }
+            if (allPredicatesMatch) {
                 filteredLessonsList.add(l);
             }
         }
 
         return Collections.unmodifiableList(filteredLessonsList);
     }
+
+
 
     /**
      * Returns true if both persons have the same name.
@@ -342,5 +351,9 @@ public class Student {
 
     public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         homeworkList.updateFilteredHomeworkList(homeworkStatusPredicate);
+    }
+
+    public boolean hasLesson() {
+        return this.lessonsList.hasLesson();
     }
 }
