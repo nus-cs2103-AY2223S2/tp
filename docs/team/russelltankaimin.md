@@ -20,7 +20,11 @@ Given below are my contributions to the project.
   * Allow User and Person to have Module, Group Tags and Telegram Handle.
   * Rework parsers to include Module and Group Tags and Telegram Handle.
   * Tests for User will use a stub instead of the actual User.
-
+* **View Command**:
+  * What it does: Allows users to view profile of either him/herself or their contacts.
+  * A single ```view``` command will show the user's own profile.
+  * ```user <index>``` command will retrieve and show the contact's information by its index.
+  * ```user \n <NAME>``` command will retrieve and show the contact's information by name.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=russelltankaimin&breakdown=true)
 
 * **Project management**:
