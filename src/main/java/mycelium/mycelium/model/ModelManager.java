@@ -1,17 +1,17 @@
 package mycelium.mycelium.model;
 
-import static java.util.Objects.requireNonNull;
-import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -143,8 +143,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons);
     }
 
 }

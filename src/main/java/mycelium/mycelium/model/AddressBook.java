@@ -1,12 +1,13 @@
 package mycelium.mycelium.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.person.UniquePersonList;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import mycelium.mycelium.model.person.Person;
-import mycelium.mycelium.model.person.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -22,8 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniquePersonList();
     }
 
@@ -107,11 +107,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    // TODO: implement later
+    @Override
+    public ObservableList<Client> getClientList() {
+        return null;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons));
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
     }
 
     @Override

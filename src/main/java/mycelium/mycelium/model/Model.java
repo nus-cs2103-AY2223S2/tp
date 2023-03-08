@@ -1,11 +1,11 @@
 package mycelium.mycelium.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.

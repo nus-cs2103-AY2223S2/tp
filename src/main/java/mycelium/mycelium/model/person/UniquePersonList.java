@@ -1,15 +1,15 @@
 package mycelium.mycelium.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Iterator;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.person.exceptions.PersonNotFoundException;
+
+import java.util.Iterator;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -26,7 +26,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniquePersonList // instanceof handles nulls
-            && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniquePersonList // instanceof handles nulls
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

@@ -1,11 +1,12 @@
 package mycelium.mycelium.model.client;
 
-import java.util.Date;
-import java.util.Objects;
-
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+
+import java.util.Date;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a client with their personal information, including their name, email address,
@@ -18,15 +19,16 @@ public class Client {
 
     private final Email email;
 
-    private final Date yearOfBirth;
+    private final Optional<Date> yearOfBirth;
 
-    private final String source;
+    private final Optional<String> source;
 
-    private final Phone mobileNumber;
+    private final Optional<Phone> mobileNumber;
 
     /**
      * Creates a new Client object with the given name and email address.
-     * @param name the name of the client.
+     *
+     * @param name  the name of the client.
      * @param email the email address of the client.
      */
     public Client(Name name, Email email) {
@@ -39,12 +41,13 @@ public class Client {
 
     /**
      * Creates a new Client object with the given personal information.
-     * @param name the name of the client.
-     * @param email the email address of the client.
+     *
+     * @param name        the name of the client.
+     * @param email       the email address of the client.
      * @param yearOfBirth the year of birth of the client.
-     * @param source the source of information about the client.
+     * @param source      the source of information about the client.
      */
-    public Client(Name name, Email email, Date yearOfBirth, String source, Phone mobileNumber) {
+    public Client(Name name, Email email, Optional<Date> yearOfBirth, Optional<String> source, Optional<Phone> mobileNumber) {
         this.name = name;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
@@ -54,6 +57,7 @@ public class Client {
 
     /**
      * Returns the name of the client.
+     *
      * @return the name of the client.
      */
     public Name getName() {
@@ -62,6 +66,7 @@ public class Client {
 
     /**
      * Returns the email address of the client.
+     *
      * @return the email address of the client.
      */
     public Email getEmail() {
@@ -70,40 +75,45 @@ public class Client {
 
     /**
      * Returns the year of birth of the client.
+     *
      * @return the year of birth of the client.
      */
-    public Date getYearOfBirth() {
+    public Optional<Date> getYearOfBirth() {
         return yearOfBirth;
     }
 
     /**
      * Returns the source where the developer found out about the client.
+     *
      * @return the source where the developer found out about the client.
      */
-    public String getSource() {
+    public Optional<String> getSource() {
         return source;
     }
 
     /**
      * Returns the mobile number of the client.
+     *
      * @return the mobile number of the client.
      */
-    public Phone getMobileNumber() {
+    public Optional<Phone> getMobileNumber() {
         return mobileNumber;
     }
 
     /**
      * Compares this client to another client to check if they are the same client.
-     * Two clients are considered the same if they have the same name.
-     * @param otherClient  The client to compare with this client.
+     * Two clients are considered the same if they have the same email.
+     *
+     * @param otherClient The client to compare with this client.
      * @return true if the two clients are the same client, false otherwise.
      */
+    // TODO
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
         return otherClient != null
-                && otherClient.getName().equals(getName());
+                && otherClient.getEmail().equals(getEmail());
     }
 
     @Override

@@ -1,8 +1,8 @@
 package mycelium.mycelium.model;
 
-import java.nio.file.Path;
-
 import mycelium.mycelium.commons.core.GuiSettings;
+
+import java.nio.file.Path;
 
 /**
  * Unmodifiable view of user prefs.
