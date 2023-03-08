@@ -14,7 +14,7 @@ public class Code {
     public static final String MESSAGE_CONSTRAINTS =
             "Module code should not be blank and is alphanumeric";
 
-    private static final String VALIDATION_REGEX = "^[A-Z]{2,3}[0-9]{4}[A-Z]{0,1}$";
+    private static final String VALIDATION_REGEX = "^[A-Z]{2,4}[0-9]{4}[A-Z]{0,1}$";
 
     /**
      * The Code.
