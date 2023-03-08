@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui;
+package mycelium.mycelium.ui.person;
 
 import java.util.Comparator;
 
@@ -8,11 +8,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.ui.common.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class PersonListCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -44,7 +45,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonListCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -65,12 +66,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PersonListCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        PersonListCard card = (PersonListCard) other;
         return id.getText().equals(card.id.getText())
             && person.equals(card.person);
     }

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +17,13 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.ui.common.ListPanel;
+import mycelium.mycelium.ui.common.TabPage;
+import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.person.PersonListCard;
+import mycelium.mycelium.ui.project.ProjectListCard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +39,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ListPanel<Person> personListPanel;
+    private ListPanel<Project> projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private TabPage projectTab;
+    private TabPage clientTab;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,10 +54,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private TabPane tabPane;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -111,8 +123,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        projectListPanel = new ListPanel<Project>(logic.getFilteredProjectList(), ProjectListCard::new);
+        personListPanel = new ListPanel<Person>(logic.getFilteredPersonList(), PersonListCard::new);
+        projectTab = new TabPage("Projects", projectListPanel);
+        clientTab = new TabPage("Client", personListPanel);
+        projectTab.fillInnerContent();
+        clientTab.fillInnerContent();
+        tabPane.getTabs().addAll(projectTab.getRoot(), clientTab.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -164,8 +181,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
+    public ListPanel<Person> getPersonListPanel() {
         return personListPanel;
+    }
+
+    public ListPanel<Project> getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**

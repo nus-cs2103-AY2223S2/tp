@@ -11,6 +11,7 @@ import mycelium.mycelium.MainApp;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.commons.util.StringUtil;
 import mycelium.mycelium.logic.Logic;
+import mycelium.mycelium.ui.common.Ui;
 
 /**
  * The manager of the UI component.

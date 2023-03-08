@@ -2,6 +2,7 @@
 /.gradle/
 /build/
 src/main/resources/docs/
+/bin/
 
 # IDEA files
 /.idea/
@@ -22,4 +23,5 @@ src/test/data/sandbox/
 docs/_site/
 
 .fake
+/.vscode/
 /bin/

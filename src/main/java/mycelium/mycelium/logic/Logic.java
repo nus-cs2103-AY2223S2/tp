@@ -10,6 +10,7 @@ import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 
 /**
  * API of the Logic component
@@ -36,6 +37,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of persons
      */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of projects
+     */
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Returns the user prefs' address book file path.
