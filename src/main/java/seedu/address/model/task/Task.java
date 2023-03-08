@@ -2,6 +2,9 @@ package seedu.address.model.task;
 
 import java.util.Objects;
 
+/**
+ *  Represents a Task of the user
+ */
 public class Task {
     private final Description description;
 

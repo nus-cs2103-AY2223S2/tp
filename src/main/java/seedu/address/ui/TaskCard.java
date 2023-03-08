@@ -15,7 +15,7 @@ public class TaskCard extends UiPart<Region> {
     public final seedu.address.model.task.Task task;
 
     @FXML
-    private HBox TaskCardPane;
+    private HBox taskCardPane;
     @FXML
     private Label id;
     @FXML
@@ -24,9 +24,9 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task Task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) {
         super(FXML);
-        this.task = Task;
+        this.task = task;
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().description);
     }
