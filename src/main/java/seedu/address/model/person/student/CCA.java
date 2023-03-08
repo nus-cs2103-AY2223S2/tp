@@ -3,6 +3,9 @@ package seedu.address.model.person.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the CCA (Co-curricular Activity) of a Student object.
+ */
 public class CCA {
     public static final String MESSAGE_CONSTRAINTS = "CCA must be letters";
 

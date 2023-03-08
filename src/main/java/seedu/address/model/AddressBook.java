@@ -52,7 +52,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setStudents(List<Student> students) {this.students.setStudents(students);}
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -72,6 +74,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
+    /**
+     * Returns boolean value true if a student with the same identity as {@code student} exists in PowerConnect.
+     *
+     * @param student Student object that needs to be checked for duplication
+     * @return Boolean value indicating whether the student already exists in PowerConnect.
+     */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
@@ -85,7 +94,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
-    public void addStudent(Student s) {students.add(s);}
+    public void addStudent(Student s) {
+        students.add(s);
+    }
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -110,7 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    public void removeStudent(Student key) { students.remove(key);}
+    public void removeStudent(Student key) {
+        students.remove(key);
+    }
     //// util methods
 
     @Override
@@ -125,7 +138,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Student> getStudentList() {return students.asUnmodifiableObservableList();}
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
