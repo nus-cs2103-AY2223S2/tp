@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.ui.CommandBox;
 import seedu.modtrek.ui.UiPart;
 
 /**
@@ -17,7 +16,7 @@ import seedu.modtrek.ui.UiPart;
 public class CliSection extends UiPart<Region> {
     private static final String FXML = "cli_section/CliSection.fxml";
 
-    private final CommandBox.CommandExecutor commandExecutor;
+    private final CommandExecutor commandExecutor;
 
     @FXML
     private ScrollPane cliScreenScrollContainer;
@@ -31,11 +30,11 @@ public class CliSection extends UiPart<Region> {
     /**
      * Creates a {@code CliSection} with the given {@code CommandExecutor}.
      */
-    public CliSection(CommandBox.CommandExecutor commandExecutor) {
+    public CliSection(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
 
-        /* Scroll down to the end every time cliScreen's height changes. */
+        // Scroll down to the end every time cliScreen's height changes.
         cliScreen.heightProperty().addListener((observable) -> cliScreenScrollContainer.setVvalue(1.0));
     }
 
@@ -49,12 +48,12 @@ public class CliSection extends UiPart<Region> {
             return;
         }
 
-        /* Remove the initial welcome dialog shown on cliScreen on app launch */
+        // Remove the initial welcome dialog shown on cliScreen on app launch
         cliScreen.getChildren().remove(cliScreen.lookup("#cli-screen-welcome-dialog"));
 
         addUserDialog(commandText);
 
-        /* TODO: Call execute() here... */
+        //  Call execute here
         try {
             CommandResult commandResult = commandExecutor.execute(commandText);
             addSystemDialog(commandResult.getFeedbackToUser(), true);
