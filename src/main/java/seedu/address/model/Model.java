@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,6 +59,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
+    boolean hasDoctor(Doctor doctor);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -68,6 +74,13 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given doctor.
+     * {@code doctor} must not already exist in the address book.
+     */
+    void addDoctor(Doctor doctor);
+
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
