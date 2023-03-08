@@ -63,7 +63,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ContactName.isValidName(trimmedName)) {
-            throw  new ParseException(ContactName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
         return new ContactName(trimmedName);
     }

@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -61,7 +60,7 @@ public class JsonContactListStorage implements ContactListStorage {
     }
 
     @Override
-    public void saveContactList(ReadOnlyContactList contactList) throws IOException{
+    public void saveContactList(ReadOnlyContactList contactList) throws IOException {
         saveContactList(contactList, filePath);
     }
 
