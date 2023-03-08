@@ -9,4 +9,7 @@ public class TypicalIndexes {
     public static final Index INDEX_FIRST_FISH = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_FISH = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_FISH = Index.fromOneBased(3);
+    public static final Index INDEX_FIRST_TANK = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_TANK = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_TANK = Index.fromOneBased(3);
 }
