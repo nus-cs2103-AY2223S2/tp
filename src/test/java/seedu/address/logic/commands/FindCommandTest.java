@@ -79,7 +79,9 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private InternshipContainsKeywordsPredicate preparePredicate(String nameInput, String statusInput, String tagInput) {
+    private InternshipContainsKeywordsPredicate preparePredicate(String nameInput,
+                                                                 String statusInput,
+                                                                 String tagInput) {
         return new InternshipContainsKeywordsPredicate(Arrays.asList(nameInput.split("\\s+")),
                 Arrays.asList(statusInput.split("\\s+")),
                 Arrays.asList(tagInput.split("\\s+")));
