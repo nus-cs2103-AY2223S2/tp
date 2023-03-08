@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.powercard.PowerCard;
 import seedu.address.model.powerdeck.PowerDeck;
 import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
@@ -17,6 +19,8 @@ public interface DeckModel {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<PowerCard> PREDICATE_SHOW_ALL_CARDS = unused -> true;
+
+    /* ========================== UserPrefs ============================ */
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -44,17 +48,30 @@ public interface DeckModel {
     Path getDeckFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' deck file path.
      */
     void setDeckFilePath(Path deckFilePath);
 
+    /* ========================== PowerDeck Operations ============================ */
+
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces deck data with the data in {@code addressBook}.
      */
     void setDeck(ReadOnlyPowerDeck deck);
 
     /** Returns the deck */
-    ReadOnlyPowerDeck getDeck();
+    ReadOnlyPowerDeck getSelectedDeck();
+
+    void createDeck();
+
+    void selectDeck(Index idx);
+
+    void unselectDeck();
+
+    List<PowerDeck> getDecks();
+
+
+    /* ========================== PowerCard Operations ============================ */
 
     /**
      * Returns true if a card with the same identity as {@code card} exists in the deck.
@@ -80,6 +97,8 @@ public interface DeckModel {
      */
     void setCard(PowerCard target, PowerCard editedCard);
 
+    /* ========================== Filtered Card List Accessors ============================ */
+
     /** Returns an unmodifiable view of the filtered deck (card list) */
     ObservableList<PowerCard> getFilteredCardList();
 
@@ -88,12 +107,4 @@ public interface DeckModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCardList(Predicate<PowerCard> predicate);
-
-    ArrayList<PowerDeck> getDecks();
-    void unSelectDeck();
-
-    /* ========================== When No Deck selected ============================ */
-    void createDeck();
-    void selectDeck(int deckIndex);
-
 }

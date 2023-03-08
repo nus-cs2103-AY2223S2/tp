@@ -15,6 +15,7 @@ import seedu.address.model.powercard.UniqueCardList;
  */
 public class PowerDeck implements ReadOnlyPowerDeck {
     private final UniqueCardList cards;
+    private String deckName; // Todo: create new Class for DeckName
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

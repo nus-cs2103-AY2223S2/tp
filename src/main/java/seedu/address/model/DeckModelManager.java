@@ -5,13 +5,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.powercard.PowerCard;
 import seedu.address.model.powerdeck.PowerDeck;
 import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
@@ -21,10 +24,10 @@ import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
  */
 public class DeckModelManager implements DeckModel {
     private static final Logger logger = LogsCenter.getLogger(DeckModelManager.class);
-    private PowerDeck selectedDeck = null;
     private final ArrayList<PowerDeck> powerDecks;
     private final UserPrefs userPrefs;
-    private FilteredList<PowerCard> filteredCards = null;
+    private PowerDeck selectedDeck;
+    private FilteredList<PowerCard> filteredCards;
 
     /**
      * Initializes a CardModelManager with the given deck and userPrefs.
@@ -77,19 +80,44 @@ public class DeckModelManager implements DeckModel {
         userPrefs.setAddressBookFilePath(deckFilePath);
     }
 
-    /* ========================== PowerDeck ============================ */
+    /* ========================== PowerDeck Operations ============================ */
 
     @Override
-    public void setDeck(ReadOnlyPowerDeck readOnlyDeck) {
+    public void setDeck(ReadOnlyPowerDeck readOnlyDeck) { // I think this is for loading from storage
         this.selectedDeck.resetData(readOnlyDeck);
     }
 
+    // Todo: Link getDeck() to GUI
     @Override
-    public ReadOnlyPowerDeck getDeck() {
+    public ReadOnlyPowerDeck getSelectedDeck() {
         return this.selectedDeck;
     }
 
-    /* ========================== PowerCards ============================ */
+    @Override
+    public void createDeck() { // Todo: deck should have a name - how to store in storage?
+        PowerDeck newDeck = new PowerDeck();
+        this.powerDecks.add(newDeck);
+    }
+
+    @Override
+    public void selectDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+        selectedDeck = powerDecks.get(zeroBasesIdx);
+    }
+
+    @Override
+    public void unselectDeck() {
+        this.selectedDeck = null;
+        this.filteredCards = null;
+    }
+
+    // Todo: link PowerDecks to GUI through getDecks
+    @Override
+    public List<PowerDeck> getDecks() {
+        return this.powerDecks;
+    }
+
+    /* ========================== PowerCard Operations ============================ */
 
     @Override
     public boolean hasCard(PowerCard card) {
@@ -122,14 +150,13 @@ public class DeckModelManager implements DeckModel {
      */
     @Override
     public ObservableList<PowerCard> getFilteredCardList() {
-        return null;
-        // return filteredCards;
+        return filteredCards;
     }
 
     @Override
     public void updateFilteredCardList(Predicate<PowerCard> predicate) {
         requireNonNull(predicate);
-        // filteredCards.setPredicate(predicate);
+        filteredCards.setPredicate(predicate);
     }
 
     @Override
@@ -146,32 +173,9 @@ public class DeckModelManager implements DeckModel {
 
         // state check
         DeckModelManager other = (DeckModelManager) obj;
-        return this.selectedDeck.equals(other.selectedDeck)
-                && userPrefs.equals(other.userPrefs);
-        // && filteredCards.equals(other.filteredCards);
-    }
-
-    @Override
-    public ArrayList<PowerDeck> getDecks() {
-        return this.powerDecks;
-    }
-
-    @Override
-    public void unSelectDeck() {
-        this.selectedDeck = null;
-    }
-
-    /* ========================== When No Deck selected ============================ */
-
-    @Override
-    public void createDeck() {
-        PowerDeck newDeck = new PowerDeck();
-        this.powerDecks.add(newDeck);
-    }
-
-    @Override
-    public void selectDeck(int deckIndex) {
-        this.selectedDeck = this.powerDecks.get(deckIndex);
-        this.filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
+        return selectedDeck.equals(other.selectedDeck)
+                && powerDecks.equals(other.powerDecks)
+                && userPrefs.equals(other.userPrefs)
+                && filteredCards.equals(other.filteredCards);
     }
 }
