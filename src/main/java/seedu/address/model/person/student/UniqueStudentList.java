@@ -1,18 +1,21 @@
 package seedu.address.model.person.student;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+//import seedu.address.model.person.Person;
+//import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+/**
+ * Represents a student list containing Student objects in the same class / CCA / tag.
+ */
 public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =

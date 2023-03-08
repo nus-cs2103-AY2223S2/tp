@@ -1,12 +1,16 @@
 package seedu.address.model.person.student;
 
-import seedu.address.model.person.Address;
+//import seedu.address.model.person.Address;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the index number of a Student object.
+ */
 public class IndexNumber {
-    public static final String MESSAGE_CONSTRAINTS = "Index Number can only be digits (0-9), and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Index Number can only be digits (0-9), and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

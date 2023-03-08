@@ -3,6 +3,9 @@ package seedu.address.model.person.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the Image of a Student object.
+ */
 public class Image {
     public static final String MESSAGE_CONSTRAINTS = "Image must be file destination";
 
