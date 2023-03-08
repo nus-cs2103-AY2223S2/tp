@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DateTimeParserTest {
-    private DateTimeParser dateTimeParser = new DateTimeParser();
-    private LocalDateTime template = LocalDateTime.of(2023, 02, 12, 18, 0);
+    private final LocalDateTime template = LocalDateTime.of(2023, 02, 12, 18, 0);
 
     @Test
     public void createDateTime_validFormat() {
@@ -25,9 +24,6 @@ public class DateTimeParserTest {
 
     @Test
     public void createDateTime_invalidFormat_parseExceptionThrown() {
-        assertThrows(ParseException.class, () -> {
-            DateTimeParser.parseDateTime("2020/02/12 18:00");
-        });
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTime("2020/02/12 18:00"));
     }
-
 }
