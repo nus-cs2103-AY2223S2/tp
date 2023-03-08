@@ -373,12 +373,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModTrek shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. User wants to delete all modules.
- 
+
     * 3b1. User requests to delete all modules.
     * 3b2. ModTrek clears the list of modules.
-    
+
       Use case ends.
 
 <br>
