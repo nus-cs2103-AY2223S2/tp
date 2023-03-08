@@ -99,7 +99,7 @@ public class AddressBookParserTest {
         NewContactCommand command = (NewContactCommand) parser.parseCommand(ContactUtil.getNewContactCommand(contact));
         assertEquals(new NewContactCommand(contact), command);
     }
-    
+
     @Test
     public void parseCommand_Rate() throws Exception {
         RateCommand command = (RateCommand) parser.parseCommand(

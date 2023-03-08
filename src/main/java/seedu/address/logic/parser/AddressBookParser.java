@@ -67,7 +67,7 @@ public class AddressBookParser {
 
         case NewContactCommand.COMMAND_WORD:
             return new NewContactCommandParser().parse(arguments);
-        
+
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
 
