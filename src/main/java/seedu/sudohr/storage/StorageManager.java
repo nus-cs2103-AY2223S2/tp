@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException {
-        saveSudoHr(addressBook, sudoHrStorage.getSudoHrFilePath());
+    public void saveSudoHr(ReadOnlySudoHr sudoHr) throws IOException {
+        saveSudoHr(sudoHr, sudoHrStorage.getSudoHrFilePath());
     }
 
     @Override
-    public void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
+    public void saveSudoHr(ReadOnlySudoHr sudoHr, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        sudoHrStorage.saveSudoHr(addressBook, filePath);
+        sudoHrStorage.saveSudoHr(sudoHr, filePath);
     }
 
 }

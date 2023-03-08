@@ -33,14 +33,14 @@ public interface SudoHrStorage {
 
     /**
      * Saves the given {@link ReadOnlySudoHr} to the storage.
-     * @param addressBook cannot be null.
+     * @param sudoHr cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr sudoHr) throws IOException;
 
     /**
      * @see #saveSudoHr(ReadOnlySudoHr)
      */
-    void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr sudoHr, Path filePath) throws IOException;
 
 }

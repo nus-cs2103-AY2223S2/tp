@@ -60,8 +60,8 @@ public class JsonSudoHrStorage implements SudoHrStorage {
     }
 
     @Override
-    public void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException {
-        saveSudoHr(addressBook, filePath);
+    public void saveSudoHr(ReadOnlySudoHr sudoHr) throws IOException {
+        saveSudoHr(sudoHr, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonSudoHrStorage implements SudoHrStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveSudoHr(ReadOnlySudoHr sudoHr, Path filePath) throws IOException {
+        requireNonNull(sudoHr);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableSudoHr(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSudoHr(sudoHr), filePath);
     }
 
 }

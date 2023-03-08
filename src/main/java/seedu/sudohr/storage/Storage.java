@@ -27,6 +27,6 @@ public interface Storage extends SudoHrStorage, UserPrefsStorage {
     Optional<ReadOnlySudoHr> readSudoHr() throws DataConversionException, IOException;
 
     @Override
-    void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr sudoHr) throws IOException;
 
 }
