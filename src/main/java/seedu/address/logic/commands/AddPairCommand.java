@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
 import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -31,9 +32,6 @@ public class AddPairCommand extends Command {
 
     public static final String MESSAGE_ADD_PAIR_SUCCESS = "New pair consisting of elderly with NRIC %1$s"
             + " and volunteer with NRIC %2$s added";
-
-    public static final String MESSAGE_DUPLICATE_PAIR = "This pair consisting of elderly with NRIC %1$s"
-            + " and volunteer with NRIC %2$s already exists in FriendlyLink";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;

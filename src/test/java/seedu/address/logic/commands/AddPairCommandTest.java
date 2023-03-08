@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
@@ -56,8 +57,7 @@ public class AddPairCommandTest {
         Nric elderlyNric = validPair.getElderly().getNric();
         Nric volunteerNric = validPair.getVolunteer().getNric();
         AddPairCommand addPairCommand = new AddPairCommand(elderlyNric, volunteerNric);
-
-        String expectedMessage = String.format(AddPairCommand.MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric);
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric);
         assertThrows(CommandException.class,
                 expectedMessage, () -> addPairCommand.execute(modelStub));
     }
