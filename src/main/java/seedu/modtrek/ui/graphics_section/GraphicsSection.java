@@ -43,6 +43,7 @@ public class GraphicsSection extends UiPart<Region> {
 
         // TODO: render ModuleList dynamically
         ModuleList moduleList = new ModuleList(modules);
+        sectionBody.getChildren().clear();
         sectionBody.getChildren().add(moduleList.getRoot());
     }
 }

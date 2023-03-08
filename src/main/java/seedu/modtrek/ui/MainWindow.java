@@ -2,10 +2,12 @@ package seedu.modtrek.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javafx.util.Duration;
 import seedu.modtrek.ui.cli_section.CliSection;
 import seedu.modtrek.ui.graphics_section.GraphicsSection;
 import seedu.modtrek.commons.core.GuiSettings;
@@ -30,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /* TODO: Add Independent Ui parts residing in this Ui container */
     // Independent Ui parts residing in this Ui container
+    private CliSection cliSection;
+    private GraphicsSection graphicsSection;
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -102,12 +106,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        GraphicsSection graphicsSection = new GraphicsSection(logic.getFilteredModuleList());
+        graphicsSection = new GraphicsSection(logic.getFilteredModuleList());
         graphicsSectionPlaceholder.getChildren().add(graphicsSection.getRoot());
         // moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         // personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        CliSection cliSection = new CliSection(this::executeCommand);
+        cliSection = new CliSection(this::executeCommand);
         cliSectionPlaceholder.getChildren().add(cliSection.getRoot());
 
 //        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -151,19 +155,21 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
-//
-//    /**
-//     * Closes the application.
-//     */
-//    @FXML
-//    private void handleExit() {
-//        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-//                (int) primaryStage.getX(), (int) primaryStage.getY());
-//        logic.setGuiSettings(guiSettings);
-//        helpWindow.hide();
-//        primaryStage.hide();
-//    }
-//
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        // helpWindow.hide();
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(event -> primaryStage.hide());
+        delay.play();
+    }
+
 ////    public PersonListPanel getPersonListPanel() {
 ////        return personListPanel;
 ////    }
@@ -208,15 +214,18 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            // To refresh the graphics section to display updated list of modules
+            graphicsSection.displayModuleList(logic.getFilteredModuleList());
+
             //resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
 //            if (commandResult.isShowHelp()) {
 //                handleHelp();
 //            }
 //
-//            if (commandResult.isExit()) {
-//                handleExit();
-//            }
+            if (commandResult.isExit()) {
+                handleExit();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

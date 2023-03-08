@@ -43,27 +43,31 @@ public class ModuleCard extends UiPart<Region> {
         moduleCardGrade.setText(module.getGrade().toString());
 
         for (Tag tag : module.getTags()) {
-            String tagName = "";
             switch (ValidTag.valueOf(tag.tagName)) {
             case UNIVERSITY_LEVEL_REQUIREMENTS:
-                tagName = "ULR";
+                addTag("ULR", "red");
+                break;
             case COMPUTER_SCIENCE_FOUNDATION:
-                tagName = "CSF";
+                addTag("CSF", "blue");
+                break;
             case COMPUTER_SCIENCE_BREADTH_AND_DEPTH:
-                tagName = "CSBD";
+                addTag("CSBD", "green");
+                break;
             case IT_PROFESSIONALISM:
-                tagName = "ITP";
+                addTag("ITP", "yellow");
+                break;
             case MATHEMATICS_AND_SCIENCES:
-                tagName = "MS";
+                addTag("MS", "purple");
+                break;
             case UNRESTRICTED_ELECTIVES:
-                tagName = "UE";
+                addTag("UE", "orange");
+                break;
             default:
             }
-            addTag(tagName, "red");
         }
     }
 
-    private void addTag(String tagName, String tagColor /* TODO: change to enums */) {
+    private void addTag(String tagName, String tagColor) {
         Label tag = new Label(tagName);
         tag.getStyleClass().addAll("module-card-tag", "module-card-tag-" + tagColor, "p2");
         moduleCardTagGroup.getChildren().add(tag);

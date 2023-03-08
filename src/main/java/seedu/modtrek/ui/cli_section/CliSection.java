@@ -57,7 +57,6 @@ public class CliSection extends UiPart<Region> {
             cliInput.setText("");
         } catch (CommandException | ParseException e) {
             addSystemDialog(e.getMessage(), false);
-            cliInput.setText("");
         }
 
     }

@@ -152,8 +152,10 @@ public class Module {
                 .append(semesterYear);
 
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            builder.append("; Tags:");
+            for (Tag tag : tags) {
+                builder.append(" ").append(tag);
+            }
         }
 
         if (grade != null) {
