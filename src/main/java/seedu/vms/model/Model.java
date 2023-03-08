@@ -5,9 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -94,4 +96,7 @@ public interface Model {
 
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
+
+    /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
+    VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
 }

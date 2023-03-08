@@ -10,10 +10,12 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -124,6 +126,16 @@ public class ModelManager implements Model {
 
         addressBook.set(id, editedPatient);
     }
+
+
+    //=========== VaxTypeManager ==============================================================================
+
+
+    @Override
+    public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
+        return action.apply(vaxTypeManager);
+    }
+
 
     //=========== Filtered Patient List Accessors =============================================================
 
