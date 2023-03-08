@@ -17,6 +17,7 @@ import seedu.vms.model.patient.Email;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.tag.Tag;
+import seedu.vms.model.vaccination.VaxName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -169,5 +170,14 @@ public class ParserUtil {
                     DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
         }
         throw new ParseException(MESSAGE_INVALID_DATE);
+    }
+
+
+    public static VaxName parseVaxName(String name) throws ParseException {
+        requireNonNull(name);
+        if (!VaxName.isValidName(name)) {
+            throw new ParseException(VaxName.MESSAGE_CONSTRAINT);
+        }
+        return new VaxName(name);
     }
 }
