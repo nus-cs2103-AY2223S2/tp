@@ -1,8 +1,8 @@
 {
   "persons": [ ],
   "tasks" : [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "deadline": "01/01/2023",
-    "status": "N"
+    "taskName": "Person with invalid name field: Ha!ns Mu@ster",
+    "taskDeadline": "01/01/2023",
+    "taskStatus": "N"
   } ]
 }

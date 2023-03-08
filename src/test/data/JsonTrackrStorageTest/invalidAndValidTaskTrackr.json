@@ -1,12 +1,12 @@
 {
   "persons": [ ],
   "tasks" : [ {
-    "name": "Valid Task",
-    "deadline": "01/01/2023",
-    "status": "N"
+    "taskName": "Valid Task",
+    "taskDeadline": "01/01/2023",
+    "taskStatus": "N"
   }, {
-    "name": "Task with invalid status",
-    "deadline": "01/01/2023",
-    "status": "X"
+    "taskName": "Task with invalid status",
+    "taskDadline": "01/01/2023",
+    "taskStatus": "X"
   } ]
 }

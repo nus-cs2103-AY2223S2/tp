@@ -1,8 +1,8 @@
 {
   "persons": [ ],
   "tasks": [ {
-    "name": "Buy Food",
-    "deadline": "01/01/2023/invalid",
-    "status": "N"
+    "taskName": "Buy Food",
+    "taskDeadline": "01/01/2023/invalid",
+    "taskStatus": "N"
   } ]
 }

@@ -1,12 +1,12 @@
 {
   "persons": [ ],
   "tasks": [ {
-    "name": "Sort Inventory",
-    "deadline": "01/01/2024",
-    "status": "N"
+    "taskName": "Sort Inventory",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "N"
   }, {
-    "name": "Sort Inventory",
-    "deadline": "01/01/2024",
-    "status": "N"
+    "taskName": "Sort Inventory",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "N"
   } ]
 }
