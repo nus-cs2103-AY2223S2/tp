@@ -38,7 +38,7 @@ import seedu.address.model.person.Phone;
  */
 public class UpdateCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Update the details of the person identified given the patient name."
