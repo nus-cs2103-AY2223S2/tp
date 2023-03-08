@@ -2,12 +2,10 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class GroupCommand extends Command {
     public static final String COMMAND_WORD = "group";
@@ -46,4 +44,5 @@ public class GroupCommand extends Command {
                 || (other instanceof GroupCommand // instanceof handles nulls
                 && toAdd.equals(((GroupCommand) other).toAdd));
     }
+
 }

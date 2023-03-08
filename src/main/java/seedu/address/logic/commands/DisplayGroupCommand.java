@@ -26,4 +26,5 @@ public class DisplayGroupCommand extends Command {
         String results = model.getAddressBook().getTagList().toString();
         return new CommandResult(MESSAGE_TEMPORARY_OUTPUT + results);
     }
+
 }
