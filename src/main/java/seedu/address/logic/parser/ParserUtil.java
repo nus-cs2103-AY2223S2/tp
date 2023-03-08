@@ -105,7 +105,7 @@ public class ParserUtil {
     public static Yoe parseYoe(String yoe) throws ParseException {
         requireNonNull(yoe);
         String trimmedYoe = yoe.trim();
-        if (!Specialty.isValidSpecialty(trimmedYoe)) {
+        if (!Yoe.isValidYoe(trimmedYoe)) {
             throw new ParseException(Yoe.MESSAGE_CONSTRAINTS);
         }
         return new Yoe(trimmedYoe);

@@ -32,6 +32,7 @@ public class AddDoctorCommand extends AddCommand {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_SPECIALITY + "Cardiology "
+            + PREFIX_YOE + "5 "
             + PREFIX_TAG + "Head of Department ";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
