@@ -17,17 +17,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -59,7 +63,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in
+     * the address book.
      */
     public boolean hasPerson(Patient patient) {
         requireNonNull(patient);
@@ -75,9 +80,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given patient {@code target} in the list with {@code editedPatient}.
+     * Replaces the given patient {@code target} in the list with
+     * {@code editedPatient}.
      * {@code target} must exist in the address book.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the address book.
+     * The patient identity of {@code editedPatient} must not be the same as another
+     * existing patient in the address book.
      */
     public void setPerson(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -97,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " patients";
         // TODO: refine later
     }
 
@@ -110,7 +117,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                        && persons.equals(((AddressBook) other).persons));
     }
 
     @Override
