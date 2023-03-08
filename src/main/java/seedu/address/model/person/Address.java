@@ -17,7 +17,7 @@ public class Address implements Comparable<Address> {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Address}.
@@ -37,9 +37,16 @@ public class Address implements Comparable<Address> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the String value stored within the email.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override

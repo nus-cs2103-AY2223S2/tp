@@ -18,7 +18,7 @@ public class Name implements Comparable<Name> {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Name}.
@@ -39,9 +39,16 @@ public class Name implements Comparable<Name> {
     }
 
 
+    /**
+     * Gets the String value stored within the email.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override

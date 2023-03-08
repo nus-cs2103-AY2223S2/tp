@@ -41,19 +41,19 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         switch (prefix) {
 
         case NAME:
-            return person.getName().value;
+            return person.getName().getValue();
 
         case PHONE:
-            return person.getPhone().value;
+            return person.getPhone().getValue();
 
         case EMAIL:
-            return person.getEmail().value;
+            return person.getEmail().getValue();
 
         case ADDRESS:
-            return person.getAddress().value;
+            return person.getAddress().getValue();
 
         case TELEGRAM_HANDLE:
-            return person.getTelegramHandle().value;
+            return person.getTelegramHandle().getValue();
 
         case MODULE_TAG:
             return person.getImmutableModuleTags().toString();

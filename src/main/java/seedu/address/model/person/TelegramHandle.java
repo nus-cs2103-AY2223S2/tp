@@ -19,7 +19,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
      */
     public static final String VALIDATION_REGEX = "^@[\\p{Alnum}]+";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code TelegramHandle}.
@@ -41,9 +41,16 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the String value stored within the email.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override

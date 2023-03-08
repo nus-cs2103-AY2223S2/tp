@@ -31,7 +31,7 @@ public class Email implements Comparable<Email> {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Email}.
@@ -51,9 +51,16 @@ public class Email implements Comparable<Email> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the String value stored within the email.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override

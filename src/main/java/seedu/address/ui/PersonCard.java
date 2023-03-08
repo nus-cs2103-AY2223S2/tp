@@ -53,10 +53,10 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().value);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        name.setText(person.getName().getValue());
+        phone.setText(person.getPhone().getValue());
+        address.setText(person.getAddress().getValue());
+        email.setText(person.getEmail().getValue());
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)
                 .forEach(groupTag -> {

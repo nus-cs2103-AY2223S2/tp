@@ -14,7 +14,7 @@ public class Phone implements Comparable<Phone> {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -34,9 +34,16 @@ public class Phone implements Comparable<Phone> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the String value stored within the email.
+     */
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue();
     }
 
     @Override
