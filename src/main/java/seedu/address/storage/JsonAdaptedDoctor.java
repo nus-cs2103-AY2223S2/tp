@@ -22,14 +22,10 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Doctor}.
  */
-class JsonAdaptedDoctor {
+class JsonAdaptedDoctor extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Doctor's %s field is missing!";
 
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String specialty;
     private final String yearsOfExperience;
 
@@ -41,12 +37,7 @@ class JsonAdaptedDoctor {
                              @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("specialty") String specialty,
                              @JsonProperty("yearsOfExperience") String yearsOfExperience) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        super(name, phone, email, tagged);
         this.specialty = specialty;
         this.yearsOfExperience = yearsOfExperience;
     }
@@ -55,14 +46,10 @@ class JsonAdaptedDoctor {
      * Converts a given {@code Doctor} into this class for Jackson use.
      */
     public JsonAdaptedDoctor(Doctor source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        super(source);
         yearsOfExperience = source.getYoe().value;
         specialty = source.getSpecialty().specialty;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+
     }
 
     /**
@@ -71,37 +58,6 @@ class JsonAdaptedDoctor {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Doctor toModelType() throws IllegalValueException {
-        final List<Tag> doctorTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            doctorTags.add(tag.toModelType());
-        }
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        final Set<Tag> modelTags = new HashSet<>(doctorTags);
-
         if (specialty == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Specialty.class.getSimpleName()));
         }
@@ -118,8 +74,9 @@ class JsonAdaptedDoctor {
         }
         final Yoe modelYearsOfExperience = new Yoe(yearsOfExperience);
 
-        return new Doctor(modelName, modelPhone, modelEmail,
-                modelSpecialty, modelYearsOfExperience, modelTags);
+        Person doctorPerson = super.toModelType();
+        return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),
+                modelSpecialty, modelYearsOfExperience, doctorPerson.getTags());
     }
 
 }
