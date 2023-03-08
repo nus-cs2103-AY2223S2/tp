@@ -16,62 +16,63 @@ class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    private final String name;
-    private final String deadline;
-    private final String status;
+    private final String taskName;
+    private final String taskDeadline;
+    private final String taskStatus;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                             @JsonProperty("status") String status) {
-        this.name = name;
-        this.deadline = deadline;
-        this.status = status;
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
+                           @JsonProperty("taskDeadline") String taskDeadline,
+                           @JsonProperty("taskStatus") String taskStatus) {
+        this.taskName = taskName;
+        this.taskDeadline = taskDeadline;
+        this.taskStatus = taskStatus;
     }
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        name = source.getTaskName().fullTaskName;
-        deadline = source.getTaskDeadline().toJsonString();
-        status = source.getTaskStatus().toJsonString();
+        taskName = source.getTaskName().fullTaskName;
+        taskDeadline = source.getTaskDeadline().toJsonString();
+        taskStatus = source.getTaskStatus().toJsonString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        if (name == null) {
+        if (taskName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskName.class.getSimpleName()));
         }
-        if (!TaskName.isValidTaskName(name)) {
+        if (!TaskName.isValidTaskName(taskName)) {
             throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        final TaskName modelName = new TaskName(name);
+        final TaskName modelName = new TaskName(taskName);
 
-        if (deadline == null) {
+        if (taskDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskDeadline.class.getSimpleName()));
         }
-        if (!TaskDeadline.isValidTaskDeadline(deadline)) {
+        if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
             throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
-        final TaskDeadline modelDeadline = new TaskDeadline(deadline);
+        final TaskDeadline modelDeadline = new TaskDeadline(taskDeadline);
 
-        if (status == null) {
+        if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskStatus.class.getSimpleName()));
         }
-        if (!TaskStatus.isValidTaskStatus(status)) {
+        if (!TaskStatus.isValidTaskStatus(taskStatus)) {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
-        final TaskStatus modelStatus = new TaskStatus(status);
+        final TaskStatus modelStatus = new TaskStatus(taskStatus);
 
         return new Task(modelName, modelDeadline, modelStatus);
     }
