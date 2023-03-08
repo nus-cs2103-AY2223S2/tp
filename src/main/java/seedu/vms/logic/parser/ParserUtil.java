@@ -173,6 +173,12 @@ public class ParserUtil {
     }
 
 
+    /**
+     * Parses vaccination type names.
+     *
+     * @param name - name to parse.
+     * @throws ParseException if the name cannot be parsed.
+     */
     public static VaxName parseVaxName(String name) throws ParseException {
         requireNonNull(name);
         if (!VaxName.isValidName(name)) {

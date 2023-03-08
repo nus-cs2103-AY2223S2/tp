@@ -2,6 +2,9 @@ package seedu.vms.model.vaccination;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.vms.commons.util.AppUtil;
 
 
@@ -23,6 +26,7 @@ public class VaxName {
      *
      * @param name - name of vaccination.
      */
+    @JsonCreator
     public VaxName(String name) {
         Objects.requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
@@ -31,6 +35,12 @@ public class VaxName {
 
     public static boolean isValidName(String name) {
         return name.strip().matches(VALIDATION_REGEX);
+    }
+
+
+    @JsonValue
+    public String getName() {
+        return name;
     }
 
 

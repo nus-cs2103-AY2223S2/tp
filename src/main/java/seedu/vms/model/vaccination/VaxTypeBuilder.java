@@ -15,9 +15,8 @@ public class VaxTypeBuilder {
     private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist";
     private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist";
 
-    private final String refName;
-
-    private final String name;
+    private final VaxName refName;
+    private final VaxName name;
     private final Optional<HashSet<String>> setGrps;
     private final Optional<Integer> setMinAge;
     private final Optional<Integer> setMaxAge;
@@ -26,7 +25,7 @@ public class VaxTypeBuilder {
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
-    private VaxTypeBuilder(String refName, String name, Optional<HashSet<String>> setGrps,
+    private VaxTypeBuilder(VaxName refName, VaxName name, Optional<HashSet<String>> setGrps,
                 Optional<Integer> setMinAge, Optional<Integer> setMaxAge, Optional<Integer> setMinSpacing,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
@@ -47,7 +46,7 @@ public class VaxTypeBuilder {
      *      from.
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(String refName, String name) {
+    public static VaxTypeBuilder of(VaxName refName, VaxName name) {
         return new VaxTypeBuilder(refName, name,
                 Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty(), Optional.empty());
@@ -59,12 +58,12 @@ public class VaxTypeBuilder {
      *
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(String name) {
+    public static VaxTypeBuilder of(VaxName name) {
         return VaxTypeBuilder.of(name, name);
     }
 
 
-    public VaxTypeBuilder setName(String name) {
+    public VaxTypeBuilder setName(VaxName name) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
@@ -122,7 +121,7 @@ public class VaxTypeBuilder {
      *      replaced.
      */
     public VaxType create(VaxTypeManager manager) throws IllegalValueException {
-        if (manager.contains(refName) || manager.contains(name)) {
+        if (manager.contains(refName.toString()) || manager.contains(name.toString())) {
             throw new IllegalValueException(MESSAGE_DUPLICATE_TYPE);
         }
         return build(manager);
@@ -139,7 +138,8 @@ public class VaxTypeBuilder {
      *      already exists.
      */
     public VaxType update(VaxTypeManager manager) throws IllegalValueException {
-        if (!manager.contains(refName) || (!refName.equals(name) && manager.contains(name))) {
+        if (!manager.contains(refName.toString())
+                    || (!refName.equals(name) && manager.contains(name.toString()))) {
             throw new IllegalValueException(MESSAGE_MISSING_TYPE);
         }
         return build(manager);
@@ -147,7 +147,7 @@ public class VaxTypeBuilder {
 
 
     private VaxType build(VaxTypeManager manager) {
-        Optional<VaxType> refVaxType = manager.remove(refName);
+        Optional<VaxType> refVaxType = manager.remove(refName.toString());
 
         HashSet<String> grps = setGrps.orElse(refVaxType
                 .map(VaxType::getGroups)
