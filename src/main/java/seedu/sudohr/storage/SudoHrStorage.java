@@ -16,7 +16,7 @@ public interface SudoHrStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getSudoHrFilePath();
 
     /**
      * Returns SudoHr data as a {@link ReadOnlySudoHr}.
@@ -24,23 +24,23 @@ public interface SudoHrStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlySudoHr> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySudoHr> readSudoHr() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getSudoHrFilePath()
      */
-    Optional<ReadOnlySudoHr> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlySudoHr> readSudoHr(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlySudoHr} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlySudoHr addressBook) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlySudoHr)
+     * @see #saveSudoHr(ReadOnlySudoHr)
      */
-    void saveAddressBook(ReadOnlySudoHr addressBook, Path filePath) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException;
 
 }

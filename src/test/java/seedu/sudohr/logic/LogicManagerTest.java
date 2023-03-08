@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
+        public void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

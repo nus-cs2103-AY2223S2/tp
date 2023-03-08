@@ -21,12 +21,12 @@ public interface Storage extends SudoHrStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getSudoHrFilePath();
 
     @Override
-    Optional<ReadOnlySudoHr> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySudoHr> readSudoHr() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlySudoHr addressBook) throws IOException;
+    void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException;
 
 }

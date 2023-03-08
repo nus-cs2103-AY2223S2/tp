@@ -55,14 +55,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonSudoHrStorageTest} class.
          */
         SudoHr original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlySudoHr retrieved = storageManager.readAddressBook().get();
+        storageManager.saveSudoHr(original);
+        ReadOnlySudoHr retrieved = storageManager.readSudoHr().get();
         assertEquals(original, new SudoHr(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getSudoHrFilePath());
     }
 
 }

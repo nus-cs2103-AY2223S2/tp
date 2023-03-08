@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ SudoHr methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return sudoHrStorage.getAddressBookFilePath();
+    public Path getSudoHrFilePath() {
+        return sudoHrStorage.getSudoHrFilePath();
     }
 
     @Override
-    public Optional<ReadOnlySudoHr> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(sudoHrStorage.getAddressBookFilePath());
+    public Optional<ReadOnlySudoHr> readSudoHr() throws DataConversionException, IOException {
+        return readSudoHr(sudoHrStorage.getSudoHrFilePath());
     }
 
     @Override
-    public Optional<ReadOnlySudoHr> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlySudoHr> readSudoHr(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return sudoHrStorage.readAddressBook(filePath);
+        return sudoHrStorage.readSudoHr(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySudoHr addressBook) throws IOException {
-        saveAddressBook(addressBook, sudoHrStorage.getAddressBookFilePath());
+    public void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException {
+        saveSudoHr(addressBook, sudoHrStorage.getSudoHrFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
+    public void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        sudoHrStorage.saveAddressBook(addressBook, filePath);
+        sudoHrStorage.saveSudoHr(addressBook, filePath);
     }
 
 }

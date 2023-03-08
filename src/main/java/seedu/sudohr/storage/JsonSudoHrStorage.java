@@ -27,22 +27,22 @@ public class JsonSudoHrStorage implements SudoHrStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getSudoHrFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlySudoHr> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlySudoHr> readSudoHr() throws DataConversionException {
+        return readSudoHr(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readSudoHr()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlySudoHr> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlySudoHr> readSudoHr(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableSudoHr> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonSudoHrStorage implements SudoHrStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySudoHr addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveSudoHr(ReadOnlySudoHr addressBook) throws IOException {
+        saveSudoHr(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlySudoHr)}.
+     * Similar to {@link #saveSudoHr(ReadOnlySudoHr)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
+    public void saveSudoHr(ReadOnlySudoHr addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

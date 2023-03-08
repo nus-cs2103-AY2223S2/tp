@@ -31,7 +31,7 @@ public class JsonSudoHrStorageTest {
     }
 
     private java.util.Optional<ReadOnlySudoHr> readAddressBook(String filePath) throws Exception {
-        return new JsonSudoHrStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonSudoHrStorage(Paths.get(filePath)).readSudoHr(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,21 +67,21 @@ public class JsonSudoHrStorageTest {
         JsonSudoHrStorage jsonAddressBookStorage = new JsonSudoHrStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlySudoHr readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveSudoHr(original, filePath);
+        ReadOnlySudoHr readBack = jsonAddressBookStorage.readSudoHr(filePath).get();
         assertEquals(original, new SudoHr(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveSudoHr(original, filePath);
+        readBack = jsonAddressBookStorage.readSudoHr(filePath).get();
         assertEquals(original, new SudoHr(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveSudoHr(original); // file path not specified
+        readBack = jsonAddressBookStorage.readSudoHr().get(); // file path not specified
         assertEquals(original, new SudoHr(readBack));
 
     }
@@ -97,7 +97,7 @@ public class JsonSudoHrStorageTest {
     private void saveAddressBook(ReadOnlySudoHr addressBook, String filePath) {
         try {
             new JsonSudoHrStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveSudoHr(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
