@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,8 +19,8 @@ public class ViewCommand extends Command {
             + "has the index\n"
             + "view n/<name> : Allows you to view profile for the specific person"
             + "view : Shows your own profile instead";
-    private String name;
-    private Index index;
+    private final String name;
+    private final Index index;
 
     /**
      * Creates a View Command with the person's name.
@@ -57,13 +57,14 @@ public class ViewCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person person = retrievePerson(model);
-        if (person == null) {
+        Optional<Person> person = retrievePerson(model);
+        System.out.println(person);
+        if (person.isEmpty()) {
             return new CommandResult("No such name found!", false, false,
                     model.getUser(), true);
         }
-        System.out.println(person);
-        return new CommandResult(person.toString(), false, false, person, true);
+        Person contact = person.get();
+        return new CommandResult(contact.toString(), false, false, contact, true);
     }
 
     /**
@@ -71,26 +72,16 @@ public class ViewCommand extends Command {
      * @param model
      * @return
      */
-    public Person retrievePerson(Model model) {
+    public Optional<Person> retrievePerson(Model model) {
         List<Person> personList = model.getFilteredPersonList();
-        Person person;
         if (index != null) {
-            person = personList.get(this.index.getZeroBased());
+            return Optional.ofNullable(personList.get(this.index.getZeroBased()));
         } else if (name != null) {
-            List<Person> peopleWithMatchingName = new ArrayList<>();
-            personList.stream()
+            return personList.stream()
                     .filter(x -> x.getName().toString().equals(name))
-                    .forEach(friend -> {
-                        peopleWithMatchingName.add(friend);
-                    });
-            if (peopleWithMatchingName.size() == 0) {
-                person = null;
-            } else {
-                person = peopleWithMatchingName.get(0);
-            }
+                    .findFirst();
         } else {
-            person = model.getUser();
+            return Optional.ofNullable(model.getUser());
         }
-        return person;
     }
 }
