@@ -57,9 +57,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noInternshipFound() {
+    public void execute_noKeywords_noInternshipFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 0);
-        InternshipContainsKeywordsPredicate predicate = preparePredicate(" ", "", "");
+        InternshipContainsKeywordsPredicate predicate =
+                new InternshipContainsKeywordsPredicate(Collections.emptyList(), Collections.emptyList(),
+                        Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -69,7 +71,9 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 3);
-        InternshipContainsKeywordsPredicate predicate = preparePredicate("Goldman Riot Samsung", "", "");
+        InternshipContainsKeywordsPredicate predicate =
+                new InternshipContainsKeywordsPredicate(Arrays.asList("Goldman", "Riot", "Samsung"),
+                        Collections.emptyList(), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
