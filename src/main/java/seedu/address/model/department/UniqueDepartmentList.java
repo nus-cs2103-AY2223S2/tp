@@ -1,5 +1,9 @@
 package seedu.address.model.department;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,11 +12,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class UniqueDepartmentList implements Iterable<Department>{
-    private final List<Department> internalList;
-
-    UniqueDepartmentList() {
-        this.internalList = new ArrayList<>();
-    }
+    private final ObservableList<Department> internalList = FXCollections.observableArrayList();;
+    private final ObservableList<Department> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent department as the given argument.
@@ -76,7 +78,14 @@ public class UniqueDepartmentList implements Iterable<Department>{
         }
 
         // Replace department with new set of internalList
-        // d.setAll(d);
+        internalList.setAll(d);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Department> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
     }
 
     @Override
