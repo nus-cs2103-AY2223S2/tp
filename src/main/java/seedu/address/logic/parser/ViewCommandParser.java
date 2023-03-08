@@ -29,7 +29,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(
                 userInput, Prefix.NAME);
         // show user by querying name
-        if (arePrefixesPresent(argumentMultimap, Prefix.NAME)) {
+        if (argumentMultimap.getValue(Prefix.NAME).isPresent()) {
             String name = argumentMultimap.getValue(Prefix.NAME).get();
             return new ViewCommand(name);
         }
@@ -39,18 +39,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             try {
                 index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
                 return new ViewCommand(index);
-            } catch (Exception e) {
+            } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.USAGE));
             }
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.USAGE));
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
