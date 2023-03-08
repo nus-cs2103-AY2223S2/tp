@@ -22,25 +22,21 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":Adds a drug to the drug inventory. "
             + "Parameters: "
-            + PREFIX_TRADE_NAME + "TRADE NAME "
-            + PREFIX_ACTIVE_INGREDIENT + "ACTIVE INGREDIENT "
-            + PREFIX_PURPOSE + "PURPOSE... "
-            + PREFIX_SIDE_EFFECT + "SIDE EFFECT... "
-            + PREFIX_DIRECTION + "DIRECTION"
-            + PREFIX_STORAGE_COUNT + "STORAGE COUNT\n"
+            + PREFIX_TRADE_NAME + " TRADE NAME "
+            + PREFIX_ACTIVE_INGREDIENT + " ACTIVE INGREDIENT "
+            + PREFIX_PURPOSE + " PURPOSE(S)... "
+            + PREFIX_SIDE_EFFECT + " SIDE EFFECT(S)... "
+            + PREFIX_DIRECTION + " DIRECTION"
+            + PREFIX_STORAGE_COUNT + " STORAGE COUNT\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TRADE_NAME + "Panadol "
-            + PREFIX_ACTIVE_INGREDIENT + "Paracetamol "
-            + PREFIX_PURPOSE + "relieve pain "
-            + PREFIX_PURPOSE + "relieve fever "
-            + PREFIX_PURPOSE + "relieve headache "
-            + PREFIX_SIDE_EFFECT + "skin rash "
-            + PREFIX_SIDE_EFFECT + "swelling of the lips, tongue, throat or face "
-            + PREFIX_SIDE_EFFECT + "nausea "
-            + PREFIX_SIDE_EFFECT + "unexplained bruising or bleeding "
-            + PREFIX_DIRECTION + "Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not " +
+            + PREFIX_TRADE_NAME + " Panadol "
+            + PREFIX_ACTIVE_INGREDIENT + " Paracetamol "
+            + PREFIX_PURPOSE + " relieve pain / relieve fever / relieve headache"
+            + PREFIX_SIDE_EFFECT + " skin rash / swelling of the lips, tongue, throat or face / nausea / " +
+            "unexplained bruising or bleeding"
+            + PREFIX_DIRECTION + " Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not " +
             "recommended for children under 12 years. "
-            + PREFIX_STORAGE_COUNT + "50 ";
+            + PREFIX_STORAGE_COUNT + " 50 ";
 
     public static final String MESSAGE_SUCCESS = "New drug added: %1$s";
     public static final String MESSAGE_DUPLICATE_DRUG = "This drug already exists in the drug inventory";

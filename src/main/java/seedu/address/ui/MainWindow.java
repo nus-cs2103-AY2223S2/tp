@@ -55,6 +55,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, CareFlowLogic logic) {
         super(FXML, primaryStage);
+        primaryStage.setTitle("CareFlow");
 
         // Set dependencies
         this.primaryStage = primaryStage;
