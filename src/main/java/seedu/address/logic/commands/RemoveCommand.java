@@ -69,12 +69,12 @@ public class RemoveCommand extends Command {
         removePersonDescriptor.setPerson(personToRemoveField);
 
         Name defaultName = personToRemoveField.getName();
-        GitHubProfile updatedProfile = removePersonDescriptor.getProfile().orElse(personToRemoveField.getProfile());
-        Phone updatedPhone = personToRemoveField.getPhone();
-        Email updatedEmail = personToRemoveField.getEmail();
-        Address updatedAddress = personToRemoveField.getAddress();
-        Set<Language> updatedLanguages = personToRemoveField.getLanguages();
-        Set<Tag> updatedTags = removePersonDescriptor.getTags().orElse(personToRemoveField.getTags());
+        GitHubProfile updatedProfile = removePersonDescriptor.getRemoveProfile().orElse(personToRemoveField.getProfile());
+        Phone updatedPhone = removePersonDescriptor.getRemovePhone().orElse(personToRemoveField.getPhone());
+        Email updatedEmail = removePersonDescriptor.getRemoveEmail().orElse(personToRemoveField.getEmail());
+        Address updatedAddress = removePersonDescriptor.getRemoveAddress().orElse(personToRemoveField.getAddress());
+        Set<Language> updatedLanguages = removePersonDescriptor.getRemoveLanguages().orElse(personToRemoveField.getLanguages());
+        Set<Tag> updatedTags = removePersonDescriptor.getRemoveTags().orElse(personToRemoveField.getTags());
 
         return new Person(defaultName, updatedProfile, updatedPhone, updatedEmail, updatedAddress, updatedLanguages, updatedTags);
     }
@@ -116,7 +116,7 @@ public class RemoveCommand extends Command {
             this.profile = profile;
         }
 
-        public Optional<GitHubProfile> getProfile() {
+        public Optional<GitHubProfile> getRemoveProfile() {
             return (profile != null) && (profile.equals(person.getProfile()) || profile.isEmptyProfile())
                     ? Optional.of(new GitHubProfile(""))
                     : Optional.empty();
@@ -126,15 +126,17 @@ public class RemoveCommand extends Command {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Phone> getRemovePhone() {
+            return (phone != null) && (phone.equals(person.getPhone()) || phone.isPhoneEmpty())
+                    ? Optional.of(new Phone(""))
+                    : Optional.empty();
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<Email> getRemoveEmail() {
             return Optional.ofNullable(email);
         }
 
@@ -142,8 +144,10 @@ public class RemoveCommand extends Command {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Address> getRemoveAddress() {
+            return (address != null) && (address.equals(person.getAddress()) || address.isAddressEmpty())
+                    ? Optional.of(new Address(""))
+                    : Optional.empty();
         }
 
         /**
@@ -159,8 +163,13 @@ public class RemoveCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code languages} is null.
          */
-        public Optional<Set<Language>> getLanguages() {
-            return (languages != null) ? Optional.of(Collections.unmodifiableSet(languages)) : Optional.empty();
+        public Optional<Set<Language>> getRemoveLanguages() {
+            Set<Language> newLanguages = new HashSet<>(person.getLanguages());
+            return (languages != null)
+                    ? newLanguages.removeAll(languages) && !languages.isEmpty()
+                    ? Optional.of(Collections.unmodifiableSet(newLanguages))
+                    : Optional.of(Collections.unmodifiableSet(languages))
+                    : Optional.empty();
         }
 
         /**
@@ -176,7 +185,7 @@ public class RemoveCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
+        public Optional<Set<Tag>> getRemoveTags() {
             Set<Tag> newTags = new HashSet<>(person.getTags());
             return (tags != null)
                     ? newTags.removeAll(tags) && !tags.isEmpty()
@@ -200,12 +209,12 @@ public class RemoveCommand extends Command {
             // state check
             RemoveCommand.RemovePersonDescriptor e = (RemoveCommand.RemovePersonDescriptor) other;
 
-            return getProfile().equals(e.getProfile())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getLanguages().equals(e.getLanguages())
-                    && getTags().equals(e.getTags());
+            return getRemoveProfile().equals(e.getRemoveProfile())
+                    && getRemovePhone().equals(e.getRemovePhone())
+                    && getRemoveEmail().equals(e.getRemoveEmail())
+                    && getRemoveAddress().equals(e.getRemoveAddress())
+                    && getRemoveLanguages().equals(e.getRemoveLanguages())
+                    && getRemoveTags().equals(e.getRemoveTags());
         }
     }
 }
