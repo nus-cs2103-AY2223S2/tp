@@ -1,12 +1,6 @@
 {
   "_comment": "Trackr save file which contains the same Task values as in TypicalTasks#getTypicalTaskList()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
-  } ],
+  "persons" : [ ],
   "tasks": [ {
     "name": "Sort Inventory",
     "deadline": "01/01/2024",

@@ -11,9 +11,5 @@
     "email": "pauline@example.com",
     "address": "4th street"
   } ],
-  "tasks": [ {
-    "name": "Sort Inventory",
-    "deadline": "01/01/2024",
-    "status": "N"
-  } ]
+  "tasks": [ ]
 }

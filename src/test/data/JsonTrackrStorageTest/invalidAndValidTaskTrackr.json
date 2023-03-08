@@ -1,10 +1,5 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ],
+  "persons": [ ],
   "tasks" : [ {
     "name": "Valid Task",
     "deadline": "01/01/2023",
