@@ -45,7 +45,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonTrackrStorage trackrStorage =
-                new JsonTrackrStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonTrackrStorage(temporaryFolder.resolve("trackr.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -71,9 +71,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonTrackrIoExceptionThrowingStub
         JsonTrackrStorage trackrStorage =
-                new JsonTrackrIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonTrackrIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTrackr.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
