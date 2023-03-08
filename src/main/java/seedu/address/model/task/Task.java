@@ -7,8 +7,9 @@ package seedu.address.model.task;
 
 public class Task {
 
-    private final TaskDescription description;
     protected boolean isDone;
+    private final TaskDescription description;
+
 
     /**
      * The constructor of the Task that takes in description of the task.
