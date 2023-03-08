@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import arb.commons.exceptions.IllegalValueException;
+import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
+import arb.testutil.ClientBuilder;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -59,10 +61,10 @@ public class JsonAdaptedClientTest {
     }
 
     @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
+    public void toModelType_nullPhone_returnsClient() throws Exception {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null, VALID_EMAIL, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+        Client expectedClient = new ClientBuilder(BENSON).withPhone(null).build();
+        assertEquals(expectedClient, client.toModelType());
     }
 
     @Test
@@ -74,10 +76,10 @@ public class JsonAdaptedClientTest {
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
+    public void toModelType_nullEmail_returnsClient() throws Exception {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+        Client expectedClient = new ClientBuilder(BENSON).withEmail(null).build();
+        assertEquals(expectedClient, client.toModelType());
     }
 
     @Test
