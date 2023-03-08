@@ -17,6 +17,8 @@ import seedu.address.model.client.Gender;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.Weight;
+import seedu.address.model.routines.Exercise;
+import seedu.address.model.routines.RoutineName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,6 +54,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String routineName} into a {@code RoutineName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code routineName} is invalid.
+     */
+    public static RoutineName parseRoutineName(String routineName) throws ParseException {
+        requireNonNull(routineName);
+        String trimmedRoutineName = routineName.trim();
+        if (!RoutineName.isValidRoutineName(trimmedRoutineName)) {
+            throw new ParseException(RoutineName.MESSAGE_CONSTRAINTS);
+        }
+        return new RoutineName(trimmedRoutineName);
     }
 
     /**
@@ -194,5 +211,32 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    /**
+     * Parses a {@code String exercise} into an {@code Exercise}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code exercise} is invalid.
+     */
+    public static Exercise parseExercise(String exercise) throws ParseException {
+        requireNonNull(exercise);
+        String tirmmedExercise = exercise.trim();
+        if (!Exercise.isValidExerciseName(tirmmedExercise)) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
+        }
+        return new Exercise(tirmmedExercise);
+    }
+
+    /**
+     * Parses {@code Collection<String> exercises} into a {@code Set<Exercise>}.
+     */
+    public static Set<Exercise> parseExercises(Collection<String> exercises) throws ParseException {
+        requireNonNull(exercises);
+        final Set<Exercise> exerciseSet = new HashSet<>();
+        for (String exerciseName : exercises) {
+            exerciseSet.add(parseExercise(exerciseName));
+        }
+        return exerciseSet;
     }
 }
