@@ -14,7 +14,7 @@ public class SemYear {
     public static final String MESSAGE_CONSTRAINTS =
             "SemYear should be alphanumeric in the format YxSx, where x are digits";
 
-    private static final String VALIDATION_REGEX = "^Y[1-4]S[1-2]$";
+    private static final String VALIDATION_REGEX = "^Y[0-5]S{0,1}[T][1-2]$";
 
     /**
      * The Semyear.
