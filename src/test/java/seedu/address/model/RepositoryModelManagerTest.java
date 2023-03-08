@@ -111,4 +111,9 @@ public class RepositoryModelManagerTest {
         RepositoryModelManager<ItemStub> otherManager = new RepositoryModelManager<>(otherRepo);
         assertNotEquals(itemManager, otherManager);
     }
+
+    @Test
+    public void equals_differentObject_false() {
+        assertNotEquals(itemManager, new Object());
+    }
 }
