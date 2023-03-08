@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getNoPairsTypicalFriendlyLink;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import java.io.IOException;
@@ -16,10 +17,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyPair;
 import seedu.address.storage.pair.JsonPairStorage;
-import seedu.address.testutil.FriendlyLinkBuilder;
-import seedu.address.testutil.TypicalElderly;
 import seedu.address.testutil.TypicalPairs;
-import seedu.address.testutil.TypicalVolunteers;
 
 public class JsonPairStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPairStorageTest");
@@ -103,13 +101,6 @@ public class JsonPairStorageTest {
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
-    }
-
-    private FriendlyLink getNoPairsTypicalFriendlyLink() {
-        return new FriendlyLinkBuilder()
-                .withElderly(TypicalElderly.getTypicalElderly())
-                .withVolunteers(TypicalVolunteers.getTypicalVolunteers())
-                .build();
     }
 
     @Test

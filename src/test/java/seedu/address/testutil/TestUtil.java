@@ -108,4 +108,15 @@ public class TestUtil {
                 .withPairs(TypicalPairs.getTypicalPairs())
                 .build();
     }
+
+    /**
+     * Returns a {@code FriendlyLink} with all the typical volunteers and elderly.
+     */
+    public static FriendlyLink getNoPairsTypicalFriendlyLink() {
+        return new FriendlyLinkBuilder()
+                .withElderly(TypicalElderly.getTypicalElderly())
+                .withVolunteers(TypicalVolunteers.getTypicalVolunteers())
+                .build();
+    }
+
 }

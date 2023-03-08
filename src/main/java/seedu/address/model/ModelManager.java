@@ -164,7 +164,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        friendlyLink.removePair(elderlyNric, volunteerNric);
+        friendlyLink.addPair(elderlyNric, volunteerNric);
         // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
