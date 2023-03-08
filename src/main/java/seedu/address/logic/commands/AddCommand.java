@@ -21,9 +21,16 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + "NAME "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_RATE + "RATE "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + "DJ at wedding";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_RATE + "98765432 "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_USAGE_CONTACT = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -40,17 +47,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This event already exists in the event book";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Event toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Event event) {
-        requireNonNull(event);
-        toAdd = event;
+    public AddCommand(Event person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
