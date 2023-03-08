@@ -41,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chai Jiexuan
 
-<img src="images/Profile Pics/chai_jiexuan.png" width="200px">
+<img src="images/jiexuanc.png" width="200px">
 
 [[github](http://github.com/jiexuanc)]
-[[portfolio](team/jiexuan.md)]
+[[portfolio](team/jiexuanc.md)]
 
 - Role: Developer
 - Responsibilities:
