@@ -1,5 +1,6 @@
 package arb.logic.commands;
 
+import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -52,6 +53,8 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_SKY_PAINTING = " " + PREFIX_NAME + VALID_TITLE_SKY_PAINTING;
     public static final String TITLE_DESC_OIL_PAINTING = " " + PREFIX_NAME + VALID_TITLE_OIL_PAINTING;
+    public static final String DEADLINE_DESC_SKY_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_SKY_PAINTING;
+    public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -60,6 +63,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME
             + "watercolour painting&"; // '&' not allowed in titles
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
+            + "2023-07-02&"; // '&' not allowed in deadlines
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

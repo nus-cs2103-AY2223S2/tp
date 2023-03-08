@@ -7,6 +7,7 @@ import static arb.testutil.TypicalProjects.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
@@ -26,20 +27,32 @@ public class AddProjectCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newProject_success() {
+    public void executeSuccess_newProject_withCurrentListTypeClient() {
         Project validProject = new ProjectBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject), model,
+        assertCommandSuccess(new AddProjectCommand(validProject), ListType.CLIENT, ListType.PROJECT, model,
+                String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), expectedModel);
+    }
+
+    @Test
+    public void executeSuccess_newProject_withCurrentListTypeProject() {
+        Project validProject = new ProjectBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addProject(validProject);
+
+        assertCommandSuccess(new AddProjectCommand(validProject), ListType.PROJECT, ListType.PROJECT, model,
                 String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), expectedModel);
     }
 
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project projectInList = model.getAddressBook().getProjectList().get(0);
-        assertCommandFailure(new AddProjectCommand(projectInList), model, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        assertCommandFailure(new AddProjectCommand(projectInList), ListType.CLIENT, model,
+                AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
 }

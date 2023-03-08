@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.project.Project;
 
@@ -39,7 +40,7 @@ public class AddProjectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
 
         if (model.hasProject(toAdd)) {
@@ -47,7 +48,7 @@ public class AddProjectCommand extends Command {
         }
 
         model.addProject(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.PROJECT);
     }
 
     @Override

@@ -111,6 +111,12 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    /**
+     * Parses a {@code String tag} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();

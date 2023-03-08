@@ -19,7 +19,7 @@ import arb.model.project.Project;
 import arb.model.project.Title;
 
 /**
- * Parses input arguments and creates a new AddClientCommand object
+ * Parses input arguments and creates a new AddProjectCommand object
  */
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
@@ -38,7 +38,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get());
-        
+
         Optional<String> deadlineString = argMultimap.getValue(PREFIX_DEADLINE);
         Deadline deadline = null;
         if (deadlineString.isPresent()) {
