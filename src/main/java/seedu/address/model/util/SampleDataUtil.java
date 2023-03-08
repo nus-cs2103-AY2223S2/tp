@@ -11,8 +11,8 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.ModuleCode;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

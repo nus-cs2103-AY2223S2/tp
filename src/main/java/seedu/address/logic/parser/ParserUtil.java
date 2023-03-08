@@ -13,8 +13,8 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.ModuleCode;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
