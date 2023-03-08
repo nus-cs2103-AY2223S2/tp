@@ -45,8 +45,8 @@ public class JsonSudoHrStorage implements SudoHrStorage {
     public Optional<ReadOnlySudoHr> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableSudoHr> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableSudoHr.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonSudoHrStorage implements SudoHrStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSudoHr(addressBook), filePath);
     }
 
 }
