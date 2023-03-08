@@ -28,6 +28,7 @@ public class Student {
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueHomeworkList homeworkList = new UniqueHomeworkList();
     private final UniqueLessonsList lessonsList = new UniqueLessonsList();
+    private final UniqueExamList examList = new UniqueExamList();
 
     /**
      * Every field must be present and not null.
@@ -45,7 +46,7 @@ public class Student {
      * Every field must be present and not null
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
-                   List<Lesson> lessonList) {
+                   List<Lesson> lessonList, List<Exam> examList) {
         requireAllNonNull(name, phone, email, address, tags, homeworkList, lessonList);
         this.name = name;
         this.phone = phone;
@@ -54,6 +55,7 @@ public class Student {
         this.tags.addAll(tags);
         this.homeworkList.setHomeworks(homeworkList);
         this.lessonsList.setLessons(lessonList);
+        this.examList.setExams(examList);
     }
 
     public Name getName() {
@@ -101,6 +103,17 @@ public class Student {
         return lessonsList.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an immutable Exams list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of exams
+     */
+    public List<Exam> getExamList() {
+        return examList.asUnmodifiableObservableList();
+    }
+
+    //HOMEWORK########################################################################################
 
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
@@ -211,13 +224,14 @@ public class Student {
         Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
         homeworkToMarkAsUndone.markAsUndone();
     }
+
+    //LESSONS########################################################################################
     /**
      * Returns a homework from the homework list.
      *
      * @param index index of homework to be returned
      * @return homework
      */
-
     public Lesson getLesson(Index index) {
         return this.lessonsList.getLesson(index.getZeroBased());
     }
@@ -271,7 +285,7 @@ public class Student {
     }
 
 
-
+    //UTIL########################################################################################
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
