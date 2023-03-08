@@ -9,23 +9,23 @@ import java.util.Objects;
  */
 public class Contact {
 
-    private final Name name;
-    private final Phone phone;
+    private final ContactName name;
+    private final ContactPhone phone;
 
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Phone phone) {
+    public Contact(ContactName name, ContactPhone phone) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
     }
 
-    public Name getName() {
+    public ContactName getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public ContactPhone getPhone() {
         return phone;
     }
 

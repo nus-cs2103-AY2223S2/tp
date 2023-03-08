@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactBook;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,25 +20,25 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.testutil.ContactBuilder;
 
-public class ContactBookTest {
+public class ContactListTest {
 
-    private final ContactBook contactBook = new ContactBook();
+    private final ContactList contactList = new ContactList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), contactBook.getContactList());
+        assertEquals(Collections.emptyList(), contactList.getContactList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> contactBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> contactList.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyContactBook_replacesData() {
-        ContactBook newData = getTypicalContactBook();
-        contactBook.resetData(newData);
-        assertEquals(newData, contactBook);
+        ContactList newData = getTypicalContactList();
+        contactList.resetData(newData);
+        assertEquals(newData, contactList);
     }
 
     @Test
@@ -49,42 +49,42 @@ public class ContactBookTest {
         List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
         ContactBookStub newData = new ContactBookStub(newContacts);
 
-        assertThrows(DuplicateContactException.class, () -> contactBook.resetData(newData));
+        assertThrows(DuplicateContactException.class, () -> contactList.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullContact_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> contactBook.hasContact(null));
+        assertThrows(NullPointerException.class, () -> contactList.hasContact(null));
     }
 
     @Test
     public void hasContact_contactNotInContactBook_returnsFalse() {
-        assertFalse(contactBook.hasContact(ALICE));
+        assertFalse(contactList.hasContact(ALICE));
     }
 
     @Test
     public void hasContact_contactInContactBook_returnsTrue() {
-        contactBook.addContact(ALICE);
-        assertTrue(contactBook.hasContact(ALICE));
+        contactList.addContact(ALICE);
+        assertTrue(contactList.hasContact(ALICE));
     }
 
     @Test
     public void hasContact_contactWithSameIdentityFieldsInContactBook_returnsTrue() {
-        contactBook.addContact(ALICE);
+        contactList.addContact(ALICE);
         Contact editedAlice = new ContactBuilder(ALICE)
                 .build();
-        assertTrue(contactBook.hasContact(editedAlice));
+        assertTrue(contactList.hasContact(editedAlice));
     }
 
     @Test
     public void getContactList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> contactBook.getContactList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> contactList.getContactList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class ContactBookStub implements ReadOnlyContactBook {
+    private static class ContactBookStub implements ReadOnlyContactList {
         private final ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
         ContactBookStub(Collection<Contact> contacts) {

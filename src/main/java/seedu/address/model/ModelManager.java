@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 
 /**
@@ -20,24 +21,30 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredPersons;
+    private final FilteredList<Contact> filteredContacts;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, contactList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + " with contact list: " + contactList
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredContacts = new FilteredList<>(this.contactList.getContactList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new ContactList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -70,9 +77,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setContactListFilePath(Path contactListFilePath) {
+        requireNonNull(contactListFilePath);
+        userPrefs.setContactListFilePath(contactListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -129,6 +147,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    @Override
+    public ReadOnlyContactList getContactList() {
+        return contactList;
+    }
+
+    @Override
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contactList.hasContact(contact);
+    }
+
+    @Override
+    public void addContact(Contact contact) {
+        contactList.addContact(contact);
+
+
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -143,6 +185,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && contactList.equals(other.contactList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

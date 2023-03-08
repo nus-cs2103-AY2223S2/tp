@@ -11,10 +11,10 @@ import seedu.address.model.contact.UniqueContactList;
 
 
 /**
- * Wraps all data at the contact-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the contact list level
+ * Duplicates are not allowed (by .isSameContact comparison)
  */
-public class ContactBook implements ReadOnlyContactBook {
+public class ContactList implements ReadOnlyContactList {
 
     public final UniqueContactList contacts;
 
@@ -31,12 +31,12 @@ public class ContactBook implements ReadOnlyContactBook {
         contacts = new UniqueContactList();
     }
 
-    public ContactBook() {}
+    public ContactList() {}
 
     /**
-     * Creates an ContactBook using the Contacts in the {@code toBeCopied}
+     * Creates an ContactList using the Contacts in the {@code toBeCopied}
      */
-    public ContactBook(ReadOnlyContactBook toBeCopied) {
+    public ContactList(ReadOnlyContactList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,16 +45,16 @@ public class ContactBook implements ReadOnlyContactBook {
 
     /**
      * Replaces the contents of the contact list with {@code contacts}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code contacts} must not contain duplicate contactss.
      */
     public void setPersons(List<Contact> contacts) {
         this.contacts.setContacts(contacts);
     }
 
     /**
-     * Resets the existing data of this {@code ContactBook} with {@code newData}.
+     * Resets the existing data of this {@code ContactList} with {@code newData}.
      */
-    public void resetData(ReadOnlyContactBook newData) {
+    public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
 
         setPersons(newData.getContactList());
@@ -63,7 +63,7 @@ public class ContactBook implements ReadOnlyContactBook {
     //// contact-level operations
 
     /**
-     * Returns true if a contact with the same identity as {@code contact} exists in the contact book.
+     * Returns true if a contact with the same identity as {@code contact} exists in the contact list.
      */
     public boolean hasContact(Contact contact) {
         requireNonNull(contact);
@@ -71,8 +71,8 @@ public class ContactBook implements ReadOnlyContactBook {
     }
 
     /**
-     * Adds a contact to the contact book.
-     * The contact must not already exist in the contact book.
+     * Adds a contact to the contact list.
+     * The contact must not already exist in the contact list.
      */
     public void addContact(Contact p) {
         contacts.add(p);
@@ -80,9 +80,9 @@ public class ContactBook implements ReadOnlyContactBook {
 
     /**
      * Replaces the given contact {@code target} in the list with {@code editedContact}.
-     * {@code target} must exist in the contact book.
+     * {@code target} must exist in the contact list.
      * The contact identity of {@code editedContact} must not be the same as another existing
-     * contact in the contact book.
+     * contact in the contact list.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
@@ -91,8 +91,8 @@ public class ContactBook implements ReadOnlyContactBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ContactBook}.
-     * {@code key} must exist in the contact book.
+     * Removes {@code key} from this {@code ContactList}.
+     * {@code key} must exist in the contact list.
      */
     public void removeContact(Contact key) {
         contacts.remove(key);
@@ -114,8 +114,8 @@ public class ContactBook implements ReadOnlyContactBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ContactBook // instanceof handles nulls
-                && contacts.equals(((ContactBook) other).contacts));
+                || (other instanceof ContactList // instanceof handles nulls
+                && contacts.equals(((ContactList) other).contacts));
     }
 
     @Override
