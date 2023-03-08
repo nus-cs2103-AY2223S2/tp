@@ -1,4 +1,5 @@
 package seedu.address.model;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,7 +11,7 @@ import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the product level
- * Duplicates are not allowed (by .isSameFish comparison) <- to be confirmed
+ * Duplicates are not allowed (by .isSameTask comparison)
  */
 public class TaskList implements ReadOnlyTaskList {
     private final UniqueTaskList tasks;
@@ -45,7 +46,7 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
-     * Resets the existing data of this {@code SoConnect} with {@code newData}.
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskList newData) {
         requireNonNull(newData);
@@ -73,8 +74,8 @@ public class TaskList implements ReadOnlyTaskList {
 
     /**
      * Replaces the given {@code Task} in the {@code TaskList} with {@code editedTask}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the {@code TaskList}.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the {@code TaskList}.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);

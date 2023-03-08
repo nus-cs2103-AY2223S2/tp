@@ -23,6 +23,7 @@ import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.testutil.EditFishDescriptorBuilder;
@@ -33,7 +34,8 @@ import seedu.address.testutil.FishBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
+            new TankList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +47,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                                                                     new UserPrefs(),
-                                                                    getTypicalTaskList());
+                                                                    getTypicalTaskList(),
+                                                                    new TankList());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -68,7 +71,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                                                                     new UserPrefs(),
-                                                                    getTypicalTaskList());
+                                                                    getTypicalTaskList(), new TankList());
         expectedModel.setFish(lastFish, editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -83,7 +86,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                                                                     new UserPrefs(),
-                                                                    getTypicalTaskList());
+                                                                    getTypicalTaskList(), new TankList());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +104,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                                                                     new UserPrefs(),
-                                                                    getTypicalTaskList());
+                                                                    getTypicalTaskList(), new TankList());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
