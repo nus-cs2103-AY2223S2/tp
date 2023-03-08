@@ -282,11 +282,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`*`       | user                                                                       | Find a person by tag                                                               | I can filter the contacts by tags                                      |
 |`*`       | user                                                                       | Sort by tag priority                                                               | I can find the most important contacts                                 |
 |`*`       | user                                                                       | Assign tag priority                                                                |                                                                        |
-|`*`       | user                                                                       | Retrieve deleted contacts                                                          |                                                                        |                                     
-|`*`       | user                                                                       | Set a date for deletion of contacts                                                | Remove the contacts automatically                                      |                                 
+|`*`       | user                                                                       | Retrieve deleted contacts                                                          |                                                                        |
+|`*`       | user                                                                       | Set a date for deletion of contacts                                                | Remove the contacts automatically                                      |
 |`*`       | user                                                                       | Add a contact                                                                      | Store my contact in app                                                |
 |`*`       | user                                                                       | Delete a contact                                                                   | Remove unwanted contacts                                               |
-|`*`       | user                                                                       | Edit a contact                                                                     | Change details of existing contacts                                    |                                 
+|`*`       | user                                                                       | Edit a contact                                                                     | Change details of existing contacts                                    |
 |`*`       | user                                                                       | Assign tag to contact                                                              | Categorise my contacts                                                 |
 |`*`       | user                                                                       | Use the help command                                                               | To see available commands                                              |
 |`*`       | power user                                                                 | Assign shortcuts to different actions                                              | I can cut down on the time taken to type                               |
@@ -307,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`*`       | User who are very familiar with the keyboard                               | Add custom keybinds | So that I am faster at organizing contacts                   |                                                                        |
 |`*`       | User with many meetings                                                    | See how many days left to a meeting                                                | I don\'t forget to attend one                                      |
 |`*`       | User in a hurry                                                            | Undo previous action up to 3 previous actions                                      | I can be fast and a bit sloppy without worrying                        |
-|`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        | 
+|`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        |
 |`*`       | User who forget what is in contacts                                        | Ask if person/meeting still relevant | So that the contact remain relatively clean |                                                                        |
 |`*`       | User assign name to priority tag                                           | Customise the tags                                                                 | I can remember more easily who is ranked higher                        |
 
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. list is empty
-    
+
   Use case ends.
 
 
@@ -503,14 +503,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Meetings**: Important dates with a duration and a place 
+* **Meetings**: Important dates with a duration and a place
 * **Find**: Searches by name field, case insensitive, match all matching words individually
 * **GUI**: Graphic User Interface
 * **MSS**: Main Success Scenario
-* **OS**: Operating System 
+* **OS**: Operating System
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
-    
+
 
 --------------------------------------------------------------------------------------------------------------------
 
