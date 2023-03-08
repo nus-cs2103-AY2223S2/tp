@@ -4,11 +4,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.vms.commons.util.AppUtil;
+
 
 /**
  * Represents a vaccination type.
  */
 public class VaxType {
+    public static final String MESSAGE_AGE_CONSTRAINTS =
+            "Minimum age must be lesser than or equals to maximum age";
+    public static final String MESSAGE_SPACING_CONSTRAINTS =
+            "Spacing must be a positive integer";
+
     public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
     public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
     public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
@@ -27,10 +34,15 @@ public class VaxType {
 
     /**
      * Constructs a {@code VaxType}.
+     *
+     * @throws IllegalArgumentException if {@code minAge > maxAge} or
+     *      {@code minSpacing < 0}.
      */
     public VaxType(String name, HashSet<String> groups,
                 int minAge, int maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
+        AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
+        AppUtil.checkArgument(isValidSpacing(minSpacing), MESSAGE_SPACING_CONSTRAINTS);
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
@@ -38,6 +50,16 @@ public class VaxType {
         this.minSpacing = minSpacing;
         this.allergyReqs = allergyReqs;
         this.historyReqs = historyReqs;
+    }
+
+
+    public static boolean isValidRange(int minAge, int maxAge) {
+        return maxAge >= minAge;
+    }
+
+
+    public static boolean isValidSpacing(int minSpacing) {
+        return minSpacing >= 0;
     }
 
 
