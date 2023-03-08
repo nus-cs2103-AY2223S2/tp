@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.List;
 
 /**
  * Represents a Person's rank in the address book.
