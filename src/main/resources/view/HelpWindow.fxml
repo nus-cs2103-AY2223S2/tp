@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -18,20 +19,59 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="41.0" prefWidth="132.0">
-        <children>
-          <Label fx:id="helpMessage" prefHeight="24.0" prefWidth="39.0" text="Label">
+      <HBox alignment="BOTTOM_RIGHT" fx:id="commandListContainer">
+        <VBox>
+          <Label fx:id="addMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="34.0" prefWidth="80.0" text="Copy URL">
+          <Label fx:id="getMessage" text="Label">
             <HBox.margin>
-              <Insets left="5.0" />
+              <Insets right="5.0" />
             </HBox.margin>
-          </Button>
-        </children>
+          </Label>
+          <Label fx:id="editMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="deleteMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="filterMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="listMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="clearMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="noteMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="helpMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+        </VBox>
+        <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+          <HBox.margin>
+            <Insets left="5.0" />
+          </HBox.margin>
+        </Button>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </opaqueInsets>
