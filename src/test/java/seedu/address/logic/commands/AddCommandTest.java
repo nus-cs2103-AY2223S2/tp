@@ -163,7 +163,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Patient patient) {
             requireNonNull(patient);
-            return this.patient.isSamePerson(patient);
+            return this.patient.isSamePatient(patient);
         }
     }
 
@@ -176,7 +176,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Patient patient) {
             requireNonNull(patient);
-            return personsAdded.stream().anyMatch(patient::isSamePerson);
+            return personsAdded.stream().anyMatch(patient::isSamePatient);
         }
 
         @Override
