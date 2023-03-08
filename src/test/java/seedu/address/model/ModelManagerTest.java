@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -15,7 +16,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.testutil.EduMateBuilder;
 
 public class ModelManagerTest {
@@ -89,8 +91,24 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deletePerson_personInEduMate_success() {
+        if (!modelManager.hasPerson(ALBERT)) {
+            modelManager.addPerson(ALBERT);
+        }
+        modelManager.deletePerson(ALBERT);
+        assertFalse(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void setEduMate() {
+        EduMate newEduMate = new EduMate(modelManager.getEduMate());
+        modelManager.setEduMate(newEduMate);
+        assertEquals(newEduMate, modelManager.getEduMate());
     }
 
     @Test
@@ -102,24 +120,42 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(eduMate, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(eduMate, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different eduMate -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentEduMate, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs));
 
         // different filteredList -> returns false
-        String[] keywords = ALBERT.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(eduMate, userPrefs)));
+        createEqualsFilteredList(
+                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs);
+        createEqualsFilteredList(
+                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs);
+        createEqualsFilteredList(
+                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs);
+        createEqualsFilteredList(
+                Prefix.ADDRESS, ALBERT.getAddress().getValue().split("\\s+"), eduMate, userPrefs);
+        createEqualsFilteredList(
+                Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
+                eduMate, userPrefs);
+
+        createEqualsFilteredList(
+                Prefix.MODULE_TAG,
+                ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                eduMate, userPrefs);
+
+        createEqualsFilteredList(
+                Prefix.GROUP_TAG,
+                ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                eduMate, userPrefs);
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +163,12 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setEduMateFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(eduMate, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(eduMate, differentUserPrefs));
+    }
+
+    public void createEqualsFilteredList(Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs) {
+        modelManager.updateFilteredPersonList(
+                new ContainsKeywordsPredicate(Arrays.asList(keywords), prefix));
+        assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs));
     }
 }

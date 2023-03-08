@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,6 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * An Immutable EduMate that is serializable to JSON format.
@@ -51,14 +54,19 @@ class JsonSerializableEduMate {
      */
     public EduMate toModelType() throws IllegalValueException {
         EduMate eduMate = new EduMate();
+
+        User userModel = user.toModelType();
+        Set<ModuleTag> userModuleTags = userModel.getImmutableModuleTags();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (eduMate.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+            person.setCommonModules(userModuleTags);
             eduMate.addPerson(person);
         }
-        eduMate.setUser(user.toModelType());
+        eduMate.setUser(userModel);
         return eduMate;
     }
 

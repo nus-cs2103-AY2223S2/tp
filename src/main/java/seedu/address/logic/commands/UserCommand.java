@@ -16,14 +16,7 @@ public class UserCommand extends Command {
 
     public static final String UNREGISTERED_MESSAGE = "You have not input your profile yet to use this command! ";
 
-    public static final String SHOWING_USER_PROFILE_MESSAGE = "Opened user profile window.";
-
-    private User user;
-
-
-    public UserCommand() {
-        user = User.getUser();
-    }
+    public static final String SHOWING_USER_PROFILE_MESSAGE = "Please view user profile on right.";
 
     /**
      * Executes the command and returns the result message.
@@ -34,6 +27,7 @@ public class UserCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        User user = model.getUser();
         if (user == null) {
             throw new CommandException(UNREGISTERED_MESSAGE);
         }

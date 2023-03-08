@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +7,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -38,8 +39,12 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+
     @FXML
     private FlowPane groupTags;
+
+    @FXML
+    private FlowPane moduleTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,13 +53,26 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getGroupTags().stream()
-                .sorted(Comparator.comparing(groupTag -> groupTag.tagName))
-                .forEach(groupTag -> groupTags.getChildren().add(new Label(groupTag.tagName)));
+        name.setText(person.getName().getValue());
+        phone.setText(person.getPhone().getValue());
+        address.setText(person.getAddress().getValue());
+        email.setText(person.getEmail().getValue());
+        person.getImmutableGroupTags().stream()
+                .sorted(GroupTag::compareTo)
+                .forEach(groupTag -> {
+                    Label temp = new Label(groupTag.tagName);
+                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
+                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
+                    groupTags.getChildren().add(temp);
+                });
+        person.getImmutableCommonModuleTags().stream()
+                .sorted(ModuleTag::compareTo)
+                .forEach(moduleTag -> {
+                    Label temp = new Label(moduleTag.tagName);
+                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
+                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
+                    moduleTags.getChildren().add(temp);
+                });
     }
 
     @Override

@@ -97,13 +97,13 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
                     TelegramHandle.class.getSimpleName()));
         }
         if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
 
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
-        return User.getSingletonUser(modelName, modelPhone, modelEmail,
+        return new User(modelName, modelPhone, modelEmail,
                 modelAddress, modelTelegramHandle, modelGroupTags, modelModuleTags);
     }
 }

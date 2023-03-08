@@ -14,7 +14,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/russelltankaimin)]
 [[portfolio](team/russelltankaimin.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities: TBD
 
 ### Izz Hafeez Bin Zek Hazley
@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/mynameizzhafeez)]
 [[portfolio](team/mynameizzhafeez.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities: TBD
 
 ### Tan Li Thai Sean
@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/seanfirefox)]
 [[portfolio](team/seanfirefox.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities: TBD
 
 ### Wang Zichen
@@ -44,7 +44,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/zichen-3974)]
 [[portfolio](team/zichen-3974.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities: TBD
 
 ### Chon Jin Yong Kenny
@@ -54,5 +54,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/kennycjy)]
 [[portfolio](team/kennycjy.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities: TBD

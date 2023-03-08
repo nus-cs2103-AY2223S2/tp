@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -62,6 +63,21 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndex_empty_success() throws Exception {
+        assertNull(ParserUtil.parseIndex(""));
+    }
+
+    @Test
+    public void parseInt_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInt("10 a"));
+    }
+
+    @Test
+    public void parseInt_empty_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInt(""));
     }
 
     @Test

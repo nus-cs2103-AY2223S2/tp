@@ -31,7 +31,7 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
 
    * `tag` : Tag a module to a contact.
 
-   * `filter` : Filter contacts by mod.
+   * `find` : Find contacts by keywords.
 
    * `sort` : Sorts contact.
 
@@ -119,15 +119,15 @@ Name: John Street
 Expected outcome for CLI:
 ```
 Name: John Doe (User)
-Modules reading: CS2103T, CS2101, MA2104, MA3252, CFG1002
+Modules reading: CS2103T | CS2101 | MA2104 | MA3252 | CFG1002
 Name: Ben Tan
-Modules reading: CS2103T, CS2101, MA3252, CS4230, CS2105
+Modules reading: CS2103T | CS2101 | MA3252 | CS4230 | CS2105
 Name: Jane Lane
-Modules reading: CS2103T, CS2101, CM1102, CS2102, CS2108
+Modules reading: CS2103T | CS2101, CM1102 | CS2102 | CS2108
 Name: John Street
-Modules reading: MA3252, MA2104, ST2131, MA2101S
+Modules reading: MA3252 | MA2104 | ST2131 | MA2101S
 Name: Penny Lane
-Modules reading: DTK1234, HSH1000, HSS1000, MA1100, GEA1000
+Modules reading: DTK1234 | HSH1000 | HSS1000 | MA1100 | GEA1000
 ```
 
 ### Deleting a contact: `delete`
@@ -186,14 +186,28 @@ Modules: CS2100 | CS2101 | CS2102
 Description of outcome: CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
 
 
-### Filtering Modules : `filter`
+### Locating persons by keyowrds : `find`
 
-Filters all contacts who have the specified module tag.
-Format: `filter m/MODULE_TAG`
-Example of usage: `filter m/CS2103T`
+Finds persons whose specified fields contain any of the given keywords.
+Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
+* Words matching the first part of the string will be matched e.g. Han will match Hans
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+Example of usage: 
+* `find m/CS2103T CS2109S` returns all persons with modules CS2103T or CS2109S
+* `find n/John Doe` returns all persons with names John or Doe 
+* `find p/9093` returns all persons with phone numbers starting with 9093
 Expected outcome:
 ```
 Name: John Doe | Jane Lane | John Street
+Modules reading: CS2103T | CS2101 | MA2104 | MA3252 | CFG1002
+
+Name: Jane Doe
+Modules reading: CS2103T | CS2101 | CM1102 | CS2102 | CS2109S
 ```
 Description of outcome: Assuming that John Doe, Jane Lane, John Street has CS2103T as a module tag to their profiles, then their contacts will appear as shown.
 
@@ -206,15 +220,15 @@ Context:
 There are 4 friends with the following information:
 ```
 Name: John Doe (User)
-Modules reading: CS2103T, CS2101, MA2104, MA3252, CFG1002
+Modules reading: CS2103T | CS2101 | MA2104 | MA3252 | CFG1002
 Name: Ben Tan
-Modules reading: CS2103T, CS2101, MA3252, CS4230, CS2105
+Modules reading: CS2103T | CS2101 | MA3252 | CS4230 | CS2105
 Name: Jane Lane
-Modules reading: CS2103T, CS2101, CM1102, CS2102, CS2108
+Modules reading: CS2103T | CS2101 | CM1102 | CS2102 | CS2108
 Name: John Street
-Modules reading: MA3252, MA2104, ST2131, MA2101S
+Modules reading: MA3252 | MA2104 | ST2131 | MA2101S
 Name: Penny Lane
-Modules reading: DTK1234, HSH1000, HSS1000, MA1100, GEA1000
+Modules reading: DTK1234 | HSH1000 | HSS1000 | MA1100 | GEA1000
 ```
 Expected outcome:
 ```
