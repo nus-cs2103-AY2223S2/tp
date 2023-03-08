@@ -37,4 +37,4 @@ Given below are my contributions to the project.
 * **Tools**:
     * Integrated a GitHub plugin (CodeCov) to the team repo.
 
-* _{you can add/remove categories in the list above}_
+* _{you can add/remove categories in the list above}_ 
