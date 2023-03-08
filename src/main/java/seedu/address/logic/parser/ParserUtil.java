@@ -41,6 +41,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses an {@code intString} into an {@code Integer} and returns it.
+     * @throws ParseException if the string cannot be converted into an integer.
+     */
+    public static int parseInt(String intString) throws ParseException {
+        String trimmedInt = intString.trim();
+        if (trimmedInt.isEmpty() || !StringUtil.isNonZeroUnsignedInteger(trimmedInt)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedInt);
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -169,3 +181,4 @@ public class ParserUtil {
         return moduleTagSet;
     }
 }
+

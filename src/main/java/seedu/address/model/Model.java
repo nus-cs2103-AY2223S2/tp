@@ -78,6 +78,12 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Clears the person list.
+     * Used for sorting the list, as the list needs to be cleared before it can be sorted.
+     */
+    void resetPersons();
+
+    /**
      * Returns the user object.
      * User will not be null.
      */

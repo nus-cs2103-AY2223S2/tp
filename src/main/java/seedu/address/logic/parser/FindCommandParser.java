@@ -1,13 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -28,19 +21,19 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         String keyWords = "";
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TELEGRAM_HANDLE,
-                        PREFIX_GROUP_TAG, PREFIX_MODULE_TAG);
-        if (!onePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_TELEGRAM_HANDLE,
-                PREFIX_GROUP_TAG, PREFIX_MODULE_TAG)
+                ArgumentTokenizer.tokenize(args, Prefix.NAME, Prefix.PHONE, Prefix.EMAIL,
+                        Prefix.ADDRESS, Prefix.TELEGRAM_HANDLE,
+                        Prefix.GROUP_TAG, Prefix.MODULE_TAG);
+        if (!onePrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE, Prefix.EMAIL,
+                Prefix.TELEGRAM_HANDLE,
+                Prefix.GROUP_TAG, Prefix.MODULE_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Prefix prefixPresent = findPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_TELEGRAM_HANDLE,
-                PREFIX_GROUP_TAG, PREFIX_MODULE_TAG);
+        Prefix prefixPresent = findPrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE, Prefix.EMAIL,
+                Prefix.TELEGRAM_HANDLE,
+                Prefix.GROUP_TAG, Prefix.MODULE_TAG);
         if (argMultimap.getValue(prefixPresent).isPresent()) {
             keyWords = argMultimap.getValue(prefixPresent).get();
         }

@@ -1,11 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -19,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -41,14 +37,14 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_GROUP_TAG + "TAG]...\n"
+            + "[" + Prefix.NAME + "NAME] "
+            + "[" + Prefix.PHONE + "PHONE] "
+            + "[" + Prefix.EMAIL + "EMAIL] "
+            + "[" + Prefix.ADDRESS + "ADDRESS] "
+            + "[" + Prefix.GROUP_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + Prefix.PHONE + "91234567 "
+            + Prefix.EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_EDIT_USER_SUCCESS = "Edited User: %1$s";
@@ -100,6 +96,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        editedPerson.setCommonModules(userModuleTags);
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -112,6 +114,13 @@ public class EditCommand extends Command {
      */
     private CommandResult editUser(Model model) {
         User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
+
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        model.getFilteredPersonList().forEach(person -> person.setCommonModules(userModuleTags));
+
         model.setUser(editedUser);
         return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser));
     }
@@ -130,9 +139,9 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(personToEdit.getTelegramHandle());
         Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
-                .orElse(personToEdit.getGroupTags());
+                .orElse(personToEdit.getImmutableGroupTags());
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
-                .orElse(personToEdit.getModuleTags());
+                .orElse(personToEdit.getImmutableModuleTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
                 updatedGroupTags, updatedModuleTags);
     }
@@ -149,9 +158,9 @@ public class EditCommand extends Command {
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(userToEdit.getTelegramHandle());
         Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
-                .orElse(userToEdit.getGroupTags());
+                .orElse(userToEdit.getImmutableGroupTags());
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
-                .orElse(userToEdit.getModuleTags());
+                .orElse(userToEdit.getImmutableModuleTags());
 
         return new User(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
