@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 
 
@@ -39,28 +38,28 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     private String selector(Person person) {
-        switch (prefix.getPrefix()) {
+        switch (prefix) {
 
-        case CliSyntax.PREFIX_NAME_STRING:
-            return person.getName().fullName;
+        case NAME:
+            return person.getName().getValue();
 
-        case CliSyntax.PREFIX_PHONE_STRING:
-            return person.getPhone().value;
+        case PHONE:
+            return person.getPhone().getValue();
 
-        case CliSyntax.PREFIX_EMAIL_STRING:
-            return person.getEmail().value;
+        case EMAIL:
+            return person.getEmail().getValue();
 
-        case CliSyntax.PREFIX_ADDRESS_STRING:
-            return person.getAddress().value;
+        case ADDRESS:
+            return person.getAddress().getValue();
 
-        case CliSyntax.PREFIX_TELEGRAM_HANDLE_STRING:
-            return person.getTelegramHandle().telegramHandle;
+        case TELEGRAM_HANDLE:
+            return person.getTelegramHandle().getValue();
 
-        case CliSyntax.PREFIX_MODULE_TAG_STRING:
-            return person.getModuleTags().toString();
+        case MODULE_TAG:
+            return person.getImmutableModuleTags().toString();
 
-        case CliSyntax.PREFIX_GROUP_TAG_STRING:
-            return person.getGroupTags().toString();
+        case GROUP_TAG:
+            return person.getImmutableGroupTags().toString();
 
         default:
             // Will not reach here

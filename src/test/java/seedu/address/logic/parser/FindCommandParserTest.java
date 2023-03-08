@@ -24,48 +24,48 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_NAME,
+                Prefix.NAME,
                 Arrays.asList("Albert", "Bart"),
                 " n/Albert Bart",
                 " n/Albert \n \t Bart  \t");
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_PHONE,
+                Prefix.PHONE,
                 Arrays.asList("92752656", "82630347"),
                 " p/92752656 82630347",
                 " p/92752656 \n \t 82630347  \t"
         );
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_ADDRESS,
+                Prefix.ADDRESS,
                 Arrays.asList("2", "Blackmore", "Drive"),
                 " a/2 Blackmore Drive",
                 " a/2 \n \t Blackmore \t \n \t Drive\t"
         );
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_EMAIL,
+                Prefix.EMAIL,
                 Arrays.asList("albertpark@gmail.com", "angmeihua@gmail.com"),
                 " e/albertpark@gmail.com angmeihua@gmail.com",
                 " e/albertpark@gmail.com \n \t angmeihua@gmail.com \t"
         );
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_TELEGRAM_HANDLE,
+                Prefix.TELEGRAM_HANDLE,
                 Arrays.asList("@angmeihua", "@bartlee"),
                 " t/@angmeihua @bartlee",
                 " t/@angmeihua \n \t@bartlee \t"
         );
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_GROUP_TAG,
+                Prefix.GROUP_TAG,
                 Arrays.asList("CCA", "TA", "Study"),
                 " g/CCA TA Study",
                 " g/CCA \n \t TA \t \n \t Study \t"
         );
 
         createValidArgsReturnsFindCommand(
-                CliSyntax.PREFIX_MODULE_TAG,
+                Prefix.MODULE_TAG,
                 Arrays.asList("CE3121", "CS3219"),
                 " m/CE3121 CS3219",
                 " m/CE3121 \n \t CS3219 \t"

@@ -24,7 +24,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2_DESC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -45,12 +44,12 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_GROUP_TAG;
+    private static final String TAG_EMPTY = " " + Prefix.GROUP_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
