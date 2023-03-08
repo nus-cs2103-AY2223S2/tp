@@ -26,6 +26,7 @@ _More details coming soon ..._
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+
   e.g. in `status s/STATUS`, `STATUS` is a parameter which can be used as `status s/interviewing`.
 
 * Items in square brackets are optional.<br>
@@ -84,6 +85,7 @@ Format: `edit INDEX [p/POSITION] [n/NAME_OF_COMPANY] [c/CONTACT_NUMBER] [e/EMAIL
 * Edits the opening at the specified `INDEX`. The index refers to the index number shown in the displayed opening list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
 * When editing `KEY_DATE`, the existing `KEY_DATE` of the opening will be removed i.e adding of `KEY_DATE` is not cumulative.
 * You can remove all the `KEY_DATE` of the opening by typing `d/` without
   specifying any `KEY_DATE` after it.
