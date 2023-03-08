@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Rate;
 import seedu.address.testutil.ContactBuilder;
 
 
@@ -182,6 +183,11 @@ class NewContactCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Rate getRate(Event event) {
             throw new AssertionError("This method should not be called.");
         }
     }

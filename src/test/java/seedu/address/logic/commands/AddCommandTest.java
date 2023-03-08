@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Rate;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -178,6 +179,11 @@ public class AddCommandTest {
         @Override
         public void updateFilteredContactList(Predicate<Contact> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Rate getRate(Event event) {
+            throw new AssertionError("This methid should not be called.");
         }
     }
 
