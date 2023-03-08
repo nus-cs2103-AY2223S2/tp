@@ -12,9 +12,7 @@ import seedu.address.storage.json.JsonItemStorage;
  * A stub class for {@link JsonItemStorage} that is used for testing.
  */
 public class JsonItemStorageStub extends
-        JsonItemStorage<ItemStub,
-                                               JsonAdaptedIdentifiableStub,
-                                               JsonItemManagerStub> {
+        JsonItemStorage<ItemStub, JsonAdaptedIdentifiableStub, JsonItemManagerStub> {
     /**
      * Creates a new {@code JsonIdentifiableStorageStub} object.
      *
