@@ -14,7 +14,9 @@ import trackr.logic.parser.AddressBookParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
 import trackr.model.person.Person;
+import trackr.model.task.Task;
 import trackr.storage.Storage;
 
 /**
@@ -46,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTrackr(model.getAddressBook(), model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -65,8 +67,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ReadOnlyTaskList getTaskList() {
+        return model.getTaskList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
+    }
+
+    @Override
+    public Path getTrackrFilePath() {
+        return model.getTrackrFilePath();
     }
 
     @Override

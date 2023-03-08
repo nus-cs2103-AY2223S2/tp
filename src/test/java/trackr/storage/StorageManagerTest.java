@@ -3,6 +3,7 @@ package trackr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
 
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.io.TempDir;
 import trackr.commons.core.GuiSettings;
 import trackr.model.AddressBook;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
+import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +27,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTrackrStorage trackrStorage = new JsonTrackrStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(trackrStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +51,29 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void trackrReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        AddressBook originalAddressBook = getTypicalAddressBook();
+        TaskList originalTaskList = getTypicalTaskList();
+        storageManager.saveTrackr(originalAddressBook, originalTaskList);
+        ReadOnlyAddressBook retrievedAddressBook = storageManager.readAddressBook().get();
+        assertEquals(originalAddressBook, new AddressBook(retrievedAddressBook));
+        ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
+        assertEquals(originalTaskList, new TaskList(retrievedTaskList));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTrackrFilePath() {
+        assertNotNull(storageManager.getTrackrFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
 }

@@ -25,9 +25,10 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
 import trackr.model.person.Person;
-import trackr.storage.JsonAddressBookStorage;
+import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.StorageManager;
 import trackr.testutil.PersonBuilder;
@@ -43,10 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTrackrStorage trackrStorage =
+                new JsonTrackrStorage(temporaryFolder.resolve("trackr.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +71,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonTrackrIoExceptionThrowingStub
+        JsonTrackrStorage trackrStorage =
+                new JsonTrackrIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTrackr.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +130,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +150,14 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTrackrIoExceptionThrowingStub extends JsonTrackrStorage {
+        private JsonTrackrIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+                throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

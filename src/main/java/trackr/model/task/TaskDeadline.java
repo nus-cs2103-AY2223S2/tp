@@ -18,6 +18,11 @@ public class TaskDeadline {
                     + "and it should not be blank"
                     + "and deadline should be today or after today's date.";
 
+    public static final String VALIDATION_REGEX = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
+
+    private static final DateTimeFormatter DTF_INPUT_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter DTF_OUTPUT_DATE = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+
     public final LocalDate taskDeadline;
 
     /**
@@ -29,8 +34,7 @@ public class TaskDeadline {
         requireNonNull(deadline);
         checkArgument(isValidTaskDeadline(deadline), MESSAGE_CONSTRAINTS);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDateDeadline = LocalDate.parse(deadline, dtf);
-        taskDeadline = localDateDeadline;
+        taskDeadline = LocalDate.parse(deadline, dtf);
     }
 
     /**
@@ -39,13 +43,24 @@ public class TaskDeadline {
      * the parsed date is today's date or after today's date.
      */
     public static boolean isValidTaskDeadline(String test) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
         try {
-            LocalDate localDateTest = LocalDate.parse(test, dtf);
-            return localDateTest.isAfter(LocalDate.now()) || localDateTest.isEqual(LocalDate.now());
+            LocalDate.parse(test, DTF_INPUT_DATE);
+            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns the deadline stored in "dd/MM/yyyy" format for json storage.
+     * @return A string representation of the deadline.
+     */
+    public String toJsonString() {
+        return taskDeadline.format(DTF_INPUT_DATE);
     }
 
     /**
@@ -54,8 +69,7 @@ public class TaskDeadline {
      */
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-        return taskDeadline.format(dtf);
+        return taskDeadline.format(DTF_OUTPUT_DATE);
     }
 
     @Override

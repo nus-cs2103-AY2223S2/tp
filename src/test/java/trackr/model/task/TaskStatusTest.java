@@ -63,4 +63,13 @@ public class TaskStatusTest {
         TaskStatus notDone = new TaskStatus("N");
         assertEquals("N", notDone.toString());
     }
+
+    @Test
+    public void toJsonStringTest() {
+        TaskStatus done = new TaskStatus("D");
+        assertEquals("D", done.toJsonString());
+
+        TaskStatus notDone = new TaskStatus("N");
+        assertEquals("N", notDone.toJsonString());
+    }
 }
