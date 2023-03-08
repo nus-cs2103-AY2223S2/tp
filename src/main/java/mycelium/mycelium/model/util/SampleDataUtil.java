@@ -6,8 +6,18 @@ import mycelium.mycelium.model.person.*;
 import mycelium.mycelium.model.tag.Tag;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import mycelium.mycelium.model.person.Address;
+import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.person.Name;
+import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.ProjectStatus;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -36,10 +46,45 @@ public class SampleDataUtil {
         };
     }
 
+    public static Project[] getSampleProjects() {
+        return new Project[]{
+            new Project(
+                "Bing",
+                ProjectStatus.NOT_STARTED,
+                new Email("johndoe@gmail.com"),
+                Optional.ofNullable("fiver"),
+                Optional.ofNullable("Create the next google AKA bing"),
+                new Date(),
+                Optional.empty()
+            ),
+            new Project(
+                "Havard2.0",
+                ProjectStatus.IN_PROGRESS,
+                new Email("EluidKipchoge@gmail.com"),
+                Optional.ofNullable("Behind the alley"),
+                Optional.ofNullable("University on the streets"),
+                new Date(),
+                Optional.ofNullable(new Date())
+            ),
+            new Project(
+                "Build Skynet",
+                ProjectStatus.DONE,
+                new Email("VladPutin@hotmale.com"),
+                Optional.ofNullable("Russia"),
+                Optional.ofNullable("Conquer the world"),
+                new Date(),
+                Optional.empty()
+            )
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Project sampleProject : getSampleProjects()) {
+            sampleAb.addProject(sampleProject);
         }
         return sampleAb;
     }

@@ -15,6 +15,7 @@ import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
     }
 
     @Override

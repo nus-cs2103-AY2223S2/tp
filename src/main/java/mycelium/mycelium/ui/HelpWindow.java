@@ -9,6 +9,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import mycelium.mycelium.commons.core.LogsCenter;
+import mycelium.mycelium.ui.common.UiPart;
 
 /**
  * Controller for a help page
