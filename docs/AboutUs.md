@@ -6,10 +6,10 @@ title: About Us
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at these emails :
-* `e0773591[at]u.nus.edu` - Zhu Yufan
-* `e0774823[at]u.nus.edu` - Niu Boqian
-* `e0727234[at]u.nus.edu` - Sze Jian Cheng
-* `[at]u.nus.edu`
+* `e0773591@u.nus.edu` - Zhu Yufan
+* `e0774823@u.nus.edu` - Niu Boqian
+* `e0727234@u.nus.edu` - Sze Jian Cheng
+* `@u.nus.edu`
 
 ## Project team
 

@@ -101,7 +101,6 @@ public class Student {
         return lessonsList.asUnmodifiableObservableList();
     }
 
-
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
