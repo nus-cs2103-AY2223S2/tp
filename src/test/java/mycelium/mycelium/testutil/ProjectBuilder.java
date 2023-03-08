@@ -38,8 +38,8 @@ public class ProjectBuilder {
         this.name = project.getName();
         this.status = project.getStatus();
         this.clientEmail = project.getClientEmail();
-        this.source = project.getSource();
-        this.description = project.getDescription();
+        this.source = project.getSource().orElse(null);
+        this.description = project.getDescription().orElse(null);
         this.acceptedOn = project.getAcceptedOn();
         this.deadline = project.getDeadline().orElse(null);
     }
@@ -112,6 +112,12 @@ public class ProjectBuilder {
      * Builds a project with the given fields.
      */
     public Project build() {
-        return new Project(name, status, clientEmail, source, description, acceptedOn, Optional.ofNullable(deadline));
+        return new Project(name,
+            status,
+            clientEmail,
+            Optional.ofNullable(source),
+            Optional.ofNullable(description),
+            acceptedOn,
+            Optional.ofNullable(deadline));
     }
 }

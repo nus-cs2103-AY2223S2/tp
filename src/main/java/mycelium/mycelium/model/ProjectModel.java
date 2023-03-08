@@ -12,7 +12,7 @@ public interface ProjectModel {
     /**
      * Checks if a project with the same name exists in Mycelium.
      */
-    boolean hasProject(Project project);
+    boolean hasProject(Project project); // TODO check if this should have a project's name overload
 
     /**
      * Deletes the project from Mycelium. If it does not exist, then this is a no-op.

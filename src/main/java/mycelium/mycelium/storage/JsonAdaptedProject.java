@@ -55,8 +55,8 @@ public class JsonAdaptedProject {
         name = project.getName();
         status = project.getStatus();
         clientEmail = project.getClientEmail().value;
-        source = project.getSource();
-        description = project.getDescription();
+        source = project.getSource().orElse(null);
+        description = project.getDescription().orElse(null);
         acceptedOn = project.getAcceptedOn();
         deadline = project.getDeadline().orElse(null);
     }
@@ -84,8 +84,8 @@ public class JsonAdaptedProject {
         return new Project(name,
             status,
             new Email(clientEmail),
-            source,
-            description,
+            Optional.ofNullable(source),
+            Optional.ofNullable(description),
             acceptedOn,
             Optional.ofNullable(deadline));
     }

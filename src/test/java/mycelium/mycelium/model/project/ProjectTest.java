@@ -94,8 +94,8 @@ public class ProjectTest {
         Project project = new Project("my awesome project", new Email("chungus@chungus.org"));
         assertEquals(project.getName(), "my awesome project");
         assertEquals(project.getClientEmail(), new Email("chungus@chungus.org"));
-        assertEquals(project.getSource(), "");
-        assertEquals(project.getDescription(), "");
+        assertEquals(project.getSource(), Optional.empty());
+        assertEquals(project.getDescription(), Optional.empty());
         assertDatesAlmostEqual(project.getAcceptedOn(), new Date());
         assertEquals(project.getDeadline(), Optional.empty());
     }

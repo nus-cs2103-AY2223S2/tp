@@ -30,12 +30,12 @@ public class Project implements IsSame<Project> {
     /**
      * The project's source, e.g. Fiverr
      */
-    private final String source;
+    private final Optional<String> source;
 
     /**
      * Arbitrary description for the project
      */
-    private final String description;
+    private final Optional<String> description;
 
     /**
      * The date on which this project was accepted
@@ -55,8 +55,8 @@ public class Project implements IsSame<Project> {
         this.name = name;
         this.status = ProjectStatus.NOT_STARTED;
         this.clientEmail = clientEmail;
-        this.source = "";
-        this.description = "";
+        this.source = Optional.empty();
+        this.description = Optional.empty();
         this.acceptedOn = new Date();
         this.deadline = Optional.empty();
     }
@@ -67,8 +67,8 @@ public class Project implements IsSame<Project> {
     public Project(String name,
                    ProjectStatus status,
                    Email clientEmail,
-                   String source,
-                   String description,
+                   Optional<String> source,
+                   Optional<String> description,
                    Date acceptedOn,
                    Optional<Date> deadline) {
         this.name = name;
@@ -92,11 +92,11 @@ public class Project implements IsSame<Project> {
         return clientEmail;
     }
 
-    public String getSource() {
+    public Optional<String> getSource() {
         return source;
     }
 
-    public String getDescription() {
+    public Optional<String> getDescription() {
         return description;
     }
 
