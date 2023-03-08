@@ -103,12 +103,14 @@ public class MainApp extends Application {
         try {
             pilotManagerOptional = storage.readPilotManager();
             if (pilotManagerOptional.isEmpty()) {
+                logger.info("Data file for pilot manager not found.");
                 pilotManager = new ItemManager<>();
             } else {
-                logger.info("Data file for pilot manager found.");
                 pilotManager = pilotManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
+            logger.info("Exception caught while reading data file for storage manager: "
+                    + e.toString());
             pilotManager = new ItemManager<>();
         }
         return pilotManager;
@@ -125,12 +127,14 @@ public class MainApp extends Application {
         try {
             locationManagerOptional = storage.readLocationManager();
             if (locationManagerOptional.isEmpty()) {
+                logger.info("Data file for location manager not found.");
                 locationManager = new ItemManager<>();
             } else {
-                logger.info("Data file for location manager found.");
                 locationManager = locationManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
+            logger.info("Exception caught while reading data file for location manager: "
+                    + e.toString());
             locationManager = new ItemManager<>();
         }
         return locationManager;
@@ -147,12 +151,14 @@ public class MainApp extends Application {
         try {
             crewManagerOptional = storage.readCrewManager();
             if (crewManagerOptional.isEmpty()) {
+                logger.info("Data file for crew manager not found.");
                 crewManager = new ItemManager<>();
             } else {
-                logger.info("Data file for pilot manager found.");
                 crewManager = crewManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
+            logger.info("Exception caught while reading data file for crew manager: "
+                    + e.toString());
             crewManager = new ItemManager<>();
         }
         return crewManager;
@@ -169,12 +175,14 @@ public class MainApp extends Application {
         try {
             crewManagerOptional = storage.readPlaneManager();
             if (crewManagerOptional.isEmpty()) {
+                logger.info("Data file for plane manager not found.");
                 planeManager = new ItemManager<>();
             } else {
-                logger.info("Data file for pilot manager found.");
                 planeManager = crewManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
+            logger.info("Exception caught while reading data file for plane manager: "
+                    + e.toString());
             planeManager = new ItemManager<>();
         }
         return planeManager;
@@ -191,12 +199,14 @@ public class MainApp extends Application {
         try {
             flightManagerOptional = storage.readFlightManager();
             if (flightManagerOptional.isEmpty()) {
+                logger.info("Data file for flight manager not found.");
                 flightManager = new ItemManager<>();
             } else {
-                logger.info("Data file for pilot manager found.");
                 flightManager = flightManagerOptional.get();
             }
         } catch (DataConversionException | IOException e) {
+            logger.info("Exception caught while reading data file for flight manager: "
+                    + e.toString());
             flightManager = new ItemManager<>();
         }
         return flightManager;
