@@ -46,7 +46,9 @@ public class ModuleCard extends UiPart<Region> {
 
         moduleCardCode.setText(module.getCode().toString());
         moduleCardCredits.setText(module.getCredit() + "MC");
-        moduleCardGrade.setText(module.getGrade().toString());
+
+        String grade = module.getGrade().toString();
+        moduleCardGrade.setText(!grade.isEmpty() ? grade : "–");
 
         for (Tag tag : module.getTags()) {
             switch (ValidTag.valueOf(tag.tagName)) {
@@ -71,6 +73,14 @@ public class ModuleCard extends UiPart<Region> {
             default:
             }
         }
+    }
+
+    /**
+     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
+     * max width of the actual ModuleCards in ModuleGroup.
+     */
+    public ModuleCard() {
+        super(FXML);
     }
 
     private void addTag(String tagName, String tagFull, String tagColor) {

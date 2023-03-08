@@ -7,6 +7,9 @@
 
     -fx-background-color: -dark-grey;
 }
+.module-card-placeholder {
+    visibility: hidden;
+}
 
 .module-card-tag {
     -fx-padding: 2 5;
