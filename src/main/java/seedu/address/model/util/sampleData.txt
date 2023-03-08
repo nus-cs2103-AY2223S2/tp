@@ -9,7 +9,6 @@ Melania Walker|82724009|melaniawalker@gmail.com|Millenia Walk|@melaniawalker|Ene
 Kevin Ho|99997496|kevinho@gmail.com|900 Upper Serangoon Road|@kevinho|NUS|CS2220 CS3223 CS3242 CS3203 CE3165 CS3281
 Albert Blackmore|83218989|albertblackmore@gmail.com|2 Blackmore Drive|@albertblackmore|TA|CS3235 IS1103 CS3242 CE3132 CS2103 BT3101
 Pearl Outram|83340122|pearloutram@gmail.com|10 Outram Road|@pearloutram|Groupmate Study NUS|IS2103 CS3235 CE2407 IS2102 CE2409 CS3241R
-Zhang Yi|83518074|zhangyi@gmail.com|Changi Airport|@zhangyi|Enemy|CS1010XCP CS2108 BT3103 BT2102 CS3249
 Yew Tee|83606286|yewtee@gmail.com|61 Choa Chu Kang Drive|@yewtee|NS|CE2134 CS3216 CS1010 BT2101 IS3103 CS3219
 Kent Richards|83803769|kentrichards@gmail.com|301 South Buona Vista Road|@kentrichards|CCA|BT2102 CS3203 CS2010 CS1231 CS2113
 Boon Lay|83974417|boonlay@gmail.com|301 Boon Lay Way|@boonlay|Groupmate JC|CE1101 CE2112 IS3261 CS3249 CE2409

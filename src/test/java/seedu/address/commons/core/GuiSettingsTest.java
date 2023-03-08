@@ -76,14 +76,8 @@ public class GuiSettingsTest {
 
     @Test
     public void hashCode_sameFields_true() {
-        double windowWidth = 3.4;
-        double windowHeight = 4.5;
-        int xPosition = 6;
-        int yPosition = 8;
-        GuiSettings guiSettings = new GuiSettings(windowWidth,
-                windowHeight, xPosition, yPosition);
-        GuiSettings otherSettings = new GuiSettings(windowWidth,
-                windowHeight, xPosition, yPosition);
-        assertEquals(guiSettings.hashCode(), otherSettings.hashCode());
+        GuiSettings otherSettings = new GuiSettings(WINDOW_WIDTH,
+                WINDOW_HEIGHT, X_POSITION, Y_POSITION);
+        assertEquals(GUI_SETTINGS.hashCode(), otherSettings.hashCode());
     }
 }
