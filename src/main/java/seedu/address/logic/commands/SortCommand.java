@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;

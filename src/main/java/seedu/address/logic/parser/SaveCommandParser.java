@@ -16,7 +16,7 @@ public class SaveCommandParser implements Parser<SaveCommand> {
     @Override
     public SaveCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
-        List<String> fileNameList = argMultimap.getAllValues(new Prefix(""));
+        List<String> fileNameList = argMultimap.getAllValues(Prefix.BLANK);
 
         // we only allow single unspaced strings as filenames
         if (fileNameList.stream().allMatch(String::isEmpty)) {
