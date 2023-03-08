@@ -148,14 +148,14 @@ Format: `list`
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                                                 |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br> e.g. `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression` |
-| **Get**       | ` get i/T0012345A`                                                                                                                                                                               |
-| **Clear all** | `clearAll`                                                                                                                                                                                       |
-| **Delete**    | `delete INDEX` e.g., `delete 3`                                                                                                                                                                  |
-| **Edit**      | `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [d/DIAGNOSIS] [a/ADDRESS] [t/TAG]…`  e.g.,edit 2 n/James Lee e/jameslee@example.com                                                            |
-| **Find**      | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g., find panadol <br/> e.g., find diabetes                                                                                                              |
-| **Save**      | `save FILE_NO` <br/> eg. save 3                                                                                                                                                                  |
-| **List**      | `list`                                                                                                                                                                                           |
-| **Help**      | `help`                                                                                                                                                                                           |
+| Action        | Format, Examples                                                                                                                                                                                |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br/> e.g. add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression |
+| **Get**       | `get i/NRIC` <br/> e.g. get i/T0012345A                                                                                                                                                         |
+| **Clear all** | `clear`                                                                                                                                                                                         |
+| **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
+| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
+| **Find**      | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                               |
+| **Save**      | `save FILE_NO` <br/> eg. save 3                                                                                                                                                                 |
+| **List**      | `list`                                                                                                                                                                                          |
+| **Help**      | `help`                                                                                                                                                                                          |
