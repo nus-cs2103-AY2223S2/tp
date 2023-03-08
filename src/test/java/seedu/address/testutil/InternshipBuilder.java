@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Id;
+import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Position;
 import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
@@ -103,6 +104,7 @@ public class InternshipBuilder {
         this.description = new Description(description);
         return this;
     }
+
 
     public Internship build() {
         return new Internship(position, company, id, status, description, tags);

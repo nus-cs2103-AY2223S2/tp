@@ -16,13 +16,13 @@ public class InternshipCatalogueBuilder {
     }
 
     public InternshipCatalogueBuilder(InternshipCatalogue internshipCatalogue) {
-        thie.internshipCatalogue = internshipCatalogue;
+        this.internshipCatalogue = internshipCatalogue;
     }
 
     /**
      * Adds a new {@code Internship} to the {@code InternshipCatalogue} that we are building.
      */
-    public InternshipCatalogue withInternship(Internship internship) {
+    public InternshipCatalogueBuilder withInternship(Internship internship) {
         internshipCatalogue.addInternship(internship);
         return this;
     }

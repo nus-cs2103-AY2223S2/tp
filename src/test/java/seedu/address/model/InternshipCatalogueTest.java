@@ -3,11 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.ML2;
-import static seedu.address.testutil.TypicalInternships.getTypicalInternshipCataloue;
+import static seedu.address.testutil.TypicalInternships.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.ReadOnlyInternshipCatalogue;
 import seedu.address.model.internship.exceptions.DuplicateInternshipException;
 import seedu.address.testutil.InternshipBuilder;
 
@@ -28,7 +26,7 @@ public class InternshipCatalogueTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), internshipCatalogue.getinternshipList());
+        assertEquals(Collections.emptyList(), internshipCatalogue.getInternshipList());
     }
 
     @Test
@@ -47,10 +45,11 @@ public class InternshipCatalogueTest {
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
         //Needs to be changed when we have valid internship feilds
-        internship editedML2 = new internshipBuilder(ML2).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Internship editedML1 = new InternshipBuilder().withPosition(VALID_POSITION_ML1)
+                .withCompany(VALID_COMPANY_ML1).withId(VALID_ID_ML1).withDescription(VALID_DESCRIPTION_ML1)
+                .withStatus(VALID_STATUS_ML1).withTags(VALID_TAG_IMPORTANT).build();
 
-        List<Internship> newInternships = Arrays.asList(ML2, editedML2);
+        List<Internship> newInternships = Arrays.asList(ML1, editedML1);
         InternshipCatalogueStub newData = new InternshipCatalogueStub(newInternships);
 
         assertThrows(DuplicateInternshipException.class, () -> internshipCatalogue.resetData(newData));
@@ -63,22 +62,13 @@ public class InternshipCatalogueTest {
 
     @Test
     public void hasInternship_internshipNotInInternshipCatalogue_returnsFalse() {
-        assertFalse(internshipCatalogue.hasinternship(ML2));
+        assertFalse(internshipCatalogue.hasInternship(ML2));
     }
 
     @Test
     public void hasInternship_internshipInInternshipCatalogue_returnsTrue() {
         internshipCatalogue.addInternship(ML2);
         assertTrue(internshipCatalogue.hasInternship(ML2));
-    }
-
-    @Test
-    public void hasInternship_internshipWithSameIdentityFieldsInInternshipCatalogue_returnsTrue() {
-        internshipCatalogue.addInternship(ML2);
-        // Needs to be edited when we have Valid Internship Feilds
-        internship editedML2 = new internshipBuilder(ML2).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(internshipCatalogue.hasInternship(editedML2));
     }
 
     @Test
@@ -97,7 +87,7 @@ public class InternshipCatalogueTest {
         }
 
         @Override
-        public ObservableList<Internship> getinternshipList() {
+        public ObservableList<Internship> getInternshipList() {
             return internships;
         }
     }
