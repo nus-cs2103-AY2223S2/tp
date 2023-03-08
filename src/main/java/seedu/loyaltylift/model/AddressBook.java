@@ -3,18 +3,22 @@ package seedu.loyaltylift.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.loyaltylift.model.person.Person;
-import seedu.loyaltylift.model.person.UniquePersonList;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.UniqueCustomerList;
+import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.UniqueOrderList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameCustomer comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueCustomerList customers;
+    private final UniqueOrderList orders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        customers = new UniqueCustomerList();
+        orders = new UniqueOrderList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Customers in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,11 +45,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the customer list with {@code customers}.
+     * {@code customers} must not contain duplicate customers.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setCustomers(List<Customer> customers) {
+        this.customers.setCustomers(customers);
+    }
+
+    /**
+     * Replaces the contents of the order list with {@code orders}.
+     * {@code orders} must not contain duplicate orders.
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
     }
 
     /**
@@ -53,68 +66,116 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setCustomers(newData.getCustomerList());
+        setOrders(newData.getOrderList());
     }
 
-    //// person-level operations
+    //// customer-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return customers.contains(customer);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a customer to the address book.
+     * The customer must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addCustomer(Customer p) {
+        customers.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given customer {@code target} in the list with {@code editedCustomer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The customer identity of {@code editedCustomer} must not be the same as
+     * another existing customer in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireNonNull(editedCustomer);
 
-        persons.setPerson(target, editedPerson);
+        customers.setCustomer(target, editedCustomer);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeCustomer(Customer key) {
+        customers.remove(key);
+    }
+
+    //// order-level operations
+
+    /**
+     * Returns true if a order with the same identity as {@code order} exists in the address book.
+     */
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orders.contains(order);
+    }
+
+    /**
+     * Adds a order to the address book.
+     * The order must not already exist in the address book.
+     */
+    public void addOrder(Order p) {
+        orders.add(p);
+    }
+
+    /**
+     * Replaces the given order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the address book.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(target, editedOrder);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeOrder(Order key) {
+        orders.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(customers.asUnmodifiableObservableList().size() + " customers\n")
+                .append(orders.asUnmodifiableObservableList().size() + " orders");
+        return builder.toString();
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Customer> getCustomerList() {
+        return customers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && customers.equals(((AddressBook) other).customers)
+                && orders.equals(((AddressBook) other).orders));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(customers, orders);
     }
 }

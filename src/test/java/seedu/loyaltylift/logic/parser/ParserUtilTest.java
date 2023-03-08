@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.person.Address;
-import seedu.loyaltylift.model.person.Email;
-import seedu.loyaltylift.model.person.Name;
-import seedu.loyaltylift.model.person.Phone;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_CUSTOMER, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_CUSTOMER, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

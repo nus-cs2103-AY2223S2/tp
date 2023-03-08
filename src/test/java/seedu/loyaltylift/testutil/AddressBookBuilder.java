@@ -1,12 +1,12 @@
 package seedu.loyaltylift.testutil;
 
 import seedu.loyaltylift.model.AddressBook;
-import seedu.loyaltylift.model.person.Person;
+import seedu.loyaltylift.model.customer.Customer;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withCustomer("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
@@ -21,10 +21,10 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Customer} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withCustomer(Customer customer) {
+        addressBook.addCustomer(customer);
         return this;
     }
 

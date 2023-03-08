@@ -17,13 +17,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should select & view a specific customer */
+    private final Integer customerIndex;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Integer customerIndex) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.customerIndex = customerIndex;
     }
 
     /**
@@ -31,11 +35,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    /**
+     * The index of the customer in the current displayed listview to display.
+     * @return The index of the customer in the current listview, 0-indexed.
+     */
+    public Integer getCustomerIndex() {
+        return customerIndex;
     }
 
     public boolean isShowHelp() {
@@ -44,6 +56,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowCustomerSelection() {
+        return customerIndex != null;
     }
 
     @Override
@@ -60,7 +76,8 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && Objects.equals(customerIndex, otherCommandResult.customerIndex);
     }
 
     @Override
