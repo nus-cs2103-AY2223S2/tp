@@ -33,23 +33,31 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
      */
     @Override
     public boolean test(Internship internship) {
+        boolean noNameKeywords = this.nameKeywords.isEmpty();
+        boolean noStatusKeywords = this.statusKeywords.isEmpty();
+        boolean noTagKeywords = this.tagKeywords.isEmpty();
+
+        if (noNameKeywords && noStatusKeywords && noTagKeywords) {
+            return false;
+        }
+
         boolean nameCheck = true;
         boolean statusCheck = true;
         boolean tagCheck = true;
 
-        if (!this.nameKeywords.isEmpty()) {
+        if (!noNameKeywords) {
             nameCheck = this.nameKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                             internship.getCompanyName().fullCompanyName, keyword));
         }
 
-        if (!this.statusKeywords.isEmpty()) {
+        if (!noStatusKeywords) {
             statusCheck = this.statusKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                             internship.getStatus().fullStatus, keyword));
         }
 
-        if (!this.tagKeywords.isEmpty()) {
+        if (!noTagKeywords) {
             tagCheck = this.tagKeywords.stream()
                     .anyMatch(keyword -> internship.getTags().stream()
                             .map(tag -> tag.tagName)

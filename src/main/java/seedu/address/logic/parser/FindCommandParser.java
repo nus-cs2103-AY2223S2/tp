@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
+import seedu.address.model.internship.Status;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -45,18 +47,24 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> tagKeywords;
 
         if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
-            nameKeywords = split(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
+            CompanyName companyName = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
+            nameKeywords = split(companyName.fullCompanyName);
         } else {
             nameKeywords = Collections.emptyList();
         }
 
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            statusKeywords = split(argMultimap.getValue(PREFIX_STATUS).get());
+            Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            statusKeywords = split(status.fullStatus);
         } else {
             statusKeywords = Collections.emptyList();
         }
 
-        tagKeywords = split(argMultimap.getAllValues(PREFIX_TAG));
+        List<String> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).stream()
+                .map(tag -> tag.tagName)
+                .collect(Collectors.toList());
+
+        tagKeywords = split(tags);
 
         return new FindCommand(new InternshipContainsKeywordsPredicate(nameKeywords, statusKeywords, tagKeywords));
     }
