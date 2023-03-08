@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Project Advisor
 
-### Jane Doe
+### Zi-Yi Elijah Ku
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Profile Pics/Elijah_Ku.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Zeli0)]
+[[portfolio](team/eli.md)]
 
-- Role: Team Lead
-- Responsibilities: UI
+- Role: Developer
+- Responsibilities: 
 
 ### Leonard Yam
 
