@@ -157,6 +157,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String emergencyContact} into a {@code EmergencyContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code EmergencyContact} is invalid.
+     */
+    public static Phone parseEmergencyContact(String emergencyContact) throws ParseException {
+        requireNonNull(emergencyContact);
+        String trimmedEmergencyContact = emergencyContact.trim();
+        if (!Phone.isValidPhone(trimmedEmergencyContact)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedEmergencyContact);
+    }
+
+    /**
      * Parses a {@code String tradeName} into a {@code TradeName}.
      * Leading and trailing whitespaces will be trimmed.
      *
