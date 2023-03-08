@@ -50,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_DOB, PREFIX_GENDER, PREFIX_IC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    seedu.address.logic.commands.AddCommand.MESSAGE_USAGE));
+                    seedu.address.logic.commands.patientcommands.AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
