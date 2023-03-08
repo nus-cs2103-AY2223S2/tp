@@ -27,9 +27,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTrackrStorage addressBookStorage = new JsonTrackrStorage(getTempFilePath("ab"));
+        JsonTrackrStorage trackrStorage = new JsonTrackrStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(trackrStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -69,6 +69,11 @@ public class StorageManagerTest {
     @Test
     public void getTrackrFilePath() {
         assertNotNull(storageManager.getTrackrFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
 }
