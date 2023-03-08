@@ -6,7 +6,6 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "languages": [ "Python" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -30,7 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "languages": [ ],
+    "languages": [ "Python" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -54,7 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "languages": [ ],
+    "languages": [ "Python" ],
     "tagged" : [ ]
   } ]
 }

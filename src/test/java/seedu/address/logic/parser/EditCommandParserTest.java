@@ -33,7 +33,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -46,6 +51,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Name;
@@ -55,10 +61,13 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
-
+    private static final String NAME_EMPTY = " " + PREFIX_NAME;
+    private static final String PROFILE_EMPTY = " " + PREFIX_PROFILE;
+    private static final String PHONE_EMPTY = " " + PREFIX_PHONE;
+    private static final String EMAIL_EMPTY = " " + PREFIX_EMAIL;
+    private static final String ADDRESS_EMPTY = " " + PREFIX_ADDRESS;
     private static final String LANGUAGE_EMPTY = " " + PREFIX_LANGUAGE;
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
@@ -124,6 +133,15 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_PROFILE_DESC + INVALID_EMAIL_DESC
                 + VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyNonLanguageTagField_failure() {
+        assertParseFailure(parser, "1" + NAME_EMPTY, Name.MESSAGE_CONSTRAINTS); // empty name
+        assertParseFailure(parser, "1" + PROFILE_EMPTY, GitHubProfile.MESSAGE_CONSTRAINTS); // empty profile
+        assertParseFailure(parser, "1" + PHONE_EMPTY, Phone.MESSAGE_CONSTRAINTS); // empty phone
+        assertParseFailure(parser, "1" + EMAIL_EMPTY, Email.MESSAGE_CONSTRAINTS); // empty email
+        assertParseFailure(parser, "1" + ADDRESS_EMPTY, Address.MESSAGE_CONSTRAINTS); // empty address
     }
 
     @Test
@@ -235,14 +253,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetLanguages_success() {
+    public void parse_resetLanguages_failure() {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + LANGUAGE_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withLanguages().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
