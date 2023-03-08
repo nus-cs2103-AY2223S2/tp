@@ -21,6 +21,16 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
 
     /**
+     * Initializes a empty RepositoryModelManager
+     */
+    public RepositoryModelManager() {
+
+        logger.fine("Initializing with repo book: ");
+        this.repo = Repository.of(new Repository<T>());
+        itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
+    }
+
+    /**
      * Initializes a RepositoryModelManager with the given taskBook
      */
     public RepositoryModelManager(ReadOnlyRepository<T> repo) {

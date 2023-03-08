@@ -94,22 +94,4 @@ class UniqueItemListTest {
         assertThrows(DuplicateItemException.class, () -> itemList.setItems(Arrays.asList(item1, item1)));
     }
 
-    static class ItemStub implements Relationship<ItemStub> {
-        private final String name;
-
-        public ItemStub(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public boolean isSame(ItemStub otherItem) {
-            if (otherItem == this) {
-                return true;
-            }
-
-            return otherItem != null
-                && otherItem.name.equals(name);
-        }
-
-    }
 }
