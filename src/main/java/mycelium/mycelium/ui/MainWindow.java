@@ -18,11 +18,11 @@ import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.common.ListPanel;
 import mycelium.mycelium.ui.common.TabPage;
 import mycelium.mycelium.ui.common.UiPart;
 import mycelium.mycelium.ui.person.PersonListCard;
-import mycelium.mycelium.ui.project.Project;
 import mycelium.mycelium.ui.project.ProjectListCard;
 
 /**
@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        projectListPanel = new ListPanel<Project>(Project.generateStub(), ProjectListCard::new);
+        projectListPanel = new ListPanel<Project>(logic.getFilteredProjectList(), ProjectListCard::new);
         personListPanel = new ListPanel<Person>(logic.getFilteredPersonList(), PersonListCard::new);
         projectTab = new TabPage("Projects", projectListPanel);
         clientTab = new TabPage("Client", personListPanel);
