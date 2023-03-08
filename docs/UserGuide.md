@@ -18,14 +18,22 @@ _Details coming soon ..._
    * mark
    * unmark
    * exit
-1. [Assignments](#Assignments)
+2. [Assignments](#Assignments)
    * add
    * delete
    * grade
    * ungrade
    * exit
-1. [Class List](#Class-List)
-1. [CSV Parser](#csv-parser)
+3. [Class List](#Class-List)
+   * create
+   * rand_grp
+   * add
+   * delete
+   * list
+   * find
+4. [CSV Parser](#csv-parser)
+   * import
+   * export
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,6 +202,30 @@ Examples:
 
 
 ## CSV Parser
+
+Stores and loads data in with CSV files.
+
+* Import data in CSV format: `import`
+* Export data in CSV format: `export`
+
+### Import data in CSV format: `import` [coming soon]
+Import data in CSV format from file.
+
+Format: `import [flag] [file path]`
+* Flag -force overwrites existing records.
+* Nothing is changed if file does not exist or file access denied.
+
+### Export data in CSV format: `export` [coming soon]
+Export data in CSV format to file.
+
+Format: `export [flag] [file path]`
+* If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
+* Flag -force overwrites existing file.
+* Nothing is changed if file access denied.
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
