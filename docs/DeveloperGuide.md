@@ -15,28 +15,28 @@ title: Developer Guide
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-   - [Product scope](#product-scope)
-   - [User stories](#user-stories)
-   - [Use cases](#use-cases)
-   - [Non-Functional Requirements](#non-functional-requirements)
-   - [Glossary](#glossary)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -167,7 +167,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -268,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -419,10 +419,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
-      
-      Use case ends.
 
-**Use case: UC5 - List Contacts**
+      Use case ends.
+<!-- **Use case: UC5 - List Contacts**
 
 **MSS**
 
@@ -441,9 +440,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
       
-      Use case ends.
+      Use case ends. -->
 
-**Use case: UC6 - Link contact and event**
+**Use case: UC5 - Link contact and event**
 
 **MSS**
 
@@ -476,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+**Use case: UC6 - Display Rate**
 
 **MSS**
 
@@ -498,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC8 - Tag a rate to an Event**
+**Use case: UC7 - Tag a rate to an Event**
 
 **MSS**
 
@@ -525,6 +524,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3a. The event has a rate tagging already.
+   * 3a1. System replaces the previous rate with the new rate.
+
+      Use case ends.
+
+**Use case: UC8 - Add Contact**
+
+**MSS**
+
+1.  User requests to add a contact to an event.
+2.  System adds the contact to the event and displays information of the contact and event.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+   
+      Use case resumes at step 1.
+
+* 1b. User enters invalid contact details.
+   * 1b1. System displays that the input is invalid and to try again.
+      
+      Use case resumes at step 1.
+
+**Use case: UC9 - Add Date to Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to add a date to a specified event in the list.
+3. System adds the date to the event and displays information of the event with new date added.
+
+   Use case ends.
+
+**Extensions**
+
+ 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid date.
+   * 2c1. System displays that the date is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 3a. The event has a date linked already.
+   * 3a1. System replaces the previous date with the new date.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -546,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -596,3 +653,6 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+[Back to top](#)

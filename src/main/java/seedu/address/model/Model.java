@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 
 /**
@@ -39,10 +40,14 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
+    Path getContactListFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    void setContactListFilePath(Path contactListFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -51,6 +56,15 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    /** Returns the ContactList */
+    ReadOnlyContactList getContactList();
+
+
+    /**
+     * Returns true if a contact with the same identity as {@code contact} exists in the contact list.
+     */
+    boolean hasContact(Contact contact);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -62,6 +76,12 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Event target);
+
+    /**
+     * Adds the given contact.
+     * {@code contact} must not already exist in the contact list.
+     */
+    void addContact(Contact contact);
 
     /**
      * Adds the given person.
@@ -79,9 +99,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Event> getFilteredPersonList();
 
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Event> predicate);
+
+    void updateFilteredContactList(Predicate<Contact> contact);
 }

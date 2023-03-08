@@ -9,7 +9,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 - [Quick Start](#quick-start)
 - [Features](#features)
   * [Add a Contact](#add-a-contact)
-  * [View Contact List](#list-all-contacts)
+  <!-- * [View Contact List](#list-all-contacts) -->
   * [Link Contact to Event](#link-contact-to-event)
   * [View Rate](#view-rate)
   * [Tag Rate](#tag-rate)
@@ -63,13 +63,11 @@ Adding a contact to contacts
 - `newcontact n/Deborah Tan p/91234567`
 - `newcontact n/Mandy p/98765432`
 
-
-### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
+<!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
 
 Displays all contacts saved in a list
 
-**Format**: `listcontact`
-
+**Format**: `listcontact` -->
 ### Link Contact to Event: `link` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.

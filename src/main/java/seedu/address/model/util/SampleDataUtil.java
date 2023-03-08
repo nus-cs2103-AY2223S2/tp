@@ -5,7 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -16,6 +21,13 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    public static Contact[] getSampleContacts() {
+        return new Contact [] {
+            new Contact(new ContactName("Deborah Tan"), new ContactPhone("91234567")),
+            new Contact(new ContactName("Mandy"), new ContactPhone("98765432"))
+        };
+    }
     public static Event[] getSamplePersons() {
         return new Event[] {
             new Event(new Name("Event 1"), new Rate("1"),
@@ -45,6 +57,14 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyContactList getSampleContactList() {
+        ContactList sampleCl = new ContactList();
+        for (Contact sampleContact : getSampleContacts()) {
+            sampleCl.addContact(sampleContact);
+        }
+        return sampleCl;
     }
 
     /**
