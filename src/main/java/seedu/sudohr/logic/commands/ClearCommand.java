@@ -2,8 +2,9 @@ package seedu.sudohr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.SudoHr;
+
 
 /**
  * Clears the sudohr book.

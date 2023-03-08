@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
 import seedu.sudohr.model.person.Name;
