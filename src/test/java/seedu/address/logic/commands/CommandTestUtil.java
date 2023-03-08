@@ -6,11 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,6 +73,10 @@ public class CommandTestUtil {
     public static final String CONTENT_DESC_SPORTS = " " + PREFIX_CONTENT + VALID_CONTENT_SPORTS;
     public static final String STATUS_DESC_SPORTS = " " + PREFIX_STATUS + VALID_STATUS_SPORTS;
 
+    public static final String VALID_PERSON_INDEX = " " + PREFIX_PERSON_INDEX + "1";
+    public static final String VALID_TASK_INDEX = " " + PREFIX_TASK_INDEX + "2";
+    public static final String INVALID_PERSON_INDEX = " " + PREFIX_PERSON_INDEX + "o";
+    public static final String INVALID_TASK_INDEX = " " + PREFIX_TASK_INDEX + "!";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
