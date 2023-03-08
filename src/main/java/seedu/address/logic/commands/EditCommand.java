@@ -24,6 +24,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
+import seedu.address.model.tag.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,9 +97,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
+        Set<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedModules, updatedTags);
     }
 
     @Override
@@ -128,6 +130,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private StudentId studentId;
+        private Set<ModuleCode> modules;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -141,6 +144,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStudentId(toCopy.studentId);
+            setModules(toCopy.modules);
             setTags(toCopy.tags);
         }
 
@@ -181,6 +185,23 @@ public class EditCommand extends Command {
 
         public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
+        }
+
+        /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<ModuleCode> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
+         * Returns an unmodifiable modules set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
+         */
+        public Optional<Set<ModuleCode>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 
         /**
