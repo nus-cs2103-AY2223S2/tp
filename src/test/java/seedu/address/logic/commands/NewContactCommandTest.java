@@ -17,11 +17,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.Model;
 import seedu.address.model.person.Event;
 import seedu.address.testutil.ContactBuilder;
 
@@ -50,8 +50,8 @@ class NewContactCommandTest {
         NewContactCommand newContactCommand = new NewContactCommand(validContact);
         ModelStub modelStub = new ModelStubWithContact(validContact);
 
-        assertThrows(CommandException.class, NewContactCommand.MESSAGE_DUPLICATE_CONTACT,
-                () -> newContactCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                NewContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> newContactCommand.execute(modelStub));
     }
 
     @Test
