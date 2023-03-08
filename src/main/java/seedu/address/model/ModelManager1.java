@@ -11,14 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.*;
+import seedu.address.model.internship.Internship;
 import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager1 implements Model1 {
-    private static final Logger logger = LogsCenter.getLogger(seedu.address.internship.ModelManager1.class);
+    private static final Logger logger = LogsCenter.getLogger(ModelManager1.class);
 
     private final InternshipCatalogue internshipCatalogue;
     private final UserPrefs userPrefs;
@@ -119,12 +119,12 @@ public class ModelManager1 implements Model1 {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredInternshipList() {
+    public ObservableList<Internship> getFilteredInternshipList() {
         return filteredInternships;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Internship> predicate) {
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
     }
@@ -137,12 +137,12 @@ public class ModelManager1 implements Model1 {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof seedu.address.internship.ModelManager1)) {
+        if (!(obj instanceof ModelManager1)) {
             return false;
         }
 
         // state check
-        seedu.address.internship.ModelManager1 other = (seedu.address.internship.ModelManager1) obj;
+        ModelManager1 other = (ModelManager1) obj;
         return internshipCatalogue.equals(other.internshipCatalogue)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);

@@ -12,32 +12,32 @@ import seedu.address.model.internship.Internship;
  */
 public class TypicalInternships {
     // Values declared below should be moved to static seedu.address.logic.commands.CommandTestUtil package
-    public String VALID_POSITION_ML1 = "Machine Learning";
-    public String VALID_COMPANY_ML1 = "Tiktok";
-    public String VALID_ID_ML1 = "1";
-    public Integer VALID_STATUS_ML1 = 0;
-    public String VALID_DESCRIPTION_ML1 = "Registration Deadline: 20 Mar 2023";
+    public static String VALID_POSITION_ML1 = "Machine Learning";
+    public static String VALID_COMPANY_ML1 = "Tiktok";
+    public static String VALID_ID_ML1 = "1";
+    public static Integer VALID_STATUS_ML1 = 0;
+    public static String VALID_DESCRIPTION_ML1 = "Registration Deadline: 20 Mar 2023";
 
-    public String VALID_POSITION_SE1 = "Software Engineer";
-    public String VALID_COMPANY_SE1 = "Grab";
-    public String VALID_ID_SE1 = "2";
-    public Integer VALID_STATUS_SE1 = 1;
-    public String VALID_DESCRIPTION_SE1 = "Interview Date: 20 May 2023";
+    public static String VALID_POSITION_SE1 = "Software Engineer";
+    public static String VALID_COMPANY_SE1 = "Grab";
+    public static String VALID_ID_SE1 = "2";
+    public static Integer VALID_STATUS_SE1 = 1;
+    public static String VALID_DESCRIPTION_SE1 = "Interview Date: 20 May 2023";
 
-    public String VALID_POSITION_DA1 = "Data Analytics";
-    public String VALID_COMPANY_DA1 = "Google";
-    public String VALID_ID_DA1 = "3";
-    public Integer VALID_STATUS_DA1 = 2;
-    public String VALID_DESCRIPTION_DA1 = "Internship Period: 01 May 2023 to 31 July 2023";
+    public static String VALID_POSITION_DA1 = "Data Analytics";
+    public static String VALID_COMPANY_DA1 = "Google";
+    public static String VALID_ID_DA1 = "3";
+    public static Integer VALID_STATUS_DA1 = 2;
+    public static String VALID_DESCRIPTION_DA1 = "Internship Period: 01 May 2023 to 31 July 2023";
 
-    public String VALID_POSITION_SD1 = "Software Developer";
-    public String VALID_COMPANY_SD1 = "Shopee";
-    public String VALID_ID_SD1 = "4";
-    public Integer VALID_STATUS_SD1 = 3;
-    public String VALID_DESCRIPTION_SD1 = "Rejected on 21 Feb 2023";
+    public static String VALID_POSITION_SD1 = "Software Developer";
+    public static String VALID_COMPANY_SD1 = "Shopee";
+    public static String VALID_ID_SD1 = "4";
+    public static Integer VALID_STATUS_SD1 = 3;
+    public static String VALID_DESCRIPTION_SD1 = "Rejected on 21 Feb 2023";
 
-    public String VALID_TAG_FUN = "fun";
-    public String VALID_TAG_IMPORTANT = "important";
+    public static String VALID_TAG_FUN = "fun";
+    public static String VALID_TAG_IMPORTANT = "important";
 
     public static final Internship ML2 = new InternshipBuilder().withPosition("Machine Learning")
             .withCompany("GovTech").withId("5").withStatus(2).withDescription("Internship Period: unknown")
@@ -66,7 +66,7 @@ public class TypicalInternships {
             .withCompany(VALID_COMPANY_SE1).withId(VALID_ID_SE1).withDescription(VALID_DESCRIPTION_SE1)
             .withStatus(VALID_STATUS_SE1).withTags(VALID_TAG_IMPORTANT).withTags(VALID_TAG_FUN).build();
     public static final Internship DA1 = new InternshipBuilder().withPosition(VALID_POSITION_DA1)
-            .withCompany(VALID_COMPANY_DA1).withID(VALID_ID_DA1).withDescription(VALID_DESCRIPTION_DA1)
+            .withCompany(VALID_COMPANY_DA1).withId(VALID_ID_DA1).withDescription(VALID_DESCRIPTION_DA1)
             .withStatus(VALID_STATUS_DA1).build();
     public static final Internship SD1 = new InternshipBuilder().withPosition(VALID_POSITION_SD1)
             .withCompany(VALID_COMPANY_SD1).withId(VALID_ID_SD1).withDescription(VALID_DESCRIPTION_SD1)
