@@ -19,7 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 import seedu.address.testutil.PersonBuilder;
 
@@ -104,12 +106,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getContactListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void setContactListFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Event person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +141,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyContactList getContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Event person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,6 +172,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
