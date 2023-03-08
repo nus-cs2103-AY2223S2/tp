@@ -40,9 +40,11 @@ public class VaxNameTest {
         VaxName testing = new VaxName(SAMPLE_NAME);
         VaxName eqs = new VaxName(SAMPLE_NAME + " ");
         VaxName diff = new VaxName(SAMPLE_NAME + "a");
+        Integer unrelated = Integer.valueOf(0);
 
         assertTrue(testing.equals(testing));
         assertTrue(testing.equals(eqs));
         assertFalse(testing.equals(diff));
+        assertFalse(testing.equals(unrelated));
     }
 }
