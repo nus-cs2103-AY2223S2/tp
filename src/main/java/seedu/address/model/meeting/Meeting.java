@@ -2,6 +2,7 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -42,8 +43,12 @@ public class Meeting {
         return dateTime;
     }
 
+    /**
+     * Returns an immutable attendee set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Person> getAttendees() {
-        return attendees;
+        return Collections.unmodifiableSet(attendees);
     }
 
     public Location getLocation() {
