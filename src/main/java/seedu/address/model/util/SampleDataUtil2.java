@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ListingBook;
 import seedu.address.model.ReadOnlyListingBook;
-import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Name;
+import seedu.address.model.listing.Listing;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.listing.Listing;
 
 /**
  * Jackson-friendly version of {@link Listing}.

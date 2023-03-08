@@ -38,7 +38,7 @@ public class ListingBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        //final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 /*
         case AddCommand.COMMAND_WORD:
