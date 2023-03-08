@@ -36,51 +36,32 @@
         </FlowPane>
         <FlowPane fx:id="emailHolder">
             <children>
-               <Label text="Email: ">
-                  <font>
-                     <Font size="12.0" />
-                  </font>
-               </Label>
-               <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                <Label fx:id="fieldE" styleClass="cell_small_label" text="Email: "/>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             </children>
          </FlowPane>
          <FlowPane fx:id="sourceHolder">
             <children>
-               <Label text="Source: ">
-                  <font>
-                     <Font size="12.0"/>
-                  </font></Label>
-               <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
+                <Label fx:id="fieldS" styleClass="cell_small_label" text="Source: "/>
+                <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
             </children>
          </FlowPane>
         <FlowPane fx:id="descriptionHolder">
             <children>
-               <Label text="Description: ">
-                  <font>
-                     <Font size="12.0" />
-                  </font>
-               </Label>
+               <Label fx:id="fieldD" styleClass="cell_small_label" text="Description: " />
                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             </children>
          </FlowPane>
          <FlowPane fx:id="acceptedOnHolder">
             <children>
-               <Label text="Accepted on: ">
-                  <font>
-                     <Font size="12.0" />
-                  </font>
-               </Label>
-               <Label fx:id="acceptedOn" styleClass="cell_small_label" text="\$acceptedOn" />
+                <Label fx:id="fieldA" styleClass="cell_small_label" text="Accepted on: " />
+                <Label fx:id="acceptedOn" styleClass="cell_small_label" text="\$acceptedOn" />
             </children>
          </FlowPane>
          <FlowPane fx:id="deadlineHolder">
-            <children>
-               <Label text="Deadline: ">
-                  <font>
-                     <Font size="12.0" />
-                  </font>
-               </Label>
-               <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+             <children>
+             <Label fx:id="fieldDe" styleClass="cell_small_label" text="Deadline: " />
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
             </children>
          </FlowPane>
     </VBox>
