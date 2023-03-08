@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * A Sex class
+ */
 public class Sex {
     public static final String MESSAGE_CONSTRAINTS = "Sex can only be 'M' or 'F', and it should not be blank";
 

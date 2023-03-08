@@ -52,7 +52,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setStudents(List<Student> students) {this.students.setStudents(students);}
+
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -72,6 +75,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
+    /**
+     * Returns true if this PowerConnect/AddressBook has students
+     * @param student
+     * @return true if student is present, false otherwise
+     */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
@@ -82,10 +91,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+
         persons.add(p);
     }
 
-    public void addStudent(Student s) {students.add(s);}
+    /**
+     * Adds a student to addressBook/PowerConnect
+     * @param s of student
+     */
+    public void addStudent(Student s) {
+
+        students.add(s);
+    }
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -93,7 +110,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -107,10 +123,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+
         persons.remove(key);
     }
 
-    public void removeStudent(Student key) { students.remove(key);}
+    /**
+     * Removes a student
+     * @param key
+     */
+    public void removeStudent(Student key) {
+
+        students.remove(key);
+    }
     //// util methods
 
     @Override
@@ -121,11 +145,15 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Person> getPersonList() {
+
         return persons.asUnmodifiableObservableList();
     }
 
     @Override
-    public ObservableList<Student> getStudentList() {return students.asUnmodifiableObservableList();}
+    public ObservableList<Student> getStudentList() {
+
+        return students.asUnmodifiableObservableList();
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

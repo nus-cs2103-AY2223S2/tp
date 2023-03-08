@@ -1,10 +1,11 @@
 package seedu.address.ui.student;
 
+import java.io.File;
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -13,15 +14,10 @@ import javafx.scene.shape.Circle;
 import seedu.address.model.person.student.Student;
 import seedu.address.ui.UiPart;
 
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
-import java.util.Comparator;
-import java.util.ResourceBundle;
-
-public class StudentCard extends UiPart<Region>  {
+/**
+ * A student card feature in the UI representing student information.
+ */
+public class StudentCard extends UiPart<Region> {
     private static final String FXML = "StudentCard.fxml";
 
     /**
@@ -56,8 +52,8 @@ public class StudentCard extends UiPart<Region>  {
     private Label parentName;
     @FXML
     private Label age;
-   // @FXML
-   // private Label image;
+    // @FXML
+    // private Label image;
     @FXML
     private Label cca;
     @FXML
@@ -82,7 +78,7 @@ public class StudentCard extends UiPart<Region>  {
         parentName.setText(student.getParentName().value);
         age.setText(student.getAge().value);
         //image.setText(student.getImage().value);
-        cca.setText(student.getCCA().value);
+        cca.setText(student.getCca().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -93,8 +89,7 @@ public class StudentCard extends UiPart<Region>  {
             file = new File(path);
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
-        }
-        else {
+        } else {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
         }

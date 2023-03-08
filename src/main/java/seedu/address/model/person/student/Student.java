@@ -1,15 +1,23 @@
 package seedu.address.model.person.student;
 
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.tag.Tag;
+
+/**
+ * A class representing a Student who is a Person
+ */
 public class Student extends Person {
 
     /**
-     *
-     *
      * @param name
      * @param indexNumber
      * @param email
@@ -21,22 +29,40 @@ public class Student extends Person {
     private final ParentName parentName;
     private final Age age;
     private final Image image;
-    private final CCA cca;
+    private final Cca cca;
     private final StudentClass sc;
     private Attendance attendance;
     private Homework homework;
     private Test test;
 
-
-    public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age, Image image, Email email, Phone phone,
-                   CCA cca, Address address, Attendance attendance, Homework homework, Test test, Set<Tag> tags) {
+    /**
+     * A student class constructor
+     * @param name
+     * @param sc
+     * @param indexNumber
+     * @param sex
+     * @param parentName
+     * @param age
+     * @param image
+     * @param email
+     * @param phone
+     * @param cca
+     * @param address
+     * @param attendance
+     * @param homework
+     * @param test
+     * @param tags
+     */
+    public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
+                   Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
+                   Homework homework, Test test, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
         this.parentName = parentName;
         this.age = age;
         this.image = image;
-        this.cca  = cca;
+        this.cca = cca;
         this.sc = sc;
         this.attendance = attendance;
         this.homework = homework;
@@ -58,10 +84,13 @@ public class Student extends Person {
     public Image getImage() {
         return image;
     }
-    public CCA getCCA() {
+    public Cca getCca() {
         return cca;
     }
-    public StudentClass getStudentClass() { return sc; }
+    public StudentClass getStudentClass() {
+
+        return sc;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -83,7 +112,7 @@ public class Student extends Person {
                 && otherStudent.getImage().equals(getImage())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getCCA().equals(getCCA())
+                && otherStudent.getCca().equals(getCca())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -108,7 +137,7 @@ public class Student extends Person {
                 .append("; Student Phone: ")
                 .append(getPhone())
                 .append("; CCA: ")
-                .append(getCCA());
+                .append(getCca());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
