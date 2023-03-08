@@ -1,8 +1,6 @@
-package seedu.modtrek.ui.cli_section;
+package seedu.modtrek.ui.clisection;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -13,6 +11,9 @@ import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.ui.CommandBox;
 import seedu.modtrek.ui.UiPart;
 
+/**
+ * A UI component that displays the portion of a Command-Line Interface to input commands.
+ */
 public class CliSection extends UiPart<Region> {
     private static final String FXML = "cli_section/CliSection.fxml";
 
@@ -27,6 +28,9 @@ public class CliSection extends UiPart<Region> {
     @FXML
     private TextField cliInput;
 
+    /**
+     * Creates a {@code CliSection} with the given {@code CommandExecutor}.
+     */
     public CliSection(CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;

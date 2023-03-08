@@ -6,16 +6,15 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import javafx.util.Duration;
-import seedu.modtrek.ui.cli_section.CliSection;
-import seedu.modtrek.ui.graphics_section.GraphicsSection;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.Logic;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
+import seedu.modtrek.ui.clisection.CliSection;
+import seedu.modtrek.ui.graphicssection.GraphicsSection;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -59,9 +58,9 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-//        setAccelerators();
+        // setAccelerators();
 
-//        helpWindow = new HelpWindow();
+        // helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -108,23 +107,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         graphicsSection = new GraphicsSection(logic.getFilteredModuleList());
         graphicsSectionPlaceholder.getChildren().add(graphicsSection.getRoot());
-        // moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        // personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         cliSection = new CliSection(this::executeCommand);
         cliSectionPlaceholder.getChildren().add(cliSection.getRoot());
-
-//        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-//
-//        resultDisplay = new ResultDisplay();
-//        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-//
-//        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-//        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-//        CommandBox commandBox = new CommandBox(this::executeCommand);
-//        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -139,18 +124,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-//    /**
-//     * Opens the help window or focuses on it if it's already opened.
-//     */
-//    @FXML
-//    public void handleHelp() {
-//        if (!helpWindow.isShowing()) {
-//            helpWindow.show();
-//        } else {
-//            helpWindow.focus();
-//        }
-//    }
-//
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    /*
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+    */
+
     void show() {
         primaryStage.show();
     }
@@ -170,40 +157,11 @@ public class MainWindow extends UiPart<Stage> {
         delay.play();
     }
 
-////    public PersonListPanel getPersonListPanel() {
-////        return personListPanel;
-////    }
-//
-//    /**
-//     * Executes the command and returns the result.
-//     *
-//     * @see seedu.address.logic.Logic#execute(String)
-//     */
-//    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-//        try {
-//            CommandResult commandResult = logic.execute(commandText);
-//            logger.info("Result: " + commandResult.getFeedbackToUser());
-//            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-//
-//            if (commandResult.isShowHelp()) {
-//                handleHelp();
-//            }
-//
-//            if (commandResult.isExit()) {
-//                handleExit();
-//            }
-//
-//            return commandResult;
-//        } catch (CommandException | ParseException e) {
-//            logger.info("Invalid command: " + commandText);
-//            resultDisplay.setFeedbackToUser(e.getMessage());
-//            throw e;
-//        }
-//    }
-
-    public ModuleListPanel getModuleListPanel() {
-        return moduleListPanel;
+    /*
+    public PersonListPanel getPersonListPanel() {
+        return personListPanel;
     }
+     */
 
     /**
      * Executes the command and returns the result.
@@ -217,12 +175,6 @@ public class MainWindow extends UiPart<Stage> {
             // To refresh the graphics section to display updated list of modules
             graphicsSection.displayModuleList(logic.getFilteredModuleList());
 
-            //resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-//            if (commandResult.isShowHelp()) {
-//                handleHelp();
-//            }
-//
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -230,7 +182,6 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            //resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

@@ -1,17 +1,18 @@
-package seedu.modtrek.ui.module_list;
+package seedu.modtrek.ui.modulelist;
 
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
-
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.ui.UiPart;
 
+/**
+ * Represents a module card storing module details for a semYear
+ */
 public class ModuleCard extends UiPart<Region> {
     private static final String FXML = "module_list/ModuleCard.fxml";
     private enum ValidTag {
@@ -35,7 +36,12 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private FlowPane moduleCardTagGroup;
 
-    public ModuleCard(Module module /* TODO: replace with Module object */) {
+    /**
+     * Instantiates a new ModuleCard.
+     *
+     * @param module the module
+     */
+    public ModuleCard(Module module) {
         super(FXML);
 
         moduleCardCode.setText(module.getCode().toString());

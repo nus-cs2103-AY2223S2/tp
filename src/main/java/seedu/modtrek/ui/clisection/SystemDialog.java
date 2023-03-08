@@ -1,4 +1,4 @@
-package seedu.modtrek.ui.cli_section;
+package seedu.modtrek.ui.clisection;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.modtrek.ui.UiPart;
 
+/**
+ * A UI component that displays the response dialog after parsing or execution of commands.
+ */
 public class SystemDialog extends UiPart<Region> {
     private static final String FXML = "cli_section/SystemDialog.fxml";
 
@@ -18,6 +21,12 @@ public class SystemDialog extends UiPart<Region> {
     @FXML
     private HBox systemDialogResponseIndicator;
 
+    /**
+     * Creates a {@code SystemDialog}.
+     *
+     * @param text the response
+     * @param isSuccess if the execution is successful
+     */
     public SystemDialog(String text, boolean isSuccess) {
         super(FXML);
 
