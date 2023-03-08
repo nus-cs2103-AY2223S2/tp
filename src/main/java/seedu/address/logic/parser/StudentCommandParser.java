@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
