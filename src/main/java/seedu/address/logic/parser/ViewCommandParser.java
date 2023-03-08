@@ -7,6 +7,7 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
+
 /**
  * Parses input commands and creates a View Command.
  */
@@ -22,21 +23,21 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     public ViewCommand parse(String args) throws ParseException {
         // shows user information
         if (args.isEmpty()) {
-            return new ViewCommand();
+            return new ViewCommand(null, null);
         }
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(
                 args, Prefix.NAME);
         // show user by querying name
         if (argumentMultimap.getValue(Prefix.NAME).isPresent()) {
             String name = argumentMultimap.getValue(Prefix.NAME).get();
-            return new ViewCommand(name);
+            return new ViewCommand(name, null);
         }
         // show user by querying index
         Index index;
         if (!argumentMultimap.getPreamble().isEmpty()) {
             try {
                 index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
-                return new ViewCommand(index);
+                return new ViewCommand(null, index);
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.USAGE));
             }

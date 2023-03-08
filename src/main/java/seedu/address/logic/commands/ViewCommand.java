@@ -19,33 +19,16 @@ public class ViewCommand extends Command {
             + "has the index\n"
             + "view n/<name> : Allows you to view profile for the specific person"
             + "view : Shows your own profile instead";
-    private final String name;
-    private final Index index;
+    private final Optional<String> name;
+    private final Optional<Index> index;
 
     /**
-     * Creates a View Command with the person's name.
-     * @param name
-     */
-    public ViewCommand(String name) {
-        this.name = name;
-        this.index = null;
-    }
-
-    /**
-     * Creates a View Command.
-     */
-    public ViewCommand() {
-        this.name = null;
-        this.index = null;
-    }
-
-    /**
-     * Creates a View Command with the person's index.
+     * Creates a View Command with the person's name and index.
      * @param index
      */
-    public ViewCommand(Index index) {
-        this.name = null;
-        this.index = index;
+    public ViewCommand(String name, Index index) {
+        this.name = Optional.ofNullable(name);
+        this.index = Optional.ofNullable(index);
     }
 
     /**
@@ -58,7 +41,6 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Optional<Person> person = retrievePerson(model);
-        System.out.println(person);
         if (person.isEmpty()) {
             return new CommandResult("No such name found!", false, false,
                     model.getUser(), true);
@@ -74,14 +56,12 @@ public class ViewCommand extends Command {
      */
     public Optional<Person> retrievePerson(Model model) {
         List<Person> personList = model.getFilteredPersonList();
-        if (index != null) {
-            return Optional.ofNullable(personList.get(this.index.getZeroBased()));
-        } else if (name != null) {
-            return personList.stream()
-                    .filter(x -> x.getName().toString().equals(name))
-                    .findFirst();
-        } else {
-            return Optional.ofNullable(model.getUser());
+        if (index.isPresent()) {
+            return Optional.ofNullable(personList.get(this.index.get().getZeroBased()));
         }
+        return name.map(contact -> personList.stream()
+                .filter(friend -> friend.getName().toString().equals(contact))
+                .findFirst())
+                .orElseGet(() -> Optional.ofNullable(model.getUser()));
     }
 }
