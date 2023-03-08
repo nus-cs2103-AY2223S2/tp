@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Project> filteredProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
     }
 
     public ModelManager() {
@@ -94,8 +97,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return addressBook.hasProject(project);
+    }
+
+    @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
+    }
+
+    @Override
+    public void deleteProject(Project target) {
+        addressBook.removeProject(target);
     }
 
     @Override
@@ -105,10 +119,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addProject(Project project) {
+        addressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
+    }
+
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        addressBook.setProject(target, editedProject);
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -123,9 +150,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +182,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && filteredClients.equals(other.filteredClients)
+                && filteredProjects.equals(other.filteredProjects);
     }
 
 }

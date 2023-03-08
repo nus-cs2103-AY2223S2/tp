@@ -35,6 +35,10 @@ public class ClientTest {
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameClient(editedAlice));
 
+        // same name, all nullable attributes null -> returns true
+        editedAlice = new ClientBuilder(ALICE).withPhone(null).withEmail(null).build();
+        assertTrue(ALICE.isSameClient(editedAlice));
+
         // different name, all other attributes same -> returns false
         editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameClient(editedAlice));
@@ -75,8 +79,16 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // null phone -> returns false
+        editedAlice = new ClientBuilder(ALICE).withPhone(null).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different email -> returns false
         editedAlice = new ClientBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // null email -> returns false
+        editedAlice = new ClientBuilder(ALICE).withEmail(null).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
