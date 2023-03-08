@@ -73,7 +73,7 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      *      {@code false} otherwise.
      */
     public boolean contains(int id) {
-        return dataMap.containts(id);
+        return dataMap.contains(id);
     }
 
 
