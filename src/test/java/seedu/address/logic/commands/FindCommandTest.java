@@ -79,15 +79,4 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GOLDMAN, RIOTGAMES, SAMSUNG), model.getFilteredInternshipList());
     }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private InternshipContainsKeywordsPredicate preparePredicate(String nameInput,
-                                                                 String statusInput,
-                                                                 String tagInput) {
-        return new InternshipContainsKeywordsPredicate(Arrays.asList(nameInput.split("\\s+")),
-                Arrays.asList(statusInput.split("\\s+")),
-                Arrays.asList(tagInput.split("\\s+")));
-    }
 }
