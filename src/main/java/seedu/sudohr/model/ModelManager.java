@@ -26,12 +26,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
      */
-    public ModelManager(ReadOnlySudoHr addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlySudoHr sudoHr, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(sudoHr, userPrefs);
 
-        logger.fine("Initializing with sudohr book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with sudohr book: " + sudoHr + " and user prefs " + userPrefs);
 
-        this.sudoHr = new SudoHr(addressBook);
+        this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
     }
@@ -65,25 +65,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSudoHrFilePath() {
+        return userPrefs.getSudoHrFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSudoHrFilePath(Path sudoHrFilePath) {
+        requireNonNull(sudoHrFilePath);
+        userPrefs.setSudoHrFilePath(sudoHrFilePath);
     }
 
     //=========== SudoHr ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlySudoHr addressBook) {
-        this.sudoHr.resetData(addressBook);
+    public void setSudoHr(ReadOnlySudoHr sudoHr) {
+        this.sudoHr.resetData(sudoHr);
     }
 
     @Override
-    public ReadOnlySudoHr getAddressBook() {
+    public ReadOnlySudoHr getSudoHr() {
         return sudoHr;
     }
 

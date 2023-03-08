@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' sudohr book file path.
      */
-    Path getAddressBookFilePath();
+    Path getSudoHrFilePath();
 
     /**
      * Sets the user prefs' sudohr book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setSudoHrFilePath(Path sudoHrFilePath);
 
     /**
-     * Replaces sudohr book data with the data in {@code addressBook}.
+     * Replaces sudohr book data with the data in {@code sudoHr}.
      */
-    void setAddressBook(ReadOnlySudoHr addressBook);
+    void setSudoHr(ReadOnlySudoHr sudoHr);
 
     /** Returns the SudoHr */
-    ReadOnlySudoHr getAddressBook();
+    ReadOnlySudoHr getSudoHr();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.

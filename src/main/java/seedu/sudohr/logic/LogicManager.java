@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveSudoHr(model.getAddressBook());
+            storage.saveSudoHr(model.getSudoHr());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlySudoHr getAddressBook() {
-        return model.getAddressBook();
+        return model.getSudoHr();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getSudoHrFilePath();
     }
 
     @Override

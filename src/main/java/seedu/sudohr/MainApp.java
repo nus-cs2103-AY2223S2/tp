@@ -52,7 +52,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        SudoHrStorage sudoHrStorage = new JsonSudoHrStorage(userPrefs.getAddressBookFilePath());
+        SudoHrStorage sudoHrStorage = new JsonSudoHrStorage(userPrefs.getSudoHrFilePath());
         storage = new StorageManager(sudoHrStorage, userPrefsStorage);
 
         initLogging(config);
@@ -77,7 +77,7 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample SudoHr");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSudoHr);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty SudoHr");
             initialData = new SudoHr();

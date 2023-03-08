@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the SudoHr.
      *
-     * @see seedu.sudohr.model.Model#getAddressBook()
+     * @see seedu.sudohr.model.Model#getSudoHr()
      */
     ReadOnlySudoHr getAddressBook();
 

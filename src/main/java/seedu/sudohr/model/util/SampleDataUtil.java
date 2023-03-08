@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlySudoHr getSampleAddressBook() {
+    public static ReadOnlySudoHr getSampleSudoHr() {
         SudoHr sampleAb = new SudoHr();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);

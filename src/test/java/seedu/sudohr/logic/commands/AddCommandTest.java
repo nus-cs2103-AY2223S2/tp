@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getSudoHrFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setSudoHrFilePath(Path sudoHrFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlySudoHr newData) {
+        public void setSudoHr(ReadOnlySudoHr sudoHr) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlySudoHr getAddressBook() {
+        public ReadOnlySudoHr getSudoHr() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlySudoHr getAddressBook() {
+        public ReadOnlySudoHr getSudoHr() {
             return new SudoHr();
         }
     }
