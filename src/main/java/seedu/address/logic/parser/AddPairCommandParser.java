@@ -28,8 +28,8 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
 
-        Nric elderlyNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
-        Nric volunteerNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).get());
+        Nric elderlyNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).orElse(""));
+        Nric volunteerNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).orElse(""));
 
         return new AddPairCommand(elderlyNric, volunteerNric);
     }

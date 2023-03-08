@@ -20,14 +20,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.FriendlyLinkStorage;
-import seedu.address.storage.JsonFriendlyLinkStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.elderly.ElderlyStorage;
 import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.pair.JsonPairStorage;
+import seedu.address.storage.pair.PairStorage;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
 import seedu.address.storage.volunteer.VolunteerStorage;
 import seedu.address.ui.Ui;
@@ -61,18 +61,18 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
         // load storage data
-        FriendlyLinkStorage friendlyLinkStorage = new JsonFriendlyLinkStorage(userPrefs.getFriendlyLinkFilePath());
+        PairStorage pairStorage = new JsonPairStorage(userPrefs.getFriendlyLinkFilePath());
         ElderlyStorage elderlyStorage = new JsonElderlyStorage(userPrefs.getElderlyFilePath());
         VolunteerStorage volunteerStorage = new JsonVolunteerStorage(userPrefs.getVolunteerFilePath());
 
-        initializeAppManagers(userPrefsStorage, userPrefs, friendlyLinkStorage, elderlyStorage, volunteerStorage);
+        initializeAppManagers(userPrefsStorage, userPrefs, pairStorage, elderlyStorage, volunteerStorage);
     }
 
     private void initializeAppManagers(
-            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, FriendlyLinkStorage friendlyLinkStorage,
+            UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, PairStorage pairStorage,
             ElderlyStorage elderlyStorage, VolunteerStorage volunteerStorage) {
 
-        storage = new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+        storage = new StorageManager(pairStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
@@ -85,7 +85,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         FriendlyLink applicationCache = new FriendlyLink();
         try {
-            storage.readFriendlyLink(applicationCache);
+            storage.readPair(applicationCache);
             storage.readElderly(applicationCache);
             storage.readVolunteer(applicationCache);
         } catch (DataConversionException e) {

@@ -7,12 +7,13 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.elderly.ElderlyStorage;
+import seedu.address.storage.pair.PairStorage;
 import seedu.address.storage.volunteer.VolunteerStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends FriendlyLinkStorage, VolunteerStorage, ElderlyStorage, UserPrefsStorage {
+public interface Storage extends PairStorage, VolunteerStorage, ElderlyStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

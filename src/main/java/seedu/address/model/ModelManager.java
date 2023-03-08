@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
@@ -25,7 +24,6 @@ public class ModelManager implements Model {
 
     private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Elderly> filteredElderly;
     private final FilteredList<Volunteer> filteredVolunteers;
     private final FilteredList<Pair> filteredPairs;
@@ -38,7 +36,6 @@ public class ModelManager implements Model {
         logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
         this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.friendlyLink.getPersonList());
         filteredElderly = new FilteredList<>(this.friendlyLink.getElderlyList());
         filteredVolunteers = new FilteredList<>(this.friendlyLink.getVolunteerList());
         filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
@@ -86,44 +83,26 @@ public class ModelManager implements Model {
     //=========== FriendlyLink ================================================================================
 
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink friendlyLink) {
+    public void setFriendlyLink(FriendlyLink friendlyLink) {
         this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
-    public ReadOnlyFriendlyLink getFriendlyLink() {
+    public FriendlyLink getFriendlyLink() {
         return friendlyLink;
     }
 
-    //=========== FriendlyLink Persons  ======================================================================
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return friendlyLink.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        friendlyLink.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        friendlyLink.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        friendlyLink.setPerson(target, editedPerson);
-    }
-
     //=========== FriendlyLink Elderly  ======================================================================
+
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getElderly(nric);
+    }
+
     @Override
-    public boolean hasElderly(Elderly e) {
-        requireNonNull(e);
-        return friendlyLink.hasElderly(e);
+    public boolean hasElderly(Elderly elderly) {
+        requireNonNull(elderly);
+        return friendlyLink.hasElderly(elderly);
     }
 
     @Override
@@ -132,45 +111,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addElderly(Elderly person) {
-        friendlyLink.addElderly(person);
-        updateFilteredElderlyList(PREDICATE_SHOW_ALL_ELDERLYS);
+    @SuppressWarnings("unchecked")
+    public void addElderly(Elderly elderly) {
+        friendlyLink.addElderly(elderly);
+        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
     }
 
     @Override
-    public void setElderly(Elderly target, Elderly editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        friendlyLink.setElderly(target, editedPerson);
+    public void setElderly(Elderly target, Elderly editedElderly) {
+        requireAllNonNull(target, editedElderly);
+        friendlyLink.setElderly(target, editedElderly);
     }
 
-    //=========== FriendlyLink Volunteers  ======================================================================
-    @Override
-    public boolean hasVolunteer(Volunteer person) {
-        requireNonNull(person);
-        return friendlyLink.hasVolunteer(person);
-    }
-
-    @Override
-    public void deleteVolunteer(Volunteer target) {
-        friendlyLink.removeVolunteer(target);
-    }
-
-    @Override
-    public void addVolunteer(Volunteer person) {
-        friendlyLink.addVolunteer(person);
-        updateFilteredVolunteerList(PREDICATE_SHOW_ALL_VOLUNTEERS);
-    }
-
-    @Override
-    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
-        requireAllNonNull(target, editedVolunteer);
-        friendlyLink.setVolunteer(target, editedVolunteer);
-    }
-
-    public Elderly getElderly(Nric nric) {
-        requireNonNull(nric);
-        return friendlyLink.getElderly(nric);
-    }
+    //=========== FriendlyLink Volunteers ======================================================================
 
     @Override
     public Volunteer getVolunteer(Nric nric) {
@@ -179,6 +132,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasVolunteer(Volunteer volunteer) {
+        requireNonNull(volunteer);
+        return friendlyLink.hasVolunteer(volunteer);
+    }
+
+    @Override
+    public void deleteVolunteer(Volunteer target) {
+        friendlyLink.removeVolunteer(target);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void addVolunteer(Volunteer volunteer) {
+        friendlyLink.addVolunteer(volunteer);
+        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+    }
+
+    @Override
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+        friendlyLink.setVolunteer(target, editedVolunteer);
+    }
+
+    //=========== FriendlyLink Pairs ======================================================================
+    @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
         return friendlyLink.hasPair(pair);
@@ -186,7 +164,12 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePair(Pair target) {
-        // TODO: implement friendlyLink.removePair(target);
+        friendlyLink.removePair(target);
+    }
+
+    @Override
+    public void deletePair(Nric elderlyNric, Nric volunteerNric) {
+        friendlyLink.removePair(elderlyNric, volunteerNric);
     }
 
     @Override
@@ -199,23 +182,6 @@ public class ModelManager implements Model {
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
         // TODO: implement friendlyLink.setPair(target, editedPair);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedFriendlyLink}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     //=========== Filtered Elderly List Accessors =============================================================
@@ -238,7 +204,7 @@ public class ModelManager implements Model {
     //=========== Filtered Volunteer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Volunteer} backed by the internal list of
      * {@code versionedFriendlyLink}
      */
     @Override
@@ -285,7 +251,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return friendlyLink.equals(other.friendlyLink)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredElderly.equals(other.filteredElderly)
+                && filteredVolunteers.equals(other.filteredVolunteers)
+                && filteredPairs.equals(other.filteredPairs);
     }
 
 }

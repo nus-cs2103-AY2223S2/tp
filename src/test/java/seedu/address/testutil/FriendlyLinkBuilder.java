@@ -1,12 +1,13 @@
 package seedu.address.testutil;
 
 import seedu.address.model.FriendlyLink;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * A utility class to help with building FriendlyLink objects.
  * Example usage: <br>
- *     {@code FriendlyLink fl = new FriendlyLinkBuilder().withPerson("John", "Doe").build();}
+ *     {@code FriendlyLink fl = new FriendlyLinkBuilder().withElderly(elderly).build();}
  */
 public class FriendlyLinkBuilder {
 
@@ -21,10 +22,18 @@ public class FriendlyLinkBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code FriendlyLink} that we are building.
+     * Adds a new {@code Volunteer} to the {@code FriendlyLink} that we are building.
      */
-    public FriendlyLinkBuilder withPerson(Person person) {
-        friendlyLink.addPerson(person);
+    public FriendlyLinkBuilder withVolunteer(Volunteer volunteer) {
+        friendlyLink.addVolunteer(volunteer);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Elderly} to the {@code FriendlyLink} that we are building.
+     */
+    public FriendlyLinkBuilder withElderly(Elderly elderly) {
+        friendlyLink.addElderly(elderly);
         return this;
     }
 

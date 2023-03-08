@@ -9,11 +9,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyElderly;
-import seedu.address.model.ReadOnlyFriendlyLink;
+import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.elderly.ElderlyStorage;
+import seedu.address.storage.pair.PairStorage;
 import seedu.address.storage.volunteer.VolunteerStorage;
 
 /**
@@ -22,7 +23,7 @@ import seedu.address.storage.volunteer.VolunteerStorage;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private final FriendlyLinkStorage friendlyLinkStorage;
+    private final PairStorage pairStorage;
     private final ElderlyStorage elderlyStorage;
     private final VolunteerStorage volunteerStorage;
     private final UserPrefsStorage userPrefsStorage;
@@ -30,10 +31,10 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code FriendlyLinkStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(FriendlyLinkStorage friendlyLinkStorage, ElderlyStorage elderlyStorage,
+    public StorageManager(PairStorage pairStorage, ElderlyStorage elderlyStorage,
                           VolunteerStorage volunteerStorage, UserPrefsStorage userPrefsStorage) {
 
-        this.friendlyLinkStorage = friendlyLinkStorage;
+        this.pairStorage = pairStorage;
         this.elderlyStorage = elderlyStorage;
         this.volunteerStorage = volunteerStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -79,7 +80,7 @@ public class StorageManager implements Storage {
     @Override
     public Optional<ReadOnlyElderly> readElderly(Path filePath, FriendlyLink friendlyLink)
             throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read data from elderly file: " + filePath);
         return elderlyStorage.readElderly(filePath, friendlyLink);
     }
 
@@ -124,7 +125,7 @@ public class StorageManager implements Storage {
     @Override
     public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
             throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read data from volunteers file: " + filePath);
         return volunteerStorage.readVolunteer(filePath, friendlyLink);
     }
 
@@ -139,35 +140,35 @@ public class StorageManager implements Storage {
         volunteerStorage.saveVolunteer(volunteer, filePath);
     }
 
-    // ================ FriendlyLink methods ==============================
+    // ================ Pair methods ==============================
 
     @Override
-    public Path getFriendlyLinkFilePath() {
-        return friendlyLinkStorage.getFriendlyLinkFilePath();
+    public Path getPairFilePath() {
+        return pairStorage.getPairFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(FriendlyLink friendlyLink)
+    public Optional<ReadOnlyPair> readPair(FriendlyLink friendlyLink)
             throws DataConversionException, IOException {
-        return readFriendlyLink(friendlyLinkStorage.getFriendlyLinkFilePath(), friendlyLink);
+        return readPair(pairStorage.getPairFilePath(), friendlyLink);
     }
 
     @Override
-    public Optional<ReadOnlyFriendlyLink> readFriendlyLink(Path filePath, FriendlyLink friendlyLink)
+    public Optional<ReadOnlyPair> readPair(Path filePath, FriendlyLink friendlyLink)
             throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return friendlyLinkStorage.readFriendlyLink(filePath, friendlyLink);
+        logger.fine("Attempting to read data from pairs file: " + filePath);
+        return pairStorage.readPair(filePath, friendlyLink);
     }
 
     @Override
-    public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink) throws IOException {
-        saveFriendlyLink(friendlyLink, friendlyLinkStorage.getFriendlyLinkFilePath());
+    public void savePair(ReadOnlyPair pair) throws IOException {
+        savePair(pair, pairStorage.getPairFilePath());
     }
 
     @Override
-    public void saveFriendlyLink(ReadOnlyFriendlyLink friendlyLink, Path filePath) throws IOException {
+    public void savePair(ReadOnlyPair pair, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        friendlyLinkStorage.saveFriendlyLink(friendlyLink, filePath);
+        pairStorage.savePair(pair, filePath);
     }
 
 }

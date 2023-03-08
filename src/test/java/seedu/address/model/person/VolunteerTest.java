@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVolunteers.ALICE;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
@@ -37,12 +37,12 @@ public class VolunteerTest {
 
         // same name, same nric, all other attributes different -> returns true
         Volunteer editedAlice = new VolunteerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, different nric, all other attributes different -> returns true
         editedAlice = new VolunteerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).withNric(VALID_NRIC_BOB).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -102,7 +102,7 @@ public class VolunteerTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different tags -> returns false
-        editedAlice = new VolunteerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new VolunteerBuilder(ALICE).withTags(VALID_TAG_SINGLE).build();
         assertNotEquals(ALICE, editedAlice);
     }
 }

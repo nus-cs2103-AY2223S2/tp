@@ -5,12 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyFriendlyLink;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
@@ -49,32 +48,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void setFriendlyLink(FriendlyLink newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setFriendlyLink(ReadOnlyFriendlyLink newData) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyFriendlyLink getFriendlyLink() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public FriendlyLink getFriendlyLink() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -90,6 +69,11 @@ class ModelStub implements Model {
 
     @Override
     public void deletePair(Pair target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deletePair(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -148,16 +132,6 @@ class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<Pair> getFilteredPairList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -167,9 +141,6 @@ class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered elderly list
-     */
     @Override
     public ObservableList<Elderly> getFilteredElderlyList() {
         throw new AssertionError("This method should not be called.");
@@ -180,9 +151,6 @@ class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered volunteers list
-     */
     @Override
     public ObservableList<Volunteer> getFilteredVolunteerList() {
         throw new AssertionError("This method should not be called.");

@@ -16,13 +16,12 @@ import seedu.address.model.ReadOnlyVolunteer;
 import seedu.address.storage.JsonAppStorage;
 
 /**
- * A class to access volunteer. data stored as a json file on the hard disk.
+ * A class to access volunteer data stored as a json file on the hard disk.
  */
 public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, FriendlyLink, JsonSerializableVolunteer>
         implements VolunteerStorage {
 
-    private static final Logger logger =
-            LogsCenter.getLogger(seedu.address.storage.volunteer.JsonVolunteerStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonVolunteerStorage.class);
 
     public JsonVolunteerStorage(Path filePath) {
         super(filePath);
@@ -52,8 +51,8 @@ public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, Frie
     }
 
     @Override
-    public void saveVolunteer(ReadOnlyVolunteer friendlyLink) throws IOException {
-        saveVolunteer(friendlyLink, super.getFilePath());
+    public void saveVolunteer(ReadOnlyVolunteer entity) throws IOException {
+        saveVolunteer(entity, super.getFilePath());
     }
 
     /**

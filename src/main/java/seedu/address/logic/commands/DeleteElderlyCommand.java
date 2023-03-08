@@ -13,6 +13,7 @@ import seedu.address.model.person.information.Nric;
  * Deletes an elderly identified using its NRIC from the FriendlyLink database.
  */
 public class DeleteElderlyCommand extends Command {
+
     public static final String COMMAND_WORD = "delete_elderly";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

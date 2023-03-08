@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
@@ -44,7 +45,6 @@ public class AddElderlyCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This elderly already exists in the database";
 
     private final Elderly toAdd;
 
@@ -63,7 +63,7 @@ public class AddElderlyCommand extends Command {
         // hasPerson makes the judgement based on if same name
         // in Elderly, criteria is same name and age
         if (model.hasElderly(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.addElderly(toAdd);
