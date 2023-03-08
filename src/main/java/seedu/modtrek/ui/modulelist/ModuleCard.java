@@ -1,5 +1,12 @@
 package seedu.modtrek.ui.modulelist;
 
+import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_BREADTH_AND_DEPTH;
+import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_FOUNDATION;
+import static seedu.modtrek.model.tag.Tag.ValidTag.IT_PROFESSIONALISM;
+import static seedu.modtrek.model.tag.Tag.ValidTag.MATHEMATICS_AND_SCIENCES;
+import static seedu.modtrek.model.tag.Tag.ValidTag.UNIVERSITY_LEVEL_REQUIREMENTS;
+import static seedu.modtrek.model.tag.Tag.ValidTag.UNRESTRICTED_ELECTIVES;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -10,8 +17,6 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.model.tag.Tag.ValidTag;
 import seedu.modtrek.ui.UiPart;
-
-import static seedu.modtrek.model.tag.Tag.ValidTag.*;
 
 /**
  * Represents a module card storing module details for a semYear.

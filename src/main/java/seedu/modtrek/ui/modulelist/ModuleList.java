@@ -47,6 +47,7 @@ public class ModuleList extends UiPart<Region> {
                 modsPerSemYear.get(semYear).add(module);
             }
         }
+
         for (Map.Entry<SemYear, ArrayList<Module>> entry : modsPerSemYear.entrySet()) {
             ModuleGroup moduleGroup = new ModuleGroup(entry.getKey(), entry.getValue());
             moduleList.getChildren().add(moduleGroup.getRoot());
