@@ -39,9 +39,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("id") String id,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("id") String id,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -62,8 +62,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         id = source.getId().getValue().toString();
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -79,6 +79,7 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
+        final Id modelId = new Id(id);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -113,7 +114,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelId);
     }
 
 }
