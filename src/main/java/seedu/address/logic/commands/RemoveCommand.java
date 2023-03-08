@@ -4,13 +4,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -207,12 +210,15 @@ public class RemoveCommand extends Command {
 
             Set<Language> newLanguages = new HashSet<>(person.getLanguages());
 
-            if (!newLanguages.removeAll(languages) && !languages.isEmpty()) {
+            if (newLanguages.removeAll(languages)) {
+                return Optional.of(Collections.unmodifiableSet(newLanguages));
+            }
+
+            if (!languages.isEmpty()) {
                 setLanguages(null);
                 return Optional.empty();
             }
-
-            return Optional.of(Collections.unmodifiableSet(newLanguages));
+            return Optional.of(Collections.unmodifiableSet(languages));
         }
 
         /**
@@ -235,12 +241,15 @@ public class RemoveCommand extends Command {
 
             Set<Tag> newTags = new HashSet<>(person.getTags());
 
-            if (!newTags.removeAll(tags) && !tags.isEmpty()) {
+            if (newTags.removeAll(tags)) {
+                return Optional.of(Collections.unmodifiableSet(newTags));
+            }
+
+            if (!tags.isEmpty()) {
                 setTags(null);
                 return Optional.empty();
             }
-
-            return Optional.of(Collections.unmodifiableSet(newTags));
+            return Optional.of(Collections.unmodifiableSet(tags));
         }
 
         @Override
