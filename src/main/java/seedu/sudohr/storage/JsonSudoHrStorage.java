@@ -45,14 +45,14 @@ public class JsonSudoHrStorage implements SudoHrStorage {
     public Optional<ReadOnlySudoHr> readSudoHr(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableSudoHr> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableSudoHr> jsonSudoHr = JsonUtil.readJsonFile(
                 filePath, JsonSerializableSudoHr.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonSudoHr.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonSudoHr.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
