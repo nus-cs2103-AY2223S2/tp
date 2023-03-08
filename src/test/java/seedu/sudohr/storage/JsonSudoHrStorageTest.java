@@ -16,8 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.sudohr.commons.exceptions.DataConversionException;
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.SudoHr;
+
 
 public class JsonSudoHrStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSudoHrStorageTest");

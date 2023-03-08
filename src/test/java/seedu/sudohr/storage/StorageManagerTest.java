@@ -11,9 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.UserPrefs;
+
 
 public class StorageManagerTest {
 

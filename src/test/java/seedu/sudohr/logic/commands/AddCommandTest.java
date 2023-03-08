@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
-import seedu.sudohr.model.ReadOnlySudoHr;
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 

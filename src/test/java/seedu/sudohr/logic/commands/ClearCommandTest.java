@@ -5,9 +5,9 @@ import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.UserPrefs;
 
 public class ClearCommandTest {
