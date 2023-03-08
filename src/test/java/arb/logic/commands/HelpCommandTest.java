@@ -14,14 +14,6 @@ public class HelpCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_helpSuccess_withCurrentListTypeNone() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
-                ListType.NONE);
-        assertCommandSuccess(new HelpCommand(), ListType.NONE, ListType.NONE, model, expectedCommandResult,
-                expectedModel);
-    }
-
-    @Test
     public void execute_helpSuccess_withCurrentListTypeClient() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
                 ListType.NONE);

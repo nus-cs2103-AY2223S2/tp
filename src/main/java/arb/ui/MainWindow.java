@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
-        swapList(ListType.CLIENT);
+        setCurrentlyShownList(ListType.CLIENT);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -174,27 +174,25 @@ public class MainWindow extends UiPart<Stage> {
         return projectListPanel;
     }
 
-    private void swapToClientList() {
+    private void showClientList() {
         this.logic.setListType(ListType.CLIENT);
         this.listPanelPlaceholder.getChildren().clear();
         this.listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
-    private void swapToProjectList() {
+    private void showProjectList() {
         this.logic.setListType(ListType.PROJECT);
         this.listPanelPlaceholder.getChildren().clear();
         this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
     }
 
-    private void swapList(ListType listToBeShown) {
+    private void setCurrentlyShownList(ListType listToBeShown) {
         switch (listToBeShown) {
-        case NONE:
-            break;
         case PROJECT:
-            swapToProjectList();
+            showProjectList();
             break;
         case CLIENT:
-            swapToClientList();
+            showClientList();
             break;
         default:
             break;
@@ -220,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            swapList(commandResult.getListToBeShown());
+            setCurrentlyShownList(commandResult.getListToBeShown());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

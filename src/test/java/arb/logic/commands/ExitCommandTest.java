@@ -14,14 +14,6 @@ public class ExitCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_exitSuccess_withCurrentListTypeNone() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
-                ListType.NONE);
-        assertCommandSuccess(new ExitCommand(), ListType.NONE, ListType.NONE, model, expectedCommandResult,
-                expectedModel);
-    }
-
-    @Test
     public void execute_exitSuccess_withCurrentListTypeClient() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
                 ListType.NONE);
