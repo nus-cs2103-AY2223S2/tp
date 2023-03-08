@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
+
 
 /**
  * Represents the result of a command execution.
@@ -34,6 +35,15 @@ public class CommandResult {
         this.toShowNewPerson = false;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the Person's information to be displayed on the
+     * profile panel.
+     * @param feedbackToUser
+     * @param isShowHelp
+     * @param isExit
+     * @param person
+     * @param personToChange
+     */
     public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, Person person,
                          boolean personToChange) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
