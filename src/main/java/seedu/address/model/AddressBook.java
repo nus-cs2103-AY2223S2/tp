@@ -119,10 +119,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    public void addDoctor(Doctor doctor){
+    /**
+     * Adds a doctor to the address book.
+     * The doctor must not already exist in the address book.
+     * @param doctor
+     */
+    public void addDoctor(Doctor doctor) {
         persons.add(doctor);
     }
 
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
     public boolean hasDoctor(Doctor doctor) {
         requireNonNull(doctor);
         return persons.contains(doctor);
