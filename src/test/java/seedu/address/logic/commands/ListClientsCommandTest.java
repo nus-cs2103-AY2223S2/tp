@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ListClientsCommandTest {
 
     private FitBookModel model;
     private FitBookModel expectedFitBookModel;
