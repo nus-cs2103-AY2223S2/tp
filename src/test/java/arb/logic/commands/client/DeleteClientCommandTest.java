@@ -3,7 +3,7 @@ package arb.logic.commands.client;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
@@ -36,7 +37,8 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -44,7 +46,8 @@ public class DeleteClientCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -60,7 +63,8 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoClient(expectedModel);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, ListType.CLIENT, ListType.CLIENT, model, expectedMessage,
+                expectedModel);
     }
 
     @Test
@@ -73,7 +77,8 @@ public class DeleteClientCommandTest {
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, ListType.CLIENT, model,
+                Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

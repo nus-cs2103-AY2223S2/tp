@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.NameContainsKeywordsPredicate;
 
@@ -28,11 +29,12 @@ public class FindClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
+                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()),
+                ListType.CLIENT);
     }
 
     @Override

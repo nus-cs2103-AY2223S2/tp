@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 
@@ -46,7 +47,7 @@ public class AddClientCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
 
         if (model.hasClient(toAdd)) {
@@ -54,7 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.CLIENT);
     }
 
     @Override

@@ -5,45 +5,54 @@ import static arb.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import arb.model.tag.Tag;
 
 /**
  * Represents a Client in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: name and tags are present and not null, field values are validated, immutable.
  */
 public class Client {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Optional<Phone> phone;
+    private final Optional<Email> email;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Name and tags must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.phone = Optional.ofNullable(phone);
+        this.email = Optional.ofNullable(email);
         this.tags.addAll(tags);
     }
 
     public Name getName() {
-        return name;
+        return this.name;
+    }
+
+    public boolean isPhonePresent() {
+        return this.phone.isPresent();
     }
 
     public Phone getPhone() {
-        return phone;
+        return this.phone.orElse(null);
+    }
+
+    public boolean isEmailPresent() {
+        return this.email.isPresent();
     }
 
     public Email getEmail() {
-        return email;
+        return this.email.orElse(null);
     }
 
     /**
@@ -82,10 +91,27 @@ public class Client {
         }
 
         Client otherClient = (Client) other;
-        return otherClient.getName().equals(getName())
-                && otherClient.getPhone().equals(getPhone())
-                && otherClient.getEmail().equals(getEmail())
-                && otherClient.getTags().equals(getTags());
+
+        boolean isNameEqual = otherClient.getName().equals(getName());
+        boolean isTagsEqual = otherClient.getTags().equals(getTags());
+
+        boolean isPhoneEqual;
+
+        if (!isPhonePresent()) {
+            isPhoneEqual = otherClient.getPhone() == null;
+        } else {
+            isPhoneEqual = getPhone().equals(otherClient.getPhone());
+        }
+
+        boolean isEmailEqual;
+
+        if (!isEmailPresent()) {
+            isEmailEqual = otherClient.getEmail() == null;
+        } else {
+            isEmailEqual = getEmail().equals(otherClient.getEmail());
+        }
+
+        return isNameEqual && isTagsEqual && isPhoneEqual && isEmailEqual;
     }
 
     @Override
@@ -97,11 +123,15 @@ public class Client {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail());
+        builder.append(getName());
+
+        if (isPhonePresent()) {
+            builder.append("; Phone: ").append(getPhone());
+        }
+
+        if (isEmailPresent()) {
+            builder.append("; Email: ").append(getEmail());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

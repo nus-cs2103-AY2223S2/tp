@@ -1,6 +1,7 @@
 package arb.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import arb.model.client.Client;
@@ -20,8 +21,8 @@ public class ClientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
 
     private Name name;
-    private Phone phone;
-    private Email email;
+    private Optional<Phone> phone;
+    private Optional<Email> email;
     private Set<Tag> tags;
 
     /**
@@ -29,8 +30,8 @@ public class ClientBuilder {
      */
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        phone = Optional.of(new Phone(DEFAULT_PHONE));
+        email = Optional.of(new Email(DEFAULT_EMAIL));
         tags = new HashSet<>();
     }
 
@@ -39,8 +40,8 @@ public class ClientBuilder {
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
-        phone = clientToCopy.getPhone();
-        email = clientToCopy.getEmail();
+        phone = Optional.ofNullable(clientToCopy.getPhone());
+        email = Optional.ofNullable(clientToCopy.getEmail());
         tags = new HashSet<>(clientToCopy.getTags());
     }
 
@@ -64,7 +65,7 @@ public class ClientBuilder {
      * Sets the {@code Phone} of the {@code Client} that we are building.
      */
     public ClientBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Optional.ofNullable(phone).map(p -> new Phone(p));
         return this;
     }
 
@@ -72,12 +73,12 @@ public class ClientBuilder {
      * Sets the {@code Email} of the {@code Client} that we are building.
      */
     public ClientBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = Optional.ofNullable(email).map(e -> new Email(e));
         return this;
     }
 
     public Client build() {
-        return new Client(name, phone, email, tags);
+        return new Client(name, phone.orElse(null), email.orElse(null), tags);
     }
 
 }

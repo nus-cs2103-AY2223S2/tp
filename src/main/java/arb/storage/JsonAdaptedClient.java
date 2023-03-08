@@ -3,6 +3,7 @@ package arb.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,8 +37,8 @@ class JsonAdaptedClient {
             @JsonProperty("email") String email,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.phone = Optional.ofNullable(phone).orElse(null);
+        this.email = Optional.ofNullable(email).orElse(null);
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -48,8 +49,8 @@ class JsonAdaptedClient {
      */
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        phone = Optional.ofNullable(source.getPhone()).map(p -> p.value).orElse(null);
+        email = Optional.ofNullable(source.getEmail()).map(e -> e.value).orElse(null);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -74,21 +75,15 @@ class JsonAdaptedClient {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+        if (phone != null && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelPhone = Optional.ofNullable(phone).map(p -> new Phone(p)).orElse(null);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
+        if (email != null && !Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Email modelEmail = Optional.ofNullable(email).map(e -> new Email(e)).orElse(null);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelTags);
