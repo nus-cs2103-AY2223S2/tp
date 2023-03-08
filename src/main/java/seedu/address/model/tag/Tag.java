@@ -57,6 +57,11 @@ public class Tag {
         return tagName;
     }
 
+    /**
+     * compares and checks if two tags are same or different
+     * @param otherTag
+     * @return
+     */
     public boolean isSameTag(Tag otherTag) {
         if (otherTag == this) {
             return true;
