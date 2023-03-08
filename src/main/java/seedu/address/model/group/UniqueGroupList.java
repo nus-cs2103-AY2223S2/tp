@@ -46,6 +46,10 @@ public class UniqueGroupList {
         persons.forEach(person -> person.removeGroup(toRemove));
         groups.remove(toRemove);
     }
+
+    public boolean contains(Group toCheck) {
+        return groups.contains(toCheck);
+    }
 }
 
 
