@@ -70,14 +70,14 @@ public class MainApp extends Application {
      * or an empty sudohr book will be used instead if errors occur when reading {@code storage}'s sudohr book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlySudoHr> addressBookOptional;
+        Optional<ReadOnlySudoHr> sudoHrOptional;
         ReadOnlySudoHr initialData;
         try {
-            addressBookOptional = storage.readSudoHr();
-            if (!addressBookOptional.isPresent()) {
+            sudoHrOptional = storage.readSudoHr();
+            if (!sudoHrOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample SudoHr");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSudoHr);
+            initialData = sudoHrOptional.orElseGet(SampleDataUtil::getSampleSudoHr);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty SudoHr");
             initialData = new SudoHr();
