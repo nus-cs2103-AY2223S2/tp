@@ -12,7 +12,7 @@ import arb.model.tag.Tag;
 
 /**
  * Represents a Client in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: name and tags are present and not null, field values are validated, immutable.
  */
 public class Client {
 
@@ -25,7 +25,7 @@ public class Client {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Name and tags must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(name, tags);
@@ -125,11 +125,11 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        if (phone.isPresent()) {
+        if (isPhonePresent()) {
             builder.append("; Phone: ").append(getPhone());
         }
 
-        if (email.isPresent()) {
+        if (isEmailPresent()) {
             builder.append("; Email: ").append(getEmail());
         }
 

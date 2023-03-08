@@ -1,7 +1,6 @@
 package arb.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import arb.model.client.Client;
 import javafx.fxml.FXML;
