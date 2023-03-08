@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showFishAtIndex;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FISH;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ import seedu.address.testutil.FishBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +43,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                                                                    new UserPrefs(),
+                                                                    getTypicalTaskList());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +66,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                                                                    new UserPrefs(),
+                                                                    getTypicalTaskList());
         expectedModel.setFish(lastFish, editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +81,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                                                                    new UserPrefs(),
+                                                                    getTypicalTaskList());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +99,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                                                                    new UserPrefs(),
+                                                                    getTypicalTaskList());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

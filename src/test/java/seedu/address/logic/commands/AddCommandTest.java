@@ -19,8 +19,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.FishBuilder;
 
 public class AddCommandTest {
@@ -147,6 +149,45 @@ public class AddCommandTest {
         public void updateFilteredFishList(Predicate<Fish> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        //=========== TaskList =============================================================
+        @Override
+        public void setTaskList(ReadOnlyTaskList taskList) {}
+
+        @Override
+        public ReadOnlyTaskList getTaskList() {
+            return null;
+        }
+
+        @Override
+        public Path getTaskListFilePath() {
+            return null;
+        }
+
+        @Override
+        public void setTaskListFilePath(Path taskListFilePath) {}
+
+        @Override
+        public boolean hasTask(Task task) {
+            return false;
+        }
+
+        @Override
+        public void addTask(Task task) {}
+
+        @Override
+        public void deleteTask(Task task) {}
+
+        @Override
+        public void setTask(Task target, Task editedTask) {}
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {}
     }
 
     /**

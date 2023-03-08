@@ -87,9 +87,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTaskListFilePath(Path TaskListFilePath) {
-        requireNonNull(TaskListFilePath);
-        userPrefs.setTaskListFilePath(TaskListFilePath);
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -168,8 +168,8 @@ public class ModelManager implements Model {
 
     //=========== TaskList =============================================================
     @Override
-    public void setTaskList(ReadOnlyTaskList TaskList) {
-        this.taskList.resetData(TaskList);
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        this.taskList.resetData(taskList);
     }
 
     @Override
@@ -178,9 +178,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTask(Task Task) {
-        requireNonNull(Task);
-        return taskList.hasTask(Task);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
     }
 
     @Override
@@ -189,8 +189,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTask(Task Task) {
-        taskList.addTask(Task);
+    public void addTask(Task task) {
+        taskList.addTask(task);
     }
 
     @Override

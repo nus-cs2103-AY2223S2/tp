@@ -1,15 +1,18 @@
 package seedu.address.model;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-public class TaskList implements ReadOnlyTaskList { 
+/**
+ * Wraps all data at the product level
+ * Duplicates are not allowed (by .isSameFish comparison) <- to be confirmed
+ */
+public class TaskList implements ReadOnlyTaskList {
     private final UniqueTaskList tasks;
 
     /*
@@ -37,8 +40,8 @@ public class TaskList implements ReadOnlyTaskList {
      * Replaces the contents of the {@code TaskList} with {@code Tasks}.
      * {@code Tasks} must not contain duplicate {@code Task}s.
      */
-    public void setTasks(List<Task> Tasks) {
-        this.tasks.setTasks(Tasks);
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
@@ -55,17 +58,17 @@ public class TaskList implements ReadOnlyTaskList {
     /**
      * Returns true if a {@code Task} identical to {@code Task} exists in the {@code TaskList}.
      */
-    public boolean hasTask(Task Task) {
-        requireNonNull(Task);
-        return tasks.contains(Task);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
 
     /**
      * Adds a {@code Task} to the {@code TaskList}.
      * The {@code Task} must not already exist in the {@code TaskList}.
      */
-    public void addTask(Task Task) {
-        tasks.add(Task);
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
     /**
