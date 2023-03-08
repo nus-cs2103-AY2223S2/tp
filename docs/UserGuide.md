@@ -3,7 +3,7 @@ layout: page
 title: CareFlow User Guide
 ---
 
-Careflow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Careflow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you are a receptionist for a GP clinic and you can type fast, Careflow can get your patient and drugs management tasks done faster than traditional applications.
 * Table of Contents
@@ -99,7 +99,6 @@ Format: `p find -n PATIENT_NAME`
 Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns Alex Yeoh, David Li
- 
 
 
 ### Retrieve a Patient record by NRIC: `p find`
@@ -109,12 +108,13 @@ Examples:
 * p find -ic T3871918C 
 * Returns John Doe | T3871918C | 98765432 | johnd@example.com | John Street, Block 123, #01-01
 
+
 ### Delete a Patient record by NRIC: `p delete`
 Deletes the specified patient from the patient list.
 
 Format: `p delete -ic PATIENT_NRIC`
 
-Examples: 
+Examples:
 * `p delete -ic T1234567B`
 
 ### Delete a Patient record by index: `p delete`
@@ -179,7 +179,7 @@ Format: `d clear`
 Updates the storage count of specified drug entry based on trade name keyword from drug list.
 * NOTE: concatenate + or - in front of value for addition/subtraction respectively
 
-Format: 
+Format:
 <br>`d update -tn TRADE_NAME -up +VALUE` <br> OR <br>
 `d update -tn TRADE_NAME -up -VALUE`
 

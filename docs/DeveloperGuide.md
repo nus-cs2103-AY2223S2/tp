@@ -258,13 +258,13 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Receptionists, specifically targeting General Practitioner clinics, usually with fewer and regular patients.
-* Mostly desk-bound. Computers are accessible tools. 
+* Mostly desk-bound. Computers are accessible tools.
 * Able to pick up typing skills quickly and able to type fast.
 * is reasonably comfortable using CLI apps
 * has a need to manage a significant number of contacts
 
 
-**Value proposition**: 
+**Value proposition**:
 
 * Better communication between healthcare providers and patients
 * Increased efficiency in tracking patient’s health records and personal information
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to add a new patient to the system.
-2. The user enters patient details 
+2. The user enters patient details
    1. The following are required information:
          - Patient name
          - NRIC
@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. If the username is already in use
 
     * 2b1. the user is informed that he or she must choose a different name
-   
+
  Use case resume at step 2.
 
 * 2c. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
@@ -415,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to add a new drug to the system
 2. The user enters drug details
 3. The system creates the new user account
-4. The system show the new created drug in the drug list 
+4. The system show the new created drug in the drug list
 
     Use case ends.
 
