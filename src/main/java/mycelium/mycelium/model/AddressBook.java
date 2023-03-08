@@ -6,8 +6,11 @@ import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.UniquePersonList;
 
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.UniqueList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,15 +19,23 @@ import static java.util.Objects.requireNonNull;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueList<Project> projects;
+
+    private final UniqueList<Client> clients;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */ {
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
+     */
+    {
         persons = new UniquePersonList();
+        projects = new UniqueList<>();
+        clients = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -49,18 +60,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    public void setProjects(List<Project> projects) {
+        this.projects.setItems(projects);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setItems(clients);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setProjects(newData.getProjectList());
+        setClients(newData.getClientList());
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -76,9 +106,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -107,21 +139,50 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    // TODO: implement later
-    @Override
-    public ObservableList<Client> getClientList() {
-        return null;
+    public boolean hasClient(Client client) {
+        return clients.contains(client);
+    }
+
+    public void removeClient(Client client) {
+        clients.remove(client);
+    }
+
+    public void addClient(Client client) {
+        clients.add(client);
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
+    }
+
+    public boolean hasProject(Project project) {
+        return projects.contains(project);
+    }
+
+    public void removeProject(Project project) {
+        projects.remove(project);
+    }
+
+    public void addProject(Project project) {
+        projects.add(project);
+    }
+
+    @Override
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressBook that = (AddressBook) o;
+        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects) && Objects.equals(clients, that.clients);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, projects, clients);
     }
 }

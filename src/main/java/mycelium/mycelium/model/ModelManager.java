@@ -1,17 +1,24 @@
 package mycelium.mycelium.model;
 
+import static java.util.Objects.requireNonNull;
+import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
+import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
+import mycelium.mycelium.model.util.exceptions.ItemNotFoundException;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +29,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private final FilteredList<Project> filteredProjects;
+    private final FilteredList<Client> filteredClients;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +42,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
     }
 
     public ModelManager() {
@@ -129,22 +139,79 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
     }
 
+    @Override
+    public void deleteClient(Client target) {
+        addressBook.removeClient(target);
+    }
+
+    @Override
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+    public boolean hasProject(Project project) {
+        return addressBook.hasProject(project);
+    }
+
+    @Override
+    public void deleteProject(Project project) {
+        try {
+            addressBook.removeProject(project);
+        } catch (ItemNotFoundException e) {
+            logger.warning(String.format(
+                "Requested deletion for project with name %s not found in address book, ignoring...",
+                project.getName()));
+        }
+    }
+
+    @Override
+    public void addProject(Project project) {
+        try {
+            addressBook.addProject(project);
+        } catch (DuplicateItemException e) {
+            throw new DuplicateProjectException();
+        }
+        updateFilteredProjectList(x -> true);
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ModelManager that = (ModelManager) o;
+        return Objects.equals(addressBook, that.addressBook) && Objects.equals(userPrefs, that.userPrefs) && Objects.equals(filteredPersons, that.filteredPersons) && Objects.equals(filteredProjects, that.filteredProjects) && Objects.equals(filteredClients, that.filteredClients);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredProjects, filteredClients);
+    }
 }

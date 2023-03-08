@@ -3,7 +3,9 @@ package mycelium.mycelium.model.client;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.IsSame;
 
+import java.time.Year;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,12 +16,12 @@ import java.util.Optional;
  * A client can be created with just a name and email or with all available information.
  * The name and email are required fields and cannot be null.
  */
-public class Client {
+public class Client implements IsSame<Client> {
     private final Name name;
 
     private final Email email;
 
-    private final Optional<Date> yearOfBirth;
+    private final Optional<Year> yearOfBirth;
 
     private final Optional<String> source;
 
@@ -47,7 +49,7 @@ public class Client {
      * @param yearOfBirth the year of birth of the client.
      * @param source      the source of information about the client.
      */
-    public Client(Name name, Email email, Optional<Date> yearOfBirth, Optional<String> source, Optional<Phone> mobileNumber) {
+    public Client(Name name, Email email, Optional<Year> yearOfBirth, Optional<String> source, Optional<Phone> mobileNumber) {
         this.name = name;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
@@ -78,7 +80,7 @@ public class Client {
      *
      * @return the year of birth of the client.
      */
-    public Optional<Date> getYearOfBirth() {
+    public Optional<Year> getYearOfBirth() {
         return yearOfBirth;
     }
 

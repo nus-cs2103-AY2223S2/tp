@@ -1,6 +1,8 @@
 package mycelium.mycelium.storage;
 
 import java.util.Date;
+import java.time.Year;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +26,7 @@ class JsonAdaptedClient {
 
     private final String name;
     private final String email;
-    private final Date yearOfBirth;
+    private final Year yearOfBirth;
     private final String source;
     private final String mobileNumber;
 
@@ -33,7 +35,7 @@ class JsonAdaptedClient {
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("email") String email,
-                             @JsonProperty("year_of_birth") Date yearOfBirth,
+                             @JsonProperty("year_of_birth") Year yearOfBirth,
                              @JsonProperty("source") String source,
                              @JsonProperty("mobile_number") String mobileNumber) {
         this.name = name;
@@ -49,9 +51,9 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client client) {
         name = client.getName().fullName;
         email = client.getEmail().value;
-        yearOfBirth = client.getYearOfBirth();
-        source = client.getSource();
-        mobileNumber = client.getMobileNumber().value;
+        yearOfBirth = client.getYearOfBirth().get();
+        source = client.getSource().get();
+        mobileNumber = client.getMobileNumber().get();
     }
 
     /**
@@ -92,21 +94,15 @@ class JsonAdaptedClient {
         nullCheck(email == null, Email.class.getSimpleName());
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
-        // TODO: Create YearOfBirth class
-        nullCheck(yearOfBirth == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "year of birth"));
-        // validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
-        // final YearOfBirth modelYearOfBirth = new YearOfBirth(yearOfBirth);
 
-        // TODO: Create Source class
+        nullCheck(yearOfBirth == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "year of birth"));
         nullCheck(source == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "source"));
-        // validityCheck(!Source.isValidSource(source), Source.MESSAGE_CONSTRAINTS);
-        // final Source modelSource = new Source(source);
 
         nullCheck(mobileNumber == null, Phone.class.getSimpleName());
         validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         final Phone modelMobileNumber = new Phone(mobileNumber);
 
-        return new Client(modelName, modelEmail, yearOfBirth, source, modelMobileNumber);
+        return new Client(modelName, modelEmail, Optional.of(yearOfBirth), Optional.of(source), Optional.of(modelMobileNumber));
     }
 
 
