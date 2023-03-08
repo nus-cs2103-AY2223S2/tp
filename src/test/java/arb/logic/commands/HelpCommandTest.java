@@ -5,6 +5,7 @@ import static arb.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 
@@ -13,8 +14,19 @@ public class HelpCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+    public void execute_helpSuccess_withCurrentListTypeClient() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.CLIENT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
     }
+
+    @Test
+    public void execute_helpSuccess_withCurrentListTypeProject() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.PROJECT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
+    }
+
 }

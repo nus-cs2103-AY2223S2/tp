@@ -37,6 +37,12 @@ public class TypicalClients {
             .withEmail("lydia@example.com").build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").build();
+    public static final Client REGINA = new ClientBuilder().withName("Regina Fuller")
+            .withPhone(null).withEmail(null).build();
+    public static final Client YLVETAL = new ClientBuilder().withName("Ylvetal Z").withPhone(null)
+            .withEmail("ylvetal@example.com").build();
+    public static final Client ZINNIA = new ClientBuilder().withName("Zinnia O").withPhone("12345")
+            .withEmail(null).build();
 
     // Manually added
     public static final Client HOON = new ClientBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -67,6 +73,7 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE,
+                REGINA, YLVETAL, ZINNIA));
     }
 }
