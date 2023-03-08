@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "data\\trackr.json"
+  "trackrFilePath" : "data\\trackr.json"
 }
