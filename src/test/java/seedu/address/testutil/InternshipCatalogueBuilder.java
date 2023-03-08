@@ -1,0 +1,34 @@
+package seedu.address.testutil;
+
+import seedu.address.model.InternshipCatalogue;
+import seedu.address.model.internship.Internship;
+
+/**
+ * A utility class to help with building InternshipCatalogue objects.
+ * Example usage: <br>
+ *     {@code InternshipCatalogue ic = new InternshipCatalogueBuilder().withInternship("SE1", "SE2").build();}
+ */
+public class InternshipCatalogueBuilder {
+    private InternshipCatalogue internshipCatalogue;
+
+    public InternshipCatalogueBuilder() {
+        this.internshipCatalogue = new InternshipCatalogue();
+    }
+
+    public InternshipCatalogueBuilder(InternshipCatalogue internshipCatalogue) {
+        thie.internshipCatalogue = internshipCatalogue;
+    }
+
+    /**
+     * Adds a new {@code Internship} to the {@code InternshipCatalogue} that we are building.
+     */
+    public InternshipCatalogue withInternship(Internship internship) {
+        internshipCatalogue.addInternship(internship);
+        return this;
+    }
+
+    public InternshipCatalogue build() {
+        return internshipCatalogue;
+    }
+}
+
