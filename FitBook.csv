@@ -1,4 +1,5 @@
-Name, Gender
-John Doe, M 
-John Doeeee, M 
-John Doeeeee, M 
+Name, Phone number, Email, Address, Weight, Gender
+John Doe, 98765432, johnd@example.com, 311  Clementi Ave 2   02 25, 23.2, M
+John Doeeee, 98765432, johnd@example.com, 311  Clementi Ave 2   02 25, 23.2, M
+John Doeeeee, 98765432, johnd@example.com, 311  Clementi Ave 2   02 25, 23.2, M
+richard leg, 98765432, johnd@example.com, 311  Clementi Ave 2   02 25, 223, F

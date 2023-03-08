@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_CALORIE + "2100 "
             + PREFIX_WEIGHT + "23.2 "
             + PREFIX_GENDER + "M "
-            + PREFIX_APPOINTMENT + "13-12-2200"
+            + PREFIX_APPOINTMENT + "13-12-2200 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -64,10 +64,8 @@ public class AddCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException , FileNotFoundException {
         requireNonNull(model);
         if (model.hasClient(toAdd)) {
-
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
         model.addClient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

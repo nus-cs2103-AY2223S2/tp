@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The client added has missing compulsory fields.
 
     * 1a1. FitBook shows an error message for missing fields.
-    
+
       Use case ends.
 
 * 1b. The client added has duplicate names.
@@ -402,8 +402,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The user enters a client that does not exist in the database.
 
-    * 1b1. FitBook shows an error message that the client does not exist. 
-  
+    * 1b1. FitBook shows an error message that the client does not exist.
+
       Use case ends.
 
 > **Use case: UC05 - Clear all clients**
@@ -420,8 +420,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The list is empty in the database.
-  * 1a1. FitBook displays that the list is cleared.
-    
+  * 1a1. FitBook displays that the list is cleared. 
+
       Use case ends.
 
 > **Use case: UC06 - Exit**

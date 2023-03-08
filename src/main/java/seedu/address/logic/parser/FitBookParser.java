@@ -68,7 +68,7 @@ public class FitBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case "export":
+        case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
