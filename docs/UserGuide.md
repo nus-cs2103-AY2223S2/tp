@@ -85,13 +85,13 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 ### Adding a person: `add`
 _Adds a person to CoDoc._
 >> add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...
-> 
+>
 > **Compulsory parameters:**
 > - n/NAME (eg. n/John Doe)
 > - e/EMAIL (eg. e/johndoe123@email.com)
 > - y/YEAR (eg. ay/3, ay/prof, ay/alum)
 > - c/COURSE (eg. c/Computer Science, c/Information Security)
-> 
+>
 > **Optional parameters:**
 > - ct/CONTACT (eg.ct/Telegram: @Johndoe123)
 > - sn/STUDENT NUMBER (eg. sn/E1234568)
@@ -99,11 +99,11 @@ _Adds a person to CoDoc._
 > - job/WORK (eg. job/Google Software Engineer, job/ATAP)
 > - skill/SKILL (eg. skill/C++, skill/Rust)
 > - link//LINK (eg. link//github.com/johndoe123)
-> 
+>
 > 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
-> 
+>
 > **Examples:**
-> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe 
+> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe
 > - `add` n/John Doe e/johnd@example.com y/2 c/Computer Science
 > ![Add Example](images/UiAddContact.png)
 
@@ -112,15 +112,15 @@ _Adds a person to CoDoc._
 ### Viewing contacts/tabs: `view`
 _View more details of specific contact._
 >> view INDEX
-> 
+>
 > Loads up the contact at INDEX to the right panel to view details
-> 
+>
 > ![image](images/UIViewIndex.png)
 
 >> view TAB
-> 
+>
 > Switches the tab of the right panel (eg. view c, view w, view m)
-> 
+>
 > ![image](images/UiViewTab.png)
 
 
@@ -128,15 +128,15 @@ _View more details of specific contact._
 ### Editing a person information: `edit`
 _Edits an existing person in CoDoc._
 >> edit [n/NAME] [e/EMAIL] [y/YEAR] [c/COURSE] [OPTIONAL/PARAMETER]...
-> 
-> - Edits the person displayed in the view panel 
-> - At least one of the optional fields must be provided. 
-> - Existing values will be updated to the input values. 
-> - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. 
+>
+> - Edits the person displayed in the view panel
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the input values.
+> - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 > - You can remove all the person’s tags by typing t/ without specifying any tags after it
-> 
+>
 > **Examples:**
-> - edit p/91234567 e/johndoe@example.com will edit the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
+> - edit p/91234567 e/johndoe@example.com will edit the phone number and email address of the person to be 91234567 and johndoe@example.com respectively.
 > - edit n/Betsy Crower t/ Edits the name of the person to be Betsy Crower and clears all existing tags.
 
 <a name="find"></a>
@@ -146,7 +146,7 @@ _Finds persons whose names contain any of the given keywords._
 >> find KEYWORD [MORE_KEYWORDS]
 > * The search is case-insensitive. e.g `hans` will match `Hans`
 > * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-> * Only the name is searched. 
+> * Only the name is searched.
 > * Only full words will be matched e.g. `Han` will not match `Hans`
 > * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -165,13 +165,13 @@ _Shows a list of all persons in CoDoc._
 ### Delete a contact: `delete`
 _Deletes the specified person from CoDoc._
 >> delete INDEX
-> 
-> - Deletes the person at the specified INDEX. 
-> - The index refers to the index number shown in the displayed person list. 
+>
+> - Deletes the person at the specified INDEX.
+> - The index refers to the index number shown in the displayed person list.
 > - The index must be a positive integer 1, 2, 3, …​
 >
 > Examples:
-> - list followed by delete 2 deletes the 2nd person in CoDoc. 
+> - list followed by delete 2 deletes the 2nd person in CoDoc.
 > - find Betsy followed by delete 1 deletes the 1st person in the results of the find command.
 
 <a name="clear"></a>
@@ -188,7 +188,7 @@ _Exits the program._
 ### Viewing help : `help`
 _Shows a message explaining how to access the help page._
 >> help
-> 
+>
 > ![help message](images/helpMessage.png)
 
 ### Automatically save to file
