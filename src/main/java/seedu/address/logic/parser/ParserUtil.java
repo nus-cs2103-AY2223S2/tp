@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -22,6 +22,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -107,6 +108,50 @@ public class ParserUtil {
         return new Rank(trimmedRank);
     }
 
+    /**
+     * Parses a {@code String unit} into an {@code Unit}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code unit} is invalid.
+     */
+    public static Unit parseUnit(String unit) throws ParseException {
+        requireNonNull(unit);
+        String trimmedUnit = unit.trim();
+        if (!Unit.isValidUnit(trimmedUnit)) {
+            throw new ParseException(Unit.MESSAGE_CONSTRAINTS);
+        }
+        return new Unit(trimmedUnit);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String platoon} into an {@code Platoon}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code platoon} is invalid.
+     */
+    public static Platoon parsePlatoon(String platoon) throws ParseException {
+        requireNonNull(platoon);
+        String trimmedPlatoon = platoon.trim();
+        if (!Platoon.isValidPlatoon(trimmedPlatoon)) {
+            throw new ParseException(Platoon.MESSAGE_CONSTRAINTS);
+        }
+        return new Platoon(trimmedPlatoon);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

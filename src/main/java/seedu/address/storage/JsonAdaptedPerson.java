@@ -24,6 +24,9 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String rank;
+    private final String unit;
+    private final String company;
+    private final String platoon;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -32,12 +35,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("rank") String rank, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("rank") String rank, @JsonProperty("unit") String unit,
+                             @JsonProperty("company") String company, @JsonProperty("platoon") String platoon,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.rank = rank;
+        this.unit = unit;
+        this.company = company;
+        this.platoon = platoon;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,6 +60,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         rank = source.getRank().value;
+        unit = source.getUnit().value;
+        company = source.getCompany().value;
+        platoon = source.getPlatoon().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,8 +119,32 @@ class JsonAdaptedPerson {
         }
         final Rank modelRank = new Rank(rank);
 
+        if (unit == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName()));
+        }
+        if (!Unit.isValidUnit(unit)) {
+            throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
+        }
+        final Unit modelUnit = new Unit(unit);
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+        }
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
+
+        if (platoon == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Platoon.class.getSimpleName()));
+        }
+        if (!Platoon.isValidPlatoon(platoon)) {
+            throw new IllegalValueException(Platoon.MESSAGE_CONSTRAINTS);
+        }
+        final Platoon modelPlatoon = new Platoon(platoon);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank, modelUnit, modelCompany, modelPlatoon, modelTags);
     }
 
 }
