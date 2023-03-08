@@ -35,9 +35,10 @@
                            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         </children>
                      </VBox>
-                     <VBox fx:id="personList1" prefWidth="0.0">
+                     <VBox fx:id="policyList" HBox.hgrow="ALWAYS">
                         <children>
-                           <StackPane fx:id="personListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
+                           <StackPane fx:id="personLabel" />
+                           <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         </children>
                      </VBox>
                   </children>

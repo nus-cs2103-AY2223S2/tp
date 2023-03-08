@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +34,14 @@ public class MainWindow extends UiPart<Stage> {
     private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    // DEBUG: added policyListPanel to show selected person's policies
+    // TODO: Change PersonListPanel -> PolicyListPanel
+    private PersonListPanel policyListPanel;
     private ResultDisplay resultDisplay;
+
+    @FXML // DEBUG: added person label to show selected person's information.
+    private StackPane personLabel;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -41,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML // TODO: Populate with policies
+    private StackPane policyListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,6 +123,17 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        // Populate person label with dummy and display information
+        Person dummyPerson = logic.getFilteredPersonList().get(0);
+        PersonCard dummyPersonCard = new PersonCard(dummyPerson, 1);
+        personLabel.getChildren().add(dummyPersonCard.getRoot());
+
+        // TODO: Populate Policy List Panel and Person Label
+        // For now, emulate with personlist
+        policyListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
