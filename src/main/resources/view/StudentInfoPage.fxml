@@ -17,7 +17,7 @@
     <scene>
         <Scene fill="#383838">
             <stylesheets>
-                <URL value="@StudentInfoPage.css" />
+                <URL value="@stylesheet/StudentInfoPage.css" />
             </stylesheets>
             <VBox id="studentInfoContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="450.0">
                 <padding>
