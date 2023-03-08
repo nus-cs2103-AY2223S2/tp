@@ -1,12 +1,14 @@
 {
-  "datas": [ {
-    "isActive" : true,
-    "id" : 0,
-    "patient" : {
-      "name": "Hans Muster",
-      "phone": "9482424",
-      "email": "invalid@email!3e",
-      "address": "4th street"
+  "datas": [
+    {
+      "isActive": true,
+      "id": 0,
+      "patient": {
+        "name": "Hans Muster",
+        "phone": "9482424",
+        "dob": "2090-02-3",
+        "bloodType": "C"
+      }
     }
-  } ]
+  ]
 }
