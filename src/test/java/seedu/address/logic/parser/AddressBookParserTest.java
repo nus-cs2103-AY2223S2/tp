@@ -101,7 +101,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_Rate() throws Exception {
+    public void parseCommand_rate() throws Exception {
         RateCommand command = (RateCommand) parser.parseCommand(
             RateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new RateCommand(INDEX_FIRST_PERSON), command);
