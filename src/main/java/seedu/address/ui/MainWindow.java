@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Independent Ui parts residing in this Ui container
-        PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        PersonListPanel personListPanel = new PersonListPanel(logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         TaskListPanel taskListPanel = new TaskListPanel(logic.getOfficeConnectModel()
