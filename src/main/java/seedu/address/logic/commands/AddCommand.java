@@ -5,11 +5,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.EventTag;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -24,26 +32,29 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_EVENT_TAG + "EVENT INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_EVENT_TAG + " 1"
+            + PREFIX_EVENT_TAG + " 2";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS_ADD_EVENT = "New person added : %1$s to the event";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
+    private final Set<Index> eventIndexList;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddCommand(Person person, Set<Index> eventIndexList) {
         requireNonNull(person);
-        toAdd = person;
+        this.toAdd = person;
+        this.eventIndexList = eventIndexList;
     }
 
     @Override
@@ -54,8 +65,25 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Set<EventTag> eventTagSet = new HashSet<>();
+        List<Event> lastShownList = model.getFilteredEventList();
+
+        if(!eventIndexList.isEmpty()) {
+            for (Index eventIndex: eventIndexList) {
+                if (eventIndex.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+                }
+                Event eventToAdd = lastShownList.get(eventIndex.getZeroBased());
+                eventTagSet.add(new EventTag(eventToAdd.getName()));
+            }
+            Person personWithEvent = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
+                    toAdd.getAddress(), eventTagSet);
+            model.addPerson(personWithEvent);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_ADD_EVENT, personWithEvent));
+        } else {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
     }
 
     @Override

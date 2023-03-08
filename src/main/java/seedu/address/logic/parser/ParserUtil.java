@@ -15,7 +15,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,6 +102,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
+    /*
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
@@ -111,10 +111,12 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
+     */
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
+    /*
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
@@ -123,6 +125,21 @@ public class ParserUtil {
         }
         return tagSet;
     }
+     */
+
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Index> parseEventTags(Collection<String> eventTags) throws ParseException {
+        requireNonNull(eventTags);
+        final Set<Index> tagSet = new HashSet<>();
+        for (String tagName : eventTags) {
+            tagSet.add(parseIndex(tagName));
+        }
+        return tagSet;
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
