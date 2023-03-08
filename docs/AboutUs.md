@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Damith
 
 <img src="images/johndoe.png" width="200px">
 
@@ -29,14 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Team Lead
 - Responsibilities: UI
 
-### Johnny Doe
+### Leonard Yam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leonardyam.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/leonardyam)] 
+[[portfolio](team/leonardyam.md)]
 
 - Role: Developer
-- Responsibilities: Data
+- Responsibilities: 
 
 ### Chai Jiexuan
 
