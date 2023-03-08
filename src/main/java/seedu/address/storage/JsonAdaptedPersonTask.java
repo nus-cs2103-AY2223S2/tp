@@ -20,7 +20,7 @@ public class JsonAdaptedPersonTask {
      * Constructs a {@code JsonAdaptedPersonTask} with the given {@code personTask}.
      */
     @JsonCreator
-    public JsonAdaptedPersonTask(@JsonProperty("person_id") String personId, @JsonProperty("task_id") String taskId) {
+    public JsonAdaptedPersonTask(@JsonProperty("personId") String personId, @JsonProperty("taskId") String taskId) {
 
         this.personId = personId;
         this.taskId = taskId;

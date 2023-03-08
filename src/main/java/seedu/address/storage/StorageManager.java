@@ -109,13 +109,11 @@ public class StorageManager implements Storage {
         taskRepositoryStorage.saveRepository(taskBook);
     }
     @Override
-
     public Optional<ReadOnlyRepository<PersonTask>> readPersonTaskBook() throws DataConversionException, IOException {
         logger.fine("Attempting to read data to person_task file");
         return personTaskRepositoryStorage.readRepository();
     }
     @Override
-
     public void savePersonTaskBook(ReadOnlyRepository<PersonTask> personTaskBook) throws IOException {
         logger.fine("Attempting to save data to person_task file");
         personTaskRepositoryStorage.saveRepository(personTaskBook);
