@@ -148,7 +148,9 @@ public class ParserUtil {
     }
 
     public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
-        requireNonNull(drugAllergy);
+        if (drugAllergy == null) {
+            return null;
+        }
         String trimmedDrugAllergy = drugAllergy.trim();
         if (!DrugAllergy.isValidDrugAllergy(trimmedDrugAllergy)) {
             throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
@@ -163,7 +165,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code EmergencyContact} is invalid.
      */
     public static Phone parseEmergencyContact(String emergencyContact) throws ParseException {
-        requireNonNull(emergencyContact);
+        if (emergencyContact == null) {
+            return null;
+        }
         String trimmedEmergencyContact = emergencyContact.trim();
         if (!Phone.isValidPhone(trimmedEmergencyContact)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
