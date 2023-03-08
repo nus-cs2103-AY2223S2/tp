@@ -1,11 +1,16 @@
 package seedu.address.model;
 
+import java.util.function.Predicate;
+
 import seedu.address.model.mapping.PersonTask;
 import seedu.address.model.task.Task;
+
+
 /**
  * The API of the OfficeConnectModel component.
  */
 public class OfficeConnectModel {
+    public static final Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     private final RepositoryModelManager<Task> taskModelManager;
     private final RepositoryModelManager<PersonTask> personTaskModelManager;
 

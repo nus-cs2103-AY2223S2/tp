@@ -15,7 +15,6 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class RepositoryModelManager<T extends Relationship<T>> {
     private static final Logger logger = LogsCenter.getLogger(RepositoryModelManager.class);
-
     private final Repository<T> repo;
     private final FilteredList<T> itemFilteredList;
 
