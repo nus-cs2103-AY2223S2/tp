@@ -5,21 +5,21 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `what email should we put here?`
 
-## Project team
+# Project team
 
-### John Doe
+## Nguyen Viet Anh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vietanh1010.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/VietAnh1010)]
+[[portfolio](team/vietanh1010.md)]
 
-- Role: Project Advisor
+- Role: Team lead, Integration, Java expert
+- Responsibilities: Parser, Model
 
-### Jane Doe
+## Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
@@ -36,9 +36,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bipbipboopboop)] [[portfolio](team/bipbipboopboop.md)]
 
 - Role: Developer
-- Responsibilities: UI + Integration
+- Responsibilities: UI, Integration
 
-### Jean Doe
+## Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
 
-### James Doe
+## James Doe
 
 <img src="images/johndoe.png" width="200px">
 
