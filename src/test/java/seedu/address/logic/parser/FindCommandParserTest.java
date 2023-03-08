@@ -1,7 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BACK;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRONT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -11,7 +22,9 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.internship.*;
+import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 public class FindCommandParserTest {
@@ -45,19 +58,22 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new InternshipContainsKeywordsPredicate(Arrays.asList("Google"),
                         Arrays.asList("applied"),
-                        Arrays.asList("frontend", "backend")));
+                        Arrays.asList("backend", "frontend")));
 
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_GOOGLE +
-                STATUS_DESC_GOOGLE + TAG_DESC_FRONT, expectedFindCommand);
+        // whitespace only preamble (Note: List of strings for tags in expectedFindCommand must be in
+        // alphabetic and numeric order. This is because parseTags in FindCommandParser uses a HashSet which
+        // automatically orders everything. That's why assetParseSuccess still passes even though the sequence
+        // is TAG_DESC_FRONT followed by TAG_DESC_BACK.
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_GOOGLE
+                + STATUS_DESC_GOOGLE + TAG_DESC_FRONT + TAG_DESC_BACK, expectedFindCommand);
 
         // multiple company names - last company name accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + COMPANY_NAME_DESC_GOOGLE
-                + STATUS_DESC_GOOGLE + TAG_DESC_FRONT, expectedFindCommand);
+                + STATUS_DESC_GOOGLE + TAG_DESC_FRONT + TAG_DESC_BACK, expectedFindCommand);
 
         // multiple statuses - last status accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + STATUS_DESC_APPLE + STATUS_DESC_GOOGLE
-                + TAG_DESC_FRONT, expectedFindCommand);
+                + TAG_DESC_FRONT + TAG_DESC_BACK, expectedFindCommand);
 
         // multiple tags - all accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + STATUS_DESC_GOOGLE + TAG_DESC_FRONT
