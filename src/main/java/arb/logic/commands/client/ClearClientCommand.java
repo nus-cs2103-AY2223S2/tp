@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.model.AddressBook;
+import arb.model.ListType;
 import arb.model.Model;
 
 /**
@@ -17,9 +18,9 @@ public class ClearClientCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 }

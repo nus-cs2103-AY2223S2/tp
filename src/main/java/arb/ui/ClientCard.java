@@ -42,7 +42,7 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
+     * Creates a {@code ClientCard} with the given {@code Client} and index to display.
      */
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);

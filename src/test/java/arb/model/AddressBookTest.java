@@ -1,9 +1,11 @@
 package arb.model;
 
+import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalClients.ALICE;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +19,10 @@ import org.junit.jupiter.api.Test;
 
 import arb.model.client.Client;
 import arb.model.client.exceptions.DuplicateClientException;
+import arb.model.project.Project;
+import arb.model.project.exceptions.DuplicateProjectException;
 import arb.testutil.ClientBuilder;
+import arb.testutil.ProjectBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -48,14 +53,31 @@ public class AddressBookTest {
         Client editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newClients);
+
+        AddressBookStub newData = new AddressBookStub(newClients, Arrays.asList());
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
+    public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
+        // Two projects with the same identity fields
+        Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .build();
+        List<Project> newProjects = Arrays.asList(SKY_PAINTING, editedSkyPainting);
+
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects);
+
+        assertThrows(DuplicateProjectException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
     public void hasClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasClient(null));
+    }
+
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasProject(null));
     }
 
     @Test
@@ -64,9 +86,20 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasProject_projectNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasProject(SKY_PAINTING));
+    }
+
+    @Test
     public void hasClient_clientInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         assertTrue(addressBook.hasClient(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectInAddressBook_returnsTrue() {
+        addressBook.addProject(SKY_PAINTING);
+        assertTrue(addressBook.hasProject(SKY_PAINTING));
     }
 
     @Test
@@ -78,23 +111,43 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasProject_projectWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addProject(SKY_PAINTING);
+        Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .build();
+        assertTrue(addressBook.hasProject(editedSkyPainting));
+    }
+
+    @Test
     public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
     }
 
+    @Test
+    public void getProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
+    }
+
     /**
-     * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose clients list and projects list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Client> clients) {
+        AddressBookStub(Collection<Client> clients, Collection<Project> projects) {
             this.clients.setAll(clients);
+            this.projects.setAll(projects);
         }
 
         @Override
         public ObservableList<Client> getClientList() {
             return clients;
+        }
+
+        @Override
+        public ObservableList<Project> getProjectList() {
+            return projects;
         }
     }
 

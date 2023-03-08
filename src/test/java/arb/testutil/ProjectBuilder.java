@@ -1,5 +1,7 @@
 package arb.testutil;
 
+import java.util.Optional;
+
 import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Title;
@@ -13,14 +15,14 @@ public class ProjectBuilder {
     public static final String DEFAULT_DEADLINE = "2000-01-01";
 
     private Title title;
-    private Deadline deadline;
+    private Optional<Deadline> deadline;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
      */
     public ProjectBuilder() {
         title = new Title(DEFAULT_TITLE);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
     }
 
     /**
@@ -28,7 +30,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         title = projectToCopy.getTitle();
-        deadline = projectToCopy.getDeadline();
+        deadline = Optional.ofNullable(projectToCopy.getDeadline());
     }
 
     /**
@@ -47,7 +49,7 @@ public class ProjectBuilder {
      * @return The ProjectBuilder object.
      */
     public ProjectBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+        this.deadline = Optional.ofNullable(deadline).map(d -> new Deadline(d));
         return this;
     }
 
@@ -56,7 +58,7 @@ public class ProjectBuilder {
      * @return The new Project.
      */
     public Project build() {
-        return new Project(title, deadline);
+        return new Project(title, this.deadline.orElse(null));
     }
 
 }

@@ -2,11 +2,12 @@ package arb.logic.commands.client;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static arb.testutil.TypicalClients.getTypicalAddressBook;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
@@ -32,14 +33,15 @@ public class AddClientCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddClientCommand(validClient), model,
+        assertCommandSuccess(new AddClientCommand(validClient), ListType.CLIENT, ListType.CLIENT, model,
                 String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
         Client clientInList = model.getAddressBook().getClientList().get(0);
-        assertCommandFailure(new AddClientCommand(clientInList), model, AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(new AddClientCommand(clientInList), ListType.CLIENT, model,
+                AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
 }

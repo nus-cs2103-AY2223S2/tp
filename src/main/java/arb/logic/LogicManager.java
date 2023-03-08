@@ -11,9 +11,11 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
+import arb.model.project.Project;
 import arb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -27,6 +29,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+
+    private ListType currentListType;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -43,7 +47,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, currentListType);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -55,6 +59,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setListType(ListType newListType) {
+        this.currentListType = newListType;
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -62,6 +71,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
     }
 
     @Override
