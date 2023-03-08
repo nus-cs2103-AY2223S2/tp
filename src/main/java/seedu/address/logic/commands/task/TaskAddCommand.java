@@ -14,7 +14,8 @@ import seedu.address.model.task.Task;
 public class TaskAddCommand extends TaskCommand {
     public static final String TASK_COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TASK_COMMAND_WORD + ": Adds a Task to SoConnect. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TASK_COMMAND_WORD
+            + ": Adds a Task to Fish Ahoy!. \n"
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " " + TASK_COMMAND_WORD + " "

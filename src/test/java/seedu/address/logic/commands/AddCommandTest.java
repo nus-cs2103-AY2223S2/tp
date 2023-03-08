@@ -19,9 +19,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.FishBuilder;
 
@@ -188,6 +190,35 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {}
+
+        //=========== TankList =============================================================
+        public void setTankList(ReadOnlyTankList tankList) {}
+
+        public ReadOnlyTankList getTankList() {
+            return null;
+        }
+
+        public Path getTankListFilePath() {
+            return null;
+        }
+
+        public void setTankListFilePath(Path tankListFilePath) {}
+
+        public boolean hasTank(Tank tank) {
+            return false;
+        }
+
+        public void addTank(Tank tank) {}
+
+        public void deleteTank(Tank tank) {}
+
+        public void setTank(Tank target, Tank editedTank) {}
+
+        public ObservableList<Tank> getFilteredTankList() {
+            return null;
+        }
+
+        public void updateFilteredTankList(Predicate<Tank> predicate) {}
     }
 
     /**
