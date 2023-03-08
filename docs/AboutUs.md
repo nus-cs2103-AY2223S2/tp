@@ -16,6 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/beebeeoii.md)]
 
 * Role: Team Member
+* Responsibilities: To be added
 
 ### Kannusami Saraan
 
@@ -39,10 +40,20 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ethan Tan
 
-<img src="images/thedesazlies.png" width="200px">
+<img src="images/thedesalizes.png" width="200px">
 
 [[github](http://github.com/thedesalizes)]
 [[portfolio](team/thedesalizes.md)]
+
+- Role: To Be Added
+- Responsibilities: To Be Added
+
+### Jeremy Khoo
+
+<img src="images/jeremykhoo-nus.png" width="200px">
+
+[[github](http://github.com/jeremykhoo-NUS)]
+[[portfolio](team/jeremykhoo-nus.md)]
 
 - Role: To Be Added
 - Responsibilities: To Be Added
