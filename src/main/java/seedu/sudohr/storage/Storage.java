@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.sudohr.commons.exceptions.DataConversionException;
-import seedu.sudohr.model.ReadOnlyAddressBook;
+import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySudoHr> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlySudoHr addressBook) throws IOException;
 
 }

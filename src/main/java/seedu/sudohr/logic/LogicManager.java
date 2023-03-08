@@ -10,10 +10,10 @@ import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
-import seedu.sudohr.logic.parser.AddressBookParser;
+import seedu.sudohr.logic.parser.SudoHrParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.ReadOnlyAddressBook;
+import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final SudoHrParser sudoHrParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        sudoHrParser = new SudoHrParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = sudoHrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlySudoHr getAddressBook() {
         return model.getAddressBook();
     }
 

@@ -22,25 +22,25 @@ import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
 import seedu.sudohr.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class SudoHrTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final SudoHr sudoHr = new SudoHr();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), sudoHr.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> sudoHr.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        SudoHr newData = getTypicalAddressBook();
+        sudoHr.resetData(newData);
+        assertEquals(newData, sudoHr);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        SudoHrStub newData = new SudoHrStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> sudoHr.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(sudoHr.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        sudoHr.addPerson(ALICE);
+        assertTrue(sudoHr.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        sudoHr.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(sudoHr.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlySudoHr whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class SudoHrStub implements ReadOnlySudoHr {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        SudoHrStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

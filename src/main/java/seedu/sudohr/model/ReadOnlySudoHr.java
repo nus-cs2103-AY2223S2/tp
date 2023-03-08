@@ -6,7 +6,7 @@ import seedu.sudohr.model.person.Person;
 /**
  * Unmodifiable view of an sudohr book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySudoHr {
 
     /**
      * Returns an unmodifiable view of the persons list.

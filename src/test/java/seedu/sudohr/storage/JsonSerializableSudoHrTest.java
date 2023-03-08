@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.commons.util.JsonUtil;
-import seedu.sudohr.model.AddressBook;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.testutil.TypicalPersons;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableSudoHrTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableSudoHrTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
@@ -24,9 +24,9 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        SudoHr sudoHrFromFile = dataFromFile.toModelType();
+        SudoHr typicalPersonsSudoHr = TypicalPersons.getTypicalAddressBook();
+        assertEquals(sudoHrFromFile, typicalPersonsSudoHr);
     }
 
     @Test

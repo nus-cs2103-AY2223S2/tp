@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.sudohr.commons.exceptions.IllegalValueException;
-import seedu.sudohr.model.AddressBook;
-import seedu.sudohr.model.ReadOnlyAddressBook;
+import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable SudoHr that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -32,29 +32,29 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlySudoHr} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlySudoHr source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this sudohr book into the model's {@code AddressBook} object.
+     * Converts this sudohr book into the model's {@code SudoHr} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public SudoHr toModelType() throws IllegalValueException {
+        SudoHr sudoHr = new SudoHr();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (sudoHr.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            sudoHr.addPerson(person);
         }
-        return addressBook;
+        return sudoHr;
     }
 
 }

@@ -12,7 +12,7 @@ import seedu.sudohr.model.person.UniquePersonList;
  * Wraps all data at the sudohr-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class SudoHr implements ReadOnlySudoHr {
 
     private final UniquePersonList persons;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public SudoHr() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an SudoHr using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public SudoHr(ReadOnlySudoHr toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code SudoHr} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySudoHr newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -86,7 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code SudoHr}.
      * {@code key} must exist in the sudohr book.
      */
     public void removePerson(Person key) {
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof SudoHr // instanceof handles nulls
+                && persons.equals(((SudoHr) other).persons));
     }
 
     @Override

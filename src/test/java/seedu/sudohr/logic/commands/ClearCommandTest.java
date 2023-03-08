@@ -5,7 +5,7 @@ import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.AddressBook;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setAddressBook(new SudoHr());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

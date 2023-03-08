@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces sudohr book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlySudoHr addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the SudoHr */
+    ReadOnlySudoHr getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.

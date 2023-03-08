@@ -15,12 +15,8 @@ import seedu.sudohr.commons.util.ConfigUtil;
 import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.Logic;
 import seedu.sudohr.logic.LogicManager;
-import seedu.sudohr.model.AddressBook;
-import seedu.sudohr.model.Model;
-import seedu.sudohr.model.ModelManager;
-import seedu.sudohr.model.ReadOnlyAddressBook;
-import seedu.sudohr.model.ReadOnlyUserPrefs;
-import seedu.sudohr.model.UserPrefs;
+import seedu.sudohr.model.*;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.util.SampleDataUtil;
 import seedu.sudohr.storage.AddressBookStorage;
 import seedu.sudohr.storage.JsonAddressBookStorage;
@@ -48,7 +44,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing SudoHr ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -74,20 +70,20 @@ public class MainApp extends Application {
      * or an empty sudohr book will be used instead if errors occur when reading {@code storage}'s sudohr book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlySudoHr> addressBookOptional;
+        ReadOnlySudoHr initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample SudoHr");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty SudoHr");
+            initialData = new SudoHr();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty SudoHr");
+            initialData = new SudoHr();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +147,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty SudoHr");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +163,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting SudoHr " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

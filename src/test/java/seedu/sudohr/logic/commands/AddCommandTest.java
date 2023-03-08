@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
-import seedu.sudohr.model.AddressBook;
+import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.ReadOnlyAddressBook;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.PersonBuilder;
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlySudoHr newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlySudoHr getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +186,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlySudoHr getAddressBook() {
+            return new SudoHr();
         }
     }
 

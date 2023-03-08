@@ -2,7 +2,7 @@ package seedu.sudohr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.sudohr.model.AddressBook;
+import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(new SudoHr());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

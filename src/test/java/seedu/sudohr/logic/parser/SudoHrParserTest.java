@@ -29,9 +29,9 @@ import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 import seedu.sudohr.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class SudoHrParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SudoHrParser parser = new SudoHrParser();
 
     @Test
     public void parseCommand_add() throws Exception {

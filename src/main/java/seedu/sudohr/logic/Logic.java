@@ -7,7 +7,7 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
-import seedu.sudohr.model.ReadOnlyAddressBook;
+import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the SudoHr.
      *
      * @see seedu.sudohr.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySudoHr getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

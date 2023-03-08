@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.sudohr.model.AddressBook;
-import seedu.sudohr.model.ReadOnlyAddressBook;
+import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
 import seedu.sudohr.model.person.Name;
@@ -14,7 +14,7 @@ import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code SudoHr} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlySudoHr getSampleAddressBook() {
+        SudoHr sampleAb = new SudoHr();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

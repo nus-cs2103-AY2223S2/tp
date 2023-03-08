@@ -19,25 +19,25 @@ import seedu.sudohr.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given sudoHr and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySudoHr addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with sudohr book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.sudoHr = new SudoHr(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new SudoHr(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,32 +75,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== SudoHr ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlySudoHr addressBook) {
+        this.sudoHr.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySudoHr getAddressBook() {
+        return sudoHr;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return sudoHr.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        sudoHr.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        sudoHr.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        sudoHr.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
