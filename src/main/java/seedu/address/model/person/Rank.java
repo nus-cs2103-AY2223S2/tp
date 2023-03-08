@@ -12,12 +12,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Rank {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rank should only be from the following list: recruit, private, corporal, sergeant, lieutenant and it should not be blank";
+            "Rank should only be from the following list: REC, PTE, CPL, 3SG, 2LT and it should not be blank";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final List<String> VALID_RANKS = List.of("recruit", "private", "corporal", "sergeant", "lieutenant");
+    public static final List<String> VALID_RANKS = List.of("REC", "PTE", "CPL", "3SG", "2LT");
 
     public final String value;
 
