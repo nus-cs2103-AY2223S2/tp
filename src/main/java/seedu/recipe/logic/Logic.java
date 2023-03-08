@@ -7,8 +7,8 @@ import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.ReadOnlyAddressBook;
-import seedu.recipe.model.recipe.Person;
+import seedu.recipe.model.ReadOnlyRecipeBook;
+import seedu.recipe.model.recipe.Recipe;
 
 /**
  * API of the Logic component
@@ -26,17 +26,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.recipe.model.Model#getAddressBook()
+     * @see seedu.recipe.model.Model#getRecipeBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyRecipeBook getRecipeBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Recipe> getFilteredRecipeList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRecipeBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
