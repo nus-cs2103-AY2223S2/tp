@@ -51,8 +51,7 @@ public class AddProjectCommandTest {
         AddProjectCommand addProjectCommand = new AddProjectCommand(validProject);
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
-        assertThrows(CommandException.class,
-                AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () ->
+        assertThrows(CommandException.class, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () ->
                 addProjectCommand.execute(modelStub, ListType.PROJECT));
     }
 
