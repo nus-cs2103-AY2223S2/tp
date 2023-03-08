@@ -51,7 +51,8 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
      */
     public Doctor toModelType() throws IllegalValueException {
         if (specialty == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Specialty.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Specialty.class.getSimpleName()));
         }
         if (!Specialty.isValidSpecialty(specialty)) {
             throw new IllegalValueException(Specialty.MESSAGE_CONSTRAINTS);
