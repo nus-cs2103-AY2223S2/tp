@@ -16,14 +16,18 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
+        storage = new StorageManager(addressBookStorage, contactListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,7 +80,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyContactList> contactListOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyContactList initialContactData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,7 +97,21 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            contactListOptional = storage.readContactList();
+            if (!contactListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample contactList");
+            }
+            initialContactData = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
+            initialContactData = new ContactList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ContactList");
+            initialContactData = new ContactList();
+        }
+
+        return new ModelManager(initialData, initialContactData, userPrefs);
     }
 
     private void initLogging(Config config) {
