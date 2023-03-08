@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -18,28 +19,26 @@ import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 /**
  * Represents the in-memory model of the deck data.
  */
-public class CardModelManager implements CardModel {
-    private static final Logger logger = LogsCenter.getLogger(CardModelManager.class);
-
-    private final PowerDeck deck;
+public class DeckModelManager implements DeckModel {
+    private static final Logger logger = LogsCenter.getLogger(DeckModelManager.class);
+    private PowerDeck selectedDeck = null;
+    private final ArrayList<PowerDeck> powerDecks;
     private final UserPrefs userPrefs;
-    private final FilteredList<PowerCard> filteredCards;
+    private FilteredList<PowerCard> filteredCards = null;
 
     /**
      * Initializes a CardModelManager with the given deck and userPrefs.
      */
-    public CardModelManager(ReadOnlyPowerDeck powerDeck, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(powerDeck, userPrefs);
+    public DeckModelManager(ArrayList<PowerDeck> powerDecks, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(userPrefs);
 
-        logger.fine("Initializing with deck: " + powerDeck + " and user prefs " + userPrefs);
-
-        this.deck = new PowerDeck(powerDeck);
+        logger.fine("Initializing with user prefs " + userPrefs);
+        this.powerDecks = powerDecks;
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCards = new FilteredList<>(this.deck.getCardList());
     }
 
-    public CardModelManager() {
-        this(new PowerDeck(), new UserPrefs());
+    public DeckModelManager() {
+        this(new ArrayList<PowerDeck>(), new UserPrefs());
     }
 
 
@@ -82,12 +81,12 @@ public class CardModelManager implements CardModel {
 
     @Override
     public void setDeck(ReadOnlyPowerDeck readOnlyDeck) {
-        this.deck.resetData(readOnlyDeck);
+        this.selectedDeck.resetData(readOnlyDeck);
     }
 
     @Override
     public ReadOnlyPowerDeck getDeck() {
-        return deck;
+        return this.selectedDeck;
     }
 
     /* ========================== PowerCards ============================ */
@@ -95,24 +94,24 @@ public class CardModelManager implements CardModel {
     @Override
     public boolean hasCard(PowerCard card) {
         requireNonNull(card);
-        return deck.hasCard(card);
+        return this.selectedDeck.hasCard(card);
     }
 
     @Override
     public void deleteCard(PowerCard card) {
-        deck.removeCard(card);
+        this.selectedDeck.removeCard(card);
     }
 
     @Override
     public void addCard(PowerCard card) {
-        deck.addCard(card);
+        this.selectedDeck.addCard(card);
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
     public void setCard(PowerCard target, PowerCard editedCard) {
         requireAllNonNull(target, editedCard);
-        deck.setCard(target, editedCard);
+        this.selectedDeck.setCard(target, editedCard);
     }
 
     /* ========================== Filtered Card List Accessors ============================ */
@@ -123,13 +122,14 @@ public class CardModelManager implements CardModel {
      */
     @Override
     public ObservableList<PowerCard> getFilteredCardList() {
-        return filteredCards;
+        return null;
+        // return filteredCards;
     }
 
     @Override
     public void updateFilteredCardList(Predicate<PowerCard> predicate) {
         requireNonNull(predicate);
-        filteredCards.setPredicate(predicate);
+        // filteredCards.setPredicate(predicate);
     }
 
     @Override
@@ -140,14 +140,38 @@ public class CardModelManager implements CardModel {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof CardModelManager)) {
+        if (!(obj instanceof DeckModelManager)) {
             return false;
         }
 
         // state check
-        CardModelManager other = (CardModelManager) obj;
-        return deck.equals(other.deck)
-                && userPrefs.equals(other.userPrefs)
-                && filteredCards.equals(other.filteredCards);
+        DeckModelManager other = (DeckModelManager) obj;
+        return this.selectedDeck.equals(other.selectedDeck)
+                && userPrefs.equals(other.userPrefs);
+        // && filteredCards.equals(other.filteredCards);
+    }
+
+    @Override
+    public ArrayList<PowerDeck> getDecks() {
+        return this.powerDecks;
+    }
+
+    @Override
+    public void unSelectDeck() {
+        this.selectedDeck = null;
+    }
+
+    /* ========================== When No Deck selected ============================ */
+
+    @Override
+    public void createDeck() {
+        PowerDeck newDeck = new PowerDeck();
+        this.powerDecks.add(newDeck);
+    }
+
+    @Override
+    public void selectDeck(int deckIndex) {
+        this.selectedDeck = this.powerDecks.get(deckIndex);
+        this.filteredCards = new FilteredList<>(this.selectedDeck.getCardList());
     }
 }

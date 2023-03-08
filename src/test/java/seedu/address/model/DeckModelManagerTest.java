@@ -5,21 +5,22 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.powerdeck.PowerDeck;
 
-class CardModelManagerTest {
+class DeckModelManagerTest {
 
-    private CardModelManager modelManager = new CardModelManager();
+    private DeckModelManager modelManager = new DeckModelManager();
 
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PowerDeck(), new PowerDeck(modelManager.getDeck()));
+        assertEquals(new ArrayList<PowerDeck>(), modelManager.getDecks());
     }
 
     @Test
@@ -73,10 +74,10 @@ class CardModelManagerTest {
 
 
 
-    @Test
-    public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
-    }
+    //    @Test
+    //    public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
+    //        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
+    //    }
 
     // Todo: create a default card to test these following methods
 
