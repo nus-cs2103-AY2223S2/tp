@@ -1,5 +1,5 @@
 .module-card {
-    -fx-pref-height: 100;
+    -fx-min-height: 100;
     -fx-padding: 10 25;
 
     -fx-border-radius: 10;

@@ -109,7 +109,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             // To refresh the graphics section to display updated list of modules
-            graphicsSection.displayModuleList(logic.getFilteredModuleList());
+            graphicsSection.displayAllModules(logic.getFilteredModuleList());
 
             if (commandResult.isExit()) {
                 handleExit();

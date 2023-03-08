@@ -12,7 +12,7 @@
         <URL value="@module-list.css" />
     </stylesheets>
 
-    <ScrollPane vbarPolicy="ALWAYS" hbarPolicy="NEVER" hvalue="1.0" vvalue="1.0" id="module-list-scroll-container">
+    <ScrollPane vbarPolicy="ALWAYS" hbarPolicy="NEVER" hvalue="1.0" vvalue="0.0" id="module-list-scroll-container">
         <content>
             <VBox fx:id="moduleList" id="module-list" />
         </content>

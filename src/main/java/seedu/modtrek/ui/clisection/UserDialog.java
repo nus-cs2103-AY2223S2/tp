@@ -22,5 +22,8 @@ public class UserDialog extends UiPart<Region> {
     public UserDialog(String text) {
         super(FXML);
         userDialogText.setText(text);
+
+        /* Set userDialogText's min height so that it's height does not shrink when scrollpane overflows. */
+        userDialogText.setMinHeight(Region.USE_PREF_SIZE);
     }
 }
