@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.internship.Internship;
 import seedu.address.model.person.Person;
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -53,10 +54,10 @@ public interface Model1 {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInternshipCatalogue(ReadOnlyInternshipCatalogue addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyInternshipCatalogue getInternshipCatalogue();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -73,7 +74,7 @@ public interface Model1 {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Internship internship);
+    void addInternship(Internship internship);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -83,7 +84,7 @@ public interface Model1 {
     void setInternship(Internship target, Internship editedInternship);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Internship> getFilteredInternshipList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
