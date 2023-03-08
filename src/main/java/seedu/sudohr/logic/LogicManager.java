@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlySudoHr getAddressBook() {
+    public ReadOnlySudoHr getSudoHr() {
         return model.getSudoHr();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getSudoHrFilePath() {
         return model.getSudoHrFilePath();
     }
 

@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.sudohr.model.Model#getSudoHr()
      */
-    ReadOnlySudoHr getAddressBook();
+    ReadOnlySudoHr getSudoHr();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' sudohr book file path.
      */
-    Path getAddressBookFilePath();
+    Path getSudoHrFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
