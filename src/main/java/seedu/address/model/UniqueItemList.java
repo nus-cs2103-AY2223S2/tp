@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.exceptions.DuplicateItemException;
+import seedu.address.model.exceptions.ItemNotFoundException;
 
 
 /**
@@ -36,7 +36,7 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateItemException();
         }
         internalList.add(toAdd);
     }
@@ -51,11 +51,11 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new TaskNotFoundException();
+            throw new ItemNotFoundException();
         }
 
         if (!target.isSame(editedItem) && contains(editedItem)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateItemException();
         }
 
         internalList.set(index, editedItem);
@@ -68,7 +68,7 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
     public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TaskNotFoundException();
+            throw new ItemNotFoundException();
         }
     }
 
@@ -79,7 +79,7 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
     public void setItems(List<T> items) {
         requireAllNonNull(items);
         if (!tasksAreUnique(items)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateItemException();
         }
 
         internalList.setAll(items);
