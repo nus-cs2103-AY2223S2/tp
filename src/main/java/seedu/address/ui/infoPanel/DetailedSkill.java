@@ -1,8 +1,8 @@
-package seedu.address.ui.InfoPanel;
+package seedu.address.ui.infoPanel;
 
-import javafx.scene.layout.Region;
-import seedu.address.ui.UiPart;
-
+/**
+ * DetailedSkill controller for showing skill details at DetailedInfoPanel.
+ */
 public class DetailedSkill extends DetailedInfo {
 
     private static final String FXML = "DetailedSkill.fxml";

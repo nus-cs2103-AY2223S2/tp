@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -9,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
+
 
 /**
  * Loads specific person to the right info panel.
@@ -30,12 +31,18 @@ public class ViewCommand extends Command {
 
     private final String tab;
 
+    /**
+     * @param index of the person in the filtered person list to view
+     */
     public ViewCommand(Index index) {
         requireNonNull(index);
         this.index = index;
         this.tab = "default";
     }
 
+    /**
+     * @param tab of the currently viewing person to display on the InfoPanel
+     */
     public ViewCommand(String tab) {
         requireNonNull(tab);
         this.index = Index.fromZeroBased(0);
