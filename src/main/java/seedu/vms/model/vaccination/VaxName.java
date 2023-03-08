@@ -43,7 +43,7 @@ public class VaxName {
     @Override
     public boolean equals(Object other) {
         if (this == other) {
-            return false;
+            return true;
         }
         return other instanceof VaxName
                 && name.equals(((VaxName) other).name);

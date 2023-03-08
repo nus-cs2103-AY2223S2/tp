@@ -9,7 +9,7 @@ import java.util.Objects;
  * {@link VaxType} instead of the instance.
  */
 public class VaxRecordKey {
-    private final String vaxKey;
+    private final VaxName vaxKey;
     private final LocalDateTime timeTaken;
 
 
@@ -20,14 +20,14 @@ public class VaxRecordKey {
      * @param timeTaken - the time the vaccination was taken.
      * @throws NullPointerException if any parameters are {@code null}.
      */
-    public VaxRecordKey(String vaxKey, LocalDateTime timeTaken) {
+    public VaxRecordKey(VaxName vaxKey, LocalDateTime timeTaken) {
         this.vaxKey = Objects.requireNonNull(vaxKey);;
         this.timeTaken = Objects.requireNonNull(timeTaken);
     }
 
 
     public String getVaxTypeKey() {
-        return vaxKey;
+        return vaxKey.toString();
     }
 
 

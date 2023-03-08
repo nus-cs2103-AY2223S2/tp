@@ -16,6 +16,8 @@ public class VaxNameTest {
         "abc:",
         "( ^)o(^ )b");
 
+    private static final String SAMPLE_NAME = "UNCHI";
+
 
     @Test
     public void isValidName_valid_true() {
@@ -30,5 +32,17 @@ public class VaxNameTest {
         for (String invalid : INVALID_LIST) {
             assertFalse(VaxName.isValidName(invalid), invalid);
         }
+    }
+
+
+    @Test
+    public void equalsTest() {
+        VaxName testing = new VaxName(SAMPLE_NAME);
+        VaxName eqs = new VaxName(SAMPLE_NAME + " ");
+        VaxName diff = new VaxName(SAMPLE_NAME + "a");
+
+        assertTrue(testing.equals(testing));
+        assertTrue(testing.equals(eqs));
+        assertFalse(testing.equals(diff));
     }
 }
