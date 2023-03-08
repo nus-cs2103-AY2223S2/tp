@@ -16,7 +16,7 @@ import seedu.sudohr.model.person.Person;
 /**
  * An Immutable SudoHr that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "sudohr")
 class JsonSerializableSudoHr {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
