@@ -7,8 +7,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.TagContainsGroupsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Filters all persons in address book who belongs to any of the groups specified in the argument.
+ * group name matching is case insensitive.
  */
 public class ShowCommand extends Command {
 

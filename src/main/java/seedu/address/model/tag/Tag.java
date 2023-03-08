@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.person.Name;
+
 import java.util.Locale;
 
 import static java.util.Objects.requireNonNull;
@@ -53,4 +55,16 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    public String getTag() {
+        return tagName;
+    }
+
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+
+        return otherTag != null
+                && otherTag.getTag().equals(getTag());
+    }
 }
