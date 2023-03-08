@@ -11,7 +11,7 @@ import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * Represents a module group comprising module cards
+ * Represents a module group comprising module cards.
  */
 public class ModuleGroup extends UiPart<Region> {
     private static final String FXML = "module_list/ModuleGroup.fxml";
@@ -35,7 +35,7 @@ public class ModuleGroup extends UiPart<Region> {
     }
 
     /**
-     * Displays all module cards within a module group
+     * Displays all module cards within a module group.
      * @param modules the list of modules for the group
      */
     public void displayModuleCards(ArrayList<Module> modules) {

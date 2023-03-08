@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.modtrek.model.tag.Tag;
 
 /**
- * Represents a module in ModTrek
+ * Represents a module in ModTrek.
  */
 public class Module {
     // Identity fields
