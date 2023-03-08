@@ -1,4 +1,4 @@
-package seedu.address.ui.infoPanel;
+package seedu.address.ui.infopanel;
 
 /**
  * DetailedContact controller for showing contact details at DetailedInfoPanel.

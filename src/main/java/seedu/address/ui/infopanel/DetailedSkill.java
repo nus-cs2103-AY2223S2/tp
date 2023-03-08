@@ -1,4 +1,4 @@
-package seedu.address.ui.infoPanel;
+package seedu.address.ui.infopanel;
 
 /**
  * DetailedSkill controller for showing skill details at DetailedInfoPanel.

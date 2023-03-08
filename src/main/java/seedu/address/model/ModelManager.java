@@ -134,20 +134,24 @@ public class ModelManager implements Model {
 
     //=========== Protagonist ================================================================================
 
+    @Override
     public Person getProtagonist() {
         return protagonist;
     }
 
+    @Override
     public void setProtagonist(Person protagonist) {
         this.protagonist = protagonist;
     }
 
     //=========== InfoTab ====================================================================================
 
+    @Override
     public String getCurrentTab() {
         return currentTab;
     }
 
+    @Override
     public void setCurrentTab(String tab) {
         currentTab = tab;
     }

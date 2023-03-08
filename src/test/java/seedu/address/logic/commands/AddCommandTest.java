@@ -147,6 +147,26 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getProtagonist() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProtagonist(Person protagonist) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getCurrentTab() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentTab(String tab) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

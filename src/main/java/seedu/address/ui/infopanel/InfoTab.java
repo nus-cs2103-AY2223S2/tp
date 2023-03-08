@@ -1,4 +1,4 @@
-package seedu.address.ui.infoPanel;
+package seedu.address.ui.infopanel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

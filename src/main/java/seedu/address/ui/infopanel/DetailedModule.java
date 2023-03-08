@@ -1,4 +1,4 @@
-package seedu.address.ui.infoPanel;
+package seedu.address.ui.infopanel;
 
 /**
  * DetailedModule controller for showing module details at DetailedInfoPanel.

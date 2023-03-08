@@ -1,4 +1,4 @@
-package seedu.address.ui.infoPanel;
+package seedu.address.ui.infopanel;
 
 import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
