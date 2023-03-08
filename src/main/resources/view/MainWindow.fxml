@@ -16,7 +16,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="FitBook" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/FitBookIcon.png" />
+    <Image url="@/images/FitBook.png" />
   </icons>
   <scene>
     <Scene>
