@@ -8,7 +8,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.mapping.PersonTask;
 import seedu.address.model.person.Person;
+
 
 /**
  * Panel containing the list of persons.
@@ -22,18 +26,40 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(Logic logic) {
         super(FXML);
         Logger logger = LogsCenter.getLogger(PersonListPanel.class);
         logger.info("Init PersonListPanel");
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setItems(logic.getFilteredPersonList());
+        personListView.setCellFactory(listView -> new PersonListViewCell(logic.getOfficeConnectModel()));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListViewCell extends ListCell<Person> {
+
+        private final OfficeConnectModel officeConnectModel;
+        public PersonListViewCell(OfficeConnectModel officeConnectModel) {
+            this.officeConnectModel = officeConnectModel;
+        }
+
+        @Override
+        public void updateSelected(boolean selected) {
+            super.updateSelected(selected);
+            if (selected) {
+                Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+                logger.info("An item selected: " + this.getItem().toString());
+
+                ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+                    .getFilteredItemList().filtered(personTask ->
+                        personTask.getPersonId().equals(super.getItem().getId()));
+
+                officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
+                    .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+            }
+        }
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
