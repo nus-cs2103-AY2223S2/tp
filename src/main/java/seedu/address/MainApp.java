@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -113,7 +114,24 @@ public class MainApp extends Application {
             initialTaskList = new TaskList();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTaskList);
+        //TODO
+        /*
+        Optional<ReadOnlyTankList> tankListOptional;
+        ReadOnlyTankList initialTankList;
+         try {
+            tankListOptional = storage.readTankList();
+            if (tankListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TankList");
+            }
+            initialTankList = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
+        }  catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        } */
+        return new ModelManager(initialData, userPrefs, initialTaskList, new TankList());
     }
 
     private void initLogging(Config config) {

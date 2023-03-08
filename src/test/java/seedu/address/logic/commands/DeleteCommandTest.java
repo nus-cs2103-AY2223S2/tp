@@ -16,6 +16,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 
@@ -25,7 +26,8 @@ import seedu.address.model.fish.Fish;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
+            new TankList());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +36,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FISH_SUCCESS, fishToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(),
+                new TankList());
         expectedModel.deleteFish(fishToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +60,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FISH_SUCCESS, fishToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(),
+                new TankList());
         expectedModel.deleteFish(fishToDelete);
         showNoFish(expectedModel);
 

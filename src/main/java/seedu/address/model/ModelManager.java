@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,12 +26,14 @@ public class ModelManager implements Model {
     private final FilteredList<Fish> filteredFish;
     private final TaskList taskList;
     private final FilteredList<Task> filteredTasks;
+    private final TankList tankList;
+    private final FilteredList<Tank> filteredTanks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyTaskList taskList) {
+                        ReadOnlyTaskList taskList, ReadOnlyTankList tankList) {
         requireAllNonNull(addressBook, userPrefs, taskList);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -40,10 +43,12 @@ public class ModelManager implements Model {
         filteredFish = new FilteredList<>(this.addressBook.getFishList());
         this.taskList = new TaskList(taskList);
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        this.tankList = new TankList(tankList);
+        filteredTanks = new FilteredList<>(this.tankList.getTankList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new TaskList());
+        this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -90,6 +95,17 @@ public class ModelManager implements Model {
     public void setTaskListFilePath(Path taskListFilePath) {
         requireNonNull(taskListFilePath);
         userPrefs.setTaskListFilePath(taskListFilePath);
+    }
+
+    @Override
+    public Path getTankListFilePath() {
+        return userPrefs.getTankListFilePath();
+    }
+
+    @Override
+    public void setTankListFilePath(Path tankListFilePath) {
+        requireNonNull(tankListFilePath);
+        userPrefs.setTaskListFilePath(tankListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -163,7 +179,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredFish.equals(other.filteredFish)
                 && taskList.equals(other.taskList)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredTanks.equals(other.filteredTanks);
     }
 
     //=========== TaskList =============================================================
@@ -214,6 +231,56 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== TankList tank =============================================================
+    @Override
+    public void setTankList(ReadOnlyTankList tankList) {
+        this.tankList.resetData(tankList);
+    }
+
+    @Override
+    public ReadOnlyTankList getTankList() {
+        return tankList;
+    }
+
+    @Override
+    public boolean hasTank(Tank tank) {
+        requireNonNull(tank);
+        return tankList.hasTank(tank);
+    }
+
+    @Override
+    public void deleteTank(Tank target) {
+        tankList.removeTank(target);
+    }
+
+    @Override
+    public void addTank(Tank tank) {
+        tankList.addTank(tank);
+    }
+
+    @Override
+    public void setTank(Tank target, Tank editedTank) {
+        requireAllNonNull(target, editedTank);
+
+        tankList.setTank(target, editedTank);
+    }
+
+    //=========== Filtered TankList Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the {@code TankList}.
+     */
+    @Override
+    public ObservableList<Tank> getFilteredTankList() {
+        return filteredTanks;
+    }
+
+    @Override
+    public void updateFilteredTankList(Predicate<Tank> predicate) {
+        requireNonNull(predicate);
+        filteredTanks.setPredicate(predicate);
     }
 
 }
