@@ -57,11 +57,11 @@ public class CliSection extends UiPart<Region> {
         try {
             CommandResult commandResult = commandExecutor.execute(commandText);
             addSystemDialog(commandResult.getFeedbackToUser(), true);
-            cliInput.setText("");
         } catch (CommandException | ParseException e) {
             addSystemDialog(e.getMessage(), false);
+        } finally {
+            cliInput.setText("");
         }
-
     }
 
     private void addUserDialog(String text) {
