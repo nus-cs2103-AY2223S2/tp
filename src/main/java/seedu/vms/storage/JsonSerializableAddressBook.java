@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
@@ -57,7 +58,12 @@ class JsonSerializableAddressBook {
             if (addressBook.contains(patientData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
-            addressBook.add(patientData);
+            try {
+                addressBook.add(patientData);
+            } catch (LimitExceededException limitEx) {
+                // TODO: better message
+                throw new IllegalValueException("ID limit reached");
+            }
         }
         return addressBook;
     }

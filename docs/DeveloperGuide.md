@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of patients
-* has a need to manage paitent schedules
+* has a need to manage patient schedules
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -266,31 +266,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: VMS provides an efficient solution for managing vaccine stock, determining patient suitability and scheduling appointments, and improving administrative efficiency and patient care. The system is optimised for typist, making it an ideal choice for busy administrative staff who type fast and prefer a CLI-first design.
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                                | So that I can…​                                                                    |
+| Priority | As a …​                          | I want to …​                                                                               | So that I can …​                                                                  |
 | -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| `* * *`  | Receptionist that prefers typing | be able to access all features through CLI                                                 | improve my productivity                                                           |
 | `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
 | `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
-| `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
 | `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |
 | `* * *`  | Receptionist                     | be able to key in people with the same name                                                | save the data of people with the same name.                                       |
-| `* * *`  | User                             | delete patients/appointments                                                               | remove mistakes                                                                   |
+| `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
+| `* * *`  | Receptionist                     | update a patient                                                                           |                                                                                   |
+| `* * *`  | Receptionist                     | delete a patient                                                                           |                                                                                   |
+| `* * *`  | Receptionist                     | view appointment details                                                                   | recall the details of an appointment                                              |
 | `* * *`  | Receptionist                     | add an appointment                                                                         |                                                                                   |
+| `* * *`  | Receptionist                     | delete an appointment                                                                      |                                                                                   |
+| `* * *`  | Receptionist                     | update an appointment                                                                      |                                                                                   |
+| `* * *`  | Receptionist                     | view vaccination type details                                                              | recall the details of a vaccination type                                          |
+| `* * *`  | Receptionist                     | add a vaccination type                                                                     |                                                                                   |
+| `* * *`  | Receptionist                     | delete a vaccination type                                                                  |                                                                                   |
+| `* * *`  | Receptionist                     | update a vaccination type                                                                  |                                                                                   |
+| `* * *`  | Receptionist                     | view allergy details                                                                       | recall the details of an allergy                                                  |
+| `* * *`  | Receptionist                     | add an allergy                                                                             |                                                                                   |
+| `* * *`  | Receptionist                     | delete an allergy                                                                          |                                                                                   |
+| `* * *`  | Receptionist                     | update an allergy                                                                          |                                                                                   |
+| `* * *`  | New user wanting to use the app  | purge all the current data                                                                 | get rid of sample/experiment data                                                 |
 | `* *`    | Junior receptionist              | view a quick start guide easily                                                            | learn the basic features of the system quickly                                    |
 | `* *`    | Receptionist                     | update the status of a patient                                                             | they can be tracked and not go missing                                            |
 | `* *`    | Potential user exploring the app | see the app populated with sample data                                                     | use it as a tutorial for how the app will work                                    |
-| `* *`    | Expert user                      | enter arguments in masses (MassOps)                                                        | type less                                                                         |
+| `* *`    | Expert user                      | enter arguments in masses                                                                  | type less                                                                         |
 | `* *`    | Receptionist                     | check what is the next free appointment slot                                               | choose the best time for the patient                                              |
-| `* *`    | New user wanting to use the app  | purge all the current data                                                                 | get rid of sample/experiment data                                                 |
-| `* *`    | Expert user                      | enter shorterned command names to perform the same command                                 | type less                                                                         |
+| `* *`    | Expert user                      | enter shortened command names to perform the same command                                  | type less                                                                         |
+| `* *`    | Receptionist                     | filter vaccination types                                                                   | find the vaccination type that I am looking for easier                            |
+| `* *`    | Receptionist                     | add custom reference names to vaccination types                                            | refer to a vaccination type with shortened names                                  |
 | `*`      | Receptionist                     | check the appointment schedule                                                             | see when an open slot is                                                          |
 | `*`      | Receptionist                     | check the status of patients                                                               | know when to let the next waiting in line in                                      |
-| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next patient in quicker                                    |
+| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next patient in quicker                                   |
 | `*`      | Receptionist                     | view the appointments made for the day                                                     | roughly know how many patients to expect that day to allocate enough vaccinations |
 | `*`      | Receptionist                     | see the status of all patients                                                             | know where they are                                                               |
 | `*`      | Receptionist                     | check the list of patients                                                                 | prepare the correct number of vaccinations                                        |
@@ -307,44 +319,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Receptionist                     | find patients who did not come                                                             | send them a reminder to take their vaccination                                    |
 | `*`      | Receptionist                     | archive/hide unused data                                                                   | am not distracted by irrelevant data                                              |
 | `*`      | Receptionist                     | undo my latest action                                                                      | do not accidentally nuke all data                                                 |
-
-*{More to be added}*
+| `*`      | User                             | view the records that I have deleted                                                       | so that I can add them back when needed                                           |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Vms` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `VMS` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Add a patient**
+#### UC-PAT-001 - Add patient
 
-**MSS**
+##### MSS
 
-1.  User requests to add patient.
-2.  VMS adds the patient.
+1. User requests to add patient.
+2. VMS adds the patient.
+
+  Use case ends.
+
+#### UC-PAT-002 - List patients
+
+##### MSS
+
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
+
+  Use case ends.
+
+#### UC-PAT-003 - Update patient
+
+##### MSS
+
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
+3. User requests to update a specific patient in the list with the args.
+4. VMS updates the patients
 
     Use case ends.
 
-**Use case: Read patient list**
-
-**MSS**
-
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
-
-    Use case ends.
-
-
-**Use case: Update a patient**
-
-**MSS**
-
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
-3.  User requests to update a specific patient in the list with the args.
-4.  VMS updates the patients
-
-    Use case ends.
-
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -352,22 +362,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: Delete a patient**
+#### UC-PAT-004 - Delete patient
 
-**MSS**
+##### MSS
 
-1.  User requests to list patients.
-2.  VMS shows a the list of patients with their corresponding IDs.
-3.  User requests to delete a specific patient in the list.
-4.  VMS soft deletes the patient.
+1. User requests to list patients.
+2. VMS shows a the list of patients with their corresponding IDs.
+3. User requests to delete a specific patient in the list.
+4. VMS soft deletes the patient.
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -375,11 +385,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: Add an appointment**
+#### UC-APT-001 - Add appointment
+
+##### MSS
 
 1. User request to add an appointment.
 2. User enters the start and end timing of the appointment, and the associated patient.
@@ -387,35 +399,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. timing format or patient ID is invalid.
 
-    * 2a1. VMS shows an error message.
+  * 2a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: Read Appointment List**
+#### UC-APT-002 - View appointments
 
-**MSS**
+##### MSS
 
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
-
-    Use case ends.
-
-**Use case: Update an appointment**
-
-**MSS**
-
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
-3.  User requests to update a specific appointment in the list using the ID with the args.
-4.  VMS update the appointment.
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
 
     Use case ends.
 
-**Extensions**
+#### UC-APT-003 - Update appointment
+
+##### MSS
+
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
+3. User requests to update a specific appointment in the list using the ID with the args.
+4. VMS update the appointment.
+
+    Use case ends.
+
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -423,23 +435,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
+#### UC-APT-004 - Delete appointment
 
-**Use case: Delete an appointment**
+##### MSS
 
-**MSS**
-
-1.  User requests to list appointments.
-2.  VMS shows a list of appointments.
-3.  User requests to delete a specific appointment in the list.
-4.  VMS deletes the appointment.
+1. User requests to list appointments.
+2. VMS shows a list of appointments.
+3. User requests to delete a specific appointment in the list.
+4. VMS deletes the appointment.
 
     Use case ends.
 
-**Extensions**
+##### Extensions
 
 * 2a. The list is empty.
 
@@ -447,21 +458,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given ID is invalid.
 
-    * 3a1. VMS shows an error message.
+  * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-*{More to be added}*
+#### UC-VAC-001 - Add vaccination type
+
+##### MSS
+
+1. User enters command to add a vaccination type.
+2. VMS adds the vaccination type.<br>
+    Use case ends.
+
+##### Extensions
+
+* 2a. Command contains syntax errors
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type already exists.
+  * 2b1. VMS shows an error message.<br>
+      Use case resumes from step 1.
+
+#### UC-VAC-002 - List vaccination types
+
+##### MSS
+
+1. User enters the command to list vaccination types.
+2. VMS lists all available vaccination types.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+
+#### UC-VAC-003 - Update vaccination type
+
+##### MSS
+
+1. User enters command to update a vaccination type.
+2. VMS updates the vaccination type.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type does not exist.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+
+#### UC-VAC-004 - Delete vaccination type
+
+##### MSS
+
+1. User enters command to delete a vaccination type.
+2. VMS deletes the vaccination type.
+
+##### Extensions
+
+* 2a. Command contains syntax errors.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
+* 2b. Vaccination type does not exist.
+  * 2a1. VMS shows an error message.<br>
+    Use case resumes from step 1.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Details inside the app should not be hard deleted for audit and accountability purposes. (soft delete)
-5.  VMS should auto save to prevent data loss if something crashes. (Specific implementation can be found in [#18](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/18))
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should auto save to prevent data loss if application crashes.
+5. All functionalities should be accessible through CLI.
 
 ### Glossary
 

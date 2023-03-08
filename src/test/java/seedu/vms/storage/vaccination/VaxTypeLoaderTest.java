@@ -1,10 +1,13 @@
 package seedu.vms.storage.vaccination;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.VaxTestingUtil;
@@ -31,19 +34,24 @@ public class VaxTypeLoaderTest {
     private static final String FILE_VALID_MULTIPLE = "ValidMultipleTypes.json";
     private static final String FILE_EMPTY = "ZeroTypes.json";
 
+    private static final String TEST_SAVE_FILE = "VAX_TYPE_TEST_FILE.json";
+
+    @TempDir
+    public Path testFolder;
+
 
     @Test
     public void load_resource() throws Exception {
         VaxTypeManager storage = VaxTypeLoader.load();
-        VaxType vaxType = storage.get(SampleVaxTypeData.NAME).get();
+        VaxType vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
         VaxTestingUtil.assertVaxType(vaxType,
-                SampleVaxTypeData.NAME,
-                SampleVaxTypeData.GROUPS,
-                SampleVaxTypeData.MIN_AGE,
-                SampleVaxTypeData.MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING,
-                SampleVaxTypeData.HISTORY_REQS,
-                SampleVaxTypeData.ALLERGY_REQS);
+                SampleVaxTypeData.NAME_REAL,
+                SampleVaxTypeData.GROUPS_REAL,
+                SampleVaxTypeData.MIN_AGE_REAL,
+                SampleVaxTypeData.MAX_AGE_REAL,
+                SampleVaxTypeData.MIN_SPACING_REAL,
+                SampleVaxTypeData.HISTORY_REQS_REAL,
+                SampleVaxTypeData.ALLERGY_REQS_REAL);
     }
 
 
@@ -74,15 +82,15 @@ public class VaxTypeLoaderTest {
                 VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_HISTORY_REQS,
                 VaxType.DEFAULT_ALLERGY_REQS);
-        vaxType = storage.get(SampleVaxTypeData.NAME).get();
+        vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
         VaxTestingUtil.assertVaxType(vaxType,
-                SampleVaxTypeData.NAME,
-                SampleVaxTypeData.GROUPS,
-                SampleVaxTypeData.MIN_AGE,
-                SampleVaxTypeData.MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING,
-                SampleVaxTypeData.HISTORY_REQS,
-                SampleVaxTypeData.ALLERGY_REQS);
+                SampleVaxTypeData.NAME_REAL,
+                SampleVaxTypeData.GROUPS_REAL,
+                SampleVaxTypeData.MIN_AGE_REAL,
+                SampleVaxTypeData.MAX_AGE_REAL,
+                SampleVaxTypeData.MIN_SPACING_REAL,
+                SampleVaxTypeData.HISTORY_REQS_REAL,
+                SampleVaxTypeData.ALLERGY_REQS_REAL);
     }
 
 
@@ -167,5 +175,23 @@ public class VaxTypeLoaderTest {
             // expected exception
             return;
         }
+    }
+
+
+    @Test
+    public void write() throws Exception {
+        // empty manager
+        testSaveMethod(new VaxTypeManager());
+        // filled manager
+        // assuming default loading works
+        testSaveMethod(VaxTypeLoader.load());
+    }
+
+
+    private void testSaveMethod(VaxTypeManager manager) throws Exception {
+        Path saveFile = testFolder.resolve(TEST_SAVE_FILE);
+        VaxTypeLoader.fromModelType(manager).write(saveFile.toString());
+        VaxTypeManager loaded = VaxTypeLoader.load(saveFile.toString());
+        assertEquals(manager.asUnmodifiableObservableMap(), loaded.asUnmodifiableObservableMap());
     }
 }

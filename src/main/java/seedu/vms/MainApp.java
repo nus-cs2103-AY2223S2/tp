@@ -29,6 +29,8 @@ import seedu.vms.storage.JsonUserPrefsStorage;
 import seedu.vms.storage.Storage;
 import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.UserPrefsStorage;
+import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
+import seedu.vms.storage.vaccination.VaxTypeStorage;
 import seedu.vms.ui.Ui;
 import seedu.vms.ui.UiManager;
 
@@ -58,7 +60,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
+        storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -91,7 +94,15 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        VaxTypeManager vaxTypeManager = storage.loadDefaultVaxTypes();
+        VaxTypeManager vaxTypeManager = new VaxTypeManager();
+        try {
+            vaxTypeManager = storage.loadUserVaxTypes();
+        } catch (IOException ioEx) {
+            logger.warning("Unable to load vaccination types, default will be loaded, problem: " + ioEx.getMessage());
+            vaxTypeManager = storage.loadDefaultVaxTypes();
+        } catch (RuntimeException rte) {
+            // not suppose to happen but initialize as empty
+        }
 
         return new ModelManager(initialData, vaxTypeManager, userPrefs);
     }

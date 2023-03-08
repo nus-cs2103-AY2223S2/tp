@@ -27,6 +27,15 @@ public class JsonAdaptedVaxRequirement {
 
 
     /**
+     * Converts the specified {@code Requirement} to a
+     * {@code JsonAdaptedVaxRequirement}.
+     */
+    public static JsonAdaptedVaxRequirement fromModelType(Requirement req) {
+        return new JsonAdaptedVaxRequirement(req.getReqType(), List.copyOf(req.getReqSet()));
+    }
+
+
+    /**
      * Converts this JSON friendly version to an {@link Requirement}
      * instance.
      *
