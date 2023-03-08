@@ -17,7 +17,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
 public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
-    public static final String MESSAGE_SUCCESS = "Updated storage count for Drug: %1$s";
+    public static final String MESSAGE_SUCCESS = "Drug: %1$s \nUpdated storage count: %2$s";
     public static final String MESSAGE_FAILURE = "Drug not found: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -48,7 +48,7 @@ public class UpdateCommand extends Command {
         Drug toUpdate = null;
         for (Drug drug : drugList) {
             if (drug.getTradeName().equals(tradeName)) {
-                if (add == true) {
+                if (add) {
                     drug.getStorageCount().incStorage(value);
                 } else {
                     drug.getStorageCount().decrStorage(value);
@@ -62,6 +62,6 @@ public class UpdateCommand extends Command {
             throw new CommandException(String.format(MESSAGE_FAILURE, tradeName));
         }
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, toUpdate));
+                String.format(MESSAGE_SUCCESS, toUpdate.getTradeName(), toUpdate.getStorageCount()));
     }
 }

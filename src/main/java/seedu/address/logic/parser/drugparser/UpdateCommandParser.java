@@ -15,6 +15,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.*;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
+    private final char positive = '+';
+    private final char negative = '-';
     @Override
     public UpdateCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TRADE_NAME, PREFIX_UPDATE);
@@ -22,15 +24,19 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             TradeName tradeName = ParserUtil.parseTradeName(argumentMultimap.getValue(PREFIX_TRADE_NAME).get());
             String update = argumentMultimap.getValue(PREFIX_UPDATE).get();
             boolean add;
-            if(update.charAt(0) == '-') {
+            if(update.charAt(0) == negative) {
                 add = false;
-            } else if (update.charAt(0) == '+') {
+            } else if (update.charAt(0) == positive) {
                 add = true;
             } else {
                 throw new ParseException("Unknown/missing symbol ('+' for addition and '-' for subtraction concatenated in front) for update value");
             }
-            Integer value = Integer.parseInt(update.substring(1));
-            return new UpdateCommand(tradeName, value, add);
+            try {
+                Integer value = Integer.parseInt(update.substring(1));
+                return new UpdateCommand(tradeName, value, add);
+            } catch (NumberFormatException e) {
+                throw new ParseException("Update value is invalid, Please enetr only integer values with '+' or '-' prefixed.");
+            }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     seedu.address.logic.commands.drugcommands.UpdateCommand.MESSAGE_USAGE));
