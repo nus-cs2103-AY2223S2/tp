@@ -50,7 +50,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
         parseTagsForRemove(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removePersonDescriptor::setTags);
 
         if (!removePersonDescriptor.isAnyFieldRemoved()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(RemoveCommand.MESSAGE_NOT_REMOVE);
         }
 
         return new RemoveCommand(index, removePersonDescriptor);

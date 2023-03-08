@@ -4,6 +4,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Language;
@@ -36,6 +37,8 @@ public class RemoveCommand extends Command {
 
     public static final String MESSAGE_NOT_REMOVE = "At least one field to remove must be provided.";
 
+    public static final String MESSAGE_REMOVE_FIELD_NOT_MATCH = "The field provided does not exist in the SOCket.";
+
     private final Index index;
 
     private final RemovePersonDescriptor removePersonDescriptor;
@@ -57,6 +60,10 @@ public class RemoveCommand extends Command {
 
         Person personFieldToRemove = lastShownList.get(index.getZeroBased());
         Person removedFieldPerson = createRemoveFieldPerson(personFieldToRemove, removePersonDescriptor);
+
+        if (!removePersonDescriptor.isAnyFieldRemoved()) {
+            throw new CommandException(MESSAGE_REMOVE_FIELD_NOT_MATCH);
+        }
 
         model.setPerson(personFieldToRemove, removedFieldPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -117,9 +124,16 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<GitHubProfile> getRemoveProfile() {
-            return (profile != null) && (profile.equals(person.getProfile()) || profile.isEmptyProfile())
-                    ? Optional.of(new GitHubProfile(""))
-                    : Optional.empty();
+            if (profile == null) {
+                return Optional.empty();
+            }
+
+            if (!profile.equals(person.getProfile()) && !profile.isEmptyProfile()) {
+                setProfile(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(new GitHubProfile(""));
         }
 
         public void setPhone(Phone phone) {
@@ -127,9 +141,16 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Phone> getRemovePhone() {
-            return (phone != null) && (phone.equals(person.getPhone()) || phone.isPhoneEmpty())
-                    ? Optional.of(new Phone(""))
-                    : Optional.empty();
+            if (phone == null) {
+                return Optional.empty();
+            }
+
+            if (!phone.equals(person.getPhone()) && !phone.isPhoneEmpty()) {
+                setPhone(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(new Phone(""));
         }
 
         public void setEmail(Email email) {
@@ -137,7 +158,16 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Email> getRemoveEmail() {
-            return Optional.ofNullable(email);
+            if (email == null) {
+                return Optional.empty();
+            }
+
+            if (!email.equals(person.getEmail()) && !email.isEmailEmpty()) {
+                setEmail(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(new Email(""));
         }
 
         public void setAddress(Address address) {
@@ -145,9 +175,16 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Address> getRemoveAddress() {
-            return (address != null) && (address.equals(person.getAddress()) || address.isAddressEmpty())
-                    ? Optional.of(new Address(""))
-                    : Optional.empty();
+            if (address == null) {
+                return Optional.empty();
+            }
+
+            if (!address.equals(person.getAddress()) && !address.isAddressEmpty()) {
+                setAddress(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(new Address(""));
         }
 
         /**
@@ -164,12 +201,18 @@ public class RemoveCommand extends Command {
          * Returns {@code Optional#empty()} if {@code languages} is null.
          */
         public Optional<Set<Language>> getRemoveLanguages() {
+            if (languages == null) {
+                return Optional.empty();
+            }
+
             Set<Language> newLanguages = new HashSet<>(person.getLanguages());
-            return (languages != null)
-                    ? newLanguages.removeAll(languages) && !languages.isEmpty()
-                    ? Optional.of(Collections.unmodifiableSet(newLanguages))
-                    : Optional.of(Collections.unmodifiableSet(languages))
-                    : Optional.empty();
+
+            if (!newLanguages.removeAll(languages) && !languages.isEmpty()) {
+                setLanguages(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(Collections.unmodifiableSet(newLanguages));
         }
 
         /**
@@ -186,12 +229,18 @@ public class RemoveCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getRemoveTags() {
+            if (tags == null) {
+                return Optional.empty();
+            }
+
             Set<Tag> newTags = new HashSet<>(person.getTags());
-            return (tags != null)
-                    ? newTags.removeAll(tags) && !tags.isEmpty()
-                        ? Optional.of(Collections.unmodifiableSet(newTags))
-                        : Optional.of(Collections.unmodifiableSet(tags))
-                    : Optional.empty();
+
+            if (!newTags.removeAll(tags) && !tags.isEmpty()) {
+                setTags(null);
+                return Optional.empty();
+            }
+
+            return Optional.of(Collections.unmodifiableSet(newTags));
         }
 
         @Override
