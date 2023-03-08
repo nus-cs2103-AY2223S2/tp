@@ -12,8 +12,7 @@ public enum Prefix {
     TELEGRAM_HANDLE("t/", "Telegram Handle"),
     EMAIL("e/", "Email"),
     GROUP_TAG("g/", "Group Tags"),
-    MODULE_TAG("m/", "Module Tags"),
-    INDEX("i/", "Index");
+    MODULE_TAG("m/", "Module Tags");
     private final String prefix;
     private final String description;
 

@@ -27,17 +27,18 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             return new ViewCommand();
         }
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(
-                userInput, Prefix.NAME, Prefix.INDEX);
+                userInput, Prefix.NAME);
         // show user by querying name
         if (arePrefixesPresent(argumentMultimap, Prefix.NAME)) {
             String name = argumentMultimap.getValue(Prefix.NAME).get();
             return new ViewCommand(name);
         }
         // show user by querying index
-        if (arePrefixesPresent(argumentMultimap, Prefix.INDEX)) {
+        Index index;
+        if (!argumentMultimap.getPreamble().isEmpty()) {
             try {
-                int index = Integer.parseInt(argumentMultimap.getValue(Prefix.INDEX).get());
-                return new ViewCommand(Index.fromZeroBased(index));
+                index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+                return new ViewCommand(index);
             } catch (Exception e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.USAGE));
             }
