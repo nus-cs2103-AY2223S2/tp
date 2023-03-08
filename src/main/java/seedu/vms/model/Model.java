@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.model.appointment.Appointment;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
@@ -100,7 +100,7 @@ public interface Model {
      * {@code appointment} must not already exist in the appointment manager.
      */
     void addAppointment(Appointment appointment);
-    
+
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
