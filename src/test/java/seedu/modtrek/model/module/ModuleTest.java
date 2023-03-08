@@ -64,4 +64,15 @@ public class ModuleTest {
         Module editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
         assertFalse(CS1101S.equals(editedCS1101s));
     }
+
+    @Test
+    public void codeRegexTest() {
+
+        // Valid Module code 4 characters + 4 digits
+        assertTrue(Code.isValidCode("GESS1035"));
+        
+        // Invalid Module code
+        assertFalse(Code.isValidCode("TESTFAIL"));
+        assertFalse(Code.isValidCode("A123"));
+    }
 }
