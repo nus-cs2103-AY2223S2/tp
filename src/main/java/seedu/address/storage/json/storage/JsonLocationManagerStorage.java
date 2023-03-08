@@ -2,16 +2,16 @@ package seedu.address.storage.json.storage;
 
 import java.nio.file.Path;
 
-import seedu.address.model.ReadOnlyIdentifiableManager;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.location.Location;
-import seedu.address.storage.json.JsonIdentifiableStorage;
+import seedu.address.storage.json.JsonItemStorage;
 import seedu.address.storage.json.adapted.JsonAdaptedLocation;
 import seedu.address.storage.json.serializable.JsonSerializableLocationManager;
 
 /**
  * Represents a storage for {@link Location}s.
  */
-public class JsonLocationManagerStorage extends JsonIdentifiableStorage<Location,
+public class JsonLocationManagerStorage extends JsonItemStorage<Location,
         JsonAdaptedLocation, JsonSerializableLocationManager> {
     /**
      * Creates a new JsonIdentifiableStorage object.
@@ -28,7 +28,7 @@ public class JsonLocationManagerStorage extends JsonIdentifiableStorage<Location
     }
 
     @Override
-    protected JsonSerializableLocationManager createManager(ReadOnlyIdentifiableManager<Location> modelManager) {
+    protected JsonSerializableLocationManager createManager(ReadOnlyItemManager<Location> modelManager) {
         return JsonSerializableLocationManager.from(modelManager);
     }
 }

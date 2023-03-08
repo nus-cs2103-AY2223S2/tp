@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
@@ -55,9 +55,9 @@ public interface Model {
     void setOperationMode(OperationMode operationMode);
 
     /**
-     * Returns the list of identifiables.
+     * Returns the list of items.
      */
-    ObservableList<Identifiable> getItemsList();
+    ObservableList<Item> getItemsList();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -135,7 +135,7 @@ public interface Model {
      *
      * @return the person manager.
      */
-    ReadOnlyIdentifiableManager<Pilot> getPilotManager();
+    ReadOnlyItemManager<Pilot> getPilotManager();
 
     /**
      * Returns the pilot manager file path.
@@ -156,7 +156,7 @@ public interface Model {
      *
      * @param pilotManager the pilot manager to replace with.
      */
-    void setPilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager);
+    void setPilotManager(ReadOnlyItemManager<Pilot> pilotManager);
 
     /**
      * Returns true if a pilot with the same identity as {@code pilot} exists
@@ -236,11 +236,11 @@ public interface Model {
 
     void setLocationManagerFilePath(Path pilotManagerFilePath);
 
-    ReadOnlyIdentifiableManager<Location> getLocationManager();
+    ReadOnlyItemManager<Location> getLocationManager();
 
     Path getLocationManagerFilePath();
 
-    void setLocationManager(ReadOnlyIdentifiableManager<Location> locationManager);
+    void setLocationManager(ReadOnlyItemManager<Location> locationManager);
 
     void setLocation(Location target, Location editedLocation);
 
@@ -265,14 +265,14 @@ public interface Model {
      */
     void setCrewManagerFilePath(Path crewManagerFilePath);
 
-    void setCrewManager(ReadOnlyIdentifiableManager<Crew> manager);
+    void setCrewManager(ReadOnlyItemManager<Crew> manager);
 
     /**
      * Returns the crew manager.
      *
      * @return the crew manager.
      */
-    ReadOnlyIdentifiableManager<Crew> getCrewManager();
+    ReadOnlyItemManager<Crew> getCrewManager();
 
     boolean hasCrew(Crew crew);
 
@@ -308,8 +308,8 @@ public interface Model {
 
     // ================ Plane methods ==============================
 
-    void setPlaneManager(ReadOnlyIdentifiableManager<Plane> manager);
-    ReadOnlyIdentifiableManager<Plane> getPlaneManager();
+    void setPlaneManager(ReadOnlyItemManager<Plane> manager);
+    ReadOnlyItemManager<Plane> getPlaneManager();
     void addPlane(Plane plane);
     void deletePlane(Plane plane);
     void deletePlane(String id);
@@ -327,7 +327,7 @@ public interface Model {
      *
      * @return flight manager
      */
-    ReadOnlyIdentifiableManager<Flight> getFlightManager();
+    ReadOnlyItemManager<Flight> getFlightManager();
 
     /**
      * Returns the flight manager file path
@@ -348,7 +348,7 @@ public interface Model {
      *
      * @param flightManager the flight manager to replace with
      */
-    void setFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager);
+    void setFlightManager(ReadOnlyItemManager<Flight> flightManager);
 
     /**
      * Returns true if a flight with the same identity as {@code flight} exists in Wingman

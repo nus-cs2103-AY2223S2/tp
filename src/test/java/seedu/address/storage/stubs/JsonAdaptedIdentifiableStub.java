@@ -7,7 +7,7 @@ import seedu.address.storage.json.JsonAdaptedModel;
  * Represents the stub for a {@code JsonAdaptedModel} object.
  */
 public class JsonAdaptedIdentifiableStub
-        implements JsonAdaptedModel<IdentifiableStub> {
+        implements JsonAdaptedModel<ItemStub> {
     /**
      * The id of the {@code JsonAdaptedModel} object.
      */
@@ -24,7 +24,7 @@ public class JsonAdaptedIdentifiableStub
     }
 
     @Override
-    public IdentifiableStub toModelType() throws IllegalValueException {
-        return new IdentifiableStub(this.id);
+    public ItemStub toModelType() throws IllegalValueException {
+        return new ItemStub(this.id);
     }
 }

@@ -3,13 +3,15 @@ package seedu.address.model.flight;
 import java.util.List;
 import java.util.UUID;
 
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 
 /**
  * Represents a flight object in wingman
  */
-public class Flight implements Identifiable {
+public class Flight implements Item {
+    private static final String UUID_STRING = "UUID";
+    private static final String CODE_STRING = "Code";
     private final String code;
     private final String id;
 
@@ -44,8 +46,8 @@ public class Flight implements Identifiable {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                "UUID: " + id,
-                "Code: " + code
+                String.format("%s: %s", UUID_STRING, id),
+                String.format("%s: %s", CODE_STRING, code)
         );
     }
 
@@ -54,4 +56,3 @@ public class Flight implements Identifiable {
         return this.id;
     }
 }
-

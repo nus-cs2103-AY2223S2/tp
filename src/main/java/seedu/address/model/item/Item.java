@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * The interface for objects that are identifiable by a unique ID.
  */
-public interface Identifiable {
+public interface Item {
     /**
      * Returns the ID of the object.
      *
@@ -34,7 +34,7 @@ public interface Identifiable {
      * @param b the second object
      * @return true if the two objects are the same type and have the same ID
      */
-    static boolean isSame(Identifiable a, Identifiable b) {
+    static boolean isSame(Item a, Item b) {
         if (a == b) {
             return true;
         }

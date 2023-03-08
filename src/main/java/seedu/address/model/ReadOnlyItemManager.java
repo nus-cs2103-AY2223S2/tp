@@ -3,14 +3,14 @@ package seedu.address.model;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 /**
- * Unmodifiable view of an identifiable manager.
+ * Unmodifiable view of an item manager.
  *
- * @param <T> the type of the identifiable items
+ * @param <T> the type of the item items
  */
-public interface ReadOnlyIdentifiableManager<T extends Identifiable> {
+public interface ReadOnlyItemManager<T extends Item> {
     /**
      * Returns true if an item with the same identity as {@code item} exists
      * in the address book.

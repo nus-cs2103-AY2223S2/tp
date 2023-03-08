@@ -15,10 +15,10 @@ import seedu.address.model.item.exceptions.ItemNotFoundException;
  * The class that resembles a list of items that are unique.
  *
  * @param <T> the type of item in the list. They must implement the {@code
- *            Identifiable} interface so that they can be identified by their
+ *            Item} interface so that they can be identified by their
  *            unique ID.
  */
-public class UniqueList<T extends Identifiable> implements Iterable<T> {
+public class UniqueList<T extends Item> implements Iterable<T> {
 
     /**
      * The internal list responsible for holding the items.
@@ -56,11 +56,11 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      * @param internalList the list of items out of which the {@code UniqueList}
      *                     will be created.
      * @param <T>          the type of item in the list. They must implement the
-     *                     {@code Identifiable} interface so that they can be
+     *                     {@code Item} interface so that they can be
      *                     identified by their unique ID.
      * @return a {@code UniqueList} from the given list of items.
      */
-    public static <T extends Identifiable> UniqueList<T> fromObservableList(ObservableList<T> internalList) {
+    public static <T extends Item> UniqueList<T> fromObservableList(ObservableList<T> internalList) {
         requireNonNull(internalList);
         requireAllNonNull(internalList.toArray());
         if (!internalList.isEmpty() && itemsHaveDuplicate(internalList)) {
@@ -118,7 +118,7 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
             throw new ItemNotFoundException(target);
         }
 
-        if (!Identifiable.isSame(target, editedItem) && contains(editedItem)) {
+        if (!Item.isSame(target, editedItem) && contains(editedItem)) {
             throw new ItemDuplicateException(editedItem.getClass());
         }
 
@@ -210,10 +210,10 @@ public class UniqueList<T extends Identifiable> implements Iterable<T> {
      *
      * @param items the list of items to be checked.
      */
-    public static <T extends Identifiable> boolean itemsHaveDuplicate(List<T> items) {
+    public static <T extends Item> boolean itemsHaveDuplicate(List<T> items) {
         for (int i = 0; i < items.size() - 1; i++) {
             for (int j = i + 1; j < items.size(); j++) {
-                if (Identifiable.isSame(items.get(i), items.get(j))) {
+                if (Item.isSame(items.get(i), items.get(j))) {
                     return true;
                 }
             }

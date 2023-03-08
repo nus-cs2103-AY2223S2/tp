@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.IdentifiableManager;
-import seedu.address.model.ReadOnlyIdentifiableManager;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.ItemManager;
+import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.item.Item;
 
 /**
  * Represents a manager that manages a list of {@code JsonAdaptedModel}
@@ -17,9 +17,8 @@ import seedu.address.model.item.Identifiable;
  * @param <T> The type of the model.
  * @param <F> The type of the JsonAdaptedModel.
  */
-public abstract class JsonIdentifiableManager<T extends Identifiable,
-        F extends JsonAdaptedModel<T>> implements
-        JsonAdaptedModel<IdentifiableManager<T>> {
+public abstract class JsonItemManager<T extends Item, F extends JsonAdaptedModel<T>>
+        implements JsonAdaptedModel<ItemManager<T>> {
 
     public static final String MESSAGE_DUPLICATE_ITEMS = "Items list contains duplicate item(s).";
 
@@ -41,15 +40,15 @@ public abstract class JsonIdentifiableManager<T extends Identifiable,
      *
      * @param manager The manager to read from.
      */
-    protected void readFromManager(ReadOnlyIdentifiableManager<T> manager) {
+    protected void readFromManager(ReadOnlyItemManager<T> manager) {
         items.addAll(manager.getItemList().stream()
                 .map(this::getJsonAdaptedModel)
                 .collect(Collectors.toList()));
     }
 
     @Override
-    public IdentifiableManager<T> toModelType() throws IllegalValueException {
-        IdentifiableManager<T> manager = new IdentifiableManager<>();
+    public ItemManager<T> toModelType() throws IllegalValueException {
+        ItemManager<T> manager = new ItemManager<>();
         for (F item : items) {
             T modelItem = item.toModelType();
             if (manager.hasItem(modelItem)) {

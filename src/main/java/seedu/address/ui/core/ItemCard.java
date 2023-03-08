@@ -3,7 +3,7 @@ package seedu.address.ui.core;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 import seedu.address.ui.UiPart;
 
 /**
@@ -11,7 +11,7 @@ import seedu.address.ui.UiPart;
  */
 public class ItemCard extends UiPart<VBox> {
     private static final String FXML = "ItemCard.fxml";
-    private final Identifiable item;
+    private final Item item;
 
     @FXML
     private VBox cardPane;
@@ -22,7 +22,7 @@ public class ItemCard extends UiPart<VBox> {
      *
      * @param item The item to be displayed.
      */
-    public ItemCard(Identifiable item) {
+    public ItemCard(Item item) {
         super(FXML);
         this.item = item;
         for (String line : item.getDisplayList()) {
@@ -36,7 +36,7 @@ public class ItemCard extends UiPart<VBox> {
      *
      * @return The item that is being displayed.
      */
-    public Identifiable getItem() {
+    public Item getItem() {
         return item;
     }
 }

@@ -17,12 +17,12 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileHelper;
 import seedu.address.commons.util.JsonHelper;
-import seedu.address.model.IdentifiableManager;
-import seedu.address.storage.stubs.JsonIdentifiableManagerStub;
-import seedu.address.storage.stubs.JsonIdentifiableStorageStub;
+import seedu.address.model.ItemManager;
+import seedu.address.storage.stubs.JsonItemManagerStub;
+import seedu.address.storage.stubs.JsonItemStorageStub;
 
 @ExtendWith(MockitoExtension.class)
-public class JsonIdentifiableStorageTest {
+public class JsonItemStorageTest {
 
     @Mock
     private JsonHelper jsonHelper;
@@ -33,24 +33,24 @@ public class JsonIdentifiableStorageTest {
     private Path filePath;
 
     @Mock
-    private JsonIdentifiableManagerStub jsonManager;
+    private JsonItemManagerStub jsonManager;
 
     @Mock
     private Logger logger;
 
-    private JsonIdentifiableStorageStub storage;
+    private JsonItemStorageStub storage;
 
     @BeforeEach
     void setUp() throws DataConversionException, IOException, IllegalValueException {
 
         filePath = Path.of("test", "path");
 
-        storage = new JsonIdentifiableStorageStub(
+        storage = new JsonItemStorageStub(
                 filePath, jsonHelper, fileHelper, logger);
 
         Mockito.lenient()
                 .when(jsonManager.toModelType())
-                .thenReturn(new IdentifiableManager<>());
+                .thenReturn(new ItemManager<>());
 
         Mockito.lenient()
                 .when(jsonHelper.readJsonFile(Mockito.any(), Mockito.any()))
@@ -62,7 +62,7 @@ public class JsonIdentifiableStorageTest {
             throws DataConversionException, IOException {
         storage.read();
         Mockito.verify(jsonHelper, Mockito.times(1))
-                .readJsonFile(filePath, JsonIdentifiableManagerStub.class);
+                .readJsonFile(filePath, JsonItemManagerStub.class);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class JsonIdentifiableStorageTest {
         final Path newPath = Path.of("Hello", "World");
         storage.read(newPath);
         Mockito.verify(jsonHelper, Mockito.times(1))
-                .readJsonFile(newPath, JsonIdentifiableManagerStub.class);
+                .readJsonFile(newPath, JsonItemManagerStub.class);
         Mockito.verify(jsonHelper, Mockito.never())
-                .readJsonFile(filePath, JsonIdentifiableManagerStub.class);
+                .readJsonFile(filePath, JsonItemManagerStub.class);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class JsonIdentifiableStorageTest {
 
     @Test
     void save_noPath_shouldCallWithDefaultPath() throws IOException {
-        storage.save(new IdentifiableManager<>());
+        storage.save(new ItemManager<>());
         Mockito.verify(jsonHelper, Mockito.times(1))
                 .saveJsonFile(Mockito.any(), Mockito.eq(filePath));
         Mockito.verify(fileHelper, Mockito.times(1))
@@ -115,7 +115,7 @@ public class JsonIdentifiableStorageTest {
     @Test
     void save_withPath_shouldCallWithPathProvided() throws IOException {
         final Path newPath = Path.of("Hello", "World");
-        storage.save(new IdentifiableManager<>(), newPath);
+        storage.save(new ItemManager<>(), newPath);
         Mockito.verify(jsonHelper, Mockito.times(1))
                 .saveJsonFile(Mockito.any(), Mockito.eq(newPath));
         Mockito.verify(fileHelper, Mockito.times(1))

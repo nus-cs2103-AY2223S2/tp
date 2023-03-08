@@ -16,7 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
@@ -34,40 +34,40 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     // pilot manager
-    private final IdentifiableManager<Pilot> pilotManager;
+    private final ItemManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
     // TODO: migrate this to the ui layer -> this probably should be there.
 
     // location manager
-    private final IdentifiableManager<Location> locationManager;
+    private final ItemManager<Location> locationManager;
     private final FilteredList<Location> filteredLocations;
 
     // crew manager
-    private final IdentifiableManager<Crew> crewManager;
+    private final ItemManager<Crew> crewManager;
     private final FilteredList<Crew> filteredCrew;
 
     // plane manager
-    private final IdentifiableManager<Plane> planeManager;
+    private final ItemManager<Plane> planeManager;
     private final FilteredList<Plane> filteredPlanes;
 
     // flight manager
-    private final IdentifiableManager<Flight> flightManager;
+    private final ItemManager<Flight> flightManager;
     private final FilteredList<Flight> filteredFlights;
 
     // general utilities
-    private final ObservableList<Identifiable> itemsList;
-    private Optional<ObservableList<? extends Identifiable>> lastBoundList = Optional.empty();
+    private final ObservableList<Item> itemsList;
+    private Optional<ObservableList<? extends Item>> lastBoundList = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyIdentifiableManager<Pilot> pilotManager,
-                        ReadOnlyIdentifiableManager<Location> locationManager,
-                        ReadOnlyIdentifiableManager<Crew> crewManager,
-                        ReadOnlyIdentifiableManager<Plane> planeManager,
-                        ReadOnlyIdentifiableManager<Flight> flightManager) {
+                        ReadOnlyItemManager<Pilot> pilotManager,
+                        ReadOnlyItemManager<Location> locationManager,
+                        ReadOnlyItemManager<Crew> crewManager,
+                        ReadOnlyItemManager<Plane> planeManager,
+                        ReadOnlyItemManager<Flight> flightManager) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -76,19 +76,19 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        this.pilotManager = new IdentifiableManager<>(pilotManager);
+        this.pilotManager = new ItemManager<>(pilotManager);
         filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
 
-        this.locationManager = new IdentifiableManager<>(locationManager);
+        this.locationManager = new ItemManager<>(locationManager);
         filteredLocations = new FilteredList<>(this.locationManager.getItemList());
 
-        this.crewManager = new IdentifiableManager<>(crewManager);
+        this.crewManager = new ItemManager<>(crewManager);
         filteredCrew = new FilteredList<>(this.crewManager.getItemList());
 
-        this.planeManager = new IdentifiableManager<>(planeManager);
+        this.planeManager = new ItemManager<>(planeManager);
         filteredPlanes = new FilteredList<>(this.planeManager.getItemList());
 
-        this.flightManager = new IdentifiableManager<>(flightManager);
+        this.flightManager = new ItemManager<>(flightManager);
         filteredFlights = new FilteredList<>(this.flightManager.getItemList());
 
         itemsList = FXCollections.observableArrayList();
@@ -99,9 +99,9 @@ public class ModelManager implements Model {
      * Initializes a ModelManager
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new IdentifiableManager<>(),
-                new IdentifiableManager<>(), new IdentifiableManager<>(),
-                new IdentifiableManager<>(), new IdentifiableManager<>());
+        this(new AddressBook(), new UserPrefs(), new ItemManager<>(),
+                new ItemManager<>(), new ItemManager<>(),
+                new ItemManager<>(), new ItemManager<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -152,9 +152,9 @@ public class ModelManager implements Model {
         }
     }
 
-    private void rebind(ObservableList<? extends Identifiable> list) {
+    private void rebind(ObservableList<? extends Item> list) {
         if (lastBoundList.isPresent()) {
-            final ObservableList<? extends Identifiable> lastBound =
+            final ObservableList<? extends Item> lastBound =
                     lastBoundList.get();
             Bindings.unbindContent(itemsList, lastBound);
         }
@@ -163,7 +163,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Identifiable> getItemsList() {
+    public ObservableList<Item> getItemsList() {
         return itemsList;
     }
 
@@ -245,7 +245,7 @@ public class ModelManager implements Model {
     //=========== Pilot ========================================================
 
     @Override
-    public ReadOnlyIdentifiableManager<Pilot> getPilotManager() {
+    public ReadOnlyItemManager<Pilot> getPilotManager() {
         return pilotManager;
     }
 
@@ -261,7 +261,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPilotManager(ReadOnlyIdentifiableManager<Pilot> pilotManager) {
+    public void setPilotManager(ReadOnlyItemManager<Pilot> pilotManager) {
         this.pilotManager.resetData(pilotManager);
     }
 
@@ -308,7 +308,7 @@ public class ModelManager implements Model {
     //=========== Location ========================================================
 
     @Override
-    public ReadOnlyIdentifiableManager<Location> getLocationManager() {
+    public ReadOnlyItemManager<Location> getLocationManager() {
         return locationManager;
     }
 
@@ -324,7 +324,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setLocationManager(ReadOnlyIdentifiableManager<Location> locationManager) {
+    public void setLocationManager(ReadOnlyItemManager<Location> locationManager) {
         this.locationManager.resetData(locationManager);
     }
 
@@ -370,13 +370,13 @@ public class ModelManager implements Model {
     //=========== Crew ========================================================
 
     @Override
-    public void setCrewManager(ReadOnlyIdentifiableManager<Crew> crewManager) {
+    public void setCrewManager(ReadOnlyItemManager<Crew> crewManager) {
         requireNonNull(crewManager);
         this.crewManager.resetData(crewManager);
     }
 
     @Override
-    public ReadOnlyIdentifiableManager<Crew> getCrewManager() {
+    public ReadOnlyItemManager<Crew> getCrewManager() {
         return crewManager;
     }
 
@@ -440,12 +440,12 @@ public class ModelManager implements Model {
     //=========== Plane ========================================================
 
     @Override
-    public void setPlaneManager(ReadOnlyIdentifiableManager<Plane> planeManager) {
+    public void setPlaneManager(ReadOnlyItemManager<Plane> planeManager) {
         this.planeManager.resetData(planeManager);
     }
 
     @Override
-    public ReadOnlyIdentifiableManager<Plane> getPlaneManager() {
+    public ReadOnlyItemManager<Plane> getPlaneManager() {
         return this.planeManager;
     }
 
@@ -497,7 +497,7 @@ public class ModelManager implements Model {
     //=========== Flight ========================================================
 
     @Override
-    public ReadOnlyIdentifiableManager<Flight> getFlightManager() {
+    public ReadOnlyItemManager<Flight> getFlightManager() {
         return flightManager;
     };
     @Override
@@ -510,7 +510,7 @@ public class ModelManager implements Model {
         userPrefs.setFlightManagerFilePath(flightManagerFilePath);
     };
     @Override
-    public void setFlightManager(ReadOnlyIdentifiableManager<Flight> flightManager) {
+    public void setFlightManager(ReadOnlyItemManager<Flight> flightManager) {
         this.flightManager.resetData(flightManager);
     };
     @Override

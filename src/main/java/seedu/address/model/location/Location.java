@@ -3,13 +3,15 @@ package seedu.address.model.location;
 import java.util.List;
 import java.util.UUID;
 
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 /**
  * Location is a unit place that the flight can travel to or
  *  arrive at.
  */
-public class Location implements Identifiable {
+public class Location implements Item {
+    private static final String NAME_STRING = "Name";
+    private static final String ID_STRING = "ID";
     private final String name;
     private final String id;
 
@@ -51,7 +53,9 @@ public class Location implements Identifiable {
 
     @Override
     public List<String> getDisplayList() {
-        return List.of("Name: " + getName(), "ID: " + getId());
+        return List.of(
+                String.format("%s: %s", NAME_STRING, name),
+                String.format("%s: %s", ID_STRING, id));
     }
 
     /**

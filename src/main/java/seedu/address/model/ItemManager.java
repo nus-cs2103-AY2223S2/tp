@@ -7,15 +7,15 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueList;
 
 /**
- * Implementation of a read-only identifiable manager, this has other methods
+ * Implementation of a read-only item manager, this has other methods
  * that allows for the modification of the manager.
  */
-public class IdentifiableManager<T extends Identifiable> implements
-        ReadOnlyIdentifiableManager<T> {
+public class ItemManager<T extends Item> implements
+        ReadOnlyItemManager<T> {
 
     /**
      * The internal list responsible for holding the items.
@@ -27,19 +27,19 @@ public class IdentifiableManager<T extends Identifiable> implements
     }
 
     /**
-     * Initializes an empty {@code IdentifiableManager}.
+     * Initializes an empty {@code ItemManager}.
      */
-    public IdentifiableManager() {
+    public ItemManager() {
     }
 
     /**
-     * Creates a {@code IdentifiableManager} from the given list of items.
+     * Creates a {@code ItemManager} from the given list of items.
      * Please make sure that the items in the list are unique.
      *
      * @param toBeCopied the list of items out of which the {@code
-     *                   IdentifiableManager} will be created.
+     *                   ItemManager} will be created.
      */
-    public IdentifiableManager(ReadOnlyIdentifiableManager<T> toBeCopied) {
+    public ItemManager(ReadOnlyItemManager<T> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -55,12 +55,12 @@ public class IdentifiableManager<T extends Identifiable> implements
     }
 
     /**
-     * Resets the existing data of this {@code IdentifiableManager} with
+     * Resets the existing data of this {@code ItemManager} with
      * {@code newData}.
      *
      * @param newData the new data to be used.
      */
-    public void resetData(ReadOnlyIdentifiableManager<T> newData) {
+    public void resetData(ReadOnlyItemManager<T> newData) {
         requireNonNull(newData);
         setItems(newData.getItemList());
     }
@@ -110,7 +110,7 @@ public class IdentifiableManager<T extends Identifiable> implements
     }
 
     /**
-     * Removes {@code key} from this {@code IdentifiableManager}.
+     * Removes {@code key} from this {@code ItemManager}.
      *
      * @param item the item to remove
      */
@@ -153,12 +153,12 @@ public class IdentifiableManager<T extends Identifiable> implements
         if (other == this) {
             return true;
         }
-        if (!(other instanceof IdentifiableManager<?>)) {
+        if (!(other instanceof ItemManager<?>)) {
             return false;
         }
-        IdentifiableManager<?> otherIdentifiableManager =
-                (IdentifiableManager<?>) other;
-        return items.equals(otherIdentifiableManager.items);
+        ItemManager<?> otherItemManager =
+                (ItemManager<?>) other;
+        return items.equals(otherItemManager.items);
     }
 
     @Override

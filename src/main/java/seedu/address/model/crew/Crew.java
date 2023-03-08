@@ -3,17 +3,17 @@ package seedu.address.model.crew;
 import java.util.List;
 import java.util.UUID;
 
-import seedu.address.model.item.Identifiable;
+import seedu.address.model.item.Item;
 
 /**
  * Represents a Crew in the Wingman app.
  */
-public class Crew implements Identifiable {
-
+public class Crew implements Item {
+    private static final String ID_STRING = "ID";
+    private static final String NAME_STRING = "Name";
+    private static final String RANK_STRING = "Rank";
     private final String id;
-
     private final String name;
-
     private final CrewRank rank;
 
     /**
@@ -69,8 +69,9 @@ public class Crew implements Identifiable {
 
     @Override
     public List<String> getDisplayList() {
-        return List.of("ID: " + id,
-                "Name: " + name,
-                "Rank: " + rank);
+        return List.of(
+                String.format("%s: %s", ID_STRING, id),
+                String.format("%s: %s", NAME_STRING, name),
+                String.format("%s: %s", RANK_STRING, rank));
     }
 }
