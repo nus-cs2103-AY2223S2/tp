@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Person;
@@ -23,19 +26,22 @@ public class AdvanceCommand extends Command {
             + PREFIX_PHONE + "PHONE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 ";
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_DATETIME + "08/03/2023 18:00";
 
     private final NamePhoneNumberPredicate predicate;
+    private final LocalDateTime interviewDateTime;
 
     /**
      * Creates an AdvanceCommand to advance the specified {@code Person}
      */
-    public AdvanceCommand(NamePhoneNumberPredicate predicate) {
+    public AdvanceCommand(NamePhoneNumberPredicate predicate, LocalDateTime interviewDateTime) {
         this.predicate = predicate;
+        this.interviewDateTime = interviewDateTime;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
 
@@ -43,7 +49,12 @@ public class AdvanceCommand extends Command {
         assert personList.size() <= 1;
 
         if (personList.size() < 1) {
-            return new CommandResult(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+            throw new CommandException(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+        }
+        // Check if the interviewDateTime is nonNull else throw CommandException
+        // See if we want to provide the d/ field for all advance commands
+        if (interviewDateTime == null) {
+            throw new CommandException("No interview datetime provided!");
         }
 
         Person personToAdvance = personList.get(0);

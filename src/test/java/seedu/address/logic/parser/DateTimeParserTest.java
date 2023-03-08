@@ -15,7 +15,7 @@ public class DateTimeParserTest {
     @Test
     public void createDateTime_validFormat() {
         try {
-            LocalDateTime dateTime = DateTimeParser.parseDateTime("12/02/2023 18:00");
+            LocalDateTime dateTime = DateTimeParser.parseDateTime("12-02-2023 18:00");
             assertEquals(template, dateTime);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -24,6 +24,6 @@ public class DateTimeParserTest {
 
     @Test
     public void createDateTime_invalidFormat_parseExceptionThrown() {
-        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTime("2020/02/12 18:00"));
+        assertThrows(ParseException.class, () -> DateTimeParser.parseDateTime("2020-02-12 18:00"));
     }
 }

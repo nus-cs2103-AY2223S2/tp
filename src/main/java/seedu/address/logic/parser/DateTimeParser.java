@@ -20,7 +20,10 @@ public class DateTimeParser {
      */
     public static LocalDateTime parseDateTime(String dateTimeString) throws ParseException {
         // Format DD/MM/YYYY HH:MM
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        if (dateTimeString.length() == 0) {
+            return null;
+        }
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         try {
             return LocalDateTime.parse(dateTimeString, format);
         } catch (DateTimeParseException e) {
@@ -34,6 +37,6 @@ public class DateTimeParser {
      * @return String output of the datetime.
      */
     public static String datetimeFormatter(LocalDateTime datetime) {
-        return datetime.format(DateTimeFormatter.ofPattern("DD/MM/YYYY HH:mm"));
+        return datetime.format(DateTimeFormatter.ofPattern("DD-MM-YYYY HH:mm"));
     }
 }
