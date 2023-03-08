@@ -73,14 +73,14 @@ public class AddClientCommandParserTest {
                 new AddClientCommand(expectedClient));
 
         // no phone number
-        /*Client expectedClient = new ClientBuilder(AMY).withPhone(null).build();
+        expectedClient = new ClientBuilder(AMY).withPhone(null).build();
         assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND,
-                new AddClientCommand(expectedClient));*/
-        
+                new AddClientCommand(expectedClient));
+
         // no email
-        /*Client expectedClient = new ClientBuilder(AMY).withEmail(null).build();
+        expectedClient = new ClientBuilder(AMY).withEmail(null).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + TAG_DESC_FRIEND,
-                new AddClientCommand(expectedClient));*/
+                new AddClientCommand(expectedClient));
     }
 
     @Test
