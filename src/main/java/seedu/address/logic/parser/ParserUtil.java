@@ -150,7 +150,7 @@ public class ParserUtil {
         requireNonNull(content);
         String trimmedContent = content.trim();
         if (!Content.isValidContent(trimmedContent)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Content.MESSAGE_CONSTRAINTS);
         }
         return new Content(trimmedContent);
     }
@@ -165,7 +165,7 @@ public class ParserUtil {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (!Status.isValidStatus(trimmedStatus)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(Boolean.parseBoolean(trimmedStatus));
     }

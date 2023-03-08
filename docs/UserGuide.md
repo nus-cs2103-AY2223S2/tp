@@ -177,7 +177,7 @@ If your changes to the data file makes its format invalid, OfficeConnect will di
 # Command Summary For OfficeConnect
 
 ## Adding a Task: `addtask`
-Format: `addtask n/NAME`
+Format: `addtask s/SUBJECT c/CONTENT b/STATUS`
 
 Adds a task to OfficeConnect.
 
