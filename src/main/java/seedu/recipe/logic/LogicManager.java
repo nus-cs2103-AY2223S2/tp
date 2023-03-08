@@ -13,8 +13,8 @@ import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.CookHubParser;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.ReadOnlyAddressBook;
-import seedu.recipe.model.recipe.Person;
+import seedu.recipe.model.ReadOnlyRecipeBook;
+import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.storage.Storage;
 
 /**
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getRecipeBook());
+            storage.saveRecipeBook(model.getRecipeBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyRecipeBook getRecipeBook() {
+        return model.getRecipeBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getRecipeBookFilePath() {
+        return model.getRecipeBookFilePath();
     }
 
     @Override
