@@ -1,11 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.tag.Tag;
 
 public class DoctorStub extends Doctor {
