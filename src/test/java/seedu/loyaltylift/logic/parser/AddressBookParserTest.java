@@ -63,8 +63,6 @@ public class AddressBookParserTest {
     public void parseCommand_editc() throws Exception {
         Customer customer = new CustomerBuilder().build();
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
-        System.out.println(EditCustomerCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(EditCustomerCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         assertEquals(new EditCustomerCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
