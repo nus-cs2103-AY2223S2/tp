@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_POSTAL + "611321 "
             + PREFIX_DATE + "2001-10-10 "
             + PREFIX_AGE + "48 "
-            + PREFIX_TAG + "severe ";
+            + PREFIX_TAG + "DENV1 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Dengue Hotspot Tracker";
