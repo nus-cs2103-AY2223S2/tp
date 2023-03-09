@@ -73,20 +73,28 @@ public class RemoveCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson));
     }
 
-    private static Person createRemoveFieldPerson(Person personToRemoveField, RemoveCommand.RemovePersonDescriptor removePersonDescriptor) {
+    private static Person createRemoveFieldPerson(Person personToRemoveField
+            , RemoveCommand.RemovePersonDescriptor removePersonDescriptor) {
         assert personToRemoveField != null;
 
         removePersonDescriptor.setPerson(personToRemoveField);
 
         Name defaultName = personToRemoveField.getName();
-        GitHubProfile updatedProfile = removePersonDescriptor.getRemoveProfile().orElse(personToRemoveField.getProfile());
-        Phone updatedPhone = removePersonDescriptor.getRemovePhone().orElse(personToRemoveField.getPhone());
-        Email updatedEmail = removePersonDescriptor.getRemoveEmail().orElse(personToRemoveField.getEmail());
-        Address updatedAddress = removePersonDescriptor.getRemoveAddress().orElse(personToRemoveField.getAddress());
-        Set<Language> updatedLanguages = removePersonDescriptor.getRemoveLanguages().orElse(personToRemoveField.getLanguages());
-        Set<Tag> updatedTags = removePersonDescriptor.getRemoveTags().orElse(personToRemoveField.getTags());
+        GitHubProfile updatedProfile = removePersonDescriptor.getRemoveProfile()
+                .orElse(personToRemoveField.getProfile());
+        Phone updatedPhone = removePersonDescriptor.getRemovePhone()
+                .orElse(personToRemoveField.getPhone());
+        Email updatedEmail = removePersonDescriptor.getRemoveEmail()
+                .orElse(personToRemoveField.getEmail());
+        Address updatedAddress = removePersonDescriptor.getRemoveAddress()
+                .orElse(personToRemoveField.getAddress());
+        Set<Language> updatedLanguages = removePersonDescriptor.getRemoveLanguages()
+                .orElse(personToRemoveField.getLanguages());
+        Set<Tag> updatedTags = removePersonDescriptor.getRemoveTags()
+                .orElse(personToRemoveField.getTags());
 
-        return new Person(defaultName, updatedProfile, updatedPhone, updatedEmail, updatedAddress, updatedLanguages, updatedTags);
+        return new Person(defaultName, updatedProfile, updatedPhone
+                , updatedEmail, updatedAddress, updatedLanguages, updatedTags);
     }
 
     public static class RemovePersonDescriptor {
