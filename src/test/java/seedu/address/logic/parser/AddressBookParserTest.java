@@ -47,7 +47,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
-        AddTaskCommand command = (AddTaskCommand) parser.parseCommand("addtask s/Sports "
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand("addtask s/Recreation day "
                 + "c/Play football st/false");
         assertEquals(new AddTaskCommand(task), command);
     }
