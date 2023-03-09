@@ -14,8 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import java.util.ArrayList;
 import java.util.Collections;

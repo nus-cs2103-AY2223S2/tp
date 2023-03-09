@@ -1,19 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.Repository;
-import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,6 +15,21 @@ import static seedu.address.testutil.TypicalTasks.COMPLETE_SLIDES;
 import static seedu.address.testutil.TypicalTasks.SEND_EMAIL_TO_CLIENT;
 import static seedu.address.testutil.TypicalTasks.STOCK_PANTRY;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskRepository;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.Repository;
+import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration and unit tests for {@code AssignCommand}.
@@ -79,8 +80,8 @@ public class AssignCommandTest {
     public void execute_duplicatePersonTask_throwsCommandException() {
         AssignCommand command = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
 
-        assertThrows(CommandException.class, AssignCommand.MESSAGE_DUPLICATE_ASSIGNMENT,
-                () -> command.execute(model, officeConnectModel));
+        assertThrows(CommandException.class, AssignCommand.MESSAGE_DUPLICATE_ASSIGNMENT, () ->
+                command.execute(model, officeConnectModel));
     }
 
     /**
@@ -93,8 +94,8 @@ public class AssignCommandTest {
         Index correct = INDEX_FIRST;
         AssignCommand command = new AssignCommand(outOfBounds, correct);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
-                () -> command.execute(model, officeConnectModel));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
+                command.execute(model, officeConnectModel));
         assertEquals(getPersonTaskRepository(),
                 officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
     }
@@ -110,8 +111,8 @@ public class AssignCommandTest {
                 .getFilteredItemList().size() + 1);
         AssignCommand command = new AssignCommand(correct, outOfBounds);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
-                () -> command.execute(model, officeConnectModel));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () ->
+                command.execute(model, officeConnectModel));
         assertEquals(getPersonTaskRepository(),
                 officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
     }

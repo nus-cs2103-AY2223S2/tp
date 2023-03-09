@@ -1,12 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.model.Repository;
-import seedu.address.model.task.Task;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.Repository;
+import seedu.address.model.task.Task;
+
+/**
+ * A utility class containing a list of {@code Tasks} objects to be used in tests.
+ */
 public class TypicalTasks {
     public static final Task SEND_EMAIL_TO_CLIENT = new TaskBuilder().withSubject("Send email to client")
             .withContent("Email Mr. Chan about the recent updates on Project X.").build();

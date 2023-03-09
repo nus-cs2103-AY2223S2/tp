@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,8 +16,6 @@ import seedu.address.model.mapping.PersonTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
-
-import java.util.List;
 
 /**
  * Assigns a person identified to a task identified using their displayed index from the address book.
@@ -32,7 +32,7 @@ public class AssignCommand extends Command {
     private final Index personIndex;
     private final Index taskIndex;
 
-    public AssignCommand( Index personIndex, Index taskIndex) {
+    public AssignCommand(Index personIndex, Index taskIndex) {
         requireAllNonNull(personIndex, taskIndex);
 
         this.personIndex = personIndex;
@@ -53,7 +53,7 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Person person =  personList.get(personIndex.getZeroBased());
+        Person person = personList.get(personIndex.getZeroBased());
         Task task = taskList.get(taskIndex.getZeroBased());
         Id pId = person.getId();
         Id tId = task.getId();
