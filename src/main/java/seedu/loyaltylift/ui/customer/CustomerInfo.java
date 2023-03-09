@@ -1,5 +1,7 @@
 package seedu.loyaltylift.ui.customer;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -7,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.ui.Badge;
 import seedu.loyaltylift.ui.UiPart;
 
@@ -41,6 +44,11 @@ public class CustomerInfo extends UiPart<ScrollPane> {
         // General Info
         CustomerGeneralInfo customerGeneralInfo = new CustomerGeneralInfo(customer);
         insertSection("General", customerGeneralInfo.getRoot());
+
+        // Orders
+        ObservableList<Order> observableOrderList = FXCollections.observableList(customer.getOrders());
+        CustomerOrderListPanel customerOrderListPanel = new CustomerOrderListPanel(observableOrderList);
+        insertSection("Orders", customerOrderListPanel.getRoot());
     }
 
     private void insertSection(String sectionTitle, Node node) {

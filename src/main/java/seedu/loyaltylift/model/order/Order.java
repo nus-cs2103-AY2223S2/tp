@@ -1,11 +1,11 @@
 package seedu.loyaltylift.model.order;
 
-import seedu.loyaltylift.model.customer.Customer;
-
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.loyaltylift.model.customer.Customer;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
@@ -33,7 +33,8 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address, CreatedDate createdDate) {
+    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address,
+                 CreatedDate createdDate) {
         requireAllNonNull(customer, name, quantity, status, address, createdDate);
         this.customer = customer;
         this.name = name;
