@@ -1,13 +1,12 @@
 package seedu.address.model.deliveryjobs;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  * Represents a Delivery job in the Delivery jobs book.
@@ -56,6 +55,11 @@ public class DeliveryJob {
         return this.isDelivered;
     }
 
+    /**
+     * Returns details of the delivery job.
+     *
+     * @return delivery job details.
+     */
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getID())
