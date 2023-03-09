@@ -1,15 +1,6 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,7 +10,7 @@ import seedu.address.model.person.student.Student;
 
 
 /**
- * A class for "student <Class Name> <Index number> grade" command"
+ * A class for "student 'Class Name' 'Index number' grade" command"
  */
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
@@ -40,6 +31,12 @@ public class StudentGradeCommand extends StudentCommand {
     private Student student;
     private String assignment;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Person}
+     *
+     * @param student student to be editted
+     * @param assignment assignment to be added
+     */
     public StudentGradeCommand(Student student, String assignment) {
         this.student = student;
         this.assignment = assignment;

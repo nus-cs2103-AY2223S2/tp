@@ -286,6 +286,6 @@ public class ParserUtil {
             throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
         //Please edit this
-        return new Homework(homework, LocalDate.now(), 20, 100, true);
+        return new Homework(homework, LocalDate.now(), 20, 100, 0, true);
     }
 }
