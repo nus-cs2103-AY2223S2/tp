@@ -19,7 +19,7 @@ public class ProjectTest {
         Project defaultProject = new ProjectBuilder().build();
         Project defaultCopy = new ProjectBuilder().build();
 
-        Project sky = new ProjectBuilder().withTitle("Sky").withDeadline("2023-03-05").build();
+        Project sky = new ProjectBuilder().withTitle("Sky").withDeadline("5pm 2023-03-05").build();
 
         assertFalse(defaultProject.equals(null)); // null
         assertFalse(defaultProject.equals(3)); // different type
@@ -28,7 +28,7 @@ public class ProjectTest {
         Project editedSky;
         editedSky = new ProjectBuilder(sky).withTitle("Night sky").build();
         assertFalse(sky.equals(editedSky)); // changed title
-        editedSky = new ProjectBuilder(sky).withDeadline("2023-03-01").build();
+        editedSky = new ProjectBuilder(sky).withDeadline("5pm 2023-03-01").build();
         assertFalse(sky.equals(editedSky)); // changed deadline
 
         assertTrue(defaultProject.equals(defaultProject)); // Same instance
@@ -45,7 +45,7 @@ public class ProjectTest {
 
         assertFalse(defaultProjectWihoutDeadline.equals(defaultProject)); // different deadlines
 
-        Project editedSkyWithDeadline = new ProjectBuilder(skyWithoutDeadline).withDeadline("2023-03-01").build();
+        Project editedSkyWithDeadline = new ProjectBuilder(skyWithoutDeadline).withDeadline("5pm 2023-03-01").build();
 
         assertTrue(editedSkyWithDeadline.equals(editedSky));
         assertTrue(defaultProjectWihoutDeadline.equals(defaultCopyWithoutDeadline));

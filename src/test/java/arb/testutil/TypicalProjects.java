@@ -18,9 +18,9 @@ import arb.model.project.Project;
 public class TypicalProjects {
 
     public static final Project PORTRAIT_PROJECT = new ProjectBuilder().withTitle("Portrait Commission")
-            .withDeadline("2025-02-01").build();
+            .withDeadline("2pm 2025-02-01").build();
     public static final Project CRAYON_PROJECT = new ProjectBuilder().withTitle("Crayon Drawing")
-            .withDeadline("johnd@example.com").build();
+            .withDeadline("3pm tomorrow").build();
     public static final Project DIGITAL_PROJECT = new ProjectBuilder().withTitle("Digital Drawing")
             .withDeadline(null).build();
     public static final Project SCULPTURE_PROJECT = new ProjectBuilder().withTitle("Sculpture Project")
@@ -28,7 +28,7 @@ public class TypicalProjects {
 
     // Manually added
     public static final Project PUBLIC_PAINTING = new ProjectBuilder().withTitle("Public Painting")
-            .withDeadline("2024-05-06").build();
+            .withDeadline("5pm 2024-05-06").build();
     public static final Project CROCHET = new ProjectBuilder().withTitle("Crochet").withDeadline(null).build();
 
     // Manually added - Project's details found in {@code CommandTestUtil}

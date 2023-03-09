@@ -12,7 +12,7 @@ import arb.model.project.Title;
 public class ProjectBuilder {
 
     public static final String DEFAULT_TITLE = "Large Tree";
-    public static final String DEFAULT_DEADLINE = "2000-01-01";
+    public static final String DEFAULT_DEADLINE = "3pm 2000-01-01";
 
     private Title title;
     private Optional<Deadline> deadline;
