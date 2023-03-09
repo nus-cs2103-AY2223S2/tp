@@ -59,7 +59,8 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
         }
         parseLanguagesForRemove(argMultimap.getAllValues(PREFIX_LANGUAGE))
                 .ifPresent(removePersonDescriptor::setLanguages);
-        parseTagsForRemove(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removePersonDescriptor::setTags);
+        parseTagsForRemove(argMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(removePersonDescriptor::setTags);
 
         if (!removePersonDescriptor.isAnyFieldRemoved()) {
             throw new ParseException(RemoveCommand.MESSAGE_NOT_REMOVE);

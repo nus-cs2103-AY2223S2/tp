@@ -114,6 +114,24 @@ public class RemoveCommand extends Command {
                 updatedEmail, updatedAddress, updatedLanguages, updatedTags);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof RemoveCommand)) {
+            return false;
+        }
+
+        // state check
+        RemoveCommand e = (RemoveCommand) other;
+        return index.equals(e.index)
+                && removePersonDescriptor.equals(e.removePersonDescriptor);
+    }
+
     /**
      * Stores the details to remove the person with. Each non-empty field value will remove the
      * corresponding field value of the person.
@@ -156,7 +174,7 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<GitHubProfile> getRemoveProfile() {
-            if (profile == null) {
+            if (profile == null || person == null) {
                 return Optional.empty();
             }
 
@@ -173,7 +191,7 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Phone> getRemovePhone() {
-            if (phone == null) {
+            if (phone == null || person == null) {
                 return Optional.empty();
             }
 
@@ -190,7 +208,7 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Email> getRemoveEmail() {
-            if (email == null) {
+            if (email == null || person == null) {
                 return Optional.empty();
             }
 
@@ -207,7 +225,7 @@ public class RemoveCommand extends Command {
         }
 
         public Optional<Address> getRemoveAddress() {
-            if (address == null) {
+            if (address == null || person == null) {
                 return Optional.empty();
             }
 
@@ -233,7 +251,7 @@ public class RemoveCommand extends Command {
          * Returns {@code Optional#empty()} if {@code languages} is null.
          */
         public Optional<Set<Language>> getRemoveLanguages() {
-            if (languages == null) {
+            if (languages == null || person == null) {
                 return Optional.empty();
             }
 
@@ -264,7 +282,7 @@ public class RemoveCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getRemoveTags() {
-            if (tags == null) {
+            if (tags == null || person == null) {
                 return Optional.empty();
             }
 
