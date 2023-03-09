@@ -50,7 +50,7 @@ class JsonSerializableRecipeBook {
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
             if (recipeBook.hasRecipe(recipe)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
             recipeBook.addRecipe(recipe);
         }

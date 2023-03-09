@@ -24,7 +24,7 @@ class JsonAdaptedIngredient {
     /**
      * Converts a given {@code Ingredient} into this class for Jackson use.
      */
-    public JsonAdaptedIngredient(Ingredient ingredient) {
+    public JsonAdaptedIngredient(Ingredient source) {
         ingredient = source.ingredient;
     }
 
