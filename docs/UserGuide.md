@@ -156,19 +156,17 @@ There is no need to save manually.
 
 ### Loading the data
 
-InternBuddy data are loaded from the hard disk automatically at the beginning of each run.
-There is no need to load manually. If the data file is invalid or missing, InternBuddy will discard all data and start
-with an empty data file at the next run.
+InternBuddy data is loaded from the hard disk automatically at the beginning of each run. There is no need to load manually.
+If the data file is missing, InternBuddy will start with a data file containing the sample internship entries.
+If the data file is invalid, InternBuddy will start with an empty data file.
 
 ### Editing the data file
 
 InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to
 update the data directly by editing that data file.
+<br>
+![EditDataWarningMessage](images/Edit_data_warning_message.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, InternBuddy will discard all data and start with an empty
-data file at the next run.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
