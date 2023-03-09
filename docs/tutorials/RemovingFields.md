@@ -20,7 +20,7 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ## Safely deleting `Address`
 
@@ -100,12 +100,12 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-   "persons": [ {
-      "name": "Person with invalid name field: Ha!ns Mu@ster",
-      "phone": "9482424",
-      "email": "hans@example.com",
-      "address": "4th street"
-   } ]
+  "persons": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ]
 }
 ```
 

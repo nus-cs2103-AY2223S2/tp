@@ -167,4 +167,13 @@ public class UniqueClientListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueClientList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    void testHashCode() {
+        UniqueClientList list1 = new UniqueClientList();
+        list1.add(BOB);
+        UniqueClientList list2 = new UniqueClientList();
+        list2.add(BOB);
+        assertEquals(list1.hashCode(), list2.hashCode());
+    }
 }
