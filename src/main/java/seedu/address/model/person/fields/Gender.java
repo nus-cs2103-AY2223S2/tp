@@ -7,8 +7,6 @@ import java.util.Objects;
 
 import seedu.address.model.person.fields.enums.Genders;
 
-
-
 /**
  * Represents a Person's gender in the address book.
  */
