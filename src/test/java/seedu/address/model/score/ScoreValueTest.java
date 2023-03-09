@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.score.exceptions.BadScoreValueException;
-
 public class ScoreValueTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -16,7 +14,7 @@ public class ScoreValueTest {
 
     @Test
     public void constructor_invalidScoreValue_throwsIllegalArgumentException() {
-        assertThrows(BadScoreValueException.class, () -> new ScoreValue(""));
+        assertThrows(IllegalArgumentException.class, () -> new ScoreValue(""));
     }
 
     @Test
