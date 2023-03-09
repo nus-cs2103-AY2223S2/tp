@@ -1,13 +1,16 @@
 package seedu.address.model.lecture;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.video.UniqueVideoList;
+import seedu.address.model.video.Video;
 
 /**
  * Represents a lecture of a module that is in the tracker..
@@ -19,16 +22,19 @@ public class Lecture {
 
     private final Set<Tag> tags = new HashSet<>();
 
+    private final UniqueVideoList videos = new UniqueVideoList();
+
     /**
      * Constructs a {@code Lecture}.
      *
      * @param name The name of the lecture.
      * @param tags The tags applied to the module.
      */
-    public Lecture(LectureName name, Set<Tag> tags) {
-        requireNonNull(name);
+    public Lecture(LectureName name, Set<Tag> tags, List<Video> videos) {
+        requireAllNonNull(name, tags, videos);
         this.name = name;
         this.tags.addAll(tags);
+        this.videos.setVideos(videos);
     }
 
     public LectureName getName() {
@@ -41,6 +47,14 @@ public class Lecture {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable video list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Video> getVideos() {
+        return videos.asUnmodifiableList();
     }
 
     /**
@@ -72,13 +86,14 @@ public class Lecture {
 
         Lecture otherLecture = (Lecture) other;
         return otherLecture.getName().equals(getName())
-                && otherLecture.getTags().equals(getTags());
+                && otherLecture.getTags().equals(getTags())
+                && otherLecture.getVideos().equals(getVideos());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(name, tags, videos);
     }
 
     @Override
@@ -90,6 +105,12 @@ public class Lecture {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        List<Video> videos = getVideos();
+        if (!videos.isEmpty()) {
+            builder.append("; Videos: ");
+            videos.forEach(builder::append);
         }
 
         return builder.toString();
