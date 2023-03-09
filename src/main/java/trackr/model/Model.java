@@ -18,6 +18,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    // ================================================= User Prefs =================================================
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -39,14 +41,16 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' trackr file path.
      */
-    Path getAddressBookFilePath();
+    Path getTrackrFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' trackr file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTrackrFilePath(Path trackrFilePath);
+
+    // =================================================== People ===================================================
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -126,7 +130,7 @@ public interface Model {
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the task list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
     void setTask(Task target, Task editedTask);

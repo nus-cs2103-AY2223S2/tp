@@ -13,7 +13,7 @@ import trackr.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, TaskListStorage, UserPrefsStorage {
+public interface Storage extends TrackrStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,21 +22,14 @@ public interface Storage extends AddressBookStorage, TaskListStorage, UserPrefsS
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTrackrFilePath();
 
     @Override
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
-    @Override
-    Path getTaskListFilePath();
-
-    @Override
     Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveTaskList(ReadOnlyTaskList taskList) throws IOException;
-
+    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList) throws IOException;
 }

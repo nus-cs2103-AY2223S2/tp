@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import trackr.commons.util.StringUtil;
-import trackr.model.person.Person;
 
 /**
  * Tests that a {@code Task}'s {@code TaskName} matches any of the keywords given.

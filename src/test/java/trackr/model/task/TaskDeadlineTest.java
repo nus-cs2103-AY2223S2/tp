@@ -28,8 +28,8 @@ public class TaskDeadlineTest {
     }
 
     @Test
-    public void constructor_datePassed_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("01/01/2020"));
+    public void constructor_notDate_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("Not a Date"));
     }
 
     @Test
@@ -45,17 +45,19 @@ public class TaskDeadlineTest {
         String invalidDate = "35/14/2024";
         assertFalse(TaskDeadline.isValidTaskDeadline(invalidDate)); //deadline is an invalid date in the calendar
 
-        String passedDate = "01/01/2022";
-        assertFalse(TaskDeadline.isValidTaskDeadline(passedDate)); // deadline is before today's date
+        String notADate = "Not a Date";
+        assertFalse(TaskDeadline.isValidTaskDeadline(notADate)); // deadline is not a date
 
         // valid task deadline
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String todayDate = LocalDate.now().format(dtf);
         String tomorrow = LocalDate.now().plusDays(1).format(dtf);
-        String farAwayDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
+        String futureDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
+        String pastDate = LocalDate.now().minusMonths(7).minusDays(10).format(dtf);
         assertTrue(TaskDeadline.isValidTaskDeadline(todayDate)); // today's date
         assertTrue(TaskDeadline.isValidTaskDeadline(tomorrow)); // tomorrow's date
-        assertTrue(TaskDeadline.isValidTaskDeadline(farAwayDate)); // very far away date
+        assertTrue(TaskDeadline.isValidTaskDeadline(futureDate)); // future date
+        assertTrue(TaskDeadline.isValidTaskDeadline(pastDate)); // past date
     }
 
     @Test
@@ -65,5 +67,11 @@ public class TaskDeadlineTest {
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String expectedDate = LocalDate.now().format(dtf2);
         assertEquals(expectedDate, new TaskDeadline(todayDate).toString());
+    }
+
+    @Test
+    public void toJsonStringTest() {
+        String expectedDate = "10/10/2023";
+        assertEquals(expectedDate, new TaskDeadline(expectedDate).toJsonString());
     }
 }

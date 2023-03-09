@@ -16,7 +16,7 @@ public class TaskStatus {
      * The first character of the task status must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[nNdD]";
+    public static final String VALIDATION_REGEX = "^[nNdD]$";
 
     private boolean isDone;
 
@@ -46,6 +46,14 @@ public class TaskStatus {
      */
     public static boolean isValidTaskStatus(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the status stored in string format for json storage.
+     * @return A string representation of the status.
+     */
+    public String toJsonString() {
+        return toString();
     }
 
 

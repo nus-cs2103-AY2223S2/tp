@@ -24,13 +24,11 @@ import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 import trackr.model.util.SampleDataUtil;
-import trackr.storage.AddressBookStorage;
-import trackr.storage.JsonAddressBookStorage;
-import trackr.storage.JsonTaskListStorage;
+import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.Storage;
 import trackr.storage.StorageManager;
-import trackr.storage.TaskListStorage;
+import trackr.storage.TrackrStorage;
 import trackr.storage.UserPrefsStorage;
 import trackr.ui.Ui;
 import trackr.ui.UiManager;
@@ -52,7 +50,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Trackr ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -60,9 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(addressBookStorage, taskListStorage, userPrefsStorage);
+        TrackrStorage addressBookStorage = new JsonTrackrStorage(userPrefs.getTrackrFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,35 +78,38 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyTaskList> taskListOptional;
-        ReadOnlyAddressBook initialData;
-        ReadOnlyTaskList intitalTaskListData;
+        ReadOnlyAddressBook initialAddressBook;
+        ReadOnlyTaskList initialTaskList;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
-            taskListOptional = storage.readTaskList();
-            if (!taskListOptional.isPresent()) {
-                logger.info("Task list data file not found. Will be starting with a sample TaskList.");
-            }
-            intitalTaskListData = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-
-            logger.warning("Task list data file not in the correct format. Will be starting with an empty TaskList");
-            initialTaskListData = new TaskList();
+            initialAddressBook = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-
-            logger.warning("Problem while reading from the task list file. Will be starting with an empty TaskList");
-            initialTaskListData = new TaskList();
+            initialAddressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, intitalTaskListData, userPrefs);
+        try {
+            taskListOptional = storage.readTaskList();
+            if (!taskListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskList");
+            }
+            initialTaskList = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        }
+
+        return new ModelManager(initialAddressBook, initialTaskList, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -170,7 +170,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Trackr");
             initializedPrefs = new UserPrefs();
         }
 
@@ -186,13 +186,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Trackr " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Trackr ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

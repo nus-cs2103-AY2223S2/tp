@@ -36,7 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTrackrFilePath(newUserPrefs.getTrackrFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -48,13 +48,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getTrackrFilePath() {
+        return trackrFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setTrackrFilePath(Path trackrFilePath) {
+        requireNonNull(trackrFilePath);
+        this.trackrFilePath = trackrFilePath;
     }
 
     public Path getTaskListFilePath() {
@@ -78,19 +78,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && trackrFilePath.equals(o.trackrFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, trackrFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + trackrFilePath);
         return sb.toString();
     }
 

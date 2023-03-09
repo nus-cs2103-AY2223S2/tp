@@ -9,26 +9,24 @@ import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 
-import java.time.LocalDate;
-
 /**
  * Jackson-friendly version of {@link Task}.
  */
-public class JsonAdaptedTask {
+class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String taskName;
-    private final LocalDate taskDeadline;
+    private final String taskDeadline;
     private final String taskStatus;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("task name") String taskName,
-                           @JsonProperty("task deadline") LocalDate taskDeadline,
-                             @JsonProperty("task status") String taskStatus) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
+                           @JsonProperty("taskDeadline") String taskDeadline,
+                           @JsonProperty("taskStatus") String taskStatus) {
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;
         this.taskStatus = taskStatus;
@@ -39,8 +37,8 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskName = source.getTaskName().fullTaskName;
-        taskDeadline = source.getTaskDeadline().taskDeadline;
-        taskStatus = source.getTaskStatus().toString();
+        taskDeadline = source.getTaskDeadline().toJsonString();
+        taskStatus = source.getTaskStatus().toJsonString();
     }
 
     /**
@@ -50,7 +48,8 @@ public class JsonAdaptedTask {
      */
     public Task toModelType() throws IllegalValueException {
         if (taskName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskName.class.getSimpleName()));
         }
         if (!TaskName.isValidTaskName(taskName)) {
             throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
@@ -58,15 +57,17 @@ public class JsonAdaptedTask {
         final TaskName modelTaskName = new TaskName(taskName);
 
         if (taskDeadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDeadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskDeadline.class.getSimpleName()));
         }
         if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
-            throw new IllegalValueException("invalid taskDeadline"); //taskDeadline.MESSAGE_CONSTRAINTS
+            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
         final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
 
         if (taskStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskStatus.class.getSimpleName()));
         }
         if (!TaskStatus.isValidTaskStatus(taskStatus)) {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);

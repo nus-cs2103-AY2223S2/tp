@@ -15,17 +15,15 @@ import trackr.model.person.Person;
 import trackr.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of trackr data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final TaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
-    //for task list
-    private final TaskList taskList;
     private final FilteredList<Task> filteredTasks;
 
     /**
@@ -35,7 +33,8 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, taskList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
-                + " and task list " + taskList + " and user prefs " + userPrefs);
+                + " and task list: " + taskList
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.taskList = new TaskList(taskList);
@@ -73,14 +72,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTrackrFilePath() {
+        return userPrefs.getTrackrFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTrackrFilePath(Path trackrFilePath) {
+        requireNonNull(trackrFilePath);
+        userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
     @Override
@@ -147,7 +146,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== TaskList ================================================================================
+    //=========== TaskList ===================================================================================
 
     @Override
     public void setTaskList(ReadOnlyTaskList taskList) {
@@ -161,6 +160,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTask(Task task) {
+        requireNonNull(task);
         return taskList.hasTask(task);
     }
 
@@ -182,7 +182,7 @@ public class ModelManager implements Model {
         taskList.setTask(target, editedTask);
     }
 
-    //=========== Filtered Task List Accessors =============================================================
+    //=========== Filtered Task List Accessors ===============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
@@ -214,8 +214,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks);
     }
 
 }

@@ -24,6 +24,13 @@ public class TypicalTasks {
             .withTaskDeadline("11/10/2023")
             .withTaskStatus("D").build();
 
+    // Manually added
+
+    public static final Task CLEAN_TOOLS_N = new TaskBuilder().withTaskName("Clean Tools")
+            .withTaskDeadline("03/04/2023")
+            .withTaskStatus("N")
+            .build();
+
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task BUY_FLOUR_N = new TaskBuilder().withTaskName(VALID_TASK_NAME_BUY_FLOUR)
             .withTaskDeadline(VALID_TASK_DEADLINE_2100)
@@ -47,6 +54,6 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(
-                Arrays.asList(SORT_INVENTORY_N, BUY_FLOUR_N, BUY_EGGS_D));
+                Arrays.asList(SORT_INVENTORY_N, BUY_EGGS_D));
     }
 }

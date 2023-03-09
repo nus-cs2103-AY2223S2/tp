@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
 import static trackr.testutil.Assert.assertThrows;
+import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -75,6 +76,24 @@ public class TaskListTest {
         Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         assertTrue(taskList.hasTask(editedTask)); //different status
+    }
+
+    @Test
+    public void setTaskList_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskList.setTask(null, SORT_INVENTORY_N));
+    }
+
+    @Test
+    public void setTaskList_nullEditedTask_throwsNullPointerException() {
+        taskList.addTask(SORT_INVENTORY_N);
+        assertThrows(NullPointerException.class, () -> taskList.setTask(SORT_INVENTORY_N, null));
+    }
+
+    @Test
+    public void setTaskList_withDuplicateTasks_throwsDuplicateTaskException() {
+        taskList.addTask(SORT_INVENTORY_N);
+        taskList.addTask(BUY_FLOUR_N);
+        assertThrows(DuplicateTaskException.class, () -> taskList.setTask(BUY_FLOUR_N, SORT_INVENTORY_N));
     }
 
     @Test
