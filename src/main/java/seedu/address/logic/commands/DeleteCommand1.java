@@ -13,7 +13,7 @@ import seedu.address.model.internship.Internship;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand1 extends Command {
+public class DeleteCommand1 extends Command1 {
 
     public static final String COMMAND_WORD = "delete";
 

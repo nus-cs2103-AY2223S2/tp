@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand1;
 import seedu.address.logic.commands.Command1;
+import seedu.address.logic.commands.DeleteCommand1;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand1;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,10 +39,10 @@ public class InternshipCatalogueParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
         case AddCommand1.COMMAND_WORD:
             return new AddCommandParser1().parse(arguments);
-
+        case DeleteCommand1.COMMAND_WORD:
+            return new DeleteCommandParser1().parse(arguments);
         case ListCommand1.COMMAND_WORD:
             return new ListCommand1();
         default:
