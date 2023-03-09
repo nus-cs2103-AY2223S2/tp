@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+import seedu.address.model.Model1;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -31,7 +31,7 @@ public class DeleteCommand1 extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model1 model) throws CommandException {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
