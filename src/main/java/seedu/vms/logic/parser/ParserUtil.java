@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 import seedu.vms.commons.core.index.Index;
@@ -30,6 +29,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
+
+    public static final String KEYWORD_EMPTY_LIST = "EMPTY";
 
     private static final String DEFAULT_DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
     private static final String FULL_DATE_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
@@ -197,6 +198,9 @@ public class ParserUtil {
         }
         Requirement.RequirementType reqType = parseReqType(parts.get(0));
         HashSet<GroupName> reqSet = new HashSet<>(parseGroups(parts.get(1)));
+        if (!Requirement.isValidReqSet(reqSet)) {
+            throw new ParseException(Requirement.MESSAGE_CONSTRAINTS);
+        }
         return new Requirement(reqType, reqSet);
     }
 
@@ -208,8 +212,8 @@ public class ParserUtil {
                 throws ParseException {
         try {
             return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
-        } catch (NoSuchElementException nse) {
-            throw new ParseException("Unknown requirement type", nse);
+        } catch (IllegalArgumentException illArgEx) {
+            throw new ParseException("Unknown requirement type", illArgEx);
         }
     }
 
@@ -239,7 +243,7 @@ public class ParserUtil {
      * delimiter pattern.
      */
     public static List<String> parseParts(String arg) {
-        return List.of(arg.split(DELIMITER_PART));
+        return List.of((arg).split(DELIMITER_PART));
     }
 
 
@@ -248,7 +252,10 @@ public class ParserUtil {
      * delimiter pattern.
      */
     public static List<String> parseList(String arg) {
-        return List.of(arg.split(DELIMITER_LIST));
+        if (arg.strip().toUpperCase().equals(KEYWORD_EMPTY_LIST)) {
+            return List.of();
+        }
+        return List.of(arg.strip().split(DELIMITER_LIST));
     }
 
 

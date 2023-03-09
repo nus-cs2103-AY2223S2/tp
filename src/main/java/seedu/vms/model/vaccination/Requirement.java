@@ -2,14 +2,18 @@ package seedu.vms.model.vaccination;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
+import seedu.vms.commons.util.AppUtil;
 import seedu.vms.model.GroupName;
 
 
 /** Represents a vaccination requirement. */
 public class Requirement {
+    public static final String MESSAGE_CONSTRAINTS = "Requirement set cannot be empty";
+
     private final RequirementType reqType;
     private final HashSet<GroupName> reqSet;
 
@@ -23,14 +27,16 @@ public class Requirement {
      * @throws IllegalArgumentException if {@code reqSet} is empty.
      */
     public Requirement(RequirementType reqType, HashSet<GroupName> reqSet) {
-        if (reqType == null) {
-            throw new NullPointerException("Null requirement type");
-        }
-        if (reqSet.isEmpty()) {
-            throw new IllegalArgumentException("Empty substitution list");
-        }
+        Objects.requireNonNull(reqType);
+        Objects.requireNonNull(reqSet);
+        AppUtil.checkArgument(isValidReqSet(reqSet), MESSAGE_CONSTRAINTS);
         this.reqType = reqType;
         this.reqSet = new HashSet<>(reqSet);
+    }
+
+
+    public static boolean isValidReqSet(HashSet<GroupName> reqSet) {
+        return !reqSet.isEmpty();
     }
 
 
