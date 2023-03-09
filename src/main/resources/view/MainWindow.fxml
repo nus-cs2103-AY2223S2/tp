@@ -61,9 +61,9 @@
                     GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </VBox>
-              <VBox fx:id="contactDetailsPane" VBox.vgrow="ALWAYS" minWidth="225"
-                    GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1" styleClass="primary-border">
-                <StackPane fx:id="contactDetailsPlaceholder" VBox.vgrow="ALWAYS"/>
+              <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS" minWidth="225"
+                    GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
+                <StackPane fx:id="enlargedContactCardPlaceholder" VBox.vgrow="ALWAYS"/>
               </VBox>
             </GridPane>
           </VBox>

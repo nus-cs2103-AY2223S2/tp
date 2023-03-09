@@ -75,6 +75,12 @@
     -fx-background-color: #000534;
 }
 
+/*
+ * Enlarged Contact Card Styles
+ */
+.enlarged-contact-card {
+    -fx-background-color: #001E3C;
+}
 
 /*
  * Scroll Bar styles
