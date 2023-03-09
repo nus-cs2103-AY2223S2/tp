@@ -9,6 +9,7 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
@@ -106,6 +107,12 @@ public class VaxTypeModelStub implements Model {
     @Override
     public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
         return action.apply(manager);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addAppointment'");
     }
 
 }
