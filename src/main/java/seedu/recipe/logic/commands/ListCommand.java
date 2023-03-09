@@ -1,7 +1,7 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import seedu.recipe.model.Model;
 
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
