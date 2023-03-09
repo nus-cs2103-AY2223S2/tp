@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
-import seedu.address.model.powerdeck.PowerDeck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -159,7 +158,7 @@ public class ModelManager implements Model {
 
     @Override
     public void createDeck() { // Todo: deck should have a name - how to store in storage?
-        PowerDeck newDeck = new PowerDeck();
+        Deck newDeck = new Deck();
         // this.deck.add(newDeck);
     }
 
