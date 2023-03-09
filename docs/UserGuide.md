@@ -56,7 +56,7 @@ open the help window.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items in curly brackets are features that are currently work in progress. <br>
-  e.g `{t/TAG}` means that tagging someone has not yet been implemented, but are planned to be a feature.
+  e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -87,10 +87,10 @@ Format: `help`
 
 Adds a dengue patient to the dengue hotspot tracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE {t/DENGUE_VARIANT_TAG]}`
+Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [t/DENGUE_VARIANT_TAG]…​`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 {t/Omicron}`
+* `add n/John Tan p/543299 d/2023-02-13 a/20 t/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
 ### Listing all cases : `list`
@@ -103,7 +103,7 @@ Format: `list`
 
 Edits an existing case in the Dengue Hotspot Tracker.
 
-Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] {[t/DENGUE_VARIANT_TAG]…​}`
+Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/DENGUE_VARIANT_TAG]…​`
 
 * Edits the case at the specified `INDEX`. The index refers to the index number shown in the displayed case list.
 * The index **must be a positive integer** 1, 2, 3, …​
