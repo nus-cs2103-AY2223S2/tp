@@ -8,15 +8,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableMap;
+import seedu.vms.testutil.SampleVaxTypeData;
 
 public class VaxTypeManagerTest {
-    private static final VaxType TYPE_1 = new VaxType("UNCHI",
-            VaxType.DEFAULT_GROUP_SET,
-            VaxType.DEFAULT_MIN_AGE,
-            VaxType.DEFAULT_MAX_AGE,
-            VaxType.DEFAULT_MIN_SPACING,
-            VaxType.DEFAULT_ALLERGY_REQS,
-            VaxType.DEFAULT_HISTORY_REQS);
+    private static final VaxType TYPE_1 = new VaxType(
+            SampleVaxTypeData.NAME_1,
+            SampleVaxTypeData.GROUPS_1,
+            SampleVaxTypeData.MIN_AGE_1,
+            SampleVaxTypeData.MAX_AGE_1,
+            SampleVaxTypeData.MIN_SPACING_1,
+            SampleVaxTypeData.ALLERGY_REQS_1,
+            SampleVaxTypeData.HISTORY_REQS_1);
 
 
     @Test

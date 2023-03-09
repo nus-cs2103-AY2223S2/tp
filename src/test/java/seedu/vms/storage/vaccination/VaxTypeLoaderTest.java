@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -20,7 +21,7 @@ public class VaxTypeLoaderTest {
     private static final String TEST_FOLDER_PATH = "src/test/data/JsonVaxTypeTest/";
 
     private static final String FILE_DEFAULT_VALUES = "DefaultTypeValues.json";
-    private static final String DEFAULT_NAME = "UNCHI";
+    private static final GroupName DEFAULT_NAME = new GroupName("UNCHI");
     private static final int UNCHI_MAX_AGE = 100;
 
     private static final String FILE_MISSING_NAME = "MissingName.json";
@@ -43,7 +44,7 @@ public class VaxTypeLoaderTest {
     @Test
     public void load_resource() throws Exception {
         VaxTypeManager storage = VaxTypeLoader.load();
-        VaxType vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
+        VaxType vaxType = storage.get(SampleVaxTypeData.NAME_REAL.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
@@ -58,7 +59,7 @@ public class VaxTypeLoaderTest {
     @Test
     public void load_fileDefaultValues() throws Exception {
         VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_DEFAULT_VALUES);
-        VaxType vaxType = storage.get(DEFAULT_NAME).get();
+        VaxType vaxType = storage.get(DEFAULT_NAME.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
                 VaxType.DEFAULT_GROUP_SET,
@@ -73,7 +74,7 @@ public class VaxTypeLoaderTest {
     @Test
     public void load_multipleTypes() throws Exception {
         VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_VALID_MULTIPLE);
-        VaxType vaxType = storage.get(DEFAULT_NAME).get();
+        VaxType vaxType = storage.get(DEFAULT_NAME.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
                 VaxType.DEFAULT_GROUP_SET,
@@ -82,7 +83,7 @@ public class VaxTypeLoaderTest {
                 VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_HISTORY_REQS,
                 VaxType.DEFAULT_ALLERGY_REQS);
-        vaxType = storage.get(SampleVaxTypeData.NAME_REAL).get();
+        vaxType = storage.get(SampleVaxTypeData.NAME_REAL.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,

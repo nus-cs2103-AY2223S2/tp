@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
 
 public class VaxCheckerTest {
@@ -16,46 +17,50 @@ public class VaxCheckerTest {
     private static final int MAX_AGE = 35;
     private static final int MIN_SPACING = 445;
 
-    private static final HashSet<String> GRP_NONE = new HashSet<>(List.of());
-    private static final HashSet<String> GRP_ONE_A_1 = new HashSet<>(List.of("UNCHI1"));
-    private static final HashSet<String> GRP_ONE_A_2 = new HashSet<>(List.of("UNCHI2"));
-    private static final HashSet<String> GRP_ONE_B = new HashSet<>(List.of("BANANA1"));
-    private static final HashSet<String> GRP_TWO_A = new HashSet<>(List.of(
-            "UNCHI1", "UNCHI2"));
+    private static final HashSet<GroupName> GRP_NONE = new HashSet<>(List.of());
+    private static final HashSet<GroupName> GRP_ONE_A_1 = new HashSet<>(List.of(
+            new GroupName("UNCHI1")));
+    private static final HashSet<GroupName> GRP_ONE_A_2 = new HashSet<>(List.of(
+            new GroupName("UNCHI2")));
+    private static final HashSet<GroupName> GRP_ONE_B = new HashSet<>(List.of(
+            new GroupName("BANANA1")));
+    private static final HashSet<GroupName> GRP_TWO_A = new HashSet<>(List.of(
+            new GroupName("UNCHI1"),
+            new GroupName("UNCHI2")));
 
     private static final LocalDateTime TIME_1_VALID = LocalDateTime.of(2023, 3, 5, 4, 55);
     private static final LocalDateTime TIME_2_VALID = TIME_1_VALID.plusDays(MIN_SPACING);
     private static final LocalDateTime TIME_3_VALID = TIME_2_VALID.plusDays(MIN_SPACING);
 
-    private static final VaxType TYPE_NONE = new VaxType("TYPE_1",
+    private static final VaxType TYPE_NONE = new VaxType(new GroupName("TYPE_1"),
             GRP_NONE,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of());
-    private static final VaxType TYPE_ONE_A_1 = new VaxType("TYPE_1_A_2",
+    private static final VaxType TYPE_ONE_A_1 = new VaxType(new GroupName("TYPE_1_A_2"),
             GRP_ONE_A_1,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of(new Requirement(RequirementType.NONE, GRP_ONE_A_1)));
-    private static final VaxType TYPE_ONE_A_2 = new VaxType("TYPE_1_A_2",
+    private static final VaxType TYPE_ONE_A_2 = new VaxType(new GroupName("TYPE_1_A_2"),
             GRP_ONE_A_2,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of());
-    private static final VaxType TYPE_ONE_B = new VaxType("TYPE_1_B",
+    private static final VaxType TYPE_ONE_B = new VaxType(new GroupName("TYPE_1_B"),
             GRP_ONE_B,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of());
-    private static final VaxType TYPE_TWO_A = new VaxType("TYPE_TWO_A",
+    private static final VaxType TYPE_TWO_A = new VaxType(new GroupName("TYPE_TWO_A"),
             GRP_TWO_A,
             MIN_AGE,
             MAX_AGE,
@@ -63,28 +68,28 @@ public class VaxCheckerTest {
             List.of(),
             List.of());
 
-    private static final VaxType TYPE_ONE_A_REQ = new VaxType("TYPE_ONE_A_REQ",
+    private static final VaxType TYPE_ONE_A_REQ = new VaxType(new GroupName("TYPE_ONE_A_REQ"),
             GRP_NONE,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of(new Requirement(RequirementType.ALL, GRP_ONE_A_1)));
-    private static final VaxType TYPE_TWO_A_REQ = new VaxType("TYPE_ONE_A_REQ",
+    private static final VaxType TYPE_TWO_A_REQ = new VaxType(new GroupName("TYPE_ONE_A_REQ"),
             GRP_NONE,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of(new Requirement(RequirementType.ALL, GRP_TWO_A)));
-    private static final VaxType TYPE_TWO_A_SUB = new VaxType("TYPE_TWO_A_SUB",
+    private static final VaxType TYPE_TWO_A_SUB = new VaxType(new GroupName("TYPE_TWO_A_SUB"),
             GRP_NONE,
             MIN_AGE,
             MAX_AGE,
             MIN_SPACING,
             List.of(),
             List.of(new Requirement(RequirementType.ANY, GRP_TWO_A)));
-    private static final VaxType TYPE_COMBI_REQ = new VaxType("TYPE_TWO_A_SUB",
+    private static final VaxType TYPE_COMBI_REQ = new VaxType(new GroupName("TYPE_TWO_A_SUB"),
             GRP_NONE,
             MIN_AGE,
             MAX_AGE,
