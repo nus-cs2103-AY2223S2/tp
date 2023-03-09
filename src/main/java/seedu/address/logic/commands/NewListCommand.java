@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-// import static seedu.address.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
+// import static seedu.address.model.ModelNew.PREDICATE_SHOW_ALL_OPENINGS;
 
 import seedu.address.model.Model;
 
@@ -24,4 +24,11 @@ public class NewListCommand extends Command {
         // model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+//    @Override
+//    public CommandResult execute(ModelNew model) {
+//        requireNonNull(model);
+//        // model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+//        return new CommandResult(MESSAGE_SUCCESS);
+//    }
 }
