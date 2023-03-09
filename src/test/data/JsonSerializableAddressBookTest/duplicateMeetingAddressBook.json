@@ -1,0 +1,28 @@
+{
+  "persons": [ ],
+  "meetings": [ {
+    "title" : "Dinner with Alice",
+    "dateTime" : "01/02/2023 19:00",
+    "attendees" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "tagged" : [ "friends" ]
+    } ],
+    "location" : "NUS",
+    "description" : "Weekly catchup"
+  }, {
+    "title" : "Dinner with Alice",
+    "dateTime" : "01/02/2023 19:00",
+    "attendees" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "tagged" : [ "friends" ]
+    } ],
+    "location" : "Central Library",
+    "description" : "Study for finals"
+  } ]
+}

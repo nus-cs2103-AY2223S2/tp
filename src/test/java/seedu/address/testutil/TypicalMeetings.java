@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -21,4 +25,8 @@ public class TypicalMeetings {
      * Private constructor to prevent initialisation.
      */
     private TypicalMeetings() {}
+
+    public static List<Meeting> getTypicalMeetings() {
+        return new ArrayList<>(Arrays.asList(MEETING_A, MEETING_B, MEETING_C));
+    }
 }
