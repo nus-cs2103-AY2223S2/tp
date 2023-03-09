@@ -44,21 +44,21 @@ public class PersonListPanel extends UiPart<Region> {
             this.officeConnectModel = officeConnectModel;
         }
 
-        @Override
-        public void updateSelected(boolean selected) {
-            super.updateSelected(selected);
-            if (selected) {
-                Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-                logger.info("An item selected: " + this.getItem().toString());
-
-                ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
-                    .getFilteredItemList().filtered(personTask ->
-                        personTask.getPersonId().equals(super.getItem().getId()));
-
-                officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
-                    .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
-            }
-        }
+        // @Override
+        // public void updateSelected(boolean selected) {
+        //     super.updateSelected(selected);
+        //     if (selected) {
+        //         Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+        //         logger.info("An item selected: " + this.getItem().toString());
+        //
+        //         ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+        //             .getFilteredItemList().filtered(personTask ->
+        //                 personTask.getPersonId().equals(super.getItem().getId()));
+        //
+        //         officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
+        //             .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+        //     }
+        // }
 
         @Override
         protected void updateItem(Person person, boolean empty) {
@@ -69,6 +69,22 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1) {
+                        System.out.println("Single click on item: " + PersonListViewCell.super.getItem());
+                        Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+                        logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());
+
+                        ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+                            .getFilteredItemList().filtered(personTask ->
+                                personTask.getPersonId().equals(PersonListViewCell.super.getItem().getId()));
+
+                        officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
+                            .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+                    } else if (event.getClickCount() == 2) {
+                        System.out.println("Double click on item: " + PersonListViewCell.super.getItem());
+                    }
+                });
             }
         }
     }
