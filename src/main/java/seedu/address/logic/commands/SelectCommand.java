@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 /**
  * Selects a person identified using it's displayed index from the address book.
@@ -22,7 +22,7 @@ public class SelectCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected Person: %1$s";
+    public static final String MESSAGE_SELECT_CLIENT_SUCCESS = "Selected Person: %1$s";
 
     private final Index targetIndex;
 
@@ -33,14 +33,14 @@ public class SelectCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Person personToSelect = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, personToSelect));
+        Client clientToSelect = lastShownList.get(targetIndex.getZeroBased());
+        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect));
     }
 
     @Override
