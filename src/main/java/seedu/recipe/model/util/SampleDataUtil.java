@@ -21,9 +21,7 @@ import seedu.recipe.model.tag.Tag;
 public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         return new Recipe[] {
-            new Recipe(new Title("Corndogs"), new Description("Awesome cheap corndogs"), 
-            new HashSet<Ingredient>(Arrays.asList(new Ingredient("eggs"), new Ingredient("flour"))), 
-            new HashSet<Step>(Arrays.asList(new Step("Test1"), new Step("Test2"))))
+            new Recipe(new Title("Corndogs"), new Description("Awesome cheap corndogs"), new HashSet<Ingredient>(Arrays.asList(new Ingredient("eggs"), new Ingredient("flour"))), new HashSet<Step>(Arrays.asList(new Step("Test1"), new Step("Test2"))))
         };
     }
 
