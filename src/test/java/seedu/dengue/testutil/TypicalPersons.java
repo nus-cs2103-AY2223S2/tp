@@ -8,8 +8,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
