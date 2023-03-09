@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing RecipeBook ]===========================");
+        logger.info("=============================[ Initializing CookHub ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting RecipeBook " + MainApp.VERSION);
+        logger.info("Starting CookHub " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

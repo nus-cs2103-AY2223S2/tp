@@ -28,23 +28,19 @@ class JsonAdaptedRecipe {
     private final String desc;
 
     // Data fields
-    private final Set<JsonAdaptedIngredient> ingredients;
-    private final Set<JsonAdaptedStep> steps;
+    private final Set<JsonAdaptedIngredient> ingredients = new HashSet<>();
+    private final Set<JsonAdaptedStep> steps = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("title") Title title, @JsonProperty("desc") Description desc,
-            @JsonProperty("ingredients") Set<Ingredient> ingredients, @JsonProperty("steps") Set<Step> steps) {
-        this.title = title;
-        this.desc = desc;
-        if (ingredients != null) {
-            this.ingredients.addAll(ingredients);
-        }
-        if (steps != null) {
-            this.steps.addAll(ingredients);
-        }
+            @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients, @JsonProperty("steps") Set<JsonAdaptedStep> steps) {
+        this.title = title.title;
+        this.desc = desc.description;
+        this.ingredients.addAll(ingredients);
+        this.steps.addAll(steps);
     }
 
     /**
@@ -54,7 +50,7 @@ class JsonAdaptedRecipe {
         title = source.getTitle().title;
         desc = source.getDesc().description;
         ingredients.addAll(source.getIngredients().stream()
-                      .map(JsonAdaptedRecipe::new)
+                      .map(JsonAdaptedIngredient::new)
                       .collect(Collectors.toSet()));
         steps.addAll(source.getSteps().stream()
                 .map(JsonAdaptedStep::new)
@@ -67,12 +63,12 @@ class JsonAdaptedRecipe {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Recipe toModelType() throws IllegalValueException {
-        final Set<Ingredient> recipeIngredients = new Set<>();
+        final Set<Ingredient> recipeIngredients = new HashSet<>();
         for (JsonAdaptedIngredient ingredient : ingredients) {
             recipeIngredients.add(ingredient.toModelType());
         }
         
-        final Set<Step> recipeSteps = new Set<>();
+        final Set<Step> recipeSteps = new HashSet<>();
         for (JsonAdaptedStep step : steps) {
             recipeSteps.add(step.toModelType());
         }
@@ -88,12 +84,12 @@ class JsonAdaptedRecipe {
         if (desc == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(desc)) {
+        if (!Description.isValidDesc(desc)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDesc = new Description(desc);
         
-        return new Recipe(modelTitle, modelDesc, modelEmail, recipeIngredients, recipeSteps);
+        return new Recipe(modelTitle, modelDesc, recipeIngredients, recipeSteps);
     }
 
 }
