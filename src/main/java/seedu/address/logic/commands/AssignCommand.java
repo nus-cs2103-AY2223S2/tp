@@ -54,7 +54,7 @@ public class AssignCommand extends Command {
         }
 
         Person person =  personList.get(personIndex.getZeroBased());
-        Task task = taskList.get(personIndex.getZeroBased());
+        Task task = taskList.get(taskIndex.getZeroBased());
         Id pId = person.getId();
         Id tId = task.getId();
         PersonTask toAdd = new PersonTask(pId, tId);
