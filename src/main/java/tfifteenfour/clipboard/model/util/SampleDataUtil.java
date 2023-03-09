@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import tfifteenfour.clipboard.model.AddressBook;
-import tfifteenfour.clipboard.model.ReadOnlyAddressBook;
+import tfifteenfour.clipboard.model.ReadOnlyRoster;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
@@ -16,7 +16,7 @@ import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Roster} with sample data.
  */
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
@@ -37,8 +37,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyRoster getSampleRoster() {
+        Roster sampleAb = new Roster();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }

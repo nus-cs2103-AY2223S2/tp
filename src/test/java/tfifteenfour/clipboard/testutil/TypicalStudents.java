@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import tfifteenfour.clipboard.model.AddressBook;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -75,10 +75,10 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code Roster} with all the typical students.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Roster getTypicalRoster() {
+        Roster ab = new Roster();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }

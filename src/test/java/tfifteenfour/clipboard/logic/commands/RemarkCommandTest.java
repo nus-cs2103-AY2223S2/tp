@@ -7,15 +7,15 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertComman
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalAddressBook;
+import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 
 import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.model.AddressBook;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.UserPrefs;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
@@ -27,7 +27,7 @@ import tfifteenfour.clipboard.testutil.StudentBuilder;
 class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRoster(), new UserPrefs());
 
     @Test
     void execute_addRemarkUnfilteredList_success() {
@@ -39,7 +39,7 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ class RemarkCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getRoster().getStudentList().size());
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
 
@@ -95,7 +95,7 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

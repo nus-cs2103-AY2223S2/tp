@@ -2,8 +2,8 @@ package tfifteenfour.clipboard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import tfifteenfour.clipboard.model.AddressBook;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.Roster;
 
 /**
  * Clears the address book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setRoster(new Roster());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

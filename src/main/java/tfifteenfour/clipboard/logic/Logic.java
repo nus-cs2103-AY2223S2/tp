@@ -7,7 +7,7 @@ import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.ReadOnlyAddressBook;
+import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Roster.
      *
-     * @see tfifteenfour.clipboard.model.Model#getAddressBook()
+     * @see tfifteenfour.clipboard.model.Model#getRoster()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyRoster getRoster();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRosterFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

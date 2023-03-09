@@ -3,7 +3,7 @@ package tfifteenfour.clipboard.logic.commands;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalAddressBook;
+import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalRoster(), new UserPrefs());
+        expectedModel = new ModelManager(model.getRoster(), new UserPrefs());
     }
 
     @Test

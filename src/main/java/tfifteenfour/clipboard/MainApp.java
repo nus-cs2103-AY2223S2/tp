@@ -16,16 +16,16 @@ import tfifteenfour.clipboard.commons.util.ConfigUtil;
 import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.LogicManager;
-import tfifteenfour.clipboard.model.AddressBook;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
-import tfifteenfour.clipboard.model.ReadOnlyAddressBook;
+import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.ReadOnlyUserPrefs;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.UserPrefs;
 import tfifteenfour.clipboard.model.util.SampleDataUtil;
-import tfifteenfour.clipboard.storage.AddressBookStorage;
-import tfifteenfour.clipboard.storage.JsonAddressBookStorage;
+import tfifteenfour.clipboard.storage.JsonRosterStorage;
 import tfifteenfour.clipboard.storage.JsonUserPrefsStorage;
+import tfifteenfour.clipboard.storage.RosterStorage;
 import tfifteenfour.clipboard.storage.Storage;
 import tfifteenfour.clipboard.storage.StorageManager;
 import tfifteenfour.clipboard.storage.UserPrefsStorage;
@@ -49,7 +49,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Roster ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        RosterStorage addressBookStorage = new JsonRosterStorage(userPrefs.getRosterFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -75,21 +75,21 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyRoster> addressBookOptional;
+        ReadOnlyRoster initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readRoster();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample Roster");
                 new File("data").mkdir();
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleRoster);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty Roster");
+            initialData = new Roster();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
+            initialData = new Roster();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -153,7 +153,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
             initializedPrefs = new UserPrefs();
         }
 
@@ -169,7 +169,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Roster " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

@@ -1,4 +1,3 @@
-
 package tfifteenfour.clipboard.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
 import tfifteenfour.clipboard.commons.util.JsonUtil;
-import tfifteenfour.clipboard.model.AddressBook;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.testutil.TypicalStudents;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableRosterTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsAddressBook.json");
@@ -23,25 +22,25 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalStudentsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalStudentsAddressBook = TypicalStudents.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalStudentsAddressBook);
+        JsonSerializableRoster dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+                JsonSerializableRoster.class).get();
+        Roster addressBookFromFile = dataFromFile.toModelType();
+        Roster typicalStudentsRoster = TypicalStudents.getTypicalRoster();
+        assertEquals(addressBookFromFile, typicalStudentsRoster);
     }
 
     @Test
     public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableRoster dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+                JsonSerializableRoster.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableRoster dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+                JsonSerializableRoster.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableRoster.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 

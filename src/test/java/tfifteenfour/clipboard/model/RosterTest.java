@@ -7,7 +7,7 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ALICE;
-import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalAddressBook;
+import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,9 +22,9 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.exceptions.DuplicateStudentException;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
 
-public class AddressBookTest {
+public class RosterTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Roster addressBook = new Roster();
 
     @Test
     public void constructor() {
@@ -37,8 +37,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyRoster_replacesData() {
+        Roster newData = getTypicalRoster();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +49,7 @@ public class AddressBookTest {
         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        RosterStub newData = new RosterStub(newStudents);
 
         assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
     }
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInRoster_returnsFalse() {
         assertFalse(addressBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
+    public void hasStudent_studentInRoster_returnsTrue() {
         addressBook.addStudent(ALICE);
         assertTrue(addressBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudent_studentWithSameIdentityFieldsInRoster_returnsTrue() {
         addressBook.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
@@ -84,12 +84,12 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyRoster whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class RosterStub implements ReadOnlyRoster {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        RosterStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

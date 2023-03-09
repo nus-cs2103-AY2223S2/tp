@@ -16,8 +16,8 @@ import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.model.AddressBook;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
@@ -111,11 +111,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Roster expectedRoster = new Roster(actualModel.getRoster());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedRoster, actualModel.getRoster());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**

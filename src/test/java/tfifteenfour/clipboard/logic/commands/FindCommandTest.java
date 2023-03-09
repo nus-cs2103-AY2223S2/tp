@@ -8,7 +8,7 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertComman
 import static tfifteenfour.clipboard.testutil.TypicalStudents.CARL;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ELLE;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.FIONA;
-import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalAddressBook;
+import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRoster(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRoster(), new UserPrefs());
 
     @Test
     public void equals() {
