@@ -26,9 +26,9 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedDoctor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("specialty") String specialty,
-                             @JsonProperty("yearsOfExperience") String yearsOfExperience) {
+                             @JsonProperty("email") String email, @JsonProperty("specialty") String specialty,
+                             @JsonProperty("yearsOfExperience") String yearsOfExperience,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(name, phone, email, tagged);
         this.specialty = specialty;
         this.yearsOfExperience = yearsOfExperience;
