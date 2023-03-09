@@ -21,18 +21,18 @@ public class Card {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Card(Question question, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(question, phone, email, address, tags);
+    public Card(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(question, phone, email, answer, tags);
         this.question = question;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.answer = answer;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Card {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Answer getAddress() {
+        return answer;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Card {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, phone, email, address, tags);
+        return Objects.hash(question, phone, email, answer, tags);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Card {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Answer: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();

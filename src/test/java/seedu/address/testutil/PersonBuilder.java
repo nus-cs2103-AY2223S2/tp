@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.card.Address;
+import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Email;
 import seedu.address.model.card.Phone;
@@ -24,7 +24,7 @@ public class PersonBuilder {
     private Question question;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Answer answer;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
         question = new Question(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        answer = new Answer(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class PersonBuilder {
         question = cardToCopy.getQuestion();
         phone = cardToCopy.getPhone();
         email = cardToCopy.getEmail();
-        address = cardToCopy.getAddress();
+        answer = cardToCopy.getAddress();
         tags = new HashSet<>(cardToCopy.getTags());
     }
 
@@ -66,10 +66,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Card} that we are building.
+     * Sets the {@code Answer} of the {@code Card} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.answer = new Answer(address);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Card build() {
-        return new Card(question, phone, email, address, tags);
+        return new Card(question, phone, email, answer, tags);
     }
 
 }
