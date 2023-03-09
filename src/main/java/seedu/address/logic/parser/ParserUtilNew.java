@@ -6,12 +6,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.geometry.Pos;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.opening.Company;
 import seedu.address.model.opening.Date;
+import seedu.address.model.opening.Email;
 import seedu.address.model.opening.Position;
 import seedu.address.model.opening.Remark;
 import seedu.address.model.opening.Status;
@@ -65,6 +65,21 @@ public class ParserUtilNew {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     * 
+     * @throws ParseException
+     */
+    public static Email parseEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
     }
 
     /**

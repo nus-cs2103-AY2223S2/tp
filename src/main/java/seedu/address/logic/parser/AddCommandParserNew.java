@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_DATE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.opening.Company;
 import seedu.address.model.opening.Date;
 import seedu.address.model.opening.Email;
+import seedu.address.model.opening.Opening;
 import seedu.address.model.opening.Position;
 import seedu.address.model.opening.Remark;
 import seedu.address.model.opening.Status;
@@ -35,25 +35,24 @@ public class AddCommandParserNew implements ParserNew<AddCommandNew> {
      */
     public AddCommandNew parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                    PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL,
+                        PREFIX_STATUS, PREFIX_REMARK, PREFIX_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommandNew.MESSAGE_USAGE));
         }
 
         Position position = ParserUtilNew.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Company company = 
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Company company = ParserUtilNew.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
+        Email email = ParserUtilNew.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Status status = ParserUtilNew.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        Remark remark = ParserUtilNew.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+        Set<Date> dateList = ParserUtilNew.parseDates(argMultimap.getAllValues(PREFIX_DATE));
 
-        Person person = new Person(name, phone, email, address, remark, tagList);
+        Opening opening = new Opening(position, company, email, status, remark, dateList);
 
-        return new AddCommand(person);
+        return new AddCommandNew(opening);
     }
 
     /**
