@@ -3,7 +3,7 @@ package seedu.address.model.person.student;
 import java.time.LocalDate;
 
 /**
- * A homework class
+ * Represents a homework that is given to the Student.
  */
 public class Homework extends Assignment {
     public static final String MESSAGE_CONSTRAINTS = "Homework must be letters or numbers";
@@ -12,23 +12,24 @@ public class Homework extends Assignment {
     private boolean isDone;
 
     /**
-     * A HomeWork constructor
-     * @param assignmentName
-     * @param deadline
-     * @param weightage
-     * @param maxScore
-     * @param isDone
+     * Returns a Homework object that stores information about the homework description.
+     *
+     * @param assignmentName Homework name.
+     * @param deadline Due date for the homework.
+     * @param weightage Weightage of the homework.
+     * @param maxScore Maximum score attainable for the homework.
+     * @param isDone Boolean value indicating the completion status of the homework.
      */
-
     public Homework(String assignmentName, LocalDate deadline, int weightage, int maxScore, boolean isDone) {
         super(assignmentName, deadline, weightage, maxScore);
         this.isDone = isDone;
     }
 
     /**
-     * A method to check if homework is valid
-     * @param test
-     * @return true if homework is valid
+     * Checks if a particular task to do is a Homework object.
+     *
+     * @param test String description of the task to check if it is a Homework object.
+     * @return Boolean value indicating whether the task is a Homework object.
      */
     public static boolean isValidHomework(String test) {
         if (test.equals("Insert student homework here!")) {

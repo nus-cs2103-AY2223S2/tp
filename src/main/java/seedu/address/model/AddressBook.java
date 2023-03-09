@@ -52,7 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
@@ -77,9 +76,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if this PowerConnect/AddressBook has students
-     * @param student
-     * @return true if student is present, false otherwise
+     * Returns boolean value true if a student with the same identity as {@code student} exists in PowerConnect.
+     *
+     * @param student Student object that needs to be checked for duplication
+     * @return Boolean value indicating whether the student already exists in PowerConnect.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -100,9 +100,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param s of student
      */
     public void addStudent(Student s) {
-
         students.add(s);
     }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -123,7 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-
         persons.remove(key);
     }
 
@@ -132,7 +131,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param key
      */
     public void removeStudent(Student key) {
-
         students.remove(key);
     }
     //// util methods
@@ -151,9 +149,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Student> getStudentList() {
-
         return students.asUnmodifiableObservableList();
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

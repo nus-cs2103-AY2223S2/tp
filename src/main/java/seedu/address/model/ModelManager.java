@@ -110,9 +110,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudent(Student target) {
-
         addressBook.removeStudent(target);
-
     }
 
     @Override
@@ -155,10 +153,9 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Student> getFilteredStudentList() {
-
         return filteredStudents;
-
     }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);

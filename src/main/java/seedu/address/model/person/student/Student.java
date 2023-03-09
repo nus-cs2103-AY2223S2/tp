@@ -13,17 +13,9 @@ import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
- * A class representing a Student who is a Person
+ * Represents a Student object extends from Person class.
  */
 public class Student extends Person {
-
-    /**
-     * @param name
-     * @param indexNumber
-     * @param email
-     * @param address
-     * @param tags
-     */
     private final IndexNumber indexNumber;
     private final Sex sex;
     private final ParentName parentName;
@@ -36,22 +28,23 @@ public class Student extends Person {
     private Test test;
 
     /**
-     * A student class constructor
-     * @param name
-     * @param sc
-     * @param indexNumber
-     * @param sex
-     * @param parentName
-     * @param age
-     * @param image
-     * @param email
-     * @param phone
-     * @param cca
-     * @param address
-     * @param attendance
-     * @param homework
-     * @param test
-     * @param tags
+     * Returns a Student object that stores information about the student particulars.
+     *
+     * @param name Student's name.
+     * @param sc Student's class.
+     * @param indexNumber Student's index number.
+     * @param sex Student's gender.
+     * @param parentName Student's parent's / NOK(next-of-kin)'s name.
+     * @param age Student's age.
+     * @param image Student's image.
+     * @param email Student's email address.
+     * @param phone Student's contact number.
+     * @param cca Student's CCA.
+     * @param address Student's residential address.
+     * @param attendance Student's attendance.
+     * @param homework Homework given to student.
+     * @param test Tests student took.
+     * @param tags Tag given to student.
      */
     public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
                    Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
@@ -88,7 +81,6 @@ public class Student extends Person {
         return cca;
     }
     public StudentClass getStudentClass() {
-
         return sc;
     }
 
@@ -146,6 +138,4 @@ public class Student extends Person {
         }
         return builder.toString();
     }
-
-
 }

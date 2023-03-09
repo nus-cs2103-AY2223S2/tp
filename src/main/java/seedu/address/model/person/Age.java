@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.person.student.ParentName;
 
 /**
- * A class for age of person
+ * Represents the Age of a Student object.
  */
 public class Age {
     public static final String MESSAGE_CONSTRAINTS = "Age must be digits (0-9)";

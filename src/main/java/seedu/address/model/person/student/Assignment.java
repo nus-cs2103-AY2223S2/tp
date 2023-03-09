@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * An Assignment class
+ * Represents an Assignment that is assigned to the Student.
  */
 public class Assignment {
     private final String assignmentName;
@@ -13,11 +13,12 @@ public class Assignment {
     private final int maxScore;
 
     /**
-     * A constructor to create a new Assignment
-     * @param assignmentName
-     * @param deadline
-     * @param weightage
-     * @param maxScore
+     * Returns an Assignment object that stores information about the assignment description.
+     *
+     * @param assignmentName Assignment name.
+     * @param deadline Due date for the assignment.
+     * @param weightage Weightage of the assignment.
+     * @param maxScore Maximum score attainable for the assignment.
      */
     public Assignment(String assignmentName, LocalDate deadline, int weightage, int maxScore) {
         this.assignmentName = assignmentName;

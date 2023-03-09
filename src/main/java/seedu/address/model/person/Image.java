@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.person.student.ParentName;
 
 /**
- * A class for Image
+ * Represents the Image of a Student object.
  */
 public class Image {
     public static final String MESSAGE_CONSTRAINTS = "Image must be file destination";
@@ -37,7 +37,6 @@ public class Image {
         if (test.equals("Insert student image here!")) {
             return true;
         }
-
         return test.matches(VALIDATION_REGEX);
     }
 

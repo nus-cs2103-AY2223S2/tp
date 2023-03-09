@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * A ParentName Class
+ * Represents the name of the Parent object of a Student object.
  */
 public class ParentName {
     public static final String MESSAGE_CONSTRAINTS = "Parent Name must be letters";

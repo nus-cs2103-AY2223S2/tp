@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * A StudentClass
+ * Represents the class a Student object is allocated to.
  */
 public class StudentClass {
-    public static final String MESSAGE_CONSTRAINTS = "Student class must contain letters and/or digits "
-            + "with no spaces in between";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Student class must contain letters and/or digits with no spaces in between";
 
     /*
      * The first character of the address must not be a whitespace,
