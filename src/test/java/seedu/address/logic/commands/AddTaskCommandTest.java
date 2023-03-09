@@ -114,6 +114,7 @@ class AddTaskCommandTest {
             return this.task.isSame(task);
         }
     }
+
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {

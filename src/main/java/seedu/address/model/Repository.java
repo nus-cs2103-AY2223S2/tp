@@ -28,7 +28,7 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
     }
 
     /**
-     * Creates an Repository using the data in the {@code toBeCopied}
+     * Creates a Repository using the data in the {@code toBeCopied}
      */
     private Repository(ReadOnlyRepository<T> toBeCopied) {
         this();
