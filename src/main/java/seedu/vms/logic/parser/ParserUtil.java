@@ -12,12 +12,12 @@ import java.util.Set;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.Address;
 import seedu.vms.model.patient.Email;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.tag.Tag;
-import seedu.vms.model.vaccination.VaxName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -186,12 +186,12 @@ public class ParserUtil {
      * @param name - name to parse.
      * @throws ParseException if the name cannot be parsed.
      */
-    public static VaxName parseVaxName(String name) throws ParseException {
+    public static GroupName parseGroupName(String name) throws ParseException {
         requireNonNull(name);
-        if (!VaxName.isValidName(name)) {
-            throw new ParseException(VaxName.MESSAGE_CONSTRAINT);
+        if (!GroupName.isValidName(name)) {
+            throw new ParseException(GroupName.MESSAGE_CONSTRAINT);
         }
-        return new VaxName(name);
+        return new GroupName(name);
     }
 
 
@@ -202,6 +202,9 @@ public class ParserUtil {
      */
 
 
+    /**
+     * Parses an integer.
+     */
     public static int parseInteger(String intString) throws ParseException {
         try {
             return Integer.parseInt(intString);

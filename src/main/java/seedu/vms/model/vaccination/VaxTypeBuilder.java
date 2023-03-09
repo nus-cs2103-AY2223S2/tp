@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.GroupName;
 
 
 /**
@@ -15,8 +16,8 @@ public class VaxTypeBuilder {
     private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist";
     private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist";
 
-    private final VaxName refName;
-    private final VaxName name;
+    private final GroupName refName;
+    private final GroupName name;
     private final Optional<HashSet<String>> setGrps;
     private final Optional<Integer> setMinAge;
     private final Optional<Integer> setMaxAge;
@@ -25,7 +26,7 @@ public class VaxTypeBuilder {
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
-    private VaxTypeBuilder(VaxName refName, VaxName name, Optional<HashSet<String>> setGrps,
+    private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<String>> setGrps,
                 Optional<Integer> setMinAge, Optional<Integer> setMaxAge, Optional<Integer> setMinSpacing,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
@@ -46,7 +47,7 @@ public class VaxTypeBuilder {
      *      from.
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(VaxName refName, VaxName name) {
+    public static VaxTypeBuilder of(GroupName refName, GroupName name) {
         return new VaxTypeBuilder(refName, name,
                 Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty(), Optional.empty());
@@ -58,12 +59,12 @@ public class VaxTypeBuilder {
      *
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(VaxName name) {
+    public static VaxTypeBuilder of(GroupName name) {
         return VaxTypeBuilder.of(name, name);
     }
 
 
-    public VaxTypeBuilder setName(VaxName name) {
+    public VaxTypeBuilder setName(GroupName name) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);

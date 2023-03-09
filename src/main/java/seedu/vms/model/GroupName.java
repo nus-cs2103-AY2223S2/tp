@@ -1,4 +1,4 @@
-package seedu.vms.model.vaccination;
+package seedu.vms.model;
 
 import java.util.Objects;
 
@@ -9,25 +9,24 @@ import seedu.vms.commons.util.AppUtil;
 
 
 /**
- * Represents a vaccination name. The validity of the name is enforced.
+ * Represents a group name. Ensures that the name is valid.
  */
-public class VaxName {
-    public static final String MESSAGE_CONSTRAINT = "Vaccination name should not be blank, "
+public class GroupName {
+    public static final String MESSAGE_CONSTRAINT = "Group name should not be blank, "
             + "and should only contain alphanumeric characters including brackets and dashes";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}<>\\-_ ]{1,30}";
-
 
     private final String name;
 
 
     /**
-     * Constructs a {@code VaxName}.
+     * Constructs a {@code GroupName}.
      *
-     * @param name - name of vaccination.
+     * @param name - name of the group.
      */
     @JsonCreator
-    public VaxName(String name) {
+    public GroupName(String name) {
         Objects.requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
         this.name = name.strip();
@@ -55,8 +54,8 @@ public class VaxName {
         if (this == other) {
             return true;
         }
-        return other instanceof VaxName
-                && name.equals(((VaxName) other).name);
+        return other instanceof GroupName
+                && name.equals(((GroupName) other).name);
     }
 
 

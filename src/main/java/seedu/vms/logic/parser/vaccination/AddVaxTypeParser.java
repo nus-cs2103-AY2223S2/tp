@@ -9,7 +9,7 @@ import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.vaccination.VaxName;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 
 
@@ -24,7 +24,7 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     public AddVaxTypeCommand parse(String args) throws ParseException {
         ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(args);
 
-        VaxName name = ParserUtil.parseVaxName(argsMap.getPreamble());
+        GroupName name = ParserUtil.parseGroupName(argsMap.getPreamble());
 
         VaxTypeBuilder builder = VaxTypeBuilder.of(name);
 
