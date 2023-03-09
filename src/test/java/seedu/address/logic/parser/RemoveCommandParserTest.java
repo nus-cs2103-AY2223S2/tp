@@ -47,6 +47,7 @@ import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.RemovePersonDescriptorBuilder;
 
 public class RemoveCommandParserTest {
@@ -207,6 +208,17 @@ public class RemoveCommandParserTest {
         String userInput = targetIndex.getOneBased() + LANGUAGE_EMPTY;
 
         RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder().withLanguages().build();
+        RemoveCommand expectedCommand = new RemoveCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetTags_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder().withTags().build();
         RemoveCommand expectedCommand = new RemoveCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
