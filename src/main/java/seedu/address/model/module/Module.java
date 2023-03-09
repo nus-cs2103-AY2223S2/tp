@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class  Module{
     public static final String MESSAGE_CONSTRAINTS = "Module names should be AYXXXXSX ";
-    public static final String VALIDATION_REGEX = "^AY[0-9]{4}S(1|2) [A-Z]+[0-9]+";
+    public static final String VALIDATION_REGEX = "^AY[0-9]{4}S(1|2) [A-Z]+[0-9]+[A-Z]*";
 
     public final String moduleName;
 
@@ -16,6 +16,7 @@ public class  Module{
     }
 
     public static boolean isValidModuleName(String test) {
+        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 

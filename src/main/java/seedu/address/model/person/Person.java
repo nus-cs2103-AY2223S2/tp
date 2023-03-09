@@ -27,12 +27,12 @@ public class Person {
     private final Address address;
     private final Set<Skill> skills = new HashSet<>();
 
-    private final ArrayList<Module> modules = new ArrayList<>();
+    private final List<Module> modules = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, ArrayList<Module> modules) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, List<Module> modules) {
         requireAllNonNull(name, phone, email, address, skills, modules);
         this.name = name;
         this.phone = phone;

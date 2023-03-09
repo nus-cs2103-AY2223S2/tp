@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -14,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.skill.Skill;
+import seedu.address.model.module.Module;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -111,6 +110,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String Module} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
+    public static Module parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Module.isValidModuleName(trimmedModule)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(trimmedModule);
+    }
+    /**
      * Parses {@code Collection<String> skills} into a {@code Set<Skill>}.
      */
     public static Set<Skill> parseSkills(Collection<String> skills) throws ParseException {
@@ -120,5 +133,16 @@ public class ParserUtil {
             skillSet.add(parseSkill(skillName));
         }
         return skillSet;
+    }
+    /**
+     * Parses {@code Collection<String> modules} into a {@code List<Module>}.
+     */
+    public static List<Module> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final List<Module> moduleList = new ArrayList<>();
+        for (String moduleName : modules) {
+            moduleList.add(parseModule(moduleName));
+        }
+        return moduleList;
     }
 }
