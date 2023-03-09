@@ -10,7 +10,9 @@ package seedu.address.model.person;
  */
 public class Region {
 
-    // Enum that has all possible regions
+    /**
+     * Enum that represents all regions of Singapore
+     */
     public enum Regions {
         NORTH, SOUTH, EAST, WEST, CENTRAL
     }
@@ -19,7 +21,6 @@ public class Region {
      * Enum that has all the towns in Singapore and their respective regions.
      * <p>
      * Town region is determined using this website:
-     * https://va.ecitizen.gov.sg/CFP/CustomerPages/NEA_google/displayresult.aspx?MesId=1068932&Source=Google&url=va.ecitizen.gov.sg
      */
     public enum Towns {
         ADMIRALTY(Regions.NORTH), KRANJI(Regions.NORTH), WOODLANDS(Regions.NORTH),
@@ -72,7 +73,6 @@ public class Region {
     /**
      * Factory method that returns the correct region based on the town.
      * Region classification is based on the following URL:
-     * https://va.ecitizen.gov.sg/CFP/CustomerPages/NEA_google/displayresult.aspx?MesId=1068932&Source=Google&url=va.ecitizen.gov.sg
      * <p>
      * Use {@code Towns} enum to select the town
      * @param town Town selected from {@code Towns} enum
