@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class Score {
     // Identity field(s)
-    public final Title scoreName;
+    public final Label scoreName;
     public final ScoreValue scoreValue;
     public final Date scoreDate;
 
@@ -21,7 +21,7 @@ public class Score {
      * @param scoreValue A valid Score value.
      * @param scoreDate A valid Score date.
      */
-    public Score(Title scoreName, ScoreValue scoreValue, Date scoreDate) {
+    public Score(Label scoreName, ScoreValue scoreValue, Date scoreDate) {
         requireAllNonNull(scoreName, scoreValue, scoreDate);
 
         this.scoreName = scoreName;
@@ -32,7 +32,7 @@ public class Score {
     /**
      * Returns the score name.
      */
-    public Title getScoreName() {
+    public Label getScoreName() {
         return scoreName;
     }
 

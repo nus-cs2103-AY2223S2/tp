@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents the score title in a score.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Label {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Title should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,7 +21,7 @@ public class Title {
      *
      * @param title A valid title.
      */
-    public Title(String title) {
+    public Label(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
         this.title = title;
@@ -39,8 +39,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Title // instanceof handles nulls
-                && title.equals(((Title) other).title)); // state check
+                || (other instanceof Label // instanceof handles nulls
+                && title.equals(((Label) other).title)); // state check
     }
 
     @Override
