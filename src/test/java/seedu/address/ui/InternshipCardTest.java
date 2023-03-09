@@ -38,4 +38,3 @@ public class InternshipCardTest {
         assertTrue(new InternshipCard(GRAB, 1).getDateLabel().equals("Date of Notice of Rejection: "));
     }
 }
-
