@@ -33,7 +33,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getTaskName().fullTaskName + " ");
         sb.append(PREFIX_DEADLINE + task.getTaskDeadline().toJsonString() + " ");
-        sb.append(PREFIX_STATUS + task.getTaskStatus().toString() + " ");
+        sb.append(PREFIX_STATUS + task.getTaskStatus().toJsonString() + " ");
         return sb.toString();
     }
 

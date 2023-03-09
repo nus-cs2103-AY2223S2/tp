@@ -53,13 +53,13 @@ public class TaskStatus {
      * @return A string representation of the status.
      */
     public String toJsonString() {
-        return toString();
+        return isDone ? "D" : "N";
     }
 
 
     @Override
     public String toString() {
-        return isDone ? "D" : "N";
+        return isDone ? "Done" : "Not Done";
     }
 
     @Override

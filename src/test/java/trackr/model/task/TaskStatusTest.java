@@ -58,10 +58,10 @@ public class TaskStatusTest {
     @Test
     public void toStringTest() {
         TaskStatus done = new TaskStatus("D");
-        assertEquals("D", done.toString());
+        assertEquals("Done", done.toString());
 
         TaskStatus notDone = new TaskStatus("N");
-        assertEquals("N", notDone.toString());
+        assertEquals("Not Done", notDone.toString());
     }
 
     @Test
