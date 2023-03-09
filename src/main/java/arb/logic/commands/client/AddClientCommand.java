@@ -55,6 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
+        model.updateSortedClientList(Model.CLIENT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.CLIENT);
     }
 

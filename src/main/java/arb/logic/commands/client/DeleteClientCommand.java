@@ -36,7 +36,7 @@ public class DeleteClientCommand extends Command {
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Client> lastShownList = model.getSortedClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);

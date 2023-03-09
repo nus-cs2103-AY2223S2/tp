@@ -4,6 +4,7 @@ import static arb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import arb.model.client.Client;
 import arb.model.project.Project;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +25,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final SortedList<Client> sortedClients;
     private final FilteredList<Project> filteredProjects;
+    private final SortedList<Project> sortedProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +40,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        sortedClients = new SortedList<>(this.filteredClients);
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
+        sortedProjects = new SortedList<>(this.filteredProjects);
     }
 
     public ModelManager() {
@@ -149,6 +155,10 @@ public class ModelManager implements Model {
         return filteredClients;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
@@ -164,6 +174,28 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Sorted Client List Accessors =============================================================
+
+    @Override
+    public SortedList<Client> getSortedClientList() {
+        return sortedClients;
+    }
+
+    @Override
+    public SortedList<Project> getSortedProjectList() {
+        return sortedProjects;
+    }
+
+    @Override
+    public void updateSortedClientList(Comparator<Client> comparator) {
+        sortedClients.setComparator(comparator);
+    }
+
+    @Override
+    public void updateSortedProjectList(Comparator<Project> comparator) {
+        sortedProjects.setComparator(comparator);
     }
 
     @Override
