@@ -32,8 +32,10 @@ public class Deadline {
         dueDate = parseDate(date);
     }
 
+    // Reused from https://stackoverflow.com/questions/21242110/convert-java-util-date-to-java-time-localdate
+    // with minor modifications
     private LocalDateTime parseDate(String dateString) {
-        Date date = getDatesFromDateString(dateString).get(0);
+        Date date = getPossibleDatesFromDateString(dateString).get(0);
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
@@ -43,11 +45,11 @@ public class Deadline {
      * @return True if valid.
      */
     public static boolean isValidDeadline(String test) {
-        List<Date> dates = getDatesFromDateString(test);
+        List<Date> dates = getPossibleDatesFromDateString(test);
         return dates.size() != 0;
     }
 
-    private static List<Date> getDatesFromDateString(String date) {
+    private static List<Date> getPossibleDatesFromDateString(String date) {
         return new PrettyTimeParser().parse(date);
     }
 

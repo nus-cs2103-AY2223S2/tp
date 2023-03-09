@@ -15,3 +15,4 @@ The project simulates an ongoing software project for a desktop application (cal
 * It is named `Artistic Addressbook` (`ArB` for short).
 * For the detailed documentation of this project, see the **[documentation (to be added soon)]()**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project utilises the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library.
