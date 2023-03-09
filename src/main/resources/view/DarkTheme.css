@@ -110,7 +110,7 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 12 6 12 6;
+    -fx-padding: 24 6 24 6;
     -fx-background-insets: 6 0 6 0;
     -fx-background-color: #EFEEFC;
     -fx-background-radius: 8;
@@ -149,6 +149,7 @@
     -fx-font-size: 16px;
     -fx-text-fill: #4A4A4A;
     -fx-padding: 4 0 4 0;
+    -fx-wrap-text: true;
 }
 
 .title_label {
