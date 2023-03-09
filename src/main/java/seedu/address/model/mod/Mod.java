@@ -5,21 +5,20 @@ package seedu.address.model.mod;
  */
 public class Mod {
 
-    private final String modName;
-
     public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    private final String modName;
+
     public Mod(String modName) {
         this.modName = modName;
-    }
-
-    public String getModName() {
-        return this.modName;
     }
 
     public static boolean isValidSkillName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getModName() {
+        return this.modName;
+    }
 }

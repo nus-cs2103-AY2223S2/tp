@@ -75,7 +75,9 @@ public class Person {
         return Collections.unmodifiableSet(skills);
     }
 
-    public Set<Mod> getMods() { return Collections.unmodifiableSet(mods);}
+    public Set<Mod> getMods() {
+        return Collections.unmodifiableSet(mods);
+    }
 
     /**
      * Returns true if both persons have the same name.
