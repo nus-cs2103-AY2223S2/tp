@@ -49,8 +49,8 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         companyName.setText(internship.getCompanyName().fullCompanyName);
-        role.setText("Role: " + internship.getRole().fullRole);
-        status.setText("Status: " + internship.getStatus().toString());
+        role.setText(internship.getRole().fullRole);
+        status.setText(internship.getStatus().toString());
         date.setText(internship.getDate().fullDate);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
