@@ -22,7 +22,7 @@ public class GroupNameTest {
     @Test
     public void isValidName_valid_true() {
         assertTrue(GroupName.isValidName(
-            "   120 - []{}()- Pks niUw LK <> k    "));
+            "   120 - []{}()- Pks niUw LK () k    "));
         assertTrue(GroupName.isValidName("a"));
     }
 
