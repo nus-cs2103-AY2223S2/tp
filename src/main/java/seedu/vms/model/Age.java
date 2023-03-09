@@ -14,10 +14,10 @@ public class Age implements Comparable<Age> {
     public static final Age MIN_AGE = new Age(MIN_VALUE);
     public static final Age MAX_AGE = new Age(MAX_VALUE);
 
-    public static final String MESSAGE_CONSTRAINT = "Age must be a positive integer";
+    public static final String STRING_MIN = "MIN";
+    public static final String STRING_MAX = "MAX";
 
-    private static final String STRING_MIN = "MIN";
-    private static final String STRING_MAX = "MAX";
+    public static final String MESSAGE_CONSTRAINT = "Age must be a positive integer";
 
     private final int value;
 
