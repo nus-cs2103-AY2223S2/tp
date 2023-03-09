@@ -39,7 +39,7 @@ public class ListTaskCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         model.getTaskModelManager().addItem(TaskBuilder.ofRandomTask());
-        model.getTaskModelManager().updateFilteredItemList(x -> x.getSubject().getValue().equals("Sports")
+        model.getTaskModelManager().updateFilteredItemList(x -> x.getSubject().getValue().equals("Recreation day")
                 ? true : false);
         assertEquals(1, model.getTaskModelManager().getFilteredItemList().size());
         assertTaskCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);

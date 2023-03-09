@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final String VALID_SUBJECT_SPORTS = "Sports";
+    public static final String VALID_SUBJECT_SPORTS = "Recreation day";
     public static final String VALID_CONTENT_SPORTS = "Ride bicycle";
     public static final String VALID_STATUS_SPORTS = "False";
 
