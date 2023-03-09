@@ -1,21 +1,35 @@
 package seedu.sudohr.model.department;
 
 import seedu.sudohr.model.person.Person;
-import seedu.sudohr.model.person.UniquePersonList;
 
-import static java.util.Objects.requireNonNull;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Department {
     private final DepartmentName name;
-    private final UniquePersonList employees;
+    private final Set<Person> employees = new HashSet<>();
 
     public Department(DepartmentName name) {
         this.name = name;
-        this.employees = new UniquePersonList();
+    }
+
+    /**
+     * Conversion from JSON to Department
+     * @param name name of department
+     * @param employees employees in the department
+     */
+    public Department(DepartmentName name, Set<Person> employees) {
+        this.name = name;
+        this.employees.addAll(employees);
     }
 
     public DepartmentName getName() {
         return name;
+    }
+
+    public Set<Person> getEmployees() {
+        return Collections.unmodifiableSet(employees);
     }
 
     // Placeholder for creating department from storage
@@ -26,17 +40,6 @@ public class Department {
      */
     public void addEmployee(Person e) {
         employees.add(e);
-    }
-
-    /**
-     * Replaces the given employee {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the department.
-     * The person identity of {@code editedPerson} must not be the same as another existing employee in the department.
-     */
-    public void setEmployee(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        employees.setPerson(target, editedPerson);
     }
 
     /**

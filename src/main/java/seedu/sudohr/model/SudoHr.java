@@ -131,6 +131,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setDepartment(Department target, Department editedDepartment) {
+        requireNonNull(editedDepartment);
         departments.setDepartment(target, editedDepartment);
     }
 
@@ -148,6 +149,9 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param d The department to add the employee to
      */
     public void addEmployeeToDepartment(Person p, Department d) {
+        requireNonNull(p);
+        requireNonNull(d);
+
         d.addEmployee(p);
     }
 
@@ -157,6 +161,9 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param d The department to remove the employee fro
      */
     public void removeEmployeeFromDepartment(Person p, Department d) {
+        requireNonNull(p);
+        requireNonNull(d);
+
         d.removeEmployee(p);
     }
 
