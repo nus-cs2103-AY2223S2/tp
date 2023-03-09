@@ -253,17 +253,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product scope (v1.1)
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS students who want to connect with seniors/other students with common academic paths
+* Freshmen looking to get advice from their seniors in the same course or taken the same modules
+* Students who want to get internship advice from others who have worked in that company
+* Students who want to know more about their friends and seniors' schedules to be able to find time to connect with them
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Being able to find contacts with similar traits and being able to view their schedule to find an appropriate time to connect with them.
 
 
 ### User stories
@@ -290,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a person
-2.  User enters person details and submits the command 
+2.  User enters person details and submits the command
 3.  AddressBook saves the person
 
     Use case ends.
@@ -334,14 +333,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters a command to edit an existing person by specifying their index number and new details 
+1.  User enters a command to edit an existing person by specifying their index number and new details
 2.  AddressBook updates the person's details
-   
+
     Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid command or incorrect details. 
+* 1a. User enters an invalid command or incorrect details.
 
     * 1a1. AddressBook shows an error message.
 
@@ -380,8 +379,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters a command to search for persons by specifying one or more keywords 
-2.  AddressBook searches for persons whose names contain any of the given keywords 
+1.  User enters a command to search for persons by specifying one or more keywords
+2.  AddressBook searches for persons whose names contain any of the given keywords
 3.  AddressBook returns a list of persons matching the search criteria
 
     Use case ends.
@@ -410,8 +409,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters a command to clear all entries 
-2.  AddressBook clears all entries from the address book 
+1.  User enters a command to clear all entries
+2.  AddressBook clears all entries from the address book
 3.  AddressBook shows a success message
 
     Use case ends.

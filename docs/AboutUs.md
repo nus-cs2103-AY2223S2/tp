@@ -39,17 +39,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/nicljr)] [[portfolio](team/nicljr.md)]
 
-* Role: 
+* Role:
   * Code Quality
   * Deliverables And Deadlines
 * Responsibilities: In Charge of Calendar
 
 
 ### Tan Wei Xuan Rachel
-<img src="images/rachel.png" width="200px">
+<img src="images/rachtan27.png" width="200px">
 
 [[github](http://github.com/rachtan27)]
-[[portfolio](team/rachel.md)]
+[[portfolio](team/rachtan27.md)]
 
 * Role: Testing
 * Responsibilities:
@@ -58,9 +58,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shane Duggan
 
-<img src="images/ShaneDuggan.png" width="200px">
+<img src="images/shuggan.png" width="200px">
 
-[[github](http://github.com/Shuggan)]
+[[github](http://github.com/shuggan)]
 
 * Role: Documentation
 * Responsibilities: Storage
