@@ -44,7 +44,7 @@ public class MarkProjectCommand extends Command {
         }
 
         if (currentListBeingShown != ListType.PROJECT) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_LIST);
         }
 
         Project projectToMark = lastShownList.get(targetIndex.getZeroBased());

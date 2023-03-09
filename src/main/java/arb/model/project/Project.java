@@ -98,6 +98,4 @@ public class Project {
     public int hashCode() {
         return Objects.hash(title, deadline, status);
     }
-
-
 }
