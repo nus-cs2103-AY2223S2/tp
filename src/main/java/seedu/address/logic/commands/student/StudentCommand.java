@@ -9,4 +9,5 @@ public abstract class StudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 
     public static final String MESSAGE_USAGE = "1. student <CLASS_NAME> add";
+    public static final String MESSAGE_SUCCESS = "New student added: <STUDENT_NAME>";
 }
