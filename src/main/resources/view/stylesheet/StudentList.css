@@ -1,7 +1,7 @@
 #personListPanelPlaceholder {
      -fx-border-color: black;
      -fx-border-width: 2;
-     -fx-border-radius: 4;
+     -fx-border-radius: 5;
      -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
 }
 

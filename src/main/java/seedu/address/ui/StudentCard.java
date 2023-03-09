@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import seedu.address.model.student.Student;
 
 /**
@@ -18,9 +16,7 @@ import seedu.address.model.student.Student;
 public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
-    private final Stage studentInfoPageStage;
-    private final Stage studentTasksPageStage;
-    private final Stage studentLessonsPageStage;
+    private final MainWindow mainWindow;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -52,51 +48,36 @@ public class StudentCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.student = student;
-        this.studentInfoPageStage = new Stage();
-        this.studentTasksPageStage = new Stage();
-        this.studentLessonsPageStage = new Stage();
+        this.mainWindow = mainWindow;
 
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
         viewProfileButton.setOnAction(event -> handleViewProfileClick());
-        viewSchoolTasksButton.setOnAction(event -> handleViewTasksClick());
+        viewSchoolTasksButton.setOnAction(event -> handleViewHomeworkClick());
         viewLessonsButton.setOnAction(event -> handleViewLessonsClick());
-        this.viewExamsButton = new Button("Exams");
+        viewExamsButton.setOnAction(event -> handleViewExamsClick());
     }
 
-    /**
-     * Handles the view profile button click event.
-     */
+
     @FXML
     private void handleViewProfileClick() {
-        Window window = this.getRoot().getScene().getWindow();
-
-        StudentInfoPage infoPage = new StudentInfoPage(student, studentInfoPageStage);
-
-        if (!infoPage.isShowing()) {
-            infoPage.show();
-        } else {
-            infoPage.focus();
-        }
+        mainWindow.setDetailedHeaderBar(String.format("Student Profile: %s", student.getName().fullName));
+        mainWindow.setDetailedInfoSection(student.toString());
     }
 
     /**
      * Handles the view school tasks button click event.
      */
-    private void handleViewTasksClick() {
-        StudentTasksPage tasksPage = new StudentTasksPage(student, studentTasksPageStage);
-
-        if (!tasksPage.isShowing()) {
-            tasksPage.show();
-        } else {
-            tasksPage.focus();
-        }
+    private void handleViewHomeworkClick() {
+        mainWindow.setDetailedHeaderBar(String.format("Homework List: %s", student.getName().fullName));
+        mainWindow.setDetailedInfoSection(student.getHomeworkList().toString());
     }
 
     /**
@@ -104,13 +85,13 @@ public class StudentCard extends UiPart<Region> {
      *
      */
     private void handleViewLessonsClick() {
-        StudentLessonsPage lessonsPage = new StudentLessonsPage(student, studentLessonsPageStage);
+        mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s", student.getName().fullName));
+        mainWindow.setDetailedInfoSection(student.getLessonsList().toString());
+    }
 
-        if (!lessonsPage.isShowing()) {
-            lessonsPage.show();
-        } else {
-            lessonsPage.focus();
-        }
+    private void handleViewExamsClick() {
+        mainWindow.setDetailedHeaderBar(String.format("Exams List: %s", student.getName().fullName));
+        mainWindow.setDetailedInfoSection("Coming Soon!");
     }
 
     @Override

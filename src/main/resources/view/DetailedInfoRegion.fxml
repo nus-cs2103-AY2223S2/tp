@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="detailedInfoRegion" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@stylesheet/DetailedInfoRegion.css" />
+    </stylesheets>
+    <StackPane fx:id="headerBarPlaceholder" VBox.vgrow="NEVER" />
+    <TextArea fx:id="detailedInfoSection" VBox.vgrow="ALWAYS"
+              editable="false" styleClass="result-display" />
+</VBox>
+

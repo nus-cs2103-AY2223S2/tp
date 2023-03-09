@@ -1,0 +1,22 @@
+.status-bar {
+    -fx-background-color: derive(#acc9fc, 30%);
+}
+
+.status-bar .label {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 20px;
+    -fx-text-fill: #1d1d1d;
+    -fx-padding: 5 5 5 10;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: derive(#acc9fc, 30%);
+    -fx-border-color: derive(#acc9fc, 25%);
+    -fx-border-width: 1px;
+}
+
+.status-bar-with-border .label {
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}

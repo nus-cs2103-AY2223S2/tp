@@ -1,0 +1,21 @@
+#detailedInfoRegion {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
+}
+
+#detailedInfoSection {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+    -fx-opacity: 1;
+    -fx-border-style: solid none none none;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}
+
+#detailedInfoSection .content {
+    -fx-background-color: transparent, #f7f7f7, transparent, #f7f7f7;
+    -fx-background-radius: 7;
+}

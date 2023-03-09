@@ -16,8 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import javax.swing.text.DefaultEditorKit;
+import seedu.address.ui.command.CommandBox;
+import seedu.address.ui.command.ResultDisplay;
+import seedu.address.ui.detail.DetailedInfoRegion;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private DetailedInfoSection detailedInfoSection;
+    private DetailedInfoRegion detailedInfoRegion;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane detailedInfoSectionPlaceholder;
+    private StackPane detailedInfoRegionPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,29 +117,20 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList(), primaryStage);
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        detailedInfoSection = new DetailedInfoSection();
-        detailedInfoSectionPlaceholder.getChildren().add(detailedInfoSection.getRoot());
+        detailedInfoRegion = new DetailedInfoRegion("Welcome to the TutorPro!");
+        detailedInfoRegionPlaceholder.getChildren().add(detailedInfoRegion.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    /**
-     * Fills up the detailed info section of this window.
-     *
-     * @param detailedInfoSection the detailedInfoSection to be filled
-     */
-    void fillDetailedInfoSection(DetailedInfoSection detailedInfoSection) {
-        detailedInfoSectionPlaceholder.getChildren().add(detailedInfoSection.getRoot());
     }
 
     /**
@@ -210,5 +202,23 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Sets the detailed info section to display the given text.
+     *
+     * @param textToDisplay the text to display
+     */
+    public void setDetailedInfoSection(String textToDisplay) {
+        detailedInfoRegion.setDetailedInfoSection(textToDisplay);
+    }
+
+    /**
+     * Sets the header bar of the detailed info section to display the given text.
+     *
+     * @param textToDisplay the text to display
+     */
+    public void setDetailedHeaderBar(String textToDisplay) {
+        detailedInfoRegion.setHeaderBar(textToDisplay);
     }
 }

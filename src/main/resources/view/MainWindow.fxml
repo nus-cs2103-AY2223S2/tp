@@ -30,7 +30,7 @@
         <URL value="@stylesheet/CommandBox.css" />
       </stylesheets>
 
-      <VBox minWidth="1200" prefHeight="750">
+      <VBox minWidth="1200" prefHeight="1000">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" >
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -40,7 +40,7 @@
           </Menu>
         </MenuBar>
 
-        <GridPane fx:id="contentSection" HBox.hgrow="ALWAYS">
+        <GridPane fx:id="contentSection" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="535.0" prefWidth="1200.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="400.0" prefWidth="1000.0" />
@@ -49,22 +49,25 @@
           </columnConstraints>
 
           <VBox GridPane.columnIndex="0">
-
-            <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" styleClass="pane-with-border">
               <padding>
                 <Insets top="10" right="5" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"
+                         minWidth="360" prefWidth="1000" maxWidth="Infinity"
+                         minHeight="200" prefHeight="500" maxHeight="Infinity" />
             </VBox>
 
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
+            <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER"
+                       minWidth="360" prefWidth="1000" maxHeight="Infinity">
               <padding>
                 <Insets top="5" right="5" bottom="5" left="10" />
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
-                       minHeight="100" prefHeight="300" maxWidth="Infinity">
+            <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS"
+                       minHeight="200" prefHeight="400" maxWidth="Infinity"
+                       minWidth="360" prefWidth="1000" maxHeight="Infinity">
               <padding>
                 <Insets top="5" right="5" bottom="15" left="10" />
               </padding>
@@ -73,18 +76,15 @@
 
           <VBox GridPane.columnIndex="1">
             <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
+              <Insets top="11" right="12" bottom="15" left="10" />
             </padding>
-            <StackPane fx:id="detailedInfoSectionPlaceholder" styleClass="pane-with-border"
-                       minHeight="100" prefHeight="600" minWidth="325" prefWidth="Infinity"
-                       HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
+            <StackPane fx:id="detailedInfoRegionPlaceholder" VBox.vgrow="ALWAYS"
+                       minHeight="100" prefHeight="2000" maxHeight="Infinity"
+                       minWidth="325" prefWidth="600" maxWidth="Infinity">
             </StackPane>
           </VBox>
-        </GridPane>
 
+        </GridPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
 
