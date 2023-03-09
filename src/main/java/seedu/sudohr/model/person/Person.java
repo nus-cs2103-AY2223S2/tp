@@ -16,6 +16,7 @@ import seedu.sudohr.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Id id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -27,14 +28,17 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
+
+    public Id getId() { return id; }
 
     public Name getName() {
         return name;
@@ -61,8 +65,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same id.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -70,7 +73,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -95,16 +98,31 @@ public class Person {
                 && otherPerson.getTags().equals(getTags());
     }
 
+    /**
+     * Returns true if both persons have the same identify fields.
+     * This warns the HR personnel of a possible human error in tagging of data.
+     */
+    public boolean isWarning(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Employee ID: ")
+                .append(getId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
