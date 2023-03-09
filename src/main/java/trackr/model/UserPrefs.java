@@ -14,8 +14,7 @@ import trackr.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path taskListFilePath = Paths.get("data", "taskList.json");
+    private Path trackrFilePath = Paths.get("data" , "trackr.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -55,15 +54,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTrackrFilePath(Path trackrFilePath) {
         requireNonNull(trackrFilePath);
         this.trackrFilePath = trackrFilePath;
-    }
-
-    public Path getTaskListFilePath() {
-        return taskListFilePath;
-    }
-
-    public void setTaskListFilePath(Path taskListFilePath) {
-        requireNonNull(taskListFilePath);
-        this.taskListFilePath = taskListFilePath;
     }
 
     @Override

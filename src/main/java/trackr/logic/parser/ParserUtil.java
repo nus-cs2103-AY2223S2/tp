@@ -14,6 +14,10 @@ import trackr.model.person.Email;
 import trackr.model.person.Name;
 import trackr.model.person.Phone;
 import trackr.model.tag.Tag;
+import trackr.model.task.Task;
+import trackr.model.task.TaskDeadline;
+import trackr.model.task.TaskName;
+import trackr.model.task.TaskStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +124,51 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    //========================Parse those related to task==================================
+    /**
+     * Parses a {@code String taskName} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static TaskName parseTaskName(String taskName) throws ParseException {
+        requireNonNull(taskName);
+        String trimmedTaskName = taskName.trim();
+        if (!TaskName.isValidTaskName(trimmedTaskName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedTaskName);
+    }
+
+    /**
+     * Parses a {@code String taskDeadline} into a {@code TaskDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDeadline} is invalid.
+     */
+    public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
+        requireNonNull(taskDeadline);
+        String trimmedTaskDeadline = taskDeadline.trim();
+        if (!TaskDeadline.isValidTaskDeadline(trimmedTaskDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDeadline(trimmedTaskDeadline);
+    }
+
+    /**
+     * Parses a {@code String taskStatus} into a {@code TaskStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskStatus} is invalid.
+     */
+    public static TaskStatus parseTaskStatus(String taskStatus) throws ParseException {
+        requireNonNull(taskStatus);
+        String trimmedTaskStatus = taskStatus.trim();
+        if (!TaskStatus.isValidTaskStatus(trimmedTaskStatus)) {
+            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskStatus(trimmedTaskStatus);
     }
 }

@@ -82,17 +82,6 @@ public class ModelManager implements Model {
         userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
-    @Override
-    public Path getTaskListFilePath() {
-        return userPrefs.getTaskListFilePath();
-    }
-
-    @Override
-    public void setTaskListFilePath(Path taskListFilePath) {
-        requireNonNull(taskListFilePath);
-        userPrefs.setTaskListFilePath(taskListFilePath);
-    }
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -198,6 +187,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
+
+    //========================================================================================================
 
     @Override
     public boolean equals(Object obj) {

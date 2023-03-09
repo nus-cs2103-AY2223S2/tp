@@ -93,15 +93,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Returns the user prefs' task list file path.
-     */
-    Path getTaskListFilePath();
-
-    /**
-     * Sets the user prefs' task list file path.
-     */
-    void setTaskListFilePath(Path taskListFilePath);
+    // ===================================================== Task =====================================================
 
     /**
      * Replaces task list data with the data in {@code taskList}.

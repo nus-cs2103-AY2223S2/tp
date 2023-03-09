@@ -8,12 +8,7 @@ import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalPersons.ALICE;
 import static trackr.testutil.TypicalPersons.BENSON;
-<<<<<<< HEAD
-import static trackr.testutil.TypicalPersons.BOB;
-import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
-=======
 import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
->>>>>>> master
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 
 import java.nio.file.Path;
@@ -48,24 +43,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-<<<<<<< HEAD
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setTaskListFilePath(Paths.get("task/list/file/path"));
-=======
         userPrefs.setTrackrFilePath(Paths.get("trackr/file/path"));
->>>>>>> master
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-<<<<<<< HEAD
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
-        userPrefs.setTaskListFilePath(Paths.get("new/task/list/file/path"));
-=======
         userPrefs.setTrackrFilePath(Paths.get("new/trackr/file/path"));
->>>>>>> master
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -139,11 +124,7 @@ public class ModelManagerTest {
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
-<<<<<<< HEAD
-        TaskList taskList = new TaskListBuilder().withTask(SORT_INVENTORY_N).withTask(BUY_EGGS_D).build();
-=======
         TaskList taskList = new TaskListBuilder().withTask(SORT_INVENTORY_N).withTask(BUY_FLOUR_N).build();
->>>>>>> master
         TaskList differentTaskList = new TaskList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -164,12 +145,9 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, taskList, userPrefs)));
 
-<<<<<<< HEAD
-=======
         // different taskList -> returns false
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentTaskList, userPrefs)));
 
->>>>>>> master
         // different filteredPersonList -> returns false
         String[] personKeywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
@@ -178,12 +156,6 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-<<<<<<< HEAD
-        // different taskList -> returns false
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentTaskList, userPrefs)));
-
-=======
->>>>>>> master
         // different filteredTaskList -> returns false
         String[] taskKeywords = SORT_INVENTORY_N.getTaskName().fullTaskName.split("\\s+");
         modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
@@ -192,14 +164,13 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-<<<<<<< HEAD
         // different addressBook and different taskList -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList, userPrefs)));
 
         // different filteredPersonList and different filteredTaskList -> returns false
-        personKeywords = BOB.getName().fullName.split("\\s+");
+        personKeywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
-        taskKeywords = BUY_EGGS_D.getTaskName().fullTaskName.split("\\s+");
+        taskKeywords = BUY_FLOUR_N.getTaskName().fullTaskName.split("\\s+");
         modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, userPrefs)));
 
@@ -209,12 +180,8 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-=======
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTrackrFilePath(Paths.get("differentFilePath"));
->>>>>>> master
+
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, differentUserPrefs)));
     }
 }

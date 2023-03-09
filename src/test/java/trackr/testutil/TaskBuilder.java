@@ -53,6 +53,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code TaskStatus} of the {@code Task} that we are building (default case).
+     */
+    public TaskBuilder withTaskStatus() {
+        this.taskStatus = new TaskStatus("N");
+        return this;
+    }
+
+    /**
      * Sets the {@code TaskStatus} of the {@code Task} that we are building.
      */
     public TaskBuilder withTaskStatus(String taskStatus) {

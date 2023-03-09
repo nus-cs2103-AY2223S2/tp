@@ -1,12 +1,6 @@
 package trackr.testutil;
 
-<<<<<<< HEAD
-import trackr.model.AddressBook;
 import trackr.model.TaskList;
-import trackr.model.person.Person;
-=======
-import trackr.model.TaskList;
->>>>>>> master
 import trackr.model.task.Task;
 
 /**
