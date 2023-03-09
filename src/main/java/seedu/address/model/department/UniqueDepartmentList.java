@@ -2,14 +2,14 @@ package seedu.address.model.department;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.department.exceptions.DuplicateDepartmentException;
+import seedu.address.model.department.exceptions.DepartmentNotFoundException;
 
 public class UniqueDepartmentList implements Iterable<Department>{
     private final ObservableList<Department> internalList = FXCollections.observableArrayList();;
@@ -31,7 +31,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
     public void add(Department toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            //throw new DuplicateDepartmentException();
+            throw new DuplicateDepartmentException();
         }
         internalList.add(toAdd);
     }
@@ -46,11 +46,11 @@ public class UniqueDepartmentList implements Iterable<Department>{
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            // throw new DepartmentNotFoundException();
+            throw new DepartmentNotFoundException();
         }
 
         if (!target.equals(editedDepartment) && contains(editedDepartment)) {
-            // throw new DuplicateDepartmentException();
+            throw new DuplicateDepartmentException();
         }
 
         internalList.set(index, editedDepartment);
@@ -63,7 +63,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
     public void remove(Department toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            // throw new DepartmentNotFoundException();
+            throw new DepartmentNotFoundException();
         }
     }
 
@@ -74,7 +74,7 @@ public class UniqueDepartmentList implements Iterable<Department>{
     public void setDepartments(List<Department> d) {
         requireAllNonNull(d);
         if (!internalListAreUnique(d)) {
-            // throw new DuplicateDepartmentException();
+            throw new DuplicateDepartmentException();
         }
 
         // Replace department with new set of internalList
