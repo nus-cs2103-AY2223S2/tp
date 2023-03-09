@@ -40,99 +40,71 @@ public class FindCommandTest {
     public void testEquals() {
         List<String> firstSingletonList = Collections.singletonList("first");
         List<String> secondSingletonList = Collections.singletonList("second");
-        NameContainsKeywordsPredicate firstNamePredicate =
-                new NameContainsKeywordsPredicate(firstSingletonList);
-        NameContainsKeywordsPredicate secondNamePredicate =
-                new NameContainsKeywordsPredicate(secondSingletonList);
-        ProfileContainsKeywordsPredicate firstProfilePredicate =
-                new ProfileContainsKeywordsPredicate(firstSingletonList);
-        ProfileContainsKeywordsPredicate secondProfilePredicate =
-                new ProfileContainsKeywordsPredicate(secondSingletonList);
-        PhoneContainsKeywordsPredicate firstPhonePredicate =
-                new PhoneContainsKeywordsPredicate(firstSingletonList);
-        PhoneContainsKeywordsPredicate secondPhonePredicate =
-                new PhoneContainsKeywordsPredicate(secondSingletonList);
-        EmailContainsKeywordsPredicate firstEmailPredicate =
-                new EmailContainsKeywordsPredicate(firstSingletonList);
-        EmailContainsKeywordsPredicate secondEmailPredicate =
-                new EmailContainsKeywordsPredicate(secondSingletonList);
-        AddressContainsKeywordsPredicate firstAddressPredicate =
-                new AddressContainsKeywordsPredicate((firstSingletonList));
-        AddressContainsKeywordsPredicate secondAddressPredicate =
-                new AddressContainsKeywordsPredicate(secondSingletonList);
-        LanguageContainsKeywordsPredicate firstLanguagePredicate =
-                new LanguageContainsKeywordsPredicate(firstSingletonList);
-        LanguageContainsKeywordsPredicate secondLanguagePredicate =
-                new LanguageContainsKeywordsPredicate(secondSingletonList);
-        TagContainsKeywordsPredicate firstTagPredicate =
-                new TagContainsKeywordsPredicate(firstSingletonList);
-        TagContainsKeywordsPredicate secondTagPredicate =
-                new TagContainsKeywordsPredicate(secondSingletonList);
         PersonContainsKeywordsPredicate firstPersonPredicate =
                 new PersonContainsKeywordsPredicate(
-                        firstNamePredicate,
-                        firstProfilePredicate,
-                        firstPhonePredicate,
-                        firstEmailPredicate,
-                        firstAddressPredicate,
-                        firstLanguagePredicate,
-                        firstTagPredicate);
+                        firstSingletonList,
+                        firstSingletonList,
+                        firstSingletonList,
+                        firstSingletonList,
+                        firstSingletonList,
+                        firstSingletonList,
+                        firstSingletonList);
         PersonContainsKeywordsPredicate secondNamePersonPredicate = new PersonContainsKeywordsPredicate(
-                secondNamePredicate,
-                firstProfilePredicate,
-                firstPhonePredicate,
-                firstEmailPredicate,
-                firstAddressPredicate,
-                firstLanguagePredicate,
-                firstTagPredicate);
+                secondSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondProfilePersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                secondProfilePredicate,
-                firstPhonePredicate,
-                firstEmailPredicate,
-                firstAddressPredicate,
-                firstLanguagePredicate,
-                firstTagPredicate);
+                firstSingletonList,
+                secondSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondPhonePersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                firstProfilePredicate,
-                secondPhonePredicate,
-                firstEmailPredicate,
-                firstAddressPredicate,
-                firstLanguagePredicate,
-                firstTagPredicate);
+                firstSingletonList,
+                firstSingletonList,
+                secondSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondEmailPersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                firstProfilePredicate,
-                firstPhonePredicate,
-                secondEmailPredicate,
-                firstAddressPredicate,
-                firstLanguagePredicate,
-                firstTagPredicate);
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                secondSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondAddressPersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                firstProfilePredicate,
-                firstPhonePredicate,
-                firstEmailPredicate,
-                secondAddressPredicate,
-                firstLanguagePredicate,
-                firstTagPredicate);
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                secondSingletonList,
+                firstSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondLanguagePersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                firstProfilePredicate,
-                firstPhonePredicate,
-                firstEmailPredicate,
-                firstAddressPredicate,
-                secondLanguagePredicate,
-                firstTagPredicate);
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                secondSingletonList,
+                firstSingletonList);
         PersonContainsKeywordsPredicate secondTagPersonPredicate = new PersonContainsKeywordsPredicate(
-                firstNamePredicate,
-                firstProfilePredicate,
-                firstPhonePredicate,
-                firstEmailPredicate,
-                firstAddressPredicate,
-                firstLanguagePredicate,
-                secondTagPredicate);
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                firstSingletonList,
+                secondSingletonList);
 
         FindCommand findFirstCommand = new FindCommand(firstPersonPredicate);
 
