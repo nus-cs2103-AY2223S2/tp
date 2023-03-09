@@ -12,7 +12,7 @@ public class GroupName {
     public static final String MESSAGE_CONSTRAINT = "Group name should not be blank, "
             + "and should only contain alphanumeric characters including brackets and dashes";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}<>\\-_ ]{1,30}";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}\\-_ ]{1,30}";
 
     private final String name;
 
