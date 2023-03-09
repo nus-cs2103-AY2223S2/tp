@@ -25,7 +25,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
-
+    
     private final Tag tagToAdd;
     private final Index targetIndex;
 
@@ -39,7 +39,7 @@ public class TagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size() || targetIndex.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -54,4 +54,5 @@ public class TagCommand extends Command {
                 || (other instanceof TagCommand // instanceof handles nulls
                 && targetIndex.equals(((TagCommand) other).targetIndex) && tagToAdd.equals(((TagCommand) other).tagToAdd));
     }
+
 }
