@@ -39,14 +39,14 @@ public class RemoveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the field of the person identified "
             + "by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PROFILE + "GITHUBPROFILE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_LANGUAGE + "LANGUAGE]...\n"
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROFILE + "[GITHUBPROFILE]] "
+            + "[" + PREFIX_PHONE + "[PHONE]] "
+            + "[" + PREFIX_EMAIL + "[EMAIL]] "
+            + "[" + PREFIX_ADDRESS + "[ADDRESS]] "
+            + "[" + PREFIX_LANGUAGE + "[LANGUAGE]] "
+            + "[" + PREFIX_TAG + "[TAG]]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LANGUAGE + "Java "
+            + PREFIX_LANGUAGE + " "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_REMOVE_FIELD_SUCCESS = "Remove field: %1$s";
