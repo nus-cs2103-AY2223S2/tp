@@ -4,9 +4,11 @@ import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.tag.Tag;
@@ -26,6 +28,7 @@ public class Customer {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Order> orders = new ArrayList<>();
 
     private final Points points;
     /**
@@ -90,6 +93,14 @@ public class Customer {
     }
 
     /**
+     * Returns an immutable order set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
+    }
+
+    /**
      * Returns true if both customers have the same name.
      * This defines a weaker notion of equality between two customers.
      */
@@ -123,13 +134,14 @@ public class Customer {
                 && otherCustomer.getAddress().equals(getAddress())
                 && otherCustomer.getTags().equals(getTags())
                 && otherCustomer.getCustomerType().equals(getCustomerType())
+                && otherCustomer.getOrders().equals(getOrders())
                 && otherCustomer.getPoints().equals(getPoints());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(customerType, name, phone, email, address, tags);
+        return Objects.hash(customerType, name, phone, email, address, tags, orders);
     }
 
     @Override

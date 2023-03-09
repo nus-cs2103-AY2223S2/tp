@@ -1,5 +1,7 @@
 package seedu.loyaltylift.model.order;
 
+import seedu.loyaltylift.model.customer.Customer;
+
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ import seedu.loyaltylift.model.attribute.Name;
  */
 public class Order {
 
+    private final Customer customer;
     private final Name name;
     private final Quantity quantity;
     private final Status status;
@@ -23,20 +26,25 @@ public class Order {
     /**
      * Order constructor with created date set to today.
      */
-    public Order(Name name, Quantity quantity, Status status, Address address) {
-        this(name, quantity, status, address, new CreatedDate(LocalDate.now()));
+    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address) {
+        this(customer, name, quantity, status, address, new CreatedDate(LocalDate.now()));
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Quantity quantity, Status status, Address address, CreatedDate createdDate) {
-        requireAllNonNull(name, quantity, status, address, createdDate);
+    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address, CreatedDate createdDate) {
+        requireAllNonNull(customer, name, quantity, status, address, createdDate);
+        this.customer = customer;
         this.name = name;
         this.quantity = quantity;
         this.status = status;
         this.address = address;
         this.createdDate = createdDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 
     public Name getName() {
@@ -86,12 +94,13 @@ public class Order {
                 && otherPerson.getQuantity().equals(getQuantity())
                 && otherPerson.getStatus().equals(getStatus())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getCreatedDate().equals(getCreatedDate());
+                && otherPerson.getCreatedDate().equals(getCreatedDate())
+                && otherPerson.customer.equals(getCustomer());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, quantity, status, address, createdDate);
+        return Objects.hash(customer, name, quantity, status, address, createdDate);
     }
 
     @Override
