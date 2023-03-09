@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+
+    private Contact contact;
 
     // Data fields
     private final Address address;
@@ -58,6 +61,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     /**
