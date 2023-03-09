@@ -16,13 +16,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import mycelium.mycelium.model.AddressBook;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
-
+    public static final Client WEST = new ClientBuilder().withName("Kanye West")
+        .withEmail("KanyeWest@example.com")
+        .withYearOfBirth("1977")
+        .withSource("www.kanyewest.com")
+        .withMobileNumber("999").build();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253")

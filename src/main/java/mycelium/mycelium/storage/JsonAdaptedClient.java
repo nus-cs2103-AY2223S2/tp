@@ -1,14 +1,13 @@
 package mycelium.mycelium.storage;
 
-import java.time.Year;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
@@ -26,24 +25,23 @@ class JsonAdaptedClient {
 
     private final String name;
     private final String email;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY")
-    private final Year yearOfBirth;
+    private final YearOfBirth yearOfBirth;
     private final String source;
-    private final String mobileNumber;
+    private final Phone mobileNumber;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("email") String email,
-                             @JsonProperty("year_of_birth") Year yearOfBirth,
+                             @JsonProperty("year_of_birth") String yearOfBirth,
                              @JsonProperty("source") String source,
                              @JsonProperty("mobile_number") String mobileNumber) {
         this.name = name;
         this.email = email;
-        this.yearOfBirth = yearOfBirth;
+        this.yearOfBirth = new YearOfBirth(yearOfBirth);
         this.source = source;
-        this.mobileNumber = mobileNumber;
+        this.mobileNumber = new Phone(mobileNumber);
     }
 
     /**
@@ -54,7 +52,7 @@ class JsonAdaptedClient {
         email = client.getEmail().value;
         yearOfBirth = client.getYearOfBirth().orElse(null);
         source = client.getSource().orElse(null);
-        mobileNumber = client.getMobileNumber().orElse(null).value;
+        mobileNumber = client.getMobileNumber().orElse(null);
     }
 
     /**
@@ -95,16 +93,23 @@ class JsonAdaptedClient {
         nullCheck(email == null, Email.class.getSimpleName());
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
-
-        nullCheck(yearOfBirth == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "year of birth"));
+        // The usage of {@code yearOfBirth.value} is needed due to Optional.
+        nullCheck(yearOfBirth == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, YearOfBirth.MESSAGE_CONSTRAINTS));
+        validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth.value), YearOfBirth.MESSAGE_CONSTRAINTS);
+        final YearOfBirth modelYearOfBirth = yearOfBirth;
+        // TODO validityCheck for source
         nullCheck(source == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "source"));
 
         nullCheck(mobileNumber == null, Phone.class.getSimpleName());
-        validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
-        final Phone modelMobileNumber = new Phone(mobileNumber);
+        validityCheck(!Phone.isValidPhone(mobileNumber.value), Phone.MESSAGE_CONSTRAINTS);
+        final Phone modelMobileNumber = mobileNumber;
 
-        return new Client(modelName, modelEmail,
-                Optional.of(yearOfBirth), Optional.of(source), Optional.of(modelMobileNumber));
+        return new Client(
+                modelName,
+                modelEmail,
+                Optional.ofNullable(modelYearOfBirth),
+                Optional.ofNullable(source),
+                Optional.ofNullable(modelMobileNumber));
     }
 
 

@@ -35,6 +35,7 @@ public class AddressBookTest {
         // Here, we're just checking that all the default lists are empty. This is because they are meant to be
         // populated after initialization by external sources, e.g. JSON files.
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getClientList());
         assertEquals(Collections.emptyList(), addressBook.getProjectList());
     }
 

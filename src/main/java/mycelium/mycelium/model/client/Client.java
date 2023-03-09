@@ -1,6 +1,5 @@
 package mycelium.mycelium.model.client;
 
-import java.time.Year;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ public class Client implements IsSame<Client> {
 
     private final Email email;
 
-    private final Optional<Year> yearOfBirth;
+    private final Optional<YearOfBirth> yearOfBirth;
 
     private final Optional<String> source;
 
@@ -48,7 +47,7 @@ public class Client implements IsSame<Client> {
      * @param yearOfBirth the year of birth of the client.
      * @param source      the source of information about the client.
      */
-    public Client(Name name, Email email, Optional<Year> yearOfBirth,
+    public Client(Name name, Email email, Optional<YearOfBirth> yearOfBirth,
                   Optional<String> source, Optional<Phone> mobileNumber) {
         this.name = name;
         this.email = email;
@@ -80,7 +79,7 @@ public class Client implements IsSame<Client> {
      *
      * @return the year of birth of the client.
      */
-    public Optional<Year> getYearOfBirth() {
+    public Optional<YearOfBirth> getYearOfBirth() {
         return yearOfBirth;
     }
 
