@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
         Patient validPatient = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPatient);
+        expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddCommand(validPatient), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
@@ -38,8 +38,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient patientInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(patientInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Patient patientInList = model.getAddressBook().getPatientList().get(0);
+        assertCommandFailure(new AddCommand(patientInList), model, AddCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
 }
