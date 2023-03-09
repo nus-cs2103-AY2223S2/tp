@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.powerdeck.PowerDeck;
+import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,21 +22,21 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private AddressBook deck;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredDecks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook deck, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(deck, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.deck = new AddressBook(deck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDecks = new FilteredList<>(this.deck.getPersonList());
     }
 
     public ModelManager() {
@@ -65,50 +68,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getDeckFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setDeckFilePath(Path deckFilePath) {
+        requireNonNull(deckFilePath);
+        userPrefs.setAddressBookFilePath(deckFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PowerDeck ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setDeck(ReadOnlyAddressBook deck) {
+        this.deck.resetData(deck);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public ReadOnlyAddressBook getDeck() {
+        return deck;
+    }
+
+    @Override
+    public boolean hasCard(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return deck.hasPerson(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteCard(Person target) {
+        deck.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addCard(Person person) {
+        deck.addPerson(person);
+        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setCard(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        deck.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +121,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Person> getFilteredCardList() {
+        return filteredDecks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCardList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredDecks.setPredicate(predicate);
     }
 
     @Override
@@ -142,8 +145,34 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return deck.equals(other.deck)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredDecks.equals(other.filteredDecks);
+    }
+
+
+    /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
+    // Todo: Link getDeck() to GUI
+    @Override
+    public ReadOnlyAddressBook getSelectedDeck() {
+        return this.deck;
+    }
+
+    @Override
+    public void createDeck() { // Todo: deck should have a name - how to store in storage?
+        PowerDeck newDeck = new PowerDeck();
+//        this.deck.add(newDeck);
+    }
+
+    @Override
+    public void selectDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+//        deck = deck.get(zeroBasesIdx);
+    }
+
+    @Override
+    public void unselectDeck() {
+        this.deck = null;
+        this.filteredDecks = null;
     }
 }
