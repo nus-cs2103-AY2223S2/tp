@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
 
@@ -19,15 +20,15 @@ public class VaxTypeBuilder {
     private final GroupName refName;
     private final GroupName name;
     private final Optional<HashSet<GroupName>> setGrps;
-    private final Optional<Integer> setMinAge;
-    private final Optional<Integer> setMaxAge;
+    private final Optional<Age> setMinAge;
+    private final Optional<Age> setMaxAge;
     private final Optional<Integer> setMinSpacing;
     private final Optional<List<Requirement>> setAllergyReqs;
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
     private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
-                Optional<Integer> setMinAge, Optional<Integer> setMaxAge, Optional<Integer> setMinSpacing,
+                Optional<Age> setMinAge, Optional<Age> setMaxAge, Optional<Integer> setMinSpacing,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
         this.name = name;
@@ -78,14 +79,14 @@ public class VaxTypeBuilder {
     }
 
 
-    public VaxTypeBuilder setMinAge(int minAge) {
+    public VaxTypeBuilder setMinAge(Age minAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 Optional.ofNullable(minAge), setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
-    public VaxTypeBuilder setMaxAge(int maxAge) {
+    public VaxTypeBuilder setMaxAge(Age maxAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, Optional.ofNullable(maxAge), setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
@@ -153,10 +154,10 @@ public class VaxTypeBuilder {
         HashSet<GroupName> grps = setGrps.orElse(refVaxType
                 .map(VaxType::getGroups)
                 .orElse(VaxType.DEFAULT_GROUP_SET));
-        Integer minAge = setMinAge.orElse(refVaxType
+        Age minAge = setMinAge.orElse(refVaxType
                 .map(VaxType::getMinAge)
                 .orElse(VaxType.DEFAULT_MIN_AGE));
-        Integer maxAge = setMaxAge.orElse(refVaxType
+        Age maxAge = setMaxAge.orElse(refVaxType
                 .map(VaxType::getMaxAge)
                 .orElse(VaxType.DEFAULT_MAX_AGE));
         Integer minSpacing = setMinSpacing.orElse(refVaxType

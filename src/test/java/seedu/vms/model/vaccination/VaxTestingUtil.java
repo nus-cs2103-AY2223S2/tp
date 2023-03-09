@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashSet;
 import java.util.List;
 
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
 
@@ -23,7 +24,7 @@ public class VaxTestingUtil {
      * @param allergyReqs - the expected allergy requirements.
      */
     public static void assertVaxType(VaxType vaxType,
-            GroupName name, HashSet<GroupName> groups, int minAge, int maxAge, int minSpacing,
+            GroupName name, HashSet<GroupName> groups, Age minAge, Age maxAge, int minSpacing,
             List<Requirement> historyReqs, List<Requirement> allergyReqs) {
         assertEquals(name, vaxType.getGroupName(), "Name");
         assertEquals(groups, vaxType.getGroups(), "Groups");

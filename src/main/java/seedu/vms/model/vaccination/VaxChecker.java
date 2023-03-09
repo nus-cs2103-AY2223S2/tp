@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
 
@@ -29,8 +30,8 @@ public class VaxChecker {
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
-                int age, HashSet<GroupName> allergies, List<VaxRecord> records, LocalDateTime time) {
-        boolean isWithinAge = vaxType.getMinAge() <= age && age <= vaxType.getMaxAge();
+                Age age, HashSet<GroupName> allergies, List<VaxRecord> records, LocalDateTime time) {
+        boolean isWithinAge = age.compareTo(vaxType.getMinAge()) * vaxType.getMaxAge().compareTo(age) >= 0;
 
         boolean isSpaced = records.isEmpty();
         if (!isSpaced) {

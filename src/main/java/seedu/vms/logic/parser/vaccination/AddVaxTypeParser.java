@@ -12,6 +12,7 @@ import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
@@ -22,6 +23,14 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
  */
 public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     public static final String COMMAND_WORD = "add";
+
+    // these names are meant to be they align so well
+    private static final String FIELD_NAME_GRP_SET = "Group set";
+    private static final String FIELD_NAME_MIN_AGE = "Min age";
+    private static final String FIELD_NAME_MAX_AGE = "Max age";
+    private static final String FIELD_NAME_SPACING = "Spacing";
+    private static final String FIELD_NAME_ALLERGY = "Allergy requirements";
+    private static final String FIELD_NAME_HISTORY = "History requirements";
 
 
     @Override
@@ -35,19 +44,19 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
         builder = mapGroupSet(argsMap.getValue(CliSyntax.PREFIX_VAX_GROUPS))
                 .map(builder::setGroups)
                 .orElse(builder);
-        builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_AGE))
+        builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MIN_AGE), FIELD_NAME_MIN_AGE)
                 .map(builder::setMinAge)
                 .orElse(builder);
-        builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE))
+        builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE), FIELD_NAME_MAX_AGE)
                 .map(builder::setMaxAge)
                 .orElse(builder);
-        builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_SPACING))
+        builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_SPACING), FIELD_NAME_SPACING)
                 .map(builder::setMinSpacing)
                 .orElse(builder);
-        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ))
+        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ), FIELD_NAME_ALLERGY)
                 .map(builder::setAllergyReqs)
                 .orElse(builder);
-        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ))
+        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ), FIELD_NAME_HISTORY)
                 .map(builder::setHistoryReqs)
                 .orElse(builder);
 
@@ -59,26 +68,50 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
         if (!grpSetArg.isPresent()) {
             return Optional.empty();
         }
-        return Optional.ofNullable(ParserUtil.parseGroups(grpSetArg.get()))
-                .map(HashSet::new);
+        try {
+            return Optional.ofNullable(ParserUtil.parseGroups(grpSetArg.get()))
+                    .map(HashSet::new);
+        } catch (ParseException parseEx) {
+            throw new ParseException(String.format("%s: %s", FIELD_NAME_GRP_SET, parseEx.getMessage()));
+        }
     }
 
 
-    private Optional<Integer> mapInteger(Optional<String> intArg) throws ParseException {
+    private Optional<Integer> mapInteger(Optional<String> intArg, String fieldName) throws ParseException {
         if (!intArg.isPresent()) {
             return Optional.empty();
+        }
+        int value = ParserUtil.parseInteger(intArg.get());
+        try {
+            value = ParserUtil.parseInteger(intArg.get());
+            if (value < 0) {
+                throw new ParseException("Number must be positive");
+            }
+        } catch (ParseException parseEx) {
+            throw new ParseException(String.format("%s: %s", fieldName, parseEx.getMessage()));
         }
         return Optional.ofNullable(ParserUtil.parseInteger(intArg.get()));
     }
 
 
-    private Optional<List<Requirement>> mapReqList(List<String> reqStrings) throws ParseException {
+    private Optional<Age> mapAge(Optional<String> intArg, String fieldName) throws ParseException {
+        return mapInteger(intArg, fieldName)
+                .map(Age::new);
+    }
+
+
+    private Optional<List<Requirement>> mapReqList(List<String> reqStrings, String fieldName)
+                throws ParseException {
         if (reqStrings.isEmpty()) {
             return Optional.empty();
         }
         ArrayList<Requirement> reqs = new ArrayList<>();
-        for (String reqString : reqStrings) {
-            reqs.add(ParserUtil.parseReq(reqString));
+        try {
+            for (String reqString : reqStrings) {
+                reqs.add(ParserUtil.parseReq(reqString));
+            }
+        } catch (ParseException parseEx) {
+            throw new ParseException(String.format("%s: %s", fieldName, parseEx.getMessage()));
         }
         return Optional.ofNullable(reqs);
     }

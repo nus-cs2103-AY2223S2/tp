@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.vms.commons.util.AppUtil;
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
 
@@ -18,16 +19,16 @@ public class VaxType {
             "Spacing must be a positive integer";
 
     public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
-    public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
-    public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
+    public static final Age DEFAULT_MIN_AGE = Age.MIN_AGE;
+    public static final Age DEFAULT_MAX_AGE = Age.MAX_AGE;
     public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
     public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
     public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
     private final GroupName name;
     private final HashSet<GroupName> groups;
-    private final int minAge;
-    private final int maxAge;
+    private final Age minAge;
+    private final Age maxAge;
     private final int minSpacing;
     private final List<Requirement> historyReqs;
     private final List<Requirement> allergyReqs;
@@ -40,7 +41,7 @@ public class VaxType {
      *      {@code minSpacing < 0}.
      */
     public VaxType(GroupName name, HashSet<GroupName> groups,
-                int minAge, int maxAge, int minSpacing,
+                Age minAge, Age maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
         AppUtil.checkArgument(isValidSpacing(minSpacing), MESSAGE_SPACING_CONSTRAINTS);
@@ -53,9 +54,8 @@ public class VaxType {
         this.historyReqs = historyReqs;
     }
 
-
-    public static boolean isValidRange(int minAge, int maxAge) {
-        return maxAge >= minAge;
+    public static boolean isValidRange(Age minAge, Age maxAge) {
+        return maxAge.compareTo(minAge) >= 0;
     }
 
 
@@ -79,12 +79,12 @@ public class VaxType {
     }
 
 
-    public int getMinAge() {
+    public Age getMinAge() {
         return minAge;
     }
 
 
-    public int getMaxAge() {
+    public Age getMaxAge() {
         return maxAge;
     }
 
@@ -122,7 +122,7 @@ public class VaxType {
 
         VaxType casted = (VaxType) other;
         return name.equals(casted.name) && groups.equals(casted.groups)
-                && minAge == casted.minAge && maxAge == casted.maxAge
+                && minAge.equals(casted.minAge) && maxAge.equals(casted.maxAge)
                 && minSpacing == casted.minSpacing
                 && allergyReqs.equals(casted.allergyReqs)
                 && historyReqs.equals(casted.historyReqs);

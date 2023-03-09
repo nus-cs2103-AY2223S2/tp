@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.VaxTestingUtil;
 import seedu.vms.model.vaccination.VaxType;
@@ -22,7 +23,7 @@ public class VaxTypeLoaderTest {
 
     private static final String FILE_DEFAULT_VALUES = "DefaultTypeValues.json";
     private static final GroupName DEFAULT_NAME = new GroupName("UNCHI");
-    private static final int UNCHI_MAX_AGE = 100;
+    private static final Age UNCHI_MAX_AGE = new Age(100);
 
     private static final String FILE_MISSING_NAME = "MissingName.json";
     private static final String FILE_EMPTY_REQ = "EmptyReqSet.json";

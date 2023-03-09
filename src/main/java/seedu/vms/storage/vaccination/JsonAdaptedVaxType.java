@@ -12,6 +12,7 @@ import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
+import seedu.vms.storage.JsonAdaptedAge;
 import seedu.vms.storage.JsonAdaptedGroupName;
 
 
@@ -21,8 +22,8 @@ public class JsonAdaptedVaxType {
 
     private final JsonAdaptedGroupName name;
     private final List<JsonAdaptedGroupName> groups;
-    private final Integer minAge;
-    private final Integer maxAge;
+    private final JsonAdaptedAge minAge;
+    private final JsonAdaptedAge maxAge;
     private final Integer minSpacing;
     private final List<JsonAdaptedVaxRequirement> allergyReqs;
     private final List<JsonAdaptedVaxRequirement> historyReqs;
@@ -33,8 +34,8 @@ public class JsonAdaptedVaxType {
     public JsonAdaptedVaxType(
                 @JsonProperty("name") JsonAdaptedGroupName name,
                 @JsonProperty("groups") List<JsonAdaptedGroupName> groups,
-                @JsonProperty("minAge") Integer minAge,
-                @JsonProperty("maxAge") Integer maxAge,
+                @JsonProperty("minAge") JsonAdaptedAge minAge,
+                @JsonProperty("maxAge") JsonAdaptedAge maxAge,
                 @JsonProperty("minSpacing") Integer minSpacing,
                 @JsonProperty("allergyReqs") List<JsonAdaptedVaxRequirement> allergyReqs,
                 @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs) {
@@ -55,8 +56,8 @@ public class JsonAdaptedVaxType {
     public static JsonAdaptedVaxType fromModelType(VaxType vaxType) {
         JsonAdaptedGroupName name = JsonAdaptedGroupName.fromModelType(vaxType.getGroupName());
         List<JsonAdaptedGroupName> groups = JsonAdaptedGroupName.fromModelCollection(vaxType.getGroups());
-        Integer minAge = vaxType.getMinAge();
-        Integer maxAge = vaxType.getMaxAge();
+        JsonAdaptedAge minAge = JsonAdaptedAge.fromModelType(vaxType.getMinAge());
+        JsonAdaptedAge maxAge = JsonAdaptedAge.fromModelType(vaxType.getMaxAge());
         Integer minSpacing = vaxType.getMinSpacing();
         List<JsonAdaptedVaxRequirement> allergyReqs = convertToAdaptedReq(vaxType.getAllergyReqs());
         List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
@@ -89,11 +90,11 @@ public class JsonAdaptedVaxType {
         }
 
         if (minAge != null) {
-            builder = builder.setMinAge(minAge);
+            builder = builder.setMinAge(minAge.toModelType());
         }
 
         if (maxAge != null) {
-            builder = builder.setMaxAge(maxAge);
+            builder = builder.setMaxAge(maxAge.toModelType());
         }
 
         if (minSpacing != null) {

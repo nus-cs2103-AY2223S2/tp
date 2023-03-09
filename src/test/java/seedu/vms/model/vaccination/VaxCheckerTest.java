@@ -9,12 +9,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
 
 public class VaxCheckerTest {
-    private static final int MIN_AGE = 5;
-    private static final int MAX_AGE = 35;
+    private static final Age MIN_AGE = new Age(5);
+    private static final Age MAX_AGE = new Age(35);
     private static final int MIN_SPACING = 445;
 
     private static final HashSet<GroupName> GRP_NONE = new HashSet<>(List.of());
@@ -136,7 +137,7 @@ public class VaxCheckerTest {
         // Min age - 1
         assertFalse(VaxChecker.check(
                 TYPE_NONE,
-                MIN_AGE - 1,
+                new Age(MIN_AGE.getValue() - 1),
                 GRP_NONE,
                 RECORDS_NONE_1,
                 TIME_1_VALID),
@@ -144,7 +145,7 @@ public class VaxCheckerTest {
         // Max age + 1
         assertFalse(VaxChecker.check(
                 TYPE_NONE,
-                MAX_AGE + 1,
+                new Age(MAX_AGE.getValue() + 1),
                 GRP_NONE,
                 RECORDS_NONE_1,
                 TIME_1_VALID),

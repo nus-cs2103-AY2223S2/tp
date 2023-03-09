@@ -39,7 +39,7 @@ public class VaxTypeCard extends UiPart<Region> {
     public VaxTypeCard(VaxType vaxType) {
         super(FXML_FILE);
         titleLabel.setText(vaxType.getName());
-        ageRangeLabel.setText(String.format("%d ~ %d",
+        ageRangeLabel.setText(String.format("%s ~ %s",
                 vaxType.getMinAge(),
                 vaxType.getMaxAge()));
         spacingLabel.setText(String.valueOf(vaxType.getMinSpacing()));

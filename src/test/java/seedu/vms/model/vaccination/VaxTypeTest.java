@@ -9,11 +9,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.Age;
 import seedu.vms.testutil.SampleVaxTypeData;
 
 public class VaxTypeTest {
-    private static final int INVALID_MIN_AGE = 100;
-    private static final int INVALID_MAX_AGE = 99;
+    private static final Age INVALID_MIN_AGE = new Age(100);
+    private static final Age INVALID_MAX_AGE = new Age(99);
     private static final int INVALID_MIN_SPACING = -5;
 
 
