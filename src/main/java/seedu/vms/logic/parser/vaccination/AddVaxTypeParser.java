@@ -1,5 +1,6 @@
 package seedu.vms.logic.parser.vaccination;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 import seedu.vms.logic.commands.vaccination.AddVaxTypeCommand;
@@ -28,6 +29,9 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
 
         VaxTypeBuilder builder = VaxTypeBuilder.of(name);
 
+        builder = mapGroupSet(argsMap.getValue(CliSyntax.PREFIX_VAX_GROUPS))
+                .map(builder::setGroups)
+                .orElse(builder);
         builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_AGE))
                 .map(builder::setMinAge)
                 .orElse(builder);
@@ -39,6 +43,15 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
                 .orElse(builder);
 
         return new AddVaxTypeCommand(builder);
+    }
+
+
+    private Optional<HashSet<GroupName>> mapGroupSet(Optional<String> grpSetArg) throws ParseException {
+        if (!grpSetArg.isPresent()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(ParserUtil.parseGroups(grpSetArg.get()))
+                .map(HashSet::new);
     }
 
 

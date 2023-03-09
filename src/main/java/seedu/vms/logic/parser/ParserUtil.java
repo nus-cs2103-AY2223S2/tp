@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.vms.commons.core.index.Index;
@@ -32,6 +34,9 @@ public class ParserUtil {
     private static final String DATE_ONLY_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2}";
 
     private static final String FULL_DATE_PATTERN = "yyyy-M-d HHmm";
+
+    private static final String DELIMITER_PART = "\\s*::\\s*";
+    private static final String DELIMITER_LIST = "\\s*,\\s*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -180,20 +185,6 @@ public class ParserUtil {
      */
 
 
-    /**
-     * Parses vaccination type names.
-     *
-     * @param name - name to parse.
-     * @throws ParseException if the name cannot be parsed.
-     */
-    public static GroupName parseGroupName(String name) throws ParseException {
-        requireNonNull(name);
-        if (!GroupName.isValidName(name)) {
-            throw new ParseException(GroupName.MESSAGE_CONSTRAINT);
-        }
-        return new GroupName(name);
-    }
-
 
     /*
      * ========================================================================
@@ -212,5 +203,55 @@ public class ParserUtil {
             // TODO: make this nicer
             throw new ParseException("Must be an integer between -2147483647 to 2147483647");
         }
+    }
+
+
+    /**
+     * Parses the argument into parts according to {@link #DELIMITER_PART}
+     * delimiter pattern.
+     */
+    public static List<String> parsePart(String arg) {
+        return List.of(arg.split(DELIMITER_PART));
+    }
+
+
+    /**
+     * Parses the argument into a list according to {@link #DELIMITER_LIST}
+     * delimiter pattern.
+     */
+    public static List<String> parseList(String arg) {
+        return List.of(arg.split(DELIMITER_LIST));
+    }
+
+
+    /**
+     * Parses vaccination type names.
+     *
+     * @param name - name to parse.
+     * @throws ParseException if the name cannot be parsed.
+     */
+    public static GroupName parseGroupName(String name) throws ParseException {
+        requireNonNull(name);
+        if (!GroupName.isValidName(name)) {
+            throw new ParseException(GroupName.MESSAGE_CONSTRAINT);
+        }
+        return new GroupName(name);
+    }
+
+
+    /**
+     * Parses a String representing a list of groups.
+     *
+     * @throws ParseException if any of the groups cannot be parsed.
+     */
+    public static List<GroupName> parseGroups(String args) throws ParseException {
+        List<String> grpStrings = parseList(args);
+
+        ArrayList<GroupName> grps = new ArrayList<>();
+        for (String grpString : grpStrings) {
+            grps.add(parseGroupName(grpString));
+        }
+
+        return grps;
     }
 }
