@@ -12,18 +12,18 @@ import seedu.modtrek.model.module.UniqueModuleList;
 public class DegreeProgressionData {
 
     // Currently for cohort 2122
-    public final int TOTALCREDIT = 160;
-    public int currentCredit = 0;
-    public static Map<String, Integer> requirementCredits = Map.of(
+    public static final int TOTALCREDIT = 160;
+    public static final Map<String, Integer> REQUIREMENTCREDITS = Map.of(
             "UNIVERSITY_LEVEL_REQUIREMENTS", 16,
             "COMPUTER_SCIENCE_FOUNDATION", 36,
             "COMPUTER_SCIENCE_BREADTH_AND_DEPTH", 40,
             "IT_PROFESSIONALISM", 12,
             "MATHEMATICS_AND_SCIENCES", 16,
             "UNRESTRICTED_ELECTIVES", 40);
-    public HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
+    private int currentCredit = 0;
+    private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
     private float cumulativePoints = 0;
-    public float gpa;
+    private float gpa;
 
     private DegreeProgressionData() {}
 
@@ -39,16 +39,27 @@ public class DegreeProgressionData {
         modList.forEach((module) -> {
             data.computeModule(module);
         });
-        data.computeGPA();
+        data.computeGpa();
         return data;
+    }
+
+    public int getCurrentCredit() {
+        return currentCredit;
+    }
+
+    public Map<String, Integer> getCompletedRequirementCredits() {
+        return completedRequirementCredits;
+    }
+
+    public float getGpa() {
+        return gpa;
     }
 
     private void computeModule(Module module) {
         int credit = Integer.valueOf(module.getCredit().toString());
         module.getTags().forEach((tag) -> {
-            completedRequirementCredits.merge(tag.toString(), 
-                    credit,
-                    (oldValue, newValue) -> {
+            completedRequirementCredits.merge(tag.toString(),
+                    credit, (oldValue, newValue) -> {
                         return oldValue + newValue;
                     });
         });
@@ -56,7 +67,7 @@ public class DegreeProgressionData {
         cumulativePoints += credit * module.getGrade().toPoints();
     }
 
-    private void computeGPA() {
+    private void computeGpa() {
         this.gpa = cumulativePoints / currentCredit;
     }
 
