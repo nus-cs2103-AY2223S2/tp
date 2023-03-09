@@ -15,7 +15,7 @@ import java.util.Set;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.tag.Tag;
 
@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditRecipeDescriptor editPersonDescriptor = new EditRecipeDescriptor();
         if (argMultimap.getValue(PREFIX_STEP).isPresent()) {
             editPersonDescriptor.setSteps(ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP)));
         }
@@ -53,7 +53,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setIngredients(ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT)));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editPersonDescriptor.setDesc(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 //        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

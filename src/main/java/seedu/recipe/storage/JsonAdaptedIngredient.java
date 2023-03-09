@@ -1,10 +1,10 @@
-package seedu.address.storage;
+package seedu.recipe.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.recipe.Ingredient;
+import seedu.recipe.commons.exceptions.IllegalValueException;
+import seedu.recipe.model.recipe.Ingredient;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
