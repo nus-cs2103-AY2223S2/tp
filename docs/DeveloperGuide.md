@@ -453,9 +453,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. InternEase doesn't support storing resume function. User can only include link to their resume used for a particular application. 
+2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
+4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application. 
 5. InternEase is unable to remind user through platform outside of the application.
 
 *{More to be added}*
@@ -486,17 +486,17 @@ testers are expected to do more *exploratory* testing.
       1. Double-click the jar file.<br>
          or
       2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
-   Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
 
 2. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimal size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. Shutdown of InternEase
-   1. Shut down InternEase.
+3. Shutting down InternEase
+   1. Shut down InternEase
       1. Using `exit` command.<br>
          or
       2. Close the window using the 'X' button on top-right of the window frame.
