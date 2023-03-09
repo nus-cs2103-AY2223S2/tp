@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -7,8 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
-import java.util.*;
-
+/**
+ * An UI component that displays more detailed information of a {@code Person} when selected.
+ */
 public class PersonalPane extends UiPart<Region> {
 
     private static final String FXML = "PersonalPane.fxml";
@@ -31,6 +34,9 @@ public class PersonalPane extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     */
     public PersonalPane(Person person) {
         super(FXML);
         this.person = person;
