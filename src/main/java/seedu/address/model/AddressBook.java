@@ -69,7 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setDepartments(newData.getDepartmentList());
     }
 
-    //// person-level operations
+    //=========== Person-Level Operations ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -106,7 +106,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// department-level operations
+    //=========== Department-Level Operations ==========================================================================
+
+    /**
+     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
+     */
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return departments.contains(department);
+    }
 
     /**
      * Adds a department to the address book.

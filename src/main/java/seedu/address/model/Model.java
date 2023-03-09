@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.department.Department;
 import seedu.address.model.person.Person;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * The API of the Model component.
@@ -52,6 +55,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    //=========== Person-Level Operations ==============================================================================
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,4 +89,53 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //=========== Department-Level Operations ==========================================================================
+
+    /**
+     * Returns true if a department with the same identity as {@code department} exists in the address book.
+     */
+    public boolean hasDepartment(Department department);
+
+    /**
+     * Adds a department to the address book.
+     * The department must not already exist in the address book.
+     */
+    void addDepartment(Department d);
+
+    /**
+     * Replaces the given department {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setDepartment(Department target, Department editedDepartment);
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    void removeDepartment(Department key);
+
+    /**
+     * Adds a given employee from a given department
+     * @param p The employee to add
+     * @param d The department to add the employee to
+     */
+    void addEmployeeToDepartment(Person p, Department d);
+
+    /**
+     * Removes a given employee from a given department
+     * @param p The employee to remove
+     * @param d The department to remove the employee fro
+     */
+    void removeEmployeeFromDepartment(Person p, Department d);
+
+    /** Returns an unmodifiable view of the filtered department list */
+    ObservableList<Department> getFilteredDepartmentList();
+
+    /**
+     * Updates the filter of the filtered department list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDepartmentList(Predicate<Department> predicate);
 }

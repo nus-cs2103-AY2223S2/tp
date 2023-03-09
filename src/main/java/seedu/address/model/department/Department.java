@@ -2,16 +2,23 @@ package seedu.address.model.department;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
 public class Department {
-    private String name;
+    private final DepartmentName name;
     private final UniquePersonList employees;
 
-    Department(String name) {
+    public Department(DepartmentName name) {
         this.name = name;
         this.employees = new UniquePersonList();
+    }
+
+    public DepartmentName getName() {
+        return name;
     }
 
     // Placeholder for creating department from storage
@@ -45,7 +52,10 @@ public class Department {
 
     @Override
     public String toString() {
-        return name;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+
+        return builder.toString();
     }
 
     /**

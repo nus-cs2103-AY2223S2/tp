@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.department.Department;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Department> filteredDepartments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDepartments = new FilteredList<>(this.addressBook.getDepartmentList());
     }
 
     public ModelManager() {
@@ -87,6 +90,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== Person-Level Operations ==============================================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -126,6 +131,56 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Department-Level Operations ==========================================================================
+
+    @Override
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return addressBook.hasDepartment(department);
+    }
+
+    @Override
+    public void addDepartment(Department d) {
+        addressBook.addDepartment(d);
+    }
+
+    @Override
+    public void setDepartment(Department target, Department editedDepartment) {
+        addressBook.setDepartment(target, editedDepartment);
+    }
+
+    @Override
+    public void removeDepartment(Department key) {
+        addressBook.removeDepartment(key);
+    }
+
+    @Override
+    public void addEmployeeToDepartment(Person p, Department d) {
+        addressBook.addEmployeeToDepartment(p, d);
+    }
+
+    @Override
+    public void removeEmployeeFromDepartment(Person p, Department d) {
+        addressBook.removeEmployeeFromDepartment(p, d);
+    }
+
+    //=========== Filtered Department List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Department} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Department> getFilteredDepartmentList() {
+        return filteredDepartments;
+    }
+
+    @Override
+    public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+        requireNonNull(predicate);
+        filteredDepartments.setPredicate(predicate);
     }
 
     @Override
