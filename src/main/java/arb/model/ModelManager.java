@@ -110,6 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void markProject(Project project) {
         addressBook.markProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override

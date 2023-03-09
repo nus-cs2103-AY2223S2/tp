@@ -1,6 +1,6 @@
 package arb.logic.commands.project;
 
-import static arb.logic.commands.client.DeleteClientCommand.MESSAGE_DELETE_CLIENT_SUCCESS;
+import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -42,16 +42,24 @@ public class MarkProjectCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
+
+        if (currentListBeingShown != ListType.PROJECT) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+
         Project projectToMark = lastShownList.get(targetIndex.getZeroBased());
         model.markProject(projectToMark);
 
+        model.setProject(projectToMark, projectToMark);
+        //projectToMark.markAsDone();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_MARK_PROJECT_SUCCESS, projectToMark), ListType.PROJECT);
     }
-//
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof arb.logic.commands.client.DeleteClientCommand // instanceof handles nulls
-//                && targetIndex.equals(((arb.logic.commands.client.DeleteClientCommand) other).targetIndex)); // state check
-//    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MarkProjectCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkProjectCommand) other).targetIndex)); // state check
+    }
 }

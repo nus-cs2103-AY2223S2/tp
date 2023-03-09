@@ -6,7 +6,6 @@ import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import arb.commons.core.index.Index;
 import arb.logic.commands.Command;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
