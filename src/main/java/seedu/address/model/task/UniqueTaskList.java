@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -80,11 +81,14 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
-
+    public void setTasks(UniqueTaskList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code Tasks}.
+     * {@code Tasks} must not contain duplicate Tasks.
      */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
