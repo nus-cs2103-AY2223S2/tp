@@ -70,7 +70,7 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Throws an {@code IllegalValueException} with the given message if the given boolean is true.
+     * Throws an {@code IllegalValueException} with the given message if the boolean is true.
      * @param check The boolean to be checked.
      * @param message The error message to be displayed if the check fails.
      * @throws IllegalValueException if the given boolean is true.
