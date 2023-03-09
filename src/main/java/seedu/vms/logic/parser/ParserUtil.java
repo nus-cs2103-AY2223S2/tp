@@ -181,6 +181,15 @@ public class ParserUtil {
         throw new ParseException(MESSAGE_INVALID_DATE);
     }
 
+    /**
+     * Parses a String id to a {@code String}.
+     *
+     * @param patientId - the String date to parse.
+     * @return the parsed {@code String}.
+     */
+    public static String parsePatient(String patientId) {
+        return patientId;
+    }
 
     /*
      * ========================================================================
