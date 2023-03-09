@@ -42,7 +42,7 @@ public class AddCommand1 extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Internship}
      */
-    public AddCommand(Internship internship) {
+    public AddCommand1(Internship internship) {
         requireNonNull(internship);
         toAdd = internship;
     }

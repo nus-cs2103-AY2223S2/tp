@@ -22,20 +22,20 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser1 implements Parser<AddCommand> {
+public class AddCommandParser1 implements Parser<AddCommand1> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand1 parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand1.MESSAGE_USAGE));
         }
 
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
@@ -47,7 +47,7 @@ public class AddCommandParser1 implements Parser<AddCommand> {
         // pass id as 0 for now
         Internship internship = new Internship(position, company, 0, status, description, tagList);
 
-        return new AddCommand(internship);
+        return new AddCommand1(internship);
     }
 
     /**
