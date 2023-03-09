@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import seedu.vms.commons.core.index.Index;
@@ -20,6 +21,7 @@ import seedu.vms.model.patient.Email;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.tag.Tag;
+import seedu.vms.model.vaccination.Requirement;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -185,6 +187,26 @@ public class ParserUtil {
      */
 
 
+    public static Requirement parseReq(String reqString) throws ParseException {
+        List<String> parts = parseParts(reqString);
+        if (parts.size() != 2) {
+            throw new ParseException("Requirements require 2 and only 2 parts");
+        }
+        Requirement.RequirementType reqType = parseReqType(parts.get(0));
+        HashSet<GroupName> reqSet = new HashSet<>(parseGroups(parts.get(1)));
+        return new Requirement(reqType, reqSet);
+    }
+
+
+    public static Requirement.RequirementType parseReqType(String reqTypeString)
+                throws ParseException {
+        try {
+            return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
+        } catch (NoSuchElementException nse) {
+            throw new ParseException("Unknown requirement type", nse);
+        }
+    }
+
 
     /*
      * ========================================================================
@@ -210,7 +232,7 @@ public class ParserUtil {
      * Parses the argument into parts according to {@link #DELIMITER_PART}
      * delimiter pattern.
      */
-    public static List<String> parsePart(String arg) {
+    public static List<String> parseParts(String arg) {
         return List.of(arg.split(DELIMITER_PART));
     }
 

@@ -1,6 +1,8 @@
 package seedu.vms.logic.parser.vaccination;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.logic.commands.vaccination.AddVaxTypeCommand;
@@ -11,6 +13,7 @@ import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
+import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 
 
@@ -41,6 +44,12 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
         builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_SPACING))
                 .map(builder::setMinSpacing)
                 .orElse(builder);
+        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ))
+                .map(builder::setAllergyReqs)
+                .orElse(builder);
+        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ))
+                .map(builder::setHistoryReqs)
+                .orElse(builder);
 
         return new AddVaxTypeCommand(builder);
     }
@@ -60,5 +69,17 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
             return Optional.empty();
         }
         return Optional.ofNullable(ParserUtil.parseInteger(intArg.get()));
+    }
+
+
+    private Optional<List<Requirement>> mapReqList(List<String> reqStrings) throws ParseException {
+        if (reqStrings.isEmpty()) {
+            return Optional.empty();
+        }
+        ArrayList<Requirement> reqs = new ArrayList<>();
+        for (String reqString : reqStrings) {
+            reqs.add(ParserUtil.parseReq(reqString));
+        }
+        return Optional.ofNullable(reqs);
     }
 }
