@@ -79,6 +79,10 @@ Shows a list of all internship entries that have been added into InternBuddy.
 
 Format: `list`
 
+* The meaning of the date displayed for each internship entry will depend on the status of the internship. For example, if
+the status of the internship is `new`, the `date` field refers to the deadline of application. A full reference table is
+shown below.
+
 ### Adding an internship entry: `add`
 
 Adds a new internship entry to the list of existing entries.
