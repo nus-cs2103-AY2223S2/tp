@@ -90,8 +90,6 @@ public class RemoveCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson));
     }
-
-    @SuppressWarnings("checkstyle:SeparatorWrap")
     private static Person createRemoveFieldPerson(Person personToRemoveField,
                                                   RemoveCommand.RemovePersonDescriptor removePersonDescriptor) {
         assert personToRemoveField != null;

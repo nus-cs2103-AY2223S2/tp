@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_CPLUSPLUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -84,7 +88,8 @@ public class RemoveCommandTest {
                 .withEmail("anna@example.com")
                 .withAddress("4th street").build();
 
-        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder().withLanguages("Python").build();
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
+                .withLanguages(VALID_LANGUAGE_PYTHON).build();
         RemoveCommand removeCommand = new RemoveCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, RemovedFieldPerson);
@@ -96,7 +101,7 @@ public class RemoveCommandTest {
     }
 
     @Test
-    public void execute_clearTagFieldSpecifiedUnfilteredList_success() {
+    public void execute_clearTagAndLanguageFieldSpecifiedUnfilteredList_success() {
         Index indexBenson = Index.fromOneBased(2);
         Person Benson = model.getFilteredPersonList().get(indexBenson.getZeroBased());
 
@@ -104,10 +109,11 @@ public class RemoveCommandTest {
         Person RemovedFieldPerson = personInList.withName("Benson Meier")
                 .withProfile("benson-meier")
                 .withAddress("311, Clementi Ave 2, #02-25")
-                .withEmail("johnd@example.com").withPhone("98765432")
-                .withLanguages("Java", "JavaScript").build();
+                .withEmail("johnd@example.com")
+                .withPhone("98765432").build();
 
-        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder().withTags().build();
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
+                .withLanguages().withTags().build();
         RemoveCommand removeCommand = new RemoveCommand(indexBenson, descriptor);
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, RemovedFieldPerson);
@@ -116,6 +122,19 @@ public class RemoveCommandTest {
         expectedModel.setPerson(Benson, RemovedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_specificFieldNotMatchUnfilteredList_failure() {
+        Index indexBenson = Index.fromOneBased(2);
+
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
+                .withProfile(VALID_GITHUBPROFILE_AMY)
+                .withLanguages(VALID_LANGUAGE_CPLUSPLUS)
+                .withTags(VALID_TAG_HUSBAND).build();
+        RemoveCommand removeCommand = new RemoveCommand(indexBenson, descriptor);
+
+        assertCommandFailure(removeCommand, model, RemoveCommand.MESSAGE_REMOVE_FIELD_NOT_MATCH);
     }
 
     @Test
