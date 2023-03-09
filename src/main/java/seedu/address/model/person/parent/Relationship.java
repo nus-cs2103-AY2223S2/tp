@@ -3,6 +3,9 @@ package seedu.address.model.person.parent;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * A relationship class
+ */
 public class Relationship {
     public static final String MESSAGE_CONSTRAINTS = "Relationship must be letters";
 

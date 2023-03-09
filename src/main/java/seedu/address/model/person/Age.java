@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.student.ParentName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.student.ParentName;
+
+/**
+ * A class for age of person
+ */
 public class Age {
     public static final String MESSAGE_CONSTRAINTS = "Age must be digits (0-9)";
 

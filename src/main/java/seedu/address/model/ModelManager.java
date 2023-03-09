@@ -98,7 +98,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudent(Student student){
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
         return addressBook.hasStudent(student);
     }
@@ -109,7 +109,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudent(Student target) { addressBook.removeStudent(target);}
+    public void deleteStudent(Student target) {
+
+        addressBook.removeStudent(target);
+
+    }
 
     @Override
     public void addPerson(Person person) {
@@ -144,11 +148,17 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+
         return filteredPersons;
+
     }
 
     @Override
-    public ObservableList<Student> getFilteredStudentList() {return filteredStudents;}
+    public ObservableList<Student> getFilteredStudentList() {
+
+        return filteredStudents;
+
+    }
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);

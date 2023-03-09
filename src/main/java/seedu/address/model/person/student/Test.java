@@ -2,13 +2,13 @@ package seedu.address.model.person.student;
 
 import java.time.LocalDate;
 
-public class Test extends Assignment{
+public class Test extends Assignment {
 
     public static final String MESSAGE_CONSTRAINTS = "Test must be numbers";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String value;
+    private String value;
 
     public Test(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score) {
         super(assignmentName, deadline, weightage, maxScore);

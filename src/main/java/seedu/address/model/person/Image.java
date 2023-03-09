@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.student.ParentName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.student.ParentName;
+
+/**
+ * A class for Image
+ */
 public class Image {
     public static final String MESSAGE_CONSTRAINTS = "Image must be file destination";
 
