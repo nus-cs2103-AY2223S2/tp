@@ -111,7 +111,6 @@ Examples:
 ### Deleting an internship entry : `delete`
 Deletes the specified internship entry from InternBuddy.
 
-
 Format: `delete INDEX`
 
 * Deletes the internship entry at the specified `INDEX`.
@@ -135,8 +134,14 @@ Examples:
 *  `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `assessment` and `Software Developer` respectively.
 *  `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 
+### Clearing all internship entries
+Clears all internship entries from InternBuddy.
 
-### Getting Help : `help`
+Format: `clear`<br>
+
+![ClearEntriesWarningMessage](images/Clear-entries-warning-message.png)
+
+### Getting help : `help`
 
 Displays the list of commands supported by InternBuddy.
 
@@ -163,8 +168,8 @@ If the data file is invalid, InternBuddy will start with an empty data file.
 ### Editing the data file
 
 InternBuddy data are saved as a JSON file `[JAR file location]/data/internbuddy.json`. Advanced users are welcome to
-update the data directly by editing that data file.
-<br>
+update the data directly by editing that data file.<br>
+
 ![EditDataWarningMessage](images/Edit_data_warning_message.png)
 
 
