@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -16,12 +19,19 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose company names contain any"
             + " of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " apple google facebook";
+            + "Parameters: "
+            + "[" + PREFIX_COMPANY_NAME + "NAME_KEYWORD]"
+            + "[" + PREFIX_STATUS + "STATUS_KEYWORD]"
+            + "[" + PREFIX_TAG + "TAG_KEYWORD]...\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_COMPANY_NAME + "apple google facebook"
+            + PREFIX_STATUS + "applied interview offered"
+            + PREFIX_TAG + "python"
+            + PREFIX_TAG + "java";
 
-    private final CompanyNameContainsKeywordsPredicate predicate;
+    private final InternshipContainsKeywordsPredicate predicate;
 
-    public FindCommand(CompanyNameContainsKeywordsPredicate predicate) {
+    public FindCommand(InternshipContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
