@@ -148,7 +148,7 @@ public class VaxTypeBuilder {
     }
 
 
-    private VaxType build(VaxTypeManager manager) {
+    private VaxType build(VaxTypeManager manager) throws IllegalValueException {
         Optional<VaxType> refVaxType = manager.remove(refName.toString());
 
         HashSet<GroupName> grps = setGrps.orElse(refVaxType
@@ -169,6 +169,10 @@ public class VaxTypeBuilder {
         List<Requirement> historyReqs = setHistoryReqs.orElse(refVaxType
                 .map(VaxType::getHistoryReqs)
                 .orElse(VaxType.DEFAULT_HISTORY_REQS));
+
+        if (!VaxType.isValidRange(minAge, maxAge)) {
+            throw new IllegalValueException(VaxType.MESSAGE_AGE_CONSTRAINTS);
+        }
 
         VaxType vaxType = new VaxType(name, grps, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
         manager.add(vaxType);
