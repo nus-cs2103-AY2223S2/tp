@@ -11,6 +11,7 @@ import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Name;
 import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
@@ -33,6 +34,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String id} into a {@code Id}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedId);
     }
 
     /**
