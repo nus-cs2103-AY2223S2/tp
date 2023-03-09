@@ -1,9 +1,13 @@
 package seedu.address.model.person.fields;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Locale;
 import java.util.Objects;
 
 import seedu.address.model.person.fields.enums.Genders;
+
+
 
 /**
  * Represents a Person's gender in the address book.
@@ -20,6 +24,7 @@ public class Gender {
      * @param gender A valid name.
      */
     public Gender(String gender) {
+        requireNonNull(gender);
         switch (gender.toLowerCase(Locale.ROOT)) {
         case "male":
             this.gender = Genders.MALE;
