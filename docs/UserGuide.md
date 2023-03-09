@@ -98,7 +98,7 @@ Adds a Powercard to the **selected** Deck.
 Format: `add q/QUESTION a/ANSWER`
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A card can have any number of tags (including 0)
 </div> -->
 
 Examples:
@@ -120,7 +120,7 @@ Edits an existing Powercard in a Deck.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 

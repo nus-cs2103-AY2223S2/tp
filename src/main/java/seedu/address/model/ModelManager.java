@@ -12,9 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Card;
 import seedu.address.model.powerdeck.PowerDeck;
-import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,7 +23,7 @@ public class ModelManager implements Model {
 
     private AddressBook deck;
     private final UserPrefs userPrefs;
-    private FilteredList<Person> filteredDecks;
+    private FilteredList<Card> filteredDecks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -91,42 +90,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasCard(Person person) {
-        requireNonNull(person);
-        return deck.hasPerson(person);
+    public boolean hasCard(Card card) {
+        requireNonNull(card);
+        return deck.hasPerson(card);
     }
 
     @Override
-    public void deleteCard(Person target) {
+    public void deleteCard(Card target) {
         deck.removePerson(target);
     }
 
     @Override
-    public void addCard(Person person) {
-        deck.addPerson(person);
+    public void addCard(Card card) {
+        deck.addPerson(card);
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
-    public void setCard(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setCard(Card target, Card editedCard) {
+        requireAllNonNull(target, editedCard);
 
-        deck.setPerson(target, editedPerson);
+        deck.setPerson(target, editedCard);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Card List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredCardList() {
+    public ObservableList<Card> getFilteredCardList() {
         return filteredDecks;
     }
 
     @Override
-    public void updateFilteredCardList(Predicate<Person> predicate) {
+    public void updateFilteredCardList(Predicate<Card> predicate) {
         requireNonNull(predicate);
         filteredDecks.setPredicate(predicate);
     }
@@ -161,13 +160,13 @@ public class ModelManager implements Model {
     @Override
     public void createDeck() { // Todo: deck should have a name - how to store in storage?
         PowerDeck newDeck = new PowerDeck();
-//        this.deck.add(newDeck);
+        // this.deck.add(newDeck);
     }
 
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-//        deck = deck.get(zeroBasesIdx);
+        // deck = deck.get(zeroBasesIdx);
     }
 
     @Override

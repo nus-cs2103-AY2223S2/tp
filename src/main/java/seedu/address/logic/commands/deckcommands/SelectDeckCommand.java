@@ -23,7 +23,7 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
     private final Index deckIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Card}
      */
     public SelectDeckCommand(Index idx) {
         requireNonNull(idx);

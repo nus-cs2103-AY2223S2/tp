@@ -13,34 +13,34 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A card is considered unique by comparing using {@code Card#isSamePerson(Card)}. As such, adding and updating of
+ * persons uses Card#isSamePerson(Card) for equality so as to ensure that the card being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a card uses Card#equals(Object) so
+ * as to ensure that the card with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Card#isSameCard(Card)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniquePersonList implements Iterable<Card> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
+    private final ObservableList<Card> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Card> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent card as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean contains(Card toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameCard);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a card to the list.
+     * The card must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void add(Card toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -49,30 +49,30 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the card {@code target} in the list with {@code editedCard}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The card identity of {@code editedCard} must not be the same as another existing card in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Card target, Card editedCard) {
+        requireAllNonNull(target, editedCard);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameCard(editedCard) && contains(editedCard)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedCard);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent card from the list.
+     * The card must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Card toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
@@ -85,27 +85,27 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code cards}.
+     * {@code cards} must not contain duplicate cards.
      */
-    public void setPersons(List<Person> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setPersons(List<Card> cards) {
+        requireAllNonNull(cards);
+        if (!personsAreUnique(cards)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(cards);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Person> asUnmodifiableObservableList() {
+    public ObservableList<Card> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Card> iterator() {
         return internalList.iterator();
     }
 
@@ -122,12 +122,12 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code cards} contains only unique cards.
      */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean personsAreUnique(List<Card> cards) {
+        for (int i = 0; i < cards.size() - 1; i++) {
+            for (int j = i + 1; j < cards.size(); j++) {
+                if (cards.get(i).isSameCard(cards.get(j))) {
                     return false;
                 }
             }
