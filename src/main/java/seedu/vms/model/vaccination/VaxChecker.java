@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.vms.model.GroupName;
+
 
 /**
  * A utility class to check if a patient meets the requirements to take a
@@ -27,7 +29,7 @@ public class VaxChecker {
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
-                int age, HashSet<String> allergies, List<VaxRecord> records, LocalDateTime time) {
+                int age, HashSet<GroupName> allergies, List<VaxRecord> records, LocalDateTime time) {
         boolean isWithinAge = vaxType.getMinAge() <= age && age <= vaxType.getMaxAge();
 
         boolean isSpaced = records.isEmpty();
@@ -53,9 +55,9 @@ public class VaxChecker {
 
 
     private static boolean checkHistReq(List<Requirement> reqs, List<VaxRecord> records) {
-        List<HashSet<String>> grpSets = getHistGrpSet(records);
+        List<HashSet<GroupName>> grpSets = getHistGrpSet(records);
         ArrayDeque<Requirement> pendingReqs = new ArrayDeque<>(reqs);
-        for (HashSet<String> grpSet : grpSets) {
+        for (HashSet<GroupName> grpSet : grpSets) {
             ArrayDeque<Requirement> unsatisfiedReqs = new ArrayDeque<>();
             while (!pendingReqs.isEmpty()) {
                 Requirement req = pendingReqs.pop();
@@ -72,8 +74,8 @@ public class VaxChecker {
     }
 
 
-    private static List<HashSet<String>> getHistGrpSet(List<VaxRecord> records) {
-        List<HashSet<String>> grpSets = records.stream()
+    private static List<HashSet<GroupName>> getHistGrpSet(List<VaxRecord> records) {
+        List<HashSet<GroupName>> grpSets = records.stream()
                 .map(record -> record.getVaccination().getGroups())
                 .collect(Collectors.toList());
         if (records.isEmpty()) {
@@ -83,7 +85,7 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkReq(List<Requirement> reqs, HashSet<String> set) {
+    private static boolean checkReq(List<Requirement> reqs, HashSet<GroupName> set) {
         for (Requirement req : reqs) {
             if (!req.check(set)) {
                 return false;

@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
+import seedu.vms.model.GroupName;
+
 
 /** Represents a vaccination requirement. */
 public class Requirement {
     private final RequirementType reqType;
-    private final HashSet<String> reqSet;
+    private final HashSet<GroupName> reqSet;
 
 
     /**
@@ -20,7 +22,7 @@ public class Requirement {
      * @throws NullPointerException if {@code reqType} is {@code null}.
      * @throws IllegalArgumentException if {@code reqSet} is empty.
      */
-    public Requirement(RequirementType reqType, HashSet<String> reqSet) {
+    public Requirement(RequirementType reqType, HashSet<GroupName> reqSet) {
         if (reqType == null) {
             throw new NullPointerException("Null requirement type");
         }
@@ -37,7 +39,7 @@ public class Requirement {
      *
      * @param grpSet - the group set to check for.
      */
-    public boolean check(HashSet<String> grpSet) {
+    public boolean check(HashSet<GroupName> grpSet) {
         return reqType.check(reqSet, grpSet);
     }
 
@@ -47,7 +49,7 @@ public class Requirement {
     }
 
 
-    public HashSet<String> getReqSet() {
+    public HashSet<GroupName> getReqSet() {
         return new HashSet<>(reqSet);
     }
 
@@ -118,21 +120,21 @@ public class Requirement {
         NONE(RequirementType::checkNone);
 
 
-        private final BiPredicate<HashSet<String>, HashSet<String>> checker;
+        private final BiPredicate<HashSet<GroupName>, HashSet<GroupName>> checker;
 
 
-        private RequirementType(BiPredicate<HashSet<String>, HashSet<String>> checker) {
+        private RequirementType(BiPredicate<HashSet<GroupName>, HashSet<GroupName>> checker) {
             this.checker = checker;
         }
 
 
-        private boolean check(HashSet<String> reqSet, HashSet<String> checkingSet) {
+        private boolean check(HashSet<GroupName> reqSet, HashSet<GroupName> checkingSet) {
             return checker.test(reqSet, checkingSet);
         }
 
 
-        private static boolean checkAll(HashSet<String> reqSet, HashSet<String> checkingSet) {
-            for (String grp : reqSet) {
+        private static boolean checkAll(HashSet<GroupName> reqSet, HashSet<GroupName> checkingSet) {
+            for (GroupName grp : reqSet) {
                 if (!checkingSet.contains(grp)) {
                     return false;
                 }
@@ -141,8 +143,8 @@ public class Requirement {
         }
 
 
-        private static boolean checkAny(HashSet<String> reqSet, HashSet<String> checkingSet) {
-            for (String grp : reqSet) {
+        private static boolean checkAny(HashSet<GroupName> reqSet, HashSet<GroupName> checkingSet) {
+            for (GroupName grp : reqSet) {
                 if (checkingSet.contains(grp)) {
                     return true;
                 }
@@ -152,7 +154,7 @@ public class Requirement {
         }
 
 
-        private static boolean checkNone(HashSet<String> reqSet, HashSet<String> checkingSet) {
+        private static boolean checkNone(HashSet<GroupName> reqSet, HashSet<GroupName> checkingSet) {
             return !checkAny(reqSet, checkingSet);
         }
     }

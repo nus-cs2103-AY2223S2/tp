@@ -18,7 +18,7 @@ public class VaxTypeBuilder {
 
     private final GroupName refName;
     private final GroupName name;
-    private final Optional<HashSet<String>> setGrps;
+    private final Optional<HashSet<GroupName>> setGrps;
     private final Optional<Integer> setMinAge;
     private final Optional<Integer> setMaxAge;
     private final Optional<Integer> setMinSpacing;
@@ -26,7 +26,7 @@ public class VaxTypeBuilder {
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
-    private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<String>> setGrps,
+    private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
                 Optional<Integer> setMinAge, Optional<Integer> setMaxAge, Optional<Integer> setMinSpacing,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
@@ -71,7 +71,7 @@ public class VaxTypeBuilder {
     }
 
 
-    public VaxTypeBuilder setGroups(HashSet<String> grps) {
+    public VaxTypeBuilder setGroups(HashSet<GroupName> grps) {
         return new VaxTypeBuilder(refName, name, Optional.ofNullable(grps),
                 setMinAge, setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
@@ -150,7 +150,7 @@ public class VaxTypeBuilder {
     private VaxType build(VaxTypeManager manager) {
         Optional<VaxType> refVaxType = manager.remove(refName.toString());
 
-        HashSet<String> grps = setGrps.orElse(refVaxType
+        HashSet<GroupName> grps = setGrps.orElse(refVaxType
                 .map(VaxType::getGroups)
                 .orElse(VaxType.DEFAULT_GROUP_SET));
         Integer minAge = setMinAge.orElse(refVaxType

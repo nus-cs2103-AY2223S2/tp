@@ -1,7 +1,6 @@
 package seedu.vms.storage.vaccination;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ public class JsonAdaptedVaxType {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Vaccination type [%s] is missing";
 
     private final JsonAdaptedGroupName name;
-    private final List<String> groups;
+    private final List<JsonAdaptedGroupName> groups;
     private final Integer minAge;
     private final Integer maxAge;
     private final Integer minSpacing;
@@ -33,7 +32,7 @@ public class JsonAdaptedVaxType {
     @JsonCreator
     public JsonAdaptedVaxType(
                 @JsonProperty("name") JsonAdaptedGroupName name,
-                @JsonProperty("groups") List<String> groups,
+                @JsonProperty("groups") List<JsonAdaptedGroupName> groups,
                 @JsonProperty("minAge") Integer minAge,
                 @JsonProperty("maxAge") Integer maxAge,
                 @JsonProperty("minSpacing") Integer minSpacing,
@@ -55,7 +54,7 @@ public class JsonAdaptedVaxType {
      */
     public static JsonAdaptedVaxType fromModelType(VaxType vaxType) {
         JsonAdaptedGroupName name = JsonAdaptedGroupName.fromModelType(vaxType.getGroupName());
-        List<String> groups = List.copyOf(vaxType.getGroups());
+        List<JsonAdaptedGroupName> groups = JsonAdaptedGroupName.fromModelCollection(vaxType.getGroups());
         Integer minAge = vaxType.getMinAge();
         Integer maxAge = vaxType.getMaxAge();
         Integer minSpacing = vaxType.getMinSpacing();
@@ -86,7 +85,7 @@ public class JsonAdaptedVaxType {
         VaxTypeBuilder builder = VaxTypeBuilder.of(name.toModelType());
 
         if (groups != null) {
-            builder = builder.setGroups(new HashSet<>(groups));
+            builder = builder.setGroups(JsonAdaptedGroupName.toModelSet(groups));
         }
 
         if (minAge != null) {

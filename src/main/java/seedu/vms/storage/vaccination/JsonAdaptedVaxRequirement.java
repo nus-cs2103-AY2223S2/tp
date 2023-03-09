@@ -1,6 +1,5 @@
 package seedu.vms.storage.vaccination;
 
-import java.util.HashSet;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,19 +7,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.storage.JsonAdaptedGroupName;
 
 
 /** JSON friendly version of {@link Requirement} */
 public class JsonAdaptedVaxRequirement {
     private final Requirement.RequirementType reqType;
-    private final List<String> reqSet;
+    private final List<JsonAdaptedGroupName> reqSet;
 
 
     /** Constructs a {@code JsonAdaptedVaxRequirement}. */
     @JsonCreator
     public JsonAdaptedVaxRequirement(
                 @JsonProperty("reqType") Requirement.RequirementType reqType,
-                @JsonProperty("reqSet") List<String> reqSet) {
+                @JsonProperty("reqSet") List<JsonAdaptedGroupName> reqSet) {
         this.reqType = reqType;
         this.reqSet = reqSet;
     }
@@ -31,7 +31,9 @@ public class JsonAdaptedVaxRequirement {
      * {@code JsonAdaptedVaxRequirement}.
      */
     public static JsonAdaptedVaxRequirement fromModelType(Requirement req) {
-        return new JsonAdaptedVaxRequirement(req.getReqType(), List.copyOf(req.getReqSet()));
+        Requirement.RequirementType reqType = req.getReqType();
+        List<JsonAdaptedGroupName> reqSet = JsonAdaptedGroupName.fromModelCollection(req.getReqSet());
+        return new JsonAdaptedVaxRequirement(reqType, reqSet);
     }
 
 
@@ -48,6 +50,6 @@ public class JsonAdaptedVaxRequirement {
         if (reqSet == null || reqSet.isEmpty()) {
             throw new IllegalValueException("Missing or empty group set");
         }
-        return new Requirement(reqType, new HashSet<>(reqSet));
+        return new Requirement(reqType, JsonAdaptedGroupName.toModelSet(reqSet));
     }
 }

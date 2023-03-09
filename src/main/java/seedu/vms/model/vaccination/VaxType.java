@@ -17,7 +17,7 @@ public class VaxType {
     public static final String MESSAGE_SPACING_CONSTRAINTS =
             "Spacing must be a positive integer";
 
-    public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
+    public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
     public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
     public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
     public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
@@ -25,7 +25,7 @@ public class VaxType {
     public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
     private final GroupName name;
-    private final HashSet<String> groups;
+    private final HashSet<GroupName> groups;
     private final int minAge;
     private final int maxAge;
     private final int minSpacing;
@@ -39,7 +39,7 @@ public class VaxType {
      * @throws IllegalArgumentException if {@code minAge > maxAge} or
      *      {@code minSpacing < 0}.
      */
-    public VaxType(GroupName name, HashSet<String> groups,
+    public VaxType(GroupName name, HashSet<GroupName> groups,
                 int minAge, int maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
@@ -51,17 +51,6 @@ public class VaxType {
         this.minSpacing = minSpacing;
         this.allergyReqs = allergyReqs;
         this.historyReqs = historyReqs;
-    }
-
-
-    /**
-     * Constructs a {@code VaxType}. The given name is converted to a
-     * {@code GroupName}.
-     */
-    public VaxType(String name, HashSet<String> groups,
-            int minAge, int maxAge, int minSpacing,
-            List<Requirement> allergyReqs, List<Requirement> historyReqs) {
-        this(new GroupName(name), groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
     }
 
 
@@ -85,7 +74,7 @@ public class VaxType {
     }
 
 
-    public HashSet<String> getGroups() {
+    public HashSet<GroupName> getGroups() {
         return new HashSet<>(groups);
     }
 
