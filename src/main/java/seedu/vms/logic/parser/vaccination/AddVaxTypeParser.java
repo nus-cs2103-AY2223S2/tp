@@ -25,6 +25,7 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     public static final String COMMAND_WORD = "add";
 
     // these names are meant to be they align so well
+    private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
     private static final String FIELD_NAME_GRP_SET = "Group set";
     private static final String FIELD_NAME_MIN_AGE = "Min age";
     private static final String FIELD_NAME_MAX_AGE = "Max age";
@@ -37,9 +38,7 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     public AddVaxTypeCommand parse(String args) throws ParseException {
         ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(args);
 
-        GroupName name = ParserUtil.parseGroupName(argsMap.getPreamble());
-
-        VaxTypeBuilder builder = VaxTypeBuilder.of(name);
+        VaxTypeBuilder builder = VaxTypeBuilder.of(mapName(argsMap.getPreamble()));
 
         builder = mapGroupSet(argsMap.getValue(CliSyntax.PREFIX_VAX_GROUPS))
                 .map(builder::setGroups)
@@ -64,6 +63,15 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     }
 
 
+    private GroupName mapName(String nameArg) throws ParseException {
+        try {
+            return ParserUtil.parseGroupName(nameArg);
+        } catch (ParseException parseEx) {
+            throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
+        }
+    }
+
+
     private Optional<HashSet<GroupName>> mapGroupSet(Optional<String> grpSetArg) throws ParseException {
         if (!grpSetArg.isPresent()) {
             return Optional.empty();
@@ -81,7 +89,7 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
         if (!intArg.isPresent()) {
             return Optional.empty();
         }
-        int value = ParserUtil.parseInteger(intArg.get());
+        int value;
         try {
             value = ParserUtil.parseInteger(intArg.get());
             if (value < 0) {
