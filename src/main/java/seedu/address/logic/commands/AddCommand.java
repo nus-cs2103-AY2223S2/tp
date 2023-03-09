@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.EmployeeId;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,8 +50,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        int currentId = EmployeeId.getCount();
 
         if (model.hasPerson(toAdd)) {
+            EmployeeId.setCount(currentId);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
