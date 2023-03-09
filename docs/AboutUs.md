@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="docs/images/arpspoofing.png" width="200px">
 
 [[github](https://github.com/arpspoofing)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/arpspoofing.md)]
 
 * Role: Deliverables and deadlines
 
@@ -23,36 +23,37 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nerdyboy98.png" width="200px">
 
 [[github](http://github.com/nerdyboy98)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nerdyboy98.md)]
 
 * Role: Member
 * Responsibilities: Help and Sorting of events
 
-### Johnny Doe
+### Eric
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shittake.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/shittake)] 
+[[portfolio](team/shittake.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### JiaAo
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ShiJiaAo)]
+[[portfolio](team/shijaao.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Jia Tong
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JThh)]
+[[portfolio](team/jthh.md)]
 
 * Role: Developer
 * Responsibilities: UI

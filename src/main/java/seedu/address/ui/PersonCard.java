@@ -4,12 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
+//import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,7 +62,8 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        //Retrieve the image url from the person object
+        //Retrieve the image url from the person object, but it is slow
+        /*
         Image studentImage =
                 new Image(person.getPhoto().photoFilePath);
 
@@ -85,6 +86,7 @@ public class PersonCard extends UiPart<Region> {
             //Add the cropped circle image into the dummy list
             studentProfiles.getChildren().addAll(profile);
         }
+         */
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
