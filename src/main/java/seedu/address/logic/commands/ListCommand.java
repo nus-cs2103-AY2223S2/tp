@@ -3,12 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
-import java.util.function.Predicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -23,7 +21,9 @@ public class ListCommand extends Command {
 
     private final boolean isTagPresent;
 
-    //private final TagContainsKeywordsPredicate predicate;
+    /**
+     * Initializes a ListCommand with the given predicate and whether a tag is present.
+     */
     public ListCommand(TagContainsKeywordsPredicate predicate, boolean isTagPresent) {
         this.predicate = predicate;
         this.isTagPresent = isTagPresent;
@@ -33,11 +33,12 @@ public class ListCommand extends Command {
         requireNonNull(model);
         if (!isTagPresent) {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(MESSAGE_SUCCESS);
         } else {
             model.updateFilteredPersonList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         }
-
-        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
