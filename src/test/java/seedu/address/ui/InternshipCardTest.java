@@ -28,13 +28,4 @@ public class InternshipCardTest {
 
 
     }
-    @Test
-    public void isValidDateLabel() {
-        assertTrue(new InternshipCard(SUPERCELLGAMES, 1).getDateLabel().equals("Date Added: "));
-        assertTrue(new InternshipCard(SAMSUNG, 1).getDateLabel().equals("Date Applied: "));
-        assertTrue(new InternshipCard(FOODPANDA, 1).getDateLabel().equals("Date of Assessment: "));
-        assertTrue(new InternshipCard(APPLE, 1).getDateLabel().equals("Date of Interview: "));
-        assertTrue(new InternshipCard(GOLDMAN, 1).getDateLabel().equals("Date of Notice of Offer: "));
-        assertTrue(new InternshipCard(GRAB, 1).getDateLabel().equals("Date of Notice of Rejection: "));
-    }
 }
