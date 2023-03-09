@@ -41,6 +41,12 @@ public class AddVaxTypeTest {
     private static final String INVALID_REQ_CMD_SYNTAX = String.format("UNCHI --%s %s",
             CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
             "NONE::UNCHI, i am invalid ( ^)o(^ )b, BANANA");
+    private static final String INVALID_REQ_CMD_TOO_FEW_PARTS = String.format("UNCHI --%s %s",
+            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            "NONE");
+    private static final String INVALID_REQ_CMD_TOO_MANY_PARTS = String.format("UNCHI --%s %s",
+            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            "NONE::UNCHI, BANANA::NONE::pear");
 
 
     @Test
@@ -171,6 +177,8 @@ public class AddVaxTypeTest {
         checkExecutionEx(INVALID_REQ_TYPE_CMD, ParseException.class);
         checkExecutionEx(INVALID_REQ_CMD_EMPTY, ParseException.class);
         checkExecutionEx(INVALID_REQ_CMD_SYNTAX, ParseException.class);
+        checkExecutionEx(INVALID_REQ_CMD_TOO_FEW_PARTS, ParseException.class);
+        checkExecutionEx(INVALID_REQ_CMD_TOO_MANY_PARTS, ParseException.class);
     }
 
 
