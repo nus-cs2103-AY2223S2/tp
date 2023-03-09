@@ -33,7 +33,8 @@ public class JsonAdaptedPolicy {
      */
 
 
-    /* Need to see how this works ... */
+    /* Need to see how this works ... based on tracing tag, this seems to get
+    * called only when you update it? that is from object->Json*/
     @JsonValue
     public String getPolicy() {
         StringBuilder policy = new StringBuilder("[");
