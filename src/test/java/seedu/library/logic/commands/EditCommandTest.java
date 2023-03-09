@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.library.logic.commands.CommandTestUtil.showBookmarkAtIndex;
+import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
 import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
-import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +24,8 @@ import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 import seedu.library.testutil.BookmarkBuilder;
+import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

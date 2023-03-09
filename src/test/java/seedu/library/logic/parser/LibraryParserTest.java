@@ -23,11 +23,11 @@ import seedu.library.logic.commands.FindCommand;
 import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
-import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.testutil.EditBookmarkDescriptorBuilder;
+import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
 import seedu.library.testutil.BookmarkBuilder;
 import seedu.library.testutil.BookmarkUtil;
+import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 public class LibraryParserTest {
 
@@ -35,9 +35,9 @@ public class LibraryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Bookmark Bookmark = new BookmarkBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(BookmarkUtil.getAddCommand(Bookmark));
-        assertEquals(new AddCommand(Bookmark), command);
+        Bookmark bookmark = new BookmarkBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(BookmarkUtil.getAddCommand(bookmark));
+        assertEquals(new AddCommand(bookmark), command);
     }
 
     @Test

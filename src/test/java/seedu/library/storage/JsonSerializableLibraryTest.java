@@ -24,9 +24,9 @@ public class JsonSerializableLibraryTest {
     public void toModelType_typicalBookmarksFile_success() throws Exception {
         JsonSerializableLibrary dataFromFile = JsonUtil.readJsonFile(TYPICAL_BOOKMARKS_FILE,
                 JsonSerializableLibrary.class).get();
-        Library LibraryFromFile = dataFromFile.toModelType();
+        Library libraryFromFile = dataFromFile.toModelType();
         Library typicalBookmarksLibrary = TypicalBookmarks.getTypicalLibrary();
-        assertEquals(LibraryFromFile, typicalBookmarksLibrary);
+        assertEquals(libraryFromFile, typicalBookmarksLibrary);
     }
 
     @Test

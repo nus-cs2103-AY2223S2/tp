@@ -5,8 +5,8 @@ import static seedu.library.commons.core.Messages.MESSAGE_INVALID_BOOKMARK_DISPL
 import static seedu.library.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.library.logic.commands.CommandTestUtil.AUTHOR_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.GENRE_DESC_AMY;
-import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.library.testutil.Assert.assertThrows;
 import static seedu.library.testutil.TypicalBookmarks.AMY;
 

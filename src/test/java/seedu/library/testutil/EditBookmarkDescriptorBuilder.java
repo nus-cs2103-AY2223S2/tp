@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.library.logic.commands.EditCommand.EditBookmarkDescriptor;
 import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -30,13 +30,13 @@ public class EditBookmarkDescriptorBuilder {
     /**
      * Returns an {@code EditBookmarkDescriptor} with fields containing {@code bookmark}'s details
      */
-    public EditBookmarkDescriptorBuilder(Bookmark Bookmark) {
+    public EditBookmarkDescriptorBuilder(Bookmark bookmark) {
         descriptor = new EditBookmarkDescriptor();
-        descriptor.setTitle(Bookmark.getTitle());
-        descriptor.setPhone(Bookmark.getPhone());
-        descriptor.setGenre(Bookmark.getGenre());
-        descriptor.setAuthor(Bookmark.getAuthor());
-        descriptor.setTags(Bookmark.getTags());
+        descriptor.setTitle(bookmark.getTitle());
+        descriptor.setPhone(bookmark.getPhone());
+        descriptor.setGenre(bookmark.getGenre());
+        descriptor.setAuthor(bookmark.getAuthor());
+        descriptor.setTags(bookmark.getTags());
     }
 
     /**

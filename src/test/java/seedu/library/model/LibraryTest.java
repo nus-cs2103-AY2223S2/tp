@@ -60,18 +60,18 @@ public class LibraryTest {
     }
 
     @Test
-    public void hasBookmark_BookmarkNotInLibrary_returnsFalse() {
+    public void hasBookmark_bookmarkNotInLibrary_returnsFalse() {
         assertFalse(library.hasBookmark(ALICE));
     }
 
     @Test
-    public void hasBookmark_BookmarkInLibrary_returnsTrue() {
+    public void hasBookmark_bookmarkInLibrary_returnsTrue() {
         library.addBookmark(ALICE);
         assertTrue(library.hasBookmark(ALICE));
     }
 
     @Test
-    public void hasBookmark_BookmarkWithSameIdentityFieldsInLibrary_returnsTrue() {
+    public void hasBookmark_bookmarkWithSameIdentityFieldsInLibrary_returnsTrue() {
         library.addBookmark(ALICE);
         Bookmark editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -87,15 +87,15 @@ public class LibraryTest {
      * A stub ReadOnlyLibrary whose Bookmarks list can violate interface constraints.
      */
     private static class LibraryStub implements ReadOnlyLibrary {
-        private final ObservableList<Bookmark> Bookmarks = FXCollections.observableArrayList();
+        private final ObservableList<Bookmark> bookmarks = FXCollections.observableArrayList();
 
-        LibraryStub(Collection<Bookmark> Bookmarks) {
-            this.Bookmarks.setAll(Bookmarks);
+        LibraryStub(Collection<Bookmark> bookmarks) {
+            this.bookmarks.setAll(bookmarks);
         }
 
         @Override
         public ObservableList<Bookmark> getBookmarkList() {
-            return Bookmarks;
+            return bookmarks;
         }
     }
 

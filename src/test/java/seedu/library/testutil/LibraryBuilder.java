@@ -10,25 +10,25 @@ import seedu.library.model.bookmark.Bookmark;
  */
 public class LibraryBuilder {
 
-    private Library Library;
+    private Library library;
 
     public LibraryBuilder() {
-        Library = new Library();
+        library = new Library();
     }
 
-    public LibraryBuilder(Library Library) {
-        this.Library = Library;
+    public LibraryBuilder(Library library) {
+        this.library = library;
     }
 
     /**
      * Adds a new {@code Bookmark} to the {@code Library} that we are building.
      */
-    public LibraryBuilder withBookmark(Bookmark Bookmark) {
-        Library.addBookmark(Bookmark);
+    public LibraryBuilder withBookmark(Bookmark bookmark) {
+        library.addBookmark(bookmark);
         return this;
     }
 
     public Library build() {
-        return Library;
+        return library;
     }
 }

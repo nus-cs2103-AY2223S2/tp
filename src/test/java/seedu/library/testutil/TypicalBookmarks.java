@@ -4,12 +4,12 @@ import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,8 +64,8 @@ public class TypicalBookmarks {
      */
     public static Library getTypicalLibrary() {
         Library ab = new Library();
-        for (Bookmark Bookmark : getTypicalBookmarks()) {
-            ab.addBookmark(Bookmark);
+        for (Bookmark bookmark : getTypicalBookmarks()) {
+            ab.addBookmark(bookmark);
         }
         return ab;
     }

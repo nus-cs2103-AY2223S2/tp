@@ -7,23 +7,23 @@ import static seedu.library.logic.commands.CommandTestUtil.GENRE_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.GENRE_DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_GENRE_DESC;
-import static seedu.library.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -37,8 +37,8 @@ import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.EditCommand;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
@@ -135,7 +135,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_BOOKMARK;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_AMY;
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_AMY).build();
+        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder()
+                .withName(VALID_TITLE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -184,7 +185,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_BOOKMARK;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

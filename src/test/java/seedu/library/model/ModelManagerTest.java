@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasBookmark_BookmarkNotInLibrary_returnsFalse() {
+    public void hasBookmark_bookmarkNotInLibrary_returnsFalse() {
         assertFalse(modelManager.hasBookmark(ALICE));
     }
 
     @Test
-    public void hasBookmark_BookmarkInLibrary_returnsTrue() {
+    public void hasBookmark_bookmarkInLibrary_returnsTrue() {
         modelManager.addBookmark(ALICE);
         assertTrue(modelManager.hasBookmark(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Library Library = new LibraryBuilder().withBookmark(ALICE).withBookmark(BENSON).build();
+        Library library = new LibraryBuilder().withBookmark(ALICE).withBookmark(BENSON).build();
         Library differentLibrary = new Library();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(Library, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(Library, userPrefs);
+        modelManager = new ModelManager(library, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(library, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -119,7 +119,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getTitle().value.split("\\s+");
         modelManager.updateFilteredBookmarkList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(Library, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(library, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredBookmarkList(PREDICATE_SHOW_ALL_BOOKMARKS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setLibraryFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(Library, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(library, differentUserPrefs)));
     }
 }

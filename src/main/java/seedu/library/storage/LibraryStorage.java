@@ -41,6 +41,6 @@ public interface LibraryStorage {
     /**
      * @see #saveLibrary(ReadOnlyLibrary)
      */
-    void saveLibrary(ReadOnlyLibrary Library, Path filePath) throws IOException;
+    void saveLibrary(ReadOnlyLibrary library, Path filePath) throws IOException;
 
 }

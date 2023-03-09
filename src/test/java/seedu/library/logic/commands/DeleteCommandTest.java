@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.library.logic.commands.CommandTestUtil.showBookmarkAtIndex;
+import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
 import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
-import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 
 import org.junit.jupiter.api.Test;
 

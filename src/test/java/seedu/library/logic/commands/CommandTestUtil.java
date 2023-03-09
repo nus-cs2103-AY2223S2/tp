@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
-import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**

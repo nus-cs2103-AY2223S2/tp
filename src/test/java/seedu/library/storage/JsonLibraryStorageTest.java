@@ -94,10 +94,10 @@ public class JsonLibraryStorageTest {
     /**
      * Saves {@code Library} at the specified {@code filePath}.
      */
-    private void saveLibrary(ReadOnlyLibrary Library, String filePath) {
+    private void saveLibrary(ReadOnlyLibrary library, String filePath) {
         try {
             new JsonLibraryStorage(Paths.get(filePath))
-                    .saveLibrary(Library, addToTestDataPathIfNotNull(filePath));
+                    .saveLibrary(library, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import seedu.library.model.Library;
 import seedu.library.model.ReadOnlyLibrary;
 import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 /**

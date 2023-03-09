@@ -3,9 +3,9 @@ package seedu.library.logic.parser;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 import seedu.library.logic.commands.AddCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 /**

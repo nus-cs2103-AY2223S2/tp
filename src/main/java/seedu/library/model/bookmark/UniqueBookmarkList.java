@@ -8,15 +8,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.library.model.bookmark.exceptions.DuplicateBookmarkException;
 import seedu.library.model.bookmark.exceptions.BookmarkNotFoundException;
+import seedu.library.model.bookmark.exceptions.DuplicateBookmarkException;
 
 /**
  * A list of bookmarks that enforces uniqueness between its elements and does not allow nulls.
- * A bookmark is considered unique by comparing using {@code Bookmark#isSameBookmark(Bookmark)}. As such, adding and updating of
- * Bookmarks uses Bookmark#isSameBookmark(Bookmark) for equality so as to ensure that the Bookmark being added or updated is
- * unique in terms of identity in the UniqueBookmarkList. However, the removal of a bookmark uses Bookmark#equals(Object) so
- * as to ensure that the Bookmark with exactly the same fields will be removed.
+ * A bookmark is considered unique by comparing using {@code Bookmark#isSameBookmark(Bookmark)}.
+ * As such, adding and updating of Bookmarks uses Bookmark#isSameBookmark(Bookmark) for equality so as to
+ * ensure that the Bookmark being added or updated is unique in terms of identity in the UniqueBookmarkList.
+ * However, the removal of a bookmark uses Bookmark#equals(Object) so as to ensure that
+ * the Bookmark with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -90,7 +91,7 @@ public class UniqueBookmarkList implements Iterable<Bookmark> {
      */
     public void setBookmarks(List<Bookmark> bookmarks) {
         requireAllNonNull(bookmarks);
-        if (!BookmarksAreUnique(bookmarks)) {
+        if (!bookmarksAreUnique(bookmarks)) {
             throw new DuplicateBookmarkException();
         }
 
@@ -124,7 +125,7 @@ public class UniqueBookmarkList implements Iterable<Bookmark> {
     /**
      * Returns true if {@code bookmarks} contains only unique bookmarks.
      */
-    private boolean BookmarksAreUnique(List<Bookmark> bookmarks) {
+    private boolean bookmarksAreUnique(List<Bookmark> bookmarks) {
         for (int i = 0; i < bookmarks.size() - 1; i++) {
             for (int j = i + 1; j < bookmarks.size(); j++) {
                 if (bookmarks.get(i).isSameBookmark(bookmarks.get(j))) {

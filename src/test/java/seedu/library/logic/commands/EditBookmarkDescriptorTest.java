@@ -6,9 +6,9 @@ import static seedu.library.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,8 @@ public class EditBookmarkDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditBookmarkDescriptor editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withName(VALID_TITLE_BOB).build();
+        EditBookmarkDescriptor editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY)
+                .withName(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
