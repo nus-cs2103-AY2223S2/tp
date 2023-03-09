@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.address.model.skill.Skill;
+import seedu.address.model.module.Module;
 
 /**
  * Represents a Person in the address book.
@@ -24,16 +27,19 @@ public class Person {
     private final Address address;
     private final Set<Skill> skills = new HashSet<>();
 
+    private final ArrayList<Module> modules = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, ArrayList<Module> modules) {
+        requireAllNonNull(name, phone, email, address, skills, modules);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
+        this.modules.addAll(modules);
     }
 
     public Name getName() {
@@ -58,6 +64,14 @@ public class Person {
      */
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
+    }
+
+    /**
+     * Returns an immutable Module List, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Module> getModules() {
+        return Collections.unmodifiableList(modules);
     }
 
     /**
@@ -92,13 +106,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getSkills().equals(getSkills());
+                && otherPerson.getSkills().equals(getSkills())
+                && otherPerson.getModules().equals(getModules());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, skills);
+        return Objects.hash(name, phone, email, address, skills, modules);
     }
 
     @Override
@@ -116,6 +131,10 @@ public class Person {
         if (!skills.isEmpty()) {
             builder.append("; Skills: ");
             skills.forEach(builder::append);
+        }
+        if (!modules.isEmpty()) {
+            builder.append("; Modules: ");
+            modules.forEach(builder::append);
         }
         return builder.toString();
     }
