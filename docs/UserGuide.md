@@ -10,7 +10,7 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -28,7 +28,7 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -50,6 +50,10 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+## Main Mode
+
+Main mode will be started by default when the program is launched.
 
 ### Viewing help : `help`
 
@@ -123,6 +127,14 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER]`
 Examples:
 *  `edit 1 q/What is chemical symbol for Caarbon? a/C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
 
+### Reviewing a deck: `review`
+
+_**User must select a deck to use this command.**_
+
+Begins reviewing a deck. 
+
+Format: `review`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -144,6 +156,29 @@ If your changes to the data file makes its format invalid, PCs will discard all 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+## Review Mode
+
+Review mode is started when `review` has been entered on the main mode.
+
+### Flipping the Powercard: `flip`
+
+Flips the Powercard to check the answer of it.
+
+Format: `flip`
+
+### Marking the Powercard as correct: `correct`
+
+Marks the current Powercard as correct.
+
+Format: `correct`
+
+### Marking the Powercard as wrong: `wrong`
+
+Marks the current PowerCard as wrong.
+
+Format: `wrong`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
