@@ -179,7 +179,7 @@ public class RemoveCommand extends Command {
                 return Optional.empty();
             }
 
-            if (!phone.equals(person.getPhone()) && !phone.isPhoneEmpty()) {
+            if (!phone.equals(person.getPhone()) && !phone.isEmptyPhone()) {
                 setPhone(null);
                 return Optional.empty();
             }
@@ -196,7 +196,7 @@ public class RemoveCommand extends Command {
                 return Optional.empty();
             }
 
-            if (!email.equals(person.getEmail()) && !email.isEmailEmpty()) {
+            if (!email.equals(person.getEmail()) && !email.isEmptyEmail()) {
                 setEmail(null);
                 return Optional.empty();
             }
@@ -213,7 +213,7 @@ public class RemoveCommand extends Command {
                 return Optional.empty();
             }
 
-            if (!address.equals(person.getAddress()) && !address.isAddressEmpty()) {
+            if (!address.equals(person.getAddress()) && !address.isEmptyAddress()) {
                 setAddress(null);
                 return Optional.empty();
             }

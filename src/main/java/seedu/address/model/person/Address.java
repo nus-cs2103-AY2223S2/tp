@@ -42,7 +42,7 @@ public class Address {
      *
      * @return {@code true} if address is empty.
      */
-    public boolean isAddressEmpty() {
+    public boolean isEmptyAddress() {
         return value.equals("");
     }
 

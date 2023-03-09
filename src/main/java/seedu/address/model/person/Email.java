@@ -58,7 +58,7 @@ public class Email {
      *
      * @return {@code true} if Email is empty.
      */
-    public boolean isEmailEmpty() {
+    public boolean isEmptyEmail() {
         return value.equals("");
     }
 

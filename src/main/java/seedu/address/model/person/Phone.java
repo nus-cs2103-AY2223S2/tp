@@ -39,7 +39,7 @@ public class Phone {
      *
      * @return {@code true} if phone number is empty.
      */
-    public boolean isPhoneEmpty() {
+    public boolean isEmptyPhone() {
         return value.equals("");
     }
 
