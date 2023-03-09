@@ -21,20 +21,6 @@ Users will enjoy the advantages of a command-line interface, as managing contact
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **User stories**
-
-As a user, I want to get help conveniently from the E-Lister application, so that I can understand the syntax and the various commands.
-
-As an insurance salesman, I can add the person's income so I can determine which policy best targets that user.
-
-As an insurance salesman, I can add tags to selected users so I can specifically target and manage them.
-
-As an insurance salesman, I can filter by traits to obtain a list of people who are more likely to buy a certain policy.
-
-As a salesman, I can export contact details into a csv file so that I can mass contact potential customers.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Non-functional requirements**
 
 This application should be usable on mainstream OSes as long as Java 11 is installed.
@@ -286,15 +272,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Insurance salesmen who want to obtain a list of contacts who meet a certain criteria.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: tag, filter, and obtain contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -303,12 +283,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions in case I forget how to use the App              |
+| `* * *`  | user                                       | add a potential customer       |                                                                        |
+| `* * *`  | user                                       | delete a potential customer    | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a potential customer by name | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | salsman with many potential customers in the E-Lister| sort potential customers by name | locate a potential customer easily                         |
+| `* * *`  | Insurance salesman                         | see usage instructions         | Add someone to a category to manage them better                        |
+| `* * *`  | Insurance salesman                         | add the user's income          | tell whether he's someone actually worth selling insurance to          |
+| `* * *`  | Insurance salesman                         | delete all tags                | reset all the data                                                     |
+| `* *`    | Insurance salesman                           | add the user's income          | tell whether he's someone actually worth selling insurance to            |
+| `* *`    | Insurance salesman                           | filter by traits (e.g. income level) | selectively target certain insurance products to people who are more likely to buy it |
+| `*`      | Insurance salesman                           | undo what I did                  | easily correct unecessary mistakes                                     |
 
 *{More to be added}*
 
