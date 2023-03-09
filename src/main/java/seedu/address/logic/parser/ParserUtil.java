@@ -3,9 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -24,6 +22,8 @@ import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
 import seedu.address.model.tag.Tag;
+
+import javax.swing.text.html.Option;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -63,12 +63,15 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Optional<Index> parseIndex(String oneBasedIndex) throws ParseException {
+        if (Objects.equals(oneBasedIndex, "")) {
+            return Optional.empty();
+        }
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return Optional.of(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
     }
 
     /**
