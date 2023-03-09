@@ -5,6 +5,6 @@ package seedu.address.model.score.exceptions;
  */
 public class BadDateException extends RuntimeException {
     public BadDateException() {
-        super("Date is not in the correct format!");
+        super("Date is not in the correct format! Please use the following format: dd/mm/yyyy.");
     }
 }

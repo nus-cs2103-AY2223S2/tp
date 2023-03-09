@@ -8,7 +8,7 @@ public class ScoreTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Score(null, 0, null));
+        assertThrows(NullPointerException.class, () -> new Score(null, null, null));
     }
 
 

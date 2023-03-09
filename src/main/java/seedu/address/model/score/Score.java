@@ -16,7 +16,7 @@ import seedu.address.model.score.exceptions.BadDateException;
 public class Score {
     // Identity field(s)
     public final Title scoreName;
-    public final Integer scoreValue;
+    public final ScoreValue scoreValue;
     public final LocalDateTime scoreDate;
 
     /**
@@ -26,7 +26,7 @@ public class Score {
      * @param scoreValue A valid Score value.
      * @param scoreDate A valid Score date.
      */
-    public Score(Title scoreName, Integer scoreValue, String scoreDate) {
+    public Score(Title scoreName, ScoreValue scoreValue, String scoreDate) {
         requireAllNonNull(scoreName, scoreValue, scoreDate);
 
         this.scoreName = scoreName;
@@ -51,7 +51,7 @@ public class Score {
     /**
      * Returns the score value.
      */
-    public int getScoreValue() {
+    public ScoreValue getScoreValue() {
         return scoreValue;
     }
 
