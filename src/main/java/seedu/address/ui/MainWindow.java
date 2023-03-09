@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DoctorStub;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ContactDetailsCard enlargedContactCard;
+    private EnlargedContactCard enlargedContactCard;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -114,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        enlargedContactCard = new EnlargedContactCard();
+        enlargedContactCard = new EnlargedContactCard(new DoctorStub());
         enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
