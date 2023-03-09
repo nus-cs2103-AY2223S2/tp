@@ -41,8 +41,6 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    private String dateLabel;
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -53,30 +51,7 @@ public class InternshipCard extends UiPart<Region> {
         companyName.setText(internship.getCompanyName().fullCompanyName);
         role.setText("Role: " + internship.getRole().fullRole);
         status.setText("Status: " + internship.getStatus().toString());
-        String internshipStatus = internship.getStatus().toString();
-        switch (internshipStatus) {
-        case "New":
-            dateLabel = "Date Added: ";
-            break;
-        case "Applied":
-            dateLabel = "Date Applied: ";
-            break;
-        case "Assessment":
-            dateLabel = "Date of Assessment: ";
-            break;
-        case "Interview":
-            dateLabel = "Date of Interview: ";
-            break;
-        case "Offered":
-            dateLabel = "Date of Notice of Offer: ";
-            break;
-        case "Rejected":
-            dateLabel = "Date of Notice of Rejection: ";
-            break;
-        default:
-            dateLabel = "Date: ";
-        }
-        date.setText(dateLabel + internship.getDate().fullDate);
+        date.setText(internship.getDate().fullDate);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -98,13 +73,5 @@ public class InternshipCard extends UiPart<Region> {
         InternshipCard card = (InternshipCard) other;
         return id.getText().equals(card.id.getText())
                 && internship.equals(card.internship);
-    }
-
-    /**
-     * Returns the date label shown in the UI.
-     * @return the data label in the UI.
-     */
-    public String getDateLabel() {
-        return this.dateLabel;
     }
 }
