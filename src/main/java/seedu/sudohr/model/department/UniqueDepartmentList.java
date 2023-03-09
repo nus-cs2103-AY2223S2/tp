@@ -21,7 +21,7 @@ import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
  * Supports a minimal set of list operations.
  */
 public class UniqueDepartmentList implements Iterable<Department> {
-    private final ObservableList<Department> internalList = FXCollections.observableArrayList();;
+    private final ObservableList<Department> internalList = FXCollections.observableArrayList();
     private final ObservableList<Department> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
