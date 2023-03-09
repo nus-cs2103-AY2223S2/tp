@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
     appointment dates and time of its clients which makes it easier for the client to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  
+
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
@@ -40,14 +40,14 @@ Given below are my contributions to the project.
     * Added Use case for `exit` and `clear`
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
-  [\#81](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/81), 
+  * PRs reviewed (with non-trivial review comments):
+  [\#81](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/81),
   [\#75](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/75), 
   [\#58](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/58), 
   [\#48](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/48)
-  * Contributed to forum discussions 
+  * Contributed to forum discussions
   [\109](https://github.com/nus-cs2103-AY2223S2/forum/issues/109),
-  [\#114](https://github.com/nus-cs2103-AY2223S2/forum/issues/114), 
+  [\#114](https://github.com/nus-cs2103-AY2223S2/forum/issues/114),
   [\#150](https://github.com/nus-cs2103-AY2223S2/forum/issues/150)
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
