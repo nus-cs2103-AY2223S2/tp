@@ -14,11 +14,17 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.Logic1;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.LogicManager1;
 import seedu.address.model.AddressBook;
+import seedu.address.model.InternshipCatalogue;
 import seedu.address.model.Model;
+import seedu.address.model.Model1;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelManager1;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInternshipCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -41,9 +47,11 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected Logic logic;
+    // Changed this to new Logic Class
+    protected Logic1 logic;
     protected Storage storage;
-    protected Model model;
+    // Changes this to Model class.
+    protected Model1 model;
     protected Config config;
 
     @Override
@@ -63,7 +71,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager1(model, storage);
 
         ui = new UiManager(logic);
     }
@@ -73,24 +81,26 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model1 initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
+        ReadOnlyInternshipCatalogue initialData;
+        // Need to Reimplement when done with storage
+        initialData = new InternshipCatalogue();
+//        try {
+//            addressBookOptional = storage.readAddressBook();
+//            if (!addressBookOptional.isPresent()) {
+//                logger.info("Data file not found. Will be starting with a sample AddressBook");
+//            }
+//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+//        } catch (DataConversionException e) {
+//            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+//            initialData = new AddressBook();
+//        } catch (IOException e) {
+//            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+//            initialData = new AddressBook();
+//        }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager1(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
