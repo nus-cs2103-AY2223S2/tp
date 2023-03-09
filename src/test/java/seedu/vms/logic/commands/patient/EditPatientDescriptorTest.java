@@ -51,7 +51,7 @@ public class EditPatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
+        // different allergies -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAllergies(VALID_ALLERGY_SEAFOOD).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }

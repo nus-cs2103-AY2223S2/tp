@@ -81,8 +81,8 @@ public class EditPatientDescriptorBuilder {
      * that we are building.
      */
     public EditPatientDescriptorBuilder withAllergies(String... allergies) {
-        Set<Allergy> tagSet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
-        descriptor.setAllergies(tagSet);
+        Set<Allergy> allergySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allergySet);
         return this;
     }
 
@@ -91,8 +91,8 @@ public class EditPatientDescriptorBuilder {
      * that we are building.
      */
     public EditPatientDescriptorBuilder withVaccines(String... vaccines) {
-        Set<Vaccine> tagSet = Stream.of(vaccines).map(Vaccine::new).collect(Collectors.toSet());
-        descriptor.setVaccines(tagSet);
+        Set<Vaccine> vaccineSet = Stream.of(vaccines).map(Vaccine::new).collect(Collectors.toSet());
+        descriptor.setVaccines(vaccineSet);
         return this;
     }
 

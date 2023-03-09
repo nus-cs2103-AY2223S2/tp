@@ -77,7 +77,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a vaccine set containing the list of strings given.
      */
     public static Set<Vaccine> getVaccineSet(String... strings) {
         return Arrays.stream(strings)

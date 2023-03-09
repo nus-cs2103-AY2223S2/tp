@@ -21,7 +21,7 @@ public class VaccineTest {
 
     @Test
     public void isValidVaccineName() {
-        // null tag name
+        // null vaccine name
         assertThrows(NullPointerException.class, () -> Vaccine.isValidVaccineName(null));
 
         // valid

@@ -84,7 +84,7 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withBloodType(VALID_BLOODTYPE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different allergies -> returns false
         editedAlice = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_GLUTEN).build();
         assertFalse(ALICE.equals(editedAlice));
     }

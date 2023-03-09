@@ -185,9 +185,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseAllergy_validValueWithWhitespace_returnsTrimmedAllergy() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_ALLERGY_1 + WHITESPACE;
+        String allergyWithWhitespace = WHITESPACE + VALID_ALLERGY_1 + WHITESPACE;
         Allergy expectedAllergy = new Allergy(VALID_ALLERGY_1);
-        assertEquals(expectedAllergy, ParserUtil.parseAllergy(tagWithWhitespace));
+        assertEquals(expectedAllergy, ParserUtil.parseAllergy(allergyWithWhitespace));
     }
 
     @Test
@@ -233,9 +233,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseVaccine_validValueWithWhitespace_returnsTrimmedVaccine() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_VACCINE_1 + WHITESPACE;
+        String vaccineWithWhitespace = WHITESPACE + VALID_VACCINE_1 + WHITESPACE;
         Vaccine expectedVaccine = new Vaccine(VALID_VACCINE_1);
-        assertEquals(expectedVaccine, ParserUtil.parseVaccine(tagWithWhitespace));
+        assertEquals(expectedVaccine, ParserUtil.parseVaccine(vaccineWithWhitespace));
     }
 
     @Test

@@ -98,7 +98,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_ALLERGY} alone will reset the allergys of the {@code Patient} being edited,
+        // while parsing {@code PREFIX_ALLERGY} alone will reset the allergies of the {@code Patient} being edited,
         // parsing it together with a valid allergy results in error
         assertParseFailure(parser, "1" + ALLERGY_DESC_GLUTEN + ALLERGY_DESC_SEAFOOD + ALLERGY_EMPTY,
                 Allergy.MESSAGE_CONSTRAINTS);
@@ -165,7 +165,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // allergys
+        // allergies
         userInput = targetIndex.getOneBased() + ALLERGY_DESC_GLUTEN;
         descriptor = new EditPatientDescriptorBuilder().withAllergies(VALID_ALLERGY_GLUTEN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -207,7 +207,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetAllergies_success() {
         Index targetIndex = INDEX_THIRD_PATIENT;
         String userInput = targetIndex.getOneBased() + ALLERGY_EMPTY;
 

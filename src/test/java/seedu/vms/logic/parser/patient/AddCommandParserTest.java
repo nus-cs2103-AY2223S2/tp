@@ -67,12 +67,12 @@ public class AddCommandParserTest {
                 + BLOODTYPE_DESC_BOB + ALLERGY_DESC_GLUTEN, new AddCommand(expectedPatient));
 
         // multiple allergy - all accepted
-        Patient expectedPatientMultipleTags = new PatientBuilder(BOB)
+        Patient expectedPatientMultipleAllergies = new PatientBuilder(BOB)
                 .withAllergies(VALID_ALLERGY_GLUTEN, VALID_ALLERGY_SEAFOOD)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + BLOODTYPE_DESC_BOB
                 + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN,
-                new AddCommand(expectedPatientMultipleTags));
+                new AddCommand(expectedPatientMultipleAllergies));
     }
 
     @Test

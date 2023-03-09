@@ -21,7 +21,7 @@ public class AllergyTest {
 
     @Test
     public void isValidAllergyName() {
-        // null tag name
+        // null allergy name
         assertThrows(NullPointerException.class, () -> Allergy.isValidAllergyName(null));
 
         // valid
