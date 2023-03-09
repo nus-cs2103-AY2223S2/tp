@@ -5,17 +5,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * An ui for the status bar that is displayed at the header of the application.
  */
 public class DetailedInfoSection extends UiPart<Region> {
-
     private static final String FXML = "DetailedInfoSection.fxml";
-
     @FXML
     private TextArea detailedInfoSection;
 
     /**
-     * Creates a {@code DetailedInfoSection} with the given {@code Stage} and {@code Person}.
+     * Creates a {@code DetailedInfoSection} with the given {@code Stage} and {@code Student}.
      */
     public DetailedInfoSection() {
         super(FXML);

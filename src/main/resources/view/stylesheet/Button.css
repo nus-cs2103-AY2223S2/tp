@@ -3,48 +3,58 @@
  * Author: Pedro Duque Vieira
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
-.button {
-    -fx-height: 20px;
-    -fx-width: 100px;
+.oddButton {
+    -fx-min-width: 65px;
     -fx-border-color: black;
     -fx-border-width: 2;
-    -fx-border-radius: 3;
+    -fx-border-radius: 4;
     -fx-background-radius: 4;
-    -fx-background-color: #ADA2FF;
     -fx-font-family: "Comic Sans MS";
-    -fx-font-size: 10pt;
+    -fx-font-size: 8pt;
     -fx-text-fill: black;
-    -fx-padding: 5 5 5 5;
+    -fx-padding: 5 2;
+    -fx-margin: 5;
+    -fx-background-color: #AED6F1;
 }
 
-.button:hover {
-    -fx-background-color: #e6e6e6;
+.evenButton {
+    -fx-min-width: 65px;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-padding: 5 2;
+    -fx-margin: 5;
+    -fx-background-color: #BFEAF5;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+.oddButton:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e65550;
 }
 
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
+.evenButton:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e65550;
+}
+
+.oddButton:focused {
+    -fx-border-color: #e65550;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 7;
     -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: #f5f5f5;
 }
 
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
+.evenButton:focused {
+    -fx-border-color: #e65550;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 7;
+    -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: #f5f5f5;
 }

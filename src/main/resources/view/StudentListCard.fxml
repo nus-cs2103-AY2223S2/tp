@@ -9,24 +9,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@stylesheet/Button.css" />
   </stylesheets>
+
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="200.0" />
-      <ColumnConstraints hgrow="NEVER" minWidth="300.0" prefWidth="400.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="125.0" prefWidth="200.0" />
+      <ColumnConstraints hgrow="NEVER" minWidth="250.0" prefWidth="300.0" />
          <ColumnConstraints />
          <ColumnConstraints />
     </columnConstraints>
-
-    <rowConstraints>
-      <RowConstraints/>
-    </rowConstraints>
 
     <VBox alignment="CENTER_LEFT" minHeight="75" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
       <padding>
@@ -45,10 +41,11 @@
       <FlowPane fx:id="tags" />
     </VBox>
 
-    <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
-      <Button fx:id="viewProfileButton" text="Profile" />
-      <Button fx:id="viewSchoolTasksButton" text="Homework" />
-      <Button fx:id="viewLessonsButton" text="Lessons" />
+    <HBox alignment="CENTER" GridPane.columnIndex="1" spacing="5">
+      <Button fx:id="viewProfileButton" styleClass="oddButton" text="Profile" />
+      <Button fx:id="viewSchoolTasksButton" styleClass="evenButton" text="Homework" />
+      <Button fx:id="viewLessonsButton" styleClass="oddButton" text="Lessons" />
+      <Button fx:id="viewExamsButton" styleClass="evenButton" text="Exams" />
     </HBox>
 
   </GridPane>

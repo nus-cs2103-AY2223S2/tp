@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import seedu.address.model.student.Student;
 
 /**
@@ -43,6 +44,8 @@ public class StudentCard extends UiPart<Region> {
     private Button viewSchoolTasksButton;
     @FXML
     private Button viewLessonsButton;
+    @FXML
+    private Button viewExamsButton;
 
     private final Student student;
 
@@ -56,7 +59,6 @@ public class StudentCard extends UiPart<Region> {
         this.studentTasksPageStage = new Stage();
         this.studentLessonsPageStage = new Stage();
 
-
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         student.getTags().stream()
@@ -65,6 +67,7 @@ public class StudentCard extends UiPart<Region> {
         viewProfileButton.setOnAction(event -> handleViewProfileClick());
         viewSchoolTasksButton.setOnAction(event -> handleViewTasksClick());
         viewLessonsButton.setOnAction(event -> handleViewLessonsClick());
+        this.viewExamsButton = new Button("Exams");
     }
 
     /**
@@ -72,6 +75,8 @@ public class StudentCard extends UiPart<Region> {
      */
     @FXML
     private void handleViewProfileClick() {
+        Window window = this.getRoot().getScene().getWindow();
+
         StudentInfoPage infoPage = new StudentInfoPage(student, studentInfoPageStage);
 
         if (!infoPage.isShowing()) {
@@ -107,6 +112,7 @@ public class StudentCard extends UiPart<Region> {
             lessonsPage.focus();
         }
     }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
