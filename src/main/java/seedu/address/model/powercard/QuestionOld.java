@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Powercard's Question in the deck.
+ * Represents a Powercard's QuestionOld in the deck.
  */
-public class Question {
+public class QuestionOld {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Questions should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -20,11 +20,11 @@ public class Question {
     private String question;
 
     /**
-     * Constructs a {@code Question}.
+     * Constructs a {@code QuestionOld}.
      *
      * @param question A valid question.
      */
-    public Question(String question) {
+    public QuestionOld(String question) {
         requireNonNull(question);
         checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
         this.question = question;
@@ -40,8 +40,8 @@ public class Question {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Question // instanceof handles nulls
-                && this.question.equals(((Question) other).question)); // state check
+                || (other instanceof QuestionOld // instanceof handles nulls
+                && this.question.equals(((QuestionOld) other).question)); // state check
     }
 
     @Override
