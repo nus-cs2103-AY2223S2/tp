@@ -1,0 +1,28 @@
+{
+  "persons": [ ],
+  "meetings" : [ {
+    "title" : "Valid Meeting",
+    "dateTime" : "01/02/2023 19:00",
+    "attendees" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "tagged" : [ "friends" ]
+    } ],
+    "location" : "NUS",
+    "description" : "Weekly catchup"
+  }, {
+    "title" : "Invalid Meeting",
+    "dateTime" : "12/13/2022 12:00",
+    "attendees" : [ {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "tagged" : [ ]
+    } ],
+    "location" : "School",
+    "description" : "Study for midterms"
+  } ]
+}
