@@ -2,8 +2,8 @@ package seedu.patientist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.patientist.model.Patientist;
 import seedu.patientist.model.Model;
+import seedu.patientist.model.Patientist;
 
 /**
  * Clears the patientist book.

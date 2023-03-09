@@ -72,7 +72,7 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the patientist book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist.
      */
     void setPerson(Person target, Person editedPerson);
 
