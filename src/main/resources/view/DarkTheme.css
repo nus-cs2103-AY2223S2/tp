@@ -224,13 +224,24 @@
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
-.button:hover {
-    -fx-background-color: #3a3a3a;
+.detailsButton {
+-fx-padding: 5 22 5 22;
+-fx-background-color: derive(#979797, 30%);
+-fx-border-color: #e2e2e2;
+-fx-text-fill: black;
+-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+-fx-font-size: 8pt;
+-fx-pref-size: 30;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #979797;
+.detailsButton:hover {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: white;
+}
+
+.detailsButton:pressed, .detailsButton:default:hover:pressed {
+  -fx-background-color: #979797;
+  -fx-text-fill: black;
 }
 
 .button:focused {
@@ -356,7 +367,6 @@
 
 .tag_alignment {
 -fx-alignment: center;
--fx-background-insets: 10
 }
 
 #tagPane {

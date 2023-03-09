@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="BookFace" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -41,12 +42,21 @@
           </padding>
         </StackPane>
 
+        <HBox>
         <VBox fx:id="personList" styleClass="pane-with-border" maxWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
+
+        <VBox fx:id="personalPane" styleClass="pane-with-border" maxWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="personalPanePlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
+        </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">

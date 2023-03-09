@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
 
-<?import javafx.scene.control.Button?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="personalPane" fx:id="personalPane" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" >
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
@@ -38,21 +33,14 @@
                     </Label>
                     <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
                 </HBox>
-                <HBox id="tagPane" fx:id="tagPane">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
+                <HBox id="tagPane" fx:id="tagPane"> <!-- Change this later  -->
                     <FlowPane fx:id="tags" styleClass="tag_alignment"/>
                 </HBox>
-                <Button alignment="BOTTOM_RIGHT" fx:id="showButton" mnemonicParsing="false" onAction="#showPersonalPane"
-                        text="More details" styleClass="detailsButton"/>
-
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
             </VBox>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" visible="false"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" visible="false"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" visible="false"/>
         </HBox>
     </GridPane>
+
 </HBox>
-
-
