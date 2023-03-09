@@ -1,14 +1,14 @@
 package bookopedia.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
 import bookopedia.model.person.Person;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * View more information about a delivery.
