@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.recipe.commons.exceptions.DataConversionException;
-import seedu.recipe.model.ReadOnlyAddressBook;
+import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.ReadOnlyUserPrefs;
 import seedu.recipe.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends RecipeBookStorage, UserPrefsStorage {
     Path getRecipeBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyRecipeBook> readRecipeBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveRecipeBook(ReadOnlyRecipeBook addressBook) throws IOException;
 
 }

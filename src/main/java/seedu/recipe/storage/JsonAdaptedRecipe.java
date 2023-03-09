@@ -14,6 +14,8 @@ import seedu.recipe.model.recipe.Title;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Description;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -38,10 +40,10 @@ class JsonAdaptedRecipe {
         this.title = title;
         this.desc = desc;
         if (ingredients != null) {
-            this.ingredients.addAll(ingredients)
+            this.ingredients.addAll(ingredients);
         }
         if (steps != null) {
-            this.steps.addAll(ingredients)
+            this.steps.addAll(ingredients);
         }
     }
 
