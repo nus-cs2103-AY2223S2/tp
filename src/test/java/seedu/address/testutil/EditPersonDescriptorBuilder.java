@@ -9,6 +9,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setRate(person.getRate());
         descriptor.setAddress(person.getAddress());
+        descriptor.setTiming(person.getTiming());
         descriptor.setTags(person.getTags());
     }
 
@@ -57,6 +59,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TIMING} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTiming(String startTime, String endTime) {
+        descriptor.setTiming(new Timing(startTime, endTime));
         return this;
     }
 

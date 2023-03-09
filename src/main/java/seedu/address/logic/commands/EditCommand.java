@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -24,6 +26,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,9 +56,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TIMING_START + "TIMING] "
+            + "[" + PREFIX_TIMING_END + "TIMING] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
+            + PREFIX_TIMING_START + "12-03-2023 11:00"
+            + PREFIX_TIMING_END + "13-03-2023 11:00"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -108,9 +115,10 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Timing updatedTiming = editPersonDescriptor.getTiming().orElse(personToEdit.getTiming());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Event(updatedName, updatedRate, updatedAddress, updatedTags);
+        return new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
     }
 
     @Override
@@ -139,6 +147,7 @@ public class EditCommand extends Command {
         private Name name;
         private Rate rate;
         private Address address;
+        private Timing timing;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -151,6 +160,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setRate(toCopy.rate);
             setAddress(toCopy.address);
+            setTiming(toCopy.timing);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rate, address, tags);
+            return CollectionUtil.isAnyNonNull(name, rate, address, timing, tags);
         }
 
         public void setName(Name name) {
@@ -183,6 +193,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTiming(Timing timing) {
+            this.timing = timing;
+        }
+
+        public Optional<Timing> getTiming() {
+            return Optional.ofNullable(timing);
         }
 
         /**

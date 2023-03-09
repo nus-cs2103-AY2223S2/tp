@@ -21,16 +21,18 @@ public class Event {
 
     // Data fields
     private final Address address;
+    private final Timing timing;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Rate rate, Address address, Set<Tag> tags) {
+    public Event(Name name, Rate rate, Address address, Timing timing, Set<Tag> tags) {
         requireAllNonNull(name, rate, address, tags);
         this.name = name;
         this.rate = rate;
         this.address = address;
+        this.timing = timing;
         this.tags.addAll(tags);
     }
 
@@ -44,6 +46,9 @@ public class Event {
 
     public Address getAddress() {
         return address;
+    }
+    public Timing getTiming() {
+        return timing;
     }
 
     /**
@@ -85,13 +90,14 @@ public class Event {
         return otherEvent.getName().equals(getName())
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
+                && otherEvent.getTiming().equals(getTiming())
                 && otherEvent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, tags);
+        return Objects.hash(name, rate, address, timing, tags);
     }
 
     @Override
@@ -101,7 +107,9 @@ public class Event {
                 .append("; Rate: ")
                 .append(getRate())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Timing: ")
+                .append(getTiming());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

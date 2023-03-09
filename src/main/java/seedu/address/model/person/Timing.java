@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class Timing {
     public static final String MESSAGE_CONSTRAINTS =
-            "Timings should be of the format dd-MM-yyyy hh:mm";
+            "Timings should be of the format dd-MM-uuuu hh:mm";
     public final String startTime;
     public final String endTime;
 
