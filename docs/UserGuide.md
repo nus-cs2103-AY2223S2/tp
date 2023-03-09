@@ -63,7 +63,7 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
 
-### Locating persons by keyword: `find` 
+### Locating persons by keyword: `find`
 
 Shows a list of all persons in address book whose details match the keyword provided.
 
