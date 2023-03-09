@@ -29,10 +29,17 @@ public class DateTest {
         assertFalse(Date.isValidDate(" ")); // spaces only
         assertFalse(Date.isValidDate("1st March 2023")); //invalid date format
         assertFalse(Date.isValidDate("March 1st 2023")); //invalid date format
+        assertFalse(Date.isValidDate("2023-0-02")); //invalid date format
+        assertFalse(Date.isValidDate("202-01-02")); //invalid date format
+        assertFalse(Date.isValidDate("2023-03-1")); //invalid date format
+        assertFalse(Date.isValidDate("2023-00-00")); //invalid date
+        assertFalse(Date.isValidDate("2023-04-31")); //invalid date
 
         // valid dates
         assertTrue(Date.isValidDate("2023-03-01"));
         assertTrue(Date.isValidDate("2023-02-05"));
-        assertTrue(Date.isValidDate("2023-03-05"));
+        assertTrue(Date.isValidDate("2023-12-31"));
+        assertTrue(Date.isValidDate("2023-02-28"));
+        assertTrue(Date.isValidDate("2020-02-29")); //leap year
     }
 }

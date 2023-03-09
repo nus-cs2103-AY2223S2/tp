@@ -36,12 +36,16 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("have not applied"));
 
 
-        // valid status for the default values only
+        // valid status for the default values only. Case-insensitive
         assertTrue(Status.isValidStatus("new"));
         assertTrue(Status.isValidStatus("applied"));
         assertTrue(Status.isValidStatus("assessment"));
         assertTrue(Status.isValidStatus("interview"));
         assertTrue(Status.isValidStatus("offered"));
         assertTrue(Status.isValidStatus("rejected"));
+        assertTrue(Status.isValidStatus("Rejected"));
+        assertTrue(Status.isValidStatus("INTERVIEW"));
+        assertTrue(Status.isValidStatus("APPlied"));
+        assertTrue(Status.isValidStatus("iNTerview"));
     }
 }
