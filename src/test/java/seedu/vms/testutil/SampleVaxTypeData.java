@@ -18,14 +18,14 @@ public class SampleVaxTypeData {
             new Requirement(RequirementType.NONE, new HashSet<>(List.of("DOSE 1"))));
     public static final List<Requirement> ALLERGY_REQS_REAL = List.of(
             new Requirement(RequirementType.NONE, new HashSet<>(List.of(
-                    "((4-Hydroxybutyl)azanediyl)bis(hexane-6,1-diyl)bis(2-hexyldecanoate)",
-                    "2-[(polyethylene glycol)-2000]-N,N-ditetradecylacetamide",
-                    "1,2-Distearoyl-sn-glycero-3-phosphocholine",
+                    "ALC-0315",
+                    "ALC-0159",
+                    "DSPC",
                     "Cholesterol",
                     "Sucrose",
                     "Phosphate",
                     "Tromethamine",
-                    "Tris(hydroxymethyl)aminoethane hydrochloride"))));
+                    "Tromethamine hydrochloride"))));
 
     public static final String NAME_1 = "UNCHI";
     public static final HashSet<String> GROUPS_1 =
