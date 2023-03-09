@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -23,6 +24,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    private static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     private final Index targetIndex;
 
@@ -30,18 +32,32 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+//    @Override
+//    public CommandResult execute(Model model) throws CommandException {
+//        requireNonNull(model);
+//        List<Person> lastShownList = model.getFilteredPersonList();
+//
+//        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        }
+//
+//        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+//        model.deletePerson(personToDelete);
+//        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+//    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTask(taskToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
     @Override
