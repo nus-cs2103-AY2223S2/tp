@@ -16,7 +16,7 @@ public class ListCommand1 extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model1 model) {
         requireNonNull(model);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(MESSAGE_SUCCESS);

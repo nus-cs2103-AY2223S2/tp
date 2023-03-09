@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax1.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax1.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+import seedu.address.model.Model1;
 import seedu.address.model.internship.Internship;
 
 
@@ -48,7 +48,7 @@ public class AddCommand1 extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model1 model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasInternship(toAdd)) {
