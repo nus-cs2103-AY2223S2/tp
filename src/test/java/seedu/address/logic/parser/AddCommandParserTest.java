@@ -42,6 +42,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -76,6 +77,7 @@ public class AddCommandParserTest {
         Event expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -85,7 +87,6 @@ public class AddCommandParserTest {
         Event expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
                         + ADDRESS_DESC_AMY
-                        + VALID_START_TIME_AMY + VALID_END_TIME_AMY
                         + START_TIME_DESC_AMY + END_TIME_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -145,12 +146,12 @@ public class AddCommandParserTest {
         // invalid start time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_START_TIME_DESC + END_TIME_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Timing.MESSAGE_CONSTRAINTS);
 
         // invalid end time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + START_TIME_DESC_BOB + INVALID_END_TIME_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Timing.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB

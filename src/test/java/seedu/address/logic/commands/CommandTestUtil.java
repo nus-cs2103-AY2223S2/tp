@@ -63,7 +63,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     // string not formatted correctly not allowed for time
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_TIMING_START + " ";
-    public static final String INVALID_END_TIME_DESC = " " + PREFIX_TIMING_START + " ";
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_TIMING_END + " ";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
