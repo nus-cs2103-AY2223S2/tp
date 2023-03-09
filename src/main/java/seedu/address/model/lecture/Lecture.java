@@ -23,10 +23,12 @@ public class Lecture {
      * Constructs a {@code Lecture}.
      *
      * @param name The name of the lecture.
+     * @param tags The tags applied to the module.
      */
-    public Lecture(LectureName name) {
+    public Lecture(LectureName name, Set<Tag> tags) {
         requireNonNull(name);
         this.name = name;
+        this.tags.addAll(tags);
     }
 
     public LectureName getName() {

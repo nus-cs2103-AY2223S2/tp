@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -120,6 +121,13 @@ public class UniqueDataList<T> implements Iterable<T> {
      */
     public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code List}.
+     */
+    public List<T> asUnmodifiableList() {
+        return Collections.unmodifiableList(internalList);
     }
 
     @Override

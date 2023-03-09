@@ -24,7 +24,7 @@ public class UniqueLectureList extends UniqueDataList<Lecture> {
     }
 
     /**
-     * Returns true if the list contains an equivalent module as the given argument.
+     * Returns true if the list contains an equivalent lecture as the given argument.
      */
     @Override
     public boolean contains(Lecture toCheck) {
