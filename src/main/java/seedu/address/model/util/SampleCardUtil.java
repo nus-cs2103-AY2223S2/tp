@@ -11,6 +11,9 @@ import seedu.address.model.powerdeck.PowerDeck;
 import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Contains utility methods for populating {@code Deck} with sample cards.
+ */
 public class SampleCardUtil {
 
     // TODO: add tag to each card
