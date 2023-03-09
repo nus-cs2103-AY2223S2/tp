@@ -22,7 +22,6 @@ import seedu.address.model.student.Student;
  * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalStudents {
-
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withStudentId("A0123456M").withEmail("alice@example.com")
             .withPhone("94351253")
