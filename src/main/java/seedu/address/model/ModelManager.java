@@ -34,7 +34,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         versionedAddressBook = new VersionedAddressBook(this.addressBook);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
     }
@@ -133,6 +132,7 @@ public class ModelManager implements Model {
     public void redo() {
         AddressBook ab = versionedAddressBook.redo();
         setAddressBook(ab);
+    }
 
     @Override
     public void deleteClient(Client target) {

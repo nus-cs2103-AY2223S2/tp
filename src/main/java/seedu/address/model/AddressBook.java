@@ -121,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public AddressBook clone() {
         AddressBook ab = new AddressBook();
-        ab.setPersons(this.getPersonList());
+        ab.setClients(this.getClientList());
         return ab;
     }
 

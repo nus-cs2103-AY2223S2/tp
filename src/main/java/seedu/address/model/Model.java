@@ -83,18 +83,14 @@ public interface Model {
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-    void commit();
-
-    boolean canUndo();
-
-    void undo();
+    void updateFilteredClientList(Predicate<Client> predicate);
 
     boolean canRedo();
 
-    void redo();
-    
-    void updateFilteredClientList(Predicate<Client> predicate);
-}
+    //todo
+    void commit();
 
+    boolean canUndo();
+    void redo();
+    void undo();
+}
