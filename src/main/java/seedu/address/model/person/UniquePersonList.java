@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -135,4 +136,43 @@ public class UniquePersonList implements Iterable<Person> {
         return true;
     }
 
+    /**
+     * Sorts the list by given {@code category}.
+     * @param category
+     */
+    public void sort(String category) {
+        if (category.equals("name")) {
+            internalList.sort(Comparator.comparing((Person a) -> a.getName().toString().toLowerCase()));
+        } else if (category.equals("phone")) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getPhone().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getPhone().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getPhone().toString().toLowerCase().compareTo(b.getPhone().toString().toLowerCase());
+                }
+            });
+        } else if (category.equals("email")) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getEmail().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getEmail().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getEmail().toString().toLowerCase().compareTo(b.getEmail().toString().toLowerCase());
+                }
+            });
+        } else if (category.equals("address")) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getAddress().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getAddress().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getAddress().toString().toLowerCase().compareTo(b.getAddress().toString().toLowerCase());
+                }
+            });
+        }
+    }
 }

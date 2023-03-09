@@ -11,8 +11,10 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +50,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String profile} into a {@code GitHubProfile}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code profile} is invalid.
+     */
+    public static GitHubProfile parseProfile(String profile) throws ParseException {
+        requireNonNull(profile);
+        String trimmedProfile = profile.trim();
+        if (!GitHubProfile.isValidProfile(trimmedProfile)) {
+            throw new ParseException(GitHubProfile.MESSAGE_CONSTRAINTS);
+        }
+        return new GitHubProfile(trimmedProfile);
     }
 
     /**
@@ -93,6 +110,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String language} into a {@code Language}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code language} is invalid.
+     */
+    public static Language parseLanguage(String language) throws ParseException {
+        requireNonNull(language);
+        String trimmedLanguage = language.trim();
+        if (!Language.isValidLanguageName(trimmedLanguage)) {
+            throw new ParseException(Language.MESSAGE_CONSTRAINTS);
+        }
+        return new Language(trimmedLanguage);
+    }
+
+    /**
+     * Parses {@code Collection<String> languages} into a {@code Set<Language>}.
+     */
+    public static Set<Language> parseLanguages(Collection<String> languages) throws ParseException {
+        requireNonNull(languages);
+        final Set<Language> languageSet = new HashSet<>();
+        for (String languageName : languages) {
+            languageSet.add(parseLanguage(languageName));
+        }
+        return languageSet;
     }
 
     /**
