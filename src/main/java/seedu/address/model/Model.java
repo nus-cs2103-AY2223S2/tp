@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Person;
 
 /**
@@ -45,9 +46,9 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code internEase}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInternEase(ReadOnlyAddressBook internEase);
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
@@ -61,7 +62,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteInternship(Person target);
 
     /**
      * Adds the given person.
@@ -77,11 +78,17 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getFilteredInternshipList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Add contact details to the given internship application.
+     * The internship application must exist.
+     */
+    void addContactToInternship(Person target, Contact contact);
 }

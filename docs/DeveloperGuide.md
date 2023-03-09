@@ -271,16 +271,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                            |
-| -------- |--------------------------------------------|--------------------------------|------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App     |
-| `* * *`  | user                                       | add a new internship application entry               |                                                            |
-| `* * *`  | internship applicant | note down the contact details of the company I am applying to                 | conveninently contact the company for queries or setting up interviews |
-| `* * *`  | internship applicant                       | delete my submission           | remove wrong entries or application that I no longer need  |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | internship applicant                       | delete all my applications     | start fresh                 |
-| `* * *` | internship applicant | note down the status of my application                                        | identify which stage of the application I am in |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                     |
+| Priority | As a …​                                    | I want to …​                                                  | So that I can…​                                                        |
+| -------- |--------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                        | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new internship application entry                        |                                                                        |
+| `* * *`  | internship applicant                       | note down the contact details of the company I am applying to | conveninently contact the company for queries or setting up interviews |
+| `* * *`  | internship applicant                       | delete my submission                                          | remove wrong entries or application that I no longer need              |
+| `* * *`  | internship applicant                       | view a list of my internship applications submitted           | prevent repeated applications to the same company                      |
+| `* *`    | internship applicant                       | delete all my applications                                    | start fresh                                                            |
+| `* * *` | internship applicant                       | note down the status of my application                        | identify which stage of the application I am in                        |
 
 *{More to be added}*
 
@@ -435,6 +434,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests for help.
 2. InternEase shows a list of available commands to the user.
 
+**Use case: UC10 List**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows all the internship applications as a list with their indexes specified.
+   
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -449,8 +463,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **CLI**: Command line interface
+* **GUI**: Graphical User interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -489,27 +503,4 @@ testers are expected to do more *exploratory* testing.
    2. All prior activities will be saved.
    3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+*{More to be added}*

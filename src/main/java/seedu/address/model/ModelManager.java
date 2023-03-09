@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,8 +79,8 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setInternEase(ReadOnlyAddressBook internEase) {
+        this.addressBook.resetData(internEase);
     }
 
     @Override
@@ -94,7 +95,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deleteInternship(Person target) {
         addressBook.removePerson(target);
     }
 
@@ -111,6 +112,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addContactToInternship(Person target, Contact contact) {
+        requireAllNonNull(target, contact);
+        addressBook.addContactToInternship(target, contact);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -118,7 +125,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredInternshipList() {
         return filteredPersons;
     }
 
