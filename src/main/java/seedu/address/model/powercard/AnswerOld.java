@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Powercard's Answer in the deck.
  */
-public class Answer {
+public class AnswerOld {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Answers should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -24,7 +24,7 @@ public class Answer {
      *
      * @param answer A valid answer.
      */
-    public Answer(String answer) {
+    public AnswerOld(String answer) {
         requireNonNull(answer);
         checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
         this.answer = answer;
@@ -40,8 +40,8 @@ public class Answer {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Answer // instanceof handles nulls
-                && this.answer.equals(((Answer) other).answer)); // state check
+                || (other instanceof AnswerOld // instanceof handles nulls
+                && this.answer.equals(((AnswerOld) other).answer)); // state check
     }
 
     @Override

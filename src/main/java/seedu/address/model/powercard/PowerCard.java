@@ -8,7 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class PowerCard {
 
     private QuestionOld questionOld;
-    private Answer answer;
+    private AnswerOld answerOld;
     private int numCorrect;
     private int numWrong;
 
@@ -17,12 +17,12 @@ public class PowerCard {
      * Every field must be present and not null.
      *
      * @param questionOld
-     * @param answer
+     * @param answerOld
      */
-    public PowerCard(QuestionOld questionOld, Answer answer) {
-        requireAllNonNull(questionOld, answer);
+    public PowerCard(QuestionOld questionOld, AnswerOld answerOld) {
+        requireAllNonNull(questionOld, answerOld);
         this.questionOld = questionOld;
-        this.answer = answer;
+        this.answerOld = answerOld;
         this.numCorrect = 0;
         this.numWrong = 0;
     }
@@ -31,16 +31,16 @@ public class PowerCard {
         return this.questionOld;
     }
 
-    public Answer getAnswer() {
-        return this.answer;
+    public AnswerOld getAnswer() {
+        return this.answerOld;
     }
 
     public void changeQuestion(QuestionOld questionOld) {
         this.questionOld = questionOld;
     }
 
-    public void changeAnswer(Answer answer) {
-        this.answer = answer;
+    public void changeAnswer(AnswerOld answerOld) {
+        this.answerOld = answerOld;
     }
 
     public void markCorrect() {

@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Card} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Card source) {
-        name = source.getName().question;
+        name = source.getQuestion().question;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

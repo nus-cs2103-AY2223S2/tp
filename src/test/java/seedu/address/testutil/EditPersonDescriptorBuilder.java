@@ -32,7 +32,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Card card) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(card.getName());
+        descriptor.setName(card.getQuestion());
         descriptor.setPhone(card.getPhone());
         descriptor.setEmail(card.getEmail());
         descriptor.setAddress(card.getAddress());

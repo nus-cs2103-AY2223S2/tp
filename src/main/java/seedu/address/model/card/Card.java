@@ -36,7 +36,7 @@ public class Card {
         this.tags.addAll(tags);
     }
 
-    public Question getName() {
+    public Question getQuestion() {
         return question;
     }
 
@@ -70,7 +70,7 @@ public class Card {
         }
 
         return otherCard != null
-                && otherCard.getName().equals(getName());
+                && otherCard.getQuestion().equals(getQuestion());
     }
 
     /**
@@ -88,7 +88,7 @@ public class Card {
         }
 
         Card otherCard = (Card) other;
-        return otherCard.getName().equals(getName())
+        return otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getPhone().equals(getPhone())
                 && otherCard.getEmail().equals(getEmail())
                 && otherCard.getAddress().equals(getAddress())
@@ -104,7 +104,7 @@ public class Card {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getQuestion())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

@@ -42,7 +42,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code cardToCopy}.
      */
     public PersonBuilder(Card cardToCopy) {
-        question = cardToCopy.getName();
+        question = cardToCopy.getQuestion();
         phone = cardToCopy.getPhone();
         email = cardToCopy.getEmail();
         address = cardToCopy.getAddress();

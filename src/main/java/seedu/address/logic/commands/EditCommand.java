@@ -93,7 +93,7 @@ public class EditCommand extends Command {
     private static Card createEditedPerson(Card cardToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert cardToEdit != null;
 
-        Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getName());
+        Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(cardToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(cardToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(cardToEdit.getAddress());
