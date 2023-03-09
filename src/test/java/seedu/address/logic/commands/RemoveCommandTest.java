@@ -83,7 +83,7 @@ public class RemoveCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder();
-        Person RemovedFieldPerson = personInList.withName("George Best")
+        Person removedFieldPerson = personInList.withName("George Best")
                 .withPhone("9482442")
                 .withEmail("anna@example.com")
                 .withAddress("4th street").build();
@@ -92,10 +92,10 @@ public class RemoveCommandTest {
                 .withLanguages(VALID_LANGUAGE_PYTHON).build();
         RemoveCommand removeCommand = new RemoveCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, RemovedFieldPerson);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, RemovedFieldPerson);
+        expectedModel.setPerson(lastPerson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
@@ -103,10 +103,10 @@ public class RemoveCommandTest {
     @Test
     public void execute_clearTagAndLanguageFieldSpecifiedUnfilteredList_success() {
         Index indexBenson = Index.fromOneBased(2);
-        Person Benson = model.getFilteredPersonList().get(indexBenson.getZeroBased());
+        Person benson = model.getFilteredPersonList().get(indexBenson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder();
-        Person RemovedFieldPerson = personInList.withName("Benson Meier")
+        Person removedFieldPerson = personInList.withName("Benson Meier")
                 .withProfile("benson-meier")
                 .withAddress("311, Clementi Ave 2, #02-25")
                 .withEmail("johnd@example.com")
@@ -116,10 +116,10 @@ public class RemoveCommandTest {
                 .withLanguages().withTags().build();
         RemoveCommand removeCommand = new RemoveCommand(indexBenson, descriptor);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, RemovedFieldPerson);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(Benson, RemovedFieldPerson);
+        expectedModel.setPerson(benson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
