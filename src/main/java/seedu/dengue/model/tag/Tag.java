@@ -9,8 +9,8 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags should be one of the four dengue variants: " +
-            "DENV1, DENV2, DENV3, or DENV4.";
+    public static final String MESSAGE_CONSTRAINTS = "Tags should be one of the four dengue variants: "
+            + "DENV1, DENV2, DENV3, or DENV4.";
     public final DengueVariant tagName;
 
     /**
