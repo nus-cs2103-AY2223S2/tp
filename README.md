@@ -7,7 +7,7 @@ FAid is an app adapted from AddressBook 3 to help Financial Advisors manage thei
 We aim to tailor this product towards Financial Advisors such as Insurance Agents, Investment Advisors and Real Estate Agents.
 It can be difficult for a busy Financial Advisor to keep track of all their customers and meetings with them, and we hope to make this process fast and efficient.
 
-* This is a client management application<br>
+* This is a client and meeting management application built for financial advisors<br>
   Example usages:
   * Add contact details and relevant information about a client
   * Schedule meetings with clients
