@@ -7,8 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.UniqueLectureList;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Represents a module in the tracker.
@@ -20,6 +22,8 @@ public class Module {
     private final ModuleName name;
 
     private final Set<Tag> tags = new HashSet<>();
+
+    private final UniqueLectureList lectures = new UniqueLectureList();
 
     /**
      * Every field must be not null.
@@ -47,6 +51,14 @@ public class Module {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable lecture list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public ObservableList<Lecture> getLectures() {
+        return lectures.asUnmodifiableObservableList();
     }
 
     /**
@@ -79,13 +91,14 @@ public class Module {
         Module otherModule = (Module) other;
         return otherModule.getCode().equals(getCode())
                 && otherModule.getName().equals(getName())
-                && otherModule.getTags().equals(getTags());
+                && otherModule.getTags().equals(getTags())
+                && otherModule.getLectures().equals(getLectures());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(code, name, tags);
+        return Objects.hash(code, name, tags, lectures);
     }
 
     @Override
@@ -103,6 +116,13 @@ public class Module {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ObservableList<Lecture> lectures = getLectures();
+        if (!lectures.isEmpty()) {
+            builder.append("; Lectures: ");
+            lectures.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 }
