@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalDeadlineTasks.SECOND;
 import static seedu.address.testutil.TypicalTasks.ONE;
 import static seedu.address.testutil.TypicalTasks.TWO;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
