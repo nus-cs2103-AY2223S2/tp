@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,6 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<InternshipApplication> filteredInternships;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -88,6 +91,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasApplication(InternshipApplication application) {
+        requireNonNull(application);
+        return addressBook.hasApplication(application);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -96,6 +105,12 @@ public class ModelManager implements Model {
     @Override
     public void deleteInternship(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void addApplication(InternshipApplication application) {
+        addressBook.addApplication(application);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
     @Override
@@ -118,7 +133,18 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredInternshipList() {
+    public ObservableList<InternshipApplication> getFilteredInternshipList() {
+        return filteredInternships;
+    }
+
+    @Override
+    public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
+        requireNonNull(predicate);
+        filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
 
