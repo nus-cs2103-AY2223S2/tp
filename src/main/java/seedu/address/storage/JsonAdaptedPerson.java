@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
-    private final List<JsonAdaptedSkill> mods = new ArrayList<>();
+    private final List<JsonAdaptedMods> mods = new ArrayList<>();
 
 
     /**
@@ -64,8 +64,8 @@ class JsonAdaptedPerson {
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
-        mods.addAll(source.getSkills().stream()
-                .map(JsonAdaptedSkill::new)
+        mods.addAll(source.getMods().stream()
+                .map(JsonAdaptedMods::new)
                 .collect(Collectors.toList()));
     }
 

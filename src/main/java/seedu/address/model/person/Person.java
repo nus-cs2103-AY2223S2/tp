@@ -30,13 +30,25 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, Set<Mod> mods) {
-        requireAllNonNull(name, phone, email, address, skills);
+        requireAllNonNull(name, phone, email, address, skills, mods);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
         this.mods.addAll(mods);
+    }
+
+    /**
+     * Overloaded constructor to be remove once Mod is fully implemented.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, address, skills);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.skills.addAll(skills);
     }
 
     public Name getName() {
@@ -122,6 +134,7 @@ public class Person {
             builder.append("; Skills: ");
             skills.forEach(builder::append);
         }
+
         return builder.toString();
     }
 
