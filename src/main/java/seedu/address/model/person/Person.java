@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.mod.Mod;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -23,17 +24,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Skill> skills = new HashSet<>();
+    private final Set<Mod> mods = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, Set<Mod> mods) {
         requireAllNonNull(name, phone, email, address, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
+        this.mods.addAll(mods);
     }
 
     public Name getName() {
@@ -59,6 +62,8 @@ public class Person {
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
+
+    public Set<Mod> getMods() { return Collections.unmodifiableSet(mods);}
 
     /**
      * Returns true if both persons have the same name.
