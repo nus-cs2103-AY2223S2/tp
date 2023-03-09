@@ -84,10 +84,10 @@ public class JsonAdaptedProject {
         return new Project(name,
             status,
             new Email(clientEmail),
-            Optional.of(source),
-            Optional.of(description),
+            Optional.ofNullable(source),
+            Optional.ofNullable(description),
             acceptedOn,
-            Optional.of(deadline));
+            Optional.ofNullable(deadline));
     }
 
     @Override
