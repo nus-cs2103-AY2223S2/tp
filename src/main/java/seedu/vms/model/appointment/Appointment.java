@@ -5,26 +5,24 @@ import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import seedu.vms.model.patient.Patient;
-
 /**
  * Represents an Appointment in the vaccine management system.
  */
 public class Appointment {
-    private final Patient patient;
     private LocalDateTime appointmentTime;
+    private final String patientId;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Patient patient, LocalDateTime appointmentTime) {
-        requireAllNonNull(patient, appointmentTime);
-        this.patient = patient;
+    public Appointment(LocalDateTime appointmentTime, String patient) {
+        requireAllNonNull(appointmentTime, patient);
         this.appointmentTime = appointmentTime;
+        this.patientId = patient;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public String getPatient() {
+        return patientId;
     }
 
     public LocalDateTime getAppointmentTime() {
@@ -41,13 +39,12 @@ public class Appointment {
      * Returns true if both appointments have the same patient.
      * This defines a weaker notion of equality between two patients.
      */
-    public boolean isSamePatient(Patient otherPatient) {
-        if (otherPatient == patient) {
+    public boolean isSamePatient(String otherPatientId) {
+        if (otherPatientId == patientId) {
             return true;
         }
 
-        return otherPatient != null
-                && otherPatient.getName().equals(patient.getName());
+        return otherPatientId != null && otherPatientId.equals(patientId);
     }
 
     /**
@@ -72,13 +69,13 @@ public class Appointment {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patient, appointmentTime);
+        return Objects.hash(appointmentTime, patientId);
     }
 
     @Override
     public String toString() {
-        return patient
-                + " has an appointment at"
+        return patientId
+                + " has an appointment at "
                 + appointmentTime;
     }
 }
