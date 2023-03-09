@@ -2,6 +2,7 @@ package seedu.vms.storage.vaccination;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,6 +23,20 @@ public class VaxTypeLoader {
     @JsonCreator
     public VaxTypeLoader(@JsonProperty("types") List<JsonAdaptedVaxType> types) {
         this.types = types;
+    }
+
+
+    /**
+     * Converts the specified {@code VaxTypeManager} to a {@code VaxTypeLoader}.
+     */
+    public static VaxTypeLoader fromModelType(VaxTypeManager manager) {
+        List<JsonAdaptedVaxType> types = manager
+                .asUnmodifiableObservableMap()
+                .values()
+                .stream()
+                .map(vaxType -> JsonAdaptedVaxType.fromModelType(vaxType))
+                .collect(Collectors.toList());
+        return new VaxTypeLoader(types);
     }
 
 
@@ -58,5 +73,15 @@ public class VaxTypeLoader {
             adapted.toModelType(storage);
         }
         return storage;
+    }
+
+
+    /**
+     * Writes the data of this {@code VaxTypeLoader} to the specified file.
+     *
+     * @throws IOexception if an I/O error occurs.
+     */
+    public void write(String pathString) throws IOException {
+        JsonUtil.serializeToFile(pathString, this);
     }
 }

@@ -31,6 +31,7 @@ import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.storage.JsonAddressBookStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
 import seedu.vms.storage.StorageManager;
+import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.testutil.PatientBuilder;
 
 public class LogicManagerTest {
@@ -47,7 +48,8 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
+        StorageManager storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,7 +78,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
+        StorageManager storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

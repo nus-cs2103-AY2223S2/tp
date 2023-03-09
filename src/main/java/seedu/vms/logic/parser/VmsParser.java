@@ -6,9 +6,11 @@ import java.util.regex.Pattern;
 import seedu.vms.commons.core.Messages;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.basic.HelpCommand;
+import seedu.vms.logic.parser.appointment.AppointmentParser;
 import seedu.vms.logic.parser.basic.BasicParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.logic.parser.patient.PatientParser;
+import seedu.vms.logic.parser.vaccination.VaccinationParser;
 
 
 /** Parsers user input.  */
@@ -18,6 +20,8 @@ public class VmsParser {
 
     private final BasicParser basicParser = new BasicParser();
     private final PatientParser patientParser = new PatientParser();
+    private final AppointmentParser appointmentParser = new AppointmentParser();
+    private final VaccinationParser vaccinationParser = new VaccinationParser();
 
     /**
      * Parses user input into command for execution.
@@ -39,6 +43,12 @@ public class VmsParser {
 
         case PatientParser.FEATURE_NAME:
             return patientParser.parse(arguments);
+
+        case AppointmentParser.FEATURE_NAME:
+            return appointmentParser.parse(arguments);
+
+        case VaccinationParser.FEATURE_NAME:
+            return vaccinationParser.parse(arguments);
 
         default:
             return basicParser.parse(userInput);

@@ -15,14 +15,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.testutil.PatientBuilder;
 
 public class AddCommandTest {
@@ -142,7 +146,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public VaxTypeManager getVaxTypeManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
             throw new AssertionError("This method should not be called.");
         }
     }

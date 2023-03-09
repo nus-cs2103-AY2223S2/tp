@@ -3,12 +3,14 @@ package seedu.vms.storage.vaccination;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.model.vaccination.VaxName;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -18,7 +20,7 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 public class JsonAdaptedVaxType {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Vaccination type [%s] is missing";
 
-    private final String name;
+    private final VaxName name;
     private final List<String> groups;
     private final Integer minAge;
     private final Integer maxAge;
@@ -30,7 +32,7 @@ public class JsonAdaptedVaxType {
     /** Constructs a {@code JsonAdaptedVaxType}. */
     @JsonCreator
     public JsonAdaptedVaxType(
-                @JsonProperty("name") String name,
+                @JsonProperty("name") VaxName name,
                 @JsonProperty("groups") List<String> groups,
                 @JsonProperty("minAge") Integer minAge,
                 @JsonProperty("maxAge") Integer maxAge,
@@ -48,16 +50,40 @@ public class JsonAdaptedVaxType {
 
 
     /**
+     * Converts the specified {@code VaxType} to a
+     * {@code JsonAdaptedVaxType}.
+     */
+    public static JsonAdaptedVaxType fromModelType(VaxType vaxType) {
+        VaxName name = new VaxName(vaxType.getName());
+        List<String> groups = List.copyOf(vaxType.getGroups());
+        Integer minAge = vaxType.getMinAge();
+        Integer maxAge = vaxType.getMaxAge();
+        Integer minSpacing = vaxType.getMinSpacing();
+        List<JsonAdaptedVaxRequirement> allergyReqs = convertToAdaptedReq(vaxType.getAllergyReqs());
+        List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
+
+        return new JsonAdaptedVaxType(name, groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+    }
+
+
+    private static List<JsonAdaptedVaxRequirement> convertToAdaptedReq(List<Requirement> reqs) {
+        return reqs.stream()
+                .map(req -> JsonAdaptedVaxRequirement.fromModelType(req))
+                .collect(Collectors.toList());
+    }
+
+
+    /**
      * Converts this JSON friendly version to an {@link VaxType} instance. The
      * type is added in to the vaccination type map in the process.
      *
      * @throws IllegalValueException if name field is missing.
      */
-    public VaxType toModelType(VaxTypeManager storage) throws IllegalValueException {
+    public VaxType toModelType(VaxTypeManager manager) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }
-        VaxTypeBuilder builder = VaxTypeBuilder.of(storage, name);
+        VaxTypeBuilder builder = VaxTypeBuilder.of(name);
 
         if (groups != null) {
             builder = builder.setGroups(new HashSet<>(groups));
@@ -83,7 +109,7 @@ public class JsonAdaptedVaxType {
             builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
-        return builder.build();
+        return builder.create(manager);
     }
 
 

@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("b");
     public static final Prefix PREFIX_ALLERGY = new Prefix("a");
     public static final Prefix PREFIX_VACCINATION = new Prefix("v");
+    public static final Prefix PREFIX_TIME = new Prefix("t");
+    public static final Prefix PREFIX_PATIENT = new Prefix("p");
 
 }

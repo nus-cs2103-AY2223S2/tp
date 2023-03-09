@@ -10,10 +10,14 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyAddressBook;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -23,6 +27,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
 
@@ -40,6 +45,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
 
+        appointmentManager = new AppointmentManager();
         this.vaxTypeManager = vaxTypeManager;
     }
 
@@ -125,6 +131,21 @@ public class ModelManager implements Model {
         addressBook.set(id, editedPatient);
     }
 
+    //=========== AppointmentManager ==========================================================================
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentManager.add(appointment);
+    }
+
+    //=========== VaxTypeManager ==============================================================================
+
+
+    @Override
+    public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
+        return action.apply(vaxTypeManager);
+    }
+
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
@@ -147,6 +168,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
         return vaxTypeManager.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public VaxTypeManager getVaxTypeManager() {
+        return vaxTypeManager;
     }
 
     //=========== Misc methods ================================================================================

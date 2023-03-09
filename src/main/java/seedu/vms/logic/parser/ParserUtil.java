@@ -18,6 +18,7 @@ import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.patient.Vaccine;
+import seedu.vms.model.vaccination.VaxName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -197,5 +198,29 @@ public class ParserUtil {
                     DateTimeFormatter.ofPattern(FULL_DATE_PATTERN));
         }
         throw new ParseException(MESSAGE_INVALID_DATE);
+    }
+
+    /**
+     * Parses a String id to a {@code String}.
+     *
+     * @param patientId - the String date to parse.
+     * @return the parsed {@code String}.
+     */
+    public static String parsePatient(String patientId) {
+        return patientId;
+    }
+
+    /**
+     * Parses vaccination type names.
+     *
+     * @param name - name to parse.
+     * @throws ParseException if the name cannot be parsed.
+     */
+    public static VaxName parseVaxName(String name) throws ParseException {
+        requireNonNull(name);
+        if (!VaxName.isValidName(name)) {
+            throw new ParseException(VaxName.MESSAGE_CONSTRAINT);
+        }
+        return new VaxName(name);
     }
 }
