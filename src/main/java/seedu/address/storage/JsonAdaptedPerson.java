@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
-            @JsonProperty("modules") List<JsonAdaptedSkill> mods) {
+            @JsonProperty("modules") List<JsonAdaptedMods> mods) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
             this.skills.addAll(skills);
         }
         if (mods != null) {
-            this.skills.addAll(mods);
+            this.mods.addAll(mods);
         }
     }
 
