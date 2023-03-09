@@ -14,6 +14,7 @@ import seedu.address.logic.commands.AddCommand1;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Id;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Position;
 import seedu.address.model.internship.Status;
@@ -22,7 +23,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser1 implements Parser<AddCommand1> {
+public class AddCommandParser1 implements Parser1<AddCommand1> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -38,14 +39,14 @@ public class AddCommandParser1 implements Parser<AddCommand1> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand1.MESSAGE_USAGE));
         }
 
-        Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
+        Position position = ParserUtil1.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
+        Company company = ParserUtil1.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
+        Status status = ParserUtil1.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        Description description = ParserUtil1.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Set<Tag> tagList = ParserUtil1.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Id id = new Id("0");
         // pass id as 0 for now
-        Internship internship = new Internship(position, company, 0, status, description, tagList);
+        Internship internship = new Internship(position, company, id, status, description, tagList);
 
         return new AddCommand1(internship);
     }
