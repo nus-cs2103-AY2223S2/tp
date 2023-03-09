@@ -40,14 +40,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/LeonPoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/leonpoh)]
+[[portfolio](team/leonpoh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
+* Responsibilities: Develop new features + testings
+=======
 ### Gong Chen Jun
 
 <img src="images/0x787af25e.png" width="200px">
@@ -57,3 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer, Documenter
 * Responsibilities: UI, User and Developer Guides
+
