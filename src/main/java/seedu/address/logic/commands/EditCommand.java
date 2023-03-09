@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.card.Address;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Email;
-import seedu.address.model.card.Name;
 import seedu.address.model.card.Phone;
+import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,13 +93,13 @@ public class EditCommand extends Command {
     private static Card createEditedPerson(Card cardToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert cardToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(cardToEdit.getName());
+        Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(cardToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(cardToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(cardToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
 
-        return new Card(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Card(updatedQuestion, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
      * corresponding field value of the card.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private Question question;
         private Phone phone;
         private Email email;
         private Address address;
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
+            setName(toCopy.question);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -149,15 +149,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(question, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(Question question) {
+            this.question = question;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Question> getName() {
+            return Optional.ofNullable(question);
         }
 
         public void setPhone(Phone phone) {

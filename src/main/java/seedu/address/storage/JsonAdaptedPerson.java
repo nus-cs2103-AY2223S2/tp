@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.card.Address;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Email;
-import seedu.address.model.card.Name;
 import seedu.address.model.card.Phone;
+import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,12 +71,14 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName())
+            );
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Question.isValidName(name)) {
+            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Question modelQuestion = new Question(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -103,7 +105,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Card(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Card(modelQuestion, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

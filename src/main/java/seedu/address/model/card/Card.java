@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Card {
 
     // Identity fields
-    private final Name name;
+    private final Question question;
     private final Phone phone;
     private final Email email;
 
@@ -27,17 +27,17 @@ public class Card {
     /**
      * Every field must be present and not null.
      */
-    public Card(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Card(Question question, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(question, phone, email, address, tags);
+        this.question = question;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Question getName() {
+        return question;
     }
 
     public Phone getPhone() {
@@ -61,7 +61,7 @@ public class Card {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same question.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameCard(Card otherCard) {
@@ -98,7 +98,7 @@ public class Card {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(question, phone, email, address, tags);
     }
 
     @Override
