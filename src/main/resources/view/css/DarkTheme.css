@@ -51,8 +51,12 @@
 /*
  * Contact Pane Styles
  */
+.contact-listview {
+    -fx-background-color: #001E3C;
+}
+
 .contact-listview .scroll-bar:vertical{
-  -fx-background-color: #001E3C;
+    -fx-background-color: #001E3C;
 }
 
 /*
@@ -117,6 +121,12 @@
     -fx-opacity: 1;
 }
 
+.label-header-3 {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #3399FF;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -134,7 +144,7 @@
 
 .only-bottom-primary-border {
     -fx-border-color: #A0A0A0;
-    -fx-border-width: 1px 0px 1px 0px;
+    -fx-border-width: 0px 0px 1px 0px;
 }
 
 /*
@@ -142,7 +152,7 @@
  */
 
 #cardPane {
-    -fx-background-color: transparent;
+    -fx-background-color: #001E3C;
     -fx-border-width: 0;
 }
 
