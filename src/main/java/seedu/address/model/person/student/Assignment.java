@@ -7,10 +7,11 @@ import java.util.Objects;
  * Represents an Assignment that is assigned to the Student.
  */
 public class Assignment {
-    private final String assignmentName;
-    private LocalDate deadline;
-    private final int weightage;
-    private final int maxScore;
+    protected final String assignmentName;
+    protected LocalDate deadline;
+    protected final int weightage;
+    protected final int maxScore;
+    protected int score;
 
     /**
      * Returns an Assignment object that stores information about the assignment description.
@@ -20,11 +21,12 @@ public class Assignment {
      * @param weightage Weightage of the assignment.
      * @param maxScore Maximum score attainable for the assignment.
      */
-    public Assignment(String assignmentName, LocalDate deadline, int weightage, int maxScore) {
+    public Assignment(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score) {
         this.assignmentName = assignmentName;
         this.deadline = deadline;
         this.weightage = weightage;
         this.maxScore = maxScore;
+        this.score = score;
     }
 
     @Override
