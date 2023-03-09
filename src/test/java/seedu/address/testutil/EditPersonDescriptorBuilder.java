@@ -17,6 +17,10 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
+    // To be removed once Person class is updated
+    public static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
+
     private EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {

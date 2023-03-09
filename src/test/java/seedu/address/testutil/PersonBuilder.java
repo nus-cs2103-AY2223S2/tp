@@ -21,6 +21,10 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    // To be removed once Person class is updated
+    public static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -32,8 +36,8 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        email = new Email(VALID_EMAIL_PLACEHOLDER);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -43,8 +47,8 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        email = new Email(VALID_EMAIL_PLACEHOLDER);
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }

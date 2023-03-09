@@ -23,6 +23,8 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+    public static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -39,8 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Phone phone = new Phone(VALID_PHONE_PLACEHOLDER); //Temporary placeholder to avoid conflict with new Phone class under Contact
+        Email email = new Email(VALID_EMAIL_PLACEHOLDER); //Temporary placeholder to avoid conflict with new Email class under Contact
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
