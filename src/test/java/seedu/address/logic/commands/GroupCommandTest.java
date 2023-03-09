@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,17 @@ import seedu.address.testutil.PersonBuilder;
 
 
 public class GroupCommandTest {
+
+    @Test
+    public void constructor_null_Tag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new GroupCommand(null));
+    }
+
+    @Test
+    public void execute_null_model_throwsNullPointerException() {
+        Tag tag = new Tag("hi");
+        assertThrows(NullPointerException.class, () -> new GroupCommand(tag).execute(null));
+    }
 
     @Test
     public void equals() {
