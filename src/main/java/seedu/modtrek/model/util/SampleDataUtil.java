@@ -3,6 +3,7 @@ package seedu.modtrek.model.util;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.tag.Tag;
 
@@ -15,7 +16,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyDegreeProgression getSampleDegreeProgression() {
-        return null;
+        return new DegreeProgression();
     }
 
     /**
