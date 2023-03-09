@@ -10,7 +10,7 @@ import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.parser.AddressBookParser;
+import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ReadOnlyAddressBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final RosterParser rosterParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        rosterParser = new RosterParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = rosterParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

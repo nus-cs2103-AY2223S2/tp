@@ -31,7 +31,7 @@ import tfifteenfour.clipboard.testutil.StudentUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final RosterParser parser = new RosterParser();
 
     @Test
     public void parseCommand_add() throws Exception {
