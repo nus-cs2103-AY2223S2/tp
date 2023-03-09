@@ -32,6 +32,9 @@ public class AssignCommand extends Command {
     private final Index personIndex;
     private final Index taskIndex;
 
+    /**
+     * Creates AssignCommand object with given personIndex and taskIndex
+     */
     public AssignCommand(Index personIndex, Index taskIndex) {
         requireAllNonNull(personIndex, taskIndex);
 
@@ -39,6 +42,9 @@ public class AssignCommand extends Command {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes AssignCommand with given personIndex and taskIndex
+     */
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);

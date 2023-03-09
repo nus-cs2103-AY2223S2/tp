@@ -10,7 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Parses input arguments and creates a new AssignCommand object
+ */
 public class AssignCommandParser implements Parser<AssignCommand> {
 
     /**
