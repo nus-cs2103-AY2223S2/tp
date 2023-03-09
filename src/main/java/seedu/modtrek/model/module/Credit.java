@@ -4,25 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
 /**
- * The type Credit.
+ * Credit denotes the Modular Credit (MC) associated with each module.
  */
 public class Credit {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
     public static final String MESSAGE_CONSTRAINTS =
             "Credit should only be a number and only 1-2 digits long";
 
     private static final String VALIDATION_REGEX = "\\d{1,2}";
 
-    /**
-     * The Value.
-     */
     protected final String value;
 
     /**
-     * Instantiates a new Credit.
+     * Instantiates a new Credit. Credit cannot be null and must be valid.
      *
      * @param value the value
      */
@@ -33,7 +27,7 @@ public class Credit {
     }
 
     /**
-     * Is valid credit boolean.
+     * Checks if the Credit is valid.
      *
      * @param test the test
      * @return the boolean

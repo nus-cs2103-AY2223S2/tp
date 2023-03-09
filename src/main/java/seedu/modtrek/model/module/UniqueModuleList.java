@@ -12,7 +12,7 @@ import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
 /**
- * The type Unique module list.
+ * UniqueModuleList is a list of modules where each modules must be unique.
  */
 public class UniqueModuleList implements Iterable<Module> {
 
@@ -22,10 +22,10 @@ public class UniqueModuleList implements Iterable<Module> {
 
 
     /**
-     * Contains boolean.
+     * Checks if the module is in this list.
      *
-     * @param toCheck the to check
-     * @return the boolean
+     * @param toCheck
+     * @return boolean if module is in list
      */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
@@ -33,9 +33,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Add.
+     * Adds module into the list. Module must not be null and must be unique.
      *
-     * @param toAdd the to add
+     * @param toAdd
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -46,10 +46,10 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Sets module.
+     * Changes the module into the editedModule.
      *
-     * @param target       the target
-     * @param editedModule the edited module
+     * @param target
+     * @param editedModule
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -67,9 +67,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Remove.
+     * Removes the module from the list.
      *
-     * @param toRemove the to remove
+     * @param toRemove
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
@@ -79,9 +79,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Sets modules.
+     * Sets modules based on the replacement list.
      *
-     * @param replacement the replacement
+     * @param replacement
      */
     // For resetting
     public void setModules(UniqueModuleList replacement) {
@@ -90,9 +90,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Sets modules.
+     * Sets modules based on the list of modules.
      *
-     * @param modules the modules
+     * @param modules
      */
     // For resetting
     public void setModules(List<Module> modules) {
@@ -105,9 +105,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * As unmodifiable observable list observable list.
+     * Returns an unmodifiable list.
      *
-     * @return the observable list
+     * @return
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;

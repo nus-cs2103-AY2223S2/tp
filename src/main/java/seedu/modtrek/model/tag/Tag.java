@@ -9,7 +9,7 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    private enum ValidTag {
+    private static enum ValidTag {
         UNIVERSITY_LEVEL_REQUIREMENTS,
         COMPUTER_SCIENCE_FOUNDATION,
         COMPUTER_SCIENCE_BREADTH_AND_DEPTH,
