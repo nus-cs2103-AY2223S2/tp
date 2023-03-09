@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.powercard.PowerCard;
-import seedu.address.model.powercard.UniqueCardList;
+import seedu.address.model.powercard.UniqueCardListOld;
 
 
 /**
@@ -14,7 +14,7 @@ import seedu.address.model.powercard.UniqueCardList;
  * Duplicates are not allowed (by .isSamePowerCard comparison)
  */
 public class PowerDeck implements ReadOnlyPowerDeck {
-    private final UniqueCardList cards;
+    private final UniqueCardListOld cards;
     private String deckName; // Todo: create new Class for DeckName
 
     /*
@@ -25,7 +25,7 @@ public class PowerDeck implements ReadOnlyPowerDeck {
      *   among constructors.
      */
     {
-        cards = new UniqueCardList();
+        cards = new UniqueCardListOld();
     }
 
     public PowerDeck() {}

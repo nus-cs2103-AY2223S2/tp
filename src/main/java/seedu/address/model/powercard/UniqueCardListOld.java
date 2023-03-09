@@ -15,7 +15,7 @@ import seedu.address.model.card.exceptions.PersonNotFoundException;
  * A list of cards that enforces uniqueness between its elements and does not allow nulls.
  * A card is considered unique by comparing using {@code PowerCard#isSamePowerCard(PowerCard)}. As such, adding and
  * updating of cards uses PowerCard#isSamePowerCard(PowerCard) for equality to ensure that the card being added or
- * updated is unique in terms of identity in the UniquePersonList.
+ * updated is unique in terms of identity in the UniqueCardList.
  *
  * However, the removal of a card uses PowerCard#equals(Object) to ensure that the card with exactly the same fields
  * will be removed.
@@ -24,7 +24,7 @@ import seedu.address.model.card.exceptions.PersonNotFoundException;
  *
  * @see PowerCard#isSamePowercard(PowerCard)
  */
-public class UniqueCardList implements Iterable<PowerCard> {
+public class UniqueCardListOld implements Iterable<PowerCard> {
     private final ObservableList<PowerCard> internalList = FXCollections.observableArrayList();
     private final ObservableList<PowerCard> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -80,7 +80,7 @@ public class UniqueCardList implements Iterable<PowerCard> {
         internalList.set(index, editedCard);
     }
 
-    public void setCards(UniqueCardList replacement) {
+    public void setCards(UniqueCardListOld replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -113,8 +113,8 @@ public class UniqueCardList implements Iterable<PowerCard> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueCardList // instanceof handles nulls
-                && internalList.equals(((UniqueCardList) other).internalList));
+                || (other instanceof UniqueCardListOld // instanceof handles nulls
+                && internalList.equals(((UniqueCardListOld) other).internalList));
     }
 
     @Override

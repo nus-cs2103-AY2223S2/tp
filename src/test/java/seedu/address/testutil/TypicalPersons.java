@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static Deck getTypicalAddressBook() {
         Deck ab = new Deck();
         for (Card card : getTypicalPersons()) {
-            ab.addPerson(card);
+            ab.addCard(card);
         }
         return ab;
     }

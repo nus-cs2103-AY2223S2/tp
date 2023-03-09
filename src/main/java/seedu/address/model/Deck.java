@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.UniquePersonList;
+import seedu.address.model.card.UniqueCardList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,9 @@ import seedu.address.model.card.UniquePersonList;
  */
 public class Deck implements ReadOnlyDeck {
 
-    private final UniquePersonList persons;
+    private final UniqueCardList cards;
+    private String deckName; // Todo: create new Class for DeckName
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +26,7 @@ public class Deck implements ReadOnlyDeck {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        cards = new UniqueCardList();
     }
 
     public Deck() {}
@@ -43,8 +45,8 @@ public class Deck implements ReadOnlyDeck {
      * Replaces the contents of the card list with {@code cards}.
      * {@code cards} must not contain duplicate cards.
      */
-    public void setPersons(List<Card> cards) {
-        this.persons.setPersons(cards);
+    public void setCards(List<Card> cards) {
+        this.cards.setCards(cards);
     }
 
     /**
@@ -53,7 +55,7 @@ public class Deck implements ReadOnlyDeck {
     public void resetData(ReadOnlyDeck newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setCards(newData.getCardList());
     }
 
     //// card-level operations
@@ -61,17 +63,17 @@ public class Deck implements ReadOnlyDeck {
     /**
      * Returns true if a card with the same identity as {@code card} exists in the address book.
      */
-    public boolean hasPerson(Card card) {
+    public boolean hasCard(Card card) {
         requireNonNull(card);
-        return persons.contains(card);
+        return cards.contains(card);
     }
 
     /**
      * Adds a card to the address book.
      * The card must not already exist in the address book.
      */
-    public void addPerson(Card p) {
-        persons.add(p);
+    public void addCard(Card p) {
+        cards.add(p);
     }
 
     /**
@@ -79,42 +81,42 @@ public class Deck implements ReadOnlyDeck {
      * {@code target} must exist in the address book.
      * The card identity of {@code editedCard} must not be the same as another existing card in the address book.
      */
-    public void setPerson(Card target, Card editedCard) {
+    public void setCard(Card target, Card editedCard) {
         requireNonNull(editedCard);
 
-        persons.setPerson(target, editedCard);
+        cards.setCard(target, editedCard);
     }
 
     /**
      * Removes {@code key} from this {@code Deck}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Card key) {
-        persons.remove(key);
+    public void removeCard(Card key) {
+        cards.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return cards.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Card> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Card> getCardList() {
+        return cards.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Deck // instanceof handles nulls
-                && persons.equals(((Deck) other).persons));
+                && cards.equals(((Deck) other).cards));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return cards.hashCode();
     }
 }

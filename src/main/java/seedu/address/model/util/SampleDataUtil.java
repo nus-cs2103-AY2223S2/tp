@@ -43,7 +43,7 @@ public class SampleDataUtil {
     public static ReadOnlyDeck getSampleAddressBook() {
         Deck sampleAb = new Deck();
         for (Card sampleCard : getSamplePersons()) {
-            sampleAb.addPerson(sampleCard);
+            sampleAb.addCard(sampleCard);
         }
         return sampleAb;
     }

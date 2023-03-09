@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.deck = new Deck(deck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDecks = new FilteredList<>(this.deck.getPersonList());
+        filteredDecks = new FilteredList<>(this.deck.getCardList());
     }
 
     public ModelManager() {
@@ -92,17 +92,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCard(Card card) {
         requireNonNull(card);
-        return deck.hasPerson(card);
+        return deck.hasCard(card);
     }
 
     @Override
     public void deleteCard(Card target) {
-        deck.removePerson(target);
+        deck.removeCard(target);
     }
 
     @Override
     public void addCard(Card card) {
-        deck.addPerson(card);
+        deck.addCard(card);
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
@@ -110,7 +110,7 @@ public class ModelManager implements Model {
     public void setCard(Card target, Card editedCard) {
         requireAllNonNull(target, editedCard);
 
-        deck.setPerson(target, editedCard);
+        deck.setCard(target, editedCard);
     }
 
     //=========== Filtered Card List Accessors =============================================================

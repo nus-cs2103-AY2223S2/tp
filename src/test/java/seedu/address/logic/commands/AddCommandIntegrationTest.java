@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Card cardInList = model.getDeck().getPersonList().get(0);
+        Card cardInList = model.getDeck().getCardList().get(0);
         assertCommandFailure(new AddCommand(cardInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

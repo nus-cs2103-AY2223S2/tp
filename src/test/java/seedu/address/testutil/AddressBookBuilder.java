@@ -24,7 +24,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Card} to the {@code Deck} that we are building.
      */
     public AddressBookBuilder withPerson(Card card) {
-        addressBook.addPerson(card);
+        addressBook.addCard(card);
         return this;
     }
 
