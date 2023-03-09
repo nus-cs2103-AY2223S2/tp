@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
@@ -82,6 +83,25 @@ public class ParserUtil {
         }
         return new Address(trimmedAddress);
     }
+
+    /**
+     * Parses a {@code String id} into an {@code Id}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        String trimmedId = id.trim();
+        if (id.isEmpty()) {
+            return new Id();
+        }
+
+        if (Id.isInValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedId);
+    }
+
 
     /**
      * Parses a {@code String email} into an {@code Email}.

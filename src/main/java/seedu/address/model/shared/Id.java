@@ -50,4 +50,8 @@ public class Id {
         return Objects.hash(value);
     }
 
+    @Override
+    public String toString() {
+        return getValue().toString();
+    }
 }
