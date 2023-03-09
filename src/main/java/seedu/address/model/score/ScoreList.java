@@ -78,7 +78,10 @@ public class ScoreList implements Iterable<Score> {
         }
     }
 
-
+    /**
+     * Replaces the contents of this list with {@code scores}.
+     * {@code scores} must not contain duplicate scores.
+     */
     public void setScores(ScoreList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

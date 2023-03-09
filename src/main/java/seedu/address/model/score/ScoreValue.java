@@ -1,8 +1,7 @@
 package seedu.address.model.score;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.address.model.score.exceptions.BadScoreValueException;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Score's value in the Score object.
@@ -10,23 +9,22 @@ import seedu.address.model.score.exceptions.BadScoreValueException;
  * {@link #isNegative(String)} {@link #isLargerThanMax(String)}
  */
 public class ScoreValue {
+    public static final String MESSAGE_CONSTRAINTS =
+        "Score value should be a number between 0 and 100, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "^[0-9][0-9]?$|^100$";
+
     // Identity field(s)
-    private static final Double MAX_SCORE = 100.0;
-    private static final Double MIN_SCORE = 0.0;
     public final Double value;
 
     /**
      * Constructs a {@code ScoreValue}.
      *
      * @param value A valid Score value.
-     * @exception BadScoreValueException if the value is not a valid score value.
      */
-    public ScoreValue(String value) throws BadScoreValueException {
+    public ScoreValue(String value) {
         requireNonNull(value);
-
-        if (!isValidScore(value)) {
-            throw new BadScoreValueException();
-        }
+        checkArgument(isValidScore(value), MESSAGE_CONSTRAINTS);
 
         this.value = Double.parseDouble(value);
     }
@@ -34,16 +32,8 @@ public class ScoreValue {
     /**
      * Returns true if the value is a valid score value (0 <= s <= 100).
      */
-    public static boolean isValidScore(String value) {
-        try {
-            Double parseVal = Double.parseDouble(value);
-            if (parseVal < ScoreValue.MIN_SCORE || parseVal > ScoreValue.MAX_SCORE) {
-                return false;
-            }
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    public static boolean isValidScore(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -2,12 +2,7 @@ package seedu.address.model.score;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
-
-import seedu.address.model.score.exceptions.BadDateException;
 
 /**
  * Represents a Score in the address book.
@@ -17,7 +12,7 @@ public class Score {
     // Identity field(s)
     public final Title scoreName;
     public final ScoreValue scoreValue;
-    public final LocalDateTime scoreDate;
+    public final Date scoreDate;
 
     /**
      * Constructs a {@code Score}.
@@ -26,19 +21,12 @@ public class Score {
      * @param scoreValue A valid Score value.
      * @param scoreDate A valid Score date.
      */
-    public Score(Title scoreName, ScoreValue scoreValue, String scoreDate) {
+    public Score(Title scoreName, ScoreValue scoreValue, Date scoreDate) {
         requireAllNonNull(scoreName, scoreValue, scoreDate);
 
         this.scoreName = scoreName;
         this.scoreValue = scoreValue;
-
-        // Maybe can shift this validation when adding a score. TODO
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            this.scoreDate = LocalDateTime.parse(scoreDate, formatter);
-        } catch (DateTimeParseException e) {
-            throw new BadDateException();
-        }
+        this.scoreDate = scoreDate;
     }
 
     /**
@@ -58,7 +46,7 @@ public class Score {
     /**
      * Returns the score date in the format of yyyy-MM-dd HH:mm:ss.
      */
-    public LocalDateTime getScoreDate() {
+    public Date getScoreDate() {
         return scoreDate;
     }
 
