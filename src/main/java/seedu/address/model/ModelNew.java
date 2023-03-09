@@ -12,7 +12,7 @@ import seedu.address.model.opening.Opening;
  */
 public interface ModelNew {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Opening> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Opening> PREDICATE_SHOW_ALL_OPENINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
