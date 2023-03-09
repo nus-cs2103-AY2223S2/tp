@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deck;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.NameContainsKeywordsPredicate;
+import seedu.address.model.card.QuestionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -119,8 +119,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCardList().size());
 
         Card card = model.getFilteredCardList().get(targetIndex.getZeroBased());
-        final String[] splitName = card.getName().fullName.split("\\s+");
-        model.updateFilteredCardList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = card.getName().question.split("\\s+");
+        model.updateFilteredCardList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCardList().size());
     }

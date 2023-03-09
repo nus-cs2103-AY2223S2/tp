@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Card} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Card source) {
-        name = source.getName().fullName;
+        name = source.getName().question;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -75,7 +75,7 @@ class JsonAdaptedPerson {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName())
             );
         }
-        if (!Question.isValidName(name)) {
+        if (!Question.isValidQuestion(name)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
         final Question modelQuestion = new Question(name);
