@@ -67,7 +67,6 @@ class JsonAdaptedRecipe {
         for (JsonAdaptedIngredient ingredient : ingredients) {
             recipeIngredients.add(ingredient.toModelType());
         }
-        
         final Set<Step> recipeSteps = new HashSet<>();
         for (JsonAdaptedStep step : steps) {
             recipeSteps.add(step.toModelType());
@@ -88,7 +87,6 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDesc = new Description(desc);
-        
         return new Recipe(modelTitle, modelDesc, recipeIngredients, recipeSteps);
     }
 
