@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DisplayGroupCommandTest {
 
-    String expectedOutput = "Listed all groups";
+    private String expectedOutput = "Listed all groups";
 
     @Test
     public void checkMessageSuccess() {
