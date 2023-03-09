@@ -8,6 +8,7 @@ import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
 import expresslibrary.model.person.Phone;
+import expresslibrary.model.person.Book;
 import expresslibrary.model.tag.Tag;
 import expresslibrary.model.util.SampleDataUtil;
 
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BOOK = "Default book";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Book book;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        book = new Book(DEFAULT_BOOK);
         tags = new HashSet<>();
     }
 
@@ -89,6 +93,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets book
+     * @return
+     */
+    public PersonBuilder withBook(String title){
+        this.book = new Book(title);
+        return this;
+    }
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }
