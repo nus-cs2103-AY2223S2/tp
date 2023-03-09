@@ -3,20 +3,19 @@ package seedu.recipe.logic.parser;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 import java.util.stream.Stream;
-import java.util.ArrayList;
 
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
 
 
 /**

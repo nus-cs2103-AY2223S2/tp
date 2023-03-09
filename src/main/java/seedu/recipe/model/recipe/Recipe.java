@@ -2,8 +2,8 @@ package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 
 /**

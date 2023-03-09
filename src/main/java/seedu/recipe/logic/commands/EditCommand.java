@@ -8,7 +8,6 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -18,8 +17,12 @@ import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.*;
-import seedu.recipe.model.tag.Tag;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
+
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -36,12 +39,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
             + "[" + PREFIX_STEP + "STEP]...";
-            /*
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "... "
-            + PREFIX_INGREDIENT + "... "
-            + PREFIX_STEP + "...";
-             */
+
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -90,10 +88,14 @@ public class EditCommand extends Command {
     private static Recipe createEditedRecipe(Recipe recipeToEdit, EditRecipeDescriptor editRecipeDescriptor) {
         assert recipeToEdit != null;
 
-        Title updatedTitle = editRecipeDescriptor.getTitle().orElse(recipeToEdit.getTitle());
-        Description updatedDesc = editRecipeDescriptor.getDesc().orElse(recipeToEdit.getDesc());
-        Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients().orElse(recipeToEdit.getIngredients());
-        Set<Step> updatedSteps = editRecipeDescriptor.getSteps().orElse(recipeToEdit.getSteps());
+        Title updatedTitle = editRecipeDescriptor.getTitle()
+                .orElse(recipeToEdit.getTitle());
+        Description updatedDesc = editRecipeDescriptor.getDesc()
+                .orElse(recipeToEdit.getDesc());
+        Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients()
+                .orElse(recipeToEdit.getIngredients());
+        Set<Step> updatedSteps = editRecipeDescriptor.getSteps()
+                .orElse(recipeToEdit.getSteps());
 
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
     }

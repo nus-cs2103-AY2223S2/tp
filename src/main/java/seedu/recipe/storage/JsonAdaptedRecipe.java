@@ -1,8 +1,6 @@
 package seedu.recipe.storage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,15 +8,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Description;
-
+import seedu.recipe.model.recipe.Title;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Recipe}.
  */
 class JsonAdaptedRecipe {
 
@@ -35,8 +32,10 @@ class JsonAdaptedRecipe {
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
-    public JsonAdaptedRecipe(@JsonProperty("title") Title title, @JsonProperty("desc") Description desc,
-            @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients, @JsonProperty("steps") Set<JsonAdaptedStep> steps) {
+    public JsonAdaptedRecipe(@JsonProperty("title") Title title,
+                             @JsonProperty("desc") Description desc,
+                             @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients,
+                             @JsonProperty("steps") Set<JsonAdaptedStep> steps) {
         this.title = title.title;
         this.desc = desc.description;
         this.ingredients.addAll(ingredients);
@@ -81,7 +80,8 @@ class JsonAdaptedRecipe {
         final Title modelTitle = new Title(title);
 
         if (desc == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDesc(desc)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
