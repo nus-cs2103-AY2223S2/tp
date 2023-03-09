@@ -19,7 +19,7 @@ public class DateTimeParser {
      * @throws ParseException If the input is not in the write format to be converted.
      */
     public static LocalDateTime parseDateTime(String dateTimeString) throws ParseException {
-        // Format DD/MM/YYYY HH:MM
+        // Format DD-MM-YYYY HH:MM
         if (dateTimeString.length() == 0) {
             return null;
         }
