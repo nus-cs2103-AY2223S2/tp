@@ -10,7 +10,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Ai Bo
 
-<img src="images/aibo.png" width="200px">
+<img src="images/BoAi01.png" width="200px">
 
 [[github](https://github.com/BoAi01)]
 [[portfolio](team/boai01.md)]
@@ -19,7 +19,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Celeste Cheah
 
-<img src="images/celeste.png" width="200px">
+<img src="images/cetigerlily.png" width="200px">
 
 [[github](https://github.com/cetigerlily)]
 [[portfolio](team/cetigerlily.md)]
@@ -29,7 +29,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Jishnu
 
-<img src="images/jishnu.png" width="200px">
+<img src="images/jishnu28.png" width="200px">
 
 [[github](https://github.com/jishnu28)]
 [[portfolio](team/jishnu28.md)]
@@ -39,7 +39,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Xiuxuan
 
-<img src="images/xiuxuan.png" width="200px">
+<img src="images/wxxedu.png" width="200px">
 
 [[github](https://github.com/wxxedu)]
 [[portfolio](team/wxxedu.md)]
@@ -49,7 +49,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Yuanyuan
 
-<img src="images/yuanyuan.png" width="200px">
+<img src="images/tangyuantyy.png" width="200px">
 
 [[github](http://github.com/tangyuantyy)]
 [[portfolio](team/tangyuantyy.md)]
