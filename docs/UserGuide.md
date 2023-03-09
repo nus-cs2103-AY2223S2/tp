@@ -156,7 +156,7 @@ Required Information:
 * Start and end time in 24HR format (HH:mm)
 * Index of a person in address book
 
-Examples: 
+Examples:
 * `meeting add 2/12/2023 1240 2359 3` adds a meeting on 2nd December 2023 from 12.40pm to 11.59pm, with John (index 3)
 
 Notes:
@@ -203,7 +203,7 @@ Finds a person from address book by region
 
 Required information:
 * Region person is residing in
-* Region specified should be a valid region 
+* Region specified should be a valid region
 
 Examples:
 * `find Central` Finds people from Central region in the address book

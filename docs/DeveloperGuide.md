@@ -341,13 +341,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FAid notifies user of all upcoming meetings for the day
 3. User chooses to view all meetings for the current day
 4. FAid shows all meetings that start on the current day
-   
+
    Use case ends
 
 **Extensions:**
 * 2a. There are no meetings for the day
   * 2a1. FAid notifies that there are no upcoming meetings for the day
-         
+
      Use case ends
 
 **Use Case: *UC04 Find clients residing in a certain region of Singapore***
@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a.  FAid cannot find the specified region entered
   * 3a1. User enters new region name
   * 3a2. Steps 31-3a1 are repeated until region name entered is valid
-    
+
     Use case resumes from step 3
 
 **Use Case: *UC05 Get list of clients based on a tag***
@@ -381,14 +381,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System requests for the tag
 4. User enters the tag
 5. System displays all persons with the given tag
-   
+
    Use Case Ends
 
 **Extensions:**
 * 4a. System cannot find the tag supplied by the user
   * 4a1. System requests for the correct tag
   * 4a2. User enters a new tag
-    
+
     Steps 4a1-4a2 are repeated until the user provides a correct tag
     Use Case resumes from step 5
 
