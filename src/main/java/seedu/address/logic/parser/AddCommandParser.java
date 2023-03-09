@@ -41,8 +41,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = new Phone(VALID_PHONE_PLACEHOLDER); //Temporary placeholder to avoid conflict with new Phone class under Contact
-        Email email = new Email(VALID_EMAIL_PLACEHOLDER); //Temporary placeholder to avoid conflict with new Email class under Contact
+        // //Temporary placeholder to avoid conflict with new Phone and Email class under Contact
+        Phone phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        Email email = new Email(VALID_EMAIL_PLACEHOLDER);
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

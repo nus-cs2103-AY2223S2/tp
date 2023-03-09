@@ -57,10 +57,10 @@ public class Contact {
 
     @Override
     public String toString() {
-        String builder = "Phone: " +
-                getPhone() +
-                "; Email: " +
-                getEmail();
+        String builder = "Phone: "
+                + getPhone()
+                + "; Email: "
+                + getEmail();
 
         return builder;
     }

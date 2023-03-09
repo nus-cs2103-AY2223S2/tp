@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
 
@@ -25,7 +25,6 @@ public class AddContactCommand extends Command {
             + "Parameters: "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com ";
@@ -36,6 +35,10 @@ public class AddContactCommand extends Command {
 
     private final Contact toAdd;
 
+    /**
+     * @param targetIndex of the internship application to add contact details
+     * @param contact Contact to add
+     */
     public AddContactCommand(Index targetIndex, Contact contact) {
         this.targetIndex = targetIndex;
         toAdd = contact;
