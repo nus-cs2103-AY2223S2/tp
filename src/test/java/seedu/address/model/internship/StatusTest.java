@@ -34,6 +34,7 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("accepted"));
         assertFalse(Status.isValidStatus("technical interview"));
         assertFalse(Status.isValidStatus("have not applied"));
+        assertFalse(Status.isValidStatus("rejected."));
 
 
         // valid status for the default values only. Case-insensitive
