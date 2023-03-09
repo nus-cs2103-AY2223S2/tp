@@ -80,6 +80,10 @@ public class UniqueProjectList implements Iterable<Project> {
         }
     }
 
+    /**
+     * Marks the equivalent project from the list as DONE.
+     * @param toMark The targeted project.
+     */
     public void markAsDone(Project toMark) {
         requireNonNull(toMark);
         toMark.markAsDone();
