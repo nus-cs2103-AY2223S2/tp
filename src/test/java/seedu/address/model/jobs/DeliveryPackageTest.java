@@ -10,6 +10,7 @@ public class DeliveryPackageTest {
     @BeforeEach
     void setUp() {
         item = new DeliveryPackage(
+            "",
             0,
             0,
             0,

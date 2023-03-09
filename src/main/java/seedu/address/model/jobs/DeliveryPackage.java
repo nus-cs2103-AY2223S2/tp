@@ -1,28 +1,35 @@
 package seedu.address.model.jobs;
 
-import java.util.UUID;
-
 /**
  * DeliveryPackage
  */
 public class DeliveryPackage {
     // refine later
-    private final UUID packageId;
+    private final String packageId;
     private double weight;
     private double length;
     private double breadth;
     private double height;
 
-    public DeliveryPackage(double weight, double length, double breadth, double height) {
-        this(UUID.randomUUID(), weight, length, breadth, height);
-    }
-
-    private DeliveryPackage(UUID packageId, double weight, double length, double breadth, double height) {
+    /**
+     * DeliveryPackage
+     *
+     * @param packageId
+     * @param weight
+     * @param length
+     * @param breadth
+     * @param height
+     */
+    public DeliveryPackage(String packageId, double weight, double length, double breadth, double height) {
         this.packageId = packageId;
         this.weight = weight;
         this.length = length;
         this.breadth = breadth;
         this.height = height;
+    }
+
+    public String getPackageId() {
+        return packageId;
     }
 
     public double getWeight() {

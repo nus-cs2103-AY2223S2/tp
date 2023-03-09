@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
  */
 public class DeliveryJob {
     // Identity fields
-    private final UUID jobId;
+    private final String jobId;
 
     // Delivery informations
     private Person recepient;
@@ -27,16 +27,29 @@ public class DeliveryJob {
      * @param earning
      */
     public DeliveryJob(Person recepient, String deliverSlot, List<DeliveryPackage> packages, double earning) {
-        this(UUID.randomUUID(), recepient, deliverSlot, packages, earning);
+        this(UUID.randomUUID().toString(), recepient, deliverSlot, packages, earning);
     }
 
-    private DeliveryJob(UUID jobId, Person recepient, String deliverSlot, List<DeliveryPackage> packages,
+    /**
+     * DeliveryJob
+     *
+     * @param jobId
+     * @param recepient
+     * @param deliverSlot
+     * @param packages
+     * @param earning
+     */
+    public DeliveryJob(String jobId, Person recepient, String deliverSlot, List<DeliveryPackage> packages,
             double earning) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.deliverSlot = deliverSlot;
         this.packages = packages;
         this.earning = earning;
+    }
+
+    public String getJobId() {
+        return jobId;
     }
 
     public Person getRecepient() {

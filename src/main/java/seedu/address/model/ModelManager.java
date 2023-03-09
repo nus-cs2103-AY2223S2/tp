@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,8 +21,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final DeliveryJobSystem deliveryJobSystem;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<DeliveryJob> filteredDeliveryJobs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -32,15 +35,42 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.deliveryJobSystem = null;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredDeliveryJobs = null;
     }
 
+    /**
+     * ModelManager
+     *
+     * @param addressBook
+     * @param deliveryJobSystem
+     * @param userPrefs
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyDeliveryJobSystem deliveryJobSystem,
+            ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, deliveryJobSystem, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.deliveryJobSystem = new DeliveryJobSystem(deliveryJobSystem);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+    }
+
+    /**
+     * ModelManager.
+     */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+        // this(new AddressBook(), new DeliveryJobSystem(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +105,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -111,10 +142,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -126,6 +159,20 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    // =========== Filtered Delivery Job List Accessors
+    // =============================================================
+
+    @Override
+    public ObservableList<DeliveryJob> getDeliveryJobList() {
+        return filteredDeliveryJobs;
+    }
+
+    @Override
+    public void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate) {
+        requireAllNonNull(predicate);
+        filteredDeliveryJobs.setPredicate(predicate);
     }
 
     @Override
