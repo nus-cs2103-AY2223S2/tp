@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import java.nio.file.Path;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -10,8 +12,9 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-import java.nio.file.Path;
-
+/**
+ * API of the CareFlow logic component
+ */
 public interface CareFlowLogic {
     /**
      * Executes the command and returns the result.

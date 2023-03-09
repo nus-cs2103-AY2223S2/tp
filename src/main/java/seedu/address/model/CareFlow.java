@@ -1,12 +1,13 @@
 package seedu.address.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.drug.Drug;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-import java.util.List;
 /**
  * Wraps all data at the CareFlow level
  * Duplicates are not allowed
@@ -25,16 +26,24 @@ public class CareFlow {
 
     public CareFlow() {}
 
+    /**
+     * Creates a CareFlow using Patients and Drugs in the { @code toBeCopiedP @code toBeCopiedD }
+     */
     public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD) {
         this();
         resetPatientData(toBeCopiedP);
         resetDrugData(toBeCopiedD);
     }
-
+    /**
+     * Creates a CareFlow using Patients in the { @code toBeCopied }
+     */
     public CareFlow(ReadOnlyPatientRecord toBeCopied) {
         this();
         resetPatientData(toBeCopied);
     }
+    /**
+     * Creates a CareFlow using Drugs in the { @code toBeCopied }
+     */
     public CareFlow(ReadOnlyDrugInventory toBeCopied) {
         this();
         resetDrugData(toBeCopied);
@@ -162,7 +171,7 @@ public class CareFlow {
 
     @Override
     public int hashCode() {
-        return ((Integer)(patientRecord.hashCode() + drugInventory.hashCode())).hashCode();
+        return ((Integer) (patientRecord.hashCode() + drugInventory.hashCode())).hashCode();
     }
 
 }
