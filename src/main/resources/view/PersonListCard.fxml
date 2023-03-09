@@ -33,7 +33,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-         <Button mnemonicParsing="false" style="-fx-background-color: grey; -fx-background-radius: 50; -fx-border-radius: 50; -fx-cursor: HAND;" text="Chat">
+         <Button mnemonicParsing="false" style="-fx-background-color: DARKCYAN; -fx-background-radius: 50; -fx-border-radius: 50; -fx-cursor: HAND;" text="Chat">
             <VBox.margin>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </VBox.margin>
