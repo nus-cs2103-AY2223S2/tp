@@ -11,8 +11,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
+import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -87,5 +91,26 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void addGroup() {
+        Group group = new Group("2103T");
+        ALICE.addGroup(group);
+        assertTrue(ALICE.getGroups().contains(group));
+        Assertions.assertThrows(PersonAlreadyInGroupException.class, () -> {
+            ALICE.addGroup(group);
+        });
+    }
+
+    @Test
+    public void removeGroup() {
+        Group group = new Group("2103T");
+        ALICE.addGroup(group);
+        ALICE.removeGroup(group);
+        assertTrue(!ALICE.getGroups().contains(group));
+        Assertions.assertThrows(PersonNotInGroupException.class, () -> {
+            ALICE.removeGroup(group);
+        });
     }
 }

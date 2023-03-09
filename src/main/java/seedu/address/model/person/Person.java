@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
+import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,7 +60,7 @@ public class Person {
      */
     public void removeGroup(Group group) {
         if (!groups.contains(group)) {
-            throw new GroupNotFoundException();
+            throw new PersonNotInGroupException();
         }
         this.groups.remove(group);
     }
