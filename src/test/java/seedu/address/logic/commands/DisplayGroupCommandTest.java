@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class DisplayGroupCommandTest {
 
     private String expectedOutput = "Listed all groups";
+    
 
     @Test
     public void checkMessageSuccess() {
