@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalInternships.getTypicalInternshipCata
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.Model1;
+import seedu.address.model.ModelManager1;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -17,13 +17,13 @@ import seedu.address.model.UserPrefs;
  */
 public class ListCommandTest1 {
 
-    private Model model;
-    private Model expectedModel;
+    private Model1 model;
+    private Model1 expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
-        expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
+        model = new ModelManager1(getTypicalInternshipCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager1(model.getInternshipCatalogue(), new UserPrefs());
     }
 
     @Test
