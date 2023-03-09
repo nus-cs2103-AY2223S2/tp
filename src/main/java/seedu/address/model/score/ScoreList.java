@@ -1,6 +1,7 @@
 package seedu.address.model.score;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ScoreList implements Iterable<Score> {
      */
     public boolean contains(Score toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameScore);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -52,18 +53,17 @@ public class ScoreList implements Iterable<Score> {
      * The score identity of {@code editedScore} must not be the same as another existing score in the list.
      */
     public void setScore(Score target, Score editedScore) {
-        requireNonNull(target);
-        requireNonNull(editedScore);
+        requireAllNonNull(target, editedScore);
 
         int index = internalList.indexOf(target);
-
         if (index == -1) {
             throw new ScoreNotFoundException();
         }
 
-        if (index == -1) {
+        if (!target.equals(editedScore) && contains(editedScore)) {
             throw new DuplicateScoreException();
         }
+
         internalList.set(index, editedScore);
     }
 
@@ -129,7 +129,7 @@ public class ScoreList implements Iterable<Score> {
     private boolean scoresAreUnique(List<Score> scores) {
         for (int i = 0; i < scores.size() - 1; i++) {
             for (int j = i + 1; j < scores.size(); j++) {
-                if (scores.get(i).isSameScore(scores.get(j))) {
+                if (scores.get(i).equals(scores.get(j))) {
                     return false;
                 }
             }

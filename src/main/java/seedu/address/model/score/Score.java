@@ -32,37 +32,22 @@ public class Score {
     /**
      * Returns the score name.
      */
-    public Label getScoreName() {
+    public Label getLabel() {
         return scoreName;
     }
 
     /**
      * Returns the score value.
      */
-    public ScoreValue getScoreValue() {
+    public ScoreValue getValue() {
         return scoreValue;
     }
 
     /**
      * Returns the score date in the format of yyyy-MM-dd HH:mm:ss.
      */
-    public Date getScoreDate() {
+    public Date getDate() {
         return scoreDate;
-    }
-
-    /**
-     * Returns true if both scores have the same name.
-     * This defines a weaker notion of equality between two scores.
-     */
-    public boolean isSameScore(Score otherScore) {
-        if (otherScore == this) {
-            return true;
-        }
-
-        return otherScore != null
-                && otherScore.getScoreName().equals(getScoreName())
-                && otherScore.getScoreValue() == getScoreValue()
-                && otherScore.getScoreDate().equals(getScoreDate());
     }
 
     @Override
@@ -86,11 +71,11 @@ public class Score {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getScoreName())
+                .append(getLabel())
                 .append("; Score: ")
-                .append(getScoreValue())
+                .append(getValue())
                 .append("; Date: ")
-                .append(getScoreDate());
+                .append(getDate());
 
         return builder.toString();
     }
