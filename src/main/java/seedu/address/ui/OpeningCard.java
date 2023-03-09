@@ -51,7 +51,7 @@ public class OpeningCard extends UiPart<Region> {
         company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
         status.setText(opening.getStatus().fullStatus);
-        email.setText(opening.getContact().value);
+        email.setText(opening.getEmail().value);
         opening.getDates().stream()
                 .sorted(Comparator.comparing(date -> date.fullDate))
                 .forEach(date -> dates.getChildren().add(new Label(date.fullDate)));
