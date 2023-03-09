@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given
  * using fuzzy search.
  */
@@ -25,8 +24,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      * given using fuzzy search.
      *
      * @param person The {@code Person} to test against.
-     * @return true if the name of the person matches any of the keywords given
-     * using fuzzy search, false otherwise.
+     * @return true if the name of the person matches any of the keywords given using fuzzy search, false otherwise.
      */
     @Override
     public boolean test(Person person) {
@@ -44,8 +42,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      *
      * @param fullName The name to match against.
      * @param keyword The keyword to match.
-     * @return true if the keyword matches a contiguous substring of the name,
-     * false otherwise.
+     * @return true if the keyword matches a contiguous substring of the name,false otherwise.
      */
     private boolean isFuzzyMatch(String fullName, String keyword) {
         int lastMatch = -1;
