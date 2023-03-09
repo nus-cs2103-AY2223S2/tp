@@ -14,7 +14,7 @@ public class TaskBuilder {
     public static final String RANDOM_TASK_SUBJECT = "Random Subject";
     public static final String RANDOM_TASK_CONTENT = "Random Content ABC";
     public static final boolean RANDOM_TASK_STATUS = true;
-    public static final String DEFAULT_SUBJECT = "Sports";
+    public static final String DEFAULT_SUBJECT = "Recreation day";
     public static final String DEFAULT_CONTENT = "Play football";
     public static final boolean DEFAULT_STATUS = false;
 

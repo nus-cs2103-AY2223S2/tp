@@ -21,9 +21,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -67,7 +70,7 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final String VALID_SUBJECT_SPORTS = "Sports";
+    public static final String VALID_SUBJECT_SPORTS = "Recreation day";
     public static final String VALID_CONTENT_SPORTS = "Ride bicycle";
     public static final String VALID_STATUS_SPORTS = "False";
 
@@ -112,6 +115,34 @@ public class CommandTestUtil {
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel} for tasks
+     */
+    public static void assertTaskCommandSuccess(Command command, OfficeConnectModel actualModel,
+                                                CommandResult expectedCommandResult, OfficeConnectModel expectedModel) {
+        try {
+            CommandResult result = command.execute(new ModelManager(), actualModel);
+            assertEquals(expectedCommandResult, result);
+            RepositoryModelManager<Task> actualModelTaskModelManager = actualModel.getTaskModelManager();
+            RepositoryModelManager<Task> expectedModelTaskModelManager = expectedModel.getTaskModelManager();
+            assertEquals(actualModelTaskModelManager, expectedModelTaskModelManager);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertTaskCommandSuccess(Command, OfficeConnectModel, String, OfficeConnectModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertTaskCommandSuccess(Command command, OfficeConnectModel actualModel, String expectedMessage,
+                                            OfficeConnectModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertTaskCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
