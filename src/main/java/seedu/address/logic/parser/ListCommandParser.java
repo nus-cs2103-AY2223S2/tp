@@ -1,18 +1,20 @@
 package seedu.address.logic.parser;
 
-import com.sun.jdi.connect.Connector;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
-import java.util.Set;
-import java.util.stream.Stream;
 
-
-import static seedu.address.logic.parser.CliSyntax.*;
-
-
+/**
+ * Parses the list command entered by user
+ */
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
@@ -32,10 +34,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(tagMultimap.getAllValues(PREFIX_TAG));
 
         return new ListCommand(new TagContainsKeywordsPredicate(tagList), areKeywordsPresent);
-
-        }
-
-
+    }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
