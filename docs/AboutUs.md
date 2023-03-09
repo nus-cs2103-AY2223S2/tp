@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zi-Yi Elijah Ku
 
-<img src="images/Profile Pics/Elijah_Ku.png" width="200px">
+<img src="images/zeli0.png" width="200px">
 
 [[github](http://github.com/Zeli0)]
-[[portfolio](team/eli.md)]
+[[portfolio](team/zeli0.md)]
 
 - Role: Developer
 - Responsibilities: 
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ang Jun Yang
 
-<img src="images/Profile Pics/Ang_Jun_Yang.jpg" width="200px">
+<img src="images/Ang_Jun_Yang.png" width="200px">
 
 [[github](https://github.com/AngJunYang)]
 [[portfolio](team/junyang.md)]
@@ -61,7 +61,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Troy Tim
 
-<img src="images/Profile Pics/Troy_Tim.jpg" width="200px">
+<img src="images/Troy_Tim.png" width="200px">
 
 [[github](https://github.com/roultitude)]
 [[portfolio](team/roultitude.md)]
