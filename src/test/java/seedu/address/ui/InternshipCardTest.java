@@ -3,12 +3,7 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalInternships.APPLE;
-import static seedu.address.testutil.TypicalInternships.FOODPANDA;
-import static seedu.address.testutil.TypicalInternships.GOLDMAN;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
-import static seedu.address.testutil.TypicalInternships.GRAB;
-import static seedu.address.testutil.TypicalInternships.SAMSUNG;
-import static seedu.address.testutil.TypicalInternships.SUPERCELLGAMES;
 
 import org.junit.jupiter.api.Test;
 
