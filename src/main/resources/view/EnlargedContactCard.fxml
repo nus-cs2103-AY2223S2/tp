@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="enlargedContactCard" fx:id="enlargedContactCard" styleClass="contact-card-pane primary-border"
+<HBox id="cardPane" fx:id="enlargedContactCard" styleClass="contact-card-pane primary-border"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <padding>
     <Insets right="5" left="5" />
@@ -31,7 +30,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="specialty" styleClass="cell_small_label" text="\$specialty" />
-      v<Label fx:id="yearsOfExperience" styleClass="cell_small_label" text="\$specialty" />
+      <Label fx:id="yearsOfExperience" styleClass="cell_small_label" text="\$yearsOfExperience" />
     </VBox>
   </GridPane>
 </HBox>
