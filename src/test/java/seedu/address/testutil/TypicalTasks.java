@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task ONE = new TaskBuilder().withTaskDescription("send out survey").build();
-    public static final Task TWO= new TaskBuilder().withTaskDescription("eat berries").build();
+    public static final Task TWO = new TaskBuilder().withTaskDescription("eat berries").build();
     public static final Task THREE = new TaskBuilder().withTaskDescription("eat salmon").build();
 
     private TypicalTasks() {} // prevents instantiation

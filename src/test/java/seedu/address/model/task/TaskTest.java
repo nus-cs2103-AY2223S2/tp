@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalTasks.ONE;
 import static seedu.address.testutil.TypicalTasks.TWO;
 import static seedu.address.testutil.TypicalTasks.THREE;
+
 import seedu.address.testutil.TaskBuilder;
 
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ public class TaskTest {
 
         // name has trailing spaces, all other attributes same -> returns false
         String taskDescriptionWithTrailingSpaces = "eat berries" + " ";
-        Task editedSecond = new TaskBuilder(TWO).
-                withTaskDescription(taskDescriptionWithTrailingSpaces).build();
+        Task editedSecond = new TaskBuilder(TWO)
+                .withTaskDescription(taskDescriptionWithTrailingSpaces).build();
         assertFalse(TWO.isSameTask(editedSecond));
     }
 

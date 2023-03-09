@@ -2,10 +2,11 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.address.testutil.DeadlineTaskBuilder;
 import static seedu.address.testutil.TypicalDeadlineTasks.FIRST;
 import static seedu.address.testutil.TypicalDeadlineTasks.SECOND;
 import static seedu.address.testutil.TypicalDeadlineTasks.THIRD;
+
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +31,8 @@ public class DeadlineTaskTest {
 
         // name has trailing spaces, all other attributes same -> returns false
         String taskDescriptionWithTrailingSpaces = "eat berries" + " ";
-        DeadlineTask editedSecond = new DeadlineTaskBuilder(SECOND).
-                withTaskDescription(taskDescriptionWithTrailingSpaces).build();
+        DeadlineTask editedSecond = new DeadlineTaskBuilder(SECOND)
+                .withTaskDescription(taskDescriptionWithTrailingSpaces).build();
         assertFalse(SECOND.isSameTask(editedSecond));
     }
 
@@ -58,7 +59,7 @@ public class DeadlineTaskTest {
         assertFalse(FIRST.equals(editedFirst));
 
         // different date -> returns false
-        editedFirst= new DeadlineTaskBuilder(FIRST).withDate("01/06/2015").build();
+        editedFirst = new DeadlineTaskBuilder(FIRST).withDate("01/06/2015").build();
         assertFalse(FIRST.equals(editedFirst));
     }
 }
