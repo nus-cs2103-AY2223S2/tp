@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 't154.CLIpboard.Main'
+mainClassName = 'tfifteenfour.clipboard.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'CLIpboard.jar'
+    archiveFileName = 'clipboard.jar'
 }
 
 defaultTasks 'clean', 'test'
