@@ -65,6 +65,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Person getProtagonist() {
+        return model.getProtagonist();
+    }
+
+    @Override
+    public String getCurrentTab() {
+        return model.getCurrentTab();
+    }
+
+    @Override
+    public void setCurrentTab(String tab) {
+        model.setCurrentTab(tab);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
