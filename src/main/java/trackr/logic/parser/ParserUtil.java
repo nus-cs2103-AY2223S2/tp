@@ -14,7 +14,6 @@ import trackr.model.person.Email;
 import trackr.model.person.Name;
 import trackr.model.person.Phone;
 import trackr.model.tag.Tag;
-import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;

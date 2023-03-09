@@ -1,14 +1,13 @@
 package trackr.logic.commands;
 
-import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.Model;
-import trackr.model.task.Task;
-
 import static java.util.Objects.requireNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
+import trackr.logic.commands.exceptions.CommandException;
+import trackr.model.Model;
+import trackr.model.task.Task;
 /**
  * Adds a task to the task list.
  */

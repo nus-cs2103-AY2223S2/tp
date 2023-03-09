@@ -93,9 +93,12 @@ public class CommandTestUtil {
     public static final String TASK_STATUS_DESC_NOT_DONE =
             " " + PREFIX_STATUS + VALID_TASK_STATUS_NOT_DONE;
 
-    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_NAME + "Buy eggs & flour"; // '&' not allowed in names
-    public static final String INVALID_TASK_DEADLINE_DESC = " " + PREFIX_DEADLINE + "aa/01/2025"; // alphabets not allowed in deadlines
-    public static final String INVALID_TASK_STATUS_DESC = " " + PREFIX_STATUS + "d2"; // status can only be d / D / n / N
+    public static final String INVALID_TASK_NAME_DESC =
+            " " + PREFIX_NAME + "Buy eggs & flour"; // '&' not allowed in names
+    public static final String INVALID_TASK_DEADLINE_DESC =
+            " " + PREFIX_DEADLINE + "aa/01/2025"; // alphabets not allowed in deadlines
+    public static final String INVALID_TASK_STATUS_DESC =
+            " " + PREFIX_STATUS + "d2"; // status can only be d / D / n / N
 
 
     /**

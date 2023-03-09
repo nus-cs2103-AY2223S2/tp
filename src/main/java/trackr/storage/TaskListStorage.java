@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 
 /**

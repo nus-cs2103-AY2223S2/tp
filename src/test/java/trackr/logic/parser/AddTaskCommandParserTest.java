@@ -1,29 +1,31 @@
 package trackr.logic.parser;
 
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static trackr.logic.commands.CommandTestUtil.*;
+import static trackr.logic.commands.CommandTestUtil.INVALID_TASK_DEADLINE_DESC;
+import static trackr.logic.commands.CommandTestUtil.INVALID_TASK_NAME_DESC;
+import static trackr.logic.commands.CommandTestUtil.INVALID_TASK_STATUS_DESC;
+import static trackr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static trackr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static trackr.logic.commands.CommandTestUtil.TASK_DEADLINE_DESC_2024;
+import static trackr.logic.commands.CommandTestUtil.TASK_DEADLINE_DESC_2100;
+import static trackr.logic.commands.CommandTestUtil.TASK_NAME_DESC_BUY_FLOUR;
+import static trackr.logic.commands.CommandTestUtil.TASK_NAME_DESC_SORT_INVENTORY;
+import static trackr.logic.commands.CommandTestUtil.TASK_STATUS_DESC_DONE;
+import static trackr.logic.commands.CommandTestUtil.TASK_STATUS_DESC_NOT_DONE;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_2100;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_NAME_SORT_INVENTORY;
+import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static trackr.testutil.TypicalPersons.AMY;
-import static trackr.testutil.TypicalPersons.BOB;
-import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.AddTaskCommand;
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Person;
-import trackr.model.person.Phone;
-import trackr.model.tag.Tag;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
-import trackr.testutil.PersonBuilder;
 import trackr.testutil.TaskBuilder;
 
 public class AddTaskCommandParserTest {
@@ -34,7 +36,7 @@ public class AddTaskCommandParserTest {
         Task expectedTask = new TaskBuilder(SORT_INVENTORY_N).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE +  TASK_NAME_DESC_SORT_INVENTORY
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASK_NAME_DESC_SORT_INVENTORY
                 + TASK_DEADLINE_DESC_2024 + TASK_STATUS_DESC_NOT_DONE, new AddTaskCommand(expectedTask));
 
         // multiple task names - last task name accepted
@@ -53,7 +55,7 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // no status
         Task expectedTask = new TaskBuilder(SORT_INVENTORY_N).withTaskStatus().build();
         assertParseSuccess(parser, TASK_NAME_DESC_SORT_INVENTORY + TASK_DEADLINE_DESC_2024,
                 new AddTaskCommand(expectedTask));
@@ -67,9 +69,17 @@ public class AddTaskCommandParserTest {
         assertParseFailure(parser, VALID_TASK_NAME_SORT_INVENTORY + TASK_DEADLINE_DESC_2024
                         + TASK_STATUS_DESC_NOT_DONE, expectedMessage);
 
+        // missing name
+        assertParseFailure(parser, TASK_DEADLINE_DESC_2024
+                + TASK_STATUS_DESC_NOT_DONE, expectedMessage);
+
         // missing deadline prefix
         assertParseFailure(parser, TASK_NAME_DESC_SORT_INVENTORY + VALID_TASK_DEADLINE_2100
                         + TASK_STATUS_DESC_DONE, expectedMessage);
+
+        // missing deadline
+        assertParseFailure(parser, TASK_NAME_DESC_SORT_INVENTORY
+                + TASK_STATUS_DESC_DONE, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_TASK_NAME_SORT_INVENTORY
