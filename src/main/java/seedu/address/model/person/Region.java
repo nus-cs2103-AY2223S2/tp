@@ -10,6 +10,10 @@ package seedu.address.model.person;
  */
 public class Region {
 
+    public static final String MESSAGE_CONSTRAINTS = 
+            "Region in Singapore should be either North, South, East, West or Central\n" +
+            "No other regions are accepted!\n";
+
     /**
      * Enum that represents all regions of Singapore
      */

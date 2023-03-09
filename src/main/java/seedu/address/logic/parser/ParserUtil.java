@@ -13,6 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Region.Regions;
+import seedu.address.model.person.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +122,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String region} into the correct {@code Regions} enum
+     * @param region
+     * @return
+     */
+    public static Regions parseRegion(String region) throws ParseException {
+        requireNonNull(region);
+        String processedInputRegion = region.trim().toUpperCase();
+        Regions[] allRegions = Regions.values();
+        for (Regions r : allRegions) {
+            if (r.toString().equals(processedInputRegion)) {
+                return r;
+            }
+        }
+        throw new ParseException(Region.MESSAGE_CONSTRAINTS);
     }
 }
