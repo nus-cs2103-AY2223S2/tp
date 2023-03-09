@@ -26,7 +26,7 @@ View tab | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`
 Edit | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [l/LINKEDIN] [g/GITHUB] [m/MODINDEX YEARTAKEN MODCODE]... [t/TAG]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`
 Find	name | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`
 Find module | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`
-Find tags | `findt TAG [MORETAGS]`<br />e.g., `findt java python` 
+Find tags | `findt TAG [MORETAGS]`<br />e.g., `findt java python`
 List | `view` the default list of all contacts
 Delete | `delete INDEX`<br />e.g., `delete 3`
 Clear all contacts | `clear`
