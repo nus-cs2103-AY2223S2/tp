@@ -3,8 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -94,6 +96,38 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Adds {@code group} in {@code person} group set
+     * {@code person} must exist in the address book.
+     */
+    public void addPersonInGroup(Person person, Group group) {
+        person.addGroup(group);
+    }
+
+    /**
+     * Removes {@code group} from {@code person} group set
+     * {@code person and group} must exist in the address book.
+     */
+    public void removePersonFromGroup(Person person, Group group) {
+        person.removeGroup(group);
+    }
+
+    /**
+     * Add {@code group}  into address book's UniqueGroupList
+     * {@code group} must not exist in the address book.
+     */
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
+    /**
+     * Remove {@code group} from address book's UniqueGroupList and every person in the group
+     * {@code group} must not exist in the address book.
+     */
+    public void deleteGroup(Group group, Set<Person> personSet) {
+        groups.delete(group, personSet);
     }
 
     //// util methods

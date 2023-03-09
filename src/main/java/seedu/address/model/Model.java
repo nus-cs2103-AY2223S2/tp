@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
 /**
@@ -80,8 +82,34 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Adds the given person into a group.
+     * {@code person} must not already exist in the {@code group}
+     */
+    void addPersonInGroup(Person person, Group group);
+
+    /**
+     * Removes the given person from a group.
+     * {@code person} must exist in the {@code group}
+     */
+    void removePersonFromGroup(Person person, Group group);
+
+    /**
+     * Adds a new group
+     * {@code group} must not exist in the address book
+     */
+    void addGroup(Group group);
+
+    /**
+     * Deletes a new group and removes group from every person in it
+     * {@code group} must exist in the address book
+     */
+    void deleteGroup(Group group, Set<Person> persons);
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
 }
