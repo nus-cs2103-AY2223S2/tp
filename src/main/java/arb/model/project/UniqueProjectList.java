@@ -80,6 +80,11 @@ public class UniqueProjectList implements Iterable<Project> {
         }
     }
 
+    public void markAsDone(Project toMark) {
+        requireNonNull(toMark);
+        toMark.markAsDone();
+    }
+
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

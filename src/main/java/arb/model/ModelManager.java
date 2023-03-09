@@ -108,6 +108,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markProject(Project project) {
+        addressBook.markProject(project);
+    }
+
+    @Override
     public void deleteProject(Project target) {
         addressBook.removeProject(target);
     }

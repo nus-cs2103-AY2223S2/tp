@@ -6,6 +6,7 @@ import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import arb.commons.core.index.Index;
 import arb.logic.commands.Command;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
@@ -16,12 +17,14 @@ import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.commands.project.AddProjectCommand;
+import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.parser.client.AddClientCommandParser;
 import arb.logic.parser.client.DeleteClientCommandParser;
 import arb.logic.parser.client.EditClientCommandParser;
 import arb.logic.parser.client.FindClientCommandParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.logic.parser.project.AddProjectCommandParser;
+import arb.logic.parser.project.MarkProjectCommandParser;
 
 /**
  * Parses user input.
@@ -56,6 +59,9 @@ public class AddressBookParser {
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
+        case MarkProjectCommand.COMMAND_WORD:
+            return new MarkProjectCommandParser().parse(arguments);
+
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
 
@@ -76,6 +82,7 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

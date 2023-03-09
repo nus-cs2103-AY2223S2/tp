@@ -143,6 +143,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
     }
 
+    public void markProject(Project project) {
+        projects.markAsDone(project);
+    }
+
     //// util methods
 
     @Override
@@ -174,4 +178,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return Objects.hash(clients, projects);
     }
+
+
 }
