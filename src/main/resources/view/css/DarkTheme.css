@@ -1,7 +1,49 @@
+/*
+ * Background Styles
+ */
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #0A1928;
+    background-color: #0A1928; /* Used in the default.html file */
 }
+
+/*
+ * Application Body Styles
+ */
+.body {
+    -fx-padding: 5 5 5 5;
+}
+
+/*
+ * Command Box Styles
+ */
+.command-box {
+    -fx-background-color: #2A3745;
+}
+
+/*
+ * Result Display Styles
+ */
+.result-display {
+    -fx-background-color: #001E3C;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
+/*
+ * Contact Card Styles
+ */
+.contact-card-pane {
+    -fx-background-color: #001E3C;
+}
+
+/*
+ * Label Styles
+ */
 
 .label {
     -fx-font-size: 11pt;
@@ -27,6 +69,20 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
+}
+
+/*
+ * Border Styles
+ */
+
+.primary-border {
+    -fx-border-color: #A0A0A0;
+    -fx-border-top-width: 1px;
+}
+
+.only-bottom-primary-border {
+    -fx-border-color: #A0A0A0;
+    -fx-border-width: 1px 0px 1px 0px;
 }
 
 .tab-pane {
@@ -146,17 +202,6 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
@@ -192,8 +237,11 @@
     -fx-text-fill: white;
 }
 
+/*
+ * Menu Bar Styles
+ */
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #0059B2;
 }
 
 .menu-bar .label {
