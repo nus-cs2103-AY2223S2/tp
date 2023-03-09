@@ -11,6 +11,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -47,12 +50,22 @@
               </padding>
             </StackPane>
 
-            <VBox fx:id="personList" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <GridPane alignment="CENTER_LEFT" hgap="10" vgap="10">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="250" />
+              </columnConstraints>
+              <VBox fx:id="personList" VBox.vgrow="ALWAYS" minWidth="450"
+                    GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+              <VBox fx:id="contactDetailsPane" VBox.vgrow="ALWAYS" minWidth="225"
+                    GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1" styleClass="primary-border">
+                <StackPane fx:id="contactDetailsPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </GridPane>
           </VBox>
 
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
