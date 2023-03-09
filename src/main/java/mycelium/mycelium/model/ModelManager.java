@@ -29,8 +29,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Project> filteredProjects;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Project> filteredProjects;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -42,8 +42,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
     }
 
     public ModelManager() {
@@ -155,6 +155,8 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    //=========== Filtered Client List Accessors =============================================================
+
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
@@ -191,6 +193,8 @@ public class ModelManager implements Model {
         updateFilteredProjectList(x -> true);
     }
 
+    //=========== Filtered Project List Accessors =============================================================
+
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
@@ -204,14 +208,22 @@ public class ModelManager implements Model {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ModelManager that = (ModelManager) o;
-        return Objects.equals(addressBook, that.addressBook) && Objects.equals(userPrefs, that.userPrefs) && Objects.equals(filteredPersons, that.filteredPersons) && Objects.equals(filteredProjects, that.filteredProjects) && Objects.equals(filteredClients, that.filteredClients);
+        return Objects.equals(addressBook, that.addressBook)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredPersons, that.filteredPersons)
+                && Objects.equals(filteredClients, that.filteredClients)
+                && Objects.equals(filteredProjects, that.filteredProjects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredProjects, filteredClients);
+        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredClients, filteredProjects);
     }
 }

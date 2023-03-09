@@ -1,14 +1,14 @@
 package mycelium.mycelium.model;
 
-import javafx.collections.ObservableList;
-import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.person.Person;
-import mycelium.mycelium.model.person.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.person.UniquePersonList;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.UniqueList;
 
@@ -20,7 +20,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueList<Project> projects;
-
     private final UniqueList<Client> clients;
 
     /*
@@ -82,8 +81,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setProjects(newData.getProjectList());
         setClients(newData.getClientList());
+        setProjects(newData.getProjectList());
     }
 
     //// person-level operations
@@ -175,10 +174,15 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         AddressBook that = (AddressBook) o;
-        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects) && Objects.equals(clients, that.clients);
+        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects)
+                && Objects.equals(clients, that.clients);
     }
 
     @Override

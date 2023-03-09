@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.project.Project;
@@ -136,17 +137,24 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
         // TODO update the constructor here to take in a list of projects too
         AddressBookStub(Collection<Person> persons, Collection<Project> projects) {
             this.persons.setAll(persons);
+            this.clients.setAll(clients);
             this.projects.setAll(projects);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList() {
+            return clients;
         }
 
         @Override

@@ -1,12 +1,13 @@
 package mycelium.mycelium.model;
 
-import mycelium.mycelium.commons.core.GuiSettings;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
+import mycelium.mycelium.commons.core.GuiSettings;
+
 
 /**
  * Represents User's preferences.
@@ -79,8 +80,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public String toString() {
-        String sb = "Gui Settings : " + guiSettings +
-                "\nLocal data file location : " + addressBookFilePath;
+        String sb = "Gui Settings : " + guiSettings
+                + "\nLocal data file location : " + addressBookFilePath;
         return sb;
     }
 

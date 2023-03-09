@@ -1,10 +1,10 @@
 package mycelium.mycelium.storage;
 
-import java.util.Date;
 import java.time.Year;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
@@ -26,6 +26,7 @@ class JsonAdaptedClient {
 
     private final String name;
     private final String email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY")
     private final Year yearOfBirth;
     private final String source;
     private final String mobileNumber;
@@ -51,9 +52,9 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client client) {
         name = client.getName().fullName;
         email = client.getEmail().value;
-        yearOfBirth = client.getYearOfBirth().get();
-        source = client.getSource().get();
-        mobileNumber = client.getMobileNumber().get();
+        yearOfBirth = client.getYearOfBirth().orElse(null);
+        source = client.getSource().orElse(null);
+        mobileNumber = client.getMobileNumber().orElse(null).value;
     }
 
     /**
@@ -102,7 +103,8 @@ class JsonAdaptedClient {
         validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         final Phone modelMobileNumber = new Phone(mobileNumber);
 
-        return new Client(modelName, modelEmail, Optional.of(yearOfBirth), Optional.of(source), Optional.of(modelMobileNumber));
+        return new Client(modelName, modelEmail,
+                Optional.of(yearOfBirth), Optional.of(source), Optional.of(modelMobileNumber));
     }
 
 

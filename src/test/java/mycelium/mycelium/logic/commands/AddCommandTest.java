@@ -19,6 +19,7 @@ import mycelium.mycelium.model.AddressBook;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
 import mycelium.mycelium.model.ReadOnlyUserPrefs;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.Assert;
@@ -147,6 +148,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Client> getFilteredClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
