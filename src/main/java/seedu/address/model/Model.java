@@ -106,9 +106,9 @@ public interface Model {
     void deleteGroup(Group group, Set<Person> persons);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Returns true if a group with the same group name as {@code group} exists in the address book.
      */
+    boolean hasGroup(Group group);
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 

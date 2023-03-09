@@ -130,6 +130,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         groups.delete(group, personSet);
     }
 
+    /**
+     * Returns true if a group with the same group name as {@code group} exists in the address book.
+     */
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groups.contains(group);
+    }
+
     //// util methods
 
     @Override

@@ -136,6 +136,12 @@ public class ModelManager implements Model {
         addressBook.deleteGroup(group, personSet);
     }
 
+    @Override
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return addressBook.hasGroup(group);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
