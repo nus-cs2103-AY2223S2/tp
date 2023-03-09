@@ -20,7 +20,12 @@ public class ViewCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a View Command to View the delivery at {@code Index}
+     * @param index Index of delivery of interest.
+     */
     public ViewCommand(Index index) {
+        requireNonNull(index);
         this.index = index;
     }
 
@@ -38,5 +43,12 @@ public class ViewCommand extends Command {
                 + deliveryToView.getEmail().toString() + "\n"
                 + deliveryToView.getPhone().toString() + "\n"
                 + "Parcels:" + "\n");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && index.equals(((ViewCommand) other).index));
     }
 }
