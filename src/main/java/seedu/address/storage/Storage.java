@@ -27,6 +27,6 @@ public interface Storage extends FitBookStorage, UserPrefsStorage {
     Optional<ReadOnlyFitBook> readFitBook() throws DataConversionException, IOException;
 
     @Override
-    void saveFitBook(ReadOnlyFitBook addressBook) throws IOException;
+    void saveFitBook(ReadOnlyFitBook fitBook) throws IOException;
 
 }

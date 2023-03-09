@@ -45,9 +45,9 @@ public interface FitBookModel {
     void setFitBookFilePath(Path fitBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code fitBook}.
      */
-    void setFitBook(ReadOnlyFitBook addressBook);
+    void setFitBook(ReadOnlyFitBook fitBook);
 
     /** Returns the FitBook */
     ReadOnlyFitBook getFitBook();

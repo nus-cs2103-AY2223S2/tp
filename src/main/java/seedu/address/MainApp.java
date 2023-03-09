@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FitBookStorage addressBookStorage = new JsonFitBookStorage(userPrefs.getFitBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FitBookStorage fitBookStorage = new JsonFitBookStorage(userPrefs.getFitBookFilePath());
+        storage = new StorageManager(fitBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty FitBook will be used instead if errors occur when reading {@code storage}'s FitBook.
      */
     private FitBookModel initFitBookModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFitBook> addressBookOptional;
+        Optional<ReadOnlyFitBook> fitBookOptional;
         ReadOnlyFitBook initialData;
         try {
-            addressBookOptional = storage.readFitBook();
-            if (!addressBookOptional.isPresent()) {
+            fitBookOptional = storage.readFitBook();
+            if (!fitBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FitBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleFitBook);
+            initialData = fitBookOptional.orElseGet(SampleDataUtil::getSampleFitBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FitBook");
             initialData = new FitBook();

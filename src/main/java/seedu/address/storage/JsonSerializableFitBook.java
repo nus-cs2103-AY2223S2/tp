@@ -46,15 +46,15 @@ class JsonSerializableFitBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public FitBook toFitBookModelType() throws IllegalValueException {
-        FitBook addressBook = new FitBook();
+        FitBook fitBook = new FitBook();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toFitBookModelType();
-            if (addressBook.hasClient(client)) {
+            if (fitBook.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addClient(client);
+            fitBook.addClient(client);
         }
-        return addressBook;
+        return fitBook;
     }
 
 }

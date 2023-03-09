@@ -19,21 +19,21 @@ import seedu.address.model.client.Client;
 public class FitBookModelManager implements FitBookModel {
     private static final Logger logger = LogsCenter.getLogger(FitBookModelManager.class);
 
-    private final FitBook addressBook;
+    private final FitBook fitBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
 
     /**
-     * Initializes a FitBookModelManager with the given addressBook and userPrefs.
+     * Initializes a FitBookModelManager with the given fitBook and userPrefs.
      */
-    public FitBookModelManager(ReadOnlyFitBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(fitBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + fitBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new FitBook(addressBook);
+        this.fitBook = new FitBook(fitBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredClients = new FilteredList<>(this.fitBook.getClientList());
     }
 
     public FitBookModelManager() {
@@ -78,36 +78,36 @@ public class FitBookModelManager implements FitBookModel {
     //=========== FitBook ================================================================================
 
     @Override
-    public void setFitBook(ReadOnlyFitBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFitBook(ReadOnlyFitBook fitBook) {
+        this.fitBook.resetData(fitBook);
     }
 
     @Override
     public ReadOnlyFitBook getFitBook() {
-        return addressBook;
+        return fitBook;
     }
 
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return addressBook.hasClient(client);
+        return fitBook.hasClient(client);
     }
 
     @Override
     public void deleteClient(Client target) {
-        addressBook.removeClient(target);
+        fitBook.removeClient(target);
     }
 
     @Override
     public void addClient(Client client) {
-        addressBook.addClient(client);
+        fitBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-        addressBook.setClient(target, editedClient);
+        fitBook.setClient(target, editedClient);
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -141,7 +141,7 @@ public class FitBookModelManager implements FitBookModel {
 
         // state check
         FitBookModelManager other = (FitBookModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return fitBook.equals(other.fitBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients);
     }
