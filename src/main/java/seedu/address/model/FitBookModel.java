@@ -53,7 +53,9 @@ public interface FitBookModel {
      */
     void setFitBook(ReadOnlyFitBook addressBook);
 
-    /** Returns the FitBook */
+    /**
+     * Returns the FitBook
+     */
     ReadOnlyFitBook getFitBook();
 
     /**
@@ -80,14 +82,18 @@ public interface FitBookModel {
      */
     void setClient(Client target, Client editedClient);
 
-    /** Returns an unmodifiable view of the filtered client list */
+    /**
+     * Returns an unmodifiable view of the filtered client list
+     */
     ObservableList<Client> getFilteredClientList();
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
 
     /**
      * Replaces exercise routine data with the data in {@code exerciseRoutine}.
