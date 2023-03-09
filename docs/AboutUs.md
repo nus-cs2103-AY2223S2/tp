@@ -18,6 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and deadlines
 
+### Shi Jiaao
+
+<img src="docs/images/shijiaao.png" width="200px">
+
+[[github](https://github.com/ShiJiaAo)]
+[[portfolio](team/shijiaao.md)]
+
+* Role: Deliverables and deadlines
+
 ### Chew Chun Kiat
 
 <img src="images/nerdyboy98.png" width="200px">
@@ -37,16 +46,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
-
-### JiaAo
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/ShiJiaAo)]
-[[portfolio](team/shijaao.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Jia Tong
 
