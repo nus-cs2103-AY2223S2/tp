@@ -41,6 +41,8 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    private String dateLabel;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -52,25 +54,24 @@ public class InternshipCard extends UiPart<Region> {
         role.setText("Role: " + internship.getRole().fullRole);
         status.setText("Status: " + internship.getStatus().toString());
         String internshipStatus = internship.getStatus().toString();
-        String dateLabel;
         switch (internshipStatus) {
-        case "new":
-            dateLabel = "Date added: ";
+        case "New":
+            dateLabel = "Date Added: ";
             break;
-        case "applied":
-            dateLabel = "Date applied: ";
+        case "Applied":
+            dateLabel = "Date Applied: ";
             break;
-        case "assessment":
-            dateLabel = "Date of assessment: ";
+        case "Assessment":
+            dateLabel = "Date of Assessment: ";
             break;
-        case "interview":
-            dateLabel = "Date of interview: ";
+        case "Interview":
+            dateLabel = "Date of Interview: ";
             break;
-        case "offered":
-            dateLabel = "Date of notice of offer: ";
+        case "Offered":
+            dateLabel = "Date of Notice of Offer: ";
             break;
-        case "rejected":
-            dateLabel = "Date of notice of rejection: ";
+        case "Rejected":
+            dateLabel = "Date of Notice of Rejection: ";
             break;
         default:
             dateLabel = "Date: ";
@@ -97,5 +98,13 @@ public class InternshipCard extends UiPart<Region> {
         InternshipCard card = (InternshipCard) other;
         return id.getText().equals(card.id.getText())
                 && internship.equals(card.internship);
+    }
+
+    /**
+     * Returns the date label shown in the UI.
+     * @return the data label in the UI.
+     */
+    public String getDateLabel() {
+        return this.dateLabel;
     }
 }
