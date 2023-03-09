@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -91,6 +92,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Adds a contact to the internship application.
+     * {@code key} must exist in the list of applications.
+     */
+    public void addContactToInternship(Person p, Contact c) {
+        p.setContact(c);
     }
 
     //// util methods
