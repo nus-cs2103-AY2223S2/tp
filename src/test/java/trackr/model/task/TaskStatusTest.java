@@ -65,7 +65,7 @@ public class TaskStatusTest {
     }
 
     @Test
-    public void toJsonStringTest() {
+    public void toJsonString() {
         TaskStatus done = new TaskStatus("D");
         assertEquals("D", done.toJsonString());
 
@@ -74,7 +74,7 @@ public class TaskStatusTest {
     }
 
     @Test
-    public void equalsTest() {
+    public void equals() {
         TaskStatus done = new TaskStatus("D");
         TaskStatus notDone = new TaskStatus("N");
 

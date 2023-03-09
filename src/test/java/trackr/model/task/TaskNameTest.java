@@ -46,7 +46,7 @@ public class TaskNameTest {
     }
 
     @Test
-    public void equalsTest() {
+    public void equals() {
         TaskName taskName = new TaskName("Sort Inventory");
         TaskName different = new TaskName("Sort");
 

@@ -70,13 +70,13 @@ public class TaskDeadlineTest {
     }
 
     @Test
-    public void toJsonStringTest() {
+    public void toJsonString() {
         String expectedDate = "10/10/2023";
         assertEquals(expectedDate, new TaskDeadline(expectedDate).toJsonString());
     }
 
     @Test
-    public void equalsTest() {
+    public void equals() {
         TaskDeadline taskDeadline = new TaskDeadline("01/01/2024");
         TaskDeadline different = new TaskDeadline("15/07/2025");
 
