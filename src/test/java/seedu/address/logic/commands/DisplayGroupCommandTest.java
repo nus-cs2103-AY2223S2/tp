@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DisplayGroupCommandTest {
 
-        String expectedOutput = "Listed all groups";
+    String expectedOutput = "Listed all groups";
 
     @Test
-    public void check_Message_Success() {
+    public void checkMessageSuccess() {
         assertEquals(DisplayGroupCommand.MESSAGE_SUCCESS, expectedOutput);
     }
 
