@@ -47,3 +47,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Develop new features + testings
+=======
+### Gong Chen Jun
+
+<img src="images/0x787af25e.png" width="200px">
+
+[[github](http://github.com/0x787af25e)]
+[[portfolio](team/0x787af25e.md)]
+
+* Role: Developer, Documenter
+* Responsibilities: UI, User and Developer Guides
+
