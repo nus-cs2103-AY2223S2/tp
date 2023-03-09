@@ -183,7 +183,7 @@ public class AddCommandTest {
 
         @Override
         public Rate getRate(Event event) {
-            throw new AssertionError("This methid should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
     }
 
