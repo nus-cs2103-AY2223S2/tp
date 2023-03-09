@@ -6,7 +6,16 @@ import static bookopedia.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bookopedia.logic.commands.*;
+import bookopedia.logic.commands.AddCommand;
+import bookopedia.logic.commands.ClearCommand;
+import bookopedia.logic.commands.Command;
+import bookopedia.logic.commands.DeleteCommand;
+import bookopedia.logic.commands.EditCommand;
+import bookopedia.logic.commands.ExitCommand;
+import bookopedia.logic.commands.FindCommand;
+import bookopedia.logic.commands.HelpCommand;
+import bookopedia.logic.commands.ListCommand;
+import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 
 /**
