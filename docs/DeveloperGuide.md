@@ -259,12 +259,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * is a student going to or is currently applying for internships
 * has a need to manage a significant number of internship applications
-* prefer desktop apps over other types
+* prefer desktop apps over other types of apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage internship applications faster than a typical mouse/GUI driven app
+**Value proposition**: manages internship applications faster than a typical mouse/GUI driven app
 
 
 ### User stories
