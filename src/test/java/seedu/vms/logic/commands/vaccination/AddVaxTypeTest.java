@@ -145,7 +145,7 @@ public class AddVaxTypeTest {
 
 
     @Test
-    public void execute_invalidName_exceptionThrown() {
+    public void execute_invalidName_exceptionThrown() throws Exception {
         // empty
         checkExecutionEx("", ParseException.class);
         // blank
@@ -154,6 +154,11 @@ public class AddVaxTypeTest {
         checkExecutionEx("( ^)o(^ )b ", ParseException.class);
         // too long
         checkExecutionEx("<15 characters><15 characters>a", ParseException.class);
+        // duplicate
+        VaxTypeModelStub model = new VaxTypeModelStub();
+        new AddVaxTypeParser().parse(SampleVaxTypeData.CMD_NAME_1).execute(model);
+        assertThrows(CommandException.class,
+                () -> new AddVaxTypeParser().parse(SampleVaxTypeData.CMD_NAME_1).execute(model));
     }
 
 
