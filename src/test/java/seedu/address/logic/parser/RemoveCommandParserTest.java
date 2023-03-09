@@ -47,7 +47,6 @@ import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.RemovePersonDescriptorBuilder;
 
 public class RemoveCommandParserTest {
