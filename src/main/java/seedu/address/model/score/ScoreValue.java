@@ -24,7 +24,7 @@ public class ScoreValue {
     public ScoreValue(String value) throws BadScoreValueException {
         requireNonNull(value);
 
-        if (!isValidScore(value) || isNegative(value) || isLargerThanMax(value)) {
+        if (!isValidScore(value)) {
             throw new BadScoreValueException();
         }
 
@@ -34,27 +34,16 @@ public class ScoreValue {
     /**
      * Returns true if the value is a valid score value (0 <= s <= 100).
      */
-    private boolean isValidScore(String value) {
+    public static boolean isValidScore(String value) {
         try {
-            Double.parseDouble(value);
+            Double parseVal = Double.parseDouble(value);
+            if (parseVal < ScoreValue.MIN_SCORE || parseVal > ScoreValue.MAX_SCORE) {
+                return false;
+            }
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    /**
-     * Returns true if the value is negative.
-     */
-    private boolean isNegative(String value) {
-        return Double.parseDouble(value) < ScoreValue.MIN_SCORE;
-    }
-
-    /**
-     * Returns true if the value is larger than the maximum score.
-     */
-    private boolean isLargerThanMax(String value) {
-        return Double.parseDouble(value) > ScoreValue.MAX_SCORE;
     }
 
     @Override
