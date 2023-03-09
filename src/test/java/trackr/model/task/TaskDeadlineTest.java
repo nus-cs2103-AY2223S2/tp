@@ -74,4 +74,18 @@ public class TaskDeadlineTest {
         String expectedDate = "10/10/2023";
         assertEquals(expectedDate, new TaskDeadline(expectedDate).toJsonString());
     }
+
+    @Test
+    public void equalsTest() {
+        TaskDeadline taskDeadline = new TaskDeadline("01/01/2024");
+        TaskDeadline different = new TaskDeadline("15/07/2025");
+
+        assertTrue(taskDeadline.equals(taskDeadline)); //same object
+        assertTrue(taskDeadline.equals(new TaskDeadline("01/01/2024"))); //same deadline
+
+        assertFalse(taskDeadline.equals(null)); //null
+        assertFalse(taskDeadline.equals(different));
+        assertFalse(taskDeadline.equals(1)); //different type
+    }
+
 }
