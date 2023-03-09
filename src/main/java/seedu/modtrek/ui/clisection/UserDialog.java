@@ -9,7 +9,7 @@ import seedu.modtrek.ui.UiPart;
  * A UI component that displays the input dialog after input of commands.
  */
 public class UserDialog extends UiPart<Region> {
-    private static final String FXML = "cli_section/UserDialog.fxml";
+    private static final String FXML = "clisection/UserDialog.fxml";
 
     @FXML
     private Label userDialogText;

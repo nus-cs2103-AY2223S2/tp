@@ -10,7 +10,7 @@ import seedu.modtrek.ui.UiPart;
  * A UI component that displays the response dialog after parsing or execution of commands.
  */
 public class SystemDialog extends UiPart<Region> {
-    private static final String FXML = "cli_section/SystemDialog.fxml";
+    private static final String FXML = "clisection/SystemDialog.fxml";
 
     @FXML
     private HBox systemDialogContainer;

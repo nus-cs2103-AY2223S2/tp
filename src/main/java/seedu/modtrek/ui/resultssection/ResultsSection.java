@@ -1,4 +1,4 @@
-package seedu.modtrek.ui.graphicssection;
+package seedu.modtrek.ui.resultssection;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,10 +10,11 @@ import seedu.modtrek.ui.UiPart;
 import seedu.modtrek.ui.modulelist.ModuleList;
 
 /**
- * A UI component that displays the portion of a Graphical User Interface to showcase modules.
+ * A UI component that displays the right portion of a Graphical User Interface
+ * to showcase degree progress and modules.
  */
-public class GraphicsSection extends UiPart<Region> {
-    private static final String FXML = "graphics_section/GraphicsSection.fxml";
+public class ResultsSection extends UiPart<Region> {
+    private static final String FXML = "resultssection/ResultsSection.fxml";
 
     @FXML
     private VBox sectionContainer;
@@ -29,9 +30,9 @@ public class GraphicsSection extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code CliSection} with the given {@code ObservableList<Module>}.
+     * Creates a {@code ResultsSection} with the given {@code ObservableList<Module>}.
      */
-    public GraphicsSection(ObservableList<Module> modules) {
+    public ResultsSection(ObservableList<Module> modules) {
         super(FXML);
         displayAllModules(modules);
     }
@@ -41,47 +42,70 @@ public class GraphicsSection extends UiPart<Region> {
     }
 
     /**
-     * Displays with the updated list of modules.
+     * Displays all the modules, sorted by year.
      *
-     * @param modules the list of modules
+     * @param modules the list of all modules.
      */
     public void displayAllModules(ObservableList<Module> modules) {
         headerTitle.setText("Your Modules");
-        headerSubtitle.setText("in total");
+        headerSubtitle.setText("sorted by year");
 
         String[] buttonLabels = new String[] {"Year 1", "Year 2", "Year 3", "Year 4"};
+
+
+        Runnable[] buttonHandlers = new Runnable[4];
+
         Runnable year1ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 1 modules */);
+        buttonHandlers[0] = year1ModulesRenderer;
+
         Runnable year2ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 2 modules */);
+        buttonHandlers[1] = year2ModulesRenderer;
+
         Runnable year3ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 3 modules */);
+        buttonHandlers[2] = year3ModulesRenderer;
+
         Runnable year4ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 4 modules */);
-        Runnable[] buttonHandlers = new Runnable[] {
-                year1ModulesRenderer,
-                year2ModulesRenderer,
-                year3ModulesRenderer,
-                year4ModulesRenderer
-        };
+        buttonHandlers[3] = year4ModulesRenderer;
+
 
         FooterButtonGroup footerButtonGroup =
                 new FooterButtonGroup(buttonLabels, buttonHandlers);
+        sectionContainer.getChildren().remove(sectionContainer.lookup(".footer-button-group"));
         sectionContainer.getChildren().add(footerButtonGroup.getRoot());
 
         displayModules(modules);
     }
 
-    // TODO: next iteration
+    /**
+     * Displays the modules that satisfy a given search query.
+     */
     public void displayFindModules(/* ObservableList<Module> modules that are filtered by search query */) {
+        // TODO: next iteration
     }
 
-    // TODO: next iteration
-    public void displaySortedModules(/* ObservableList<Module> modules sorted by a certain category, String category */) {
+    /**
+     * Displays all the modules, sorted by a given category.
+     */
+    public void displaySortedModules(
+            /* ObservableList<Module> modules sorted by a certain category, String category */) {
+        // TODO: next iteration
     }
 
+    /**
+     * Displays a list of modules on the {@code ResultsSection}.
+     * @param modules the list of modules.
+     */
     private void displayModules(ObservableList<Module> modules) {
         ModuleList moduleList = new ModuleList(modules);
         body.getChildren().clear();
         body.getChildren().add(moduleList.getRoot());
     }
 
+    /**
+     * Gets the executable to render a given list of modules.
+     * @param modules the list of modules.
+     * @return the executable.
+     */
     private Runnable getModuleRenderer(ObservableList<Module> modules) {
         return () -> displayModules(modules);
     }

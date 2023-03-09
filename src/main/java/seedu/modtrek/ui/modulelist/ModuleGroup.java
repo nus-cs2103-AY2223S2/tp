@@ -14,7 +14,7 @@ import seedu.modtrek.ui.UiPart;
  * Represents a module group comprising module cards.
  */
 public class ModuleGroup extends UiPart<Region> {
-    private static final String FXML = "module_list/ModuleGroup.fxml";
+    private static final String FXML = "modulelist/ModuleGroup.fxml";
 
     @FXML
     private Label moduleGroupTitle;
