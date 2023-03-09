@@ -1,11 +1,11 @@
 package seedu.address.model.deliveryjobs;
 
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
+import seedu.address.model.person.Person;
+
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 
 /**
