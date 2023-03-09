@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/toh-xinyi.png" width="200px">
 
 [[github](https://github.com/toh-xinyi)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/toh-xinyi.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gwynethguo.png" width="200px">
 
 [[github](http://github.com/gwynethguo)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/gwynethguo.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/carrieli1015.png" width="200px">
 
 [[github](http://github.com/carrieli1015)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/carrieli1015.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/qqh0828.png" width="200px">
 
 [[github](http://github.com/qqh0828)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/qqh0828.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/astraxq.png" width="200px">
 
 [[github](http://github.com/astraxq)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/astraxq.md)]
 
 * Role: Developer
 * Responsibilities: UI
