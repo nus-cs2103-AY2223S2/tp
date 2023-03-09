@@ -158,6 +158,14 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (contact != null) {
+            builder.append("; Company Phone: ")
+                    .append(contact.getPhone())
+                    .append("; Company Email: ")
+                    .append(contact.getEmail());
+        }
+
         return builder.toString();
     }
 
