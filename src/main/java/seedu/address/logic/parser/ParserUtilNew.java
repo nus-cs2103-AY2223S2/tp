@@ -55,7 +55,7 @@ public class ParserUtilNew {
     /**
      * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
-     * 
+     *
      * @throws ParseException
      */
     public static Company parseCompany(String company) throws ParseException {
@@ -70,7 +70,7 @@ public class ParserUtilNew {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
-     * 
+     *
      * @throws ParseException
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -105,7 +105,7 @@ public class ParserUtilNew {
     /**
      * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
-     * 
+     *
      * @throws ParseException
      */
     public static Date parseDate(String date) throws ParseException {
@@ -120,7 +120,7 @@ public class ParserUtilNew {
 
     /**
      * Parses {@code Collection<String> dates} into a {@code Set<Date>}.
-     */ 
+     */
     public static Set<Date> parseDates(Collection<String> dates) throws ParseException {
         requireNonNull(dates);
         final Set<Date> dateSet = new HashSet<>();
