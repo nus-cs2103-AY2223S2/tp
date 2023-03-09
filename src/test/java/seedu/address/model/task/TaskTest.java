@@ -3,12 +3,12 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalTasks.ONE;
-import static seedu.address.testutil.TypicalTasks.TWO;
 import static seedu.address.testutil.TypicalTasks.THREE;
-
-import seedu.address.testutil.TaskBuilder;
+import static seedu.address.testutil.TypicalTasks.TWO;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TaskBuilder;
 
 public class TaskTest {
 

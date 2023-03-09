@@ -6,9 +6,9 @@ import static seedu.address.testutil.TypicalDeadlineTasks.FIRST;
 import static seedu.address.testutil.TypicalDeadlineTasks.SECOND;
 import static seedu.address.testutil.TypicalDeadlineTasks.THIRD;
 
-import seedu.address.testutil.DeadlineTaskBuilder;
-
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 public class DeadlineTaskTest {
 
