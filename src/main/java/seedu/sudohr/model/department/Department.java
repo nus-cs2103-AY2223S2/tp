@@ -1,11 +1,15 @@
 package seedu.sudohr.model.department;
 
-import seedu.sudohr.model.person.Person;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.sudohr.model.person.Person;
+
+/**
+ * Represents a Department in the SudoHR book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Department {
     private final DepartmentName name;
     private final Set<Person> employees = new HashSet<>();

@@ -6,8 +6,8 @@ import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.sudohr.logic.commands.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.AddCommand;
+import seedu.sudohr.logic.commands.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.DeleteCommand;

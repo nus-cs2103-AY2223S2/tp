@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
 import seedu.sudohr.model.person.Name;

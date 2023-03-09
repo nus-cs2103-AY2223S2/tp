@@ -1,15 +1,18 @@
 package seedu.sudohr.logic.parser;
 
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
+
+import java.util.stream.Stream;
+
 import seedu.sudohr.logic.commands.AddDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 
-import java.util.stream.Stream;
-
-import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
-
+/**
+ * Parses input arguments and creates a new AddDepartmentCommand object
+ */
 public class AddDepartmentCommandParser implements Parser<AddDepartmentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

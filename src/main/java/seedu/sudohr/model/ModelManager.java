@@ -9,11 +9,10 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
-import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.person.Person;
 
 /**
  * Represents the in-memory model of the sudohr book data.

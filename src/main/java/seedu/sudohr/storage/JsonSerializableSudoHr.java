@@ -43,7 +43,8 @@ class JsonSerializableSudoHr {
      */
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new).collect(Collectors.toList()));
+        departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
+                .collect(Collectors.toList()));
     }
 
     /**

@@ -8,8 +8,6 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */

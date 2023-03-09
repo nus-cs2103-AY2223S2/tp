@@ -1,7 +1,6 @@
 package seedu.sudohr.model;
 
 import javafx.collections.ObservableList;
-
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 

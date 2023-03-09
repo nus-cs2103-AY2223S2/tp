@@ -1,17 +1,26 @@
 package seedu.sudohr.model.department;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
-import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.exceptions.DepartmentNotFoundException;
+import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
 
-public class UniqueDepartmentList implements Iterable<Department>{
+/**
+ * A list of departments that enforces uniqueness between its elements and does not allow nulls.
+ * A department is considered unique by comparing using {@code Department#equals(Department)}. As such, adding and
+ * updating of departments uses Department#equals(Department) for equality so as to ensure that the department being
+ * added or updated is unique in terms of identity in the UniqueDepartmentList. Also, the removal of a department
+ * uses Department#equals(Department) so as to ensure that the department with exactly the same name will be removed.
+ *
+ * Supports a minimal set of list operations.
+ */
+public class UniqueDepartmentList implements Iterable<Department> {
     private final ObservableList<Department> internalList = FXCollections.observableArrayList();;
     private final ObservableList<Department> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -39,7 +48,8 @@ public class UniqueDepartmentList implements Iterable<Department>{
     /**
      * Replaces the department {@code target} in the list with {@code editedDepartment}.
      * {@code target} must exist in the list.
-     * The department identity of {@code editedDepartment} must not be the same as another existing department in the list.
+     * The department identity of {@code editedDepartment} must not be the same as another existing department in the
+     * list.
      */
     public void setDepartment(Department target, Department editedDepartment) {
         requireAllNonNull(target, editedDepartment);
