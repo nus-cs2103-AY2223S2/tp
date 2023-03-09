@@ -6,6 +6,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -33,10 +34,6 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label desc;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -48,11 +45,9 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(recipe.getTitle().title);
         desc.setText(recipe.getDesc().description);
-//        address.setText(recipe.getAddress().value);
-//        email.setText(recipe.getEmail().value);
-//        recipe.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        recipe.getIngredients().stream()
+                .sorted(Comparator.comparing(ingredient -> ingredient.ingredient))
+                .forEach(ingredient -> tags.getChildren().add(new Label(ingredient.ingredient)));
     }
 
     @Override
