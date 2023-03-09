@@ -140,7 +140,9 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public boolean hasTask(Task task) { throw new AssertionError("This method should not be called."); }
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deletePerson(Person target) {
