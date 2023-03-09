@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDeck;
 import seedu.address.model.person.Card;
 
 /**
@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Deck.
      *
      * @see seedu.address.model.Model#getDeck()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDeck getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Card> getFilteredPersonList();

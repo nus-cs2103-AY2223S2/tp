@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Deck;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Card;
 import seedu.address.testutil.PersonBuilder;
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setDeck(ReadOnlyAddressBook newData) {
+        public void setDeck(ReadOnlyDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getDeck() {
+        public ReadOnlyDeck getDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,7 +151,7 @@ public class AddCommandTest {
 
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
-        public ReadOnlyAddressBook getSelectedDeck() {
+        public ReadOnlyDeck getSelectedDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,8 +209,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getDeck() {
-            return new AddressBook();
+        public ReadOnlyDeck getDeck() {
+            return new Deck();
         }
     }
 

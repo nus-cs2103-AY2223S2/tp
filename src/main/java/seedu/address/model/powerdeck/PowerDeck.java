@@ -49,7 +49,7 @@ public class PowerDeck implements ReadOnlyPowerDeck {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Deck} with {@code newData}.
      */
     public void resetData(ReadOnlyPowerDeck newData) {
         requireNonNull(newData);

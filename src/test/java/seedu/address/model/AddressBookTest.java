@@ -24,7 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Deck addressBook = new Deck();
 
     @Test
     public void constructor() {
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        Deck newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +49,7 @@ public class AddressBookTest {
         Card editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Card> newCards = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newCards);
+        DeckStub newData = new DeckStub(newCards);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -84,12 +84,12 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose cards list can violate interface constraints.
+     * A stub ReadOnlyDeck whose cards list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class DeckStub implements ReadOnlyDeck {
         private final ObservableList<Card> cards = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Card> cards) {
+        DeckStub(Collection<Card> cards) {
             this.cards.setAll(cards);
         }
 

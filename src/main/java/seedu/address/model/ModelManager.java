@@ -21,25 +21,25 @@ import seedu.address.model.powerdeck.PowerDeck;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private AddressBook deck;
+    private Deck deck;
     private final UserPrefs userPrefs;
     private FilteredList<Card> filteredDecks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook deck, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDeck deck, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(deck, userPrefs);
 
         logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
 
-        this.deck = new AddressBook(deck);
+        this.deck = new Deck(deck);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredDecks = new FilteredList<>(this.deck.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Deck(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,12 +80,12 @@ public class ModelManager implements Model {
     //=========== PowerDeck ================================================================================
 
     @Override
-    public void setDeck(ReadOnlyAddressBook deck) {
+    public void setDeck(ReadOnlyDeck deck) {
         this.deck.resetData(deck);
     }
 
     @Override
-    public ReadOnlyAddressBook getDeck() {
+    public ReadOnlyDeck getDeck() {
         return deck;
     }
 
@@ -153,7 +153,7 @@ public class ModelManager implements Model {
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
     // Todo: Link getDeck() to GUI
     @Override
-    public ReadOnlyAddressBook getSelectedDeck() {
+    public ReadOnlyDeck getSelectedDeck() {
         return this.deck;
     }
 
