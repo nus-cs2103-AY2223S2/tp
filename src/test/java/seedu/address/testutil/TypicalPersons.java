@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
 import seedu.address.model.person.Person;
 
 /**
@@ -27,26 +30,33 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withTags("owesMoney", "friends")
+            .withContact(new Contact(new Phone("98765432"), new Email("johnd@example.com"))).build();
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("wall street").build();
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("10th street").withTags("friends").build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("michegan ave").build();
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
             .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER)
             .withAddress("4th street").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("little india").build();
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
+            .withPhone(PersonBuilder.VALID_PHONE_PLACEHOLDER)
+            .withEmail(PersonBuilder.VALID_EMAIL_PLACEHOLDER).withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

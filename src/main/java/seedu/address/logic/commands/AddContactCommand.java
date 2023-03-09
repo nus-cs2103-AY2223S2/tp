@@ -22,10 +22,10 @@ public class AddContactCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contact details to the specified application from the list of internships applied.\n"
-            + "Parameters: "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + "Example: " + COMMAND_WORD + " "
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com ";
 
@@ -40,6 +40,8 @@ public class AddContactCommand extends Command {
      * @param contact Contact to add
      */
     public AddContactCommand(Index targetIndex, Contact contact) {
+        requireNonNull(targetIndex);
+
         this.targetIndex = targetIndex;
         toAdd = contact;
     }
@@ -55,7 +57,7 @@ public class AddContactCommand extends Command {
 
         Person internshipToAddContact = lastShownList.get(targetIndex.getZeroBased());
         model.addContactToInternship(internshipToAddContact, toAdd);
-        return new CommandResult(String.format(MESSAGE_ADD_CONTACT_SUCCESS, internshipToAddContact));
+        return new CommandResult(String.format(MESSAGE_ADD_CONTACT_SUCCESS, internshipToAddContact + "\n" + toAdd));
     }
 
     @Override
