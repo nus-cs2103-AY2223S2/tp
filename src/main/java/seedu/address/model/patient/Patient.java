@@ -2,10 +2,14 @@ package seedu.address.model.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -61,6 +65,20 @@ public class Patient {
     }
 
     /**
+     * Returns a list of the patient's details.
+     *
+     * @return A list of strings of the patient's details split into individual words.
+     */
+    public List<String> getDetailsAsList() {
+        List<String> patientDetails = new ArrayList<>(Arrays.asList(this.name.fullName.toLowerCase().split(" ")));
+        patientDetails.add(this.phone.value.toLowerCase());
+        patientDetails.add(this.email.value.toLowerCase());
+        patientDetails.addAll(Arrays.asList(this.address.value.toLowerCase().split(" ")));
+        patientDetails.addAll(this.tags.stream().map(tag -> tag.tagName.toLowerCase()).collect(Collectors.toSet()));
+        return patientDetails;
+    }
+
+    /**
      * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.
      */
@@ -70,7 +88,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName());
+            && otherPatient.getName().equals(getName());
     }
 
     /**
@@ -89,10 +107,10 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getEmail().equals(getEmail())
-                && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getTags().equals(getTags());
+            && otherPatient.getPhone().equals(getPhone())
+            && otherPatient.getEmail().equals(getEmail())
+            && otherPatient.getAddress().equals(getAddress())
+            && otherPatient.getTags().equals(getTags());
     }
 
     @Override
@@ -105,12 +123,12 @@ public class Patient {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
