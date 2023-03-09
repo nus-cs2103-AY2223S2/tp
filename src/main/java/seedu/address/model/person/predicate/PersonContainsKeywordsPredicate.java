@@ -3,8 +3,6 @@ package seedu.address.model.person.predicate;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,20 +18,20 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     private LanguageContainsKeywordsPredicate languagePredicate;
     private TagContainsKeywordsPredicate tagPredicate;
 
-    public PersonContainsKeywordsPredicate(NameContainsKeywordsPredicate namePredicate,
-                       ProfileContainsKeywordsPredicate profilePredicate,
-                       PhoneContainsKeywordsPredicate phonePredicate,
-                       EmailContainsKeywordsPredicate emailPredicate,
-                       AddressContainsKeywordsPredicate addressPredicate,
-                       LanguageContainsKeywordsPredicate languagePredicate,
-                       TagContainsKeywordsPredicate tagPredicate) {
-        this.namePredicate = namePredicate;
-        this.profilePredicate = profilePredicate;
-        this.phonePredicate = phonePredicate;
-        this.emailPredicate = emailPredicate;
-        this.addressPredicate = addressPredicate;
-        this.languagePredicate = languagePredicate;
-        this.tagPredicate = tagPredicate;
+    public PersonContainsKeywordsPredicate(List<String> nameKeywords,
+                                           List<String> profileKeywords,
+                                           List<String> phoneKeywords,
+                                           List<String> emailKeywords,
+                                           List<String> addressKeywords,
+                                           List<String> languageKeywords,
+                                           List<String> tagKeywords) {
+        this.namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+        this.profilePredicate = new ProfileContainsKeywordsPredicate(profileKeywords);
+        this.phonePredicate = new PhoneContainsKeywordsPredicate(phoneKeywords);
+        this.emailPredicate = new EmailContainsKeywordsPredicate(emailKeywords);
+        this.addressPredicate = new AddressContainsKeywordsPredicate(addressKeywords);
+        this.languagePredicate = new LanguageContainsKeywordsPredicate(languageKeywords);
+        this.tagPredicate = new TagContainsKeywordsPredicate(tagKeywords);
     }
 
     @Override
