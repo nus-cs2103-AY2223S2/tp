@@ -7,40 +7,46 @@
 <?import javafx.scene.image.ImageView?>
 
 <HBox id="personalPane" fx:id="personalPane" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml" >
+      xmlns:fx="http://javafx.com/fxml">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
 
-        <HBox GridPane.columnIndex="0">
+        <VBox GridPane.columnIndex="0" alignment="CENTER">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <VBox alignment="CENTER_LEFT">
-                <ImageView fitWidth="100" preserveRatio="true">
-                    <Image url="@/images/spongbob.png"/>
-                </ImageView>
-            </VBox>
-            <VBox alignment="CENTER_RIGHT">
 
-                <HBox alignment="CENTER">
-                    <Label fx:id="id" styleClass="cell_big_label">
-                        <minWidth>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE"/>
-                        </minWidth>
-                    </Label>
-                    <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
-                </HBox>
+            <ImageView fitWidth="150" preserveRatio="true">
+                <Image url="@/images/spongbob.png"/>
+            </ImageView>
+            <VBox alignment="CENTER">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minWidth>
+                </Label>
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+
                 <HBox id="tagPane" fx:id="tagPane"> <!-- Change this later  -->
                     <FlowPane fx:id="tags" styleClass="tag_alignment"/>
                 </HBox>
+                <HBox alignment="CENTER">
+                <Label text="Mobile number: "/>
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+                </HBox>
+                <HBox alignment="CENTER">
+                <Label text="Address: "/>
+                <Label fx:id="address" styleClass="cell_small_label" text="Address: \$address"/>
+                </HBox>
+                <HBox alignment="CENTER">
+                <Label text="Email: "/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                </HBox>
             </VBox>
-        </HBox>
+        </VBox>
     </GridPane>
 
 </HBox>
