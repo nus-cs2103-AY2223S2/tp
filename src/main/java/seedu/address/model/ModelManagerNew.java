@@ -101,7 +101,7 @@ public class ModelManagerNew implements ModelNew {
     @Override
     public void addOpening(Opening person) {
         ultron.addOpening(person);
-        updateFilteredOpeningList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
     }
 
     @Override
