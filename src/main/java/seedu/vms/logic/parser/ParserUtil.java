@@ -187,6 +187,9 @@ public class ParserUtil {
      */
 
 
+    /**
+     * Parses a requirement.
+     */
     public static Requirement parseReq(String reqString) throws ParseException {
         List<String> parts = parseParts(reqString);
         if (parts.size() != 2) {
@@ -198,6 +201,9 @@ public class ParserUtil {
     }
 
 
+    /**
+     * Parses a requirement type.
+     */
     public static Requirement.RequirementType parseReqType(String reqTypeString)
                 throws ParseException {
         try {
