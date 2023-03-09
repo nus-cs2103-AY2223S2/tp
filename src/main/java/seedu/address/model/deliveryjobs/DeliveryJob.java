@@ -1,10 +1,18 @@
-package seedu.address.model;
+package seedu.address.model.deliveryjobs;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.Set;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+/**
+ * Represents a Delivery job in the Delivery jobs book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class DeliveryJob {
 
     private final int id;
@@ -16,7 +24,11 @@ public class DeliveryJob {
             DateTimeFormatter.ofPattern("dd MMM yyyy EEE HHmm a");
 
 
+    /**
+     * Every field must be present and not null.
+     */
     DeliveryJob(int id, Person customer, LocalDateTime deliveryTime, double earning, boolean isDelivered) {
+        requireAllNonNull(id, customer, deliveryTime, earning, isDelivered);
         this.id = id;
         this.customer = customer;
         this.deliveryTime = deliveryTime;
@@ -42,5 +54,20 @@ public class DeliveryJob {
 
     public boolean getIsDelivered() {
         return this.isDelivered;
+    }
+
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getID())
+                .append("; Customer: ")
+                .append(this.customer.getName())
+                .append("; Delivery time: ")
+                .append(getDeliveryTime())
+                .append("; Pay: ")
+                .append(getEarning())
+                .append("; Delivery status: ")
+                .append(this.getIsDelivered());
+
+        return builder.toString();
     }
 }

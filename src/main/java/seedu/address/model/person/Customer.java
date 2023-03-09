@@ -1,9 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+
+
+/**
+ * Represents a Customer in the address book.
+ */
 public class Customer extends Person {
     private final String notes;
     /**
@@ -25,6 +29,12 @@ public class Customer extends Person {
         return this.notes;
     }
 
+    /**
+     * Allows delivery man to edit notes on customer.
+     *
+     * @param newNotes edited notes.
+     * @return Customer new customer with edited notes.
+     */
     public Customer editNotes(String newNotes) {
         return new Customer(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getTags(),
                 newNotes);
