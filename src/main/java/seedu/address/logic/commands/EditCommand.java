@@ -65,9 +65,6 @@ public class EditCommand extends Command {
 
         Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        System.out.println(personToEdit.isSamePerson(editedPerson));
-        System.out.println(model.hasPerson(editedPerson));
-
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
