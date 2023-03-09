@@ -18,12 +18,10 @@ import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.NusMod;
+import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
-
-import javax.swing.text.html.Option;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

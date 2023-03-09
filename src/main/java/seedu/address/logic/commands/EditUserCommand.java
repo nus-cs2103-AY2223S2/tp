@@ -3,12 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommands.EditPersonDescriptor;
 import seedu.address.model.Model;
@@ -22,7 +19,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.user.User;
 
 /**
@@ -48,9 +45,9 @@ public class EditUserCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<User> lastShownList = model.getUserData().getUser();
+        ReadOnlyObjectProperty<User> userWrapper = model.getUserData().getUser();
 
-        User user = lastShownList.get(0);
+        User user = userWrapper.getValue();
         User editedUser = createEditedUser(user, editUserDescriptor);
 
 

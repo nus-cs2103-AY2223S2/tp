@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,31 +17,19 @@ import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.NusMod;
+import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.user.User;
 import seedu.address.storage.addressbook.JsonAdaptedNusMod;
+import seedu.address.storage.addressbook.JsonAdaptedPerson;
 import seedu.address.storage.addressbook.JsonAdaptedTag;
 
 /**
  * Jackson-friendly version of {@link User}.
  */
-public class JsonAdaptedUser {
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
-    private final String race;
-    private final String major;
-    private final String gender;
-    private final String comms;
-
-    private final String isFavorite;
-
-    private final List<JsonAdaptedNusMod> modules = new ArrayList<>();
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+public class JsonAdaptedUser extends JsonAdaptedPerson {
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -56,44 +43,14 @@ public class JsonAdaptedUser {
                              @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("favorite") String isFavorite) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.race = race;
-        this.major = major;
-
-        this.gender = gender;
-        this.comms = comms;
-        this.isFavorite = isFavorite;
-
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
-        if (modules != null) {
-            this.modules.addAll(modules);
-        }
+        super(name, phone, email, address, race, major, gender, comms, modules, tagged, isFavorite);
     }
 
     /**
      * Converts a given {@code User} into this class for Jackson use.
      */
     public JsonAdaptedUser(User source) {
-        this.name = source.getName().fullName;
-        this.phone = source.getPhone().value;
-        this.email = source.getEmail().value;
-        this.address = source.getAddress().value;
-        this.race = source.getRace().race;
-        this.major = source.getMajor().majorName;
-        this.gender = source.getGender().gender.toString();
-        this.comms = source.getComms().nameOfCommunicationChannel;
-        this.modules.addAll(source.getModules().mods.stream()
-                .map(mod -> (new JsonAdaptedNusMod(mod.name)))
-                .collect(Collectors.toList()));
-        this.tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        this.isFavorite = source.getIsFavorite().toString();
+        super(source);
     }
 
     /**
@@ -108,6 +65,9 @@ public class JsonAdaptedUser {
             personTags.add(tag.toModelType());
         }
 
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }

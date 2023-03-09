@@ -16,6 +16,7 @@ import seedu.address.model.ReadOnlyUserData;
 
 /**
  * A class to access User data stored as a json file on the hard disk.
+ * Todo: Abstract out common logic between JsonUserDataStorage and AddressBookStorage.
  */
 public class JsonUserDataStorage implements UserDataStorage {
 

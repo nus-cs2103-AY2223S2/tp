@@ -18,7 +18,7 @@ import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

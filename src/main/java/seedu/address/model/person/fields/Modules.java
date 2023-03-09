@@ -1,5 +1,7 @@
 package seedu.address.model.person.fields;
 
+import seedu.address.model.person.fields.subfields.NusMod;
+
 import java.util.Set;
 
 /**

@@ -138,14 +138,6 @@ public class ModelManager implements Model {
         return this.userData;
     }
 
-    /**
-     * Currently not in use. Use SetUser if you want to edit the user.
-     */
-    @Override
-    public void addUser(User user) {
-        this.userData.addUser(user);
-    }
-
     @Override
     public void setUser(User user) {
         this.userData.setUser(user);

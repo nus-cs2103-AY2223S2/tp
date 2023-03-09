@@ -3,7 +3,7 @@ package seedu.address.logic.parser.editpersoncommands;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.fields.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;

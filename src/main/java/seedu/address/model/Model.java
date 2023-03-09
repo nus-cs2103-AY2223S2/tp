@@ -101,10 +101,8 @@ public interface Model {
      */
     void setUserData(ReadOnlyUserData userData);
 
-    /** Returns the AddressBook */
+    /** Returns the UserData */
     ReadOnlyUserData getUserData();
-
-    void addUser(User user);
 
     void setUser(User user);
 }

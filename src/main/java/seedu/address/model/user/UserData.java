@@ -2,9 +2,8 @@ package seedu.address.model.user;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import javafx.collections.ObservableList;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import seedu.address.model.ReadOnlyUserData;
 
 /**
@@ -13,7 +12,7 @@ import seedu.address.model.ReadOnlyUserData;
  */
 public class UserData implements ReadOnlyUserData {
 
-    private UserList user;
+    private ReadOnlyObjectWrapper<User> user;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -23,7 +22,7 @@ public class UserData implements ReadOnlyUserData {
      *   among constructors.
      */
     {
-        user = new UserList();
+        user = new ReadOnlyObjectWrapper<>(new User());
     }
 
     public UserData() {
@@ -43,11 +42,7 @@ public class UserData implements ReadOnlyUserData {
      * Replaces the contents of the user with {@code user}.
      */
     public void setUser(User user) {
-        this.user.setUser(user);
-    }
-
-    public void setUserList(List<User> userList) {
-        this.user.setUserList(userList);
+        this.user.setValue(user);
     }
 
     /**
@@ -56,7 +51,7 @@ public class UserData implements ReadOnlyUserData {
     public void resetData(ReadOnlyUserData newData) {
         requireNonNull(newData);
 
-        setUserList(newData.getUser());
+        setUser(newData.getUser().getValue());
     }
 
     //// util methods
@@ -67,8 +62,8 @@ public class UserData implements ReadOnlyUserData {
     //}
 
     @Override
-    public ObservableList<User> getUser() {
-        return this.user.asUnmodifiableObservableList();
+    public ReadOnlyObjectProperty<User> getUser() {
+        return this.user.getReadOnlyProperty();
     }
 
     @Override
@@ -81,12 +76,5 @@ public class UserData implements ReadOnlyUserData {
     @Override
     public int hashCode() {
         return user.hashCode();
-    }
-
-    /**
-     * Currently not in use. Use SetUser if you want to edit the user.
-     */
-    public void addUser(User user) {
-        this.user.add(user);
     }
 }
