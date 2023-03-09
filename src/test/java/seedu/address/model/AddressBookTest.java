@@ -88,15 +88,15 @@ public class AddressBookTest {
     @Test
     public void hasGroupInPerson_returnsTrue() {
         Group group = new Group("2103T");
-        ALICE.addGroup(group);
+        addressBook.addPersonInGroup(ALICE,group);
         assertTrue(ALICE.getGroups().contains(group));
     }
 
     @Test
     public void doNotHaveGroupInPerson_returnsTrue() {
         Group group = new Group("2103T");
-        ALICE.addGroup(group);
-        ALICE.removeGroup(group);
+        addressBook.addPersonInGroup(ALICE,group);
+        addressBook.removePersonFromGroup(ALICE,group);
         assertTrue(!ALICE.getGroups().contains(group));
     }
 
