@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -108,6 +112,41 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code String name} into the correct format.
+     * @param eventName
+     * @return a String object
+     * @throws ParseException
+     */
+    public static String parseEventName(String eventName) throws ParseException {
+        requireNonNull(eventName);
+
+        String trimmedEventName = eventName.trim();
+        if (!IsolatedEvent.isValidEventName(eventName)) {
+            throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_EVENTNAME);
+        }
+        return trimmedEventName;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDateTime date} into the correct format.
+     * @param date
+     * @return String object
+     * @throws ParseException
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+
+        LocalDateTime dueDate;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            dueDate = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeException e) {
+            throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
+        }
+        return dueDate;
     }
 
     /**

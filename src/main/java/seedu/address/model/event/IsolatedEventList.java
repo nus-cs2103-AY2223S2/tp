@@ -7,6 +7,7 @@ import java.util.TreeSet;
  */
 public class IsolatedEventList {
     private final TreeSet<IsolatedEvent> isolatedEvents = new TreeSet<>();
+
     public void insert(IsolatedEvent newEvent) {
         this.isolatedEvents.add(newEvent);
     }
@@ -15,7 +16,7 @@ public class IsolatedEventList {
     public String toString() {
         StringBuilder output = new StringBuilder();
         for (IsolatedEvent ie : isolatedEvents) {
-            output.append(ie).append("\n");
+            output.append(ie.toString()).append("\n");
         }
         return output.toString();
     }

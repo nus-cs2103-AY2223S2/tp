@@ -221,7 +221,7 @@ Examples:
 Creates a weekly recurring event or a non-recurring event
 
 #### 1) Non-recurring Event
-Format: `event create e/EVENT_NAME f/START_DATE t/END_DATE`
+Format: `event create INDEX en/EVENT_NAME f/START_DATE t/END_DATE`
 
 * Creates an event with the specified name `EVENT_NAME`
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`

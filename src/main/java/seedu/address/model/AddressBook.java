@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -72,6 +74,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Add the isolated event into the person's isolated event list.
+     * @param index
+     * @param event
+     */
+    public void addIsolatedEvent(Index index, IsolatedEvent event) {
+        Person personToAdd = persons.getPerson(index);
+        personToAdd.addIsolatedEvent(event);
     }
 
     /**

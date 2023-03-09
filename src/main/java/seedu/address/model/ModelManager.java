@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Person;
 
 /**
@@ -102,6 +104,10 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    public void addIsolatedEvent(Index index, IsolatedEvent event) {
+        addressBook.addIsolatedEvent(index, event);
     }
 
     @Override

@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final IsolatedEventList isolatedEventList = new IsolatedEventList();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +53,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void addIsolatedEvent(IsolatedEvent event) {
+        isolatedEventList.insert(event);
     }
 
     /**
