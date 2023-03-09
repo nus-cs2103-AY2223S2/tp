@@ -398,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-#### *Technical Terminology*  
+#### *Technical Terminology*
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 

@@ -116,5 +116,5 @@ public class EmployeeId {
                 || (other instanceof EmployeeId
                 && Integer.valueOf(this.value).equals(Integer.valueOf(((EmployeeId) other).value)));
     }
-
 }
+
