@@ -5,8 +5,8 @@ import java.util.List;
 
 import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement;
-import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
+import seedu.vms.model.vaccination.VaxType;
 
 /** Utility class to store sample vaccination type data for tests. */
 public class SampleVaxTypeData {

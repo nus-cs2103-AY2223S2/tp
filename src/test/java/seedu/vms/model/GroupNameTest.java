@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class GroupNameTest {
-    private static List<String> INVALID_LIST = List.of(
+    private static final List<String> INVALID_LIST = List.of(
         "",
         " ",
         "a\n\ra",
