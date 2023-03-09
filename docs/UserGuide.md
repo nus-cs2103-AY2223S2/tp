@@ -76,18 +76,20 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YOE [t/TAGS]`
+### Adding a person: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
 
 Adds a doctor to the address book.
 
-Format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YOE [t/TAGS]`
+Format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Gabriel Tan p/12345678 e/gabriel.t@health.org s/Neurosurgery y/10`
+
+* `add n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
 
 ### Editing a doctor : `edit-doc`
 
@@ -106,19 +108,19 @@ Examples:
 *  `edit 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
 *  `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
 
-### Deleting a person : `delete`
+### Deleting a doctor : `del-doc`
 
-Deletes the specified person from the address book.
+Deletes the specified doctor from the address book.
 
-Format: `delete INDEX`
+Format: `del-doc INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `del-doc 2` deletes the 2nd doctor in the address book.
+* `find-doc Gabriel` followed by `delete 1` deletes the 1st doctor in the results of the `find-doc` command.
 
 ### Finding a doctor
 
