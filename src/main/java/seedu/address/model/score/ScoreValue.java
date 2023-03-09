@@ -10,9 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ScoreValue {
     public static final String MESSAGE_CONSTRAINTS =
-        "Score value should be a number between 0 and 100, and it should not be blank";
+        "Score value should be a number between 0 and 100 "
+        + "(with 1 decimal place [optional]), and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^[0-9][0-9]?$|^100$";
+    public static final String VALIDATION_REGEX = "^(([1-9][0-9]?|0)(\\.\\d)?|100(\\.0)?)$";
 
     // Identity field(s)
     public final Double value;
