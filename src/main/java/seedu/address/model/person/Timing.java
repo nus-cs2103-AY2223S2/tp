@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Timing {
     public static final String MESSAGE_CONSTRAINTS =
             "Timings should be of the format dd-MM-yyyy hh:mm";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String startTime;
     public final String endTime;
 
@@ -37,13 +36,16 @@ public class Timing {
      * Returns true if given strings give a valid timing.
      */
     public static boolean isValidTiming(String testStartTime, String testEndTime) {
-        return isValidTime(testEndTime) && isValidTime(testEndTime);
+        return isValidTime(testStartTime) && isValidTime(testEndTime);
     }
 
     private static boolean isValidTime(String test) {
+        if (test == null) {
+            return false;
+        }
         try {
             LocalDateTime.parse(test, DateTimeFormatter
-                    .ofPattern("dd-MM-yyyy hh:mm")
+                    .ofPattern("dd-MM-uuuu HH:mm")
                     .withResolverStyle(ResolverStyle.STRICT));
             return true;
         } catch (DateTimeException e) {
