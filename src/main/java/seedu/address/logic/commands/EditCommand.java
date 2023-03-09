@@ -31,7 +31,7 @@ import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the SOCket.
  */
 public class EditCommand extends Command {
 

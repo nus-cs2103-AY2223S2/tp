@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Language;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,10 +15,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubProfile;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Language;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Removes the details of an existing person in the SOCket.
+ */
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
@@ -46,6 +59,10 @@ public class RemoveCommand extends Command {
 
     private final RemovePersonDescriptor removePersonDescriptor;
 
+    /**
+     * @param index of the person in the filtered person list to remove
+     * @param removePersonDescriptor details to remove from the person
+     */
     public RemoveCommand(Index index, RemovePersonDescriptor removePersonDescriptor) {
         requireNonNull(index);
 
@@ -53,6 +70,7 @@ public class RemoveCommand extends Command {
         this.removePersonDescriptor = new RemovePersonDescriptor(removePersonDescriptor);
     }
 
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -73,8 +91,9 @@ public class RemoveCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson));
     }
 
-    private static Person createRemoveFieldPerson(Person personToRemoveField
-            , RemoveCommand.RemovePersonDescriptor removePersonDescriptor) {
+    @SuppressWarnings("checkstyle:SeparatorWrap")
+    private static Person createRemoveFieldPerson(Person personToRemoveField,
+                                                  RemoveCommand.RemovePersonDescriptor removePersonDescriptor) {
         assert personToRemoveField != null;
 
         removePersonDescriptor.setPerson(personToRemoveField);
@@ -93,10 +112,14 @@ public class RemoveCommand extends Command {
         Set<Tag> updatedTags = removePersonDescriptor.getRemoveTags()
                 .orElse(personToRemoveField.getTags());
 
-        return new Person(defaultName, updatedProfile, updatedPhone
-                , updatedEmail, updatedAddress, updatedLanguages, updatedTags);
+        return new Person(defaultName, updatedProfile, updatedPhone,
+                updatedEmail, updatedAddress, updatedLanguages, updatedTags);
     }
 
+    /**
+     * Stores the details to remove the person with. Each non-empty field value will remove the
+     * corresponding field value of the person.
+     */
     public static class RemovePersonDescriptor {
         private GitHubProfile profile;
         private Phone phone;
