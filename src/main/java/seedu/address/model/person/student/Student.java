@@ -3,10 +3,13 @@ package seedu.address.model.person.student;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,7 +21,7 @@ public class Student extends Person {
     private final ParentName parentName;
     private final Age age;
     private final Image image;
-    private final CCA cca;
+    private final Cca cca;
     private final StudentClass sc;
     private Attendance attendance;
     private Homework homework;
@@ -44,7 +47,7 @@ public class Student extends Person {
      * @param tags Tag given to student.
      */
     public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
-                   Image image, Email email, Phone phone, CCA cca, Address address, Attendance attendance,
+                   Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
                    Homework homework, Test test, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
@@ -74,7 +77,7 @@ public class Student extends Person {
     public Image getImage() {
         return image;
     }
-    public CCA getCCA() {
+    public Cca getCca() {
         return cca;
     }
     public StudentClass getStudentClass() {
@@ -101,7 +104,7 @@ public class Student extends Person {
                 && otherStudent.getImage().equals(getImage())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getCCA().equals(getCCA())
+                && otherStudent.getCca().equals(getCca())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -126,7 +129,7 @@ public class Student extends Person {
                 .append("; Student Phone: ")
                 .append(getPhone())
                 .append("; CCA: ")
-                .append(getCCA());
+                .append(getCca());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

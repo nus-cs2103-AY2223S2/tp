@@ -2,9 +2,9 @@ package seedu.address.logic.commands.student;
 
 import seedu.address.logic.commands.Command;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * An abstract class for "student" command
+ */
 public abstract class StudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 

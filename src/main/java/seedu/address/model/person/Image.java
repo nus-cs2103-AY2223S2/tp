@@ -1,41 +1,42 @@
-package seedu.address.model.person.student;
+package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.student.ParentName;
+
 /**
- * Represents the Age of a Student object.
+ * Represents the Image of a Student object.
  */
-public class Age {
-    public static final String MESSAGE_CONSTRAINTS = "Age must be digits (0-9)";
+public class Image {
+    public static final String MESSAGE_CONSTRAINTS = "Image must be file destination";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "\\S+";
 
     public final String value;
 
     /**
      * Constructs an {@code Address}.
      *
-     * @param age A valid student age.
+     * @param image A valid student image file destination.
      */
-    public Age(String age) {
-        requireNonNull(age);
-        checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
-        value = age;
+    public Image(String image) {
+        requireNonNull(image);
+        checkArgument(isValidImage(image), MESSAGE_CONSTRAINTS);
+        value = image;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAge(String test) {
-        if (test.equals("Insert student age here!")) {
+    public static boolean isValidImage(String test) {
+        if (test.equals("Insert student image here!")) {
             return true;
         }
-
         return test.matches(VALIDATION_REGEX);
     }
 

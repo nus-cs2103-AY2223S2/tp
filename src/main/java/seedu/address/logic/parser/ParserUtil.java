@@ -11,10 +11,19 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.*;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.student.Attendance;
+import seedu.address.model.person.student.Cca;
+import seedu.address.model.person.student.Homework;
+import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.ParentName;
+import seedu.address.model.person.student.StudentClass;
+import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -124,6 +133,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses indexNumber into an IndexNumber
+     * @param indexNumber
+     * @return An IndexNumber
+     * @throws ParseException
+     */
     public static IndexNumber parseIndexNumber(String indexNumber) throws ParseException {
         String trimmedIndexNumber = indexNumber.trim();
         if (!IndexNumber.isValidIndexNumber(trimmedIndexNumber)) {
@@ -131,6 +146,13 @@ public class ParserUtil {
         }
         return new IndexNumber(trimmedIndexNumber);
     }
+
+    /**
+     * Parses sex into Sex
+     * @param sex
+     * @return A Sex
+     * @throws ParseException
+     */
 
     public static Sex parseSex(String sex) throws ParseException {
         String trimmedSex = sex.trim();
@@ -140,6 +162,12 @@ public class ParserUtil {
         return new Sex(trimmedSex);
     }
 
+    /**
+     * Parses parentName to ParentName
+     * @param parentName
+     * @return a ParentName
+     * @throws ParseException
+     */
     public static ParentName parseParentName(String parentName) throws ParseException {
         requireNonNull(parentName);
         String trimmedParentName = parentName.trim();
@@ -148,6 +176,13 @@ public class ParserUtil {
         }
         return new ParentName(trimmedParentName);
     }
+
+    /**
+     * Parses age to Age
+     * @param studentAge
+     * @return an Age
+     * @throws ParseException
+     */
 
     public static Age parseAge(String studentAge) throws ParseException {
         requireNonNull(studentAge);
@@ -158,6 +193,13 @@ public class ParserUtil {
         return new Age(trimmedStudentAge);
     }
 
+    /**
+     * Parses studentImage to Image
+     * @param studentImage
+     * @return a studentImage
+     * @throws ParseException
+     */
+
     public static Image parseImage(String studentImage) throws ParseException {
         requireNonNull(studentImage);
         String trimmedStudentImage = studentImage.trim();
@@ -167,14 +209,28 @@ public class ParserUtil {
         return new Image(trimmedStudentImage);
     }
 
-    public static CCA parseCCA(String cca) throws ParseException {
+    /**
+     * Parse cca to CCA
+     * @param cca
+     * @return a CCA
+     * @throws ParseException
+     */
+
+    public static Cca parseCca(String cca) throws ParseException {
         requireNonNull(cca);
         String trimmedCca = cca.trim();
-        if (!CCA.isValidCCA(trimmedCca)) {
-            throw new ParseException(CCA.MESSAGE_CONSTRAINTS);
+        if (!Cca.isValidCca(trimmedCca)) {
+            throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
         }
-        return new CCA(trimmedCca);
+        return new Cca(trimmedCca);
     }
+
+    /**
+     * Parses sc to StudentClass
+     * @param sc
+     * @return a StudentClass
+     * @throws ParseException
+     */
 
     public static StudentClass parseStudentClass(String sc) throws ParseException {
         requireNonNull(sc);
@@ -184,6 +240,13 @@ public class ParserUtil {
         }
         return new StudentClass(trimmedSc);
     }
+
+    /**
+     * Parses test to Test
+     * @param test
+     * @return a Test
+     * @throws ParseException
+     */
     public static Test parseTest(String test) throws ParseException {
         requireNonNull(test);
         String trimmedTest = test.trim();
@@ -193,6 +256,13 @@ public class ParserUtil {
         //Please edit this
         return new Test(trimmedTest, LocalDate.now(), 20, 100, 50);
     }
+
+    /**
+     * Parses attendance to Attendance
+     * @param attendance
+     * @return An Attendance
+     * @throws ParseException
+     */
     public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
         String trimmedAttendance = attendance.trim();
@@ -202,6 +272,13 @@ public class ParserUtil {
         //Please edit this
         return new Attendance(attendance);
     }
+
+    /**
+     * Parses homework to Homework
+     * @param homework
+     * @return A Homework
+     * @throws ParseException
+     */
     public static Homework parseHomework(String homework) throws ParseException {
         requireNonNull(homework);
         String trimmedHomework = homework.trim();
@@ -209,6 +286,6 @@ public class ParserUtil {
             throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
         //Please edit this
-        return new Homework(homework, LocalDate.now(), 20,100,true);
+        return new Homework(homework, LocalDate.now(), 20, 100, true);
     }
 }

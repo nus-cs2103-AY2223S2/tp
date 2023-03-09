@@ -1,13 +1,13 @@
-package seedu.address.model.person.student;
+package seedu.address.model.person.parent;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the CCA (Co-curricular Activity) of a Student object.
+ * A relationship class
  */
-public class CCA {
-    public static final String MESSAGE_CONSTRAINTS = "CCA must be letters";
+public class Relationship {
+    public static final String MESSAGE_CONSTRAINTS = "Relationship must be letters";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -20,19 +20,19 @@ public class CCA {
     /**
      * Constructs an {@code Address}.
      *
-     * @param cca A valid cca.
+     * @param relationship A valid student age.
      */
-    public CCA(String cca) {
-        requireNonNull(cca);
-        checkArgument(isValidCCA(cca), MESSAGE_CONSTRAINTS);
-        value = cca;
+    public Relationship(String relationship) {
+        requireNonNull(relationship);
+        checkArgument(isValidRelationship(relationship), MESSAGE_CONSTRAINTS);
+        value = relationship;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid relationship.
      */
-    public static boolean isValidCCA(String test) {
-        if (test.equals("Insert student CCA here!")) {
+    public static boolean isValidRelationship(String test) {
+        if (test.equals("Insert parent relationship to child here!")) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
@@ -46,8 +46,8 @@ public class CCA {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CCA// instanceof handles nulls
-                && value.equals(((CCA) other).value)); // state check
+                || (other instanceof Relationship// instanceof handles nulls
+                && value.equals(((Relationship) other).value)); // state check
     }
 
     @Override

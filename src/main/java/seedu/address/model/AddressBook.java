@@ -91,12 +91,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+
         persons.add(p);
     }
 
+    /**
+     * Adds a student to addressBook/PowerConnect
+     * @param s of student
+     */
     public void addStudent(Student s) {
         students.add(s);
     }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -104,7 +110,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -121,6 +126,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes a student
+     * @param key
+     */
     public void removeStudent(Student key) {
         students.remove(key);
     }
@@ -134,6 +143,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Person> getPersonList() {
+
         return persons.asUnmodifiableObservableList();
     }
 
@@ -141,6 +151,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
