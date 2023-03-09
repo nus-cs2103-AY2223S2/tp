@@ -131,7 +131,7 @@ public class ParserUtil {
         CustomerType type;
         try {
             type = CustomerType.fromUserFriendlyString(customerType);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
         return type;

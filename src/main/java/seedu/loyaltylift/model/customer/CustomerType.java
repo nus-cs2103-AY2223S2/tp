@@ -1,5 +1,7 @@
 package seedu.loyaltylift.model.customer;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Customer's type in the address book.
  * Currently, it is either an individual or an enterprise.
@@ -18,18 +20,17 @@ public enum CustomerType {
      * @return A CustomerType representing the string given.
      * @throws IllegalArgumentException Thrown when the string given is unrecognised.
      */
-    public static CustomerType fromUserFriendlyString(String customerType) throws IllegalArgumentException {
-        if (customerType == null) {
-            throw new IllegalArgumentException();
-        }
+    public static CustomerType fromUserFriendlyString(String customerType) {
+        requireNonNull(customerType);
 
-        switch (customerType.toLowerCase()) {
-        case "ind":
+        String uCustomerType = customerType.toUpperCase();
+        switch (uCustomerType) {
+        case "IND":
             return CustomerType.INDIVIDUAL;
-        case "ent":
+        case "ENT":
             return CustomerType.ENTERPRISE;
         default:
-            return valueOf(customerType.toUpperCase());
+            return valueOf(uCustomerType);
         }
     }
 }

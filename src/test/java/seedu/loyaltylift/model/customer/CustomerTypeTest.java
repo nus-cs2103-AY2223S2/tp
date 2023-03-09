@@ -22,6 +22,6 @@ public class CustomerTypeTest {
         assertEquals(CustomerType.fromUserFriendlyString("ENTERPRISE"), CustomerType.ENTERPRISE);
 
         assertThrows(IllegalArgumentException.class, () -> CustomerType.fromUserFriendlyString(""));
-        assertThrows(IllegalArgumentException.class, () -> CustomerType.fromUserFriendlyString(null));
+        assertThrows(NullPointerException.class, () -> CustomerType.fromUserFriendlyString(null));
     }
 }
