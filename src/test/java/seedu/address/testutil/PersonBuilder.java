@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -21,19 +22,24 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    // To be removed once Person class is updated
+    public static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Contact contact;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        email = new Email(VALID_EMAIL_PLACEHOLDER);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -43,8 +49,8 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        email = new Email(VALID_EMAIL_PLACEHOLDER);
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -86,6 +92,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withContact(Contact contact) {
+        this.contact = contact;
         return this;
     }
 
