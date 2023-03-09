@@ -10,7 +10,7 @@ title: Developer Guide
    - [UI component](#ui-component)
    - [Logic component](#logic-component)
    - [Model component](#model-component)
-   - [Storgae component](#storage-component)
+   - [Storage component](#storage-component)
    - [Common classes](#common-classes) -->
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -76,7 +76,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1c1. System displays that the event has already been marked.
 
       Use case ends.
-   
+
 **Use case: UC4 - List Events**
 
 **MSS**
@@ -439,7 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
-      
+
       Use case ends. -->
 
 **Use case: UC5 - Link contact and event**
@@ -468,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3c. User enters an invalid contact information
    * 3c1. System displays that the contact information is invalid and to try again.
 
-      Use case resumts at step 3.
+      Use case resumes at step 3.
 
 * 4a. The event has a contact linked already.
    * 4a1. System replaces the previous contact with the new contact.
@@ -542,12 +542,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters the wrong command.
    * 1a1. System displays that the command is invalid and to try again.
-   
+
       Use case resumes at step 1.
 
 * 1b. User enters invalid contact details.
    * 1b1. System displays that the input is invalid and to try again.
-      
+
       Use case resumes at step 1.
 
 **Use case: UC9 - Add Date to Event**
@@ -586,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage. 
+3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 4. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 5. The system should work on both 32-bit and 64-bit environments.
 6. The source code should be open source.

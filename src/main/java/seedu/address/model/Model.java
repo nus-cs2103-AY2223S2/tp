@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Rate;
 
 /**
  * The API of the Model component.
@@ -88,6 +89,11 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Event person);
+
+    /**
+     * Retrieves the rate of an event.
+     */
+    Rate getRate(Event event);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

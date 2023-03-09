@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Rate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -166,8 +167,11 @@ public class ModelManager implements Model {
     @Override
     public void addContact(Contact contact) {
         contactList.addContact(contact);
+    }
 
-
+    @Override
+    public Rate getRate(Event event) {
+        return event.getRate();
     }
 
     @Override

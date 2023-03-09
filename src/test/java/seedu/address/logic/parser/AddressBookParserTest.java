@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NewContactCommand;
+import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
@@ -97,6 +98,13 @@ public class AddressBookParserTest {
         Contact contact = new ContactBuilder().build();
         NewContactCommand command = (NewContactCommand) parser.parseCommand(ContactUtil.getNewContactCommand(contact));
         assertEquals(new NewContactCommand(contact), command);
+    }
+
+    @Test
+    public void parseCommand_rate() throws Exception {
+        RateCommand command = (RateCommand) parser.parseCommand(
+            RateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new RateCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
