@@ -4,17 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 public class Comment {
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-
+    /** Represents the comment of a person */
     public final String value;
 
+    /**
+     * Constructs a Comment.
+     * @param comment A valid comment.
+     */
     public Comment(String comment) {
         requireNonNull(comment);
         value = comment;
     }
+
+    /**
+     * Constructs a Comment with no comment.
+     */
     public Comment() {
         value = "No comment";
     }

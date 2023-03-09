@@ -13,6 +13,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 
 public class CommentCommandParser implements Parser<CommentCommand>{
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the CommentCommand
+     * @param args of the user input
+     * @return the CommentCommand object for execution
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public CommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

@@ -40,12 +40,26 @@ public class CommentCommand extends Command{
     private final Index index;
     private final Comment comment;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Person}
+     *
+     * @param index of the person in the filtered person list to edit
+     * @param comment of the person to be updated to
+     */
     public CommentCommand(Index index, Comment comment) {
         requireAllNonNull(index, comment);
 
         this.index = index;
         this.comment = comment;
     }
+
+    /**
+     * Implements the execution of the command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return  the CommandResult of the command execution
+     * @throws CommandException If invalid person index is given
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
