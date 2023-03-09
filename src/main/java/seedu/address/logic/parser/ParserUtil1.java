@@ -74,10 +74,10 @@ public class ParserUtil1 {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
+        if (!Status.isValidStatus(Integer.valueOf(trimmedStatus))) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Status(trimmedStatus);
+        return new Status(Integer.valueOf(trimmedStatus));
     }
 
     /**
@@ -89,9 +89,10 @@ public class ParserUtil1 {
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        }
+        // No need ot check valid descripiton , as anything an be in description
+//        if (!Description.isValidDescription(trimmedDescription)) {
+//            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+//        }
         return new Description(trimmedDescription);
     }
 

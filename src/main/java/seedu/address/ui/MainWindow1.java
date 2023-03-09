@@ -12,12 +12,16 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
+import seedu.address.logic.Logic1;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
+import seedu.address.ui.HelpWindow;
+import seedu.address.ui.InternshipListPanel;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.UiPart;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -29,7 +33,7 @@ public class MainWindow1 extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private Logic logic;
+    private Logic1 logic;
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
@@ -54,7 +58,7 @@ public class MainWindow1 extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow1(Stage primaryStage, Logic logic) {
+    public MainWindow1(Stage primaryStage, Logic1 logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -118,7 +122,7 @@ public class MainWindow1 extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         // Check Logic if methis getTinsFilePath matches
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTinsFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

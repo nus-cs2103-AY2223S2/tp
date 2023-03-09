@@ -15,7 +15,7 @@ import seedu.address.model.internship.Internship;
 /**
  * Adds a internship to the internship catalogue.
  */
-public class AddCommand1 extends Command {
+public class AddCommand1 extends Command1 {
 
     public static final String COMMAND_WORD = "add";
 
@@ -62,7 +62,7 @@ public class AddCommand1 extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddCommand1 // instanceof handles nulls
+                && toAdd.equals(((AddCommand1) other).toAdd));
     }
 }

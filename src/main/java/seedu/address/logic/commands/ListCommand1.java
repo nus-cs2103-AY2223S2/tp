@@ -8,7 +8,7 @@ import seedu.address.model.Model1;
 /**
  * Lists all internships saved in TinS to the user.
  */
-public class ListCommand1 extends Command {
+public class ListCommand1 extends Command1 {
 
     public static final String COMMAND_WORD = "list";
 

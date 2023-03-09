@@ -12,7 +12,7 @@ import seedu.address.model.internship.Internship;
 /**
  * An UI component that displays information of a {@code Internship}.
  */
-public class InternshipCard {
+public class InternshipCard extends UiPart<Region> {
     private static final String FXML = "InternshipListCard.fxml";
 
     /**
@@ -49,7 +49,7 @@ public class InternshipCard {
         id.setText(displayedIndex + ". ");
         position.setText(internship.getPosition().positionName);
         company.setText(internship.getCompany().companyName);
-        status.setText(internship.getStatus().statusId);
+        status.setText(internship.getStatus().toString());
         description.setText(internship.getDescription().descriptionMessage);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
