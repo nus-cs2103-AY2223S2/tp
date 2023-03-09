@@ -4,54 +4,54 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Card's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Card's answer in the deck.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAnswer(String)}
  */
 public class Answer {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Answers can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the answer must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String answer;
 
     /**
      * Constructs an {@code Answer}.
      *
-     * @param address A valid address.
+     * @param answer A valid answer.
      */
-    public Answer(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Answer(String answer) {
+        requireNonNull(answer);
+        checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
+        this.answer = answer;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidAnswer(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return answer;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Answer // instanceof handles nulls
-                && value.equals(((Answer) other).value)); // state check
+                && answer.equals(((Answer) other).answer)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return answer.hashCode();
     }
 
 }

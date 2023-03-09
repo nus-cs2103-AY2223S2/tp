@@ -33,7 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + card.getQuestion().question + " ");
         sb.append(PREFIX_PHONE + card.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + card.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + card.getAddress().value + " ");
+        sb.append(PREFIX_ADDRESS + card.getAddress().answer + " ");
         card.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +48,7 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.question).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.answer).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

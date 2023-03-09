@@ -53,7 +53,7 @@ class JsonAdaptedPerson {
         name = source.getQuestion().question;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        address = source.getAddress().answer;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -99,7 +99,7 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
         }
-        if (!Answer.isValidAddress(address)) {
+        if (!Answer.isValidAnswer(address)) {
             throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
         }
         final Answer modelAnswer = new Answer(address);
