@@ -24,10 +24,10 @@ import mycelium.mycelium.model.person.Person;
  */
 public class TypicalPersons {
     public static final Client WEST = new ClientBuilder().withName("Kanye West")
-        .withEmail("KanyeWest@example.com")
-        .withYearOfBirth("1977")
+        .withEmail("alice@example.com")
+        .withYearOfBirth("2000")
         .withSource("www.kanyewest.com")
-        .withMobileNumber("999").build();
+        .withMobileNumber("99923444").build();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253")

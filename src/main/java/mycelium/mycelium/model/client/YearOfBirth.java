@@ -1,6 +1,5 @@
 package mycelium.mycelium.model.client;
 
-import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.AppUtil.checkArgument;
 
 /**
@@ -20,7 +19,7 @@ public class YearOfBirth {
      * @param yearOfBirth The year of birth to be stored in the object.
      */
     public YearOfBirth(String yearOfBirth) {
-        requireNonNull(yearOfBirth);
+
         checkArgument(isValidYearOfBirth(yearOfBirth), MESSAGE_CONSTRAINTS);
         value = yearOfBirth;
     }

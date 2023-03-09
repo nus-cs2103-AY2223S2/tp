@@ -25,9 +25,9 @@ class JsonAdaptedClient {
 
     private final String name;
     private final String email;
-    private final YearOfBirth yearOfBirth;
+    private final String yearOfBirth;
     private final String source;
-    private final Phone mobileNumber;
+    private final String mobileNumber;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,9 +39,9 @@ class JsonAdaptedClient {
                              @JsonProperty("mobile_number") String mobileNumber) {
         this.name = name;
         this.email = email;
-        this.yearOfBirth = new YearOfBirth(yearOfBirth);
+        this.yearOfBirth = yearOfBirth;
         this.source = source;
-        this.mobileNumber = new Phone(mobileNumber);
+        this.mobileNumber = mobileNumber;
     }
 
     /**
@@ -50,9 +50,9 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client client) {
         name = client.getName().fullName;
         email = client.getEmail().value;
-        yearOfBirth = client.getYearOfBirth().orElse(null);
+        yearOfBirth = client.getYearOfBirth().orElse(null).value;
         source = client.getSource().orElse(null);
-        mobileNumber = client.getMobileNumber().orElse(null);
+        mobileNumber = client.getMobileNumber().orElse(null).value;
     }
 
     /**
@@ -93,19 +93,19 @@ class JsonAdaptedClient {
         nullCheck(email == null, Email.class.getSimpleName());
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
-        // The usage of {@code yearOfBirth.value} is needed due to Optional.
-        nullCheck(yearOfBirth == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, YearOfBirth.MESSAGE_CONSTRAINTS));
-        validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth.value), YearOfBirth.MESSAGE_CONSTRAINTS);
-        final YearOfBirth modelYearOfBirth = yearOfBirth;
+
+        nullCheck(yearOfBirth == null, YearOfBirth.class.getSimpleName());
+        // validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
+        final YearOfBirth modelYearOfBirth = new YearOfBirth(yearOfBirth);
+
         // TODO validityCheck for source
         nullCheck(source == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "source"));
 
         nullCheck(mobileNumber == null, Phone.class.getSimpleName());
-        validityCheck(!Phone.isValidPhone(mobileNumber.value), Phone.MESSAGE_CONSTRAINTS);
-        final Phone modelMobileNumber = mobileNumber;
+        validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
+        final Phone modelMobileNumber = new Phone(mobileNumber);
 
-        return new Client(
-                modelName,
+        return new Client(modelName,
                 modelEmail,
                 Optional.ofNullable(modelYearOfBirth),
                 Optional.ofNullable(source),
