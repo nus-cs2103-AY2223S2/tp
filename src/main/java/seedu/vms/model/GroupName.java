@@ -2,9 +2,6 @@ package seedu.vms.model;
 
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import seedu.vms.commons.util.AppUtil;
 
 
@@ -25,7 +22,6 @@ public class GroupName {
      *
      * @param name - name of the group.
      */
-    @JsonCreator
     public GroupName(String name) {
         Objects.requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
@@ -37,7 +33,6 @@ public class GroupName {
     }
 
 
-    @JsonValue
     public String getName() {
         return name;
     }

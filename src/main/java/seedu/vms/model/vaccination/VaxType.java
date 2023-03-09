@@ -80,6 +80,11 @@ public class VaxType {
     }
 
 
+    public GroupName getGroupName() {
+        return name;
+    }
+
+
     public HashSet<String> getGroups() {
         return new HashSet<>(groups);
     }

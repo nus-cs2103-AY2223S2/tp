@@ -9,18 +9,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
+import seedu.vms.storage.JsonAdaptedGroupName;
 
 
 /** A JSON friendly version of {@link VaxType}. */
 public class JsonAdaptedVaxType {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Vaccination type [%s] is missing";
 
-    private final GroupName name;
+    private final JsonAdaptedGroupName name;
     private final List<String> groups;
     private final Integer minAge;
     private final Integer maxAge;
@@ -32,7 +32,7 @@ public class JsonAdaptedVaxType {
     /** Constructs a {@code JsonAdaptedVaxType}. */
     @JsonCreator
     public JsonAdaptedVaxType(
-                @JsonProperty("name") GroupName name,
+                @JsonProperty("name") JsonAdaptedGroupName name,
                 @JsonProperty("groups") List<String> groups,
                 @JsonProperty("minAge") Integer minAge,
                 @JsonProperty("maxAge") Integer maxAge,
@@ -54,7 +54,7 @@ public class JsonAdaptedVaxType {
      * {@code JsonAdaptedVaxType}.
      */
     public static JsonAdaptedVaxType fromModelType(VaxType vaxType) {
-        GroupName name = new GroupName(vaxType.getName());
+        JsonAdaptedGroupName name = JsonAdaptedGroupName.fromModelType(vaxType.getGroupName());
         List<String> groups = List.copyOf(vaxType.getGroups());
         Integer minAge = vaxType.getMinAge();
         Integer maxAge = vaxType.getMaxAge();
@@ -83,7 +83,7 @@ public class JsonAdaptedVaxType {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NAME"));
         }
-        VaxTypeBuilder builder = VaxTypeBuilder.of(name);
+        VaxTypeBuilder builder = VaxTypeBuilder.of(name.toModelType());
 
         if (groups != null) {
             builder = builder.setGroups(new HashSet<>(groups));
