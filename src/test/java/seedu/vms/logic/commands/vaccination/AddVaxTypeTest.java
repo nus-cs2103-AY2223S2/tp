@@ -32,7 +32,7 @@ public class AddVaxTypeTest {
             CliSyntax.PREFIX_VAX_GROUPS.getPrefix(),
             "abc," + "123," + "unchi," + "i am invalid ( ^)o(^ )b," + "banana");
 
-    public static final String INVALID_REQ_TYPE_CMD = String.format("UNCHI --%s %s",
+    private static final String INVALID_REQ_TYPE_CMD = String.format("UNCHI --%s %s",
             CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
             "rUbb15h::UNCHI");
     private static final String INVALID_REQ_CMD_EMPTY = String.format("UNCHI --%s %s",

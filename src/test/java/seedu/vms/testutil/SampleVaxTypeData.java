@@ -58,7 +58,8 @@ public class SampleVaxTypeData {
             + "Phosphate,"
             + "Tromethamine,"
             + "Tromethamine hydrochloride";
-    public static final String CMD_HISTORY_REQS_REAL = "--" + CliSyntax.PREFIX_HISTORY_REQ.getPrefix() + " none::DOSE 1";
+    public static final String CMD_HISTORY_REQS_REAL = "--" + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
+            + " none::DOSE 1";
 
 
     public static final GroupName NAME_1 = new GroupName("UNCHI");
