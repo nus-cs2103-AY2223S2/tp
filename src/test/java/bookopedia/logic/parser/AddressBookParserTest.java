@@ -22,6 +22,7 @@ import bookopedia.logic.commands.ExitCommand;
 import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.commands.HelpCommand;
 import bookopedia.logic.commands.ListCommand;
+import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 import bookopedia.model.person.Person;
@@ -86,6 +87,11 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD + " 1") instanceof ViewCommand);
     }
 
     @Test
