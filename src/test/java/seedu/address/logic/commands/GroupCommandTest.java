@@ -16,12 +16,12 @@ import seedu.address.testutil.PersonBuilder;
 public class GroupCommandTest {
 
     @Test
-    public void constructor_null_Tag_throwsNullPointerException() {
+    public void constructorNullTagthrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new GroupCommand(null));
     }
 
     @Test
-    public void execute_null_model_throwsNullPointerException() {
+    public void executeNullModelThrowsNullPointerException() {
         Tag tag = new Tag("hi");
         assertThrows(NullPointerException.class, () -> new GroupCommand(tag).execute(null));
     }

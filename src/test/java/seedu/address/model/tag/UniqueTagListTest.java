@@ -25,13 +25,13 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void contains_TagNotInList_returnsFalse() {
+    public void contains_tagNotInList_returnsFalse() {
 
         assertFalse(uniqueTagList.contains(tag));
     }
 
     @Test
-    public void contains_TagInList_returnsTrue() {
+    public void contains_tagInList_returnsTrue() {
         uniqueTagList.add(tag);
         assertTrue(uniqueTagList.contains(tag));
     }

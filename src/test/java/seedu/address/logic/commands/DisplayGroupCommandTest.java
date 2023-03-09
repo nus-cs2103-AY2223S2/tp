@@ -17,7 +17,7 @@ public class DisplayGroupCommandTest {
 
     @Test
     public void checkObject() {
-        assertTrue(new DisplayGroupCommand()!= new DisplayGroupCommand());
+        assertTrue(new DisplayGroupCommand() != new DisplayGroupCommand());
     }
 
     @Test
