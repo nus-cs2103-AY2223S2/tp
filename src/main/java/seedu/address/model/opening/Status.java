@@ -14,7 +14,7 @@ public class Status {
      * The enum of all possible statuses.
      */
     public static enum StatusEnum {
-        FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED
+        FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED, ACCEPTED
     }
 
     public final String fullStatus;

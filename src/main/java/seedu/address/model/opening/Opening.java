@@ -42,7 +42,7 @@ public class Opening {
         return company;
     }
 
-    public Email getContact() {
+    public Email getEmail() {
         return email;
     }
 
@@ -89,7 +89,7 @@ public class Opening {
         Opening otherOpening = (Opening) other;
         return otherOpening.getPosition().equals(getPosition())
                 && otherOpening.getCompany().equals(getCompany())
-                && otherOpening.getContact().equals(getContact())
+                && otherOpening.getEmail().equals(getEmail())
                 && otherOpening.getStatus().equals(getStatus())
                 && otherOpening.getDates().equals(getDates());
     }
@@ -106,8 +106,8 @@ public class Opening {
         builder.append(getPosition())
                 .append(" Company: ")
                 .append(getCompany())
-                .append(" Contact: ")
-                .append(getContact())
+                .append(" Email: ")
+                .append(getEmail())
                 .append(" Status: ")
                 .append(getStatus())
                 .append(" Dates: ");
