@@ -49,7 +49,7 @@ public class DeadlineTaskBuilder {
 
 
     public DeadlineTask build() {
-        return new DeadlineTask(description,date);
+        return new DeadlineTask(description, date);
     }
 
 }

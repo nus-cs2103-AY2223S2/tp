@@ -51,8 +51,8 @@ public class DeadlineCommandTest {
         DeadlineCommand deadlineCommand = new DeadlineCommand(validDeadlineTask);
         ModelStub modelStub = new ModelStubWithDeadlineTask(validDeadlineTask);
 
-        assertThrows(CommandException.class, DeadlineCommand.MESSAGE_DUPLICATE_TASK,
-                () -> deadlineCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                DeadlineCommand.MESSAGE_DUPLICATE_TASK, () -> deadlineCommand.execute(modelStub));
     }
 
     @Test
