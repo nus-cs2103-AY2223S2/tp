@@ -13,7 +13,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddPatientCommand}.
  */
 public class AddPatientCommandIntegrationTest {
 
