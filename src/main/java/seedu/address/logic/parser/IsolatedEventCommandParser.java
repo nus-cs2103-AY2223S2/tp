@@ -18,7 +18,7 @@ import seedu.address.model.event.IsolatedEvent;
 /**
  * Parser class for Isolated Event
  */
-public class IsolatedEventCommandParser {
+public class IsolatedEventCommandParser implements Parser<AddIsolatedEventCommand> {
 
     /**
      * Parse the IsolatedEvent command.
@@ -38,7 +38,6 @@ public class IsolatedEventCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddIsolatedEventCommand.MESSAGE_USAGE), ive);
         }
-
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ISOEVENT, PREFIX_STARTDATE, PREFIX_ENDDATE)
                 || argMultimap.getPreamble().isEmpty()) {
