@@ -29,8 +29,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
+    public static final String MESSAGE_BLANK_ELEMENT = "Trailing or leading delimiters are not allowed";
 
-    public static final String KEYWORD_EMPTY_LIST = "EMPTY";
+    public static final String KEYWORD_EMPTY_LIST = "<EMPTY>";
 
     private static final String DEFAULT_DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
     private static final String FULL_DATE_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2} \\d{4}";
@@ -38,8 +39,8 @@ public class ParserUtil {
 
     private static final String FULL_DATE_PATTERN = "yyyy-M-d HHmm";
 
-    private static final String DELIMITER_PART = "\\s*::\\s*";
-    private static final String DELIMITER_LIST = "\\s*,\\s*";
+    private static final String DELIMITER_PART = "::";
+    private static final String DELIMITER_LIST = ",";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -242,8 +243,8 @@ public class ParserUtil {
      * Parses the argument into parts according to {@link #DELIMITER_PART}
      * delimiter pattern.
      */
-    public static List<String> parseParts(String arg) {
-        return List.of((arg).split(DELIMITER_PART));
+    public static List<String> parseParts(String arg) throws ParseException {
+        return splitArgs(arg, DELIMITER_PART);
     }
 
 
@@ -251,11 +252,25 @@ public class ParserUtil {
      * Parses the argument into a list according to {@link #DELIMITER_LIST}
      * delimiter pattern.
      */
-    public static List<String> parseList(String arg) {
+    public static List<String> parseList(String arg) throws ParseException {
         if (arg.strip().toUpperCase().equals(KEYWORD_EMPTY_LIST)) {
             return List.of();
         }
-        return List.of(arg.strip().split(DELIMITER_LIST));
+        return splitArgs(arg, DELIMITER_LIST);
+    }
+
+
+    private static List<String> splitArgs(String arg, String delimiter) throws ParseException {
+        arg = " " + arg + " ";
+        List<String> rawArgs = List.of(arg.split(delimiter));
+        ArrayList<String> splitArgs = new ArrayList<>();
+        for (String rawArg : rawArgs) {
+            if (rawArg.isBlank()) {
+                throw new ParseException(MESSAGE_BLANK_ELEMENT);
+            }
+            splitArgs.add(rawArg.strip());
+        }
+        return splitArgs;
     }
 
 
