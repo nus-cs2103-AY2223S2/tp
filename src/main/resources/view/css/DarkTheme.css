@@ -82,6 +82,23 @@
     -fx-background-color: #001E3C;
 }
 
+.enlarged-contacts-details-pane {
+    -fx-background-color: #001E3C;
+}
+
+.enlarged-contact-card .description-label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #828282;
+    -fx-padding: 2 0 0 0;
+}
+
+.enlarged-contact-card .value-label {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #FFFFFF;
+}
+
 /*
  * Scroll Bar styles
  */

@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Doctor;
 
 /**
@@ -26,7 +26,7 @@ public class EnlargedContactCard extends UiPart<Region> {
     public final Doctor doctor;
 
     @javafx.fxml.FXML
-    private HBox enlargedContactCard;
+    private VBox enlargedContactCard;
     @FXML
     private Label name;
     @FXML
