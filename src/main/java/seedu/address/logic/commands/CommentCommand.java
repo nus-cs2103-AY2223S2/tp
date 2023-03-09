@@ -17,7 +17,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Person;
 
-public class CommentCommand extends Command{
+/**
+ * Adds a person to the address book.
+ */
+public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
@@ -93,7 +96,7 @@ public class CommentCommand extends Command{
         if (other == this) {
             return true;
         }
-        if (!(other instanceof CommentCommand)){
+        if (!(other instanceof CommentCommand)) {
             return false;
         }
         CommentCommand e = (CommentCommand) other;

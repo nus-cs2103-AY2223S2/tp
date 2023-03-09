@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Person's comment in the address book.
+ */
 public class Comment {
 
     /** Represents the comment of a person */

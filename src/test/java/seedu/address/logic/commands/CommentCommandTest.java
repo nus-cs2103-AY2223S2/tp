@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -20,8 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Comment;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -38,7 +37,8 @@ public class CommentCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withComment(COMMENT_STUB).build();
 
-        CommentCommand remarkCommand = new CommentCommand(INDEX_FIRST_PERSON, new Comment(editedPerson.getComment().value));
+        CommentCommand remarkCommand = new CommentCommand(INDEX_FIRST_PERSON,
+                new Comment(editedPerson.getComment().value));
 
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
 
@@ -72,7 +72,8 @@ public class CommentCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withComment(COMMENT_STUB).build();
 
-        CommentCommand remarkCommand = new CommentCommand(INDEX_FIRST_PERSON, new Comment(editedPerson.getComment().value));
+        CommentCommand remarkCommand = new CommentCommand(INDEX_FIRST_PERSON,
+                new Comment(editedPerson.getComment().value));
 
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
 
