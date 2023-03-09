@@ -38,6 +38,14 @@ public class GitHubProfile {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if GitHub username is empty.
+     *
+     * @return {@code true} if GitHub username is empty.
+     */
+    public boolean isEmptyProfile() {
+        return value.equals("");
+    }
 
     @Override
     public String toString() {
