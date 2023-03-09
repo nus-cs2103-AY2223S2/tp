@@ -28,8 +28,7 @@
                 </ImageView>
             </VBox>
             <VBox alignment="CENTER_RIGHT">
-
-                <HBox alignment="CENTER">
+                <HBox>
                     <Label fx:id="id" styleClass="cell_big_label">
                         <minWidth>
                             <!-- Ensures that the label text is never truncated -->
@@ -42,16 +41,15 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <FlowPane fx:id="tags" styleClass="tag_alignment"/>
+                    <FlowPane fx:id="tags"/>
                 </HBox>
                 <Button alignment="BOTTOM_RIGHT" fx:id="showButton" mnemonicParsing="false" onAction="#showPersonalPane"
                         text="More details" styleClass="detailsButton"/>
-
             </VBox>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" visible="false"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" visible="false"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" visible="false"/>
         </HBox>
+        <Label fx:id="phone" text="\$phone" visible="false"/>
+        <Label fx:id="address" text="\$address" visible="false"/>
+        <Label fx:id="email" text="\$email" visible="false"/>
     </GridPane>
 </HBox>
 

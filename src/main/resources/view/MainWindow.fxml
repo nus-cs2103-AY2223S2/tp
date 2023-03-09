@@ -50,7 +50,7 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
-        <VBox fx:id="personalPane" styleClass="pane-with-border" maxWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personalPane" styleClass="pane-with-border" maxWidth="350" prefWidth="350" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>

@@ -12,7 +12,6 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
-
         <VBox GridPane.columnIndex="0" alignment="CENTER">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
