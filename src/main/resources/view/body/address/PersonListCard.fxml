@@ -30,7 +30,7 @@
       </VBox>
       <VBox spacing="5" HBox.hgrow="ALWAYS">
         <Label fx:id="name" text="\$first" styleClass="label-h6" />
-        <Label fx:id="phone" styleClass="label-hp" text="\$phone" />
+        <Label fx:id="phone" styleClass="label-p" text="\$phone" />
         <FlowPane fx:id="tags" />
       </VBox>
     </HBox>
