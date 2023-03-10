@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -111,7 +110,7 @@ public class AddressBookTest {
     public void doNotHaveGroup_groupInAddressBook_returnsTrue() {
         Group group = new Group("2103T");
         addressBook.addGroup(group);
-        addressBook.deleteGroup(group, new HashSet<Person>());
+        addressBook.deleteGroup(group);
         assertTrue(!addressBook.hasGroup(group));
     }
 

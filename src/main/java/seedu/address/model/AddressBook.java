@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -126,7 +127,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Remove {@code group} from address book's UniqueGroupList and every person in the group
      * {@code group} must not exist in the address book.
      */
-    public void deleteGroup(Group group, Set<Person> personSet) {
+    public void deleteGroup(Group group) {
+        Set<Person> personSet = new HashSet<>();
+        for (Person p : persons) {
+            if (p.getGroups().contains(group)) {
+                personSet.add(p);
+            }
+        }
         groups.delete(group, personSet);
     }
 

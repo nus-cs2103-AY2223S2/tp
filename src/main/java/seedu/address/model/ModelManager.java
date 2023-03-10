@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -131,9 +130,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteGroup(Group group, Set<Person> personSet) {
-        requireAllNonNull(personSet, group);
-        addressBook.deleteGroup(group, personSet);
+    public void deleteGroup(Group group) {
+        requireNonNull(group);
+        addressBook.deleteGroup(group);
     }
 
     @Override

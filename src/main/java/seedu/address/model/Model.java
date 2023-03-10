@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -103,7 +102,7 @@ public interface Model {
      * Deletes a new group and removes group from every person in it
      * {@code group} must exist in the address book
      */
-    void deleteGroup(Group group, Set<Person> persons);
+    void deleteGroup(Group group);
 
     /**
      * Returns true if a group with the same group name as {@code group} exists in the address book.
