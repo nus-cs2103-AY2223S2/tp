@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-
-import static seedu.sudohr.testutil.TypicalDepartments.*;
+import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
+import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.SALES;
+import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
 import static seedu.sudohr.testutil.TypicalPersons.BENSON;
 import static seedu.sudohr.testutil.TypicalPersons.CARL;

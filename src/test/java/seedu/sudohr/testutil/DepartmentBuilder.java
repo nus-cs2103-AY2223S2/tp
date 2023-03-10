@@ -1,13 +1,13 @@
 package seedu.sudohr.testutil;
 
-import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.*;
-import seedu.sudohr.model.util.SampleDataUtil;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Department objects.
@@ -45,7 +45,8 @@ public class DepartmentBuilder {
     }
 
     /**
-     * Parses the {@code employees} into a {@code Set<Person>} and set it to the {@code Department} that we are building.
+     * Parses the {@code employees} into a {@code Set<Person>} and set it to the {@code Department} that we are
+     * building.
      */
     public DepartmentBuilder withEmployees(String ... employees) {
         this.employees = SampleDataUtil.getEmployeeSet(employees);
@@ -53,7 +54,8 @@ public class DepartmentBuilder {
     }
 
     /**
-     * Parses the {@code employees} into a {@code Set<Person>} and set it to the {@code Department} that we are building.
+     * Parses the {@code employees} into a {@code Set<Person>} and set it to the {@code Department} that we are
+     * building.
      */
     public DepartmentBuilder withEmployees(Person ... employees) {
         this.employees.addAll(Arrays.asList(employees));
