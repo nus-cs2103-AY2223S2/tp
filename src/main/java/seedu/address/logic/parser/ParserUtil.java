@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BusinessSize;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -96,6 +97,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String businessSize} into an {@code BusinessSize}.
+     *
+     * @throws ParseException if the given {@code businessSize} is invalid.
+     */
+    public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
+        requireNonNull(businessSize);
+        if (!BusinessSize.isValidBusinessSize(businessSize)) {
+            throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
+        }
+        return new BusinessSize(businessSize);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -110,6 +124,8 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -121,4 +137,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
