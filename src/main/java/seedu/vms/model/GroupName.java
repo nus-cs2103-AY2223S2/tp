@@ -8,7 +8,7 @@ import seedu.vms.commons.util.AppUtil;
 /**
  * Represents a group name. Ensures that the name is valid.
  */
-public class GroupName {
+public class GroupName implements Comparable<GroupName> {
     public static final String MESSAGE_CONSTRAINT = "Group name should not be blank, "
             + "and should only contain alphanumeric characters including brackets and dashes";
 
@@ -35,6 +35,12 @@ public class GroupName {
 
     public String getName() {
         return name;
+    }
+
+
+    @Override
+    public int compareTo(GroupName other) {
+        return name.compareTo(other.name);
     }
 
 
