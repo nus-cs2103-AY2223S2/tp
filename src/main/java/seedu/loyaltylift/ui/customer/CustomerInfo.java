@@ -1,6 +1,5 @@
 package seedu.loyaltylift.ui.customer;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -33,7 +32,7 @@ public class CustomerInfo extends UiPart<ScrollPane> {
      * Creates a {@code CustomerInfo} with the given {@code Customer}.
      * @param customer The customer whose information is to be displayed.
      */
-    public CustomerInfo(Customer customer) {
+    public CustomerInfo(Customer customer, ObservableList<Order> customerOrderList) {
         super(FXML);
 
         customerName.setText(customer.getName().fullName.toUpperCase());
@@ -46,8 +45,7 @@ public class CustomerInfo extends UiPart<ScrollPane> {
         insertSection("General", customerGeneralInfo.getRoot());
 
         // Orders
-        ObservableList<Order> observableOrderList = FXCollections.observableList(customer.getOrders());
-        CustomerOrderListPanel customerOrderListPanel = new CustomerOrderListPanel(observableOrderList);
+        CustomerOrderListPanel customerOrderListPanel = new CustomerOrderListPanel(customerOrderList);
         insertSection("Orders", customerOrderListPanel.getRoot());
     }
 

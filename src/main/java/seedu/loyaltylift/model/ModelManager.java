@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Order> filteredCustomerOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredCustomerOrders = new FilteredList<>(this.addressBook.getOrderList());
     }
 
     public ModelManager() {
@@ -174,6 +176,17 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Order> getFilteredCustomerOrderList() {
+        return filteredCustomerOrders;
+    }
+
+    @Override
+    public void updateFilteredCustomerOrderList(Customer customer) {
+        requireNonNull(customer);
+        filteredCustomerOrders.setPredicate((order) -> order.getCustomer().equals(customer));
     }
 
     @Override
