@@ -42,21 +42,22 @@ class PolicyTest {
     @Test
     void isSamePolicy() {
         PolicyName name1 = new PolicyName("Health");
+        PolicyName name2 = new PolicyName("life");
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
         Premium premium2 = new Premium("150");
         Frequency frequency1 = new Frequency("quarterly");
         Frequency frequency2 = new Frequency("yearly");
         Policy policy1 = new Policy(name1, date1, premium1, frequency1);
-        Policy policy2 = new Policy(name1, date1, premium2, frequency1);
+        Policy policy2 = new Policy(name1, date1, premium2, frequency2);
         Policy policy3 = new Policy(name1, date1, premium2, frequency2);
+        Policy policy4 = new Policy(name2, date1, premium1, frequency1);
 
         assertTrue(policy.isSamePolicy(policy1));
+        assertFalse(policy1.isSamePolicy(policy4));
         assertTrue(policy.equals(policy1));
-        assertFalse(policy.isSamePolicy(policy2));
-        assertFalse(policy.equals(policy2));
-        assertFalse(policy2.isSamePolicy(policy3));
-        assertFalse(policy2.equals(policy3));
+        assertFalse(policy.equals(policy3));
+        assertTrue(policy2.equals(policy3));
 
     }
 
