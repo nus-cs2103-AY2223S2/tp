@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.skill.Skill;
 import seedu.address.model.module.Module;
+import seedu.address.model.skill.Skill;
 
 /**
  * Represents a Person in the address book.

@@ -2,19 +2,30 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
-public class  Module{
+/**
+ * Represents a Module in the address book.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidModuleName(String)}
+ */
+public class Module {
     public static final String MESSAGE_CONSTRAINTS = "Module names should be AYXXXXSX ";
-    public static final String VALIDATION_REGEX = "^AY[0-9]{4}S(1|2) [A-Z]+[0-9]+[A-Z]*";
+    public static final String VALIDATION_REGEX = "^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*";
 
     public final String moduleName;
 
+    /**
+     * Constructs a {@code Module}.
+     *
+     * @param moduleName A valid module name.
+     */
     public Module(String moduleName) {
         requireNonNull(moduleName);
         checkArgument(isValidModuleName(moduleName), MESSAGE_CONSTRAINTS);
         this.moduleName = moduleName;
     }
 
+    /**
+     * Returns true if a given string is a valid module name.
+     */
     public static boolean isValidModuleName(String test) {
         System.out.println(test);
         return test.matches(VALIDATION_REGEX);
@@ -32,6 +43,9 @@ public class  Module{
         return moduleName.hashCode();
     }
 
+    /**
+     * Format state as text for viewing.
+     */
     public String toString() {
         return '[' + moduleName + ']';
     }
