@@ -139,12 +139,13 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
 * Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search). 
   * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
   * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java`
+  * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
 
   Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
