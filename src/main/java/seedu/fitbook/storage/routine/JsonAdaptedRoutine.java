@@ -1,17 +1,18 @@
 package seedu.fitbook.storage.routine;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.fitbook.commons.exceptions.IllegalValueException;
-import seedu.fitbook.model.routines.Exercise;
-import seedu.fitbook.model.routines.Routine;
-import seedu.fitbook.model.routines.RoutineName;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.fitbook.commons.exceptions.IllegalValueException;
+import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineName;
 
 /**
  * Jackson-friendly version of {@link Routine}.
@@ -64,7 +65,7 @@ class JsonAdaptedRoutine {
             throw new IllegalValueException(RoutineName.MESSAGE_CONSTRAINTS);
         }
         final RoutineName modelRoutineName = new RoutineName(routineName);
-        final Set<Exercise> modelRoutineExercises = new HashSet<>(routineExercises);
+        final List<Exercise> modelRoutineExercises = new ArrayList<>(routineExercises);
         return new Routine(modelRoutineName, modelRoutineExercises);
     }
 

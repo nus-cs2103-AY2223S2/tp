@@ -1,10 +1,10 @@
-package seedu.fitbook.testutil;
+package seedu.fitbook.testutil.client;
 
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.client.Client;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building FitBook objects.
  * Example usage: <br>
  *     {@code FitBook ab = new FitBookBuilder().withClient("John", "Doe").build();}
  */

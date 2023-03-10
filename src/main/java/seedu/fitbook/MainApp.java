@@ -104,12 +104,12 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleFitBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format for FitBook. " +
-                    "Will be starting with an empty FitBook");
+            logger.warning("Data file not in the correct format for FitBook. "
+                    + "Will be starting with an empty FitBook");
             initialData = new FitBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file for FitBook. " +
-                    "Will be starting with an empty FitBook");
+            logger.warning("Problem while reading from the file for FitBook. "
+                    + "Will be starting with an empty FitBook");
             initialData = new FitBook();
         }
         return initialData;
@@ -129,18 +129,18 @@ public class MainApp extends Application {
         try {
             exerciseRoutineOptional = storage.readFitBookExerciseRoutine();
             if (!exerciseRoutineOptional.isPresent()) {
-                logger.info("Data file not found for Exercise Routine. " +
-                        "Will be starting with a sample Exercise Routine");
+                logger.info("Data file not found for Exercise Routine. "
+                        + "Will be starting with a sample Exercise Routine");
             }
             initialExerciseRoutineData = exerciseRoutineOptional
                     .orElseGet(SampleExerciseRoutineDataUtil::getSampleFitBookExerciseRoutine);
         } catch (DataConversionException e) {
-            logger.warning("Data file for Exercise Routine not in the correct format. " +
-                    "Will be starting with an empty Exercise Routine");
+            logger.warning("Data file for Exercise Routine not in the correct format. "
+                    + "Will be starting with an empty Exercise Routine");
             initialExerciseRoutineData = new FitBookExerciseRoutine();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file for Exercise Routine." +
-                    " Will be starting with an empty Exercise Routine");
+            logger.warning("Problem while reading from the file for Exercise Routine."
+                    + " Will be starting with an empty Exercise Routine");
             initialExerciseRoutineData = new FitBookExerciseRoutine();
         }
         return initialExerciseRoutineData;

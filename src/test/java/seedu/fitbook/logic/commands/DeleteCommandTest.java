@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 

@@ -1,12 +1,10 @@
 package seedu.fitbook.model.routines;
 
-import seedu.fitbook.model.client.Client;
-
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a Routine in the FitBook.
@@ -15,14 +13,14 @@ import static java.util.Objects.requireNonNull;
 public class Routine {
 
     private final RoutineName routineName;
-    private final Set<Exercise> exercises = new HashSet<>();
+    private final List<Exercise> exercises = new ArrayList<>();
 
     /**
      * Constructs a {@code Routine}.
      *
      * @param routineName A valid routine name.
      */
-    public Routine(RoutineName routineName, Set<Exercise> exercises) {
+    public Routine(RoutineName routineName, List<Exercise> exercises) {
         requireNonNull(routineName);
         this.exercises.addAll(exercises);
         this.routineName = routineName;
@@ -32,7 +30,7 @@ public class Routine {
         return routineName;
     }
 
-    public Set<Exercise> getExercises() {
+    public List<Exercise> getExercises() {
         return exercises;
     }
 
@@ -46,7 +44,7 @@ public class Routine {
             return true;
         }
 
-        if (!(other instanceof Client)) {
+        if (!(other instanceof Routine)) {
             return false;
         }
 

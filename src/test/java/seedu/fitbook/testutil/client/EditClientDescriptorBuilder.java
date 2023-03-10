@@ -1,4 +1,4 @@
-package seedu.fitbook.testutil;
+package seedu.fitbook.testutil.client;
 
 import java.util.Set;
 import java.util.stream.Collectors;

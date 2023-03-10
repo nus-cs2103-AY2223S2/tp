@@ -1,4 +1,4 @@
-package seedu.fitbook.testutil;
+package seedu.fitbook.testutil.client;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -65,7 +65,7 @@ public class TypicalClients {
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withWeight("20.0").withGender("M").withCalorie("2657").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Client's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withWeight(VALID_WEIGHT_AMY).withGender(VALID_GENDER_AMY).withAddress(VALID_ADDRESS_AMY)

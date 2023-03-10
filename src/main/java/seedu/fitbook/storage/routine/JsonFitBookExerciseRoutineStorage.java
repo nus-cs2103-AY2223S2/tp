@@ -1,18 +1,18 @@
 package seedu.fitbook.storage.routine;
 
-import seedu.fitbook.commons.core.LogsCenter;
-import seedu.fitbook.commons.exceptions.DataConversionException;
-import seedu.fitbook.commons.exceptions.IllegalValueException;
-import seedu.fitbook.commons.util.FileUtil;
-import seedu.fitbook.commons.util.JsonUtil;
-import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.fitbook.commons.core.LogsCenter;
+import seedu.fitbook.commons.exceptions.DataConversionException;
+import seedu.fitbook.commons.exceptions.IllegalValueException;
+import seedu.fitbook.commons.util.FileUtil;
+import seedu.fitbook.commons.util.JsonUtil;
+import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 
 /**
  * A class to access FitBook Exercise Routine data stored as a json file on the hard disk.

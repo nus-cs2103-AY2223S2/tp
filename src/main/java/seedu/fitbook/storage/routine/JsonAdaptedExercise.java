@@ -2,6 +2,7 @@ package seedu.fitbook.storage.routine;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.fitbook.commons.exceptions.IllegalValueException;
 import seedu.fitbook.model.routines.Exercise;
 

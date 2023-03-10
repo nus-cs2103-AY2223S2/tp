@@ -1,7 +1,7 @@
 package seedu.fitbook.logic.commands;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 
 import org.junit.jupiter.api.Test;
 
