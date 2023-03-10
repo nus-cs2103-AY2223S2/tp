@@ -22,8 +22,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withSkills(VALID_SKILL_PYTHON).build();
+        Person expectedPerson = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
 
         // multiple skills - all accepted
-        Person expectedPersonMultipleSkills = new PersonBuilder(BOB).withSkills(VALID_SKILL_PYTHON, VALID_SKILL_JAVA)
+        Person expectedPersonMultipleSkills = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP, VALID_SKILL_JAVA)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, new AddCommand(expectedPersonMultipleSkills));
@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid skill
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_SKILL_DESC + VALID_SKILL_PYTHON, Skill.MESSAGE_CONSTRAINTS);
+                + INVALID_SKILL_DESC + VALID_SKILL_CSHARP, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
