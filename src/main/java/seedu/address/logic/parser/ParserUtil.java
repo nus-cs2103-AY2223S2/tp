@@ -148,12 +148,31 @@ public class ParserUtil {
     }
 
     public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
-        requireNonNull(drugAllergy);
+        if (drugAllergy == null) {
+            return null;
+        }
         String trimmedDrugAllergy = drugAllergy.trim();
         if (!DrugAllergy.isValidDrugAllergy(trimmedDrugAllergy)) {
             throw new ParseException(DrugAllergy.MESSAGE_CONSTRAINTS);
         }
         return new DrugAllergy(trimmedDrugAllergy);
+    }
+
+    /**
+     * Parses a {@code String emergencyContact} into a {@code EmergencyContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code EmergencyContact} is invalid.
+     */
+    public static Phone parseEmergencyContact(String emergencyContact) throws ParseException {
+        if (emergencyContact == null) {
+            return null;
+        }
+        String trimmedEmergencyContact = emergencyContact.trim();
+        if (!Phone.isValidPhone(trimmedEmergencyContact)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedEmergencyContact);
     }
 
     /**
