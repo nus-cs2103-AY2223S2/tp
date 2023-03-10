@@ -4,10 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_FIND;
 
+import java.util.List;
+import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.status.LeadStatus;
+
 
 /**
  * Assigns a person's lead status,
@@ -33,21 +39,44 @@ public class StatusCommand extends Command {
             + "status %1$s";
     public static final String MESSAGE_STATUS_NOT_IMPLEMENTED = "status command not implemented";
 
-//    private final Index index;
-//    private final String status; //TODO replace with LeadStatus class
-//
-////    public StatusCommand(Index index, String status) { //TODO replace with LeadStatus class
-//        requireNonNull(index);
-//        requireNonNull(status);
-//
-//        this.index = index;
-//        this.status = status;
-//    }
+    private final Index index;
+    private final LeadStatus status;
+    private final boolean isSearch;
+
+    public StatusCommand(Index index, LeadStatus status) {
+        requireNonNull(index);
+        requireNonNull(status);
+
+        this.index = index;
+        this.status = status;
+        this.isSearch = false;
+    }
+
+    public StatusCommand(LeadStatus status) {
+        requireNonNull(status);
+
+        this.index = null;
+        this.status = status;
+        this.isSearch = true;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        throw new CommandException(MESSAGE_STATUS_NOT_IMPLEMENTED);
+        List<Person> lastShownList = model.getFilteredPersonList();
+        if (!isSearch) {
+            requireNonNull(index);
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            //TODO edit the person's lead status
+            throw new CommandException("assign index: " + index.getOneBased() + "status: " + status);
+        }
+
+        if (isSearch) {
+            //TODO look for matching lead status
+        }
+        throw new CommandException("find status: " + status);
     }
 
     //TODO add equals method

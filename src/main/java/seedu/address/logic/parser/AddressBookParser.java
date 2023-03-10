@@ -74,7 +74,7 @@ public class AddressBookParser {
             return new RemarkCommandParser().parse(arguments);
 
         case StatusCommand.COMMAND_WORD:
-            return new StatusCommand(); //TODO replace with StatusCommandParser
+            return new StatusCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
