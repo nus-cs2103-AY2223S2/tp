@@ -1,9 +1,9 @@
 package seedu.library.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import org.junit.jupiter.api.Test;
 
 public class CliSyntaxTest {
     @Test
