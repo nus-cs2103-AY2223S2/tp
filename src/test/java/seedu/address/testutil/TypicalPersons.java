@@ -26,7 +26,8 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
     public static final Card CARL = new PersonBuilder().withName("Carl Kurz").withAddress("wall street").build();
-    public static final Card DANIEL = new PersonBuilder().withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
+    public static final Card DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withAddress("10th street").withTags("friends").build();
     public static final Card ELLE = new PersonBuilder().withName("Elle Meyer").withAddress("michegan ave").build();
     public static final Card FIONA = new PersonBuilder().withName("Fiona Kunz").withAddress("little tokyo").build();
     public static final Card GEORGE = new PersonBuilder().withName("George Best").withAddress("4th street").build();
@@ -36,8 +37,10 @@ public class TypicalPersons {
     public static final Card IDA = new PersonBuilder().withName("Ida Mueller").withAddress("chicago ave").build();
 
     // Manually added - Card's details found in {@code CommandTestUtil}
-    public static final Card AMY = new PersonBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Card BOB = new PersonBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Card AMY = new PersonBuilder().withName(VALID_NAME_AMY)
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Card BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
