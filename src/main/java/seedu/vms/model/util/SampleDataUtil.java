@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Allergy;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.patient.Vaccine;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code PatientManager} with sample data.
  */
 public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
@@ -59,8 +59,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyPatientManager getSamplePatientManager() {
+        PatientManager sampleAb = new PatientManager();
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.add(samplePatient);
         }

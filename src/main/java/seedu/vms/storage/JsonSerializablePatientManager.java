@@ -11,34 +11,34 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.model.IdData;
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable PatientManager that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "patientmanager")
+class JsonSerializablePatientManager {
 
     public static final String DUPLICATE_ID = "Patients list contains duplicate ID(s).";
 
     private final List<JsonAdaptedPatientData> datas = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given patients.
+     * Constructs a {@code JsonSerializablePatientManager} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("datas") List<JsonAdaptedPatientData> datas) {
+    public JsonSerializablePatientManager(@JsonProperty("datas") List<JsonAdaptedPatientData> datas) {
         this.datas.addAll(datas);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPatientManager} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePatientManager}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializablePatientManager(ReadOnlyPatientManager source) {
         datas.addAll(source.getMapView()
                 .values()
                 .stream()
@@ -47,25 +47,25 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this patient manager into the model's {@code PatientManager} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public PatientManager toModelType() throws IllegalValueException {
+        PatientManager patientManager = new PatientManager();
         for (JsonAdaptedPatientData jsonAdaptedPatientData : datas) {
             IdData<Patient> patientData = jsonAdaptedPatientData.toModelType();
-            if (addressBook.contains(patientData.getId())) {
+            if (patientManager.contains(patientData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
             try {
-                addressBook.add(patientData);
+                patientManager.add(patientData);
             } catch (LimitExceededException limitEx) {
                 // TODO: better message
                 throw new IllegalValueException("ID limit reached");
             }
         }
-        return addressBook;
+        return patientManager;
     }
 
 }

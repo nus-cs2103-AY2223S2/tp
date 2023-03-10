@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.AddressBook;
+import seedu.vms.model.patient.PatientManager;
 
 /**
- * Clears the address book.
+ * Clears the patient manager.
  */
 public class ClearCommand extends Command {
 
@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setPatientManager(new PatientManager());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

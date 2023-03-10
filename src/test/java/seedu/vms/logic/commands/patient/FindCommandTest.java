@@ -8,7 +8,7 @@ import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.vms.testutil.TypicalPatients.CARL;
 import static seedu.vms.testutil.TypicalPatients.ELLE;
 import static seedu.vms.testutil.TypicalPatients.FIONA;
-import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,8 +27,8 @@ import seedu.vms.model.patient.Patient;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientManager(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPatientManager(), new UserPrefs());
 
     @Test
     public void equals() {

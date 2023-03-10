@@ -9,7 +9,7 @@ import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 
 /**
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the PatientManager.
      *
-     * @see seedu.vms.model.Model#getAddressBook()
+     * @see seedu.vms.model.Model#getPatientManager()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyPatientManager getPatientManager();
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientMap();
@@ -39,9 +39,9 @@ public interface Logic {
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' patient manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getPatientManagerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -8,7 +8,7 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.Model;
 
 /**
- * Lists all patients in the address book to the user.
+ * Lists all patients in the patient manager to the user.
  */
 public class ListCommand extends Command {
 

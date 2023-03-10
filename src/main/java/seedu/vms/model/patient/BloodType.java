@@ -58,7 +58,7 @@ public class BloodType {
     public final BloodTypes value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code BloodType}.
      *
      * @param bloodType A valid bloodType.
      */

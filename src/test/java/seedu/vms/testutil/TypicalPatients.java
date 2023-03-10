@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.PatientManager;
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
@@ -105,14 +105,14 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical patients.
+     * Returns an {@code PatientManager} with all the typical patients.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static PatientManager getTypicalPatientManager() {
+        PatientManager pm = new PatientManager();
         for (Patient patient : getTypicalPatients()) {
-            ab.add(patient);
+            pm.add(patient);
         }
-        return ab;
+        return pm;
     }
 
     public static List<Patient> getTypicalPatients() {

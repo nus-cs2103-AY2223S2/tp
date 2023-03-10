@@ -8,7 +8,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -41,45 +41,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' patient manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getPatientManagerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' patient manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPatientManagerFilePath(Path patientManagerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces patient manager data with the data in {@code patientManager}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPatientManager(ReadOnlyPatientManager patientManager);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PatientManager */
+    ReadOnlyPatientManager getPatientManager();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient manager.
      */
     boolean hasPatient(int id);
 
     /**
      * Deletes the given patient.
-     * The patient must exist in the address book.
+     * The patient must exist in the patient manager.
      */
     void deletePatient(int id);
 
     /**
      * Adds the given patient.
-     * {@code patient} must not already exist in the address book.
+     * {@code patient} must not already exist in the patient manager.
      */
     void addPatient(Patient patient);
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the patient manager.
      * The patient identity of {@code editedPatient} must not be the same as
-     * another existing patient in the address book.
+     * another existing patient in the patient manager.
      */
     void setPatient(int id, Patient editedPatient);
 
