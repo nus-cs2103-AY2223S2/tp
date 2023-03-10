@@ -2,8 +2,10 @@ package seedu.fitbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.fitbook.commons.core.index.Index;
@@ -229,14 +231,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> exercises} into a {@code Set<Exercise>}.
+     * Parses {@code Collection<String> exercises} into a {@code List<Exercise>}.
      */
-    public static Set<Exercise> parseExercises(Collection<String> exercises) throws ParseException {
+    public static List<Exercise> parseExercises(Collection<String> exercises) throws ParseException {
         requireNonNull(exercises);
-        final Set<Exercise> exerciseSet = new HashSet<>();
+        final List<Exercise> exerciseList = new ArrayList<>();
         for (String exerciseName : exercises) {
-            exerciseSet.add(parseExercise(exerciseName));
+            exerciseList.add(parseExercise(exerciseName));
         }
-        return exerciseSet;
+        return exerciseList;
     }
 }

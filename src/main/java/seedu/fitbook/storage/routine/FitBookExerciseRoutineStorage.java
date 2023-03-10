@@ -1,11 +1,11 @@
 package seedu.fitbook.storage.routine;
 
-import seedu.fitbook.commons.exceptions.DataConversionException;
-import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.fitbook.commons.exceptions.DataConversionException;
+import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 
 /**
  * Represents a storage for {@link seedu.fitbook.model.FitBookExerciseRoutine}.

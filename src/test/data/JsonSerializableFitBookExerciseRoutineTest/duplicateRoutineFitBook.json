@@ -1,0 +1,9 @@
+{
+  "routines" : [ {
+    "exercises" : [ "12345" ],
+    "routineName" : "OPM"
+  }, {
+    "exercises" : [ "64367" ],
+    "routineName" : "OPM"
+  } ]
+}

@@ -11,14 +11,17 @@ import org.junit.jupiter.api.Test;
 import seedu.fitbook.commons.exceptions.IllegalValueException;
 import seedu.fitbook.commons.util.JsonUtil;
 import seedu.fitbook.model.FitBook;
-import seedu.fitbook.testutil.TypicalClients;
+<<<<<<< HEAD
+import seedu.fitbook.testutil.client.TypicalClients;
+=======
+>>>>>>> master
 
 public class JsonSerializableFitBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableFitBookTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalClientsFitBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidClientFitBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateClientFitBook.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidRoutineFitBook.json");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateRoutineFitBook.json");
 
     @Test
     public void toFitBookModelType_typicalClientsFile_success() throws Exception {

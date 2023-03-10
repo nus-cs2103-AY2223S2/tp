@@ -11,7 +11,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static seedu.fitbook.testutil.Assert.assertThrows;
-import static seedu.fitbook.testutil.TypicalClients.AMY;
+import static seedu.fitbook.testutil.client.TypicalClients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -34,7 +34,7 @@ import seedu.fitbook.storage.JsonFitBookStorage;
 import seedu.fitbook.storage.JsonUserPrefsStorage;
 import seedu.fitbook.storage.StorageManager;
 import seedu.fitbook.storage.routine.JsonFitBookExerciseRoutineStorage;
-import seedu.fitbook.testutil.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

@@ -41,8 +41,8 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.WEIGHT_DESC_BOB;
 import static seedu.fitbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fitbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.fitbook.testutil.TypicalClients.AMY;
-import static seedu.fitbook.testutil.TypicalClients.BOB;
+import static seedu.fitbook.testutil.client.TypicalClients.AMY;
+import static seedu.fitbook.testutil.client.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +55,7 @@ import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.tag.Tag;
-import seedu.fitbook.testutil.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

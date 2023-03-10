@@ -94,7 +94,6 @@ public interface FitBookModel {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
-
     /**
      * Replaces exercise routine data with the data in {@code exerciseRoutine}.
      */

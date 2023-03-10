@@ -1,16 +1,17 @@
 package seedu.fitbook.storage.routine;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.fitbook.commons.exceptions.IllegalValueException;
 import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.fitbook.model.routines.Routine;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An Immutable FitBook Exercise Routine that is serializable to JSON format.
