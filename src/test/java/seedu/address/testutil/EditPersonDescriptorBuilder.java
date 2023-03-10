@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setType(person.getType());
-        descriptor.setEmail(person.getEmail());
+        descriptor.setTimeSlot(person.getTimeSlot());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -53,10 +53,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code TimeSlot} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPersonDescriptorBuilder withTimeSlot(String timeSlot) {
+        descriptor.setTimeSlot(new TimeSlot(timeSlot));
         return this;
     }
 

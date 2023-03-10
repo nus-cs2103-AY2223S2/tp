@@ -22,7 +22,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String type;
-    private final String email;
+    private final String timeSlot;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
@@ -32,11 +32,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("type") String type,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("timeSlot") String timeSlot, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
         this.name = name;
         this.type = type;
-        this.email = email;
+        this.timeSlot = timeSlot;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         type = source.getType().value;
-        email = source.getEmail().value;
+        timeSlot = source.getTimeSlot().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -85,13 +85,13 @@ class JsonAdaptedPerson {
         }
         final Type modelType = new Type(type);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (timeSlot == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!TimeSlot.isValidTimeSlot(timeSlot)) {
+            throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final TimeSlot modelTimeSlot = new TimeSlot(timeSlot);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -107,7 +107,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
-        return new Person(modelName, modelType, modelEmail, modelAddress, modelTags, modelRemark);
+        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark);
     }
 
 }

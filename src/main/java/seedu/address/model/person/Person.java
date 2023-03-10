@@ -18,7 +18,7 @@ public class Person {
     // Identity fields
     private final Name name; //module name
     private final Type type; // module type (tutorial, lecture, lab, assignment, project)
-    private final Email email; // timeslot (should be optional)
+    private final TimeSlot timeSlot; // timeslot (should be optional)
 
     // Data fields
     private final Address address; // venue
@@ -32,11 +32,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Type type, Email email, Address address, Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, type, email, address, tags);
+    public Person(Name name, Type type, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, type, timeSlot, address, tags);
         this.name = name;
         this.type = type;
-        this.email = email;
+        this.timeSlot = timeSlot;
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
@@ -50,8 +50,8 @@ public class Person {
         return type;
     }
 
-    public Email getEmail() {
-        return email;
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
     }
 
     public Address getAddress() {
@@ -80,7 +80,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName()) && otherPerson.getType().equals(getType());
     }
 
     /**
@@ -100,7 +100,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getType().equals(getType())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTimeSlot().equals(getTimeSlot())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark());
@@ -109,7 +109,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, type, email, address, tags);
+        return Objects.hash(name, type, timeSlot, address, tags);
     }
 
     @Override
@@ -118,8 +118,8 @@ public class Person {
         builder.append(getName())
                 .append("; Type: ")
                 .append(getType())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; TimeSlot: ")
+                .append(getTimeSlot())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Remark: ")
