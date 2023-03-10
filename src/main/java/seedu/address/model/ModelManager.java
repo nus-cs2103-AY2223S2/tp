@@ -17,8 +17,7 @@ import seedu.address.model.person.Person;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    
-    protected int index;
+    private int index;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
