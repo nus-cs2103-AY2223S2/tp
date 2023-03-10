@@ -45,6 +45,8 @@ SOCket is a **desktop app for NUS Software Engineering Students to manage the co
 
 **:information_source: Notes about the command format:**<br>
 
+* `INDEX` must be a positive integer starting from 1 and ending with corresponding number of Person in SOCket. e.g. `1,2,...`
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -98,7 +100,6 @@ Format: `list [t/TAG]`
 * If no tag is given, all persons are displayed
 * Tags given are specific, e.g. `list t/school` will only list out persons tagged with school and not those tagged with `school friend`
 * Each person is accompanied by an index number in the list
-* The index is a positive integer starting from 1
 * The list by default is sorted by time added  i.e most recently added person being last in the list
 
 ### Editing a person : `edit`
@@ -109,7 +110,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPRO
 
 * Edits the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -156,13 +156,24 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all persons or tags : `clear [t/TAG]`
+### Removing a person's field : `remove`
+
+Removes the specific field value based on the given input
+
+Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
+
+* Removes field value of person at the specific `INDEX`.
+* Removes all the corresponding field value in respect of the `KEYWORD`.
+  * e.g. `l/Java` will remove `Java` in person’s **Language** field.
+* Removes the entire field value when that field has no keyword provided.
+  * e.g. `t/` will remove all the tags associate to the person.
+
+### Clearing all persons or tags : `clear`
 
 Clears all persons' entries from the SOCket based on the given tags; if tag is not included, clears all persons in SOCket.
 
@@ -226,6 +237,7 @@ Action | Format, Examples
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
