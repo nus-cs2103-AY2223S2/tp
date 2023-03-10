@@ -20,6 +20,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -145,6 +146,46 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDepartment(Department department) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDepartment(Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDepartment(Department target, Department editedDepartment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeDepartment(Department key) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEmployeeToDepartment(Person p, Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeEmployeeFromDepartment(Person p, Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Department> getFilteredDepartmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDepartmentList(Predicate<Department> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
