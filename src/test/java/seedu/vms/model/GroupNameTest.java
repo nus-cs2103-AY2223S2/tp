@@ -1,4 +1,4 @@
-package seedu.vms.model.vaccination;
+package seedu.vms.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class VaxNameTest {
-    private static List<String> INVALID_LIST = List.of(
+public class GroupNameTest {
+    private static final List<String> INVALID_LIST = List.of(
         "",
         " ",
         "a\n\ra",
@@ -21,25 +21,25 @@ public class VaxNameTest {
 
     @Test
     public void isValidName_valid_true() {
-        assertTrue(VaxName.isValidName(
-            "   120 - []{}()- Pks niUw LK <> k    "));
-        assertTrue(VaxName.isValidName("a"));
+        assertTrue(GroupName.isValidName(
+            "   120 - []{}()- Pks niUw LK () k    "));
+        assertTrue(GroupName.isValidName("a"));
     }
 
 
     @Test
     public void isValidName_invalid_false() {
         for (String invalid : INVALID_LIST) {
-            assertFalse(VaxName.isValidName(invalid), invalid);
+            assertFalse(GroupName.isValidName(invalid), invalid);
         }
     }
 
 
     @Test
     public void equalsTest() {
-        VaxName testing = new VaxName(SAMPLE_NAME);
-        VaxName eqs = new VaxName(SAMPLE_NAME + " ");
-        VaxName diff = new VaxName(SAMPLE_NAME + "a");
+        GroupName testing = new GroupName(SAMPLE_NAME);
+        GroupName eqs = new GroupName(SAMPLE_NAME + " ");
+        GroupName diff = new GroupName(SAMPLE_NAME + "a");
         Integer unrelated = Integer.valueOf(0);
 
         assertTrue(testing.equals(testing));

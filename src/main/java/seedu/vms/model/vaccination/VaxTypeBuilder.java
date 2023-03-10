@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.Age;
+import seedu.vms.model.GroupName;
 
 
 /**
@@ -15,18 +17,18 @@ public class VaxTypeBuilder {
     private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist";
     private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist";
 
-    private final VaxName refName;
-    private final VaxName name;
-    private final Optional<HashSet<String>> setGrps;
-    private final Optional<Integer> setMinAge;
-    private final Optional<Integer> setMaxAge;
+    private final GroupName refName;
+    private final GroupName name;
+    private final Optional<HashSet<GroupName>> setGrps;
+    private final Optional<Age> setMinAge;
+    private final Optional<Age> setMaxAge;
     private final Optional<Integer> setMinSpacing;
     private final Optional<List<Requirement>> setAllergyReqs;
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
-    private VaxTypeBuilder(VaxName refName, VaxName name, Optional<HashSet<String>> setGrps,
-                Optional<Integer> setMinAge, Optional<Integer> setMaxAge, Optional<Integer> setMinSpacing,
+    private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
+                Optional<Age> setMinAge, Optional<Age> setMaxAge, Optional<Integer> setMinSpacing,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
         this.name = name;
@@ -46,7 +48,7 @@ public class VaxTypeBuilder {
      *      from.
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(VaxName refName, VaxName name) {
+    public static VaxTypeBuilder of(GroupName refName, GroupName name) {
         return new VaxTypeBuilder(refName, name,
                 Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty(), Optional.empty());
@@ -58,33 +60,33 @@ public class VaxTypeBuilder {
      *
      * @param name - the name of the {@code VaxType} to create.
      */
-    public static VaxTypeBuilder of(VaxName name) {
+    public static VaxTypeBuilder of(GroupName name) {
         return VaxTypeBuilder.of(name, name);
     }
 
 
-    public VaxTypeBuilder setName(VaxName name) {
+    public VaxTypeBuilder setName(GroupName name) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
-    public VaxTypeBuilder setGroups(HashSet<String> grps) {
+    public VaxTypeBuilder setGroups(HashSet<GroupName> grps) {
         return new VaxTypeBuilder(refName, name, Optional.ofNullable(grps),
                 setMinAge, setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
-    public VaxTypeBuilder setMinAge(int minAge) {
+    public VaxTypeBuilder setMinAge(Age minAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 Optional.ofNullable(minAge), setMaxAge, setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
-    public VaxTypeBuilder setMaxAge(int maxAge) {
+    public VaxTypeBuilder setMaxAge(Age maxAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, Optional.ofNullable(maxAge), setMinSpacing,
                 setAllergyReqs, setHistoryReqs);
@@ -146,16 +148,16 @@ public class VaxTypeBuilder {
     }
 
 
-    private VaxType build(VaxTypeManager manager) {
+    private VaxType build(VaxTypeManager manager) throws IllegalValueException {
         Optional<VaxType> refVaxType = manager.remove(refName.toString());
 
-        HashSet<String> grps = setGrps.orElse(refVaxType
+        HashSet<GroupName> grps = setGrps.orElse(refVaxType
                 .map(VaxType::getGroups)
                 .orElse(VaxType.DEFAULT_GROUP_SET));
-        Integer minAge = setMinAge.orElse(refVaxType
+        Age minAge = setMinAge.orElse(refVaxType
                 .map(VaxType::getMinAge)
                 .orElse(VaxType.DEFAULT_MIN_AGE));
-        Integer maxAge = setMaxAge.orElse(refVaxType
+        Age maxAge = setMaxAge.orElse(refVaxType
                 .map(VaxType::getMaxAge)
                 .orElse(VaxType.DEFAULT_MAX_AGE));
         Integer minSpacing = setMinSpacing.orElse(refVaxType
@@ -167,6 +169,10 @@ public class VaxTypeBuilder {
         List<Requirement> historyReqs = setHistoryReqs.orElse(refVaxType
                 .map(VaxType::getHistoryReqs)
                 .orElse(VaxType.DEFAULT_HISTORY_REQS));
+
+        if (!VaxType.isValidRange(minAge, maxAge)) {
+            throw new IllegalValueException(VaxType.MESSAGE_AGE_CONSTRAINTS);
+        }
 
         VaxType vaxType = new VaxType(name, grps, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
         manager.add(vaxType);

@@ -4,22 +4,31 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.vms.commons.util.AppUtil;
+import seedu.vms.model.Age;
+import seedu.vms.model.GroupName;
+
 
 /**
  * Represents a vaccination type.
  */
 public class VaxType {
-    public static final HashSet<String> DEFAULT_GROUP_SET = new HashSet<>();
-    public static final int DEFAULT_MIN_AGE = Integer.MIN_VALUE;
-    public static final int DEFAULT_MAX_AGE = Integer.MAX_VALUE;
+    public static final String MESSAGE_AGE_CONSTRAINTS =
+            "Minimum age must be lesser than or equals to maximum age";
+    public static final String MESSAGE_SPACING_CONSTRAINTS =
+            "Spacing must be a positive integer";
+
+    public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
+    public static final Age DEFAULT_MIN_AGE = Age.MIN_AGE;
+    public static final Age DEFAULT_MAX_AGE = Age.MAX_AGE;
     public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
     public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
     public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
-    private final VaxName name;
-    private final HashSet<String> groups;
-    private final int minAge;
-    private final int maxAge;
+    private final GroupName name;
+    private final HashSet<GroupName> groups;
+    private final Age minAge;
+    private final Age maxAge;
     private final int minSpacing;
     private final List<Requirement> historyReqs;
     private final List<Requirement> allergyReqs;
@@ -27,10 +36,15 @@ public class VaxType {
 
     /**
      * Constructs a {@code VaxType}.
+     *
+     * @throws IllegalArgumentException if {@code minAge > maxAge} or
+     *      {@code minSpacing < 0}.
      */
-    public VaxType(VaxName name, HashSet<String> groups,
-                int minAge, int maxAge, int minSpacing,
+    public VaxType(GroupName name, HashSet<GroupName> groups,
+                Age minAge, Age maxAge, int minSpacing,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
+        AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
+        AppUtil.checkArgument(isValidSpacing(minSpacing), MESSAGE_SPACING_CONSTRAINTS);
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
@@ -40,34 +54,37 @@ public class VaxType {
         this.historyReqs = historyReqs;
     }
 
+    public static boolean isValidRange(Age minAge, Age maxAge) {
+        return maxAge.compareTo(minAge) >= 0;
+    }
 
-    /**
-     * Constructs a {@code VaxType}. The given name is converted to a
-     * {@code VaxName}.
-     */
-    public VaxType(String name, HashSet<String> groups,
-            int minAge, int maxAge, int minSpacing,
-            List<Requirement> allergyReqs, List<Requirement> historyReqs) {
-        this(new VaxName(name), groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+
+    public static boolean isValidSpacing(int minSpacing) {
+        return minSpacing >= 0;
     }
 
 
     public String getName() {
-        return name.toString();
+        return name.getName();
     }
 
 
-    public HashSet<String> getGroups() {
+    public GroupName getGroupName() {
+        return name;
+    }
+
+
+    public HashSet<GroupName> getGroups() {
         return new HashSet<>(groups);
     }
 
 
-    public int getMinAge() {
+    public Age getMinAge() {
         return minAge;
     }
 
 
-    public int getMaxAge() {
+    public Age getMaxAge() {
         return maxAge;
     }
 
@@ -105,7 +122,7 @@ public class VaxType {
 
         VaxType casted = (VaxType) other;
         return name.equals(casted.name) && groups.equals(casted.groups)
-                && minAge == casted.minAge && maxAge == casted.maxAge
+                && minAge.equals(casted.minAge) && maxAge.equals(casted.maxAge)
                 && minSpacing == casted.minSpacing
                 && allergyReqs.equals(casted.allergyReqs)
                 && historyReqs.equals(casted.historyReqs);

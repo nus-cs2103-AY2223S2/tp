@@ -307,22 +307,39 @@
     -fx-padding: 8 1 8 1;
 }
 
-.card-title {
-    -fx-font-size: 24;
-    -fx-font-weight: bold;
+.tag-flow-pane {
+  -fx-hgap: 5;
+  -fx-vgap: 5;
 }
 
-.card-attribute-label {
+.label.card-title {
+    -fx-font-size: 20;
+    -fx-text-fill: rgb(224, 152, 19);
+}
+
+.label.card-attribute-label {
     -fx-font-size: 11;
 }
 
-.tag {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+.label.tag {
+  -fx-text-fill: white;
+  -fx-background-color: #3e7b91;
+  -fx-padding: 1 3 1 3;
+  -fx-border-radius: 2;
+  -fx-background-radius: 2;
+  -fx-font-size: 11;
+}
+
+.label.tag.tag-color-all {
+  -fx-background-color: #463e91;
+}
+
+.label.tag.tag-color-any {
+  -fx-background-color: #45913e;
+}
+
+.label.tag.tag-color-none {
+  -fx-background-color: #913e3e;
 }
 
 #cardPane {

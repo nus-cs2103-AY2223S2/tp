@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* COVID-19 vaccination data - [MOH | COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
+* Chemical name synonyms - [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
 
 --------------------------------------------------------------------------------------------------------------------
 

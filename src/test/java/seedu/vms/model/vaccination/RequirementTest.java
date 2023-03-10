@@ -11,20 +11,32 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.GroupName;
 import seedu.vms.model.vaccination.Requirement.RequirementType;
 
 public class RequirementTest {
-    private static final HashSet<String> SET_1_A = new HashSet<>(List.of("unchi1"));
-    private static final HashSet<String> SET_1_B = new HashSet<>(List.of("banana1"));
+    private static final HashSet<GroupName> SET_1_A = new HashSet<>(List.of(
+            new GroupName("unchi1")));
+    private static final HashSet<GroupName> SET_1_B = new HashSet<>(List.of(
+            new GroupName("banana1")));
 
-    private static final HashSet<String> SET_3_A =
-            new HashSet<>(List.of("unchi1", "unchi2", "unchi3"));
-    private static final HashSet<String> SET_3_B =
-            new HashSet<>(List.of("banana1", "banana2", "banana3"));
-    private static final HashSet<String> SET_3_C =
-            new HashSet<>(List.of("unchi1", "unchi2", "banana1"));
-    private static final HashSet<String> SET_4_A =
-            new HashSet<>(List.of("unchi1", "unchi2", "unchi3", "unchi4"));
+    private static final HashSet<GroupName> SET_3_A = new HashSet<>(List.of(
+            new GroupName("unchi1"),
+            new GroupName("unchi2"),
+            new GroupName("unchi3")));
+    private static final HashSet<GroupName> SET_3_B = new HashSet<>(List.of(
+            new GroupName("banana1"),
+            new GroupName("banana2"),
+            new GroupName("banana3")));
+    private static final HashSet<GroupName> SET_3_C = new HashSet<>(List.of(
+            new GroupName("unchi1"),
+            new GroupName("unchi2"),
+            new GroupName("banana1")));
+    private static final HashSet<GroupName> SET_4_A = new HashSet<>(List.of(
+            new GroupName("unchi1"),
+            new GroupName("unchi2"),
+            new GroupName("unchi3"),
+            new GroupName("unchi4")));
 
 
     @Test

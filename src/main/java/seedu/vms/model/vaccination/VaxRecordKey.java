@@ -3,13 +3,15 @@ package seedu.vms.model.vaccination;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.vms.model.GroupName;
+
 
 /**
  * Similar to {@link VaxRecord} however, only containing the key to the
  * {@link VaxType} instead of the instance.
  */
 public class VaxRecordKey {
-    private final VaxName vaxKey;
+    private final GroupName vaxKey;
     private final LocalDateTime timeTaken;
 
 
@@ -20,8 +22,8 @@ public class VaxRecordKey {
      * @param timeTaken - the time the vaccination was taken.
      * @throws NullPointerException if any parameters are {@code null}.
      */
-    public VaxRecordKey(VaxName vaxKey, LocalDateTime timeTaken) {
-        this.vaxKey = Objects.requireNonNull(vaxKey);;
+    public VaxRecordKey(GroupName vaxKey, LocalDateTime timeTaken) {
+        this.vaxKey = Objects.requireNonNull(vaxKey);
         this.timeTaken = Objects.requireNonNull(timeTaken);
     }
 
