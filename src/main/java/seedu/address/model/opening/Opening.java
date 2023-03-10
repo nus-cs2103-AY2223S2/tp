@@ -20,17 +20,19 @@ public class Opening {
 
     // Data fields
     private final Status status;
+    private final Remark remark;
     private final Set<Date> dates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Opening(Position position, Company company, Email email, Status status, Set<Date> dates) {
+    public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Date> dates) {
         requireAllNonNull(position, company, email, status, dates);
         this.position = position;
         this.company = company;
         this.email = email;
         this.status = status;
+        this.remark = remark;
         this.dates.addAll(dates);
     }
 
@@ -42,12 +44,16 @@ public class Opening {
         return company;
     }
 
-    public Email getContact() {
+    public Email getEmail() {
         return email;
     }
 
     public Status getStatus() {
         return status;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -89,15 +95,16 @@ public class Opening {
         Opening otherOpening = (Opening) other;
         return otherOpening.getPosition().equals(getPosition())
                 && otherOpening.getCompany().equals(getCompany())
-                && otherOpening.getContact().equals(getContact())
+                && otherOpening.getEmail().equals(getEmail())
                 && otherOpening.getStatus().equals(getStatus())
+                && otherOpening.getRemark().equals(getRemark())
                 && otherOpening.getDates().equals(getDates());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(position, company, email, status, dates);
+        return Objects.hash(position, company, email, status, remark, dates);
     }
 
     @Override
@@ -106,10 +113,12 @@ public class Opening {
         builder.append(getPosition())
                 .append(" Company: ")
                 .append(getCompany())
-                .append(" Contact: ")
-                .append(getContact())
+                .append(" Email: ")
+                .append(getEmail())
                 .append(" Status: ")
                 .append(getStatus())
+                .append(" Remark: ")
+                .append(getRemark())
                 .append(" Dates: ");
 
 

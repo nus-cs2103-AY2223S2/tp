@@ -30,16 +30,16 @@ _More details coming soon ..._
   e.g. in `status s/STATUS`, `STATUS` is a parameter which can be used as `status s/interviewing`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME_OF_COMPANY [d/KEY_DATE]` can be used as `n/Google d/Interview@20230401` or as `n/Google`.
+  e.g `n/COMPANY_NAME [d/KEY_DATE]` can be used as `n/Google d/Interview@20230401` or as `n/Google`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[d/KEY_DATE]…​` can be used as ` ` (i.e. 0 times), `d/Interview@20230401`, `d/Interview@20230401 d/OA@20230502` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `p/POSITION n/NAME_OF_COMPANY`, `n/NAME_OF_COMPANY p/POSITION` is also acceptable.
+  e.g. if the command specifies `p/POSITION n/COMPANY_NAME`, `n/COMPANY_NAME p/POSITION` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `c/12341234 c/56785678`, only `c/56785678` will be taken.
+  e.g. if you specify `n/Google n/Shopee`, only `n/Google` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
@@ -50,13 +50,13 @@ _More details coming soon ..._
 
 Adds a new opening to the list.
 
-Format: `add p/POSITION n/NAME_OF_COMPANY c/CONTACT_NUMBER e/EMAIL s/STATUS [d/KEY_DATE]…​`
+Format: `add p/POSITION n/COMPANY_NAME e/EMAIL s/STATUS [d/KEY_DATE]…​`
 
 * `KEY_DATE` must be in the form `EVENT@DATE`, where `EVENT` is a stage in the application process and `DATE` is the date of the stage in `YYYYMMDD` format.
 * `STATUS` **must be of either found, applied, interviewing, offered, accepted or rejected**.
 
 Examples:
-* `add p/Software Engineer n/Google c/98371204 e/chinese@google.com s/interviewing d/Interview@20230314`
+* `add p/Software Engineer n/Google e/chinese@google.com s/interviewing d/Interview@20230314`
 
 ### Listing all openings : `list`
 
@@ -80,7 +80,7 @@ Examples:
 
 Edits an existing opening.
 
-Format: `edit INDEX [p/POSITION] [n/NAME_OF_COMPANY] [c/CONTACT_NUMBER] [e/EMAIL] [s/STATUS] [d/KEY_DATE]…​`
+Format: `edit INDEX [p/POSITION] [n/COMPANY_NAME] [e/EMAIL] [s/STATUS] [d/KEY_DATE]…​`
 
 * Edits the opening at the specified `INDEX`. The index refers to the index number shown in the displayed opening list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -91,7 +91,7 @@ Format: `edit INDEX [p/POSITION] [n/NAME_OF_COMPANY] [c/CONTACT_NUMBER] [e/EMAIL
   specifying any `KEY_DATE` after it.
 
 Examples:
-*  `edit 1 c/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st opening to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 n/Goggle e/johndoe@example.com` Edits the phone number and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 *  `edit 2 n/Shopee d/` Edits the name of the 2nd opening to be `Shopee` and clears all existing `KEY_DATE`.
 
 ### Deleting an opening : `delete`
@@ -133,8 +133,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add p/POSITION n/NAME_OF_COMPANY c/CONTACT_NUMBER e/EMAIL s/STATUS [d/KEY_DATE]…​` <br> e.g., `add p/Software Engineer n/Google c/98371204 e/chinese@google.com s/interviewing d/Interview@20230314`
-**Edit** | `edit INDEX [p/POSITION] [n/NAME_OF_COMPANY] [c/CONTACT_NUMBER] [e/EMAIL] [s/STATUS] [d/KEY_DATE]…​` <br> e.g., `edit 1 c/91234567 e/johndoe@example.com`
+**Add** | `add p/POSITION n/COMPANY_NAME e/EMAIL s/STATUS [d/KEY_DATE]…​` <br> e.g., `add p/Software Engineer n/Google e/chinese@google.com s/interviewing d/Interview@20230314`
+**Edit** | `edit INDEX [p/POSITION] [n/COMPANY_NAME] [e/EMAIL] [s/STATUS] [d/KEY_DATE]…​` <br> e.g., `edit 1 n/Goggle e/johndoe@example.com`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Status** | `status s/STATUS`<br> e.g., `status s/interviewing`
 **List** | `list`
