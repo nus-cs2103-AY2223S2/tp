@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added *Calorie* class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit the recommended calorie intake of the client. (Optional attribute)
   * Justification: This feature improves the product significantly because a user may want to keep track of the
-  recommended calorie's intake of its clients which makes it easier for the client to keep track.
+    recommended calorie's intake of its clients which makes it easier for the client to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 * **New Feature**: Added *Appointment* class to client and enhanced **Add** and **Edit** Command.
