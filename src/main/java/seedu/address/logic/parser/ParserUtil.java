@@ -117,7 +117,7 @@ public class ParserUtil {
         requireNonNull(website);
         String trimmedWebsite = website.trim();
         if (!Website.isValidWebsite(trimmedWebsite)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Website.MESSAGE_CONSTRAINTS);
         }
         return new Website(trimmedWebsite);
     }

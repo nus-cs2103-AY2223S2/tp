@@ -29,7 +29,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Website website) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, website);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -127,7 +127,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        builder.append("; Website: ");
+        builder.append("; Website: ").append(getWebsite());
         return builder.toString();
     }
 

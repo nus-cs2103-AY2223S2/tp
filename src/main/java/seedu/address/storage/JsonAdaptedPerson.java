@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -104,12 +103,11 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-
         if (website == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Website.class.getSimpleName()));
         }
-        if (!Website.isValidWebsite(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Website.isValidWebsite(website)) {
+            throw new IllegalValueException(Website.MESSAGE_CONSTRAINTS);
         }
         final Website modelWebsite = new Website(website);
 
