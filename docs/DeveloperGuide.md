@@ -463,7 +463,7 @@ In the example above, the user story is clearly defined at the top, followed by 
     * 2a2. User retrieves user guide providing more detail on command.
   
       Use case resumes at step 5.
-
+---
 
 
 ### Non-Functional Requirements
