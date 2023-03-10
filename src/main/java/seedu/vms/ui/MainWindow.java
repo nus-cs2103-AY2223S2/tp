@@ -8,7 +8,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
@@ -44,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane patientListPanelPlaceholder;
     @FXML private StackPane vaxTypeListPanelPlaceholder;
 
-    @FXML private StackPane resultDisplayPlaceholder;
+    @FXML private VBox resultDisplayPlaceholder;
 
     @FXML private StackPane statusbarPlaceholder;
 
@@ -115,7 +117,10 @@ public class MainWindow extends UiPart<Stage> {
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        Region resultDisplayRegion = resultDisplay.getRoot();
+        resultDisplayRegion.maxHeightProperty().bind(resultDisplayPlaceholder.heightProperty());
+        resultDisplayRegion.maxWidthProperty().bind(resultDisplayPlaceholder.widthProperty());
+        resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -176,8 +181,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getMessage());
+            resultDisplay.setFeedbackToUser(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -190,7 +195,8 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser(new CommandResult(
+                    e.getMessage(), CommandResult.State.SEVERE));
             throw e;
         }
     }
