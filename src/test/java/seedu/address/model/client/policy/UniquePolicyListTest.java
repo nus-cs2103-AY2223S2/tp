@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class UniquePolicyListTest {
@@ -44,14 +47,9 @@ class UniquePolicyListTest {
     }
 
     @Test
-    void testSetPolicies() {
-        assertTrue(true);
+    void testUnique() {
+        List<Policy> list1 = new ArrayList<>();
+        list1.add(policy);
+        assertTrue(UniquePolicyList.policiesAreUnique(list1));
     }
-
-
-    @Test
-    void testEquals() {
-        assertTrue(true);
-    }
-
 }

@@ -13,15 +13,13 @@ import seedu.address.model.client.exceptions.PolicyNotFoundException;
 
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * Represents a list of policies that enforces no two policies in the list have the same identity.
+ * A policy is considered the same as another policy in the list if they have the same identity.
+ * Identity is defined by {@code Policy#isSamePolicy(Policy)}.
  *
  * Supports a minimal set of list operations.
  *
- * @see Client#isSameClient(Client)
+ * @see Policy#isSamePolicy(Policy)
  */
 public class UniquePolicyList implements Iterable<Policy> {
 
@@ -80,23 +78,23 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
     }
 
-    public void setPolicies(UniquePolicyList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPolicies(List<Policy> policies) {
-        requireAllNonNull(policies);
-        if (!policiesAreUnique(policies)) {
-            throw new DuplicatePolicyException();
-        }
-
-        internalList.setAll(policies);
-    }
+//    public void setPolicies(UniquePolicyList replacement) {
+//        requireNonNull(replacement);
+//        internalList.setAll(replacement.internalList);
+//    }
+//
+//    /**
+//     * Replaces the contents of this list with {@code persons}.
+//     * {@code persons} must not contain duplicate persons.
+//     */
+//    public void setPolicies(List<Policy> policies) {
+//        requireAllNonNull(policies);
+//        if (!policiesAreUnique(policies)) {
+//            throw new DuplicatePolicyException();
+//        }
+//
+//        internalList.setAll(policies);
+//    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -125,7 +123,7 @@ public class UniquePolicyList implements Iterable<Policy> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean policiesAreUnique(List<Policy> policies) {
+    static boolean policiesAreUnique(List<Policy> policies) {
         for (int i = 0; i < policies.size() - 1; i++) {
             for (int j = i + 1; j < policies.size(); j++) {
                 if (policies.get(i).isSamePolicy(policies.get(j))) {

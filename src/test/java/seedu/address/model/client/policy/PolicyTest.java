@@ -46,7 +46,18 @@ class PolicyTest {
         Frequency frequency1 = new Frequency("quarterly");
         Policy policy1 = new Policy(name1, date1, premium1, frequency1);
 
-        assertTrue(policy.equals(policy1));
+        assertTrue(policy.isSamePolicy(policy1));
+    }
+
+    @Test
+    void isSamePolicyString() {
+        PolicyName name1 = new PolicyName("Health");
+        CustomDate date1 = new CustomDate("01.02.2023");
+        Premium premium1 = new Premium("200");
+        Frequency frequency1 = new Frequency("quarterly");
+        Policy policy1 = new Policy(name1, date1, premium1, frequency1);
+
+        assertEquals(policy.toString(), policy1.toString());
     }
 }
 
