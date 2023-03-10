@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Doctor> PREDICATE_SHOW_ALL_DOCTORS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,12 +90,28 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given doctor {@code target} with {@code editedDoctor}.
+     * {@code target} must exist in the address book.
+     * The doctor identity of {@code editedDoctor} must not be the same as another existing doctor in the address book.
+     */
+    void setDoctor(Doctor target, Doctor editedDoctor);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered doctor list */
+    ObservableList<Doctor> getFilteredDoctorList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered doctor list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDoctorList(Predicate<Doctor> predicate);
 }
