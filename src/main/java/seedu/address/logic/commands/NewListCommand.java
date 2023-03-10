@@ -28,7 +28,8 @@ public class NewListCommand extends Command {
 //    @Override
 //    public CommandResult execute(ModelNew model) {
 //        requireNonNull(model);
-//        // model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
-//        return new CommandResult(MESSAGE_SUCCESS);
-//    }
+//        model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+//         return new CommandResult(MESSAGE_SUCCESS);
+//     }
+
 }
