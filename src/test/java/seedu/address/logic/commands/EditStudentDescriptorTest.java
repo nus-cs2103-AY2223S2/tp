@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2105;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_CS2105).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_MODULE_CS2105).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

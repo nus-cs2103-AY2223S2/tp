@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.student.Email;
+import seedu.address.model.student.ModuleCode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
-import seedu.address.model.tag.ModuleCode;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +21,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STUDENTID = "A0345678M";
+    public static final String DEFAULT_MODULE = "CS2103";
 
     private Name name;
     private Phone phone;
@@ -38,6 +39,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_STUDENTID);
         modules = new HashSet<>();
+        modules.add(new ModuleCode(DEFAULT_MODULE));
         tags = new HashSet<>();
     }
 

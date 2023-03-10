@@ -43,6 +43,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane modules;
+    @FXML
     private ImageView displayPhoto;
 
     /**
@@ -58,8 +60,8 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         displayPhoto.setImage(new Image(this.getClass().getResourceAsStream("/images/studenticon.png")));
         student.getModules().stream()
-                .sorted(Comparator.comparing(module -> module.tagName))
-                .forEach(module -> tags.getChildren().add(new Label(module.tagName)));
+                .sorted(Comparator.comparing(module -> module.moduleCode))
+                .forEach(module -> modules.getChildren().add(new Label(module.moduleCode)));
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
