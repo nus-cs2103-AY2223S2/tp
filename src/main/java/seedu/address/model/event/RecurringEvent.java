@@ -12,10 +12,17 @@ import java.time.temporal.ChronoUnit;
  */
 public class RecurringEvent extends Event implements Comparable<RecurringEvent> {
 
-    public DayOfWeek dayOfWeek;
+    private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
 
+    /**
+     * Constructor for Recurring events
+     * @param eventName is the name of event
+     * @param dayOfWeek is the day when the event occurs
+     * @param startTime is the starting time of the event
+     * @param endTime is the ending time of the event
+     */
     public RecurringEvent(String eventName, String dayOfWeek, String startTime, String endTime) {
         super(eventName);
         this.dayOfWeek = DayOfWeek.valueOf(dayOfWeek);
@@ -23,15 +30,27 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         this.endTime = LocalTime.parse(endTime);
     }
 
+    /**
+     * Getter for startTime
+     * @return the startTime
+     */
     public LocalTime getStartTime() {
         return startTime;
     }
 
+    /**
+     * Getter for endTime
+     * @return the endTime
+     */
     public LocalTime getEndTime() {
         return endTime;
     }
 
-    public int getDayValue () {
+    /**
+     * Get the value for the day of the week
+     * @return 0, 1, 2, 3, 4, 5, 6 for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday respectively
+     */
+    public int getDayValue() {
         return dayOfWeek.getValue();
     }
 
@@ -39,7 +58,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
      * Compares the day and time between recurringEvent.
      * @param o the object to be compared.
      * @return -1 if the event falls before o, 1 if both event falls after o and 0 if the event
-     * conflicts with each other
+     *     conflicts with each other
      */
     @Override
     public int compareTo(RecurringEvent o) {
@@ -87,7 +106,9 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
         long daysBetween = startPeriod.until(endPeriod, ChronoUnit.DAYS);
 
-        if (daysBetween > 7) { return true; }
+        if (daysBetween > 7) {
+            return true;
+        }
 
         DayOfWeek eventDay = startPeriodDay;
         for (int i = 0; i < daysBetween; i++) {
@@ -106,7 +127,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         } else if (eventDay.equals(endPeriodDay)) {
             isTimeBetweenPeriod = this.endTime.isBefore(endPeriodTime) || this.endTime.equals(endPeriodTime);
         } else {
-        isTimeBetweenPeriod = true;
+            isTimeBetweenPeriod = true;
         }
 
         return isDayBetweenPeriod && isTimeBetweenPeriod;

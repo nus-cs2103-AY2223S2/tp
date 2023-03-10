@@ -30,7 +30,7 @@ public class RecurringEventList {
     public String listBetweenOccurence(LocalDateTime startPeriod, LocalDateTime endPeriod) {
         StringBuilder output = new StringBuilder();
         for (RecurringEvent re : recurringEvents) {
-            if(re.occursBetween(startPeriod, endPeriod)) {
+            if (re.occursBetween(startPeriod, endPeriod)) {
                 output.append(re).append("\n");
             }
         }
