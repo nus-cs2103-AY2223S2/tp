@@ -29,23 +29,22 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
 
-                <HBox id="tagPane" fx:id="tagPane"> <!-- Change this later  -->
+                <HBox id="tagPane" fx:id="tagPane">
                     <FlowPane fx:id="tags" styleClass="tag_alignment"/>
                 </HBox>
                 <HBox alignment="CENTER">
-                <Label text="Mobile number: "/>
-                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+                    <Label text="Mobile number: "/>
+                    <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
                 </HBox>
                 <HBox alignment="CENTER">
-                <Label text="Address: "/>
-                <Label fx:id="address" styleClass="cell_small_label" text="Address: \$address"/>
+                    <Label text="Address: "/>
+                    <Label fx:id="address" styleClass="cell_small_label" text="Address: \$address"/>
                 </HBox>
                 <HBox alignment="CENTER">
-                <Label text="Email: "/>
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                    <Label text="Email: "/>
+                    <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
                 </HBox>
             </VBox>
         </VBox>
     </GridPane>
-
 </HBox>

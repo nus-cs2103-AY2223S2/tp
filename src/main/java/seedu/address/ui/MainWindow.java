@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        personalPane = new PersonalPane(logic.getFilteredPersonList().get(0));
+        personalPane = new PersonalPane(logic.getFilteredPersonList().get(logic.getPersonId()));
         personalPanePlaceholder.getChildren().add(personalPane.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

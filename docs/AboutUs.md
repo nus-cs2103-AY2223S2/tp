@@ -13,11 +13,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/hongshenggg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/hongshenggg)]
 [[portfolio](team/hongshenggg.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Interface + Functions
 
 ### Ian
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/castryl.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Everything
 
 ### Lum Wee Kiat
 

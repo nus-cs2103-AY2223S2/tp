@@ -49,16 +49,5 @@ public class PersonalPane extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    public void setDisplayStatus() {
-        if (this.person == null) {
-            this.status = false;
-        } else {
-            this.status = true;
-        }
-    }
-
-    public boolean getStatus() {
-        return this.status;
-    }
 
 }
