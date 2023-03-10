@@ -100,7 +100,19 @@
   -fx-background-color: -fx-control-inner-background;
 }
 
+.result-message-error-color {
+  -fx-text-fill: #d22121;
+}
 
+.result-message-warning-color {
+  -fx-text-fill: #cfc018;
+}
+
+.result-message-info-color {
+  -fx-text-fill: #d9d9d9;
+}
+
+/* =========== Cards ======================================================= */
 
 .label.card-title {
   -fx-font-weight: bold;
