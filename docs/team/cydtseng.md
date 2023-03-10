@@ -16,6 +16,6 @@ Careflow can get your patient and drugs management tasks done faster than tradit
 - Contributions to the User Guide:
 - Contributions to the Developer Guide:
 - Contributions to team-based tasks:
-- Review/mentoring contributions: 
+- Review/mentoring contributions:
 - Contributions beyond the project team:
 

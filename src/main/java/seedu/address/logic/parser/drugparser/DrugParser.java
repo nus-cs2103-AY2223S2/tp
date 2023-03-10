@@ -8,6 +8,7 @@ import seedu.address.logic.commands.drugcommands.ClearCommand;
 import seedu.address.logic.commands.drugcommands.DeleteCommand;
 import seedu.address.logic.commands.drugcommands.FindCommand;
 import seedu.address.logic.commands.drugcommands.ListCommand;
+import seedu.address.logic.commands.drugcommands.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,6 +37,8 @@ public class DrugParser {
             return new ListCommand();
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

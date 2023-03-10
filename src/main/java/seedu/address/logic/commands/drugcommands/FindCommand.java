@@ -6,18 +6,15 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.drug.TradeNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
 
 /**
  * Finds a drug from the drug inventory
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_SUCCESS = "Found matching Drug(s): %1$s";
+    //public static final String MESSAGE_SUCCESS = "Found matching Drug(s): %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all drug(s) whose trade name contain any of "
