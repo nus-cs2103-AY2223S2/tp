@@ -6,9 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -23,13 +25,15 @@ import seedu.address.model.FitBook;
 import seedu.address.model.FitBookModel;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.client.EditClientDescriptorBuilder;
+import seedu.address.testutil.routine.EditRoutineDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    // For Client
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -95,6 +99,32 @@ public class CommandTestUtil {
                 .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB)
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withCalorie(VALID_CALORIE_BOB).build();
+    }
+
+    // For Routine
+    public static final String VALID_ROUTINE_CARDIO = "Cardio";
+    public static final String VALID_ROUTINE_STRENGTH = "Strength";
+    public static final String VALID_EXERCISE_PUSHUP = "3x10 Push Ups";
+    public static final String VALID_EXERCISE_SITUP = "4x15 Sit ups";
+
+    public static final String NAME_DESC_ROUTINE_CARDIO = " " + PREFIX_ROUTINE + VALID_ROUTINE_CARDIO;
+    public static final String NAME_DESC_ROUTINE_STRENGTH = " " + PREFIX_ROUTINE + VALID_ROUTINE_STRENGTH;
+    public static final String EXERCISE_DESC_CARDIO = " " + PREFIX_EXERCISE + VALID_EXERCISE_PUSHUP;
+    public static final String EXERCISE_DESC_SITUP = " " + PREFIX_EXERCISE + VALID_EXERCISE_SITUP;
+
+    public static final String INVALID_ROUTINE_NAME_DESC =
+            " " + PREFIX_ROUTINE + "HIIT$"; // '$' not allowed in routine names.
+    public static final String INVALID_EXERCISE_NAME_DESC =
+            " " + PREFIX_EXERCISE + "Situps@"; // '@' not allowed in exercise.
+
+    public static final EditRoutineCommand.EditRoutineDescriptor DESC_CARDIO;
+    public static final EditRoutineCommand.EditRoutineDescriptor DESC_STRENGTH;
+
+    static {
+        DESC_CARDIO = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_CARDIO)
+                .withExercises(VALID_EXERCISE_PUSHUP).build();
+        DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_STRENGTH)
+                .withExercises(VALID_EXERCISE_PUSHUP, VALID_EXERCISE_SITUP).build();
     }
 
     /**

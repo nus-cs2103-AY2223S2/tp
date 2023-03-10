@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.address.testutil.client.TypicalClients.getTypicalFitBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import seedu.address.model.FitBookModel;
 import seedu.address.model.FitBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.client.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) for {@code AddCommand}.

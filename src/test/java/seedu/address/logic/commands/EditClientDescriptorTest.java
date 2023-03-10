@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.client.EditClientDescriptorBuilder;
 
 public class EditClientDescriptorTest {
 

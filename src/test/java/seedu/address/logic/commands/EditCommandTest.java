@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.address.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -24,8 +24,8 @@ import seedu.address.model.FitBookModel;
 import seedu.address.model.FitBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.client.ClientBuilder;
+import seedu.address.testutil.client.EditClientDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for EditCommand.

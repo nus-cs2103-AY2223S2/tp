@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.client.TypicalClients.ALICE;
+import static seedu.address.testutil.client.TypicalClients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
-import seedu.address.testutil.FitBookBuilder;
+import seedu.address.testutil.client.FitBookBuilder;
 
 public class FitBookModelManagerTest {
 

@@ -12,12 +12,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BOB;
+import static seedu.address.testutil.client.TypicalClients.ALICE;
+import static seedu.address.testutil.client.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.client.ClientBuilder;
 
 public class ClientTest {
 

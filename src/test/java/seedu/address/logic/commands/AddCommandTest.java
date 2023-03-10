@@ -21,7 +21,7 @@ import seedu.address.model.FitBookModel;
 import seedu.address.model.ReadOnlyFitBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.client.ClientBuilder;
 
 public class AddCommandTest {
 

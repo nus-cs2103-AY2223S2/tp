@@ -6,14 +6,13 @@ import seedu.address.logic.commands.EditRoutineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.routines.Exercise;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
 
 /**
@@ -29,7 +28,7 @@ public class EditRoutineCommandParser implements Parser<EditRoutineCommand> {
     public EditRoutineCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROUTINE, PREFIX_EXERCISE);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROUTINE, PREFIX_EXERCISE, PREFIX_EXERCISE_NUMBER);
         Index index;
 
         try {
@@ -39,32 +38,80 @@ public class EditRoutineCommandParser implements Parser<EditRoutineCommand> {
                     EditRoutineCommand.MESSAGE_USAGE), pe);
         }
 
+        checkRoutineCommandConflictFormat(argMultimap);
+
         EditRoutineDescriptor editRoutineDescriptor = new EditRoutineDescriptor();
         if (argMultimap.getValue(PREFIX_ROUTINE).isPresent()) {
             editRoutineDescriptor.setRoutineName(ParserUtil
                     .parseRoutineName(argMultimap.getValue(PREFIX_ROUTINE).get()));
         }
-        parseExercisesForEdit(argMultimap.getAllValues(PREFIX_EXERCISE))
-                .ifPresent(editRoutineDescriptor::setExercises);
+
+        if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()
+                || argMultimap.getValue(PREFIX_EXERCISE_NUMBER).isPresent()) {
+            editRoutineDescriptor = parseExerciseForEdit(argMultimap, editRoutineDescriptor);
+        }
+
         if (!editRoutineDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditRoutineCommand.MESSAGE_NOT_EDITED);
         }
+
         return new EditRoutineCommand(index, editRoutineDescriptor);
     }
 
     /**
-     * Parses {@code Collection<String> exercises} into a {@code Set<Exercise>} if {@code exercises} is non-empty.
-     * If {@code exercises} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Exercise>} containing zero exercises.
+     * Parses {@code Exercises exercise} into a {@code Exercise} if {@code exercise}'s part is non-empty.
      */
-    private Optional<Set<Exercise>> parseExercisesForEdit(Collection<String> exercises) throws ParseException {
-        assert exercises != null;
-
-        if (exercises.isEmpty()) {
-            return Optional.empty();
+    private EditRoutineDescriptor parseExerciseForEdit(ArgumentMultimap argMultimap,
+            EditRoutineDescriptor editRoutineDescriptor) throws ParseException {
+        if (argMultimap.getValue(PREFIX_EXERCISE_NUMBER).isPresent()
+                && argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {
+            String exerciseNumber = argMultimap.getValue(PREFIX_EXERCISE_NUMBER).get();
+            String exerciseName = argMultimap.getValue(PREFIX_EXERCISE).get();
+            Exercise exercise = new Exercise(exerciseName);
+            EditRoutineDescriptor currEditRoutineDescriptor = new EditRoutineDescriptor(editRoutineDescriptor);
+            try {
+                Index exerciseNumberIndex = ParserUtil.parseIndex(exerciseNumber);
+                currEditRoutineDescriptor.setExercise(exercise);
+                currEditRoutineDescriptor.setExerciseIndex(exerciseNumberIndex);
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX,
+                        EditRoutineCommand.MESSAGE_USAGE), pe);
+            }
+            return currEditRoutineDescriptor;
+        } else {
+            checkExerciseFormatPresent(argMultimap);
+            return new EditRoutineDescriptor();
         }
-        Collection<String> exerciseSet = exercises.size() == 1 && exercises.contains("")
-                ? Collections.emptySet() : exercises;
-        return Optional.of(ParserUtil.parseExercises(exerciseSet));
+    }
+
+    /**
+     * Checks if {@code exercise}'s format part is non-empty.
+     */
+    private void checkExerciseFormatPresent(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EXERCISE_NUMBER, PREFIX_EXERCISE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditRoutineCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Checks if {@code exercise}'s format consists of mix exercise and routineName parts.
+     */
+    private void checkRoutineCommandConflictFormat(ArgumentMultimap argMultimap) throws ParseException {
+        boolean isMixCommand = argMultimap.getValue(PREFIX_ROUTINE).isPresent()
+                && (argMultimap.getValue(PREFIX_EXERCISE).isPresent()
+                || argMultimap.getValue(PREFIX_EXERCISE_NUMBER).isPresent());
+        if (isMixCommand) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditRoutineCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

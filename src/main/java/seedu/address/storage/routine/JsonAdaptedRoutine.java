@@ -64,7 +64,7 @@ class JsonAdaptedRoutine {
             throw new IllegalValueException(RoutineName.MESSAGE_CONSTRAINTS);
         }
         final RoutineName modelRoutineName = new RoutineName(routineName);
-        final Set<Exercise> modelRoutineExercises = new HashSet<>(routineExercises);
+        final List<Exercise> modelRoutineExercises = new ArrayList<>(routineExercises);
         return new Routine(modelRoutineName, modelRoutineExercises);
     }
 

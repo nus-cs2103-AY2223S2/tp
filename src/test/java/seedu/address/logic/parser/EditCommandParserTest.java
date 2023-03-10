@@ -50,7 +50,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.client.EditClientDescriptorBuilder;
 
 public class EditCommandParserTest {
 

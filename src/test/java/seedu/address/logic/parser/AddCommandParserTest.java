@@ -41,8 +41,8 @@ import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WEIGHT_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalClients.AMY;
-import static seedu.address.testutil.TypicalClients.BOB;
+import static seedu.address.testutil.client.TypicalClients.AMY;
+import static seedu.address.testutil.client.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +55,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.client.ClientBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

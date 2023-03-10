@@ -1,37 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddRoutineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Appointment;
-import seedu.address.model.client.Calorie;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Gender;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
-import seedu.address.model.client.Weight;
 import seedu.address.model.routines.Exercise;
 import seedu.address.model.routines.Routine;
 import seedu.address.model.routines.RoutineName;
-import seedu.address.model.tag.Tag;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 /**
  * Parses input arguments and creates a new AddRoutineCommand object
@@ -52,7 +32,7 @@ public class AddRoutineCommandParser implements Parser<AddRoutineCommand> {
         }
 
         RoutineName routineName = ParserUtil.parseRoutineName(argMultimap.getValue(PREFIX_ROUTINE).get());
-        Set<Exercise> exerciseList = ParserUtil.parseExercises(argMultimap.getAllValues(PREFIX_EXERCISE));
+        List<Exercise> exerciseList = ParserUtil.parseExercises(argMultimap.getAllValues(PREFIX_EXERCISE));
         Routine routine = new Routine(routineName, exerciseList);
         return new AddRoutineCommand(routine);
     }

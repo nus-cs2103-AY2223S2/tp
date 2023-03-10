@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.address.testutil.client.TypicalClients.getTypicalFitBook;
 
 import org.junit.jupiter.api.Test;
 
