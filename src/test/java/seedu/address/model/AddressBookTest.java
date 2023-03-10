@@ -3,8 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2105;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -46,7 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStudents);
@@ -73,7 +73,7 @@ public class AddressBookTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         assertTrue(addressBook.hasStudent(editedAlice));
     }

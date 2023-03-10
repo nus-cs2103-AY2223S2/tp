@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.ModuleCode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
@@ -120,5 +121,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String module} into a {@code <ModuleCode>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module code} is invalid.
+     */
+    public static ModuleCode parseModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModule = moduleCode.trim();
+        if (!ModuleCode.isValidModuleCode(trimmedModule)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModule);
+    }
+
+    /**
+     * Parses {@code Collection<String> modules} into a {@code Set<ModuleCode>}.
+     */
+    public static Set<ModuleCode> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final Set<ModuleCode> moduleSet = new HashSet<>();
+
+        for (String moduleName : modules) {
+            moduleSet.add(parseModule(moduleName));
+        }
+        return moduleSet;
     }
 }

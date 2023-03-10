@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.ModuleCode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
@@ -78,6 +79,16 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
+     * that we are building.
+     */
+    public EditStudentDescriptorBuilder withModules(String... modules) {
+        Set<ModuleCode> modulesSet = Stream.of(modules).map(ModuleCode::new).collect(Collectors.toSet());
+        descriptor.setModules(modulesSet);
         return this;
     }
 
