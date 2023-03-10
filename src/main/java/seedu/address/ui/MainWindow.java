@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -42,6 +43,12 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem light;
+
+    @FXML
+    private MenuItem dark;
+
+    @FXML
     private StackPane patientDrugListPanelPlaceholder;
 
     @FXML
@@ -49,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Scene scene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -75,6 +85,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(light, KeyCombination.valueOf("CTRL+SHIFT+L"));
+        setAccelerator(dark, KeyCombination.valueOf("CTRL+SHIFT+D"));
     }
 
     /**
@@ -163,6 +175,33 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    public void toggleLightTheme() {
+// enable style
+        scene.getStylesheets().add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+        helpWindow.scene.getStylesheets().add(getClass().getResource("/view/HelpWindowLight.css").toExternalForm());
+
+// disable style
+        scene.getStylesheets().remove(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        scene.getStylesheets().remove(getClass().getResource("/view/Extensions.css").toExternalForm());
+        helpWindow.scene.getStylesheets().remove(getClass().getResource("/view/HelpWindow.css").toExternalForm());
+
+    }
+
+    @FXML
+    public void toggleDarkTheme() {
+// enable style
+        scene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/view/Extensions.css").toExternalForm());
+        helpWindow.scene.getStylesheets().add(getClass().getResource("/view/HelpWindow.css").toExternalForm());
+
+
+// disable style
+        scene.getStylesheets().remove(getClass().getResource("/view/LightTheme.css").toExternalForm());
+        helpWindow.scene.getStylesheets().remove(getClass().getResource("/view/HelpWindowLight.css").toExternalForm());
+
     }
 
     public PatientDrugListPanel getPatientDrugListPanel() {

@@ -3,8 +3,8 @@ package seedu.address.logic.parser.patientparser;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.patientcommands.ClearCommand;
 import seedu.address.logic.commands.patientcommands.AddCommand;
+import seedu.address.logic.commands.patientcommands.ClearCommand;
 import seedu.address.logic.commands.patientcommands.DeleteCommand;
 import seedu.address.logic.commands.patientcommands.FindCommand;
 import seedu.address.logic.commands.patientcommands.ListCommand;

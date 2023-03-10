@@ -9,8 +9,20 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.drug.*;
-import seedu.address.model.person.*;
+import seedu.address.model.drug.ActiveIngredient;
+import seedu.address.model.drug.Direction;
+import seedu.address.model.drug.Purpose;
+import seedu.address.model.drug.SideEffect;
+import seedu.address.model.drug.StorageCount;
+import seedu.address.model.drug.TradeName;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.DrugAllergy;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Ic;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,6 +132,11 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String birthDate} into a {@code DateOfBirth}
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code birthDate} is invalid.
+     */
     public static DateOfBirth parseDateOfBirth(String birthDate) throws ParseException {
         requireNonNull(birthDate);
         String trimmedBirthDate = birthDate.trim();
@@ -128,7 +145,11 @@ public class ParserUtil {
         }
         return new DateOfBirth(trimmedBirthDate);
     }
-
+    /**
+     * Parses {@code String gender} into a {@code Gender}
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
@@ -137,7 +158,11 @@ public class ParserUtil {
         }
         return new Gender(trimmedGender);
     }
-
+    /**
+     * Parses {@code String icNumber} into a {@code Ic}
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code icNumber} is invalid.
+     */
     public static Ic parseIc(String icNumber) throws ParseException {
         requireNonNull(icNumber);
         String trimmedIcNumber = icNumber.trim();
@@ -146,7 +171,11 @@ public class ParserUtil {
         }
         return new Ic(trimmedIcNumber);
     }
-
+    /**
+     * Parses {@code String drugAllergy} into a {@code DrugAllergy}
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code drugAllergy} is invalid.
+     */
     public static DrugAllergy parseDrugAllergy(String drugAllergy) throws ParseException {
         requireNonNull(drugAllergy);
         String trimmedDrugAllergy = drugAllergy.trim();

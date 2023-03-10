@@ -1,11 +1,5 @@
 package seedu.address.logic.commands.drugcommands;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.CareFlowModel;
-import seedu.address.model.drug.Drug;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVE_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIRECTION;
@@ -13,6 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIDE_EFFECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STORAGE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CareFlowModel;
+import seedu.address.model.drug.Drug;
+
 
 /**
  * Adds a drug to the drug inventory
@@ -32,10 +33,10 @@ public class AddCommand extends Command {
             + PREFIX_TRADE_NAME + " Panadol "
             + PREFIX_ACTIVE_INGREDIENT + " Paracetamol "
             + PREFIX_PURPOSE + " relieve pain / relieve fever / relieve headache"
-            + PREFIX_SIDE_EFFECT + " skin rash / swelling of the lips, tongue, throat or face / nausea / " +
-            "unexplained bruising or bleeding"
-            + PREFIX_DIRECTION + " Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not " +
-            "recommended for children under 12 years. "
+            + PREFIX_SIDE_EFFECT + " skin rash / swelling of the lips, tongue, throat or face / nausea / "
+            + "unexplained bruising or bleeding"
+            + PREFIX_DIRECTION + " Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not "
+            + "recommended for children under 12 years. "
             + PREFIX_STORAGE_COUNT + " 50 ";
 
     public static final String MESSAGE_SUCCESS = "New drug added: %1$s";
@@ -43,6 +44,10 @@ public class AddCommand extends Command {
 
     public final Drug toAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Drug}
+     * @param drug the Drug to be added
+     */
     public AddCommand(Drug drug) {
         requireNonNull(drug);
         toAdd = drug;

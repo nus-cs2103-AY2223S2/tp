@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.drugcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
+
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,13 +13,9 @@ import seedu.address.model.CareFlowModel;
 import seedu.address.model.drug.Drug;
 import seedu.address.model.drug.TradeName;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE;
-
-
+/**
+ * Updates the storage count of an existing Drug in the drug inventory.
+ */
 public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
@@ -33,6 +35,11 @@ public class UpdateCommand extends Command {
     private final Integer value;
     private final boolean add;
 
+    /**
+     * @param tradeName the tradeName keyword to identify the existing Drug to edit
+     * @param value the update value in integer for storage count
+     * @param add a boolean to denote addition or subtraction for the update value
+     */
     public UpdateCommand(TradeName tradeName, Integer value, boolean add) {
         this.tradeName = tradeName;
         this.value = value;

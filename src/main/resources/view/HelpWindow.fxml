@@ -14,7 +14,7 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>

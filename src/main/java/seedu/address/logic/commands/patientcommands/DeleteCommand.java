@@ -1,5 +1,10 @@
 package seedu.address.logic.commands.patientcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -8,11 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.person.Ic;
 import seedu.address.model.person.Patient;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 
 /**
  * Deletes a patient from the patient records
@@ -49,10 +49,19 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.logic.commands.patientcommands.DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((seedu.address.logic.commands.patientcommands.DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof seedu.address.logic.commands.patientcommands.DeleteCommand
+                // instanceof handles nulls
+                && targetIndex.equals((
+                        (seedu.address.logic.commands.patientcommands.DeleteCommand)
+                                other).targetIndex)); // state check
     }
 
+    /**
+     *  Executes the Patient deletion
+     * @param model {@code Model} which the command should operate on.
+     * @return The command result if deletion is successful
+     * @throws CommandException If an error occurred during deletion
+     */
     public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
         List<Patient> patientList = model.getFilteredPatientList();

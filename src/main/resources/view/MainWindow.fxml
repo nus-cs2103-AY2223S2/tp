@@ -16,7 +16,7 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
@@ -29,6 +29,10 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem fx:id="light" mnemonicParsing="false" onAction="#toggleLightTheme" text="Light Theme" />
+            <MenuItem fx:id="dark" mnemonicParsing="false" onAction="#toggleDarkTheme" text="Dark Theme" />
           </Menu>
         </MenuBar>
 

@@ -1,14 +1,17 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.UniquePatientList;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Wraps all data at the Patient Record level
+ */
 public class PatientRecord implements ReadOnlyPatientRecord {
    private final UniquePatientList patients;
 
