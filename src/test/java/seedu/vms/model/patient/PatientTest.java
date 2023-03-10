@@ -76,11 +76,11 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+        // different dob -> returns false
         editedAlice = new PatientBuilder(ALICE).withDob(VALID_DOB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different bloodType -> returns false
         editedAlice = new PatientBuilder(ALICE).withBloodType(VALID_BLOODTYPE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

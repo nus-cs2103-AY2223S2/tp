@@ -86,12 +86,12 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Dob.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Dob.MESSAGE_CONSTRAINTS); // invalid dob
+        assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_VACCINE_DESC, Vaccine.MESSAGE_CONSTRAINTS); // invalid vaccine
 
-        // invalid phone followed by valid email
+        // invalid phone followed by valid dob
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + DOB_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -153,13 +153,13 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // dob
         userInput = targetIndex.getOneBased() + DOB_DESC_AMY;
         descriptor = new EditPatientDescriptorBuilder().withDob(VALID_DOB_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // bloodType
         userInput = targetIndex.getOneBased() + BLOODTYPE_DESC_AMY;
         descriptor = new EditPatientDescriptorBuilder().withBloodType(VALID_BLOODTYPE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

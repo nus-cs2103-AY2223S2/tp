@@ -43,7 +43,7 @@ public class EditPatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
+        // different bloodType -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withBloodType(VALID_BLOODTYPE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

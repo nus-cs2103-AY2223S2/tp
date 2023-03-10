@@ -167,9 +167,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseDob_validValueWithWhitespace_returnsTrimmedDob() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_DOB + WHITESPACE;
+        String dobWithWhitespace = WHITESPACE + VALID_DOB + WHITESPACE;
         Dob expectedDob = new Dob(VALID_DOB);
-        assertEquals(expectedDob, ParserUtil.parseDob(addressWithWhitespace));
+        assertEquals(expectedDob, ParserUtil.parseDob(dobWithWhitespace));
     }
 
     @Test
@@ -190,9 +190,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseBloodType_validValueWithWhitespace_returnsTrimmedBloodType() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_BLOODTYPE + WHITESPACE;
+        String bloodTypeWithWhitespace = WHITESPACE + VALID_BLOODTYPE + WHITESPACE;
         BloodType expectedBloodType = new BloodType(VALID_BLOODTYPE);
-        assertEquals(expectedBloodType, ParserUtil.parseBloodType(emailWithWhitespace));
+        assertEquals(expectedBloodType, ParserUtil.parseBloodType(bloodTypeWithWhitespace));
     }
 
     @Test
