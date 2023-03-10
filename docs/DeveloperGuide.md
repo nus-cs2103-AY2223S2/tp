@@ -301,12 +301,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System shows total earnings, monthly earnings,
    weekly earnings, daily earnings and top customers visited.
    Use case ends.
-    
+
 <b>Extensions</b>
 * 2a. The list is empty.
       Use case ends.
 </pre>
-</details>  
+</details>
 
 <details>
 <summary><b>[DE1] View delivery job details</b></summary>
@@ -315,9 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
-5. System displays the full detail of the deivery job. 
+5. System displays the full detail of the delivery job
 </pre>
-</details>  
+</details>
 
 
 <details>
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System adds job and job appears in list of jobs.
    Use case ends.
 </pre>
-</details>  
+</details>
 
 
 <details>
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
       Use case resumes at step 2.
 </pre>
-</details>  
+</details>
 
 
 <details>
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
            Use case resumes at step 2.
 </pre>
-</details>  
+</details>
 
 
 *{More to be added}*
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be used for a single user only i.e. (not a multi-user product).
-3.  The system should respond within two seconds (after receiving input from user). 
+3.  The system should respond within two seconds (after receiving input from user).
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
