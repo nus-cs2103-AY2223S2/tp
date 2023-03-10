@@ -1,22 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.job.Address;
-import seedu.address.model.job.Email;
-import seedu.address.model.job.Name;
-import seedu.address.model.job.Role;
-import seedu.address.model.job.Phone;
+import seedu.address.model.job.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,9 +23,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SALARY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_SALARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -43,10 +35,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
 
-        Role person = new Role(name, phone, email, address, tagList);
+        Role role = new Role(name, phone, email, address, tagList, salary);
 
-        return new AddCommand(person);
+        return new AddCommand(role);
     }
 
     /**
