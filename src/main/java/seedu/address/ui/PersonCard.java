@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,10 +25,15 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    private final Person person;
+
+    private final Logic logic;
+
+    private final int index;
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label name;
     @FXML
@@ -44,10 +50,12 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, Logic logic) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        this.logic = logic;
+        this.index = displayedIndex;
+        id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -55,6 +63,13 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void showPersonalPane() {
+        logic.setPersonId(this.index);
+        UiManager ui = new UiManager(logic);
+        System.out.println(this.index);
     }
 
     @Override

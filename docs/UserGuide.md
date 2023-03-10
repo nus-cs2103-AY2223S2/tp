@@ -43,19 +43,6 @@ Format: `delete-image INDEX`
   Example:
 * `delete-image` 2 deletes the image of the 2nd person in the address book.
 
-## View Image for contacts
-
-View image of a contact.
-Format: `view-image INDEX`
-
-* Show image of the contact specified by `INDEX`
-* The index refers to the index number shown in the displayed person list.
-* The index *must* be a positive integer 1, 2, 3, …
-* The image must be placed in a specific folder for BookFace to locate
-* If the image cannot be found or user did not specify a contact image, a default image will be used
-  Example:
-* `view-image` 2 Brings up the image of the 2nd person in the address book.
-
 ## Quick Import for admin contacts: `import`
 
 Import administrative contacts for relevant faculties.
@@ -72,7 +59,7 @@ Example:
 
 ## Add user contacts: `add`
 
-Format: `add [name] [year/course] [phone number] [address]`
+Format: `add [name] [year/course] [phone number] [email] [address]`
 
 * User is *required* to enter name and course
 * Privacy information such as phone number and address can be optionals
@@ -105,16 +92,15 @@ Format: `help`
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                      |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**         | `list`                                                                                                                                                                |
-| **Help**         | `help`                                                                                                                                                                |
-| **Add-Image**    | `add-image INDEX [NAME-OF-IMAGE]` <br> e.g., `add-image 2 weekiat.png`                                                                                                |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                     |
-| **View-Image**   | `view-image INDEX` <br> e.g.,  `view-image 2`                                                                                                                         |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                               |
+| Action           | Format, Examples                                                                                                                                                                                 |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME y/YEAR/COURSE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho y/y2-science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                       |
+| **List**         | `list`                                                                                                                                                                                           |
+| **Help**         | `help`                                                                                                                                                                                           |
+| **Add-Image**    | `add-image INDEX [NAME-OF-IMAGE]` <br> e.g., `add-image 2 weekiat.png`                                                                                                                           |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                          |
 
