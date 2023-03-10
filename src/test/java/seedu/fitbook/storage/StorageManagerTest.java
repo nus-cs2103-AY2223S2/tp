@@ -14,6 +14,7 @@ import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.UserPrefs;
+import seedu.fitbook.storage.routine.JsonFitBookExerciseRoutineStorage;
 
 public class StorageManagerTest {
 
@@ -26,7 +27,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonFitBookStorage fitBookStorage = new JsonFitBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(fitBookStorage, userPrefsStorage);
+        JsonFitBookExerciseRoutineStorage fitBookExerciseRoutineStorage =
+                new JsonFitBookExerciseRoutineStorage(getTempFilePath("er"));
+        storageManager = new StorageManager(fitBookStorage, userPrefsStorage, fitBookExerciseRoutineStorage);
     }
 
     private Path getTempFilePath(String fileName) {

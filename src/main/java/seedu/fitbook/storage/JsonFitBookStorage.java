@@ -60,8 +60,8 @@ public class JsonFitBookStorage implements FitBookStorage {
     }
 
     @Override
-    public void saveFitBook(ReadOnlyFitBook addressBook) throws IOException {
-        saveFitBook(addressBook, filePath);
+    public void saveFitBook(ReadOnlyFitBook fitBook) throws IOException {
+        saveFitBook(fitBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonFitBookStorage implements FitBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFitBook(ReadOnlyFitBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveFitBook(ReadOnlyFitBook fitBook, Path filePath) throws IOException {
+        requireNonNull(fitBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableFitBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFitBook(fitBook), filePath);
     }
 
 }

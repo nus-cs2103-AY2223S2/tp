@@ -33,6 +33,7 @@ import seedu.fitbook.model.client.Client;
 import seedu.fitbook.storage.JsonFitBookStorage;
 import seedu.fitbook.storage.JsonUserPrefsStorage;
 import seedu.fitbook.storage.StorageManager;
+import seedu.fitbook.storage.routine.JsonFitBookExerciseRoutineStorage;
 import seedu.fitbook.testutil.ClientBuilder;
 
 public class LogicManagerTest {
@@ -49,7 +50,9 @@ public class LogicManagerTest {
         JsonFitBookStorage fitBookStorage =
                 new JsonFitBookStorage(temporaryFolder.resolve("fitBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(fitBookStorage, userPrefsStorage);
+        JsonFitBookExerciseRoutineStorage fitBookExerciseRoutineStorage =
+                new JsonFitBookExerciseRoutineStorage(temporaryFolder.resolve("exerciseRoutine.json"));
+        StorageManager storage = new StorageManager(fitBookStorage, userPrefsStorage, fitBookExerciseRoutineStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -78,7 +81,9 @@ public class LogicManagerTest {
                 new JsonFitBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFitBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(fitBookStorage, userPrefsStorage);
+        JsonFitBookExerciseRoutineStorage fitBookExerciseRoutineStorage =
+                new JsonFitBookExerciseRoutineStorage(temporaryFolder.resolve("ioExceptionExerciseRoutine.json"));
+        StorageManager storage = new StorageManager(fitBookStorage, userPrefsStorage, fitBookExerciseRoutineStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -132,7 +137,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        FitBookModel expectedFitBookModel = new FitBookModelManager(model.getFitBook(), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(model.getFitBook(),
+                model.getFitBookExerciseRoutine(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedFitBookModel);
     }
 

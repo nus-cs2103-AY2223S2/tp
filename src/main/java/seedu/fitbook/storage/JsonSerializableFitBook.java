@@ -16,7 +16,7 @@ import seedu.fitbook.model.client.Client;
 /**
  * An Immutable FitBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "fitbook")
 class JsonSerializableFitBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Clients list contains duplicate client(s).";

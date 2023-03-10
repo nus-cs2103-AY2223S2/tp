@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path fitBookFilePath = Paths.get("data" , "fitbook.json");
+    private Path fitBookExerciseRoutineFilePath = Paths.get("data", "exerciseroutine.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -56,6 +57,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.fitBookFilePath = fitBookFilePath;
     }
 
+    public Path getFitBookExerciseRoutineFilePath() {
+        return fitBookExerciseRoutineFilePath;
+    }
+
+    public void setFitBookExerciseRoutineFilePath(Path fitBookFilePath) {
+        requireNonNull(fitBookFilePath);
+        this.fitBookExerciseRoutineFilePath = fitBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +78,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && fitBookFilePath.equals(o.fitBookFilePath);
+                && fitBookFilePath.equals(o.fitBookFilePath)
+                && fitBookExerciseRoutineFilePath.equals(o.fitBookExerciseRoutineFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, fitBookFilePath);
+        return Objects.hash(guiSettings, fitBookFilePath, fitBookExerciseRoutineFilePath);
     }
 
     @Override
@@ -81,6 +92,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + fitBookFilePath);
+        sb.append("\nLocal data file location for exercise routine: " + fitBookExerciseRoutineFilePath);
         return sb.toString();
     }
 
