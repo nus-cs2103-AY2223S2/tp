@@ -47,19 +47,23 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
-            //show notifications
-            Notifications notificationBuilder = Notifications.create()
-                    .title("Test Notification")
-                    .text("This is a test Notification")
-                    .graphic(null)
-                    .hideAfter(Duration.seconds(5))
-                    .position(Pos.TOP_RIGHT);
-            notificationBuilder.showConfirm();
+            showNotification();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    public void showNotification() {
+        //show notifications
+        Notifications notificationBuilder = Notifications.create()
+                .title("Test Notification")
+                .text("This is a test Notification")
+                .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT);
+        notificationBuilder.showConfirm();
     }
 
     private Image getImage(String imagePath) {

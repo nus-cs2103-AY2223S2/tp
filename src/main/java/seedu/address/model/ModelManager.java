@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,22 +24,26 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Reminders reminders;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyReminders reminders) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs
+                + ", and reminders " + reminders);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.reminders = new Reminders(reminders);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Reminders());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -126,6 +132,28 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Reminders Accessors =============================================================
+
+    @Override
+    public void setReminders(ReadOnlyReminders reminders) {
+        this.reminders.resetData(reminders);
+    }
+
+    @Override
+    public ReadOnlyReminders getReminders() {
+        return reminders;
+    }
+
+    @Override
+    public void deleteReminder(int i) {
+        reminders.removeReminder(i);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminders.addReminder(reminder);
     }
 
     @Override

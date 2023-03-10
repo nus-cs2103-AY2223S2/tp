@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Replaces reminders data with the data in {@code reminders}.
+     */
+    void setReminders(ReadOnlyReminders reminders);
+
+    /** Returns Reminders */
+    ReadOnlyReminders getReminders();
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in reminders.
+     */
+    void deleteReminder(int i);
+
+    /**
+     * Adds the given reminder.
+     */
+    void addReminder(Reminder reminder);
+
+
 }
