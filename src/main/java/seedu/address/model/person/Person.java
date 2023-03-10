@@ -60,6 +60,15 @@ public class Person {
     }
 
     /**
+     * Deletes a tag from the person.
+     * 
+     * @param toDelete the tag to deleted from the person.
+     */
+    public void deleteTag(Tag toDelete) {
+        tags.delete(toDelete);
+    }
+    
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
