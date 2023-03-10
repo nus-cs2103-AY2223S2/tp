@@ -5,49 +5,49 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `T17-3[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jeffrey Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jefrai.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jefrai)]
+[[portfolio](team/jefrai.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Project Coordinator
 
-### Jane Doe
+### Hoang Huu Chinh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hhchinh2002.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hhchinh2002)]
+[[portfolio](team/hhchinh2002.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Advisor, Designer
+* Responsibilities: UI/UX
 
 ### Winson Heng
 
 <img src="images/winsonheng.png" width="200px">
 
-[[github](http://github.com/winsonheng)] [[portfolio](team/winsonheng.md)]
+[[github](http://github.com/winsonheng)] 
+[[portfolio](team/winsonheng.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Data & Pipelining
 
-### Jean Doe
+### Leon Poh
 
-<img src="images/LeonPoh.png" width="200px">
+<img src="images/leonpoh.png" width="200px">
 
 [[github](http://github.com/leonpoh)]
 [[portfolio](team/leonpoh.md)]
 
 * Role: Developer
 * Responsibilities: Develop new features + testings
-=======
+
 ### Gong Chen Jun
 
 <img src="images/0x787af25e.png" width="200px">
