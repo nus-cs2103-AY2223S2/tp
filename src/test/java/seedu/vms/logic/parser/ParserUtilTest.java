@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,33 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_DAY_OUT = "2023-03-99T04:55";
     private static final String INVALID_DATE_MTH_OUT = "2023-99-99T04:55";
     private static final String INVALID_DATE_ONLY_MTH_OUT = "2023-99-99";
+
+    private static final List<String> EXPECTED_PARSED_LIST = List.of("UNCHI", "BANANA", "APPLE");
+
+    private static final List<String> VALID_LIST_SYNTAXES = List.of(
+            "UNCHI, BANANA, APPLE",
+            "UNCHI,BANANA,APPLE",
+            " UNCHI ,     BANANA,     APPLE     ");
+    private static final List<String> VALID_PART_SYNTAXES = List.of(
+            "UNCHI:: BANANA:: APPLE",
+            "UNCHI::BANANA::APPLE",
+            " UNCHI ::     BANANA::     APPLE     ");
+
+    private static final List<String> INVALID_LIST_SYNTAXES = List.of(
+            "",
+            ",",
+            ", UNCHI",
+            "UNCHI,",
+            ",,",
+            ",UNCHI,BANANA,");
+    private static final List<String> INVALID_PART_SYNTAXES = List.of(
+            "",
+            "::",
+            ":: UNCHI",
+            "UNCHI::",
+            "::::",
+            "::UNCHI,BANANA::");
+
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -307,5 +335,55 @@ public class ParserUtilTest {
     @Test
     public void parseDateOnly_monthOutOfRange_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_ONLY_MTH_OUT));
+    }
+
+    @Test
+    public void parseList_validList_listParsed() throws Exception {
+        for (String listString : VALID_LIST_SYNTAXES) {
+            assertEquals(EXPECTED_PARSED_LIST, ParserUtil.parseList(listString));
+        }
+    }
+
+    @Test
+    public void parseParts_validParts_partsParsed() throws Exception {
+        for (String partString : VALID_PART_SYNTAXES) {
+            assertEquals(EXPECTED_PARSED_LIST, ParserUtil.parseParts(partString));
+        }
+    }
+
+    @Test
+    public void parseList_invalidList_exceptionThrown() {
+        for (String syntax : INVALID_LIST_SYNTAXES) {
+            assertThrows(ParseException.class, () -> ParserUtil.parseList(syntax));
+        }
+    }
+
+    @Test
+    public void parseParts_invalidParts_exceptionThrown() {
+        for (String syntax : INVALID_PART_SYNTAXES) {
+            assertThrows(ParseException.class, () -> ParserUtil.parseParts(syntax));
+        }
+    }
+
+    @Test
+    public void parseInteger_valid_integerParsed() throws Exception {
+        // small
+        assertEquals(-2147483648, ParserUtil.parseInteger("-2147483648"));
+        // big
+        assertEquals(2147483647, ParserUtil.parseInteger("2147483647"));
+    }
+
+    @Test
+    public void parseInteger_invalid_exceptionThrown() {
+        // too small
+        assertThrows(ParseException.class, () -> ParserUtil.parseInteger("-2147483649"));
+        // too big
+        assertThrows(ParseException.class, () -> ParserUtil.parseInteger("2147483648"));
+        // empty
+        assertThrows(ParseException.class, () -> ParserUtil.parseInteger(""));
+        // blank
+        assertThrows(ParseException.class, () -> ParserUtil.parseInteger(" "));
+        // not a number
+        assertThrows(ParseException.class, () -> ParserUtil.parseInteger("hanya??"));
     }
 }

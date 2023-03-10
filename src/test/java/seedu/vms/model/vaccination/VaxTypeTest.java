@@ -1,6 +1,7 @@
 package seedu.vms.model.vaccination;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
@@ -8,9 +9,39 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.Age;
 import seedu.vms.testutil.SampleVaxTypeData;
 
 public class VaxTypeTest {
+    private static final Age INVALID_MIN_AGE = new Age(100);
+    private static final Age INVALID_MAX_AGE = new Age(99);
+    private static final int INVALID_MIN_SPACING = -5;
+
+
+    @Test
+    public void constructor_invalidAge_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> new VaxType(
+                SampleVaxTypeData.NAME_1,
+                SampleVaxTypeData.GROUPS_1,
+                INVALID_MIN_AGE,
+                INVALID_MAX_AGE,
+                SampleVaxTypeData.MIN_SPACING_1,
+                SampleVaxTypeData.ALLERGY_REQS_1,
+                SampleVaxTypeData.HISTORY_REQS_1));
+    }
+
+
+    @Test
+    public void constructor_invalidMinSpacing_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> new VaxType(
+                SampleVaxTypeData.NAME_1,
+                SampleVaxTypeData.GROUPS_1,
+                SampleVaxTypeData.MIN_AGE_1,
+                SampleVaxTypeData.MAX_AGE_1,
+                INVALID_MIN_SPACING,
+                SampleVaxTypeData.ALLERGY_REQS_1,
+                SampleVaxTypeData.HISTORY_REQS_1));
+    }
 
 
     @Test

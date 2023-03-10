@@ -39,75 +39,117 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command format
+## Command syntax
 
-The syntax of commands will take on the following format:
+<div markdown="block" class="alert alert-info">
 
-```text
-{feature} {feature command}[ --{flag name}[ {flag parameter}]?]...
-```
+**:information_source: Command syntaxes presentation**<br>
 
-* Words enclosed in braces, `{` and `}`, are the names parameters to be supplied by the user.
-* Words in square brackets, `[` and `]`, are optional.
+* Words enclosed in braces, `{` and `}`, represents the name of the parameter to be supplied. It may be accompanied by a type.
+* Words enclosed in triangle brackets `<` and `>` represent a type.
+* Items in square brackets, `[` and `]`, are optional.
 * Items with `?` after them can be used zero or one time.
 * Items with `...` after them can be used zero or more times.
 
+Example:
+
+1. `{component <component>}` would mean a `component` parameter of type `<component>` will have to be supplied
+2. `[{component <component>}]` would meant the same as the first but is optional.
+3. `{component <component>}?` and `{component <component>}...` would mean the same as the above but one or more times and zero or more times respectively.
+
+</div>
+
+### General command syntax
+
+```text
+{component <component>} {command word} [{preamble}] [--{flag name} {argument} [::{argument}]]...
+```
+
+* `{component}` may be omitted if it is `basic`.
+* `--` is used to delimit flags.
+* `::` is used to delimit parts of arguments of the same flag.
+* Leading and trailing white spaces of arguments will be stripped off.
+
 ### Types
+
+#### `<component>`
+
+The list of available components are given in the [components section](#components).
 
 #### `<string>`
 
 Strings can take on any character sequence that do not contain `--` or new line characters.
 
+#### `<groupName>`
+
+A character sequence consisting of only alphanumeric characters, spaces and brackets excluding `<` and `>`.
+
 #### `<integer>`
 
-An integer value.
+An integer value between `-2147483648` and `2147483647`.
+
+#### `<age>`
+
+An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max value will be evaluated to be equal.
 
 #### `<date>`
 
 The supported date formats are:
 
-* `yyyy-mm-ddThh:mm`
+* `yyyy-mm-ddThh:mm`<br>
     eg. 2023-05-03T04:45
-* `yyyy-m-d hhmm` - single and double digit day and months are supported.
-    eg. 2023-5-3 0455
-    * The following formats are also acceptable:
-    * `yyyy-mm-d hhmm`
-    * `yyyy-mm-dd hhmm`
-    * `yyyy-m-dd hhmm`
+* `yyyy-m-d hhmm` - single and double digit day and months are supported.<br>
+  eg. 2023-5-3 0455
+  * The following formats are also acceptable:
+  * `yyyy-mm-d hhmm`
+  * `yyyy-mm-dd hhmm`
+  * `yyyy-m-dd hhmm`
 
 #### `<phone-number>`
 
 Only 8 digit Singapore numbers are allowed.
 
-## Features
+#### `<requirement>`
 
-The following are the features that VMS supports.
+`<requirement>` arguments require 2 and only 2 parts. The general syntax is as follows:
 
-* [Basic](#basic)
-* [Patient](#patient---patient)
-* [Appointment](#appointment---appointment)
+```text
+{reqType <reqType>} :: {reqSet <list <groupName>>}
+```
 
-Only the `basic` feature need not be specified when entering the commands.
+* The position of `reqType` and `reqSet` arguments are not substitutable.
+* `reqSet` cannot be an empty list
+* Duplicates withing `reqSet` are allowed but are omitted.
 
-### Basic - `basic`
+#### `<reqType>`
 
-The basic features of the application.
+Only the following values are allowed:
 
-#### Exit the program - `exit`
+* `ALL` - all groups withing the `grpSet` of the requirement are required for a `true` evaluation.
+* `ANY` - at least one occurrence of a group within the `grpSet` of the requirement is required for a `true` evaluation.
+* `NONE` - zero occurrence of any groups in the `grpSet` of the requirement is required for a `true` evaluation.
 
-Exits the application
+## Components
+
+Below shows a list of components, their supported command words and their usage.
+
+### `basic` - Application's basic features
+
+#### `exit` - Exit the program
 
 ```text
 exit
 ```
 
-### Patient - `patient`
+#### `help` - Display help page
 
-The patient feature manages patient's information such as their contact information and medical records.
+```text
+help
+```
 
-#### Add a patient - `add`
+### `patient` - Patient functionalities
 
-Adds a patient to the system.
+#### `add` - Add a patient
 
 ```text
 patient add --name <string> [--phone <phone-number>] [--email <string>]
@@ -117,9 +159,7 @@ Example:
 
 * `patient add --name John Doe --phone 98765432 --email johnd@example.com`
 
-#### Delete a patient - `delete`
-
-Deletes a patient. The patient will no long show up in systems, however, its records will still be contained in hard disk.
+#### `delete` - Delete a patient
 
 ```text
 patient delete --index <integer>
@@ -129,7 +169,7 @@ Example:
 
 * `patent delete --index 5`
 
-#### Locate a patient - `find`
+#### `find` - Locate a patient
 
 Finds patients whose names contain any of the given keywords.
 
@@ -141,21 +181,15 @@ Example:
 
 * `patient find --name john`
 
-#### List all patients - `list`
-
-Shows all patients contained in the system.
+#### `list` - List all patients
 
 ```text
 patient list
 ```
 
-### Appointment - `appointment`
+### `appointment` - Appointment functionalities
 
-The appointment feature manages patient's vaccination appointments.
-
-#### Add an appointment - `add`
-
-Adds an appointment.
+#### `add` - Add an appointment
 
 ```text
 appointment add --patient <integer> --start <date> --end <date>
@@ -165,9 +199,7 @@ Example:
 
 * `appointment add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800`
 
-#### Delete an appointment - `delete`
-
-Deletes an appointment.
+#### `delete` - Delete an appointment
 
 ```text
 appointment delete --index <integer>
@@ -177,13 +209,31 @@ Example:
 
 * `appointment delete --index 5`
 
-#### List all appointments - `list`
-
-Shows all appointments contained in the system.
+#### `list` - List all appointments
 
 ```text
 appointment list
 ```
+
+### `vaccination` - Vaccination functionalities
+
+#### `add` - Add a vaccination type
+
+```text
+vaccination add {name <groupName>} [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+```
+
+* **name** - the name of the vaccination type to create.
+* **groups** - the list of groups the vaccination type classifies under.
+* **minAge** - the minimum required age (inclusive) to take the vaccine.
+* **maxAge** - the maximum require age (inclusive) to take the vaccine.
+* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
+* **allergyReq** - the allergy requirement to take the vaccine.
+* **historyReq** - the vaccination group history requirement to take the vaccine.
+
+Example:
+
+* `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
 
 ## Advance
 
@@ -196,3 +246,68 @@ Locations:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
 </div>
+
+### Vaccination type JSON
+
+Vaccination type JSON files will have the following format:
+
+##### Overall file
+
+| Variable | Is needed | Type                      | Default value |
+| -------- | --------- | ------------------------- | ------------- |
+| `types`  | YES       | List of vaccination types | -             |
+
+##### Vaccination type
+
+| Variable      | Is needed | Type                    | Default value |
+| ------------- | --------- | ----------------------- | ------------- |
+| `name`        | YES       | `<groupName>`           | -             |
+| `groups`      | NO        | list of `<groupName>`   | `[]`          |
+| `minAge`      | NO        | `<age>`                 | `0`           |
+| `maxAge`      | NO        | `<age>`                 | `200`         |
+| `minSpacing`  | NO        | `integer`               | `2147483647`  |
+| `historyReqs` | NO        | list of `<requirement>` | `[]`          |
+| `allergyReqs` | NO        | list of `<requirement>` | `[]`          |
+
+##### Requirement
+
+| Variable  | Is needed             | Type                  | Default value |
+| --------- | --------------------- | --------------------- | ------------- |
+| `reqType` | YES                   | `<reqType>`           | -             |
+| `reqSet`  | YES (cannot be empty) | list of `<groupName>` | -             |
+
+##### Example
+
+```json
+{
+  "types": [
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": [
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tromethamine hydrochloride"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

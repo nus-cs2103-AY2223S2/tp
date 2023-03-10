@@ -10,8 +10,10 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.GroupName;
+
 public class VaxRecordKeyTest {
-    private static final VaxName SAMPLE_NAME = new VaxName("UNCHI");
+    private static final GroupName SAMPLE_NAME = new GroupName("UNCHI");
     private static final LocalDateTime SAMPLE_TIME = LocalDateTime.now();
     private static final VaxRecordKey SAMPLE_RECORD = new VaxRecordKey(SAMPLE_NAME, SAMPLE_TIME);
 
@@ -41,7 +43,7 @@ public class VaxRecordKeyTest {
     public void equals() {
         Object eqs = new VaxRecordKey(SAMPLE_NAME, SAMPLE_TIME);
         Object diff1 = new VaxRecordKey(SAMPLE_NAME, LocalDateTime.MIN);
-        Object diff2 = new VaxRecordKey(new VaxName("BANANA"), SAMPLE_TIME);
+        Object diff2 = new VaxRecordKey(new GroupName("BANANA"), SAMPLE_TIME);
         Object unrelated = Integer.valueOf(445);
 
         assertTrue(SAMPLE_RECORD.equals(SAMPLE_RECORD));
@@ -56,7 +58,7 @@ public class VaxRecordKeyTest {
     public void hashingTest() {
         VaxRecordKey rec1 = SAMPLE_RECORD;
         VaxRecordKey recEq = new VaxRecordKey(SAMPLE_NAME, SAMPLE_TIME);
-        VaxRecordKey recDiff = new VaxRecordKey(new VaxName("BANANA"), SAMPLE_TIME);
+        VaxRecordKey recDiff = new VaxRecordKey(new GroupName("BANANA"), SAMPLE_TIME);
 
         HashSet<VaxRecordKey> recSet = new HashSet<>();
         recSet.add(rec1);
