@@ -106,8 +106,8 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    public void addIsolatedEvent(Index index, IsolatedEvent event) {
-        addressBook.addIsolatedEvent(index, event);
+    public void addIsolatedEvent(Person person, IsolatedEvent event) {
+        addressBook.addIsolatedEvent(person, event);
     }
 
     @Override

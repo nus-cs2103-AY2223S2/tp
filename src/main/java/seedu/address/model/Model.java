@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Person;
 
@@ -87,5 +86,5 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void addIsolatedEvent(Index index, IsolatedEvent eventToAdd);
+    void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
 }

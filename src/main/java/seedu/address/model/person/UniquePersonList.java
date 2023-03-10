@@ -70,7 +70,12 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     public Person getPerson(Index index) {
-        return internalList.get(index.getZeroBased());
+
+        if (index.getIndexInInteger() == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        return internalList.get(index.getIndexInInteger());
     }
 
     /**

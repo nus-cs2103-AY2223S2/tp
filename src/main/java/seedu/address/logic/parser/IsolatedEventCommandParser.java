@@ -47,7 +47,7 @@ public class IsolatedEventCommandParser implements Parser<AddIsolatedEventComman
 
         String eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_ISOEVENT).get());
         LocalDateTime startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
-        LocalDateTime endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+        LocalDateTime endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
 
         IsolatedEvent eventToAdd = new IsolatedEvent(eventName, startDate, endDate);
         return new AddIsolatedEventCommand(index, eventToAdd);

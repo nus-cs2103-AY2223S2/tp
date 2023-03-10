@@ -78,12 +78,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Add the isolated event into the person's isolated event list.
-     * @param index
+     * @param person
      * @param event
      */
-    public void addIsolatedEvent(Index index, IsolatedEvent event) {
-        Person personToAdd = persons.getPerson(index);
-        personToAdd.addIsolatedEvent(event);
+    public void addIsolatedEvent(Person person, IsolatedEvent event) {
+        person.addIsolatedEvent(event);
     }
 
     /**
