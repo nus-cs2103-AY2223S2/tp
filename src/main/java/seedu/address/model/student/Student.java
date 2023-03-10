@@ -25,17 +25,19 @@ public class Student {
     private final Remark remark;
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<ModuleCode> modules = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * With remark and tags field.
      */
-
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, remark, tags);
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules,
+                   Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, studentId, modules, remark, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
+        this.modules.addAll(modules);
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -67,6 +69,15 @@ public class Student {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    /**
+     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<ModuleCode> getModules() {
+        return Collections.unmodifiableSet(modules);
+    }
+
 
     /**
      * Returns true if both persons have the same name.
@@ -118,9 +129,15 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; StudentId: ")
-                .append(getStudentId())
-                .append("; Remark: ")
+                .append(getStudentId());
+
+        Set<ModuleCode> modules = getModules();
+        builder.append("; Modules: ");
+        modules.forEach(builder::append);
+
+        builder.append("; Remark: ")
                 .append(getRemark());
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -128,5 +145,4 @@ public class Student {
         }
         return builder.toString();
     }
-
 }

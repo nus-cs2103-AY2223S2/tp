@@ -5,20 +5,23 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "studentId": "A0123456M",
+    "modules": [ "CS2105" ],
     "remark": "",
-    "tagged" : [ "CS2105" ]
+    "tagged" : [ "Team1" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "studentId": "A7890123R",
+    "modules": [ "CS2103T" ],
     "remark": "",
-    "tagged" : [ "CS2105", "CS2103T" ]
+    "tagged" : [ "Team1", "Team2" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "studentId": "A6789123H",
+    "modules": [ "CS2101" ],
     "remark": "",
     "tagged" : [ ]
   }, {
@@ -26,13 +29,15 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "studentId": "A8905678J",
+    "modules": [ "CS2101" ],
     "remark": "",
-    "tagged" : [ "CS2105" ]
+    "tagged" : [ "Team1" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "studentId": "A3456129K",
+    "modules": [ "CS2101", "CS2103T" ],
     "remark": "",
     "tagged" : [ ]
   }, {
@@ -40,6 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "studentId": "A6789126Y",
+    "modules": [ "CS2101" ],
     "remark": "",
     "tagged" : [ ]
   }, {
@@ -47,6 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "studentId": "A5678234W",
+    "modules": [ "CS4225" ],
     "remark": "",
     "tagged" : [ ]
   } ]
