@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lee Wei Chong Stefan's Project Portfolio Page
+title: Fun Leon's Project Portfolio Page
 ---
 
 ### Project: Fast Army Internal Lookup System
@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 - **New Feature**:
   - *to be added soon*
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=rexcyrio&breakdown=true)
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=niekis&breakdown=true)
 
 - **Project management**:
   - *to be added soon*
