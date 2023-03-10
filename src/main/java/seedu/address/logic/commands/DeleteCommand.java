@@ -7,11 +7,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-<<<<<<< HEAD
-=======
 
 import java.util.List;
->>>>>>> 7ad51a54f3a43080c8dc7481cdfb207fb94c859d
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

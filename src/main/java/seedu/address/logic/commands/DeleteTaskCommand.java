@@ -1,26 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-<<<<<<< HEAD
 
 import java.util.List;
-
-=======
->>>>>>> 7ad51a54f3a43080c8dc7481cdfb207fb94c859d
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
-
-<<<<<<< HEAD
 /**
  * Deletes a task identified using it's displayed index from the address book.
  */
-=======
-import java.util.List;
-
->>>>>>> 7ad51a54f3a43080c8dc7481cdfb207fb94c859d
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetask";
