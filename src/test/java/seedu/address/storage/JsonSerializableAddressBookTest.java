@@ -30,7 +30,6 @@ public class JsonSerializableAddressBookTest {
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
-    
      */
 
     @Test
