@@ -25,6 +25,8 @@ import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
+import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

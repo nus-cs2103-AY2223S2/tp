@@ -9,7 +9,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD
 import seedu.fitbook.testutil.client.ClientBuilder;
+=======
+>>>>>>> master
 
 public class NameContainsKeywordsPredicateTest {
 

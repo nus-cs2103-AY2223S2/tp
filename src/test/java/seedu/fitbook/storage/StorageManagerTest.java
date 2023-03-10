@@ -2,7 +2,11 @@ package seedu.fitbook.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+<<<<<<< HEAD
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
+=======
+import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
+>>>>>>> master
 
 import java.nio.file.Path;
 
@@ -14,7 +18,10 @@ import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.UserPrefs;
+<<<<<<< HEAD
 import seedu.fitbook.storage.routine.JsonFitBookExerciseRoutineStorage;
+=======
+>>>>>>> master
 
 public class StorageManagerTest {
 
