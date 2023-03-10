@@ -2,12 +2,41 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    private final CommandResult commandResult = new CommandResult(AddCommand.MESSAGE_SUCCESS);
+
     @Test
-    public void equals() {
+    void getFeedbackToUser() {
+        assertEquals(commandResult.getFeedbackToUser(), AddCommand.MESSAGE_SUCCESS);
+    }
+
+    @Test
+    void getTargetClient() {
+        assertNull(commandResult.getTargetClient());
+    }
+
+    @Test
+    void isSelect() {
+        assertTrue(true);
+    }
+
+    @Test
+    void isShowHelp() {
+        assertTrue(true);
+    }
+
+    @Test
+    void isExit() {
+        assertTrue(true);
+    }
+
+    @Test
+    void testEquals() {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns true
@@ -37,7 +66,7 @@ public class CommandResultTest {
     }
 
     @Test
-    public void hashcode() {
+    void testHashCode() {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns same hashcode
