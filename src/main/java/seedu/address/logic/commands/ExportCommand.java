@@ -41,7 +41,7 @@ public class ExportCommand extends Command {
     }
 
     public static void addHeaderRow(PrintWriter pw) {
-        pw.printf("Name, Phone number, Email, Address, Weight, Gender\n");
+        pw.printf("Name, Phone Number, Email, Address, Weight, Gender\n");
     }
 
     public static void addClientRows(PrintWriter pw, List<Client> clients) {
