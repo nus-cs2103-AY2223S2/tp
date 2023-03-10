@@ -289,14 +289,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SportsSync` and the **Actor** is the `coach`, unless specified otherwise)
+(For all use cases below, the **System** is the `SportSync` and the **Actor** is the `coach`, unless specified otherwise)
 
 **Use case: Add a student**
 
 **MSS**
 
 1. Coach requests to add a new student in the list
-2. SportsSync add the student
+2. SportSync add the student
 
     Use case ends.
 
@@ -305,9 +305,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Coach requests to list students
-2. SportsSync shows a list of students
+2. SportSync shows a list of students
 3. Coach requests to delete a specific student in the list
-4. SportsSync deletes the student
+4. SportSync deletes the student
 
     Use case ends.
 
@@ -316,11 +316,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Coach requests to list students
-2.  SportsSync shows a list of students
+2.  SportSync shows a list of students
 3.  Coach requests to edit a specific student's profile attribute in the list
-4.  SportsSync edit the student's attribute
+4.  SportSync edit the student's attribute
 
     Use case ends.
+
+**Features**
+
+**Group**
+
+Format: group [GROUPNAME]
+
+- Creates a group to add users to
+- Creates a group of *GROUPNAME*
+- Name fields must be provided
+
+**Show**
+
+Format: group [GROUPNAME1] [GROUPNAME2] . . .
+
+- Shows all users belonging to at least one of the groups specified
+- Filters out all individuals belonging to that specific group
+- At least one group name must be provided
+
+**Display**
+
+Format: display
+
+- Listing all existing groups in address book
+- Displays all existing groups in command message
+- Working in progress need to add “add user to group” functionality
+
+*{More to be added}*
 
 **Extensions**
 
@@ -330,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. SportsSync shows an error message.
+    * 3a1. SportSync shows an error message.
 
       Use case resumes at step 2.
 
@@ -401,3 +429,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
