@@ -53,9 +53,9 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.rank = rank;
-        this.unit = unit;
-        this.company = company;
-        this.platoon = platoon;
+        this.unit = unit == null ? "N/A" : unit;
+        this.company = company == null ? "N/A" : company;
+        this.platoon = platoon == null ? "N/A" : platoon;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -74,8 +74,8 @@ class JsonAdaptedPerson {
         company = source.getCompany().value;
         platoon = source.getPlatoon().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -130,7 +130,7 @@ class JsonAdaptedPerson {
         final Rank modelRank = new Rank(rank);
 
         if (unit == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
         }
         if (!Unit.isValidUnit(unit)) {
             throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
@@ -138,7 +138,7 @@ class JsonAdaptedPerson {
         final Unit modelUnit = new Unit(unit);
 
         if (company == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
         }
         if (!Company.isValidCompany(company)) {
             throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
@@ -154,8 +154,9 @@ class JsonAdaptedPerson {
         final Platoon modelPlatoon = new Platoon(platoon);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank,
-                modelUnit, modelCompany, modelPlatoon, modelTags);
+            modelUnit, modelCompany, modelPlatoon, modelTags);
     }
 
 }
