@@ -81,7 +81,7 @@ public class SampleDataUtil {
         return new Drug[] {
             new Drug(new TradeName("Panadol"), new ActiveIngredient("Paracetamol"), new Direction("Adults and "
                     + "children over 12 years: 1-2 capsules taken every 4-6 hours as required"), new Purpose(
-                            "relief of headache, pain and fever"),new SideEffect("Skin rash or itching. Breathing"
+                            "relief of headache, pain and fever"), new SideEffect("Skin rash or itching. Breathing"
                     + " problems or swelling of lips, throat or face. Mouth ulcers. Unexplained bruising or "
                     + "bleeding."), new StorageCount("30")),
             new Drug(new TradeName("Lipitor"), new ActiveIngredient("Atorvastatin"), new Direction("10 mg once a "

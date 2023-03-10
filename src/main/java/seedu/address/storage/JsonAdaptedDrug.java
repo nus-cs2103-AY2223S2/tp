@@ -2,8 +2,15 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.drug.*;
+import seedu.address.model.drug.ActiveIngredient;
+import seedu.address.model.drug.Direction;
+import seedu.address.model.drug.Drug;
+import seedu.address.model.drug.Purpose;
+import seedu.address.model.drug.SideEffect;
+import seedu.address.model.drug.StorageCount;
+import seedu.address.model.drug.TradeName;
 
 
 /**

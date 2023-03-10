@@ -29,7 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    Scene scene;
+    private Scene scene;
 
     /**
      * Creates a new HelpWindow.
@@ -46,6 +46,10 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 
     /**

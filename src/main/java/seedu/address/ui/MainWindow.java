@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -28,13 +29,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private CareFlowLogic logic;
+    private final Stage primaryStage;
+    private final CareFlowLogic logic;
 
     // Independent Ui parts residing in this Ui container
     private PatientDrugListPanel patientDrugListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -177,30 +178,47 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Toggles the Light theme version of the app
+     */
     @FXML
     public void toggleLightTheme() {
-// enable style
-        scene.getStylesheets().add(getClass().getResource("/view/LightTheme.css").toExternalForm());
-        helpWindow.scene.getStylesheets().add(getClass().getResource("/view/HelpWindowLight.css").toExternalForm());
+        // enable style
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
 
-// disable style
-        scene.getStylesheets().remove(getClass().getResource("/view/DarkTheme.css").toExternalForm());
-        scene.getStylesheets().remove(getClass().getResource("/view/Extensions.css").toExternalForm());
-        helpWindow.scene.getStylesheets().remove(getClass().getResource("/view/HelpWindow.css").toExternalForm());
+        // disable style
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/Extensions.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
 
     }
 
+    /**
+     * Toggles the Dark theme version of the app
+     */
     @FXML
     public void toggleDarkTheme() {
-// enable style
-        scene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/view/Extensions.css").toExternalForm());
-        helpWindow.scene.getStylesheets().add(getClass().getResource("/view/HelpWindow.css").toExternalForm());
+        // enable style
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/Extensions.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
 
 
-// disable style
-        scene.getStylesheets().remove(getClass().getResource("/view/LightTheme.css").toExternalForm());
-        helpWindow.scene.getStylesheets().remove(getClass().getResource("/view/HelpWindowLight.css").toExternalForm());
+        // disable style
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
+
 
     }
 

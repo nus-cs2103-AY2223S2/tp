@@ -1,15 +1,18 @@
 package seedu.address.storage;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-
+/**
+ * Represents a storage for {@link seedu.address.model.CareFlow}.
+ */
 public interface CareFlowStorage extends PatientRecordStorage, DrugInventoryStorage, UserPrefsStorage {
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

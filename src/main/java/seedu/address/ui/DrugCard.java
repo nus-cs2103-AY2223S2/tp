@@ -48,11 +48,11 @@ public class DrugCard extends UiPart<Region> {
         this.drug = drug;
         id.setText(displayedIndex + ". ");
         tradeName.setText(this.drug.getTradeName().tradeName);
-        activeIngredient.setText("Active Ingredient: "+ this.drug.getActiveIngredient().value);
+        activeIngredient.setText("Active Ingredient: " + this.drug.getActiveIngredient().value);
         direction.setText("Direction: " + this.drug.getDirection().value);
-        purposes.setText("Purposes: "+ this.drug.getPurposes().purpose);
+        purposes.setText("Purposes: " + this.drug.getPurposes().purpose);
         sideEffects.setText("Side Effects: " + this.drug.getSideEffects().sideEffect);
-        storageCount.setText("Storage: " + this.drug.getStorageCount().count.toString());
+        storageCount.setText("Storage: " + this.drug.getStorageCount().toString());
     }
 
     @Override
