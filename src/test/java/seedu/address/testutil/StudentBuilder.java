@@ -41,12 +41,9 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_STUDENTID);
-<<<<<<< HEAD
         modules = new HashSet<>();
         modules.add(new ModuleCode(DEFAULT_MODULE));
-=======
         remark = new Remark(DEFAULT_REMARK);
->>>>>>> master
         tags = new HashSet<>();
     }
 

@@ -3,6 +3,9 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "studentId": "4th street"
+    "studentId": "4th street",
+    "modules": [ "CS2101" ],
+    "remark": "",
+    "tagged" : [ ]
   } ]
 }

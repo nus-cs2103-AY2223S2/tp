@@ -3,14 +3,17 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "studentId": "123, Jurong West Ave 6, #08-111",
+    "studentId": "A1234567X",
+    "modules": [ "CS2101" ],
     "remark": "",
-    "tagged": [ "friends" ]
+    "tagged": [ "Team1" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "studentId": "A0123456X",
+    "modules": [ "CS2101" ],
     "remark": "",
-    "studentId": "4th street"
+    "tagged" : [ ]
   } ]
 }
