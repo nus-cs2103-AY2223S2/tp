@@ -7,12 +7,12 @@ import java.util.Set;
 import seedu.sudohr.model.person.Person;
 
 /**
- * Represents a Department in the SudoHR book.
+ * Represents a Department in SudoHR.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Department {
     private final DepartmentName name;
-    private final Set<Person> employees = new HashSet<>();
+    private final Set<Person> employees = new HashSet<>(); // To convert to UniqueList
 
     public Department(DepartmentName name) {
         this.name = name;
@@ -36,11 +36,9 @@ public class Department {
         return Collections.unmodifiableSet(employees);
     }
 
-    // Placeholder for creating department from storage
-
     /**
      * Adds an employee to the department.
-     * The person must not already exist in the department.
+     * The employee must not already exist in the department.
      */
     public void addEmployee(Person e) {
         employees.add(e);
