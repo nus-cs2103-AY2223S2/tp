@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
+import seedu.address.logic.Logic1;
 
 /**
  * The manager of the UI component.
@@ -20,15 +20,18 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
+    // Change this to change icon image
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
-    private Logic logic;
-    private MainWindow mainWindow;
+    // CHanges to new logic
+    private Logic1 logic;
+    private MainWindow1 mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    // Chnaged to new logic
+    public UiManager(Logic1 logic) {
         this.logic = logic;
     }
 
@@ -40,7 +43,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow1(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
