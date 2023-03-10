@@ -1,15 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Role;
+import seedu.address.model.job.Role;
 
 /**
  * Adds a person to the address book.
@@ -26,12 +22,13 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "John Doe "
+            + PREFIX_ROLE + "Software engineer "
             + PREFIX_CONTACT + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "google@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_SALARY + "4000";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";
@@ -39,11 +36,11 @@ public class AddCommand extends Command {
     private final Role toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Role}
      */
-    public AddCommand(Role person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Role role) {
+        requireNonNull(role);
+        toAdd = role;
     }
 
     @Override

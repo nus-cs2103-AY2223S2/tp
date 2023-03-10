@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.job;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -23,17 +23,19 @@ public class Role {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Salary salary;
 
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Role(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Salary salary) {
+        requireAllNonNull(name, phone, email, address, tags, salary);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.salary = salary;
     }
 
     public Name getName() {
@@ -59,12 +61,15 @@ public class Role {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public Salary getSalary() {
+        return this.salary;
+    }
 
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Role otherPerson) {
+    public boolean isSameRole(Role otherPerson) {
         if (otherPerson == this) {
             return true;
         }

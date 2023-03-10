@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Role;
+import seedu.address.model.job.Role;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -163,7 +163,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Role person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isSameRole(person);
         }
     }
 
@@ -176,7 +176,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Role person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSameRole);
         }
 
         @Override

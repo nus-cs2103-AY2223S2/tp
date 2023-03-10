@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.job;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,19 +8,19 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.job.exceptions.DuplicatePersonException;
+import seedu.address.model.job.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * A person is considered unique by comparing using {@code Person#isSameRole(Person)}. As such, adding and updating of
+ * persons uses Person#isSameRole(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Person#isSameRole(Person)
  */
 public class UniquePersonList implements Iterable<Role> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Role> {
      */
     public boolean contains(Role toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameRole);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Role> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameRole(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Role> {
     private boolean personsAreUnique(List<Role> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).isSameRole(persons.get(j))) {
                     return false;
                 }
             }
