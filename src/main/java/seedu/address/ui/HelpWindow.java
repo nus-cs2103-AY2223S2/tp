@@ -30,7 +30,8 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + "Eg. Medicine usage or health conditions: \n"
                                                         + "Format: filter KEYWORD [MORE_KEYWORDS]";
     public static final String LIST_COMMAND_MESSAGE = "6) Lists all patients in the records system: \nFormat: list";
-    public static final String SAVE_COMMAND_MESSAGE = "7) Save current data to specified save file: \nFormat: save FILE_NO";
+    public static final String SAVE_COMMAND_MESSAGE = "7) Save current data to specified save file: \n"
+                                                      + "Format: save FILE_NO";
     public static final String CLEAR_COMMAND_MESSAGE = "8) Purge all data in records system: \nFormat: clear";
     public static final String NOTE_MESSAGE = "Note that square brackets signify optional arguments";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
