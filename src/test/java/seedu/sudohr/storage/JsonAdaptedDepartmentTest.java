@@ -5,12 +5,12 @@ import static seedu.sudohr.storage.JsonAdaptedDepartment.MISSING_FIELD_MESSAGE_F
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.department.DepartmentName;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedDepartmentTest {
     private static final String INVALID_DEPARTMENT_NAME = "@Engineering";

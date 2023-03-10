@@ -68,8 +68,8 @@ public class JsonSudoHrStorageTest {
 
     @Test
     public void readAddressBook_invalidAndValidDepartmentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readAddressBook("invalidAndValidDepartmentSudoHr.json"));
+        assertThrows(DataConversionException.class, () ->
+                readAddressBook("invalidAndValidDepartmentSudoHr.json"));
     }
 
     @Test

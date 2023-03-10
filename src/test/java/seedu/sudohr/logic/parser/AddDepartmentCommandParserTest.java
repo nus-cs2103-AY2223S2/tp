@@ -1,7 +1,12 @@
 package seedu.sudohr.logic.parser;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
+import static seedu.sudohr.logic.commands.CommandTestUtil.DEPARTMENT_NAME_DESC_ENGINEERING;
+import static seedu.sudohr.logic.commands.CommandTestUtil.DEPARTMENT_NAME_DESC_HUMAN_RESOURCES;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_DEPARTMENT_NAME_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_DEPARTMENT_NAME_HUMAN_RESOURCES;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -11,8 +16,6 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.logic.commands.AddDepartmentCommand;
 import seedu.sudohr.testutil.DepartmentBuilder;
-
-
 
 public class AddDepartmentCommandParserTest {
     private AddDepartmentCommandParser parser = new AddDepartmentCommandParser();

@@ -1,5 +1,15 @@
 package seedu.sudohr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.sudohr.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import seedu.sudohr.commons.core.GuiSettings;
@@ -12,16 +22,6 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.sudohr.testutil.Assert.assertThrows;
-
 public class AddDepartmentCommandTest {
 
     @Test
@@ -31,12 +31,14 @@ public class AddDepartmentCommandTest {
 
     @Test
     public void execute_departmentAcceptedByModel_addSuccessful() throws Exception {
-        AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded modelStub = new AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded();
+        AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded modelStub =
+                new AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded();
         Department validDepartment = new DepartmentBuilder().build();
 
         CommandResult commandResult = new AddDepartmentCommand(validDepartment).execute(modelStub);
 
-        assertEquals(String.format(AddDepartmentCommand.MESSAGE_SUCCESS, validDepartment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddDepartmentCommand.MESSAGE_SUCCESS, validDepartment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validDepartment), modelStub.departmentsAdded);
     }
 
@@ -44,7 +46,8 @@ public class AddDepartmentCommandTest {
     public void execute_duplicateDepartment_throwsCommandException() {
         Department validDepartment = new DepartmentBuilder().build();
         AddDepartmentCommand addDepartmentCommand = new AddDepartmentCommand(validDepartment);
-        AddDepartmentCommandTest.ModelStub modelStub = new AddDepartmentCommandTest.ModelStubWithDepartment(validDepartment);
+        AddDepartmentCommandTest.ModelStub modelStub =
+                new AddDepartmentCommandTest.ModelStubWithDepartment(validDepartment);
 
         assertThrows(CommandException.class, AddDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT,
                 () -> addDepartmentCommand.execute(modelStub));

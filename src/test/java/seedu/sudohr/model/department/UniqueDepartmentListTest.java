@@ -1,17 +1,22 @@
 package seedu.sudohr.model.department;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
 import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
 
-import org.junit.jupiter.api.Test;
-import seedu.sudohr.model.department.exceptions.DepartmentNotFoundException;
-import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
-import seedu.sudohr.testutil.DepartmentBuilder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.sudohr.model.department.exceptions.DepartmentNotFoundException;
+import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
+import seedu.sudohr.testutil.DepartmentBuilder;
+
 
 public class UniqueDepartmentListTest {
     private final UniqueDepartmentList uniqueDepartmentList = new UniqueDepartmentList();
@@ -52,7 +57,8 @@ public class UniqueDepartmentListTest {
 
     @Test
     public void setDepartment_nullTargetDepartment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDepartmentList.setDepartment(null, HUMAN_RESOURCES));
+        assertThrows(NullPointerException.class, () -> uniqueDepartmentList.setDepartment(null,
+                HUMAN_RESOURCES));
     }
 
     @Test
@@ -62,7 +68,8 @@ public class UniqueDepartmentListTest {
 
     @Test
     public void setDepartment_targetDepartmentNotInList_throwsDepartmentNotFoundException() {
-        assertThrows(DepartmentNotFoundException.class, () -> uniqueDepartmentList.setDepartment(HUMAN_RESOURCES, HUMAN_RESOURCES));
+        assertThrows(DepartmentNotFoundException.class, () -> uniqueDepartmentList.setDepartment(HUMAN_RESOURCES,
+                HUMAN_RESOURCES));
     }
 
     @Test
@@ -97,7 +104,8 @@ public class UniqueDepartmentListTest {
     public void setDepartment_editedDepartmentHasNonUniqueIdentity_throwsDuplicateDepartmentException() {
         uniqueDepartmentList.add(HUMAN_RESOURCES);
         uniqueDepartmentList.add(ENGINEERING);
-        assertThrows(DuplicateDepartmentException.class, () -> uniqueDepartmentList.setDepartment(HUMAN_RESOURCES, ENGINEERING));
+        assertThrows(DuplicateDepartmentException.class, () -> uniqueDepartmentList.setDepartment(HUMAN_RESOURCES,
+                ENGINEERING));
     }
 
     @Test
@@ -120,7 +128,8 @@ public class UniqueDepartmentListTest {
 
     @Test
     public void setDepartments_nullUniqueDepartmentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDepartmentList.setDepartments((UniqueDepartmentList) null));
+        assertThrows(NullPointerException.class,
+                () -> uniqueDepartmentList.setDepartments((UniqueDepartmentList) null));
     }
 
     @Test
@@ -140,8 +149,8 @@ public class UniqueDepartmentListTest {
     @Test
     public void setDepartments_list_replacesOwnListWithProvidedList() {
         uniqueDepartmentList.add(HUMAN_RESOURCES);
-        List<Department> DepartmentList = Collections.singletonList(ENGINEERING);
-        uniqueDepartmentList.setDepartments(DepartmentList);
+        List<Department> departmentList = Collections.singletonList(ENGINEERING);
+        uniqueDepartmentList.setDepartments(departmentList);
         UniqueDepartmentList expectedUniqueDepartmentList = new UniqueDepartmentList();
         expectedUniqueDepartmentList.add(ENGINEERING);
         assertEquals(expectedUniqueDepartmentList, uniqueDepartmentList);
@@ -150,7 +159,8 @@ public class UniqueDepartmentListTest {
     @Test
     public void setDepartments_listWithDuplicateDepartments_throwsDuplicateDepartmentException() {
         List<Department> listWithDuplicateDepartments = Arrays.asList(HUMAN_RESOURCES, HUMAN_RESOURCES);
-        assertThrows(DuplicateDepartmentException.class, () -> uniqueDepartmentList.setDepartments(listWithDuplicateDepartments));
+        assertThrows(DuplicateDepartmentException.class,
+                () -> uniqueDepartmentList.setDepartments(listWithDuplicateDepartments));
     }
 
     @Test

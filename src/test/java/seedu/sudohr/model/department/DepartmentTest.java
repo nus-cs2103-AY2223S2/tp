@@ -8,6 +8,7 @@ import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
 import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class DepartmentTest {
