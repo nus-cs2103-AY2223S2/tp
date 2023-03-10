@@ -44,6 +44,26 @@ class RemarkCommandTest {
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_addRemarkFilteredList_success() {
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getFilteredStudentList()
+                .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark(REMARK_STUB).build();
+
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedStudent.getRemark().value));
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(firstStudent, editedStudent);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
@@ -66,6 +86,41 @@ class RemarkCommandTest {
     }
 
     @Test
+    public void execute_deleteRemarkUnfilteredList_success() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(firstStudent).withRemark("").build();
+
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedStudent.getRemark().value));
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(firstStudent, editedStudent);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteRemarkFilteredList_success() {
+        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getFilteredStudentList()
+                .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark("").build();
+
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedStudent.getRemark().value));
+
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(firstStudent, editedStudent);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         Remark remark = new Remark(REMARK_STUB);
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, remark);
@@ -73,9 +128,15 @@ class RemarkCommandTest {
         // same object -> returns true
         assertTrue(remarkCommand.equals(remarkCommand));
 
-        // same values -> returns true
+        // same index and remark -> returns true
         RemarkCommand remarkCommandCopy = new RemarkCommand(INDEX_FIRST_PERSON, remark);
         assertTrue(remarkCommand.equals(remarkCommandCopy));
+
+        // same index but different remark -> returns false
+        assertFalse(remarkCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark("Different remark"))));
+
+        // different index but same remark -> returns false
+        assertFalse(remarkCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON, remark)));
 
         // different types -> returns false
         assertFalse(remarkCommand.equals(1));
