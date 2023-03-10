@@ -17,7 +17,7 @@
         <URL value="@module-card.css" />
     </stylesheets>
 
-    <Label fx:id="moduleCardCode" text="CS2103T" styleClass="h3" />
+    <Label fx:id="moduleCardCode" styleClass="h3" />
 
     <HBox alignment="CENTER">
         <padding>

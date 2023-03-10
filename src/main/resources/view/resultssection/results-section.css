@@ -1,13 +1,13 @@
 /* =============================================================================================== */
-/* GRAPHICS (LEFT) SECTION */
+/* RESULTS (LEFT) SECTION */
 /* =============================================================================================== */
 
-#graphics-section {
+#results-section {
     -fx-pref-width: 480;
     -fx-padding: 0 20;
 }
 
-#graphics-section-header-deco {
+#results-section-header-deco {
     -fx-max-height: 3;
 
     -fx-border-radius: 5;
@@ -16,16 +16,16 @@
     -fx-background-color: -white;
 }
 
-#graphics-section-header-title-container {
+#results-section-header-title-container {
     -fx-padding: 0 20;
 }
-#graphics-section-header-title {
+#results-section-header-title {
     -fx-text-fill: -teal;
 }
-#graphics-section-header-subtitle {
+#results-section-header-subtitle {
     -fx-text-fill: -white;
 }
 
-#graphics-section-body {
+#results-section-body {
     -fx-padding: 10;
 }

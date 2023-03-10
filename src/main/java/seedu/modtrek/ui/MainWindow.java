@@ -14,7 +14,7 @@ import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.ui.clisection.CliSection;
-import seedu.modtrek.ui.graphicssection.GraphicsSection;
+import seedu.modtrek.ui.resultssection.ResultsSection;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,10 +31,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CliSection cliSection;
-    private GraphicsSection graphicsSection;
+    private ResultsSection resultsSection;
 
     @FXML
-    private VBox graphicsSectionPlaceholder;
+    private VBox resultsSectionPlaceholder;
 
     @FXML
     private VBox cliSectionPlaceholder;
@@ -63,8 +63,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        graphicsSection = new GraphicsSection(logic.getFilteredModuleList());
-        graphicsSectionPlaceholder.getChildren().add(graphicsSection.getRoot());
+        resultsSection = new ResultsSection(logic.getFilteredModuleList());
+        resultsSectionPlaceholder.getChildren().add(resultsSection.getRoot());
 
         cliSection = new CliSection(this::executeCommand);
         cliSectionPlaceholder.getChildren().add(cliSection.getRoot());
@@ -109,7 +109,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             // To refresh the graphics section to display updated list of modules
-            graphicsSection.displayModuleList(logic.getFilteredModuleList());
+            resultsSection.displayAllModules(logic.getFilteredModuleList());
 
             if (commandResult.isExit()) {
                 handleExit();

@@ -14,7 +14,7 @@ import seedu.modtrek.ui.UiPart;
  * Represents a module group comprising module cards.
  */
 public class ModuleGroup extends UiPart<Region> {
-    private static final String FXML = "module_list/ModuleGroup.fxml";
+    private static final String FXML = "modulelist/ModuleGroup.fxml";
 
     @FXML
     private Label moduleGroupTitle;
@@ -52,6 +52,20 @@ public class ModuleGroup extends UiPart<Region> {
         for (Module module : modules) {
             ModuleCard moduleCard = new ModuleCard(module);
             GridPane.setConstraints(moduleCard.getRoot(), col, row);
+            moduleCardGroup.getChildren().add(moduleCard.getRoot());
+
+            /* Add placeholder cards to set ModuleCard min width */
+            if (col == 0) {
+                ModuleCard placeholderCard1 = new ModuleCard();
+                placeholderCard1.getRoot().getStyleClass().add("module-card-placeholder");
+                GridPane.setConstraints(placeholderCard1.getRoot(), 1, row);
+
+                ModuleCard placeholderCard2 = new ModuleCard();
+                placeholderCard2.getRoot().getStyleClass().add("module-card-placeholder");
+                GridPane.setConstraints(placeholderCard2.getRoot(), 2, row);
+
+                moduleCardGroup.getChildren().addAll(placeholderCard1.getRoot(), placeholderCard2.getRoot());
+            }
 
             /* Update the position variables */
             col += 1;
@@ -59,8 +73,6 @@ public class ModuleGroup extends UiPart<Region> {
                 col = 0;
                 row += 1;
             }
-
-            moduleCardGroup.getChildren().add(moduleCard.getRoot());
         }
     }
 }

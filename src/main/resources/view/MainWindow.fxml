@@ -32,7 +32,7 @@
         </BorderPane>
 
         <HBox VBox.vgrow="ALWAYS" id="body">
-          <VBox HBox.hgrow="ALWAYS" fx:id="graphicsSectionPlaceholder" />
+          <VBox HBox.hgrow="ALWAYS" fx:id="resultsSectionPlaceholder" />
           <VBox HBox.hgrow="ALWAYS" fx:id="cliSectionPlaceholder" />
         </HBox>
       </VBox>

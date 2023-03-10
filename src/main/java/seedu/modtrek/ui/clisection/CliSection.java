@@ -14,7 +14,7 @@ import seedu.modtrek.ui.UiPart;
  * A UI component that displays the portion of a Command-Line Interface to input commands.
  */
 public class CliSection extends UiPart<Region> {
-    private static final String FXML = "cli_section/CliSection.fxml";
+    private static final String FXML = "clisection/CliSection.fxml";
 
     private final CommandExecutor commandExecutor;
 
@@ -57,11 +57,11 @@ public class CliSection extends UiPart<Region> {
         try {
             CommandResult commandResult = commandExecutor.execute(commandText);
             addSystemDialog(commandResult.getFeedbackToUser(), true);
-            cliInput.setText("");
         } catch (CommandException | ParseException e) {
             addSystemDialog(e.getMessage(), false);
+        } finally {
+            cliInput.setText("");
         }
-
     }
 
     private void addUserDialog(String text) {
