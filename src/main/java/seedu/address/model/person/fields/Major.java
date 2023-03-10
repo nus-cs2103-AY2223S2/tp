@@ -3,19 +3,20 @@ package seedu.address.model.person.fields;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Person's major in the address book.
  */
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Major should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+            "Major should only contain alphabets and spaces";
+    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$$";
     public final String majorName;
 
     /**
-     * Constructs an {@code Major}.
+     * Constructs a {@code Major}.
      *
      * @param majorName A valid major name.
      */
@@ -29,6 +30,9 @@ public class Major {
      * Returns if a given string is a valid major name.
      */
     public static boolean isValidMajor(String trimmedMajor) {
+        if (Objects.equals(trimmedMajor, "")) {
+            return true;
+        }
         return trimmedMajor.matches(VALIDATION_REGEX);
     }
 
