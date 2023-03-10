@@ -66,7 +66,7 @@ class JsonSerializableSudoHr {
         for (JsonAdaptedDepartment jsonAdaptedDepartment : departments) {
             Department department = jsonAdaptedDepartment.toModelType();
             if (sudoHr.hasDepartment(department)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_DEPARTMENTS);
             }
             sudoHr.addDepartment(department);
         }

@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.exceptions.DepartmentNotFoundException;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
+import seedu.sudohr.model.person.UniquePersonList;
 
 /**
  * A list of departments that enforces uniqueness between its elements and does not allow nulls.
@@ -75,6 +76,11 @@ public class UniqueDepartmentList implements Iterable<Department> {
         if (!internalList.remove(toRemove)) {
             throw new DepartmentNotFoundException();
         }
+    }
+
+    public void setDepartments(UniqueDepartmentList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

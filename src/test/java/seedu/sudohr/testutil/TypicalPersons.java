@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code SudoHr} with all the typical persons.
      */
-    public static SudoHr getTypicalAddressBook() {
+    public static SudoHr getTypicalSudoHr() {
         SudoHr ab = new SudoHr();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
