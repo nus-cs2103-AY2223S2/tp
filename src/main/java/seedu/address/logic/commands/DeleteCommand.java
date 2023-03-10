@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_ID);
+        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
 
