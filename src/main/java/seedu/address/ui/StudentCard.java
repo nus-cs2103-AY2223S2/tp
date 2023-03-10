@@ -48,6 +48,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label remark;
+    @FXML
     private ImageView displayPhoto;
 
     /**
@@ -61,6 +63,7 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
+        remark.setText(student.getRemark().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
