@@ -24,25 +24,6 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Employee: %1$s";
 
-//    private final Index employee_Id;
-//
-//    public DeleteCommand(Index employeeId) {
-//        this.employee_Id = employeeId;
-//    }
-//
-//    @Override
-//    public CommandResult execute(Model model) throws CommandException {
-//        requireNonNull(model);
-//        List<Person> lastShownList = model.getFilteredPersonList();
-//
-//        if (employee_Id.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
-//
-//        Person personToDelete = lastShownList.get(employee_Id.getZeroBased());
-//        model.deletePerson(personToDelete);
-//        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-//    }
 
     private final EmployeeId employee_Id;
 
