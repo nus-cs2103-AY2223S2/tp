@@ -34,7 +34,7 @@ public class FindCommand extends Command {
             return new CommandResult(Messages.MESSAGE_NO_PERSONS_FOUND);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, listSize));
     }
 
     @Override
