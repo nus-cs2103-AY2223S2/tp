@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalClients.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -175,5 +176,17 @@ public class UniqueClientListTest {
         UniqueClientList list2 = new UniqueClientList();
         list2.add(BOB);
         assertEquals(list1.hashCode(), list2.hashCode());
+    }
+
+    @Test
+    void iterator() {
+        uniqueClientList.add(ALICE);
+        uniqueClientList.add(BOB);
+        Iterator<Client> iterator = uniqueClientList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(ALICE, iterator.next());
+        assertTrue(iterator.hasNext());
+        assertEquals(BOB, iterator.next());
+        assertFalse(iterator.hasNext());
     }
 }
