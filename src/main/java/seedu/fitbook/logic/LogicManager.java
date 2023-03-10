@@ -15,6 +15,7 @@ import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.storage.Storage;
 
 /**
@@ -78,5 +79,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Routine> getFilteredRoutineList() {
+        return model.getFilteredRoutineList();
     }
 }

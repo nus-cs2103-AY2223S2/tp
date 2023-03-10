@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.client.RoutineNameContainsKeywordsPredicate;
-import seedu.fitbook.model.routines.Routine;
-
 /**
  * Finds and lists all routines in fitbook whose routine name contains any of the argument keywords.
  * Keyword matching is case insensitive.
@@ -32,7 +29,7 @@ public class FindRoutineCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRoutineList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredRoutineList().size()));
+                String.format(Messages.MESSAGE_ROUTINES_LISTED_OVERVIEW, model.getFilteredRoutineList().size()));
     }
 
     @Override
