@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -12,10 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -53,8 +53,8 @@ public class AddDepartmentCommandTest {
         AddDepartmentCommandTest.ModelStub modelStub =
                 new AddDepartmentCommandTest.ModelStubWithDepartment(validDepartment);
 
-        assertThrows(CommandException.class, AddDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT,
-                () -> addDepartmentCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT, () ->
+                addDepartmentCommand.execute(modelStub));
     }
 
     @Test
