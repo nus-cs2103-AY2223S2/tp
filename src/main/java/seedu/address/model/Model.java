@@ -91,4 +91,13 @@ public interface Model {
      * Person must already exist in the address book
      */
     void addTag(Person person, Tag tag);
+
+    /**
+     * Delete the tag with the given name from the person
+     * specified by input index according to the address book list.
+     * 
+     * @param person The person to delete tag from.
+     * @param tag The tag to delete.
+     */
+    void deleteTag(Person person, Tag tag);
 }
