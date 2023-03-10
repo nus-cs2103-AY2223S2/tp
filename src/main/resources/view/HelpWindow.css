@@ -1,4 +1,4 @@
-#addMessage, #getMessage, #editMessage, #deleteMessage, #filterMessage, #listMessage, #clearMessage, #noteMessage, #helpMessage {
+#addMessage, #getMessage, #editMessage, #deleteMessage, #filterMessage, #listMessage, #saveMessage, #clearMessage, #noteMessage, #helpMessage {
     -fx-text-fill: white;
     -fx-padding: 10 0 0 0;
 }
