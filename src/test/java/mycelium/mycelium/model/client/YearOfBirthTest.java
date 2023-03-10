@@ -13,7 +13,7 @@ public class YearOfBirthTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidYearOfBirth_throwsIllegalArgumentException() {
         String invalidYearOfBirth = "";
         assertThrows(IllegalArgumentException.class, () -> new YearOfBirth(invalidYearOfBirth));
     }
@@ -27,6 +27,7 @@ public class YearOfBirthTest {
         assertFalse(YearOfBirth.isValidYearOfBirth("")); // empty string
         assertFalse(YearOfBirth.isValidYearOfBirth(" ")); // spaces only
         assertFalse(YearOfBirth.isValidYearOfBirth("91")); // less than 4 numbers
+        assertFalse(YearOfBirth.isValidYearOfBirth("9 1")); // spaces between digits
         assertFalse(YearOfBirth.isValidYearOfBirth("91333")); // more than 4 numbers
         assertFalse(YearOfBirth.isValidYearOfBirth("phone")); // non-numeric
         assertFalse(YearOfBirth.isValidYearOfBirth("9011p041")); // alphabets within digits

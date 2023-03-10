@@ -108,7 +108,6 @@ public class Client implements IsSame<Client> {
      * @param otherClient The client to compare with this client.
      * @return true if the two clients are the same client, false otherwise.
      */
-    // TODO
     public boolean isSame(Client otherClient) {
         if (otherClient == this) {
             return true;

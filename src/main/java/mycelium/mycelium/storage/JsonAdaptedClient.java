@@ -94,14 +94,11 @@ class JsonAdaptedClient {
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
 
-        nullCheck(yearOfBirth == null, YearOfBirth.class.getSimpleName());
-        // validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
+        validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
         final YearOfBirth modelYearOfBirth = new YearOfBirth(yearOfBirth);
 
         // TODO validityCheck for source
-        nullCheck(source == null, String.format(MISSING_FIELD_MESSAGE_FORMAT, "source"));
 
-        nullCheck(mobileNumber == null, Phone.class.getSimpleName());
         validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         final Phone modelMobileNumber = new Phone(mobileNumber);
 

@@ -19,7 +19,6 @@ public class YearOfBirth {
      * @param yearOfBirth The year of birth to be stored in the object.
      */
     public YearOfBirth(String yearOfBirth) {
-
         checkArgument(isValidYearOfBirth(yearOfBirth), MESSAGE_CONSTRAINTS);
         value = yearOfBirth;
     }

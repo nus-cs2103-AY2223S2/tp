@@ -10,7 +10,7 @@ import mycelium.mycelium.commons.exceptions.IllegalValueException;
 import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
-
+import mycelium.mycelium.model.person.Phone;
 
 
 public class JsonAdaptedClientTest {
@@ -21,9 +21,9 @@ public class JsonAdaptedClientTest {
     // TODO INVALID_SOURCE
     private static final String VALID_NAME = WEST.getName().toString();
     private static final String VALID_EMAIL = WEST.getEmail().toString();
-    private static final String VALID_YEAR_OF_BIRTH = WEST.getYearOfBirth().toString();
-    private static final String VALID_SOURCE = WEST.getSource().toString();
-    private static final String VALID_MOBILE_NUMBER = WEST.getMobileNumber().toString();
+    private static final String VALID_YEAR_OF_BIRTH = WEST.getYearOfBirth().get().value;
+    private static final String VALID_SOURCE = WEST.getSource().get();
+    private static final String VALID_MOBILE_NUMBER = WEST.getMobileNumber().get().value;
 
 
     @Test
@@ -70,40 +70,20 @@ public class JsonAdaptedClientTest {
     }
 
     @Test
-    public void toModelType_nullYearOfBirth_throwsIllegalValueException() {
-        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, null,
-                VALID_SOURCE, VALID_MOBILE_NUMBER);
-        String
-                expectedMessage =
-                String.format(JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT, YearOfBirth.class.getSimpleName());
+    public void toModelType_invalidYearOfBirth_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, INVALID_YEAR_OF_BIRTH,
+                        VALID_SOURCE, VALID_MOBILE_NUMBER);
+        String expectedMessage = YearOfBirth.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+    }
+    @Test
+    public void toModelType_invalidMobileNumber_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, VALID_YEAR_OF_BIRTH,
+                        VALID_SOURCE, INVALID_MOBILE_NUMBER);
+        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
-    //    @Test
-    //    public void toModelType_invalidYearOfBirth_throwsIllegalValueException() {
-    //        JsonAdaptedClient client =
-    //                new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, INVALID_YEAR_OF_BIRTH,
-    //                        VALID_SOURCE, VALID_MOBILE_NUMBER);
-    //        String expectedMessage = YearOfBirth.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    //    }
-    //
-    //    @Test
-    //    public void toModelType_invalidMobileNumber_throwsIllegalValueException() {
-    //        JsonAdaptedClient client =
-    //                new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, VALID_YEAR_OF_BIRTH,
-    //                        VALID_SOURCE, INVALID_MOBILE_NUMBER);
-    //        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    //    }
-    //
-    //    @Test
-    //    public void toModelType_nullMobileNumber_throwsIllegalValueException() {
-    //        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_EMAIL, VALID_YEAR_OF_BIRTH,
-    //                VALID_SOURCE, null);
-    //        String
-    //                expectedMessage =
-    //                String.format(JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-    //        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    //    }
 }
