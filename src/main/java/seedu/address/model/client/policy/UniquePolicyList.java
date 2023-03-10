@@ -78,26 +78,22 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
     }
 
-    /*
     public void setPolicies(UniquePolicyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
-    */
 
-    /*
+    /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
-     *
+     */
     public void setPolicies(List<Policy> policies) {
         requireAllNonNull(policies);
         if (!policiesAreUnique(policies)) {
             throw new DuplicatePolicyException();
         }
-
         internalList.setAll(policies);
     }
-     */
 
 
     /**
