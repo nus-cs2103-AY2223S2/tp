@@ -1,5 +1,8 @@
 package seedu.address.model.person.fields;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Objects;
 
 /**
@@ -7,7 +10,7 @@ import java.util.Objects;
  */
 public class Favorite {
 
-    public static final String MESSAGE_CONSTRAINTS = "Fav";
+    public static final String MESSAGE_CONSTRAINTS = "Fav can only be T or F";
     public final boolean isFavorite;
 
     /**
@@ -16,6 +19,7 @@ public class Favorite {
      * @param isFavorite If favorite is true or not.
      */
     public Favorite(boolean isFavorite) {
+        requireNonNull((isFavorite));
         this.isFavorite = isFavorite;
     }
 
@@ -25,6 +29,8 @@ public class Favorite {
      * @param favoriteMessage If message is "T" or "F"
      */
     public Favorite(String favoriteMessage) {
+        requireNonNull((favoriteMessage));
+        checkArgument(isValidFavorite(favoriteMessage), MESSAGE_CONSTRAINTS);
         if (favoriteMessage.equals("T")) {
             this.isFavorite = true;
         } else {
@@ -43,6 +49,7 @@ public class Favorite {
         if (Objects.equals(trimmedFavorite, "")) {
             return true;
         }
+        requireNonNull(trimmedFavorite);
         return Objects.equals(trimmedFavorite, "T") || Objects.equals(trimmedFavorite, "F");
     }
 

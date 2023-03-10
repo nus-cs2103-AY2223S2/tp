@@ -21,7 +21,7 @@ public class MajorTest {
 
     @Test
     public void isValidMajor() {
-        //null major
+        // null major
         assertThrows(NullPointerException.class, () -> Major.isValidMajor(null));
 
         // invalid major
