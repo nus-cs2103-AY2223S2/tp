@@ -9,49 +9,52 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="450.0" title="Address App" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600.0" minWidth="450.0" title="Address App" type="Stage"
+         xmlns="http://javafx.com/javafx/19">
     <scene>
         <Scene>
-         <VBox>
-            <children>
-               <MenuBar fx:id="menuBar">
-                 <menus>
-                   <Menu mnemonicParsing="false" text="File">
-                     <items>
-                       <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                     </items>
-                   </Menu>
-                   <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                       <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                     </items>
-                   </Menu>
-                 </menus>
-               </MenuBar>
-               <HBox VBox.vgrow="ALWAYS">
-                  <children>
-                     <VBox fx:id="personList" maxWidth="440.0" minWidth="440.0" prefWidth="440.0">
+            <VBox>
+                <children>
+                    <MenuBar fx:id="menuBar">
+                        <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                                </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                                <items>
+                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp"
+                                              text="Help"/>
+                                </items>
+                            </Menu>
+                        </menus>
+                    </MenuBar>
+                    <HBox VBox.vgrow="ALWAYS">
                         <children>
-                           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            <VBox fx:id="clientList" maxWidth="440.0" minWidth="440.0" prefWidth="440.0">
+                                <children>
+                                    <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </children>
+                            </VBox>
+                            <VBox fx:id="policyList" HBox.hgrow="ALWAYS">
+                                <children>
+                                    <StackPane fx:id="clientLabel"/>
+                                    <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </children>
+                            </VBox>
                         </children>
-                     </VBox>
-                     <VBox fx:id="policyList" HBox.hgrow="ALWAYS">
+                    </HBox>
+                    <VBox prefWidth="340.0">
                         <children>
-                           <StackPane fx:id="personLabel" />
-                           <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            <StackPane fx:id="commandBoxPlaceholder"/>
+                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0"
+                                       prefHeight="160.0"/>
+                            <StackPane fx:id="statusbarPlaceholder"/>
                         </children>
-                     </VBox>
-                  </children>
-               </HBox>
-               <VBox prefWidth="340.0">
-                  <children>
-                     <StackPane fx:id="commandBoxPlaceholder" />
-                     <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0" prefHeight="160.0" />
-                     <StackPane fx:id="statusbarPlaceholder" />
-                  </children>
-               </VBox>
-            </children>
-         </VBox>
+                    </VBox>
+                </children>
+            </VBox>
         </Scene>
     </scene>
 </fx:root>

@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -17,7 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,14 +32,14 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
     private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    // DEBUG: added policyListPanel to show selected person's policies
-    // TODO: Change PersonListPanel -> PolicyListPanel
-    private PersonListPanel policyListPanel;
+    private ClientListPanel clientListPanel;
+    // DEBUG: added policyListPanel to show selected client's policies
+    // TODO: Change ClientListPanel -> PolicyListPanel
+    private ClientListPanel policyListPanel;
     private ResultDisplay resultDisplay;
 
-    @FXML // DEBUG: added person label to show selected person's information.
-    private StackPane personLabel;
+    @FXML // DEBUG: added client label to show selected client's information.
+    private StackPane clientLabel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML // TODO: Populate with policies
     private StackPane policyListPanelPlaceholder;
@@ -121,17 +120,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Populate person label with dummy and display information
-        Person dummyPerson = logic.getFilteredPersonList().get(0);
-        PersonCard dummyPersonCard = new PersonCard(dummyPerson, 1);
-        personLabel.getChildren().add(dummyPersonCard.getRoot());
+        // Populate client label with dummy and display information
+        Client dummyClient = logic.getFilteredClientList().get(0);
+        ClientCard dummyClientCard = new ClientCard(dummyClient, 1);
+        clientLabel.getChildren().add(dummyClientCard.getRoot());
 
-        // TODO: Populate Policy List Panel and Person Label
-        // For now, emulate with personlist
-        policyListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // TODO: Populate Policy List Panel and Client Label
+        // For now, emulate with clientlist
+        policyListPanel = new ClientListPanel(logic.getFilteredClientList());
         policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -184,8 +183,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
     }
 
     /**
