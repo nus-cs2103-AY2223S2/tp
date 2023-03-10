@@ -103,7 +103,8 @@ public class EditCommand extends Command {
         Set<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedModules, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedModules,
+                updatedRemark, updatedTags);
     }
 
     @Override

@@ -83,6 +83,11 @@ class JsonAdaptedStudent {
             personTags.add(tag.toModelType());
         }
 
+        if (modules.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleCode.class.getSimpleName()));
+        }
+
         for (JsonAdaptedModuleCode moduleCode : modules) {
             personModules.add(moduleCode.toModelType());
         }
