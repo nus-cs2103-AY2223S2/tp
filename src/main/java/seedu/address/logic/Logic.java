@@ -33,6 +33,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    Person getProtagonist();
+
+    String getCurrentTab();
+
+    void setCurrentTab(String tab);
+
     /**
      * Returns the user prefs' address book file path.
      */

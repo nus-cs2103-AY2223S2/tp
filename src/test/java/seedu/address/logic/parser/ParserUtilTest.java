@@ -25,13 +25,13 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_SKILL = "#python";
+    private static final String INVALID_SKILL = "Àpython";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_SKILL_1 = "python";
+    private static final String VALID_SKILL_1 = "C++";
     private static final String VALID_SKILL_2 = "javascript";
 
     private static final String WHITESPACE = " \t\r\n";
