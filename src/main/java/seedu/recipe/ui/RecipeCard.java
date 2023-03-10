@@ -1,5 +1,7 @@
 package seedu.recipe.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -33,10 +35,6 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label desc;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -48,6 +46,9 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(recipe.getTitle().title);
         desc.setText(recipe.getDesc().description);
+        recipe.getIngredients().stream()
+                .sorted(Comparator.comparing(ingredient -> ingredient.ingredient))
+                .forEach(ingredient -> tags.getChildren().add(new Label(ingredient.ingredient)));
     }
 
     @Override
