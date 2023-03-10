@@ -2,7 +2,7 @@ package seedu.fitbook.logic.commands;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.testutil.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) for {@code AddCommand}.

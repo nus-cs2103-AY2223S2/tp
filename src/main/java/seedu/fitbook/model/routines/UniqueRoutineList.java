@@ -1,16 +1,16 @@
 package seedu.fitbook.model.routines;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.fitbook.model.client.exceptions.DuplicateClientException;
 import seedu.fitbook.model.routines.exceptions.DuplicateRoutineException;
 import seedu.fitbook.model.routines.exceptions.RoutineNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of routines that enforces uniqueness between its elements and does not allow nulls.

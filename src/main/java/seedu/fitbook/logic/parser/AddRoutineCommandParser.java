@@ -1,17 +1,17 @@
 package seedu.fitbook.logic.parser;
 
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
+
+import java.util.List;
+import java.util.stream.Stream;
+
 import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
 
 /**
  * Parses input arguments and creates a new AddRoutineCommand object
@@ -32,7 +32,7 @@ public class AddRoutineCommandParser implements Parser<AddRoutineCommand> {
         }
 
         RoutineName routineName = ParserUtil.parseRoutineName(argMultimap.getValue(PREFIX_ROUTINE).get());
-        Set<Exercise> exerciseList = ParserUtil.parseExercises(argMultimap.getAllValues(PREFIX_EXERCISE));
+        List<Exercise> exerciseList = ParserUtil.parseExercises(argMultimap.getAllValues(PREFIX_EXERCISE));
         Routine routine = new Routine(routineName, exerciseList);
         return new AddRoutineCommand(routine);
     }

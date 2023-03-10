@@ -2,7 +2,7 @@ package seedu.fitbook.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 
 import java.nio.file.Path;
 

@@ -1,4 +1,4 @@
-package seedu.fitbook.testutil;
+package seedu.fitbook.testutil.client;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -54,7 +54,7 @@ public class ClientBuilder {
     }
 
     /**
-     * Initializes the ClientBuilder with the data of {@code personToCopy}.
+     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
@@ -86,7 +86,7 @@ public class ClientBuilder {
 
     /**
      * Parses the {@code appointments} into a {@code Set<Appointment>}
-     * and set it to the {@code Person} that we are building.
+     * and set it to the {@code Client} that we are building.
      */
     public ClientBuilder withAppointments(String ... appointments) {
         this.appointments = SampleDataUtil.getAppointmentSet(appointments);

@@ -25,9 +25,9 @@ import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
-import seedu.fitbook.testutil.ClientBuilder;
-import seedu.fitbook.testutil.ClientUtil;
-import seedu.fitbook.testutil.EditClientDescriptorBuilder;
+import seedu.fitbook.testutil.client.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientUtil;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 
 public class FitBookParserTest {
 
