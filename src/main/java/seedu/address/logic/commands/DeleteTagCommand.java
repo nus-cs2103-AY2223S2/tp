@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete tag";
+    public static final String COMMAND_WORD = "delete_tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete tag from the person identified by the index used in the displayed person list.\n"
@@ -45,14 +45,14 @@ public class DeleteTagCommand extends Command {
 
         Person deleteFromPerson = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTag(deleteFromPerson, tagToDelete);
-        return new CdeleteandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagCommand // instanceof handles nulls
-                && targetIndex.equals(((TagCommand) other).targetIndex) && tagToDelete.equals(((TagCommand) other).tagToDelete));
+                || (other instanceof DeleteTagCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteTagCommand) other).targetIndex) && tagToDelete.equals(((DeleteTagCommand) other).tagToDelete));
     }
 
 }

@@ -65,7 +65,7 @@ public class Person {
      * @param toDelete the tag to deleted from the person.
      */
     public void deleteTag(Tag toDelete) {
-        tags.delete(toDelete);
+        tags.remove(toDelete);
     }
     
     /**
