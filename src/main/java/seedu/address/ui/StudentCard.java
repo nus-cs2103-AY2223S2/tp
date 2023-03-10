@@ -9,6 +9,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
+import seedu.address.ui.detail.HomeworkContent;
+import seedu.address.ui.detail.LessonsContent;
+import seedu.address.ui.detail.ProfileContent;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -69,7 +72,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private void handleViewProfileClick() {
         mainWindow.setDetailedHeaderBar(String.format("Student Profile: %s", student.getName().fullName));
-        mainWindow.setDetailedInfoSection(student.toString());
+        mainWindow.setDetailedContent(new ProfileContent(student));
     }
 
     /**
@@ -77,21 +80,19 @@ public class StudentCard extends UiPart<Region> {
      */
     private void handleViewHomeworkClick() {
         mainWindow.setDetailedHeaderBar(String.format("Homework List: %s", student.getName().fullName));
-        mainWindow.setDetailedInfoSection(student.getHomeworkList().toString());
+        mainWindow.setDetailedContent(new HomeworkContent(student));
     }
 
     /**
      * Handles the view student lessons button click event
-     *
      */
     private void handleViewLessonsClick() {
         mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s", student.getName().fullName));
-        mainWindow.setDetailedInfoSection(student.getLessonsList().toString());
+        mainWindow.setDetailedContent(new LessonsContent(student));
     }
 
     private void handleViewExamsClick() {
         mainWindow.setDetailedHeaderBar(String.format("Exams List: %s", student.getName().fullName));
-        mainWindow.setDetailedInfoSection("Coming Soon!");
     }
 
     @Override

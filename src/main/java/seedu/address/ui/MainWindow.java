@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -204,13 +205,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Sets the detailed info section to display the given text.
-     *
-     * @param textToDisplay the text to display
-     */
-    public void setDetailedInfoSection(String textToDisplay) {
-        detailedInfoRegion.setDetailedInfoSection(textToDisplay);
+    public void setDetailedContent(UiPart<Region> detailedContent) {
+        detailedInfoRegion.setDetailedContent(detailedContent);
     }
 
     /**

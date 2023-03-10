@@ -13,8 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="TutorPro" minWidth="950" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -28,6 +26,7 @@
         <URL value="@stylesheet/MenuBar.css" />
         <URL value="@stylesheet/StudentList.css" />
         <URL value="@stylesheet/CommandBox.css" />
+        <URL value="@stylesheet/DetailedInfoRegion.css" />
       </stylesheets>
 
       <VBox minWidth="1200" prefHeight="1000">

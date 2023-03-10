@@ -41,8 +41,8 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-control-inner-background: #f7f7f7;
+    -fx-background-color: #f7f7f7;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -79,7 +79,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#f7f7f7, 20%);
 }
 
 .list-cell {
@@ -103,6 +103,8 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: black;
+    -fx-border-style: solid none solid none;
+    -fx-border-radius: 2;
     -fx-border-width: 1;
 }
 
@@ -113,37 +115,37 @@
 .cell_big_label {
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 16px;
-    -fx-text-fill: #1d1d1d;
+    -fx-text-fill: #f7f7f7;
 }
 
 .cell_small_label {
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 13px;
-    -fx-text-fill: #1d1d1d;
+    -fx-text-fill: #f7f7f7;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#f7f7f7, 20%);
 }
 
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#f7f7f7, 30%);
+    -fx-border-color: derive(#f7f7f7, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#f7f7f7, 30%);
 }
 
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #f7f7f7;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #f7f7f7;
 }
 
 .dialog-pane > *.label.content {
@@ -153,7 +155,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#f7f7f7, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
