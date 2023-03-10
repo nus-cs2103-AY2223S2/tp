@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final UniquePolicyList policyList;
 
     // Data fields
     private final Address address;
@@ -27,12 +29,13 @@ public class Client {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, UniquePolicyList policyList, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.policyList = policyList;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +54,11 @@ public class Client {
     public Address getAddress() {
         return address;
     }
+
+    public UniquePolicyList getPolicyList() {
+        return policyList;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -92,13 +100,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getPolicyList().equals(getPolicyList())
                 && otherClient.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, policyList, tags);
     }
 
     @Override
@@ -110,7 +119,9 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; PolicyList: ")
+                .append(getPolicyList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

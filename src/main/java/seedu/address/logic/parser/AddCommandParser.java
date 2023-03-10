@@ -17,6 +17,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,9 +43,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        UniquePolicyList policyList = new UniquePolicyList();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Client client = new Client(name, phone, email, address, tagList);
+        Client client = new Client(name, phone, email, address, policyList, tagList);
 
         return new AddCommand(client);
     }
