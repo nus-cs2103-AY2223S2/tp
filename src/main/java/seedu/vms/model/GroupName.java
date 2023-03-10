@@ -1,5 +1,6 @@
 package seedu.vms.model;
 
+import java.text.Collator;
 import java.util.Objects;
 
 import seedu.vms.commons.util.AppUtil;
@@ -14,6 +15,8 @@ public class GroupName implements Comparable<GroupName> {
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}\\-_ ]{1,30}";
 
+    private final Collator collator;
+
     private final String name;
 
 
@@ -26,6 +29,8 @@ public class GroupName implements Comparable<GroupName> {
         Objects.requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
         this.name = name.strip();
+        collator = Collator.getInstance();
+        collator.setStrength(Collator.TERTIARY);
     }
 
     public static boolean isValidName(String name) {
@@ -40,7 +45,7 @@ public class GroupName implements Comparable<GroupName> {
 
     @Override
     public int compareTo(GroupName other) {
-        return name.compareTo(other.name);
+        return collator.compare(name, other.name);
     }
 
 
