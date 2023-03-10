@@ -1,16 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-// import static seedu.address.model.ModelNew.PREDICATE_SHOW_ALL_OPENINGS;
-
-import seedu.address.model.Model;
+import static seedu.address.model.ModelNew.PREDICATE_SHOW_ALL_OPENINGS;
+import seedu.address.model.ModelNew;
 
 /**
  * Lists all openings in the address book to the user.
  */
 
-public class NewListCommand extends Command {
+public class NewListCommand extends CommandNew {
 
     public static final String COMMAND_WORD = "list";
 
@@ -18,18 +16,10 @@ public class NewListCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResultNew execute(ModelNew model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        // model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-//    @Override
-//    public CommandResult execute(ModelNew model) {
-//        requireNonNull(model);
-//        model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
-//         return new CommandResult(MESSAGE_SUCCESS);
-//     }
+        model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+         return new CommandResultNew(MESSAGE_SUCCESS);
+     }
 
 }
