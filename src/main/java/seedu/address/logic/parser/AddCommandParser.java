@@ -3,20 +3,18 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-    public static final String VALID_PHONE_PLACEHOLDER = "11111111";
-    public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
+    // public static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    // public static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -32,8 +30,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        CompanyName companyName = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
-        JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get());
+        CompanyName companyName = ParserUtil.parseCompanyName
+                                                (argMultimap.getValue(PREFIX_COMPANY_NAME).orElse(null));
+        JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).orElse(null));
 
         InternshipApplication application = new InternshipApplication(companyName, jobTitle);
 
