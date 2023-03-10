@@ -121,31 +121,31 @@ Examples:
 
 ### Locating persons by name or tag: `find`
 
-Finds persons stored in address book based on the given keywords or tag.
+Finds persons stored in address book based on the given keywords for the respective fields.
 
-Format: `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`
+Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
 
-* The search for both keyword and tag is case-insensitive. 
-  * e.g `hans` will match `Hans`
-  * e.g `t/cs2103t` will match `t/CS2103T`
-* The order of the keywords and tags does not matter. 
-  * e.g. `Hans Bo` will match `Bo Hans`
-  * e.g. `Hans t/cs2103t Bo` will match `Bo Hans t/cs2103t`
-* Only full words will be matched 
+* The search for keyword(s) is case-insensitive. 
+  * e.g `find n/hans` will match `find n/Hans`
+  * e.g `find t/cs2103t` will match `find t/CS2103T`
+* There can be one or more keywords for each field. 
+  * e.g. `find n/Hans Bo` will match all persons whose name contains either `Hans` or `Bo`
+* The order of the keyword(s) and field(s) does not matter.
+  * e.g. `find n/Hans Bo` will match `find n/Bo Hans`
+  * e.g. `find n/Hans Bo t/cs2103t` will match `find t/cs2103t n/Hans Bo`
+* Only full words will be matched.
   * e.g. `Han` will not match `Hans`
   * e.g. `t/2103t` will not match `t/cs2103t` 
-* Persons matching at least one keyword will be returned (i.e. `OR` search). 
-  * e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If tags are used, person will match as long as one of its tags matches. 
-  (Matched person can have more tags than the tags specified.)
-  * e.g. `t/cs2103t t/cs2040` can return persons with only `t/cs2103t`
-  * e.g. `t/cs2103t` matches not just persons with only `t/cs2103t` but also both `t/cs2103t` and `t/cs2040`
-* Only the name is searched if searched without tag (i.e. `[t/TAG]`)
-* If both keywords and tags are provided, it will search for persons matching at least one keyword and contains all the tags specified
+* Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search). 
+  * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java`
+  * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
+* If no field is specified, zero persons will be returned.
+
 
   Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
