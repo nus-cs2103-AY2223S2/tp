@@ -1,6 +1,7 @@
 package seedu.address.model.client.policy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -43,10 +44,20 @@ class PolicyTest {
         PolicyName name1 = new PolicyName("Health");
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
+        Premium premium2 = new Premium("150");
         Frequency frequency1 = new Frequency("quarterly");
+        Frequency frequency2 = new Frequency("yearly");
         Policy policy1 = new Policy(name1, date1, premium1, frequency1);
+        Policy policy2 = new Policy(name1, date1, premium2, frequency1);
+        Policy policy3 = new Policy(name1, date1, premium2, frequency2);
 
         assertTrue(policy.isSamePolicy(policy1));
+        assertTrue(policy.equals(policy1));
+        assertFalse(policy.isSamePolicy(policy2));
+        assertFalse(policy.equals(policy2));
+        assertFalse(policy2.isSamePolicy(policy3));
+        assertFalse(policy2.equals(policy3));
+
     }
 
     @Test

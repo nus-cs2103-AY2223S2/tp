@@ -24,7 +24,6 @@ class UniquePolicyListTest {
     private Policy policy1 = new Policy(name1, date, premium, frequency);
     private UniquePolicyList list = new UniquePolicyList();
 
-
     @Test
     void contains() {
         assertFalse(list.contains(policy));
@@ -56,7 +55,6 @@ class UniquePolicyListTest {
         assertThrows(PolicyNotFoundException.class, () -> list.setPolicy(policy1, policy1));
     }
 
-
     @Test
     void remove() {
         list.add(policy);
@@ -73,6 +71,7 @@ class UniquePolicyListTest {
     void testUnique() {
         List<Policy> list1 = new ArrayList<>();
         list1.add(policy);
+        list1.add(policy1);
         assertTrue(UniquePolicyList.policiesAreUnique(list1));
         list1.add(policy);
         assertFalse(UniquePolicyList.policiesAreUnique(list1));
@@ -81,5 +80,7 @@ class UniquePolicyListTest {
     @Test
     void equalsTest() {
         assertTrue(list.equals(list));
+        assertFalse(list.equals(null));
+        assertFalse(list.equals(4));
     }
 }

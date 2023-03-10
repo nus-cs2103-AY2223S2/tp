@@ -78,15 +78,18 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
     }
 
+    /*
     public void setPolicies(UniquePolicyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+    */
 
-    /**
+
+    /*
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
-     */
+     *
     public void setPolicies(List<Policy> policies) {
         requireAllNonNull(policies);
         if (!policiesAreUnique(policies)) {
@@ -94,14 +97,16 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
         internalList.setAll(policies);
     }
+    */
 
-
+    /*
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
+     *
     public ObservableList<Policy> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+    */
 
     @Override
     public Iterator<Policy> iterator() {
