@@ -18,7 +18,6 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     private final Repository<T> repo;
     private final FilteredList<T> itemFilteredList;
 
-
     /**
      * Initializes an empty RepositoryModelManager
      */

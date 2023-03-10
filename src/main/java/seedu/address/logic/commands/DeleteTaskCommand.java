@@ -35,7 +35,6 @@ public class DeleteTaskCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
         List<Task> lastShownList = officeConnectModel.getTaskModelManager().getFilteredItemList();
 
-        System.out.println(lastShownList.size());
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
