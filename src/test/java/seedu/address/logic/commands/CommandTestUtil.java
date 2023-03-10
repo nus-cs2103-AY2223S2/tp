@@ -99,10 +99,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_EVENT_TAG_CARNIVAL).build();
+                .withTags().withEventIndexTags(VALID_EVENT_INDEX_TAG_CARNIVAL).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_EVENT_TAG_SPORTS_DAY, VALID_EVENT_TAG_CARNIVAL).build();
+                .withTags().withEventIndexTags(VALID_EVENT_INDEX_TAG_SPORTS_DAY, VALID_EVENT_INDEX_TAG_CARNIVAL).build();
     }
 
     /**

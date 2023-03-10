@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_WEDDING_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_INDEX_TAG_WEDDING_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
@@ -52,7 +52,8 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_EVENT_TAG_WEDDING_DINNER).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags()
+                .withEventIndexTags(VALID_EVENT_INDEX_TAG_WEDDING_DINNER).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

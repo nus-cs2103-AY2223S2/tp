@@ -60,6 +60,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
             if (addressBook.hasEvent(event)) {
@@ -67,6 +68,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addEvent(event);
         }
+
         return addressBook;
     }
 
