@@ -8,6 +8,7 @@ import seedu.address.logic.commands.patientcommands.ClearCommand;
 import seedu.address.logic.commands.patientcommands.DeleteCommand;
 import seedu.address.logic.commands.patientcommands.FindCommand;
 import seedu.address.logic.commands.patientcommands.ListCommand;
+import seedu.address.logic.commands.patientcommands.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -32,6 +33,8 @@ public class PatientParser {
             return new DeleteCommandParser().parse(arguments);
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case ClearCommand.COMMAND_WORD:
