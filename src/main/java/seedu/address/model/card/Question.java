@@ -1,28 +1,29 @@
-package seedu.address.model.powercard;
+package seedu.address.model.card;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Powercard's Question in the deck.
+ * Represents a Card's question in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuestion(String)}
  */
 public class Question {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Questions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Question should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the question must not be a whitespace,
+     * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private String question;
+    public final String question;
 
     /**
      * Constructs a {@code Question}.
      *
-     * @param question A valid question.
+     * @param question A valid name.
      */
     public Question(String question) {
         requireNonNull(question);
@@ -31,22 +32,28 @@ public class Question {
     }
 
     /**
-     * Returns true if a given string is a valid question.
+     * Returns true if a given string is a valid name.
      */
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    @Override
+    public String toString() {
+        return question;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Question // instanceof handles nulls
-                && this.question.equals(((Question) other).question)); // state check
+                && question.equals(((Question) other).question)); // state check
     }
 
     @Override
-    public String toString() {
-        return this.question;
+    public int hashCode() {
+        return question.hashCode();
     }
 
 }

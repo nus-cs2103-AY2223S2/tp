@@ -1,26 +1,26 @@
-package seedu.address.model.powercard;
+package seedu.address.model.card;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Powercard's Answer in the deck.
+ * Represents a Card's answer in the deck.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAnswer(String)}
  */
 public class Answer {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Answers should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Answers can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the answer must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private String answer;
+    public final String answer;
 
     /**
-     * Constructs a {@code Answer}.
+     * Constructs an {@code Answer}.
      *
      * @param answer A valid answer.
      */
@@ -31,22 +31,27 @@ public class Answer {
     }
 
     /**
-     * Returns true if a given string is a valid answer.
+     * Returns true if a given string is a valid email.
      */
     public static boolean isValidAnswer(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Answer // instanceof handles nulls
-                && this.answer.equals(((Answer) other).answer)); // state check
+    public String toString() {
+        return answer;
     }
 
     @Override
-    public String toString() {
-        return this.answer;
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Answer // instanceof handles nulls
+                && answer.equals(((Answer) other).answer)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return answer.hashCode();
     }
 
 }

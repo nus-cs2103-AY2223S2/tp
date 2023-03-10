@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.card.Answer;
+import seedu.address.model.card.Email;
+import seedu.address.model.card.Phone;
+import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -68,15 +68,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Question expectedQuestion = new Question(VALID_NAME);
+        assertEquals(expectedQuestion, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        Question expectedQuestion = new Question(VALID_NAME);
+        assertEquals(expectedQuestion, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -114,15 +114,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        Answer expectedAnswer = new Answer(VALID_ADDRESS);
+        assertEquals(expectedAnswer, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        Answer expectedAnswer = new Answer(VALID_ADDRESS);
+        assertEquals(expectedAnswer, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test

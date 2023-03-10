@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.card;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,34 +10,34 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Card in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Card {
 
     // Identity fields
-    private final Name name;
+    private final Question question;
     private final Phone phone;
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Card(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(question, phone, email, answer, tags);
+        this.question = question;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.answer = answer;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Question getQuestion() {
+        return question;
     }
 
     public Phone getPhone() {
@@ -48,8 +48,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Answer getAddress() {
+        return answer;
     }
 
     /**
@@ -61,16 +61,16 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same question.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameCard(Card otherCard) {
+        if (otherCard == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherCard != null
+                && otherCard.getQuestion().equals(getQuestion());
     }
 
     /**
@@ -83,33 +83,33 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Card)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Card otherCard = (Card) other;
+        return otherCard.getQuestion().equals(getQuestion())
+                && otherCard.getPhone().equals(getPhone())
+                && otherCard.getEmail().equals(getEmail())
+                && otherCard.getAddress().equals(getAddress())
+                && otherCard.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(question, phone, email, answer, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getQuestion())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Answer: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();

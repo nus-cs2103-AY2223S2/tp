@@ -4,11 +4,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.powercard.Answer;
-import seedu.address.model.powercard.PowerCard;
-import seedu.address.model.powercard.Question;
-import seedu.address.model.powerdeck.PowerDeck;
-import seedu.address.model.powerdeck.ReadOnlyPowerDeck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +12,7 @@ import seedu.address.model.tag.Tag;
 public class SampleCardUtil {
 
     // TODO: add tag to each card
-
+    /*
     public static PowerCard[] getSampleCards() {
         return new PowerCard[] {
             new PowerCard(new Question("Who let the dogs out?"), new Answer("Woof Woof")),
@@ -33,6 +28,7 @@ public class SampleCardUtil {
         }
         return sampleDeck;
     }
+     */
 
     /**
      * Returns a tag set containing the list of strings given.

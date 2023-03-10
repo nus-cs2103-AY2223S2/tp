@@ -2,13 +2,10 @@ package seedu.address.logic.commands.deckcommands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.DeckModel;
-import seedu.address.model.powerdeck.PowerDeck;
+import seedu.address.model.Model;
 
 /**
  * Selects a deck to operate on.
@@ -23,7 +20,7 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
     private final Index deckIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Card}
      */
     public SelectDeckCommand(Index idx) {
         requireNonNull(idx);
@@ -39,10 +36,11 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult execute(DeckModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<PowerDeck> deckList = model.getDecks();
+        /*
+        List<Deck> deckList = model.getDecks(); // TODO implement getDecks in Model
         boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
         if (isIndexOutOfBound) {
             throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
@@ -50,6 +48,8 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
 
         model.selectDeck(deckIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck()));
+         */
+        return new CommandResult("test");
     }
 
     @Override
