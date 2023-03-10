@@ -1,12 +1,10 @@
 package seedu.vms.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.vms.model.patient.Patient;
 
 /**
@@ -39,9 +37,9 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label bloodType;
     @FXML
-    private FlowPane allergies;
+    private VBox allergies;
     @FXML
-    private FlowPane vaccines;
+    private VBox vaccines;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -54,12 +52,8 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         dob.setText(patient.getDob().toString());
         bloodType.setText(patient.getBloodType().toString());
-        patient.getAllergy().stream()
-                .sorted(Comparator.comparing(allergy -> allergy.toString()))
-                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.toString())));
-        patient.getVaccine().stream()
-                .sorted(Comparator.comparing(vaccine -> vaccine.toString()))
-                .forEach(vaccine -> vaccines.getChildren().add(new Label(vaccine.toString())));
+        allergies.getChildren().add(new TagFlowView(patient.getAllergyAsString()));
+        vaccines.getChildren().add(new TagFlowView(patient.getVaccineAsString()));
     }
 
     @Override

@@ -74,6 +74,32 @@ public class Patient {
     }
 
     /**
+     * Returns an immutable allergies set,
+     * which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<String> getAllergyAsString() {
+        Set<String> allergyStrings = new HashSet<>();
+        for (Allergy allergy : allergies) {
+            allergyStrings.add(allergy.toString());
+        }
+        return Collections.unmodifiableSet(allergyStrings);
+    }
+
+    /**
+     * Returns an immutable vaccine set,
+     * which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<String> getVaccineAsString() {
+        Set<String> vaccineStrings = new HashSet<>();
+        for (Vaccine vaccine : vaccines) {
+            vaccineStrings.add(vaccine.toString());
+        }
+        return Collections.unmodifiableSet(vaccineStrings);
+    }
+
+    /**
      * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.
      */
