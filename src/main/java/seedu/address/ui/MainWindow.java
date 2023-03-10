@@ -156,6 +156,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Selects a client based on user input.
+     */
+    public void handleSelect(Client targetClient) throws CommandException {
+        // TODO: Select command functionality
+        if (targetClient == null) {
+            throw new CommandException("Selection Error: No client selected");
+        }
+        ClientCard selectedClientCard = new ClientCard(targetClient, 0);
+        clientLabel.getChildren().remove(0);
+        clientLabel.getChildren().add(selectedClientCard.getRoot());
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -195,8 +208,14 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String feedbackToUser = commandResult.getFeedbackToUser();
+            Client targetClient = commandResult.getTargetClient();
+            logger.info("Result: " + feedbackToUser);
+            resultDisplay.setFeedbackToUser(feedbackToUser);
+
+            if (commandResult.isSelect()) {
+                handleSelect(targetClient);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
