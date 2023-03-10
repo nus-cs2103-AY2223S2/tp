@@ -37,11 +37,11 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
 Adds a person to the ExecutivePro database.
 
-Format: `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 
 Examples:
-* `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add 1 n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02`
 
 
 ### Listing all persons : `list`
@@ -83,7 +83,7 @@ Deletes the specified employee from the ExecutivePro database.
 Format: `delete EMPLOYEE_ID`
 
 * Deletes the details of the employee with the specific `EMPLOYEE_ID`.
-* The  EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
+* The EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
 * The EMPLOYEE_ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
