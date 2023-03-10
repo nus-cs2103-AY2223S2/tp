@@ -20,6 +20,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final VersionedSocket versionedSocket;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
 
@@ -32,6 +33,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.versionedSocket = new VersionedSocket(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -111,6 +113,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void commitSocket() {
+        versionedSocket.commit(addressBook);
+    }
+
+    @Override
+    public void undoSocket() {
+        versionedSocket.undo();
+    }
+
+    @Override
+    public void redoSocket() {
+        versionedSocket.redo();
+    }
+
+    @Override
+    public boolean canUndoSocket() {
+        return versionedSocket.canUndoSocket();
+    }
+
+    @Override
+    public boolean canRedoSocket() {
+        return versionedSocket.canRedoSocket();
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
