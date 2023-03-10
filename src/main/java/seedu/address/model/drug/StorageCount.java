@@ -30,14 +30,21 @@ public class StorageCount {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Decreases storage count by {@code amount}
+     * @param amount the decrease value
+     */
     public void decrStorage(Integer amount) {
-        if(amount > count) {
+        if (amount > count) {
             count = 0;
         } else {
             count -= amount;
         }
     }
-
+    /**
+     * Increases storage count by {@code amount}
+     * @param amount the increase value
+     */
     public void incStorage(Integer amount) {
         count += amount;
     }

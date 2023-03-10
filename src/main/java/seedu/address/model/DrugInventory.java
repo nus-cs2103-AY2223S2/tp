@@ -21,6 +21,9 @@ public class DrugInventory implements ReadOnlyDrugInventory {
 
     public DrugInventory() {}
 
+    /**
+     * creates a DrugInventory using the Drugs in the {@code toBeCopied}
+     */
     public DrugInventory(ReadOnlyDrugInventory toBeCopied) {
         this();
         resetData(toBeCopied);

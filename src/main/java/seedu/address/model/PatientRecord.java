@@ -13,7 +13,7 @@ import seedu.address.model.readonly.ReadOnlyPatientRecord;
  * Wraps all data at the Patient Record level
  */
 public class PatientRecord implements ReadOnlyPatientRecord {
-   private final UniquePatientList patients;
+    private final UniquePatientList patients;
 
     {
         patients = new UniquePatientList();
@@ -21,6 +21,9 @@ public class PatientRecord implements ReadOnlyPatientRecord {
 
     public PatientRecord() {}
 
+    /**
+     * creates a PatientRecord using the Patients in the {@code toBeCopied}
+     */
     public PatientRecord(ReadOnlyPatientRecord toBeCopied) {
         this();
         resetData(toBeCopied);

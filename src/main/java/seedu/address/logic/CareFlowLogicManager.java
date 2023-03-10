@@ -1,5 +1,9 @@
 package seedu.address.logic;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -15,16 +19,14 @@ import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.storage.CareFlowStorage;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
-
-public class CareFlowLogicManager implements CareFlowLogic{
+/**
+ * The main LogicManager of the CareFlow application.
+ */
+public class CareFlowLogicManager implements CareFlowLogic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(CareFlowLogicManager.class);
 
     private final CareFlowModel model;
-//    private final Storage storage;
     private final CareFlowStorage storage;
     private final CareFlowParser careFlowParser;
 

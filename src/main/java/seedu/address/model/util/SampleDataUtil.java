@@ -79,23 +79,23 @@ public class SampleDataUtil {
     }
     public static Drug[] getSampleDrugs() {
         return new Drug[] {
-                new Drug(new TradeName("Panadol"), new ActiveIngredient("Paracetamol"), new Direction("Adults and "
-                        + "children over 12 years: 1-2 capsules taken every 4-6 hours as required"), new Purpose(
-                                "relief of headache, pain and fever"),new SideEffect("Skin rash or itching. Breathing"
-                        + " problems or swelling of lips, throat or face. Mouth ulcers. Unexplained bruising or "
-                        + "bleeding."), new StorageCount("30")),
-                new Drug(new TradeName("Lipitor"), new ActiveIngredient("Atorvastatin"), new Direction("10 mg once a "
-                        + "day in adults and children aged 10"), new Purpose("Prevent cardiovascular disease in those at "
-                        + "high risk and to treat abnormal lipid levels."), new SideEffect("Joint pain, diarrhea, "
-                        + "heartburn, nausea, and muscle pains"), new StorageCount("20")),
-                new Drug(new TradeName("Xanax"), new ActiveIngredient("Alprazolam"), new Direction("varies"),
-                        new Purpose("Treat anxiety and panic disorders."), new SideEffect("Drowsiness, dizziness, "
-                        + "increased saliva production, or change in sex drive/ability may occur."),
-                        new StorageCount("10")),
-                new Drug(new TradeName("Ultram"), new ActiveIngredient("Tramadol"), new Direction("Take every 4 to 6 "
-                        + "hours as needed for pain relief"), new Purpose("Help relieve moderate to moderately "
-                        + "severe pain."), new SideEffect("Nausea, vomiting, constipation, lightheadedness, "
-                        + "dizziness, drowsiness, or headache may occur."), new StorageCount("17"))
+            new Drug(new TradeName("Panadol"), new ActiveIngredient("Paracetamol"), new Direction("Adults and "
+                    + "children over 12 years: 1-2 capsules taken every 4-6 hours as required"), new Purpose(
+                            "relief of headache, pain and fever"),new SideEffect("Skin rash or itching. Breathing"
+                    + " problems or swelling of lips, throat or face. Mouth ulcers. Unexplained bruising or "
+                    + "bleeding."), new StorageCount("30")),
+            new Drug(new TradeName("Lipitor"), new ActiveIngredient("Atorvastatin"), new Direction("10 mg once a "
+                    + "day in adults and children aged 10"), new Purpose("Prevent cardiovascular disease in those at "
+                    + "high risk and to treat abnormal lipid levels."), new SideEffect("Joint pain, diarrhea, "
+                    + "heartburn, nausea, and muscle pains"), new StorageCount("20")),
+            new Drug(new TradeName("Xanax"), new ActiveIngredient("Alprazolam"), new Direction("varies"),
+                    new Purpose("Treat anxiety and panic disorders."), new SideEffect("Drowsiness, dizziness, "
+                    + "increased saliva production, or change in sex drive/ability may occur."),
+                    new StorageCount("10")),
+            new Drug(new TradeName("Ultram"), new ActiveIngredient("Tramadol"), new Direction("Take every 4 to 6 "
+                    + "hours as needed for pain relief"), new Purpose("Help relieve moderate to moderately "
+                    + "severe pain."), new SideEffect("Nausea, vomiting, constipation, lightheadedness, "
+                    + "dizziness, drowsiness, or headache may occur."), new StorageCount("17"))
         };
     }
 
