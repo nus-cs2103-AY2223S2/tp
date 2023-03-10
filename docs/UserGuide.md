@@ -127,6 +127,16 @@ Format: `p delete -in PATIENT_INDEX`
 Example:
 * list followed by p delete -in 2 will delete the 2nd person in the patient list.
 
+### Update a patient by name: `p update`
+
+Edits an existing patient in the careflow.
+
+Format: `p update -n PATIENT_NAME -ph PATIENT_PHONE_NUMBER -em PATIENT_EMAIL -ad PATIENT_ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic PATIENT_IC -da PATIENT_DRUG_ALLERGY -ec EMERGENCY_CONTACT_NUMBER`
+
+Example:
+* p update John -ph 91234567 -em johndoe@example.com -ec 81234567 Edits the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 81234567 respectively.
+* p update Bety n/Betsy Crower -da Aspirin Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
+
 
 ### Add a Drug entry: `d add`
 Adds a drug entry to the list of drugs.

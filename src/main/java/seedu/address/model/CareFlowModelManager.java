@@ -29,7 +29,6 @@ public class CareFlowModelManager implements CareFlowModel {
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Drug> filteredDrugs;
 
-
     /**
      * Initializes a CareFlowModelManager with the given patientRecord, drugInventory and userPrefs.
      * @param patientRecord patient records
@@ -138,16 +137,6 @@ public class CareFlowModelManager implements CareFlowModel {
     @Override
     public void deleteDrug(Drug target) {
         careFlow.removeDrug(target);
-    }
-
-    @Override
-    public void decrDrugStorageBy(Drug target, int amount) {
-        // to be implemented ltr
-    }
-
-    @Override
-    public void incrDrugStorageBy(Drug target, int amount) {
-        // to be implemented ltr
     }
 
     @Override

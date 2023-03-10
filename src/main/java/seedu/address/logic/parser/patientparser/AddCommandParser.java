@@ -54,12 +54,13 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_DRUG_ALLERGY,
                         PREFIX_EMERGENCY_CONTACT_NUMBER
                         );
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DOB, PREFIX_GENDER, PREFIX_IC,
                 PREFIX_DRUG_ALLERGY, PREFIX_EMERGENCY_CONTACT_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    seedu.address.logic.commands.AddCommand.MESSAGE_USAGE));
+                    seedu.address.logic.commands.patientcommands.AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

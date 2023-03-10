@@ -103,16 +103,6 @@ public interface CareFlowModel {
     void deleteDrug(Drug target);
 
     /**
-     * Decrease the drug storage count by the given amount.
-     */
-    void decrDrugStorageBy(Drug target, int amount);
-
-    /**
-     * Increase the drug storage count by the given amount.
-     */
-    void incrDrugStorageBy(Drug target, int amount);
-
-    /**
      * Adds the given patient.
      * {@code patient} must not already exist in the patient record.
      */
