@@ -4,6 +4,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -26,6 +27,7 @@ public class Student extends Person {
     private Attendance attendance;
     private Homework homework;
     private Test test;
+    private Comment comment;
 
     /**
      * Returns a Student object that stores information about the student particulars.
@@ -48,7 +50,7 @@ public class Student extends Person {
      */
     public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
                    Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
-                   Homework homework, Test test, Set<Tag> tags) {
+                   Homework homework, Test test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
@@ -60,6 +62,7 @@ public class Student extends Person {
         this.attendance = attendance;
         this.homework = homework;
         this.test = test;
+        this.comment = comment;
     }
 
     public IndexNumber getIndexNumber() {
@@ -82,6 +85,18 @@ public class Student extends Person {
     }
     public StudentClass getStudentClass() {
         return sc;
+    }
+    public Attendance getAttendance() {
+        return attendance;
+    }
+    public Homework getHomework() {
+        return homework;
+    }
+    public Test getTest() {
+        return test;
+    }
+    public Comment getComment() {
+        return comment;
     }
 
     @Override
@@ -130,6 +145,7 @@ public class Student extends Person {
                 .append(getPhone())
                 .append("; CCA: ")
                 .append(getCca());
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

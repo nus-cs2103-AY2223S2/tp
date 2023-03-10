@@ -67,6 +67,9 @@ public class ArgumentMultimap {
             case "test/":
                 Optional<String> missingTest = Optional.of("Insert student test here!");
                 return missingTest;
+            case "com/":
+                Optional<String> missingComment = Optional.of("Insert student comment here!");
+                return missingComment;
             default:
                 List<String> values = getAllValues(prefix);
                 return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));

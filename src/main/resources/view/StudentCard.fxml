@@ -67,6 +67,10 @@
                 <Text text = "CCA:    " fill="burlywood" />
                 <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
             </HBox>
+            <HBox>
+                <Text text = "Comments:    " fill="burlywood" />
+                <Label fx:id="comment" styleClass="cell_small_label" text="\$cca" />
+            </HBox>
         </VBox>
     </GridPane>
 </HBox>
