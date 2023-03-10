@@ -26,10 +26,10 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with {@code state} set to
-     * {@link State#NORMAL}.
+     * {@link State#INFO}.
      */
     public CommandResult(String message, boolean showHelp, boolean exit) {
-        this(message, showHelp, exit, State.NORMAL);
+        this(message, showHelp, exit, State.INFO);
     }
 
 
@@ -92,5 +92,5 @@ public class CommandResult {
 
 
 
-    public static enum State {NORMAL, WARNING, SEVERE}
+    public static enum State {INFO, WARNING, ERROR}
 }

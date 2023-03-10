@@ -94,7 +94,11 @@
   -fx-padding: 5;
 }
 
+/* =========== RESULT DISPLAY ============================================== */
 
+.result-display {
+  -fx-background-color: -fx-control-inner-background;
+}
 
 
 

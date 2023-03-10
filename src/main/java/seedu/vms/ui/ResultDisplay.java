@@ -3,7 +3,6 @@ package seedu.vms.ui;
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -39,8 +38,6 @@ public class ResultDisplay extends UiPart<Region> {
 
     public void setFeedbackToUser(CommandResult commandResult) {
         requireNonNull(commandResult);
-        Label label = new Label(commandResult.getMessage());
-        label.setWrapText(true);
-        displayArea.getChildren().add(label);
+        displayArea.getChildren().add(new ResultMessageBox(commandResult).getRoot());
     }
 }

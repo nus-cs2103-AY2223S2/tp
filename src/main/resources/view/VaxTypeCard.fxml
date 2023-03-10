@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="400.0" minHeight="-Infinity" minWidth="400.0" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="5.0" minHeight="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
-      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" prefWidth="295.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" prefWidth="273.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
@@ -21,19 +21,19 @@
       <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label fx:id="titleLabel" styleClass="card-title" wrapText="true" GridPane.columnSpan="2147483647" />
+      <Label fx:id="titleLabel" maxWidth="390.0" minHeight="-Infinity" styleClass="card-title" wrapText="true" GridPane.columnSpan="2147483647" />
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="390.0" spacing="10.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
          <children>
             <HBox maxWidth="-Infinity" minWidth="-Infinity" spacing="5.0">
                <children>
                   <Label styleClass="card-attribute-label" text="Age:" />
-                  <Label fx:id="ageRangeLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="card-value-label" />
+                  <Label fx:id="ageRangeLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="145.0" styleClass="card-value-label" />
                </children>
             </HBox>
             <HBox maxWidth="-Infinity" minWidth="-Infinity" spacing="5.0">
                <children>
                   <Label styleClass="card-attribute-label" text="Spacing:" />
-                  <Label fx:id="spacingLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" styleClass="card-value-label" />
+                  <Label fx:id="spacingLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="145.0" styleClass="card-value-label" />
                </children>
             </HBox>
          </children>
@@ -41,9 +41,9 @@
       <Label styleClass="card-attribute-label" text="Group" wrapText="true" GridPane.rowIndex="2" />
       <Label minHeight="-Infinity" styleClass="card-attribute-label" text="Allergy requirements" wrapText="true" GridPane.rowIndex="3" />
       <Label minHeight="-Infinity" styleClass="card-attribute-label" text="History requirements" wrapText="true" GridPane.rowIndex="4" />
-      <VBox fx:id="groupBox" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <VBox fx:id="allergyBox" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <VBox fx:id="historyBox" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <VBox fx:id="groupBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <VBox fx:id="allergyBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <VBox fx:id="historyBox" maxWidth="-Infinity" prefWidth="305.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
