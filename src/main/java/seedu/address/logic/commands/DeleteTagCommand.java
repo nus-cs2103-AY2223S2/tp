@@ -29,6 +29,12 @@ public class DeleteTagCommand extends Command {
     private final Tag tagToDelete;
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteTagCommand to delete the specified tag from the person.
+     * 
+     * @param index The index of the person to delete the tag from.
+     * @param tag The tag to delete.
+     */
     public DeleteTagCommand(Index index, Tag tag) {
         this.tagToDelete = tag;
         this.targetIndex = index;
