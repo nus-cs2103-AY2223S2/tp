@@ -1,14 +1,14 @@
 package seedu.address.model.util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.model.FitBookExerciseRoutine;
 import seedu.address.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.address.model.routines.Exercise;
 import seedu.address.model.routines.Routine;
 import seedu.address.model.routines.RoutineName;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code FitBookExerciseRoutine} with sample data.

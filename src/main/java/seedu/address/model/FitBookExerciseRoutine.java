@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.routines.Routine;
-import seedu.address.model.routines.UniqueRoutineList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.routines.Routine;
+import seedu.address.model.routines.UniqueRoutineList;
 
 /**
  * Wraps all data at the fit-book level

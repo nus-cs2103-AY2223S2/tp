@@ -1,19 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
-import seedu.address.logic.commands.EditRoutineCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.routines.Exercise;
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
+
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditRoutineCommand;
+import seedu.address.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.routines.Exercise;
 
 /**
  * Parses input arguments and creates a new EditRoutineCommand object

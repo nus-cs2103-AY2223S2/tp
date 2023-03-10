@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
+
+import java.util.List;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddRoutineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.routines.Exercise;
 import seedu.address.model.routines.Routine;
 import seedu.address.model.routines.RoutineName;
-
-import java.util.List;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
 
 /**
  * Parses input arguments and creates a new AddRoutineCommand object

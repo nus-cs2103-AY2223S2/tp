@@ -1,5 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
+import static seedu.address.model.FitBookModel.PREDICATE_SHOW_ALL_ROUTINES;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -8,16 +18,6 @@ import seedu.address.model.FitBookModel;
 import seedu.address.model.routines.Exercise;
 import seedu.address.model.routines.Routine;
 import seedu.address.model.routines.RoutineName;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
-import static seedu.address.model.FitBookModel.PREDICATE_SHOW_ALL_ROUTINES;
 
 /**
  * Edits the details of an existing routine in the FitBook.

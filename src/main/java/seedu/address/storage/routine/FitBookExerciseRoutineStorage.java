@@ -1,11 +1,11 @@
 package seedu.address.storage.routine;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyFitBookExerciseRoutine;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyFitBookExerciseRoutine;
 
 /**
  * Represents a storage for {@link seedu.address.model.FitBookExerciseRoutine}.

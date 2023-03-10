@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.FitBookModel;
-import seedu.address.model.routines.Routine;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROUTINE;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.FitBookModel;
+import seedu.address.model.routines.Routine;
 
 /**
  * Adds a routine to the FitBook.

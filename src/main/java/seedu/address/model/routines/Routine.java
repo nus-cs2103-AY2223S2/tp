@@ -1,12 +1,10 @@
 package seedu.address.model.routines;
 
-import seedu.address.model.client.Client;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Routine in the FitBook.
@@ -46,7 +44,7 @@ public class Routine {
             return true;
         }
 
-        if (!(other instanceof Client)) {
+        if (!(other instanceof Routine)) {
             return false;
         }
 

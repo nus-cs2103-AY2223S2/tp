@@ -1,17 +1,18 @@
 package seedu.address.storage.routine;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.routines.Exercise;
-import seedu.address.model.routines.Routine;
-import seedu.address.model.routines.RoutineName;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.routines.Exercise;
+import seedu.address.model.routines.Routine;
+import seedu.address.model.routines.RoutineName;
 
 /**
  * Jackson-friendly version of {@link Routine}.
