@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 
 /**
@@ -60,5 +61,19 @@ public class UserProfilePanel extends UiPart<Region> {
         telegramHandle.setText(TELEGRAM + this.user.getTelegramHandle());
         moduleTags.setText(MODULE_TAGS + this.user.getModuleTags());
         groupTags.setText(GROUP_TAGS + this.user.getGroupTags().toString());
+    }
+
+    /**
+     * Creates a new Person profile window.
+     */
+    public UserProfilePanel(Person person) {
+        super(FXML);
+        name.setText(String.valueOf(person.getName()));
+        phone.setText(PHONE_NUMBER + person.getPhone());
+        email.setText(EMAIL + person.getEmail());
+        address.setText(ADDRESS + person.getAddress());
+        telegramHandle.setText(TELEGRAM + person.getTelegramHandle());
+        moduleTags.setText(MODULE_TAGS + person.getModuleTags());
+        groupTags.setText(GROUP_TAGS + person.getGroupTags().toString());
     }
 }

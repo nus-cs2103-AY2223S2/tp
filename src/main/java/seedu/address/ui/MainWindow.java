@@ -12,6 +12,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -144,9 +145,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            userProfilePanel = new UserProfilePanel(logic);
-            userProfilePlaceholder.getChildren().clear();
-            userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+            if (commandResult.isToShowNewPerson()) {
+                Person newPerson = commandResult.getDisplayPerson();
+                userProfilePanel = new UserProfilePanel(newPerson);
+                userProfilePlaceholder.getChildren().clear();
+                userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
