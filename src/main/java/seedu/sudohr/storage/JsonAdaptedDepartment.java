@@ -58,7 +58,8 @@ class JsonAdaptedDepartment {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DepartmentName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DepartmentName.class.getSimpleName()));
         }
         if (!DepartmentName.isValidName(name)) {
             throw new IllegalValueException(DepartmentName.MESSAGE_CONSTRAINTS);
