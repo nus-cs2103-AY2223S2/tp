@@ -45,7 +45,7 @@ SOCket is a **desktop app for NUS Software Engineering Students to manage the co
 
 **:information_source: Notes about the command format:**<br>
 
-* `INDEX` must be a positive number starting from 1 and ending with corresponding number of Person in SOCket. e.g. `1,2,...`
+* `INDEX` must be a positive integer starting from 1 and ending with corresponding number of Person in SOCket. e.g. `1,2,...`
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -161,11 +161,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Removing a person's field/attribute : `remove`
+### Removing a person's field : `remove`
 
 Removes the specific field value based on the given input
 
-Format: `remove INDEX [n/NAME] [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGUAGE] [t/TAG]...`
+Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
 
 * Removes field value of person at the specific `INDEX`.
 * Removes all the corresponding field value in respect of the `KEYWORD`.
@@ -237,7 +237,7 @@ Action | Format, Examples
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Remove** | `remove INDEX [n/NAME] [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `remove 1 t/ l/Java e/`
+**Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
