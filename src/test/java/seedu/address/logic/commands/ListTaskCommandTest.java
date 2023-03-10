@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +12,6 @@ import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.PersonTask;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
 
 /**
  * Contains integration tests (interaction with OfficeConnectModel) and unit tests for ListTaskCommand.
@@ -23,10 +23,8 @@ public class ListTaskCommandTest {
 
     @BeforeEach
     public void setUp() {
-        RepositoryModelManager<Task> sampleModelManager = new RepositoryModelManager<>(new Repository<Task>());
-        Task defaultTask = new TaskBuilder().build();
-        sampleModelManager.addItem(defaultTask);
-        model = new OfficeConnectModel(sampleModelManager, new RepositoryModelManager<>(new Repository<PersonTask>()));
+        model = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
+                new RepositoryModelManager<>(new Repository<PersonTask>()));
         expectedModel = new OfficeConnectModel(model.getTaskModelManager(),
                 new RepositoryModelManager<>(new Repository<PersonTask>()));
     }
@@ -38,10 +36,7 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        model.getTaskModelManager().addItem(TaskBuilder.ofRandomTask());
-        model.getTaskModelManager().updateFilteredItemList(x -> x.getSubject().getValue().equals("Recreation day")
-                ? true : false);
-        assertEquals(1, model.getTaskModelManager().getFilteredItemList().size());
+        showTaskAtIndex(model, INDEX_FIRST);
         assertTaskCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
