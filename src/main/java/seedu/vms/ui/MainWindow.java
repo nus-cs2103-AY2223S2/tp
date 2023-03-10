@@ -118,8 +118,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         Region resultDisplayRegion = resultDisplay.getRoot();
-        resultDisplayRegion.maxHeightProperty().bind(resultDisplayPlaceholder.heightProperty());
-        resultDisplayRegion.maxWidthProperty().bind(resultDisplayPlaceholder.widthProperty());
         resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
