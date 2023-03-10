@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Muhammad Reyaaz
 
-<img src="docs/images/arpspoofing.png" width="200px">
+<img src="images/arpspoofing.png" width="200px">
 
 [[github](https://github.com/arpspoofing)]
 [[portfolio](team/arpspoofing.md)]
@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shi Jiaao
 
-<img src="docs/images/shijiaao.png" width="200px">
+<img src="images/shijiaao.png" width="200px">
 
 [[github](https://github.com/ShiJiaAo)]
 [[portfolio](team/shijiaao.md)]
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jia Tong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jthh.png" width="200px">
 
 [[github](http://github.com/JThh)]
 [[portfolio](team/jthh.md)]
