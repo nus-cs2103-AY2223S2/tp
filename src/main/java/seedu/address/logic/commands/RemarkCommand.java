@@ -50,7 +50,7 @@ public class RemarkCommand extends Command{
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getName(), personToEdit.getType(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), remark);
 
         model.setPerson(personToEdit, editedPerson);
