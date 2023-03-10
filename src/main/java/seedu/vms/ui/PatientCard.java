@@ -52,8 +52,12 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         dob.setText(patient.getDob().toString());
         bloodType.setText(patient.getBloodType().toString());
-        allergies.getChildren().add(new TagFlowView(patient.getAllergyAsString()));
-        vaccines.getChildren().add(new TagFlowView(patient.getVaccineAsString()));
+        allergies.getChildren().add(new TagFlowView(
+                patient.getAllergyAsString(),
+                TagFlowView.STYLE_CLASS_TAG_RED));
+        vaccines.getChildren().add(new TagFlowView(
+                patient.getVaccineAsString(),
+                TagFlowView.STYLE_CLASS_TAG_GREEN));
     }
 
     @Override
