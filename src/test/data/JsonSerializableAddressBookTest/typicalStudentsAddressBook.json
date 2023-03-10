@@ -5,42 +5,49 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "studentId": "A0123456M",
+    "remark": "",
     "tagged" : [ "CS2105" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "studentId": "A7890123R",
+    "remark": "",
     "tagged" : [ "CS2105", "CS2103T" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "studentId": "A6789123H",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "studentId": "A8905678J",
+    "remark": "",
     "tagged" : [ "CS2105" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "studentId": "A3456129K",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "studentId": "A6789126Y",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "studentId": "A5678234W",
+    "remark": "",
     "tagged" : [ ]
   } ]
 }

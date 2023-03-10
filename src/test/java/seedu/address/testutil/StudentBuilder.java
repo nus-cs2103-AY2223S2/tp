@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
@@ -20,11 +21,13 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STUDENTID = "A0345678M";
+    public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private StudentId studentId;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_STUDENTID);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         studentId = studentToCopy.getStudentId();
+        remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -89,8 +94,15 @@ public class StudentBuilder {
         return this;
     }
 
-    public Student build() {
-        return new Student(name, phone, email, studentId, tags);
+    /**
+     * Sets the {@code Remark} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
     }
 
+    public Student build() {
+        return new Student(name, phone, email, studentId, remark, tags);
+    }
 }

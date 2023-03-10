@@ -21,18 +21,22 @@ public class Student {
     private final Email email;
 
     // Data fields
+
+    private final Remark remark;
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, tags);
+
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, studentId, remark, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +54,10 @@ public class Student {
 
     public StudentId getStudentId() {
         return studentId;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -110,8 +118,9 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; StudentId: ")
-                .append(getStudentId());
-
+                .append(getStudentId())
+                .append("; Remark: ")
+                .append(getRemark());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
