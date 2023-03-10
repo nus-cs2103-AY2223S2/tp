@@ -49,9 +49,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
-        List<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
+        Set<Module> moduleSet = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
 
-        Person person = new Person(name, phone, email, address, skillList, moduleList);
+        Person person = new Person(name, phone, email, address, skillList, moduleSet);
 
         return new AddCommand(person);
     }

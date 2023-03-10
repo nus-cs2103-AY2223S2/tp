@@ -2,12 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.ArrayList;
 
 import seedu.address.model.skill.Skill;
 import seedu.address.model.module.Module;
@@ -26,13 +24,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Skill> skills = new HashSet<>();
-
-    private final List<Module> modules = new ArrayList<>();
+    private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, List<Module> modules) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, Set<Module> modules) {
         requireAllNonNull(name, phone, email, address, skills, modules);
         this.name = name;
         this.phone = phone;
@@ -65,13 +62,12 @@ public class Person {
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
-
     /**
      * Returns an immutable Module List, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Module> getModules() {
-        return Collections.unmodifiableList(modules);
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
     }
 
     /**

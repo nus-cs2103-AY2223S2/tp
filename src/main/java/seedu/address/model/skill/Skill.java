@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Skill {
 
-    public static final String MESSAGE_CONSTRAINTS = "Skills names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Skills names should be ASCII characters";
+    public static final String VALIDATION_REGEX = "\\p{ASCII}+";
 
     public final String skillName;
 

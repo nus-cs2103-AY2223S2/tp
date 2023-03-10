@@ -84,4 +84,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    Person getProtagonist();
+
+    void setProtagonist(Person protagonist);
+
+    String getCurrentTab();
+
+    void setCurrentTab(String tab);
+
 }

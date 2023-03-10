@@ -137,12 +137,12 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> modules} into a {@code List<Module>}.
      */
-    public static List<Module> parseModules(Collection<String> modules) throws ParseException {
+    public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
         requireNonNull(modules);
-        final List<Module> moduleList = new ArrayList<>();
+        final Set<Module> moduleSet = new HashSet<>();
         for (String moduleName : modules) {
-            moduleList.add(parseModule(moduleName));
+            moduleSet.add(parseModule(moduleName));
         }
-        return moduleList;
+        return moduleSet;
     }
 }

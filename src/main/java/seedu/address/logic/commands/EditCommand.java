@@ -6,8 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.*;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,10 +24,9 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person in the view panel "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -44,18 +41,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -64,11 +57,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -76,6 +65,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        model.setProtagonist(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -92,7 +82,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
-        List<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
+        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills, updatedModules);
     }
@@ -111,8 +101,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
@@ -125,7 +114,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Skill> skills;
-        private List<Module> modules;
+        private Set<Module> modules;
 
         public EditPersonDescriptor() {}
 
@@ -193,8 +182,8 @@ public class EditCommand extends Command {
          * Sets {@code modules} to this object's {@code modules}.
          * A defensive copy of {@code modules} is used internally.
          */
-        public void setModules(List<Module> modules) {
-            this.modules = (modules != null) ? new ArrayList<>(modules) : null;
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
         }
 
         /**
@@ -211,8 +200,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code modules} is null.
          */
-        public Optional<List<Module>> getModules() {
-            return (modules != null) ? Optional.of(Collections.unmodifiableList(modules)) : Optional.empty();
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
         @Override
         public boolean equals(Object other) {

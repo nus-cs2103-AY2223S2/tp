@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.Module;
+    import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -115,7 +116,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
-        final List<Module> modelModules = new ArrayList<>(personModules);
+        final Set<Module> modelModules = new HashSet<>(personModules);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelSkills, modelModules);
     }
 
