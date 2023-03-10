@@ -24,7 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    protected ArrayList<Meeting> meetings;
+    private final ArrayList<Meeting> meetings;
 
     /**
      * Every field must be present and not null.
