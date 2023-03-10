@@ -1,22 +1,24 @@
 /* =============================================================================================== */
 /* FONT */
 /* =============================================================================================== */
-@font-face {
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Lexend+Deca:wght@400;500;600&display=swap');
+
+/*@font-face {
     font-family: 'Lexend Deca';
-    src: url("/fonts/LexendDeca-Regular.ttf");
+    src: url("../fonts/LexendDeca-Regular.ttf");
 }
 @font-face {
     font-family: 'Lexend Deca Medium';
-    src: url("/fonts/LexendDeca-Medium.ttf");
+    src: url("../fonts/LexendDeca-Medium.ttf");
 }
 @font-face {
     font-family: 'Lexend Deca SemiBold';
-    src: url("/fonts/LexendDeca-SemiBold.ttf");
+    src: url("../fonts/LexendDeca-SemiBold.ttf");
 }
 @font-face {
     font-family: 'Courier Prime Bold';
-    src: url("/fonts/CourierPrime-Bold.ttf");
-}
+    src: url("../fonts/CourierPrime-Bold.ttf");
+}*/
 
 .h1 {
     -fx-font-size: 24;
@@ -117,7 +119,7 @@
 #main-window {
     -fx-padding: 20;
 
-    -fx-font-family: 'Lexend Deca Medium';
+    -fx-font-family: 'Lexend Deca Medium', sans-serif;
     -fx-font-size: 12;
 
     -fx-background-color: -black;
