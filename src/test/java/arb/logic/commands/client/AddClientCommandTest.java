@@ -163,6 +163,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void markProject(Project target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Client> getFilteredClientList() {
             throw new AssertionError("This method should not be called.");
         }
