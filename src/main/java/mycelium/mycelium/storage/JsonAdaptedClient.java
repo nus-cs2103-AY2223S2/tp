@@ -93,15 +93,15 @@ class JsonAdaptedClient {
         nullCheck(email == null, Email.class.getSimpleName());
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
-
-        validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
+        if (yearOfBirth != null) {
+            validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
+        }
         final YearOfBirth modelYearOfBirth = new YearOfBirth(yearOfBirth);
-
         // TODO validityCheck for source
-
-        validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
+        if (mobileNumber != null) {
+            validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
+        }
         final Phone modelMobileNumber = new Phone(mobileNumber);
-
         return new Client(modelName,
                 modelEmail,
                 Optional.ofNullable(modelYearOfBirth),
