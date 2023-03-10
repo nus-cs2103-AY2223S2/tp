@@ -5,10 +5,14 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,7 +35,11 @@ public class MainWindow extends UiPart<Stage> {
     private CareFlowLogic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PatientDrugListPanel patientDrugListPanel;
+//    private PatientDrugListPanel patientDrugListPanel;
+
+    private PatientListPanel patientListPanel;
+    private DrugListPanel drugListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -41,14 +49,29 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
+//    @FXML
+//    private StackPane patientDrugListPanelPlaceholder;
+
     @FXML
-    private StackPane patientDrugListPanelPlaceholder;
+    private StackPane patientListPanelPlaceholder;
+
+    @FXML
+    private StackPane drugListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab patientTab;
+
+    @FXML
+    private Tab drugTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,8 +134,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        patientDrugListPanel = new PatientDrugListPanel(logic.getFilteredPatientList(), logic.getFilteredDrugList());
-        patientDrugListPanelPlaceholder.getChildren().add(patientDrugListPanel.getRoot());
+//        patientDrugListPanel = new PatientDrugListPanel(logic.getFilteredPatientList(), logic.getFilteredDrugList());
+//        patientDrugListPanelPlaceholder.getChildren().add(patientDrugListPanel.getRoot());
+
+        //make the tabPane fill its parent VBox
+        VBox.setVgrow(tabPane, Priority.ALWAYS);
+
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        drugListPanel = new DrugListPanel(logic.getFilteredDrugList());
+        drugListPanelPlaceholder.getChildren().add(drugListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,9 +197,9 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PatientDrugListPanel getPatientDrugListPanel() {
-        return patientDrugListPanel;
-    }
+//    public PatientDrugListPanel getPatientDrugListPanel() {
+//        return patientDrugListPanel;
+//    }
 
     /**
      * Executes the command and returns the result.
