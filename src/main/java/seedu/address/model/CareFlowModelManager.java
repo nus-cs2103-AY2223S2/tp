@@ -1,5 +1,12 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -9,24 +16,21 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-public class CareFlowModelManager implements CareFlowModel{
+/**
+ * Represents the in-memory model of the CareFlow data.
+ */
+public class CareFlowModelManager implements CareFlowModel {
     private static final Logger logger = LogsCenter.getLogger(CareFlowModelManager.class);
-
+    private static final String LOGGER_MESSAGE = "Initialising with patient record: %s, drug inventory: %s and user "
+            + "prefs %s";
     private final CareFlow careFlow;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Drug> filteredDrugs;
 
-    private static final String LOGGER_MESSAGE = "Initialising with patient record: %s, drug inventory: %s and user " +
-            "prefs %s";
-
+    /**
+     * Initializes a CareFlowModelManager with the given patientRecord, drugInventory and userPrefs.
+     */
     public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory,
                                 ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(drugInventory, patientRecord, userPrefs);
@@ -73,7 +77,7 @@ public class CareFlowModelManager implements CareFlowModel{
     @Override
     public void setPatientRecordFilePath(Path patientRecordFilePath) {
         requireNonNull(patientRecordFilePath);
-         userPrefs.setPatientRecordFilePath(patientRecordFilePath);
+        userPrefs.setPatientRecordFilePath(patientRecordFilePath);
     }
 
     @Override
@@ -132,22 +136,12 @@ public class CareFlowModelManager implements CareFlowModel{
     }
 
     @Override
-    public void decrDrugStorageBy(Drug target, int amount) {
-        // to be implemented ltr
-    }
-
-    @Override
-    public void incrDrugStorageBy(Drug target, int amount) {
-        // to be implemented ltr
-    }
-
-    @Override
     public void addPatient(Patient patient) {
         careFlow.addPatient(patient);
     }
 
     @Override
-    public  void addDrug(Drug drug) {
+    public void addDrug(Drug drug) {
         careFlow.addDrug(drug);
     }
 

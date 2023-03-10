@@ -67,7 +67,7 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage,userPrefs);
+        model = initModelManager(storage, userPrefs);
 
         logic = new CareFlowLogicManager(model, storage);
 
@@ -92,19 +92,19 @@ public class MainApp extends Application {
             if (patientRecordOptional.isEmpty()) {
                 logger.info("Patient data file not found. Will be starting with a sample Patient Record");
             }
-            if(drugInventoryOptional.isEmpty()) {
+            if (drugInventoryOptional.isEmpty()) {
                 logger.info("Drug data file not found. Will be starting with a sample Drug Inventory");
             }
             initialDataPatient = patientRecordOptional.orElseGet(SampleDataUtil::getSamplePatientRecord);
             initialDataDrug = drugInventoryOptional.orElseGet(SampleDataUtil::getSampleDrugInventory);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with empty Patient Record and Drug " +
-                    "Inventory");
+            logger.warning("Data file not in the correct format. Will be starting with empty Patient Record and Drug "
+                    + "Inventory");
             initialDataPatient = new PatientRecord();
             initialDataDrug = new DrugInventory();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with a empty Patient Record and " +
-                    "Drug Inventory");
+            logger.warning("Problem while reading from the file. Will be starting with a empty Patient Record and "
+                    + "Drug Inventory");
             initialDataPatient = new PatientRecord();
             initialDataDrug = new DrugInventory();
         }
