@@ -30,7 +30,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        nameCard.setText("Welcome to ExecutivePro v1.1");
+
     }
 
     /**
