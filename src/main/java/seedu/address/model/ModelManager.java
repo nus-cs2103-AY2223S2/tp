@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,10 +20,12 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Tracker tracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
 
+    private final AddressBook addressBook; // TODO: Remove this
+    private final FilteredList<Person> filteredPersons; // TODO: Remove this
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -31,8 +34,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.tracker = new Tracker(); //TODO: assign this from constructor arguments
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -66,13 +71,61 @@ public class ModelManager implements Model {
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getTrackerFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setTrackerFilePath(addressBookFilePath);
+    }
+
+    //=========== Tracker ====================================================================================
+
+    @Override
+    public void setTracker(ReadOnlyTracker tracker) {
+        this.tracker.resetData(tracker);
+    }
+
+    @Override
+    public ReadOnlyTracker getTracker() {
+        return tracker;
+    }
+
+    @Override
+    public boolean hasModule(Module module) {
+        return tracker.hasModule(module);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        tracker.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        tracker.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        tracker.setModule(target, editedModule);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
     //=========== AddressBook ================================================================================
@@ -144,7 +197,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && tracker.equals(other.tracker)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }
