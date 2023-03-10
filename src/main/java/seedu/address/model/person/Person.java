@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.score.Score;
+import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -28,6 +30,7 @@ public class Person {
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
     private final TaskList taskList = new TaskList();
+    private final ScoreList scoreList = new ScoreList();
 
     /**
      * Every field must be present and not null.
@@ -117,6 +120,34 @@ public class Person {
     public void removeTask(Task key) {
         taskList.remove(key);
     }
+
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the address book.
+     */
+    public void addScore(Score score) {
+        scoreList.add(score);
+    }
+
+    /**
+     * Replaces the given score {@code target} in the list with {@code editedScore}.
+     * {@code target} must exist in the list.
+     * The score identity of {@code editedScore} must not be the same as another existing score in the list.
+     */
+    public void setScore(Score target, Score editedScore) {
+        requireNonNull(editedScore);
+
+        scoreList.setScore(target, editedScore);
+    }
+
+    /**
+     * Removes {@code key} from this {@code scoreList}.
+     * {@code key} must exist in the list.
+     */
+    public void removeScore(Score key) {
+        scoreList.remove(key);
+    }
+
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
