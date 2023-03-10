@@ -12,6 +12,9 @@ public class IsolatedEventList {
         this.isolatedEvents.add(newEvent);
     }
 
+    public boolean contain(IsolatedEvent event) {
+        return isolatedEvents.contains(event);
+    }
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();

@@ -59,6 +59,10 @@ public class Person {
         isolatedEventList.insert(event);
     }
 
+    public IsolatedEventList getIsolatedEventList() {
+        return isolatedEventList;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

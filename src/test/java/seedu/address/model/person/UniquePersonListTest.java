@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -168,18 +166,5 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
-    }
-    @Test
-    public void getPerson_invalidIndex() {
-        uniquePersonList.add(ALICE);
-        assertThrows(IndexOutOfBoundsException.class, () -> uniquePersonList.getPerson(INDEX_INVALID));
-    }
-
-    @Test
-    public void getPerson_validIndex() {
-        uniquePersonList.add(ALICE);
-//        Person result =
-        uniquePersonList.getPerson(INDEX_FIRST_PERSON);
-//        assertEquals(ALICE, result);
     }
 }

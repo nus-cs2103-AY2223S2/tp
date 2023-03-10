@@ -51,12 +51,4 @@ public class Index {
                 || (other instanceof Index // instanceof handles nulls
                 && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
     }
-
-    /**
-     * Get Index object in Integer.
-     * @return Integer
-     */
-    public int getIndexInInteger() {
-        return this.zeroBasedIndex;
-    }
 }

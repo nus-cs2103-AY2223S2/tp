@@ -38,11 +38,6 @@ public class IndexTest {
     }
 
     @Test
-    public void getIndexInInteger() {
-        assertEquals(1, Index.fromZeroBased(1).getIndexInInteger());
-        assertEquals(1, Index.fromOneBased(2).getIndexInInteger());
-    }
-    @Test
     public void equals() {
         final Index fifthPersonIndex = Index.fromOneBased(5);
 
