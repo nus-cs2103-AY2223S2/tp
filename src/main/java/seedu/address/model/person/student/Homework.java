@@ -20,8 +20,8 @@ public class Homework extends Assignment {
      * @param maxScore Maximum score attainable for the homework.
      * @param isDone Boolean value indicating the completion status of the homework.
      */
-    public Homework(String assignmentName, LocalDate deadline, int weightage, int maxScore, boolean isDone) {
-        super(assignmentName, deadline, weightage, maxScore);
+    public Homework(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score, boolean isDone) {
+        super(assignmentName, deadline, weightage, score, maxScore);
         this.isDone = isDone;
     }
 
@@ -36,6 +36,10 @@ public class Homework extends Assignment {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isDue() {
+        return LocalDate.now().isAfter(super.deadline);
     }
     /*
 

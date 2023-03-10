@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.Student;
 
 
@@ -48,8 +49,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONESTUDENT + "91234567 "
             + PREFIX_CCA + "Captain Ball";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New student added:";
 
     private final Student toAdd;
 
@@ -66,7 +66,7 @@ public class StudentAddCommand extends StudentCommand {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new DuplicatePersonException();
         }
 
         model.addStudent(toAdd);
