@@ -152,12 +152,12 @@ help
 #### `add` - Add a patient
 
 ```text
-patient add --name <string> [--phone <phone-number>] [--email <string>]
+patient add --name <string> --phone <phone-number> --dob <date> --bloodtype <string> --allergy <list<string>> --vaccine <list<string>>
 ```
 
 Example:
 
-* `patient add --name John Doe --phone 98765432 --email johnd@example.com`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 
 #### `delete` - Delete a patient
 
