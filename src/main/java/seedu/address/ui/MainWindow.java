@@ -163,7 +163,8 @@ public class MainWindow extends UiPart<Stage> {
         if (targetClient == null) {
             throw new CommandException("Selection Error: No client selected");
         }
-        ClientCard selectedClientCard = new ClientCard(targetClient, 0);
+        ClientCard selectedClientCard = new ClientCard(targetClient,
+                logic.getFilteredClientList().indexOf(targetClient) + 1);
         clientLabel.getChildren().remove(0);
         clientLabel.getChildren().add(selectedClientCard.getRoot());
     }
