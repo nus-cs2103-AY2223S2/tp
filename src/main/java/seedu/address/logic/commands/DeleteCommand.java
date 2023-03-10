@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
@@ -18,37 +19,48 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the person identified by the index number used in the displayed task list or the person's name.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    private static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+//    private static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+//    private static final String MESSAGE_DELETE_SUCCESS = "Deleted: %1$s %2$s";
 
-    private final Index targetIndex;
+//    private final Index taskIndex;
+    private final Index personIndex;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Index personIndex) {
+//        this.taskIndex = taskIndex;
+        this.personIndex = personIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+//        List<Task> lastShownTaskList = model.getFilteredTaskList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+//        if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+//        }
+
+        if (personIndex.getZeroBased() >= lastShownPersonList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+//        Task taskToDelete = lastShownTaskList.get(taskIndex.getZeroBased());
+//        model.deleteTask(taskToDelete);
+        Person personToDelete = lastShownPersonList.get(personIndex.getZeroBased());
+        model.deletePerson(personToDelete);
+//        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, taskToDelete, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && personIndex.equals(((DeleteCommand) other).personIndex)); // state check
     }
 }

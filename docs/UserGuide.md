@@ -46,7 +46,7 @@ Pied Piper is a task management app to help project team leaders stay organized 
 
 Pied Piper creates a new deadline
 
-Format: `dedline task/{TASK_NAME} by/{DD/MM/YYYY}`
+Format: `deadline task/{TASK_NAME} by/{DD/MM/YYYY}`
 
 
 Example:
@@ -71,14 +71,23 @@ Examples:
 *  `assign t/1 n/John Doe`
 
 
-### Delete a task: `delete`
+### Delete a person: `delete`
 
-deletes an existing task
+Deletes an existing person
 
-Format: `delete  i/1`
+Format: `delete {MEMBER_ID}`
 
 Examples:
-* `delete n/T15 i/1`
+* `delete 1`
+
+### Delete a task
+
+Deletes an existing task
+
+Format: `deletetask {TASK_ID}`
+
+Examples:
+* `deletetask 2`
 
 
 ### View tasks: `view`
@@ -103,6 +112,7 @@ Action | Format, Examples
 **Deadline** | `deadline task/{TASK_NAME}  by/{DD/MM/YYYY}` <br> e.g., `deadline task/Complete Assignment by/12/09/2021`
 **Role** | `role n/{MEMBER_NAME} r/{ROLE}` <br> e.g., `role n/John Doe r/Leader`
 **Assign** | `assign  t/{TASK_ID} n/{MEMBER_NAME}`<br> e.g., `assign t/1 n/John Doe`
-**Delete** | `delete  i/{TASK_ID}`<br> e.g.,`delete  i/1`
+**Delete person** | `delete {MEMBER_ID}`<br> e.g.,`delete 1`
+**Delete task** | `deletetask  {TASK_ID}`<br> e.g.,`deletetask 2`
 **View** | `view`
 
