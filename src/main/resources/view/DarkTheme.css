@@ -307,11 +307,6 @@
     -fx-padding: 8 1 8 1;
 }
 
-.tag-flow-pane {
-  -fx-hgap: 5;
-  -fx-vgap: 5;
-}
-
 .label.card-title {
     -fx-font-size: 20;
     -fx-text-fill: rgb(224, 152, 19);
@@ -319,6 +314,17 @@
 
 .label.card-attribute-label {
     -fx-font-size: 11;
+}
+
+
+
+
+
+/* ===== Tag related styles ================================================ */
+
+.tag-flow-pane {
+  -fx-hgap: 5;
+  -fx-vgap: 5;
 }
 
 .label.tag {
@@ -330,35 +336,21 @@
   -fx-font-size: 11;
 }
 
-.label.tag.tag-color-all {
-  -fx-background-color: #463e91;
+.label.tag.tag-color-blue {
+  -fx-background-color: #151790;
 }
 
-.label.tag.tag-color-any {
-  -fx-background-color: #45913e;
+.label.tag.tag-color-green {
+  -fx-background-color: #119654;
 }
 
-.label.tag.tag-color-none {
-  -fx-background-color: #913e3e;
+.label.tag.tag-color-red {
+  -fx-background-color: #901515;
 }
 
-.vaccine {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
-}
 
-.allergy {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
-}
+
+
 
 #cardPane {
     -fx-background-color: transparent;
@@ -388,46 +380,4 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
-}
-
-#tags {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
-}
-
-#allergies {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#allergies .label {
-    -fx-text-fill: white;
-    -fx-background-color: #901515;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
-}
-
-#vaccines {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#vaccines .label {
-    -fx-text-fill: white;
-    -fx-background-color: #119654;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
 }

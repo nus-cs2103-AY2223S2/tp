@@ -13,6 +13,11 @@ import javafx.scene.layout.Region;
  */
 public class TagFlowView extends FlowPane {
     public static final String STYLE_CLASS_TAG_FLOW_PANE = "tag-flow-pane";
+
+    public static final String STYLE_CLASS_TAG_GREEN = "tag-color-green";
+    public static final String STYLE_CLASS_TAG_RED = "tag-color-red";
+    public static final String STYLE_CLASS_TAG_BLUE = "tag-color-blue";
+
     private static final String STYLE_CLASS_TAG = "tag";
 
 
@@ -24,6 +29,11 @@ public class TagFlowView extends FlowPane {
      */
     public TagFlowView(Collection<String> tags) {
         this(tags, List.of());
+    }
+
+
+    public TagFlowView(Collection<String> tags, String ... styleClasses) {
+        this(tags, List.of(styleClasses));
     }
 
 
