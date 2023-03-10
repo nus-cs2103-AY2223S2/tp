@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <details>
-<summary><b>[DE4] Display timetable and scheduling tasks</b></summary>
+<summary><b>[TT1] Display timetable and scheduling tasks</b></summary>
 <pre>
 <b>MSS</b>
 1. User requests to display timetable by selecting Timetable option on homepage.
