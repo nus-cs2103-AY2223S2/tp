@@ -21,7 +21,6 @@ import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.patient.Vaccine;
-import seedu.vms.model.vaccination.VaxName;
 import seedu.vms.model.vaccination.Requirement;
 
 /**
