@@ -1,4 +1,4 @@
-package seedu.address.ui.detail;
+package seedu.address.ui.homework;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -27,6 +28,8 @@ public class HomeworkContent extends UiPart<Region> {
     @FXML
     private Label listName;
     @FXML
+    private PieChart homeworkPieChart;
+    @FXML
     private ListView<String> homeworkList;
 
     /**
@@ -37,6 +40,8 @@ public class HomeworkContent extends UiPart<Region> {
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
         listName.setText("Student Homework List: ");
+        homeworkPieChart.setData(student.getHomeworkPieChartData());
+        homeworkPieChart.setTitle("Completed/Uncompleted Homework");
 
         // Create an observable list of homework items
         // Each homework item is a string representation of the homework

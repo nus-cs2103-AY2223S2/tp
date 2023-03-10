@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A UI for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
 

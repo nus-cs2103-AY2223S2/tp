@@ -36,3 +36,19 @@
     -fx-border-radius: 7;
     -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 1, 2);
 }
+
+
+.chart-legend {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+.chart-pie-label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+#homeworkPieChart.default-color0.chart-pie { -fx-pie-color: #ffd700; }
+#homeworkPieChart.default-color1.chart-pie { -fx-pie-color: #ffa500; }

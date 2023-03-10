@@ -5,11 +5,8 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.ui.Ui;
 import seedu.address.ui.UiPart;
 
 /**

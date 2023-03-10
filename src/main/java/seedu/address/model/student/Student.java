@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.tag.Tag;
 
@@ -356,4 +358,7 @@ public class Student {
     }
 
 
+    public ObservableList<PieChart.Data> getHomeworkPieChartData() {
+        return homeworkList.getHomeworkPieChartData();
+    }
 }

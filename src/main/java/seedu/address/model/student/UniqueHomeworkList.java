@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.model.student.exceptions.DuplicateHomeworkException;
 import seedu.address.model.student.exceptions.HomeworkNotFoundException;
 
@@ -176,5 +177,26 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         requireNonNull(homeworkStatusPredicate);
         internalList.removeIf(homeworkStatusPredicate.negate());
+    }
+
+    /**
+     * Returns the pie chart data for the homework list.
+     *
+     * @return the pie chart data for the homework list
+     */
+    public ObservableList<PieChart.Data> getHomeworkPieChartData() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        int completedHomework = 0;
+        int uncompletedHomework = 0;
+        for (Homework homework : internalList) {
+            if (homework.isCompleted()) {
+                completedHomework++;
+            } else {
+                uncompletedHomework++;
+            }
+        }
+        pieChartData.add(new PieChart.Data("Completed", completedHomework));
+        pieChartData.add(new PieChart.Data("Uncompleted", uncompletedHomework));
+        return pieChartData;
     }
 }

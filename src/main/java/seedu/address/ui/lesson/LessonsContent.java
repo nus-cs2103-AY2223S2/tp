@@ -1,4 +1,4 @@
-package seedu.address.ui.detail;
+package seedu.address.ui.lesson;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,6 +14,7 @@ import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.homework.HomeworkContent;
 
 /**
  * An UI component that displays detailed information of a {@code Student}.

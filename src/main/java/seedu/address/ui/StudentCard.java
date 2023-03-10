@@ -9,12 +9,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
-import seedu.address.ui.detail.HomeworkContent;
-import seedu.address.ui.detail.LessonsContent;
 import seedu.address.ui.detail.ProfileContent;
+import seedu.address.ui.exam.EmptyExamsContent;
+import seedu.address.ui.homework.EmptyHomeworkContent;
+import seedu.address.ui.homework.HomeworkContent;
+import seedu.address.ui.lesson.EmptyLessonsContent;
+import seedu.address.ui.lesson.LessonsContent;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class StudentCard extends UiPart<Region> {
 
@@ -80,7 +83,11 @@ public class StudentCard extends UiPart<Region> {
      */
     private void handleViewHomeworkClick() {
         mainWindow.setDetailedHeaderBar(String.format("Homework List: %s", student.getName().fullName));
-        mainWindow.setDetailedContent(new HomeworkContent(student));
+        if (student.getHomeworkList().isEmpty()) {
+            mainWindow.setDetailedContent(new EmptyHomeworkContent(student));
+        } else {
+            mainWindow.setDetailedContent(new HomeworkContent(student));
+        }
     }
 
     /**
@@ -88,11 +95,20 @@ public class StudentCard extends UiPart<Region> {
      */
     private void handleViewLessonsClick() {
         mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s", student.getName().fullName));
-        mainWindow.setDetailedContent(new LessonsContent(student));
+        if (student.getLessonsList().isEmpty()) {
+            mainWindow.setDetailedContent(new EmptyLessonsContent(student));
+        } else {
+            mainWindow.setDetailedContent(new LessonsContent(student));
+        }
     }
 
+    /**
+     * Handles the view student exams button click event
+     */
     private void handleViewExamsClick() {
+        //TODO
         mainWindow.setDetailedHeaderBar(String.format("Exams List: %s", student.getName().fullName));
+        mainWindow.setDetailedContent(new EmptyExamsContent(student));
     }
 
     @Override

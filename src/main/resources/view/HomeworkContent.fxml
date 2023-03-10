@@ -7,14 +7,18 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.chart.PieChart?>
+
 <StackPane fx:id="detailedContent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
+
     <VBox id="studentHomeworkContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
         <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Full Name" />
         <Label fx:id="listName" alignment="TOP_LEFT" text="List Name" />
-        <ListView fx:id="homeworkList" id="homeworkList" prefHeight="250.0" prefWidth="300.0" />
+        <ListView fx:id="homeworkList" id="homeworkList" prefHeight="400.0" prefWidth="300.0" />
+        <PieChart fx:id="homeworkPieChart" />
         <cursor>
             <Cursor fx:constant="OPEN_HAND" />
         </cursor>
