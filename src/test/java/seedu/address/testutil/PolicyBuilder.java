@@ -1,6 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.client.policy.*;
+import seedu.address.model.client.policy.CustomDate;
+import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.PolicyName;
+import seedu.address.model.client.policy.Premium;
 
 /**
  * A utility class to help with building Policy objects.

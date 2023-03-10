@@ -1,12 +1,12 @@
 package seedu.address.model.client.policy;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class UniquePolicyListTest {
 
-    UniquePolicyList list = new UniquePolicyList();
+    private UniquePolicyList list = new UniquePolicyList();
 
     @Test
     void contains() {
