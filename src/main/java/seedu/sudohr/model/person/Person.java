@@ -99,16 +99,16 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identify fields.
+     * Returns true if there exists a person with a similar identify field.
      * This warns the HR personnel of a possible human error in tagging of data.
      */
     public boolean isWarning(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail());
+        // edit
+        return otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail());
     }
 
     @Override
