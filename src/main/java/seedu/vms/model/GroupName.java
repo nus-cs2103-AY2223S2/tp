@@ -1,5 +1,6 @@
 package seedu.vms.model;
 
+import java.text.Collator;
 import java.util.Objects;
 
 import seedu.vms.commons.util.AppUtil;
@@ -8,11 +9,13 @@ import seedu.vms.commons.util.AppUtil;
 /**
  * Represents a group name. Ensures that the name is valid.
  */
-public class GroupName {
+public class GroupName implements Comparable<GroupName> {
     public static final String MESSAGE_CONSTRAINT = "Group name should not be blank, "
             + "and should only contain alphanumeric characters including brackets and dashes";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}\\-_ ]{1,30}";
+
+    private final Collator collator;
 
     private final String name;
 
@@ -26,6 +29,8 @@ public class GroupName {
         Objects.requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
         this.name = name.strip();
+        collator = Collator.getInstance();
+        collator.setStrength(Collator.TERTIARY);
     }
 
     public static boolean isValidName(String name) {
@@ -35,6 +40,12 @@ public class GroupName {
 
     public String getName() {
         return name;
+    }
+
+
+    @Override
+    public int compareTo(GroupName other) {
+        return collator.compare(name, other.name);
     }
 
 

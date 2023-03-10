@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.model.Age;
+import seedu.vms.model.GroupName;
 import seedu.vms.testutil.SampleVaxTypeData;
 
 public class VaxTypeTest {
@@ -41,6 +42,30 @@ public class VaxTypeTest {
                 INVALID_MIN_SPACING,
                 SampleVaxTypeData.ALLERGY_REQS_1,
                 SampleVaxTypeData.HISTORY_REQS_1));
+    }
+
+
+    @Test
+    public void compareToTest() {
+        // test already done in GroupName so this test is to check if
+        // the comparator is correctly set
+        VaxType t1 = new VaxType(
+                new GroupName("aZ"),
+                VaxType.DEFAULT_GROUP_SET,
+                VaxType.DEFAULT_MIN_AGE,
+                VaxType.DEFAULT_MAX_AGE,
+                VaxType.DEFAULT_MIN_SPACING,
+                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_HISTORY_REQS);
+        VaxType t2 = new VaxType(
+                new GroupName("Aa"),
+                VaxType.DEFAULT_GROUP_SET,
+                VaxType.DEFAULT_MIN_AGE,
+                VaxType.DEFAULT_MAX_AGE,
+                VaxType.DEFAULT_MIN_SPACING,
+                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_HISTORY_REQS);
+        assertTrue(t1.compareTo(t2) > 0);
     }
 
 

@@ -6,7 +6,7 @@ package seedu.vms.model;
  *
  * @param <T> - the type of value stored.
  */
-public class IdData<T> {
+public class IdData<T> implements Comparable<IdData<T>> {
     private final boolean isActive;
     private final int id;
     private final T value;
@@ -54,6 +54,12 @@ public class IdData<T> {
 
     public T getValue() {
         return value;
+    }
+
+
+    @Override
+    public int compareTo(IdData<T> other) {
+        return id - other.id;
     }
 
 

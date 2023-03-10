@@ -1,8 +1,11 @@
 package seedu.vms.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,21 @@ public class GroupNameTest {
         "( ^)o(^ )b");
 
     private static final String SAMPLE_NAME = "UNCHI";
+
+    private static final List<GroupName> LIST_TO_SORT = List.of(
+            new GroupName("a"),
+            new GroupName("A"),
+            new GroupName("B"),
+            new GroupName("b"),
+            new GroupName("bBB"),
+            new GroupName("bBb"));
+    private static final List<GroupName> EXPECTED_SORTED_LIST = List.of(
+            new GroupName("a"),
+            new GroupName("A"),
+            new GroupName("b"),
+            new GroupName("B"),
+            new GroupName("bBb"),
+            new GroupName("bBB"));
 
 
     @Test
@@ -46,5 +64,13 @@ public class GroupNameTest {
         assertTrue(testing.equals(eqs));
         assertFalse(testing.equals(diff));
         assertFalse(testing.equals(unrelated));
+    }
+
+
+    @Test
+    public void compareToTest() {
+        ArrayList<GroupName> toSort = new ArrayList<>(LIST_TO_SORT);
+        toSort.sort(Comparator.naturalOrder());
+        assertEquals(EXPECTED_SORTED_LIST, toSort);
     }
 }
