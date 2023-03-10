@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -33,11 +32,6 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-         <Button mnemonicParsing="false" style="-fx-background-color: DARKGREEN; -fx-background-radius: 50; -fx-border-radius: 50; -fx-cursor: HAND;" text="Chat">
-            <VBox.margin>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </VBox.margin>
-         </Button>
     </VBox>
       <rowConstraints>
          <RowConstraints />
