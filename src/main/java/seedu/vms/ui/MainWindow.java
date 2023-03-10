@@ -16,6 +16,8 @@ import seedu.vms.logic.Logic;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.IdData;
+import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.ui.vaccination.VaxTypeCard;
 
@@ -33,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PatientListPanel patientListPanel;
+    private ListViewPanel<IdData<Patient>> patientListPanel;
     private ListViewPanel<VaxType> vaxTypeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -109,8 +111,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        patientListPanel = new PatientListPanel(logic.getFilteredPatientMap());
-        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+        patientListPanel = new ListViewPanel<>(
+                logic.getFilteredPatientMap(),
+                idData -> new PatientCard(idData.getValue(), idData.getId() + 1).getRoot());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel);
 
         vaxTypeListPanel = new ListViewPanel<>(
                 logic.getFilteredVaxTypeMap(),
@@ -165,10 +169,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PatientListPanel getPatientListPanel() {
-        return patientListPanel;
     }
 
     /**
