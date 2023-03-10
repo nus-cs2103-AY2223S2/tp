@@ -1,8 +1,9 @@
 package seedu.sudohr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -12,6 +13,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;

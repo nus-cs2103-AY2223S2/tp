@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.department.DepartmentName;
 
