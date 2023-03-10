@@ -65,14 +65,15 @@ Examples:
 
 ### Locating persons by keyword: `find`
 
-Shows a list of all persons in address book whose details match the keyword provided.
+Shows a list of all persons in address book whose names match the keyword provided.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * Displays list of persons matching at least one keyword if multiple keywords are provided.
+* Keyword is for the name only, not any other details
 
 Examples:
-* `find UTown` displays list of all persons whose address includes the phrase 'UTown' in it.
+* `find John` displays list of all persons whose full name contains a 'John' in it  
 
 
 ### Deleting a person : `delete`
