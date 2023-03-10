@@ -15,11 +15,12 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
-import seedu.vms.model.patient.Address;
-import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.tag.Tag;
+import seedu.vms.model.patient.Vaccine;
 import seedu.vms.model.vaccination.Requirement;
 
 /**
@@ -87,60 +88,87 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String dob} into an {@code Dob}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code dob} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Dob parseDob(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!Dob.isValidDob(trimmedDob)) {
+            throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Dob(trimmedDob);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String bloodType} into an {@code BloodType}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code bloodType} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static BloodType parseBloodType(String bloodType) throws ParseException {
+        requireNonNull(bloodType);
+        String trimmedBloodType = bloodType.trim();
+        if (!BloodType.isValidBloodType(trimmedBloodType)) {
+            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new BloodType(trimmedBloodType);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String allergy} into a {@code Allergy}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code allergy} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Allergy parseAllergy(String allergy) throws ParseException {
+        requireNonNull(allergy);
+        String trimmedAllergy = allergy.trim();
+        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
+            throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Allergy(trimmedAllergy);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
+        requireNonNull(allergies);
+        final Set<Allergy> allergySet = new HashSet<>();
+        for (String allergyName : allergies) {
+            allergySet.add(parseAllergy(allergyName));
         }
-        return tagSet;
+        return allergySet;
+    }
+
+    /**
+     * Parses a {@code String vaccine} into a {@code Vaccine}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code vaccine} is invalid.
+     */
+    public static Vaccine parseVaccine(String vaccine) throws ParseException {
+        requireNonNull(vaccine);
+        String trimmedVaccine = vaccine.trim();
+        if (!Vaccine.isValidVaccineName(trimmedVaccine)) {
+            throw new ParseException(Vaccine.MESSAGE_CONSTRAINTS);
+        }
+        return new Vaccine(trimmedVaccine);
+    }
+
+    /**
+     * Parses {@code Collection<String> vaccines} into a {@code Set<Vaccine>}.
+     */
+    public static Set<Vaccine> parseVaccines(Collection<String> vaccines) throws ParseException {
+        requireNonNull(vaccines);
+        final Set<Vaccine> vaccineSet = new HashSet<>();
+        for (String vaccineName : vaccines) {
+            vaccineSet.add(parseVaccine(vaccineName));
+        }
+        return vaccineSet;
     }
 
     /**

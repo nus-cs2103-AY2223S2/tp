@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.patient.Address;
-import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.tag.Tag;
+import seedu.vms.model.patient.Vaccine;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -26,23 +27,28 @@ class JsonAdaptedPatient {
 
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String dob;
+    private final String bloodType;
+    private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
+    private final List<JsonAdaptedVaccine> vaccines = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("dob") String dob, @JsonProperty("bloodType") String bloodType,
+            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
+            @JsonProperty("vaccines") List<JsonAdaptedVaccine> vaccines) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.dob = dob;
+        this.bloodType = bloodType;
+        if (allergies != null) {
+            this.allergies.addAll(allergies);
+        }
+        if (vaccines != null) {
+            this.vaccines.addAll(vaccines);
         }
     }
 
@@ -52,10 +58,13 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        dob = source.getDob().toString();
+        bloodType = source.getBloodType().toString();
+        allergies.addAll(source.getAllergy().stream()
+                .map(JsonAdaptedAllergy::new)
+                .collect(Collectors.toList()));
+        vaccines.addAll(source.getVaccine().stream()
+                .map(JsonAdaptedVaccine::new)
                 .collect(Collectors.toList()));
     }
 
@@ -65,9 +74,13 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Tag> patientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            patientTags.add(tag.toModelType());
+        final List<Allergy> patientAllergies = new ArrayList<>();
+        for (JsonAdaptedAllergy allergy : allergies) {
+            patientAllergies.add(allergy.toModelType());
+        }
+        final List<Vaccine> patientVaccines = new ArrayList<>();
+        for (JsonAdaptedVaccine vaccine : vaccines) {
+            patientVaccines.add(vaccine.toModelType());
         }
 
         if (name == null) {
@@ -86,24 +99,26 @@ class JsonAdaptedPatient {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (dob == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Dob.isValidDob(dob)) {
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Dob modelDob = new Dob(dob);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (bloodType == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!BloodType.isValidBloodType(bloodType)) {
+            throw new IllegalValueException(BloodType.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final BloodType modelBloodType = new BloodType(bloodType);
 
-        final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Allergy> modelAllergies = new HashSet<>(patientAllergies);
+        final Set<Vaccine> modelVaccines = new HashSet<>(patientVaccines);
+        return new Patient(modelName, modelPhone, modelDob, modelBloodType, modelAllergies, modelVaccines);
     }
 
 }

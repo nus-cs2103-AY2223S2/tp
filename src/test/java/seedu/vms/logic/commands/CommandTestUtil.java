@@ -3,11 +3,12 @@ package seedu.vms.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -32,34 +33,39 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DOB_AMY = "1998-05-23";
+    public static final String VALID_DOB_BOB = "2001-01-29";
+    public static final String VALID_BLOODTYPE_AMY = "A+";
+    public static final String VALID_BLOODTYPE_BOB = "B-";
+    public static final String VALID_ALLERGY_SEAFOOD = "seafood";
+    public static final String VALID_ALLERGY_GLUTEN = "gluten";
+    public static final String VALID_VACCINATION = "moderna";
 
     public static final String NAME_DESC_AMY = " " + DELIMITER + PREFIX_NAME + " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + DELIMITER + PREFIX_NAME + " " + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + DELIMITER + PREFIX_PHONE + " " + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + DELIMITER + PREFIX_PHONE + " " + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + DELIMITER + PREFIX_EMAIL + " " + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + DELIMITER + PREFIX_EMAIL + " " + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + DELIMITER + PREFIX_ADDRESS + " " + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + DELIMITER + PREFIX_ADDRESS + " " + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + DELIMITER + PREFIX_TAG + " " + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + DELIMITER + PREFIX_TAG + " " + VALID_TAG_HUSBAND;
+    public static final String DOB_DESC_AMY = " " + DELIMITER + PREFIX_DOB + " " + VALID_DOB_AMY;
+    public static final String DOB_DESC_BOB = " " + DELIMITER + PREFIX_DOB + " " + VALID_DOB_BOB;
+    public static final String BLOODTYPE_DESC_AMY = " " + DELIMITER + PREFIX_BLOODTYPE + " " + VALID_BLOODTYPE_AMY;
+    public static final String BLOODTYPE_DESC_BOB = " " + DELIMITER + PREFIX_BLOODTYPE + " " + VALID_BLOODTYPE_BOB;
+    public static final String ALLERGY_DESC_GLUTEN = " " + DELIMITER + PREFIX_ALLERGY + " " + VALID_ALLERGY_GLUTEN;
+    public static final String ALLERGY_DESC_SEAFOOD = " " + DELIMITER + PREFIX_ALLERGY + " " + VALID_ALLERGY_SEAFOOD;
+    public static final String VACCINATION_DESC_MODERNA = " " + DELIMITER + PREFIX_VACCINATION + " "
+            + VALID_VACCINATION;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + DELIMITER + PREFIX_NAME + " " + "James&";
     // 'a' not allowed in phones
     public static final String INVALID_PHONE_DESC = " " + DELIMITER + PREFIX_PHONE + " " + "911a";
-    // missing '@' symbol
-    public static final String INVALID_EMAIL_DESC = " " + DELIMITER + PREFIX_EMAIL + " " + "bob!yahoo";
-    // empty string not allowed for addresses
-    public static final String INVALID_ADDRESS_DESC = " " + DELIMITER + PREFIX_ADDRESS;
-    // '*' not allowed in tags
-    public static final String INVALID_TAG_DESC = " " + DELIMITER + PREFIX_TAG + " " + "hubby*";
+    // Date in the future
+    public static final String INVALID_DOB_DESC = " " + DELIMITER + PREFIX_DOB + " " + "2090-03-20";
+    // empty string not allowed for blood type
+    public static final String INVALID_BLOODTYPE_DESC = " " + DELIMITER + PREFIX_BLOODTYPE;
+    // '*' not allowed in allergy
+    public static final String INVALID_ALLERGY_DESC = " " + DELIMITER + PREFIX_ALLERGY + " " + "seafood*";
+    // '*' not allowed in vaccine
+    public static final String INVALID_VACCINE_DESC = " " + DELIMITER + PREFIX_VACCINATION + " " + "moderna*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -69,11 +75,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_AMY).withDob(VALID_DOB_AMY).withBloodType(VALID_BLOODTYPE_AMY)
+                .withAllergies(VALID_ALLERGY_GLUTEN).build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withDob(VALID_DOB_BOB).withBloodType(VALID_BLOODTYPE_BOB)
+                .withAllergies(VALID_ALLERGY_SEAFOOD, VALID_ALLERGY_GLUTEN).build();
     }
 
     /**
@@ -118,6 +124,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
      * {@code model}'s address book.

@@ -3,8 +3,8 @@ package seedu.vms.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.vms.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.vms.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.vms.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.vms.logic.commands.CommandTestUtil.BLOODTYPE_DESC_AMY;
+import static seedu.vms.logic.commands.CommandTestUtil.DOB_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.vms.testutil.Assert.assertThrows;
@@ -88,9 +88,9 @@ public class LogicManagerTest {
                 AddCommand.COMMAND_WORD,
                 NAME_DESC_AMY,
                 PHONE_DESC_AMY,
-                EMAIL_DESC_AMY,
-                ADDRESS_DESC_AMY);
-        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+                DOB_DESC_AMY,
+                BLOODTYPE_DESC_AMY);
+        Patient expectedPatient = new PatientBuilder(AMY).withAllergies().withVaccines().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

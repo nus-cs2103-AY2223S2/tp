@@ -3,12 +3,13 @@ package seedu.vms.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.vms.model.patient.Address;
-import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.tag.Tag;
+import seedu.vms.model.patient.Vaccine;
 import seedu.vms.model.util.SampleDataUtil;
 
 /**
@@ -18,14 +19,15 @@ public class PatientBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DOB = "1998-05-22";
+    public static final String DEFAULT_BLOODTYPE = "A-";
 
     private Name name;
     private Phone phone;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Dob dateOfBirth;
+    private BloodType bloodType;
+    private Set<Allergy> allergies = new HashSet<>();
+    private Set<Vaccine> vaccines = new HashSet<>();
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -33,9 +35,10 @@ public class PatientBuilder {
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        dateOfBirth = new Dob(DEFAULT_DOB);
+        bloodType = new BloodType(DEFAULT_BLOODTYPE);
+        allergies = new HashSet<>();
+        vaccines = new HashSet<>();
     }
 
     /**
@@ -44,9 +47,10 @@ public class PatientBuilder {
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
         phone = patientToCopy.getPhone();
-        email = patientToCopy.getEmail();
-        address = patientToCopy.getAddress();
-        tags = new HashSet<>(patientToCopy.getTags());
+        dateOfBirth = patientToCopy.getDob();
+        bloodType = patientToCopy.getBloodType();
+        allergies = new HashSet<>(patientToCopy.getAllergy());
+        vaccines = new HashSet<>(patientToCopy.getVaccine());
     }
 
     /**
@@ -58,18 +62,26 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PatientBuilder withAllergies(String... allergies) {
+        this.allergies = SampleDataUtil.getAllergySet(allergies);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Patient} that we are building.
+     * Parses the {@code vaccines} into a {@code Set<Vaccine>} and set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PatientBuilder withVaccines(String... vaccines) {
+        this.vaccines = SampleDataUtil.getVaccineSet(vaccines);
+        return this;
+    }
+
+    /**
+     * Sets the {@code BloodType} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withBloodType(String bloodType) {
+        this.bloodType = new BloodType(bloodType);
         return this;
     }
 
@@ -82,15 +94,15 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Patient} that we are building.
+     * Sets the {@code Dob} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PatientBuilder withDob(String dateOfBirth) {
+        this.dateOfBirth = new Dob(dateOfBirth);
         return this;
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags);
+        return new Patient(name, phone, dateOfBirth, bloodType, allergies, vaccines);
     }
 
 }

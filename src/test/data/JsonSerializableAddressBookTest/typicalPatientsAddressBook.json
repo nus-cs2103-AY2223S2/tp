@@ -1,74 +1,89 @@
 {
   "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatients#getTypicalAddressBook()",
-  "datas" : [ {
-    "isActive" : true,
-    "id" : 0,
-    "patient" : {
-      "name" : "Alice Pauline",
-      "phone" : "94351253",
-      "email" : "alice@example.com",
-      "address" : "123, Jurong West Ave 6, #08-111",
-      "tagged" : [ "friends" ]
+  "datas": [
+    {
+      "isActive": true,
+      "id": 0,
+      "patient": {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "dob": "2020-07-09",
+        "bloodType": "A+",
+        "allergies": ["seafood", "gluten"],
+        "vaccines": []
+      }
+    },
+    {
+      "isActive": true,
+      "id": 1,
+      "patient": {
+        "name": "Benson Meier",
+        "phone": "98765432",
+        "dob": "2011-10-11",
+        "bloodType": "A-",
+        "allergies": ["seafood"],
+        "vaccines": []
+      }
+    },
+    {
+      "isActive": true,
+      "id": 2,
+      "patient": {
+        "name": "Carl Kurz",
+        "phone": "95352563",
+        "dob": "1999-12-30",
+        "bloodType": "B+",
+        "allergies": ["seafood", "gluten"],
+        "vaccines": ["Moderna", "Pfizer"]
+      }
+    },
+    {
+      "isActive": true,
+      "id": 3,
+      "patient": {
+        "name": "Daniel Meier",
+        "phone": "87652533",
+        "dob": "1994-02-27",
+        "bloodType": "B-",
+        "allergies": ["seafood"],
+        "vaccines": ["Moderna"]
+      }
+    },
+    {
+      "isActive": true,
+      "id": 4,
+      "patient": {
+        "name": "Elle Meyer",
+        "phone": "9482224",
+        "dob": "1989-09-19",
+        "bloodType": "AB+",
+        "allergies": [],
+        "vaccines": ["Moderna", "Pfizer"]
+      }
+    },
+    {
+      "isActive": true,
+      "id": 5,
+      "patient": {
+        "name": "Fiona Kunz",
+        "phone": "9482427",
+        "dob": "1988-04-30",
+        "bloodType": "AB-",
+        "allergies": [],
+        "vaccines": ["Moderna"]
+      }
+    },
+    {
+      "isActive": true,
+      "id": 6,
+      "patient": {
+        "name": "George Best",
+        "phone": "9482442",
+        "dob": "1981-09-20",
+        "bloodType": "O+",
+        "allergies": [],
+        "vaccines": []
+      }
     }
-  }, {
-    "isActive" : true,
-    "id" : 1,
-    "patient" : {
-      "name" : "Benson Meier",
-      "phone" : "98765432",
-      "email" : "johnd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25",
-      "tagged" : [ "owesMoney", "friends" ]
-    }
-  }, {
-    "isActive" : true,
-    "id" : 2,
-    "patient" : {
-      "name" : "Carl Kurz",
-      "phone" : "95352563",
-      "email" : "heinz@example.com",
-      "address" : "wall street",
-      "tagged" : [ ]
-    }
-  }, {
-    "isActive" : true,
-    "id" : 3,
-    "patient" : {
-      "name" : "Daniel Meier",
-      "phone" : "87652533",
-      "email" : "cornelia@example.com",
-      "address" : "10th street",
-      "tagged" : [ "friends" ]
-    }
-  }, {
-    "isActive" : true,
-    "id" : 4,
-    "patient" : {
-      "name" : "Elle Meyer",
-      "phone" : "9482224",
-      "email" : "werner@example.com",
-      "address" : "michegan ave",
-      "tagged" : [ ]
-    }
-  }, {
-    "isActive" : true,
-    "id" : 5,
-    "patient" : {
-      "name" : "Fiona Kunz",
-      "phone" : "9482427",
-      "email" : "lydia@example.com",
-      "address" : "little tokyo",
-      "tagged" : [ ]
-    }
-  }, {
-    "isActive" : true,
-    "id" : 6,
-    "patient" : {
-      "name" : "George Best",
-      "phone" : "9482442",
-      "email" : "anna@example.com",
-      "address" : "4th street",
-      "tagged" : [ ]
-    }
-  } ]
+  ]
 }

@@ -1,11 +1,12 @@
 package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
@@ -22,15 +23,16 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.Address;
-import seedu.vms.model.patient.Email;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.tag.Tag;
+import seedu.vms.model.patient.Vaccine;
 
 /**
- * Edits the details of an existing patient in the address book.
+ * Edits the details of an existing patient in the bloodType book.
  */
 public class EditCommand extends Command {
 
@@ -42,12 +44,13 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DOB + "Date of Birth] "
+            + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
+            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
+            + "[" + PREFIX_VACCINATION + "VACCINE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DOB + "2000-02-18";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -94,11 +97,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
-        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Dob updatedDob = editPatientDescriptor.getDob().orElse(patientToEdit.getDob());
+        BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
+        Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergy());
+        Set<Vaccine> updatedVaccines = editPatientDescriptor.getVaccines().orElse(patientToEdit.getVaccine());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedDob, updatedBloodType, updatedAllergies, updatedVaccines);
     }
 
     @Override
@@ -126,29 +130,31 @@ public class EditCommand extends Command {
     public static class EditPatientDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private Dob dob;
+        private BloodType bloodType;
+        private Set<Allergy> allergies;
+        private Set<Vaccine> vaccines;
 
         public EditPatientDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code allergies} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setDob(toCopy.dob);
+            setBloodType(toCopy.bloodType);
+            setAllergies(toCopy.allergies);
+            setVaccines(toCopy.vaccines);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, dob, bloodType, allergies, vaccines);
         }
 
         public void setName(Name name) {
@@ -167,37 +173,54 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDob(Dob dob) {
+            this.dob = dob;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Dob> getDob() {
+            return Optional.ofNullable(dob);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setBloodType(BloodType bloodType) {
+            this.bloodType = bloodType;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<BloodType> getBloodType() {
+            return Optional.ofNullable(bloodType);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code allergies} to this object's {@code allergies}.
+         * A defensive copy of {@code allergies} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable allergy set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code allergies} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Allergy>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code vaccines} to this object's {@code vaccines}.
+         * A defensive copy of {@code vaccines} is used internally.
+         */
+        public void setVaccines(Set<Vaccine> vaccines) {
+            this.vaccines = (vaccines != null) ? new HashSet<>(vaccines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable vaccine set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code vaccines} is null.
+         */
+        public Optional<Set<Vaccine>> getVaccines() {
+            return (vaccines != null) ? Optional.of(Collections.unmodifiableSet(vaccines)) : Optional.empty();
         }
 
         @Override
@@ -217,9 +240,10 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getDob().equals(e.getDob())
+                    && getBloodType().equals(e.getBloodType())
+                    && getAllergies().equals(e.getAllergies())
+                    && getVaccines().equals(e.getVaccines());
         }
     }
 }

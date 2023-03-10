@@ -48,7 +48,7 @@ public class BloodType {
         }
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "";
+    public static final String MESSAGE_CONSTRAINTS = "BloodType can only be A+, A-, B+, B-, AB+, AB-, O+, O-";
 
     /*
      * The first character of the bloodType must not be a whitespace,

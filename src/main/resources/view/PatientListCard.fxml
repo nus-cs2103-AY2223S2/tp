@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -27,10 +26,12 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <VBox fx:id="allergies"> </VBox>
+      <VBox fx:id="vaccines"> </VBox>
+      <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="dob" styleClass="cell_small_label" text="\$dob" />
+      <Label fx:id="bloodType" styleClass="cell_small_label" text="\$bloodType" />
     </VBox>
   </GridPane>
 </HBox>

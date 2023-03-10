@@ -5,12 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
-import seedu.vms.model.patient.Address;
-import seedu.vms.model.patient.Email;
+import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.tag.Tag;
+import seedu.vms.model.patient.Vaccine;
 
 /**
  * A utility class to help with building EditPatientDescriptor objects.
@@ -34,9 +36,10 @@ public class EditPatientDescriptorBuilder {
         descriptor = new EditPatientDescriptor();
         descriptor.setName(patient.getName());
         descriptor.setPhone(patient.getPhone());
-        descriptor.setEmail(patient.getEmail());
-        descriptor.setAddress(patient.getAddress());
-        descriptor.setTags(patient.getTags());
+        descriptor.setDob(patient.getDob());
+        descriptor.setBloodType(patient.getBloodType());
+        descriptor.setAllergies(patient.getAllergy());
+        descriptor.setVaccines(patient.getVaccine());
     }
 
     /**
@@ -56,28 +59,40 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code Dob} of the {@code EditPatientDescriptor} that we are building.
+     *
+     * @throws ParseException
      */
-    public EditPatientDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPatientDescriptorBuilder withDob(String dateOfBirth) {
+        descriptor.setDob(new Dob(dateOfBirth));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code BloodType} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPatientDescriptorBuilder withBloodType(String bloodType) {
+        descriptor.setBloodType(new BloodType(bloodType));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPatientDescriptor}
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditPatientDescriptor}
      * that we are building.
      */
-    public EditPatientDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPatientDescriptorBuilder withAllergies(String... allergies) {
+        Set<Allergy> allergySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allergySet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code vaccines} into a {@code Set<Vaccine>} and set it to the {@code EditPatientDescriptor}
+     * that we are building.
+     */
+    public EditPatientDescriptorBuilder withVaccines(String... vaccines) {
+        Set<Vaccine> vaccineSet = Stream.of(vaccines).map(Vaccine::new).collect(Collectors.toSet());
+        descriptor.setVaccines(vaccineSet);
         return this;
     }
 
