@@ -50,9 +50,9 @@ public class UniquePolicyList implements Iterable<Policy> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the policy {@code target} in the list with {@code editedPolicy}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The policy identity of {@code editedPolicy} must not be the same as another existing policy in the list.
      */
     public void setPolicy(Policy target, Policy editedPolicy) {
         requireAllNonNull(target, editedPolicy);

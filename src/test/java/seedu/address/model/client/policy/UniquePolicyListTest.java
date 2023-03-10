@@ -1,36 +1,46 @@
 package seedu.address.model.client.policy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 class UniquePolicyListTest {
 
+    private PolicyName name = new PolicyName("Health");
+    private CustomDate date = new CustomDate("01.02.2023");
+    private Premium premium = new Premium("200");
+    private Frequency frequency = new Frequency("quarterly");
+    private Policy policy = new Policy(name, date, premium, frequency);
     private UniquePolicyList list = new UniquePolicyList();
+
 
     @Test
     void contains() {
-        assertTrue(true);
+        assertFalse(list.contains(policy));
     }
 
     @Test
     void add() {
-        assertTrue(true);
+        list.add(policy);
+        assertTrue(list.contains(policy));
     }
 
     @Test
     void setPolicy() {
-        assertTrue(true);
+        list.add(policy);
+        list.setPolicy(policy, policy);
+        UniquePolicyList expectedUniquePolicyList = new UniquePolicyList();
+        expectedUniquePolicyList.add(policy);
+        assertEquals(expectedUniquePolicyList, list);
     }
 
     @Test
     void remove() {
-        assertTrue(true);
-    }
-
-    @Test
-    void setPolicies() {
-        assertTrue(true);
+        list.add(policy);
+        list.remove(policy);
+        assertFalse(list.contains(policy));
     }
 
     @Test
@@ -38,23 +48,10 @@ class UniquePolicyListTest {
         assertTrue(true);
     }
 
-    @Test
-    void asUnmodifiableObservableList() {
-        assertTrue(true);
-    }
-
-    @Test
-    void iterator() {
-        assertTrue(true);
-    }
 
     @Test
     void testEquals() {
         assertTrue(true);
     }
 
-    @Test
-    void testHashCode() {
-        assertTrue(true);
-    }
 }

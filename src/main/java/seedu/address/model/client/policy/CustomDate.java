@@ -15,7 +15,7 @@ public class CustomDate {
     public static final String MESSAGE_CONSTRAINTS =
             "date should only contain numbers, in the format of dd.mm.yyyy";
 
-    public static final String VALIDATION_REGEX = "^\\d[0,9]{2}.*..*\\d[0,9]{2}.*..*\\d[0,9]{4}^";
+    public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}\\.\\d{4}$";
     public final LocalDate date;
 
     /**
@@ -31,7 +31,7 @@ public class CustomDate {
 
     /**
      * Converts a string into a LocalDate object.
-     * String has to be in the format of dd/MM/yyyy.
+     * String has to be in the format of dd.MM.yyyy.
      * @param date String to be converted into LocalDate object.
      * @return LocalDate object.
      */
