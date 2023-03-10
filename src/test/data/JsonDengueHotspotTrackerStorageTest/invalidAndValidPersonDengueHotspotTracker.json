@@ -10,6 +10,6 @@
     "postal": "948asdf2424",
     "date": "2023-03-05",
     "age": "22",
-    "tag": "DENV1"
+    "tagged": [ "DENV1" ]
   } ]
 }
