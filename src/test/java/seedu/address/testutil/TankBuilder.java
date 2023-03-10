@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 
@@ -35,7 +36,7 @@ public class TankBuilder {
     }
 
     public Tank build() {
-        return new Tank(tankName);
+        return new Tank(tankName, new AddressBook());
     }
 
 }
