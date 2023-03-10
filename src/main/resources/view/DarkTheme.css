@@ -343,10 +343,24 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-text-fill: #665A48;
+    -fx-background-color: #C8DBBE;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#modules {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#modules .label {
+    -fx-text-fill: white;
+    -fx-background-color: #594545;
+    -fx-padding: 3 3 3 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 13;
 }

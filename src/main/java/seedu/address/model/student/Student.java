@@ -21,32 +21,24 @@ public class Student {
     private final Email email;
 
     // Data fields
+
+    private final Remark remark;
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<ModuleCode> modules = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * With remark and tags field.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules) {
-        requireAllNonNull(name, phone, email, studentId, modules);
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules,
+                   Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, studentId, modules, remark, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
         this.modules.addAll(modules);
-    }
-
-    /**
-     * With tags field.
-     */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, modules);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.studentId = studentId;
-        this.modules.addAll(modules);
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -64,6 +56,10 @@ public class Student {
 
     public StudentId getStudentId() {
         return studentId;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -136,10 +132,11 @@ public class Student {
                 .append(getStudentId());
 
         Set<ModuleCode> modules = getModules();
-        if (!modules.isEmpty()) {
-            builder.append("; Modules: ");
-            modules.forEach(builder::append);
-        }
+        builder.append("; Modules: ");
+        modules.forEach(builder::append);
+
+        builder.append("; Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -148,5 +145,4 @@ public class Student {
         }
         return builder.toString();
     }
-
 }
