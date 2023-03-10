@@ -15,8 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
-import seedu.address.model.card.Email;
-import seedu.address.model.card.Phone;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
