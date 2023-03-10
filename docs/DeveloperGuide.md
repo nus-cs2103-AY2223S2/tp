@@ -459,7 +459,9 @@ In the example above, the user story is clearly defined at the top, followed by 
 * 2a. User requests for more info on command.
 
     * 2a1. Help interface provides link to user guide.
+  
     * 2a2. User retrieves user guide providing more detail on command.
+  
       Use case resumes at step 5.
 
 
