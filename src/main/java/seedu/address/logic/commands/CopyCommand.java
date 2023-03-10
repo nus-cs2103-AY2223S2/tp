@@ -13,6 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Copies information to the user's clipboard, of a person identified using it's displayed index from the address book.
+ */
 public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
 
@@ -26,7 +29,6 @@ public class CopyCommand extends Command {
     private final Index targetIndex;
 
     public CopyCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -59,6 +61,11 @@ public class CopyCommand extends Command {
         return information;
     }
 
+    /**
+     * Copies the information to user's clipboard
+     *
+     * @param information information to copy
+     */
     public void copyToClipboard(String information) {
         StringSelection stringSelection = new StringSelection(information);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
