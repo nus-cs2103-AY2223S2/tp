@@ -1,11 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.index.Index;
-
 import java.util.HashSet;
 import java.util.Set;
 
-public class TypicalIndexSets { ;
+import seedu.address.commons.core.index.Index;
+
+/**
+ * A utility class containing a list of {@code Set<Index>} objects to be used in tests.
+ */
+public class TypicalIndexSets {
 
     public static final Set<Index> INDEX_SET_NO_EVENT = new HashSet<>();
     public static final Set<Index> INDEX_SET_FIRST_EVENT = set(Index.fromOneBased(1));

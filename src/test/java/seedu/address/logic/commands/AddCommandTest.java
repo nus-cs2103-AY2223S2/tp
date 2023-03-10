@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_WEDDING_DINNER;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
 
 import java.nio.file.Path;
@@ -14,18 +17,25 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalEvents;
+
 
 public class AddCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -44,9 +54,32 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_personWithEventAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().withTags(VALID_EVENT_TAG_WEDDING_DINNER).build();
+
+        CommandResult commandResult = new AddCommand(validPerson, INDEX_SET_FIRST_EVENT).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS_ADD_EVENT, validPerson),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
+
+
+
+    @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson, INDEX_SET_NO_EVENT);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicatePersonWithEvent_throwsCommandException() {
+        Person validPerson = new PersonBuilder().withTags(VALID_EVENT_TAG_WEDDING_DINNER).build();
+        AddCommand addCommand = new AddCommand(validPerson, INDEX_SET_FIRST_EVENT);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
@@ -199,6 +232,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Event> eventsAdded = (ArrayList<Event>) TypicalEvents.getTypicalEvents();
 
         @Override
         public boolean hasPerson(Person person) {
@@ -210,6 +244,11 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            return FXCollections.observableList(eventsAdded);
         }
 
         @Override

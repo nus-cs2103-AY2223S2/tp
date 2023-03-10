@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -41,8 +41,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_EVENT_TAG_CARNIVAL = "Carnival";
     public static final String VALID_EVENT_TAG_SPORTS_DAY = "20th Sports Day @ Sports Hub";
-    public static final String VALID_EVENT_INDEX_TAG_CARNIVAL = "1";
-    public static final String VALID_EVENT_INDEX_TAG_SPORTS_DAY = "2";
+    public static final String VALID_EVENT_TAG_WEDDING_DINNER = "Wedding Dinner";
+    public static final String VALID_EVENT_INDEX_TAG_CARNIVAL = "2";
+    public static final String VALID_EVENT_INDEX_TAG_SPORTS_DAY = "3";
+    public static final String VALID_EVENT_INDEX_TAG_WEDDING_DINNER = "1";
 
 
     public static final String VALID_EVENT_NAME_CARNIVAL = "Carnival";
@@ -62,6 +64,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String EVENT_TAG_DESC_CARNIVAL = " " + PREFIX_EVENT_TAG + VALID_EVENT_INDEX_TAG_CARNIVAL;
     public static final String EVENT_TAG_DESC_SPORTS_DAY = " " + PREFIX_EVENT_TAG + VALID_EVENT_INDEX_TAG_SPORTS_DAY;
+    public static final String EVENT_TAG_DESC_WEDDING_DINNER = " " + PREFIX_EVENT_TAG
+            + VALID_EVENT_INDEX_TAG_WEDDING_DINNER;
 
     public static final String EVENT_NAME_DESC_CARNIVAL = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_CARNIVAL;
     public static final String EVENT_NAME_DESC_SPORTS_DAY = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_SPORTS_DAY;

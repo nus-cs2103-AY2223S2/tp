@@ -1,9 +1,9 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.event.EventName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.event.EventName;
 
 /**
  * Represents a Tag in the address book.
@@ -11,8 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class EventTag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Event tag names should be alphanumeric";
-    //public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Event tag names should contain alphanumeric and punctuations.";
 
     public final EventName eventTagName;
 
@@ -23,7 +22,7 @@ public class EventTag {
      */
     public EventTag(EventName tagName) {
         requireNonNull(tagName);
-        //checkArgument(isValidTagName(tagName.toString()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName.toString()), MESSAGE_CONSTRAINTS);
         this.eventTagName = tagName;
     }
 

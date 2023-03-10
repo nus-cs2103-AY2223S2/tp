@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +18,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.EventTag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -33,8 +30,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "Carnival";
-    private static final String VALID_TAG_2 = "Wedding";
+    private static final String VALID_EVENT_TAG_1 = "Carnival";
+    private static final String VALID_EVENT_TAG_2 = "Wedding";
 
     private static final String INVALID_EVENT_NAME = "!Company's 20th Anniversary";
     private static final String INVALID_DATE_TIME_FORMAT = "02-02-202 12:70";
@@ -165,7 +162,7 @@ public class ParserUtilTest {
     public void parseTag_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex(INVALID_TAG));
     }
-/*
+    /*
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
         EventTag expectedTag = new EventTag(new EventName(VALID_TAG_1));
@@ -178,7 +175,7 @@ public class ParserUtilTest {
         EventTag expectedTag = new EventTag(VALID_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
-*/
+    */
     @Test
     public void parseTags_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseIndex(null));
@@ -186,19 +183,21 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEventTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseEventIndexTags(Arrays.asList(VALID_EVENT_TAG_1, INVALID_TAG)));
     }
 
     @Test
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseEventTags(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseEventIndexTags(Collections.emptyList()).isEmpty());
     }
 
     /*
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<EventTag> actualTagSet = ParserUtil.parseEventTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<EventTag> expectedTagSet = new HashSet<EventTag>(Arrays.asList(new EventTag(VALID_TAG_1), new EventTag(VALID_TAG_2)));
+        Set<EventTag> expectedTagSet = new HashSet<EventTag>(Arrays.asList(new EventTag(VALID_TAG_1),
+        new EventTag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

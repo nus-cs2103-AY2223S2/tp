@@ -3,21 +3,23 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.EventTag;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -64,17 +66,15 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
-        Set<EventTag> eventTagSet = new HashSet<>();
-        List<Event> lastShownList = model.getFilteredEventList();
-
-        if(!eventIndexList.isEmpty()) {
+        if (!eventIndexList.isEmpty()) {
+            Set<EventTag> eventTagSet = new HashSet<>();
+            List<Event> lastShownList = model.getFilteredEventList();
             for (Index eventIndex: eventIndexList) {
                 if (eventIndex.getZeroBased() >= lastShownList.size()) {
                     throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
                 }
                 Event eventToAdd = lastShownList.get(eventIndex.getZeroBased());
-                eventTagSet.add(new EventTag(eventToAdd.getName()));
+                eventTagSet.add(ParserUtil.parseEventTag(eventToAdd));
             }
             Person personWithEvent = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
                     toAdd.getAddress(), eventTagSet);

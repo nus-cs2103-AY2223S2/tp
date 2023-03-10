@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.event.EventName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -37,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setEventTags(new HashSet<>());
     }
 
     /**
@@ -76,8 +80,18 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<EventTag> tagSet = Stream.of(tags).map(EventTag::new).collect(Collectors.toSet());
+        Set<EventTag> tagSet = Stream.of(tags).map(EventName::new).map(EventTag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Index>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withEventIndexTags(String... tags) {
+        Set<Index> tagSet = Stream.of(tags).map(Integer::parseInt).map(Index::fromOneBased).collect(Collectors.toSet());
+        descriptor.setEventTags(tagSet);
         return this;
     }
 

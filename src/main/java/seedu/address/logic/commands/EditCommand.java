@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
@@ -115,10 +115,10 @@ public class EditCommand extends Command {
             Person personWithEvent = editedPerson;
             editedPerson = new Person(personWithEvent.getName(), personWithEvent.getPhone(), personWithEvent.getEmail(),
                     personWithEvent.getAddress(), originalTagSet);
-        } else if (updatedEventTags.isEmpty()){
+        } else if (updatedEventTags.isEmpty()) {
             Person personToClearTags = editedPerson;
-            editedPerson = new Person(personToClearTags.getName(), personToClearTags.getPhone(), personToClearTags.getEmail(),
-                    personToClearTags.getAddress(), new HashSet<>());
+            editedPerson = new Person(personToClearTags.getName(), personToClearTags.getPhone(),
+                    personToClearTags.getEmail(), personToClearTags.getAddress(), new HashSet<>());
         }
         return editedPerson;
     }
@@ -167,7 +167,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Index> eventTags;
+        private Set<Index> eventIndexTags;
         private Set<EventTag> tags;
 
         public EditPersonDescriptor() {}
@@ -181,7 +181,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setEventTags(toCopy.eventTags);
+            setEventTags(toCopy.eventIndexTags);
             setTags(toCopy.tags);
         }
 
@@ -189,7 +189,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, eventTags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, eventIndexTags);
         }
 
         public void setName(Name name) {
@@ -229,7 +229,13 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<EventTag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            if (tags == null) {
+                this.tags = null;
+            } else if (tags.isEmpty()) {
+                this.tags = new HashSet<>();
+            } else {
+                this.tags = null;
+            }
         }
 
         /**
@@ -245,7 +251,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setEventTags(Set<Index> tags) {
-            this.eventTags = (tags != null) ? new HashSet<>(tags) : null;
+            this.eventIndexTags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -253,7 +259,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Index>> getEventTags() {
-            return (eventTags != null) ? Optional.of(eventTags) : Optional.empty();
+            return (eventIndexTags != null) ? Optional.of(eventIndexTags) : Optional.empty();
         }
 
         @Override
