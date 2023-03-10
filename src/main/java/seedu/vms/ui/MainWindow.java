@@ -16,7 +16,10 @@ import seedu.vms.logic.Logic;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.ui.vaccination.VaxTypeListPanel;
+import seedu.vms.model.IdData;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.ui.vaccination.VaxTypeCard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,8 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PatientListPanel patientListPanel;
-    private VaxTypeListPanel vaxTypeListPanel;
+    private ListViewPanel<IdData<Patient>> patientListPanel;
+    private ListViewPanel<VaxType> vaxTypeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -108,10 +111,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        patientListPanel = new PatientListPanel(logic.getFilteredPatientMap());
-        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+        patientListPanel = new ListViewPanel<>(
+                logic.getFilteredPatientMap(),
+                idData -> new PatientCard(idData.getValue(), idData.getId() + 1).getRoot());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel);
 
-        vaxTypeListPanel = new VaxTypeListPanel(logic.getFilteredVaxTypeMap());
+        vaxTypeListPanel = new ListViewPanel<>(
+                logic.getFilteredVaxTypeMap(),
+                vaxType -> new VaxTypeCard(vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
 
         resultDisplay = new ResultDisplay();
@@ -162,10 +169,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PatientListPanel getPatientListPanel() {
-        return patientListPanel;
     }
 
     /**

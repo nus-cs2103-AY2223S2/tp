@@ -12,7 +12,7 @@ import seedu.vms.model.GroupName;
 /**
  * Represents a vaccination type.
  */
-public class VaxType {
+public class VaxType implements Comparable<VaxType> {
     public static final String MESSAGE_AGE_CONSTRAINTS =
             "Minimum age must be lesser than or equals to maximum age";
     public static final String MESSAGE_SPACING_CONSTRAINTS =
@@ -101,6 +101,12 @@ public class VaxType {
 
     public List<Requirement> getAllergyReqs() {
         return Requirement.copy(allergyReqs);
+    }
+
+
+    @Override
+    public int compareTo(VaxType other) {
+        return name.compareTo(other.name);
     }
 
 
