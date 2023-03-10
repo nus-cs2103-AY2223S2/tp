@@ -39,6 +39,7 @@ jobs:
         run: ./gradlew check coverage
 
       - uses: codecov/codecov-action@v2
+        fail_ci_if_error: false
         if: runner.os == 'Linux'
         with:
           directory: ${{ github.workspace }}/build/reports/jacoco/coverage
