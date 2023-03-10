@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,17 +22,17 @@ public class CommandResultTest {
 
     @Test
     void isSelect() {
-        assertTrue(true);
+        assertFalse(commandResult.isSelect());
     }
 
     @Test
     void isShowHelp() {
-        assertTrue(true);
+        assertFalse(commandResult.isShowHelp());
     }
 
     @Test
     void isExit() {
-        assertTrue(true);
+        assertFalse(commandResult.isExit());
     }
 
     @Test
