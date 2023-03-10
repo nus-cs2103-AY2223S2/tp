@@ -27,7 +27,6 @@ public class Module {
      * Returns true if a given string is a valid module name.
      */
     public static boolean isValidModuleName(String test) {
-        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 
