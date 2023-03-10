@@ -67,13 +67,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTitle_validValueWithoutWhitespace_returnsName() throws Exception {
+    public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_TITLE));
     }
 
     @Test
-    public void parseTitle_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+    public void parseTitle_validValueWithWhitespace_returnsTrimmedTitle() throws Exception {
         String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
@@ -113,13 +113,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAuthor_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseAuthor_validValueWithoutWhitespace_returnsAuthor() throws Exception {
         Author expectedAuthor = new Author(VALID_AUTHOR);
         assertEquals(expectedAuthor, ParserUtil.parseAuthor(VALID_AUTHOR));
     }
 
     @Test
-    public void parseAuthor_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseAuthor_validValueWithWhitespace_returnsTrimmedAuthor() throws Exception {
         String authorWithWhitespace = WHITESPACE + VALID_AUTHOR + WHITESPACE;
         Author expectedAuthor = new Author(VALID_AUTHOR);
         assertEquals(expectedAuthor, ParserUtil.parseAuthor(authorWithWhitespace));
@@ -136,13 +136,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseGenre_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseGenre_validValueWithoutWhitespace_returnsGenre() throws Exception {
         Genre expectedGenre = new Genre(VALID_GENRE);
         assertEquals(expectedGenre, ParserUtil.parseGenre(VALID_GENRE));
     }
 
     @Test
-    public void parseGenre_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+    public void parseGenre_validValueWithWhitespace_returnsTrimmedGenre() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_GENRE + WHITESPACE;
         Genre expectedGenre = new Genre(VALID_GENRE);
         assertEquals(expectedGenre, ParserUtil.parseGenre(emailWithWhitespace));
