@@ -67,6 +67,19 @@ public class Person {
     }
 
     /**
+     * Returns true if both persons have the same employee ID.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameEmployeeID(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getEmployeeId().equals(getEmployeeId());
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
