@@ -29,6 +29,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String startTime;
     private final String endTime;
+    private final String mark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +40,14 @@ class JsonAdaptedPerson {
             @JsonProperty("address") String address,
             @JsonProperty("startTiming") String startTime,
             @JsonProperty("endTiming") String endTiming,
+            @JsonProperty("mark") String mark,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
         this.address = address;
         this.startTime = startTime;
         this.endTime = endTiming;
+        this.mark = mark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +62,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         startTime = source.getTiming().startTime;
         endTime = source.getTiming().endTime;
+        mark = source.getMark().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,7 +112,11 @@ class JsonAdaptedPerson {
         final Timing modelTiming = new Timing(startTime, endTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
+        Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
+        if (mark.equals("[X]")) {
+            event.mark();
+        }
+        return event;
     }
 
 }

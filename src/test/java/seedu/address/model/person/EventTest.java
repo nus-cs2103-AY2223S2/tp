@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonTest {
+public class EventTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -82,5 +82,8 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different tags -> returns false
+        assertFalse(ALICE.hashCode() == (BOB.hashCode()));
     }
 }

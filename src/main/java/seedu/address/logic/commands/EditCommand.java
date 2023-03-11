@@ -24,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.person.Timing;
@@ -116,9 +117,15 @@ public class EditCommand extends Command {
         Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Timing updatedTiming = editPersonDescriptor.getTiming().orElse(personToEdit.getTiming());
+        Mark updatedMark = editPersonDescriptor.getMark().orElse(personToEdit.getMark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
+        Event updatedEvent = new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
+        if (updatedMark.isDone()) {
+            updatedEvent.mark();
+        }
+
+        return updatedEvent;
     }
 
     @Override
@@ -148,6 +155,7 @@ public class EditCommand extends Command {
         private Rate rate;
         private Address address;
         private Timing timing;
+        private Mark mark;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -161,6 +169,7 @@ public class EditCommand extends Command {
             setRate(toCopy.rate);
             setAddress(toCopy.address);
             setTiming(toCopy.timing);
+            setMark(toCopy.mark);
             setTags(toCopy.tags);
         }
 
@@ -168,7 +177,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rate, address, timing, tags);
+            return CollectionUtil.isAnyNonNull(name, rate, address, timing, mark, tags);
         }
 
         public void setName(Name name) {
@@ -201,6 +210,14 @@ public class EditCommand extends Command {
 
         public Optional<Timing> getTiming() {
             return Optional.ofNullable(timing);
+        }
+
+        public void setMark(Mark mark) {
+            this.mark = mark;
+        }
+
+        public Optional<Mark> getMark() {
+            return Optional.ofNullable(mark);
         }
 
         /**

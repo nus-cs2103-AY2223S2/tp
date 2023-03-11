@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.person.Timing;
@@ -36,6 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setRate(person.getRate());
         descriptor.setAddress(person.getAddress());
         descriptor.setTiming(person.getTiming());
+        descriptor.setMark(person.getMark());
         descriptor.setTags(person.getTags());
     }
 
@@ -67,6 +69,18 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTiming(String startTime, String endTime) {
         descriptor.setTiming(new Timing(startTime, endTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Mark} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMark(String mark) {
+        Mark temp = new Mark();
+        if (mark.equals("[X]")) {
+            temp.setDone();
+        }
+        descriptor.setMark(temp);
         return this;
     }
 

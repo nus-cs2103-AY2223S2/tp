@@ -118,6 +118,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markEvent(Event target, Event markedEvent) {
+        requireNonNull(target);
+        addressBook.markEvent(target, markedEvent);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void addPerson(Event person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

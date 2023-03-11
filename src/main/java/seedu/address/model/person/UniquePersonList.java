@@ -79,6 +79,15 @@ public class UniquePersonList implements Iterable<Event> {
         }
     }
 
+    /**
+     * Marks the equivalent event from the list.
+     * The event must exist in the list.
+     */
+    public void mark(Event toMark, Event markedEvent) {
+        requireNonNull(toMark);
+        setPerson(toMark, markedEvent);
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.person.Timing;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     private Rate rate;
     private Address address;
     private Timing timing;
+    private Mark mark;
     private Set<Tag> tags;
 
     /**
@@ -48,6 +50,7 @@ public class PersonBuilder {
         rate = personToCopy.getRate();
         address = personToCopy.getAddress();
         timing = personToCopy.getTiming();
+        mark = personToCopy.getMark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -76,7 +79,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Rate} of the {@code Person} that we are building.
      */
     public PersonBuilder withRate(String rate) {
         this.rate = new Rate(rate);
@@ -88,6 +91,17 @@ public class PersonBuilder {
      */
     public PersonBuilder withTiming(String startTime, String endTime) {
         this.timing = new Timing(startTime, endTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Mark} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withMark(String mark) {
+        this.mark = new Mark();
+        if (mark.equals("[X]")) {
+            this.mark.setDone();
+        }
         return this;
     }
 
