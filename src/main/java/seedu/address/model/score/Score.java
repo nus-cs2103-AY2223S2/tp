@@ -1,7 +1,9 @@
 package seedu.address.model.score;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+
 
 /**
  * Represents a Score in the address book.
