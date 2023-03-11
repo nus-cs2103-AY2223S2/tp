@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.exceptions.DuplicatePersonException;
+import seedu.address.model.deck.Deck;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -88,7 +89,7 @@ public class AddressBookTest {
      */
     private static class MasterDeckStub implements ReadOnlyMasterDeck {
         private final ObservableList<Card> cards = FXCollections.observableArrayList();
-
+        private final ObservableList<Deck> decks = FXCollections.observableArrayList();
         MasterDeckStub(Collection<Card> cards) {
             this.cards.setAll(cards);
         }
@@ -96,6 +97,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Card> getCardList() {
             return cards;
+        }
+
+        @Override
+        public ObservableList<Deck> getDeckList() {
+            return decks;
         }
     }
 
