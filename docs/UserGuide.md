@@ -221,14 +221,14 @@ Examples:
 Creates a weekly recurring event or a non-recurring event
 
 #### 1) Non-recurring Event
-Format: `event create INDEX en/EVENT_NAME f/START_DATE t/END_DATE`
+Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
 * Creates an event with the specified name `EVENT_NAME`
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
 
 #### 2) Weekly Recurring Event
-Format: `event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+Format: `event_create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
 * Creates a recurring event with the specified name `EVENT_NAME`
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`

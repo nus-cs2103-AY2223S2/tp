@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import static seedu.address.testutil.SampleDateTimeUtil.VALID_END_DATETIME;
+import static seedu.address.testutil.SampleDateTimeUtil.VALID_START_DATETIME;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +24,7 @@ public class AddIsolatedEventCommandTest {
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime start = LocalDateTime.parse("09/03/2023 14:00", formatter);
-        LocalDateTime end = LocalDateTime.parse("09/03/2023 15:00", formatter);
-
-        IsolatedEvent isolatedEvent = new IsolatedEvent("biking", start, end);
+        IsolatedEvent isolatedEvent = new IsolatedEvent("biking", VALID_START_DATETIME, VALID_END_DATETIME);
         AddIsolatedEventCommand command = new AddIsolatedEventCommand(Index.fromOneBased(1), isolatedEvent);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());

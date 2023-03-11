@@ -17,13 +17,12 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     private final String eventName;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     /**
      * Constructor for IsolatedEvent class.
-     * @param eventName
-     * @param startDate
-     * @param endDate
+     * @param eventName name of the isolated event added.
+     * @param startDate in which the isolated event starts.
+     * @param endDate in which the isolated event ends.
      */
     public IsolatedEvent(String eventName, LocalDateTime startDate, LocalDateTime endDate) {
         super(eventName);
@@ -32,20 +31,6 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         this.endDate = endDate;
     }
 
-    /**
-     * Constructor for IsolatedEvent Class.
-     * @param eventName
-     * @param startDate
-     * @param endDate
-     */
-    public IsolatedEvent(String eventName, String startDate, String endDate) {
-        super(eventName);
-        this.eventName = eventName;
-        this.startDate = LocalDateTime.parse(startDate, formatter);
-        this.endDate = LocalDateTime.parse(endDate, formatter);
-    }
-
-    // TODO: Implement compareTo by comparing the start date/time of events
     @Override
     public int compareTo(IsolatedEvent o) { //TODO: Add implementation for compareTo
         return 0;
@@ -60,10 +45,14 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
      */
     @Override
     public boolean occursBetween(LocalDateTime startPeriod, LocalDateTime endPeriod) {
-        // TODO: Implement this method.
-        if (startDate.isBefore(startPeriod) || endDate.isAfter(endPeriod)) {
+        if (startDate.isBefore(startPeriod)) {
             return false;
         }
+
+        if (endDate.isAfter(endPeriod)) {
+            return false;
+        }
+
         return true;
     }
 

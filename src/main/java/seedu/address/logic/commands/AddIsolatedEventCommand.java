@@ -23,10 +23,9 @@ public class AddIsolatedEventCommand extends Command {
             + ": Add an isolated event into the isolated event list"
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: start date and end date (must be in the format of ) "
-            + "e/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + "Parameters: event name, start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
+            + "ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
+            + "Example: " + COMMAND_WORD + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
 
     public final IsolatedEvent eventToAdd;
     public final Index index;

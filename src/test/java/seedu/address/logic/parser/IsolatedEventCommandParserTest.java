@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ISOEVENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.testutil.SampleEventUtil.INVALID_DATE_FORMAT_ISOLATED_EVENT;
+import static seedu.address.testutil.SampleEventUtil.MISSING_EVENT_NAME_ISOLATED_EVENT;
+import static seedu.address.testutil.SampleEventUtil.MISSING_INDEX_ISOLATED_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +17,10 @@ public class IsolatedEventCommandParserTest {
     public void parse_invalidValue_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIsolatedEventCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, PREFIX_ISOEVENT + "biking" + PREFIX_STARTDATE + "09/03/2023 14:00"
-                + PREFIX_ENDDATE + "09/03/2023 15:00", expectedMessage);
+        assertParseFailure(parser, MISSING_INDEX_ISOLATED_EVENT, expectedMessage);
 
-        assertParseFailure(parser, "1" + PREFIX_ISOEVENT + PREFIX_STARTDATE + "09/03/2023 14:00"
-                + PREFIX_ENDDATE + "09/03/2023 15:00", expectedMessage);
+        assertParseFailure(parser, MISSING_EVENT_NAME_ISOLATED_EVENT, expectedMessage);
 
-        assertParseFailure(parser, "1" + PREFIX_ISOEVENT + "biking" + PREFIX_STARTDATE + "09-03-2023 14:00"
-                + PREFIX_ENDDATE + "09/03/2023 15:00", expectedMessage);
+        assertParseFailure(parser, INVALID_DATE_FORMAT_ISOLATED_EVENT, expectedMessage);
     }
 }

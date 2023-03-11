@@ -115,10 +115,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code String name} into the correct format.
+     * Parses a {@code String eventName} into the correct format with no trailing space and
+     * check if the eventName is of valid format.
      * @param eventName
-     * @return a String object
-     * @throws ParseException
+     * @return a String object containing the name of the isolated event.
+     * @throws ParseException if the given {@code eventName} is invalid.
      */
     public static String parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
@@ -132,9 +133,9 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String date} into a {@code LocalDateTime date} into the correct format.
-     * @param date
-     * @return String object
-     * @throws ParseException
+     * @param date of which the event start/end.
+     * @return LocalDateTime object containing the start/end date and time of the event.
+     * @throws ParseException if the given {@code String date} is in invalid format.
      */
     public static LocalDateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
