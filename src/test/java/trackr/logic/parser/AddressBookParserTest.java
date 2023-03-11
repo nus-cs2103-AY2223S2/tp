@@ -22,11 +22,13 @@ import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
+import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
+import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
@@ -90,6 +92,24 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTask() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
+                FindTaskCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTaskShortcut() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
+                FindTaskCommand.COMMAND_WORD_SHORTCUT
+                        + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
