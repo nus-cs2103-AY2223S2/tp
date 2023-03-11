@@ -217,7 +217,7 @@ Examples:
 * `group find g/CS2103T`
 * `group find g/CS2101`
 
-### Creating an event: `event create`
+### Creating an event: `event_create`
 Creates a weekly recurring event or a non-recurring event
 
 #### 1) Non-recurring Event
@@ -239,11 +239,11 @@ Examples:
 * 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
 * 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
 
-### Delete an event: `event delete`
+### Delete an event: `event_delete`
 
 Deletes an existing event from the address book.
 
-Format: `event delete e/EVENT_NAME`
+Format: `event_delete e/EVENT_NAME`
 
 * Deletes an event with the specified event name `EVENT_NAME`
 * The event name cannot be empty and must be an existing event

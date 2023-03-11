@@ -108,7 +108,6 @@ public class ModelManager implements Model {
     public void addIsolatedEvent(Person person, IsolatedEvent event) {
         addressBook.addIsolatedEvent(person, event);
     }
-
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);

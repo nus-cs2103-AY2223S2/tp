@@ -21,8 +21,7 @@ public class AddIsolatedEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add an isolated event into the isolated event list"
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "by the index number used in the last person listing.\n "
             + "Parameters: event name, start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
             + "ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
             + "Example: " + COMMAND_WORD + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
