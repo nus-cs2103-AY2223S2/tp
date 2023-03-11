@@ -22,7 +22,6 @@ class DeleteTaskCommandTest {
 
     @Test
     void execute_validStudentIndexInvalidTaskIndexUnfilteredList_failure() {
-        Person personToOperate = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
