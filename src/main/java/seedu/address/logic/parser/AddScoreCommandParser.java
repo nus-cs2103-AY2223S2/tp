@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 
-
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;

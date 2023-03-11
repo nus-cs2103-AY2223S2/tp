@@ -126,7 +126,7 @@ class JsonAdaptedPerson {
         final Phone modelParentPhone = new Phone(parentPhone);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Person person =  new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
 
         for (JsonAdaptedScore jsonAdaptedScore : scores) {
             Score score = jsonAdaptedScore.toModelType();
