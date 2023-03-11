@@ -15,7 +15,10 @@ import seedu.address.model.task.Status;
 import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
 
-public class MarkCommand extends Command{
+/**
+ * Marks a task as completed
+ */
+public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
