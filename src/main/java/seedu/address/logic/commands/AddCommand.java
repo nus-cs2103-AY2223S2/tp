@@ -62,6 +62,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitSocket();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

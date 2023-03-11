@@ -87,6 +87,7 @@ public class RemoveCommand extends Command {
         }
 
         model.setPerson(personFieldToRemove, removedFieldPerson);
+        model.commitSocket();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson));
     }
