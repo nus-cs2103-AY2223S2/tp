@@ -6,16 +6,7 @@ import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.sudohr.logic.commands.AddCommand;
-import seedu.sudohr.logic.commands.AddDepartmentCommand;
-import seedu.sudohr.logic.commands.ClearCommand;
-import seedu.sudohr.logic.commands.Command;
-import seedu.sudohr.logic.commands.DeleteCommand;
-import seedu.sudohr.logic.commands.EditCommand;
-import seedu.sudohr.logic.commands.ExitCommand;
-import seedu.sudohr.logic.commands.FindCommand;
-import seedu.sudohr.logic.commands.HelpCommand;
-import seedu.sudohr.logic.commands.ListCommand;
+import seedu.sudohr.logic.commands.*;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,6 +47,9 @@ public class SudoHrParser {
 
         case AddDepartmentCommand.COMMAND_WORD:
             return new AddDepartmentCommandParser().parse(arguments);
+
+        case EditDepartmentCommand.COMMAND_WORD:
+            return new EditDepartmentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
