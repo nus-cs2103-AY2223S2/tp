@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCRE_VALUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 
 import java.util.List;
 
