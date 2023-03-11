@@ -106,7 +106,6 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-        // edit
         return otherPerson.getPhone().equals(getPhone())
                 || otherPerson.getEmail().equals(getEmail());
     }
