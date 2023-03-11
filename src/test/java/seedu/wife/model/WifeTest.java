@@ -3,8 +3,8 @@ package seedu.wife.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
 import static seedu.wife.testutil.Assert.assertThrows;
 import static seedu.wife.testutil.TypicalFood.MEIJI;
 import static seedu.wife.testutil.TypicalFood.getTypicalWife;
@@ -20,10 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.exceptions.DuplicateFoodException;
-import seedu.wife.model.person.Person;
-import seedu.wife.model.person.exceptions.DuplicatePersonException;
+//import seedu.wife.model.person.Person;
+//import seedu.wife.model.person.exceptions.DuplicatePersonException;
 import seedu.wife.testutil.FoodBuilder;
-import seedu.wife.testutil.WifeBuilder;
+//import seedu.wife.testutil.WifeBuilder;
 
 public class WifeTest {
 
@@ -76,7 +76,7 @@ public class WifeTest {
     @Test
     public void hasFood_foodWithSameIdentityFieldsInWife_returnsTrue() {
         wife.addFood(MEIJI);
-        Food editedMeiji= new FoodBuilder(MEIJI).withUnit(VALID_UNIT_MEIJI).withTags(VALID_TAG_DAIRY)
+        Food editedMeiji = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_MEIJI).withTags(VALID_TAG_DAIRY)
                 .build();
         assertTrue(wife.hasFood(editedMeiji));
     }

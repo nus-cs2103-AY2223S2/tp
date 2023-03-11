@@ -6,7 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
-import seedu.wife.model.food.*;
+import seedu.wife.model.food.ExpiryDate;
+import seedu.wife.model.food.Food;
+import seedu.wife.model.food.Name;
+import seedu.wife.model.food.Quantity;
+import seedu.wife.model.food.Unit;
 import seedu.wife.model.tag.Tag;
 
 /**
@@ -17,7 +21,7 @@ public class SampleDataUtil {
         return new Food[] {
             new Food(new Name("Meiji Milk"), new Unit("Carton"), new Quantity("2"),
                 new ExpiryDate("13-11-2024"),
-                getTagSet("friends")),
+                getTagSet("dairy")),
         };
     }
 

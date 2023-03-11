@@ -3,12 +3,7 @@ package seedu.wife.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX;
 import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_MEIJI;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalFood.MEIJI;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.wife.logic.commands.AddCommand;
 import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.ListCommand;
 import seedu.wife.logic.commands.exceptions.CommandException;
@@ -26,12 +20,9 @@ import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.UserPrefs;
-import seedu.wife.model.food.Food;
 import seedu.wife.storage.JsonUserPrefsStorage;
 import seedu.wife.storage.JsonWifeStorage;
 import seedu.wife.storage.StorageManager;
-import seedu.wife.testutil.FoodBuilder;
-import seedu.wife.testutil.WifeBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

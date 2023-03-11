@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.wife.commons.core.GuiSettings;
 import seedu.wife.logic.commands.exceptions.CommandException;
-import seedu.wife.model.Wife;
 import seedu.wife.model.Model;
-import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.ReadOnlyUserPrefs;
+import seedu.wife.model.ReadOnlyWife;
+import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 import seedu.wife.testutil.FoodBuilder;
 
@@ -52,16 +52,16 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Food Meiji = new FoodBuilder().withName("Meiji").build();
-        Food Chocolate = new FoodBuilder().withName("Chocolate").build();
-        AddCommand addMeijiCommand = new AddCommand(Meiji);
-        AddCommand addChocolateCommand = new AddCommand(Chocolate);
+        Food meiji = new FoodBuilder().withName("Meiji").build();
+        Food chocolate = new FoodBuilder().withName("Chocolate").build();
+        AddCommand addMeijiCommand = new AddCommand(meiji);
+        AddCommand addChocolateCommand = new AddCommand(chocolate);
 
         // same object -> returns true
         assertTrue(addMeijiCommand.equals(addMeijiCommand));
 
         // same values -> returns true
-        AddCommand addMeijiCommandCopy = new AddCommand(Meiji);
+        AddCommand addMeijiCommandCopy = new AddCommand(meiji);
         assertTrue(addMeijiCommand.equals(addMeijiCommandCopy));
 
         // different types -> returns false
@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setWifeFilePath(Path WifeFilePath) {
+        public void setWifeFilePath(Path wifeFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasFood(Food Food) {
+        public boolean hasFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,7 +153,7 @@ public class AddCommandTest {
      * A Model stub that contains a single Food.
      */
     private class ModelStubWithFood extends ModelStub {
-        private final Food food ;
+        private final Food food;
 
         ModelStubWithFood(Food food) {
             requireNonNull(food);

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalFood.MEIJI;
-import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
+//import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
+//import static seedu.wife.testutil.TypicalFood.MEIJI;
 import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import java.util.Arrays;

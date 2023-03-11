@@ -1,22 +1,19 @@
 package seedu.wife.logic.parser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.wife.logic.commands.CommandTestUtil.*;
+import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.wife.testutil.TypicalFood.*;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.commands.AddCommand;
-import seedu.wife.model.food.Food;
-import seedu.wife.model.person.Address;
-import seedu.wife.model.person.Email;
-import seedu.wife.model.person.Name;
-import seedu.wife.model.person.Person;
-import seedu.wife.model.person.Phone;
-import seedu.wife.model.tag.Tag;
-import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

@@ -33,29 +33,29 @@ public class FoodTest {
         assertFalse(MEIJI.isSameFood(null));
 
         // same name, all other attributes different -> returns true
-        Food editedMEIJI = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_CHOCOLATE).withQuantity(VALID_QUANTITY_CHOCOLATE)
+        Food editedMeiji = new FoodBuilder(MEIJI).withUnit(VALID_UNIT_CHOCOLATE).withQuantity(VALID_QUANTITY_CHOCOLATE)
                 .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE).build();
-        assertTrue(MEIJI.isSameFood(editedMEIJI));
+        assertTrue(MEIJI.isSameFood(editedMeiji));
 
         // different name, all other attributes same -> returns false
-        editedMEIJI = new FoodBuilder(MEIJI).withName(VALID_NAME_CHOCOLATE).build();
-        assertFalse(MEIJI.isSameFood(editedMEIJI));
+        editedMeiji = new FoodBuilder(MEIJI).withName(VALID_NAME_CHOCOLATE).build();
+        assertFalse(MEIJI.isSameFood(editedMeiji));
 
         // name differs in case, all other attributes same -> returns false
-        Food editedCHOCOLATE = new FoodBuilder(CHOCOLATE).withName(VALID_NAME_CHOCOLATE.toLowerCase()).build();
-        assertFalse(CHOCOLATE.isSameFood(editedCHOCOLATE));
+        Food editedChocolate = new FoodBuilder(CHOCOLATE).withName(VALID_NAME_CHOCOLATE.toLowerCase()).build();
+        assertFalse(CHOCOLATE.isSameFood(editedChocolate));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_CHOCOLATE + " ";
-        editedCHOCOLATE = new FoodBuilder(CHOCOLATE).withName(nameWithTrailingSpaces).build();
-        assertFalse(CHOCOLATE.isSameFood(editedCHOCOLATE));
+        editedChocolate = new FoodBuilder(CHOCOLATE).withName(nameWithTrailingSpaces).build();
+        assertFalse(CHOCOLATE.isSameFood(editedChocolate));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Food MeijiCopy = new FoodBuilder(MEIJI).build();
-        assertTrue(MEIJI.equals(MeijiCopy));
+        Food meijiCopy = new FoodBuilder(MEIJI).build();
+        assertTrue(MEIJI.equals(meijiCopy));
 
         // same object -> returns true
         assertTrue(MEIJI.equals(MEIJI));

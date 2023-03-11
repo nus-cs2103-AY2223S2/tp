@@ -15,10 +15,10 @@ import java.util.List;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.exceptions.CommandException;
+import seedu.wife.model.Model;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
-import seedu.wife.model.Model;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 /**

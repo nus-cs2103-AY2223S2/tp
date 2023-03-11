@@ -2,13 +2,13 @@ package seedu.wife.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.wife.logic.commands.CommandTestUtil.DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 
 import org.junit.jupiter.api.Test;
 

@@ -5,7 +5,10 @@ import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.model.*;
+import seedu.wife.model.Model;
+import seedu.wife.model.ModelManager;
+import seedu.wife.model.UserPrefs;
+import seedu.wife.model.Wife;
 
 public class ClearCommandTest {
 

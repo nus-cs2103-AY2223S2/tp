@@ -1,35 +1,11 @@
 package seedu.wife.logic.parser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.wife.logic.commands.CommandTestUtil.INVALID_UNIT_DESC;
-import static seedu.wife.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
-import static seedu.wife.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_DESC;
-import static seedu.wife.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.TAG_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.TAG_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_SECOND_FOOD;
 import static seedu.wife.testutil.TypicalIndexes.INDEX_THIRD_FOOD;
 
 import org.junit.jupiter.api.Test;
@@ -37,14 +13,6 @@ import org.junit.jupiter.api.Test;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.EditCommand;
 import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
-import seedu.wife.model.food.ExpiryDate;
-import seedu.wife.model.food.Quantity;
-import seedu.wife.model.food.Unit;
-import seedu.wife.model.person.Address;
-import seedu.wife.model.person.Email;
-import seedu.wife.model.person.Name;
-import seedu.wife.model.person.Phone;
-import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -118,7 +86,9 @@ public class EditCommandParserTest {
                 + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI + NAME_DESC_MEIJI + TAG_DESC_MEIJI;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_MEIJI)
-                .withUnit(VALID_UNIT_CHOCOLATE).withQuantity(VALID_QUANTITY_MEIJI).withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
+                .withUnit(VALID_UNIT_CHOCOLATE)
+                .withQuantity(VALID_QUANTITY_MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
                 .withTags(VALID_TAG_DAIRY, VALID_TAG_CHOCOLATE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

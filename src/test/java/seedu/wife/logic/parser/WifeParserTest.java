@@ -13,22 +13,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.AddCommand;
 import seedu.wife.logic.commands.ClearCommand;
 import seedu.wife.logic.commands.DeleteCommand;
-import seedu.wife.logic.commands.EditCommand;
-import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.wife.logic.commands.ExitCommand;
 import seedu.wife.logic.commands.FindCommand;
 import seedu.wife.logic.commands.HelpCommand;
 import seedu.wife.logic.commands.ListCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
-import seedu.wife.model.food.Food;
-import seedu.wife.testutil.EditFoodDescriptorBuilder;
-import seedu.wife.testutil.FoodBuilder;
-import seedu.wife.testutil.WifeBuilder;
-import seedu.wife.testutil.FoodUtil;
 
 public class WifeParserTest {
 

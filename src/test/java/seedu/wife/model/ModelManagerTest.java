@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalFood.MEIJI;
 import static seedu.wife.testutil.TypicalFood.CHOCOLATE;
+import static seedu.wife.testutil.TypicalFood.MEIJI;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

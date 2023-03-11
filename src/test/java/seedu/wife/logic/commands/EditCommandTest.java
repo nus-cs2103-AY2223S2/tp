@@ -2,27 +2,25 @@ package seedu.wife.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.wife.logic.commands.CommandTestUtil.DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
+import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 import static seedu.wife.testutil.TypicalIndexes.INDEX_SECOND_FOOD;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
-import seedu.wife.model.Wife;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.UserPrefs;
+import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 import seedu.wife.testutil.FoodBuilder;
@@ -87,8 +85,8 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
-        Food FoodInFilteredList = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
-        Food editedFood = new FoodBuilder(FoodInFilteredList).withName(VALID_NAME_CHOCOLATE).build();
+        Food foodInFilteredList = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
+        Food editedFood = new FoodBuilder(foodInFilteredList).withName(VALID_NAME_CHOCOLATE).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FOOD,
                 new EditFoodDescriptorBuilder().withName(VALID_NAME_CHOCOLATE).build());
 
@@ -114,9 +112,9 @@ public class EditCommandTest {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
         // edit Food in filtered list into a duplicate in address book
-        Food FoodInList = model.getWife().getFoodList().get(INDEX_SECOND_FOOD.getZeroBased());
+        Food foodInList = model.getWife().getFoodList().get(INDEX_SECOND_FOOD.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FOOD,
-                new EditFoodDescriptorBuilder(FoodInList).build());
+                new EditFoodDescriptorBuilder(foodInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
     }

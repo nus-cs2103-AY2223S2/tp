@@ -1,6 +1,5 @@
 package seedu.wife.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.wife.storage.JsonAdaptedFood.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.wife.testutil.Assert.assertThrows;
 import static seedu.wife.testutil.TypicalFood.MEIJI;

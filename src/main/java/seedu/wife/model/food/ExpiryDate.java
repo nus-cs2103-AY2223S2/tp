@@ -19,18 +19,7 @@ public class ExpiryDate {
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     private final LocalDate expiryDate;
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
-    private static DateTimeFormatter validFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-    /**
-     * Constructs an {@code ExpiryDate}
-     *
-     * @param expiryDate Expiry date of the food item wish to add in the fridge.
-     */
-//    public ExpiryDate(LocalDate expiryDate) {
-//        requireNonNull(expiryDate);
-//        checkArgument(isValidDate(expiryDate), MESSAGE_CONSTRAINTS);
-//        this.expiryDate = expiryDate;
-//    }
+    private final DateTimeFormatter validFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
      * Construct an {@code ExpiryDate} from String

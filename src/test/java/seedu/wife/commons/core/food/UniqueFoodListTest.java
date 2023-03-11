@@ -23,150 +23,154 @@ import seedu.wife.testutil.FoodBuilder;
 
 public class UniqueFoodListTest {
 
-    private final UniqueFoodList UniqueFoodList = new UniqueFoodList();
+    private final UniqueFoodList uniqueFoodList = new UniqueFoodList();
 
     @Test
     public void contains_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.contains(null));
     }
 
     @Test
-    public void contains_FoodNotInList_returnsFalse() {
-        assertFalse(UniqueFoodList.contains(MEIJI));
+    public void contains_foodNotInList_returnsFalse() {
+        assertFalse(uniqueFoodList.contains(MEIJI));
     }
 
     @Test
-    public void contains_FoodInList_returnsTrue() {
-        UniqueFoodList.add(MEIJI);
-        assertTrue(UniqueFoodList.contains(MEIJI));
+    public void contains_foodInList_returnsTrue() {
+        uniqueFoodList.add(MEIJI);
+        assertTrue(uniqueFoodList.contains(MEIJI));
     }
-    
+
     @Test
-    public void contains_FoodWithSameIdentityFieldsInList_returnsTrue() {
-        UniqueFoodList.add(MEIJI);
-        Food editedMeiji = new FoodBuilder(MEIJI).withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE)
+    public void contains_foodWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueFoodList.add(MEIJI);
+        Food editedMeiji = new FoodBuilder(MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .withTags(VALID_TAG_CHOCOLATE)
                 .build();
-        assertTrue(UniqueFoodList.contains(editedMeiji));
+        assertTrue(uniqueFoodList.contains(editedMeiji));
     }
 
     @Test
     public void add_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.add(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.add(null));
     }
 
     @Test
     public void add_duplicateFood_throwsDuplicateFoodException() {
-        UniqueFoodList.add(MEIJI);
-        assertThrows(DuplicateFoodException.class, () -> UniqueFoodList.add(MEIJI));
+        uniqueFoodList.add(MEIJI);
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.add(MEIJI));
     }
 
     @Test
     public void setFood_nullTargetFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.setFood(null, MEIJI));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(null, MEIJI));
     }
 
     @Test
     public void setFood_nullEditedFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.setFood(MEIJI, null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(MEIJI, null));
     }
 
     @Test
     public void setFood_targetFoodNotInList_throwsFoodNotFoundException() {
-        assertThrows(FoodNotFoundException.class, () -> UniqueFoodList.setFood(MEIJI, MEIJI));
+        assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.setFood(MEIJI, MEIJI));
     }
 
     @Test
     public void setFood_editedFoodIsSameFood_success() {
-        UniqueFoodList.add(MEIJI);
-        UniqueFoodList.setFood(MEIJI, MEIJI);
+        uniqueFoodList.add(MEIJI);
+        uniqueFoodList.setFood(MEIJI, MEIJI);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(MEIJI);
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasSameIdentity_success() {
-        UniqueFoodList.add(MEIJI);
-        Food editedMeiji = new FoodBuilder(MEIJI).withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE)
+        uniqueFoodList.add(MEIJI);
+        Food editedMeiji = new FoodBuilder(MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .withTags(VALID_TAG_CHOCOLATE)
                 .build();
-        UniqueFoodList.setFood(MEIJI, editedMeiji);
+        uniqueFoodList.setFood(MEIJI, editedMeiji);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(editedMeiji);
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasDifferentIdentity_success() {
-        UniqueFoodList.add(MEIJI);
-        UniqueFoodList.setFood(MEIJI, CHOCOLATE);
+        uniqueFoodList.add(MEIJI);
+        uniqueFoodList.setFood(MEIJI, CHOCOLATE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(CHOCOLATE);
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasNonUniqueIdentity_throwsDuplicateFoodException() {
-        UniqueFoodList.add(MEIJI);
-        UniqueFoodList.add(CHOCOLATE);
-        assertThrows(DuplicateFoodException.class, () -> UniqueFoodList.setFood(MEIJI, CHOCOLATE));
+        uniqueFoodList.add(MEIJI);
+        uniqueFoodList.add(CHOCOLATE);
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.setFood(MEIJI, CHOCOLATE));
     }
 
     @Test
     public void remove_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.remove(null));
     }
 
     @Test
-    public void remove_FoodDoesNotExist_throwsFoodNotFoundException() {
-        assertThrows(FoodNotFoundException.class, () -> UniqueFoodList.remove(MEIJI));
+    public void remove_foodDoesNotExist_throwsFoodNotFoundException() {
+        assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.remove(MEIJI));
     }
 
     @Test
     public void remove_existingFood_removesFood() {
-        UniqueFoodList.add(MEIJI);
-        UniqueFoodList.remove(MEIJI);
+        uniqueFoodList.add(MEIJI);
+        uniqueFoodList.remove(MEIJI);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFoods_nullUniqueFoodList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.setFoods((UniqueFoodList) null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFoods((UniqueFoodList) null));
     }
 
     @Test
-    public void setFoods_UniqueFoodList_replacesOwnListWithProvidedUniqueFoodList() {
-        UniqueFoodList.add(MEIJI);
+    public void setFoods_uniqueFoodList_replacesOwnListWithProvidedUniqueFoodList() {
+        uniqueFoodList.add(MEIJI);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(CHOCOLATE);
-        UniqueFoodList.setFoods(expectedUniqueFoodList);
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        uniqueFoodList.setFoods(expectedUniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFoods_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> UniqueFoodList.setFoods((List<Food>) null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFoods((List<Food>) null));
     }
 
     @Test
     public void setFoods_list_replacesOwnListWithProvidedList() {
-        UniqueFoodList.add(MEIJI);
+        uniqueFoodList.add(MEIJI);
         List<Food> foodList = Collections.singletonList(CHOCOLATE);
-        UniqueFoodList.setFoods(foodList);
+        uniqueFoodList.setFoods(foodList);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(CHOCOLATE);
-        assertEquals(expectedUniqueFoodList, UniqueFoodList);
+        assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFoods_listWithDuplicateFoods_throwsDuplicateFoodException() {
         List<Food> listWithDuplicateFoods = Arrays.asList(MEIJI, MEIJI);
-        assertThrows(DuplicateFoodException.class, () -> UniqueFoodList.setFoods(listWithDuplicateFoods));
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.setFoods(listWithDuplicateFoods));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> UniqueFoodList.asUnmodifiableObservableList().remove(0));
+            -> uniqueFoodList.asUnmodifiableObservableList().remove(0));
     }
 }
