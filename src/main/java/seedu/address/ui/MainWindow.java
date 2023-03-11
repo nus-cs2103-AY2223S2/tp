@@ -222,17 +222,17 @@ public class MainWindow extends UiPart<Stage> {
     public void toggleLightTheme() {
         // enable style
         scene.getStylesheets().add(Objects.requireNonNull(
-                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+                getClass().getResource("/style/LightTheme.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
-                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
+                getClass().getResource("/style/HelpWindowLight.css")).toExternalForm());
 
         // disable style
         scene.getStylesheets().remove(Objects.requireNonNull(
-                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+                getClass().getResource("/style/DarkTheme.css")).toExternalForm());
         scene.getStylesheets().remove(Objects.requireNonNull(
-                getClass().getResource("/view/Extensions.css")).toExternalForm());
+                getClass().getResource("/style/Extensions.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
-                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
+                getClass().getResource("/style/HelpWindow.css")).toExternalForm());
 
     }
 
@@ -243,18 +243,18 @@ public class MainWindow extends UiPart<Stage> {
     public void toggleDarkTheme() {
         // enable style
         scene.getStylesheets().add(Objects.requireNonNull(
-                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+                getClass().getResource("/style/DarkTheme.css")).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(
-                getClass().getResource("/view/Extensions.css")).toExternalForm());
+                getClass().getResource("/style/Extensions.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
-                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
+                getClass().getResource("/style/HelpWindow.css")).toExternalForm());
 
 
         // disable style
         scene.getStylesheets().remove(Objects.requireNonNull(
-                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+                getClass().getResource("/style/LightTheme.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
-                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
+                getClass().getResource("/style/HelpWindowLight.css")).toExternalForm());
 
 
     }

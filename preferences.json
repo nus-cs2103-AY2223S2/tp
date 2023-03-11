@@ -7,6 +7,6 @@
       "y" : 83
     }
   },
-  "patientRecordFilePath" : "data/patientRecord.json",
-  "drugInventoryFilePath" : "data/drugInventory.json"
+  "patientRecordFilePath" : "data\\patientRecord.json",
+  "drugInventoryFilePath" : "data\\drugInventory.json"
 }
