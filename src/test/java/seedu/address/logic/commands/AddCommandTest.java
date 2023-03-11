@@ -150,6 +150,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateFilteredDeckList(Predicate<Deck> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
         public ReadOnlyMasterDeck getSelectedDeck() {
@@ -164,6 +169,16 @@ public class AddCommandTest {
         @Override
         public boolean hasDeck(Deck deck) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDeck(Deck target, Deck editedDeck) {
+
+        }
+
+        @Override
+        public void removeDeck(Deck key) {
+
         }
 
         @Override

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 
 /**
  * Unmodifiable view of an address book
@@ -14,4 +15,5 @@ public interface ReadOnlyMasterDeck {
      */
     ObservableList<Card> getCardList();
 
+    ObservableList<Deck> getDeckList();
 }

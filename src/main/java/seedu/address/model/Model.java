@@ -16,6 +16,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
 
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -89,6 +91,9 @@ public interface Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
+
+    void updateFilteredDeckList(Predicate<Deck> predicate);
+
     /** Returns the deck */
     ReadOnlyMasterDeck getSelectedDeck();
 
@@ -98,6 +103,10 @@ public interface Model {
      * Returns true if a deck with the same name as {@code deck} exists.
      */
     boolean hasDeck(Deck deck);
+
+    void setDeck(Deck target, Deck editedDeck);
+
+    void removeDeck(Deck key);
 
     void selectDeck(Index idx);
 

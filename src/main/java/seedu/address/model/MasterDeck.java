@@ -148,6 +148,11 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     }
 
     @Override
+    public ObservableList<Deck> getDeckList() {
+        return decks.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MasterDeck // instanceof handles nulls
@@ -158,5 +163,5 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     public int hashCode() {
         return cards.hashCode();
     }
-    
+
 }

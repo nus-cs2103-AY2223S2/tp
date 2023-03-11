@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +23,8 @@ public class ModelManager implements Model {
 
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-    private FilteredList<Card> filteredDecks;
+    private FilteredList<Card> filteredCards;
+    private FilteredList<Deck> filteredDecks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +36,8 @@ public class ModelManager implements Model {
 
         this.masterDeck = new MasterDeck(deck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDecks = new FilteredList<>(this.masterDeck.getCardList());
+        filteredCards = new FilteredList<>(this.masterDeck.getCardList());
+        filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
     }
 
     public ModelManager() {
@@ -120,11 +123,17 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Card> getFilteredCardList() {
-        return filteredDecks;
+        return filteredCards;
     }
 
     @Override
     public void updateFilteredCardList(Predicate<Card> predicate) {
+        requireNonNull(predicate);
+        filteredCards.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDeckList(Predicate<Deck> predicate) {
         requireNonNull(predicate);
         filteredDecks.setPredicate(predicate);
     }
@@ -157,9 +166,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void createDeck(MasterDeck masterDeck) { // Todo: deck should have a name - how to store in storage?
-        MasterDeck newMasterDeck = new MasterDeck();
-        // this.deck.add(newDeck);
+    public void addDeck(Deck deck) {
+        masterDeck.addDeck(deck);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
+    }
+
+    @Override
+    public boolean hasDeck(Deck deck) {
+        return masterDeck.hasDeck(deck);
+    }
+
+    @Override
+    public void setDeck(Deck target, Deck editedDeck) {
+        masterDeck.setDeck(target, editedDeck);
+    }
+
+    @Override
+    public void removeDeck(Deck key) {
+        masterDeck.removeDeck(key);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
     }
 
     @Override
