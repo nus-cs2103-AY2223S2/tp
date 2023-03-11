@@ -177,11 +177,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setDeck(Deck target, Deck editedDeck) {
-        masterDeck.setDeck(target, editedDeck);
-    }
-
-    @Override
     public void removeDeck(Deck key) {
         masterDeck.removeDeck(key);
         updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);

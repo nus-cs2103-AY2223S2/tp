@@ -6,8 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
-import seedu.address.model.deck.Deck;
 import seedu.address.model.card.UniqueCardList;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.deck.UniqueDeckList;
 
 /**
@@ -18,7 +18,6 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     private final UniqueCardList cards;
     private final UniqueDeckList decks;
-    private String deckName; // Todo: create new Class for DeckName
 
 
     /*

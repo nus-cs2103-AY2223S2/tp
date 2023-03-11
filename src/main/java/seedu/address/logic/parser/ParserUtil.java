@@ -11,8 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
