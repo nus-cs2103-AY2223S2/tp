@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import seedu.address.model.location.LocationUtil;
-import seedu.address.model.location.Location;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationUtil;
 
 /**
  * Represents a Person's address in the address book.
@@ -12,7 +12,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address implements Comparable<Address> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses should be the names of the closest MRT stations to their homes.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Addresses should be the "
+            + "names of the closest MRT stations to their homes.";
 
     private final Location value;
 
@@ -24,14 +26,14 @@ public class Address implements Comparable<Address> {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = LocationUtil.ADDRESSES.get(address);
+        value = LocationUtil.ADDRESSES_HASH_MAP.get(address);
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return LocationUtil.ADDRESSES.containsKey(test);
+        return LocationUtil.ADDRESSES_HASH_MAP.containsKey(test);
     }
 
     /**

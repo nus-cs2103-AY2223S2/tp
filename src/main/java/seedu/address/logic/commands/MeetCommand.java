@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,22 +15,28 @@ import seedu.address.model.location.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Based on a list of people, recommends a list of places to eat and/or study.
+ */
 public class MeetCommand extends Command {
 
     public static final String EAT_COMMAND_WORD = "eat";
     public static final String STUDY_COMMAND_WORD = "study";
     public static final String MEET_COMMAND_WORD = "meet";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Here are the recommendations!";
     public static final int NUMBER_OF_RECOMMENDATIONS = 10;
 
     private final Set<Index> indices;
-    private final HashMap<String, Location> locationHashMap;
+    private final Collection<Location> locations;
 
-    public MeetCommand(Set<Index> indices, HashMap<String, Location> locationHashMap) {
+    /**
+     * Constructor for a {@code MeetCommand}.
+     * @param indices The indices of people we want to meet.
+     * @param locations The potential locations to meet.
+     */
+    public MeetCommand(Set<Index> indices, Collection<Location> locations) {
         this.indices = indices;
-        this.locationHashMap = locationHashMap;
+        this.locations = locations;
     }
 
     @Override
@@ -44,9 +52,23 @@ public class MeetCommand extends Command {
 
         List<? extends Location> recommendations = giveRecommendations(locationsOfPersons);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        // This section deals with porting the information over to the front end.
+        // @zichen This is the entry point.
+        StringBuilder sb = new StringBuilder();
+        sb.append(MESSAGE_SUCCESS);
+
+        recommendations.forEach(location -> sb.append("\n").append(location.getName()));
+
+        return new CommandResult(sb.toString());
     }
 
+    /**
+     * Retrieves the person from the list of persons.
+     * @param index The zero-based index of the wanted person.
+     * @param lastShownList The most recent state of the {@code EduMate}.
+     * @return The {@code Person} at the specified index.
+     * @throws CommandException If an error occurs during command execution.
+     */
     private Person getPersonFromIndex(Index index, List<? extends Person> lastShownList) throws CommandException {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -55,8 +77,12 @@ public class MeetCommand extends Command {
         return lastShownList.get(index.getZeroBased());
     }
 
+    /**
+     * Finds the midpoint of the person locations
+     * and returns the closest destinations to that midpoint.
+     */
     private List<? extends Location> giveRecommendations(List<? extends Location> locationsOfPersons) {
         Location midpoint = DistanceUtil.getMidpoint(locationsOfPersons);
-        return DistanceUtil.getClosestPoints(midpoint, NUMBER_OF_RECOMMENDATIONS, locationsOfPersons);
+        return DistanceUtil.getClosestPoints(midpoint, NUMBER_OF_RECOMMENDATIONS, locations);
     }
 }
