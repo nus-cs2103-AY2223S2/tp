@@ -160,8 +160,8 @@
 //                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY)
-//                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-//                .build();
+//                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND,
+//                VALID_TAG_HUSBAND).build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 //
 //        assertParseSuccess(parser, userInput, expectedCommand);
