@@ -23,6 +23,7 @@ import bookopedia.logic.commands.FindCommand;
 import bookopedia.logic.commands.HelpCommand;
 import bookopedia.logic.commands.ListCommand;
 import bookopedia.logic.commands.MarkCommand;
+import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
@@ -96,6 +97,11 @@ public class AddressBookParserTest {
         MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + CliSyntax.PREFIX_STATUS + deliveryStatus);
         assertEquals(new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus), command);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD + " 1") instanceof ViewCommand);
     }
 
     @Test
