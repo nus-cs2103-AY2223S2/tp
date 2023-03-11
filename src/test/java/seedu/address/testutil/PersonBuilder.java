@@ -9,7 +9,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -106,6 +105,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TaskList} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTaskList(TaskList taskList) {
         this.taskList = taskList;
         return this;
