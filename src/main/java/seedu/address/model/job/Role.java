@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Role in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Role {
@@ -62,12 +62,12 @@ public class Role {
         return Collections.unmodifiableSet(tags);
     }
     public Salary getSalary() {
-        return this.salary;
+        return salary;
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both roles have the same name.
+     * This defines a weaker notion of equality between two roles.
      */
     public boolean isSameRole(Role otherPerson) {
         if (otherPerson == this) {
@@ -79,8 +79,8 @@ public class Role {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both roles have the same identity and data fields.
+     * This defines a stronger notion of equality between two roles.
      */
     @Override
     public boolean equals(Object other) {
@@ -97,13 +97,14 @@ public class Role {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getSalary().equals(getSalary());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, salary);
     }
 
     @Override
@@ -122,6 +123,7 @@ public class Role {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Salary: ").append(getSalary());
         return builder.toString();
     }
 

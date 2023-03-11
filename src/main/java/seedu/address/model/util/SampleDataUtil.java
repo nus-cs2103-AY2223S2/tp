@@ -11,6 +11,7 @@ import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Phone;
+import seedu.address.model.job.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,24 +20,15 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Role[] getSamplePersons() {
         return new Role[] {
-            new Role(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Role(new Name("Google"), new Phone("87438807"), new Email("google@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Role(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                getTagSet("tech"), new Salary("8000")),
+            new Role(new Name("facebook"), new Phone("99272758"), new Email("facebook@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Role(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                getTagSet("Tech"), new Salary("10000")),
+            new Role(new Name("Amazon"), new Phone("93210283"), new Email("Amazon@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Role(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Role(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Role(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("Tech"), new Salary("9000"))
         };
     }
 

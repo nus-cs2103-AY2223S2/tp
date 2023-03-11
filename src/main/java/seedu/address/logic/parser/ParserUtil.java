@@ -128,7 +128,7 @@ public class ParserUtil {
     public static Salary parseSalary(String salary) throws ParseException {
         requireNonNull(salary);
         String trimmedSalary = salary.trim();
-        if (!Email.isValidEmail(trimmedSalary)) {
+        if (!Salary.isValidSalary(trimmedSalary)) {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
