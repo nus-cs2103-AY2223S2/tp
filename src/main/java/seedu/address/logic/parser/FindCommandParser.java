@@ -9,8 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicate.PersonContainsKeywordsPredicate;
@@ -35,13 +38,20 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<String> nameArguments = argMultimap.getAllValues(PREFIX_NAME);
-        List<String> profileArguments = argMultimap.getAllValues(PREFIX_PROFILE);
-        List<String> phoneArguments = argMultimap.getAllValues(PREFIX_PHONE);
-        List<String> emailArguments = argMultimap.getAllValues(PREFIX_EMAIL);
-        List<String> addressArguments = argMultimap.getAllValues(PREFIX_ADDRESS);
-        List<String> languageArguments = argMultimap.getAllValues(PREFIX_LANGUAGE);
-        List<String> tagArguments = argMultimap.getAllValues(PREFIX_TAG);
+        List<String> nameArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_NAME).orElse(""));
+        List<String> profileArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_PROFILE).orElse(""));
+        List<String> phoneArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        List<String> emailArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        List<String> addressArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        List<String> languageArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_LANGUAGE).orElse(""));
+        List<String> tagArguments = StringUtil.convertArgumentsIntoList(
+                argMultimap.getValue(PREFIX_TAG).orElse(""));
 
         PersonContainsKeywordsPredicate personPredicate
                 = new PersonContainsKeywordsPredicate(nameArguments,

@@ -132,7 +132,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`
   * e.g. `Hans Bo` will match `Bo Hans`
   * e.g. `Hans t/cs2103t Bo` will match `Bo Hans t/cs2103t`
 * Only full words will be matched 
-  * e.g. `Han` will not match `Hans`
+  * e.g. `Han` will not match `Han
+  * s`
   * e.g. `t/2103t` will not match `t/cs2103t` 
 * Persons matching at least one keyword will be returned (i.e. `OR` search). 
   * e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
