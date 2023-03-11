@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import seedu.address.logic.Logic;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 import java.time.LocalDateTime;
@@ -13,6 +13,8 @@ import java.util.List;
 public class NotificationManager {
 
     private Logic logic;
+    private Model model;
+    private List<Reminder> reminderList;
     private String title = "";
     private String text = "";
     private Duration duration;
@@ -27,6 +29,12 @@ public class NotificationManager {
 
     public NotificationManager(Logic logic) {
         this.logic = logic;
+        this.reminderList = logic.getReminderList();
+    }
+
+    public NotificationManager(Model model) {
+        this.model = model;
+        this.reminderList = model.getReminderList();
     }
 
     public void showDefault() {
@@ -40,20 +48,27 @@ public class NotificationManager {
         notificationBuilder.showConfirm();
     }
 
-
-    public void showReminders() {
-        ReadOnlyAddressBook addressBook = logic.getAddressBook();
-        List<Reminder> reminderList = addressBook.getReminderList();
+    public void checkReminders() {
         LocalDateTime now = LocalDateTime.now();
-        for (int i = 0; i< reminderList.size();i++) {
+        for (int i = 0; i < reminderList.size(); i++) {
             Reminder r = reminderList.get(i);
             if (now.isAfter(r.getReminderDateTime())) {
-                String des = (i+1) + ". " + r.getDescription();
+                String des = (i + 1) + ". " + r.getDescription();
                 String remind = "Remind at: " + r.reminderDateTimeToString();
                 show(des, remind);
             }
         }
     }
+
+    public void listReminders() {
+        for (int i = 0; i < reminderList.size(); i++) {
+            Reminder r = reminderList.get(i);
+            String des = (i + 1) + ". " + r.getDescription();
+            String remind = "Remind at: " + r.reminderDateTimeToString();
+            show(des, remind);
+        }
+    }
+
     public void show(String title, String text) {
         //show notifications
         Notifications notificationBuilder = Notifications.create()

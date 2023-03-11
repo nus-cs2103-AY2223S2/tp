@@ -11,12 +11,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of reminders that does not allow nulls.
- *
+ * <p>
  * Supports a minimal set of list operations.
- *
  */
 
-public class ReminderList implements Iterable<Reminder>{
+public class ReminderList implements Iterable<Reminder> {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
     private final ObservableList<Reminder> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -42,6 +41,7 @@ public class ReminderList implements Iterable<Reminder>{
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
     /**
      * Replaces the contents of this list with {@code reminderList}.
      */
@@ -61,7 +61,6 @@ public class ReminderList implements Iterable<Reminder>{
     public Iterator<Reminder> iterator() {
         return internalList.iterator();
     }
-
 
 
 }
