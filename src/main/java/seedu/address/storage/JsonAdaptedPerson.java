@@ -15,6 +15,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,8 @@ class JsonAdaptedPerson {
     private final String name;
     private final String rate;
     private final String address;
+    private final String startTime;
+    private final String endTime;
     private final String mark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +38,16 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
-            @JsonProperty("address") String address, @JsonProperty("mark") String mark,
+            @JsonProperty("address") String address,
+            @JsonProperty("startTiming") String startTime,
+            @JsonProperty("endTiming") String endTiming,
+            @JsonProperty("mark") String mark,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
         this.address = address;
+        this.startTime = startTime;
+        this.endTime = endTiming;
         this.mark = mark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -53,6 +61,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;
+        startTime = source.getTiming().startTime;
+        endTime = source.getTiming().endTime;
         mark = source.getMark().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -94,12 +104,20 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (startTime == null || endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName()));
+        }
+        if (!Timing.isValidTiming(startTime, endTime)) {
+            throw new IllegalValueException(Timing.MESSAGE_CONSTRAINTS);
+        }
+        final Timing modelTiming = new Timing(startTime, endTime);
+
         if (mark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mark.class.getSimpleName()));
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Event event = new Event(modelName, modelRate, modelAddress, modelTags);
+        Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
         if (mark.equals("[X]")) {
             event.mark();
         }

@@ -9,6 +9,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,12 +20,14 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_RATE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_START_TIME = "12-03-2023 11:00";
+    public static final String DEFAULT_END_TIME = "12-03-2023 12:00";
 
     private Name name;
     private Rate rate;
     private Address address;
+    private Timing timing;
     private Mark mark;
     private Set<Tag> tags;
 
@@ -35,6 +38,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         rate = new Rate(DEFAULT_RATE);
         address = new Address(DEFAULT_ADDRESS);
+        timing = new Timing(DEFAULT_START_TIME, DEFAULT_END_TIME);
         tags = new HashSet<>();
     }
 
@@ -45,6 +49,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         rate = personToCopy.getRate();
         address = personToCopy.getAddress();
+        timing = personToCopy.getTiming();
         mark = personToCopy.getMark();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -82,6 +87,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Timing} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withTiming(String startTime, String endTime) {
+        this.timing = new Timing(startTime, endTime);
+        return this;
+    }
+
+    /**
      * Sets the {@code Mark} of the {@code Event} that we are building.
      */
     public PersonBuilder withMark(String mark) {
@@ -93,7 +106,7 @@ public class PersonBuilder {
     }
 
     public Event build() {
-        return new Event(name, rate, address, tags);
+        return new Event(name, rate, address, timing, tags);
     }
 
 }

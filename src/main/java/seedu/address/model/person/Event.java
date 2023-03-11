@@ -21,17 +21,19 @@ public class Event {
     // Data fields
     private final Rate rate;
     private final Address address;
+    private final Timing timing;
     private final Set<Tag> tags = new HashSet<>();
     private Mark mark;
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Rate rate, Address address, Set<Tag> tags) {
+    public Event(Name name, Rate rate, Address address, Timing timing, Set<Tag> tags) {
         requireAllNonNull(name, rate, address, tags);
         this.name = name;
         this.rate = rate;
         this.address = address;
+        this.timing = timing;
         this.tags.addAll(tags);
         this.mark = new Mark();
     }
@@ -46,6 +48,9 @@ public class Event {
 
     public Address getAddress() {
         return address;
+    }
+    public Timing getTiming() {
+        return timing;
     }
 
     public Mark getMark() {
@@ -98,14 +103,15 @@ public class Event {
         return otherEvent.getName().equals(getName())
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
-                && otherEvent.getTags().equals(getTags())
+                && otherEvent.getTiming().equals(getTiming())
                 && otherEvent.getMark().equals(getMark());
+                && otherEvent.getTags().equals(getTags())
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, tags, mark);
+        return Objects.hash(name, rate, address, timing, mark, tags);
     }
 
     @Override
@@ -116,7 +122,9 @@ public class Event {
                 .append(getRate())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Done: ")
+                .append("; Timing: ")
+                .append(getTiming())
+                .append("; Mark: ")
                 .append(getMark());
 
         Set<Tag> tags = getTags();

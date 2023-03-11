@@ -17,7 +17,6 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
   * [Create New Event](#create-new-event)
   * [View Event List](#list-all-events)
   * [Delete an Event](#delete-an-event)
-  * [Add Date to Event](#add-date-to-an-event)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -130,12 +129,12 @@ The event must not be marked as done beforehand.
 
 Creates a new event
 
-**Format**: `newevent NAME`
+**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…​`
 
-- Creates a new event with the specified event `NAME`
+- Times must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
-- `newevent Singing` creates an event that has the name “Singing”.
+- `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
 
 ### List all Events: `listevent` <a id = "list-all-events"></a>
 
@@ -157,21 +156,6 @@ Deletes the specified event from the event book.
 **Example**:
   - `deleteevent 2` deletes the `2nd event` in the event list.
 
-### Add Date to an Event: `adddate` <a id = "add-date-to-an-event"></a>
-
-Adds a starting time and ending time to the specified event in the event book.
-
-**Format**: `adddate INDEX /from dd/MM/yy /to dd/MM/yy`
-
- - Adds starting and ending time to the event at the specified INDEX
-    - The `INDEX` refers to the index number shown in the displayed event list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …​
-
-**Example**:
-- `adddate 2 /from 03/03/03 /to 04/03/03`
-
-The event must not have time associated with it beforehand.
-
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically exiting the program. There is no need to save manually.
@@ -191,9 +175,9 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 |             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
 |             [Tag a rate](#tag-rate)             |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
 |       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
-|     [Create a new Event](#create-new-event)     |               `newevent NAME`               |                             `newevent Singing`                              |
+|     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  
 |       [View Event List](#list-all-events)       |                 `listevent`                 |                                 `listevent`                                 |
 |       [Delete an Event](#delete-an-event)       |               `deleteevent 2`               |                               `deleteevent 2`                               |
-|   [Add Date to Event](#add-date-to-an-event)    | `adddate INDEX /from dd/MM/yy /to dd/MM/yy` |                   `adddate 2 /from 03/03/03 /to 04/03/03`                   |
+|
 
 [Back to top](#)
