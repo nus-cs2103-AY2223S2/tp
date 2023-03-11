@@ -1,12 +1,14 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ReminderList reminderList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -22,12 +25,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniquePersonList();
+        reminderList = new ReminderList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -54,9 +58,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setReminderList(newData.getReminderList());
     }
-
-    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -65,6 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
+    //// person-level operations
 
     /**
      * Adds a person to the address book.
@@ -81,7 +86,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -93,7 +97,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// util methods
+    /**
+     * Adds a reminder to the address book.
+     */
+    public void addReminder(Reminder r) {
+        reminderList.add(r);
+    }
+
+    //// reminder-level operations
+
+    /**
+     * Removes {@code Reminder} from this {@code AddressBook}.
+     * {@code Reminder} must exist in the address book.
+     */
+    public void removeReminder(int i) {
+        reminderList.remove(i);
+    }
 
     @Override
     public String toString() {
@@ -101,9 +120,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    //// util methods
+
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminderList.asUnmodifiableObservableList();
+    }
+
+    public void setReminderList(List<Reminder> reminderList) {
+        this.reminderList.setReminderList(reminderList);
     }
 
     @Override

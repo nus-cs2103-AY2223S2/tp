@@ -1,10 +1,5 @@
 package seedu.address;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -34,6 +29,11 @@ import seedu.address.storage.json.storage.JsonDeliveryJobSystemStorage;
 import seedu.address.storage.json.storage.JsonUserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Runs the application.

@@ -1,12 +1,13 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -17,14 +18,14 @@ public interface Model {
     Predicate<DeliveryJob> PREDICATE_SHOW_ALL_DELIVERY_JOBS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,12 +48,14 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -78,14 +81,19 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // DELIVERY JOB SYSTEM ===================================
 
     void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem);
 
@@ -102,4 +110,22 @@ public interface Model {
     ObservableList<DeliveryJob> getDeliveryJobList();
 
     void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
+
+    // NOTIFICATION =========================================
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in reminders.
+     */
+    void deleteReminder(int i);
+
+    /**
+     * Adds the given reminder.
+     */
+    void addReminder(Reminder reminder);
+
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
+    ObservableList<Reminder> getReminderList();
 }

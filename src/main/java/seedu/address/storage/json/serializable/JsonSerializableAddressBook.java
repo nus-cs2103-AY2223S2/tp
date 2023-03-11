@@ -1,18 +1,19 @@
 package seedu.address.storage.json.serializable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.storage.JsonAdaptedReminder;
 import seedu.address.storage.json.model.JsonAdaptedPerson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -24,12 +25,15 @@ public class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+    private final List<JsonAdaptedReminder> reminderList = new ArrayList<>();
+
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and reminderList.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons, @JsonProperty("reminderList") List<JsonAdaptedReminder> reminderList) {
         this.persons.addAll(persons);
+        this.reminderList.addAll(reminderList);
     }
 
     /**
@@ -39,6 +43,7 @@ public class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        reminderList.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +53,18 @@ public class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+
+        for (JsonAdaptedReminder jsonAdaptedReminder : reminderList) {
+            Reminder reminder = jsonAdaptedReminder.toModelType();
+            addressBook.addReminder(reminder);
         }
         return addressBook;
     }
