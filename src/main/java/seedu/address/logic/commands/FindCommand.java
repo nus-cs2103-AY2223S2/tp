@@ -59,8 +59,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && namePredicate.equals(((FindCommand) other).namePredicate))
-                || (other instanceof FindCommand
-                && phonePredicate.equals(((FindCommand) other).phonePredicate)); // state check
+                && namePredicate.equals(((FindCommand) other).namePredicate));
     }
 }
