@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Score's value in the Score object.
- * Guarantees: immutable; is valid as declared in {@link #isValidScore(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidScoreValue(String)}
  * {@link #isNegative(String)} {@link #isLargerThanMax(String)}
  */
 public class ScoreValue {
@@ -25,7 +25,7 @@ public class ScoreValue {
      */
     public ScoreValue(String value) {
         requireNonNull(value);
-        checkArgument(isValidScore(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidScoreValue(value), MESSAGE_CONSTRAINTS);
 
         this.value = Double.parseDouble(value);
     }
@@ -33,7 +33,7 @@ public class ScoreValue {
     /**
      * Returns true if the value is a valid score value (0 <= s <= 100).
      */
-    public static boolean isValidScore(String test) {
+    public static boolean isValidScoreValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

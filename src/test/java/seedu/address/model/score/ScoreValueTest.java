@@ -20,28 +20,28 @@ public class ScoreValueTest {
     @Test
     public void isValidScore() {
         // null score value
-        assertThrows(NullPointerException.class, () -> ScoreValue.isValidScore(null));
+        assertThrows(NullPointerException.class, () -> ScoreValue.isValidScoreValue(null));
 
         // invalid score value
-        assertFalse(ScoreValue.isValidScore("")); // empty string
-        assertFalse(ScoreValue.isValidScore(" ")); // spaces only
-        assertFalse(ScoreValue.isValidScore("abcd")); // non-numeric
-        assertFalse(ScoreValue.isValidScore("1234abcd")); // alphanumeric
-        assertFalse(ScoreValue.isValidScore("1234 5678")); // spaces within digits
-        assertFalse(ScoreValue.isValidScore("-1")); // negative number
-        assertFalse(ScoreValue.isValidScore(".1")); // number with only decimal point
-        assertFalse(ScoreValue.isValidScore("0.00")); // number with more than 1 decimal point
-        assertFalse(ScoreValue.isValidScore("09")); // number with leading zero
-        assertFalse(ScoreValue.isValidScore("101")); // number greater than maximum number
-        assertFalse(ScoreValue.isValidScore("100.1")); //number greater than maximum number by decimal
+        assertFalse(ScoreValue.isValidScoreValue("")); // empty string
+        assertFalse(ScoreValue.isValidScoreValue(" ")); // spaces only
+        assertFalse(ScoreValue.isValidScoreValue("abcd")); // non-numeric
+        assertFalse(ScoreValue.isValidScoreValue("1234abcd")); // alphanumeric
+        assertFalse(ScoreValue.isValidScoreValue("1234 5678")); // spaces within digits
+        assertFalse(ScoreValue.isValidScoreValue("-1")); // negative number
+        assertFalse(ScoreValue.isValidScoreValue(".1")); // number with only decimal point
+        assertFalse(ScoreValue.isValidScoreValue("0.00")); // number with more than 1 decimal point
+        assertFalse(ScoreValue.isValidScoreValue("09")); // number with leading zero
+        assertFalse(ScoreValue.isValidScoreValue("101")); // number greater than maximum number
+        assertFalse(ScoreValue.isValidScoreValue("100.1")); //number greater than maximum number by decimal
 
         // valid score value
-        assertTrue(ScoreValue.isValidScore("0")); // minimum number
-        assertTrue(ScoreValue.isValidScore("0.0")); // minimum number with decimal point
-        assertTrue(ScoreValue.isValidScore("20")); // number between 1 to 100
-        assertTrue(ScoreValue.isValidScore("20.7")); // number between 1 to 100 with decimal point
-        assertTrue(ScoreValue.isValidScore("100")); // maximum number
-        assertTrue(ScoreValue.isValidScore("100.0")); //maximum number with decimal point
+        assertTrue(ScoreValue.isValidScoreValue("0")); // minimum number
+        assertTrue(ScoreValue.isValidScoreValue("0.0")); // minimum number with decimal point
+        assertTrue(ScoreValue.isValidScoreValue("20")); // number between 1 to 100
+        assertTrue(ScoreValue.isValidScoreValue("20.7")); // number between 1 to 100 with decimal point
+        assertTrue(ScoreValue.isValidScoreValue("100")); // maximum number
+        assertTrue(ScoreValue.isValidScoreValue("100.0")); //maximum number with decimal point
 
 
     }

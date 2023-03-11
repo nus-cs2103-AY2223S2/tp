@@ -22,20 +22,20 @@ public class LabelTest {
     @Test
     public void isValidTitle() {
         // null title
-        assertThrows(NullPointerException.class, () -> Label.isValidTitle(null));
+        assertThrows(NullPointerException.class, () -> Label.isValidLabel(null));
 
         // invalid title
-        assertFalse(Label.isValidTitle("")); // empty string
-        assertFalse(Label.isValidTitle(" ")); // spaces only
-        assertFalse(Label.isValidTitle("^")); // only non-alphanumeric characters
-        assertFalse(Label.isValidTitle("SA2*")); // contains non-alphanumeric characters
+        assertFalse(Label.isValidLabel("")); // empty string
+        assertFalse(Label.isValidLabel(" ")); // spaces only
+        assertFalse(Label.isValidLabel("^")); // only non-alphanumeric characters
+        assertFalse(Label.isValidLabel("SA2*")); // contains non-alphanumeric characters
 
         // valid title
-        assertTrue(Label.isValidTitle("final assessment")); // alphabets only
-        assertTrue(Label.isValidTitle("12345")); // numbers only
-        assertTrue(Label.isValidTitle("SA2")); // alphanumeric characters
-        assertTrue(Label.isValidTitle("Final Assessment")); // with capital letters
-        assertTrue(Label.isValidTitle("Final Assessment For CS2103")); // long names
+        assertTrue(Label.isValidLabel("final assessment")); // alphabets only
+        assertTrue(Label.isValidLabel("12345")); // numbers only
+        assertTrue(Label.isValidLabel("SA2")); // alphanumeric characters
+        assertTrue(Label.isValidLabel("Final Assessment")); // with capital letters
+        assertTrue(Label.isValidLabel("Final Assessment For CS2103")); // long names
     }
 
 }

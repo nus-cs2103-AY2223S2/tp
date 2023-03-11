@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
@@ -121,6 +122,15 @@ public class Person {
         taskList.remove(key);
     }
 
+    //=========== Score ================================================================================
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the person.
+     */
+    public boolean hasScore(Score score) {
+        requireNonNull(score);
+        return scoreList.contains(score);
+    }
+
     /**
      * Returns true if a score with the same identity as {@code score} exists in the address book.
      */
@@ -128,6 +138,14 @@ public class Person {
         scoreList.add(score);
     }
 
+
+    public ObservableList<Score> getScoreList() {
+        return scoreList.asUnmodifiableObservableList();
+    }
+
+    public ScoreList scoreList() {
+        return scoreList;
+    }
     /**
      * Replaces the given score {@code target} in the list with {@code editedScore}.
      * {@code target} must exist in the list.
