@@ -2,7 +2,13 @@ package seedu.sudohr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
@@ -28,7 +34,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same id, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
