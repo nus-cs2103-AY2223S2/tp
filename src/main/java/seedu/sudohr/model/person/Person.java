@@ -38,7 +38,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public Id getId() { return id; }
+    public Id getId() {
+        return id;
+    }
 
     public Name getName() {
         return name;

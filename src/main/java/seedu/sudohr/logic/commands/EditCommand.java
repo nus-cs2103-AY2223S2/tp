@@ -159,9 +159,13 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(id, name, phone, email, address, tags);
         }
 
-        public void setId(Id id) { this.id = id; }
+        public void setId(Id id) {
+            this.id = id;
+        }
 
-        public Optional<Id> getId() { return Optional.ofNullable(id); }
+        public Optional<Id> getId() {
+            return Optional.ofNullable(id);
+        }
 
         public void setName(Name name) {
             this.name = name;
