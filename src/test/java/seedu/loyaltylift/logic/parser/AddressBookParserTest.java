@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
@@ -13,16 +14,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.logic.commands.AddCustomerCommand;
-import seedu.loyaltylift.logic.commands.ClearCommand;
-import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
-import seedu.loyaltylift.logic.commands.EditCustomerCommand;
+import seedu.loyaltylift.logic.commands.*;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
-import seedu.loyaltylift.logic.commands.ExitCommand;
-import seedu.loyaltylift.logic.commands.FindCustomerCommand;
-import seedu.loyaltylift.logic.commands.HelpCommand;
-import seedu.loyaltylift.logic.commands.ListCustomerCommand;
-import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
@@ -94,6 +87,14 @@ public class AddressBookParserTest {
         ViewCustomerCommand command = (ViewCustomerCommand) parser.parseCommand(
                 ViewCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
         assertEquals(new ViewCustomerCommand(INDEX_FIRST_CUSTOMER), command);
+    }
+
+    @Test
+    public void parseCommand_setpoints() throws Exception {
+        final Integer points = 100;
+        SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points);
+        assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);
     }
 
     @Test
