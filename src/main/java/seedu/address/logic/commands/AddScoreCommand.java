@@ -1,18 +1,16 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
-
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a person to the address book.
@@ -31,14 +29,14 @@ public class AddScoreCommand extends Command {
             + PREFIX_SCORE_VALUE + "99.8 "
             + PREFIX_SCORE_DATE + "2012-08-09 ";
 
-    public static final String MESSAGE_SUCCESS = "Added score to Student: %1$s";
+    public static final String MESSAGE_SUCCESS = "Added score to Student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This score already exists";
 
     private final Index index;
     private final Score toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddScoreCommand to add the specified {@code Person}
      */
     public AddScoreCommand(Index index, Score score) {
         requireNonNull(index);
@@ -63,7 +61,8 @@ public class AddScoreCommand extends Command {
         }
 
         personToEdit.addScore(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                personToEdit.getName(), toAdd));
     }
 
     @Override

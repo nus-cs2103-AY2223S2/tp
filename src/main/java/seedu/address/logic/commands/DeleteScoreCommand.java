@@ -28,6 +28,9 @@ public class DeleteScoreCommand extends Command {
     private final Index studentIndex;
     private final Index scoreIndex;
 
+    /**
+     *Creates an deleteScoreCommand to add the specified {@code Person}
+     */
     public DeleteScoreCommand(Index studentIndex, Index scoreIndex) {
         this.studentIndex = studentIndex;
         this.scoreIndex = scoreIndex;
@@ -52,7 +55,8 @@ public class DeleteScoreCommand extends Command {
         Score scoreToDelete = lastShownScoreList.get(scoreIndex.getZeroBased());
         personToDeleteScore.removeScore(scoreToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_SCORE_SUCCESS, personToDeleteScore.getName(), scoreToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_SCORE_SUCCESS,
+                personToDeleteScore.getName(), scoreToDelete));
     }
 
 
