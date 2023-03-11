@@ -10,41 +10,41 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Label {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Title should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Label should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String title;
+    public final String label;
 
     /**
      * Constructs a {@code Title}.
      *
-     * @param title A valid title.
+     * @param label A valid title.
      */
-    public Label(String title) {
-        requireNonNull(title);
-        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
-        this.title = title;
+    public Label(String label) {
+        requireNonNull(label);
+        checkArgument(isValidLabel(label), MESSAGE_CONSTRAINTS);
+        this.label = label;
     }
 
-    public static boolean isValidTitle(String test) {
+    public static boolean isValidLabel(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return title;
+        return label;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Label // instanceof handles nulls
-                && title.equals(((Label) other).title)); // state check
+                && label.equals(((Label) other).label)); // state check
     }
 
     @Override
     public int hashCode() {
-        return title.hashCode();
+        return label.hashCode();
     }
 }

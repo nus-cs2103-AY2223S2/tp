@@ -1,18 +1,19 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.score.Score;
+import seedu.address.model.score.ScoreList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.score.Score;
-import seedu.address.model.score.ScoreList;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person in the address book.
@@ -121,6 +122,12 @@ public class Person {
         taskList.remove(key);
     }
 
+    //=========== Score ================================================================================
+    public boolean hasScore(Score score) {
+        requireNonNull(score);
+        return scoreList.contains(score);
+    }
+
     /**
      * Returns true if a score with the same identity as {@code score} exists in the address book.
      */
@@ -128,6 +135,9 @@ public class Person {
         scoreList.add(score);
     }
 
+    public ObservableList<Score> getScoreList() {
+        return scoreList.asUnmodifiableObservableList();
+    }
     /**
      * Replaces the given score {@code target} in the list with {@code editedScore}.
      * {@code target} must exist in the list.
