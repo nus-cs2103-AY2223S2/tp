@@ -1,16 +1,12 @@
 package seedu.address.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.item.Item;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
