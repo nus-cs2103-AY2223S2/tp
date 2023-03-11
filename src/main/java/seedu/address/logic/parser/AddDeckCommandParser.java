@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deck.Deck;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddDeckCommand object
  */
 public class AddDeckCommandParser implements Parser<AddDeckCommand> {
 
