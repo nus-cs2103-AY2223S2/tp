@@ -67,7 +67,7 @@
   -fx-selection-bar-non-focused: derive(-fx-accent, -20%);
 }
 
-/* =========== TEST BOX ==================================================== */
+/* =========== TEXT FIELD ================================================== */
 
 .text-field {
   -fx-prompt-text-fill: gray;
@@ -118,7 +118,7 @@
 
 .label.card-title {
   -fx-font-weight: bold;
-  -fx-font-size: 20;
+  -fx-font-size: 16;
   -fx-text-fill: rgb(224, 152, 19);
 }
 
