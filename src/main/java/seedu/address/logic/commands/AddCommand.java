@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,6 +31,8 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "DJ at wedding "
             + PREFIX_RATE + "100 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TIMING_START + "11-03-2023 11:00 "
+            + PREFIX_TIMING_END + "11-03-2023 17:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "dj";
 

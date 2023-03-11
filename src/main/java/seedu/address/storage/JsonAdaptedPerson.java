@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,8 @@ class JsonAdaptedPerson {
     private final String name;
     private final String rate;
     private final String address;
+    private final String startTime;
+    private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,10 +37,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
             @JsonProperty("address") String address,
+            @JsonProperty("startTiming") String startTime,
+            @JsonProperty("endTiming") String endTiming,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
         this.address = address;
+        this.startTime = startTime;
+        this.endTime = endTiming;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +57,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;
+        startTime = source.getTiming().startTime;
+        endTime = source.getTiming().endTime;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -90,8 +99,16 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (startTime == null || endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName()));
+        }
+        if (!Timing.isValidTiming(startTime, endTime)) {
+            throw new IllegalValueException(Timing.MESSAGE_CONSTRAINTS);
+        }
+        final Timing modelTiming = new Timing(startTime, endTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Event(modelName, modelRate, modelAddress, modelTags);
+        return new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
     }
 
 }

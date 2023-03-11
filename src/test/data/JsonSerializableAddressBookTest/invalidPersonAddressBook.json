@@ -2,7 +2,9 @@
   "persons": [ {
     "name": "Hans Muster",
     "rate": "948242a4",
-    "address": "4th street"
+    "address": "4th street",
+    "startTiming": "11-03-2023 11:00",
+    "endTiming": "11-03-2023 12:00"
   } ]
 }
 
