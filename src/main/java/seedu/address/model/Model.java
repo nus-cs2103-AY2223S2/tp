@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 
 /**
@@ -61,6 +62,8 @@ public interface Model {
 
     boolean hasStudent(Student student);
 
+    boolean hasParent(Parent parent);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -74,6 +77,7 @@ public interface Model {
      */
     void addPerson(Person person);
     void addStudent(Student student);
+    void addParent(Parent parent);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

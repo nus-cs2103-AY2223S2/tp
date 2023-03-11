@@ -11,8 +11,9 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,17 +27,18 @@ public class Parent extends Person {
      * @param address
      * @param tags
      */
-    private final Sex sex;
     private final Age age;
     private final Image image;
+    private final IndexNumber indexNumber;
     private final Relationship relationship;
+    private final StudentClass sc;
     private final List<Student> children = new ArrayList<>();
 
     /**
-     * A parent constructor
+     * A parent / next-of-kin (NOK) constructor
+     *
      * @param name
      * @param relationship
-     * @param sex
      * @param age
      * @param image
      * @param email
@@ -44,25 +46,18 @@ public class Parent extends Person {
      * @param address
      * @param tags
      */
-    public Parent(Name name, Relationship relationship, Sex sex, Age age, Image image, Email email, Phone phone,
-                    Address address, Set<Tag> tags) {
+    public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image, Email email, Phone phone,
+                  Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.sex = sex;
+        this.indexNumber = indexNumber;
+        this.sc = sc;
         this.age = age;
         this.image = image;
         this.relationship = relationship;
     }
 
     /**
-     * A method that returns the Sex of parent
-     * @return Sex
-     */
-    public Sex getSex() {
-        return sex;
-    }
-
-    /**
-     * A method that returns the Age of parent
+     * A method that returns the Age of parent / NOK.
      * @return Age
      */
     public Age getAge() {
@@ -70,7 +65,7 @@ public class Parent extends Person {
     }
 
     /**
-     * A method that returns the Image of parent
+     * A method that returns the Image of parent / NOK.
      * @return Image
      */
     public Image getImage() {
@@ -78,7 +73,7 @@ public class Parent extends Person {
     }
 
     /**
-     * A method that returns the Relationship of parent
+     * A method that returns the Relationship of parent / NOK.
      * @return Relationship
      */
     public Relationship getRelationship() {
@@ -86,7 +81,7 @@ public class Parent extends Person {
     }
 
     /**
-     * A method that returns a list of students
+     * A method that returns a list of students the parent / NOK is related to.
      * @return List of Students
      */
     public List<Student> getChildren() {
@@ -113,7 +108,6 @@ public class Parent extends Person {
 
         Parent otherParent = (Parent) other;
         return otherParent.getName().equals(getName())
-                && otherParent.getSex().equals(getSex())
                 && otherParent.getAge().equals(getAge())
                 && otherParent.getImage().equals(getImage())
                 && otherParent.getPhone().equals(getPhone())
@@ -128,8 +122,6 @@ public class Parent extends Person {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(getName())
-                .append("; Sex: ")
-                .append(getSex())
                 .append("; Parent Age: ")
                 .append(getAge())
                 .append("; Address: ")

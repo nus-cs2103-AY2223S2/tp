@@ -18,6 +18,7 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
@@ -176,6 +177,15 @@ public class ParserUtil {
             throw new ParseException(ParentName.MESSAGE_CONSTRAINTS);
         }
         return new ParentName(trimmedParentName);
+    }
+
+    public static Relationship parseRelationship(String relationship) throws ParseException {
+        requireNonNull(relationship);
+        String trimmedRelationship = relationship.trim();
+        if (!Relationship.isValidRelationship(trimmedRelationship)) {
+            throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
+        }
+        return new Relationship(trimmedRelationship);
     }
 
     /**
