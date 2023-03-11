@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.status.LeadStatus;
+import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +27,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private final Remark remark;
+    private final LeadStatus status;
     /**
      * Every field must be present and not null.
      */
@@ -36,6 +39,19 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.status = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                     LeadStatus status) {
+        requireAllNonNull(name, phone, email, address, tags, remark);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.remark = remark;
+        this.status = status;
     }
 
     public Name getName() {
@@ -56,6 +72,10 @@ public class Person {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public LeadStatus getStatus() {
+        return status;
     }
 
     /**

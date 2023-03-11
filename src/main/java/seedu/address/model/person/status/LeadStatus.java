@@ -1,11 +1,12 @@
-package seedu.address.model.status;
+package seedu.address.model.person.status;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.status.LeadStatusName.QUALIFIED;
-import static seedu.address.model.status.LeadStatusName.UNCONTACTED;
-import static seedu.address.model.status.LeadStatusName.UNQUALIFIED;
-import static seedu.address.model.status.LeadStatusName.WORKING;
+import static seedu.address.model.person.status.LeadStatusName.QUALIFIED;
+import static seedu.address.model.person.status.LeadStatusName.UNCONTACTED;
+import static seedu.address.model.person.status.LeadStatusName.UNQUALIFIED;
+import static seedu.address.model.person.status.LeadStatusName.WORKING;
+import static seedu.address.model.person.status.LeadStatusName.isValidLeadStatus;
 
 
 /**
@@ -20,14 +21,17 @@ public class LeadStatus {
             + QUALIFIED + "\n"
             + UNQUALIFIED;
 
-    public final String statusName;
+    public final LeadStatusName statusName;
     //TODO add in LocalDateTime to record timestamp of status creation
 
     public LeadStatus(String statusName) {
         requireNonNull(statusName);
-        checkArgument(LeadStatusName.isValidLeadStatus(statusName),
-                MESSAGE_CONSTRAINTS);
-        this.statusName = statusName;
+        checkArgument(isValidLeadStatus(statusName), MESSAGE_CONSTRAINTS);
+        this.statusName = LeadStatusName.get(statusName);
+    }
+
+    public LeadStatusName getStatusName() {
+        return statusName;
     }
 
     @Override

@@ -3,16 +3,23 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_FIND;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.status.LeadStatus;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.status.LeadStatus;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -38,6 +45,7 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_STATUS_FIND_PERSON_SUCCESS = "Listed all contacts with "
             + "status %1$s";
     public static final String MESSAGE_STATUS_NOT_IMPLEMENTED = "status command not implemented";
+    public static final String MESSAGE_STATUS_IS_SAME = "The status of %1$s is already %1$s";
 
     private final Index index;
     private final LeadStatus status;
@@ -69,14 +77,42 @@ public class StatusCommand extends Command {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-            //TODO edit the person's lead status
-            throw new CommandException("assign index: " + index.getOneBased() + "status: " + status);
+
+            Person toBeUpdated = lastShownList.get(index.getZeroBased());
+            LeadStatus currLeadStatus = toBeUpdated.getStatus();
+
+            if (status.equals(currLeadStatus)) {
+                throw new CommandException(MESSAGE_STATUS_IS_SAME);
+            }
+
+            Person updatedStatusPerson = createPersonWithNewStatus(toBeUpdated, status);
+
+            if (!toBeUpdated.isSamePerson(updatedStatusPerson) && model.hasPerson(updatedStatusPerson)) {
+                throw new CommandException(MESSAGE_STATUS_IS_SAME);
+            }
+
+            model.setPerson(toBeUpdated, updatedStatusPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+            return new CommandResult(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS);
         }
 
-        if (isSearch) {
-            //TODO look for matching lead status
-        }
+        //TODO look for matching lead status
         throw new CommandException("find status: " + status);
+    }
+
+    private static Person createPersonWithNewStatus(Person toBeUpdated, LeadStatus status) {
+        assert toBeUpdated != null;
+
+        Name updatedName = toBeUpdated.getName();
+        Phone updatedPhone = toBeUpdated.getPhone();
+        Email updatedEmail = toBeUpdated.getEmail();
+        Address updatedAddress = toBeUpdated.getAddress();
+        Remark updatedRemark = toBeUpdated.getRemark();
+        Set<Tag> updatedTags = toBeUpdated.getTags();
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                status);
     }
 
     //TODO add equals method
