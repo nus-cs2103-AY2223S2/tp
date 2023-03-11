@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,17 +24,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final ArrayList<Meeting> meetings = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Meeting> meetings) {
+        requireAllNonNull(name, phone, email, address, tags, meetings);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meetings.addAll(meetings);
     }
 
     public Name getName() {
@@ -50,6 +55,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public ArrayList<Meeting> getMeetings() {
+        return meetings;
     }
 
     /**
@@ -92,13 +101,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMeetings().equals(getMeetings());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, meetings);
     }
 
     @Override
@@ -117,6 +127,16 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Meeting> meetings = getMeetings();
+        String meetingHeader = meetings.size() == 1
+                ? "; Meeting: "
+                : "; Meetings: ";
+        if (!meetings.isEmpty()) {
+            builder.append(meetingHeader);
+            meetings.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
