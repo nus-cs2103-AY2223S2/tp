@@ -10,6 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -95,6 +98,39 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Returns true if the given person in the list has an equivalent task as the given argument.
+     */
+    public boolean personHasTask(Person person, Task taskToCheck) {
+        requireNonNull(taskToCheck);
+        TaskList taskListOfPerson = person.getTaskList();
+        return taskListOfPerson.contains(taskToCheck);
+    }
+
+    /**
+     * Adds a task to the task list of the given person.
+     * The given person must already exist in the list.
+     * The task must not already exist in the task list of the given person.
+     */
+    public void addTaskToPerson(Person person, Task taskToAdd) {
+        requireAllNonNull(person, taskToAdd);
+
+        if (personHasTask(person, taskToAdd)) {
+            throw new DuplicateTaskException();
+        }
+
+        person.addTask(taskToAdd);
+    }
+
+    /**
+     * Removes the equivalent task from the task list of the given person.
+     * The task must exist in the task list of the given person.
+     */
+    public void removeTaskFromPerson(Person person, Task taskToRemove) {
+        requireAllNonNull(person, taskToRemove);
+        person.removeTask(taskToRemove);
     }
 
     /**

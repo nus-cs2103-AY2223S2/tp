@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,13 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
-
 /**
- * Adds a task to a specified person in the address book.
+ * Adds a task to a person identified using it's displayed index in the address book.
  */
 public class AddTaskCommand extends Command {
 
@@ -26,7 +27,7 @@ public class AddTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_TITLE + "Complete E Math Paper 1";
 
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added for %1$s: %1$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added for %1$s: %2$s";
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in this student's task list";
 
@@ -54,11 +55,12 @@ public class AddTaskCommand extends Command {
 
         Person personToAddTaskTo = lastShownList.get(targetIndex.getZeroBased());
 
-        if (model.hasTask(personToAddTaskTo, taskToAdd)) {
+        if (model.personHasTask(personToAddTaskTo, taskToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTaskToPerson(personToAddTaskTo, taskToAdd);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, personToAddTaskTo, taskToAdd));
     }
 
@@ -66,7 +68,7 @@ public class AddTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && taskToAdd.equals(((AddTaskCommand) other).taskToAdd))
+                && taskToAdd.equals(((AddTaskCommand) other).taskToAdd)
                 && targetIndex.equals(((AddTaskCommand) other).targetIndex)); // state check;
     }
 }

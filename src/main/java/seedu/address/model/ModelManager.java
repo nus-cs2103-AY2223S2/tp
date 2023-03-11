@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +110,24 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean personHasTask(Person person, Task task) {
+        requireAllNonNull(person, task);
+        return addressBook.personHasTask(person, task);
+    }
+
+    @Override
+    public void addTaskToPerson(Person person, Task task) {
+        requireAllNonNull(person, task);
+        addressBook.addTaskToPerson(person, task);
+    }
+
+    @Override
+    public void deleteTaskFromPerson(Person person, Task task) {
+        requireAllNonNull(person, task);
+        addressBook.removeTaskFromPerson(person, task);
     }
 
     //=========== Filtered Person List Accessors =============================================================
