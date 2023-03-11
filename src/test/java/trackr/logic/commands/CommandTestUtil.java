@@ -19,6 +19,8 @@ import trackr.model.AddressBook;
 import trackr.model.Model;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
+import trackr.model.task.Task;
+import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -119,6 +121,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -131,6 +134,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered task list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s task list.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] splitTaskName = task.getTaskName().fullTaskName.split("\\s+");
+        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 
 }
