@@ -16,7 +16,7 @@ public class Id {
      */
     public static final String VALIDATION_REGEX = "\\d{1,}";
 
-    private final String value;
+    public final String value;
 
     /**
      * Constructs an {@code Address}.
