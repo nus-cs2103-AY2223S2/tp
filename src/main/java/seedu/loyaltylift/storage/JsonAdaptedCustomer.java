@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -24,6 +25,7 @@ class JsonAdaptedCustomer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
 
+    private final String customerType;
     private final String name;
     private final String phone;
     private final String email;
@@ -34,9 +36,11 @@ class JsonAdaptedCustomer {
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
      */
     @JsonCreator
-    public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedCustomer(@JsonProperty("customerType") String customerType, @JsonProperty("name") String name,
+                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                               @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,7 @@ class JsonAdaptedCustomer {
      * Converts a given {@code Customer} into this class for Jackson use.
      */
     public JsonAdaptedCustomer(Customer source) {
+        customerType = source.getCustomerType().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -65,6 +70,17 @@ class JsonAdaptedCustomer {
      * @throws IllegalValueException if there were any data constraints violated in the adapted customer.
      */
     public Customer toModelType() throws IllegalValueException {
+        if (customerType == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, CustomerType.class.getSimpleName()));
+        }
+        final CustomerType modelCustomerType;
+        try {
+            modelCustomerType = CustomerType.valueOf(customerType); // should not be stored as friendly user string
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(CustomerType.MESSAGE_FAIL_CONVERSION);
+        }
+
         final List<Tag> customerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             customerTags.add(tag.toModelType());
@@ -103,7 +119,7 @@ class JsonAdaptedCustomer {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

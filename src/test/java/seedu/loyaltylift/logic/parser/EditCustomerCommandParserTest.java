@@ -3,6 +3,8 @@ package seedu.loyaltylift.logic.parser;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.CUSTOMER_TYPE_DESC_ENTERPRISE;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.CUSTOMER_TYPE_DESC_INDIVIDUAL;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -37,6 +39,7 @@ import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -109,12 +112,13 @@ public class EditCustomerCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_CUSTOMER;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + CUSTOMER_TYPE_DESC_ENTERPRISE;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withCustomerType(CustomerType.ENTERPRISE).build();
         EditCustomerCommand expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -166,6 +170,12 @@ public class EditCustomerCommandParserTest {
         descriptor = new EditCustomerDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // customer type
+        userInput = targetIndex.getOneBased() + CUSTOMER_TYPE_DESC_ENTERPRISE;
+        descriptor = new EditCustomerDescriptorBuilder().withCustomerType(CustomerType.ENTERPRISE).build();
+        expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -173,12 +183,13 @@ public class EditCustomerCommandParserTest {
         Index targetIndex = INDEX_FIRST_CUSTOMER;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + CUSTOMER_TYPE_DESC_INDIVIDUAL
+                + CUSTOMER_TYPE_DESC_ENTERPRISE;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .withCustomerType(CustomerType.ENTERPRISE).build();
         EditCustomerCommand expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -195,9 +206,9 @@ public class EditCustomerCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
+                + PHONE_DESC_BOB + CUSTOMER_TYPE_DESC_ENTERPRISE;
         descriptor = new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+                .withAddress(VALID_ADDRESS_BOB).withCustomerType(CustomerType.ENTERPRISE).build();
         expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

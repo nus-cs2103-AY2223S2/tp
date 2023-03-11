@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.order.Order;
 
 /**
@@ -52,8 +51,7 @@ public class OrderCard extends UiPart<Region> {
         quantity.setText(order.getQuantity().toString());
         address.setText(order.getAddress().toString());
 
-        String status = order.getStatus().toString();
-        Badge orderStatusBadge = new Badge(Color.valueOf("#4F46E5"), Color.WHITE, status);
+        Badge orderStatusBadge = Badge.createOrderStatusBadge(order.getStatus());
         orderStatusPlaceholder.getChildren().add(orderStatusBadge.getRoot());
 
         createdDate.setText(order.getCreatedDate().toString());

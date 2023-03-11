@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
@@ -50,8 +49,8 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
 
-        Badge customerTypeBadge = new Badge(Color.valueOf("#2F8F95"), Color.WHITE, "Individual");
-        customerTypePlaceholder.getChildren().add(customerTypeBadge.getRoot());
+        Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
+        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
 
         this.isSelected = false;
     }
