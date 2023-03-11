@@ -1,5 +1,4 @@
 package seedu.address.model.score;
-
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;

@@ -123,6 +123,9 @@ public class Person {
     }
 
     //=========== Score ================================================================================
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the person.
+     */
     public boolean hasScore(Score score) {
         requireNonNull(score);
         return scoreList.contains(score);

@@ -55,7 +55,8 @@ class JsonAdaptedScore {
         final Label modelLabel = new Label(label);
 
         if (value == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ScoreValue.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ScoreValue.class.getSimpleName()));
         }
         if (!ScoreValue.isValidScoreValue(value)) {
             throw new IllegalValueException(ScoreValue.MESSAGE_CONSTRAINTS);
