@@ -17,7 +17,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.job.Role;
-import seedu.address.model.job.Role;
 
 /**
  * A utility class containing a list of {@code Role} objects to be used in tests.
