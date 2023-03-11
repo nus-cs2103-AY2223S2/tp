@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.tag.Tag;
 
 /**
@@ -23,17 +24,32 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final DeliveryStatus deliveryStatus;
 
     /**
      * Every field must be present and not null except phone and email.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DeliveryStatus deliveryStatus) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.deliveryStatus = deliveryStatus;
+    }
+
+    /**
+     * Every field must be present and not null except phone and email.
+     * Pending delivery status assigned by default.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.deliveryStatus = DeliveryStatus.PENDING;
     }
 
     public Name getName() {
@@ -58,6 +74,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
     }
 
     /**
@@ -93,7 +113,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getDeliveryStatus().equals(getDeliveryStatus());
     }
 
     @Override
@@ -118,6 +139,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Delivery Status: ");
+        builder.append(getDeliveryStatus().name());
+
         return builder.toString();
     }
 
