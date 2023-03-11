@@ -13,8 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.LocationUtil;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 /**
  * Parses input arguments and creates a new MeetCommand object
  */

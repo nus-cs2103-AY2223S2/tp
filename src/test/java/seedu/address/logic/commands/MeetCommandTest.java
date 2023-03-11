@@ -1,21 +1,19 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
+
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.location.LocationUtil;
 
-import java.util.Set;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
-
 class MeetCommandTest {
-
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     // 6 is EDWARD and 8 is GEORGE, both in Kent Ridge
     private static final Set<Index> INDICES =
@@ -26,6 +24,9 @@ class MeetCommandTest {
             new MeetCommand(INDICES, LocationUtil.STUDY_LOCATIONS, 2);
     private static final MeetCommand EAT_COMMAND =
             new MeetCommand(INDICES, LocationUtil.EAT_LOCATIONS, 3);
+
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     @Test
     public void execute() {

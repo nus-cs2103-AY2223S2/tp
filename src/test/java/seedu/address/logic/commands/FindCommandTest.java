@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
-import static seedu.address.testutil.TypicalPersons.ANG;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.CLARK;
 import static seedu.address.testutil.TypicalPersons.EDWARD;

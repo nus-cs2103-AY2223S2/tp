@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+
 import java.util.List;
 import java.util.Set;
 
@@ -7,14 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MeetCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.location.LocationUtil;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class MeetCommandParserTest {
 
@@ -28,7 +25,7 @@ public class MeetCommandParserTest {
             List.of(MEET_COMMAND_PARSER, EAT_COMMAND_PARSER, STUDY_COMMAND_PARSER);
 
     @Test
-    public void parse_invalidIndex_Failure() {
+    public void parse_invalidIndex_failure() {
         // negative
         COMMAND_PARSER_LIST.forEach(p -> assertParseFailure(p, "-1", MESSAGE_INVALID_INDEX));
         COMMAND_PARSER_LIST.forEach(p -> assertParseFailure(p, "2 -1", MESSAGE_INVALID_INDEX));
