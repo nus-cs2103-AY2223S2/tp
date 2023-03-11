@@ -35,7 +35,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withRate("98765432")
             .withTiming("11-03-2024 12:00", "11-03-2024 17:00")
-            .withMark("[ ]")
+            .withMark("[X]")
             .withTags("owesMoney", "friends").build();
     public static final Event CARL = new PersonBuilder().withName("Carl Kurz")
             .withRate("95352563")
