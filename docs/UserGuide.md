@@ -78,7 +78,7 @@ Format: `help`
 
 Adds a customer to the current list.
 
-Format: `addc ind/ent n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ind - Individuals
@@ -86,8 +86,8 @@ ent - Enterprise
 </div>
 
 Examples:
-* `add ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
+* `addc ct/ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
 
 ### Listing all customers : `listc`
 
@@ -162,22 +162,19 @@ Examples:
 * `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be in tier 1.
 * `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold than tier 2. 
 
-### Editing a person : `edit`
+### Editing a person : `editc`
 
-Edits an existing person in the address book.
+Edits an existing customer in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
