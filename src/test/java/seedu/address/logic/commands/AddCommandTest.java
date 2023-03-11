@@ -21,6 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -35,8 +38,11 @@ public class AddCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(expectedApplication).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -44,8 +50,11 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddCommand addCommand = new AddCommand(expectedApplication);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
@@ -53,16 +62,19 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addAliceCommand = new AddCommand(expectedApplication);
+        AddCommand addBobCommand = new AddCommand(expectedApplication);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(expectedApplication);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -110,6 +122,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addApplication(InternshipApplication person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -121,6 +138,11 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasApplication(InternshipApplication application) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,12 +162,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredInternshipList() {
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<InternshipApplication> getFilteredInternshipList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
