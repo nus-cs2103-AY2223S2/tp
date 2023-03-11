@@ -43,8 +43,8 @@ public class DistanceUtil {
      * Returns the closest point to a particular location.
      * For example, "the closest restaurant to home" would be {@code getClosestPoint(home, restaurants)}.
      */
-    public static Optional<? extends Location> getClosestPoint(
-            Location location, List<? extends Location> locations) {
+    public static Optional<Location> getClosestPoint(
+            Location location, List<Location> locations) {
         return locations.stream()
                 .min(Comparator.comparingDouble((Location location1) -> getDistance(location1, location)));
     }
@@ -53,10 +53,10 @@ public class DistanceUtil {
      * Returns the closest points to a particular location.
      * For example, "the 5 closest restaurants to home" would be {@code getClosestPoint(home, 5, restaurants)}.
      */
-    public static List<? extends Location> getClosestPoints(
-            Location location, int limit, Collection<? extends Location> locations) {
+    public static List<Location> getClosestPoints(
+            Location location, int limit, Collection<Location> locations) {
         return locations.stream()
-                .sorted(Comparator.comparingDouble((Location location1) -> getDistance(location1, location)))
+                .sorted(Comparator.comparingDouble((Location other) -> getDistance(other, location)))
                 .limit(limit)
                 .collect(Collectors.toList());
     }

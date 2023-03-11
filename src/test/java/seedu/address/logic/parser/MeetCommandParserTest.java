@@ -1,0 +1,66 @@
+package seedu.address.logic.parser;
+
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.MeetCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.location.LocationUtil;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.Assert.assertThrows;
+
+public class MeetCommandParserTest {
+
+    private static final MeetCommandParser MEET_COMMAND_PARSER =
+            new MeetCommandParser(MeetCommandParser.MeetupType.MEET);
+    private static final MeetCommandParser EAT_COMMAND_PARSER =
+            new MeetCommandParser(MeetCommandParser.MeetupType.EAT);
+    private static final MeetCommandParser STUDY_COMMAND_PARSER =
+            new MeetCommandParser(MeetCommandParser.MeetupType.STUDY);
+    private static final List<MeetCommandParser> COMMAND_PARSER_LIST =
+            List.of(MEET_COMMAND_PARSER, EAT_COMMAND_PARSER, STUDY_COMMAND_PARSER);
+
+    @Test
+    public void parse_invalidIndex_Failure() {
+        // negative
+        COMMAND_PARSER_LIST.forEach(p -> assertParseFailure(p, "-1", MESSAGE_INVALID_INDEX));
+        COMMAND_PARSER_LIST.forEach(p -> assertParseFailure(p, "2 -1", MESSAGE_INVALID_INDEX));
+        COMMAND_PARSER_LIST.forEach(p -> assertParseFailure(p, "a 2", MESSAGE_INVALID_INDEX));
+    }
+
+    @Test
+    public void parse_validIndex_success() {
+        // standard
+        assertParseSuccess(MEET_COMMAND_PARSER, "1",
+                new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.MEET_LOCATIONS));
+        assertParseSuccess(EAT_COMMAND_PARSER, "1",
+                new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.EAT_LOCATIONS));
+        assertParseSuccess(STUDY_COMMAND_PARSER, "1",
+                new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.STUDY_LOCATIONS));
+        assertParseSuccess(MEET_COMMAND_PARSER, "2 7",
+                new MeetCommand(Set.of(Index.fromOneBased(2), Index.fromOneBased(7)),
+                        LocationUtil.MEET_LOCATIONS));
+        assertParseSuccess(EAT_COMMAND_PARSER, "2 7",
+                new MeetCommand(Set.of(Index.fromOneBased(7), Index.fromOneBased(2)),
+                        LocationUtil.EAT_LOCATIONS));
+        assertParseSuccess(STUDY_COMMAND_PARSER, "2 7",
+                new MeetCommand(Set.of(Index.fromOneBased(2), Index.fromOneBased(7)),
+                        LocationUtil.STUDY_LOCATIONS));
+
+        // untrimmed
+        assertParseSuccess(MEET_COMMAND_PARSER, "   1   ",
+                new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.MEET_LOCATIONS));
+        assertParseSuccess(EAT_COMMAND_PARSER, "2 7",
+                new MeetCommand(Set.of(Index.fromOneBased(7), Index.fromOneBased(2)),
+                        LocationUtil.EAT_LOCATIONS));
+        assertParseSuccess(STUDY_COMMAND_PARSER, "   6     ",
+                new MeetCommand(Set.of(Index.fromOneBased(6)), LocationUtil.STUDY_LOCATIONS));
+    }
+}

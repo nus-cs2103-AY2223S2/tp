@@ -5,7 +5,7 @@ package seedu.address.logic.parser;
  * E.g. 't/' in 'add James t/ friend'.
  */
 public enum Prefix {
-    BLANK(" ", ""),
+    BLANK("", ""),
     NAME("n/", "Name"),
     ADDRESS("a/", "Address"),
     PHONE("p/", "Phone"),

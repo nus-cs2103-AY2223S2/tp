@@ -1,100 +1,100 @@
-Adam Tan|86410978|adamtan@gmail.com|Tan Kah Kee|@adamtan|TA|CS2101 CS1010 CS2113 CS2106
-Albert Park|89760441|albertpark@gmail.com|King Albert Park|@albertpark|TA|CS2103 CS4242 CS2102 IS2238
-Alex Quentin|84658595|alexquentin@gmail.com|Queenstown|@alexquentin|Groupmate|CS2107 IS2103 CS2113 CS2103 IS4250
-Amirah Tan|92753719|amirahtan@gmail.com|Tanah Merah|@amirahtan|Groupmate|CS2109 BT4212 CS2103 CS2102 CS2106
-Ang Cheng San|92613338|angchengsan@gmail.com|Ang Mo Kio|@angchengsan|NS|DSA2102 CS2101 BT4211 BT2103 IS2101 CS2040
-Ang Djit Sun|82455948|angdjitsun@gmail.com|Ang Mo Kio|@angdjitsun|NS|CS2104 CS2101 CS2103 CS4239 BT2102
-Ang Mei Hua|87336725|angmeihua@gmail.com|Mayflower|@angmeihua|Study|CS2104 CS2103 IS2238 CS2102 CS4231
-Ang Mo Kio|93339455|angmokio@gmail.com|Ang Mo Kio|@angmokio|NS|CS2104 CS3236 CS1231 CS2103 CS2102
-Bart Lee|82630347|bartlee@gmail.com|Bartley|@bartlee|CCA|CS2107 CS2101 CS2113 CS2102 BT2102
-Bee Shan|84539444|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS2108 CS2107 CS2109 CS2113 CS2030 GE2102
-Benjamin DeMeer|88785703|benjamindemeer@gmail.com|Bendemeer|@benjamindemeer|TA|MA2213 CS2100 CS3241 CS2113 CS2103 CS2102
-Benjamin Dover|87236153|benjamindover@gmail.com|Dover|@benjamindover|Groupmate|CS2103 CS2040 CS2113 CS2108
-Benjamin Khoo|87423343|benjaminkhoo@gmail.com|Bencoolen|@benjaminkhoo|TA|IS2102 CS2309 CS2113 CS2105 CS2030
-Boon Kheng|94375376|boonkheng@gmail.com|Boon Keng|@boonkheng|NUS|CS2103 GEN2070 CS2100 CS2104
-Boon Lay|89459652|boonlay@gmail.com|Boon Lay|@boonlay|Groupmate JC|CS2109 CS2113 CS3282 CS2040 CS2106
-Brad Toh|82834909|bradtoh@gmail.com|Braddell|@bradtoh|NS|CS2103 CE2183 CS2113 CS2106
-Charles Windsor|81225655|charleswindsor@gmail.com|Mountbatten|@charleswindsor|CCA|CS3231 CS2108 IS2102 CS2100 CS2103 CS3240
-Cheng Lim|94628582|chenglim@gmail.com|Cheng Lim|@chenglim||CS2309 CS2113 CS2030 CS2103 GEH1034 CS2102
-Choa Chu Kang|89256154|choachukang@gmail.com|Choa Chu Kang|@choachukang|NS JC|CS2108 CS2104 CS3223 CS2113 CS3264 CS2106
-Chun Ye|99369143|chunye@gmail.com|Springleaf|@chunye|Study|CS2101 CS4249 CS2113 CS2103 CS2102
-Clark Kee|81342028|clarkkee@gmail.com|Clarke Quay|@clarkkee|NUS|CS2109 CS2103 CS1010 CS2113
-Clement Tee|88919090|clementtee@gmail.com|Clementi|@clementtee|Groupmate|CS2109 CS2101 CS2113 CS2103 CS2040 GEC1024
-Dakota Windsor|97771985|dakotawindsor@gmail.com|Dakota|@dakotawindsor|CCA|CS2107 CS2100 CS2104 CS2109 BT2103 GEN2061
-Dawson Quentin|87190565|dawsonquentin@gmail.com|Queenstown|@dawsonquentin|Groupmate|CS2104 CS3230 CS2109 CS2105 CS3233 CS2106
-Dong Yu Lang|84258152|dongyulang@gmail.com|Jurong East|@dongyulang|NS|GESS1011 CS2109 CS2030 CS2103 GE2103
-Edward Anson|85247241|edwardanson@gmail.com|Prince Edward Road|@edwardanson|CCA|CS2108 CS2109 CS2113 CS2103 MA2101
-Edward Richards|92463693|edwardrichards@gmail.com|Kent Ridge|@edwardrichards|CCA|GEH1008 CS3223 CS2101 CS3236 CS2102 CS2106
-Enova Woodland|99160164|enovawoodland@gmail.com|Woodlands|@enovawoodland|Study NS|LAT1201 CS2101 CS2113 CS3264 CS2220
-Eusoff Richards|84517712|eusoffrichards@gmail.com|Kent Ridge|@eusoffrichards|CCA|IS2218 CS2104 CS3230 LAK2201 CS3282 CS2103
-Evelyn Newton|96780166|evelynnewton@gmail.com|Newton|@evelynnewton|NS TA|IS2102 CS2108 CS2113 CS2104
-Ewan MacPherson|87768617|ewanmacpherson@gmail.com|MacPherson|@ewanmacpherson|TA CCA|ST2137 CS2108 CS2113 CS2104
-Ferra Park|87993787|ferrapark@gmail.com|Farrer Park|@ferrapark|NUS|CS2108 GEC1004 CS2107 CS2101 CS2309 CS2103
-Ford Canning|88032666|fordcanning@gmail.com|Fort Canning|@fordcanning|TA|CS2100 CS2104 CS3235 CS2103 CS2040 CS2106
-Ford Holland|84738071|fordholland@gmail.com|Holland Village|@fordholland|CCA|BT2101 CS2108 CS4236 CS2107 CS2103
-George Richards|98796811|georgerichards@gmail.com|Kent Ridge|@georgerichards|CCA|CS2100 CS2104 CS2101 CS4277 IS2101 CS2102
-Glenn Napier|93098438|glennnapier@gmail.com|Napier|@glennnapier|Study|IS4228 CS2107 GEC1017 CS2030 CS2103
-Granger Summers|82072390|grangersummers@gmail.com|Somerset|@grangersummers|NS|CS2309 CS2105 MA2108 CS4215 CS3264
-Gwon Se Rang|92730823|gwonserang@gmail.com|Serangoon|@gwonserang|NUS CCA|CS2101 CS2105 BT4301 CS2103 CS3233 CS2106
-Hong Shan|91345682|hongshan@gmail.com|Redhill|@hongshan|Groupmate|CS2108 CS2109 CS2113 CS2103 IS3240
-Ian Hill|83533027|ianhill@gmail.com|Bukit Panjang|@ianhill|Enemy|CS2108 MA4260 MA2001 CS2101 CS2030 GES1029
-Isaac Newton|93175044|isaacnewton@gmail.com|Newton|@isaacnewton|NS TA|CS2107 CS2113 CS2105 CS2030 CS2103
-Jing Kai Xiu|86427414|jingkaixiu@gmail.com|Cashew|@jingkaixiu|TA|CS2104 CS2109 CS2103 BT2103 CS2040 MA2002
-Joo Koon|84709651|jookoon@gmail.com|Joo Koon|@jookoon|Groupmate|IS4204 MA1513 CS3243 CE3203 CS2103 CE4104
-Joo Rong|83828973|joorong@gmail.com|Jurong East|@joorong|NS|CE2134 CS2100 CS2109 CS2101 CS2103
-Jubilee Ang|88586018|jubileeang@gmail.com|Ang Mo Kio|@jubileeang|NS|ST2289 CS4240 CS2113 CS2102
-Keat Hong|85057970|keathong@gmail.com|Keat Hong|@keathong|JC|CS4261 CS2101 CS3241 CS2105 CS2103 CS4222
-Kent Richards|83436076|kentrichards@gmail.com|Kent Ridge|@kentrichards|CCA|CS2104 CS4249 CS2113 BT4212 CS4242 CS2040
-Kevin Ho|99997496|kevinho@gmail.com|Kovan|@kevinho|NUS|CS2103 CS4238 IS2101 CS3245 CS2102
-Khadijah Al Junied|91236169|khadijahaljunied@gmail.com|Aljunied|@khadijahaljunied|Groupmate|BT2101 CS2103 CS4225 IS4010 CS2102
-Khoo Pang|98102160|khoopang@gmail.com|Kupang|@khoopang||CS3247 CS2100 CS2109 CS2103 BT2103 IS3106
-Komyo San|89831959|komyosan@gmail.com|Bright Hill|@komyosan|Study|CS3213 CS2107 IS2103 CS2109 CS2105 GEN2050
-Lavender Crawford|83340546|lavendercrawford@gmail.com|Lavender|@lavendercrawford|Groupmate|CS2108 GESS1029 CS2109 MA2313 CE2155 BT2102
-Low Wong Chuan|89489291|lowwongchuan@gmail.com|Lorong Chuan|@lowwongchuan|CCA|CE2134 CS2104 CS2101 CS2113 CS2103 GEA1000
-Marcy Ling|89015646|marcyling@gmail.com|Marsiling|@marcyling|NS|CS2100 IS4301 CS2109 CS2103 CS3245 BT2102
-Mary Caldecott|88610081|marycaldecott@gmail.com|Caldecott|@marycaldecott|Study CCA|IS2102 CS2104 CS2101 CS2040 CS2106
-Mary Meng|93816073|marymeng@gmail.com|Marymount|@marymeng|CCA|CS2108 LAD2002 CS2030 GE2101 CS4226 CS2040
-Mary Thomson|99326191|marythomson@gmail.com|Marymount|@marythomson|CCA|CE2183 CS3217 LAD2002 CS2113 IS2101 CS2102
-May See|95301264|maysee@gmail.com|Simei|@maysee|Groupmate|CS1101 CS2107 CS2101 CS2103 CS2102
-Maya Takashi|97625239|mayatakashi@gmail.com|Orchard|@mayatakashi|Enemy|CS2113 CS4269 CS2103 CS2040 CS2102 BT2102
-Melania Walker|96109616|melaniawalker@gmail.com|Promenade|@melaniawalker|Enemy|CS2109 CS2113 CS2103 CS4234 IS2101
-Neal Maxwell|88590989|nealmaxwell@gmail.com|Maxwell|@nealmaxwell|Study|IS2103 CS2101 CS2109 BT4221 CS3242 CS2040
-Nee Soon|94417537|neesoon@gmail.com|Yishun|@neesoon|NS|CS2107 CS2113 CS2103 CS3233 CS2106
-Nguyen Huu Tram|89634011|nguyenhuutram@gmail.com|Outram Park|@nguyenhuutram|Study NUS Groupmate|CS2107 CS2104 CS2101 CS2309 CS2103
-Nicholas Tan Bin|86783627|nicholastanbin@gmail.com|Tampines|@nicholastanbin|Groupmate TA|IS2102 CS2100 CS2109 CS2113 CS2103 GES1028
-Nicole Hai Wei Ting|92574283|nicolehaiweiting@gmail.com|Nicoll Highway|@nicolehaiweiting|CCA|CE2183 CS2100 CS3230 CS2113 CS3236 CS2103
-Nicole Tan Bin|92551349|nicoletanbin@gmail.com|Tampines|@nicoletanbin|Groupmate TA|CS2108 CS2100 CS2103 LAD2005 CS2106
-Nicole Windsor|81767696|nicolewindsor@gmail.com|Nicoll Highway|@nicolewindsor|CCA|BT2101 CS2108 CS2103 CS2040 MA2288 CS2220
-Novena Thomson|81888920|novenathomson@gmail.com|Novena|@novenathomson|NS|CE2183 CS2107 CS2113 MA2108 CS2030 CS2103
-Nur Khatibah Abdul Ibrahim|89900601|nurkhatibahabdulibrahim@gmail.com|Khatib|@nurkhatibahabdulibrahim|NS|CE2134 CS2101 CS2109 CS2113 CS4347 GE3551
-Ritchie Thomson|89586907|ritchiethomson@gmail.com|Upper Thomson|@ritchiethomson|Study|CS2104 CS4218 CS2030 CS2103 CS2102 CS2106
-Sallim Mattar|92002260|sallimmattar@gmail.com|Mattar|@sallimmattar|TA|IS2102 CS2100 CS2109 CS2113 CS2105 CS2106
-Sam Kee|93333382|samkee@gmail.com|Sam Kee|@samkee||CS1101 CS2100 CS2101 CS2113 CS2105
-San Gi Chim|84174862|sangichim@gmail.com|Bukit Batok|@sangichim|NS|CS2104 CS2101 CS2040 CS2106 BT2102
-Scott Newton|83292328|scottnewton@gmail.com|Newton|@scottnewton|NS TA|LAJ2202 CS2105 CS3243 CS2103 CS2040 CS2106
-Seth Summers|83242811|sethsummers@gmail.com|Somerset|@sethsummers|NS|CS2107 CS2109 BT2201 CS2103 MA2101 CS2106
-Shannon Park|83721659|shannonpark@gmail.com|Shenton Way|@shannonpark|Study|CS2104 CS2113 CS2103 CS2040 CS2102
-Shannon Wei|87186793|shannonwei@gmail.com|Shenton Way|@shannonwei|Study|CS2107 CS2101 CS2309 CS2113 CS2030
-Shun Yi|96189823|shunyi@gmail.com|Yishun|@shunyi|NS|GESS1016 CS2107 MA4261 CS2040 CS2106
-Sim Ga Rang|94703159|simgarang@gmail.com|Kallang|@simgarang|Groupmate|BT2101 CS2107 CS2101 CS2103 CS2102 CS2106
-Siti Burhani|91393976|sitiburhani@gmail.com|City Hall|@sitiburhani|Groupmate NS|BT2101 CS2108 BT2201 CS3245 CS2102
-Soo Teck|96382729|sooteck@gmail.com|Soo Teck|@sooteck||CS2100 CS2109 CS2113 CS2030 CS2103
-Soon Teck|86850094|soonteck@gmail.com|Promenade|@soonteck|Enemy|CE2183 CS2107 CS3203 CS2113 CS2030 CS2103
-Steven Tan|87284831|steventan@gmail.com|Stevens|@steventan|Study TA|CS2100 CS2104 CS2101 CS2113 CS2103 DSA2101
-Steven Whitley|97410432|stevenwhitley@gmail.com|Stevens|@stevenwhitley|Study TA|CS2104 CS2101 CS4224 CS2113 GEN2050 CS2103
-Syed Alwi Mustafa|94130960|syedalwimustafa@gmail.com|Farrer Park|@syedalwimustafa|Enemy|CS2109 CS2103 CS2113 IS4262
-Tai Seng|88826414|taiseng@gmail.com|Tai Seng|@taiseng|CCA|CS2101 LAR4201 CS2113 CS2030 IS2238
-Tan Kah Kee|93201979|tankahkee@gmail.com|Tan Kah Kee|@tankahkee|TA|CS2103 CS2113 CS2108 CS3236
-Teck Lee|92223902|tecklee@gmail.com|Teck Lee|@tecklee||CS4236 CS3211 CS2309 CS2103 CS2106
-Teck Whye|89001316|teckwhye@gmail.com|Teck Whye|@teckwhye|JC|CS2104 CS2113 CS2103 CS2102 CS2106
-Thomas Nakayama|85171910|thomasnakayama@gmail.com|Toa Payoh|@thomasnakayama|Enemy|BT2101 CS2101 CS2113 CS2103 CS4222
-Tom Holland|98655860|tomholland@gmail.com|Holland Village|@tomholland|CCA|CS2104 CS2101 CS2113 CS4278 CS2106
-Vernon Lee|95594912|vernonlee@gmail.com|Bartley|@vernonlee|CCA|CS2100 IS2103 CS2030 CS2103 GEN2002
-Victoria Raffles|82859652|victoriaraffles@gmail.com|Raffles Place|@victoriaraffles|Groupmate NS|LAS2201 CS2105 CS2113 DSA4266 CS2103 CE2155
-Wang Kok|92729893|wangkok@gmail.com|Buangkok|@wangkok|NUS|BT2101 CS2309 CS2113 CS2103 CS2102 CS2106
-Wen Li|96117965|wenli@gmail.com|Boon Lay|@wenli|Groupmate JC|CS2108 CS2101 CS2113 CS2103 CS4221
-Wen Qing|91546883|wenqing@gmail.com|Boon Keng|@wenqing|NUS|CS2100 CS2104 CS2113 CS2105 CS2103 CS2040
-Yew Tee|85163739|yewtee@gmail.com|Yew Tee|@yewtee|NS|CS2104 CS2030 CS1231 CS2103 CS2040 CS2106
-Yio Chu Kang|83709902|yiochukang@gmail.com|Yio Chu Kang|@yiochukang|NS|CS2108 CS2107 CS2109 CS2113 GEC1010
-Yunus Abdul Razak|97159090|yunusabdulrazak@gmail.com|Eunos|@yunusabdulrazak|Groupmate|CS2107 CS2109 CS2113 LAD2005 CS2106
-Zhang Yi|87881545|zhangyi@gmail.com|Changi Airport|@zhangyi||CE2183 CS4268 CS2104 CS2113 CS2103 CS2040
+Adam Tan|86835058|adamtan@gmail.com|Tan Kah Kee|@adamtan|TA|CS2102 CS2103 CS2107 CS2030 CS2105 DSA2102
+Albert Park|89760441|albertpark@gmail.com|King Albert Park|@albertpark|TA|CS2105 CS2104 CS2103 CS1010 CHC5338 BT2103
+Alex Quentin|94587551|alexquentin@gmail.com|Queenstown|@alexquentin|Groupmate|CS2106 CS2108 CS2102 BT2103 CS2105 CS2103
+Amirah Tan|82693366|amirahtan@gmail.com|Tanah Merah|@amirahtan|Groupmate|CS2100 CE2155 CS2106 LL5009V YIR3306G BT2103
+Amirul Tihani|89868841|amirultihani@gmail.com|Admiralty|@amirultihani|NS|CS2108 CS2100 CS2113 CS2109S IS2102 CS2104
+Anderson Yeo|83369263|andersonyeo@gmail.com|Yio Chu Kang|@andersonyeo|NS|CS2105 PL6660 CS3236R CS2113 CS2107 MA6221
+Ang Cheng San|97789239|angchengsan@gmail.com|Ang Mo Kio|@angchengsan|NS|LL5045V CS2102 MA2116 CS2103 CS2104 CS4350
+Ang De Yi|95796111|angdeyi@gmail.com|Teck Ghee|@angdeyi||MA5216 CS2104 CS2113 BT2101 CS2108 CS2100
+Ang Mei Hua|86203169|angmeihua@gmail.com|Mayflower|@angmeihua|Study|CS2108 GEN2061 CS2107 DSA2102 CS2102 CS2106
+Astrid Holland|99864740|astridholland@gmail.com|Holland Village|@astridholland|CCA|IS2101 IS2103 CS2102 FST5228 BT2102 CS2106
+Bart Lee|82630347|bartlee@gmail.com|Bartley|@bartlee|CCA|CE2183 CS2108 PL3551R CS2113 CS2107 CS3216
+Bee Shan|86571058|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS2113 TBA2105 CS2102 CS2107 CS2105 CS2113T
+Benjamin DeMeer|94527706|benjamindemeer@gmail.com|Bendemeer|@benjamindemeer|TA|CE2134 ST2132 CS2103T BT2201 CS2103 HM5102
+Benjamin Dover|94745181|benjamindover@gmail.com|Dover|@benjamindover|Groupmate|CS2102 YSS3348 CS2105 CS2103 CS2040 CS2101
+Benjamin Khoo|92552446|benjaminkhoo@gmail.com|Bencoolen|@benjaminkhoo|TA|CS2113 CS2104 CS2106 CS2101 GEN2000 CE2183
+Boon Kheng|83042346|boonkheng@gmail.com|Boon Keng|@boonkheng|NUS|CS4211 ID1119 CS2107 CE2155 TIC2301 CS2103T
+Boone Leigh|99180116|booneleigh@gmail.com|Boon Lay|@booneleigh|Groupmate JC|MA2116 CS2100 CS2105 MCI5001 LL5073V CS2113
+Bradley Toh|92020329|bradleytoh@gmail.com|Braddell|@bradleytoh|NS|CS2103 CG3207 LL5335V CS2102 CS2100 CE4104
+Charles Windsor|88958686|charleswindsor@gmail.com|Mountbatten|@charleswindsor|CCA|MA2104 CE2183 BT2101 ESE4502R CS2105 CS2107
+Chun Ye|93877009|chunye@gmail.com|Springleaf|@chunye|Study|CS2102 GESS1020 LSM3210 CS2104 CP5105 CN5203
+Clark Kee|81342028|clarkkee@gmail.com|Clarke Quay|@clarkkee|NUS|CS2103 CE2003 CS2105 IE4102 SC3206 CS2106
+Clement Tee|86830085|clementtee@gmail.com|Clementi|@clementtee|Groupmate|CE2134 CS2100 CS2103T TIC2601 CS2106 CS2030S
+Dakota Windsor|86263617|dakotawindsor@gmail.com|Dakota|@dakotawindsor|CCA|GE2102 QF3101 LLJ5203 CS2104 ST2132 CM3261
+Dawson Quentin|87190565|dawsonquentin@gmail.com|Queenstown|@dawsonquentin|Groupmate|ST2131 LL5043 MA2101 PP5705 CS2104 CS2105
+Dong Yu Lang|94142184|dongyulang@gmail.com|Jurong East|@dongyulang|NS|GE2103 UTC2400 IS2102 CS2105 CE2003 ST2131
+Edward Anson|83390312|edwardanson@gmail.com|Prince Edward Road|@edwardanson|CCA|CFG2600A ME3252 CS2101 CS2100 CS2108 DOS3704
+Edward Richards|92463693|edwardrichards@gmail.com|Kent Ridge|@edwardrichards|CCA|CS2105 CS2309 CS2104 CS2100 ST3289 CE4103
+Enova Woodland|92227723|enovawoodland@gmail.com|Woodlands|@enovawoodland|Study NS|CS4226 CS4215 CS2113 CS2030S CS2103 IT2002
+Eusoff Richards|91657082|eusoffrichards@gmail.com|Kent Ridge|@eusoffrichards|CCA|CS2105 LAD2007 CS2220 DSA2101 CS2104 CS2113
+Evelyn Newton|96462128|evelynnewton@gmail.com|Newton|@evelynnewton|NS TA|CS2113 CS2103 DEP5111 CS2107 CS3219 MS2212
+Ferra Parker|87544193|ferraparker@gmail.com|Farrer Park|@ferraparker|NUS|BT2101 DSA2101 CS2103R CS2101 CS2106 CS2104
+Ford Canning|88032666|fordcanning@gmail.com|Fort Canning|@fordcanning|TA|CS2101 CS2103 CS2108 CS2030S CS2102 CS2107
+George Richards|98796811|georgerichards@gmail.com|Kent Ridge|@georgerichards|CCA|CS4249 CS2105 GE2103 BT2101 CS2108 CS2103R
+Glenn Napier|93108136|glennnapier@gmail.com|Napier|@glennnapier|Study|CS2108 CS2101 LL6056BV CS2100 CS2040S CS2104
+Grover Woodland|92521561|groverwoodland@gmail.com|Woodlands|@groverwoodland||CS2107 AS3238 CE2155 MKT2711B CS2105 CS2108
+Gwon Se Rang|93840210|gwonserang@gmail.com|Serangoon|@gwonserang|NUS CCA|IS2101 CS2104 CS2102 CS2113 CS2106 CE2155
+Hong Shan|91345682|hongshan@gmail.com|Redhill|@hongshan|Groupmate|MA2101 CS2104 CS2113 LSM3259 CE2407A CS2107
+Ian Hill|86587938|ianhill@gmail.com|Bukit Panjang|@ianhill|Enemy|CS2104 CS2113 DSA2102 CS2108 CS2103 PS2204
+Isaac Newton|93175044|isaacnewton@gmail.com|Newton|@isaacnewton|NS TA|CE5315 CS2109S CS2113T CS2105 CS2107 CS2104
+Jing Kai Xiu|99816044|jingkaixiu@gmail.com|Cashew|@jingkaixiu|TA|CS2102 IS2102 CS2106 CS2100 CS2107 CS2101
+Ju Kun|84709651|jukun@gmail.com|Joo Koon|@jukun|Groupmate|CS2101 DSA2101 BN3301 CS2106 CS2108 CS2107
+Joo Rong|82398644|joorong@gmail.com|Jurong East|@joorong|NS|TS2243 CE5611A CS2106 CS2113 CS2101 CS2103
+Jubilee Ang|86569173|jubileeang@gmail.com|Ang Mo Kio|@jubileeang|NS|CE2155 LL6477 LL6276 CS2108 CS3244 CS2040C
+Kang Cheng Lim|88892699|kangchenglim@gmail.com|Cheng Lim|@kangchenglim||CS2103 CS2107 CS2030 BT2103 NUR5811B CS2104
+Kang Seng|82054889|kangseng@gmail.com|Sengkang|@kangseng|NUS|CS2106 CE2134 CS2113 BT2101 CS2107 CS2101
+Keith Hong|98498795|keithhong@gmail.com|Keat Hong|@keithhong|JC|CS2104 CS2102 CS2101 CS2107 CS2108 CS2040
+Kent Richards|99591399|kentrichards@gmail.com|Kent Ridge|@kentrichards|CCA|CS2101 CS2104 CS2102 CS2106 CS2103R CS2040C
+Kevin Ho|99997496|kevinho@gmail.com|Kovan|@kevinho|NUS|IS2101 CS2030S LAC2201 YSC1207 CS2113T CS2107
+Khadijah Al Junied|94417745|khadijahaljunied@gmail.com|Aljunied|@khadijahaljunied|Groupmate|CS2108 CS2040 CS2107 CS2103 CS2104 CS2101
+Khoo Pang Seng|84238643|khoopangseng@gmail.com|Kupang|@khoopangseng||LSM4215 CS2103 SPH5890F IS2103 CS2105 CS2108
+Khoo Shun Yee|91985806|khooshunyee@gmail.com|Yishun|@khooshunyee|NS|CS2106 CS2102 CS2104 CS2107 MT5010 CE2134
+Lavender Crawford|83340546|lavendercrawford@gmail.com|Lavender|@lavendercrawford|Groupmate|BT2102 CS2113T CS2113 CS4243 CS2100 IS2103
+Low Wong Chuan|99894723|lowwongchuan@gmail.com|Lorong Chuan|@lowwongchuan|CCA|EL5270R BN5101 CS2113 CS2106 IS2103 CS2108
+Marceline Parker|93823732|marcelineparker@gmail.com|Marsiling|@marcelineparker|NS|CS2105 CS2102 CE2407B CS2107 CS2100 CS2030S
+Marie Thomson|99366671|mariethomson@gmail.com|Upper Thomson|@mariethomson|Study|CS2106 CS2108 CS2107 CS2105 CS2104 SPH6201G
+Mary Caldecott|97645613|marycaldecott@gmail.com|Caldecott|@marycaldecott|Study CCA|CS2107 CS2102 CS2309 CS2105 CS2100 CS2103
+Mary Meng|93816073|marymeng@gmail.com|Marymount|@marymeng|CCA|CS2103 CS2104 CS2106 LL4377V CS2102 ID4106
+Macy Harvey|89869285|macyharvey@gmail.com|Simei|@macyharvey|Groupmate|LSM4213 CS2220 CS3213 CS2102 CS2103 BMS5902
+Maya Takashi|96212544|mayatakashi@gmail.com|Orchard|@mayatakashi|Enemy|CS2106 BT2102 CS2100 CS2105 BT2101 EC3312
+Melania Walker|94890649|melaniawalker@gmail.com|Promenade|@melaniawalker|Enemy|CS2104 PH4262 BRP6553 CS2103 CS2220 CS2101
+Mihoko Minami|96614190|mihokominami@gmail.com|South View|@mihokominami|JC|BMF5355 CS2040 CS2107 IS2101 TS5212R BT2201
+Muhammad Matariah|99624093|muhammadmatariah@gmail.com|Mattar|@muhammadmatariah|TA|LL4074V CS2106 CS2108 SC4401 CS2113 CS2102
+Neal Maxwell|96136639|nealmaxwell@gmail.com|Maxwell|@nealmaxwell|Study|CS2103 ME5103 CS2102 CS2113 CS2101 CM5211
+Nee Soon|87968723|neesoon@gmail.com|Yishun|@neesoon|NS|CS2113 CS2102 CS2105 CE2134 CS2104 BMG5203
+Nguyen Huu Tram|99210953|nguyenhuutram@gmail.com|Outram Park|@nguyenhuutram|Study NUS Groupmate|BT2102 LAK4203 IS2102 CS2104 CS2102 CE2155
+Nicholas Tan Bin|83708057|nicholastanbin@gmail.com|Tampines|@nicholastanbin|Groupmate TA|CS2104 CS2107 CS2113 CS2100 GE2103 CS2101
+Nicole Hai Wei Ting|92574283|nicolehaiweiting@gmail.com|Nicoll Highway|@nicolehaiweiting|CCA|NGN2001E CS3203 LL5394 CS2105 CS3242 CS2107
+Nicole Tan Bin|85274796|nicoletanbin@gmail.com|Tampines|@nicoletanbin|Groupmate TA|CS2104 CS2101 LL4454V CS2100 CS3245 CS3236
+Nicole Windsor|87418518|nicolewindsor@gmail.com|Nicoll Highway|@nicolewindsor|CCA|BT2103 CS2101 CS2109S CS2113 MA2108 CS2108
+Novena Thomson|89036217|novenathomson@gmail.com|Novena|@novenathomson|NS|CE2134 CS2101 CS4239 PH3217 AR5423 CS2100
+Nur Khatibah Abdul Ibrahim|93378168|nurkhatibahabdulibrahim@gmail.com|Khatib|@nurkhatibahabdulibrahim|NS|CS2101 SPH5405 IS2101 YSS2201 CS2104 CS2105
+Phillip Raffles|99145228|phillipraffles@gmail.com|Raffles Place|@phillipraffles|Groupmate NS|XFE4401 CS2103 CS2102 LAG2201 CS2100 CS2105
+Ritchie Thomson|93005025|ritchiethomson@gmail.com|Upper Thomson|@ritchiethomson|Study|DEP5107 CS2108 DOS4811 CS2101 CS2104 CS2040S
+Ruby McPherson|82332900|rubymcpherson@gmail.com|MacPherson|@rubymcpherson|TA CCA|CS2103 IS2103 CS2113 CS2220 MA2104 BT2101
+Samantha Kee|97782035|samanthakee@gmail.com|Sam Kee|@samanthakee||CS2101 CS2040 LSM3246 CS2107 BN3202 CS2109S
+Scott Newton|86956171|scottnewton@gmail.com|Newton|@scottnewton|NS TA|CS2106 CS2113 EE5003 BT2101 CS2103 YSC4228
+Seth Summers|97002938|sethsummers@gmail.com|Somerset|@sethsummers|NS|CS2107 CS2105 GE2103 CS2113 CS2102 BN5104
+Shannon Park|93968142|shannonpark@gmail.com|Shenton Way|@shannonpark|Study|SLP5114 CS2107 BT2102 PF1108 CS2103 CS2104
+Shannon Wei|98941425|shannonwei@gmail.com|Shenton Way|@shannonwei|Study|CS2102 IS2102 CS2101 CS2040C CS2105 SPH1901
+Sim Ga Rang|89046815|simgarang@gmail.com|Kallang|@simgarang|Groupmate|CS2103 CS2113 IS2103 STR2000 CS2102 CS2101
+Siti Halimah|94207343|sitihalimah@gmail.com|City Hall|@sitihalimah|Groupmate NS|LL6158V BT2102 CS2100 IS2103 CS2107 CS2104
+Soon Teck|88674940|soonteck@gmail.com|Promenade|@soonteck|Enemy|IS2101 CS4243 CS2105 CS2100 CS2108 BMC5117
+Stella Lee|89093704|stellalee@gmail.com|Bartley|@stellalee|CCA|CS2105 CS2103 CS2107 CS2100 CS2030S FIN3714
+Steven Tan|86628814|steventan@gmail.com|Stevens|@steventan|Study TA|CE2134 BI3003C CS2113 CS2103R CS2108 CS2101
+Steven Whitley|86120366|stevenwhitley@gmail.com|Stevens|@stevenwhitley|Study TA|BT2102 CS2107 CS2101 LSM3252 CS2106 IS2102
+Summer Granger|93327165|summergranger@gmail.com|Somerset|@summergranger|NS|CE2407A IS4234 CE2155 CS2108 IS2103 MUA3162
+Syed Alwi Bin Mustafa|98414716|syedalwibinmustafa@gmail.com|Farrer Park|@syedalwibinmustafa|Enemy|CS2107 BMK6111S CS2101 EE5711 CS2106 CS2102
+Tae Seung|99320429|taeseung@gmail.com|Tai Seng|@taeseung|CCA|CS2105 CS2107 SN2283 BT2101 PLC5010 YSC4101
+Tan Kah Kee|97740182|tankahkee@gmail.com|Tan Kah Kee|@tankahkee|TA|CS2107 LLJ5094BV LL4094AV CS2101 MA2312U CS2105
+Thomas Nakayama|98260057|thomasnakayama@gmail.com|Toa Payoh|@thomasnakayama|Enemy|PS3274 CS2113 CE2183 CS2101 CS4211 IS2102
+Tom Holland|81760239|tomholland@gmail.com|Holland Village|@tomholland|CCA|CS2107 IS2101 CS2105 JS2880A CS2113 CE2134
+Tomo Yuike|95116167|tomoyuike@gmail.com|Yew Tee|@tomoyuike|NS|CS2103 BT2103 CS2102 CS2100 CS2104 CS2113T
+Vernon Lee|99896253|vernonlee@gmail.com|Bartley|@vernonlee|CCA|CS2100 CS2107 TCE4408 LSM2106 CS2101 ST2137
+Wen Li|98779926|wenli@gmail.com|Boon Lay|@wenli|Groupmate JC|CS2103R CS2101 CS2103T CS2106 CS2100 BT2101
+Wen Qing|98969908|wenqing@gmail.com|Boon Keng|@wenqing|NUS|GE2103 CE2134 BN2001 MUA2193 CE2183 MUA4113
+Wong Kok Seng|96661106|wongkokseng@gmail.com|Buangkok|@wongkokseng|NUS|CS2101 CS2106 CS2107 CS2113 EE6438 CS2108
+Woody Rivers|88608710|woodyrivers@gmail.com|Woodlands|@woodyrivers||MA2108 IS2102 CS4269 CS2105 CS2108 ST2132
+Yamaki Komyo|97822206|yamakikomyo@gmail.com|Bright Hill|@yamakikomyo|Study|LAR2201 CS2105 CS2106 BT3103 CS2103T BT2102
+Yunus Abdul Razak|91900909|yunusabdulrazak@gmail.com|Eunos|@yunusabdulrazak|Groupmate|CS2107 CE2155 CS2103 CS2102 GEH1053 JS3213
+Zhang Yi|93332268|zhangyi@gmail.com|Changi Airport|@zhangyi|Enemy|BT2101 CS2103 CS2108 LCJ5016 CS2106 CS2105

@@ -33,7 +33,7 @@ public class Address implements Comparable<Address> {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return LocationUtil.ADDRESSES_HASH_MAP.containsKey(test);
+        return test != null && LocationUtil.ADDRESSES_HASH_MAP.containsKey(test);
     }
 
     /**

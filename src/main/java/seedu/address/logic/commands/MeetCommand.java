@@ -24,10 +24,14 @@ public class MeetCommand extends Command {
     public static final String STUDY_COMMAND_WORD = "study";
     public static final String MEET_COMMAND_WORD = "meet";
     public static final String MESSAGE_SUCCESS = "Here are the recommendations!";
-    public static final int NUMBER_OF_RECOMMENDATIONS = 10;
+    public static final int DEFAULT_NUMBER_OF_RECOMMENDATIONS = 10;
+    public static final String MESSAGE_USAGE =
+            String.format("%s/%s/%s", EAT_COMMAND_WORD, STUDY_COMMAND_WORD, MEET_COMMAND_WORD)
+                    + ": Recommends locations to eat/study/meet based on the indices of the people.";
 
     private final Set<Index> indices;
     private final Collection<Location> locations;
+    private int numberOfRecommendations;
 
     /**
      * Constructor for a {@code MeetCommand}.
@@ -37,6 +41,19 @@ public class MeetCommand extends Command {
     public MeetCommand(Set<Index> indices, Collection<Location> locations) {
         this.indices = indices;
         this.locations = locations;
+        this.numberOfRecommendations = DEFAULT_NUMBER_OF_RECOMMENDATIONS;
+    }
+
+    /**
+     * Constructor for a {@code MeetCommand}.
+     * @param indices The indices of people we want to meet.
+     * @param locations The potential locations to meet.
+     * @param numberOfRecommendations The maximum search result size.
+     */
+    public MeetCommand(Set<Index> indices, Collection<Location> locations, int numberOfRecommendations) {
+        this.indices = indices;
+        this.locations = locations;
+        this.numberOfRecommendations = numberOfRecommendations;
     }
 
     @Override
@@ -45,6 +62,7 @@ public class MeetCommand extends Command {
 
         List<Person> lastShownList = model.getFilteredPersonList();
         List<Location> locationsOfPersons = new ArrayList<>();
+        locationsOfPersons.add(model.getUser().getAddress().getValue());
 
         for (Index index : indices) {
             locationsOfPersons.add(getPersonFromIndex(index, lastShownList).getAddress().getValue());
@@ -83,6 +101,14 @@ public class MeetCommand extends Command {
      */
     private List<? extends Location> giveRecommendations(List<? extends Location> locationsOfPersons) {
         Location midpoint = DistanceUtil.getMidpoint(locationsOfPersons);
-        return DistanceUtil.getClosestPoints(midpoint, NUMBER_OF_RECOMMENDATIONS, locations);
+        return DistanceUtil.getClosestPoints(midpoint, numberOfRecommendations, locations);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MeetCommand // instanceof handles nulls
+                && indices.equals(((MeetCommand) other).indices)
+                && locations.equals(((MeetCommand) other).locations)); // state check
     }
 }

@@ -3,13 +3,17 @@ package seedu.address.logic.parser;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.location.LocationUtil;
 import seedu.address.model.location.Location;
+import seedu.address.model.location.LocationUtil;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new MeetCommand object
@@ -45,7 +49,12 @@ public class MeetCommandParser implements Parser<MeetCommand> {
      */
     public MeetCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args);
-        Set<Index> indices = ParserUtil.parseIndices(Arrays.asList(argumentMultimap.getPreamble().split(" ")));
+        List<String> indexArray = Arrays.stream(argumentMultimap.getPreamble().split(" "))
+                .filter(x -> !x.isEmpty())
+                .collect(Collectors.toList());
+
+        Set<Index> indices =
+                ParserUtil.parseIndices(indexArray);
         return new MeetCommand(indices, locationHashSet);
     }
 

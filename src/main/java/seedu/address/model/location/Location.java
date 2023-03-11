@@ -15,6 +15,11 @@ public class Location implements Comparable<Location> {
             + "[103.61751, 104.04360] for latitude and longitude respectively.";
 
     /**
+     * NUS is a commonly used location, so we cache it here.
+     */
+    public static final Location NUS = new Location("NUS", 1.29551, 103.77693);
+
+    /**
      * The absolute bounds of Singapore.
      * i.e. the lat and the lon should never break these bounds.
      */
@@ -22,13 +27,9 @@ public class Location implements Comparable<Location> {
     private static final double MAX_LAT = 1.47066;
     private static final double MIN_LON = 103.61751;
     private static final double MAX_LON = 104.04360;
+    private static final double ALLOWABLE_ERROR = 0.0001;
 
     private static final String DOUBLE_PATTERN = "[0-9]+(\\.)?[0-9]*";
-
-    /**
-     * NUS is a commonly used location, so we cache it here.
-     */
-    public static final Location NUS = new Location("NUS", 1.29551, 103.77693);
 
     private final String name;
     private final double lat;
@@ -123,7 +124,7 @@ public class Location implements Comparable<Location> {
 
     @Override
     public String toString() {
-        return String.format("<Location: %s>", name);
+        return getName();
     }
 
     @Override
@@ -131,13 +132,13 @@ public class Location implements Comparable<Location> {
         return other == this
                 || (other instanceof Location
                 && name.equals(((Location) other).name)
-                && lat == ((Location) other).lat
-                && lon == ((Location) other).lon);
+                && Math.abs(lat - ((Location) other).lat) <= ALLOWABLE_ERROR
+                && Math.abs(lon - ((Location) other).lon) <= ALLOWABLE_ERROR);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lat, lon);
+        return Objects.hash(name, lat, lon);
     }
 
     @Override
