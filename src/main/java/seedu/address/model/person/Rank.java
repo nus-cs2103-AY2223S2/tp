@@ -3,7 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Represents a Person's rank in the address book.
@@ -13,11 +14,8 @@ public class Rank {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Rank should only be from the following list: REC, PTE, CPL, 3SG, 2LT and it should not be blank";
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final List<String> VALID_RANKS = List.of("REC", "PTE", "CPL", "3SG", "2LT");
+
+    public static final HashSet<String> VALID_RANKS = new HashSet<>(Arrays.asList("REC", "PTE", "CPL", "3SG", "2LT"));
 
     public final String value;
 
@@ -36,6 +34,7 @@ public class Rank {
      * Returns true if a given string is a valid rank.
      */
     public static boolean isValidRank(String test) {
+        requireNonNull(test);
         return VALID_RANKS.contains(test);
     }
 
@@ -47,8 +46,8 @@ public class Rank {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Rank // instanceof handles nulls
-                && value.equals(((seedu.address.model.person.Rank) other).value)); // state check
+                || (other instanceof Rank // instanceof handles nulls
+                && value.equals(((Rank) other).value)); // state check
     }
 
     @Override
