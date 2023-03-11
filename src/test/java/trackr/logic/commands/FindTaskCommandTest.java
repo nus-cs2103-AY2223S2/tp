@@ -66,7 +66,7 @@ public class FindTaskCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskNameContainsKeywordsPredicate predicate = preparePredicate("Buy Inventory");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
