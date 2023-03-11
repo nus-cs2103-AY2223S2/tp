@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.SampleDateTimeUtil.VALID_END_DATETIME;
-import static seedu.address.testutil.SampleDateTimeUtil.VALID_START_DATETIME;
+import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
 import java.time.LocalDateTime;
 
@@ -32,12 +32,12 @@ class IsolatedEventListTest {
 
     @Test
     void testToString() {
-        isolatedEventList.insert(new IsolatedEventStub("Biking", VALID_START_DATETIME,
-                VALID_END_DATETIME));
-        isolatedEventList.insert(new IsolatedEventStub("Skiing", VALID_START_DATETIME,
-                VALID_END_DATETIME));
-        isolatedEventList.insert(new IsolatedEventStub("Canoeing", VALID_START_DATETIME,
-                VALID_END_DATETIME));
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
 
         assertEquals("Biking from: 09/03/2023 14:00 to: 09/03/2023 15:00\n"
                 + "Canoeing from: 09/03/2023 14:00 to: 09/03/2023 15:00\n"
@@ -46,14 +46,17 @@ class IsolatedEventListTest {
 
     @Test
     void contain() {
-        isolatedEventList.insert(new IsolatedEventStub("Biking", VALID_START_DATETIME, VALID_END_DATETIME));
-        isolatedEventList.insert(new IsolatedEventStub("Skiing", VALID_START_DATETIME, VALID_END_DATETIME));
-        isolatedEventList.insert(new IsolatedEventStub("Canoeing", VALID_START_DATETIME, VALID_END_DATETIME));
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
 
-        assertTrue(isolatedEventList.contain(new IsolatedEventStub("Biking", VALID_START_DATETIME,
-                VALID_END_DATETIME)));
+        assertTrue(isolatedEventList.contain(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID)));
 
-        assertFalse(isolatedEventList.contain(new IsolatedEventStub("sleep", VALID_START_DATETIME,
-                VALID_END_DATETIME)));
+        assertFalse(isolatedEventList.contain(new IsolatedEventStub("sleep", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID)));
     }
 }
