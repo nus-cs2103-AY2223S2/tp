@@ -16,6 +16,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    Predicate<Parent> PREDICATE_SHOW_ALL_PARENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -70,6 +71,7 @@ public interface Model {
      */
     void deletePerson(Person target);
     void deleteStudent(Student target);
+    void deleteParent(Parent parent);
 
     /**
      * Adds the given person.
@@ -87,14 +89,20 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
     void setStudent(Student target, Student editedStudent);
 
+    void setParent(Parent target, Parent editedParent);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     ObservableList<Student> getFilteredStudentList();
+
+    ObservableList<Parent> getFilteredParentList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void updateFilteredParentList(Predicate<Parent> predicate);
 }
