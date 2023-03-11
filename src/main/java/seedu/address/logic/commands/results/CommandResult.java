@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents the result of a command execution.
  */
@@ -57,6 +59,14 @@ public class CommandResult {
     }
 
     /**
+     * Returns false by default.
+     * Overridden by the ViewCommand.
+     */
+    public boolean isToShowNewPerson() {
+        return false;
+    }
+
+    /**
      * Returns Optional.empty by default.
      * Overridden by SaveCommand and LoadCommand.
      */
@@ -64,6 +74,13 @@ public class CommandResult {
         return Optional.empty();
     }
 
+    /**
+     * Returns Optional.empty by default.
+     * Overridden by ViewCommand.
+     */
+    public Optional<Person> getDisplayPerson() {
+        return Optional.empty();
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -78,7 +95,8 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, isShowHelp(), isExit(), isSave(), isLoad());
+        return Objects.hash(feedbackToUser, isShowHelp(), isExit(), isSave(),
+                isLoad(), isToShowNewPerson(), getFilePath(), getDisplayPerson());
     }
 
 }

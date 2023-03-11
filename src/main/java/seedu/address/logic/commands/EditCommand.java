@@ -51,8 +51,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    protected final Index index;
+    protected final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
@@ -82,7 +82,7 @@ public class EditCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    private CommandResult editPerson(Model model) throws CommandException {
+    protected CommandResult editPerson(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -112,7 +112,7 @@ public class EditCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    private CommandResult editUser(Model model) {
+    protected CommandResult editUser(Model model) {
         User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
 
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    protected static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code User} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static User createEditedUser(User userToEdit, EditPersonDescriptor editPersonDescriptor) {
+    protected static User createEditedUser(User userToEdit, EditPersonDescriptor editPersonDescriptor) {
         Name updatedName = editPersonDescriptor.getName().orElse(userToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(userToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(userToEdit.getEmail());

@@ -34,6 +34,8 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
    * `find` : Find contacts by keywords.
 
    * `sort` : Sorts contact.
+   
+   * `view` : View contacts profile on profile window.
 
    <br>
 6. Refer to the [Features](#features) below for details of each command.
@@ -214,8 +216,8 @@ Description of outcome: Assuming that John Doe, Jane Lane, John Street has CS210
 ### Sorting Contacts : `sort`
 
 Sorts all contacts by number of common modules, with contacts with most common modules at the top.
-Format: `sort`
-Example of usage: `sort`
+Format: `sort` <br>
+Example of usage: `sort` <br>
 Context:
 There are 4 friends with the following information:
 ```
@@ -243,6 +245,22 @@ Name: John Street
 Description of outcome: Assuming you have 4 friends, then there are 3 of them who are doing common modules as you, they will be sorted by decreasing number of similarity in the modules.
 Hence, Ben Tan will be the first name on top as he has the most number of modules in common with the user, followed by Jane Lane and John Street with 2 and 1 common modules respectively. The 4th friend, Penny Lane, does not have any common modules with the user (John Doe) and hence is omitted.
 
+### View Contacts : `view`
+
+Users can use the view command to look up their current information, or their contact's information on the Panel to the right.
+There are 3 types of usage for this command.
+<br><br>
+Example of usage: `view` <br>
+Expected outcome: User's own profile displayed on the panel. <br>
+![result for 'user profile' GUI](images/userprofile.png)
+<br><br>
+Example of usage: `view 5` <br>
+Expected outcome: The profile of the 5th person indexed by EduMate will be displayed on the panel.
+![result for '5th person profile' GUI](images/fifthPersonProfile.png)
+<br><br>
+Example of usage: `view n/Charles Windsor` <br>
+Expected outcome: The profile of Charles Windsor will be displayed on the panel.
+![result for 'Charles Windsor profile' GUI](images/charlesWindsor.png)
 ## FAQ
 
 **Q**: Can I add multiple module groupTags to a user
@@ -254,12 +272,14 @@ Hence, Ben Tan will be the first name on top as he has the most number of module
 
 ## Command summary
 
-| Action            | Format, Examples                                                   |
-|-------------------|--------------------------------------------------------------------|
-| **User**          | `user`                                                             |
-| **Add Person**    | `add n/NAME` <br> e.g., `add n/John Doe`                           |
-| **Delete Person** | `delete n/NAME`<br> e.g., `delete n/John Doe`                      |
-| **Tag Module**    | `tag n/NAME m/MODULE_TAG`<br> e.g.,`tag n/John Doe m/CS2103T`      |
-| **Untag Module**  | `untag n/NAME m/MODULE_TAG`<br> e.g., `untag n/John Doe m/CS2103T` |
-| **Filter By Mod** | `filter m/MODULE_TAG` <br> e.g., `filter m/CS2103T`                |
-| **Sort**          | `sort`                                                             |
+| Action            | Format, Examples                                                                     |
+|-------------------|--------------------------------------------------------------------------------------|
+| **User**          | `user`                                                                               |
+| **Add Person**    | `add n/NAME` <br> e.g., `add n/John Doe`                                             |
+| **Delete Person** | `delete n/NAME`<br> e.g., `delete n/John Doe`                                        |
+| **Tag Module**    | `tag n/NAME m/MODULE_TAG`<br> e.g.,`tag n/John Doe m/CS2103T`                        |
+| **Untag Module**  | `untag n/NAME m/MODULE_TAG`<br> e.g., `untag n/John Doe m/CS2103T`                   |
+| **Filter By Mod** | `filter m/MODULE_TAG` <br> e.g., `filter m/CS2103T`                                  |
+| **Sort**          | `sort`                                                                               |
+| **View**          | `view`<br/> `view <index>`<br/>`view n/NAME`<br/>e.g., `view 5` or `view n/Komyo San` |
+
