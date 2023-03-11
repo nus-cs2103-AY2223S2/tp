@@ -138,8 +138,13 @@ public class Person {
         scoreList.add(score);
     }
 
+
     public ObservableList<Score> getScoreList() {
         return scoreList.asUnmodifiableObservableList();
+    }
+
+    public ScoreList scoreList() {
+        return scoreList;
     }
     /**
      * Replaces the given score {@code target} in the list with {@code editedScore}.

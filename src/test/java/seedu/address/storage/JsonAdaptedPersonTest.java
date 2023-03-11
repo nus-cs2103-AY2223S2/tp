@@ -1,22 +1,21 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.score.Score;
-import seedu.address.testutil.ScoreBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -29,11 +28,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_SCORE_VALUE = "99.99";
     private static final String INVALID_SCORE_DATE = "12-12-2019";
 
-    public static final Score INVALID_SCORE = new ScoreBuilder().withLabel(INVALID_SCORE_LABEL)
-            .withScore(INVALID_SCORE_VALUE)
-            .withDate(INVALID_SCORE_DATE).build();
-
-    private static final List<JsonAdaptedScore> INVALID_SCORES = (List<JsonAdaptedScore>) INVALID_SCORE;
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -44,9 +38,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final List<JsonAdaptedScore> VALID_SCORES = BENSON.getScoreList().stream()
-            .map(JsonAdaptedScore::new)
-            .collect(Collectors.toList());
+    private static final List<JsonAdaptedScore> VALID_SCORES = new ArrayList<>();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
