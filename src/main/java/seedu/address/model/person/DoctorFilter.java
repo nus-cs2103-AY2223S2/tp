@@ -1,15 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.ArgumentMultimap;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import seedu.address.model.tag.Tag;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.StringUtil;
+
+/**
+ * Filter Class for passing to DoctorContainsKeywordsPredicate
+ */
 public class DoctorFilter {
 
     //Filter fields
@@ -20,6 +18,16 @@ public class DoctorFilter {
     private final String yoeFilter;
     private final Set<String> tagsFilter;
 
+    /**
+     * Constructs a {@code DoctorFilter}.
+     *
+     * @param name name in string (can be empty string).
+     * @param phone phone in string (can be empty string).
+     * @param email email in string (can be empty string).
+     * @param specialty specialty in string (can be empty string).
+     * @param yoe yoe in string (can be empty string).
+     * @param tags set of tags in string (can be empty list).
+     */
     public DoctorFilter(String name,
                         String phone,
                         String email,
