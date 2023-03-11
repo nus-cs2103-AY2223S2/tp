@@ -1,14 +1,14 @@
 package seedu.wife.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX;
 import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.wife.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.wife.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.wife.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_MEIJI;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalPersons.AMY;
+import static seedu.wife.testutil.TypicalFood.MEIJI;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -24,13 +24,14 @@ import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
-import seedu.wife.model.ReadOnlyAddressBook;
+import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.UserPrefs;
-import seedu.wife.model.person.Person;
-import seedu.wife.storage.JsonAddressBookStorage;
+import seedu.wife.model.food.Food;
 import seedu.wife.storage.JsonUserPrefsStorage;
+import seedu.wife.storage.JsonWifeStorage;
 import seedu.wife.storage.StorageManager;
-import seedu.wife.testutil.PersonBuilder;
+import seedu.wife.testutil.FoodBuilder;
+import seedu.wife.testutil.WifeBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -43,10 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonWifeStorage wifeStorage =
+                new JsonWifeStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(wifeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -59,7 +60,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
     @Test
@@ -71,26 +72,26 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonWifeStorage wifeStorage =
+                new JsonWifeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(wifeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_MEIJI + UNIT_DESC_MEIJI + QUANTITY_DESC_MEIJI
+                + EXPIRY_DATE_DESC_MEIJI;
+        Food expectedFood = new FoodBuilder(MEIJI).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addFood(expectedFood);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredFoodList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFoodList().remove(0));
     }
 
     /**
@@ -129,7 +130,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWife(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +150,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonWifeIoExceptionThrowingStub extends JsonWifeStorage {
+        private JsonWifeIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveWife(ReadOnlyWife wife, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

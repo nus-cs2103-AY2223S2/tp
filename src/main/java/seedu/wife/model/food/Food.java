@@ -67,8 +67,7 @@ public class Food {
             return true;
         }
         return otherFood != null
-                && foodName.equals(otherFood.getName())
-                && expiryDate.equals(otherFood.getExpiryDate());
+                && foodName.equals(otherFood.getName());
     }
 
     @Override
@@ -83,7 +82,10 @@ public class Food {
 
         Food otherFood = (Food) other;
         return otherFood.getName().equals(getName())
-                && otherFood.getExpiryDate().equals(getExpiryDate());
+                && otherFood.getUnit().equals((getUnit()))
+                && otherFood.getQuantity().equals((getQuantity()))
+                && otherFood.getExpiryDate().equals(getExpiryDate())
+                && otherFood.getTags().equals(getTags());
     }
 
     @Override

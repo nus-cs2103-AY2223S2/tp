@@ -44,7 +44,7 @@ public class Wife implements ReadOnlyWife {
      * {@code persons} must not contain duplicate foods.
      */
     public void setFoods(List<Food> foods) {
-        this.foods.setPersons(foods);
+        this.foods.setFoods(foods);
     }
 
     /**

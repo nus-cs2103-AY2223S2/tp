@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,25 +14,25 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.parser.exceptions.ParseException;
-import seedu.wife.model.person.Address;
-import seedu.wife.model.person.Email;
-import seedu.wife.model.person.Name;
-import seedu.wife.model.person.Phone;
+import seedu.wife.model.food.ExpiryDate;
+import seedu.wife.model.food.Quantity;
+import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.Name;
 import seedu.wife.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_NAME = "Me!j!";
+    private static final String INVALID_UNIT = "C@rton";
+    private static final String INVALID_QUANTITY = "-1";
+    private static final String INVALID_EXPIRY_DATE = "11122023";
+    private static final String INVALID_TAG = "#dairy";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_NAME = "Meiji";
+    private static final String VALID_UNIT = "Carton";
+    private static final String VALID_QUANTITY = "2";
+    private static final String VALID_EXPIRY_DATE = "13-11-2024";
+    private static final String VALID_TAG_1 = "DAIRY";
+    private static final String VALID_TAG_2 = "CHOCOLATE";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_FOOD, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_FOOD, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -80,72 +80,72 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseUnit_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnit((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseUnit_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUnit(INVALID_UNIT));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseUnit_validValueWithoutWhitespace_returnsUnit() throws Exception {
+        Unit expectedUnit = new Unit(VALID_UNIT);
+        assertEquals(expectedUnit, ParserUtil.parseUnit(VALID_UNIT));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseUnit_validValueWithWhitespace_returnsTrimmedUnit() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Unit expectedUnit = new Unit(VALID_NAME);
+        assertEquals(expectedUnit, ParserUtil.parseUnit(phoneWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseQuantity_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(VALID_QUANTITY));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseQuantity_validValueWithWhitespace_returnsTrimmedQuantity() throws Exception {
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY + WHITESPACE;
+        Quantity expectedQuantity = new Quantity(VALID_QUANTITY);
+        assertEquals(expectedQuantity, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseExpiryDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExpiryDate((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseExpiryDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExpiryDate(INVALID_EXPIRY_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseExpiryDate_validValueWithoutWhitespace_returnsExpiryDate() throws Exception {
+        ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EXPIRY_DATE);
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(VALID_EXPIRY_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseExpiryDate_validValueWithWhitespace_returnsTrimmedExpiryDate() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_EXPIRY_DATE + WHITESPACE;
+        ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EXPIRY_DATE);
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(emailWithWhitespace));
     }
 
     @Test

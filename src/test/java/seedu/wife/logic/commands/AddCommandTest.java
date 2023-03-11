@@ -16,62 +16,62 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.wife.commons.core.GuiSettings;
 import seedu.wife.logic.commands.exceptions.CommandException;
-import seedu.wife.model.AddressBook;
+import seedu.wife.model.Wife;
 import seedu.wife.model.Model;
-import seedu.wife.model.ReadOnlyAddressBook;
+import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.ReadOnlyUserPrefs;
-import seedu.wife.model.person.Person;
-import seedu.wife.testutil.PersonBuilder;
+import seedu.wife.model.food.Food;
+import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullFood_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
+        Food validFood = new FoodBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validFood).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validFood), modelStub.foodAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateFood_throwsCommandException() {
+        Food validFood = new FoodBuilder().build();
+        AddCommand addCommand = new AddCommand(validFood);
+        ModelStub modelStub = new ModelStubWithFood(validFood);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Food Meiji = new FoodBuilder().withName("Meiji").build();
+        Food Chocolate = new FoodBuilder().withName("Chocolate").build();
+        AddCommand addMeijiCommand = new AddCommand(Meiji);
+        AddCommand addChocolateCommand = new AddCommand(Chocolate);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addMeijiCommand.equals(addMeijiCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addMeijiCommandCopy = new AddCommand(Meiji);
+        assertTrue(addMeijiCommand.equals(addMeijiCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addMeijiCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addMeijiCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different Food -> returns false
+        assertFalse(addMeijiCommand.equals(addChocolateCommand));
     }
 
     /**
@@ -99,95 +99,95 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getWifeFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setWifeFilePath(Path WifeFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setWife(ReadOnlyWife newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyWife getWife() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasFood(Food Food) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteFood(Food target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setFood(Food target, Food editedFood) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Food> getFilteredFoodList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredFoodList(Predicate<Food> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single Food.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithFood extends ModelStub {
+        private final Food food ;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithFood(Food food) {
+            requireNonNull(food);
+            this.food = food;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasFood(Food food) {
+            requireNonNull(food);
+            return this.food.isSameFood(food);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the Food being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingFoodAdded extends ModelStub {
+        final ArrayList<Food> foodAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasFood(Food food) {
+            requireNonNull(food);
+            return foodAdded.stream().anyMatch(food::isSameFood);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addFood(Food food) {
+            requireNonNull(food);
+            foodAdded.add(food);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyWife getWife() {
+            return new Wife();
         }
     }
 

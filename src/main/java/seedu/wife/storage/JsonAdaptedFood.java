@@ -26,7 +26,7 @@ class JsonAdaptedFood {
 
     private final String name;
     private final String unit;
-    private final Integer quantity;
+    private final String quantity;
     private final String expiryDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,7 +35,7 @@ class JsonAdaptedFood {
      */
     @JsonCreator
     public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("unit") String unit,
-                             @JsonProperty("quantity") Integer quantity, @JsonProperty("expiryDate") String expiryDate,
+                             @JsonProperty("quantity") String quantity, @JsonProperty("expiryDate") String expiryDate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.unit = unit;
@@ -52,7 +52,7 @@ class JsonAdaptedFood {
     public JsonAdaptedFood(Food source) {
         name = source.getName().toString();
         unit = source.getUnit().toString();
-        quantity = source.getQuantity().getValue();
+        quantity = source.getQuantity().toString();
         expiryDate = source.getExpiryDate().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

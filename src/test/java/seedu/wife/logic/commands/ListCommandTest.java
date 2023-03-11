@@ -1,9 +1,9 @@
 package seedu.wife.logic.commands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.wife.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
+import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalFood.getTypicalWife;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalWife(), new UserPrefs());
+        expectedModel = new ModelManager(model.getWife(), new UserPrefs());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showFoodAtIndex(model, INDEX_FIRST_FOOD);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

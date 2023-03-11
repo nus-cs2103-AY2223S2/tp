@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.wife.model.food.exceptions.DuplicateFoodException;
 import seedu.wife.model.food.exceptions.FoodNotFoundException;
-import seedu.wife.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of food that enforces uniqueness between its elements and does not allow nulls.
@@ -89,10 +88,10 @@ public class UniqueFoodList implements Iterable<Food> {
      * Replaces the contents of this list with {@code foods}.
      * {@code foods} must not contain duplicate food.
      */
-    public void setPersons(List<Food> foods) {
+    public void setFoods(List<Food> foods) {
         requireAllNonNull(foods);
         if (!foodsAreUnique(foods)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateFoodException();
         }
 
         internalList.setAll(foods);

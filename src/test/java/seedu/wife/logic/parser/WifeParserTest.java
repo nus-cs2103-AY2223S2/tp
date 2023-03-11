@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.wife.testutil.Assert.assertThrows;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,27 +17,28 @@ import seedu.wife.logic.commands.AddCommand;
 import seedu.wife.logic.commands.ClearCommand;
 import seedu.wife.logic.commands.DeleteCommand;
 import seedu.wife.logic.commands.EditCommand;
-import seedu.wife.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.wife.logic.commands.ExitCommand;
 import seedu.wife.logic.commands.FindCommand;
 import seedu.wife.logic.commands.HelpCommand;
 import seedu.wife.logic.commands.ListCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
-import seedu.wife.model.person.NameContainsKeywordsPredicate;
-import seedu.wife.model.person.Person;
-import seedu.wife.testutil.EditPersonDescriptorBuilder;
-import seedu.wife.testutil.PersonBuilder;
-import seedu.wife.testutil.PersonUtil;
+import seedu.wife.model.food.NameContainsKeywordsPredicate;
+import seedu.wife.model.food.Food;
+import seedu.wife.testutil.EditFoodDescriptorBuilder;
+import seedu.wife.testutil.FoodBuilder;
+import seedu.wife.testutil.WifeBuilder;
+import seedu.wife.testutil.FoodUtil;
 
-public class AddressBookParserTest {
+public class WifeParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final WifeParser parser = new WifeParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Food food = new FoodBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(FoodUtil.getAddCommand(food));
+        assertEquals(new AddCommand(food), command);
     }
 
     @Test
@@ -49,17 +50,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FOOD.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_FOOD), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Food food = new FoodBuilder().build();
+        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder(food).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_FOOD.getOneBased() + " " + FoodUtil.getEditFoodDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_FOOD, descriptor), command);
     }
 
     @Test

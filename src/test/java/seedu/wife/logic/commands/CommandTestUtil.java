@@ -2,11 +2,11 @@ package seedu.wife.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,58 +15,63 @@ import java.util.List;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.exceptions.CommandException;
-import seedu.wife.model.AddressBook;
+import seedu.wife.model.Wife;
+import seedu.wife.model.food.Food;
+import seedu.wife.model.food.NameContainsKeywordsPredicate;
 import seedu.wife.model.Model;
-import seedu.wife.model.person.NameContainsKeywordsPredicate;
-import seedu.wife.model.person.Person;
-import seedu.wife.testutil.EditPersonDescriptorBuilder;
+import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
-
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String VALID_NAME_MEIJI = "MEIJI";
+    public static final String VALID_UNIT_MEIJI = "Carton";
+    public static final String VALID_QUANTITY_MEIJI = "2";
+    public static final String VALID_EXPIRY_DATE_MEIJI = "13-11-2024";
+    public static final String VALID_TAG_DAIRY = "DAIRY";
+    public static final String VALID_NAME_CHOCOLATE = "Chocolate";
+    public static final String VALID_UNIT_CHOCOLATE = "Bar";
+    public static final String VALID_QUANTITY_CHOCOLATE = "2";
+    public static final String VALID_EXPIRY_DATE_CHOCOLATE = "13-11-2024";
+    public static final String VALID_TAG_CHOCOLATE = "CHOCOLATE";
+    public static final String NAME_DESC_MEIJI = " " + PREFIX_NAME + VALID_NAME_MEIJI;
+    public static final String UNIT_DESC_MEIJI = " " + PREFIX_UNIT + VALID_UNIT_MEIJI;
+    public static final String QUANTITY_DESC_MEIJI = " " + PREFIX_QUANTITY + VALID_QUANTITY_MEIJI;
+    public static final String EXPIRY_DATE_DESC_MEIJI = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_MEIJI;
+    public static final String TAG_DESC_MEIJI = " " + PREFIX_TAG + VALID_TAG_DAIRY;
+    public static final String NAME_DESC_CHOCOLATE = " " + PREFIX_NAME + VALID_NAME_CHOCOLATE;
+    public static final String UNIT_DESC_CHOCOLATE = " " + PREFIX_UNIT + VALID_UNIT_CHOCOLATE;
+    public static final String QUANTITY_DESC_CHOCOLATE = " " + PREFIX_QUANTITY + VALID_QUANTITY_CHOCOLATE;
+    public static final String EXPIRY_DATE_DESC_CHOCOLATE = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_CHOCOLATE;
+    public static final String TAG_DESC_CHOCOLATE = " " + PREFIX_TAG + VALID_TAG_CHOCOLATE;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Meiji&"; // '&' not allowed in names
+    public static final String INVALID_UNIT_DESC = " " + PREFIX_UNIT + "C@rton"; // '@' not allowed in phones
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-1"; // value < 0
+    public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "13112024"; // date not formatted
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "dairy*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditFoodDescriptor DESC_MEIJI;
+    public static final EditCommand.EditFoodDescriptor DESC_CHOCOLATE;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MEIJI = new EditFoodDescriptorBuilder()
+                .withName(VALID_NAME_MEIJI)
+                .withUnit(VALID_UNIT_MEIJI)
+                .withQuantity(VALID_QUANTITY_MEIJI)
+                .withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
+                .withTags(VALID_TAG_DAIRY)
+                .build();
+        DESC_CHOCOLATE = new EditFoodDescriptorBuilder()
+                .withName(VALID_NAME_CHOCOLATE)
+                .withUnit(VALID_UNIT_CHOCOLATE)
+                .withQuantity(VALID_QUANTITY_CHOCOLATE)
+                .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
+                .withTags(VALID_TAG_CHOCOLATE)
+                .build();
     }
 
     /**
@@ -99,30 +104,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered Food list and selected Food in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        Wife expectedWife = new Wife(actualModel.getWife());
+        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedWife, actualModel.getWife());
+        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Food at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showFoodAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
+        final String[] splitName = food.getName().toString().split("\\s+");
+        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredFoodList().size());
     }
 
 }

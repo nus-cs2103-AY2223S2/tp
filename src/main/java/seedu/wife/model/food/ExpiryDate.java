@@ -3,7 +3,9 @@ package seedu.wife.model.food;
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Food's expiry date.
@@ -15,17 +17,19 @@ public class ExpiryDate {
             + "Please insert using the format DD-MM-YYYY";
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     private final LocalDate expiryDate;
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+    private static DateTimeFormatter validFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
      * Constructs an {@code ExpiryDate}
      *
      * @param expiryDate Expiry date of the food item wish to add in the fridge.
      */
-    public ExpiryDate(LocalDate expiryDate) {
-        requireNonNull(expiryDate);
-        checkArgument(isValidDate(expiryDate), MESSAGE_CONSTRAINTS);
-        this.expiryDate = expiryDate;
-    }
+//    public ExpiryDate(LocalDate expiryDate) {
+//        requireNonNull(expiryDate);
+//        checkArgument(isValidDate(expiryDate), MESSAGE_CONSTRAINTS);
+//        this.expiryDate = expiryDate;
+//    }
 
     /**
      * Construct an {@code ExpiryDate} from String
@@ -35,7 +39,7 @@ public class ExpiryDate {
     public ExpiryDate(String date) {
         requireNonNull(date);
         checkArgument(isValid(date), FORMAT_MESSAGE_CONSTRAINTS);
-        this.expiryDate = LocalDate.parse(date);
+        this.expiryDate = LocalDate.parse(date, validFormat);
     }
 
     public static boolean isValid(String date) {

@@ -74,10 +74,10 @@ public class ParserUtil {
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValid(Integer.parseInt(trimmedQuantity))) {
+        if (!Quantity.isValid(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(Integer.parseInt(trimmedQuantity));
+        return new Quantity(trimmedQuantity);
     }
 
     /**
