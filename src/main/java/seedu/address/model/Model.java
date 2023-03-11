@@ -80,6 +80,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered group list */
+    ObservableList<Group> getFilteredGroupList();
+
     /**
      * Adds the given person into a group.
      * {@code person} must not already exist in the {@code group}

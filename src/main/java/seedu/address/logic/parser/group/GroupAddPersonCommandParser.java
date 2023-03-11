@@ -2,7 +2,7 @@ package seedu.address.logic.parser.group;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.group.GroupAddPersonCommand;
@@ -14,6 +14,7 @@ import seedu.address.logic.parser.ParserHelper;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new GroupAddPersonCommand object
@@ -29,18 +30,19 @@ public class GroupAddPersonCommandParser implements Parser<GroupAddPersonCommand
     public GroupAddPersonCommand parse(String arguments) throws ParseException {
         requireNonNull(arguments);
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_GROUP_NAME);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_GROUP);
 
-        if (!ParserHelper.arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_GROUP_NAME)
+        if (!ParserHelper.arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_GROUP)
                 || !ParserHelper.isPreambleEmpty(argumentMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCreateCommand.MESSAGE_USAGE));
         }
 
-        Name personName = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_GROUP_NAME).get());
+        Name personName = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_GROUP).get());
         // TODO: Change to String or Create GroupName class, requires Model
-        Name groupName = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_GROUP_NAME).get());
+        Name groupName = ParserUtil.parseName(argumentMultimap.getValue(PREFIX_GROUP).get());
 
         // TODO: Use Group in Constructor
+        Person person = new
         return new GroupAddPersonCommand(personName, groupName.toString());
     }
 }

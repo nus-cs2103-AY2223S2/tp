@@ -1,13 +1,14 @@
 package seedu.address.logic.commands.group;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a person to a group in the address book.
@@ -22,36 +23,39 @@ public class GroupAddPersonCommand extends GroupCommand {
             + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD
             + PREFIX_NAME + "John Doe "
-            + PREFIX_GROUP_NAME + "CS2103 ";
+            + PREFIX_GROUP + "CS2103 ";
 
     public static final String MESSAGE_SUCCESS = "New person added to Group %1$s: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the group";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists";
 
     public static final String MESSAGE_MISSING_PERSON = "No such person in the address book";
 
-    private final Name toAdd;
+    private final Person toAdd;
 
-    private final String targetGroup;
+    private final Group targetGroup;
 
     /**
      * Creates an AddCommand to add the specified {@code Name}
      */
-    public GroupAddPersonCommand(Name person, String groupName) {
+    public GroupAddPersonCommand(Person person, Group group) {
         requireNonNull(person);
         toAdd = person;
-        targetGroup = groupName;
+        targetGroup = group;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: Check if person exists in list
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_MISSING_PERSON);
+        }
 
-        // TODO: Check if group already has person toAdd
+        if (!model.hasGroup(targetGroup)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP)
+        }
 
-        // TODO: Add person to group list
-        // model.addPerson(toAdd);
+        model.addPersonInGroup(toAdd, targetGroup);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetGroup, toAdd));
     }
 

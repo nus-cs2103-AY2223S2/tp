@@ -33,7 +33,7 @@ public class Group {
     }
 
     /**
-     * Returns true if both grouos are the same group object or have the same group name
+     * Returns true if both groups are the same group object or have the same group name
      */
     @Override
     public boolean equals(Object other) {

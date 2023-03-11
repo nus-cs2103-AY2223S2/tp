@@ -12,6 +12,7 @@ public class GroupDeleteCommand extends GroupCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
         return null;
     }
 }
