@@ -4,16 +4,16 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
+//import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -62,13 +62,10 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        //Retrieve the image url from the person object but this abstraction is slow.
-        //For testing use the bottom hardcoded path
-
-        //Image studentImage = new Image(person.getPhoto().photoFilePath);
-
-        Image studentImage = new Image("https://picsum.photos/id/443/200/300");
-
+        //Retrieve the image url from the person object, but it is too slow
+        /*
+        Image studentImage =
+                new Image(person.getPhoto().photoFilePath);
         for (int i = 1; i < numberOfStudents; i++) {
             //Set the retrieved image url height and width
             ImageView profile = new ImageView();
@@ -88,6 +85,7 @@ public class PersonCard extends UiPart<Region> {
             //Add the cropped circle image into the dummy list
             studentProfiles.getChildren().addAll(profile);
         }
+         */
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);

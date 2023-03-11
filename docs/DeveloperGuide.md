@@ -257,54 +257,62 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS2040 TAs
+* has a need to manage a small number of undergraduate students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* prefer using vim commands
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students and practice using vim commands
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​      | I want to …​                     | So that I can…​                                                        |
+|----------|--------------| ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | TA           | see usage instructions         | I can easily add events with my proficiency                 |
+| `* * *`  | TA           | add a new person               | I can have flexibility with my schedule                                                                 |
+| `* * *`  | TA           | delete a person                | I can remove completed/cancelled events                                  |
+| `* * *`  | TA           | find a person by name          | I can easily assign particular students to an event with my proficiency |
+| `* * *`  | TA           | hide private contact details   | I can fix erroneously added students                |
+| `* * *`  | TA           | sort persons by name           | I can remove students who are no longer in the module                                                |
+| `* * *`  | TA           | see usage instructions         | I do not have to scroll through the namelist when marking attendance/giving class participation marks                |
+| `* * *`  | concerned TA | add a new person               | I can effectively pre-plan the schedule for the rest of my modules                                                                        |
+| `* * *`  | new TA       | delete a person                | I can view all my students at a glance                                 |
+| `* * *`  | new TA       | find a person by name          | I can ask them personally if they need additional help |
+| `* *`    | TA           | hide private contact details   | I can manage the admin matters efficiently and correctly, should there be any                |
+| `*`      | TA           | sort persons by name           | I won’t lose track of past meetings                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TrAcker shows a list of students
+3.  User requests to remove student who dropped the module from the list
+4.  TrAcker deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. There are no students.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TrAcker shows an error message.
 
       Use case resumes at step 2.
 
@@ -313,8 +321,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to display student profile pictures within 10 seconds
+5. Should be able to show student performance in a chart within 10 seconds
 
 *{More to be added}*
 
