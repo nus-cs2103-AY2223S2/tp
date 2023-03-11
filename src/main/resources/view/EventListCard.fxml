@@ -2,9 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -12,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
+    <GridPane prefHeight="3503.0" prefWidth="3350.0" style="-fx-background-radius: 16; -fx-background-color: white;" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
@@ -28,23 +26,11 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-               <HBox fx:id="studentProfiles" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="42.0">
             </HBox>
-            </HBox>
-            <FlowPane fx:id="tags" />
             <HBox prefHeight="13.0" prefWidth="130.0">
                 <children>
-                  <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-                  <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
-                  <Label fx:id="attachments" styleClass="cell_small_label" text="\$attachments" />
                 </children>
             </HBox>
-         <HBox prefHeight="100.0" prefWidth="200.0">
-            <children>
-               <ProgressBar fx:id="progressBar" prefHeight="9.0" prefWidth="120.0" progress="0.67" style="-fx-accent: #643FDB;" />
-                  <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
-            </children>
-         </HBox>
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>

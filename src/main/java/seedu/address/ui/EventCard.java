@@ -47,8 +47,8 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
-        notes.setText("" + event.countNotes());
-        attachments.setText("" + event.countAttachments());
+        //notes.setText("" + event.countNotes());
+        //attachments.setText("" + event.countAttachments());
     }
 
     @Override

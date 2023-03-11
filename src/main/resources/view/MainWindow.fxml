@@ -80,15 +80,12 @@
               </Tab>
               <Tab text="Events (Tutorials, Labs, Consultations)">
                 <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minWidth="1400.0" VBox.vgrow="ALWAYS">
                     <children>
-                      <StackPane fx:id="eventDisplayPlaceholder" maxHeight="474.0" minHeight="100"
-                                 prefHeight="474.0" prefWidth="499.0"
-                                 styleClass="pane-with-border">
-                        <padding>
-                          <Insets bottom="5" left="10" right="10" top="5"/>
-                        </padding>
-                      </StackPane>
+                      <VBox fx:id="eventList" minHeight="774.0" minWidth="1400.0"
+                            prefHeight="774.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                      </VBox>
                     </children>
                   </AnchorPane>
                 </content>
