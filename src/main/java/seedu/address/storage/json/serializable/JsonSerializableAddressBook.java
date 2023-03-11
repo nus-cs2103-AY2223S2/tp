@@ -8,8 +8,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.storage.JsonAdaptedReminder;
 import seedu.address.storage.json.model.JsonAdaptedPerson;
+import seedu.address.storage.json.model.JsonAdaptedReminder;
 
 import java.util.ArrayList;
 import java.util.List;
