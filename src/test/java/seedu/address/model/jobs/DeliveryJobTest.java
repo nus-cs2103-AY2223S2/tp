@@ -1,9 +1,11 @@
 package seedu.address.model.jobs;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TypicalDeliveryJobs;
 
 public class DeliveryJobTest {
 
@@ -11,15 +13,11 @@ public class DeliveryJobTest {
 
     @BeforeEach
     void setUp() {
-        job = new DeliveryJob(
-            ALICE,
-            null,
-            null,
-            0);
+        job = TypicalDeliveryJobs.JOBA;
     }
 
     @Test
     void testToString() {
-        System.out.println(job);
+        assertEquals(job.toString(), TypicalDeliveryJobs.JOBA.toString());
     }
 }

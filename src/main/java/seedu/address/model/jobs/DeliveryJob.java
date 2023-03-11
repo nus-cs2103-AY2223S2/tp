@@ -1,6 +1,5 @@
 package seedu.address.model.jobs;
 
-import java.util.List;
 import java.util.UUID;
 
 import seedu.address.model.person.Person;
@@ -15,7 +14,6 @@ public class DeliveryJob {
     // Delivery informations
     private Person recepient;
     private String deliverSlot; // TODO: Update data type when confirmed
-    private List<DeliveryPackage> packages;
     private double earning;
 
     /**
@@ -26,8 +24,8 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(Person recepient, String deliverSlot, List<DeliveryPackage> packages, double earning) {
-        this(UUID.randomUUID().toString(), recepient, deliverSlot, packages, earning);
+    public DeliveryJob(Person recepient, String deliverSlot, double earning) {
+        this(UUID.randomUUID().toString(), recepient, deliverSlot, earning);
     }
 
     /**
@@ -39,12 +37,10 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(String jobId, Person recepient, String deliverSlot, List<DeliveryPackage> packages,
-            double earning) {
+    public DeliveryJob(String jobId, Person recepient, String deliverSlot, double earning) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.deliverSlot = deliverSlot;
-        this.packages = packages;
         this.earning = earning;
     }
 
@@ -60,12 +56,22 @@ public class DeliveryJob {
         return deliverSlot;
     }
 
-    public List<DeliveryPackage> getPackages() {
-        return packages;
-    }
-
     public double getEarning() {
         return earning;
+    }
+
+    /**
+     * isSameDeliveryJob.
+     *
+     * @param otherJob
+     * @return
+     */
+    public boolean isSameDeliveryJob(DeliveryJob otherJob) {
+        if (otherJob == this) {
+            return true;
+        }
+
+        return otherJob != null && otherJob.getJobId().equals(getJobId());
     }
 
     @Override

@@ -1,12 +1,9 @@
 package seedu.address.storage.json.model;
 
-import java.util.ArrayList;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.jobs.DeliveryPackage;
 
 /**
  * JsonAdaptedDeliveryJob
@@ -31,7 +28,6 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         @JsonProperty("recepient") JsonAdaptedPerson recepient,
         @JsonProperty("slot") String deliverySlot,
         @JsonProperty("earning") double earning
-    //TODO: include packages
     ) {
         this.jobId = jobId;
         this.recepient = recepient;
@@ -54,7 +50,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
     @Override
     public DeliveryJob toModelType() throws IllegalValueException {
         // TODO: refine later
-        return new DeliveryJob(jobId, recepient.toModelType(), slot, new ArrayList<DeliveryPackage>(), earning);
+        return new DeliveryJob(jobId, recepient.toModelType(), slot, earning);
     }
 
 }

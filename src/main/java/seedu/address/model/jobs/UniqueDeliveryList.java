@@ -6,6 +6,8 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.jobs.exceptions.DeliveryJobNotFoundException;
+import seedu.address.model.jobs.exceptions.DuplicateDeliveryJobException;
 
 /**
  * UniqueDeliveryList
@@ -29,15 +31,33 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
+     * Contains.
+     */
+    public boolean contains(DeliveryJob toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameDeliveryJob);
+    }
+
+    /**
      * add
      *
      * @param toAdd
      */
     public void add(DeliveryJob toAdd) {
         requireNonNull(toAdd);
-        // if (contains(toAdd)) {
-        //     throw new DuplicatePersonException();
-        // }
+        if (contains(toAdd)) {
+            throw new DuplicateDeliveryJobException();
+        }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Removes.
+     */
+    public void remove(DeliveryJob toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new DeliveryJobNotFoundException();
+        }
     }
 }
