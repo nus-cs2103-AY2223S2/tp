@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameAndPhoneContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
@@ -16,12 +17,16 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "the specified keywords such as name, phone number or both (case-insensitive) and displays them as a "
+            + "list with index numbers.\n"
+            + "Parameters: Format 1: KEYWORDS(either NAME or PHONE NUMBER);\n "
+            + "Format 2: n/NAME p/PHONE NUMBER(both must referring to the same person)\n"
+            + "Example for Format 1: " + COMMAND_WORD + " alice bob charlie OR 12345678\n"
+            + "Example for Format 2: " + COMMAND_WORD + "n/alice bob p/12345678";
 
     private NameContainsKeywordsPredicate namePredicate = null;
     private PhoneContainsKeywordsPredicate phonePredicate = null;
+    private NameAndPhoneContainsKeywordsPredicate nameAndPhoneContainsKeywordsPredicate = null;
 
     public FindCommand(NameContainsKeywordsPredicate namePredicate) {
         this.namePredicate = namePredicate;
@@ -31,13 +36,20 @@ public class FindCommand extends Command {
         this.phonePredicate = phonePredicate;
     }
 
+    public FindCommand(NameAndPhoneContainsKeywordsPredicate nameAndPhoneContainsKeywordsPredicate) {
+        this.nameAndPhoneContainsKeywordsPredicate = nameAndPhoneContainsKeywordsPredicate;
+    }
+
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (namePredicate == null) {
-            model.updateFilteredPersonList(phonePredicate);
-        } else {
+        if (nameAndPhoneContainsKeywordsPredicate != null) {
+            model.updateFilteredPersonList(nameAndPhoneContainsKeywordsPredicate);
+        } else if (namePredicate != null) {
             model.updateFilteredPersonList(namePredicate);
+        } else {
+            model.updateFilteredPersonList(phonePredicate);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
