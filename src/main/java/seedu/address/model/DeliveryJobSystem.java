@@ -39,11 +39,11 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
      */
     public void resetData(ReadOnlyDeliveryJobSystem newData) {
         requireNonNull(newData);
-        setDeliveryJob(newData.getDeliveryJobList());
+        setDeliveryJobs(newData.getDeliveryJobList());
     }
 
-    private void setDeliveryJob(ObservableList<DeliveryJob> deliveryJobList) {
-        this.jobs.setDeliveryJob(deliveryJobList);
+    private void setDeliveryJobs(ObservableList<DeliveryJob> deliveryJobList) {
+        this.jobs.setDeliveryJobs(deliveryJobList);
     }
 
     /**

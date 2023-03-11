@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -194,6 +195,24 @@ public class AddCommandTest {
         public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJob'");
+        }
+
+        @Override
+        public void deleteReminder(int i) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteReminder'");
+        }
+
+        @Override
+        public void addReminder(Reminder reminder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addReminder'");
+        }
+
+        @Override
+        public ObservableList<Reminder> getReminderList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getReminderList'");
         }
     }
 
