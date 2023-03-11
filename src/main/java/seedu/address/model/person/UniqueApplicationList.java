@@ -1,17 +1,30 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-public class UniqueApplicationList implements Iterable<InternshipApplication>{
+/**
+ * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
+ * An InternshipApplication is considered unique by comparing using
+ * {@code InternshipApplication#isSameApplication(InternshipApplication)}. As such, adding and updating of
+ * persons uses InternshipApplication#isSameApplication(InternshipApplication) for equality
+ * so as to ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of a person uses InternshipApplication#equals(Object) so
+ * as to ensure that the InternshipApplication with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Person#isSamePerson(Person)
+ */
+public class UniqueApplicationList implements Iterable<InternshipApplication> {
     private final ObservableList<InternshipApplication> internalList = FXCollections.observableArrayList();
     private final ObservableList<InternshipApplication> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

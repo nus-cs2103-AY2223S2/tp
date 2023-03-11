@@ -24,8 +24,8 @@ public class AddCommand extends Command {
             + PREFIX_JOB_TITLE + "Software Engineer ";
 
     public static final String MESSAGE_SUCCESS = "New internship application added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This internship application " +
-                                                                "already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This internship application "
+                                                            + "already exists in the address book";
 
     private final InternshipApplication toAdd;
 

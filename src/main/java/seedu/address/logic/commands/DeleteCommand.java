@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Application: %1$s";
 
-    // public static final String MESSAGE_DELETE_CONFIRMATION = "Are you sure you want to delete this: application-%1$s";
+    public static final String MESSAGE_DELETE_CONFIRMATION = "Are you sure you want to delete this: application-%1$s";
 
     private final Index targetIndex;
 
