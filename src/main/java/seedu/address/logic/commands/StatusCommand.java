@@ -41,7 +41,7 @@ public class StatusCommand extends Command {
             + PREFIX_STATUS_ASSIGN + "uncontacted";
 
     public static final String MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS = "Assigned %1$s status of "
-            + " %1$s";
+            + " %2$s";
     public static final String MESSAGE_STATUS_FIND_PERSON_SUCCESS = "Listed all contacts with "
             + "status %1$s";
     public static final String MESSAGE_STATUS_NOT_IMPLEMENTED = "status command not implemented";
@@ -94,7 +94,8 @@ public class StatusCommand extends Command {
             model.setPerson(toBeUpdated, updatedStatusPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-            return new CommandResult(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS);
+            return new CommandResult(String.format(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS, updatedStatusPerson.getName()
+                    , status));
         }
 
         //TODO look for matching lead status

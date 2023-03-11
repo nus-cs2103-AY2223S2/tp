@@ -40,4 +40,9 @@ public class LeadStatus {
                 || (other instanceof LeadStatus // instanceof handles nulls
                 && statusName.equals(((LeadStatus) other).statusName)); // state check
     }
+
+    @Override
+    public String toString() {
+        return statusName.toString();
+    }
 }
