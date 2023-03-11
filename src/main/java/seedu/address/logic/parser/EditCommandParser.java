@@ -75,9 +75,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if {@code modules} contain only one element which is an empty string
      */
     private Optional<Set<ModuleCode>> parseModulesForEdit(Collection<String> modules) throws ParseException {
-        if (modules.size() == 1 && modules.contains("")) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
         Collection<String> moduleSet = modules;
         return Optional.of(ParserUtil.parseModules(moduleSet));
     }
