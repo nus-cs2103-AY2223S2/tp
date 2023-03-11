@@ -9,6 +9,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Phone parentPhone;
     private Set<Tag> tags;
+    private TaskList taskList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         parentPhone = new Phone(DEFAULT_PARENT_PHONE);
         tags = new HashSet<>();
+        taskList = new TaskList();
     }
 
     /**
@@ -51,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         parentPhone = personToCopy.getParentPhone();
         tags = new HashSet<>(personToCopy.getTags());
+        taskList = personToCopy.getTaskList();
     }
 
     /**
@@ -98,6 +103,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withParentPhone(String parentPhone) {
         this.parentPhone = new Phone(parentPhone);
+        return this;
+    }
+
+    public PersonBuilder withTaskList(TaskList taskList) {
+        this.taskList = taskList;
         return this;
     }
 
