@@ -55,4 +55,22 @@ public class MarkCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPersonToMark.getName(), newStatus.toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        // state check
+        MarkCommand e = (MarkCommand) other;
+
+        return targetIndex.equals(e.targetIndex) && newStatus.equals(e.newStatus);
+    }
 }
