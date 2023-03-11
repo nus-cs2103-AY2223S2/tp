@@ -92,10 +92,9 @@ public class EditCommand extends Command {
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -124,7 +123,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -137,7 +135,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -145,7 +142,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public void setName(Name name) {
@@ -170,14 +167,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -215,7 +204,6 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

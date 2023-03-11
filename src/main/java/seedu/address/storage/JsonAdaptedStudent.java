@@ -23,7 +23,6 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -31,12 +30,11 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("email") String email,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -49,7 +47,6 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -90,16 +87,8 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelTags);
     }
 
 }
