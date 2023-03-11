@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Income;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ class CsvAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String income;
     private final List<CsvAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,19 +38,21 @@ class CsvAdaptedPerson {
         this.phone = tokens[1];
         this.email = tokens[2];
         this.address = tokens[3];
-        for (int i = 4; i < tokens.length; ++i) {
+        this.income = tokens[4];
+        for (int i = 5; i < tokens.length; ++i) {
             this.tagged.add(new CsvAdaptedTag(tokens[i]));
         }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for csv use.
      */
     public CsvAdaptedPerson(Person source) {
         name = CsvUtil.toCsvField(source.getName().fullName);
         phone = CsvUtil.toCsvField(source.getPhone().value);
         email = CsvUtil.toCsvField(source.getEmail().value);
         address = CsvUtil.toCsvField(source.getAddress().value);
+        income = CsvUtil.toCsvField(source.getIncome().income.toString());
         tagged.addAll(source.getTags().stream()
                 .map(CsvAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -98,13 +102,21 @@ class CsvAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (income == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName()));
+        }
+        if (!Income.isValidIncome(income)) {
+            throw new IllegalValueException(Income.MESSAGE_CONSTRAINTS);
+        }
+        final Income modelIncome = new Income(income);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelTags);
     }
 
     @Override
     public String toString() {
-        return String.join(",", name, phone, email, address,
+        return String.join(",", name, phone, email, address, income,
                 String.join(",", tagged.stream()
                         .<String>map(tag -> tag.toString()).collect(Collectors.toList())));
     }
