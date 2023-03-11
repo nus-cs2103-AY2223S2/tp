@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Rate;
 
 /**
@@ -118,6 +119,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markEvent(Event target, Event markedEvent) {
+        requireNonNull(target);
+        addressBook.markEvent(target, markedEvent);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void addPerson(Event person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -172,6 +180,11 @@ public class ModelManager implements Model {
     @Override
     public Rate getRate(Event event) {
         return event.getRate();
+    }
+
+    @Override
+    public Mark getMark(Event event) {
+        return event.getMark();
     }
 
     @Override

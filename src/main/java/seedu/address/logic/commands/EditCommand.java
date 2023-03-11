@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
@@ -108,9 +109,15 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Mark updatedMark = editPersonDescriptor.getMark().orElse(personToEdit.getMark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Event(updatedName, updatedRate, updatedAddress, updatedTags);
+        Event updatedEvent = new Event(updatedName, updatedRate, updatedAddress, updatedTags);
+        if (updatedMark.isDone()) {
+            updatedEvent.mark();
+        }
+
+        return updatedEvent;
     }
 
     @Override
@@ -139,6 +146,7 @@ public class EditCommand extends Command {
         private Name name;
         private Rate rate;
         private Address address;
+        private Mark mark;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -151,6 +159,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setRate(toCopy.rate);
             setAddress(toCopy.address);
+            setMark(toCopy.mark);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rate, address, tags);
+            return CollectionUtil.isAnyNonNull(name, rate, address, tags, mark);
         }
 
         public void setName(Name name) {
@@ -183,6 +192,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setMark(Mark mark) {
+            this.mark = mark;
+        }
+
+        public Optional<Mark> getMark() {
+            return Optional.ofNullable(mark);
         }
 
         /**

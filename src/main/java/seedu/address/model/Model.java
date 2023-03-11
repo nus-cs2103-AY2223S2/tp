@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Rate;
 
 /**
@@ -79,6 +80,12 @@ public interface Model {
     void deletePerson(Event target);
 
     /**
+     * Marks the given event.
+     * The event must exist in the address book.
+     */
+    void markEvent(Event target, Event markedEvent);
+
+    /**
      * Adds the given contact.
      * {@code contact} must not already exist in the contact list.
      */
@@ -94,6 +101,11 @@ public interface Model {
      * Retrieves the rate of an event.
      */
     Rate getRate(Event event);
+
+    /**
+     * Retrieves the mark of an event.
+     */
+    Mark getMark(Event event);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

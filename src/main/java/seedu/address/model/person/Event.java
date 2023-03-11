@@ -17,11 +17,12 @@ public class Event {
 
     // Identity fields
     private final Name name;
-    private final Rate rate;
 
     // Data fields
+    private final Rate rate;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Mark mark;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +33,7 @@ public class Event {
         this.rate = rate;
         this.address = address;
         this.tags.addAll(tags);
+        this.mark = new Mark();
     }
 
     public Name getName() {
@@ -46,12 +48,23 @@ public class Event {
         return address;
     }
 
+    public Mark getMark() {
+        return mark;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Marks event as done.
+     */
+    public void mark() {
+        mark.setDone();
     }
 
     /**
@@ -85,13 +98,14 @@ public class Event {
         return otherEvent.getName().equals(getName())
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
-                && otherEvent.getTags().equals(getTags());
+                && otherEvent.getTags().equals(getTags())
+                && otherEvent.getMark().equals(getMark());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, tags);
+        return Objects.hash(name, rate, address, tags, mark);
     }
 
     @Override
@@ -101,7 +115,9 @@ public class Event {
                 .append("; Rate: ")
                 .append(getRate())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Done: ")
+                .append(getMark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

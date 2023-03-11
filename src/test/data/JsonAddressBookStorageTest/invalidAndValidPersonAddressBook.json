@@ -2,10 +2,12 @@
   "persons": [ {
     "name": "Valid Person",
     "rate": "9482424",
-    "address": "4th street"
+    "address": "4th street",
+    "mark": "[ ]"
   }, {
     "name": "Person With Invalid Phone Field",
     "rate": "948asdf2424",
-    "address": "4th street"
+    "address": "4th street",
+    "mark": "[ ]"
   } ]
 }

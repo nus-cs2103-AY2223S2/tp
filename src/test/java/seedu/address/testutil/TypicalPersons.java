@@ -23,39 +23,39 @@ public class TypicalPersons {
 
     public static final Event ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
-            .withRate("94351253")
+            .withRate("94351253").withMark("[ ]")
             .withTags("friends").build();
     public static final Event BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withRate("98765432")
+            .withRate("98765432").withMark("[ ]")
             .withTags("owesMoney", "friends").build();
     public static final Event CARL = new PersonBuilder().withName("Carl Kurz")
-            .withRate("95352563")
+            .withRate("95352563").withMark("[X]")
             .withAddress("wall street").build();
     public static final Event DANIEL = new PersonBuilder().withName("Daniel Meier")
-            .withRate("87652533")
+            .withRate("87652533").withMark("[X]")
             .withAddress("10th street").withTags("friends").build();
     public static final Event ELLE = new PersonBuilder().withName("Elle Meyer")
-            .withRate("9482224")
+            .withRate("9482224").withMark("[X]")
             .withAddress("michegan ave").build();
     public static final Event FIONA = new PersonBuilder().withName("Fiona Kunz")
-            .withRate("9482427")
+            .withRate("9482427").withMark("[ ]")
             .withAddress("little tokyo").build();
     public static final Event GEORGE = new PersonBuilder().withName("George Best")
-            .withRate("9482442")
+            .withRate("9482442").withMark("[ ]")
             .withAddress("4th street").build();
 
     // Manually added
     public static final Event HOON = new PersonBuilder().withName("Hoon Meier").withRate("8482424")
-            .withAddress("little india").build();
+            .withAddress("little india").withMark("[ ]").build();
     public static final Event IDA = new PersonBuilder().withName("Ida Mueller").withRate("8482131")
-            .withAddress("chicago ave").build();
+            .withAddress("chicago ave").withMark("[X]").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Event AMY = new PersonBuilder().withName(VALID_NAME_AMY).withRate(VALID_PHONE_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withMark("[ ]").withTags(VALID_TAG_FRIEND).build();
     public static final Event BOB = new PersonBuilder().withName(VALID_NAME_BOB).withRate(VALID_PHONE_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAddress(VALID_ADDRESS_BOB).withMark("[ ]").withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

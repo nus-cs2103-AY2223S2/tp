@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.tag.Tag;
@@ -26,6 +27,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String rate;
     private final String address;
+    private final String mark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,11 +35,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
-            @JsonProperty("address") String address,
+            @JsonProperty("address") String address, @JsonProperty("mark") String mark,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
         this.address = address;
+        this.mark = mark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +53,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;
+        mark = source.getMark().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -90,8 +94,16 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (mark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mark.class.getSimpleName()));
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Event(modelName, modelRate, modelAddress, modelTags);
+        Event event = new Event(modelName, modelRate, modelAddress, modelTags);
+        if (mark.equals("[X]")) {
+            event.mark();
+        }
+        return event;
     }
 
 }
