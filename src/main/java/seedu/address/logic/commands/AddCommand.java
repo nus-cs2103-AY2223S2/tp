@@ -18,8 +18,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a card to the selected deck. "
             + "Parameters: "
-            + PREFIX_QUESTION + "NAME "
-            + PREFIX_ANSWER + "ADDRESS "
+            + PREFIX_QUESTION + "QUESTION "
+            + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "When was the RSA (Rivest–Shamir–Adleman) algorithm invented? "
