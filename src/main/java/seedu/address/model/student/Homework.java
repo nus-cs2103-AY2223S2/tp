@@ -10,6 +10,7 @@ import java.util.Objects;
  */
 public class Homework {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter printFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private final String description;
     private final LocalDateTime deadline;
     private Status status;
@@ -89,6 +90,15 @@ public class Homework {
 
         return otherHomework != null
                 && otherHomework.getDescription().equals(getDescription());
+    }
+
+    /**
+     * Returns a string representation of the homework.
+     *
+     * @return A string representation of the homework.
+     */
+    public String getDeadlineString() {
+        return deadline.format(printFormatter);
     }
 
     @Override

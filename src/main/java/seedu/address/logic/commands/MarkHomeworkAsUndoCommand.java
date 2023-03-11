@@ -26,7 +26,6 @@ public class MarkHomeworkAsUndoCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "n/John Doe "
             + "i/1";
-
     private final NameContainsKeywordsPredicate predicate;
     private final Index targetIndex;
 

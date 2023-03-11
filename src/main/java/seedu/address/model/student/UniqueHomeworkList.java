@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -17,11 +18,9 @@ import seedu.address.model.student.exceptions.HomeworkNotFoundException;
  * A list of homework that enforces uniqueness between its elements and does not allow nulls.
  * A homework is considered unique by comparing using {@code Homework#isSameHomework(Homework)}.
  * As such, adding and updating of homework uses Homework#isSameHomework(Homework) for equality
- * so as to ensure that the homework being added or updated is unique in terms of identity in the
+ * to ensure that the homework being added or updated is unique in terms of identity in the
  * UniqueHomeworkList. However, the removal of a homework uses Homework#equals(Object) so as to ensure
  * that the homework with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
  */
 public class UniqueHomeworkList implements Iterable<Homework> {
 
@@ -52,6 +51,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
             throw new DuplicateHomeworkException();
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(Homework::getDeadline));
     }
 
     /**

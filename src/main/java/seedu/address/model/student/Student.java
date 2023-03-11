@@ -90,9 +90,10 @@ public class Student {
      *
      * @return list of homework
      */
-    public List<Homework> getHomeworkList() {
+    public ObservableList<Homework> getHomeworkList() {
         return homeworkList.asUnmodifiableObservableList();
     }
+
     /**
      * Returns an immutable lessons list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -4,7 +4,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.StackPane?>
 
 <?import javafx.scene.chart.PieChart?>
@@ -17,7 +16,7 @@
     <VBox id="studentHomeworkContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
         <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Full Name" />
         <Label fx:id="listName" alignment="TOP_LEFT" text="List Name" />
-        <ListView fx:id="homeworkList" id="homeworkList" prefHeight="400.0" prefWidth="300.0" />
+        <StackPane fx:id="homeworkListPlaceholder" prefHeight="400.0" prefWidth="300.0" />
         <PieChart fx:id="homeworkPieChart" />
         <cursor>
             <Cursor fx:constant="OPEN_HAND" />

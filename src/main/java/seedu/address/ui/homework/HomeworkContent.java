@@ -1,15 +1,13 @@
 package seedu.address.ui.homework;
 
-import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.Student;
@@ -20,7 +18,6 @@ import seedu.address.ui.UiPart;
  */
 public class HomeworkContent extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(HomeworkContent.class);
-
     private static final String FXML = "HomeworkContent.fxml";
 
     @FXML
@@ -30,7 +27,7 @@ public class HomeworkContent extends UiPart<Region> {
     @FXML
     private PieChart homeworkPieChart;
     @FXML
-    private ListView<String> homeworkList;
+    private StackPane homeworkListPlaceholder;
 
     /**
      * Creates a {@code HomeworkContent} with the given {@code Student}.
@@ -40,20 +37,15 @@ public class HomeworkContent extends UiPart<Region> {
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
         listName.setText("Student Homework List: ");
+
+        // Set the homework pie chart to display the homework data of the student
         homeworkPieChart.setData(student.getHomeworkPieChartData());
         homeworkPieChart.setTitle("Completed/Uncompleted Homework");
 
-        // Create an observable list of homework items
-        // Each homework item is a string representation of the homework
-        ObservableList<String> homeworkItems = FXCollections.observableArrayList();
-        List<Homework> studentHomeworkList = student.getHomeworkList();
-        for (int i = 0; i < studentHomeworkList.size(); i++) {
-            Homework homework = studentHomeworkList.get(i);
-            String homeworkString = String.format("%d. %s", i + 1, homework.toString());
-            homeworkItems.add(homeworkString);
-        }
-
-        homeworkList.setItems(homeworkItems);
+        // Set the homework list panel to display the homework list of the student
+        ObservableList<Homework> homeworkList = student.getHomeworkList();
+        HomeworkListPanel homeworkListPanel = new HomeworkListPanel(homeworkList);
+        homeworkListPlaceholder.getChildren().add(homeworkListPanel.getRoot());
     }
 
     @Override
