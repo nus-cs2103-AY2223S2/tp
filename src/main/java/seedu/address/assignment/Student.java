@@ -1,8 +1,14 @@
-package duke.assignment;
+package seedu.address.assignment;
 
+/**
+ * A student
+ */
 public class Student {
     private int id;
 
+    /**
+     * @param id
+     */
     public Student(int id) {
         this.id = id;
     }
