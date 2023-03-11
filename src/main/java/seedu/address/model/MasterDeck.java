@@ -6,7 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.card.UniqueCardList;
+import seedu.address.model.deck.UniqueDeckList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.card.UniqueCardList;
 public class MasterDeck implements ReadOnlyMasterDeck {
 
     private final UniqueCardList cards;
+    private final UniqueDeckList decks;
     private String deckName; // Todo: create new Class for DeckName
 
 
@@ -27,6 +30,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     {
         cards = new UniqueCardList();
+        decks = new UniqueDeckList();
     }
 
     public MasterDeck() {}
@@ -97,6 +101,41 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     //// util methods
 
+    /**
+     * Returns true if a deck with the same identity as {@code deck} exists.
+     */
+    public boolean hasDeck(Deck deck) {
+        requireNonNull(deck);
+        return decks.contains(deck);
+    }
+
+    /**
+     * Adds a card to the address book.
+     * The card must not already exist in the address book.
+     */
+    public void addDeck(Deck d) {
+        decks.add(d);
+    }
+
+    /**
+     * Replaces the given deck {@code target} in the list with {@code editedDeck}.
+     * {@code target} must exist.
+     * The deck identity of {@code editedCard} must not be the same as another existing deck.
+     */
+    public void setDeck(Deck target, Deck editedDeck) {
+        requireNonNull(editedDeck);
+
+        decks.setDeck(target, editedDeck);
+    }
+
+    /**
+     * Removes {@code key} from this {@code MasterDeck}.
+     * {@code key} must exist.
+     */
+    public void removeDeck(Deck key) {
+        decks.remove(key);
+    }
+
     @Override
     public String toString() {
         return cards.asUnmodifiableObservableList().size() + " persons";
@@ -119,8 +158,5 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     public int hashCode() {
         return cards.hashCode();
     }
-
-    public String getDeckName() {
-        return deckName;
-    }
+    
 }
