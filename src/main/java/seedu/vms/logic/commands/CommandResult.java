@@ -19,6 +19,10 @@ public class CommandResult {
     private final boolean exit;
 
 
+    /**
+     * Constructs a {@code CommandResult} with {@code showHelp} and {@code exit}
+     * set to their default value.
+     */
     public CommandResult(String message, State state) {
         this(message, false, false, state);
     }
@@ -33,6 +37,9 @@ public class CommandResult {
     }
 
 
+    /**
+     * Constructs a {@code CommandResult}.
+     */
     public CommandResult(String message, boolean showHelp, boolean exit, State state) {
         this.message = requireNonNull(message);
         this.state = state;
@@ -92,5 +99,10 @@ public class CommandResult {
 
 
 
-    public static enum State {INFO, WARNING, ERROR}
+    /**
+     * Represents the state of a {@code CommandResult}.
+     */
+    public static enum State {
+        INFO, WARNING, ERROR
+    }
 }

@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.vms.logic.commands.CommandResult;
 
+
+/** A GUI representation of a command message to the user. */
 public class ResultMessageBox extends UiPart<Region> {
     private static final String FXML_FILE = "ResultMessageBox.fxml";
 
@@ -16,6 +18,9 @@ public class ResultMessageBox extends UiPart<Region> {
     @FXML private Label messageLabel;
 
 
+    /**
+     * Constructs a {@code ResultMessageBox}.
+     */
     public ResultMessageBox(CommandResult result) {
         super(FXML_FILE);
         stateLabel.setText(String.format("[%s]", result.getState().toString()));

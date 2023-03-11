@@ -18,6 +18,10 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML private ScrollPane scrollPane;
     @FXML private VBox displayArea;
 
+
+    /**
+     * Constructs a {@code ResultDisplay}.
+     */
     public ResultDisplay() {
         super(FXML);
         scrollPane.viewportBoundsProperty().addListener((ob, o, n) -> {
