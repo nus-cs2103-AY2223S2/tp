@@ -47,8 +47,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        RemindersStorage remindersStorage = new JsonRemindersStorage(userPrefs.getReminderFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, remindersStorage);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -68,9 +67,6 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
 
-        Optional<ReadOnlyReminders> remindersOptional;
-        ReadOnlyReminders initialReminders;
-
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -78,25 +74,15 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
-            remindersOptional = storage.readReminders();
-            if (!remindersOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-                initialReminders = new Reminders();
-            } else {
-                initialReminders = remindersOptional.orElse(new Reminders());
-            }
-
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook and Reminders");
             initialData = new AddressBook();
-            initialReminders = new Reminders();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook and Reminders");
             initialData = new AddressBook();
-            initialReminders = new Reminders();
         }
 
-        return new ModelManager(initialData, userPrefs, initialReminders);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

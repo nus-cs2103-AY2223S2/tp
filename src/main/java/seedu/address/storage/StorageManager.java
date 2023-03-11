@@ -17,15 +17,13 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
-    private RemindersStorage remindersStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, RemindersStorage remindersStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.remindersStorage = remindersStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -74,34 +72,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
-
-    // ================ Reminders methods ==============================
-
-    @Override
-    public Path getRemindersFilePath() {
-        return remindersStorage.getRemindersFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyReminders> readReminders() throws DataConversionException, IOException {
-        return readReminders(remindersStorage.getRemindersFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyReminders> readReminders(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return remindersStorage.readReminders(filePath);
-    }
-
-    @Override
-    public void saveReminders(ReadOnlyReminders reminders) throws IOException {
-        saveReminders(reminders, remindersStorage.getRemindersFilePath());
-    }
-
-    @Override
-    public void saveReminders(ReadOnlyReminders reminders, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        remindersStorage.saveReminders(reminders, filePath);
-    }
-
 }

@@ -87,14 +87,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Replaces reminders data with the data in {@code reminders}.
-     */
-    void setReminders(ReadOnlyReminders reminders);
-
-    /** Returns Reminders */
-    ReadOnlyReminders getReminders();
-
-    /**
      * Deletes the given reminder.
      * The reminder must exist in reminders.
      */

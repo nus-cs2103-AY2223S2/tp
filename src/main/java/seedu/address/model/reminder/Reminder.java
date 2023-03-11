@@ -3,6 +3,7 @@ package seedu.address.model.reminder;
 import java.time.LocalDateTime;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateTimeUtil.dateTimeToString;
 
 /**
  * Represents a Reminder in the Reminders.
@@ -25,6 +26,10 @@ public class Reminder {
 
     public LocalDateTime getReminderDateTime() {
         return this.reminderDateTime;
+    }
+
+    public String reminderDateTimeToString() {
+        return dateTimeToString(reminderDateTime);
     }
 
     public String toString() {

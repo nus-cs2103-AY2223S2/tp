@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ReminderList reminderList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        reminderList = new ReminderList();
     }
 
     public AddressBook() {}
@@ -93,6 +97,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// reminder-level operations
+
+    /**
+     * Adds a reminder to the address book.
+     */
+    public void addReminder(Reminder r) {
+        reminderList.add(r);
+    }
+
+    /**
+     * Removes {@code Reminder} from this {@code AddressBook}.
+     * {@code Reminder} must exist in the address book.
+     */
+    public void removeReminder(int i) {
+        reminderList.remove(i);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +125,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminderList.asUnmodifiableObservableList();
     }
 
     @Override
