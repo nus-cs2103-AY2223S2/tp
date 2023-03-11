@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCRE_VALUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 
 
 import java.util.stream.Stream;
