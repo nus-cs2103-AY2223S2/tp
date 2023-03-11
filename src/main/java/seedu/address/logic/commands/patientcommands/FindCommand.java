@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.patientcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds a patient from the patient records
@@ -37,6 +37,7 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.logic.commands.FindCommand // instanceof handles nulls
-                && predicate.equals(((seedu.address.logic.commands.patientcommands.FindCommand) other).predicate)); // state check
+                && predicate.equals((
+                        (seedu.address.logic.commands.patientcommands.FindCommand) other).predicate)); // state check
     }
 }

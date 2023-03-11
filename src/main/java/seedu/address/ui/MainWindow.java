@@ -1,9 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -31,8 +33,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private CareFlowLogic logic;
+    private final Stage primaryStage;
+    private final CareFlowLogic logic;
 
     // Independent Ui parts residing in this Ui container
 //    private PatientDrugListPanel patientDrugListPanel;
@@ -41,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private DrugListPanel drugListPanel;
 
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,13 +58,26 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane patientListPanelPlaceholder;
 
     @FXML
+    private MenuItem light;
+
+    @FXML
+    private MenuItem dark;
+
+    @FXML
+    private StackPane patientDrugListPanelPlaceholder;
+
+    @FXML
     private StackPane drugListPanelPlaceholder;
+
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Scene scene;
 
     @FXML
     private TabPane tabPane;
@@ -98,6 +113,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(light, KeyCombination.valueOf("CTRL+SHIFT+L"));
+        setAccelerator(dark, KeyCombination.valueOf("CTRL+SHIFT+D"));
     }
 
     /**
@@ -197,9 +214,59 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+
+    /**
+     * Toggles the Light theme version of the app
+     */
+    @FXML
+    public void toggleLightTheme() {
+        // enable style
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
+
+        // disable style
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/Extensions.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
+
+    }
+
+    /**
+     * Toggles the Dark theme version of the app
+     */
+    @FXML
+    public void toggleDarkTheme() {
+        // enable style
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/DarkTheme.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/Extensions.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindow.css")).toExternalForm());
+
+
+        // disable style
+        scene.getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/LightTheme.css")).toExternalForm());
+        helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
+                getClass().getResource("/view/HelpWindowLight.css")).toExternalForm());
+
+
+    }
+
+    public PatientDrugListPanel getPatientDrugListPanel() {
+        return patientDrugListPanel;
+    }
+
 //    public PatientDrugListPanel getPatientDrugListPanel() {
 //        return patientDrugListPanel;
 //    }
+
 
     /**
      * Executes the command and returns the result.

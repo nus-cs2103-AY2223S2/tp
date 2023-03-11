@@ -1,14 +1,30 @@
 package seedu.address.logic.parser.drugparser;
 
-import seedu.address.logic.commands.drugcommands.AddCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.drug.*;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVE_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DIRECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIDE_EFFECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STORAGE_COUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.drugcommands.AddCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.drug.ActiveIngredient;
+import seedu.address.model.drug.Direction;
+import seedu.address.model.drug.Drug;
+import seedu.address.model.drug.Purpose;
+import seedu.address.model.drug.SideEffect;
+import seedu.address.model.drug.StorageCount;
+import seedu.address.model.drug.TradeName;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -29,7 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         TradeName tradeName = ParserUtil.parseTradeName(argMultimap.getValue(PREFIX_TRADE_NAME).get());
-        ActiveIngredient activeIngredient = ParserUtil.parseActiveIngredient(argMultimap.getValue(PREFIX_ACTIVE_INGREDIENT).get());
+        ActiveIngredient activeIngredient = ParserUtil.parseActiveIngredient(
+                argMultimap.getValue(PREFIX_ACTIVE_INGREDIENT).get());
         Direction direction = ParserUtil.parseDirection(argMultimap.getValue(PREFIX_DIRECTION).get());
         Purpose purpose = ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get());
         SideEffect sideEffect = ParserUtil.parseSideEffect(argMultimap.getValue(PREFIX_SIDE_EFFECT).get());

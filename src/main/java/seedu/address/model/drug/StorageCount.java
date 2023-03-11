@@ -10,7 +10,7 @@ public class StorageCount {
             "Storage Count should only contain positive integers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "[\\d][\\d]*";
 
-    public Integer count;
+    private Integer count;
 
     /**
      * Constructs a {@code StorageCount}.
@@ -30,14 +30,21 @@ public class StorageCount {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Decreases storage count by {@code amount}
+     * @param amount the decrease value
+     */
     public void decrStorage(Integer amount) {
-        if(amount > count) {
+        if (amount > count) {
             count = 0;
         } else {
             count -= amount;
         }
     }
-
+    /**
+     * Increases storage count by {@code amount}
+     * @param amount the increase value
+     */
     public void incStorage(Integer amount) {
         count += amount;
     }
@@ -51,7 +58,7 @@ public class StorageCount {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof StorageCount // instanceof handles nulls
-                && count == (((StorageCount) other).count)); // state check
+                && count.equals(((StorageCount) other).count)); // state check
     }
 
     @Override

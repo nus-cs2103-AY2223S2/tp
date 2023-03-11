@@ -52,7 +52,7 @@ public class DrugCard extends UiPart<Region> {
         direction.setText("Direction: " + this.drug.getDirection().value);
         purposes.setText("Purposes: " + this.drug.getPurposes().purpose);
         sideEffects.setText("Side Effects: " + this.drug.getSideEffects().sideEffect);
-        storageCount.setText("Storage: " + this.drug.getStorageCount().count.toString());
+        storageCount.setText("Storage: " + this.drug.getStorageCount().toString());
     }
 
     @Override

@@ -23,6 +23,7 @@ public class CareFlowModelManager implements CareFlowModel {
     private static final Logger logger = LogsCenter.getLogger(CareFlowModelManager.class);
     private static final String LOGGER_MESSAGE = "Initialising with patient record: %s, drug inventory: %s and user "
             + "prefs %s";
+
     private final CareFlow careFlow;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
@@ -30,6 +31,9 @@ public class CareFlowModelManager implements CareFlowModel {
 
     /**
      * Initializes a CareFlowModelManager with the given patientRecord, drugInventory and userPrefs.
+     * @param patientRecord patient records
+     * @param drugInventory drug inventory
+     * @param userPrefs user preferences
      */
     public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory,
                                 ReadOnlyUserPrefs userPrefs) {

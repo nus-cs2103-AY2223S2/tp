@@ -10,7 +10,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
-
 /**
  * The API of the Model component.
  */

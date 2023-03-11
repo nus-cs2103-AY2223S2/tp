@@ -12,16 +12,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.CareFlowModel.PREDICATE_SHOW_ALL_PATIENTS;
 
-
 import java.util.List;
 import java.util.Optional;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Parser;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
@@ -83,13 +80,13 @@ public class UpdateCommand extends Command {
         List<Patient> lastShownList = careFlowModel.getFilteredPatientList();
 
         Patient patientToEdit = null;
-        for(Patient patient: lastShownList) {
-            if(patient.getName().equals(name)) {
+        for (Patient patient: lastShownList) {
+            if (patient.getName().equals(name)) {
                 patientToEdit = patient;
                 break;
             }
         }
-        Patient editedPatient = createEditedPerson(patientToEdit, editPersonDescriptor);
+        Patient editedPatient = createEditedPerson(requireNonNull(patientToEdit), editPersonDescriptor);
 
         if (!patientToEdit.isSamePerson(editedPatient) && careFlowModel.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

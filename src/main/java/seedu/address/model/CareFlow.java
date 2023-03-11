@@ -22,31 +22,21 @@ public class CareFlow {
         drugInventory = new DrugInventory();
     }
 
-    //// constructors
 
+    /**
+     * creates a CareFlow
+     */
     public CareFlow() {}
 
     /**
-     * Creates a CareFlow using Patients and Drugs in the { @code toBeCopiedP @code toBeCopiedD }
+     * Creates a CareFlow using Patients and Drugs in {@code toBeCopiedP @code toBeCopiedD}
+     * @param toBeCopiedP the patient records
+     * @param toBeCopiedD the drug inventory
      */
     public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD) {
         this();
         resetPatientData(toBeCopiedP);
         resetDrugData(toBeCopiedD);
-    }
-    /**
-     * Creates a CareFlow using Patients in the { @code toBeCopied }
-     */
-    public CareFlow(ReadOnlyPatientRecord toBeCopied) {
-        this();
-        resetPatientData(toBeCopied);
-    }
-    /**
-     * Creates a CareFlow using Drugs in the { @code toBeCopied }
-     */
-    public CareFlow(ReadOnlyDrugInventory toBeCopied) {
-        this();
-        resetDrugData(toBeCopied);
     }
 
     public ReadOnlyPatientRecord getPatientRecord() {
@@ -173,5 +163,4 @@ public class CareFlow {
     public int hashCode() {
         return ((Integer) (patientRecord.hashCode() + drugInventory.hashCode())).hashCode();
     }
-
 }

@@ -1,13 +1,13 @@
 package seedu.address.logic.parser.drugparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+
 import seedu.address.logic.commands.drugcommands.FindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.drug.TradeNameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -23,11 +23,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = userInput.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.drugcommands.FindCommand.MESSAGE_USAGE));
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            seedu.address.logic.commands.drugcommands.FindCommand.MESSAGE_USAGE));
         }
 
         String[] tradeNameKeywords = trimmedArgs.split("\\s+");
 
-        return new seedu.address.logic.commands.drugcommands.FindCommand(new TradeNameContainsKeywordsPredicate(Arrays.asList(tradeNameKeywords)));
+        return new seedu.address.logic.commands.drugcommands.FindCommand(
+                new TradeNameContainsKeywordsPredicate(Arrays.asList(tradeNameKeywords)));
     }
 }

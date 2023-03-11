@@ -1,5 +1,12 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -7,22 +14,19 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * A class to access drug data stored as a json file on the hard disk.
  */
-import static java.util.Objects.requireNonNull;
-
 public class JsonDrugInventoryStorage implements DrugInventoryStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonDrugInventoryStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
+    /**
+     * Creates a JsonDrugInventoryStorage with {@code filePath}
+     */
     public JsonDrugInventoryStorage(Path filePath) {
         this.filePath = filePath;
     }
@@ -37,7 +41,6 @@ public class JsonDrugInventoryStorage implements DrugInventoryStorage {
     }
 
     /**
-     *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */

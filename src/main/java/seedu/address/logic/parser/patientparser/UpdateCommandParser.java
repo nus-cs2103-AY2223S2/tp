@@ -12,8 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import seedu.address.logic.commands.patientcommands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.patientcommands.UpdateCommand;
+import seedu.address.logic.commands.patientcommands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

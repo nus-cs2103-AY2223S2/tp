@@ -13,7 +13,7 @@ import seedu.address.model.readonly.ReadOnlyDrugInventory;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 /**
- * API of the CareFlow logic component
+ * API of the CareFlow Logic component
  */
 public interface CareFlowLogic {
     /**

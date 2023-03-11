@@ -1,13 +1,21 @@
 package seedu.address.logic.commands.patientcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.person.Patient;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a patient to the patient records
@@ -41,6 +49,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists.";
     private final Patient patientToAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Patient}
+     * @param patient Patient to be added
+     */
     public AddCommand(Patient patient) {
         requireNonNull(patient);
         patientToAdd = patient;
@@ -57,7 +69,7 @@ public class AddCommand extends Command {
     public CommandResult execute(CareFlowModel careFlowModel) throws CommandException {
         requireNonNull(careFlowModel);
 
-        if(careFlowModel.hasPatient(patientToAdd)){
+        if (careFlowModel.hasPatient(patientToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 

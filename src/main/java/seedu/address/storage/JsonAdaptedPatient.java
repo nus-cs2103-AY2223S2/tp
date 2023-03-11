@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
@@ -13,6 +14,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 
+/**
+ * Jackson-friendly version of {@link Patient}.
+ */
 public class JsonAdaptedPatient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
@@ -127,7 +131,7 @@ public class JsonAdaptedPatient {
             throw new IllegalValueException(DrugAllergy.MESSAGE_CONSTRAINTS);
         }
 
-        if(emergencyContact != null && !Phone.isValidPhone(emergencyContact)) {
+        if (emergencyContact != null && !Phone.isValidPhone(emergencyContact)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
 

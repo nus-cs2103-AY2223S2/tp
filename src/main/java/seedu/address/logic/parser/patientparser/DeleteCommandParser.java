@@ -1,15 +1,19 @@
 package seedu.address.logic.parser.patientparser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.patientcommands.DeleteCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Ic;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.patientcommands.DeleteCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Ic;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -29,7 +33,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
                     return new DeleteCommand(ic);
                 } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.DeleteCommand.MESSAGE_USAGE));
+                    throw new ParseException(String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            seedu.address.logic.commands.DeleteCommand.MESSAGE_USAGE));
                 }
             } else {
                 Index index = ParserUtil.parseIndex(userInput);

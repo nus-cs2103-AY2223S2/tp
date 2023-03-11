@@ -1,14 +1,17 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.drug.Drug;
 import seedu.address.model.drug.UniqueDrugList;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Wraps all data at the Drug Inventory level
+ */
 public class DrugInventory implements ReadOnlyDrugInventory {
     private final UniqueDrugList drugs;
 
@@ -16,8 +19,11 @@ public class DrugInventory implements ReadOnlyDrugInventory {
         drugs = new UniqueDrugList();
     }
 
-    public DrugInventory(){}
+    public DrugInventory() {}
 
+    /**
+     * creates a DrugInventory using the Drugs in the {@code toBeCopied}
+     */
     public DrugInventory(ReadOnlyDrugInventory toBeCopied) {
         this();
         resetData(toBeCopied);

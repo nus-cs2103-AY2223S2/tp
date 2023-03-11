@@ -20,7 +20,7 @@ import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.storage.CareFlowStorage;
 
 /**
- * Main Logic Manager for CareFlow
+ * The main LogicManager of the CareFlow application.
  */
 public class CareFlowLogicManager implements CareFlowLogic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";

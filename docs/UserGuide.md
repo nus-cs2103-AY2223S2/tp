@@ -105,7 +105,7 @@ Examples:
 Finds patient whose NRIC matches given keyword
 Format: `p find -ic PATIENT_NRIC`
 Examples:
-* p find -ic T3871918C 
+* p find -ic T3871918C
 * Returns John Doe | T3871918C | 98765432 | johnd@example.com | John Street, Block 123, #01-01
 
 

@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.patientcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CareFlowModel;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all patients in the patient records
