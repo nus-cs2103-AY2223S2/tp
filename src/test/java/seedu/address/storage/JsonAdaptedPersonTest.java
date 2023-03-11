@@ -45,7 +45,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
-                        INVALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
+                        INVALID_NAME, VALID_RATE, VALID_ADDRESS,
+                        VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -62,7 +63,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
-                        VALID_NAME, INVALID_RATE, VALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
+                        VALID_NAME, INVALID_RATE, VALID_ADDRESS,
+                        VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
         String expectedMessage = Rate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -78,7 +80,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                        VALID_NAME, VALID_RATE, INVALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
+                        VALID_NAME, VALID_RATE, INVALID_ADDRESS,
+                        VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -133,7 +136,8 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                        VALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK, invalidTags);
+                        VALID_NAME, VALID_RATE, VALID_ADDRESS,
+                        VALID_START_TIME, VALID_END_TIME, VALID_MARK, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

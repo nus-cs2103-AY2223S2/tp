@@ -104,8 +104,8 @@ public class Event {
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
                 && otherEvent.getTiming().equals(getTiming())
-                && otherEvent.getMark().equals(getMark());
-                && otherEvent.getTags().equals(getTags())
+                && otherEvent.getMark().equals(getMark())
+                && otherEvent.getTags().equals(getTags());
     }
 
     @Override
