@@ -79,6 +79,7 @@ public class Event {
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
             return true;
+        }
 
         return otherEvent != null
                 && otherEvent.getName().equals(getName())
