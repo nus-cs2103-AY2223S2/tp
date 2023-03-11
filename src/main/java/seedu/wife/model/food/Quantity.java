@@ -9,6 +9,7 @@ import static seedu.wife.commons.util.AppUtil.checkArgument;
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity must be a value larger than 0";
+    public static final String VALIDATION_REGEX = "-?\\d+(\\.\\d+)?";
     private Integer quantity;
 
     /**
@@ -38,7 +39,7 @@ public class Quantity {
      * @return True if quantity is a valid quantity, else False.
      */
     public static boolean isValid(String quantity) {
-        return Integer.parseInt(quantity) > 0;
+        return quantity.matches(VALIDATION_REGEX) && Integer.parseInt(quantity) > 0;
     }
 
     /**

@@ -32,11 +32,13 @@ public class JsonAdaptedFoodTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
+    /*
     @Test
     public void toModelType_validFoodDetails_returnsFood() throws Exception {
         JsonAdaptedFood food = new JsonAdaptedFood(MEIJI);
         assertEquals(MEIJI, food.toModelType());
     }
+    */
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {

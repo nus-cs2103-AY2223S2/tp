@@ -12,7 +12,8 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: Immutable; expiry date is validated in {@link #isValidDate(LocalDate)}
  */
 public class ExpiryDate {
-    public static final String MESSAGE_CONSTRAINTS = "The food you wish to add is already expired.";
+    public static final String MESSAGE_CONSTRAINTS = "Format of your date is incorrect. "
+            + "Please insert using the format DD-MM-YYYY";
     public static final String FORMAT_MESSAGE_CONSTRAINTS = "Format of your date is incorrect. "
             + "Please insert using the format DD-MM-YYYY";
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";

@@ -17,7 +17,6 @@ import seedu.wife.model.food.Food;
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalFood {
-
     public static final Food CHOCOLATE = new FoodBuilder().withName("Breyls")
             .withUnit("Bar").withQuantity("3")
             .withExpiryDate("13-11-2024")

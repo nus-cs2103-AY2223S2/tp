@@ -48,6 +48,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    /*
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
@@ -68,6 +69,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+    */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {

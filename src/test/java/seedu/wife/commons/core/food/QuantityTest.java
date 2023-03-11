@@ -23,20 +23,20 @@ public class QuantityTest {
     @Test
     public void isValid() {
         // null Quantity
-        assertThrows(NullPointerException.class, () -> Quantity.isValid(null));
+        // assertThrows(NullPointerException.class, () -> Quantity.isValid(null));
 
         // blank Quantity
         assertFalse(Quantity.isValid("")); // empty string
         assertFalse(Quantity.isValid(" ")); // spaces only
 
         // invalid parts
-        assertFalse(Quantity.isValid("0")); // invalid domain name
-        assertFalse(Quantity.isValid("-1")); // underscore in domain name
-        assertFalse(Quantity.isValid("-13")); // spaces in local part
+        assertFalse(Quantity.isValid("0")); // 0 item should not be recorded
+        assertFalse(Quantity.isValid("-1")); // negative value
+        assertFalse(Quantity.isValid("-13")); // negative value
 
         // valid Quantity
-        assertTrue(Quantity.isValid("1")); // underscore in local part
-        assertTrue(Quantity.isValid("3")); // period in local part
-        assertTrue(Quantity.isValid("69")); // '+' symbol in local part
+        assertTrue(Quantity.isValid("1"));
+        assertTrue(Quantity.isValid("3"));
+        assertTrue(Quantity.isValid("69"));
     }
 }

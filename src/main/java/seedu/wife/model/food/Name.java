@@ -9,7 +9,7 @@ import static seedu.wife.commons.util.AppUtil.checkArgument;
  */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS = "Food name should not be blank and it should only contain "
-            + "alphanumeric characters and spaces,";
+            + "alphanumeric characters and spaces";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String foodName;
 
