@@ -119,4 +119,8 @@ public class Deck implements ReadOnlyDeck {
     public int hashCode() {
         return cards.hashCode();
     }
+
+    public String getDeckName() {
+        return deckName;
+    }
 }

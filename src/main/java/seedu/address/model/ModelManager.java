@@ -157,7 +157,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void createDeck() { // Todo: deck should have a name - how to store in storage?
+    public void createDeck(Deck deck) { // Todo: deck should have a name - how to store in storage?
         Deck newDeck = new Deck();
         // this.deck.add(newDeck);
     }

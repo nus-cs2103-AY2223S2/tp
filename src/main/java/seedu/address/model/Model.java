@@ -91,7 +91,7 @@ public interface Model {
     /** Returns the deck */
     ReadOnlyDeck getSelectedDeck();
 
-    void createDeck();
+    void createDeck(Deck deck);
 
     void selectDeck(Index idx);
 

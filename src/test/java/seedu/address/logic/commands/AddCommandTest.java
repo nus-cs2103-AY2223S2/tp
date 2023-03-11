@@ -156,7 +156,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void createDeck() {
+        public void createDeck(Deck deck) {
             throw new AssertionError("This method should not be called.");
         }
 
