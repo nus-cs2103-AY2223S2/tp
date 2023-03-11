@@ -27,13 +27,6 @@ public class Mark {
         isDone = true;
     }
 
-    /**
-     * Unmarks the event as done.
-     */
-    public void setUndone() {
-        isDone = false;
-    }
-
     @Override
     public String toString() {
         return "[" + (isDone ? "X" : " ") + "]";

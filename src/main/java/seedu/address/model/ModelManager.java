@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
-import seedu.address.model.person.Mark;
 import seedu.address.model.person.Rate;
 
 /**
@@ -180,11 +179,6 @@ public class ModelManager implements Model {
     @Override
     public Rate getRate(Event event) {
         return event.getRate();
-    }
-
-    @Override
-    public Mark getMark(Event event) {
-        return event.getMark();
     }
 
     @Override

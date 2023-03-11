@@ -29,7 +29,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withRate("94351253")
             .withTiming("11-12-2023 02:00", "11-12-2023 10:00")
-            .withMark("[ ]")
+            .withMark("[X]")
             .withTags("friends").build();
     public static final Event BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -40,7 +40,7 @@ public class TypicalPersons {
     public static final Event CARL = new PersonBuilder().withName("Carl Kurz")
             .withRate("95352563")
             .withTiming("25-01-2023 12:00", "26-01-2024 12:00")
-            .withMark("[X]")
+            .withMark("[ ]")
             .withAddress("wall street").build();
     public static final Event DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withRate("87652533")

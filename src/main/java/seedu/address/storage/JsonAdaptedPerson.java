@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
-import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
 import seedu.address.model.person.Timing;
@@ -111,10 +110,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Timing.MESSAGE_CONSTRAINTS);
         }
         final Timing modelTiming = new Timing(startTime, endTime);
-
-        if (mark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mark.class.getSimpleName()));
-        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
