@@ -11,7 +11,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -45,23 +45,23 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAddressBookFilePath'");
+    public Path getPatientManagerFilePath() {
+        throw new UnsupportedOperationException("Unimplemented method 'getPatientManagerFilePath'");
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        throw new UnsupportedOperationException("Unimplemented method 'setAddressBookFilePath'");
+    public void setPatientManagerFilePath(Path patientManagerFilePath) {
+        throw new UnsupportedOperationException("Unimplemented method 'setPatientManagerFilePath'");
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        throw new UnsupportedOperationException("Unimplemented method 'setAddressBook'");
+    public void setPatientManager(ReadOnlyPatientManager patientManager) {
+        throw new UnsupportedOperationException("Unimplemented method 'setPatientManager'");
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAddressBook'");
+    public ReadOnlyPatientManager getPatientManager() {
+        throw new UnsupportedOperationException("Unimplemented method 'getPatientManager'");
     }
 
     @Override

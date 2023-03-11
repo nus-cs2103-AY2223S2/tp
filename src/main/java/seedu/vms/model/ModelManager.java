@@ -13,20 +13,20 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the patient manager data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
     private final UserPrefs userPrefs;
@@ -34,16 +34,17 @@ public class ModelManager implements Model {
     private final FilteredIdDataMap<Patient> filteredPatientMap;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patientManager and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, VaxTypeManager vaxTypeManager, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
+            ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(patientManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.patientManager = new PatientManager(patientManager);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatientMap = new FilteredIdDataMap<>(this.addressBook.getMapView());
+        filteredPatientMap = new FilteredIdDataMap<>(this.patientManager.getMapView());
 
         appointmentManager = new AppointmentManager();
         this.vaxTypeManager = vaxTypeManager;
@@ -53,15 +54,15 @@ public class ModelManager implements Model {
      * Convenience constructor to construct a {@code ModelManager} with an
      * empty {@code VaxTypeManager}.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, new VaxTypeManager(), userPrefs);
+    public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
+        this(patientManager, new VaxTypeManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new VaxTypeManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -86,41 +87,41 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPatientManagerFilePath() {
+        return userPrefs.getPatientManagerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPatientManagerFilePath(Path patientManagerFilePath) {
+        requireNonNull(patientManagerFilePath);
+        userPrefs.setPatientManagerFilePath(patientManagerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== PatientManager ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPatientManager(ReadOnlyPatientManager patientManager) {
+        this.patientManager.resetData(patientManager);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyPatientManager getPatientManager() {
+        return patientManager;
     }
 
     @Override
     public boolean hasPatient(int id) {
-        return addressBook.contains(id);
+        return patientManager.contains(id);
     }
 
     @Override
     public void deletePatient(int id) {
-        addressBook.remove(id);
+        patientManager.remove(id);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        addressBook.add(patient);
+        patientManager.add(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -128,29 +129,28 @@ public class ModelManager implements Model {
     public void setPatient(int id, Patient editedPatient) {
         requireAllNonNull(editedPatient);
 
-        addressBook.set(id, editedPatient);
+        patientManager.set(id, editedPatient);
     }
 
-    //=========== AppointmentManager ==========================================================================
+    // =========== AppointmentManager ==========================================================================
 
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentManager.add(appointment);
     }
 
-    //=========== VaxTypeManager ==============================================================================
-
+    // =========== VaxTypeManager ==============================================================================
 
     @Override
     public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
         return action.apply(vaxTypeManager);
     }
 
-    //=========== Filtered Patient List Accessors =============================================================
+    // =========== Filtered Patient List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPatientManager}
      */
     @Override
     public ObservableMap<Integer, IdData<Patient>> getFilteredPatientList() {
@@ -163,7 +163,7 @@ public class ModelManager implements Model {
         filteredPatientMap.filter(predicate);
     }
 
-    //=========== Filtered VaxType Map Accessors ==============================================================
+    // =========== Filtered VaxType Map Accessors ==============================================================
 
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
@@ -175,7 +175,7 @@ public class ModelManager implements Model {
         return vaxTypeManager;
     }
 
-    //=========== Misc methods ================================================================================
+    // =========== Misc methods ================================================================================
 
     @Override
     public boolean equals(Object obj) {
@@ -191,7 +191,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return patientManager.equals(other.patientManager)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatientMap.asUnmodifiableObservableMap()
                         .equals(other.filteredPatientMap.asUnmodifiableObservableMap());

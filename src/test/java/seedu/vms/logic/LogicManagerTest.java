@@ -27,8 +27,8 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
-import seedu.vms.storage.JsonAddressBookStorage;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
+import seedu.vms.storage.JsonPatientManagerStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
 import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
@@ -45,11 +45,11 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonPatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
+                temporaryFolder.resolve("patientManager.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
-        StorageManager storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(patientManagerStorage, vaxTypeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,13 +73,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        // Setup LogicManager with JsonPatientManagerIoExceptionThrowingStub
+        JsonPatientManagerStorage patientManagerStorage = new JsonPatientManagerIoExceptionThrowingStub(
+                temporaryFolder.resolve("ioExceptionPatientManager.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
+                temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
-        StorageManager storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(patientManagerStorage, vaxTypeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -107,6 +107,7 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
@@ -118,6 +119,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -126,6 +128,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -134,11 +137,12 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientManager(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -147,6 +151,7 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
@@ -158,13 +163,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonPatientManagerIoExceptionThrowingStub extends JsonPatientManagerStorage {
+        private JsonPatientManagerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void savePatientManager(ReadOnlyPatientManager patientManager, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

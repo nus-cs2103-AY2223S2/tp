@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in the patient manager.
  * Guarantees: details are present and not null,
  * field values are validated,
  * immutable.

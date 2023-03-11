@@ -14,7 +14,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
 
 /**
- * Deletes a patient identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index from the patient manager.
  */
 public class DeleteCommand extends Command {
 

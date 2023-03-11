@@ -47,7 +47,7 @@ public class EditPatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withBloodType(VALID_BLOODTYPE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
+        // different dob -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

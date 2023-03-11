@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's phone number in the address book.
+ * Represents a Patient's phone number in the patient manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

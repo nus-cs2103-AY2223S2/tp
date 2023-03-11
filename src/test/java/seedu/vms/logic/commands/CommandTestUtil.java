@@ -19,9 +19,9 @@ import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.PatientManager;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -112,22 +112,22 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     * - the patient manager, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        PatientManager expectedPatientManager = new PatientManager(actualModel.getPatientManager());
         Map<Integer, IdData<Patient>> expectedFilteredList = actualModel.getFilteredPatientList();
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedPatientManager, actualModel.getPatientManager());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
 
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s patient manager.
      */
     public static void showPatientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
