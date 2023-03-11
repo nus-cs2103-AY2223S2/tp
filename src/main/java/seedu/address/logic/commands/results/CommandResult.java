@@ -26,71 +26,50 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    /**
-     * Returns false by default.
-     * Overridden by the HelpCommand.
-     */
     public boolean isShowHelp() {
         return false;
     }
 
-    /**
-     * Returns false by default.
-     * Overridden by the ExitCommand.
-     */
     public boolean isExit() {
         return false;
     }
 
-    /**
-     * Returns false by default.
-     * Overridden by the SaveCommand.
-     */
     public boolean isSave() {
         return false;
     }
 
-    /**
-     * Returns false by default.
-     * Overridden by the LoadCommand.
-     */
     public boolean isLoad() {
         return false;
     }
 
-    /**
-     * Returns false by default.
-     * Overridden by the ViewCommand.
-     */
     public boolean isToShowNewPerson() {
         return false;
     }
 
-    /**
-     * Returns Optional.empty by default.
-     * Overridden by SaveCommand and LoadCommand.
-     */
     public Optional<Path> getFilePath() {
         return Optional.empty();
     }
 
-    /**
-     * Returns Optional.empty by default.
-     * Overridden by ViewCommand.
-     */
     public Optional<Person> getDisplayPerson() {
         return Optional.empty();
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof CommandResult // instanceof handles nulls
-                && feedbackToUser.equals(((CommandResult) other).feedbackToUser)
-                && isShowHelp() == ((CommandResult) other).isShowHelp()
-                && isExit() == ((CommandResult) other).isExit()
-                && isLoad() == ((CommandResult) other).isLoad()
-                && isSave() == ((CommandResult) other).isSave());
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CommandResult)) {
+            return false;
+        }
+
+        CommandResult otherCommandResult = (CommandResult) other;
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && isShowHelp() == otherCommandResult.isShowHelp()
+                && isExit() == otherCommandResult.isExit()
+                && isLoad() == otherCommandResult.isLoad()
+                && isSave() == otherCommandResult.isSave();
     }
 
     @Override
