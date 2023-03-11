@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.deck.Deck;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -88,5 +89,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> decks} into a {@code Set<Deck>}
+     */
+    public static Deck parseDeck(String deckName) throws ParseException {
+        requireNonNull(deckName);
+        String trimmedDeckName = deckName.trim();
+        if (!Answer.isValidAnswer(trimmedDeckName)) {
+            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
+        }
+        return new Deck(trimmedDeckName);
     }
 }
