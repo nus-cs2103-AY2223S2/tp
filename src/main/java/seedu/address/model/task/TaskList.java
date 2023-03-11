@@ -97,6 +97,14 @@ public class TaskList implements Iterable<Task> {
         internalList.setAll(tasks);
     }
 
+    public int size() {
+        return internalList.size();
+    }
+
+    public Task get(int index) {
+        return internalList.get(index);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

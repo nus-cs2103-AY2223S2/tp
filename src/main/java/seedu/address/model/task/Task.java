@@ -12,6 +12,12 @@ import seedu.address.model.person.Name;
  */
 public class Task {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Name of tasks should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+
     // Identity field(s)
     public final Name taskName;
 
