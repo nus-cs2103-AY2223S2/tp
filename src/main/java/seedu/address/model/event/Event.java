@@ -93,6 +93,10 @@ public abstract class Event {
         this.notes = notes;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     /* *************************************************************************
      *                                                                         *
      * Methods to manipulate students in an event                              *
@@ -171,6 +175,10 @@ public abstract class Event {
         return attachments;
     }
 
+    public int countAttachments() {
+        return attachments.size();
+    }
+
     public void addAttachment(File file) {
         attachments.add(file);
     }
@@ -187,6 +195,10 @@ public abstract class Event {
 
     public List<Note> getNotes() {
         return notes;
+    }
+
+    public int countNotes() {
+        return notes.size();
     }
 
     public void addNote(Note note) {

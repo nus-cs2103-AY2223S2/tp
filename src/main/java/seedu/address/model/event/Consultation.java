@@ -7,31 +7,35 @@ import java.util.List;
 import seedu.address.model.person.Person;
 
 /**
- * Allows the TA to create a Consultations event that usually occurs once a week.
- * Currently, there are no different behaviours between Consultations, Consultationss and Consultations.
+ * Allows the TA to create a Consultation event that usually occurs once a week.
+ * Currently, there are no different behaviours between Consultation, Consultations and Consultation.
  * Custom behaviours will be added in future versions / milestones.
  */
-public class Consultations extends Event {
+public class Consultation extends Event {
 
-    public Consultations(String name) {
+    public Consultation(String name) {
         super(name);
     }
 
-    public Consultations(String name, List<Person> students) {
+    public Consultation(String name, List<Person> students) {
         super(name, students);
     }
 
-    public Consultations(String name, LocalDate eventDate, List<Person> students) {
+    public Consultation(String name, LocalDate eventDate, List<Person> students) {
         super(name, eventDate, students);
     }
 
-    public Consultations(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+    public Consultation(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
         super(name, eventDate, students, attachments);
     }
 
-    public Consultations(String name, LocalDate eventDate, List<Person> students, List<File> attachments,
+    public Consultation(String name, LocalDate eventDate, List<Person> students, List<File> attachments,
                     List<Note> notes) {
         super(name, eventDate, students, attachments, notes);
+    }
+
+    public String getName() {
+        return super.getName();
     }
 
     /**
@@ -90,10 +94,12 @@ public class Consultations extends Event {
         super.changeDate(date);
     }
 
-
-
     public List<File> getAttachments() {
         return super.getAttachments();
+    }
+
+    public int countAttachments() {
+        return super.countNotes();
     }
 
     public void addAttachment(File file) {
@@ -112,12 +118,16 @@ public class Consultations extends Event {
         super.addNote(note);
     }
 
+    public int countNotes() {
+        return super.countNotes();
+    }
+
     public void removeNote(Note note) {
         super.removeNote(note);
     }
 
     @Override
     public String toString() {
-        return "Consultations";
+        return "Consultation";
     }
 }

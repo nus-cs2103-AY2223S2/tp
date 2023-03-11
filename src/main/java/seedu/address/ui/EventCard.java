@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -43,16 +41,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
 
         id.setText(displayedIndex + ". ");
-        name.setText(event.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        photo.setText(person.getPhoto().photoFilePath);
-        remark.setText(person.getRemark().value);
-        performance.setText(person.getPerformance().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(event.getName());
+        notes.setText("" + event.countNotes());
+        attachments.setText("" + event.countAttachments());
     }
 
     @Override

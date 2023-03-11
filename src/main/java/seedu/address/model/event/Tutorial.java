@@ -34,6 +34,10 @@ public class Tutorial extends Event {
         super(name, eventDate, students, attachments, notes);
     }
 
+    public String getName() {
+        return super.getName();
+    }
+
     /**
      * Gets the list of students
      * @return students
@@ -90,10 +94,12 @@ public class Tutorial extends Event {
         super.changeDate(date);
     }
 
-
-
     public List<File> getAttachments() {
         return super.getAttachments();
+    }
+
+    public int countAttachments() {
+        return super.countNotes();
     }
 
     public void addAttachment(File file) {
@@ -110,6 +116,10 @@ public class Tutorial extends Event {
 
     public void addNote(Note note) {
         super.addNote(note);
+    }
+
+    public int countNotes() {
+        return super.countNotes();
     }
 
     public void removeNote(Note note) {

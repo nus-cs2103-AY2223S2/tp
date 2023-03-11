@@ -34,6 +34,10 @@ public class Lab extends Event {
         super(name, eventDate, students, attachments, notes);
     }
 
+    public String getName() {
+        return super.getName();
+    }
+
     /**
      * Gets the list of students
      * @return students
@@ -96,6 +100,10 @@ public class Lab extends Event {
         return super.getAttachments();
     }
 
+    public int countAttachments() {
+        return super.countNotes();
+    }
+
     public void addAttachment(File file) {
         super.addAttachment(file);
     }
@@ -106,6 +114,10 @@ public class Lab extends Event {
 
     public List<Note> getNotes() {
         return super.getNotes();
+    }
+
+    public int countNotes() {
+        return super.countNotes();
     }
 
     public void addNote(Note note) {
