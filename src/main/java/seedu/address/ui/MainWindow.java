@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TaskListPanel taskListPanel;
+    private TankListPanel tankListPanel;
     private MainContent mainContent;
 
     @FXML
@@ -113,8 +114,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         fishListPanel = new FishListPanel(logic.getFilteredFishList());
+        tankListPanel = new TankListPanel(logic.getFilteredTankList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        mainContent = new MainContent(fishListPanel, taskListPanel);
+        mainContent = new MainContent(tankListPanel, taskListPanel);
         mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();

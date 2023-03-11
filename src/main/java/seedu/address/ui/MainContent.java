@@ -29,8 +29,18 @@ public class MainContent extends UiPart<Region> {
         super(FXML);
         HBox.setHgrow(fishListPanel.getRoot(), Priority.ALWAYS);
         HBox.setHgrow(taskListPanel.getRoot(), Priority.ALWAYS);
-        mainContent.getChildren().addAll(fishListPanel.getRoot(), taskListPanel.getRoot());
-    };
+        mainContent.getChildren().setAll(fishListPanel.getRoot(), taskListPanel.getRoot());
+    }
+
+    /**
+     * Constructs a {@code MainContent} with the given {@code tankListPanel} and {@code taskListPanel}.
+     */
+    public MainContent(TankListPanel tankListPanel, TaskListPanel taskListPanel) {
+        super(FXML);
+        HBox.setHgrow(tankListPanel.getRoot(), Priority.ALWAYS);
+        HBox.setHgrow(taskListPanel.getRoot(), Priority.ALWAYS);
+        mainContent.getChildren().setAll(tankListPanel.getRoot(), taskListPanel.getRoot());
+    }
 
     @Override
     public boolean equals(Object other) {
