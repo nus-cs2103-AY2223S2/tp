@@ -18,7 +18,10 @@ aspect of sending emails, as mass emails can be automated and sent with just a s
 
 Given below are my contributions to the project.
 
-- **New Feature**:
+- **New Feature**: Add task for OfficeConnect
+    * What it does: With this new feature, users can add tasks to OfficeConnect
+    * Justification: This feature is instrumental, as it allows users to create tasks that are stored into the storage of OfficeConnect. This creates the foundation for subsequent task commands, such as delete task or assign task
+    * Highlights: Users who are quick at typing will be able to add tasks quickly following the syntax specified in the UserGuide
 - **Code contributed**: [RepoSense link]()
 - **Project management**:
 - **Enhancements to existing features**:

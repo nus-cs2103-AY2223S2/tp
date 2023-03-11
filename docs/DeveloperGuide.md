@@ -458,6 +458,27 @@ In the example above, the user story is clearly defined at the top, followed by 
   * 5b1. OfficeConnect shows an error message.
 
     Use case resumes at step 4.
+---
+**Use case 5: Add a task**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to add a task.
+
+2. OfficeConnect adds the task to the task list.
+
+3. OfficeConnect informs user has been successfully added.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters incomplete or invalid data.
+
+    * 1a1. OfficeConnect shows an error message.
+
+      Use case ends.
+---
 
 ### Non-Functional Requirements
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
