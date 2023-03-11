@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
@@ -51,6 +52,7 @@ public class MarkCustomerCommand extends Command {
         Customer customerToMark = lastShownList.get(index.getZeroBased());
         Customer markedCustomer = createMarkedCustomer(customerToMark);
         model.setCustomer(customerToMark, markedCustomer);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer));
     }
 
@@ -68,5 +70,12 @@ public class MarkCustomerCommand extends Command {
         Set<Tag> tags = customerToMark.getTags();
 
         return new Customer(name, phone, email, address, tags, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MarkCustomerCommand // instanceof handles nulls
+                && index.equals(((MarkCustomerCommand) other).index)); // state check
     }
 }

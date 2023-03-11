@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class UnmarkCustomerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: %1$s";
+    public static final String MESSAGE_UNMARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: %1$s";
 
     private final Index index;
 
@@ -50,7 +51,8 @@ public class UnmarkCustomerCommand extends Command {
         Customer customerToUnmark = lastShownList.get(index.getZeroBased());
         Customer unmarkedCustomer = createUnmarkedCustomer(customerToUnmark);
         model.setCustomer(customerToUnmark, unmarkedCustomer);
-        return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, unmarkedCustomer));
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer));
     }
 
     /**
@@ -67,5 +69,12 @@ public class UnmarkCustomerCommand extends Command {
         Set<Tag> tags = customerToUnmark.getTags();
 
         return new Customer(name, phone, email, address, tags, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnmarkCustomerCommand // instanceof handles nulls
+                && index.equals(((UnmarkCustomerCommand) other).index)); // state check
     }
 }
