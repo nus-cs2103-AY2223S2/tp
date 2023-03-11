@@ -164,11 +164,11 @@ public class PersonListPanel extends UiPart<Region> {
                 } else {
                     setGraphic(null);
                 }
-                if (getIndex() == 0) { // formats the first ListCell with extra spacing
-                    getStyleClass().add("first-cell");
-                } else {
-                    getStyleClass().remove("first-cell");
-                }
+            }
+            if (getIndex() == 0) { // formats the first ListCell with extra spacing
+                getStyleClass().add("first-cell");
+            } else {
+                getStyleClass().remove("first-cell");
             }
         }
 
