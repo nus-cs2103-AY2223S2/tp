@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import bookopedia.model.DeliveryStatus;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookopedia.commons.exceptions.IllegalValueException;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
