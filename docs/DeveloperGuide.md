@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
-5. System displays the full detail of the deivery job.
+4. System displays the full detail of the delivery job.
 </pre>
 </details>
 
@@ -353,23 +353,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <details>
-<summary><b>[CH1] Chat with a client</b></summary>
+<summary><b>[TT1] Display timetable and scheduling tasks</b></summary>
 <pre>
 <b>MSS</b>
-1. User goes to homepage with list of jobs/contacts.
-2. System displays job list.
-3. User requests to display a specific job to start chat.
-4. System displays the chosen job in details and Chat option.
-5. User selects "Chat" option from the chosen job and requests to chat.
-6. DSystem shows the message sent in the Chat window.
+1. User requests to display timetable by selecting Timetable option on homepage.
+2. System displays timetable of uncompleted/upcoming jobs.
    Use case ends.
 
-<b>Extensions</b>
-* 2a. The list is empty.
-      Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. System shows an error message.
-           Use case resumes at step 2.
 </pre>
 </details>
 
@@ -445,3 +435,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
