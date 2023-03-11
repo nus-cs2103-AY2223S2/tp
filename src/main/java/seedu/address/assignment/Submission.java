@@ -16,7 +16,7 @@ public class Submission {
     }
 
     /**
-     * @param marks 
+     * @param marks
      */
     public void grade(int marks) {
         isGraded = true;
