@@ -61,7 +61,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Wingman ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -69,7 +69,6 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         ItemStorage<Pilot> pilotStorage =
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
         ItemStorage<Location> locationStorage =
@@ -80,7 +79,7 @@ public class MainApp extends Application {
                 new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
         ItemStorage<Flight> flightStorage =
                 new JsonFlightManagerStorage(userPrefs.getFlightManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, pilotStorage, locationStorage,
+        storage = new StorageManager(userPrefsStorage, pilotStorage, locationStorage,
                 crewStorage, planeStorage, flightStorage);
 
         initLogging(config);
@@ -218,21 +217,6 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook addressBook;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            addressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            addressBook = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            addressBook = new AddressBook();
-        }
 
         ReadOnlyItemManager<Pilot> pilotManager = readPilotManager(storage);
         ReadOnlyItemManager<Location> locationManager = readLocationManager(storage);
@@ -240,7 +224,7 @@ public class MainApp extends Application {
         ReadOnlyItemManager<Plane> planeManager = readPlaneManager(storage);
         ReadOnlyItemManager<Flight> flightManager = readFlightManager(storage);
 
-        return new ModelManager(addressBook, userPrefs,
+        return new ModelManager(userPrefs,
                                 pilotManager, locationManager, crewManager, planeManager, flightManager);
     }
 
@@ -324,7 +308,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Wingman ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

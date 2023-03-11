@@ -28,10 +28,7 @@ import seedu.address.model.plane.Plane;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-
-    private final FilteredList<Person> filteredPersons;
 
     // pilot manager
     private final ItemManager<Pilot> pilotManager;
@@ -61,20 +58,18 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyUserPrefs userPrefs,
+    public ModelManager(ReadOnlyUserPrefs userPrefs,
                         ReadOnlyItemManager<Pilot> pilotManager,
                         ReadOnlyItemManager<Location> locationManager,
                         ReadOnlyItemManager<Crew> crewManager,
                         ReadOnlyItemManager<Plane> planeManager,
                         ReadOnlyItemManager<Flight> flightManager) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Wingman storage(pilot, location, crew, plane, flight)" +
+                " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         this.pilotManager = new ItemManager<>(pilotManager);
         filteredPilots = new FilteredList<>(this.pilotManager.getItemList());
@@ -99,7 +94,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ItemManager<>(),
+        this(new UserPrefs(), new ItemManager<>(),
                 new ItemManager<>(), new ItemManager<>(),
                 new ItemManager<>(), new ItemManager<>());
     }
@@ -176,69 +171,6 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
 
@@ -563,10 +495,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+        return userPrefs.equals(other.userPrefs)
                 && pilotManager.equals(other.pilotManager)
-                && crewManager.equals(other.crewManager);
+                && crewManager.equals(other.crewManager)
+                && planeManager.equals(other.planeManager)
+                && flightManager.equals(other.flightManager)
+                && locationManager.equals(other.locationManager);
     }
 }
