@@ -23,8 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -35,9 +34,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        assertEquals(new AddCommand(expectedApplication), command);
     }
 
     @Test
