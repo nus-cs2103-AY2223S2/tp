@@ -4,8 +4,8 @@ import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
-import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
+import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;

@@ -15,12 +15,12 @@ import bookopedia.commons.util.CollectionUtil;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.CliSyntax;
 import bookopedia.model.Model;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.parcel.Parcel;
 
 /**
  * Edits the details of an existing person in the address book.

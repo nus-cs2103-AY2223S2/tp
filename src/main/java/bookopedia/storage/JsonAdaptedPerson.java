@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookopedia.commons.exceptions.IllegalValueException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.parcel.Parcel;
 
 /**
  * Jackson-friendly version of {@link Person}.

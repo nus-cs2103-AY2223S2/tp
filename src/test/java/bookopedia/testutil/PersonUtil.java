@@ -3,8 +3,8 @@ package bookopedia.testutil;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
-import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
+import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
 

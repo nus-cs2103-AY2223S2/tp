@@ -1,13 +1,22 @@
 package bookopedia.testutil;
 
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_SHOPEE;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import bookopedia.model.AddressBook;
 import bookopedia.model.person.Person;
-
-import static bookopedia.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -45,8 +54,8 @@ public class TypicalPersons {
     public static final Person OPTIONAL_AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone("")
             .withEmail("").withAddress(VALID_ADDRESS_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withParcels(VALID_PARCEL_LAZADA, VALID_PARCEL_SHOPEE)
-            .build();
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withParcels(VALID_PARCEL_LAZADA, VALID_PARCEL_SHOPEE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

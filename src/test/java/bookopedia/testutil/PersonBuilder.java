@@ -66,7 +66,7 @@ public class PersonBuilder {
      * Parses the {@code parcels} into a {@code Set<Parcel>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withParcels(String ... parcels) {
-        this.parcels = SampleDataUtil.getTagSet(parcels);
+        this.parcels = SampleDataUtil.getParcelSet(parcels);
         return this;
     }
 

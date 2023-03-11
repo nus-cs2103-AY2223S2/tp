@@ -4,8 +4,8 @@ import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_
 import static bookopedia.logic.commands.CommandTestUtil.DESC_AMY;
 import static bookopedia.logic.commands.CommandTestUtil.DESC_BOB;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.logic.commands.CommandTestUtil.showPersonAtIndex;

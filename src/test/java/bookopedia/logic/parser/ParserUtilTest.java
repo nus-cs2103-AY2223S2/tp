@@ -11,11 +11,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import bookopedia.model.parcel.Parcel;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -190,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Parcel> actualParcelSet = ParserUtil.parseParcels(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Parcel> expectedParcelSet = new HashSet<Parcel>(Arrays.asList(new Parcel(VALID_TAG_1), new Parcel(VALID_TAG_2)));
+        Set<Parcel> expectedParcelSet = new HashSet<Parcel>(Arrays.asList(
+                new Parcel(VALID_TAG_1), new Parcel(VALID_TAG_2)));
 
         assertEquals(expectedParcelSet, actualParcelSet);
     }

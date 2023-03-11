@@ -29,7 +29,8 @@ public class Person {
     /**
      * Every field must be present and not null except phone and email.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels, DeliveryStatus deliveryStatus) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels,
+                  DeliveryStatus deliveryStatus) {
         requireAllNonNull(name, address, parcels);
         this.name = name;
         this.phone = phone;

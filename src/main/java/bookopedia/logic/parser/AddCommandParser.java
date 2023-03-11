@@ -4,20 +4,20 @@ import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
-import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
+import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import bookopedia.logic.commands.AddCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.parcel.Parcel;
 
 
 /**

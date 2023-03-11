@@ -1,7 +1,29 @@
 package bookopedia.logic.parser;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static bookopedia.logic.commands.CommandTestUtil.*;
+import static bookopedia.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_PARCEL_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.PARCEL_DESC_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.PARCEL_DESC_SHOPEE;
+import static bookopedia.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_SHOPEE;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -9,12 +31,12 @@ import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
-import bookopedia.model.parcel.Parcel;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.EditCommand;
 import bookopedia.logic.commands.EditCommand.EditPersonDescriptor;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -74,13 +96,16 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the parcels of the {@code Person} being edited,
         // parsing it together with a valid parcel results in error
-        assertParseFailure(parser, "1" + PARCEL_DESC_SHOPEE + PARCEL_DESC_LAZADA + PARCEL_EMPTY, Parcel.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + PARCEL_DESC_SHOPEE + PARCEL_EMPTY + PARCEL_DESC_LAZADA, Parcel.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + PARCEL_EMPTY + PARCEL_DESC_SHOPEE + PARCEL_DESC_LAZADA, Parcel.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PARCEL_DESC_SHOPEE + PARCEL_DESC_LAZADA
+                + PARCEL_EMPTY, Parcel.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PARCEL_DESC_SHOPEE + PARCEL_EMPTY
+                + PARCEL_DESC_LAZADA, Parcel.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PARCEL_EMPTY + PARCEL_DESC_SHOPEE
+                + PARCEL_DESC_LAZADA, Parcel.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -151,7 +176,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + PARCEL_DESC_LAZADA;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withParcels(VALID_PARCEL_SHOPEE, VALID_PARCEL_LAZADA)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withParcels(VALID_PARCEL_SHOPEE, VALID_PARCEL_LAZADA)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
