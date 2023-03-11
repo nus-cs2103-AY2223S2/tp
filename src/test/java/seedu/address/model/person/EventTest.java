@@ -49,6 +49,11 @@ public class EventTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameEvent(editedBob));
+
+        // same name, different timing -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY)
+                .build();
+        assertFalse(ALICE.isSameEvent(editedAlice));
     }
 
     @Test
