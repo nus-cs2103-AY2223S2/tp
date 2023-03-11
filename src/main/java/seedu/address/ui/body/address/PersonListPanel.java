@@ -8,12 +8,9 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringBinding;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
@@ -31,8 +28,6 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<PersonListCellData> personListView;
-    @FXML
-    private Label count;
 
     private PersonListCellData selectedData;
 
@@ -63,8 +58,6 @@ public class PersonListPanel extends UiPart<Region> {
             panel.setPerson(extractPersonFromData(newValue));
             panel.setDisplayedIndex(extractIndexFromData(newValue));
         });
-
-        count.textProperty().bind(getCountProperty(personList));
     }
 
     /**
@@ -80,10 +73,6 @@ public class PersonListPanel extends UiPart<Region> {
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
         selectedData = null;
-    }
-
-    private StringBinding getCountProperty(ObservableList<Person> list) {
-        return Bindings.createStringBinding(() -> String.format("%d contact(s)", list.size()), list);
     }
 
     private void fillListView(Collection<? extends Person> people) {

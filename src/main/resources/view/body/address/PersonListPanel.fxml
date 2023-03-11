@@ -3,12 +3,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Separator?>
 
 <VBox styleClass="pane-with-rounded-corner"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <Label fx:id="count" styleClass="label-bright, pa" />
-  <Separator />
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS">
     <placeholder>
       <Label text="No contacts." styleClass="label-bright" />
