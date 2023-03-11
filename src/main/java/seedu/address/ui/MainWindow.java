@@ -259,10 +259,6 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-    public PatientDrugListPanel getPatientDrugListPanel() {
-        return patientDrugListPanel;
-    }
-
 //    public PatientDrugListPanel getPatientDrugListPanel() {
 //        return patientDrugListPanel;
 //    }
