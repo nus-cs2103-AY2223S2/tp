@@ -1,9 +1,6 @@
 package taa.logic.parser;
 
-import static taa.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static taa.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_PHONE;
 import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -11,7 +8,6 @@ import java.util.stream.Stream;
 
 import taa.logic.commands.AddCommand;
 import taa.logic.parser.exceptions.ParseException;
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -29,18 +25,17 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, email, tagList);
+        Student student = new Student(name, tagList);
 
         return new AddCommand(student);
     }

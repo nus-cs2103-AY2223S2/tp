@@ -9,7 +9,6 @@ import java.util.Set;
 import taa.commons.core.index.Index;
 import taa.commons.util.StringUtil;
 import taa.logic.parser.exceptions.ParseException;
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.tag.Tag;
 
@@ -46,21 +45,6 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**

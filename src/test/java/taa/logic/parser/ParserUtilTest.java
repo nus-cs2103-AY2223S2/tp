@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import taa.logic.parser.exceptions.ParseException;
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.tag.Tag;
 import taa.testutil.Assert;
@@ -77,29 +76,6 @@ public class ParserUtilTest {
         Name expectedName = new Name(VALID_NAME);
         Assertions.assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
-    }
-
-    @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        Assertions.assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        Assertions.assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-    }
-
     @Test
     public void parseTag_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));

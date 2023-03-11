@@ -51,7 +51,7 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         attendance.setText("Attendance: xx/xx");
         assignment.setText("Latest assignment submission: xxx");
-        email.setText(student.getEmail().value);
+        email.setText("placeholder email");
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

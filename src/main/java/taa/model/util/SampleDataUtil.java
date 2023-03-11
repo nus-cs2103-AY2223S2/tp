@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import taa.model.AddressBook;
 import taa.model.ReadOnlyAddressBook;
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -17,17 +16,17 @@ import taa.model.tag.Tag;
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
+            new Student(new Name("Alex Yeoh"),
                 getTagSet("friends")),
-            new Student(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
+            new Student(new Name("Bernice Yu"),
                 getTagSet("colleagues", "friends")),
-            new Student(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"),
+            new Student(new Name("Charlotte Oliveiro"),
                 getTagSet("neighbours")),
-            new Student(new Name("David Li"), new Email("lidavid@example.com"),
+            new Student(new Name("David Li"),
                 getTagSet("family")),
-            new Student(new Name("Irfan Ibrahim"), new Email("irfan@example.com"),
+            new Student(new Name("Irfan Ibrahim"),
                 getTagSet("classmates")),
-            new Student(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
+            new Student(new Name("Roy Balakrishnan"),
                 getTagSet("colleagues"))
         };
     }

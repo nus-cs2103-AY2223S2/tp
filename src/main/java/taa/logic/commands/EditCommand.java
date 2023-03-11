@@ -1,10 +1,7 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static taa.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static taa.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_PHONE;
 import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -18,7 +15,6 @@ import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -35,13 +31,8 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -91,10 +82,9 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedEmail, updatedTags);
+        return new Student(updatedName, updatedTags);
     }
 
     @Override
@@ -121,7 +111,6 @@ public class EditCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private Name name;
-        private Email email;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -132,7 +121,6 @@ public class EditCommand extends Command {
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
-            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -140,7 +128,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, tags);
+            return CollectionUtil.isAnyNonNull(name, tags);
         }
 
         public void setName(Name name) {
@@ -149,14 +137,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         /**
@@ -192,7 +172,6 @@ public class EditCommand extends Command {
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }
     }

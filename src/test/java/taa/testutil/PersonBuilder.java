@@ -3,7 +3,6 @@ package taa.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import taa.model.student.Email;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -15,12 +14,8 @@ import taa.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Email email;
     private Set<Tag> tags;
 
     /**
@@ -28,7 +23,6 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
     }
 
@@ -37,7 +31,6 @@ public class PersonBuilder {
      */
     public PersonBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
-        email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -57,23 +50,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code Student} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Student} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Student build() {
-        return new Student(name, email, tags);
+        return new Student(name, tags);
     }
 
 }

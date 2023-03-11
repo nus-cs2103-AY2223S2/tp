@@ -18,7 +18,6 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final Email email;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -26,19 +25,14 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Email email, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, email, tags);
+    public Student(Name name, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, tags);
         this.name = name;
-        this.email = email;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     /**
@@ -78,14 +72,13 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, tags);
+        return Objects.hash(name, tags);
     }
 
     @Override
@@ -93,8 +86,7 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append("; Email: ")
-                .append(getEmail());
+                .append("; Email: ");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
