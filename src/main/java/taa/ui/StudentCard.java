@@ -33,7 +33,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label attendance;
     @FXML
     private Label assignment;
     @FXML
@@ -49,7 +49,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("placeholder phone num");
+        attendance.setText("Attendance: xx/xx");
         assignment.setText("Latest assignment submission: xxx");
         email.setText(student.getEmail().value);
         student.getTags().stream()
