@@ -381,11 +381,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
   
-* 3b. The person's contact details are hidden 
+* 3b.  User requests to view multiple people in the list
 
-    * 3a1. ModCheck shows an error message.
+    * 3b1. ModCheck validates indexes given is correct.
+    * 3b2. ModCheck displays all person's contact details
 
       Use case ends.
+  
+      * 3b1a. ModCheck validates indexes given is incorrect
+      * 3b1b. ModChecks shows an error message.
 
 
 #### Use case: Edit a contact
@@ -484,27 +488,20 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Contact details not hidden
+    1. Prerequisites: List all persons using the `view` command. Multiple persons in the list. Contact details not hidden
 
-       1. Test case: `view John Doe`<br>
-          Expected: John Doe's contact is viewed from the list. Details of the contact is displayed in ModCheck.
+       1. Test case: `view 1`<br>
+          Expected: The contact details of the first person in the list is displayed in ModCheck.
+       
+       2. Test case: `view 1 3 4 `<br>
+          Expected: The contact details of the first, third and fourth person in the list is displayed in ModCheck.
 
-       2. Test case: `view 0`<br>
+       3. Test case: `view 0`<br>
           Expected: No person's contact details is displayed. Error details shown in the status message. Status bar remains the same.
 
-       3. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+       4. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
           Expected: Similar to previous.
-    
-    2. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Contact details are hidden
 
-        1. Test case: `view John Doe`<br>
-           Expected: Details of the contact not displayed in ModCheck. Error details shown in the status message. Status bar remains the same.
-
-        2. Test case: `view 0`<br>
-           Expected: No person's contact details is displayed. Error details shown in the status message. Status bar remains the same.
-
-        3. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
-           Expected: Similar to previous.
 
 
 1. _{ more test cases …​ }_
