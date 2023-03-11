@@ -93,7 +93,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getId().equals(getId())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -101,14 +102,21 @@ public class Person {
     }
 
     /**
-     * Returns true if there exists a person with a similar identify field.
+     * Returns true if there is a clash in any of the 3 identity fields:
+     * email, phone, id. Name is excluded since several people can share the same names.
      * This warns the HR personnel of a possible human error in tagging of data.
      */
-    public boolean isWarning(Person otherPerson) {
+    public boolean clashes(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
-        return otherPerson.getPhone().equals(getPhone())
+
+        if (!(otherPerson instanceof Person)) {
+            return false;
+        }
+
+        return otherPerson.getId().equals(getId())
+                || otherPerson.getPhone().equals(getPhone())
                 || otherPerson.getEmail().equals(getEmail());
     }
 
