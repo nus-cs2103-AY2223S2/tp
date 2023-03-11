@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
@@ -42,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
+            + "[" + PREFIX_MODULE + "MODULE]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -51,8 +53,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
+    public static final Remark DEFAULT_REMARK = new Remark("");
+
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
+
 
     /**
      * @param index of the student in the filtered student list to edit
@@ -98,13 +103,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
-
-        Remark updatedRemark = studentToEdit.getRemark();
         Set<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Remark remark = studentToEdit.getRemark();
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedModules,
-                updatedRemark, updatedTags);
+                remark, updatedTags);
     }
 
     @Override
@@ -156,7 +160,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, studentId, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, studentId, modules, tags);
         }
 
         public void setName(Name name) {
@@ -244,6 +248,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getStudentId().equals(e.getStudentId())
+                    && getModules().equals(e.getModules())
                     && getTags().equals(e.getTags());
         }
     }
