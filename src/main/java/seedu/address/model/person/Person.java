@@ -23,17 +23,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -52,12 +54,32 @@ public class Person {
         return address;
     }
 
+     /**
+     * Adds a tag to the person
+     */
+    public void addTag(Tag toAdd) {
+        tags.add(toAdd);
+    }
+
+    /**
+     * Deletes a tag from the person.
+     * 
+     * @param toDelete the tag to deleted from the person.
+     */
+    public void deleteTag(Tag toDelete) {
+        tags.remove(toDelete);
+    }
+    
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -98,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address);
     }
 
     @Override
@@ -117,6 +139,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Remark: ")
+                .append(getRemark());
+
         return builder.toString();
     }
 
