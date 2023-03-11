@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
@@ -78,6 +79,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Add the isolated event into the person's isolated event list.
+     * @param person in which the event is being added to.
+     * @param event that is going to be added to the person.
+     */
+    public void addIsolatedEvent(Person person, IsolatedEvent event) {
+        person.addIsolatedEvent(event);
     }
 
     /**

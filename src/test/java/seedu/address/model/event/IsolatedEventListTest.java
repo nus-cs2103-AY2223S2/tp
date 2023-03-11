@@ -1,7 +1,13 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,15 +15,9 @@ class IsolatedEventListTest {
 
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
 
-    private class IsolatedEventStub extends IsolatedEvent {
-
-        public IsolatedEventStub(String eventName) {
-            super(eventName);
-        }
-
-        @Override
-        public String toString() {
-            return this.getEventName();
+    private static class IsolatedEventStub extends IsolatedEvent {
+        public IsolatedEventStub(String eventName, LocalDateTime startDate, LocalDateTime endDate) {
+            super(eventName, startDate, endDate);
         }
 
         @Override
@@ -32,10 +32,31 @@ class IsolatedEventListTest {
 
     @Test
     void testToString() {
-        isolatedEventList.insert(new IsolatedEventStub("Biking"));
-        isolatedEventList.insert(new IsolatedEventStub("Skiing"));
-        isolatedEventList.insert(new IsolatedEventStub("Canoeing"));
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
 
-        assertEquals("Biking\n" + "Canoeing\n" + "Skiing\n", isolatedEventList.toString());
+        assertEquals("Biking from: 09/03/2023 14:00 to: 09/03/2023 15:00\n"
+                + "Canoeing from: 09/03/2023 14:00 to: 09/03/2023 15:00\n"
+                + "Skiing from: 09/03/2023 14:00 to: 09/03/2023 15:00\n", isolatedEventList.toString());
+    }
+
+    @Test
+    void contain() {
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+
+        assertTrue(isolatedEventList.contain(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID)));
+
+        assertFalse(isolatedEventList.contain(new IsolatedEventStub("sleep", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID)));
     }
 }

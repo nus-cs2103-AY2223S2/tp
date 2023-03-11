@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
@@ -110,5 +111,11 @@ public interface Model {
     boolean hasGroup(Group group);
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Add IsolatedEvent object to the person's isolated event list.
+     * @param person
+     * @param eventToAdd
+     */
+    void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
 
 }
