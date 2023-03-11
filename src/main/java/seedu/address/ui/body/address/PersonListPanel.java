@@ -93,10 +93,14 @@ public class PersonListPanel extends UiPart<Region> {
         ObservableList<PersonListCellData> items = personListView.getItems();
 
         items.clear();
-        items.add(PersonListCellData.ofDivider(String.format("Favourites (%d)", favoriteData.size())));
-        items.addAll(favoriteData);
-        items.add(PersonListCellData.ofDivider(String.format("All contacts (%d)", allData.size())));
-        items.addAll(allData);
+        if (!favoriteData.isEmpty()) {
+            items.add(PersonListCellData.ofDivider(String.format("Favourites (%d)", favoriteData.size())));
+            items.addAll(favoriteData);
+        }
+        if (!allData.isEmpty()) {
+            items.add(PersonListCellData.ofDivider(String.format("All contacts (%d)", allData.size())));
+            items.addAll(allData);
+        }
     }
 
     private List<PersonListCellData> assignIndices(Collection<? extends Person> people) {
