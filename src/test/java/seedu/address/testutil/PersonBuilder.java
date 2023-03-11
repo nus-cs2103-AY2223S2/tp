@@ -5,8 +5,6 @@ import java.util.Set;
 
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.Email;
-import seedu.address.model.card.Phone;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -17,13 +15,9 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Question question;
-    private Phone phone;
-    private Email email;
     private Answer answer;
     private Set<Tag> tags;
 
@@ -32,8 +26,6 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         question = new Question(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         answer = new Answer(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -43,8 +35,6 @@ public class PersonBuilder {
      */
     public PersonBuilder(Card cardToCopy) {
         question = cardToCopy.getQuestion();
-        phone = cardToCopy.getPhone();
-        email = cardToCopy.getEmail();
         answer = cardToCopy.getAddress();
         tags = new HashSet<>(cardToCopy.getTags());
     }
@@ -73,24 +63,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code Card} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Card} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Card build() {
-        return new Card(question, phone, email, answer, tags);
+        return new Card(question, answer, tags);
     }
 
 }
