@@ -94,10 +94,10 @@ Format: `list`
 
 View a person's contact details.
 
-Format: `view <name>`
+Format: `view <index>`
 
 Examples: 
-* `view John Doe` returns `John Doe`
+* `view 1` returns the contact details of the first person in the list
 
 ![viewContactDetails](images/view/viewContactDetails.png)
 
@@ -212,6 +212,7 @@ Examples:
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**View** | `view INDEX`<br> e.g., `view 2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
