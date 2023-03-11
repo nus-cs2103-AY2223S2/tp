@@ -15,7 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMasterDeck;
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Deck");
-            initialData = new MasterMasterDeck();
+            initialData = new MasterDeck();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Deck");
-            initialData = new MasterMasterDeck();
+            initialData = new MasterDeck();
         }
 
         return new ModelManager(initialData, userPrefs);

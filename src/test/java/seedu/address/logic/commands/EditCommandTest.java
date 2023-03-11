@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -41,7 +41,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCard);
 
-        Model expectedModel = new ModelManager(new MasterMasterDeck(model.getDeck()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MasterDeck(model.getDeck()), new UserPrefs());
         expectedModel.setCard(model.getFilteredCardList().get(0), editedCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -62,7 +62,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCard);
 
-        Model expectedModel = new ModelManager(new MasterMasterDeck(model.getDeck()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MasterDeck(model.getDeck()), new UserPrefs());
         expectedModel.setCard(lastCard, editedCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -75,7 +75,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCard);
 
-        Model expectedModel = new ModelManager(new MasterMasterDeck(model.getDeck()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MasterDeck(model.getDeck()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -91,7 +91,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCard);
 
-        Model expectedModel = new ModelManager(new MasterMasterDeck(model.getDeck()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MasterDeck(model.getDeck()), new UserPrefs());
         expectedModel.setCard(model.getFilteredCardList().get(0), editedCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

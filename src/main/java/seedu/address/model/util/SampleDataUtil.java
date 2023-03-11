@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
@@ -39,7 +39,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyMasterDeck getSampleAddressBook() {
-        MasterMasterDeck sampleAb = new MasterMasterDeck();
+        MasterDeck sampleAb = new MasterDeck();
         for (Card sampleCard : getSamplePersons()) {
             sampleAb.addCard(sampleCard);
         }

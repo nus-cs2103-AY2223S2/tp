@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.UserPrefs;
 
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        MasterMasterDeck original = getTypicalAddressBook();
+        MasterDeck original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyMasterDeck retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new MasterMasterDeck(retrieved));
+        assertEquals(original, new MasterDeck(retrieved));
     }
 
     @Test

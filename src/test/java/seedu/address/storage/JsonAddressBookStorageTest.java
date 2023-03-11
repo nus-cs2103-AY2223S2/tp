@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.ReadOnlyMasterDeck;
 
 public class JsonAddressBookStorageTest {
@@ -65,26 +65,26 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        MasterMasterDeck original = getTypicalAddressBook();
+        MasterDeck original = getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         ReadOnlyMasterDeck readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new MasterMasterDeck(readBack));
+        assertEquals(original, new MasterDeck(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addCard(HOON);
         original.removeCard(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new MasterMasterDeck(readBack));
+        assertEquals(original, new MasterDeck(readBack));
 
         // Save and read without specifying file path
         original.addCard(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new MasterMasterDeck(readBack));
+        assertEquals(original, new MasterDeck(readBack));
 
     }
 
@@ -107,6 +107,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new MasterMasterDeck(), null));
+        assertThrows(NullPointerException.class, () -> saveAddressBook(new MasterDeck(), null));
     }
 }

@@ -20,7 +20,7 @@ import seedu.address.model.card.Card;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private MasterMasterDeck masterDeck;
+    private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
     private FilteredList<Card> filteredDecks;
 
@@ -32,13 +32,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
 
-        this.masterDeck = new MasterMasterDeck(deck);
+        this.masterDeck = new MasterDeck(deck);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredDecks = new FilteredList<>(this.masterDeck.getCardList());
     }
 
     public ModelManager() {
-        this(new MasterMasterDeck(), new UserPrefs());
+        this(new MasterDeck(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -157,8 +157,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void createDeck(MasterMasterDeck masterDeck) { // Todo: deck should have a name - how to store in storage?
-        MasterMasterDeck newMasterDeck = new MasterMasterDeck();
+    public void createDeck(MasterDeck masterDeck) { // Todo: deck should have a name - how to store in storage?
+        MasterDeck newMasterDeck = new MasterDeck();
         // this.deck.add(newDeck);
     }
 

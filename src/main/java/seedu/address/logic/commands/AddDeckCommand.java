@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 
 /**
  * Adds a card to the address book.
@@ -23,12 +23,12 @@ public class AddDeckCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New deck created: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This deck already exists in the deck list";
 
-    private final MasterMasterDeck toCreate;
+    private final MasterDeck toCreate;
 
     /**
      * Creates an AddCommand to add the specified {@code Card}
      */
-    public AddDeckCommand(MasterMasterDeck masterDeck) {
+    public AddDeckCommand(MasterDeck masterDeck) {
         requireNonNull(masterDeck);
         toCreate = masterDeck;
     }

@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.ReadOnlyMasterDeck;
 
 /**
- * Represents a storage for {@link MasterMasterDeck}.
+ * Represents a storage for {@link MasterDeck}.
  */
 public interface AddressBookStorage {
 
