@@ -29,4 +29,16 @@ public class Doctor extends Person {
     public Yoe getYoe() {
         return yoe;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(super.toString())
+                .append("; Specialty: ")
+                .append(getSpecialty())
+                .append("; Years Of Experience: ")
+                .append(getYoe());
+
+        return builder.toString();
+    }
 }
