@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.deliveryJobSystem = null;
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = null;
     }
 
@@ -69,8 +69,7 @@ public class ModelManager implements Model {
         // this(new AddressBook(), new DeliveryJobSystem(), new UserPrefs());
     }
 
-    // =========== UserPrefs
-    // ==================================================================================
+    // UserPrefs ===================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -105,8 +104,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    // =========== AddressBook
-    // ================================================================================
+    // AddressBook ===============================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -142,8 +140,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // =========== Filtered Person List Accessors
-    // =============================================================
+    // =========== Filtered Person List Accessors ==================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -161,8 +158,43 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    // =========== Filtered Delivery Job List Accessors
-    // =============================================================
+    // DeliveryJob System =====================================================
+
+    @Override
+    public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
+        this.deliveryJobSystem.resetData(jobSystem);
+    }
+
+    @Override
+    public ReadOnlyDeliveryJobSystem getDeliveryJobSystem() {
+        return deliveryJobSystem;
+    }
+
+    @Override
+    public boolean hasDeliveryJob(DeliveryJob job) {
+        requireNonNull(job);
+        return deliveryJobSystem.hasDeliveryJob(job);
+    }
+
+    @Override
+    public void deleteDeliveryJob(DeliveryJob target) {
+        deliveryJobSystem.removeDeliveryJob(target);
+    }
+
+    @Override
+    public void addDeliveryJob(DeliveryJob job) {
+        deliveryJobSystem.addDeliveryJob(job);
+        updateFilteredDeliveryJobList(PREDICATE_SHOW_ALL_DELIVERY_JOBS);
+    }
+
+    @Override
+    public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
+        requireAllNonNull(target, editedJob);
+
+        deliveryJobSystem.setDeliveryJob(target, editedJob);
+    }
+
+    // =========== Filtered Delivery Job List Accessors ============
 
     @Override
     public ObservableList<DeliveryJob> getDeliveryJobList() {

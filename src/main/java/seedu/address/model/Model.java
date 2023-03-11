@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_ALL_DELIVERY_JOBS = unused -> true;
+    Predicate<DeliveryJob> PREDICATE_SHOW_ALL_DELIVERY_JOBS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -86,6 +86,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem);
+
+    ReadOnlyDeliveryJobSystem getDeliveryJobSystem();
+
+    boolean hasDeliveryJob(DeliveryJob job);
+
+    void deleteDeliveryJob(DeliveryJob target);
+
+    void addDeliveryJob(DeliveryJob job);
+
+    void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob);
 
     ObservableList<DeliveryJob> getDeliveryJobList();
 

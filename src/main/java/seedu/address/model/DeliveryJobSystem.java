@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.UniqueDeliveryList;
@@ -27,7 +29,33 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
      */
     public DeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem) {
         this();
-        //TODO: resetData(deliveryJobSystem)
+        resetData(deliveryJobSystem);
+    }
+
+    /**
+     * resetData
+     *
+     * @param newData
+     */
+    public void resetData(ReadOnlyDeliveryJobSystem newData) {
+        requireNonNull(newData);
+        setDeliveryJob(newData.getDeliveryJobList());
+    }
+
+    private void setDeliveryJob(ObservableList<DeliveryJob> deliveryJobList) {
+        this.jobs.setDeliveryJob(deliveryJobList);
+    }
+
+    /**
+     * setDeliveryJob
+     *
+     * @param target
+     * @param editedJob
+     */
+    public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
+        requireNonNull(editedJob);
+
+        jobs.setDeliveryJob(target, editedJob);
     }
 
     /**
@@ -44,5 +72,22 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
      */
     public void addDeliveryJob(DeliveryJob job) {
         jobs.add(job);
+    }
+
+    /**
+     * removeDeliveryJob
+     *
+     * @param key
+     */
+    public void removeDeliveryJob(DeliveryJob key) {
+        jobs.remove(key);
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasDeliveryJob(DeliveryJob job) {
+        requireNonNull(job);
+        return jobs.contains(job);
     }
 }

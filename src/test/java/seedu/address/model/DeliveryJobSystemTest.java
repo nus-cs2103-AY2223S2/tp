@@ -20,16 +20,36 @@ public class DeliveryJobSystemTest {
     @Test
     void testAddDeliveryJob() {
         DeliveryJob job = TypicalDeliveryJobs.JOBA;
-        assertEquals(ds.getDeliveryJobList().size(), 0);
+        assertEquals(0, ds.getDeliveryJobList().size());
         ds.addDeliveryJob(job);
-        assertEquals(ds.getDeliveryJobList().size(), 1);
+        assertEquals(1, ds.getDeliveryJobList().size());
     }
 
     @Test
     void testGetDeliveryJobList() {
         DeliveryJob job = TypicalDeliveryJobs.JOBA;
         ds.addDeliveryJob(job);
-        assertEquals(ds.getDeliveryJobList().size(), 1);
+        assertEquals(1, ds.getDeliveryJobList().size());
         assertEquals(ds.getDeliveryJobList().get(0).toString(), job.toString());
+    }
+
+    @Test
+    void testRemoveDeliveryJob() {
+        DeliveryJob job = TypicalDeliveryJobs.JOBA;
+        ds.addDeliveryJob(job);
+        assertEquals(1, ds.getDeliveryJobList().size());
+        ds.removeDeliveryJob(job);
+        assertEquals(0, ds.getDeliveryJobList().size());
+    }
+
+    @Test
+    void testResetData() {
+        DeliveryJobSystem djs = new DeliveryJobSystem();
+        djs.addDeliveryJob(TypicalDeliveryJobs.JOBA);
+        djs.addDeliveryJob(TypicalDeliveryJobs.JOBB);
+        assertEquals(2, djs.getDeliveryJobList().size());
+        assertEquals(0, ds.getDeliveryJobList().size());
+        ds.resetData(djs);
+        assertEquals(2, ds.getDeliveryJobList().size());
     }
 }
