@@ -24,6 +24,10 @@ import seedu.address.ui.UiPart;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "body/address/PersonListPanel.fxml";
+    private static final int EMPTY_INDEX = -1;
+    private static final String DIVIDER_FAVORITE = "Favourites (%d)";
+    private static final String DIVIDER_ALL = "All contacts (%d)";
+
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
@@ -83,11 +87,11 @@ public class PersonListPanel extends UiPart<Region> {
 
         items.clear();
         if (!favoriteData.isEmpty()) {
-            items.add(PersonListCellData.ofDivider(String.format("Favourites (%d)", favoriteData.size())));
+            items.add(PersonListCellData.ofDivider(String.format(DIVIDER_FAVORITE, favoriteData.size())));
             items.addAll(favoriteData);
         }
         if (!allData.isEmpty()) {
-            items.add(PersonListCellData.ofDivider(String.format("All contacts (%d)", allData.size())));
+            items.add(PersonListCellData.ofDivider(String.format(DIVIDER_ALL, allData.size())));
             items.addAll(allData);
         }
     }
@@ -120,7 +124,7 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     private int extractIndexFromData(PersonListCellData data) {
-        return data == null ? -1 : data.getIndex();
+        return data == null ? EMPTY_INDEX : data.getIndex();
     }
 
     /**
@@ -169,7 +173,7 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
         public static PersonListCellData ofDivider(String title) {
-            return new PersonListCellData(-1, title, null);
+            return new PersonListCellData(EMPTY_INDEX, title, null);
         }
 
         public int getIndex() {

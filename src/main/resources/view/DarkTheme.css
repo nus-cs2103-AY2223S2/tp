@@ -175,10 +175,10 @@
 .list-cell:filled:odd {
     -fx-background-color: #333333;
 }
-
+/*
 .list-cell:filled:selected {
     -fx-background-color: #424d5f;
-}
+} */
 
 .list-cell .label {
     -fx-text-fill: white;
