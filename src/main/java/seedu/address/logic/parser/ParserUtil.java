@@ -12,6 +12,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -287,5 +288,21 @@ public class ParserUtil {
         }
         //Please edit this
         return new Homework(homework, LocalDate.now(), 20, 100, 0, true);
+    }
+
+    /**
+     * Parses comment to Comment
+     * @param comment
+     * @return A Comment
+     * @throws ParseException
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
+        }
+        //Please edit this
+        return new Comment(trimmedComment);
     }
 }

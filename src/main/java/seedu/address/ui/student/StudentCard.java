@@ -60,6 +60,8 @@ public class StudentCard extends UiPart<Region> {
     private Circle circle;
     @FXML
     private Label className;
+    @FXML
+    private Label comment;
 
 
     /**
@@ -79,6 +81,7 @@ public class StudentCard extends UiPart<Region> {
         age.setText(student.getAge().value);
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
+        comment.setText(student.getComment().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
