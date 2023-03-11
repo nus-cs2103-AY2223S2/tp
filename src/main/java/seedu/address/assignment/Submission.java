@@ -4,9 +4,9 @@ package seedu.address.assignment;
  * An assignment submission
  */
 public class Submission {
-    boolean isGraded = false;
-    int marks = 0;
-    int studentId;
+    private boolean isGraded = false;
+    private int marks = 0;
+    private int studentId;
 
     /**
      * @param studentId
@@ -15,6 +15,9 @@ public class Submission {
         this.studentId = studentId;
     }
 
+    /**
+     * @param marks 
+     */
     public void grade(int marks) {
         isGraded = true;
         this.marks = marks;
