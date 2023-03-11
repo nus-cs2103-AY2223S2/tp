@@ -131,7 +131,7 @@ Creates a new event
 
 **Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…​`
 
-- Times must have the format `dd-MM-uuuu HH:mm`.
+- Times must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
