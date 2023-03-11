@@ -9,41 +9,41 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.job.Person;
+import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
+import seedu.address.model.job.Role;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Role.
  */
-public class PersonUtil {
+public class RoleUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code role}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Role role) {
+        return AddCommand.COMMAND_WORD + " " + getRoleDetails(role);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code role}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getRoleDetails(Role role) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_ROLE + person.getName().fullName + " ");
-        sb.append(PREFIX_CONTACT + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_ROLE + role.getName().fullName + " ");
+        sb.append(PREFIX_CONTACT + role.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + role.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + role.getAddress().value + " ");
+        role.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditRoleDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditRoleDescriptorDetails(EditRoleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_ROLE).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_CONTACT).append(phone.value).append(" "));

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalRoles.ALICE;
+import static seedu.address.testutil.TypicalRoles.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,156 +15,156 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.job.exceptions.DuplicatePersonException;
-import seedu.address.model.job.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.job.exceptions.DuplicateRoleException;
+import seedu.address.model.job.exceptions.RoleNotFoundException;
+import seedu.address.testutil.RoleBuilder;
 
-public class UniquePersonListTest {
+public class UniqueRoleListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueRoleList uniqueRoleList = new UniqueRoleList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_roleNotInList_returnsFalse() {
+        assertFalse(uniqueRoleList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_roleInList_returnsTrue() {
+        uniqueRoleList.add(ALICE);
+        assertTrue(uniqueRoleList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void contains_roleWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueRoleList.add(ALICE);
+        Role editedAlice = new RoleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueRoleList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateRole_throwsDuplicateRoleException() {
+        uniqueRoleList.add(ALICE);
+        assertThrows(DuplicateRoleException.class, () -> uniqueRoleList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setRole_nullTargetRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.setRole(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setRole_nullEditedRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.setRole(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setRole_targetRoleNotInList_throwsRoleNotFoundException() {
+        assertThrows(RoleNotFoundException.class, () -> uniqueRoleList.setRole(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonisSameRole_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRole_editedRoleisSameRole_success() {
+        uniqueRoleList.add(ALICE);
+        uniqueRoleList.setRole(ALICE, ALICE);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        expectedUniqueRoleList.add(ALICE);
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setRole_editedRoleHasSameIdentity_success() {
+        uniqueRoleList.add(ALICE);
+        Role editedAlice = new RoleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueRoleList.setRole(ALICE, editedAlice);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        expectedUniqueRoleList.add(editedAlice);
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRole_editedRoleHasDifferentIdentity_success() {
+        uniqueRoleList.add(ALICE);
+        uniqueRoleList.setRole(ALICE, BOB);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        expectedUniqueRoleList.add(BOB);
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setRole_editedRoleHasNonUniqueIdentity_throwsDuplicateRoleException() {
+        uniqueRoleList.add(ALICE);
+        uniqueRoleList.add(BOB);
+        assertThrows(DuplicateRoleException.class, () -> uniqueRoleList.setRole(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullRole_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_roleDoesNotExist_throwsRoleNotFoundException() {
+        assertThrows(RoleNotFoundException.class, () -> uniqueRoleList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingRole_removesRole() {
+        uniqueRoleList.add(ALICE);
+        uniqueRoleList.remove(ALICE);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setRoles_nullUniqueRoleList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.setRoles((UniqueRoleList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRoles_uniqueRoleList_replacesOwnListWithProvidedUniqueRoleList() {
+        uniqueRoleList.add(ALICE);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        expectedUniqueRoleList.add(BOB);
+        uniqueRoleList.setRoles(expectedUniqueRoleList);
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+    public void setRoles_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRoleList.setRoles((List<Role>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRoles_list_replacesOwnListWithProvidedList() {
+        uniqueRoleList.add(ALICE);
+        List<Role> roleList = Collections.singletonList(BOB);
+        uniqueRoleList.setRoles(roleList);
+        UniqueRoleList expectedUniqueRoleList = new UniqueRoleList();
+        expectedUniqueRoleList.add(BOB);
+        assertEquals(expectedUniqueRoleList, uniqueRoleList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    public void setRoles_listWithDuplicateRoles_throwsDuplicateRoleException() {
+        List<Role> listWithDuplicateRoles = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicateRoleException.class, () -> uniqueRoleList.setRoles(listWithDuplicateRoles));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueRoleList.asUnmodifiableObservableList().remove(0));
     }
 }

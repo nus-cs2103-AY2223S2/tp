@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Role}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedRole {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Role's %s field is missing!";
 
@@ -28,10 +28,10 @@ class JsonAdaptedPerson {
     private final String salary;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedRole} with the given role details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary) {
         this.name = name;
@@ -45,9 +45,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Role} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Role source) {
+    public JsonAdaptedRole(Role source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -59,14 +59,14 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted role object into the model's {@code Role} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted role.
      */
     public Role toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> roleTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            roleTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -109,7 +109,7 @@ class JsonAdaptedPerson {
         }
         final Salary modelSalary = new Salary(salary);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(roleTags);
         return new Role(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary);
     }
 

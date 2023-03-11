@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.job.Salary;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing role in the address book.
  */
 public class EditCommand extends Command {
 
@@ -44,59 +44,59 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com"
             + PREFIX_SALARY + "4000 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditRoleDescriptor editRoleDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the role in the filtered role list to edit
+     * @param editRoleDescriptor details to edit the role with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditRoleDescriptor editRoleDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editRoleDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editRoleDescriptor = new EditRoleDescriptor(editRoleDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Role> lastShownList = model.getFilteredPersonList();
+        List<Role> lastShownList = model.getFilteredRoleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Role personToEdit = lastShownList.get(index.getZeroBased());
-        Role editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Role roleToEdit = lastShownList.get(index.getZeroBased());
+        Role editedRole = createEditedRole(roleToEdit, editRoleDescriptor);
 
-        if (!personToEdit.isSameRole(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!roleToEdit.isSameRole(editedRole) && model.hasRole(editedRole)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setRole(roleToEdit, editedRole);
+        model.updateFilteredRoleList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedRole));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Role} with the details of {@code roleToEdit}
+     * edited with {@code editRoleDescriptor}.
      */
-    private static Role createEditedPerson(Role personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Role createEditedRole(Role roleToEdit, EditRoleDescriptor editRoleDescriptor) {
+        assert roleToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
+        Name updatedName = editRoleDescriptor.getName().orElse(roleToEdit.getName());
+        Phone updatedPhone = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
+        Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
+        Address updatedAddress = editRoleDescriptor.getAddress().orElse(roleToEdit.getAddress());
+        Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
+        Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSalary);
     }
 
@@ -115,14 +115,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editRoleDescriptor.equals(e.editRoleDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the role with. Each non-empty field value will replace the
+     * corresponding field value of the role.
      */
-    public static class EditPersonDescriptor {
+    public static class EditRoleDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -130,13 +130,13 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Salary salary;
 
-        public EditPersonDescriptor() {}
+        public EditRoleDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditRoleDescriptor(EditRoleDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -217,12 +217,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditRoleDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditRoleDescriptor e = (EditRoleDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Role> filteredPersons;
+    private final FilteredList<Role> filteredRoles;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRoles = new FilteredList<>(this.addressBook.getRoleList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Role person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasRole(Role role) {
+        requireNonNull(role);
+        return addressBook.hasRole(role);
     }
 
     @Override
-    public void deletePerson(Role target) {
-        addressBook.removePerson(target);
+    public void deleteRole(Role target) {
+        addressBook.removeRole(target);
     }
 
     @Override
-    public void addPerson(Role person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addRole(Role role) {
+        addressBook.addRole(role);
+        updateFilteredRoleList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Role target, Role editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setRole(Role target, Role editedRole) {
+        requireAllNonNull(target, editedRole);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setRole(target, editedRole);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Role List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Role} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Role> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Role> getFilteredRoleList() {
+        return filteredRoles;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Role> predicate) {
+    public void updateFilteredRoleList(Predicate<Role> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredRoles.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredRoles.equals(other.filteredRoles);
     }
 
 }

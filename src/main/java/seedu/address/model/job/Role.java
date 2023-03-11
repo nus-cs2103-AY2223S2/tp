@@ -69,13 +69,13 @@ public class Role {
      * Returns true if both roles have the same name.
      * This defines a weaker notion of equality between two roles.
      */
-    public boolean isSameRole(Role otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameRole(Role otherRole) {
+        if (otherRole == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherRole != null
+                && otherRole.getName().equals(getName());
     }
 
     /**
@@ -92,13 +92,13 @@ public class Role {
             return false;
         }
 
-        Role otherPerson = (Role) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getSalary().equals(getSalary());
+        Role otherRole = (Role) other;
+        return otherRole.getName().equals(getName())
+                && otherRole.getPhone().equals(getPhone())
+                && otherRole.getEmail().equals(getEmail())
+                && otherRole.getAddress().equals(getAddress())
+                && otherRole.getTags().equals(getTags())
+                && otherRole.getSalary().equals(getSalary());
     }
 
     @Override

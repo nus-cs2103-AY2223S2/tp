@@ -9,9 +9,9 @@ import seedu.address.model.job.Role;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the roles list.
+     * This list will not contain any duplicate roles.
      */
-    ObservableList<Role> getPersonList();
+    ObservableList<Role> getRoleList();
 
 }

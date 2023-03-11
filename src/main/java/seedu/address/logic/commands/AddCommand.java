@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.job.Role;
 
 /**
- * Adds a person to the address book.
+ * Adds a role to the address book.
  */
 public class AddCommand extends Command {
 
@@ -21,13 +21,14 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_SALARY + "SALARY"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "Software engineer "
+            + PREFIX_ROLE + "Google "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_SALARY + "4000 ";
+            + PREFIX_TAG + "Tech "
+            + PREFIX_SALARY + "4000";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";
@@ -46,11 +47,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasRole(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addRole(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

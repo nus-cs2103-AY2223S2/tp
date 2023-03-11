@@ -25,13 +25,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SALARY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_SALARY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SALARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ROLE).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_ROLE).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

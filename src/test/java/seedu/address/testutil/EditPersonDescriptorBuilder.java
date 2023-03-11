@@ -4,84 +4,85 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
-import seedu.address.model.job.Person;
+import seedu.address.model.job.Role;
 import seedu.address.model.job.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditRoleDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditRoleDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditRoleDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+    public EditRoleDescriptorBuilder() {
+        descriptor = new EditRoleDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
-    }
-
-    /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
-     */
-    public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+    public EditRoleDescriptorBuilder(EditRoleDescriptor descriptor) {
+        this.descriptor = new EditRoleDescriptor(descriptor);
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Returns an {@code EditRoleDescriptor} with fields containing {@code role}'s details
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditRoleDescriptorBuilder(Role role) {
+        descriptor = new EditRoleDescriptor();
+        descriptor.setName(role.getName());
+        descriptor.setPhone(role.getPhone());
+        descriptor.setEmail(role.getEmail());
+        descriptor.setAddress(role.getAddress());
+        descriptor.setTags(role.getTags());
+        descriptor.setSalary(role.getSalary());
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code EditRoleDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditRoleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditRoleDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditRoleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditRoleDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditRoleDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditRoleDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditRoleDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditRoleDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditRoleDescriptor build() {
         return descriptor;
     }
 }

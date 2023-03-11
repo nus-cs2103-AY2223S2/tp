@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a role with the same identity as {@code role} exists in the address book.
      */
-    boolean hasPerson(Role person);
+    boolean hasRole(Role role);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given role.
+     * The role must exist in the address book.
      */
-    void deletePerson(Role target);
+    void deleteRole(Role target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given role.
+     * {@code role} must not already exist in the address book.
      */
-    void addPerson(Role person);
+    void addRole(Role role);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given role {@code target} with {@code editedRole}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The role identity of {@code editedRole} must not be the same as another existing role in the address book.
      */
-    void setPerson(Role target, Role editedPerson);
+    void setRole(Role target, Role editedRole);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Role> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered role list */
+    ObservableList<Role> getFilteredRoleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered role list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Role> predicate);
+    void updateFilteredRoleList(Predicate<Role> predicate);
 }

@@ -4,90 +4,94 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.job.*;
-import seedu.address.model.job.Person;
+import seedu.address.model.job.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Role objects.
  */
-public class PersonBuilder {
+public class RoleBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_SALARY = "4000";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Salary salary;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code RoleBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public RoleBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        salary = new Salary(DEFAULT_SALARY);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the RoleBuilder with the data of {@code roleToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public RoleBuilder(Role roleToCopy) {
+        name = roleToCopy.getName();
+        phone = roleToCopy.getPhone();
+        email = roleToCopy.getEmail();
+        address = roleToCopy.getAddress();
+        salary = roleToCopy.getSalary();
+        tags = new HashSet<>(roleToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Role} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public RoleBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Role} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public RoleBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Role} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public RoleBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Role} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public RoleBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Role} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public RoleBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
     public Role build() {
-        return new Person(name, phone, email, address, tags);
+        return new Role(name, phone, email, address, tags, salary);
     }
 
 }
