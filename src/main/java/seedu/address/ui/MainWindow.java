@@ -59,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane eventListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -133,11 +136,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //eventListPanel = new EventListPanel(filterEventList(logic.getFilteredEventList()));
+        //eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        eventListPanel = new EventListPanel();
-        eventDisplayPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

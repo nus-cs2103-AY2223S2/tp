@@ -36,6 +36,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Adds an event with a unique index
+     * @param event
+     * @param displayedIndex
+     */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
