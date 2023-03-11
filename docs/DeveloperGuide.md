@@ -437,29 +437,34 @@ In the example above, the user story is clearly defined at the top, followed by 
 
     Use case ends.
 
+---
+**Use case 5: Consulting Help Window**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for help.
+
+2. OfficeConnect opens help interface with dedicated help instructions.
+
+3. User specifies command he wishes to get help on.
+   
+4. OfficeConnect displays how command works, along with format of queried command to user.
+
+5. User reads closes window after getting required info.
+
+   Use case ends.
+
 **Extensions**
 
-* 2a. The list is empty. 
+* 2a. User requests for more info on command.
 
-    Use case ends.
-
-* 4a. The list is empty.
-
-    Use case ends.
-
-* 5a. The given person index is invalid.
-
-  * 5a1. OfficeConnect shows an error message. 
+    * 2a1. Help interface provides link to user guide.
   
-    Use case resumes at step 2.
-
-* 5b. The given task index is invalid.
-
-  * 5b1. OfficeConnect shows an error message.
-
-    Use case resumes at step 4.
+    * 2a2. User retrieves user guide providing more detail on command.
+  
+      Use case resumes at step 5.
 ---
-**Use case 5: Add a task**
+**Use case 6: Add a task**
 
 **Main Success Scenario (MSS):**
 
