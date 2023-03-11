@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public class UniqueGroupList {
 
-    private final Set<Group> groups = new HashSet<>();
+    private Set<Group> groups = new HashSet<>();
 
     /**
      * Adds a group to the set.
@@ -49,6 +49,11 @@ public class UniqueGroupList {
 
     public boolean contains(Group toCheck) {
         return groups.contains(toCheck);
+    }
+
+    @Override
+    public int hashCode() {
+        return groups.hashCode();
     }
 }
 

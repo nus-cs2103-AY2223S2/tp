@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -94,23 +95,18 @@ public class PersonTest {
     }
 
     @Test
-    public void addGroup() {
+    public void add_remove_group() {
+        Person editedCarl = new PersonBuilder(CARL).build();
         Group group = new Group("2103T");
-        ALICE.addGroup(group);
-        assertTrue(ALICE.getGroups().contains(group));
+        editedCarl.addGroup(group);
+        assertTrue(editedCarl.getGroups().contains(group));
         Assertions.assertThrows(PersonAlreadyInGroupException.class, () -> {
-            ALICE.addGroup(group);
+            editedCarl.addGroup(group);
         });
-    }
-
-    @Test
-    public void removeGroup() {
-        Group group = new Group("2103T");
-        ALICE.addGroup(group);
-        ALICE.removeGroup(group);
-        assertTrue(!ALICE.getGroups().contains(group));
+        editedCarl.removeGroup(group);
+        assertTrue(!editedCarl.getGroups().contains(group));
         Assertions.assertThrows(PersonNotInGroupException.class, () -> {
-            ALICE.removeGroup(group);
+            editedCarl.removeGroup(group);
         });
     }
 }

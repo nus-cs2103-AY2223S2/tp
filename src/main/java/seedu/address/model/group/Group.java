@@ -42,6 +42,10 @@ public class Group {
                 && groupName.equals(((Group) other).groupName)); // state check
     }
 
+    @Override
+    public int hashCode() {
+        return groupName.hashCode();
+    }
 
     /**
      * Format state as text for viewing.
