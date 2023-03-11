@@ -106,7 +106,7 @@ Precondition: User is logged in and has access to the add doctor feature.
         * 1b1. Docedex prompts user to confirm if they would like a new entry or <u>UCx Edit information.</u>
         * 1b2. User chooses the option they desire.
         Use cases resumes from step 2
-     
+
 
 **Use case: UC3 - Delete Doctor**
 
@@ -116,8 +116,8 @@ Actor: User
 
 1. User requests to find doctors.
 2. Docedex shows a list of doctors.
-3. User request to delete a specific doctor from the list.  
-4. Docedex confirms the deletion of the doctor contact.<br> 
+3. User request to delete a specific doctor from the list.
+4. Docedex confirms the deletion of the doctor contact.<br>
    Use case ends.
 
 **Extensions**
@@ -144,6 +144,5 @@ Actor: User
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **User**: Triage Admin Staff within the clinic.
 * **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
-* 
 
 --------------------------------------------------------------------------------------------------------------------
