@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,29 +20,33 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox fx:id="studentProfiles" alignment="TOP_RIGHT">
-            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="name" styleClass="cell_big_label" text="\$eventName" />
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$eventName" />
+               <HBox fx:id="studentProfiles" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="42.0">
+            </HBox>
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
-            <Label fx:id="attachments" styleClass="cell_small_label" text="\$attachments" />
             <HBox prefHeight="13.0" prefWidth="130.0">
                 <children>
-                    <Label text="Label" />
+                  <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+                  <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
+                  <Label fx:id="attachments" styleClass="cell_small_label" text="\$attachments" />
                 </children>
             </HBox>
-            <Label fx:id="progressBar" styleClass="cell_small_label" text="\$progressBar" />
-            <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <ProgressBar fx:id="progressBar" prefHeight="9.0" prefWidth="120.0" progress="0.67" style="-fx-accent: #643FDB;" />
+                  <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
+            </children>
+         </HBox>
         </VBox>
+      <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>

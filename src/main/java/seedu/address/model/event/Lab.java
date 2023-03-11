@@ -10,8 +10,12 @@ import seedu.address.model.person.Person;
  */
 public class Lab extends Event {
 
-    public Lab(List<Person> students) {
-        super(students);
+    public Lab(String name) {
+        super(name);
+    }
+
+    public Lab(String name, List<Person> students) {
+        super(name, students);
     }
 
     /**
@@ -19,8 +23,12 @@ public class Lab extends Event {
      * @param students
      * @param eventDate
      */
-    public Lab(List<Person> students, LocalDate eventDate) {
-        super(students, eventDate);
+    public Lab(String name, LocalDate eventDate, List<Person> students) {
+        super(name, eventDate, students);
+    }
+
+    public Lab(String name, LocalDate eventDate, List<Person> students, List<Nite>) {
+        super(name, eventDate, students);
     }
 
     /**

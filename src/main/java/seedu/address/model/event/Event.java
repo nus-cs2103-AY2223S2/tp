@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,41 +13,91 @@ import seedu.address.model.person.Person;
  */
 public abstract class Event {
 
-    private final List<Person> students;
-    //Add time in v 1.2
+    private String name;
     private LocalDate eventDate;
-    //Add notes class in v 1.2
-    private String notes = "";
-    //Add status tags in v 1.2
-    private String status = "upcoming";
-
+    private final List<Person> students;
+    private final List<File> attachments;
+    private final List<Note> notes;
     /**
-     * Constructor with no parameters sets an empty list of students enrolled in the event.
-     * The time of the event will be assumed to be the current time the constructor is executed
+     * Constructor with name parameter only. The time of the event will be
+     * assumed to be the current time the constructor is executed
+     * @param name
      */
-    public Event() {
-        students = new ArrayList<>();
+    public Event(String name) {
+        this.name = name;
         eventDate = LocalDate.now();
+        students = new ArrayList<>();
+        attachments = new ArrayList<>();
+        notes = new ArrayList<>();
     }
 
     /**
-     * Sets the students to a new List of students. The date will be set to the current time of execution
+     * Sets the custom name students to a current List of students.
+     * The date will be set to the current time of execution
+     * @param name
      * @param students
      */
-    public Event(List<Person> students) {
-        this.students = students;
+    public Event(String name, List<Person> students) {
+        this.name = name;
         this.eventDate = LocalDate.now();
+        this.students = students;
+        attachments = new ArrayList<>();
+        notes = new ArrayList<>();
     }
 
     /**
-     * Sets the students to a new List of students. The date will be set to a specific date
+     * Sets the name and date. Also sets the students to a current List of students.
+     * The date will be set to a specific date
+     * @param name
      * @param students
      * @param eventDate
      */
-    public Event(List<Person> students, LocalDate eventDate) {
-        this.students = new ArrayList<>();
+    public Event(String name, LocalDate eventDate, List<Person> students) {
+        this.name = name;
         this.eventDate = eventDate;
+        this.students = students;
+        attachments = new ArrayList<>();
+        notes = new ArrayList<>();
     }
+
+    /**
+     * Sets the name and date. Also sets the students to a current list of students.
+     * Sets the attachments to a current list of attachments as well.
+     * @param name
+     * @param eventDate
+     * @param students
+     * @param attachments
+     */
+    public Event(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+        this.name = name;
+        this.eventDate = eventDate;
+        this.students = students;
+        this.attachments = attachments;
+        notes = new ArrayList<>();
+    }
+
+    /**
+     * Sets all the variables
+     * @param name
+     * @param eventDate
+     * @param students
+     * @param attachments
+     * @param notes
+     */
+    public Event(String name, LocalDate eventDate, List<Person> students,
+                 List<File> attachments, List<Note> notes) {
+        this.name = name;
+        this.eventDate = eventDate;
+        this.students = students;
+        this.attachments = attachments;
+        this.notes = notes;
+    }
+
+    /* *************************************************************************
+     *                                                                         *
+     * Methods to manipulate students in an event                              *
+     *                                                                         *
+     **************************************************************************/
 
     /**
      * Gets the list of students
@@ -54,14 +105,6 @@ public abstract class Event {
      */
     public List<Person> getStudents() {
         return students;
-    }
-
-    /**
-     * Gets the date of the event
-     * @return localdate
-     */
-    public LocalDate getDate() {
-        return eventDate;
     }
 
     /**
@@ -89,6 +132,28 @@ public abstract class Event {
     }
 
     /**
+     * Get the total number of students enrolled in the event
+     * @return
+     */
+    public int countStudents() {
+        return students.size();
+    }
+
+    /* *************************************************************************
+     *                                                                         *
+     * Methods to manipulate date in an event                                  *
+     *                                                                         *
+     **************************************************************************/
+
+    /**
+     * Gets the date of the event
+     * @return localdate
+     */
+    public LocalDate getDate() {
+        return eventDate;
+    }
+
+    /**
      * Changes the date of the event
      * @param date
      */
@@ -96,11 +161,40 @@ public abstract class Event {
         eventDate = date;
     }
 
-    /**
-     * Get the total number of students enrolled in the event
-     * @return
-     */
-    public int countStudents() {
-        return students.size();
+    /* *************************************************************************
+     *                                                                         *
+     * Methods to manipulate file attachments in an event                      *
+     *                                                                         *
+     **************************************************************************/
+
+    public List<File> getAttachments() {
+        return attachments;
     }
+
+    public void addAttachment(File file) {
+        attachments.add(file);
+    }
+
+    public void removeAttachment(File file) {
+        attachments.remove(file);
+    }
+
+    /* *************************************************************************
+     *                                                                         *
+     * Methods to manipulate notes in an event                                 *
+     *                                                                         *
+     **************************************************************************/
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void addNote(Note note) {
+        notes.add(note);
+    }
+
+    public void removeNote(Note note) {
+        notes.remove(note);
+    }
+
 }

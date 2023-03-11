@@ -26,26 +26,24 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
-    private Label photo;
+    private Label notes;
     @FXML
-    private Label address;
+    private Label attachments;
     @FXML
-    private Label email;
+    private Label progressBar;
+    @FXML
+    private Label attendance;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label remark;
-    @FXML
-    private Label performance;
 
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
 
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(event.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
