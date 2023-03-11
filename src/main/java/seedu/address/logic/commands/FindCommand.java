@@ -30,8 +30,8 @@ public class FindCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_LANGUAGE + "LANGUAGE]..."
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_LANGUAGE + "LANGUAGE]"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " n/alice l/python";
 
     private final PersonContainsKeywordsPredicate personPredicate;
