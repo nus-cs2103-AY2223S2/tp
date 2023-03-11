@@ -12,6 +12,11 @@ public class TxnStatus {
         this.lastUpdate = LocalDateTime.now();
     }
 
+    public TxnStatus(boolean isClosed) {
+        this.isClosed = isClosed;
+        this.lastUpdate = LocalDateTime.now();
+    }
+
     public boolean isClosed() {
         return isClosed;
     }

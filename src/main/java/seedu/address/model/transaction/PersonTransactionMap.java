@@ -14,6 +14,9 @@ import seedu.address.model.person.Person;
 public class PersonTransactionMap {
 
     private final Map<Person, Transaction> PersonToTransactionMap = new HashMap<>();
-    private final Map<Transaction, Person> TransactionToPersonMap = new TreeMap<>();
+    private final Map<Transaction, Person> TransactionToPersonMap = new TreeMap<>(new UpdatedTransactionComparator());
 
+    public void addRelation(Transaction t, Person owner) {
+
+    }
 }
