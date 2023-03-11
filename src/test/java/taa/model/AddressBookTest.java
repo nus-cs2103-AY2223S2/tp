@@ -16,8 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import taa.model.student.Student;
 import taa.model.student.exceptions.DuplicateStudentException;
-import taa.testutil.PersonBuilder;
 import taa.testutil.Assert;
+import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
 public class AddressBookTest {

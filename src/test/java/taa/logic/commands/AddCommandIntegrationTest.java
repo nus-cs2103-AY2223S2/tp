@@ -1,7 +1,5 @@
 package taa.logic.commands;
 
-import static taa.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +36,8 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Student studentInList = model.getAddressBook().getStudentList().get(0);
-        CommandTestUtil.assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
+        CommandTestUtil.assertCommandFailure(
+                new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

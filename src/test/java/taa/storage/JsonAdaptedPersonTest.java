@@ -2,7 +2,6 @@ package taa.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static taa.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
-import static taa.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;

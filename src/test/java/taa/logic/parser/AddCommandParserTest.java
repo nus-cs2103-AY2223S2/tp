@@ -2,13 +2,13 @@ package taa.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-import taa.logic.commands.AddCommand;
-import taa.model.tag.Tag;
-import taa.testutil.PersonBuilder;
 import taa.commons.core.Messages;
+import taa.logic.commands.AddCommand;
 import taa.logic.commands.CommandTestUtil;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.tag.Tag;
+import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
 public class AddCommandParserTest {
@@ -16,21 +16,26 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new PersonBuilder(TypicalPersons.BOB).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        Student expectedStudent = new PersonBuilder(TypicalPersons.BOB)
+                .withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BOB
+        CommandParserTestUtil.assertParseSuccess(parser,
+                CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.NAME_DESC_BOB
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
+                + CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags = new PersonBuilder(TypicalPersons.BOB).withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+        Student expectedStudentMultipleTags = new PersonBuilder(TypicalPersons.BOB).withTags(
+                CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
+                + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
     }
 
     @Test
@@ -69,8 +74,10 @@ public class AddCommandParserTest {
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY + CommandTestUtil.NAME_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
+        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY
+                        + CommandTestUtil.NAME_DESC_BOB
+                        + CommandTestUtil.TAG_DESC_HUSBAND
+                        + CommandTestUtil.TAG_DESC_FRIEND,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

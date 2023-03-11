@@ -2,7 +2,6 @@ package taa.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taa.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,13 +9,13 @@ import java.util.List;
 
 import taa.commons.core.index.Index;
 import taa.logic.commands.exceptions.CommandException;
+import taa.logic.parser.CliSyntax;
 import taa.model.AddressBook;
 import taa.model.Model;
 import taa.model.student.NameContainsKeywordsPredicate;
 import taa.model.student.Student;
-import taa.testutil.EditPersonDescriptorBuilder;
-import taa.logic.parser.CliSyntax;
 import taa.testutil.Assert;
+import taa.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

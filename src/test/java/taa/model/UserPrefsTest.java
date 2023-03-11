@@ -1,8 +1,7 @@
 package taa.model;
 
-import static taa.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
 import taa.testutil.Assert;
 
 public class UserPrefsTest {

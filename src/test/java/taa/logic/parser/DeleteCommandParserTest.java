@@ -2,8 +2,8 @@ package taa.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-import taa.logic.commands.DeleteCommand;
 import taa.commons.core.Messages;
+import taa.logic.commands.DeleteCommand;
 import taa.testutil.TypicalIndexes;
 
 /**
@@ -19,11 +19,13 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        CommandParserTestUtil.assertParseSuccess(parser, "1", new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON));
+        CommandParserTestUtil.assertParseSuccess(parser,
+                "1", new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        CommandParserTestUtil.assertParseFailure(parser, "a", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        CommandParserTestUtil.assertParseFailure(parser,
+                "a", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

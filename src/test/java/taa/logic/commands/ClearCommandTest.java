@@ -1,7 +1,5 @@
 package taa.logic.commands;
 
-import static taa.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.Test;
 
 import taa.model.AddressBook;

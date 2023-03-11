@@ -3,10 +3,10 @@ package taa.testutil;
 import java.util.Set;
 
 import taa.logic.commands.AddCommand;
-import taa.model.student.Student;
-import taa.model.tag.Tag;
 import taa.logic.commands.EditCommand;
 import taa.logic.parser.CliSyntax;
+import taa.model.student.Student;
+import taa.model.tag.Tag;
 
 /**
  * A utility class for Student.

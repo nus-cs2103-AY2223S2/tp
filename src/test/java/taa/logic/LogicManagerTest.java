@@ -1,7 +1,6 @@
 package taa.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static taa.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,8 +9,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import taa.commons.core.Messages;
 import taa.logic.commands.AddCommand;
 import taa.logic.commands.CommandResult;
+import taa.logic.commands.CommandTestUtil;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
@@ -23,10 +24,8 @@ import taa.model.student.Student;
 import taa.storage.JsonAddressBookStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.StorageManager;
-import taa.testutil.PersonBuilder;
-import taa.commons.core.Messages;
-import taa.logic.commands.CommandTestUtil;
 import taa.testutil.Assert;
+import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
 public class LogicManagerTest {

@@ -6,8 +6,8 @@ import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import taa.testutil.PersonBuilder;
 import taa.testutil.Assert;
+import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
 public class StudentTest {
