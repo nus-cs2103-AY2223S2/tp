@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private Deck deck;
     private final UserPrefs userPrefs;
     private FilteredList<Card> filteredDecks;
-    private String selectedDeckName = null; // null when not selected, selected through select deck command
+    private String selectedDeckName = null; // null when not selected, may want to consider accepting Set<> next time
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

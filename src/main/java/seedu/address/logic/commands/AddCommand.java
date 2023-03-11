@@ -10,25 +10,24 @@ import seedu.address.model.Model;
 import seedu.address.model.card.Card;
 
 /**
- * Adds a card to the address book.
+ * Adds a card to the selected deck.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a card to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a card to the selected deck. "
             + "Parameters: "
             + PREFIX_QUESTION + "NAME "
             + PREFIX_ANSWER + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_QUESTION + "John Doe "
-            + PREFIX_ANSWER + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_QUESTION + "When was the RSA (Rivest–Shamir–Adleman) algorithm invented? "
+            + PREFIX_ANSWER + "1977 by Ron Rivest, Adi Shamir, and Leonard Adleman "
+            + PREFIX_TAG + "CS2107";
 
     public static final String MESSAGE_SUCCESS = "New card added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This card already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the master deck";
 
     private final Card toAdd;
 
@@ -45,7 +44,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasCard(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
 
         model.addCard(toAdd);
