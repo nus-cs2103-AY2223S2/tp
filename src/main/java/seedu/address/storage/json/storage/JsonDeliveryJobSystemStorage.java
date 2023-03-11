@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.storage.DeliveryJobSystemStorage;
@@ -57,15 +58,16 @@ public class JsonDeliveryJobSystemStorage implements DeliveryJobSystemStorage {
     }
 
     @Override
-    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem addressBook, Path filePath) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveDeliveryJob'");
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem) throws IOException {
+        saveDeliveryJobSystem(deliveryJobSystem, filePath);
     }
 
     @Override
-    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem addressBook) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveDeliveryJob'");
-    }
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem, Path filePath) throws IOException {
+        requireNonNull(deliveryJobSystem);
+        requireNonNull(filePath);
 
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableDeliveryJobSystem(deliveryJobSystem), filePath);
+    }
 }

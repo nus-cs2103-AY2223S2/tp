@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,18 +21,6 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<DeliveryJob> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
-    }
-
-    @Override
-    public Iterator<DeliveryJob> iterator() {
-        return internalList.iterator();
-    }
-
-    /**
      * Contains.
      */
     public boolean contains(DeliveryJob toCheck) {
@@ -40,17 +29,16 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * setDeliveryJobs
+     * add
      *
-     * @param deliveryJobs
+     * @param toAdd
      */
-    public void setDeliveryJobs(ObservableList<DeliveryJob> deliveryJobs) {
-        requireAllNonNull(deliveryJobs);
-        if (!deliveryJobsAreUnique(deliveryJobs)) {
+    public void add(DeliveryJob toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
             throw new DuplicateDeliveryJobException();
         }
-
-        internalList.setAll(deliveryJobs);
+        internalList.add(toAdd);
     }
 
     /**
@@ -85,19 +73,54 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * add
+     * setDeliveryJobs
      *
-     * @param toAdd
+     * @param replacement
      */
-    public void add(DeliveryJob toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateDeliveryJobException();
-        }
-        internalList.add(toAdd);
+    public void setDeliveryJobs(UniqueDeliveryList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
-    private boolean deliveryJobsAreUnique(ObservableList<DeliveryJob> jobs) {
+    /**
+     * setDeliveryJobs
+     *
+     * @param deliveryJobs
+     */
+    public void setDeliveryJobs(List<DeliveryJob> jobs) {
+        requireAllNonNull(jobs);
+        if (!deliveryJobsAreUnique(jobs)) {
+            throw new DuplicateDeliveryJobException();
+        }
+
+        internalList.setAll(jobs);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<DeliveryJob> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    @Override
+    public Iterator<DeliveryJob> iterator() {
+        return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueDeliveryList // instanceof handles nulls
+                && internalList.equals(((UniqueDeliveryList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    private boolean deliveryJobsAreUnique(List<DeliveryJob> jobs) {
         for (int i = 0; i < jobs.size() - 1; i++) {
             for (int j = i + 1; j < jobs.size(); j++) {
                 if (jobs.get(i).isSameDeliveryJob(jobs.get(j))) {

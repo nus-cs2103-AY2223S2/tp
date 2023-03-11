@@ -39,7 +39,7 @@ public class TypicalDeliveryJobs {
             "dummy slot",
             6.0);
 
-    public static ReadOnlyDeliveryJobSystem getSampleDeliveryJobSystem() {
+    public static DeliveryJobSystem getTypicalDeliveryJobSystem() {
         DeliveryJobSystem sampleDS = new DeliveryJobSystem();
         for (DeliveryJob sampleJob : getTypicalDeliveryJobs()) {
             sampleDS.addDeliveryJob(sampleJob);

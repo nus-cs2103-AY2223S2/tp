@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.UniqueDeliveryList;
@@ -32,6 +34,10 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
         resetData(deliveryJobSystem);
     }
 
+    private void setDeliveryJobs(List<DeliveryJob> jobs) {
+        this.jobs.setDeliveryJobs(jobs);
+    }
+
     /**
      * resetData
      *
@@ -39,11 +45,8 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
      */
     public void resetData(ReadOnlyDeliveryJobSystem newData) {
         requireNonNull(newData);
-        setDeliveryJobs(newData.getDeliveryJobList());
-    }
 
-    private void setDeliveryJobs(ObservableList<DeliveryJob> deliveryJobList) {
-        this.jobs.setDeliveryJobs(deliveryJobList);
+        setDeliveryJobs(newData.getDeliveryJobList());
     }
 
     /**
@@ -84,10 +87,27 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a delivery job with the same identity as {@code delivery job} exists in the address book.
      */
     public boolean hasDeliveryJob(DeliveryJob job) {
         requireNonNull(job);
         return jobs.contains(job);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeliveryJobSystem // instanceof handles nulls
+                && jobs.equals(((DeliveryJobSystem) other).jobs));
+    }
+
+    @Override
+    public String toString() {
+        return jobs.asUnmodifiableObservableList().size() + " delivery jobs";
+    }
+
+    @Override
+    public int hashCode() {
+        return jobs.hashCode();
     }
 }

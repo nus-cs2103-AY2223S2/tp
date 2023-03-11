@@ -99,15 +99,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem addressBook, Path filePath) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveDeliveryJob'");
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem) throws IOException {
+        saveDeliveryJobSystem(deliveryJobSystem, deliveryJobSystemStorage.getDeliveryJobFilePath());
     }
 
     @Override
-    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJob) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveDeliveryJob'");
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem, Path filePath) throws IOException {
+        logger.fine("[DJ] Attempting to write to data file: " + filePath);
+        deliveryJobSystemStorage.saveDeliveryJobSystem(deliveryJobSystem, filePath);
     }
 
 }

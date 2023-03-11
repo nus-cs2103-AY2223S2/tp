@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDeliveryJobs.getTypicalDeliveryJobSystem;
 
 import java.nio.file.Path;
 
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.DeliveryJobSystem;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.json.storage.JsonAddressBookStorage;
 import seedu.address.storage.json.storage.JsonDeliveryJobSystemStorage;
@@ -73,4 +76,11 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    @Test
+    public void deliveryJobSystemReadSave() throws Exception {
+        DeliveryJobSystem original = getTypicalDeliveryJobSystem();
+        storageManager.saveDeliveryJobSystem(original);
+        ReadOnlyDeliveryJobSystem retrieved = storageManager.readDeliveryJobSystem().get();
+        assertEquals(original.toString(), new DeliveryJobSystem(retrieved).toString());
+    }
 }
