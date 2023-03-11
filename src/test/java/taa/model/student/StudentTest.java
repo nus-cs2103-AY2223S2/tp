@@ -67,10 +67,6 @@ public class StudentTest {
         Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(VALID_NAME_BOB).build();
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).build();
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
-
         // different tags -> returns false
         editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND).build();
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
