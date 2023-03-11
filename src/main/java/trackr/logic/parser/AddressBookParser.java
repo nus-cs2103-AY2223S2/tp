@@ -10,6 +10,7 @@ import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteCommand;
+import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
@@ -52,6 +53,10 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+        case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
