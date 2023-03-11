@@ -17,25 +17,24 @@ import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
- * Bookmarks an existing customer in the address book.
+ * Un-bookmarks an existing customer in the address book.
  */
-public class MarkCustomerCommand extends Command {
-
-    public static final String COMMAND_WORD = "markc";
+public class UnmarkCustomerCommand extends Command {
+    public static final String COMMAND_WORD = "unmarkc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Bookmarks the customer identified by the index number used in the displayed customer list.\n"
+            + ": Un-bookmarks the customer identified by the index number used in the displayed customer list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Bookmarked Customer: %1$s";
+    public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: %1$s";
 
     private final Index index;
 
     /**
-     * @param index of the customer in the filtered customer list to bookmark.
+     * @param index of the customer in the filtered customer list to un-bookmark.
      */
-    public MarkCustomerCommand(Index index) {
+    public UnmarkCustomerCommand(Index index) {
         this.index = index;
     }
 
@@ -48,25 +47,25 @@ public class MarkCustomerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
 
-        Customer customerToMark = lastShownList.get(index.getZeroBased());
-        Customer markedCustomer = createMarkedCustomer(customerToMark);
-        model.setCustomer(customerToMark, markedCustomer);
-        return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer));
+        Customer customerToUnmark = lastShownList.get(index.getZeroBased());
+        Customer unmarkedCustomer = createUnmarkedCustomer(customerToUnmark);
+        model.setCustomer(customerToUnmark, unmarkedCustomer);
+        return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, unmarkedCustomer));
     }
 
     /**
      * Creates and returns a {@code Customer} with the same details as {@code customerToMark}
-     * but with the boolean {@code marked} set to true.
+     * but with the boolean {@code marked} set to false.
      */
-    private static Customer createMarkedCustomer(Customer customerToMark) {
-        assert customerToMark != null;
+    private static Customer createUnmarkedCustomer(Customer customerToUnmark) {
+        assert customerToUnmark != null;
 
-        Name name = customerToMark.getName();
-        Phone phone = customerToMark.getPhone();
-        Email email = customerToMark.getEmail();
-        Address address = customerToMark.getAddress();
-        Set<Tag> tags = customerToMark.getTags();
+        Name name = customerToUnmark.getName();
+        Phone phone = customerToUnmark.getPhone();
+        Email email = customerToUnmark.getEmail();
+        Address address = customerToUnmark.getAddress();
+        Set<Tag> tags = customerToUnmark.getTags();
 
-        return new Customer(name, phone, email, address, tags, true);
+        return new Customer(name, phone, email, address, tags, false);
     }
 }

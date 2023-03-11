@@ -126,7 +126,7 @@ Examples:
 
 Un-bookmarks a customer from the list of customers.
 
-Format: `markc INDEX`
+Format: `unmarkc INDEX`
 
 * Un-bookmarks the customer at the specified `INDEX`.
 * The index refers to the index number shown in the displayed customer list.

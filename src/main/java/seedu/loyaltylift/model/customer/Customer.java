@@ -22,6 +22,7 @@ public class Customer {
 
     // Data fields
     private final Address address;
+    private final boolean marked;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,6 +35,17 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.marked = false;
+    }
+
+    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean marked) {
+        requireAllNonNull(name, phone, email, address, tags, marked);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.marked = marked;
     }
 
     public Name getName() {
@@ -51,6 +63,8 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+    public boolean getMarked() { return marked;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -110,7 +124,9 @@ public class Customer {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Bookmarked: ")
+                .append(getMarked());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
