@@ -83,10 +83,6 @@ public class CommandResult {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof CommandResult) {
-            System.out.println(feedbackToUser);
-            System.out.println(((CommandResult) other).feedbackToUser);
-        }
         if (other == this) {
             return true;
         }
