@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -47,6 +49,11 @@ public class EventTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameEvent(editedBob));
+
+        // same name, different timing -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY)
+                .build();
+        assertFalse(ALICE.isSameEvent(editedAlice));
     }
 
     @Test
@@ -85,5 +92,11 @@ public class EventTest {
 
         // different tags -> returns false
         assertFalse(ALICE.hashCode() == (BOB.hashCode()));
+
+        // different time -> return false
+        editedAlice = new PersonBuilder(ALICE).withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+
     }
 }
