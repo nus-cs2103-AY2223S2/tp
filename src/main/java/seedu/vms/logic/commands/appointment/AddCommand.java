@@ -12,13 +12,13 @@ import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 
 /**
- * Adds a patient to the address book.
+ * Adds a patient to the patient manager.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the patient manager. "
             + "Parameters: "
             + DELIMITER + PREFIX_TIME + " TIME "
             + DELIMITER + PREFIX_PATIENT + " PATIENT ID \n"

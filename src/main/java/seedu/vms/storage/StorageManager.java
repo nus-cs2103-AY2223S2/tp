@@ -9,28 +9,28 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of PatientManager data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private PatientManagerStorage patientManagerStorage;
     private VaxTypeStorage vaxTypeStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code PatientManagerStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(
-                AddressBookStorage addressBookStorage,
-                VaxTypeStorage vaxTypeStorage,
-                UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+            PatientManagerStorage patientManagerStorage,
+            VaxTypeStorage vaxTypeStorage,
+            UserPrefsStorage userPrefsStorage) {
+        this.patientManagerStorage = patientManagerStorage;
         this.vaxTypeStorage = vaxTypeStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -52,34 +52,34 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ PatientManager methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getPatientManagerFilePath() {
+        return patientManagerStorage.getPatientManagerFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyPatientManager> readPatientManager() throws DataConversionException, IOException {
+        return readPatientManager(patientManagerStorage.getPatientManagerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPatientManager> readPatientManager(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return patientManagerStorage.readPatientManager(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void savePatientManager(ReadOnlyPatientManager patientManager) throws IOException {
+        savePatientManager(patientManager, patientManagerStorage.getPatientManagerFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void savePatientManager(ReadOnlyPatientManager patientManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        patientManagerStorage.savePatientManager(patientManager, filePath);
     }
 
     // ================ Vax Type methods ==============================

@@ -15,7 +15,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.storage.Storage;
 
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePatientManager(model.getPatientManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -63,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyPatientManager getPatientManager() {
+        return model.getPatientManager();
     }
 
     @Override
@@ -78,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getPatientManagerFilePath() {
+        return model.getPatientManagerFilePath();
     }
 
     @Override

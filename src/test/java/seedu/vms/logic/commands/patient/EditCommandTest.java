@@ -12,7 +12,7 @@ import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.vms.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +22,8 @@ import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.PatientManager;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
 import seedu.vms.testutil.PatientBuilder;
 
@@ -32,7 +32,7 @@ import seedu.vms.testutil.PatientBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientManager(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PatientManager(model.getPatientManager()), new UserPrefs());
         expectedModel.setPatient(INDEX_FIRST_PATIENT.getZeroBased(), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PatientManager(model.getPatientManager()), new UserPrefs());
         expectedModel.setPatient(indexLastPatient.getZeroBased(), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PatientManager(model.getPatientManager()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PatientManager(model.getPatientManager()), new UserPrefs());
         expectedModel.setPatient(0, editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -110,14 +110,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of patient manager
      */
     @Test
     public void execute_invalidPatientIndexFilteredList_failure() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
         Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getMapView().size());
+        // ensures that outOfBoundIndex is still in bounds of patient manager list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPatientManager().getMapView().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());

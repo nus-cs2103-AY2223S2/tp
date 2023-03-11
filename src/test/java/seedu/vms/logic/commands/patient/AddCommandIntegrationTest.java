@@ -1,7 +1,7 @@
 package seedu.vms.logic.commands.patient;
 
 import static seedu.vms.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.vms.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPatientManager(), new UserPrefs());
     }
 
     @Test
     public void execute_newPatient_success() {
         Patient validPatient = new PatientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientManager(), new UserPrefs());
         expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddCommand(validPatient), model,

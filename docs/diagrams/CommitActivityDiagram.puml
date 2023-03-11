@@ -8,7 +8,7 @@ start
 if () then ([command commits Vms])
     :Purge redundant states;
     :Save Vms to
-    addressBookStateList;
+    patientManagerStateList;
 else ([else])
 endif
 stop

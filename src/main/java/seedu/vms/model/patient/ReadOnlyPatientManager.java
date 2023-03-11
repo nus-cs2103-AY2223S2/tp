@@ -8,4 +8,4 @@ import seedu.vms.model.ReadOnlyStorageModel;
  * <p>Interface does not add any new methods but acts as a marker of a read
  * only patient storage model.
  */
-public interface ReadOnlyAddressBook extends ReadOnlyStorageModel<Patient> {}
+public interface ReadOnlyPatientManager extends ReadOnlyStorageModel<Patient> {}

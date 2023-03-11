@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         Region resultDisplayRegion = resultDisplay.getRoot();
         resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientManagerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

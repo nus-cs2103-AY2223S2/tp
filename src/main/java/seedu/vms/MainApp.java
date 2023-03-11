@@ -19,13 +19,13 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.AddressBook;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.util.SampleDataUtil;
 import seedu.vms.model.vaccination.VaxTypeManager;
-import seedu.vms.storage.AddressBookStorage;
-import seedu.vms.storage.JsonAddressBookStorage;
+import seedu.vms.storage.JsonPatientManagerStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
+import seedu.vms.storage.PatientManagerStorage;
 import seedu.vms.storage.Storage;
 import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.UserPrefsStorage;
@@ -51,7 +51,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing PatientManager ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -59,9 +59,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
+                userPrefs.getPatientManagerFilePath());
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
-        storage = new StorageManager(addressBookStorage, vaxTypeStorage, userPrefsStorage);
+        storage = new StorageManager(patientManagerStorage, vaxTypeStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -73,25 +74,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s patient manager and {@code userPrefs}. <br>
+     * The data from the sample patient manager will be used instead if {@code storage}'s patient manager is not found,
+     * or an empty patient manager will be used instead if errors occur when reading {@code storage}'s patient manager.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyPatientManager> patientManagerOptional;
+        ReadOnlyPatientManager initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            patientManagerOptional = storage.readPatientManager();
+            if (!patientManagerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PatientManager");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = patientManagerOptional.orElseGet(SampleDataUtil::getSamplePatientManager);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty PatientManager");
+            initialData = new PatientManager();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
+            initialData = new PatientManager();
         }
 
         VaxTypeManager vaxTypeManager = new VaxTypeManager();
@@ -138,7 +139,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -165,11 +166,11 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -181,7 +182,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting PatientManager " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

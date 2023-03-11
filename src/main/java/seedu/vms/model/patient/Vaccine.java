@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Vaccine in the address book.
+ * Represents a Vaccine in the patient manager.
  * Guarantees: immutable; name is valid as declared in {@link #isValidVaccineName(String)}
  */
 public class Vaccine {

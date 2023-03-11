@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatients#getTypicalAddressBook()",
+  "_comment": "PatientManager save file which contains the same Patient values as in TypicalPatients#getTypicalPatientManager()",
   "datas": [
     {
       "isActive": true,

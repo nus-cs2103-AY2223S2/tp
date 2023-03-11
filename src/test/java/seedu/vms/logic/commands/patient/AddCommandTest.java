@@ -21,9 +21,9 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
-import seedu.vms.model.patient.AddressBook;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.ReadOnlyAddressBook;
+import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeAction;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -96,12 +96,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPatientManagerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPatientManagerFilePath(Path patientManagerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -111,12 +111,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setPatientManager(ReadOnlyPatientManager newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyPatientManager getPatientManager() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,8 +179,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPatientManager getPatientManager() {
+            return new PatientManager();
         }
     }
 
