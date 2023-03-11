@@ -73,7 +73,7 @@ Format: `list`
 
 ### Selecting a Deck : `select`
 
-Selects a deck. 
+Selects a masterDeck. 
 
 Format: `select INDEX`
 
@@ -82,7 +82,7 @@ Examples:
 
 ### Unselecting a Deck : `unselect`
 
-Unselects deck
+Unselects masterDeck
 
 Format: `unselect`
 
@@ -91,7 +91,7 @@ Examples:
 
 ### Adding a Powercard: `add`
 
-_**User must select a deck to use this command.**_
+_**User must select a masterDeck to use this command.**_
 
 Adds a Powercard to the **selected** Deck.
 
@@ -106,7 +106,7 @@ Examples:
 
 ### Listing all Powercards : `list`
 
-_**User must select a deck to use this command.**_
+_**User must select a masterDeck to use this command.**_
 
 Shows a list of all Powercard in the **selected** Deck.
 
@@ -114,7 +114,7 @@ Format: `list`
 
 ### Editing a Powercard : `edit`
 
-_**User must select a deck to use this command.**_
+_**User must select a masterDeck to use this command.**_
 
 Edits an existing Powercard in a Deck.
 
@@ -127,11 +127,11 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER]`
 Examples:
 *  `edit 1 q/What is chemical symbol for Caarbon? a/C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
 
-### Reviewing a deck: `review`
+### Reviewing a masterDeck: `review`
 
-_**User must select a deck to use this command.**_
+_**User must select a masterDeck to use this command.**_
 
-Begins reviewing a deck. 
+Begins reviewing a masterDeck. 
 
 Format: `review`
 

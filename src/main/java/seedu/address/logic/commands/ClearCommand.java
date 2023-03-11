@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Deck;
+import seedu.address.model.MasterMasterDeck;
 import seedu.address.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setDeck(new Deck());
+        model.setDeck(new MasterMasterDeck());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

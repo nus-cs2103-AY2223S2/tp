@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 1. Main Screen - add new flashcards or decks, edit existing flashcards or decks
-2. Review Screen - study a particular deck of cards
+2. Review Screen - study a particular masterDeck of cards
 
 ### Target user profile: University Students
 ### Value proposition: 

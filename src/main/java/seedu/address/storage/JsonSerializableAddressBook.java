@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Deck;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
 
 /**
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyDeck source) {
+    public JsonSerializableAddressBook(ReadOnlyMasterDeck source) {
         persons.addAll(source.getCardList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,8 +45,8 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public Deck toModelType() throws IllegalValueException {
-        Deck addressBook = new Deck();
+    public MasterMasterDeck toModelType() throws IllegalValueException {
+        MasterMasterDeck addressBook = new MasterMasterDeck();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Card card = jsonAdaptedPerson.toModelType();
             if (addressBook.hasCard(card)) {

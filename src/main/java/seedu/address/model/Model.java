@@ -48,10 +48,10 @@ public interface Model {
     /**
      * Replaces deck data with the data in {@code addressBook}.
      */
-    void setDeck(ReadOnlyDeck deck);
+    void setDeck(ReadOnlyMasterDeck deck);
 
     /** Returns the Deck */
-    ReadOnlyDeck getDeck();
+    ReadOnlyMasterDeck getDeck();
 
     /**
      * Returns true if a card with the same identity as {@code card} exists in the address book.
@@ -89,9 +89,9 @@ public interface Model {
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
     /** Returns the deck */
-    ReadOnlyDeck getSelectedDeck();
+    ReadOnlyMasterDeck getSelectedDeck();
 
-    void createDeck(Deck deck);
+    void createDeck(MasterMasterDeck masterDeck);
 
     void selectDeck(Index idx);
 

@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new Deck(), new Deck(modelManager.getDeck()));
+        assertEquals(new MasterMasterDeck(), new MasterMasterDeck(modelManager.getDeck()));
     }
 
     @Test
@@ -95,8 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Deck addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        Deck differentAddressBook = new Deck();
+        MasterMasterDeck addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        MasterMasterDeck differentAddressBook = new MasterMasterDeck();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

@@ -15,10 +15,10 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.Deck;
+import seedu.address.model.MasterMasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyDeck> addressBookOptional;
-        ReadOnlyDeck initialData;
+        Optional<ReadOnlyMasterDeck> addressBookOptional;
+        ReadOnlyMasterDeck initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Deck");
-            initialData = new Deck();
+            initialData = new MasterMasterDeck();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Deck");
-            initialData = new Deck();
+            initialData = new MasterMasterDeck();
         }
 
         return new ModelManager(initialData, userPrefs);

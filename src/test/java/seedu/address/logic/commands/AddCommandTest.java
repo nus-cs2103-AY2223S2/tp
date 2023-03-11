@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Deck;
+import seedu.address.model.MasterMasterDeck;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.testutil.PersonBuilder;
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setDeck(ReadOnlyDeck newData) {
+        public void setDeck(ReadOnlyMasterDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyDeck getDeck() {
+        public ReadOnlyMasterDeck getDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,12 +151,12 @@ public class AddCommandTest {
 
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
-        public ReadOnlyDeck getSelectedDeck() {
+        public ReadOnlyMasterDeck getSelectedDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void createDeck(Deck deck) {
+        public void createDeck(MasterMasterDeck masterDeck) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,8 +209,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyDeck getDeck() {
-            return new Deck();
+        public ReadOnlyMasterDeck getDeck() {
+            return new MasterMasterDeck();
         }
     }
 

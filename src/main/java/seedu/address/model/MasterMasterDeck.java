@@ -12,7 +12,7 @@ import seedu.address.model.card.UniqueCardList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class Deck implements ReadOnlyDeck {
+public class MasterMasterDeck implements ReadOnlyMasterDeck {
 
     private final UniqueCardList cards;
     private String deckName; // Todo: create new Class for DeckName
@@ -29,12 +29,12 @@ public class Deck implements ReadOnlyDeck {
         cards = new UniqueCardList();
     }
 
-    public Deck() {}
+    public MasterMasterDeck() {}
 
     /**
      * Creates an Deck using the Persons in the {@code toBeCopied}
      */
-    public Deck(ReadOnlyDeck toBeCopied) {
+    public MasterMasterDeck(ReadOnlyMasterDeck toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,7 +52,7 @@ public class Deck implements ReadOnlyDeck {
     /**
      * Resets the existing data of this {@code Deck} with {@code newData}.
      */
-    public void resetData(ReadOnlyDeck newData) {
+    public void resetData(ReadOnlyMasterDeck newData) {
         requireNonNull(newData);
 
         setCards(newData.getCardList());
@@ -111,8 +111,8 @@ public class Deck implements ReadOnlyDeck {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deck // instanceof handles nulls
-                && cards.equals(((Deck) other).cards));
+                || (other instanceof MasterMasterDeck // instanceof handles nulls
+                && cards.equals(((MasterMasterDeck) other).cards));
     }
 
     @Override

@@ -278,24 +278,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | user                                         | search for PowerCards using keywords in the questions                |                                  |
 | `* *`  | user                                         | rewrite the question or the answer in the PowerCard                  | 						                      |
 | **`Epic`**  | **user**                                | **group PowerCards into decks of the same topic**                    | 				                          |
-| `* * *` | user                                        | set the name of a deck                                               | 	                                |
+| `* * *` | user                                        | set the name of a masterDeck                                               | 	                                |
 | `* * *` | user | list all decks I have created     |					|
-| `* * *` | user | list all the PowerCards in a deck |					|
-| `* * *` | user | add PowerCards in a deck	 |					|
-| `* * *` | user | remove PowerCards in a deck	 |					|
-| `* *` | user | rename a deck	 |					|
-| `* *` | user | delete a deck		 |					|
-| `* *` | user | add the description of each deck		 | I can check later what this deck is about.				|
+| `* * *` | user | list all the PowerCards in a masterDeck |					|
+| `* * *` | user | add PowerCards in a masterDeck	 |					|
+| `* * *` | user | remove PowerCards in a masterDeck	 |					|
+| `* *` | user | rename a masterDeck	 |					|
+| `* *` | user | delete a masterDeck		 |					|
+| `* *` | user | add the description of each masterDeck		 | I can check later what this masterDeck is about.				|
 | **`Epic`**    | **user**                                       | **review decks of PowerCards** | 				               |
-| `* * *` | user | review a single deck of PowerCards           | I can test my knowledge of the topic	                                               |
+| `* * *` | user | review a single masterDeck of PowerCards           | I can test my knowledge of the topic	                                               |
 | `* * *` | user | mark a flash card to be correct / wrong during review          | 				                                   |
 | `* *` | user | review multiple decks of PowerCards          | I can test my knowledge of multiple topics                                    |
-| `* *` | user | see how many PowerCards I have left to review in one deck          | 		                                   |
+| `* *` | user | see how many PowerCards I have left to review in one masterDeck          | 		                                   |
 | **`Epic`**    | **user**                                       | **keep track of how effective my learning has been** | 				               |
 | `* *` | user | record the number of questions I got right	 | I can see my progress					|
 | `* *` | user | see which are the PowerCards I struggle with / succeed at	 |					|
 | `*` | user | see which topics (decks) I am stronger / weaker in	 |					|
-| `*` | user | see how many times I have reviewed a PowerCard or deck	 |					|
+| `*` | user | see how many times I have reviewed a PowerCard or masterDeck	 |					|
 | `*` | user | see how long I spent on each question during review	 |					|
 | `*` | user | revise PowerCards that I got wrong for		 | I can see what I’m weak at				|
 | `* *` | user | reset the statistics	 |					|
@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | import decks from other users.          | 				                                   |
 | `* * *` | user | export decks for other users.         | 				                                   |
 | **`Epic`**    | **user**                                       | **undo and redo changes I make** | 				               |
-| `*` | user | retrieve a deck or flash card should I accidentally delete a PowerCard or deck	 |					|
+| `*` | user | retrieve a masterDeck or flash card should I accidentally delete a PowerCard or masterDeck	 |					|
 | `*` | user | redo changes that I had undone.	 |					|
 | **`Epic`**    | **user**                                       | **adjust the frequency of certain PowerCards appearing based on my input** | 				               |
 | `* *` | user | tag PowerCards that are hard	 | they will appear more frequently					|
@@ -359,17 +359,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case:**Review  a deck**
+**Use case:**Review  a masterDeck**
 
 **MSS**
 
-1. User requests to review a particular deck
-2. Powercard shows a random, non repeating card in the deck
+1. User requests to review a particular masterDeck
+2. Powercard shows a random, non repeating card in the masterDeck
 3. User attempts the powercard 
 4. User requests the answer to the powercard 
 5. Powercard reveals the answer to the powercard
 6. User self grades answer and provides Powercard with question answered correct/wrong data
-repeat step 2-6 until all powercards in deck have been exhausted
+repeat step 2-6 until all powercards in masterDeck have been exhausted
 
  Use case ends.
 

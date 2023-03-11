@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Deck;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.MasterMasterDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -30,7 +30,7 @@ public class JsonAddressBookStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyDeck> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyMasterDeck> readAddressBook(String filePath) throws Exception {
         return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -65,26 +65,26 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Deck original = getTypicalAddressBook();
+        MasterMasterDeck original = getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyDeck readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new Deck(readBack));
+        ReadOnlyMasterDeck readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        assertEquals(original, new MasterMasterDeck(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addCard(HOON);
         original.removeCard(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new Deck(readBack));
+        assertEquals(original, new MasterMasterDeck(readBack));
 
         // Save and read without specifying file path
         original.addCard(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new Deck(readBack));
+        assertEquals(original, new MasterMasterDeck(readBack));
 
     }
 
@@ -96,7 +96,7 @@ public class JsonAddressBookStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyDeck addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyMasterDeck addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
@@ -107,6 +107,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Deck(), null));
+        assertThrows(NullPointerException.class, () -> saveAddressBook(new MasterMasterDeck(), null));
     }
 }
