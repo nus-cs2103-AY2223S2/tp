@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
 
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Reminder> reminderList;
 
 
     /**
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        reminderList = this.addressBook.getReminderList();
     }
 
     public ModelManager() {
@@ -131,7 +134,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Reminders Accessors =============================================================
+    //=========== ReminderList Accessors =============================================================
 
     @Override
     public void deleteReminder(int i) {
@@ -141,6 +144,15 @@ public class ModelManager implements Model {
     @Override
     public void addReminder(Reminder reminder) {
         addressBook.addReminder(reminder);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminderList;
     }
 
     @Override

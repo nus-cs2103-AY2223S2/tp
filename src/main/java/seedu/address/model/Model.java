@@ -97,5 +97,8 @@ public interface Model {
      */
     void addReminder(Reminder reminder);
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Reminder> getReminderList();
+
 
 }

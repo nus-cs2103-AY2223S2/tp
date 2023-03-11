@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 
@@ -13,9 +13,9 @@ public class AddReminder extends Command {
 
     public static final String COMMAND_WORD = "add_reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder.\n"
             + "Parameters: "
-            + PREFIX_DES + "Description "
+            + PREFIX_DESCRIPTION + "Description "
             + PREFIX_TIME + "YYYY-MM-DD HH:MM";
 
     public static final String MESSAGE_SUCCESS = "New reminder added";

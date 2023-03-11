@@ -45,7 +45,7 @@ public class ReminderList implements Iterable<Reminder>{
     /**
      * Replaces the contents of this list with {@code reminderList}.
      */
-    public void setReminders(List<Reminder> reminderList) {
+    public void setReminderList(List<Reminder> reminderList) {
         requireAllNonNull(reminderList);
         internalList.setAll(reminderList);
     }
