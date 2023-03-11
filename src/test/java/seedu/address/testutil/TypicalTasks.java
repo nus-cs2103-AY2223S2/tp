@@ -24,7 +24,7 @@ public class TypicalTasks {
     public static final Task SET_APPOINTMENT = new TaskBuilder().withSubject("Set appointment")
             .withContent("Set up meeting with Mdm Tay for next Monday").build();
     public static final Task DATA_ENTRY = new TaskBuilder().withSubject("Data entry")
-            .withContent("Update spreadsheet with client information.").build();
+            .withContent("Update spreadsheet with client information.").withStatus(true).build();
 
     private TypicalTasks() {}
 
