@@ -22,8 +22,12 @@ public class PersonListDivider extends UiPart<Region> {
      */
     public PersonListDivider(String title) {
         super(FXML);
-        Objects.requireNonNull(title);
 
+        setTitle(title);
+    }
+
+    public void setTitle(String title) {
+        Objects.requireNonNull(title);
         this.title.setText(title);
     }
 }

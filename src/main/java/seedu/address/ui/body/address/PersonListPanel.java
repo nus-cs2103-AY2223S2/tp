@@ -33,7 +33,7 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<PersonListCellData> personListView;
 
-    private PersonListCellData selectedData;
+    private int selectedIndex;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -45,12 +45,11 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
-            PersonListCellData clickedData = personListView.getSelectionModel().getSelectedItem();
-            if (Objects.equals(clickedData, selectedData)) {
-                // the same Person was clicked on
+            int clickedIndex = personListView.getSelectionModel().getSelectedIndex();
+            if (clickedIndex == selectedIndex) {
                 clearSelection();
             } else {
-                selectedData = clickedData;
+                selectedIndex = clickedIndex;
             }
         });
 
@@ -76,7 +75,7 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
-        selectedData = null;
+        selectedIndex = EMPTY_INDEX;
     }
 
     private void fillListView(Collection<? extends Person> people) {
@@ -131,29 +130,62 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListCell extends ListCell<PersonListCellData> {
+        private PersonCard personCard;
+        private PersonListDivider personListDivider;
+
         @Override
         protected void updateItem(PersonListCellData data, boolean empty) {
             super.updateItem(data, empty);
 
             if (empty || data == null) {
+                personCard = null;
+                personListDivider = null;
                 setGraphic(null);
                 setText(null);
                 return;
             }
 
+            boolean needsUpdate;
             Person person = data.getPerson().orElse(null);
             if (person == null) { // data represents a divider
-                setGraphic(new PersonListDivider(data.getTitle()).getRoot());
-                setDisable(true);
+                needsUpdate = personListDivider == null;
+                switchVariant(data.getTitle());
             } else { // data represents a Person to be displayed
-                setGraphic(new PersonCard(person, data.getIndex()).getRoot());
-                setDisable(false);
+                needsUpdate = personCard == null;
+                switchVariant(person, data.getIndex());
             }
-            if (getIndex() == 0) { // formats the first ListCell with extra spacing
-                getStyleClass().add("first-cell");
-            } else {
-                getStyleClass().remove("first-cell");
+            if (needsUpdate) {
+                if (personCard != null) {
+                    setGraphic(personCard.getRoot());
+                    setDisable(false);
+                } else if (personListDivider != null) {
+                    setGraphic(personListDivider.getRoot());
+                    setDisable(true);
+                } else {
+                    setGraphic(null);
+                }
+                if (getIndex() == 0) { // formats the first ListCell with extra spacing
+                    getStyleClass().add("first-cell");
+                } else {
+                    getStyleClass().remove("first-cell");
+                }
             }
+        }
+
+        private void switchVariant(Person person, int index) {
+            personListDivider = null;
+            if (personCard == null) {
+                personCard = new PersonCard(person, index);
+            }
+            personCard.setPerson(person, index);
+        }
+
+        private void switchVariant(String title) {
+            personCard = null;
+            if (personListDivider == null) {
+                personListDivider = new PersonListDivider(title);
+            }
+            personListDivider.setTitle(title);
         }
     }
 
