@@ -49,7 +49,7 @@ public class MarkCommand extends Command {
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
         Person updatedPersonToMark = new Person(personToMark.getName(), personToMark.getPhone(),
-                personToMark.getEmail(), personToMark.getAddress(), personToMark.getTags(), newStatus);
+                personToMark.getEmail(), personToMark.getAddress(), personToMark.getParcels(), newStatus);
 
         model.setPerson(personToMark, updatedPersonToMark);
 

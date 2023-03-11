@@ -16,7 +16,7 @@ import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.tag.Tag;
+import bookopedia.model.parcel.Parcel;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedParcel> parcels = new ArrayList<>();
 
     private final String deliveryStatus;
 
@@ -39,14 +39,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("parcels") List<JsonAdaptedParcel> parcels,
             @JsonProperty("deliveryStatus") String deliveryStatus) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (parcels != null) {
+            this.parcels.addAll(parcels);
         }
         this.deliveryStatus = deliveryStatus;
     }
@@ -59,8 +59,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        parcels.addAll(source.getParcels().stream()
+                .map(JsonAdaptedParcel::new)
                 .collect(Collectors.toList()));
         deliveryStatus = source.getDeliveryStatus().name();
     }
@@ -71,9 +71,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Parcel> personParcels = new ArrayList<>();
+        for (JsonAdaptedParcel parcel : parcels) {
+            personParcels.add(parcel.toModelType());
         }
 
         if (name == null) {
@@ -119,8 +119,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDeliveryStatus);
+        final Set<Parcel> modelParcels = new HashSet<>(personParcels);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParcels, modelDeliveryStatus);
     }
 
 }

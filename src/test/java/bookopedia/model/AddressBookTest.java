@@ -1,6 +1,6 @@
 package bookopedia.model;
 
-import static bookopedia.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.testutil.Assert.assertThrows;
 import static bookopedia.testutil.TypicalPersons.ALICE;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
@@ -46,7 +46,7 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(ALICE.getAddress().toString())
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withParcels(VALID_PARCEL_LAZADA).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -73,7 +73,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(ALICE.getAddress().toString())
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withParcels(VALID_PARCEL_LAZADA).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 

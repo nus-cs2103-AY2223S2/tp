@@ -5,7 +5,7 @@ import static bookopedia.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookopedia.logic.parser.CliSyntax.PREFIX_PHONE;
-import static bookopedia.logic.parser.CliSyntax.PREFIX_TAG;
+import static bookopedia.logic.parser.CliSyntax.PREFIX_PARCEL;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,7 +17,7 @@ import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.tag.Tag;
+import bookopedia.model.parcel.Parcel;
 
 
 /**
@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_PARCEL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -42,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Parcel> parcelList = ParserUtil.parseParcels(argMultimap.getAllValues(PREFIX_PARCEL));
 
         Phone phone = new Phone("");
         if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, parcelList);
 
         return new AddCommand(person);
     }

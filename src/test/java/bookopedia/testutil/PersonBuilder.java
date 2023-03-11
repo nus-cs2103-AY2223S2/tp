@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Person;
 import bookopedia.model.person.Phone;
-import bookopedia.model.tag.Tag;
 import bookopedia.model.util.SampleDataUtil;
 
 /**
@@ -26,7 +26,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Parcel> parcels;
 
     private DeliveryStatus deliveryStatus;
 
@@ -38,7 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        parcels = new HashSet<>();
         deliveryStatus = DeliveryStatus.PENDING;
     }
 
@@ -50,7 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        parcels = new HashSet<>(personToCopy.getParcels());
         deliveryStatus = personToCopy.getDeliveryStatus();
     }
 
@@ -63,10 +63,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code parcels} into a {@code Set<Parcel>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withParcels(String ... parcels) {
+        this.parcels = SampleDataUtil.getTagSet(parcels);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, deliveryStatus);
+        return new Person(name, phone, email, address, parcels, deliveryStatus);
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import bookopedia.model.DeliveryStatus;
-import bookopedia.model.tag.Tag;
+import bookopedia.model.parcel.Parcel;
 
 /**
  * Represents a Person in the address book.
@@ -23,19 +23,19 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Parcel> parcels = new HashSet<>();
     private final DeliveryStatus deliveryStatus;
 
     /**
      * Every field must be present and not null except phone and email.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DeliveryStatus deliveryStatus) {
-        requireAllNonNull(name, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels, DeliveryStatus deliveryStatus) {
+        requireAllNonNull(name, address, parcels);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.parcels.addAll(parcels);
         this.deliveryStatus = deliveryStatus;
     }
 
@@ -43,12 +43,12 @@ public class Person {
      * Every field must be present and not null except phone and email.
      * Pending delivery status assigned by default.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.parcels.addAll(parcels);
         this.deliveryStatus = DeliveryStatus.PENDING;
     }
 
@@ -69,11 +69,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable parcel set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Parcel> getParcels() {
+        return Collections.unmodifiableSet(parcels);
     }
 
     public DeliveryStatus getDeliveryStatus() {
@@ -113,14 +113,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getParcels().equals(getParcels())
                 && otherPerson.getDeliveryStatus().equals(getDeliveryStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, parcels);
     }
 
     @Override
@@ -134,10 +134,10 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Parcel> parcels = getParcels();
+        if (!parcels.isEmpty()) {
+            builder.append("; Parcels: ");
+            parcels.forEach(builder::append);
         }
 
         builder.append("; Delivery Status: ");

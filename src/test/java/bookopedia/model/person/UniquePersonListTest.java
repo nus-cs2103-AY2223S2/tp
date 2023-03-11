@@ -1,7 +1,7 @@
 package bookopedia.model.person;
 
 import static bookopedia.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static bookopedia.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.testutil.Assert.assertThrows;
 import static bookopedia.testutil.TypicalPersons.ALICE;
 import static bookopedia.testutil.TypicalPersons.BOB;
@@ -43,7 +43,7 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(ALICE.getAddress().toString())
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withParcels(VALID_PARCEL_LAZADA).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -86,7 +86,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withParcels(VALID_PARCEL_LAZADA)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
