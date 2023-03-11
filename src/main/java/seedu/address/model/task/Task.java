@@ -82,9 +82,7 @@ public class Task {
         return Objects.hash(taskName, isDone);
     }
 
-    /**
-     * Format state as text for viewing.
-     */
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())

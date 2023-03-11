@@ -61,7 +61,8 @@ public class AddTaskCommand extends Command {
 
         model.addTaskToPerson(personToAddTaskTo, taskToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, personToAddTaskTo.getName(), taskToAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
+                personToAddTaskTo.getName(), taskToAdd.getName()));
     }
 
     @Override
