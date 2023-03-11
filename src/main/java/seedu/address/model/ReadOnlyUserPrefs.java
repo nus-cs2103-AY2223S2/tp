@@ -12,7 +12,6 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     OperationMode getOperationMode();
-    
     /**
      * Returns the file path of the pilotManager
      *
