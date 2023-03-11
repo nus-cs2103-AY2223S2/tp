@@ -32,7 +32,9 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the OfficeConnect.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
+   
+   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with subject `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -182,8 +184,7 @@ Format: `addtask s/SUBJECT c/CONTENT st/STATUS`
 Adds a task to OfficeConnect.
 
 Examples:
-- `add n/Send email to supplier`
-- `add n/Restock shelves`
+- `addtask s/Complete slides c/Finish slides for meeting st/false`
 
 ## Deleting a Task: `deletetask`
 Format: `deletetask INDEX [MORE_INDEX]`
@@ -238,7 +239,7 @@ _Details coming soon ..._
 | Action        | Format, Examples                                                                                                                                                     |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**  | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Recreation day c/ Play football st/false`                                                              |
+| **Add Task**  | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
 | **Clear**     | `clear`                                                                                                                                                              |
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
 | **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
