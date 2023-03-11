@@ -1,6 +1,5 @@
 package taa.model.student;
 
-import static taa.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -28,7 +27,7 @@ public class StudentTest {
         Assertions.assertFalse(TypicalPersons.ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns true
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withEmail(VALID_EMAIL_BOB)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
                 .withTags(VALID_TAG_HUSBAND).build();
         Assertions.assertTrue(TypicalPersons.ALICE.isSameStudent(editedAlice));
 
@@ -69,7 +68,7 @@ public class StudentTest {
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new PersonBuilder(TypicalPersons.ALICE).build();
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
         // different tags -> returns false
