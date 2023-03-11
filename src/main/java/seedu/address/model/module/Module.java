@@ -29,6 +29,17 @@ public class Module {
      * Every field must be not null.
      *
      * @param code The module's code.
+     */
+    public Module(ModuleCode code) {
+        requireAllNonNull(code);
+        this.code = code;
+        this.name = new ModuleName(null);
+    }
+
+    /**
+     * Every field must be not null.
+     *
+     * @param code The module's code.
      * @param name The name of the module.
      * @param tags The tags applied to the module.
      * @param lectures The lectures of the module.
