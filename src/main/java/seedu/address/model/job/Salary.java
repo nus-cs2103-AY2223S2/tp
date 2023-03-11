@@ -3,6 +3,10 @@ package seedu.address.model.job;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Salary in the Tech track.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
+ */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
             "Salaries should be more than 0!";
