@@ -93,9 +93,9 @@ public class PersonListPanel extends UiPart<Region> {
         ObservableList<PersonListCellData> items = personListView.getItems();
 
         items.clear();
-        items.add(PersonListCellData.ofDivider("Favourites"));
+        items.add(PersonListCellData.ofDivider(String.format("Favourites (%d)", favoriteData.size())));
         items.addAll(favoriteData);
-        items.add(PersonListCellData.ofDivider("All contacts"));
+        items.add(PersonListCellData.ofDivider(String.format("All contacts (%d)", allData.size())));
         items.addAll(allData);
     }
 
@@ -144,14 +144,15 @@ public class PersonListPanel extends UiPart<Region> {
                 return;
             }
 
-            if (data.getPerson().isPresent()) {
-                setGraphic(new PersonCard(data.getPerson().get(), data.getIndex()).getRoot());
-                setDisable(false);
-            } else {
+            Person person = data.getPerson().orElse(null);
+            if (person == null) { // data represents a divider
                 setGraphic(new PersonListDivider(data.getTitle()).getRoot());
                 setDisable(true);
+            } else { // data represents a Person to be displayed
+                setGraphic(new PersonCard(person, data.getIndex()).getRoot());
+                setDisable(false);
             }
-            if (getIndex() == 0) {
+            if (getIndex() == 0) { // formats the first ListCell with extra spacing
                 getStyleClass().add("first-cell");
             } else {
                 getStyleClass().remove("first-cell");
@@ -162,12 +163,12 @@ public class PersonListPanel extends UiPart<Region> {
     private static class PersonListCellData {
         private final int index;
         private final String title;
-        private final Optional<Person> person;
+        private final Person person;
 
         private PersonListCellData(int index, String title, Person person) {
             this.index = index;
             this.title = title;
-            this.person = Optional.ofNullable(person);
+            this.person = person;
         }
 
         public static PersonListCellData ofPerson(int index, Person person) {
@@ -183,11 +184,11 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
         public Optional<Person> getPerson() {
-            return person;
+            return Optional.ofNullable(person);
         }
 
         public boolean hasPerson() {
-            return person.isPresent();
+            return getPerson().isPresent();
         }
 
         public String getTitle() {
