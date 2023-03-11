@@ -6,7 +6,7 @@ import seedu.library.model.Library;
 import seedu.library.model.Model;
 
 /**
- * Clears the librart.
+ * Clears the library.
  */
 public class ClearCommand extends Command {
 
