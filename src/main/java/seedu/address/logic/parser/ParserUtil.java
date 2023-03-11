@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Specialty;
+import seedu.address.model.person.Yoe;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,6 +79,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String speciality} into an {@code Speciality}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code speciality} is invalid.
+     */
+    public static Specialty parseSpeciality(String speciality) throws ParseException {
+        requireNonNull(speciality);
+        String trimmedSpeciality = speciality.trim();
+        if (!Specialty.isValidSpecialty(trimmedSpeciality)) {
+            throw new ParseException(Specialty.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialty(trimmedSpeciality);
+    }
+
+    /**
+     * Parses a {@code String yoe} into an {@code Yoe}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code yoe} is invalid.
+     */
+    public static Yoe parseYoe(String yoe) throws ParseException {
+        requireNonNull(yoe);
+        String trimmedYoe = yoe.trim();
+        if (!Yoe.isValidYoe(trimmedYoe)) {
+            throw new ParseException(Yoe.MESSAGE_CONSTRAINTS);
+        }
+        return new Yoe(trimmedYoe);
     }
 
     /**

@@ -5,16 +5,15 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import javafx.scene.layout.VBox;
+import seedu.address.model.person.Doctor;
 
 /**
- * An UI component that displays the name, phone number, email and tags of a {@code Person}.
+ * An UI component that displays all information of a {@code Doctor}.
  */
-public class PersonCard extends UiPart<Region> {
-
-    private static final String FXML = "PersonListCard.fxml";
+public class EnlargedContactCard extends UiPart<Region> {
+    private static final String FXML = "EnlargedContactCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,32 +23,35 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Doctor doctor;
 
-    @FXML
-    private HBox cardPane;
+    @javafx.fxml.FXML
+    private VBox enlargedContactCard;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
     private Label email;
     @FXML
+    private Label specialty;
+    @FXML
+    private Label yearsOfExperience;
+    @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public EnlargedContactCard(Doctor doctor) {
         super(FXML);
-        this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        this.doctor = doctor;
+        name.setText(doctor.getName().fullName);
+        phone.setText(doctor.getPhone().value);
+        email.setText(doctor.getEmail().value);
+        specialty.setText(doctor.getSpecialty().specialty);
+        yearsOfExperience.setText(doctor.getYoe().value);
+        doctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -62,13 +64,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EnlargedContactCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        EnlargedContactCard card = (EnlargedContactCard) other;
+        return doctor.equals(card.doctor);
     }
 }
