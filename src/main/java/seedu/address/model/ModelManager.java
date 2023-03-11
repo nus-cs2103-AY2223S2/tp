@@ -18,7 +18,6 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
 
@@ -66,8 +65,8 @@ public class ModelManager implements Model {
                         ReadOnlyItemManager<Flight> flightManager) {
         requireAllNonNull(userPrefs);
 
-        logger.fine("Initializing with Wingman storage(pilot, location, crew, plane, flight)" +
-                " and user prefs " + userPrefs);
+        logger.fine("Initializing with Wingman storage(pilot, location, crew, plane, flight)"
+                + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
 
