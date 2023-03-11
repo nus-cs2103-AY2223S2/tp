@@ -3,6 +3,7 @@ package bookopedia.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -27,6 +28,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
 
+    private DeliveryStatus deliveryStatus;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -36,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        deliveryStatus = DeliveryStatus.PENDING;
     }
 
     /**
@@ -47,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        deliveryStatus = personToCopy.getDeliveryStatus();
     }
 
     /**
@@ -89,8 +94,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DeliveryStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDeliveryStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, deliveryStatus);
     }
 
 }

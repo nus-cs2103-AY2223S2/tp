@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import bookopedia.model.DeliveryStatus;
 import bookopedia.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -92,6 +93,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different delivery status -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDeliveryStatus(DeliveryStatus.OTW).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

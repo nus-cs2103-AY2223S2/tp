@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.logic.parser.exceptions.ParseException;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -192,5 +193,39 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDeliveryStatus_lowerCase_returnsDeliveryStatus() throws Exception {
+        DeliveryStatus deliveryStatus = ParserUtil.parseDeliveryStatus("otw");
+        DeliveryStatus expectedDeliveryStatus = DeliveryStatus.OTW;
+
+        assertEquals(expectedDeliveryStatus, deliveryStatus);
+    }
+
+    @Test
+    public void parseDeliveryStatus_upperCase_returnsDeliveryStatus() throws Exception {
+        DeliveryStatus deliveryStatus = ParserUtil.parseDeliveryStatus("OTW");
+        DeliveryStatus expectedDeliveryStatus = DeliveryStatus.OTW;
+
+        assertEquals(expectedDeliveryStatus, deliveryStatus);
+    }
+
+    @Test
+    public void parseDeliveryStatus_mixedCase_returnsDeliveryStatus() throws Exception {
+        DeliveryStatus deliveryStatus = ParserUtil.parseDeliveryStatus("oTw");
+        DeliveryStatus expectedDeliveryStatus = DeliveryStatus.OTW;
+
+        assertEquals(expectedDeliveryStatus, deliveryStatus);
+    }
+
+    @Test
+    public void parseDeliveryStatus_invalid_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeliveryStatus("invalid"));
+    }
+
+    @Test
+    public void parseDeliveryStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeliveryStatus(null));
     }
 }
