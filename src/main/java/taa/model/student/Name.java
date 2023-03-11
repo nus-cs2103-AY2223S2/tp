@@ -1,9 +1,8 @@
 package taa.model.student;
 
-import taa.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static taa.commons.util.AppUtil.checkArgument;
+
+import taa.commons.util.AppUtil;
 
 /**
  * Represents a Student's name in the address book.

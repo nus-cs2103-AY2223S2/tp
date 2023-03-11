@@ -6,12 +6,12 @@ import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import taa.commons.core.Messages;
 import taa.logic.commands.AddCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
-import taa.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new AddCommand object

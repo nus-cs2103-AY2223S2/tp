@@ -1,9 +1,9 @@
 package taa.logic.parser;
 
+import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.DeleteCommand;
 import taa.logic.parser.exceptions.ParseException;
-import taa.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

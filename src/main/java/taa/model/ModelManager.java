@@ -1,7 +1,6 @@
 package taa.model;
 
 import static java.util.Objects.requireNonNull;
-import static taa.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -11,8 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
-import taa.model.student.Student;
 import taa.commons.util.CollectionUtil;
+import taa.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.

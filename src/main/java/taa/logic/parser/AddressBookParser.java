@@ -3,6 +3,7 @@ package taa.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import taa.commons.core.Messages;
 import taa.logic.commands.AddCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
@@ -14,7 +15,6 @@ import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.RemarkCommand;
 import taa.logic.parser.exceptions.ParseException;
-import taa.commons.core.Messages;
 
 /**
  * Parses user input.

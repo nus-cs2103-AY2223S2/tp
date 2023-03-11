@@ -1,9 +1,8 @@
 package taa.model.tag;
 
-import taa.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static taa.commons.util.AppUtil.checkArgument;
+
+import taa.commons.util.AppUtil;
 
 /**
  * Represents a Tag in the address book.

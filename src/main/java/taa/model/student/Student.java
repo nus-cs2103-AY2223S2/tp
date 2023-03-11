@@ -1,14 +1,12 @@
 package taa.model.student;
 
-import static taa.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import taa.model.tag.Tag;
 import taa.commons.util.CollectionUtil;
+import taa.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.

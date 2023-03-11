@@ -7,9 +7,9 @@ import taa.commons.core.GuiSettings;
 import taa.logic.commands.CommandResult;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.Model;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.student.Student;
-import taa.model.Model;
 
 /**
  * API of the Logic component

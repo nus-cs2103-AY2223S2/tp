@@ -2,10 +2,10 @@ package taa.logic.parser;
 
 import java.util.Arrays;
 
+import taa.commons.core.Messages;
 import taa.logic.commands.FindCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.NameContainsKeywordsPredicate;
-import taa.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new FindCommand object

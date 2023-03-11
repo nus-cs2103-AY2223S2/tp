@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import taa.commons.exceptions.IllegalValueException;
-import taa.model.tag.Tag;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.

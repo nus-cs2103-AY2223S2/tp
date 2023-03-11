@@ -4,10 +4,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import taa.logic.Logic;
 import taa.logic.commands.CommandResult;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
-import taa.logic.Logic;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

@@ -9,11 +9,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.EditCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.tag.Tag;
-import taa.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -35,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditStudentDescriptor editStudentDescriptor = new EditCommand.EditStudentDescriptor();
