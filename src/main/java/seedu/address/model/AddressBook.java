@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +20,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueGroupList groups;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        groups = new UniqueGroupList();
     }
 
     public AddressBook() {}
@@ -101,6 +107,52 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Adds {@code group} in {@code person} group set
+     * {@code person} must exist in the address book.
+     */
+    public void addPersonInGroup(Person person, Group group) {
+        person.addGroup(group);
+    }
+
+    /**
+     * Removes {@code group} from {@code person} group set
+     * {@code person and group} must exist in the address book.
+     */
+    public void removePersonFromGroup(Person person, Group group) {
+        person.removeGroup(group);
+    }
+
+    /**
+     * Add {@code group}  into address book's UniqueGroupList
+     * {@code group} must not exist in the address book.
+     */
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
+    /**
+     * Remove {@code group} from address book's UniqueGroupList and every person in the group
+     * {@code group} must not exist in the address book.
+     */
+    public void deleteGroup(Group group) {
+        Set<Person> personSet = new HashSet<>();
+        for (Person p : persons) {
+            if (p.getGroups().contains(group)) {
+                personSet.add(p);
+            }
+        }
+        groups.delete(group, personSet);
+    }
+
+    /**
+     * Returns true if a group with the same group name as {@code group} exists in the address book.
+     */
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return groups.contains(group);
     }
 
     //// util methods

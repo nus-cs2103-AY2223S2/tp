@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ISOEVENT = new Prefix("ie/");
     public static final Prefix PREFIX_STARTDATETIME = new Prefix("f/");
     public static final Prefix PREFIX_ENDDATETIME = new Prefix("t/");
+    public static final Prefix PREFIX_GROUP = new Prefix("g/");
 
 }
