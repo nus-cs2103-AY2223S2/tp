@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="enlargedContactCard" styleClass="enlarged-contact-card, primary-border"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox alignment="CENTER" styleClass="only-bottom-primary-border">
+    <Label fx:id="name" text="\$first" styleClass="label-header-3"/>
+  </HBox>
+  <VBox styleClass="enlarged-contacts-details-pane">
+    <padding>
+      <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+    <Label styleClass="description-label" text="Phone Number:" />
+    <Label fx:id="phone" styleClass="value-label" text="\$phone" />
+    <Label styleClass="description-label" text="Email:" />
+    <Label fx:id="email" styleClass="value-label" text="\$email" />
+    <Label styleClass="description-label" text="Specialty:" />
+    <Label fx:id="specialty" styleClass="value-label" text="\$specialty" />
+    <Label styleClass="description-label" text="Years of Experience:" />
+    <Label fx:id="yearsOfExperience" styleClass="value-label" text="\$yearsOfExperience" />
+    <Label styleClass="description-label" text="Tags:" />
+    <FlowPane fx:id="tags" />
+  </VBox>
+</VBox>
