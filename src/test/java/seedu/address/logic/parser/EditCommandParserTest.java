@@ -97,6 +97,19 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /*
+    @Test
+    public void parse_someFieldsSpecified_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = String.valueOf(targetIndex.getOneBased());
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+     */
+
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
@@ -133,6 +146,25 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    /*
+    @Test
+    public void parse_invalidValueFollowedByValidValue_success() {
+        // no other valid values specified
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = String.valueOf(targetIndex.getOneBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // other valid values specified
+        userInput = targetIndex.getOneBased() + ADDRESS_DESC_BOB;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_BOB).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+     */
 
     @Test
     public void parse_resetTags_success() {
