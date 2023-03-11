@@ -29,8 +29,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
-import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.tag.Tag;
 
 /**

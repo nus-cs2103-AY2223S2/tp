@@ -179,6 +179,13 @@ public class ParserUtil {
         return new ParentName(trimmedParentName);
     }
 
+    /**
+     * Parses relationship of Parent object.
+     *
+     * @param relationship Relation of Parent object to Student (parent / next-of-kin [NOK]).
+     * @return Relationship object stating the relationship of a Parent object to a Student object.
+     * @throws ParseException
+     */
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
         String trimmedRelationship = relationship.trim();

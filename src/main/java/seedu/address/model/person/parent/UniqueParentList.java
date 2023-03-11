@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+/**
+ * Represents a parent list containing Parent objects of Student objects in the same class / cca.
+ */
 public class UniqueParentList implements Iterable<Parent> {
     private final ObservableList<Parent> internalList = FXCollections.observableArrayList();
     private final ObservableList<Parent> internalUnmodifiableList =

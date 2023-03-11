@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns boolean value true if a student with the same identity as {@code student} exists in PowerConnect.
      *
-     * @param student Student object that needs to be checked for duplication
+     * @param student Student object that needs to be checked for duplication.
      * @return Boolean value indicating whether the student already exists in PowerConnect.
      */
     public boolean hasStudent(Student student) {
@@ -95,6 +95,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.contains(student);
     }
 
+    /**
+     * Returns boolean value true if a parent with the same identity as {@code parent} exists in PowerConnect.
+     *
+     * @param parent Parent object that needs to be checked for duplication.
+     * @return Boolean value indicating whether the parent already exists in PowerConnect.
+     */
     public boolean hasParent(Parent parent) {
         requireNonNull(parent);
         return parents.contains(parent);

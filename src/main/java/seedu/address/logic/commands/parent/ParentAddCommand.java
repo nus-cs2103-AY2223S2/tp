@@ -15,6 +15,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.parent.Parent;
 
+/**
+ * A class for "parent Class Name add" command"
+ */
 public class ParentAddCommand extends ParentCommand {
     public static final String COMMAND_WORD = "add";
 

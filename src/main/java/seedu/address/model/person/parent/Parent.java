@@ -46,8 +46,8 @@ public class Parent extends Person {
      * @param address
      * @param tags
      */
-    public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image, Email email, Phone phone,
-                  Address address, Set<Tag> tags) {
+    public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
+                  Email email, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sc = sc;
