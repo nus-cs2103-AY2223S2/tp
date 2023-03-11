@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 
 /**
  * The API of the Model component.
@@ -91,7 +92,12 @@ public interface Model {
     /** Returns the deck */
     ReadOnlyMasterDeck getSelectedDeck();
 
-    void createDeck(MasterDeck masterDeck);
+    void addDeck(Deck deck);
+
+    /**
+     * Returns true if a deck with the same name as {@code deck} exists.
+     */
+    boolean hasDeck(Deck deck);
 
     void selectDeck(Index idx);
 
