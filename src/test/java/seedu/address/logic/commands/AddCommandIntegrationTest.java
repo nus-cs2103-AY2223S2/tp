@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -27,19 +30,25 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
+        assertCommandSuccess(new AddCommand(expectedApplication), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
+        CompanyName c = new CompanyName("LinkedIn");
+        JobTitle j = new JobTitle("Data Scientist");
+        InternshipApplication expectedApplication = new InternshipApplication(c, j);
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(expectedApplication), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
