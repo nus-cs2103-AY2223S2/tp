@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Tutorial;
 
 /**
  * Panel containing the list of events.
@@ -20,23 +21,23 @@ public class EventListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(EventListPanel.class);
 
     @FXML
-    private ListView<Event> eventListViewLeftCol;
+    private ListView<Tutorial> eventListViewLeftCol;
     @FXML
-    private ListView<Event> eventListViewMidCol;
+    private ListView<Tutorial> eventListViewMidCol;
     @FXML
-    private ListView<Event> eventListViewRightCol;
+    private ListView<Tutorial> eventListViewRightCol;
 
-    private List<ListView<Event>> listOfEventListView;
+    private List<ListView<Tutorial>> listOfEventListView;
 
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
-    public EventListPanel(List<ObservableList<Event>> eventList) {
+    public EventListPanel(List<ObservableList<Tutorial>> eventList) {
         super(FXML);
 
         listOfEventListView = Arrays.asList(eventListViewLeftCol, eventListViewMidCol, eventListViewRightCol);
         for (int i = 0; i < eventList.size(); i++) {
-            ObservableList<Event> filteredEventList = eventList.get(i);
+            ObservableList<Tutorial> filteredEventList = eventList.get(i);
             listOfEventListView.get(i).setItems(filteredEventList);
             listOfEventListView.get(i).setCellFactory(listView -> new EventListViewCell());
         }
@@ -46,16 +47,16 @@ public class EventListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
      */
-    class EventListViewCell extends ListCell<Event> {
+    class EventListViewCell extends ListCell<Tutorial> {
         @Override
-        protected void updateItem(Event event, boolean empty) {
-            super.updateItem(event, empty);
+        protected void updateItem(Tutorial tutorial, boolean empty) {
+            super.updateItem(tutorial, empty);
 
-            if (empty || event == null) {
+            if (empty || tutorial == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EventCard(event, getIndex() + 1).getRoot());
+                setGraphic(new EventCard(tutorial, getIndex() + 1).getRoot());
             }
         }
     }

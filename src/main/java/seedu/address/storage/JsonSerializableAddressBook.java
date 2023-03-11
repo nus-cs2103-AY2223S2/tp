@@ -43,7 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
     }
 
     /**
@@ -59,6 +59,10 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
+            Tutorial tutorial = jsonAdaptedTutorial.toModelType();
+            addressBook.addTutorial(tutorial);
         }
         return addressBook;
     }

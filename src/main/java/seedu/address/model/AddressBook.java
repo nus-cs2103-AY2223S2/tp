@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.event.Tutorial;
@@ -19,7 +20,7 @@ import seedu.address.model.event.Tutorial;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ObservableList<Tutorial> tutorials;
+    private final UniqueTutorialList tutorials;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        tutorials = FXCollections.observableArrayList();;
+        tutorials = new UniqueTutorialList();
     }
 
     public AddressBook() {}
@@ -53,13 +54,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setTutorials(List<Tutorial> tutorials) {
+        this.tutorials.setTutorials(tutorials);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setTutorials(newData.getTutorialList());
     }
 
     //// person-level operations
@@ -103,7 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons"
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials";
         // TODO: refine later
     }
 
@@ -116,8 +122,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+    @Override
     public ObservableList<Tutorial> getTutorialList() {
-        return tutorials;
+        return tutorials.asUnmodifiableObservableList();
     }
 
     @Override

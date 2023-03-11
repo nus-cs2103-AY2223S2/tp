@@ -3,8 +3,11 @@ package seedu.address.model.event;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Allows the TA to create a Tutorial event that usually occurs once a week.
@@ -126,8 +129,56 @@ public class Tutorial extends Event {
         super.removeNote(note);
     }
 
+    public boolean isSameTutorial(Tutorial otherTutorial) {
+        if (otherTutorial == this) {
+            return true;
+        }
+
+        return otherTutorial != null
+                && otherTutorial.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tutorial)) {
+            return false;
+        }
+
+        Tutorial otherTutorial = (Tutorial) other;
+        return otherTutorial.getName().equals(getName())
+                && otherTutorial.getName().equals(getName())
+                && otherTutorial.getStudents().equals(getStudents())
+                && otherTutorial.getDate().equals(getDate())
+                && otherTutorial.getAttachments().equals(getAttachments())
+                && otherTutorial.getNotes().equals(getNotes());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getStudents(), getDate(), getAttachments(), getNotes());
+    }
+
     @Override
     public String toString() {
-        return "Tutorial";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Students: ")
+                .append(getStudents())
+                .append("; Date: ")
+                .append(getDate())
+                .append("; Attachments: ")
+                .append(getAttachments())
+                .append("; Notes: ")
+                .append(getNotes());
+        return builder.toString();
     }
 }

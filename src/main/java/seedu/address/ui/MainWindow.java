@@ -24,6 +24,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.event.Tutorial;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -136,8 +137,10 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        //eventListPanel = new EventListPanel(filterEventList(logic.getFilteredEventList()));
-        //eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+        ObservableList<Tutorial> list = logic.getFilteredTutorialList();
+
+        eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -161,8 +164,8 @@ public class MainWindow extends UiPart<Stage> {
         //Store all the filtered lists into a single list
         List<ObservableList<Person>> filteredList = new ArrayList<>();
 
-        //If nothing to filter, return empty list
-        if (personList.size() == 0) {
+        //If nothing to filter or just 1 column, return original list
+        if (personList.size() <= 3) {
             return filteredList;
         }
 
@@ -178,6 +181,34 @@ public class MainWindow extends UiPart<Stage> {
 
             filteredList.add(subList);
         }
+        return filteredList;
+    }
+
+    List<ObservableList<Tutorial>> filterTutorialList(ObservableList<Tutorial> tutorialList) {
+        int skip = 3;
+        //Store all the filtered lists into a single list
+        List<ObservableList<Tutorial>> filteredList = new ArrayList<>();
+        filteredList.add(tutorialList);
+
+        /*
+        //If nothing to filter, return empty list
+        if (tutorialList.size() <= 3) {
+            return filteredList;
+        }
+
+        //Filter according to which list it belongs
+        for (int j = 0; j < 3; j++) {
+            int size = tutorialList.size() - j;
+            int limit = size / skip + Math.min(size % skip, 1);
+
+            ObservableList<Tutorial> subList = Stream.iterate(j, i -> i + skip)
+                    .limit(limit)
+                    .map(tutorialList::get)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+            filteredList.add(subList);
+        }
+         */
         return filteredList;
     }
 
