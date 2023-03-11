@@ -20,7 +20,6 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 import taa.model.student.Email;
 import taa.model.student.Name;
-import taa.model.student.Phone;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
@@ -92,11 +91,10 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Student(updatedName, updatedEmail, updatedTags);
     }
 
     @Override
@@ -123,7 +121,6 @@ public class EditCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private Name name;
-        private Phone phone;
         private Email email;
         private Set<Tag> tags;
 
@@ -135,7 +132,6 @@ public class EditCommand extends Command {
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
@@ -144,7 +140,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, email, tags);
         }
 
         public void setName(Name name) {
@@ -153,14 +149,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
@@ -204,7 +192,6 @@ public class EditCommand extends Command {
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }

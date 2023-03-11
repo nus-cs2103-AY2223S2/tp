@@ -1,4 +1,4 @@
-package taa.model.person;
+package taa.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,8 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import taa.model.student.Student;
-import taa.model.student.UniqueStudentList;
 import taa.model.student.exceptions.DuplicateStudentException;
 import taa.model.student.exceptions.StudentNotFoundException;
 import taa.testutil.PersonBuilder;

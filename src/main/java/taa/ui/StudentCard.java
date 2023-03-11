@@ -49,7 +49,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
+        phone.setText("placeholder phone num");
         assignment.setText("Latest assignment submission: xxx");
         email.setText(student.getEmail().value);
         student.getTags().stream()

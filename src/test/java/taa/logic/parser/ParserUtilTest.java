@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Email;
 import taa.model.student.Name;
-import taa.model.student.Phone;
 import taa.model.tag.Tag;
 import taa.testutil.Assert;
 import taa.testutil.TypicalIndexes;
@@ -78,30 +77,6 @@ public class ParserUtilTest {
         Name expectedName = new Name(VALID_NAME);
         Assertions.assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
-
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Assertions.assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Assertions.assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));

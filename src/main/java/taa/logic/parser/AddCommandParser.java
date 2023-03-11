@@ -13,7 +13,6 @@ import taa.logic.commands.AddCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Email;
 import taa.model.student.Name;
-import taa.model.student.Phone;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 import taa.commons.core.Messages;
@@ -38,11 +37,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, phone, email, tagList);
+        Student student = new Student(name, email, tagList);
 
         return new AddCommand(student);
     }

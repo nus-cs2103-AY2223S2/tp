@@ -5,10 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import taa.logic.commands.EditCommand;
-import seedu.address.model.student.*;
 import taa.model.student.Email;
 import taa.model.student.Name;
-import taa.model.student.Phone;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
@@ -33,7 +31,6 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditCommand.EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setTags(student.getTags());
     }
@@ -43,14 +40,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
         return this;
     }
 
