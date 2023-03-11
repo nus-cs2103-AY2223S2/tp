@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -28,8 +28,8 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Card card) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + card.getQuestion().question + " ");
-        sb.append(PREFIX_ADDRESS + card.getAddress().answer + " ");
+        sb.append(PREFIX_QUESTION + card.getQuestion().question + " ");
+        sb.append(PREFIX_ANSWER + card.getAddress().answer + " ");
         card.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -41,8 +41,8 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.question).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.answer).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.question).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ANSWER).append(address.answer).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
