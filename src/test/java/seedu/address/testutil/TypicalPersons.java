@@ -82,7 +82,7 @@ public class TypicalPersons {
     public static final Event BOB = new PersonBuilder().withName(VALID_NAME_BOB).withRate(VALID_PHONE_BOB)
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
-            .withMark("[ ]")
+            .withMark("[X]")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
