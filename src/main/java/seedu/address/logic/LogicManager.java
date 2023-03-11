@@ -42,7 +42,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+        String selectedDeckName = this.model.getSelectedDeckName();
+        if (selectedDeckName != null) {
+            command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeckName);
+        } else {
+            command = addressBookParser.parseCommandWhenDeckNotSelected(commandText);
+        }
         commandResult = command.execute(model);
 
         try {
