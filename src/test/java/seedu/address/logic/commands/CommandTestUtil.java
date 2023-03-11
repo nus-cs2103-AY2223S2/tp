@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -154,4 +155,13 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Removes the person at index 1 in {@code model}'s filtered list from the {@code model}'s address book.
+     */
+    public static void deletePersonIndexOne(Model model) {
+        Index indexOne = Index.fromOneBased(1);
+        Person person = model.getFilteredPersonList().get(indexOne.getZeroBased());
+        model.deletePerson(person);
+        model.commitSocket();
+    }
 }

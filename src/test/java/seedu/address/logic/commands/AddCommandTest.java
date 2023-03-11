@@ -152,6 +152,31 @@ public class AddCommandTest {
         public void sortPersonList(String category) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitSocket() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoSocket() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoSocket() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoSocket() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoSocket() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -193,6 +218,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        // AddCommand#execute calls commitSocket()
+        @Override
+        public void commitSocket() {
         }
     }
 
