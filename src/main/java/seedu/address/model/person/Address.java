@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import seedu.address.model.location.LocationUtil;
+import seedu.address.model.location.Location;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,15 +12,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address implements Comparable<Address> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses should be the names of the closest MRT stations to their homes.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private final String value;
+    private final Location value;
 
     /**
      * Constructs an {@code Address}.
@@ -27,26 +24,26 @@ public class Address implements Comparable<Address> {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        value = LocationUtil.ADDRESSES.get(address);
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return LocationUtil.ADDRESSES.containsKey(test);
     }
 
     /**
      * Gets the String value stored within the email.
      */
-    public String getValue() {
+    public Location getValue() {
         return value;
     }
 
     @Override
     public String toString() {
-        return getValue();
+        return getValue().getName();
     }
 
     @Override

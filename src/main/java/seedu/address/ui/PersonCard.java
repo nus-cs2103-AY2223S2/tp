@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().getValue());
         phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
+        address.setText(person.getAddress().getValue().getName());
         email.setText(person.getEmail().getValue());
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)

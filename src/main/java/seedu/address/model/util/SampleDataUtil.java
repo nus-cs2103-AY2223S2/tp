@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,16 +40,21 @@ public class SampleDataUtil {
      */
     public static ReadOnlyEduMate getSampleEduMate(int size) {
         EduMate sampleEm = new EduMate();
+        User sampleUser = getSampleUser();
         try {
             List<Person> samplePersons = getSamplePersons();
             Collections.shuffle(samplePersons);
             samplePersons.stream()
                     .filter(Objects::nonNull)
-                    .limit(size).forEach(sampleEm::addPerson);
+                    .limit(size)
+                    .forEach(p -> {
+                        p.setCommonModules(sampleUser.getImmutableModuleTags());
+                        sampleEm.addPerson(p);
+                    });
         } catch (FileNotFoundException fnfe) {
             logger.info("Sample Data not found: " + fnfe.getMessage());
         }
-        sampleEm.setUser(getSampleUser());
+        sampleEm.setUser(sampleUser);
         return sampleEm;
     }
 

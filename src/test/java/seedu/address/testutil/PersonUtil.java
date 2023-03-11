@@ -30,7 +30,7 @@ public class PersonUtil {
         sb.append(Prefix.NAME + person.getName().getValue() + " ");
         sb.append(Prefix.PHONE + person.getPhone().getValue() + " ");
         sb.append(Prefix.EMAIL + person.getEmail().getValue() + " ");
-        sb.append(Prefix.ADDRESS + person.getAddress().getValue() + " ");
+        sb.append(Prefix.ADDRESS + person.getAddress().getValue().getName() + " ");
         sb.append(Prefix.TELEGRAM_HANDLE + person.getTelegramHandle().getValue() + " ");
         person.getImmutableGroupTags().stream().forEach(
             s -> sb.append(Prefix.GROUP_TAG + s.tagName + " ")

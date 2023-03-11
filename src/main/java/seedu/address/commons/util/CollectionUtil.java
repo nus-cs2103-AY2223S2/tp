@@ -1,11 +1,10 @@
 package seedu.address.commons.util;
 
+import seedu.address.model.location.Location;
+
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -64,5 +63,12 @@ public class CollectionUtil {
         final boolean isParallel = firstStream.isParallel() || secondStream.isParallel();
         final Iterable<R> iterable = () -> outputIterator;
         return StreamSupport.stream(iterable.spliterator(), isParallel);
+    }
+
+    public static <T, U> HashMap<T, U> combineHashMaps(HashMap<T, U> firstHashMap, HashMap<T, U> secondHashMap) {
+        HashMap<T, U> resultMap = new HashMap<>();
+        resultMap.putAll(firstHashMap);
+        resultMap.putAll(secondHashMap);
+        return resultMap;
     }
 }

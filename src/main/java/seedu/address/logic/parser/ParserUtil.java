@@ -41,6 +41,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndices(Collection<String> indices) throws ParseException {
+        requireNonNull(indices);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : indices) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
+    }
+
+    /**
      * Parses an {@code intString} into an {@code Integer} and returns it.
      * @throws ParseException if the string cannot be converted into an integer.
      */
