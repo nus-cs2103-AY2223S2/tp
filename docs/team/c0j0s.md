@@ -25,13 +25,13 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the delivery tasking management system features `view` and `add`.
   * Developer Guide:
-    * 
+    *
 
 * **Community**:
-  * 
+  *
 
 * **Tools**:
-  * 
+  *
 
 * _{you can add/remove categories in the list above}_
 
