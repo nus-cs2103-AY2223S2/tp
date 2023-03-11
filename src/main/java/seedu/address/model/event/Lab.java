@@ -1,12 +1,15 @@
 package seedu.address.model.event;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.model.person.Person;
 
 /**
- * Allows the TA to create a Lab event that usually occurs once a week
+ * Allows the TA to create a Lab event that usually occurs once a week.
+ * Currently, there are no different behaviours between Lab, Tutorials and Consultations.
+ * Custom behaviours will be added in future versions / milestones.
  */
 public class Lab extends Event {
 
@@ -18,17 +21,17 @@ public class Lab extends Event {
         super(name, students);
     }
 
-    /**
-     * Sets the students to a new List of students. The date will be set to a specific date
-     * @param students
-     * @param eventDate
-     */
     public Lab(String name, LocalDate eventDate, List<Person> students) {
         super(name, eventDate, students);
     }
 
-    public Lab(String name, LocalDate eventDate, List<Person> students, List<Nite>) {
-        super(name, eventDate, students);
+    public Lab(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+        super(name, eventDate, students, attachments);
+    }
+
+    public Lab(String name, LocalDate eventDate, List<Person> students, List<File> attachments,
+               List<Note> notes) {
+        super(name, eventDate, students, attachments, notes);
     }
 
     /**
@@ -37,14 +40,6 @@ public class Lab extends Event {
      */
     public List<Person> getStudents() {
         return super.getStudents();
-    }
-
-    /**
-     * Gets the date of the event
-     * @return localdate
-     */
-    public LocalDate getDate() {
-        return super.getDate();
     }
 
     /**
@@ -72,6 +67,22 @@ public class Lab extends Event {
     }
 
     /**
+     * Get the total number of students enrolled in the event
+     * @return
+     */
+    public int countStudents() {
+        return super.countStudents();
+    }
+
+    /**
+     * Gets the date of the event
+     * @return localdate
+     */
+    public LocalDate getDate() {
+        return super.getDate();
+    }
+
+    /**
      * Changes the date of the event
      * @param date
      */
@@ -79,12 +90,30 @@ public class Lab extends Event {
         super.changeDate(date);
     }
 
-    /**
-     * Get the total number of students enrolled in the event
-     * @return
-     */
-    public int countStudents() {
-        return super.countStudents();
+
+
+    public List<File> getAttachments() {
+        return super.getAttachments();
+    }
+
+    public void addAttachment(File file) {
+        super.addAttachment(file);
+    }
+
+    public void removeAttachment(File file) {
+        super.removeAttachment(file);
+    }
+
+    public List<Note> getNotes() {
+        return super.getNotes();
+    }
+
+    public void addNote(Note note) {
+        super.addNote(note);
+    }
+
+    public void removeNote(Note note) {
+        super.removeNote(note);
     }
 
     @Override

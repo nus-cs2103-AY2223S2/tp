@@ -1,26 +1,37 @@
 package seedu.address.model.event;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.model.person.Person;
 
 /**
- * Allows the TA to create a consultation event that is usually a one time occurrence
+ * Allows the TA to create a Consultations event that usually occurs once a week.
+ * Currently, there are no different behaviours between Consultations, Consultationss and Consultations.
+ * Custom behaviours will be added in future versions / milestones.
  */
-public class Consultation extends Event {
+public class Consultations extends Event {
 
-    public Consultation(List<Person> students) {
-        super(students);
+    public Consultations(String name) {
+        super(name);
     }
 
-    /**
-     * Sets the students to a new List of students. The date will be set to a specific date
-     * @param students
-     * @param eventDate
-     */
-    public Consultation(List<Person> students, LocalDate eventDate) {
-        super(students, eventDate);
+    public Consultations(String name, List<Person> students) {
+        super(name, students);
+    }
+
+    public Consultations(String name, LocalDate eventDate, List<Person> students) {
+        super(name, eventDate, students);
+    }
+
+    public Consultations(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+        super(name, eventDate, students, attachments);
+    }
+
+    public Consultations(String name, LocalDate eventDate, List<Person> students, List<File> attachments,
+                    List<Note> notes) {
+        super(name, eventDate, students, attachments, notes);
     }
 
     /**
@@ -29,14 +40,6 @@ public class Consultation extends Event {
      */
     public List<Person> getStudents() {
         return super.getStudents();
-    }
-
-    /**
-     * Gets the date of the event
-     * @return localdate
-     */
-    public LocalDate getDate() {
-        return super.getDate();
     }
 
     /**
@@ -64,14 +67,6 @@ public class Consultation extends Event {
     }
 
     /**
-     * Changes the date of the event
-     * @param date
-     */
-    public void changeDate(LocalDate date) {
-        super.changeDate(date);
-    }
-
-    /**
      * Get the total number of students enrolled in the event
      * @return
      */
@@ -79,8 +74,50 @@ public class Consultation extends Event {
         return super.countStudents();
     }
 
+    /**
+     * Gets the date of the event
+     * @return localdate
+     */
+    public LocalDate getDate() {
+        return super.getDate();
+    }
+
+    /**
+     * Changes the date of the event
+     * @param date
+     */
+    public void changeDate(LocalDate date) {
+        super.changeDate(date);
+    }
+
+
+
+    public List<File> getAttachments() {
+        return super.getAttachments();
+    }
+
+    public void addAttachment(File file) {
+        super.addAttachment(file);
+    }
+
+    public void removeAttachment(File file) {
+        super.removeAttachment(file);
+    }
+
+    public List<Note> getNotes() {
+        return super.getNotes();
+    }
+
+    public void addNote(Note note) {
+        super.addNote(note);
+    }
+
+    public void removeNote(Note note) {
+        super.removeNote(note);
+    }
+
     @Override
     public String toString() {
-        return "Consultation";
+        return "Consultations";
     }
 }
