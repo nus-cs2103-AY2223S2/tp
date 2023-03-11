@@ -62,8 +62,20 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean isChecked) {
         super(FXML);
+
+        String checkedTextStyle = "-fx-text-fill: red;";
+
+        if (isChecked) {
+            phone.setStyle(checkedTextStyle);
+            parentPhone.setStyle(checkedTextStyle);
+            address.setStyle(checkedTextStyle);
+            email.setStyle(checkedTextStyle);
+        } else {
+
+        }
+
         int imgIndex = displayedIndex % imgNumber;
         imgIndex = imgIndex == 0 ? imgNumber : imgIndex;
         this.person = person;

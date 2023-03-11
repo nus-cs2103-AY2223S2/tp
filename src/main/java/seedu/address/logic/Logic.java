@@ -47,4 +47,11 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the person that user want to check.
+     *
+     * @return the person being selected by the user.
+     */
+    Person findCheckedPerson();
 }

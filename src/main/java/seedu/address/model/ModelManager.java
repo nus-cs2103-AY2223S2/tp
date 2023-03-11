@@ -99,6 +99,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void checkPerson(Person target) {
+        addressBook.checkPerson(target);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -129,6 +134,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person findSelectedPerson() {
+        return addressBook.findCheckedPerson();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -146,5 +156,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

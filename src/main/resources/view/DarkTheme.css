@@ -112,28 +112,7 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 24 6 24 6;
     -fx-background-insets: 6 0 6 0;
-    -fx-background-color: #EFEEFC;
     -fx-background-radius: 8;
-}
-
-/*Background color for person list when it is highlighted*/
-.list-cell:filled:selected {
-    -fx-background-color: #605BF1;
-    -fx-text-fill: white;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-width: 0;
-}
-
-/*Student list text color*/
-.list-cell .label {
-    -fx-text-fill: #4A4A4A;
-    -fx-font-family: "SansSerif";
-}
-
-.list-cell:filled:selected .label{
-    -fx-text-fill: white;
 }
 
 .cell_big_label {
@@ -142,6 +121,7 @@
     -fx-font-size: 22px;
     -fx-text-fill: #4A4A4A;
     -fx-padding: 0 0 4 0;
+    -fx-wrap-text: true;
 }
 
 .cell_small_label {
@@ -158,6 +138,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: #605BF1;
     -fx-padding: 18 0 -6 18;
+    -fx-wrap-text: true;
 }
 
 /*Input field*/
