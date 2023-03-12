@@ -56,9 +56,19 @@ public interface Model {
     //=========== Person-Level Operations ==============================================================================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
+     * Returns true if a person with the same identity as {@code person} exists in SudoHR.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person shares the same email with a different {@code person} (different id).
+     */
+    boolean hasClashingEmail(Person person);
+
+    /**
+     * Returns true if a person shares the same phone number with a different {@code person} (different id).
+     */
+    boolean hasClashingPhoneNumber(Person person);
 
     /**
      * Deletes the given person.

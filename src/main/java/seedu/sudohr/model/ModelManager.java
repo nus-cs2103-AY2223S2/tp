@@ -100,6 +100,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasClashingEmail(Person person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingEmail(person);
+    }
+
+    @Override
+    public boolean hasClashingPhoneNumber(Person person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingPhoneNumber(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         sudoHr.removePerson(target);
     }

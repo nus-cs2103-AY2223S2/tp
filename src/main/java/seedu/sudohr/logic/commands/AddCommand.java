@@ -60,6 +60,14 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (model.hasClashingEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (model.hasClashingPhoneNumber(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

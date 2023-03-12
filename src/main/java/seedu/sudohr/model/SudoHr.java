@@ -72,7 +72,7 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Person-Level Operations ==============================================================================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
+     * Returns true if a person with the same identity as {@code person} exists in SudoHR.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -80,8 +80,25 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a person to the sudohr book.
-     * The person must not already exist in the sudohr book.
+     * Returns true if a person shares the same email with a different {@code person} (different id).
+     */
+    boolean hasClashingEmail(Person person) {
+        requireNonNull(person);
+        return persons.sharesEmail(person);
+    }
+
+    /**
+     * Returns true if a person shares the same phone number with a different {@code person} (different id).
+     */
+    boolean hasClashingPhoneNumber(Person person) {
+        requireNonNull(person);
+        return persons.sharesPhoneNumber(person);
+    }
+
+    /**
+     * Adds a person to SudoHR.
+     * The person must not already exist in SudoHR and
+     * should not have any clashes with email or phone number fields
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -89,8 +106,8 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the sudohr book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
+     * {@code target} must exist in SudoHR.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in SudoHR.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -100,7 +117,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Removes {@code key} from this {@code SudoHr}.
-     * {@code key} must exist in the sudohr book.
+     * {@code key} must exist in SudoHR.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -117,8 +134,8 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a department to the address book.
-     * The department must not already exist in the address book.
+     * Adds a department to SudoHR.
+     * The department must not already exist SudoHR.
      */
     public void addDepartment(Department d) {
         departments.add(d);
@@ -126,8 +143,8 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Replaces the given department {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in SudoHR.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in SudoHR.
      */
     public void setDepartment(Department target, Department editedDepartment) {
         requireNonNull(editedDepartment);

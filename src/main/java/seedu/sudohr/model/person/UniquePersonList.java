@@ -8,7 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.person.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.person.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -37,13 +39,37 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a different person with the same email as the given argument.
+     */
+    public boolean sharesEmail(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::emailClashes);
+    }
+
+    /**
+     * Returns true if the list contains a different person with the same phone number as the given argument.
+     */
+    public boolean sharesPhoneNumber(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::phoneClashes);
+    }
+
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     * The person must not share the same email or phone number with another.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
+        }
+        if (sharesEmail(toAdd)) {
+            throw new DuplicateEmailException();
+        }
+        if (sharesPhoneNumber(toAdd)) {
+            throw new DuplicatePhoneNumberException();
         }
         internalList.add(toAdd);
     }
