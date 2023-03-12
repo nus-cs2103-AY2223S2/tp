@@ -13,8 +13,8 @@ public class SimpleTask extends Task {
     /**
      * Every field must be present and not null.
      */
-    public SimpleTask(Name name, Description description, Set<Tag> tags) {
-        super(name, description, tags);
+    public SimpleTask(Name name, Description description, Set<Tag> tags, Effort effort) {
+        super(name, description, tags, effort);
     }
 
     /**

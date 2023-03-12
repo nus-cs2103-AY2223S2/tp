@@ -4,10 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Date;
-import seedu.task.model.task.Description;
-import seedu.task.model.task.Event;
-import seedu.task.model.task.Name;
+import seedu.task.model.task.*;
 import seedu.task.model.util.SampleDataUtil;
 
 /**
@@ -19,11 +16,14 @@ public class EventBuilder {
     public static final String DEFAULT_DESCRIPTION = "Amy's description";
     public static final String DEFAULT_START = "2023-01-01 1800";
     public static final String DEFAULT_END = "2023-01-02 1800";
+    public static final long DEFAULT_EFFORT = 2;
     private Name name;
     private Description description;
     private Set<Tag> tags;
     private Date from;
     private Date to;
+
+    private Effort effort;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -34,6 +34,7 @@ public class EventBuilder {
         tags = new HashSet<>();
         from = new Date(DEFAULT_START);
         to = new Date(DEFAULT_END);
+        effort = new Effort(DEFAULT_EFFORT);
     }
 
     /**
@@ -45,6 +46,7 @@ public class EventBuilder {
         tags = new HashSet<>(taskToCopy.getTags());
         from = taskToCopy.getFrom();
         to = taskToCopy.getTo();
+        effort = taskToCopy.getEffort();
     }
 
     /**
@@ -87,8 +89,16 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Effort} of the {@code Event} that we are building.
+     */
+    public EventBuilder withEffort(long e) {
+        this.effort = new Effort(e);
+        return this;
+    }
+
     public Event build() {
-        return new Event(name, description, tags, from, to);
+        return new Event(name, description, tags, from, to, effort);
     }
 
 }

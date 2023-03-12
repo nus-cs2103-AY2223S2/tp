@@ -11,13 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Date;
-import seedu.task.model.task.Deadline;
-import seedu.task.model.task.Description;
-import seedu.task.model.task.Event;
-import seedu.task.model.task.Name;
-import seedu.task.model.task.SimpleTask;
-import seedu.task.model.task.Task;
+import seedu.task.model.task.*;
+import seedu.task.model.task.exceptions.InvalidEffortException;
 
 
 /**
@@ -33,6 +28,7 @@ class JsonAdaptedTask {
     private String deadline = "";
     private String from = "";
     private String to = "";
+    private long effort;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -42,7 +38,8 @@ class JsonAdaptedTask {
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("deadline") String deadline,
                            @JsonProperty("from") String from,
-                           @JsonProperty("to") String to) {
+                           @JsonProperty("to") String to,
+                           @JsonProperty("effort") Long effort) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -55,6 +52,7 @@ class JsonAdaptedTask {
             this.from = from;
             this.to = to;
         }
+        this.effort = effort;
     }
 
     /**
@@ -74,6 +72,7 @@ class JsonAdaptedTask {
             from = tmp.getFrom().getValue();
             to = tmp.getTo().getValue();
         }
+        effort = source.getEffort().getEffort();
     }
 
     /**
@@ -120,16 +119,22 @@ class JsonAdaptedTask {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
         }
+
+        if (effort < 0) {
+            throw new InvalidEffortException();
+        }
+        final Effort modelEffort = new Effort(this.effort);
+
         if (Date.isValidDate(deadline)) {
             Date modelDeadline = new Date(deadline);
-            return new Deadline(modelName, modelDescription, modelTags, modelDeadline);
+            return new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
         }
         if (Date.isValidDate(from) && Date.isValidDate(to)) {
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
-            return new Event(modelName, modelDescription, modelTags, modelFrom, modelTo);
+            return new Event(modelName, modelDescription, modelTags, modelFrom, modelTo, modelEffort);
         }
-        return new SimpleTask(modelName, modelDescription, modelTags);
+        return new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
     }
 
 }

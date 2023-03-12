@@ -2,11 +2,7 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.core.index.IndexList;
@@ -15,6 +11,7 @@ import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 
 /**
@@ -155,6 +152,19 @@ public class ParserUtil {
         return new Date(trimmedDate);
     }
 
+    public static Effort parseEffort(String effort) throws ParseException {
+        if (Objects.isNull(effort)) {
+            return new Effort();
+        } else {
+            String trimmedEffort = effort.trim();
+            try {
+                long duration = Long.parseLong(trimmedEffort);
+                return new Effort(duration);
+            } catch (NumberFormatException e) {
+                throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
+            }
+        }
+    }
 
 
     /**

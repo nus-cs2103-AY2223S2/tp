@@ -19,8 +19,8 @@ public class Deadline extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Deadline(Name name, Description description, Set<Tag> tags, Date deadline) {
-        super(name, description, tags);
+    public Deadline(Name name, Description description, Set<Tag> tags, Date deadline, Effort effort) {
+        super(name, description, tags, effort);
         requireAllNonNull(deadline);
         this.deadline = deadline;
     }
@@ -31,7 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Returns true if both deadlines have the same identity and data fields.
-     * This defines a stronger notion of equality between two dealines.
+     * This defines a stronger notion of equality between two deadlines.
      */
     @Override
     public boolean equals(Object other) {
@@ -47,7 +47,8 @@ public class Deadline extends Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags())
-                && otherTask.getDeadline().equals(getDeadline());
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getEffort().equals(getEffort());
     }
 
     @Override
@@ -98,7 +99,9 @@ public class Deadline extends Task {
                 .append("; Description: ")
                 .append(getDescription())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append("; Effort: ")
+                .append(getEffort());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

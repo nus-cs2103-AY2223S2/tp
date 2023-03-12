@@ -18,10 +18,7 @@ import seedu.task.commons.util.CollectionUtil;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Description;
-import seedu.task.model.task.Name;
-import seedu.task.model.task.SimpleTask;
-import seedu.task.model.task.Task;
+import seedu.task.model.task.*;
 
 /**
  * Edits the details of an existing task in the task book.
@@ -89,8 +86,9 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Effort updatedEffort = editTaskDescriptor.getEffort().orElse(taskToEdit.getEffort());
 
-        return new SimpleTask(updatedName, updatedDescription, updatedTags);
+        return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort);
     }
 
     @Override
@@ -118,6 +116,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private Description description;
+        private Effort effort;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -170,6 +169,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setEffort(Effort e) {
+            this.effort = e;
+        }
+
+        public Optional<Effort> getEffort() {
+            return (Optional.ofNullable(this.effort));
         }
 
         @Override

@@ -7,10 +7,7 @@ import java.util.stream.Collectors;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.TaskBook;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Description;
-import seedu.task.model.task.Name;
-import seedu.task.model.task.SimpleTask;
-import seedu.task.model.task.Task;
+import seedu.task.model.task.*;
 
 
 /**
@@ -19,18 +16,18 @@ import seedu.task.model.task.Task;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new SimpleTask(new Name("Alex Yeoh"), new Description("Alex's description"),
-                getTagSet("friends")),
-            new SimpleTask(new Name("Bernice Yu"), new Description("Bernice's description"),
-                getTagSet("colleagues", "friends")),
-            new SimpleTask(new Name("Charlotte Oliveiro"), new Description("Charlotte's description"),
-                getTagSet("neighbours")),
-            new SimpleTask(new Name("David Li"), new Description("David's description"),
-                getTagSet("family")),
-            new SimpleTask(new Name("Irfan Ibrahim"), new Description("Irfan's description"),
-                getTagSet("classmates")),
-            new SimpleTask(new Name("Roy Balakrishnan"), new Description("Roy's description"),
-                getTagSet("colleagues"))
+            new SimpleTask(new Name("Task A"), new Description("A's description"),
+                getTagSet("CS2102"), new Effort(5)),
+            new SimpleTask(new Name("Task B"), new Description("B's description"),
+                getTagSet("CS2102", "Project"), new Effort(6)),
+            new SimpleTask(new Name("Task C"), new Description("C's description"),
+                getTagSet("CS2106", "Project"), new Effort(2)),
+            new SimpleTask(new Name("Task D"), new Description("D's description"),
+                getTagSet("CS2106"), new Effort(0)),
+            new SimpleTask(new Name("Task I"), new Description("I's description"),
+                getTagSet("CS2103T"), new Effort(10)),
+            new SimpleTask(new Name("Task R"), new Description("R's description"),
+                getTagSet("CS2101"), new Effort (2))
         };
     }
 

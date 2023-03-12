@@ -93,11 +93,11 @@ public class EventTest {
         twoTag.add(tagTwo);
 
         Task zeroTagEvent = new Event(new Name("zeroTag"), new Description("zeroTag"),
-                zeroTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                zeroTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(5));
         Task oneTagEvent = new Event(new Name("oneTag"), new Description("oneTag"),
-                oneTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                oneTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(3));
         Task twoTagEvent = new Event(new Name("twoTag"), new Description("twoTag"),
-                twoTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                twoTag, new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(2));
 
         assertEquals(1, oneTagEvent.compareTo(zeroTagEvent));
         assertEquals(-1, oneTagEvent.compareTo(twoTagEvent));
@@ -106,11 +106,11 @@ public class EventTest {
     @Test
     public void compareTo_name() {
         Task aName = new Event(new Name("apple"), new Description("apple"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(5));
         Task bName = new Event(new Name("bucket"), new Description("car"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(2));
         Task cName = new Event(new Name("car"), new Description("car"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(1));
 
         assertEquals(1, bName.compareTo(aName));
         assertEquals(-1, bName.compareTo(cName));
@@ -119,11 +119,11 @@ public class EventTest {
     @Test
     public void compareTo_date() {
         Task morningEvent = new Event(new Name("Morning"), new Description("0000 to 1200"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 1200"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 1200"), new Effort(5));
         Task wholeDayEvent = new Event(new Name("WholeDay"), new Description("0000 to 2359"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 2359"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 2359"), new Effort(5));
         Task nightEvent = new Event(new Name("Night"), new Description("1200 to 2359"),
-                new HashSet<>(), new Date("2023-04-01 1200"), new Date("2023-04-01 2359"));
+                new HashSet<>(), new Date("2023-04-01 1200"), new Date("2023-04-01 2359"), new Effort(5));
 
         assertEquals(-1, morningEvent.compareTo(wholeDayEvent));
         assertEquals(-1, morningEvent.compareTo(nightEvent));
