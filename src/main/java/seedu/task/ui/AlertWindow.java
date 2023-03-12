@@ -48,7 +48,7 @@ public class AlertWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the help window.
+     * Shows the alert window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -90,21 +90,21 @@ public class AlertWindow extends UiPart<Stage> {
 
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the alert window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the alert window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the alert window.
      */
     public void focus() {
         getRoot().requestFocus();

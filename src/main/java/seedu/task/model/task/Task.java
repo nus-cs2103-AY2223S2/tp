@@ -32,6 +32,7 @@ public abstract class Task implements Comparable<Task> {
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
+        this.alertWindow = Duration.ofHours(24);
     }
 
     public Name getName() {

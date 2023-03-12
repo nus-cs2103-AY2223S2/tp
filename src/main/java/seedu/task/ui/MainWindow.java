@@ -68,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         alertWindow = new AlertWindow(logic);
+        handleAlert();
     }
 
     public Stage getPrimaryStage() {

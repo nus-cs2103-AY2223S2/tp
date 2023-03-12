@@ -6,7 +6,7 @@ import java.time.Duration;
 
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
-import seedu.task.model.task.TaskWithinTimelimePredicate;
+import seedu.task.model.task.TaskWithinTimelinePredicate;
 
 /**
  * Sets the timeframe for the alert of the app and displays alert.
@@ -40,7 +40,7 @@ public class AlertCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateAlertTaskList(new TaskWithinTimelimePredicate(timeframe));
+        model.updateAlertTaskList(new TaskWithinTimelinePredicate(timeframe));
         return new CommandResult(SHOWING_ALERT_MESSAGE, false, true, false);
     }
 }

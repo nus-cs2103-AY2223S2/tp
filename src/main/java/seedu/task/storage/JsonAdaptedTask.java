@@ -1,5 +1,6 @@
 package seedu.task.storage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +34,7 @@ class JsonAdaptedTask {
     private String deadline = "";
     private String from = "";
     private String to = "";
+    private String alertWindow = "";
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -42,7 +44,8 @@ class JsonAdaptedTask {
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("deadline") String deadline,
                            @JsonProperty("from") String from,
-                           @JsonProperty("to") String to) {
+                           @JsonProperty("to") String to,
+                           @JsonProperty("alertWindow") String alertWindow) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -54,6 +57,9 @@ class JsonAdaptedTask {
         if (from != null && to != null) {
             this.from = from;
             this.to = to;
+        }
+        if (alertWindow != null) {
+            this.alertWindow = alertWindow;
         }
     }
 
@@ -74,6 +80,7 @@ class JsonAdaptedTask {
             from = tmp.getFrom().getValue();
             to = tmp.getTo().getValue();
         }
+        alertWindow = String.valueOf(source.getAlertWindow().toHours());
     }
 
     /**
@@ -112,6 +119,9 @@ class JsonAdaptedTask {
         if (!deadline.equals("") && !Date.isValidDate(deadline)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (alertWindow == null || alertWindow.isBlank()) {
+            alertWindow = "24";
+        }
         // if either from or to are non-empty check formatting
         if (!from.equals("") || !to.equals("")) {
             // if either of them are empty AND
@@ -122,14 +132,20 @@ class JsonAdaptedTask {
         }
         if (Date.isValidDate(deadline)) {
             Date modelDeadline = new Date(deadline);
-            return new Deadline(modelName, modelDescription, modelTags, modelDeadline);
+            Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline);
+            deadline.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+            return deadline;
         }
         if (Date.isValidDate(from) && Date.isValidDate(to)) {
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
-            return new Event(modelName, modelDescription, modelTags, modelFrom, modelTo);
+            Event event = new Event(modelName, modelDescription, modelTags, modelFrom, modelTo);
+            event.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+            return event;
         }
-        return new SimpleTask(modelName, modelDescription, modelTags);
+        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags);
+        simpleTask.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+        return simpleTask;
     }
 
 }
