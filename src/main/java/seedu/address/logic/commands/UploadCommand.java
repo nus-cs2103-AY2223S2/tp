@@ -23,8 +23,8 @@ public class UploadCommand extends Command {
             + "Parameters: FILEPATH (must be a non-empty and valid file path)\n"
             + "Example: " + COMMAND_WORD + " /Users/AlexYeoh/Desktop/A0123456X.png";
 
-    private static final String MESSAGE_INVALID_FILEPATH = "File path is not valid!";
-    private static final String DESTINATION_FILEPATH = "./data";
+    public static final String MESSAGE_INVALID_FILEPATH = "File path is not valid!";
+    public static final String DESTINATION_FILEPATH = "./data";
 
     private final Path path;
 
