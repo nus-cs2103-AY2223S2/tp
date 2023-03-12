@@ -74,7 +74,7 @@ public class StudentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         try {
-            String imageUrl = "data/" + student.getStudentId() + ".png";
+            String imageUrl = "src/main/resources/uploadedFiles/" + student.getStudentId() + ".png";
             File file = new File(imageUrl);
             if (!file.exists()) {
                 Image defaultImage = new Image(this.getClass().getResourceAsStream("/images/studenticon.png"));

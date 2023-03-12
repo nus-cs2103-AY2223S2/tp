@@ -24,7 +24,7 @@ public class UploadCommand extends Command {
             + "Example: " + COMMAND_WORD + " /Users/AlexYeoh/Desktop/A0123456X.png";
 
     public static final String MESSAGE_INVALID_FILEPATH = "File path is not valid!";
-    public static final String DESTINATION_FILEPATH = "./data";
+    public static final String DESTINATION_FILEPATH = "./src/main/resources/uploadedFiles";
 
     private final Path path;
 
