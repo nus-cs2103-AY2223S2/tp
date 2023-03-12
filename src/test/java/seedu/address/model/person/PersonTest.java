@@ -11,8 +11,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -88,4 +92,17 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void addIsolatedEvent() {
+        Person person = new PersonBuilder().build();
+        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+        LocalTime start = LocalTime.parse("12:00");
+        LocalTime end = LocalTime.parse("15:00");
+        RecurringEvent recurringEvent = new RecurringEvent("biking", dayOfWeek, start, end);
+
+        person.addRecurringEvent(recurringEvent);
+        assertTrue(person.getRecurringEventList().contain(recurringEvent));
+    }
+
 }

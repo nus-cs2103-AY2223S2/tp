@@ -3,9 +3,14 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseDayOfWeek;
+import static seedu.address.logic.parser.ParserUtil.parsePeriod;
+import static seedu.address.logic.parser.ParserUtil.parseTime;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -192,5 +197,41 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDate_invalidTimeFormat_throwError() {
+        assertThrows(ParseException.class, () -> parseTime("17"));
+    }
+
+    @Test
+    public void parseDate_validTime_returnLocalTime() throws ParseException {
+        LocalTime expected = LocalTime.parse("14:00");
+        assertEquals(expected, parseTime("14:00"));
+    }
+
+    @Test
+    public void parseDate_invalidDay_throwError() {
+        assertThrows(ParseException.class, () -> parseDayOfWeek("INVALID"));
+    }
+
+    @Test
+    public void parseDate_validDay_returnDayOfWeek() throws ParseException {
+        DayOfWeek expected = DayOfWeek.MONDAY;
+        assertEquals(expected, parseDayOfWeek("MONDAY"));
+    }
+
+    @Test
+    public void parseDate_invalidPeriod_throwError() {
+        LocalTime startTime = LocalTime.parse("16:00");
+        LocalTime endTime = LocalTime.parse("12:00");
+        assertThrows(ParseException.class, () -> parsePeriod(startTime, endTime));
+    }
+
+    @Test
+    public void parseDate_validPeriod_throwError() throws ParseException {
+        LocalTime startTime = LocalTime.parse("12:00");
+        LocalTime endTime = LocalTime.parse("16:00");
+        assertEquals(true , parsePeriod(startTime, endTime));
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,8 +16,8 @@ class RecurringEventListTest {
 
     private class RecurringEventStub extends RecurringEvent {
 
-        public RecurringEventStub(String eventName, String dayOfWeek, String startTime, String endTime) {
-            super(eventName, dayOfWeek, startTime, endTime);
+        public RecurringEventStub(String eventName, String day, String startTime, String endTime) {
+            super(eventName, DayOfWeek.valueOf(day), LocalTime.parse(startTime), LocalTime.parse(endTime));
         }
 
         @Override
