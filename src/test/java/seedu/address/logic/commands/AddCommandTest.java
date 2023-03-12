@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -195,6 +196,16 @@ public class AddCommandTest {
 
         @Override
         public void unselectDeck() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Review getReview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void reviewDeck(Index deckIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
