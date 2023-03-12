@@ -185,6 +185,10 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            StatusBarFooter statusBarFooter =
+                    new StatusBarFooter(logic.getOperationMode());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
