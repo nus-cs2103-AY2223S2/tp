@@ -384,6 +384,17 @@
     -fx-background-radius: 0;
 }
 
+#drugList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#patientList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#detailDisplay {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+    -fx-background-radius: 0;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;

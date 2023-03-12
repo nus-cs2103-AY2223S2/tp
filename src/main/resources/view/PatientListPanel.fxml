@@ -12,7 +12,7 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <ListView fx:id="patientListView" HBox.hgrow="ALWAYS"/>
-    <ScrollPane prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER" style="-fx-background-color: derive(#445568, 5%);"  GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollPane fx:id="patientList" prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
         </padding>

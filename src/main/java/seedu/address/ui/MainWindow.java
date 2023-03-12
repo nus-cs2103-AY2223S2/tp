@@ -124,8 +124,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-        setAccelerator(light, KeyCombination.valueOf("CTRL+SHIFT+L"));
-        setAccelerator(dark, KeyCombination.valueOf("CTRL+SHIFT+D"));
+        setAccelerator(light, KeyCombination.valueOf("CTRL+L"));
+        setAccelerator(dark, KeyCombination.valueOf("CTRL+D"));
     }
 
     /**
@@ -255,6 +255,7 @@ public class MainWindow extends UiPart<Stage> {
                 getClass().getResource("/stylesheet/LightTheme.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().add(Objects.requireNonNull(
                 getClass().getResource("/stylesheet/HelpWindowLight.css")).toExternalForm());
+
 
         // disable style
         scene.getStylesheets().remove(Objects.requireNonNull(
