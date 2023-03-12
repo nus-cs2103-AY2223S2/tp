@@ -7,7 +7,7 @@ import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPersons.ALICE;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class PatientistTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Patientist newData = getTypicalAddressBook();
+        Patientist newData = getTypicalPatientist();
         patientist.resetData(newData);
         assertEquals(newData, patientist);
     }

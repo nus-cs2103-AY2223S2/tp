@@ -8,7 +8,7 @@ import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.patientist.testutil.TypicalPersons.CARL;
 import static seedu.patientist.testutil.TypicalPersons.ELLE;
 import static seedu.patientist.testutil.TypicalPersons.FIONA;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.patientist.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
 
     @Test
     public void equals() {

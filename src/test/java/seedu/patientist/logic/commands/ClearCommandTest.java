@@ -1,7 +1,7 @@
 package seedu.patientist.logic.commands;
 
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
         expectedModel.setPatientist(new Patientist());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

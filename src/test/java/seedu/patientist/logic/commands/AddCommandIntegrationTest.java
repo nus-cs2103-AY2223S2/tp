@@ -2,7 +2,7 @@ package seedu.patientist.logic.commands;
 
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPatientist(), new UserPrefs());
     }
 
     @Test
