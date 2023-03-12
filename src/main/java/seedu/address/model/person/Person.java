@@ -215,6 +215,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Tasks: ")
+                .append(getTaskList().toString());
+
         return builder.toString();
     }
 

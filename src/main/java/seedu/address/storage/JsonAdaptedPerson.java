@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -30,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String parentPhone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTask> taskList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +41,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("parentPhone") String parentPhone,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("taskList") List<JsonAdaptedTask> taskList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +50,10 @@ class JsonAdaptedPerson {
         this.parentPhone = parentPhone;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+
+        if (taskList != null) {
+            this.taskList.addAll(taskList);
         }
     }
 
@@ -61,6 +69,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        taskList.addAll(source.getTaskList().asUnmodifiableObservableList().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +83,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Task> personTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : taskList) {
+            personTasks.add(task.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +131,11 @@ class JsonAdaptedPerson {
         final Phone modelParentPhone = new Phone(parentPhone);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
+
+        final TaskList modelTasks = new TaskList();
+        modelTasks.setTasks(personTasks);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags, modelTasks);
     }
 
 }

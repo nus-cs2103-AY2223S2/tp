@@ -70,6 +70,14 @@ public class Task {
                 && otherTask.getName().equals(getName());
     }
 
+    /**
+     * Returns true if a given string is a valid task name.
+     */
+    public static boolean isValidTaskName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

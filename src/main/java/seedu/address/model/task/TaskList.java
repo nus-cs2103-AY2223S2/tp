@@ -142,4 +142,15 @@ public class TaskList implements Iterable<Task> {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        if (!internalList.isEmpty()) {
+            internalList.forEach(builder::append);
+        }
+
+        return builder.toString();
+    }
 }
