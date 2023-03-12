@@ -6,7 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Delivery's earning in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEarning(String)}
+ * @deprecated moved to jobs
  */
+@Deprecated
 public class Earning {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,13 +19,17 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private DeliveryJobSystemStorage deliveryJobSystemStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}
+     * and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, DeliveryJobSystemStorage deliveryJobSystemStorage,
+            UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
+        this.deliveryJobSystemStorage = deliveryJobSystemStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -45,7 +50,6 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
     // ================ AddressBook methods ==============================
 
     @Override
@@ -60,7 +64,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("[AB] Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
 
@@ -71,8 +75,38 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("[AB] Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Delivery Job system methods ==============================
+
+    @Override
+    public Path getDeliveryJobFilePath() {
+        return deliveryJobSystemStorage.getDeliveryJobFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyDeliveryJobSystem> readDeliveryJobSystem() throws DataConversionException, IOException {
+        return readDeliveryJobSystem(deliveryJobSystemStorage.getDeliveryJobFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyDeliveryJobSystem> readDeliveryJobSystem(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("[DJ] Attempting to read data from file: " + filePath);
+        return deliveryJobSystemStorage.readDeliveryJobSystem(filePath);
+    }
+
+    @Override
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem) throws IOException {
+        saveDeliveryJobSystem(deliveryJobSystem, deliveryJobSystemStorage.getDeliveryJobFilePath());
+    }
+
+    @Override
+    public void saveDeliveryJobSystem(ReadOnlyDeliveryJobSystem deliveryJobSystem, Path filePath) throws IOException {
+        logger.fine("[DJ] Attempting to write to data file: " + filePath);
+        deliveryJobSystemStorage.saveDeliveryJobSystem(deliveryJobSystem, filePath);
     }
 
 }
