@@ -34,10 +34,10 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
+    private static final IndexNumber TEST_INDEX = new IndexNumber("1");
+    private static final StudentClass TEST_CLASS = new StudentClass("1A");
 
     private final AddressBookParser parser = new AddressBookParser();
-    private static final StudentClass TEST_CLASS = new StudentClass("1A");
-    private static final IndexNumber TEST_INDEX = new IndexNumber("1");
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -56,11 +56,11 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         StudentCommandParser studentCommandParser = new StudentCommandParser();
         StudentDeleteCommand command = (StudentDeleteCommand) studentCommandParser.parse(
-                PERSON_WORD + " " +
-                TEST_CLASS + " " +
-                StudentDeleteCommand.COMMAND_WORD + " " +
-                PREFIX_INDEXNUMBER +
-                TEST_INDEX);
+                PERSON_WORD
+                + " " + TEST_CLASS
+                + " " + StudentDeleteCommand.COMMAND_WORD
+                + " " + PREFIX_INDEXNUMBER
+                + TEST_INDEX);
         assertEquals(new StudentDeleteCommand(TEST_INDEX, TEST_CLASS), command);
     }
 
