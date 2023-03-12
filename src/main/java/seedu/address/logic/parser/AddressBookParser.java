@@ -105,6 +105,8 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments, selectedDeck);
+        case UnselectDeckCommand.COMMAND_WORD:
+            return new UnselectDeckCommand();
 
         case UnselectDeckCommand.COMMAND_WORD:
             return new UnselectDeckCommand();
