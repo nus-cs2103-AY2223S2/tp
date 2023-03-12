@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
@@ -44,11 +46,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_SALARY + "SALARY] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_SALARY + "4000 ";
+            + PREFIX_SALARY + "4000 "
+            + PREFIX_DEADLINE + "2023-10-20";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -58,7 +63,7 @@ public class EditCommand extends Command {
     private final EditRoleDescriptor editRoleDescriptor;
 
     /**
-     * @param index of the role in the filtered role list to edit
+     * @param index              of the role in the filtered role list to edit
      * @param editRoleDescriptor details to edit the role with
      */
     public EditCommand(Index index, EditRoleDescriptor editRoleDescriptor) {
@@ -103,7 +108,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editRoleDescriptor.getAddress().orElse(roleToEdit.getAddress());
         Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
-        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSalary);
+        Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
+        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedSalary, updatedDeadline);
     }
 
     @Override
@@ -135,8 +142,10 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Salary salary;
+        private Deadline deadline;
 
-        public EditRoleDescriptor() {}
+        public EditRoleDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -149,13 +158,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setSalary(toCopy.salary);
+            setDeadline(toCopy.deadline);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, salary, deadline);
         }
 
         public void setName(Name name) {
@@ -215,6 +225,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -235,7 +253,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getSalary().equals(e.getSalary());
+                    && getSalary().equals(e.getSalary())
+                    && getDeadline().equals(e.getDeadline());
         }
     }
 }

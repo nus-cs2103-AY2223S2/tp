@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
@@ -39,6 +40,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setAddress(role.getAddress());
         descriptor.setTags(role.getTags());
         descriptor.setSalary(role.getSalary());
+        descriptor.setDeadline(role.getDeadline());
     }
 
     /**
@@ -88,6 +90,14 @@ public class EditRoleDescriptorBuilder {
      */
     public EditRoleDescriptorBuilder withSalary(String salary) {
         descriptor.setSalary(new Salary(salary));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Deadline} of the {@code EditRoleDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
 

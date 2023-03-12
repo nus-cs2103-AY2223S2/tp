@@ -43,6 +43,8 @@ public class RoleCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label salary;
+    @FXML
+    private Label deadline;
 
     /**
      * Creates a {@code RoleCode} with the given {@code Role} and index to display.
@@ -59,6 +61,7 @@ public class RoleCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         salary.setText(role.getSalary().salary);
+        deadline.setText(role.getDeadline().deadline);
     }
 
     @Override
