@@ -8,11 +8,17 @@ public class Test extends Assignment {
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private String value;
-
+    /**
+     * Returns a Test object that stores information about the test description.
+     *
+     * @param assignmentName Test name.
+     * @param deadline Due date for the test.
+     * @param weightage Weightage of the test.
+     * @param maxScore Maximum score attainable for the test.
+     * @param score Score attained for the test.
+     */
     public Test(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score) {
-        super(assignmentName, deadline, weightage, maxScore);
-        this.value = String.valueOf(score);
+        super(assignmentName, deadline, weightage, maxScore, score);
     }
     /**
      * Returns true if a given string is a valid email.
@@ -26,26 +32,23 @@ public class Test extends Assignment {
 
     @Override
     public String toString() {
-        return value;
+        return Integer.toString(super.score);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Test// instanceof handles nulls
-                && value.equals(((Test) other).value)); // state check
+                && super.score == ((Test) other).score); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+
+
+    public int getScore() {
+        return super.score;
     }
 
-    public String getScore() {
-        return value;
-    }
-
-    public void setScore(String score) {
-        this.value = score;
+    public void setScore(int score) {
+        super.score = score;
     }
 }

@@ -2,11 +2,13 @@ package seedu.address.logic.commands.student;
 
 import seedu.address.logic.commands.Command;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * An abstract class for "student" command
+ */
 public abstract class StudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 
-    public static final String MESSAGE_USAGE = "1. student <CLASS_NAME> add";
+    public static final String MESSAGE_USAGE = "1. student <CLASS_NAME> add\n"
+                                              + "2. student <CLASS_NAME> comment";
+    public static final String MESSAGE_SUCCESS = "New student added: <STUDENT_NAME>";
 }

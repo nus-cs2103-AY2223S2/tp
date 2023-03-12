@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +24,20 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Comment comment;
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Comment comment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.comment = comment;
+    }
     /**
      * Every field must be present and not null.
      */
@@ -36,6 +48,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.comment = new Comment();
     }
 
 
@@ -55,6 +68,10 @@ public class Person {
         return address;
     }
 
+    public Comment getComment() {
+        return comment;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -71,7 +88,7 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
+        //Need to rethink what constitutes same student
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }

@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.student.ParentName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.person.student.ParentName;
 
 /**
  * Represents the Image of a Student object.
@@ -37,7 +37,6 @@ public class Image {
         if (test.equals("Insert student image here!")) {
             return true;
         }
-
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the CCA (Co-curricular Activity) of a Student object.
  */
-public class CCA {
+public class Cca {
     public static final String MESSAGE_CONSTRAINTS = "CCA must be letters";
 
     /*
@@ -20,18 +20,21 @@ public class CCA {
     /**
      * Constructs an {@code Address}.
      *
-     * @param cca A valid cca.
+     * @param cca A valid cca in String.
      */
-    public CCA(String cca) {
+    public Cca(String cca) {
         requireNonNull(cca);
-        checkArgument(isValidCCA(cca), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCca(cca), MESSAGE_CONSTRAINTS);
         value = cca;
     }
 
     /**
      * Returns true if a given string is a valid email.
+     *
+     * @param test String to be tested
+     * @return true if the string is a valid cca (alphanumeric value)
      */
-    public static boolean isValidCCA(String test) {
+    public static boolean isValidCca(String test) {
         if (test.equals("Insert student CCA here!")) {
             return true;
         }
@@ -46,8 +49,8 @@ public class CCA {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CCA// instanceof handles nulls
-                && value.equals(((CCA) other).value)); // state check
+                || (other instanceof Cca// instanceof handles nulls
+                && value.equals(((Cca) other).value)); // state check
     }
 
     @Override

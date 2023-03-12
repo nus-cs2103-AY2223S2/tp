@@ -146,13 +146,16 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
+
         return filteredPersons;
+
     }
 
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
     }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
