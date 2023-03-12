@@ -24,7 +24,7 @@ public class ClearClientCommandTest {
                 ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test //need alter so that project list remains same!
+    @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(TypicalProjects.getTypicalAddressBook(), new UserPrefs());

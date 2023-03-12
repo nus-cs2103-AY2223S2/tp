@@ -56,7 +56,7 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Empties the client list. */
+    /** Empties the client list of the address book. */
     void resetClientList();
 
     /**

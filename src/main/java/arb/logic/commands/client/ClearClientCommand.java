@@ -10,7 +10,7 @@ import arb.model.ListType;
 import arb.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the client list of the address book.
  */
 public class ClearClientCommand extends Command {
 
