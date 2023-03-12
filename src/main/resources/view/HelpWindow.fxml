@@ -51,6 +51,11 @@
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
+          <Label fx:id="saveMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
           <Label fx:id="clearMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
