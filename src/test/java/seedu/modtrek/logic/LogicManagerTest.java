@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+<<<<<<< HEAD:src/test/java/seedu/modtrek/logic/LogicManagerTest.java
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.ListCommand;
@@ -31,6 +32,22 @@ import seedu.modtrek.storage.JsonUserPrefsStorage;
 import seedu.modtrek.storage.StorageManager;
 import seedu.modtrek.testutil.ModuleBuilder;
 
+=======
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonDegreeProgressionStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
+import seedu.address.testutil.PersonBuilder;
+>>>>>>> c5dcb7da0fdc6b394ab38a4030b8905e8d717893:src/test/java/seedu/address/logic/LogicManagerTest.java
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -44,7 +61,11 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonDegreeProgressionStorage addressBookStorage =
+<<<<<<< HEAD:src/test/java/seedu/modtrek/logic/LogicManagerTest.java
                 new JsonDegreeProgressionStorage(temporaryFolder.resolve("degreeprogression.json"));
+=======
+                new JsonDegreeProgressionStorage(temporaryFolder.resolve("addressBook.json"));
+>>>>>>> c5dcb7da0fdc6b394ab38a4030b8905e8d717893:src/test/java/seedu/address/logic/LogicManagerTest.java
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);

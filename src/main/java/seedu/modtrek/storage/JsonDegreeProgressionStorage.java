@@ -18,7 +18,6 @@ import seedu.modtrek.model.ReadOnlyDegreeProgression;
  * The type Json degree progression storage.
  */
 public class JsonDegreeProgressionStorage implements DegreeProgressionStorage {
-
     private static final Logger logger = LogsCenter.getLogger(JsonDegreeProgressionStorage.class);
 
     private Path filePath;
