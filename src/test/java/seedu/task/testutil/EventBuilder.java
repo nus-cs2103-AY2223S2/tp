@@ -1,5 +1,6 @@
 package seedu.task.testutil;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class EventBuilder {
     private Set<Tag> tags;
     private Date from;
     private Date to;
+    private Duration alertWindow;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -86,6 +88,15 @@ public class EventBuilder {
         this.to = new Date(to);
         return this;
     }
+
+    /**
+     * Sets the {@code alertWindow} of the {@code Event} that we are building.
+     */
+    public EventBuilder withAlertWindow(String alertWindow) {
+        this.alertWindow = Duration.ofHours(Long.valueOf(alertWindow));
+        return this;
+    }
+
 
     public Event build() {
         return new Event(name, description, tags, from, to);

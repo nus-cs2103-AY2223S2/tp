@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.Duration;
 
+import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.task.TaskWithinTimelinePredicate;
@@ -21,6 +22,7 @@ public class AlertCommand extends Command {
             + "Example: " + COMMAND_WORD + " 48";
 
     public static final String SHOWING_ALERT_MESSAGE = "Your alerts are as follows.";
+    public static final String ALERT_COMMAND_SUCCESS = SHOWING_ALERT_MESSAGE;
 
     private Duration timeframe = Duration.ofHours(24);
 
@@ -40,7 +42,17 @@ public class AlertCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (this.timeframe.isZero() || this.timeframe.isNegative()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DURATION);
+        }
         model.updateAlertTaskList(new TaskWithinTimelinePredicate(timeframe));
         return new CommandResult(SHOWING_ALERT_MESSAGE, false, true, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AlertCommand // instanceof handles nulls
+                && timeframe.equals(((AlertCommand) other).timeframe)); // state check
     }
 }

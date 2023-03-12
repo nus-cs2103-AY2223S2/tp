@@ -133,7 +133,7 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
-    public void toModelType_nullAlertWindow_stillSucceed() throws Exception{
+    public void toModelType_nullAlertWindow_stillSucceed() throws Exception {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
                         EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, null);

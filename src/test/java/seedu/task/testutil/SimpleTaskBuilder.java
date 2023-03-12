@@ -1,5 +1,6 @@
 package seedu.task.testutil;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ public class SimpleTaskBuilder {
     private Name name;
     private Description description;
     private Set<Tag> tags;
+    private Duration alertWindow;
 
     /**
      * Creates a {@code SimpleTaskBuilder} with the default details.
@@ -63,6 +65,14 @@ public class SimpleTaskBuilder {
      */
     public SimpleTaskBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code alertWindow} of the {@code Task} that we are building.
+     */
+    public SimpleTaskBuilder withAlertWindow(String alertWindow) {
+        this.alertWindow = Duration.ofHours(Long.valueOf(alertWindow));
         return this;
     }
 
