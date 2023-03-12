@@ -20,7 +20,8 @@ public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Copies the information of the person identified by the index number used in the displayed person list.\n"
+            + ": Copies the information of the person identified by "
+            + "the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
