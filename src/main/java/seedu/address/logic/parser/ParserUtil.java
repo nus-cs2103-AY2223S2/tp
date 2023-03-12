@@ -87,7 +87,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code speciality} is invalid.
      */
-    public static Specialty parseSpeciality(String speciality) throws ParseException {
+    public static Specialty parseSpecialty(String speciality) throws ParseException {
         requireNonNull(speciality);
         String trimmedSpeciality = speciality.trim();
         if (!Specialty.isValidSpecialty(trimmedSpeciality)) {
