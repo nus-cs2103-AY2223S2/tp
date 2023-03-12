@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
-//import seedu.address.model.deck.Deck;
+import seedu.address.model.deck.Deck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,26 +21,29 @@ import seedu.address.model.card.Card;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private Deck deck;
+    private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-    private FilteredList<Card> filteredDecks;
-    private String selectedDeckName = null; // null when not selected, may want to consider accepting Set<> next time
+
+    private FilteredList<Deck> filteredDecks;
+    private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
+    private FilteredList<Card> filteredCards;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyDeck deck, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMasterDeck deck, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(deck, userPrefs);
 
         logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
 
-        this.deck = new Deck(deck);
+        this.masterDeck = new MasterDeck(deck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredDecks = new FilteredList<>(this.deck.getCardList());
+        filteredCards = new FilteredList<>(this.masterDeck.getCardList());
+        filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
     }
 
     public ModelManager() {
-        this(new Deck(), new UserPrefs());
+        this(new MasterDeck(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -81,29 +84,29 @@ public class ModelManager implements Model {
     //=========== PowerDeck ================================================================================
 
     @Override
-    public void setDeck(ReadOnlyDeck deck) {
-        this.deck.resetData(deck);
+    public void setDeck(ReadOnlyMasterDeck deck) {
+        this.masterDeck.resetData(deck);
     }
 
     @Override
-    public ReadOnlyDeck getDeck() {
-        return deck;
+    public ReadOnlyMasterDeck getDeck() {
+        return masterDeck;
     }
 
     @Override
     public boolean hasCard(Card card) {
         requireNonNull(card);
-        return deck.hasCard(card);
+        return masterDeck.hasCard(card);
     }
 
     @Override
     public void deleteCard(Card target) {
-        deck.removeCard(target);
+        masterDeck.removeCard(target);
     }
 
     @Override
     public void addCard(Card card) {
-        deck.addCard(card);
+        masterDeck.addCard(card);
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
@@ -111,7 +114,7 @@ public class ModelManager implements Model {
     public void setCard(Card target, Card editedCard) {
         requireAllNonNull(target, editedCard);
 
-        deck.setCard(target, editedCard);
+        masterDeck.setCard(target, editedCard);
     }
 
     //=========== Filtered Card List Accessors =============================================================
@@ -122,7 +125,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Card> getFilteredCardList() {
-        return filteredDecks;
+        return filteredCards;
     }
 
     //    public ObservableList<seedu.address.model.deck.Deck> getFilteredDeckList() {
@@ -131,6 +134,12 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredCardList(Predicate<Card> predicate) {
+        requireNonNull(predicate);
+        filteredCards.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDeckList(Predicate<Deck> predicate) {
         requireNonNull(predicate);
         filteredDecks.setPredicate(predicate);
     }
@@ -149,7 +158,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return deck.equals(other.deck)
+        return masterDeck.equals(other.masterDeck)
                 && userPrefs.equals(other.userPrefs)
                 && filteredDecks.equals(other.filteredDecks);
     }
@@ -158,14 +167,20 @@ public class ModelManager implements Model {
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
     // Todo: Link getDeck() to GUI
     @Override
-    public ReadOnlyDeck getSelectedDeck() {
-        return this.deck;
+    public void addDeck(Deck deck) {
+        masterDeck.addDeck(deck);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
     }
 
     @Override
-    public void createDeck() { // Todo: deck should have a name - how to store in storage?
-        Deck newDeck = new Deck();
-        // this.deck.add(newDeck);
+    public boolean hasDeck(Deck deck) {
+        return masterDeck.hasDeck(deck);
+    }
+
+    @Override
+    public void removeDeck(Deck key) {
+        masterDeck.removeDeck(key);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
     }
 
     @Override
@@ -178,7 +193,12 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
-        this.deck = null;
+        this.masterDeck = null;
         this.filteredDecks = null;
+    }
+
+    @Override
+    public Deck getSelectedDeck() {
+        return selectedDeck;
     }
 }

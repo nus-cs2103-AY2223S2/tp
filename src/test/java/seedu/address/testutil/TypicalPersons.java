@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.Deck;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.card.Card;
 
 /**
@@ -21,16 +21,19 @@ public class TypicalPersons {
 
     public static final Card ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
-            .withTags("friends").build();
+            .withTags("friends").withDeck("Default").build();
     public static final Card BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withDeck("Default").build();
     public static final Card CARL = new PersonBuilder().withName("Carl Kurz").withAddress("wall street").build();
     public static final Card DANIEL = new PersonBuilder().withName("Daniel Meier")
-            .withAddress("10th street").withTags("friends").build();
-    public static final Card ELLE = new PersonBuilder().withName("Elle Meyer").withAddress("michegan ave").build();
-    public static final Card FIONA = new PersonBuilder().withName("Fiona Kunz").withAddress("little tokyo").build();
-    public static final Card GEORGE = new PersonBuilder().withName("George Best").withAddress("4th street").build();
+            .withAddress("10th street").withTags("friends").withDeck("Default").build();
+    public static final Card ELLE = new PersonBuilder().withName("Elle Meyer").withAddress("michegan ave")
+            .withDeck("Default").build();
+    public static final Card FIONA = new PersonBuilder().withName("Fiona Kunz").withAddress("little tokyo")
+            .withDeck("Default").build();
+    public static final Card GEORGE = new PersonBuilder().withName("George Best").withAddress("4th street")
+            .withDeck("Default").build();
 
     // Manually added
     public static final Card HOON = new PersonBuilder().withName("Hoon Meier").withAddress("little india").build();
@@ -50,8 +53,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code Deck} with all the typical persons.
      */
-    public static Deck getTypicalAddressBook() {
-        Deck ab = new Deck();
+    public static MasterDeck getTypicalAddressBook() {
+        MasterDeck ab = new MasterDeck();
         for (Card card : getTypicalPersons()) {
             ab.addCard(card);
         }

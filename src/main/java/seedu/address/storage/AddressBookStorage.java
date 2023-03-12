@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Deck;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.MasterDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 
 /**
- * Represents a storage for {@link Deck}.
+ * Represents a storage for {@link MasterDeck}.
  */
 public interface AddressBookStorage {
 
@@ -19,28 +19,28 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns Deck data as a {@link ReadOnlyDeck}.
+     * Returns Deck data as a {@link ReadOnlyMasterDeck}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyDeck> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMasterDeck> readAddressBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyDeck> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMasterDeck> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyDeck} to the storage.
+     * Saves the given {@link ReadOnlyMasterDeck} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyDeck addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyMasterDeck addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyDeck)
+     * @see #saveAddressBook(ReadOnlyMasterDeck)
      */
-    void saveAddressBook(ReadOnlyDeck addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyMasterDeck addressBook, Path filePath) throws IOException;
 
 }

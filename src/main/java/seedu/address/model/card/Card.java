@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,15 +22,17 @@ public class Card {
     // Data fields
     private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
+    private final Deck deck;
 
     /**
      * Every field must be present and not null.
      */
-    public Card(Question question, Answer answer, Set<Tag> tags) {
+    public Card(Question question, Answer answer, Set<Tag> tags, Deck deck) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
         this.answer = answer;
         this.tags.addAll(tags);
+        this.deck = deck;
     }
 
     public Question getQuestion() {
@@ -46,6 +49,10 @@ public class Card {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 
     /**

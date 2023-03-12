@@ -19,7 +19,7 @@ import seedu.address.model.card.exceptions.DuplicatePersonException;
 import seedu.address.model.card.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
-public class UniqueCardListTest {
+public class UniqueDeckListTest {
 
     private final UniqueCardList uniqueCardList = new UniqueCardList();
 

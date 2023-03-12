@@ -13,8 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 import seedu.address.storage.Storage;
 
 /**
@@ -42,7 +43,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+        Deck selectedDeck = this.model.getSelectedDeck();
+        if (selectedDeck != null) {
+            command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
+        } else {
+            command = addressBookParser.parseCommandWhenDeckNotSelected(commandText);
+        }
         commandResult = command.execute(model);
 
         try {
@@ -55,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyDeck getAddressBook() {
+    public ReadOnlyMasterDeck getAddressBook() {
         return model.getDeck();
     }
 

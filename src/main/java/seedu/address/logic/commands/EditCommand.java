@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CARDS;
 
@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +34,8 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed card list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "QUESTION] "
-            + "[" + PREFIX_ADDRESS + "ANSWER] "
+            + "[" + PREFIX_QUESTION + "QUESTION] "
+            + "[" + PREFIX_ANSWER + "ANSWER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -88,8 +89,9 @@ public class EditCommand extends Command {
         Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
         Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
+        Deck updatedDeck = editPersonDescriptor.getDeck().orElse(cardToEdit.getDeck());
 
-        return new Card(updatedQuestion, updatedAnswer, updatedTags);
+        return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class EditCommand extends Command {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
+        private Deck deck;
 
         public EditPersonDescriptor() {}
 
@@ -152,6 +155,12 @@ public class EditCommand extends Command {
 
         public Optional<Answer> getAddress() {
             return Optional.ofNullable(answer);
+        }
+        public void setDeck(Deck deck) {
+            this.deck = deck;
+        }
+        public Optional<Deck> getDeck() {
+            return Optional.ofNullable(deck);
         }
 
         /**
