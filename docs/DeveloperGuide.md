@@ -281,8 +281,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | financial advisor who prefers physical meetings with clients | see all meetings in a specific region of singapore| minimize travel time by meeting all clients that live close to each other|
 | `* *` | financial advisor | know when the last meeting with a client was | avoid losing a client if they find me too annoying |
 | `* *` | financial advisor | classify my meetings into different types | organise my meetings better
-| `* ` | financial advisor | record my meetings | look back to reflect and improve on my skills | 
-| `* *` | financial advisor | add notes about a client | keep track of things that are important to a client | 
+| `* ` | financial advisor | record my meetings | look back to reflect and improve on my skills |
+| `* *` | financial advisor | add notes about a client | keep track of things that are important to a client |
 
 *{More to be added}*
 

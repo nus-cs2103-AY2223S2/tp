@@ -16,7 +16,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Meeting;
 
 public class AddMeetingCommandTest {
-    
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
