@@ -120,6 +120,7 @@ public class TagCommand extends Command {
         // state check
         TagCommand e = (TagCommand) other;
         return code.equals(e.code)
+                && isInclude == e.isInclude
                 && tags.equals(e.tags);
     }
 }

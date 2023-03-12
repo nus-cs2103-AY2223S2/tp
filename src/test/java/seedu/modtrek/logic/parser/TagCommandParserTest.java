@@ -23,7 +23,7 @@ class TagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE);
 
-    private TagCommandParser parser = new TagCommandParser();
+    private final TagCommandParser parser = new TagCommandParser();
 
     @Test
     public void parse_missingparts_failure() {
@@ -44,21 +44,28 @@ class TagCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, VALID_CODE_CS1101S + " include" + INVALID_TAG_DESC,
-                Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, VALID_CODE_CS1101S + " remove" + INVALID_TAG_DESC,
+                Tag.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_missingPrefix_failure() {
         assertParseFailure(parser, VALID_CODE_CS1101S + " include",
                 "Did not specify prefix /t");
+        assertParseFailure(parser, VALID_CODE_CS1101S + " remove",
+                "Did not specify prefix /t");
     }
 
     @Test
     public void parse_success() {
         HashSet<Tag> tags = new HashSet<>();
-        tags.add(new Tag("Computer Science Foundation"));
+        Tag newTag = new Tag("Computer Science Foundation");
+        tags.add(newTag);
         assertParseSuccess(parser, VALID_CODE_CS1101S + " include " + PREFIX_TAG + " " + VALID_TAG_CS1101S,
                 new TagCommand(CS1101S.getCode(), true, tags));
+        assertParseSuccess(parser, VALID_CODE_CS1101S + " remove " + PREFIX_TAG + " " + VALID_TAG_CS1101S,
+                new TagCommand(CS1101S.getCode(), false, tags));
     }
 
 }
