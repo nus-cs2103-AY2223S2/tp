@@ -30,15 +30,15 @@ public class Group {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid group name.
      */
     public static boolean isValidGroupName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
      */
     public boolean isSameGroup(Group otherGroup) {
         if (otherGroup == this) {
