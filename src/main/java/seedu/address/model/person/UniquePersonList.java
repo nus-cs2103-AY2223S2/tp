@@ -107,6 +107,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Rejects the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public boolean rejectPerson(Person toReject) {
+        requireNonNull(toReject);
+        return toReject.rejectStatus();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
