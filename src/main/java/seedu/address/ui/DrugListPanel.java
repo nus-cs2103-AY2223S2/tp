@@ -47,10 +47,10 @@ public class DrugListPanel extends UiPart<Region> {
             System.out.println(selectedDrug.toString());
             selectedTradeName.setText(selectedDrug.getTradeName().tradeName);
             selectedActiveIngredient.setText("Active Ingredient: " + selectedDrug.getActiveIngredient().value);
-            selectedDirection.setText("Phone Number: " + selectedDrug.getDirection().value);
-            selectedPurposes.setText("Address: " + selectedDrug.getPurposes().purpose);
-            selectedSideEffects.setText("Email: " + selectedDrug.getSideEffects().sideEffect);
-            selectedStorageCount.setText("Date of Birth: " + selectedDrug.getStorageCount().toString());
+            selectedDirection.setText("Direction: " + selectedDrug.getDirection().value);
+            selectedPurposes.setText("Purposes: " + selectedDrug.getPurposes().purpose);
+            selectedSideEffects.setText("Side Effects: " + selectedDrug.getSideEffects().sideEffect);
+            selectedStorageCount.setText("Storage Count: " + selectedDrug.getStorageCount().toString());
         });
     }
 

@@ -41,7 +41,7 @@ public class PatientListPanel extends UiPart<Region> {
             Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
             System.out.println(selectedPatient.toString());
             selectedName.setText(selectedPatient.getName().fullName);
-            selectedPhone.setText("Phone Number: " + selectedPatient.getPhone().value);
+            selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
             selectedAddress.setText("Address: " + selectedPatient.getAddress().value);
             selectedEmail.setText("Email: " + selectedPatient.getEmail().value);
             selectedBirthDate.setText("Date of Birth: " + selectedPatient.getBirthDate().value);
