@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.person.Person;
 
 /**

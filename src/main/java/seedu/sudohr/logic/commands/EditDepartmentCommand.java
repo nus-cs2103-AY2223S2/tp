@@ -1,15 +1,15 @@
 package seedu.sudohr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
+
+import java.util.Optional;
+
 import seedu.sudohr.commons.util.CollectionUtil;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.sudohr.logic.parser.CliSyntax.*;
 
 public class EditDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "edep";
@@ -68,7 +68,8 @@ public class EditDepartmentCommand extends Command {
      * Creates and returns a {@code Department} with the details of {@code departmentToEdit}
      * edited with {@code editDepartmentDescriptor}.
      */
-    private static Department createEditedDepartment(Department departmentToEdit, EditDepartmentCommand.EditDepartmentDescriptor editDepartmentDescriptor) {
+    private static Department createEditedDepartment(Department departmentToEdit,
+             EditDepartmentCommand.EditDepartmentDescriptor editDepartmentDescriptor) {
         assert departmentToEdit != null;
 
         DepartmentName updatedDepartmentName = editDepartmentDescriptor.getName().orElse(departmentToEdit.getName());
