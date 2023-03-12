@@ -3,9 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.UniqueModuleList;
 
 /**
@@ -52,7 +55,7 @@ public class Tracker implements ReadOnlyTracker {
     public void resetData(ReadOnlyTracker newData) {
         requireNonNull(newData);
 
-        setModules(newData.getModuleList());
+        setModules(newData.getModuleList().stream().map((d) -> (Module) d).collect(Collectors.toList()));
     }
 
     //// module-level operations
@@ -60,9 +63,9 @@ public class Tracker implements ReadOnlyTracker {
     /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
      */
-    public boolean hasModule(Module module) {
+    public boolean hasModule(ReadOnlyModule module) {
         requireNonNull(module);
-        return modules.contains(module);
+        return modules.contains((Module) module);
     }
 
     /**
@@ -78,18 +81,18 @@ public class Tracker implements ReadOnlyTracker {
      * {@code target} must exist in the tracker.
      * The module of {@code editedModule} must not be the same as another existing module in the tracker.
      */
-    public void setModule(Module target, Module editedModule) {
+    public void setModule(ReadOnlyModule target, Module editedModule) {
         requireNonNull(editedModule);
 
-        modules.setModule(target, editedModule);
+        modules.setModule((Module) target, editedModule);
     }
 
     /**
      * Removes {@code key} from this {@code Tracker}.
      * {@code key} must exist in the tracker.
      */
-    public void removeModule(Module key) {
-        modules.remove(key);
+    public void removeModule(ReadOnlyModule key) {
+        modules.remove((Module) key);
     }
 
     //// util methods
@@ -101,8 +104,17 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     @Override
-    public ObservableList<Module> getModuleList() {
+    public ObservableList<? extends ReadOnlyModule> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ReadOnlyModule getModule(ModuleCode code) {
+        return getModuleList()
+                .stream()
+                .filter((m) -> m.getCode().equals(code))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

@@ -11,8 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.video.Video;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +26,7 @@ public class ModelManager implements Model {
 
     private final Tracker tracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Module> filteredModules;
+    private final FilteredList<? extends ReadOnlyModule> filteredModules;
 
     private final AddressBook addressBook; // TODO: Remove this
     private final FilteredList<Person> filteredPersons; // TODO: Remove this
@@ -107,12 +111,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasModule(Module module) {
+    public boolean hasModule(ReadOnlyModule module) {
         return tracker.hasModule(module);
     }
 
     @Override
-    public void deleteModule(Module target) {
+    public void deleteModule(ReadOnlyModule target) {
         tracker.removeModule(target);
     }
 
@@ -123,21 +127,82 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModule(Module target, Module editedModule) {
+    public void setModule(ReadOnlyModule target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
         tracker.setModule(target, editedModule);
     }
 
+    @Override
+    public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
+        requireNonNull(module);
+        return module.hasLecture(lecture);
+    }
+
+    @Override
+    public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).removeLecture(target);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void addLecture(ReadOnlyModule module, Lecture lecture) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).addLecture(lecture);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).setLecture(target, editedLecture);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+        requireNonNull(lecture);
+        return lecture.hasVideo(video);
+    }
+
+    @Override
+    public void deleteVideo(ReadOnlyLecture lecture, Video video) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).removeVideo(video);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void addVideo(ReadOnlyLecture lecture, Video video) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).addVideo(video);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).setVideo(target, editedVideo);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+
     //=========== Filtered Module List Accessors =============================================================
 
     @Override
-    public ObservableList<Module> getFilteredModuleList() {
+    public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
         return filteredModules;
     }
 
     @Override
-    public void updateFilteredModuleList(Predicate<Module> predicate) {
+    public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }

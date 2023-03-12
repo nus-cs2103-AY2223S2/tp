@@ -5,8 +5,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.video.Video;
 
 /**
  * The API of the Model component.
@@ -17,7 +21,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<? super ReadOnlyModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -64,13 +68,13 @@ public interface Model {
     /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
      */
-    boolean hasModule(Module module);
+    boolean hasModule(ReadOnlyModule module);
 
     /**
      * Deletes the given module.
      * The module must exist in the tracker.
      */
-    void deleteModule(Module target);
+    void deleteModule(ReadOnlyModule target);
 
     /**
      * Adds the given module.
@@ -80,18 +84,64 @@ public interface Model {
     /**
      * Replaces the given module {@code target} with {@code editedModule}.
      * {@code target} must exist in the tracker.
-     * The module code of {@code editedPerson} must not be the same as another existing module in the tracker.
+     * The module code of {@code editedModule} must not be the same as another existing module in the tracker.
      */
-    void setModule(Module target, Module editedModule);
+    void setModule(ReadOnlyModule target, Module editedModule);
+
+    /**
+     * Returns true if a lecture with the same name as {@code lecture} exists in {@code module}.
+     */
+    boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture);
+
+    /**
+     * Deletes the given lecture {@code target}.
+     * The lecture must exist in {@code module}.
+     */
+    void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target);
+
+    /**
+     * Adds the given lecture to {@code module}.
+     */
+    void addLecture(ReadOnlyModule module, Lecture lecture);
+
+    /**
+     * Replaces the given lecture {@code target} with {@code editedLecture}.
+     * {@code target} must exist in {@code module}.
+     * The name of {@code editedLecture} must not be the same as another existing lecture in {@code module}.
+     */
+    void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture);
+
+    /**
+     * Returns true if a video with the same name as {@code video} exists in {@code lecture}.
+     */
+    boolean hasVideo(ReadOnlyLecture lecture, Video video);
+
+    /**
+     * Deletes the given video {@code target}.
+     * The video must exist in {@code lecture}.
+     */
+    void deleteVideo(ReadOnlyLecture lecture, Video video);
+
+    /**
+     * Adds the given video to {@code lecture}.
+     */
+    void addVideo(ReadOnlyLecture lecture, Video video);
+
+    /**
+     * Replaces the given video {@code target} with {@code editedVideo}.
+     * {@code target} must exist in {@code lecture}.
+     * The name of {@code editedVideo} must not be the same as another existing video in {@code lecture}.
+     */
+    void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 
     /** Returns an unmodifiable view of the filtered module list */
-    ObservableList<Module> getFilteredModuleList();
+    ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredModuleList(Predicate<Module> predicate);
+    void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);
 
     // TODO: Remove this
     /**

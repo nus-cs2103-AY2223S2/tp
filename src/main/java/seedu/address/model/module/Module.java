@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,15 +9,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.UniqueLectureList;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a module in the tracker.
- * Guarantees: details are not null, field values are validated, immutable.
+ * Guarantees: details are not null, field values are validated, immutable with exception of lecture list.
  */
-public class Module {
+public class Module implements ReadOnlyModule {
 
     private final ModuleCode code;
 
@@ -53,34 +57,42 @@ public class Module {
         this.lectures.setLectures(lectures);
     }
 
+    @Override
     public ModuleCode getCode() {
         return code;
     }
 
+    @Override
     public ModuleName getName() {
         return name;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
+    @Override
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
-    /**
-     * Returns an immutable lecture list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public List<Lecture> getLectures() {
-        return lectures.asUnmodifiableList();
+    @Override
+    public ObservableList<? extends ReadOnlyLecture> getLectureList() {
+        return lectures.asUnmodifiableObservableList();
     }
 
-    /**
-     * Returns true if both modules have the same code.
-     * This defines a weaker notion of equality between two modules.
-     */
+    @Override
+    public ReadOnlyLecture getLecture(LectureName name) {
+        return getLectureList()
+                .stream()
+                .filter((l) -> l.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public boolean hasLecture(ReadOnlyLecture lecture) {
+        requireNonNull(lecture);
+        return lectures.contains((Lecture) lecture);
+    }
+
+    @Override
     public boolean isSameModule(Module other) {
         if (other == this) {
             return true;
@@ -88,6 +100,34 @@ public class Module {
 
         return other != null
                 && other.getCode().equals(getCode());
+    }
+
+    /**
+     * Adds a lecture to the module.
+     * The lecture must not already exist in the module.
+     */
+    public void addLecture(Lecture lecture) {
+        lectures.add(lecture);
+    }
+
+    /**
+     * Replaces the given lecture {@code target} in the list with {@code editedLecture}.
+     * {@code target} must exist in the module.
+     * The lecture of {@code editedLecture} must not be the same as another existing lecture in the module.
+     */
+    public void setLecture(ReadOnlyLecture target, Lecture editedLecture) {
+        requireNonNull(editedLecture);
+
+        lectures.setLecture((Lecture) target, editedLecture);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Module}.
+     * {@code key} must exist in the module.
+     * @param key
+     */
+    public void removeLecture(ReadOnlyLecture key) {
+        lectures.remove((Lecture) key);
     }
 
     /**
@@ -108,7 +148,7 @@ public class Module {
         return otherModule.getCode().equals(getCode())
                 && otherModule.getName().equals(getName())
                 && otherModule.getTags().equals(getTags())
-                && otherModule.getLectures().equals(getLectures());
+                && otherModule.getLectureList().equals(getLectureList());
     }
 
     @Override
@@ -133,7 +173,7 @@ public class Module {
             tags.forEach(builder::append);
         }
 
-        List<Lecture> lectures = getLectures();
+        ObservableList<? extends ReadOnlyLecture> lectures = getLectureList();
         if (!lectures.isEmpty()) {
             builder.append("; Lectures: ");
             lectures.forEach(builder::append);

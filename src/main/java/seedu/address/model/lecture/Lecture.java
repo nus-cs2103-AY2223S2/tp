@@ -1,5 +1,6 @@
 package seedu.address.model.lecture;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,15 +9,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.UniqueVideoList;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * Represents a lecture of a module that is in the tracker..
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable with the exception of video list.
  */
-public class Lecture {
+public class Lecture implements ReadOnlyLecture {
 
     private final LectureName name;
 
@@ -48,30 +51,37 @@ public class Lecture {
         this.videos.setVideos(videos);
     }
 
+    @Override
     public LectureName getName() {
         return name;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
+    @Override
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
-    /**
-     * Returns an immutable video list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public List<Video> getVideos() {
-        return videos.asUnmodifiableList();
+    @Override
+    public ObservableList<Video> getVideoList() {
+        return videos.asUnmodifiableObservableList();
     }
 
-    /**
-     * Returns true if both lectures have the same name.
-     * This defines a weaker notion of equality between two lectures.
-     */
+    @Override
+    public Video getVideo(VideoName name) {
+        return getVideoList()
+                .stream()
+                .filter((v) -> v.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public boolean hasVideo(Video video) {
+        requireNonNull(video);
+        return videos.contains(video);
+    }
+
+    @Override
     public boolean isSameLecture(Lecture other) {
         if (other == this) {
             return true;
@@ -79,6 +89,34 @@ public class Lecture {
 
         return other != null
                 && other.getName().equals(getName());
+    }
+
+    /**
+     * Adds a video to the lecture.
+     * The video must not already exist in the lecture.
+     */
+    public void addVideo(Video video) {
+        videos.add(video);
+    }
+
+    /**
+     * Replaces the given video {@code target} in the list with {@code editedVideo}.
+     * {@code target} must exist in the lecture.
+     * The video of {@code editedVideo} must not be the same as another existing video in the lecture.
+     */
+    public void setVideo(Video target, Video editedVideo) {
+        requireNonNull(editedVideo);
+
+        videos.setVideo(target, editedVideo);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Lecture}.
+     * {@code key} must exist in the lecture.
+     * @param key
+     */
+    public void removeVideo(Video key) {
+        videos.remove(key);
     }
 
     /**
@@ -98,7 +136,7 @@ public class Lecture {
         Lecture otherLecture = (Lecture) other;
         return otherLecture.getName().equals(getName())
                 && otherLecture.getTags().equals(getTags())
-                && otherLecture.getVideos().equals(getVideos());
+                && otherLecture.getVideoList().equals(getVideoList());
     }
 
     @Override
@@ -118,7 +156,7 @@ public class Lecture {
             tags.forEach(builder::append);
         }
 
-        List<Video> videos = getVideos();
+        List<Video> videos = getVideoList();
         if (!videos.isEmpty()) {
             builder.append("; Videos: ");
             videos.forEach(builder::append);
