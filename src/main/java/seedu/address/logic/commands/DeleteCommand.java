@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
         }
 
         Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteRECIPE(recipeToDelete);
+        model.deleteRecipe(recipeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
     }
 

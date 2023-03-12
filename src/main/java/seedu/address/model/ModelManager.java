@@ -94,7 +94,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteRECIPE(Recipe target) {
+    public void deleteRecipe(Recipe target) {
         addressBook.removeRecipe(target);
     }
 
