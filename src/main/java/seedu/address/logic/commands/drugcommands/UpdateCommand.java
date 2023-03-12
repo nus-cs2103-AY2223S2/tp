@@ -25,11 +25,11 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Updates storage count of drug whose trade name matches given trade name.\n"
             + "Parameters: "
-            + PREFIX_TRADE_NAME + " TRADENAME"
+            + PREFIX_TRADE_NAME + " TRADENAME "
             + PREFIX_UPDATE + " UPDATE VALUE (add + or - in front for addition/deduction) \n"
             + "Example: " + COMMAND_WORD
-            + PREFIX_TRADE_NAME + " Panadol"
-            + PREFIX_UPDATE + "+30";
+            + PREFIX_TRADE_NAME + " Panadol "
+            + PREFIX_UPDATE + " +30";
 
     private final TradeName tradeName;
     private final Integer value;

@@ -69,11 +69,11 @@ Format: `g help`
 ### Add a Patient record:  `p add`
 Adds a patient to the list of patients.
 
-Format: `p add -n PATIENT_NAME -ic NRIC -p PHONE_NUMBER -e EMAIL -a ADDRESS`
+Format: `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]`
 
 Examples:
-* `add -n John Doe -ic T3871918C -p 98765432 -e johnd@example.com -a John Street, Block 123, #01-01`
-* `add -n Betsy Crowe -ic T8837191D -p 92478963 -e betsycrowe@example.com -a Sambal Street, Block 72, #04-12`
+* `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C `
+* `add -n Betsy Crowe -ph 92478963 -em betsycrowe@example.com -ad Sambal Street, Block 72, #04-12 -dob 01-01-2001 -g female -ic T8837191D -da Aspirin -ec 12345678`
 
 
 ### List all Patient records : `p list`
@@ -92,6 +92,7 @@ Format: `p clear`
 
 ### Retrieve a Patient record by name: `p find`
 Finds patients whose names contain any of the given keywords.
+
 Format: `p find -n PATIENT_NAME`
 * The search is case-insensitive. e.g hans will match Hans
 * Only the name is searched.
@@ -99,14 +100,6 @@ Format: `p find -n PATIENT_NAME`
 Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns Alex Yeoh, David Li
-
-
-### Retrieve a Patient record by NRIC: `p find`
-Finds patient whose NRIC matches given keyword
-Format: `p find -ic PATIENT_NRIC`
-Examples:
-* p find -ic T3871918C
-* Returns John Doe | T3871918C | 98765432 | johnd@example.com | John Street, Block 123, #01-01
 
 
 ### Delete a Patient record by NRIC: `p delete`
@@ -131,11 +124,11 @@ Example:
 
 Edits an existing patient in the careflow.
 
-Format: `p update -n PATIENT_NAME -ph PATIENT_PHONE_NUMBER -em PATIENT_EMAIL -ad PATIENT_ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic PATIENT_IC -da PATIENT_DRUG_ALLERGY -ec EMERGENCY_CONTACT_NUMBER`
+Format: `p update -n PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`
 
 Example:
 * p update John -ph 91234567 -em johndoe@example.com -ec 81234567 Edits the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 81234567 respectively.
-* p update Bety n/Betsy Crower -da Aspirin Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
+* p update Bety -n Betsy Crower -da Aspirin Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
 
 ### Add a Drug entry: `d add`
@@ -192,7 +185,6 @@ Updates the storage count of specified drug entry based on trade name keyword fr
 Format:
 <br>`d update -tn TRADE_NAME -up +VALUE` <br> OR <br>
 `d update -tn TRADE_NAME -up -VALUE`
-
 
 Examples:
 * `d update -tn Panadol Flu Max -up -10`
