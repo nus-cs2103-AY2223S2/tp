@@ -16,9 +16,9 @@ public class ModuleLectureContainsKeywordsPredicate implements Predicate<ReadOnl
      * @param code
      * @param lectureName
      */
-    public ModuleLectureContainsKeywordsPredicate(ModuleCode code, LectureName lectureName) {
-        this.moduleCode = code;
-        this.lectureName = lectureName;
+    public ModuleLectureContainsKeywordsPredicate(String code, String lectureName) {
+        this.moduleCode = new ModuleCode(code);
+        this.lectureName = new LectureName(lectureName);
     }
 
     @Override
@@ -28,4 +28,11 @@ public class ModuleLectureContainsKeywordsPredicate implements Predicate<ReadOnl
                 .anyMatch(lecture -> lectureName.equals(lecture.getName()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ModuleLectureContainsKeywordsPredicate // instanceof handles nulls
+                && moduleCode.equals(((ModuleLectureContainsKeywordsPredicate) other).moduleCode))
+                    && lectureName.equals(((ModuleLectureContainsKeywordsPredicate) other).lectureName); // state check
+    }
 }

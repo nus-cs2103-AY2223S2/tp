@@ -12,9 +12,19 @@ public class ModuleContainsKeywordsPredicate implements Predicate<ReadOnlyModule
         this.code = code;
     }
 
+    public ModuleContainsKeywordsPredicate(String code) {
+        this.code = new ModuleCode(code);
+    }
+
     @Override
     public boolean test(ReadOnlyModule module) {
         return this.code.equals(module.getCode());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ModuleContainsKeywordsPredicate // instanceof handles nulls
+                && code.equals(((ModuleContainsKeywordsPredicate) other).code)); // state check
+    }
 }

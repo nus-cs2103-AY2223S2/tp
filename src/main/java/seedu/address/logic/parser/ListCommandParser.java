@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lecture.LectureName;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleLectureContainsKeywordsPredicate;
 
@@ -24,10 +22,10 @@ public class ListCommandParser implements Parser<ListCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_LECTURE);
 
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            ModuleCode moduleCode = new ModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+            String moduleCode = argMultimap.getValue(PREFIX_MODULE).get();
             if (argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
                 return new ListCommand(new ModuleLectureContainsKeywordsPredicate(
-                    moduleCode, new LectureName(argMultimap.getValue(PREFIX_LECTURE).get())));
+                    moduleCode, argMultimap.getValue(PREFIX_LECTURE).get()));
             }
             return new ListCommand(new ModuleContainsKeywordsPredicate(moduleCode));
         }
