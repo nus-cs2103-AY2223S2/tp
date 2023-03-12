@@ -262,9 +262,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a large number of meetings to keep track of
+* wants to minimise time spent commuting
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage clients and meetings faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -272,12 +273,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | financial advisor | see all my meetings for today | plan and prepare for my meetings today effectively                 |
+| `* * *`  | financial advisor | add a new meeting|keep track of a meeting with a client using this app|
+| `* * *`  | financial advisor | filter my meetings | find clients based on some condition|
+| `* * *`  | financial advisor | remove a meeting from my schedule | remove meetings that are no longer relevant |
+| `* * *`    | financial advisor who has to travel to meet their client physically | set which region of singapore my client is in | keep track of the general location of my client
+| `* * *` | financial advisor who prefers physical meetings with clients | see all meetings in a specific region of singapore| minimize travel time by meeting all clients that live close to each other|
+| `* *` | financial advisor | know when the last meeting with a client was | avoid losing a client if they find me too annoying |
+| `* *` | financial advisor | classify my meetings into different types | organise my meetings better
+| `* ` | financial advisor | record my meetings | look back to reflect and improve on my skills | 
+| `* *` | financial advisor | add notes about a client | keep track of things that are important to a client | 
 
 *{More to be added}*
 
@@ -341,13 +346,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FAid notifies user of all upcoming meetings for the day
 3. User chooses to view all meetings for the current day
 4. FAid shows all meetings that start on the current day
-   
+
    Use case ends
 
 **Extensions:**
 * 2a. There are no meetings for the day
   * 2a1. FAid notifies that there are no upcoming meetings for the day
-         
+
      Use case ends
 
 **Use Case: *UC04 Find clients residing in a certain region of Singapore***
@@ -367,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a.  FAid cannot find the specified region entered
   * 3a1. User enters new region name
   * 3a2. Steps 31-3a1 are repeated until region name entered is valid
-    
+
     Use case resumes from step 3
 
 **Use Case: *UC05 Get list of clients based on a tag***
@@ -381,14 +386,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System requests for the tag
 4. User enters the tag
 5. System displays all persons with the given tag
-   
+
    Use Case Ends
 
 **Extensions:**
 * 4a. System cannot find the tag supplied by the user
   * 4a1. System requests for the correct tag
   * 4a2. User enters a new tag
-    
+
     Steps 4a1-4a2 are repeated until the user provides a correct tag
     Use Case resumes from step 5
 
