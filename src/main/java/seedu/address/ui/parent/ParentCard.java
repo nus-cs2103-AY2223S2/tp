@@ -14,6 +14,9 @@ import javafx.scene.shape.Circle;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.ui.UiPart;
 
+/**
+ * A parent card feature in the UI representing parent information.
+ */
 public class ParentCard extends UiPart<Region> {
     private static final String FXML = "StudentCard.fxml";
 

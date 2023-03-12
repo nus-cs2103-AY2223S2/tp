@@ -10,6 +10,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.ui.UiPart;
 
+/**
+ * A Parent List Panel for UI
+ */
 public class ParentListPanel extends UiPart<Region> {
     private static final String FXML = "ParentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ParentListPanel.class);
