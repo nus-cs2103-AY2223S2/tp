@@ -18,7 +18,7 @@ import seedu.address.model.contact.ContactPhone;
 public class NewContactCommandParser implements Parser<NewContactCommand> {
 
     /**
-     * Parses the give {@code String} of arguments in the context of the NewContactCommand
+     * Parses the given {@code String} of arguments in the context of the NewContactCommand
      * and returns an NewContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
