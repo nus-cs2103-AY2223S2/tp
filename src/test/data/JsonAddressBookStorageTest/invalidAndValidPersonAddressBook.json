@@ -1,11 +1,13 @@
 {
   "persons": [ {
     "name": "Valid Person",
+    "employeeId": "1",
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street"
   }, {
     "name": "Person With Invalid Phone Field",
+    "employeeId": "bbb",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street"
