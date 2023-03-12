@@ -20,6 +20,8 @@ public class StringUtil {
             '\t',
             '\r');
 
+    public static final String NEWLINE = System.lineSeparator();
+
     private StringUtil() {
     }
 
@@ -164,8 +166,8 @@ public class StringUtil {
             return prepend;
         }
         return string.lines()
-                .map(s ->  prepend + s)
-                .reduce("" , (a, b) -> a + "\n" + b)
+                .map(s -> prepend + s)
+                .reduce("" ,(a, b) -> a + NEWLINE + b)
                 .substring(1);
     }
 }

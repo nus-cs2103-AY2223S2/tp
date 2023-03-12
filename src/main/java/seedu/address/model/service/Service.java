@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Vehicle;
 import seedu.address.model.entity.person.Technician;
 
 /**
@@ -53,7 +52,6 @@ public class Service {
     }
 
     /**
-     *
      * @return Entry date of service
      */
     public LocalDate getEntryDate() {
