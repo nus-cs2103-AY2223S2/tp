@@ -21,7 +21,6 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -127,12 +126,6 @@ public class EduMateParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
-
-    @Test
-    public void parseCommand_user() throws Exception {
-        assertTrue(parser.parseCommand(UserCommand.COMMAND_WORD) instanceof UserCommand);
-        assertTrue(parser.parseCommand(UserCommand.COMMAND_WORD + " 3") instanceof UserCommand);
     }
 
     @Test
