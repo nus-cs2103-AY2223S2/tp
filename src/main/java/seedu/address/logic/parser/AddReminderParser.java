@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.AddReminder;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -8,10 +12,6 @@ import seedu.address.model.reminder.Reminder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 public class AddReminderParser implements Parser<AddReminder> {
 

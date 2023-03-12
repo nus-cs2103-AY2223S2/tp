@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.ui.NotificationManager;
-
-import static java.util.Objects.requireNonNull;
 
 public class ListReminder extends Command {
 

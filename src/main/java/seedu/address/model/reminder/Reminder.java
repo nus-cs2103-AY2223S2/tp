@@ -1,9 +1,9 @@
 package seedu.address.model.reminder;
 
-import java.time.LocalDateTime;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.DateTimeUtil.dateTimeToString;
+
+import java.time.LocalDateTime;
 
 /**
  * Represents a Reminder in the Reminders.
