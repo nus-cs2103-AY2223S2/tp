@@ -3,7 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.recipe.*;
+import seedu.address.model.recipe.Address;
+import seedu.address.model.recipe.Email;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;

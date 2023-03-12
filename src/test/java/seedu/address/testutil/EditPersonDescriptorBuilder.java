@@ -6,7 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.address.model.recipe.*;
+import seedu.address.model.recipe.Address;
+import seedu.address.model.recipe.Email;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
