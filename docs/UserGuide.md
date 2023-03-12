@@ -32,19 +32,17 @@ Format: `help`
 ---
 ## Adding a patient: addpat
 Adds a new patient to the system, and places them in the `WARD_NAME` assigned.
-Should `WARD_NAME` not be specified, the user is added into a default list of patients that has no ward assigned to them.
 Tags attached to a user are meant to be short notes that do not fit into any other category of patient details that can be added.
 
 **Warning: `WARD_NAME` is case sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`.
 
-### Format: `add n/PATIENT_NAME pid/PATIENT_ID_NUMBER [w/WARD_NAME] [t/TAG]...`
+### Format: `add n/PATIENT_NAME pid/PATIENT_ID_NUMBER w/WARD_NAME [t/TAG]...`
 
 `PATIENT_ID_NUMBER` should be unique to each patient. This is not case sensitive. A123456789B is identical to a123456789b.
 **This input will be capitalised automatically.**\
 `PATIENT_NAME` need not be unique.
 
 ### Examples:
-`addpat n/Jonathan Lee pid/A12345679B`\
 `addpat n/Jonathan Lee pid/A12345679B w/block B ward 2`
 
 ---
