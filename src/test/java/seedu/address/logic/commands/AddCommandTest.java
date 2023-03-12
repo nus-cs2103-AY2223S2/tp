@@ -153,7 +153,7 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredCardList(Predicate<Card> predicate) {
-            throw new AssertionError("This method should not be called.");
+            return; // AddCommand does call updateFilteredCardList method
         }
 
         @Override
@@ -164,7 +164,7 @@ public class AddCommandTest {
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
         public Deck getSelectedDeck() {
-            throw new AssertionError("This method should not be called.");
+            return null; // AddCommand does call getSelectDeck method
         }
 
         @Override

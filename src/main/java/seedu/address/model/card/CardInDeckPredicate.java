@@ -10,6 +10,10 @@ import seedu.address.model.deck.Deck;
 public class CardInDeckPredicate implements Predicate<Card> {
     private final Deck deck;
 
+    /**
+     * Constructs a CardInDeckPredicate
+     * @param deck The Deck in question.
+     */
     public CardInDeckPredicate(Deck deck) {
         this.deck = deck;
     }

@@ -105,9 +105,15 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     //// util methods
 
+    /**
+     * For sample data (SampleDataUtil), Cards may be added without adding Decks,
+     * hence this function initialises Decks from the list of Cards.
+     * In normal operation, Cards can only be added when a Deck is selected
+     * hence this function should not be called in normal operation.
+     */
     public void initDecks() {
         for (Card card: cards) {
-            if (!decks.contains(card.getDeck())){
+            if (!decks.contains(card.getDeck())) {
                 System.out.println(card.getDeck().getDeckName());
                 addDeck(card.getDeck());
             }

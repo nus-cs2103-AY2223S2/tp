@@ -58,6 +58,7 @@ public class TypicalPersons {
         for (Card card : getTypicalPersons()) {
             ab.addCard(card);
         }
+        ab.initDecks();
         return ab;
     }
 
