@@ -12,6 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="700.0" minWidth="1000.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -62,9 +64,20 @@
                 </padding>
                 <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" GridPane.columnIndex="1">
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #383838;" GridPane.columnIndex="1">
                      <children>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" />
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Internship Details" StackPane.alignment="TOP_LEFT">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </StackPane.margin>
+                              </Text>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                </children>
