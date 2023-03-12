@@ -14,8 +14,10 @@ import seedu.address.logic.parser.CareFlowParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CareFlowModel;
 import seedu.address.model.drug.Drug;
+import seedu.address.model.hospital.Hospital;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.storage.CareFlowStorage;
 
@@ -66,6 +68,11 @@ public class CareFlowLogicManager implements CareFlowLogic {
     }
 
     @Override
+    public ReadOnlyHospitalRecords getHospitalRecord() {
+        return model.getHospitalRecords();
+    }
+
+    @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return model.getFilteredPatientList();
     }
@@ -73,6 +80,11 @@ public class CareFlowLogicManager implements CareFlowLogic {
     @Override
     public ObservableList<Drug> getFilteredDrugList() {
         return model.getFilteredDrugList();
+    }
+
+    @Override
+    public ObservableList<Hospital> getHospitalList() {
+        return model.getHospitalList();
     }
 
     @Override

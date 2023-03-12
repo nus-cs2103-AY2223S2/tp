@@ -8,8 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.drug.Drug;
+import seedu.address.model.hospital.Hospital;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 /**
@@ -35,11 +37,16 @@ public interface CareFlowLogic {
      */
     ReadOnlyDrugInventory getDrugInventory();
 
+    ReadOnlyHospitalRecords getHospitalRecord();
+
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();
 
     /** Returns an unmodifiable view of the filtered list of drugs */
     ObservableList<Drug> getFilteredDrugList();
+
+    /** Returns an unmodifiable view of hospitals */
+    ObservableList<Hospital> getHospitalList();
 
     /**
      * Returns the user prefs' patient record file path.
