@@ -19,6 +19,10 @@ public class PatientIdNumber {
 
     private final String idNumber;
 
+    /**
+     * Constructor for PatientIdNumber.
+     * @param idNumber String to be converted.
+     */
     //TODO: include error checking for invalid ID numbers
     public PatientIdNumber(String idNumber) {
         requireNonNull(idNumber);
