@@ -7,5 +7,7 @@ package seedu.address.logic.parser;
  * MEET: Places to either eat or study (combined).
  */
 public enum MeetType {
-    EAT, STUDY, MEET
+    EAT,
+    STUDY,
+    MEET
 }
