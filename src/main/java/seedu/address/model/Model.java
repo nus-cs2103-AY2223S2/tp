@@ -41,20 +41,20 @@ public interface Model {
     /**
      * Returns the user prefs' deck book file path.
      */
-    Path getDeckFilePath();
+    Path getMasterDeckFilePath();
 
     /**
      * Sets the user prefs' deck file path.
      */
-    void setDeckFilePath(Path deckFilePath);
+    void setMasterDeckFilePath(Path deckFilePath);
 
     /**
      * Replaces deck data with the data in {@code addressBook}.
      */
-    void setDeck(ReadOnlyMasterDeck deck);
+    void setMasterDeck(ReadOnlyMasterDeck deck);
 
     /** Returns the Deck */
-    ReadOnlyMasterDeck getDeck();
+    ReadOnlyMasterDeck getMasterDeck();
 
     /**
      * Returns true if a card with the same identity as {@code card} exists in the address book.
@@ -94,7 +94,6 @@ public interface Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
-
     void updateFilteredDeckList(Predicate<Deck> predicate);
 
     /** Returns the deck */

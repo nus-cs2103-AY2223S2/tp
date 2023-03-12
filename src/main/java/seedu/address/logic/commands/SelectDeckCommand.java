@@ -1,12 +1,14 @@
-package seedu.address.logic.commands.deckcommands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.deck.Deck;
+
 
 /**
  * Selects a deck to operate on.
@@ -33,7 +35,6 @@ public class SelectDeckCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        /*
         requireNonNull(model);
 
         List<Deck> deckList = model.getFilteredDeckList();
@@ -43,9 +44,7 @@ public class SelectDeckCommand extends Command {
         }
 
         model.selectDeck(deckIndex);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck()));
-        */
-        return new CommandResult("Test");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck().getDeckName()));
     }
 
     @Override
@@ -54,5 +53,4 @@ public class SelectDeckCommand extends Command {
                 || (other instanceof SelectDeckCommand // instanceof handles nulls
                 && deckIndex.equals(((SelectDeckCommand) other).deckIndex));
     }
-
 }

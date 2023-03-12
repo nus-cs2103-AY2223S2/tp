@@ -101,12 +101,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getDeckFilePath() {
+        public Path getMasterDeckFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setDeckFilePath(Path deckFilePath) {
+        public void setMasterDeckFilePath(Path deckFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setDeck(ReadOnlyMasterDeck newData) {
+        public void setMasterDeck(ReadOnlyMasterDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyMasterDeck getDeck() {
+        public ReadOnlyMasterDeck getMasterDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -237,7 +237,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyMasterDeck getDeck() {
+        public ReadOnlyMasterDeck getMasterDeck() {
             return new MasterDeck();
         }
     }

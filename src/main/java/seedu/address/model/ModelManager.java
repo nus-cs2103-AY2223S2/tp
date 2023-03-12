@@ -71,25 +71,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getDeckFilePath() {
+    public Path getMasterDeckFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setDeckFilePath(Path deckFilePath) {
-        requireNonNull(deckFilePath);
-        userPrefs.setAddressBookFilePath(deckFilePath);
+    public void setMasterDeckFilePath(Path masterDeckFilePath) {
+        requireNonNull(masterDeckFilePath);
+        userPrefs.setAddressBookFilePath(masterDeckFilePath);
     }
 
     //=========== PowerDeck ================================================================================
 
     @Override
-    public void setDeck(ReadOnlyMasterDeck deck) {
+    public void setMasterDeck(ReadOnlyMasterDeck deck) {
         this.masterDeck.resetData(deck);
     }
 
     @Override
-    public ReadOnlyMasterDeck getDeck() {
+    public ReadOnlyMasterDeck getMasterDeck() {
         return masterDeck;
     }
 
@@ -139,12 +139,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredDeckList(Predicate<Deck> predicate) {
-        requireNonNull(predicate);
-        filteredDecks.setPredicate(predicate);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -164,8 +158,13 @@ public class ModelManager implements Model {
     }
 
 
-    /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
-    // Todo: Link getDeck() to GUI
+    /* NEWLY ADDED COMMANDS TO SUPPORT DECKS */
+    @Override
+    public void updateFilteredDeckList(Predicate<Deck> predicate) {
+        requireNonNull(predicate);
+        filteredDecks.setPredicate(predicate);
+    }
+
     @Override
     public void addDeck(Deck deck) {
         masterDeck.addDeck(deck);
@@ -186,9 +185,7 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        // TODO: Modify this once PR is merged
-        /* Deck selectedDeck = filteredDecks.get(zeroBasesIdx);
-        selectedDeckName = selectedDeck.getName(); */
+        selectedDeck = filteredDecks.get(zeroBasesIdx);
     }
 
     @Override

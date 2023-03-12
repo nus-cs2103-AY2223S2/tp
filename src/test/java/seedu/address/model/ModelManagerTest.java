@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new MasterDeck(), new MasterDeck(modelManager.getDeck()));
+        assertEquals(new MasterDeck(), new MasterDeck(modelManager.getMasterDeck()));
     }
 
     @Test
@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setDeckFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMasterDeckFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setDeckFilePath(path);
-        assertEquals(path, modelManager.getDeckFilePath());
+        modelManager.setMasterDeckFilePath(path);
+        assertEquals(path, modelManager.getMasterDeckFilePath());
     }
 
     @Test
