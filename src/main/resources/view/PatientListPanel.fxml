@@ -2,7 +2,26 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="patientListView" HBox.hgrow="ALWAYS" />
+    <ListView fx:id="patientListView" HBox.hgrow="ALWAYS"/>
+    <VBox alignment="CENTER_LEFT" fillWidth="true" prefWidth="260" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <Label fx:id="selectedName"  wrapText="true" text="Please select a patient" styleClass="cell_big_label" />
+        <Label fx:id="selectedPhone"  wrapText="true" styleClass="cell_small_label" />
+        <Label fx:id="selectedAddress"  wrapText="true" styleClass="cell_small_label"  />
+        <Label fx:id="selectedEmail"  wrapText="true" styleClass="cell_small_label"/>
+        <Label fx:id="selectedBirthDate"  wrapText="true" styleClass="cell_small_label"/>
+        <Label fx:id="selectedGender"  wrapText="true" styleClass="cell_small_label" />
+        <Label fx:id="selectedIc"  wrapText="true" styleClass="cell_small_label"/>
+    </VBox>
 </HBox>
