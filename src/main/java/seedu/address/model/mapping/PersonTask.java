@@ -58,4 +58,9 @@ public class PersonTask implements Relationship<PersonTask> {
     public boolean isSame(PersonTask obj) {
         return equals(obj);
     }
+
+    @Override
+    public boolean hasSameId(PersonTask obj) {
+        return equals(obj);
+    }
 }
