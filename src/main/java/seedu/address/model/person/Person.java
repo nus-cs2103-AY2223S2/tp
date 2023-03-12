@@ -24,8 +24,10 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private MedicalCondition medicalCondition;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, medical condition will be created without any tag
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +36,21 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
     }
 
     public Name getName() {
@@ -52,12 +69,16 @@ public class Person {
         return address;
     }
 
+    public MedicalCondition getMedicalCondition() {
+        return medicalCondition;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        Set<Tag> allTags = new HashSet<>(tags);
+        return Collections.unmodifiableSet(allTags);
     }
 
     /**
