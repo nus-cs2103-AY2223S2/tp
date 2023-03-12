@@ -9,7 +9,6 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
 
@@ -17,10 +16,6 @@ import seedu.address.model.plane.Plane;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to false
