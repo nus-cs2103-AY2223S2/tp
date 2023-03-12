@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,6 +17,14 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    public static final String CATEGORY_NAME = "name";
+    public static final String CATEGORY_GITHUB = "github";
+    public static final String CATEGORY_PHONE = "phone";
+    public static final String CATEGORY_EMAIL = "email";
+    public static final String CATEGORY_ADDRESS = "address";
+    private static final String[] categories = {CATEGORY_NAME, CATEGORY_PHONE, CATEGORY_ADDRESS,
+        CATEGORY_EMAIL, CATEGORY_GITHUB};
+    public static final List<String> CATEGORIES = Arrays.asList(categories);
     // Identity fields
     /** {@code Name} associated with the {@code Person} instance. */
     private final Name name;
