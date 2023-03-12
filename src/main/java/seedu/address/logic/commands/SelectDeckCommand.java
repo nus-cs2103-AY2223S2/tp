@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
 
 
@@ -44,6 +45,7 @@ public class SelectDeckCommand extends Command {
         }
 
         model.selectDeck(deckIndex);
+        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck().getDeckName()));
     }
 

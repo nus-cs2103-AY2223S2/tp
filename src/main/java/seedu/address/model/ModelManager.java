@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 
@@ -111,7 +112,6 @@ public class ModelManager implements Model {
     @Override
     public void addCard(Card card) {
         masterDeck.addCard(card);
-        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
@@ -181,7 +181,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeDeck(Deck key) {
+    public void removeDeck(Deck key) { //TODO should remove all cards associated with deck
         masterDeck.removeDeck(key);
         updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
     }
@@ -195,6 +195,7 @@ public class ModelManager implements Model {
     @Override
     public void unselectDeck() {
         this.selectedDeck = null;
+        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
@@ -206,7 +207,9 @@ public class ModelManager implements Model {
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
-        List<Card> cardList = null; //TODO add predicate to retrieve list of cards
+        List<Card> cardList = new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
+        );
         currentReview = new Review(deckToReview, cardList);
     };
 

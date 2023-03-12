@@ -17,7 +17,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
 
-    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true;
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true; //this is unnecessary?
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
