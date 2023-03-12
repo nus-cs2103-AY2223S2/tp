@@ -5,6 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -16,6 +23,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -177,7 +185,13 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PersonContainsKeywordsPredicate predicate = preparePersonPredicate(" ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -187,7 +201,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PersonContainsKeywordsPredicate predicate = preparePersonPredicate("Kurz Elle Kunz",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -195,9 +215,30 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonContainsKeywordsPredicate preparePersonPredicate(String nameInput,
+                                                                   String profileInput,
+                                                                   String phoneInput,
+                                                                   String emailInput,
+                                                                   String addressInput,
+                                                                   String languageInput,
+                                                                   String tagInput) {
+        List<String> nameList = Arrays.asList(nameInput.split("\\s+"));
+        List<String> profileList = Arrays.asList(profileInput.split("\\s+"));
+        List<String> phoneList = Arrays.asList(phoneInput.split("\\s+"));
+        List<String> emailList = Arrays.asList(emailInput.split("\\s+"));
+        List<String> addressList = Arrays.asList(addressInput.split("\\s+"));
+        List<String> languageList = Arrays.asList(languageInput.split("\\s+"));
+        List<String> tagList = Arrays.asList(tagInput.split("\\s+"));
+
+        return new PersonContainsKeywordsPredicate(nameList,
+                profileList,
+                phoneList,
+                emailList,
+                addressList,
+                languageList,
+                tagList);
     }
+
 }
