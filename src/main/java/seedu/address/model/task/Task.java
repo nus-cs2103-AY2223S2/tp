@@ -78,6 +78,11 @@ public class Task implements Relationship<Task> {
     }
 
     @Override
+    public boolean hasSameId(Task otherTask) {
+        return otherTask.getId().equals(getId());
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

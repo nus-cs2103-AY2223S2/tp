@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
+import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Subject;
@@ -61,7 +62,8 @@ public class MarkCommand extends Command {
         Subject subject = taskToMark.getSubject();
         Content content = taskToMark.getContent();
         Status doneStatus = new Status(true);
-        return new Task(subject, content, doneStatus);
+        Id id = taskToMark.getId();
+        return new Task(subject, content, doneStatus, id);
     }
 
     @Override
