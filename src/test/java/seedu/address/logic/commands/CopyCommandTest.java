@@ -7,13 +7,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -25,16 +22,8 @@ import seedu.address.model.person.Person;
 
 public class CopyCommandTest {
 
-    private final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    private final StringSelection emptyString = new StringSelection("");
-
-    @BeforeEach
-    public void setUp() {
-        // Clear clipboard contents
-        clipboard.setContents(emptyString, null);
-    }
 
     @Test
     public void execute_copyValidIndex_success() {
@@ -46,7 +35,8 @@ public class CopyCommandTest {
         // Check contents of clipboard
         try {
             String expectedInformation = copyCommand.getInformation(personToCopy);
-            String actualInformation = (String) clipboard.getData(DataFlavor.stringFlavor);
+            String actualInformation = (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
             assertEquals(actualInformation, expectedInformation);
         } catch (IOException | UnsupportedFlavorException e) {
             throw new AssertionError("Execution of command should not fail.", e);
