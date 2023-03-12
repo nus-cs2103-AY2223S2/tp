@@ -67,7 +67,6 @@ public class PersonCard extends UiPart<Region> {
         } else {
             birthday.setText("");
         }
-
     }
 
     @Override
