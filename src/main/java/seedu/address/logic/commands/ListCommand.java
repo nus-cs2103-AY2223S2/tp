@@ -14,7 +14,10 @@ public abstract class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "";
+    public static final String MESSAGE_SUCCESS_FISHES = "Listed all fishes";
+
+    public static final String MESSAGE_SUCCESS_TANKS = "Listed all tanks";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " fishes: lists all fishes.\n"
             + COMMAND_WORD + " tanks: lists all tanks.";
@@ -27,27 +30,22 @@ public abstract class ListCommand extends Command {
 
     private static class ListFishCommand extends ListCommand {
 
-        public static final String MESSAGE_SUCCESS = "Listed all fishes";
-
         @Override
         public CommandResult execute(Model model) {
             requireNonNull(model);
             model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
             model.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_FISHES);
-            return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+            return new CommandResult(MESSAGE_SUCCESS_FISHES, false, false, true);
         }
     }
 
     private static class ListTankCommand extends ListCommand {
-
-        public static final String MESSAGE_SUCCESS = "Listed all tanks";
-
         @Override
         public CommandResult execute(Model model) {
             requireNonNull(model);
             model.updateFilteredTankList(PREDICATE_SHOW_ALL_TANKS);
             model.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_TANKS);
-            return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+            return new CommandResult(MESSAGE_SUCCESS_TANKS, false, false, true);
         }
     }
 }

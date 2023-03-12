@@ -52,6 +52,17 @@ public class GuiSettings implements Serializable {
         this.guiMode = guiMode;
     }
 
+    private GuiSettings(double windowWidth, double windowHeight, Point windowCoordinates, GuiMode guiMode) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        this.windowCoordinates = windowCoordinates;
+        this.guiMode = guiMode;
+    }
+
+    public GuiSettings changeGuiMode(GuiMode newMode) {
+        return new GuiSettings(windowWidth, windowHeight, windowCoordinates, newMode);
+    }
+
     public double getWindowWidth() {
         return windowWidth;
     }

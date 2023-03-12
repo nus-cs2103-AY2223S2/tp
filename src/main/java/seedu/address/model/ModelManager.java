@@ -79,11 +79,7 @@ public class ModelManager implements Model {
     public void setGuiMode(GuiSettings.GuiMode newMode) {
         requireNonNull(newMode);
         GuiSettings currentSettings = userPrefs.getGuiSettings();
-        GuiSettings newSettings = new GuiSettings(
-                currentSettings.getWindowWidth(), currentSettings.getWindowHeight(),
-                (int) currentSettings.getWindowCoordinates().getX(), (int) currentSettings.getWindowCoordinates().getY(),
-                newMode);
-        userPrefs.setGuiSettings(newSettings);
+        userPrefs.setGuiSettings(currentSettings.changeGuiMode(newMode));
     }
 
     @Override
