@@ -2,6 +2,7 @@ package seedu.address.model.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.Vehicle;
 import seedu.address.model.entity.person.Technician;
@@ -13,34 +14,31 @@ public class Service {
     private static int incrementalID = 0;
     private final int id;
     private final LocalDate entryDate;
-    private ArrayList<Part> parts;
-    private Vehicle vehicle;
+    private List<Part> requiredParts;
     private String description;
     private LocalDate estimatedFinishDate;
-    private ArrayList<Technician> assignedTo;
+    private List<Technician> assignedTechnicians;
     private boolean isComplete = false;
+
     /**
      *  This method is the constructor for a Service.
      *
-     * @param vehicle The vehicle that requires servicing.
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(Vehicle vehicle, int estimatedDaysRequired) {
+    public Service(int estimatedDaysRequired) {
         this.id = ++incrementalID;
-        this.vehicle = vehicle;
         entryDate = LocalDate.now();
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        parts = new ArrayList<Part>();
+        this.requiredParts = new ArrayList<>();
+        this.assignedTechnicians = new ArrayList<>();
     }
 
     /**
      * This method is the constructor for a Service.
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
-     *
-     * @param vehicle The vehicle that requires servicing.
      */
-    public Service(Vehicle vehicle) {
-        this(vehicle, 7);
+    public Service() {
+        this(7);
     }
 
     /**
@@ -75,8 +73,8 @@ public class Service {
      *
      * @return a list of parts needed to repair this.
      */
-    public ArrayList<Part> getParts() {
-        return parts;
+    public List<Part> getRequiredParts() {
+        return requiredParts;
     }
 
     /**
@@ -85,7 +83,7 @@ public class Service {
      * @param part The part to be added.
      */
     public void addPart(Part part) {
-        parts.add(part);
+        requiredParts.add(part);
     }
 
     /**
@@ -94,16 +92,9 @@ public class Service {
      * @param part The part to be removed.
      */
     public void removePart(Part part) {
-        parts.remove(part);
+        requiredParts.remove(part);
     }
 
-    /**
-     * This method returns the vehicle that requires this service.
-     * @return returns the Vehicle that this Service is linked to.
-     */
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
 
     /**
      * This method returns the bill of this service.
@@ -112,32 +103,24 @@ public class Service {
      * @return The cost of this service.
      */
     public int bill() {
-        return parts.stream().mapToInt(i -> i.getCost()).sum();
+        return requiredParts.stream().mapToInt(i -> i.getCost()).sum();
     }
 
     /**
-     * This method adds a part needed for this service.
+     * This method adds some parts needed for this service.
      *
-     * @param part The part needed to be added.
+     * @param parts The part needed to be added.
      */
-    public void addParts(Part part) {
-        parts.add(part);
+    public void addParts(List<Part> parts) {
+        requiredParts.addAll(parts);
     }
 
     /**
-     * This method removes a part that was added to this service.
-     * @param part The part to be removed.
+     * This method removes some parts that was added to this service.
+     * @param parts The part to be removed.
      */
-    public void removeParts(Part part) {
-        parts.remove(part);
-    }
-
-    /**
-     * This method assigns a particular vehicle to this service.
-     * @param vehicle The vehicle needed for this service.
-     */
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void removeParts(List<Part> parts) {
+        requiredParts.removeAll(parts);
     }
 
     /**
@@ -163,8 +146,8 @@ public class Service {
      *
      * @return the list of technicians assigned to this task.
      */
-    public ArrayList<Technician> isAssignedTo() {
-        return assignedTo;
+    public List<Technician> isAssignedTo() {
+        return assignedTechnicians;
     }
 
     /**
@@ -173,7 +156,7 @@ public class Service {
      * @param technician The technician assigned to this service.
      */
     public void assignTechnician(Technician technician) {
-        assignedTo.add(technician);
+        assignedTechnicians.add(technician);
     }
 
     /**
@@ -182,7 +165,7 @@ public class Service {
      * @param technician The technician to be removed from this service.
      */
     public void removeTechnician(Technician technician) {
-        assignedTo.remove(technician);
+        assignedTechnicians.remove(technician);
     }
 
     /**
