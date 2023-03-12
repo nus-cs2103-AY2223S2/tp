@@ -37,14 +37,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **Target user profile**:
 
-* is an administrator of a small Non-Profit Organisation (NPO) who needs to track volunteers and their assigned buddy elderly.
-* works alone in managing volunteer and elerly information.
-* tech-savvy.
+* single administrator of Non-Profit Organisation (NPO) who needs to track volunteers and their assigned elderly
+* works alone in managing volunteer and elderly information.
+* tech-savvy
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable using CLI apps
 
 **Value proposition**: FriendlyLink streamlines volunteer and elderly management for single administrators of small NPOs.
 With its easy-to-use text-based interface and contact management features, say goodbye to manual record-keeping and hello
