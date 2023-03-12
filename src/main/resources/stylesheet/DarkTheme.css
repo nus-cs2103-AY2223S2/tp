@@ -173,7 +173,7 @@
 
 .tab-pane .tab:selected
 {
-    -fx-background-color: #67879F;
+    -fx-background-color: derive(#445568, 15%);
 }
 
 .tab .tab-label {
