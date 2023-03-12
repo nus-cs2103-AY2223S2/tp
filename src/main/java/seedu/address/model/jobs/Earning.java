@@ -1,4 +1,4 @@
-package seedu.address.model.deliveryjobs;
+package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,9 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Delivery's earning in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEarning(String)}
- * @deprecated moved to jobs
  */
-@Deprecated
 public class Earning {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";
@@ -28,6 +26,10 @@ public class Earning {
         value = earning;
     }
 
+    public double value() {
+        return Double.parseDouble(value);
+    }
+
     /**
      * Returns true if a given string is a valid earning.
      */
@@ -43,8 +45,8 @@ public class Earning {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.deliveryjobs.Earning // instanceof handles nulls
-                && value.equals(((seedu.address.model.deliveryjobs.Earning) other).value)); // state check
+                || (other instanceof Earning // instanceof handles nulls
+                && value.equals(((Earning) other).value)); // state check
     }
 
     @Override

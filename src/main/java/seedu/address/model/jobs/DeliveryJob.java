@@ -12,9 +12,10 @@ public class DeliveryJob {
     private final String jobId;
 
     // Delivery informations
-    private Person recepient;
-    private String deliverSlot; // TODO: Update data type when confirmed
-    private double earning;
+    private final Person recepient;
+    private final String deliverSlot; // TODO: Update data type when confirmed
+    private final Earning earning;
+    private final boolean isDelivered;
 
     /**
      * Constructs a job entity.
@@ -24,8 +25,8 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(Person recepient, String deliverSlot, double earning) {
-        this(UUID.randomUUID().toString(), recepient, deliverSlot, earning);
+    public DeliveryJob(Person recepient, String deliverSlot, Earning earning) {
+        this(UUID.randomUUID().toString(), recepient, deliverSlot, earning, false);
     }
 
     /**
@@ -37,11 +38,12 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(String jobId, Person recepient, String deliverSlot, double earning) {
+    public DeliveryJob(String jobId, Person recepient, String deliverSlot, Earning earning, boolean isDelivered) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.deliverSlot = deliverSlot;
         this.earning = earning;
+        this.isDelivered = isDelivered;
     }
 
     public String getJobId() {
@@ -56,8 +58,12 @@ public class DeliveryJob {
         return deliverSlot;
     }
 
-    public double getEarning() {
+    public Earning getEarning() {
         return earning;
+    }
+
+    public boolean getDeliveredStatus() {
+        return isDelivered;
     }
 
     /**
@@ -81,14 +87,17 @@ public class DeliveryJob {
         String outString = "Job [%s]\n"
                 + "receipent: %s\n"
                 + "slot: %s\n"
-                + "earn: $%s\n";
+                + "earn: $%s\n"
+                + "status: $%s\n";
 
         builder.append(
                 String.format(outString,
                         jobId,
                         getRecepient(),
                         getDeliverSlot(),
-                        getEarning()));
+                        getEarning(),
+                        getDeliveredStatus())
+        );
 
         return builder.toString();
     }

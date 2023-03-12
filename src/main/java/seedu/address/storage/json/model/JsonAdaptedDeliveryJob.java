@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.Earning;
 
 /**
  * JsonAdaptedDeliveryJob
@@ -13,7 +14,8 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
     private final String jobId;
     private final JsonAdaptedPerson recepient;
     private final String slot;
-    private final double earning;
+    private final Earning earning;
+    private final boolean isDelivered;
 
     /**
      * JsonAdaptedDeliveryJob
@@ -27,12 +29,14 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         @JsonProperty("jobid") String jobId,
         @JsonProperty("recepient") JsonAdaptedPerson recepient,
         @JsonProperty("slot") String deliverySlot,
-        @JsonProperty("earning") double earning
+        @JsonProperty("earning") double earning,
+        @JsonProperty("isDelivered") boolean isDelivered
     ) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.slot = deliverySlot;
-        this.earning = earning;
+        this.earning = new Earning(Double.toString(earning));
+        this.isDelivered = isDelivered;
     }
 
     /**
@@ -45,12 +49,13 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         this.recepient = new JsonAdaptedPerson(source.getRecepient());
         this.slot = source.getDeliverSlot();
         this.earning = source.getEarning();
+        this.isDelivered = source.getDeliveredStatus();
     }
 
     @Override
     public DeliveryJob toModelType() throws IllegalValueException {
         // TODO: refine later
-        return new DeliveryJob(jobId, recepient.toModelType(), slot, earning);
+        return new DeliveryJob(jobId, recepient.toModelType(), slot, earning, isDelivered);
     }
 
 }

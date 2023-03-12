@@ -13,8 +13,6 @@ import seedu.address.model.DeliveryJobSystem;
 import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.storage.json.model.JsonAdaptedDeliveryJob;
-import seedu.address.storage.json.model.JsonAdaptedPerson;
-import seedu.address.storage.json.model.JsonAdaptedReminder;
 
 /**
  * JsonSerializableDeliveryJobSystem

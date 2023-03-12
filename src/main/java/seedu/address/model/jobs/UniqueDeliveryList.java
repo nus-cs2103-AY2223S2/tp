@@ -45,7 +45,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
      * setDeliveryJob
      *
      * @param target
-     * @param editedPerson
+     * @param editedJob
      */
     public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
         requireAllNonNull(target, editedJob);
@@ -85,7 +85,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     /**
      * setDeliveryJobs
      *
-     * @param deliveryJobs
+     * @param jobs
      */
     public void setDeliveryJobs(List<DeliveryJob> jobs) {
         requireAllNonNull(jobs);
