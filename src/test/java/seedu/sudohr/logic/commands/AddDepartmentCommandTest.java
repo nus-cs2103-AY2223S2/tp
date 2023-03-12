@@ -22,59 +22,62 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
-import seedu.sudohr.testutil.PersonBuilder;
+import seedu.sudohr.testutil.DepartmentBuilder;
 
-public class AddCommandTest {
+public class AddDepartmentCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullDepartment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddDepartmentCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_departmentAcceptedByModel_addSuccessful() throws Exception {
+        AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded modelStub =
+                new AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded();
+        Department validDepartment = new DepartmentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddDepartmentCommand(validDepartment).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddDepartmentCommand.MESSAGE_SUCCESS, validDepartment),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validDepartment), modelStub.departmentsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateDepartment_throwsCommandException() {
+        Department validDepartment = new DepartmentBuilder().build();
+        AddDepartmentCommand addDepartmentCommand = new AddDepartmentCommand(validDepartment);
+        AddDepartmentCommandTest.ModelStub modelStub =
+                new AddDepartmentCommandTest.ModelStubWithDepartment(validDepartment);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT, () ->
+                addDepartmentCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Department humanResources = new DepartmentBuilder().withDepartmentName("Human Resources").build();
+        Department engineering = new DepartmentBuilder().withDepartmentName("Engineering").build();
+        AddDepartmentCommand addHumanResourcesCommand = new AddDepartmentCommand(humanResources);
+        AddDepartmentCommand addEngineeringCommand = new AddDepartmentCommand(engineering);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addHumanResourcesCommand.equals(addHumanResourcesCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddDepartmentCommand addHumanResourcesCommandCopy = new AddDepartmentCommand(humanResources);
+        assertTrue(addHumanResourcesCommand.equals(addHumanResourcesCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addHumanResourcesCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addHumanResourcesCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addHumanResourcesCommand.equals(addEngineeringCommand));
     }
-
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -191,39 +194,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single department.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithDepartment extends AddDepartmentCommandTest.ModelStub {
+        private final Department department;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithDepartment(Department department) {
+            requireNonNull(department);
+            this.department = department;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasDepartment(Department department) {
+            requireNonNull(department);
+            return this.department.equals(department);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the department being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingDepartmentAdded extends AddDepartmentCommandTest.ModelStub {
+        final ArrayList<Department> departmentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasDepartment(Department department) {
+            requireNonNull(department);
+            return departmentsAdded.stream().anyMatch(department::equals);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addDepartment(Department department) {
+            requireNonNull(department);
+            departmentsAdded.add(department);
         }
 
         @Override
@@ -231,5 +234,4 @@ public class AddCommandTest {
             return new SudoHr();
         }
     }
-
 }

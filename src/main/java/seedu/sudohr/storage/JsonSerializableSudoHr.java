@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -20,15 +21,19 @@ import seedu.sudohr.model.person.Person;
 class JsonSerializableSudoHr {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedDepartment> departments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableSudoHr} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableSudoHr(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableSudoHr(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments) {
         this.persons.addAll(persons);
+        this.departments.addAll(departments);
     }
 
     /**
@@ -38,6 +43,8 @@ class JsonSerializableSudoHr {
      */
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +54,7 @@ class JsonSerializableSudoHr {
      */
     public SudoHr toModelType() throws IllegalValueException {
         SudoHr sudoHr = new SudoHr();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (sudoHr.hasPerson(person)) {
@@ -54,6 +62,15 @@ class JsonSerializableSudoHr {
             }
             sudoHr.addPerson(person);
         }
+
+        for (JsonAdaptedDepartment jsonAdaptedDepartment : departments) {
+            Department department = jsonAdaptedDepartment.toModelType();
+            if (sudoHr.hasDepartment(department)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_DEPARTMENTS);
+            }
+            sudoHr.addDepartment(department);
+        }
+
         return sudoHr;
     }
 

@@ -3,6 +3,7 @@ package seedu.sudohr.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -59,6 +60,17 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final String VALID_DEPARTMENT_NAME_HUMAN_RESOURCES = "Human Resources";
+    public static final String VALID_DEPARTMENT_NAME_ENGINEERING = "Engineering";
+
+    public static final String DEPARTMENT_NAME_DESC_HUMAN_RESOURCES = " " + PREFIX_DEPARTMENT_NAME
+            + VALID_DEPARTMENT_NAME_HUMAN_RESOURCES;
+    public static final String DEPARTMENT_NAME_DESC_ENGINEERING = " " + PREFIX_DEPARTMENT_NAME
+            + VALID_DEPARTMENT_NAME_ENGINEERING;
+
+    // '&' not allowed in names
+    public static final String INVALID_DEPARTMENT_NAME_DESC = " " + PREFIX_DEPARTMENT_NAME + "Engineering&";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.sudohr.model.person.UniquePersonList;
 public class SudoHr implements ReadOnlySudoHr {
 
     private final UniquePersonList persons;
+    private final UniqueDepartmentList departments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     {
         persons = new UniquePersonList();
+        departments = new UniqueDepartmentList();
     }
 
     public SudoHr() {}
@@ -48,15 +52,24 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Replaces the contents of the department list with {@code departments}.
+     * {@code departments} must not contain duplicate departments.
+     */
+    public void setDepartments(List<Department> departments) {
+        this.departments.setDepartments(departments);
+    }
+
+    /**
      * Resets the existing data of this {@code SudoHr} with {@code newData}.
      */
     public void resetData(ReadOnlySudoHr newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setDepartments(newData.getDepartmentList());
     }
 
-    //// person-level operations
+    //=========== Person-Level Operations ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
@@ -93,6 +106,70 @@ public class SudoHr implements ReadOnlySudoHr {
         persons.remove(key);
     }
 
+    //=========== Department-Level Operations ==========================================================================
+
+    /**
+     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
+     */
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return departments.contains(department);
+    }
+
+    /**
+     * Adds a department to the address book.
+     * The department must not already exist in the address book.
+     */
+    public void addDepartment(Department d) {
+        departments.add(d);
+    }
+
+    /**
+     * Replaces the given department {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setDepartment(Department target, Department editedDepartment) {
+        requireNonNull(editedDepartment);
+        departments.setDepartment(target, editedDepartment);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeDepartment(Department key) {
+        departments.remove(key);
+    }
+
+    /**
+     * Adds a given employee from a given department
+     * @param p The employee to add
+     * @param d The department to add the employee to
+     */
+    public void addEmployeeToDepartment(Person p, Department d) {
+        requireNonNull(p);
+        requireNonNull(d);
+
+        d.addEmployee(p);
+    }
+
+    /**
+     * Removes a given employee from a given department
+     * @param p The employee to remove
+     * @param d The department to remove the employee fro
+     */
+    public void removeEmployeeFromDepartment(Person p, Department d) {
+        requireNonNull(p);
+        requireNonNull(d);
+
+        d.removeEmployee(p);
+    }
+
+    //// event-level operations
+
+    //// leave-level operations
+
     //// util methods
 
     @Override
@@ -104,6 +181,11 @@ public class SudoHr implements ReadOnlySudoHr {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Department> getDepartmentList() {
+        return departments.asUnmodifiableObservableList();
     }
 
     @Override

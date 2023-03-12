@@ -16,12 +16,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalDepartments {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -55,22 +56,37 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Department HUMAN_RESOURCES = new DepartmentBuilder().withDepartmentName("Human Resources")
+            .withEmployees(ALICE, BENSON, CARL).build();
+    public static final Department ENGINEERING = new DepartmentBuilder().withDepartmentName("Engineering")
+            .withEmployees(DANIEL, ELLE, FIONA).build();
+    public static final Department SALES = new DepartmentBuilder().withDepartmentName("Sales")
+            .withEmployees(GEORGE, HOON, IDA).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalDepartments() {} // prevents instantiation
 
     /**
-     * Returns an {@code SudoHr} with all the typical persons.
+     * Returns an {@code SudoHr} with all the typical persons and departments.
      */
     public static SudoHr getTypicalSudoHr() {
-        SudoHr ab = new SudoHr();
+        SudoHr sh = new SudoHr();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            sh.addPerson(person);
         }
-        return ab;
+
+        for (Department department : getTypicalDepartments()) {
+            sh.addDepartment(department);
+        }
+        return sh;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Department> getTypicalDepartments() {
+        return new ArrayList<>(Arrays.asList(HUMAN_RESOURCES, ENGINEERING, SALES));
     }
 }
