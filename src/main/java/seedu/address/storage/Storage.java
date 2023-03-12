@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.addressbook.AddressBookStorage;
 import seedu.address.storage.user.UserDataStorage;
+import seedu.address.storage.userpref.UserPrefsStorage;
 
 /**
  * API of the Storage component

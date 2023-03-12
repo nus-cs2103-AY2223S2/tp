@@ -24,14 +24,14 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.user.UserData;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.addressbook.AddressBookStorage;
 import seedu.address.storage.addressbook.JsonAddressBookStorage;
 import seedu.address.storage.user.JsonUserDataStorage;
 import seedu.address.storage.user.UserDataStorage;
+import seedu.address.storage.userpref.JsonUserPrefsStorage;
+import seedu.address.storage.userpref.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 

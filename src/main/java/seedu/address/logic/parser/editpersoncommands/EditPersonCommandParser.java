@@ -52,7 +52,9 @@ public class EditPersonCommandParser {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             editPersonDescriptor.setIndex(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe
+            );
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

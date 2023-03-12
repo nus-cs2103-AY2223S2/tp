@@ -11,8 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**

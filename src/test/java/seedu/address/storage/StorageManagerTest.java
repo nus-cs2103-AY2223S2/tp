@@ -17,6 +17,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.storage.addressbook.JsonAddressBookStorage;
 import seedu.address.storage.user.JsonUserDataStorage;
 import seedu.address.storage.user.UserDataStorage;
+import seedu.address.storage.userpref.JsonUserPrefsStorage;
 
 public class StorageManagerTest {
 

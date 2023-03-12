@@ -27,11 +27,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.addressbook.JsonAddressBookStorage;
 import seedu.address.storage.user.JsonUserDataStorage;
 import seedu.address.storage.user.UserDataStorage;
+import seedu.address.storage.userpref.JsonUserPrefsStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
