@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -122,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         wingmanLogo.setImage(getImage(WINGMAN_LOGO));
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         Region item = itemListPanel.getRoot();
         personListPanelPlaceholder.getChildren().add(item);
@@ -176,10 +175,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

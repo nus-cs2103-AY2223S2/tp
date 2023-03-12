@@ -12,9 +12,6 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     OperationMode getOperationMode();
-
-    Path getAddressBookFilePath();
-
     /**
      * Returns the file path of the pilotManager
      *
