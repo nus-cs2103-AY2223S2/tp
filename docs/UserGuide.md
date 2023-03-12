@@ -63,10 +63,10 @@ In a conventional application cycle, the large influx of applicants makes it cha
 
 ### 4. Delete applicants: `delete`
 
-- Format: `delete n/NAME p/PHONE_NUMBER`
+- Format: `delete TARGET_INDEX`
 
 - Examples:
-    - `delete n/Jack Dill p/PHONE_NUMBER`
+    - `delete 1`
 
 ### 5. Advancing an applicant's status: `advance`
 
@@ -108,9 +108,9 @@ Find applicants using keywords (name OR phone number OR both)
 ## Command Summary
 
 | Action  | Format, Examples                                                                                                                                                        |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]…`<br>Example: `add n/James Ho p/91234567 e/jamesho@example.com a/123, Clementi Rd, 1234665 note/Entrepreneur` |
-| Delete  | `delete n/NAME p/PHONE_NUMBER`<br>Example: `delete n/James Ho p/91234567`                                                                                               |
+| Delete  | `delete TARGET_INDEX`<br>Example: `delete 1`                                                                                                                            |
 | Edit    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br>Example: `edit 2 n/James Lee e/jameslee@example.com`                                           |
 | List    | `list`                                                                                                                                                                  |
 | Help    | `help`                                                                                                                                                                  |
