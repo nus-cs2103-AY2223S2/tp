@@ -25,6 +25,8 @@ import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 
@@ -181,6 +183,15 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+    public static void showRoutineAtIndex(FitBookModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRoutineList().size());
+
+        Routine routine = model.getFilteredRoutineList().get(targetIndex.getZeroBased());
+        final String[] splitName = routine.getRoutineName().routineName.split("\\s+");
+        model.updateFilteredRoutineList(new RoutineNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredRoutineList().size());
     }
 
 }

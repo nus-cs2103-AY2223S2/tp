@@ -9,6 +9,7 @@ import static seedu.fitbook.testutil.client.TypicalClients.CARL;
 import static seedu.fitbook.testutil.client.TypicalClients.ELLE;
 import static seedu.fitbook.testutil.client.TypicalClients.FIONA;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,10 @@ import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the FitBookModel) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
-    private FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
+    private FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
     @Test
     public void equals() {

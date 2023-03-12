@@ -1,10 +1,9 @@
-package seedu.fitbook.model.client;
+package seedu.fitbook.model.routines;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.fitbook.commons.util.StringUtil;
-import seedu.fitbook.model.routines.Routine;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.

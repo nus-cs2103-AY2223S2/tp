@@ -2,6 +2,7 @@ package seedu.fitbook.logic.commands;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +23,10 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyFitBook_success() {
-        FitBookModel model = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
-        FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
+        FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
+                new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(),
+                getTypicalFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.setFitBook(new FitBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedFitBookModel);

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.fitbook.logic.commands.FindRoutineCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
-import seedu.fitbook.model.client.RoutineNameContainsKeywordsPredicate;
+import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

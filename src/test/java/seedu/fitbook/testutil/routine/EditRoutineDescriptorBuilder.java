@@ -1,3 +1,4 @@
+
 package seedu.fitbook.testutil.routine;
 
 import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
@@ -31,7 +32,7 @@ public class EditRoutineDescriptorBuilder {
     public EditRoutineDescriptorBuilder(Routine routine) {
         descriptor = new EditRoutineDescriptor();
         descriptor.setRoutineName(routine.getRoutineName());
-        descriptor.setExercises(routine.getExercises());
+        descriptor.setExercise((Exercise) routine.getExercises());
     }
 
     /**
@@ -48,7 +49,7 @@ public class EditRoutineDescriptorBuilder {
      */
     public EditRoutineDescriptorBuilder withExercises(String... exercises) {
         List<Exercise> exerciseList = Stream.of(exercises).map(Exercise::new).collect(Collectors.toList());
-        descriptor.setExercises(exerciseList);
+        descriptor.setExercise(exerciseList);
         return this;
     }
 

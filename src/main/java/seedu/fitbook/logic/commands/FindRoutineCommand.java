@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.RoutineNameContainsKeywordsPredicate;
+import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 /**
  * Finds and lists all routines in fitbook whose routine name contains any of the argument keywords.
  * Keyword matching is case insensitive.

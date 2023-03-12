@@ -10,13 +10,10 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
-<<<<<<< HEAD
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
-=======
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
->>>>>>> master
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +21,7 @@ import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.fitbook.model.FitBook;
+import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
@@ -36,7 +34,8 @@ import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
+            new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,7 +45,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
+                new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
@@ -67,7 +67,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
+                new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
@@ -80,7 +81,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
+                new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
     }
@@ -96,7 +98,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
-        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
+                new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);

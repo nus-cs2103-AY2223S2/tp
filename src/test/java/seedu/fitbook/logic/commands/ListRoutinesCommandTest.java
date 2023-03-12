@@ -1,9 +1,9 @@
 package seedu.fitbook.logic.commands;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
+import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
+import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
-import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ import seedu.fitbook.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for ListCommand.
  */
-public class ListClientsCommandTest {
+public class ListRoutinesCommandTest {
 
     private FitBookModel model;
     private FitBookModel expectedFitBookModel;
@@ -30,12 +30,14 @@ public class ListClientsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
+                expectedFitBookModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
+        assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
+                expectedFitBookModel);
     }
 }

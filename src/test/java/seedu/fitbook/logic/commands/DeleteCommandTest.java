@@ -8,6 +8,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,8 @@ import seedu.fitbook.model.client.Client;
  */
 public class DeleteCommandTest {
 
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
+            new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +35,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, clientToDelete);
 
-        FitBookModelManager expectedFitBookModel = new FitBookModelManager(model.getFitBook(), new UserPrefs());
+        FitBookModelManager expectedFitBookModel = new FitBookModelManager(model.getFitBook(),
+                getTypicalFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.deleteClient(clientToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedFitBookModel);
@@ -56,7 +59,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, clientToDelete);
 
-        FitBookModel expectedFitBookModel = new FitBookModelManager(model.getFitBook(), new UserPrefs());
+        FitBookModel expectedFitBookModel = new FitBookModelManager(model.getFitBook(),
+                getTypicalFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.deleteClient(clientToDelete);
         showNoClient(expectedFitBookModel);
 
