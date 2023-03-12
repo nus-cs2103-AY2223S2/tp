@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.UniquePersonList;
 
@@ -99,6 +100,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void markEvent(Event target, Event markedEvent) {
         persons.mark(target, markedEvent);
+    }
+
+    public void linkContact(Event event, Contact contact) {
+        event.linkContact(contact);
     }
 
     //// util methods

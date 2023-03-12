@@ -42,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredContacts = new FilteredList<>(this.contactList.getContactList());
+
     }
 
     public ModelManager() {
@@ -174,6 +175,12 @@ public class ModelManager implements Model {
     @Override
     public void addContact(Contact contact) {
         contactList.addContact(contact);
+    }
+
+    @Override
+    public void linkContact(Event event, Contact contact) {
+        addressBook.linkContact(event, contact);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
