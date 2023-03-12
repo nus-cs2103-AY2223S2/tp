@@ -34,7 +34,7 @@ public class Email {
 
     public final String value;
 
-        /**
+    /**
      * Constructs an {@code Email}.
      *
      * @param email A valid email address.
