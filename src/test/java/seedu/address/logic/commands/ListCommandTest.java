@@ -47,12 +47,11 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        ListCommand command = null;
-        try {
-            command = new ListCommandParser().parse("");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        Set<Language> languages = new HashSet<>(); // no language keywords are given
+        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        Set<Tag> tags = new HashSet<>();
+        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        ListCommand command = new ListCommand(tagPredicate, langPredicate, false);
         assertCommandSuccess(command,
                 model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -60,12 +59,11 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        ListCommand command = null;
-        try {
-            command = new ListCommandParser().parse("");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        Set<Language> languages = new HashSet<>(); // no language keywords are given
+        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        Set<Tag> tags = new HashSet<>();
+        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        ListCommand command = new ListCommand(tagPredicate, langPredicate, false);
         assertCommandSuccess(command, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
     @Test
