@@ -113,6 +113,11 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
     }
 
     @Override
+    public DegreeProgressionData getProgressionData() {
+        return DegreeProgressionData.generate(modules);
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DegreeProgression // instanceof handles nulls
