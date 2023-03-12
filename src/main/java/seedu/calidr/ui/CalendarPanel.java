@@ -3,15 +3,15 @@ package seedu.calidr.ui;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
-import com.calendarfx.view.DetailedWeekView;
+import com.calendarfx.view.MonthView;
 
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -20,7 +20,9 @@ import javafx.scene.paint.Paint;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
 import seedu.calidr.model.TaskEntry;
+import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
+import seedu.calidr.model.task.ToDo;
 
 
 /**
@@ -33,10 +35,14 @@ public class CalendarPanel extends UiPart<Region> {
 
     private final CalendarSource calendarSource = new CalendarSource("My Calendars");
 
-    private final Calendar<TaskEntry> calendar = new Calendar<>("My Calendar");
+    private final Calendar<TaskEntry> calendarTodos = new Calendar<>("Todos");
+
+    private final Calendar<TaskEntry> calendarEvents = new Calendar<>("Events");
+
+    private final Map<Class<? extends Task>, Calendar<TaskEntry>> taskEntryCalendarMap = new HashMap<>();
 
     @FXML
-    private DetailedWeekView calendarView; // TODO: Command to navigate different months
+    private MonthView calendarView; // TODO: Command to navigate different months
 
     private Thread updateTimeThread;
 
@@ -45,10 +51,18 @@ public class CalendarPanel extends UiPart<Region> {
      */
     public CalendarPanel() {
         super(FXML);
-        calendar.setReadOnly(true);
-        calendar.setStyle(Calendar.Style.STYLE1); // TODO: Command to chanege style
-        calendarSource.getCalendars().add(calendar);
-        calendarView.addEventFilter(MouseEvent.MOUSE_CLICKED, Event::consume);
+
+        calendarTodos.setReadOnly(true);
+        calendarEvents.setReadOnly(true);
+        calendarTodos.setStyle(Calendar.Style.STYLE1);
+        calendarEvents.setStyle(Calendar.Style.STYLE2);
+
+        taskEntryCalendarMap.put(ToDo.class, calendarTodos);
+        taskEntryCalendarMap.put(Event.class, calendarEvents);
+
+        calendarSource.getCalendars().addAll(calendarTodos, calendarEvents);
+        calendarView.setEntryContextMenuCallback(param -> null);
+        calendarView.addEventFilter(MouseEvent.MOUSE_CLICKED, javafx.event.Event::consume);
         calendarView.getCalendarSources().add(calendarSource);
         calendarView.setBackground(Background.fill(Paint.valueOf("#ffffff")));
         calendarView.setRequestedTime(LocalTime.now());
@@ -85,7 +99,13 @@ public class CalendarPanel extends UiPart<Region> {
      */
     public void updateCalendar(ArrayList<Task> taskList) {
         // TODO: Asynchronous / lazy loading
-        calendar.clear();
-        calendar.addEntries(taskList.stream().map(TaskEntryUtil::convert).collect(Collectors.toUnmodifiableList()));
+        taskEntryCalendarMap.values().forEach(Calendar::clear);
+        taskList.forEach(task -> {
+            Class<? extends Task> taskClass = task.getClass();
+            if (taskEntryCalendarMap.containsKey(taskClass)) {
+                Calendar<TaskEntry> calendar = taskEntryCalendarMap.get(taskClass);
+                calendar.addEntry(TaskEntryUtil.convert(task));
+            }
+        });
     }
 }
