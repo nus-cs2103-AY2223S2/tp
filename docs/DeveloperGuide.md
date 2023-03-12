@@ -256,15 +256,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* small business owner that has a need to manage a sizeable number of customers and orders
+* increase customer loyalty and retention rate
+* engage with their customers and build long-term relationships with customers by providing incentives
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.
 
 ### User stories
 
@@ -272,43 +273,475 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | small business owner | create, view, update and delete basic profile information of my customers | - |
+| `* * *`  | small business owner |	view a centralized tab containing all customers |	view all the customers’ information. |
+| `* * *`  | small business owner |	save the addresses of my customers | provide an easier checkout experience to frequent customers |
+| `* * *`  | forgetful small business owner |	bookmark customers for required updates | remind myself to communicate with some customers |
+| `* * *`  | attentive business owner | track reward points given associated to my customers | determine who I should reward as part of the reward system |
+| `* * *`  | small business owner | create, view, update and delete basic profile information of my orders | - |
+| `* * *`  | small business owner | view a centralized tab containing all orders | view all the orders' information |
+| `* * *`  | small business owner |	set an order as paid for | - |
+| `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
+| `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
+| `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
+| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out |
+| `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
+| `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
+| `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
+| `* *`  | small business owner | categorize my customers by a few metrics | - |
+| `* *`  | analytical small business owner | view some basic summary of my customer base | understand the demographics of my customers better |
+| `* *`  | attentive small business owner | add customised notes to each customer | track more specific details of each customer |
+| `* *`  | small business owner | include tags in my customer notes | view notes from multiple customers with a similar theme |
+| `* *`  | small business owner | sort customers by their reward points | determine who are my loyal customers |
+| `* *`  | small business owner | spend points for my customers | redeem rewards for them |
+| `* *`  | devoted small business owner | keep a list of rewards and its availability and points | know what rewards I have prepared to give away to loyal customers |
+| `* *`  | small business owner | add enterprise customers | include other companies in my list |
+| `* *`  | small business owner | filter between individual and enterprise customers | - |
+| `* *`  | small business owner | assign individuals to an enterprise | group individuals working in the enterprise |
+| `* *`  | small business owner | view an order timeline for each order | refer to it for future reference |
+| `* *`  | attentive small business owner | view what were my customers’ previous preferences for my product | can easily communicate with the customer about their previous preferences to provide a good service |
+| `* *`  | analytical small business owner | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell |
+| `* *`  | small business owner | tag an order to a specific customer | resolve conflicts regarding a particular order swiftly |
+| `* *`  | small business owner who wants to reduce costs | group orders with delivery addresses close to each other | order delivery can be done more efficiently |
+| `*`  | small business owner | search for customers using a keyword | easily find specific customers |
+| `*`  | small business owner | search for orders using a keyword | easily find specific orders |
+| `*`  | small business owner | save the customers and orders list | - |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Delete a person**
+#### Use case: UC C1 - List Customers
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests list of customers.
+2.  LL displays list of customers.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Customer list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+#### Use case: UC C2 - View Customer
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to view a customer.
+3.  LL displays the customer information.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C3 - Delete Customer
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to delete a customer.
+3.  LL deletes the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C4 - Update Customer
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters new data for a customer.
+3.  LL updates the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C5 - Bookmark or Unbookmark Customer
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to bookmark or unbookmark a customer.
+3.  LL bookmarks or unbookmarks the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C6 - Assign Individual to Enterprise
+
+**MSS**
+
+1.  User gets <u>list of customers (UC C1)</u>.
+2.  User requests to assign an individual to an enterprise.
+3.  LL assigns the individual to the enterprise and displays the enterprise information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested individual or enterprise does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C7 - Create Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters note for a customer.
+3.  LL adds note to the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C8 - Append Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters new note data to append.
+3.  LL updates the note and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested note does not exist.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC C9 - Delete Customer Note
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User requests to delete a customer note.
+3.  LL deletes the note and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested note does not exist.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O1 - List Orders
+
+**MSS**
+
+1.  User requests list of orders.
+2.  LL displays list of orders.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Order list is empty.
+
+  Use case ends.
+
+#### Use case: UC O2 - Create Order
+
+**MSS**
+
+1.  User gets <u>list of customers (UC O1)</u>.
+2.  User enters customer id and new data order.
+3.  LL creates the order and assigns the order to the customer.
+4.  LL displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O3 - View Order
+
+**MSS**
+
+1.  User gets <u>list of orders (UC O1)</u>.
+2.  User requests to view an order.
+3.  LL displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O4 - Delete Order
+
+**MSS**
+
+1.  User gets <u>list of orders (UC O1)</u>.
+2.  User requests to delete an order.
+3.  LL deletes the order.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O5 - Update Order
+
+**MSS**
+
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User enters new data for an order.
+3.  LL updates the order and displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC O6 - Advance Order Status
+
+**MSS**
+
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User requests to advance an order's status.
+3.  LL updates the order's status and displays the order information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested order does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. Requested order is already at last stage.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R1 - List Rewards
+
+**MSS**
+
+1.  User requests list of rewards.
+2.  LL displays list of rewards.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Reward list is empty.
+
+  Use case ends.
+
+#### Use case: UC R2 - View Reward
+
+**MSS**
+
+1.  User gets <u>list of rewards (UC R1)</u>.
+2.  User requests to view a reward.
+3.  LL displays the reward information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R3 - Delete Reward
+
+**MSS**
+
+1.  User gets <u>list of rewards (UC R1)</u>.
+2.  User requests to delete a reward.
+3.  LL deletes the reward.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R4 - Update Reward
+
+**MSS**
+
+1.  User <u>gets list of rewards (UC R1)</u>.
+2.  User enters new data for a reward.
+3.  LL updates the reward and displays the reward information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested reward does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R5 - Set/Add Customer Points
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User enters customer points.
+3.  LL updates the customer's points and displays the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Requested customer does not exist.
+
+    * 2a1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+* 2b. LL detects invalid input data.
+
+    * 2b1. LL shows an error message.
+
+      Use case resumes from step 1.
+
+#### Use case: UC R6 - Give Reward to Customer
+
+**MSS**
+
+1.  User <u>gets list of customers (UC C1)</u>.
+2.  User <u>gets list of rewards (UC R1)</u>.
+3.  User requests to give a reward to a customer.
+4.  LL deducts points from the customer.
+5.  LL adds the reward to the customer and displays the customer information.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Requested reward does not exist.
+
+    * 3a1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+* 3b. Requested customer does not exist.
+
+    * 3b1. LL shows an error message.
+
+      Use case resumes from step 2.
+
+* 4a. Customer does not have enough points.
+
+    * 4a1. LL shows an error message.
+
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
@@ -321,7 +754,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business.
+* **Enterprise customers**: companies that order a large amount of products, much more than individual customers
 
 --------------------------------------------------------------------------------------------------------------------
 

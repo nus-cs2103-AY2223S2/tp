@@ -1,0 +1,12 @@
+.base {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px;
+
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0.0, 3);
+}
+
+.label {
+    -fx-font-size: 12px;
+}
