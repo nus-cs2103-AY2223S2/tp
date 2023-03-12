@@ -13,6 +13,7 @@ import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
 
 /**
@@ -122,4 +123,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /** Parses a {@code String year of birth} into an {@code YearOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static YearOfBirth parseYearOfBirth(String yearOfBirth) throws ParseException {
+        requireNonNull(yearOfBirth);
+        String trimmedYearOfBirth = yearOfBirth.trim();
+        if (!YearOfBirth.isValidYearOfBirth(trimmedYearOfBirth)) {
+            throw new ParseException(YearOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new YearOfBirth(trimmedYearOfBirth);
+    }
+
+    public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
+        requireNonNull(projectStatus);
+        String trimmedProjectStatus = projectStatus.trim();
+        if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
+            throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectStatus(trimmedProjectStatus);
+    }
+
+    public static String parseSource(String source) throws ParseException {
+        requireNonNull(source);
+        String trimmedSource = source.trim();
+        if (!Source.isValidSource(trimmedSource)) {
+            throw new ParseException(Source.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedSource;
+    }
+
 }

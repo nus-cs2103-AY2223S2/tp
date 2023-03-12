@@ -15,6 +15,10 @@ import mycelium.mycelium.logic.commands.ExitCommand;
 import mycelium.mycelium.logic.commands.FindCommand;
 import mycelium.mycelium.logic.commands.HelpCommand;
 import mycelium.mycelium.logic.commands.ListCommand;
+import mycelium.mycelium.logic.commands.AddClientCommand;
+import mycelium.mycelium.logic.commands.AddProjectCommand;
+import mycelium.mycelium.logic.commands.DeleteClientCommand;
+import mycelium.mycelium.logic.commands.DeleteProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +71,19 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddClientCommand.COMMAND_ACRONYM:
+            return new AddClientCommandParser().parse(arguments);
+
+        case AddProjectCommand.COMMAND_ACRONYM:
+            return new AddProjectCommandParser().parse(arguments);
+
+        case DeleteClientCommand.COMMAND_ACRONYM:
+            return new DeleteClientCommandParser().parse(arguments);
+
+        case DeleteProjectCommand.COMMAND_ACRONYM:
+            return new DeleteProjectCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
