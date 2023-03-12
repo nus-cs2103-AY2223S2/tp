@@ -31,8 +31,8 @@ public class ParserUtilTest {
     private static final String VALID_POSTAL = "123456";
     private static final String VALID_AGE = "25";
     private static final String VALID_DATE = "2023-02-25";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "DENV1";
+    private static final String VALID_TAG_2 = "DENV2";
 
     private static final String WHITESPACE = " \t\r\n";
 

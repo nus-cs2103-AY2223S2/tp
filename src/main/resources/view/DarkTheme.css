@@ -121,14 +121,20 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Verdana";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
+.age_label {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+    -fx-text-fill: #010504;
+}
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 12px;
     -fx-text-fill: #010504;
 }
 

@@ -23,7 +23,7 @@ public class SampleDataUtil {
                 new Age("111"),
                 getTagSet("DENV1")),
             new Person(new Name("Bernice Yu"), new Postal("992727"), new Date("2000-11-11"),
-                new Age("DENV2"),
+                new Age("11"),
                 getTagSet("DENV2", "DENV4")),
             new Person(new Name("Charlotte Oliveiro"), new Postal("932283"),
                     new Date("2000-11-11"), new Age("0"),
