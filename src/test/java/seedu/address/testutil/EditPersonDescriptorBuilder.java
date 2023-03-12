@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Card card) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(card.getQuestion());
-        descriptor.setAddress(card.getAddress());
+        descriptor.setAddress(card.getAnswer());
         descriptor.setTags(card.getTags());
     }
 

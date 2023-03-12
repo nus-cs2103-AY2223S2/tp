@@ -87,7 +87,7 @@ public class EditCommand extends Command {
         assert cardToEdit != null;
 
         Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
-        Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAddress());
+        Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAnswer());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
         Deck updatedDeck = editPersonDescriptor.getDeck().orElse(cardToEdit.getDeck());
 

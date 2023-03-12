@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EndReviewCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FlipCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ReviewCommand;
@@ -135,6 +136,9 @@ public class AddressBookParser {
 
         case EndReviewCommand.COMMAND_WORD:
             return new EndReviewCommand();
+
+        case FlipCommand.COMMAND_WORD:
+            return new FlipCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

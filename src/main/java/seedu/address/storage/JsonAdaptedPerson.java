@@ -47,7 +47,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Card source) {
         name = source.getQuestion().question;
-        address = source.getAddress().answer;
+        address = source.getAnswer().answer;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

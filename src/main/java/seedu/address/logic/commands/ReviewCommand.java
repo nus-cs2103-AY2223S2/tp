@@ -11,7 +11,7 @@ import seedu.address.model.deck.Deck;
 
 
 /**
- * Selects a deck to operate on.
+ * Starts a review session of a Deck.
  */
 public class ReviewCommand extends Command {
 
@@ -26,7 +26,7 @@ public class ReviewCommand extends Command {
     private final Index deckIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Card}
+     * Creates a ReviewCommand with the specified index of the deck.
      */
     public ReviewCommand(Index idx) {
         requireNonNull(idx);
