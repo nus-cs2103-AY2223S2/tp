@@ -18,7 +18,6 @@ connections with their peers during their time in University.
 7. As a student, I can to find other students in my classes that have been added as a contact so that I can ask them for help
 
 
-
 **Use cases**:
 
 System: BookFace
