@@ -99,7 +99,7 @@ Use case: UC6 - Get Help on Commands
 
 Actor: User
 
-MSS:  
+MSS:
 1. User chooses to view instructions on how to use BookFace.
 2. BookFace displays a url to its User Guide.
    Use case ends.
