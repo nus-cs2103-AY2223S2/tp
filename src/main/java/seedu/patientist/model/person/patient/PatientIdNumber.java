@@ -13,6 +13,10 @@ public class PatientIdNumber {
 
     private final String idNumber;
 
+    /**
+     * Constructs a PatientIdNumber while checking it is alphanumeric and non null
+     * @param idNumber alphanumeric string that is patient id
+     */
     public PatientIdNumber(String idNumber) {
         requireNonNull(idNumber);
         checkArgument(isValidIdNumber(idNumber), MESSAGE_CONSTRAINTS);
