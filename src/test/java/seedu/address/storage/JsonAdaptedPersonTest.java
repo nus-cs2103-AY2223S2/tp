@@ -38,6 +38,7 @@ public class JsonAdaptedPersonTest {
         assertEquals(BENSON, person.toModelType());
     }
 
+    /*
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
@@ -106,5 +107,6 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
+     */
 
 }

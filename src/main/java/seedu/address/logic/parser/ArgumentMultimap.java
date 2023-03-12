@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -46,7 +48,13 @@ public class ArgumentMultimap {
      */
     public List<String> getAllValues(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
-            return new ArrayList<>();
+            if (prefix == PREFIX_TAG) {
+                return new ArrayList<>();
+            } else {
+                ArrayList<String> returnedList = new ArrayList<>();
+                returnedList.add("");
+                return returnedList;
+            }
         }
         return new ArrayList<>(argMultimap.get(prefix));
     }
