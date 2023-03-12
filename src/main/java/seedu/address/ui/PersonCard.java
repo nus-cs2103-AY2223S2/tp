@@ -43,7 +43,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label status;
     @FXML
-    private FlowPane notes;
+    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,7 +59,7 @@ public class PersonCard extends UiPart<Region> {
         status.setText(person.getStatus().name());
         person.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.noteName))
-                .forEach(note -> notes.getChildren().add(new Label(note.noteName)));
+                .forEach(note -> tags.getChildren().add(new Label(note.noteName)));
     }
 
     @Override

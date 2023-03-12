@@ -14,7 +14,7 @@ class JsonAdaptedNote {
     private final String noteName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code noteName}.
+     * Constructs a {@code JsonAdaptedNote} with the given {@code noteName}.
      */
     @JsonCreator
     public JsonAdaptedNote(String noteName) {
@@ -22,7 +22,7 @@ class JsonAdaptedNote {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Note} into this class for Jackson use.
      */
     public JsonAdaptedNote(Note source) {
         noteName = source.noteName;
@@ -34,7 +34,7 @@ class JsonAdaptedNote {
     }
 
     /**
-     * Converts this Jackson-friendly adapted note object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted note object into the model's {@code Note} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted note.
      */
