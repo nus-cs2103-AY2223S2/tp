@@ -44,7 +44,7 @@ In a conventional application cycle, the large influx of applicants makes it cha
 | Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>e.g. if the command specifies `help 123`, it will be interpreted as `help`.                     |
 
 ---
-
+// Additional features: can list out the tag(skillset) of the applicants.
 ### **Command**
 
 ### 1. Viewing help: `help`
@@ -90,8 +90,18 @@ Rejects a candidate or interviewee
 - Format: `reject n/NAME p/PHONE_NUMBER`
 
 - Examples:
-
     - `reject n/Jack Dill p/91234567`
+
+### 7. Find an applicant: `find`
+
+Find applicants using keywords (name OR phone number OR both)
+
+- Format:
+  - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
+  - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
+- Example: 
+  - Example 1: `find Jack Dill`, `find 91234567`
+  - Example 2: `find n/Jack Dill p/91234567`
 
 ---
 
