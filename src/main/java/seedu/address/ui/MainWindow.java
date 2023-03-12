@@ -169,6 +169,21 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Changes the GUI Mode.
+     */
+    private void handleGuiChange() {
+        GuiSettings.GuiMode newMode = logic.getGuiSettings().getGuiMode();
+        switch (newMode) {
+        case DISPLAY_ALL_TANKS:
+            mainContent.setPanels(tankListPanel, taskListPanel);
+            break;
+        case DISPLAY_ALL_FISHES:
+            mainContent.setPanels(fishListPanel, taskListPanel);
+            break;
+        }
+    }
+
     public FishListPanel getFishListPanel() {
         return fishListPanel;
     }
@@ -190,6 +205,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if(commandResult.isChangeGui()) {
+                handleGuiChange();
             }
 
             return commandResult;

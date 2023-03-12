@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Fish> PREDICATE_SHOW_ALL_FISHES = unused -> true;
-
+    Predicate<Tank> PREDICATE_SHOW_ALL_TANKS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -35,6 +35,11 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Change the user prefs' GUI Mode while keeping everything else the same
+     */
+    void setGuiMode(GuiSettings.GuiMode newMode);
 
     /**
      * Returns the user prefs' address book file path.

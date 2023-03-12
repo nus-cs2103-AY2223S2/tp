@@ -10,12 +10,17 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
+    public enum GuiMode {DISPLAY_ALL_TANKS, DISPLAY_ALL_FISHES}
+
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final GuiMode DEFAULT_GUI_MODE = GuiMode.DISPLAY_ALL_TANKS;
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    private final GuiMode guiMode;
+
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -24,6 +29,7 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        guiMode = DEFAULT_GUI_MODE;
     }
 
     /**
@@ -33,6 +39,17 @@ public class GuiSettings implements Serializable {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        guiMode = DEFAULT_GUI_MODE;
+    }
+
+    /**
+     * Constructs a {@code GuiSettings} with the specified height, width, position, and guiMode.
+     */
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, GuiMode guiMode) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        windowCoordinates = new Point(xPosition, yPosition);
+        this.guiMode = guiMode;
     }
 
     public double getWindowWidth() {
@@ -45,6 +62,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public GuiMode getGuiMode() {
+        return guiMode;
     }
 
     @Override
@@ -60,12 +81,13 @@ public class GuiSettings implements Serializable {
 
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+                && Objects.equals(windowCoordinates, o.windowCoordinates)
+                && guiMode == o.guiMode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windowWidth, windowHeight, windowCoordinates);
+        return Objects.hash(windowWidth, windowHeight, windowCoordinates, guiMode);
     }
 
     @Override

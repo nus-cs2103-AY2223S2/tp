@@ -42,6 +42,12 @@ public class MainContent extends UiPart<Region> {
         mainContent.getChildren().setAll(tankListPanel.getRoot(), taskListPanel.getRoot());
     }
 
+    public void setPanels(UiPart<Region> leftPanel, UiPart<Region> rightPanel) {
+        HBox.setHgrow(leftPanel.getRoot(), Priority.ALWAYS);
+        HBox.setHgrow(rightPanel.getRoot(), Priority.ALWAYS);
+        mainContent.getChildren().setAll(leftPanel.getRoot(), rightPanel.getRoot());
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
