@@ -1,15 +1,17 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class AddressContainsKeywordsPredicateTest {
+import seedu.address.testutil.PersonBuilder;
+
+public class AddressContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -54,4 +56,5 @@ class AddressContainsKeywordsPredicateTest {
         predicate = new AddressContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withAddress("Alice Bob").build()));
     }
+
 }
