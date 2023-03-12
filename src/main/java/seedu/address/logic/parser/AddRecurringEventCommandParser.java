@@ -13,14 +13,14 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddReccuringEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.RecurringEvent;
 
 /**
  * Parser class for Recurring Event
  */
-public class AddRecurringEventCommandParser implements Parser<AddReccuringEventCommand> {
+public class AddRecurringEventCommandParser implements Parser<AddRecurringEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddRecurringEventCommand
@@ -28,7 +28,7 @@ public class AddRecurringEventCommandParser implements Parser<AddReccuringEventC
      * @return AddRecurringEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddReccuringEventCommand parse(String args) throws ParseException {
+    public AddRecurringEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
@@ -40,14 +40,14 @@ public class AddRecurringEventCommandParser implements Parser<AddReccuringEventC
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddReccuringEventCommand.MESSAGE_USAGE), ive);
+                    AddRecurringEventCommand.MESSAGE_USAGE), ive);
         }
 
 
         if (!arePrefixesPresent(argMultimap, PREFIX_RECURRINGEVENT, PREFIX_DAYOFWEEK, PREFIX_STARTDATETIME,
                 PREFIX_ENDDATETIME) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddReccuringEventCommand.MESSAGE_USAGE));
+                    AddRecurringEventCommand.MESSAGE_USAGE));
         }
 
         String eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_RECURRINGEVENT).get());
@@ -59,7 +59,7 @@ public class AddRecurringEventCommandParser implements Parser<AddReccuringEventC
 
         RecurringEvent eventToAdd = new RecurringEvent(eventName, day, startTime, endTime);
 
-        return new AddReccuringEventCommand(index, eventToAdd);
+        return new AddRecurringEventCommand(index, eventToAdd);
 
     }
 

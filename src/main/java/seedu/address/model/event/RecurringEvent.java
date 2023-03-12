@@ -5,27 +5,18 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-
 
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
  */
 public class RecurringEvent extends Event implements Comparable<RecurringEvent> {
 
-    public static final String VALIDATION_REGEX_EVENTNAME = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String[] VALIDATION_REGEX_DAYOFWEEK =
-        {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
-    public static final String MESSAGE_CONSTRAINTS_EVENTNAME =
-            "Event name should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String MESSAGE_CONSTRAINTS_TIME =
             "Time should be in the format: HH:mm";
     public static final String MESSAGE_CONSTRAINTS_PERIOD =
             "The end time should not be earlier than the start time";
     public static final String MESSAGE_CONSTRAINTS_DAYOFWEEK =
             "The day of the week should be either MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY";
-
-
 
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
@@ -44,14 +35,6 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
-    }
-
-    public static boolean isValidEventName(String eventName) {
-        return eventName.matches(VALIDATION_REGEX_EVENTNAME);
-    }
-
-    public static boolean isValidDayOfWeek(String dayOfWeek) {
-        return Arrays.stream(VALIDATION_REGEX_DAYOFWEEK).anyMatch(dayOfWeek::equals);
     }
 
     /**

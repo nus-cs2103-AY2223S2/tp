@@ -217,18 +217,18 @@ Examples:
 * `group find g/CS2103T`
 * `group find g/CS2101`
 
-### Creating an event: `event create`
+### Creating an event: `event_create`
 Creates a weekly recurring event or a non-recurring event
 
 #### 1) Non-recurring Event
-Format: `event create e/EVENT_NAME f/START_DATE t/END_DATE`
+Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
 * Creates an event with the specified name `EVENT_NAME`
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
 
 #### 2) Weekly Recurring Event
-Format: `event_create recurring re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+Format: `event_create_recur re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
 * Creates a recurring event with the specified name `EVENT_NAME`
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
@@ -239,11 +239,11 @@ Examples:
 * 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
 * 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
 
-### Delete an event: `event delete`
+### Delete an event: `event_delete`
 
 Deletes an existing event from the address book.
 
-Format: `event delete e/EVENT_NAME`
+Format: `event_delete e/EVENT_NAME`
 
 * Deletes an event with the specified event name `EVENT_NAME`
 * The event name cannot be empty and must be an existing event

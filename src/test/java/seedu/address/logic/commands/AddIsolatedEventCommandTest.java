@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +12,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddRecurringEventCommandTest {
+public class AddIsolatedEventCommandTest {
     private Model model = new ModelManager(new AddressBook(), new UserPrefs());
 
     @Test
@@ -25,25 +24,15 @@ public class AddRecurringEventCommandTest {
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
 
-        RecurringEvent recurringEvent = new RecurringEvent("biking", DayOfWeek.valueOf("MONDAY"),
-                LocalTime.parse("12:00"), LocalTime.parse("14:00"));
-
-        AddRecurringEventCommand command = new AddRecurringEventCommand(Index.fromOneBased(1),
-                recurringEvent);
+        IsolatedEvent isolatedEvent = new IsolatedEvent("biking", TWO_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
+        AddIsolatedEventCommand command = new AddIsolatedEventCommand(Index.fromOneBased(1), isolatedEvent);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addRecurringEvent(editedPerson, recurringEvent);
+        expectedModel.addIsolatedEvent(editedPerson, isolatedEvent);
 
-        String expectedMessage = String.format(AddRecurringEventCommand.MESSAGE_SUCCESS, recurringEvent) + " to "
+        String expectedMessage = String.format(AddIsolatedEventCommand.MESSAGE_SUCCESS, isolatedEvent) + " to "
                 + editedPerson.getName();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
-
-        String expectedList = editedPerson.getRecurringEventList().toString();
-
-        System.out.println(expectedList);
-
-        assertEquals(expectedList, "biking\n");
-
     }
 }

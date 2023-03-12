@@ -10,13 +10,21 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
+import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -94,7 +102,7 @@ public class PersonTest {
     }
 
     @Test
-    public void addIsolatedEvent() {
+    public void addRecurringEvent() {
         Person person = new PersonBuilder().build();
         DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
         LocalTime start = LocalTime.parse("12:00");
@@ -105,4 +113,32 @@ public class PersonTest {
         assertTrue(person.getRecurringEventList().contain(recurringEvent));
     }
 
+    @Test
+    public void addIsolatedEvent() {
+        Person person = new PersonBuilder().build();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime start = LocalDateTime.parse("09/03/2023 14:00", formatter);
+        LocalDateTime end = LocalDateTime.parse("09/03/2023 15:00", formatter);
+        IsolatedEvent isolatedEvent = new IsolatedEvent("biking", start, end);
+
+        person.addIsolatedEvent(isolatedEvent);
+        assertTrue(person.getIsolatedEventList().contain(isolatedEvent));
+    }
+
+    @Test
+    public void add_remove_group() {
+        Person editedCarl = new PersonBuilder(CARL).build();
+        Group group = new Group("2103T");
+        editedCarl.addGroup(group);
+        assertTrue(editedCarl.getGroups().contains(group));
+        Assertions.assertThrows(PersonAlreadyInGroupException.class, () -> {
+            editedCarl.addGroup(group);
+        });
+        editedCarl.removeGroup(group);
+        assertTrue(!editedCarl.getGroups().contains(group));
+        Assertions.assertThrows(PersonNotInGroupException.class, () -> {
+            editedCarl.removeGroup(group);
+        });
+    }
 }

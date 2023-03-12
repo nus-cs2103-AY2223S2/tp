@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddReccuringEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 
 public class AddRecurringEventCommandParserTest {
     @Test
@@ -16,7 +16,7 @@ public class AddRecurringEventCommandParserTest {
 
         AddRecurringEventCommandParser parser = new AddRecurringEventCommandParser();
 
-        String expected1 = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReccuringEventCommand.MESSAGE_USAGE);
+        String expected1 = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecurringEventCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, missingIndex, expected1);
         assertParseFailure(parser, missingDay, expected1);
