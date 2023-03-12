@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -88,8 +89,9 @@ public class EditCommand extends Command {
         Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
         Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
+        Deck updatedDeck = editPersonDescriptor.getDeck().orElse(cardToEdit.getDeck());
 
-        return new Card(updatedQuestion, updatedAnswer, updatedTags);
+        return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class EditCommand extends Command {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
+        private Deck deck;
 
         public EditPersonDescriptor() {}
 
@@ -152,6 +155,12 @@ public class EditCommand extends Command {
 
         public Optional<Answer> getAddress() {
             return Optional.ofNullable(answer);
+        }
+        public void setDeck(Deck deck) {
+            this.deck = deck;
+        }
+        public Optional<Deck> getDeck() {
+            return Optional.ofNullable(deck);
         }
 
         /**

@@ -3,30 +3,37 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "deck" : "Default"
   }, {
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "deck" : "Default"
   }, {
     "name" : "Carl Kurz",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "deck" : "Default"
   }, {
     "name" : "Daniel Meier",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "deck" : "Default"
   }, {
     "name" : "Elle Meyer",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "deck" : "Default"
   }, {
     "name" : "Fiona Kunz",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "deck" : "Default"
   }, {
     "name" : "George Best",
     "address" : "4th street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "deck" : "Default"
   } ]
 }

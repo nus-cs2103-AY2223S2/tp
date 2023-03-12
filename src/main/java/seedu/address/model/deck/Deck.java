@@ -8,7 +8,7 @@ import java.util.Objects;
  * A group of cards
  */
 public class Deck {
-    private String deckName;
+    public final String deckName;
 
     /**
      * Constructing a deck.

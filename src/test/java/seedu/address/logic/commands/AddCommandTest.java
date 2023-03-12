@@ -157,7 +157,7 @@ public class AddCommandTest {
 
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
-        public ReadOnlyMasterDeck getSelectedDeck() {
+        public Deck getSelectedDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -193,10 +193,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public String getSelectedDeckName() {
-            return null; // to edit in the future
-        }
     }
 
     /**
