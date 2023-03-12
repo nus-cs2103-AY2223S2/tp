@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
