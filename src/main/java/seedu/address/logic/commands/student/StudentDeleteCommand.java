@@ -29,6 +29,9 @@ public class StudentDeleteCommand extends StudentCommand {
     private final IndexNumber targetIndex;
     private final StudentClass studentClass;
 
+    /**
+     * Creates a StudentDeleteCommand to delete the specified {@code Student}
+     */
     public StudentDeleteCommand(IndexNumber targetIndex, StudentClass studentClass) {
         this.targetIndex = targetIndex;
         this.studentClass = studentClass;
