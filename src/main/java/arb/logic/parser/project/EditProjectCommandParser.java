@@ -1,5 +1,10 @@
 package arb.logic.parser.project;
 
+import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static java.util.Objects.requireNonNull;
+
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
@@ -9,11 +14,6 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.exceptions.ParseException;
 
-
-import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static arb.logic.parser.CliSyntax.PREFIX_NAME;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Parses input arguments and creates a new EditProjectCommand object
@@ -27,7 +27,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     public EditProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(args,PREFIX_NAME,PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE);
         Index index;
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
@@ -41,7 +41,8 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             editProjectDescriptor.setTitle(ParserUtil.parseTitle(argumentMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argumentMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argumentMultimap.getValue(PREFIX_DEADLINE).get()));
+            editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argumentMultimap.getValue(PREFIX_DEADLINE)
+                                                                                        .get()));
         }
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);

@@ -1,24 +1,24 @@
 package arb.logic.commands.project;
 
-import static arb.logic.parser.CliSyntax.*;
-import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
 import arb.commons.util.CollectionUtil;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
-import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
+import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Title;
-import arb.model.project.Deadline;
 
 /**
  * Edits the details of an existing project in the address book.
@@ -84,7 +84,8 @@ public class EditProjectCommand extends Command {
      * Creates and returns a {@code Project} with the details of {@code projectToEdit}
      * edited with {@code editProjectDescriptor}.
      */
-    private static Project createEditedProject(Project projectToEdit, EditProjectCommand.EditProjectDescriptor editProjectDescriptor) {
+    private static Project createEditedProject(Project projectToEdit,
+                                               EditProjectCommand.EditProjectDescriptor editProjectDescriptor) {
         assert projectToEdit != null;
 
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
@@ -141,7 +142,9 @@ public class EditProjectCommand extends Command {
             this.title = title;
         }
 
-        public void setDeadline(Deadline deadline) { this.deadline = deadline; }
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
 
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
