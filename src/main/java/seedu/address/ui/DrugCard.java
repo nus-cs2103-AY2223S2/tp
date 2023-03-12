@@ -29,16 +29,6 @@ public class DrugCard extends UiPart<Region> {
     private Label tradeName;
     @FXML
     private Label id;
-    @FXML
-    private Label activeIngredient;
-    @FXML
-    private Label direction;
-    @FXML
-    private Label purposes;
-    @FXML
-    private Label sideEffects;
-    @FXML
-    private Label storageCount;
 
     /**
      * Creates a {@code DrugCode} with the given {@code Drug} and index to display.
@@ -48,11 +38,6 @@ public class DrugCard extends UiPart<Region> {
         this.drug = drug;
         id.setText(displayedIndex + ". ");
         tradeName.setText(this.drug.getTradeName().tradeName);
-        activeIngredient.setText("Active Ingredient: " + this.drug.getActiveIngredient().value);
-        direction.setText("Direction: " + this.drug.getDirection().value);
-        purposes.setText("Purposes: " + this.drug.getPurposes().purpose);
-        sideEffects.setText("Side Effects: " + this.drug.getSideEffects().sideEffect);
-        storageCount.setText("Storage: " + this.drug.getStorageCount().toString());
     }
 
     @Override

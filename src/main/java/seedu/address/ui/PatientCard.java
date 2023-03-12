@@ -30,16 +30,6 @@ public class PatientCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private Label birthDate;
-    @FXML
-    private Label gender;
-    @FXML
-    private Label ic;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -49,12 +39,7 @@ public class PatientCard extends UiPart<Region> {
         this.patient = patient;
         id.setText(displayedIndex + ". ");
         name.setText(this.patient.getName().fullName);
-        phone.setText(this.patient.getPhone().value);
-        address.setText(this.patient.getAddress().value);
-        email.setText(this.patient.getEmail().value);
-        birthDate.setText(this.patient.getBirthDate().value);
-        gender.setText(this.patient.getGender().value);
-        ic.setText(this.patient.getIc().value);
+        phone.setText("Tel: " + this.patient.getPhone().value);
     }
 
     @Override

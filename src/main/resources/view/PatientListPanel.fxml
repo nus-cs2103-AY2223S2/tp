@@ -2,7 +2,32 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.GridPane?>
 
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="patientListView" HBox.hgrow="ALWAYS" />
+    <ListView fx:id="patientListView" HBox.hgrow="ALWAYS"/>
+    <ScrollPane prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER"  GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <content>
+            <VBox maxWidth="280">
+                <Label fx:id="selectedName" maxHeight="Infinity"  wrapText="true" text="Please select a patient" styleClass="cell_big_label" />
+                <Label fx:id="selectedPhone"  maxHeight="Infinity" wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedAddress" maxHeight="Infinity" wrapText="true" styleClass="cell_small_label"  />
+                <Label fx:id="selectedEmail"  maxHeight="Infinity" wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedBirthDate" maxHeight="Infinity"  wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedGender"  wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedIc"  wrapText="true" styleClass="cell_small_label"/>
+            </VBox>
+        </content>
+    </ScrollPane>
 </HBox>

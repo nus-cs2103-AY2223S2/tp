@@ -2,7 +2,29 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <ListView fx:id="drugListView" HBox.hgrow="ALWAYS" />
+    <ScrollPane prefWidth="300" hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <content>
+            <VBox maxWidth="280">
+                <Label fx:id="selectedTradeName"  wrapText="true" text="Please select a drug" styleClass="cell_big_label" />
+                <Label fx:id="selectedActiveIngredient"  wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedDirection"  wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedPurposes"  wrapText="true" styleClass="cell_small_label"  />
+                <Label fx:id="selectedSideEffects"  wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedStorageCount"  wrapText="true" styleClass="cell_small_label"/>
+            </VBox>
+        </content>
+    </ScrollPane>
 </HBox>

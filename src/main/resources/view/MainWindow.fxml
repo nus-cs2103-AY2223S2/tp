@@ -15,8 +15,8 @@
   <scene>
     <Scene fx:id="scene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@../stylesheet/DarkTheme.css" />
+        <URL value="@../stylesheet/Extensions.css" />
       </stylesheets>
 
       <VBox>
@@ -33,6 +33,7 @@
           </Menu>
         </MenuBar>
 
+
         <TabPane fx:id="tabPane" minWidth="340" prefWidth="340" tabClosingPolicy="UNAVAILABLE">
           <Tab fx:id="patientTab" closable="false" text="Patient Records">
             <StackPane fx:id="patientListPanelPlaceholder" HBox.hgrow="ALWAYS" />
@@ -41,12 +42,7 @@
             <StackPane fx:id="drugListPanelPlaceholder" HBox.hgrow="ALWAYS" />
           </Tab>
         </TabPane>
-<!--        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">-->
-<!--          <padding>-->
-<!--            <Insets top="10" right="10" bottom="10" left="10" />-->
-<!--          </padding>-->
-<!--          <StackPane fx:id="patientDrugListPanelPlaceholder" VBox.vgrow="ALWAYS"/>-->
-<!--        </VBox>-->
+
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
