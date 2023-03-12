@@ -45,16 +45,16 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 **:information_source: Notes about the command format:**<br>
 * First word is assumed to be a command word (add/delete/list/find)
-* Words in `{curly braces}` are the parameters to be supplied by the user.<br>
+* Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `t/{TASK} [tag/{TAG}]` can be used as `t/Read Book tag/relax` or as `t/Read Book`.
+  e.g `t/TASK [tag/{TAG}]` can be used as `t/Read Book tag/relax` or as `t/Read Book`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/{TAG}]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/{TASK} d/{DESCRIPTION}`, `d/{DESCRIPTION} t/{TASK}` is also acceptable.
+  e.g. if the command specifies `t/TASK d/{DESCRIPTION}`, `d/{DESCRIPTION} t/{TASK}` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
@@ -188,6 +188,16 @@ Sorts the list using the following format:
 
 Format: `sort`
 
+### Get alerts : `alert [ALERT WINDOW]`
+
+Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
+On opening of app, the alert window will open to show tasks which have deadlines within the latest window specified.
+Have to specify `ALERT WINDOW` in hours and only integers.
+
+Examples:
+- `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
+- `alert` alone will show the alert window with all tasks which end within 24 hours.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -238,3 +248,4 @@ _Details coming soon ..._
 | **Help**   | `help`                                                                                                                                                                |
 | **Stats**  | `stats`                                                                                                                                                               |
 | **sort**   | `sort`                                                                                                                                                                |
+| **alert**  | `alert {ALERT_WINDOW}`                                                                                                                                                |
