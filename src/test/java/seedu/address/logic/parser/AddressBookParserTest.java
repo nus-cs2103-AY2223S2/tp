@@ -106,7 +106,10 @@ public class AddressBookParserTest {
 
         List<String> profileKeywords = Arrays.asList("-hans-b0", "t-e-s-t-", "-DaViD-");
         FindCommand findProfileCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_PROFILE + profileKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_PROFILE
+                        + profileKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 profileKeywords,
@@ -118,7 +121,10 @@ public class AddressBookParserTest {
 
         List<String> phoneKeywords = Arrays.asList("999", "12345678", "00001111");
         FindCommand findPhoneCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_PHONE + phoneKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_PHONE
+                        + phoneKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 emptyKeywords,
@@ -130,7 +136,10 @@ public class AddressBookParserTest {
 
         List<String> emailKeywords = Arrays.asList("test1@nus.edu", "boHans99@gmail.com", "customer@SOCket.sg");
         FindCommand findEmailCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_EMAIL + emailKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_EMAIL
+                        + emailKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 emptyKeywords,
@@ -142,7 +151,10 @@ public class AddressBookParserTest {
 
         List<String> addressKeywords = Arrays.asList("bedok", "99", "block");
         FindCommand findAddressCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_ADDRESS + addressKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_ADDRESS
+                        + addressKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 emptyKeywords,
@@ -154,7 +166,10 @@ public class AddressBookParserTest {
 
         List<String> languageKeywords = Arrays.asList("Python", "c++", "java");
         FindCommand findLanguageCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE + languageKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_LANGUAGE
+                        + languageKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 emptyKeywords,
@@ -166,7 +181,10 @@ public class AddressBookParserTest {
 
         List<String> tagKeywords = Arrays.asList("friends", "cs2103t", "student");
         FindCommand findTagCommand = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD
+                        + " "
+                        + PREFIX_TAG
+                        + tagKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
                 emptyKeywords,
                 emptyKeywords,

@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.predicate.PersonContainsKeywordsPredicate;
 
 /**
- * Finds & lists all persons in address book whose fields contains any of the argument keywords for the respective fields.
+ * Finds & lists all persons in SOCket whose fields contains any of the argument keywords for the respective fields.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

@@ -5,13 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LANGUAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -23,19 +16,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.LanguageContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PersonContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.ProfileContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

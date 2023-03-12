@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
+ * Tests that a {@code Person}'s field matches any of the keywords given to the respective field.
  */
 public class PersonContainsKeywordsPredicate implements Predicate<Person> {
 
@@ -18,6 +18,9 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     private LanguageContainsKeywordsPredicate languagePredicate;
     private TagContainsKeywordsPredicate tagPredicate;
 
+    /**
+     * Constructor for PersonContainsKeywordsPredicate class
+     */
     public PersonContainsKeywordsPredicate(List<String> nameKeywords,
                                            List<String> profileKeywords,
                                            List<String> phoneKeywords,

@@ -27,7 +27,8 @@ public class AddressContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AddressContainsKeywordsPredicate firstPredicateCopy = new AddressContainsKeywordsPredicate(firstPredicateKeywordList);
+        AddressContainsKeywordsPredicate firstPredicateCopy =
+                new AddressContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,7 +44,8 @@ public class AddressContainsKeywordsPredicateTest {
     @Test
     public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
-        AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.singletonList("bedok"));
+        AddressContainsKeywordsPredicate predicate =
+                new AddressContainsKeywordsPredicate(Collections.singletonList("bedok"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withAddress("Bedok block 999").build()));
 
         // Multiple keywords

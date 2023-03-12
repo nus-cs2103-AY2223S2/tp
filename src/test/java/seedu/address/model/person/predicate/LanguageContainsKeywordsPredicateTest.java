@@ -27,7 +27,8 @@ public class LanguageContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        LanguageContainsKeywordsPredicate firstPredicateCopy = new LanguageContainsKeywordsPredicate(firstPredicateKeywordList);
+        LanguageContainsKeywordsPredicate firstPredicateCopy =
+                new LanguageContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,20 +44,33 @@ public class LanguageContainsKeywordsPredicateTest {
     @Test
     public void test_languageContainsKeywords_returnsTrue() {
         // One keyword
-        LanguageContainsKeywordsPredicate predicate = new LanguageContainsKeywordsPredicate(Collections.singletonList("java"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withLanguages("java", "python").build()));
+        LanguageContainsKeywordsPredicate predicate =
+                new LanguageContainsKeywordsPredicate(Collections.singletonList("java"));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withLanguages("java", "python")
+                .build()));
 
         // Multiple keywords
         predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("java", "python"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withLanguages("java", "python").build()));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withLanguages("java", "python")
+                .build()));
 
         // Only one matching keyword
         predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("java", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").withLanguages("java", "python").build()));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Carol")
+                .withLanguages("java", "python")
+                .build()));
 
         // Mixed-case keywords
         predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("JaVa", "pyTHon"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withLanguages("java", "python").build()));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withLanguages("java", "python")
+                .build()));
     }
 
     @Test
@@ -70,8 +84,14 @@ public class LanguageContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withLanguages("java", "python").build()));
 
         // Keywords match name, phone, email and address, but does not match language
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("alice", "12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withLanguages("java", "python").build()));
+        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList(
+                "alice", "12345", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new PersonBuilder()
+                .withName("Alice")
+                .withPhone("12345")
+                .withEmail("alice@email.com")
+                .withAddress("Main Street")
+                .withLanguages("java", "python")
+                .build()));
     }
 }
