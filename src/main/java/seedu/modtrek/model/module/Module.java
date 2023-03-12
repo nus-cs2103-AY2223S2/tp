@@ -79,6 +79,10 @@ public class Module {
         return tags;
     }
 
+    public boolean isComplete() {
+        return !grade.isEmpty() && !tags.isEmpty();
+    }
+
     /**
      * Checks if the module is the same based on its code only.
      *

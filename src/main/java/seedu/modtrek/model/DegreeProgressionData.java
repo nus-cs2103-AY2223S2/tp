@@ -56,15 +56,17 @@ public class DegreeProgressionData {
     }
 
     private void computeModule(Module module) {
-        int credit = Integer.valueOf(module.getCredit().toString());
-        module.getTags().forEach((tag) -> {
-            completedRequirementCredits.merge(tag.toString(),
-                    credit, (oldValue, newValue) -> {
-                        return oldValue + newValue;
-                    });
-        });
-        currentCredit += credit;
-        cumulativePoints += credit * module.getGrade().toPoints();
+        if (module.isComplete()) {
+            int credit = Integer.valueOf(module.getCredit().toString());
+            module.getTags().forEach((tag) -> {
+                completedRequirementCredits.merge(tag.toString(),
+                        credit, (oldValue, newValue) -> {
+                            return oldValue + newValue;
+                        });
+            });
+            currentCredit += credit;
+            cumulativePoints += credit * module.getGrade().toPoints();
+        }
     }
 
     private void computeGpa() {
