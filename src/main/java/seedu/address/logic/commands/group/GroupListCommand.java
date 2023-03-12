@@ -18,6 +18,7 @@ public class GroupListCommand extends GroupCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.
         // TODO: REQUIRE grouplist, replace line below
         // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);

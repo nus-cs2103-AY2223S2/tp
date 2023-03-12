@@ -25,7 +25,6 @@ public class GroupCreateCommand extends GroupCommand {
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists";
 
-    // TODO: Add constructor with Group and incorporate Group model
     private final Group toAdd;
 
     /**

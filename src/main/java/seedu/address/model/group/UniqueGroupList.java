@@ -2,6 +2,7 @@ package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +13,15 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
- * A list of groups that enforces uniqueness between its elements and does not allow nulls.
- * A group is considered unique by comparing using group name and object
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Person#isSamePerson(Person)
  */
 public class UniqueGroupList {
 
@@ -49,9 +57,12 @@ public class UniqueGroupList {
         groups.remove(toRemove);
     }
 
+    public ArrayList<Group> asList
+
     public boolean contains(Group toCheck) {
         return groups.contains(toCheck);
     }
+
 
     @Override
     public int hashCode() {

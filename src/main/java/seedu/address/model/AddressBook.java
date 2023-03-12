@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -157,9 +158,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Group> getGroupList() {
+    public ArrayList<Group> getGroupList() {
         return groups.asUnmodifiableObservableList();
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

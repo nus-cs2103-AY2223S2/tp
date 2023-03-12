@@ -7,13 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.group.GroupAddPersonCommand;
 import seedu.address.logic.commands.group.GroupCommand;
 import seedu.address.logic.commands.group.GroupCreateCommand;
 import seedu.address.logic.commands.group.GroupDeleteCommand;
 import seedu.address.logic.commands.group.GroupFindCommand;
 import seedu.address.logic.commands.group.GroupListCommand;
-import seedu.address.logic.commands.group.GroupRemovePersonCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -45,12 +43,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
 
         case GroupCreateCommand.SUB_COMMAND_WORD:
             return new GroupCreateCommandParser().parse(arguments);
-
-        case GroupAddPersonCommand.SUB_COMMAND_WORD:
-            return new GroupAddPersonCommandParser().parse(arguments);
-
-        case GroupRemovePersonCommand.SUB_COMMAND_WORD:
-            return new GroupRemovePersonCommandParser().parse(arguments);
 
         case GroupFindCommand.SUB_COMMAND_WORD:
             return new GroupFindCommandParser().parse(arguments);
