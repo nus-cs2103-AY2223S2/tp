@@ -153,4 +153,34 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String taskIndex} into a {@code Index}.
+     *
+     * @param taskIndex
+     * @return
+     * @throws ParseException
+     */
+    public static Index parseTaskIndex(String taskIndex) throws ParseException {
+        String trimmedIndex = taskIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String personIndex} into a {@code Index}.
+     *
+     * @param personIndex
+     * @return
+     * @throws ParseException
+     */
+    public static Index parsePersonIndex(String personIndex) throws ParseException {
+        String trimmedIndex = personIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
 }

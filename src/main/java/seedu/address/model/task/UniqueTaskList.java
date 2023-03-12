@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -134,5 +135,23 @@ public class UniqueTaskList implements Iterable<Task> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns if the task index is valid
+     * @param taskIndex
+     * @return
+     */
+    public boolean checkIndex(Index taskIndex) {
+        return taskIndex.getZeroBased() < internalList.size();
+    }
+
+    /**
+     * Assigns a task to a person
+     * @param taskIndex
+     * @param personIndex
+     */
+    public void assignTask(Index taskIndex, Index personIndex) {
+        internalList.get(taskIndex.getZeroBased()).assignPerson(personIndex);
     }
 }
