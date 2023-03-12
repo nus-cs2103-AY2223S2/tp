@@ -2,15 +2,19 @@ package seedu.address.logic.commands.deckcommands;
 
 import static java.util.Objects.requireNonNull;
 
+//import java.util.List;
+
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+//import seedu.address.model.deck.Deck;
 
 /**
  * Selects a deck to operate on.
  */
-public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refractors Model
+public class SelectDeckCommand extends Command {
 
     public static final String COMMAND_WORD = "selectDeck";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select a deck of cards.";
@@ -27,29 +31,19 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
         this.deckIndex = idx;
     }
 
-    // @Override
-    /**
-     * Executes the command and returns the result message. This javadoc message is here
-     * to pass checkstyle. TODO: remove later
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
-     */
+    @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        /*
-        List<Deck> deckList = model.getDecks(); // TODO implement getDecks in Model
-        boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
-        if (isIndexOutOfBound) {
-            throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
-        }
-
-        model.selectDeck(deckIndex);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck()));
-         */
-        return new CommandResult("test");
+//        requireNonNull(model);
+//
+//        List<Deck> deckList = model.getFilteredDeckList();
+//        boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
+//        if (isIndexOutOfBound) {
+//            throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
+//        }
+//
+//        model.selectDeck(deckIndex);
+//        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck()));
+        return new CommandResult("Test");
     }
 
     @Override
