@@ -27,7 +27,7 @@ import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_ID_AMY = "001"; // TODO either int or remove 0
+    public static final String VALID_ID_AMY = "001"; // treated as 1
     public static final String VALID_ID_BOB = "100";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -54,6 +54,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "help123"; // not allowed to have characters
+    public static final String INVALID_ID_DESC_ZERO = " " + PREFIX_ID + "000"; // need at least 1 non-zero digit
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

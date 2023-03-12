@@ -43,9 +43,14 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // id has preceding 0s, all other attributes same -> returns false TODO: edit
+        // id has preceding 0s, all other attributes same -> returns true
         String idWithPrecedingZeroes = "00" + VALID_ID_BOB;
         Person editedBob = new PersonBuilder(BOB).withId(idWithPrecedingZeroes).build();
+        assertTrue(BOB.isSamePerson(editedBob));
+
+        // id has trailing 0s, all other attributes same -> returns false
+        String idWithTrailingZeroes = VALID_ID_BOB + "00";
+        editedBob = new PersonBuilder(BOB).withId(idWithTrailingZeroes).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 

@@ -8,13 +8,13 @@ import static seedu.sudohr.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class Id {
-    public static final String MESSAGE_CONSTRAINTS = "IDs can take any (integral) values, and it should not be blank. "
+    public static final String MESSAGE_CONSTRAINTS = "IDs can take any non-zero (integral) values, and it should not be blank. "
             + "Note that ID is a field for an employee's unique identification in the company";
 
     /*
-     * Must be at least one digit
+     * Must have at least 1 non-zero digit in a sequence that is fully digits
      */
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    public static final String VALIDATION_REGEX = "^[0-9]*[1-9][0-9]*$";
 
     public final String value;
 
@@ -26,7 +26,16 @@ public class Id {
     public Id(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
-        value = id;
+        value = removeLeadingZeroes(id);
+    }
+
+    /**
+     * Removes leading zeroes from any given string
+     */
+    public static String removeLeadingZeroes(String str) {
+        String strPattern = "^0+(?!$)";
+        str = str.replaceAll(strPattern, "");
+        return str;
     }
 
     /**

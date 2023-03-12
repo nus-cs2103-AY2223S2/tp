@@ -10,6 +10,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC_ZERO;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -124,6 +125,9 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid id
         assertParseFailure(parser, INVALID_ID_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Id.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, INVALID_ID_DESC_ZERO + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Id.MESSAGE_CONSTRAINTS);
 
         // invalid name

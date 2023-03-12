@@ -10,6 +10,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC_ZERO;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -88,6 +89,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid id
+        assertParseFailure(parser, "1" + INVALID_ID_DESC_ZERO, Id.MESSAGE_CONSTRAINTS); // invalid id; all 0s
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email

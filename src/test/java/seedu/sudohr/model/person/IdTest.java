@@ -29,10 +29,15 @@ public class IdTest {
         assertFalse(Id.isValidId("id")); // non-numeric
         assertFalse(Id.isValidId("900l355")); // alphabets within digits
         assertFalse(Id.isValidId("829 92")); // spaces within digits
+        assertFalse(Id.isValidId("   892  ")); // trailing and leading spaces
+        assertFalse(Id.isValidId("0")); // no non-zero digits
+        assertFalse(Id.isValidId("000")); // no non-zero digits
 
         // valid id numbers
-        assertTrue(Id.isValidId("0")); // allow 0 presently, possibly edit TODO
-        assertTrue(Id.isValidId("93121534"));
+        assertTrue(Id.isValidId("00099233"));
+        assertTrue(Id.isValidId("992330000"));
+        assertTrue(Id.isValidId("0009923300000"));
+        assertTrue(Id.isValidId("9312015034"));
         assertTrue(Id.isValidId("124293842033123")); // long id numbers
     }
 }
