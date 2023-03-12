@@ -3,7 +3,6 @@ package seedu.address.model.event;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 /**
@@ -38,7 +37,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     }
 
     /**
-     * Getter for startTime
+     * Gets the starting time of the event
      * @return the startTime
      */
     public LocalTime getStartTime() {
@@ -46,7 +45,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     }
 
     /**
-     * Getter for endTime
+     * Gets the ending time of the event
      * @return the endTime
      */
     public LocalTime getEndTime() {
@@ -55,7 +54,9 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
     /**
      * Get the value for the day of the week
-     * @return 0, 1, 2, 3, 4, 5, 6 for Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday respectively
+     * 0, 1, 2, 3, 4, 5, 6 stands for Monday, Tuesday, Wednesday, Thursday, Friday,
+     * Saturday and Sunday respectively
+     * @return the value of day
      */
     public int getDayValue() {
         return dayOfWeek.getValue();
@@ -63,14 +64,14 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
     /**
      * Compares the day and time between recurringEvent.
-     * @param o the object to be compared.
+     * @param recurringEvent2 the object to be compared.
      * @return -1 if the event falls before o, 1 if both event falls after o and 0 if the event
      *     conflicts with each other
      */
     @Override
-    public int compareTo(RecurringEvent o) {
+    public int compareTo(RecurringEvent recurringEvent2) {
 
-        int oDay = o.getDayValue();
+        int oDay = recurringEvent2.getDayValue();
 
         if (getDayValue() > oDay) {
             return 1;
@@ -78,8 +79,8 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             return -1;
         }
 
-        LocalTime oStart = o.getStartTime();
-        LocalTime oEnd = o.getEndTime();
+        LocalTime oStart = recurringEvent2.getStartTime();
+        LocalTime oEnd = recurringEvent2.getEndTime();
 
         if (this.startTime.isBefore(oStart) && (this.endTime.isBefore(oStart) || this.endTime.equals(oStart))) {
             return -1;
@@ -102,20 +103,18 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     public boolean occursBetween(LocalDateTime startPeriod, LocalDateTime endPeriod) {
 
         DayOfWeek startPeriodDay = startPeriod.getDayOfWeek();
-        DayOfWeek endPeriodDay = endPeriod.getDayOfWeek();
-
-        LocalTime startPeriodTime = LocalTime.parse(startPeriod.format(DateTimeFormatter.ofPattern("HH:mm")));
-        LocalTime endPeriodTime = LocalTime.parse(startPeriod.format(DateTimeFormatter.ofPattern("HH:mm")));
 
         boolean isDayBetweenPeriod = false;
-        boolean isTimeBetweenPeriod;
 
         long daysBetween = startPeriod.until(endPeriod, ChronoUnit.DAYS);
 
+        // if there are more than 7 days between the start and end period then it is guaranteed that falls
+        // within the week
         if (daysBetween > 7) {
             return true;
         }
 
+        long count = 0;
         DayOfWeek eventDay = startPeriodDay;
         for (int i = 0; i < daysBetween; i++) {
             if (this.dayOfWeek.equals(eventDay)) {
@@ -123,20 +122,23 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
                 break;
             }
             eventDay = eventDay.plus(1);
+            count++;
         }
 
-        if (eventDay.equals(startPeriodDay) && eventDay.equals(endPeriodDay)) {
-            isTimeBetweenPeriod = (this.startTime.isAfter(startPeriodTime) || this.startTime.equals(startPeriodDay))
-                    && (this.endTime.isBefore(endPeriodTime) || this.endTime.equals(endPeriodTime));
-        } else if (eventDay.equals(startPeriodDay)) {
-            isTimeBetweenPeriod = this.startTime.isAfter(startPeriodTime) || this.startTime.equals(startPeriodDay);
-        } else if (eventDay.equals(endPeriodDay)) {
-            isTimeBetweenPeriod = this.endTime.isBefore(endPeriodTime) || this.endTime.equals(endPeriodTime);
+        if (!isDayBetweenPeriod && count != 0) {
+            //day does not fall between start and end day. E.g. FRIDAY does not fall between MONDAY and Thursday
+            return false;
+        }
+
+        LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+        LocalDateTime dummyEventStartDate = LocalDateTime.of(recurringEventDate.toLocalDate(), this.startTime);
+        LocalDateTime dummyEventEndDate = LocalDateTime.of(recurringEventDate.toLocalDate(), this.endTime);
+
+        if (dummyEventStartDate.isBefore(startPeriod) || dummyEventEndDate.isAfter(endPeriod)) {
+            return false;
         } else {
-            isTimeBetweenPeriod = true;
+            return true;
         }
-
-        return isDayBetweenPeriod && isTimeBetweenPeriod;
     }
 
     @Override

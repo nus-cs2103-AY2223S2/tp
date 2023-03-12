@@ -25,8 +25,8 @@ class RecurringEventListTest {
             return this.getEventName();
         }
 
-        public int compareTo(RecurringEvent o) {
-            return super.compareTo(o);
+        public int compareTo(RecurringEvent recurringEvent2) {
+            return super.compareTo(recurringEvent2);
         }
 
     }
