@@ -40,6 +40,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setAddress(role.getAddress());
         descriptor.setTags(role.getTags());
         descriptor.setSalary(role.getSalary());
+        descriptor.setDeadline(role.getDeadline());
     }
 
     /**

@@ -44,6 +44,7 @@ public class RoleBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         salary = new Salary(DEFAULT_SALARY);
+        deadline = new Deadline(DEFAULT_DEADLINE);
     }
 
     /**
@@ -55,6 +56,7 @@ public class RoleBuilder {
         email = roleToCopy.getEmail();
         address = roleToCopy.getAddress();
         salary = roleToCopy.getSalary();
+        deadline = roleToCopy.getDeadline();
         tags = new HashSet<>(roleToCopy.getTags());
     }
 
