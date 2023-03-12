@@ -17,6 +17,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectDeckCommand;
+import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deck.Deck;
 
@@ -98,6 +99,8 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments, selectedDeck);
+        case UnselectDeckCommand.COMMAND_WORD:
+            return new UnselectDeckCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
