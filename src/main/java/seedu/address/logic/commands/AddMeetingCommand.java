@@ -1,24 +1,21 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-
-public class AddMeetingCommand extends Command{
-
+/**
+ * Adds meeting to a specified person
+ */
+public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingAdd";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a meeting to the person identified"
             + "by the index number used in the last person listing.\n"
@@ -32,6 +29,11 @@ public class AddMeetingCommand extends Command{
     private final Index index;
     private final Meeting meeting;
 
+    /**
+     * Adds meeting to the specified {@code Person}
+     * @param index index of person
+     * @param meeting meeting to add
+     */
     public AddMeetingCommand(Index index, Meeting meeting) {
         this.index = index;
         this.meeting = meeting;

@@ -10,9 +10,18 @@ import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Meeting;
 
+/**
+ * Parse input arguments and create a new AddMeetingCommand object
+ */
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
-    public AddMeetingCommand parse(String args) throws ParseException{
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
+     * @param args String of arguments to be parsed
+     * @return AddMeetingCommand object
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    public AddMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_MEETING);
@@ -28,7 +37,5 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).orElse(""));
 
         return new AddMeetingCommand(index, meeting);
-
-
     }
 }
