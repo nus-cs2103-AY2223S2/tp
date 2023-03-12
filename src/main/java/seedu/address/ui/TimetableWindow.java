@@ -148,3 +148,4 @@ public class TimetableWindow extends UiPart<Stage> {
         }
     }
 }
+
