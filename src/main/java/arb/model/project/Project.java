@@ -72,7 +72,7 @@ public class Project {
         if (isDeadlinePresent()) {
             builder.append(", due by: ").append(getDeadline());
         }
-        
+
         return builder.toString();
     }
 
