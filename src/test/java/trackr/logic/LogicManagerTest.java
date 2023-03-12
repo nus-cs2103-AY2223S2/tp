@@ -13,7 +13,6 @@ import static trackr.testutil.TypicalPersons.AMY;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,6 @@ import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.AddressBook;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;

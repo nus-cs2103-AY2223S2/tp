@@ -1,6 +1,5 @@
 package trackr.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static trackr.testutil.Assert.assertThrows;
 

@@ -77,8 +77,10 @@ public class UniqueTaskListTest {
     public void setTask_editedTaskIsSameTask_success() {
         uniqueTaskList.add(SORT_INVENTORY_N);
         uniqueTaskList.setTask(SORT_INVENTORY_N, SORT_INVENTORY_N);
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(SORT_INVENTORY_N);
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -88,8 +90,10 @@ public class UniqueTaskListTest {
         Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         uniqueTaskList.setTask(SORT_INVENTORY_N, editedTask); //change task status
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(editedTask);
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -97,8 +101,10 @@ public class UniqueTaskListTest {
     public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(SORT_INVENTORY_N);
         uniqueTaskList.setTask(SORT_INVENTORY_N, BUY_FLOUR_N);
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_FLOUR_N);
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -123,7 +129,9 @@ public class UniqueTaskListTest {
     public void remove_existingTask_removesTask() {
         uniqueTaskList.add(SORT_INVENTORY_N);
         uniqueTaskList.remove(SORT_INVENTORY_N);
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -135,9 +143,12 @@ public class UniqueTaskListTest {
     @Test
     public void setTasks_uniqueTaskList_replacesOwnListWithProvidedUniqueTaskList() {
         uniqueTaskList.add(SORT_INVENTORY_N);
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_FLOUR_N);
+
         uniqueTaskList.setTasks(expectedUniqueTaskList);
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
@@ -151,8 +162,10 @@ public class UniqueTaskListTest {
         uniqueTaskList.add(SORT_INVENTORY_N);
         List<Task> taskList = Collections.singletonList(BUY_EGGS_D);
         uniqueTaskList.setTasks(taskList);
+
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_EGGS_D);
+
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 

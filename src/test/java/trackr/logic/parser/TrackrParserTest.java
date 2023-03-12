@@ -53,7 +53,7 @@ public class TrackrParserTest {
     }
 
     @Test
-    public void parseCommand_addTaskShortCut() throws Exception {
+    public void parseCommand_addTaskShortcut() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
                 TaskUtil.getAddTaskCommandShortcut(task));

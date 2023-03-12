@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import trackr.commons.core.index.Index;
@@ -162,9 +163,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code taskStatus} is invalid.
      */
-    public static TaskStatus parseTaskStatus(String taskStatus) throws ParseException {
+    public static TaskStatus parseTaskStatus(Optional<String> taskStatus) throws ParseException {
         requireNonNull(taskStatus);
-        String trimmedTaskStatus = taskStatus.trim();
+        if (!taskStatus.isPresent()) {
+            return new TaskStatus();
+        }
+
+        String trimmedTaskStatus = taskStatus.get().trim();
         if (!TaskStatus.isValidTaskStatus(trimmedTaskStatus)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }

@@ -9,6 +9,7 @@ import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -254,23 +255,23 @@ public class ParserUtilTest {
 
     @Test
     public void parseTaskStatus_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskStatus((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskStatus((Optional<String>) null));
     }
 
     @Test
     public void parseTaskStatus_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTaskStatus(INVALID_TASK_STATUS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskStatus(Optional.ofNullable(INVALID_TASK_STATUS)));
     }
 
     @Test
     public void parseTaskStatus_validValueWithoutWhitespace_returnsTaskStatus() throws Exception {
         TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
-        assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(VALID_TASK_STATUS));
+        assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(Optional.ofNullable(VALID_TASK_STATUS)));
     }
 
     @Test
     public void parseTaskStatus_validValueWithWhitespace_returnsTrimmedTaskStatus() throws Exception {
-        String taskStatusWithWhitespace = WHITESPACE + VALID_TASK_STATUS + WHITESPACE;
+        Optional<String> taskStatusWithWhitespace = Optional.of(WHITESPACE + VALID_TASK_STATUS + WHITESPACE);
         TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
         assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(taskStatusWithWhitespace));
     }

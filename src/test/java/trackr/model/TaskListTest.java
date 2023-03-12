@@ -98,13 +98,13 @@ public class TaskListTest {
 
     @Test
     public void setTaskList_withDifferentTask_success() {
-        TaskList expected = new TaskList();
-        expected.addTask(BUY_FLOUR_N);
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.addTask(BUY_FLOUR_N);
 
         taskList.addTask(SORT_INVENTORY_N);
         taskList.setTask(SORT_INVENTORY_N, BUY_FLOUR_N);
 
-        assertEquals(expected, taskList);
+        assertEquals(expectedTaskList, taskList);
     }
 
     @Test
@@ -116,17 +116,17 @@ public class TaskListTest {
     public void equals() {
         taskList.addTask(SORT_INVENTORY_N);
 
-        TaskList different = new TaskList();
-        different.addTask(BUY_FLOUR_N);
+        TaskList differentTaskList = new TaskList();
+        differentTaskList.addTask(BUY_FLOUR_N);
 
-        TaskList same = new TaskList();
-        same.addTask(SORT_INVENTORY_N);
+        TaskList sameTaskList = new TaskList();
+        sameTaskList.addTask(SORT_INVENTORY_N);
 
         assertTrue(taskList.equals(taskList)); //same object
-        assertTrue(taskList.equals(same)); //contains the same tasks
+        assertTrue(taskList.equals(sameTaskList)); //contains the same tasks
 
         assertFalse(taskList.equals(null)); //null
-        assertFalse(taskList.equals(different)); //different task lists
+        assertFalse(taskList.equals(differentTaskList)); //different task lists
         assertFalse(taskList.equals(1)); //different objects
     }
 
