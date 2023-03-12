@@ -6,13 +6,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.model.person.Meeting;
+
+import org.junit.jupiter.api.Test;
 
 public class AddMeetingParserCommandTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
