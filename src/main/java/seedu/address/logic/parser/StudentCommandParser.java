@@ -1,29 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentCommand;
+import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -58,23 +47,27 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException
      */
     public StudentCommand parse(String args) throws ParseException {
-        System.out.println("hi");
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
 
         final String studentClass = matcher.group("class");
         final String arguments = matcher.group("arguments");
 
-        ArgumentMultimap argMultimap =
+        ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
                         PREFIX_PARENTNAME, PREFIX_AGESTUDENT, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK);
 
-        if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
-            return addCommand(studentClass, argMultimap);
+        ArgumentMultimap argMultimapDelete =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
+                        PREFIX_PARENTNAME, PREFIX_AGESTUDENT, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
+                        PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK);
+        if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
+            return addCommand(studentClass, argMultimapAdd);
+        } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
+            return deleteCommand(studentClass, argMultimapDelete);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -111,12 +104,28 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-
         Student student = new Student(name, sc, indexNumber, sex, parentName, age, image, email, phone, cca, address,
                 attendance, homework, test, tagList);
 
         return new StudentAddCommand(student);
     }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            StudentClass sc = ParserUtil.parseStudentClass(studentClass);
+            IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+            return new StudentDeleteCommand(indexNumber, sc);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
