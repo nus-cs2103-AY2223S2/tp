@@ -37,6 +37,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_EVENT_TAG + s.eventTagName.toString() + " ")
         );
+        
         return sb.toString();
     }
 

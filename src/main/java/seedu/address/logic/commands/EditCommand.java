@@ -253,7 +253,6 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Index>> getEventTags() {
-            System.out.println(eventIndexTags);
             return (eventIndexTags != null) ? Optional.of(eventIndexTags) : Optional.empty();
         }
 
@@ -271,8 +270,6 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
-
-            System.out.println(getEventTags().equals(e.getEventTags()));
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
