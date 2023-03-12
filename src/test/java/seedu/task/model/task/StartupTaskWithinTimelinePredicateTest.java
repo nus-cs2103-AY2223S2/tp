@@ -1,16 +1,17 @@
 package seedu.task.model.task;
 
-import org.junit.jupiter.api.Test;
-import seedu.task.testutil.DeadlineBuilder;
-import seedu.task.testutil.EventBuilder;
-import seedu.task.testutil.SimpleTaskBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.task.testutil.DeadlineBuilder;
+import seedu.task.testutil.EventBuilder;
+import seedu.task.testutil.SimpleTaskBuilder;
 
 public class StartupTaskWithinTimelinePredicateTest {
     @Test

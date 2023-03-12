@@ -1,21 +1,21 @@
 package seedu.task.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.task.commons.core.Messages;
-import seedu.task.commons.core.index.Index;
-import seedu.task.model.Model;
-import seedu.task.model.ModelManager;
-import seedu.task.model.UserPrefs;
-import seedu.task.model.task.Task;
-import seedu.task.model.task.TaskWithinTimelinePredicate;
-
-import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.testutil.TypicalComplicatedTasks.getTypicalComplicatedTasks;
+
+import java.time.Duration;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.task.commons.core.Messages;
+import seedu.task.model.Model;
+import seedu.task.model.ModelManager;
+import seedu.task.model.UserPrefs;
+import seedu.task.model.task.TaskWithinTimelinePredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -29,11 +29,7 @@ public class AlertCommandTest {
         AlertCommand alertCommand = new AlertCommand(48);
         String expectedMessage = AlertCommand.ALERT_COMMAND_SUCCESS;
         ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
-        int n = 3;
-        for (int i = 0; i < n; i++) {
-            expectedModel.updateAlertTaskList(new TaskWithinTimelinePredicate(Duration.ofHours(48)));
-        }
-
+        expectedModel.updateAlertTaskList(new TaskWithinTimelinePredicate(Duration.ofHours(48)));
         assertCommandSuccess(alertCommand, model, expectedMessage, expectedModel);
     }
 
@@ -44,7 +40,7 @@ public class AlertCommandTest {
     }
 
     @Test
-    public void AlertCommandEquality() {
+    public void test_equals() {
         AlertCommand alertCommand = new AlertCommand(5);
         AlertCommand alertCommand2 = new AlertCommand(5);
         AlertCommand alertCommand3 = new AlertCommand(3);

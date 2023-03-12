@@ -7,7 +7,6 @@ import static seedu.task.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.task.logic.commands.AlertCommand;
-import seedu.task.logic.commands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

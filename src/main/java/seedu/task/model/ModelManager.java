@@ -167,7 +167,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskBook.equals(other.taskBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && alertTasks.equals(other.alertTasks);
     }
 
 }
