@@ -33,22 +33,26 @@
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="cardList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <SplitPane fx:id="cardList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
+          <items>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+            <StackPane fx:id="DeckListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          </items>
+        </SplitPane>
+
         <SplitPane dividerPositions="0.5" VBox.vgrow="NEVER">
           <items>
 
-            <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border">
+            <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
             </StackPane>
 
-            <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border">
+            <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
