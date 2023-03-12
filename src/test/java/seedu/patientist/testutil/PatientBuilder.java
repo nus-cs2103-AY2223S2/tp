@@ -1,5 +1,7 @@
 package seedu.patientist.testutil;
 
+import java.util.HashSet;
+
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
@@ -31,6 +33,18 @@ public class PatientBuilder extends PersonBuilder {
         this.id = new PatientIdNumber(DEFAULT_ID);
     }
 
+    /**
+     * Initializes the PatientBuilder with the data of {@code patientToCopy}.
+     */
+    public PatientBuilder(Patient patientToCopy) {
+        name = patientToCopy.getName();
+        id = patientToCopy.getPatientIdNumber();
+        status = patientToCopy.getPatientStatusDetails();
+        phone = patientToCopy.getPhone();
+        email = patientToCopy.getEmail();
+        address = patientToCopy.getAddress();
+        tags = new HashSet<>(patientToCopy.getTags());
+    }
     /**
      * Sets the {@code Name} of the {@code Patient} that we are building.
      */

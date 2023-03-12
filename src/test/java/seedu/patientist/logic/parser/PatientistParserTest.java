@@ -24,9 +24,9 @@ import seedu.patientist.logic.commands.HelpCommand;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.NameContainsKeywordsPredicate;
-import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.testutil.EditPersonDescriptorBuilder;
-import seedu.patientist.testutil.PersonBuilder;
+import seedu.patientist.testutil.PatientBuilder;
 import seedu.patientist.testutil.PersonUtil;
 
 public class PatientistParserTest {
@@ -35,9 +35,9 @@ public class PatientistParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Patient patient = new PatientBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(patient));
+        assertEquals(new AddCommand(patient), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class PatientistParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Patient patient = new PatientBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

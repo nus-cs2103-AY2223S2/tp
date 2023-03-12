@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.ModelManager;
 import seedu.patientist.model.UserPrefs;
-import seedu.patientist.model.person.Person;
-import seedu.patientist.testutil.PersonBuilder;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,18 +27,18 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPerson(validPatient);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validPatient), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getPatientist().getPersonList().get(0);
+        Patient personInList = (Patient) model.getPatientist().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
