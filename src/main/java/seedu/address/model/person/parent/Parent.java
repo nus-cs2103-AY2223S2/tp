@@ -17,16 +17,9 @@ import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.tag.Tag;
 
 /**
- * A Parent Class that creates a parent who is a person
+ * A Parent Class that creates a Parent / Next-of-kin who is a person
  */
 public class Parent extends Person {
-    /**
-     * @param name
-     * @param indexNumber
-     * @param email
-     * @param address
-     * @param tags
-     */
     private final Age age;
     private final Image image;
     private final IndexNumber indexNumber;
@@ -35,16 +28,16 @@ public class Parent extends Person {
     private final List<Student> children = new ArrayList<>();
 
     /**
-     * A parent / next-of-kin (NOK) constructor
+     * A parent / next-of-kin (NOK) constructor.
      *
-     * @param name
-     * @param relationship
-     * @param age
-     * @param image
-     * @param email
-     * @param phone
-     * @param address
-     * @param tags
+     * @param name Name of Parent / NOK.
+     * @param relationship Relationship of Parent object (Parent status / NOK status).
+     * @param age Age of Parent / NOK.
+     * @param image Image of Parent / NOK.
+     * @param email Email address of Parent / NOK.
+     * @param phone Phone number of Parent / NOK.
+     * @param address Residential address of Parent / NOK.
+     * @param tags Tags given to Parent object.
      */
     public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
                   Email email, Phone phone, Address address, Set<Tag> tags) {
@@ -58,7 +51,8 @@ public class Parent extends Person {
 
     /**
      * A method that returns the Age of parent / NOK.
-     * @return Age
+     *
+     * @return Parent / NOK age.
      */
     public Age getAge() {
         return age;
@@ -66,7 +60,8 @@ public class Parent extends Person {
 
     /**
      * A method that returns the Image of parent / NOK.
-     * @return Image
+     *
+     * @return Parent / NOK Image.
      */
     public Image getImage() {
         return image;
@@ -74,7 +69,8 @@ public class Parent extends Person {
 
     /**
      * A method that returns the Relationship of parent / NOK.
-     * @return Relationship
+     *
+     * @return Parent / NOK relationship to Student.
      */
     public Relationship getRelationship() {
         return relationship;
@@ -82,18 +78,20 @@ public class Parent extends Person {
 
     /**
      * A method that returns a list of students the parent / NOK is related to.
-     * @return List of Students
+     *
+     * @return All students that the Parent / NOK is in-charge of.
      */
     public List<Student> getChildren() {
         return children;
     }
 
     /**
-     * A method that adds a children to the parent
-     * @param child
+     * A method that adds a student to the parent / NOK.
+     *
+     * @param student Student who is related to this Parent / NOK.
      */
-    public void addChildren(Student child) {
-        children.add(child);
+    public void addStudent(Student student) {
+        children.add(student);
     }
 
     @Override

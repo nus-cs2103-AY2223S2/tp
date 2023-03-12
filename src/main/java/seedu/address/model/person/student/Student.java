@@ -65,36 +65,101 @@ public class Student extends Person {
         this.comment = comment;
     }
 
+    /**
+     * A method that returns the Student's Index Number.
+     *
+     * @return Student's Index Number.
+     */
     public IndexNumber getIndexNumber() {
         return indexNumber;
     }
+
+    /**
+     * A method that returns the Student's Gender.
+     *
+     * @return Student's Gender.
+     */
     public Sex getSex() {
         return sex;
     }
+
+    /**
+     * A method that returns the Student's Parent / NOK Name.
+     *
+     * @return Parent / NOK name.
+     */
     public ParentName getParentName() {
         return parentName;
     }
+
+    /**
+     * A method that returns the Student's Age.
+     *
+     * @return Student's Age.
+     */
     public Age getAge() {
         return age;
     }
+
+    /**
+     * A method that returns the Student's Image.
+     *
+     * @return Student's Image.
+     */
     public Image getImage() {
         return image;
     }
+
+    /**
+     * A method that returns the Student's CCA.
+     *
+     * @return Student's CCA.
+     */
     public Cca getCca() {
         return cca;
     }
+
+    /**
+     * A method that returns the Student's class.
+     *
+     * @return Student's class.
+     */
     public StudentClass getStudentClass() {
         return sc;
     }
+
+    /**
+     * A method that returns the Student's attendance.
+     *
+     * @return Student's attendance.
+     */
     public Attendance getAttendance() {
         return attendance;
     }
+
+    /**
+     * A method that returns information about the homework the Student was given.
+     *
+     * @return Homework information.
+     */
     public Homework getHomework() {
         return homework;
     }
+
+    /**
+     * A method that returns information about the test the Student took.
+     *
+     * @return Test information related to the Student.
+     */
     public Test getTest() {
         return test;
     }
+
+    /**
+     * A method that returns the comment given to this Student.
+     *
+     * @return Comments given to this Student.
+     */
     public Comment getComment() {
         return comment;
     }
