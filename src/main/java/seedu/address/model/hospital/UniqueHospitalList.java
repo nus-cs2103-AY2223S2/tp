@@ -17,7 +17,7 @@ public class UniqueHospitalList implements Iterable<Hospital>{
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent hospital hotline as the given argument.
+     * Returns true if the list contains an equivalent hospital as the given argument.
      */
     public boolean contains(Hospital toCheck) {
         requireNonNull(toCheck);

@@ -12,8 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.drug.Drug;
+import seedu.address.model.hospital.Hospital;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 /**
@@ -28,26 +30,30 @@ public class CareFlowModelManager implements CareFlowModel {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Drug> filteredDrugs;
+    private final FilteredList<Hospital> filteredHospitals;
 
     /**
      * Initializes a CareFlowModelManager with the given patientRecord, drugInventory and userPrefs.
      * @param patientRecord patient records
      * @param drugInventory drug inventory
+     * @param hospitalRecord hospital records
      * @param userPrefs user preferences
      */
     public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory,
-                                ReadOnlyUserPrefs userPrefs) {
+                                ReadOnlyHospitalRecords hospitalRecord, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(drugInventory, patientRecord, userPrefs);
         logger.fine(String.format(LOGGER_MESSAGE, patientRecord, drugInventory, userPrefs));
 
-        this.careFlow = new CareFlow(patientRecord, drugInventory);
+        this.careFlow = new CareFlow(patientRecord, drugInventory, hospitalRecord);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPatients = new FilteredList<>(this.careFlow.getPatientList());
         this.filteredDrugs = new FilteredList<>(this.careFlow.getDrugList());
+        setFixedHospitalList();
+        this.filteredHospitals = new FilteredList<>(this.careFlow.getHospitalList());
     }
 
     public CareFlowModelManager() {
-        this(new PatientRecord(), new DrugInventory() , new UserPrefs());
+        this(new PatientRecord(), new DrugInventory() , new HospitalRecord(), new UserPrefs());
     }
 
     //=========== UserPrefs ================================================================================
@@ -118,6 +124,11 @@ public class CareFlowModelManager implements CareFlowModel {
     }
 
     @Override
+    public ReadOnlyHospitalRecords getHospitalRecords() {
+        return careFlow.getHospitalRecords();
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return careFlow.hasPatient(patient);
@@ -169,6 +180,7 @@ public class CareFlowModelManager implements CareFlowModel {
         return filteredDrugs;
     }
 
+
     @Override
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
@@ -179,5 +191,26 @@ public class CareFlowModelManager implements CareFlowModel {
     public void updateFilteredDrugList(Predicate<Drug> predicate) {
         requireNonNull(predicate);
         filteredDrugs.setPredicate(predicate);
+    }
+
+    //=========== Hospital Hotlines =========================================================
+
+    /**
+     * Set a fixed list of hospital information
+     */
+    public void setFixedHospitalList() {
+        careFlow.addHospital(new Hospital("KK Women's and Children's Hospital", "+65 62255554"));
+        careFlow.addHospital(new Hospital("Changi General Hospital", "+65 67888833"));
+        careFlow.addHospital(new Hospital("Khoo Teck Puat Hospital", "+65 65558000"));
+        careFlow.addHospital(new Hospital("Tan Tock Seng Hospital", "+65 62566011"));
+    }
+
+    /**
+     *
+     * @return fixed set of Hospital Hotlines
+     */
+    @Override
+    public ObservableList<Hospital> getHospitalList() {
+        return filteredHospitals;
     }
 }

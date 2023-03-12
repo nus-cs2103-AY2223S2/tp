@@ -6,8 +6,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.drug.Drug;
+import seedu.address.model.hospital.Hospital;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 /**
@@ -81,6 +83,11 @@ public interface CareFlowModel {
     ReadOnlyDrugInventory getDrugInventory();
 
     /**
+     * Return the HospitalRecords
+     */
+    ReadOnlyHospitalRecords getHospitalRecords();
+
+    /**
      * Returns true if a patient with the same identity as {@code patient} exists in the patient record.
      */
     boolean hasPatient(Patient patient);
@@ -134,6 +141,9 @@ public interface CareFlowModel {
 
     /** Returns an unmodifiable view of the filtered drug list */
     ObservableList<Drug> getFilteredDrugList();
+
+    /** Return an unmodifiable view of hospital records*/
+    ObservableList<Hospital> getHospitalList();
 
     /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
