@@ -10,11 +10,11 @@ import bookopedia.commons.core.index.Index;
 import bookopedia.commons.util.StringUtil;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
 import bookopedia.model.person.Phone;
-import bookopedia.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -97,30 +97,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String parcelName} into a {@code Parcel}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code parcelName} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Parcel parseParcel(String parcelName) throws ParseException {
+        requireNonNull(parcelName);
+        String trimmedParcelName = parcelName.trim();
+        if (!Parcel.isValidParcelName(trimmedParcelName)) {
+            throw new ParseException(Parcel.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Parcel(trimmedParcelName);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> parcels} into a {@code Set<Parcel>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Parcel> parseParcels(Collection<String> parcels) throws ParseException {
+        requireNonNull(parcels);
+        final Set<Parcel> parcelSet = new HashSet<>();
+        for (String parcelName : parcels) {
+            parcelSet.add(parseParcel(parcelName));
         }
-        return tagSet;
+        return parcelSet;
     }
 
     /**

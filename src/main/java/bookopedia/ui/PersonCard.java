@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label deliveryStatus;
     @FXML
-    private FlowPane tags;
+    private FlowPane parcels;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,9 +54,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getParcels().stream()
+                .sorted(Comparator.comparing(parcel -> parcel.parcelName))
+                .forEach(parcel -> parcels.getChildren().add(new Label(parcel.parcelName)));
         deliveryStatus.setText(person.getDeliveryStatus().toString());
         deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
     }

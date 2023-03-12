@@ -1,26 +1,26 @@
-package bookopedia.model.tag;
+package bookopedia.model.parcel;
 
 import static bookopedia.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class TagTest {
+public class ParcelTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Tag(null));
+        assertThrows(NullPointerException.class, () -> new Parcel(null));
     }
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
         String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
+        assertThrows(IllegalArgumentException.class, () -> new Parcel(invalidTagName));
     }
 
     @Test
     public void isValidTagName() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> Parcel.isValidParcelName(null));
     }
 
 }
