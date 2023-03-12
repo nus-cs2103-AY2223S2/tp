@@ -94,7 +94,7 @@ class JsonAdaptedPerson {
         if (!EmployeeId.isValidEmployeeId(employeeId)) {
             throw new IllegalValueException(EmployeeId.MESSAGE_CONSTRAINTS);
         }
-        final EmployeeId modelEmployeeId = EmployeeId.addEmployeeId(employeeId);
+        final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
