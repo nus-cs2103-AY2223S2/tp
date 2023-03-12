@@ -40,8 +40,12 @@
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox>
-                <Text fill="burlywood" text="Relationship:" />
+                <Text fill="burlywood" text="Relationship:    " />
                 <Label fx:id="relationship" styleClass="cell_small_label" text="\\$relationship" />
+            </HBox>
+            <HBox>
+                <Text fill="burlywood" text="Address:    " />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
                 <Text fill="burlywood" text="Age:    " />

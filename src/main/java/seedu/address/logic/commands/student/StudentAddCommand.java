@@ -25,7 +25,7 @@ public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
-            + ": Adds a student to the address book. "
+            + ": Adds a student to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER "

@@ -18,7 +18,7 @@ import seedu.address.ui.UiPart;
  * A parent card feature in the UI representing parent information.
  */
 public class ParentCard extends UiPart<Region> {
-    private static final String FXML = "StudentCard.fxml";
+    private static final String FXML = "ParentCard.fxml";
 
     public final Parent parent;
 
@@ -43,6 +43,9 @@ public class ParentCard extends UiPart<Region> {
     @FXML
     private Circle circle;
 
+    @FXML
+    private Label id;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,10 +53,13 @@ public class ParentCard extends UiPart<Region> {
     public ParentCard(Parent parent, int displayedIndex) {
         super(FXML);
         this.parent = parent;
+        id.setText(displayedIndex + ". ");
         name.setText(parent.getName().fullName);
         phone.setText(parent.getPhone().value);
         email.setText(parent.getEmail().value);
+        address.setText(parent.getAddress().value);
         age.setText(parent.getAge().value);
+        relationship.setText(parent.getRelationship().rls);
         //image.setText(student.getImage().value);
         parent.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

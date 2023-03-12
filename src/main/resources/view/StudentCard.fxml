@@ -39,7 +39,6 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
                 <Text text = "Index:" fill="burlywood" />
                 <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
-                <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox>
@@ -54,7 +53,10 @@
                 <Text text = "Age:    " fill="burlywood" />
                 <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
             </HBox>
-
+            <HBox>
+                <Text text = "Gender:   " fill="burlywood" />
+                <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
+            </HBox>
             <HBox>
                 <Text text = "Email:    " fill="burlywood" />
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />

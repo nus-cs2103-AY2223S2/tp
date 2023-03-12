@@ -22,12 +22,12 @@ import seedu.address.model.person.parent.Parent;
 public class ParentAddCommand extends ParentCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = "parent CLASS_NAME(of student) " + COMMAND_WORD
-            + ": Adds a parent to the address book. "
+    public static final String MESSAGE_USAGE = "parent STUDENT_CLASS " + COMMAND_WORD
+            + ": Adds a parent to the address book. \n"
             + "Parameters: "
-            + PREFIX_INDEXNUMBER + "INDEX NUMBER (of student) "
+            + PREFIX_INDEXNUMBER + "STUDENT_INDEX_NUMBER "
             + PREFIX_NAME + "NAME "
-            + PREFIX_RELATIONSHIP + "RELATIONSHIP "
+            + PREFIX_RELATIONSHIP + "RELATIONSHIP \n"
             + "["
             + PREFIX_AGE + "AGE "
             + PREFIX_IMAGEPARENT + "IMAGE PARENT "
@@ -35,7 +35,8 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "]\n"
-            + "Example: " + "parent 1A " + COMMAND_WORD + " "
+            + "Example: \n" + "parent 1A " + COMMAND_WORD + " "
+            + PREFIX_INDEXNUMBER + "15 "
             + PREFIX_NAME + "Tan Ah Niu "
             + PREFIX_RELATIONSHIP + "Father "
             + PREFIX_AGE + "30 "

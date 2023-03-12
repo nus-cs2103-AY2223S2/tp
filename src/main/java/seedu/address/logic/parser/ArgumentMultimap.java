@@ -38,7 +38,7 @@ public class ArgumentMultimap {
         if (!argMultimap.containsKey(prefix)) {
             switch(prefix.getPrefix()) {
             case "pn/":
-                Optional<String> missingParentName = Optional.of("Insert parent / next-of-kin name here!");
+                Optional<String> missingParentName = Optional.of("Insert parent name here!");
                 return missingParentName;
             case "ageS/":
                 Optional<String> missingStudentAge = Optional.of("Insert student age here!");
@@ -56,7 +56,7 @@ public class ArgumentMultimap {
                 Optional<String> missingCca = Optional.of("Insert student CCA here!");
                 return missingCca;
             case "a/":
-                Optional<String> missingAddress = Optional.of("Insert student Address here!");
+                Optional<String> missingAddress = Optional.of("Insert student address here!");
                 return missingAddress;
             case "att/":
                 Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
