@@ -23,7 +23,7 @@ public class RejectCommand extends Command {
             + PREFIX_PHONE + "PHONE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 ";
+            + PREFIX_PHONE + "98765432";
 
     private final NamePhoneNumberPredicate predicate;
 

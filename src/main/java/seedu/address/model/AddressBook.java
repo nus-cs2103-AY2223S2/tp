@@ -109,7 +109,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean rejectPerson(Person target) {
         requireNonNull(target);
-
         return persons.rejectPerson(target);
     }
 
