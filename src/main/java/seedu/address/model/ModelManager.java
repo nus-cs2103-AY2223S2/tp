@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 
 /**
@@ -27,8 +26,6 @@ public class ModelManager implements Model {
 
     private final FilteredList<Student> filteredStudents;
 
-    private final FilteredList<Parent> filteredParents;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -41,7 +38,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
-        filteredParents = new FilteredList<>(this.addressBook.getParentList());
     }
 
     public ModelManager() {
@@ -108,12 +104,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasParent(Parent parent) {
-        requireNonNull(parent);
-        return addressBook.hasParent(parent);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -121,11 +111,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
-    }
-
-    @Override
-    public void deleteParent(Parent target) {
-        addressBook.removeParent(target);
     }
 
     @Override
@@ -141,12 +126,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addParent(Parent parent) {
-        addressBook.addParent(parent);
-        updateFilteredParentList(PREDICATE_SHOW_ALL_PARENTS);
-    }
-
-    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -157,12 +136,6 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
         addressBook.setStudent(target, editedStudent);
-    }
-
-    @Override
-    public void setParent(Parent target, Parent editedParent) {
-        requireAllNonNull(target, editedParent);
-        addressBook.setParent(target, editedParent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -184,11 +157,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Parent> getFilteredParentList() {
-        return filteredParents;
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -198,12 +166,6 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredParentList(Predicate<Parent> predicate) {
-        requireNonNull(predicate);
-        filteredParents.setPredicate(predicate);
     }
 
     @Override
@@ -224,4 +186,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
 }

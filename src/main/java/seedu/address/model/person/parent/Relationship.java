@@ -15,7 +15,7 @@ public class Relationship {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String rls;
+    public final String value;
 
     /**
      * Constructs an {@code Address}.
@@ -25,7 +25,7 @@ public class Relationship {
     public Relationship(String relationship) {
         requireNonNull(relationship);
         checkArgument(isValidRelationship(relationship), MESSAGE_CONSTRAINTS);
-        rls = relationship;
+        value = relationship;
     }
 
     /**
@@ -40,18 +40,18 @@ public class Relationship {
 
     @Override
     public String toString() {
-        return rls;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Relationship// instanceof handles nulls
-                && rls.equals(((Relationship) other).rls)); // state check
+                && value.equals(((Relationship) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return rls.hashCode();
+        return value.hashCode();
     }
 }
