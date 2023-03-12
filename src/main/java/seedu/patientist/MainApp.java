@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!patientistOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Patientist");
             }
-            initialData = patientistOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = patientistOptional.orElseGet(SampleDataUtil::getSamplePatientist);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Patientist");
             initialData = new Patientist();
