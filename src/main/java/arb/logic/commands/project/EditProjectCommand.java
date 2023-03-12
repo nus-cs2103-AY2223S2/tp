@@ -52,7 +52,7 @@ public class EditProjectCommand extends Command {
         requireNonNull(editProjectDescriptor);
 
         this.index = index;
-        this.editProjectDescriptor = new EditProjectCommand.EditProjectDescriptor(editProjectDescriptor);
+        this.editProjectDescriptor = new EditProjectDescriptor(editProjectDescriptor);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class EditProjectCommand extends Command {
      * edited with {@code editProjectDescriptor}.
      */
     private static Project createEditedProject(Project projectToEdit,
-                                               EditProjectCommand.EditProjectDescriptor editProjectDescriptor) {
+                                               EditProjectDescriptor editProjectDescriptor) {
         assert projectToEdit != null;
 
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
@@ -126,7 +126,7 @@ public class EditProjectCommand extends Command {
         /**
          * Copy constructor.
          */
-        public EditProjectDescriptor(EditProjectCommand.EditProjectDescriptor toCopy) {
+        public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
         }
@@ -162,12 +162,12 @@ public class EditProjectCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditProjectCommand.EditProjectDescriptor)) {
+            if (!(other instanceof EditProjectDescriptor)) {
                 return false;
             }
 
             // state check
-            EditProjectCommand.EditProjectDescriptor e = (EditProjectCommand.EditProjectDescriptor) other;
+            EditProjectDescriptor e = (EditProjectDescriptor) other;
 
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline());
