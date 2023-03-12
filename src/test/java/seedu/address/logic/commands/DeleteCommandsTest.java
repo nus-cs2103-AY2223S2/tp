@@ -32,8 +32,8 @@ public class DeleteCommandsTest {
         DeleteCommands deleteCommands = new DeleteCommands(temp);
 
 
-        String people =  personToDelete1 + " " + personToDelete2 + " ";
-        String expectedMessage = String.format(DeleteCommands.MESSAGE_DELETE_PERSON_SUCCESS,people);
+        String people = personToDelete1 + " " + personToDelete2 + " ";
+        String expectedMessage = String.format(DeleteCommands.MESSAGE_DELETE_PERSON_SUCCESS, people);
         System.out.println(expectedMessage);
 
 
