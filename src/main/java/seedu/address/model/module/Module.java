@@ -19,6 +19,7 @@ import seedu.address.model.tag.Tag;
 public class Module {
 
     private final ModuleCode code;
+
     private final ModuleName name;
 
     private final Set<Tag> tags = new HashSet<>();
