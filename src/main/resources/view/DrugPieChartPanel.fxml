@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.geometry.Insets?>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
+    <padding>
+        <Insets bottom="5" left="10" right="10" top="5" />
+    </padding>
+    <VBox>
+        <Label text="Drug Inventory Overview"/>
+        <PieChart fx:id="drugPieChart"/>
+    </VBox>
+</HBox>

@@ -1,10 +1,10 @@
 {
   "guiSettings" : {
-    "windowWidth" : 740.0,
-    "windowHeight" : 600.0,
+    "windowWidth" : 835.0,
+    "windowHeight" : 867.0,
     "windowCoordinates" : {
-      "x" : 214,
-      "y" : 36
+      "x" : 2301,
+      "y" : 250
     }
   },
   "patientRecordFilePath" : "data\\patientRecord.json",
