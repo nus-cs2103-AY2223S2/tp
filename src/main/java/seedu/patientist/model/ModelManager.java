@@ -12,6 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Represents the in-memory model of the patientist book data.
@@ -70,9 +73,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPatientistFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setPatientistFilePath(addressBookFilePath);
+    public void setPatientistFilePath(Path patientistFilePath) {
+        requireNonNull(patientistFilePath);
+        userPrefs.setPatientistFilePath(patientistFilePath);
     }
 
     //=========== Patientist ================================================================================
@@ -94,21 +97,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        patientist.removePerson(target);
+    public boolean hasPerson(Person person, Ward ward) {
+        requireAllNonNull(person, ward);
+        return patientist.hasPerson(person, ward);
     }
 
     @Override
-    public void addPerson(Person person) {
-        patientist.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteStaff(Staff target) {
+        patientist.removeStaff(target);
     }
+
+    @Override
+    public void deleteStaff(Staff target, Ward ward) {
+        patientist.removeStaff(target, ward);
+    }
+
+    @Override
+    public void deletePatient(Patient target, Ward ward) {
+        patientist.removePatient(target, ward);
+    }
+
+    @Override
+    public void deletePerson(Person target, Ward ward) {
+        patientist.removePerson(target, ward);
+    }
+
+    @Override
+    public void addPatient(Patient patient, Ward ward) {
+        patientist.addPatient(patient, ward);
+    }
+
+    @Override
+    public void addStaff(Staff staff, Ward ward) {
+        patientist.addStaff(staff, ward);
+    }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         patientist.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasWard(Ward ward) {
+        //TODO
+    }
+
+    @Override
+    public void addWard(Ward ward) {
+        //TODO
+    }
+
+    @Override
+    public void deleteWard(Ward ward) {
+        //TODO
+    }
+
+    @Override
+    public void setWard(Ward target, Ward editedWard) {
+
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * The API of the Model component.
@@ -42,7 +45,7 @@ public interface Model {
     /**
      * Sets the user prefs' patientist book file path.
      */
-    void setPatientistFilePath(Path addressBookFilePath);
+    void setPatientistFilePath(Path patientistFilePath);
 
     /**
      * Replaces patientist book data with the data in {@code patientist}.
@@ -53,21 +56,58 @@ public interface Model {
     ReadOnlyPatientist getPatientist();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the patientist book.
+     * Returns true if a person with the same identity as {@code person} exists in the patientist book (all wards).
+     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson} overridden from Person
+     * Staff are uniquely identified by name, through {@code Person::isSamePerson} inherited from Person
      */
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the patientist book.
+     * Returns true if a person with the same identity as {@code person} exists in the given {@code ward}.
+     * {@code ward} must exist.
+     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson}
+     * Staff are uniquely identified by name, through {@code Staff::isSamePerson}
      */
-    void deletePerson(Person target);
+    boolean hasPerson(Person person, Ward ward);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the patientist book.
+     * Deletes the given staff. If person is a staff in multiple wards, all occurrences are deleted.
+     * The staff must exist in the patientist book.
      */
-    void addPerson(Person person);
+    void deleteStaff(Staff target);
+
+    /**
+     * Deletes the given staff from the given ward. Other instances of this staff in other wards are untouched.
+     * The staff must exist in the ward.
+     */
+    void deleteStaff(Staff target, Ward ward);
+
+    /**
+     * Deletes the given patient.
+     * Ward must exist, and patient must be in the ward.
+     */
+    void deletePatient(Patient target, Ward ward);
+
+    /**
+     * Deletes the given person from the ward specified.
+     * The ward must exist in the patientist book.
+     * The person must exist in the patientist book.
+     */
+    void deletePerson(Person target, Ward ward);
+
+    /**
+     * Adds the given patient to the ward.
+     * {@code patient} must not already exist in the patientist book.
+     * {@code ward} must exist
+     */
+    void addPatient(Patient patient, Ward ward);
+
+    /**
+     * Adds the given staff to the ward.
+     * {@code person} must not already exist in the ward.
+     * {@code ward} must exist
+     */
+    void addStaff(Staff staff, Ward ward);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -75,6 +115,34 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns true if a ward with the same name as {@code ward} exists in the patientist book
+     */
+    boolean hasWard(Ward ward);
+
+    /**
+     * Adds the given ward.
+     * {@code ward} must not already exist in the patientist book.
+     * Wards are uniquely identified by name, through {@code Ward::equals}
+     * @param ward
+     */
+    void addWard(Ward ward);
+
+    /**
+     * Deletes the given ward.
+     * The ward must exist in the patientist book.
+     */
+    void deleteWard(Ward ward);
+
+    /**
+     * Replaces the given ward {@code ward} with {@code editedWard}.
+     * {@code ward} must exist in the patientist book.
+     * The ward identity of {@code editedWard} must not be the same as another existing ward in the patientist.
+     * @param target
+     * @param editedWard
+     */
+    void setWard(Ward target, Ward editedWard);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

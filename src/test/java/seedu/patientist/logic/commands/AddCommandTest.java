@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPatientistFilePath(Path addressBookFilePath) {
+        public void setPatientistFilePath(Path patientistFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

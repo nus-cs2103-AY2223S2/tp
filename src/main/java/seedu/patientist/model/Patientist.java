@@ -1,12 +1,20 @@
 package seedu.patientist.model;
 
+import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
+import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.UniquePersonList;
+import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
+import seedu.patientist.model.ward.WardList;
 
 /**
  * Wraps all data at the patientist-book level
@@ -14,7 +22,7 @@ import seedu.patientist.model.person.UniquePersonList;
  */
 public class Patientist implements ReadOnlyPatientist {
 
-    private final UniquePersonList patients;
+    private final WardList wards;
     //TODO: this should eventually hold a list of wards, which in turn hold 2 UniquePersonList, for patients and staff
 
     /*
@@ -25,7 +33,7 @@ public class Patientist implements ReadOnlyPatientist {
      *   among constructors.
      */
     {
-        patients = new UniquePersonList();
+        wards = new WardList();
     }
 
     public Patientist() {}
@@ -41,11 +49,11 @@ public class Patientist implements ReadOnlyPatientist {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the ward list with {@code wards}.
+     * {@code wards} must not contain duplicate wards, and no person should appear more than once.
      */
-    public void setPatients(List<Person> patients) {
-        this.patients.setPersons(patients);
+    public void setWards(List<Ward> wards) {
+        this.wards.setWards(wards);
     }
 
     /**
@@ -54,7 +62,7 @@ public class Patientist implements ReadOnlyPatientist {
     public void resetData(ReadOnlyPatientist newData) {
         requireNonNull(newData);
 
-        setPatients(newData.getPersonList());
+        setWards(newData.getWardList());
     }
 
     //// person-level operations
@@ -64,58 +72,128 @@ public class Patientist implements ReadOnlyPatientist {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return patients.contains(person);
+        return wards.contains(person);
+    }
+
+    public boolean hasPerson(Person person, Ward ward) {
+        requireAllNonNull(person, ward);
+        return ward.containsPerson(person);
     }
 
     /**
-     * Adds a person to the patientist book.
-     * The person must not already exist in the patientist book.
+     * Adds a patient to the ward.
+     * The ward must exist and the patient must not already exist.
      */
-    public void addPerson(Person p) {
-        patients.add(p);
+    public void addPatient(Patient patient, Ward ward) {
+        requireAllNonNull(patient, ward);
+        ward.addPatient(patient);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Adds a staff to the ward.
+     * The ward must exist and the staff must not already be assigned to the ward.
+     */
+    public void addStaff(Staff staff, Ward ward) {
+        requireAllNonNull(staff, ward);
+        ward.addStaff(staff);
+    }
+
+    /**
+     * Replaces the given staff {@code target} with {@code edited}.
      * {@code target} must exist in the patientist book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist.
+     * {@code ward} must exist in the patientist book.
+     * The staff identity of {@code edited} must not be the same as another existing staff in the ward.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setStaff(Staff target, Staff edited, Ward ward) {
+        requireAllNonNull(target, edited, ward);
 
-        patients.setPerson(target, editedPerson);
+        ward.setStaff(target, edited);
+    }
+
+    /**
+     * Replaces the given patient {@code target} in the list with {@code edited}.
+     * {@code target} must exist in the patientist book.
+     * {@code ward} must exist in the patientist book.
+     * The patient identity of {@code edited} must not be the same as another existing patient in the paitentist book.
+     */
+    public void setPatient(Patient target, Patient edited, Ward ward) {
+        requireAllNonNull(target, edited, ward);
+
+        ward.setPatient(target, edited);
+    }
+
+    /**
+     * Removes {@code key} from this {@code ward}.
+     * {@code ward} must exist.
+     * {@code key} must exist in the ward.
+     */
+    public void removeStaff(Staff key, Ward ward) {
+        ward.deleteStaff(key);
+    }
+
+    /**
+     * Removes {@code key} from all {@code ward}s.
+     * {@code key} must exist.
+     */
+    public void removeStaff(Staff key) {
+        for (Ward ward : wards) {
+            if (ward.containsStaff(key)) {
+                ward.deleteStaff(key);
+            }
+        }
+    }
+
+    public void removePerson(Person person, Ward ward) {
+        if (person instanceof Staff) {
+            removeStaff((Staff) person, ward);
+        }
+        if (person instanceof Patient) {
+            removePatient((Patient) person, ward);
+        }
+        return;//TODO: there's some kind of exception to be thrown here idk what
     }
 
     /**
      * Removes {@code key} from this {@code Patientist}.
+     * {@code ward} must exist.
      * {@code key} must exist in the patientist book.
      */
-    public void removePerson(Person key) {
-        patients.remove(key);
+    public void removePatient(Patient key, Ward ward) {
+        ward.deletePatient(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return patients.asUnmodifiableObservableList().size() + " persons";
+        return wards.asUnmodifiableObservableList().size() + " wards";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return patients.asUnmodifiableObservableList();
+        ObservableList<Person> tempList = FXCollections.observableArrayList();
+        for (Ward ward : wards) {
+            tempList.addAll(ward.getStaffsAsUnmodifiableObservableList());
+            tempList.addAll(ward.getPatientsAsUnmodifiableObservableList());
+        }
+        return FXCollections.unmodifiableObservableList(tempList);
+    }
+
+    @Override
+    public ObservableList<Ward> getWardList() {
+        return wards.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Patientist // instanceof handles nulls
-                && patients.equals(((Patientist) other).patients));
+                && wards.equals(((Patientist) other).wards));
     }
 
     @Override
     public int hashCode() {
-        return patients.hashCode();
+        return wards.hashCode();
     }
 }

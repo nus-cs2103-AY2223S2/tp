@@ -2,6 +2,7 @@ package seedu.patientist.model;
 
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Unmodifiable view of an patientist book
@@ -13,5 +14,7 @@ public interface ReadOnlyPatientist {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    ObservableList<Ward> getWardList();
 
 }
