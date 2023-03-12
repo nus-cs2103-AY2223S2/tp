@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Vehicle;
 import seedu.address.model.entity.person.Technician;
 
@@ -225,8 +226,8 @@ public class Service {
                 this.getDescription(),
                 this.getEntryDate(),
                 this.getEstimatedFinishDate(),
-                parts,
-                technicians,
+                StringUtil.indent(parts, 2),
+                StringUtil.indent(technicians, 2),
                 status);
     }
 }
