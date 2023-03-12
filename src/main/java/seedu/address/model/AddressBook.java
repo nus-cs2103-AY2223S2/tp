@@ -103,6 +103,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.advancePerson(target);
     }
 
+    /**
+     * Rejects {@code target} from this {@code AddressBook}
+     * {@code target} must exist in the address book.
+     */
+    public boolean rejectPerson(Person target) {
+        requireNonNull(target);
+        return persons.rejectPerson(target);
+    }
+
     //// util methods
 
     @Override

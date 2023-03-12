@@ -48,7 +48,7 @@ public class AdvanceCommand extends Command {
         List<Person> personList = model.getFilteredPersonList();
         assert personList.size() <= 1;
 
-        if (personList.size() < 1) {
+        if (personList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
         }
         // Check if the interviewDateTime is nonNull else throw CommandException
