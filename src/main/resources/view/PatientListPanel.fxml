@@ -17,7 +17,7 @@
             <Insets top="5" right="5" bottom="5" left="15" />
         </padding>
         <content >
-            <VBox maxWidth="280" prefWidth="265" prefHeight="450" fx:id="detailDisplay" style="-fx-background-color: derive(#445568, 5%);">
+            <VBox maxWidth="280" prefWidth="265" prefHeight="450" fx:id="detailDisplay">
                 <Label fx:id="selectedName" maxHeight="Infinity"  wrapText="true" text="Please select a patient" styleClass="cell_big_label" />
                 <Label fx:id="selectedPhone"  maxHeight="Infinity" wrapText="true" styleClass="cell_small_label" />
                 <Label fx:id="selectedAddress" maxHeight="Infinity" wrapText="true" styleClass="cell_small_label"  />
