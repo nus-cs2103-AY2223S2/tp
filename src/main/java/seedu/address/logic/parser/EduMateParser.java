@@ -19,7 +19,6 @@ import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.parser.MeetType;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
