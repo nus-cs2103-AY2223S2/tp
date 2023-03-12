@@ -28,3 +28,4 @@ public class AddressContainsKeywordsPredicate implements Predicate<Person> {
                 && keywords.equals(((AddressContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
+
