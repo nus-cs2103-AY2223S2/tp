@@ -278,24 +278,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | user                                         | search for PowerCards using keywords in the questions                |                                  |
 | `* *`  | user                                         | rewrite the question or the answer in the PowerCard                  | 						                      |
 | **`Epic`**  | **user**                                | **group PowerCards into decks of the same topic**                    | 				                          |
-| `* * *` | user                                        | set the name of a deck                                               | 	                                |
+| `* * *` | user                                        | set the name of a masterDeck                                               | 	                                |
 | `* * *` | user | list all decks I have created     |					|
-| `* * *` | user | list all the PowerCards in a deck |					|
-| `* * *` | user | add PowerCards in a deck	 |					|
-| `* * *` | user | remove PowerCards in a deck	 |					|
-| `* *` | user | rename a deck	 |					|
-| `* *` | user | delete a deck		 |					|
-| `* *` | user | add the description of each deck		 | I can check later what this deck is about.				|
+| `* * *` | user | list all the PowerCards in a masterDeck |					|
+| `* * *` | user | add PowerCards in a masterDeck	 |					|
+| `* * *` | user | remove PowerCards in a masterDeck	 |					|
+| `* *` | user | rename a masterDeck	 |					|
+| `* *` | user | delete a masterDeck		 |					|
+| `* *` | user | add the description of each masterDeck		 | I can check later what this masterDeck is about.				|
 | **`Epic`**    | **user**                                       | **review decks of PowerCards** | 				               |
-| `* * *` | user | review a single deck of PowerCards           | I can test my knowledge of the topic	                                               |
+| `* * *` | user | review a single masterDeck of PowerCards           | I can test my knowledge of the topic	                                               |
 | `* * *` | user | mark a flash card to be correct / wrong during review          | 				                                   |
 | `* *` | user | review multiple decks of PowerCards          | I can test my knowledge of multiple topics                                    |
-| `* *` | user | see how many PowerCards I have left to review in one deck          | 		                                   |
+| `* *` | user | see how many PowerCards I have left to review in one masterDeck          | 		                                   |
 | **`Epic`**    | **user**                                       | **keep track of how effective my learning has been** | 				               |
 | `* *` | user | record the number of questions I got right	 | I can see my progress					|
 | `* *` | user | see which are the PowerCards I struggle with / succeed at	 |					|
 | `*` | user | see which topics (decks) I am stronger / weaker in	 |					|
-| `*` | user | see how many times I have reviewed a PowerCard or deck	 |					|
+| `*` | user | see how many times I have reviewed a PowerCard or masterDeck	 |					|
 | `*` | user | see how long I spent on each question during review	 |					|
 | `*` | user | revise PowerCards that I got wrong for		 | I can see what I’m weak at				|
 | `* *` | user | reset the statistics	 |					|
@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | import decks from other users.          | 				                                   |
 | `* * *` | user | export decks for other users.         | 				                                   |
 | **`Epic`**    | **user**                                       | **undo and redo changes I make** | 				               |
-| `*` | user | retrieve a deck or flash card should I accidentally delete a PowerCard or deck	 |					|
+| `*` | user | retrieve a masterDeck or flash card should I accidentally delete a PowerCard or masterDeck	 |					|
 | `*` | user | redo changes that I had undone.	 |					|
 | **`Epic`**    | **user**                                       | **adjust the frequency of certain PowerCards appearing based on my input** | 				               |
 | `* *` | user | tag PowerCards that are hard	 | they will appear more frequently					|
@@ -312,82 +312,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Powercard` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `Powercard` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Add a powercard**
+**Use case: UC1 - Add a powerdeck**
 
-**MSS**
- 1.  User requests to add a powercard
+**MSS:**
 
-**Use case: Delete a powercard**
+1. User requests to create a new deck with a specified name.
+2. System creates a new deck with the given name.
 
-**MSS**
+Use case ends.
 
-1.  User requests to list powercards
-2.  Powercard shows a list of powercards
-3.  User requests to delete a specific powercard in the list
-4.  Powercard deletes the powercard
+**Use case: UC2 - Add a powercard**
 
-    Use case ends.
+**MSS:**
+1. User chooses a deck to add powercard to.
+2. System enters the chosen deck.
+3. User enters the question and answer details for the card.
+4. System adds the card to the chosen deck.  
+   Steps 3-4 are repeated for as many times as required until the User finishes adding more cards to the deck.
 
-**Extensions**
+Use case ends.
 
-* 2a. The list is empty.
+**Use case: UC3 - Delete a powercard**
 
-  Use case ends.
+**MSS:**
 
-* 3a. The given index is invalid.
+1.  User requests to enter a specific deck.
+2.  System shows a list of powercards inside the chosen deck.
+3.  User requests to delete a specific powercard in the deck.
+4.  System deletes the powercard.
 
-    * 3a1. Powercard shows an error message.
+Use case ends.
 
-      Use case resumes at step 2
+**Extensions:**
 
+&nbsp;&nbsp;&nbsp;&nbsp;2a. The list is empty.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
 
-**Use case: Find a powercard**
-
-**MSS**
-1. User requests to find powercard containing a certain string
-2. Powercard shows a list of cards with their index matching the query
-
- Use case ends.
-
-**Extensions**
-* 2a. There are no powercards the match the query.
-
-  Use case ends.
+&nbsp;&nbsp;&nbsp;&nbsp;3a. The given index is invalid.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3a1. System shows an error message.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2
 
 
+**Use case: UC4 - Find a powercard**
 
+**MSS:**
 
-**Use case:**Review  a deck**
+1. User requests to find powercards containing a certain string in the question.
+2. System shows a list of cards matching the query.
 
-**MSS**
+Use case ends.
+
+**Extensions:**
+
+&nbsp;&nbsp;&nbsp;&nbsp;2a. There are no powercards the match the query.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+
+**Use case: UC5 - Review  a deck**
+
+**MSS:**
 
 1. User requests to review a particular deck
-2. Powercard shows a random, non repeating card in the deck
-3. User attempts the powercard 
-4. User requests the answer to the powercard 
-5. Powercard reveals the answer to the powercard
-6. User self grades answer and provides Powercard with question answered correct/wrong data
-repeat step 2-6 until all powercards in deck have been exhausted
+2. Application shows a random, non-repeating card in the deck
+3. User attempts to answer the question in the card.
+4. Application reveals the answer to the powercard.
+5. User self-grades question as easy/medium/difficult.  
+   Repeat step 2-5 until all powercards in deck have been exhausted.
 
- Use case ends.
+Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. There are no decks with the name requested by the user
+&nbsp;&nbsp;&nbsp;&nbsp;1a. There are no decks with the name requested by the user.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends
 
-  Use case ends
+&nbsp;&nbsp;&nbsp;&nbsp;*a. User decides to end the review early.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*a1. User requests to end the review session  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*a2. Powercard ends the session and brings the user back to default area  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends
 
-*.a User decides to end the review early
-
- *.a1 User requests to end the review session
- *.a2 Powercard ends the session and brings the user back to default area
-
- Use case ends
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 

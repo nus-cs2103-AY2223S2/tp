@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.Deck;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.MasterDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
@@ -38,8 +38,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyDeck getSampleAddressBook() {
-        Deck sampleAb = new Deck();
+    public static ReadOnlyMasterDeck getSampleAddressBook() {
+        MasterDeck sampleAb = new MasterDeck();
         for (Card sampleCard : getSamplePersons()) {
             sampleAb.addCard(sampleCard);
         }
