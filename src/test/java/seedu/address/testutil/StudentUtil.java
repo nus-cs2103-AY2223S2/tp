@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.model.student.ModuleCode;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -53,7 +54,10 @@ public class StudentUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStudentId().ifPresent(address -> sb.append(PREFIX_STUDENTID).append(address.value).append(" "));
-        descriptor.getModules().ifPresent(module -> sb.append(PREFIX_MODULE).append(module).append(" "));
+
+        Set<ModuleCode> modules = descriptor.getModules().get();
+        modules.forEach(s -> sb.append(PREFIX_MODULE).append(s.moduleCode).append(" "));
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
