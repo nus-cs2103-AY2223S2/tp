@@ -281,6 +281,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | A receptionist at the GP clinic | delete a patient                                             | remove patient data that I no longer need                    |
 | `* * *`  | A receptionist at the GP clinic | delete a drug by index                                       | remove data of drugs that my clinic no longer offers         |
 | `* * *`  | A receptionist at the GP clinic | delete a drug by trade name                                  | remove data of drugs that my clinic no longer offers         |
+| `* * *`  | A receptionist at the GP clinic | list all drugs                                               | have an overview of the inventory                            |
+| `* * *`  | A receptionist at the GP clinic | list all patients                                            | have an overview of all patient records                      |
 | `* * *`  | A receptionist at the GP clinic | find a person by name                                        | locate details of persons without having to go through the entire list |
 | `* * *`  | A receptionist at the GP clinic | find a drug by trade name                                    | retrieve details of the drug to facilitate prescription      |
 | `* * * ` | A receptionist at the GP clinic | Retrieve patients’ contact number                            | remind patients of their upcoming appointments               |
@@ -309,7 +311,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | A receptionist at the GP clinic | Distribute health information / news to patients (SMS / whatsapp) | let patients know their personal health info                 |
 | `* * `   | A receptionist at the GP clinic | Record down the visitor who has entered the clinic           | Eliminate paper sign-in system                               |
 | `* * `   | A receptionist at the GP clinic | Track patient’s observation time at the clinic after vaccination/treatment | easily track and tell when they can leave                    |
-| `* * `   | A receptionist at the GP clinic | Update drug inventory count                                  | increase the drug inventory count when new drugs arrive and also decrease the count when the drugs are prescribed to patients |
 | `* * `   | A receptionist at the GP clinic | Check if a drug is still available and if it needs more supply | ensuer that the dispensary does not run out of supply of drugs |
 | `* * `   | A receptionist at the GP clinic | Generate pdf receipts for consultation, procedures and medication prescribed | have the choice to print out upon patient requests or email it to them (go green and paperless) |
 | `* * `   | A receptionist at the GP clinic | Check if a doctor has an appointment during a period of time. | Ensure that appointments will not clash                      |
