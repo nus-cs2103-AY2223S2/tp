@@ -3,12 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.job.Address;
-import seedu.address.model.job.Email;
-import seedu.address.model.job.Name;
-import seedu.address.model.job.Phone;
-import seedu.address.model.job.Role;
-import seedu.address.model.job.Salary;
+import seedu.address.model.job.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,6 +17,7 @@ public class RoleBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_SALARY = "4000";
+    public static final String DEFAULT_DEADLINE = "2023-10-20";
 
     private Name name;
     private Phone phone;
@@ -29,6 +25,8 @@ public class RoleBuilder {
     private Address address;
     private Set<Tag> tags;
     private Salary salary;
+
+    private Deadline deadline;
 
     /**
      * Creates a {@code RoleBuilder} with the default details.
@@ -95,15 +93,23 @@ public class RoleBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Role} that we are building.
+     * Sets the {@code Salary} of the {@code Role} that we are building.
      */
     public RoleBuilder withSalary(String salary) {
         this.salary = new Salary(salary);
         return this;
     }
 
+    /**
+     * Sets the {@code Deadline} of the {@code Role} that we are building.
+     */
+    public RoleBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
+        return this;
+    }
+
     public Role build() {
-        return new Role(name, phone, email, address, tags, salary);
+        return new Role(name, phone, email, address, tags, salary, deadline);
     }
 
 }
