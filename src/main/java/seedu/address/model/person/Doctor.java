@@ -30,7 +30,7 @@ public class Doctor extends Person {
     public Yoe getYoe() {
         return yoe;
     }
-
+    
     /**
      * Returns true if both doctors have the same name.
      * This defines a weaker notion of equality between two doctors.
