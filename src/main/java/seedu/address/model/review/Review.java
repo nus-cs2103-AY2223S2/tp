@@ -16,7 +16,9 @@ public class Review {
 
     private final Deck deck;
     private List<Card> cardList;
-    private Integer currentScore = 0;
+    private int currScore = 0;
+    private int currCardNum = 0;
+    private Card currCard;
 
     /**
      * Every field must be present and not null.
@@ -25,7 +27,7 @@ public class Review {
         requireNonNull(deck);
         this.deck = deck;
 
-        shuffle(cardList);
+        shuffle(cardList); //TODO write a shuffle based on user statistics
         this.cardList = cardList;
     }
 
@@ -37,12 +39,38 @@ public class Review {
         return deck.getDeckName();
     }
 
-    public Integer getCurrentScore() {
-        return currentScore;
+    public Integer getCurrScore() {
+        return currScore;
     }
 
     public void incrementCurrentScore() {
-        currentScore++;
+        currScore++;
+    }
+
+    public void goToNextCard() {
+        currCardNum++;
+        if (currCardNum > cardList.size()) {
+            currCardNum--; //TODO throw exception
+        } else {
+            this.currCard = cardList.get(currCardNum - 1);
+        }
+    }
+
+    public void goToPrevCard() {
+        currCardNum--;
+        if (currCardNum <= 0) {
+            currCardNum++; //TODO throw exception
+        } else {
+            this.currCard = cardList.get(currCardNum - 1);
+        }
+    }
+
+    public Card getCurrCard() {
+        return currCard;
+    }
+
+    public void markCurrCardAsCorrect() {
+        currScore++;
     }
 
     /*
