@@ -79,9 +79,9 @@ public class TaskCard extends UiPart<Region> {
             "#911eb4", "#46f0f0", "#f032e6", "#bcf60c", "#fabebe",
             "#008080", "#e6beff", "#9a6324", "#fffac8", "#800000",
             "#aaffc3", "#808000", "#ffd8b1", "#000075", "#808080",
-            "#ffffff", "#000000"
+            "#ffffff"
         };
-        int pos = tagName.hashCode() % arr.length;
+        int pos = Math.abs(tagName.hashCode() % arr.length);
         return arr[pos];
     }
 
@@ -94,7 +94,7 @@ public class TaskCard extends UiPart<Region> {
         Label newLabel = new Label(tag.tagName);
         String str = chooseColor(tag.tagName);
 
-        newLabel.setStyle("-fx-text-fill: white;\n"
+        newLabel.setStyle("-fx-text-fill: black;\n"
                 + "-fx-background-color: " + str + ";\n"
                 + "-fx-padding: 1 3 1 3;\n"
                 + "-fx-border-radius: 2;\n"
