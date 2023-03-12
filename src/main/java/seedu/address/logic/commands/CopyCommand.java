@@ -53,12 +53,12 @@ public class CopyCommand extends Command {
     }
 
     public String getInformation(Person personToCopy) {
-        String information = "";
-        information += String.format("Name: %s\n", personToCopy.getName());
-        information += String.format("Phone: %s\n", personToCopy.getPhone());
-        information += String.format("Email: %s\n", personToCopy.getEmail());
-        information += String.format("Address: %s\n", personToCopy.getAddress());
-        return information;
+        final StringBuilder infoBuilder = new StringBuilder();
+        infoBuilder.append("Name: " + personToCopy.getName() + "\n")
+            .append("Phone: " + personToCopy.getPhone() + "\n")
+            .append("Email: " + personToCopy.getEmail() + "\n")
+            .append("Address: " + personToCopy.getAddress() + "\n");
+        return infoBuilder.toString();
     }
 
     /**
