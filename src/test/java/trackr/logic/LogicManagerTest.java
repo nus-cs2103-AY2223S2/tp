@@ -13,21 +13,26 @@ import static trackr.testutil.TypicalPersons.AMY;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.AddressBook;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
 import trackr.model.person.Person;
+import trackr.model.task.Task;
 import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.StorageManager;
@@ -93,6 +98,49 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
+
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook() {
+        ReadOnlyAddressBook expected = model.getAddressBook();
+        assertEquals(expected, logic.getAddressBook());
+    }
+
+    @Test
+    public void getTaskList() {
+        ReadOnlyTaskList expected = model.getTaskList();
+        assertEquals(expected, logic.getTaskList());
+    }
+
+    @Test
+    public void getFilteredPersonList() {
+        ObservableList<Person> expected = model.getFilteredPersonList();
+        assertEquals(expected, logic.getFilteredPersonList());
+    }
+
+    @Test
+    public void getFilteredTaskList() {
+        ObservableList<Task> expected = model.getFilteredTaskList();
+        assertEquals(expected, logic.getFilteredTaskList());
+    }
+
+    @Test
+    public void getTrackrFilePath() {
+        Path expected = model.getTrackrFilePath();
+        assertEquals(expected, logic.getTrackrFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        GuiSettings expected = model.getGuiSettings();
+        assertEquals(expected, logic.getGuiSettings());
+    }
+
 
     /**
      * Executes the command and confirms that
