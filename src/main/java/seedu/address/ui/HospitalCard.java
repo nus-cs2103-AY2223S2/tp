@@ -22,6 +22,9 @@ public class HospitalCard extends UiPart<Region> {
     @FXML
     private Label hotline;
 
+    /**
+     * Creates a {@code HospitalCode} with the given {@code Hospital} and index to display.
+     */
     public HospitalCard(Hospital hospital) {
         super(FXML);
         this.hospital = hospital;

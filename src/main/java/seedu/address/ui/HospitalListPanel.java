@@ -1,18 +1,24 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.fxml.FXML;
 import seedu.address.model.hospital.Hospital;
 
-public class HospitalListPanel extends UiPart<Region>{
+/**
+ * Panel containing the list of hospitals.
+ */
+public class HospitalListPanel extends UiPart<Region> {
 
     private static final String FXML = "HospitalListPanel.fxml";
     @FXML
     private ListView<Hospital> hospitalListView;
 
+    /**
+     * Creates a {@code HopsitalListPanel} with the given {@code ObservableList}.
+     */
     public HospitalListPanel(ObservableList<Hospital> hospitalHotlineList) {
         super(FXML);
         this.hospitalListView.setItems(hospitalHotlineList);

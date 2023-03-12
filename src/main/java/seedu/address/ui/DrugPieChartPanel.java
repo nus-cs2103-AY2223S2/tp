@@ -1,4 +1,6 @@
 package seedu.address.ui;
+import java.text.DecimalFormat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,16 +9,19 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.drug.Drug;
 
-import java.text.DecimalFormat;
-import java.util.Objects;
 
-public class DrugPieChartPanel extends UiPart<Region>{
+/**
+ * Panel containing the drug pie chart
+ */
+public class DrugPieChartPanel extends UiPart<Region> {
     private static final String FXML = "DrugPieChartPanel.fxml";
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     @FXML
     private PieChart drugPieChart;
 
-
+    /**
+     * Displays the graphics of a {@code DrugPieChart}.
+     */
     public DrugPieChartPanel(ObservableList<Drug> drugList) {
         super(FXML);
         updatePieChartData(drugList);
@@ -32,8 +37,9 @@ public class DrugPieChartPanel extends UiPart<Region>{
 
     private void updatePieChartData(ObservableList<Drug> drugList) {
         pieChartData.clear();
+
         for (int i = 0; i < drugList.size(); i++) {
-            Drug drug =   drugList.get(i);
+            Drug drug = drugList.get(i);
             PieChart.Data newData = new PieChart.Data(drug.getTradeName().toString(),
                     drug.getStorageCount().getCount());
             pieChartData.add(newData);
@@ -43,8 +49,8 @@ public class DrugPieChartPanel extends UiPart<Region>{
         DecimalFormat df = new DecimalFormat("#.##");
         drugPieChart.setData(pieChartData);
         drugPieChart.getData().forEach(data -> {
-            data.setName(data.getName() + " (" +
-                    df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
+            data.setName(data.getName() + " ("
+                    + df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
         });
 
         // add drug names and percentage values to the pie chart

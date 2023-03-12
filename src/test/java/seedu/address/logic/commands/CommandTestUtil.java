@@ -16,13 +16,12 @@
 //import seedu.address.commons.core.index.Index;
 //import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
-//import seedu.address.model.person.Person;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //
 ///**
 // * Contains helper methods for testing commands.
 // */
-public class CommandTestUtil {
+//public class CommandTestUtil {
 //
 //    public static final String VALID_NAME_AMY = "Amy Bee";
 //    public static final String VALID_NAME_BOB = "Bob Choo";
@@ -123,4 +122,5 @@ public class CommandTestUtil {
 //        assertEquals(1, model.getFilteredPersonList().size());
 //    }
 //
-}
+//}
+//

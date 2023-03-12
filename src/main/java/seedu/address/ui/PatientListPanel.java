@@ -1,5 +1,4 @@
 package seedu.address.ui;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +7,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Patient;
 
+/**
+ * Panel containing the list of patients.
+ */
 public class PatientListPanel extends UiPart<Region> {
     private static final String FXML = "PatientListPanel.fxml";
     @FXML
@@ -28,6 +30,9 @@ public class PatientListPanel extends UiPart<Region> {
     @FXML
     private Label selectedIc;
 
+    /**
+     * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
+     */
     public PatientListPanel(ObservableList<Patient> patientList) {
         super(FXML);
         // PERSON LIST
@@ -66,13 +71,3 @@ public class PatientListPanel extends UiPart<Region> {
         }
     }
 }
-//    public displaySelectedPatient(Patient selectedPatient) {
-//        super(FXML);
-//        selectedName.setText(selectedPatient.getName().fullName);
-//        selectedPhone.setText(selectedPatient.getPhone().value);
-//        selectedAddress.setText(selectedPatient.getAddress().value);
-//        selectedEmail.setText(selectedPatient.getEmail().value);
-//        selectedBirthDate.setText(selectedPatient.getBirthDate().value);
-//        selectedGender.setText(selectedPatient.getGender().value);
-//        selectedIc.setText(selectedPatient.getIc().value);
-//    }

@@ -66,7 +66,9 @@ public class CareFlow {
         drugInventory.setDrugs(drugs);
     }
 
-    public void setHospitals(List<Hospital> hospitals) {hospitalRecord.setHospitals(hospitals);}
+    public void setHospitals(List<Hospital> hospitals) {
+        hospitalRecord.setHospitals(hospitals);
+    }
 
     /**
      * Resets the existing data of CareFlow patient record with {@code newData}.

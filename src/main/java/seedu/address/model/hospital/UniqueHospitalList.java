@@ -1,17 +1,29 @@
 package seedu.address.model.hospital;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.hospital.exceptions.DuplicateHospitalException;
 import seedu.address.model.hospital.exceptions.HospitalNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-public class UniqueHospitalList implements Iterable<Hospital>{
+/**
+ * A list of hospitals that enforces uniqueness between its elements and does not allow nulls.
+ * A hospital is considered unique by comparing using {@code Hospital#isSameHospital(Hospital)}. As such, adding and
+ * updating of hospital uses Hospital#isSameHospital(Hospital) for equality so as to ensure that the hospital being
+ * added or updated is unique in terms of identity in the UniqueHospitalList. However, the removal of a hospital uses
+ * Hospital#equals(Object) so as to ensure that the hospital with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Hospital#isSameHospital(Hospital)
+ */
+public class UniqueHospitalList implements Iterable<Hospital> {
     private final ObservableList<Hospital> internalList = FXCollections.observableArrayList();
     private final ObservableList<Hospital> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
