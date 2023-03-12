@@ -10,6 +10,7 @@ import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
+import seedu.address.model.job.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +80,14 @@ public class EditRoleDescriptorBuilder {
     public EditRoleDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Salary} of the {@code EditRoleDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withSalary(String salary) {
+        descriptor.setSalary(new Salary(salary));
         return this;
     }
 

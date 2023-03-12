@@ -94,6 +94,14 @@ public class RoleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Email} of the {@code Role} that we are building.
+     */
+    public RoleBuilder withSalary(String salary) {
+        this.salary = new Salary(salary);
+        return this;
+    }
+
     public Role build() {
         return new Role(name, phone, email, address, tags, salary);
     }
