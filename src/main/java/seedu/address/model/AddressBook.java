@@ -7,8 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.parent.UniqueParentList;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 
@@ -22,8 +20,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
 
-    private final UniqueParentList parents;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -34,7 +30,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         students = new UniqueStudentList();
-        parents = new UniqueParentList();
     }
 
     public AddressBook() {}
@@ -61,10 +56,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.students.setStudents(students);
     }
 
-    public void setParents(List<Parent> parents) {
-        this.parents.setParents(parents);
-    }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -87,7 +78,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns boolean value true if a student with the same identity as {@code student} exists in PowerConnect.
      *
-     * @param student Student object that needs to be checked for duplication.
+     * @param student Student object that needs to be checked for duplication
      * @return Boolean value indicating whether the student already exists in PowerConnect.
      */
     public boolean hasStudent(Student student) {
@@ -96,21 +87,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns boolean value true if a parent with the same identity as {@code parent} exists in PowerConnect.
-     *
-     * @param parent Parent object that needs to be checked for duplication.
-     * @return Boolean value indicating whether the parent already exists in PowerConnect.
-     */
-    public boolean hasParent(Parent parent) {
-        requireNonNull(parent);
-        return parents.contains(parent);
-    }
-
-    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+
         persons.add(p);
     }
 
@@ -120,10 +101,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addStudent(Student s) {
         students.add(s);
-    }
-
-    public void addParent(Parent p) {
-        parents.add(p);
     }
 
     /**
@@ -141,11 +118,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.setStudent(target, editedStudent);
     }
 
-    public void setParent(Parent target, Parent editedParent) {
-        requireNonNull(editedParent);
-        parents.setParent(target, editedParent);
-    }
-
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -160,10 +132,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         students.remove(key);
-    }
-
-    public void removeParent(Parent key) {
-        parents.remove(key);
     }
     //// util methods
 
@@ -182,10 +150,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
-    }
-
-    public ObservableList<Parent> getParentList() {
-        return parents.asUnmodifiableObservableList();
     }
 
     @Override

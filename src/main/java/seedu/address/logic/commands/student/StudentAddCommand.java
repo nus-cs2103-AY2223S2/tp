@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
@@ -32,7 +32,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_SEX + "SEX "
             + "["
             + PREFIX_PARENTNAME + "PARENT NAME "
-            + PREFIX_AGE + "AGE "
+            + PREFIX_AGESTUDENT + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
@@ -43,7 +43,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_INDEXNUMBER + "13 "
             + PREFIX_SEX + "M "
             + PREFIX_PARENTNAME + "Tan Ah Choi "
-            + PREFIX_AGE + "14 "
+            + PREFIX_AGESTUDENT + "14 "
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
