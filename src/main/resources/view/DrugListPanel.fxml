@@ -9,18 +9,22 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <ListView fx:id="drugListView" HBox.hgrow="ALWAYS" />
-<!--    <VBox alignment="CENTER_LEFT" fillWidth="true" prefWidth="260" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">-->
-<!--        <padding>-->
-<!--            <Insets top="5" right="5" bottom="5" left="15" />-->
-<!--        </padding>-->
-<!--        <Label fx:id="selectedActiveIn"  wrapText="true" text="Please select a patient" styleClass="cell_big_label" />-->
-<!--        <Label fx:id="selectedPhone"  wrapText="true" styleClass="cell_small_label" />-->
-<!--        <Label fx:id="selectedAddress"  wrapText="true" styleClass="cell_small_label"  />-->
-<!--        <Label fx:id="selectedEmail"  wrapText="true" styleClass="cell_small_label"/>-->
-<!--        <Label fx:id="selectedBirthDate"  wrapText="true" styleClass="cell_small_label"/>-->
-<!--        <Label fx:id="selectedGender"  wrapText="true" styleClass="cell_small_label" />-->
-<!--        <Label fx:id="selectedIc"  wrapText="true" styleClass="cell_small_label"/>-->
-<!--    </VBox>-->
+    <ScrollPane prefWidth="300" hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <content>
+            <VBox maxWidth="280">
+                <Label fx:id="selectedTradeName"  wrapText="true" text="Please select a drug" styleClass="cell_big_label" />
+                <Label fx:id="selectedActiveIngredient"  wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedDirection"  wrapText="true" styleClass="cell_small_label" />
+                <Label fx:id="selectedPurposes"  wrapText="true" styleClass="cell_small_label"  />
+                <Label fx:id="selectedSideEffects"  wrapText="true" styleClass="cell_small_label"/>
+                <Label fx:id="selectedStorageCount"  wrapText="true" styleClass="cell_small_label"/>
+            </VBox>
+        </content>
+    </ScrollPane>
 </HBox>
