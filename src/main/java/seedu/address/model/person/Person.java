@@ -29,7 +29,7 @@ public class Person {
     private final Address address;
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
-    private final TaskList taskList = new TaskList();
+    private final TaskList taskList;
     private final ScoreList scoreList = new ScoreList();
 
     /**
@@ -43,6 +43,22 @@ public class Person {
         this.address = address;
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
+        this.taskList = new TaskList();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags,
+                  TaskList taskList) {
+        requireAllNonNull(name, phone, email, address, tags, taskList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.parentPhone = parentPhone;
+        this.tags.addAll(tags);
+        this.taskList = taskList;
     }
 
     public Name getName() {
