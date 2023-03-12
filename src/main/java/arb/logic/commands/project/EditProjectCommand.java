@@ -41,13 +41,13 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
 
     private final Index index;
-    private final EditProjectCommand.EditProjectDescriptor editProjectDescriptor;
+    private final EditProjectDescriptor editProjectDescriptor;
 
     /**
      * @param index of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
-    public EditProjectCommand(Index index, EditProjectCommand.EditProjectDescriptor editProjectDescriptor) {
+    public EditProjectCommand(Index index, EditProjectDescriptor editProjectDescriptor) {
         requireNonNull(index);
         requireNonNull(editProjectDescriptor);
 
