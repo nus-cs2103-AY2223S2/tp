@@ -94,7 +94,7 @@ public class AddressBookParserTest {
                 + " " + PREFIX_MEETING + remark);
         assertEquals(new RemoveMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
     }
-    
+
     @Test
     public void parseCommand_addMeeting() throws Exception {
         final String meeting = " 30-12-2020 15:30 16:30";
