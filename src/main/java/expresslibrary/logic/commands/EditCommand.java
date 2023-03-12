@@ -19,7 +19,12 @@ import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.CollectionUtil;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.Model;
-import expresslibrary.model.person.*;
+import expresslibrary.model.person.Address;
+import expresslibrary.model.person.Book;
+import expresslibrary.model.person.Email;
+import expresslibrary.model.person.Name;
+import expresslibrary.model.person.Person;
+import expresslibrary.model.person.Phone;
 import expresslibrary.model.tag.Tag;
 
 /**
@@ -93,7 +98,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Book updatedBook  = editPersonDescriptor.getBook().orElse(personToEdit.getBook());
+        Book updatedBook = editPersonDescriptor.getBook().orElse(personToEdit.getBook());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBook, updatedTags);
@@ -188,7 +193,8 @@ public class EditCommand extends Command {
             this.book = book;
         }
 
-        public Optional<Book> getBook() {return Optional.ofNullable(book);}
+        public Optional<Book> getBook() {
+            return Optional.ofNullable(book); }
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.

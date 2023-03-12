@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.ReadOnlyExpressLibrary;
 import expresslibrary.model.person.Address;
+import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
 import expresslibrary.model.person.Phone;
-import expresslibrary.model.person.Book;
 import expresslibrary.model.tag.Tag;
 
 /**

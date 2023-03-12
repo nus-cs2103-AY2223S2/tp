@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import expresslibrary.model.person.Address;
+import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
 import expresslibrary.model.person.Phone;
-import expresslibrary.model.person.Book;
 import expresslibrary.model.tag.Tag;
 import expresslibrary.model.util.SampleDataUtil;
 
@@ -97,12 +97,12 @@ public class PersonBuilder {
      * Sets book
      * @return
      */
-    public PersonBuilder withBook(String title){
+    public PersonBuilder withBook(String title) {
         this.book = new Book(title);
         return this;
     }
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, book, tags);
     }
 
 }
