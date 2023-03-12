@@ -11,8 +11,9 @@ public class GroupTest {
     public void equals() {
         Group group1 = new Group("2103T");
         Group group2 = new Group("2101");
+        Group group1Duplicate = new Group("2103T");
         assertFalse(group1.equals(group2));
-        assertTrue(group1.equals(group1));
+        assertTrue(group1.equals(group1Duplicate));
 
     }
 
@@ -29,5 +30,5 @@ public class GroupTest {
         assertFalse(group1.toString().equals("[2101]"));
     }
 
-
+    // TODO: More tests
 }

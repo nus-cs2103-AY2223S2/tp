@@ -1,5 +1,8 @@
 package seedu.address.model.group;
 
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -25,6 +28,10 @@ public class Group {
         this.groupName = groupName;
     }
 
+    public String getName() {
+        return groupName;
+    }
+
     /**
      * Returns true if a given string is a valid tag name.
      */
@@ -33,7 +40,20 @@ public class Group {
     }
 
     /**
-     * Returns true if both grouos are the same group object or have the same group name
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both groups are the same group object or have the same group name
      */
     @Override
     public boolean equals(Object other) {
