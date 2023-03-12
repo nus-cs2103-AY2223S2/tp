@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Language;
+import seedu.address.model.tag.LanguageContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
@@ -23,17 +25,22 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         boolean areKeywordsPresent = true;
-        ArgumentMultimap langMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LANGUAGE);
-        ArgumentMultimap tagMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-        if ((!arePrefixesPresent(tagMultimap, PREFIX_TAG)
-                && !arePrefixesPresent(langMultimap, PREFIX_LANGUAGE))) {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LANGUAGE, PREFIX_TAG);
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_TAG)
+                && !arePrefixesPresent(argMultimap, PREFIX_LANGUAGE))) {
             areKeywordsPresent = false;
 
         }
 
-        Set<Tag> tagList = ParserUtil.parseTags(tagMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new ListCommand(new TagContainsKeywordsPredicate(tagList), areKeywordsPresent);
+        System.out.println(tagList);
+        Set<Language> langList = ParserUtil.parseLanguages(argMultimap.getAllValues(PREFIX_LANGUAGE));
+        System.out.println(langList);
+
+        return new ListCommand(new TagContainsKeywordsPredicate(tagList),
+                new LanguageContainsKeywordsPredicate(langList), areKeywordsPresent);
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
