@@ -48,6 +48,12 @@ class TagCommandParserTest {
     }
 
     @Test
+    public void parse_missingPrefix_failure() {
+        assertParseFailure(parser, VALID_CODE_CS1101S + " include",
+                "Did not specify prefix /t");
+    }
+
+    @Test
     public void parse_success() {
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("Computer Science Foundation"));
