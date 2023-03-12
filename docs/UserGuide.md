@@ -243,7 +243,7 @@ Examples:
 
 Deletes an existing event from the address book.
 
-Format: `event_delete e/EVENT_NAME`
+Format: `ie_delete [INDEX OF PERSON] [INDEX OF EVENT]}`
 
 * Deletes an event with the specified event name `EVENT_NAME`
 * The event name cannot be empty and must be an existing event

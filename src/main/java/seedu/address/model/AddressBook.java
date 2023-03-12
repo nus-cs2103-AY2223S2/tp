@@ -90,6 +90,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.addIsolatedEvent(event);
     }
 
+    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        personToEdit.getIsolatedEventList().deleteIsolatedEvent(event);
+    }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.

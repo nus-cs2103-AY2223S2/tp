@@ -31,8 +31,25 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         this.endDate = endDate;
     }
 
+    public LocalDateTime getStartDate() {
+        return this.startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return this.endDate;
+    }
+
     @Override
     public int compareTo(IsolatedEvent o) { //TODO: Add implementation for compareTo
+
+        LocalDateTime oStart = o.getStartDate();
+        LocalDateTime oEnd = o.getEndDate();
+
+        if (this.startDate.isBefore(oStart) && (this.endDate.isBefore(oStart) || this.endDate.equals(oStart))) {
+            return -1;
+        } else if (this.startDate.isAfter(oStart) && (this.startDate.isAfter(oEnd) || this.startDate.equals(oEnd))) {
+            return 1;
+        }
         return 0;
     }
 

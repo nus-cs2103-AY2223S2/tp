@@ -118,4 +118,5 @@ public interface Model {
      */
     void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
 
+    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
 }
