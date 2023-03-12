@@ -12,7 +12,7 @@ import seedu.address.model.tag.LanguageContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the address book to the user or based on tag or language.
  */
 public class ListCommand extends Command {
 
@@ -27,7 +27,7 @@ public class ListCommand extends Command {
     private final boolean isKeywordPresent;
 
     /**
-     * Initializes a ListCommand with the given predicate and whether a tag is present.
+     * Initializes a ListCommand with the given predicates and whether a keyword is present.
      */
     public ListCommand(TagContainsKeywordsPredicate predicateTag, LanguageContainsKeywordsPredicate predicateLang,
                        boolean isKeywordPresent) {
