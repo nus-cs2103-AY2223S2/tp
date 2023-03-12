@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -38,6 +39,13 @@ public class AddressBookParserTest {
         Client client = new ClientBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
         assertEquals(new AddCommand(client), command);
+    }
+    @Test
+    public void parseCommand_addPolicy() throws Exception {
+        final String policyName = "Health insurance";
+        AddPolicyCommand command = (AddPolicyCommand) parser.parseCommand(
+                AddPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + policyName);
+        assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, policyName), command);
     }
 
     @Test
