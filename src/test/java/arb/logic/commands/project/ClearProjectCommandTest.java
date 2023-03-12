@@ -36,7 +36,7 @@ public class ClearProjectCommandTest {
     @Test
     public void execute_withCurrentListTypeProject_failure() {
         assertCommandFailure(new ClearProjectCommand(), ListType.CLIENT, new ModelManager(),
-                Messages.MESSAGE_INVALID_LIST_CLIENT);
+                Messages.MESSAGE_INVALID_LIST_PROJECT);
     }
 
 }
