@@ -14,15 +14,15 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Copies information to the user's clipboard, of a person identified using it's displayed index from the address book.
+ * Copies the details of an existing person in the address book to the user's clipboard.
  */
 public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Copies the information of the person identified by the index number used in the displayed person list.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+            + ": Copies the information of the person identified by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_COPY_SUCCESS = "Successfully copied information to clipboard!";
 
@@ -48,16 +48,16 @@ public class CopyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof CopyCommand // instanceof handles nulls
-            && targetIndex.equals(((CopyCommand) other).targetIndex)); // state check
+                || (other instanceof CopyCommand // instanceof handles nulls
+                && targetIndex.equals(((CopyCommand) other).targetIndex)); // state check
     }
 
     public String getInformation(Person personToCopy) {
         final StringBuilder infoBuilder = new StringBuilder();
         infoBuilder.append("Name: " + personToCopy.getName() + "\n")
-            .append("Phone: " + personToCopy.getPhone() + "\n")
-            .append("Email: " + personToCopy.getEmail() + "\n")
-            .append("Address: " + personToCopy.getAddress() + "\n");
+                .append("Phone: " + personToCopy.getPhone() + "\n")
+                .append("Email: " + personToCopy.getEmail() + "\n")
+                .append("Address: " + personToCopy.getAddress() + "\n");
         return infoBuilder.toString();
     }
 
