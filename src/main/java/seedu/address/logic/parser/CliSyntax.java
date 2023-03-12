@@ -16,6 +16,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK = new Prefix("task/");
     public static final Prefix PREFIX_DATE = new Prefix("by/");
     
-
-
 }
