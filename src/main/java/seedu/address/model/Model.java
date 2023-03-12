@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -83,6 +84,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given task.
+     * Task must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -117,4 +124,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    List<Task> getFilteredTaskList();
 }

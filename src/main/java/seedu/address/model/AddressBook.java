@@ -134,8 +134,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Assigns a task to a person.
+     * @param taskIndex
+     * @param personIndex
+     */
     public void assignTask(Index taskIndex, Index personIndex) {
         tasks.assignTask(taskIndex, personIndex);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
     }
 
     //// util methods
@@ -149,6 +162,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
