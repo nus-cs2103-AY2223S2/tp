@@ -29,13 +29,16 @@ public class InfoTab extends UiPart<Region> {
      * Creates a {@code InfoTab} with the given {@code protagonist} and {@code tab}.
      */
     public InfoTab(Person protagonist, String tab) {
+
         super(FXML);
-        if (tab.equals("c")) {
-            detailedInfo = new DetailedContact();
-        } else if (tab.equals("m")) {
-            detailedInfo = new DetailedModule();
-        } else {
-            detailedInfo = new DetailedSkill();
+        if (tab != null) {
+            if (tab.equals("c")) {
+                detailedInfo = new DetailedContact();
+            } else if (tab.equals("m")) {
+                detailedInfo = new DetailedModule();
+            } else {
+                detailedInfo = new DetailedSkill();
+            }
         }
 
         if (protagonist != null) {
