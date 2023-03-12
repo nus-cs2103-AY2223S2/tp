@@ -12,9 +12,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -42,6 +40,10 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private DrugListPanel drugListPanel;
 
+    private DrugPieChartPanel drugPieChartPanel;
+
+    private HospitalListPanel hospitalRecordlistPanel;
+
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -50,9 +52,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-//    @FXML
-//    private StackPane patientDrugListPanelPlaceholder;
 
     @FXML
     private StackPane patientListPanelPlaceholder;
@@ -69,9 +68,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane drugListPanelPlaceholder;
 
+    @FXML
+    private StackPane drugPieChartPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane hospitalRecordPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -87,6 +91,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab drugTab;
+
+    @FXML
+    private Tab hospitalTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -151,8 +158,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-//        patientDrugListPanel = new PatientDrugListPanel(logic.getFilteredPatientList(), logic.getFilteredDrugList());
-//        patientDrugListPanelPlaceholder.getChildren().add(patientDrugListPanel.getRoot());
 
         //make the tabPane fill its parent VBox
         VBox.setVgrow(tabPane, Priority.ALWAYS);
@@ -162,6 +167,12 @@ public class MainWindow extends UiPart<Stage> {
 
         drugListPanel = new DrugListPanel(logic.getFilteredDrugList());
         drugListPanelPlaceholder.getChildren().add(drugListPanel.getRoot());
+
+        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList());
+        drugPieChartPanelPlaceholder.getChildren().add(drugPieChartPanel.getRoot());
+
+        hospitalRecordlistPanel = new HospitalListPanel(logic.getHospitalList());
+        hospitalRecordPanelPlaceholder.getChildren().add(hospitalRecordlistPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -258,7 +269,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
                 getClass().getResource("/stylesheet/HelpWindowLight.css")).toExternalForm());
     }
-
     /**
      * Executes the command and returns the result.
      *
