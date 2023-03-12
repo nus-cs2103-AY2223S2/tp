@@ -47,8 +47,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidCommand_throwsParseException() {
         // no leading and trailing whitespaces
-        assertParseFailure(parser, " d tokyo    "
-                , String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " d tokyo    ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
 
     }
 
