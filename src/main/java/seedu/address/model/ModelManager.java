@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
     private FilteredList<Deck> filteredDecks;
-    private Deck selectedDeck = null; // null when not selected, may want to consider accepting Set<> next time
+    private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
     private FilteredList<Card> filteredCards;
 
     /**
