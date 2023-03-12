@@ -1,20 +1,17 @@
 package seedu.vms.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.vms.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 import java.util.logging.Level;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.vms.commons.core.Config;
-import seedu.vms.commons.exceptions.DataConversionException;
 
 public class ConfigUtilTest {
 
@@ -29,34 +26,34 @@ public class ConfigUtilTest {
     }
 
     @Test
-    public void read_missingFile_emptyResult() throws DataConversionException {
-        assertFalse(read("NonExistentFile.json").isPresent());
+    public void read_missingFile_emptyResult() {
+        assertThrows(IOException.class, () -> read("NonExistentFile.json"));
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
+        assertThrows(IOException.class, () -> read("NotJsonFormatConfig.json"));
     }
 
     @Test
-    public void read_fileInOrder_successfullyRead() throws DataConversionException {
+    public void read_fileInOrder_successfullyRead() throws Exception {
 
         Config expected = getTypicalConfig();
 
-        Config actual = read("TypicalConfig.json").get();
+        Config actual = read("TypicalConfig.json");
         assertEquals(expected, actual);
     }
 
     @Test
-    public void read_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException {
-        Config actual = read("EmptyConfig.json").get();
+    public void read_valuesMissingFromFile_defaultValuesUsed() throws Exception {
+        Config actual = read("EmptyConfig.json");
         assertEquals(new Config(), actual);
     }
 
     @Test
-    public void read_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
+    public void read_extraValuesInFile_extraValuesIgnored() throws Exception {
         Config expected = getTypicalConfig();
-        Config actual = read("ExtraValuesConfig.json").get();
+        Config actual = read("ExtraValuesConfig.json");
 
         assertEquals(expected, actual);
     }
@@ -68,7 +65,7 @@ public class ConfigUtilTest {
         return config;
     }
 
-    private Optional<Config> read(String configFileInTestDataFolder) throws DataConversionException {
+    private Config read(String configFileInTestDataFolder) throws IOException {
         Path configFilePath = addToTestDataPathIfNotNull(configFileInTestDataFolder);
         return ConfigUtil.readConfig(configFilePath);
     }
@@ -84,20 +81,20 @@ public class ConfigUtilTest {
     }
 
     @Test
-    public void saveConfig_allInOrder_success() throws DataConversionException, IOException {
+    public void saveConfig_allInOrder_success() throws Exception {
         Config original = getTypicalConfig();
 
         Path configFilePath = tempDir.resolve("TempConfig.json");
 
         //Try writing when the file doesn't exist
         ConfigUtil.saveConfig(original, configFilePath);
-        Config readBack = ConfigUtil.readConfig(configFilePath).get();
+        Config readBack = ConfigUtil.readConfig(configFilePath);
         assertEquals(original, readBack);
 
         //Try saving when the file exists
         original.setLogLevel(Level.FINE);
         ConfigUtil.saveConfig(original, configFilePath);
-        readBack = ConfigUtil.readConfig(configFilePath).get();
+        readBack = ConfigUtil.readConfig(configFilePath);
         assertEquals(original, readBack);
     }
 

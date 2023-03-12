@@ -2,7 +2,6 @@ package seedu.vms;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 import seedu.vms.commons.core.Config;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.core.Version;
-import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.commons.util.ConfigUtil;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.Logic;
@@ -22,7 +20,6 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.util.SampleDataUtil;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -85,20 +82,12 @@ public class MainApp extends Application {
      * or an empty patient manager will be used instead if errors occur when reading {@code storage}'s patient manager.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPatientManager> patientManagerOptional;
         ReadOnlyPatientManager initialData;
         try {
-            patientManagerOptional = storage.readPatientManager();
-            if (!patientManagerOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PatientManager");
-            }
-            initialData = patientManagerOptional.orElseGet(SampleDataUtil::getSamplePatientManager);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PatientManager");
-            initialData = new PatientManager();
+            initialData = storage.readPatientManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
-            initialData = new PatientManager();
+            initialData = SampleDataUtil.getSamplePatientManager();
         }
 
         VaxTypeManager vaxTypeManager = new VaxTypeManager();
@@ -137,11 +126,9 @@ public class MainApp extends Application {
         logger.info("Using config file : " + configFilePathUsed);
 
         try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
-        } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+            initializedConfig = ConfigUtil.readConfig(configFilePathUsed);
+        } catch (IOException ioEx) {
+            logger.warning("Default config will be used due to: " + ioEx.getMessage());
             initializedConfig = new Config();
         }
 
@@ -165,14 +152,9 @@ public class MainApp extends Application {
 
         UserPrefs initializedPrefs;
         try {
-            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
-        } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = storage.readUserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
+            logger.warning("Default user preference will be used due to: " + e.getMessage());
             initializedPrefs = new UserPrefs();
         }
 

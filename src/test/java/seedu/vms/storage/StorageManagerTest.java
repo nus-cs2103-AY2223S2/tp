@@ -49,7 +49,7 @@ public class StorageManagerTest {
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
         storageManager.saveUserPrefs(original);
-        UserPrefs retrieved = storageManager.readUserPrefs().get();
+        UserPrefs retrieved = storageManager.readUserPrefs();
         assertEquals(original, retrieved);
     }
 
@@ -62,7 +62,7 @@ public class StorageManagerTest {
          */
         PatientManager original = getTypicalPatientManager();
         storageManager.savePatientManager(original);
-        ReadOnlyPatientManager retrieved = storageManager.readPatientManager().get();
+        ReadOnlyPatientManager retrieved = storageManager.readPatientManager();
         assertEquals(original, new PatientManager(retrieved));
     }
 

@@ -2,7 +2,6 @@ package seedu.vms.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
 import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
@@ -24,7 +23,7 @@ public interface UserPrefsStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    UserPrefs readUserPrefs() throws IOException;
 
     /**
      * Saves the given {@link seedu.vms.model.ReadOnlyUserPrefs} to the storage.
