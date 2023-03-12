@@ -4,7 +4,7 @@ package seedu.address.model.person;
  * To record the patient MedicalCondition
  */
 public class MedicalCondition {
-    public String value;
+    private String value;
     public MedicalCondition(String tagName) {
         this.value = tagName;
     }
@@ -14,7 +14,7 @@ public class MedicalCondition {
         return value;
     }
 
-    private String getValue() {
+    public String getValue() {
         return value;
     }
 

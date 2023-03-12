@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Person;
 
 /**
@@ -59,7 +58,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getMedicalCondition() == null) {
             medicalCondition.setText("");
         } else {
-            String s = person.getMedicalCondition().value;
+            String s = person.getMedicalCondition().getValue();
             medicalCondition.setText(s);
         }
         person.getTags().stream()

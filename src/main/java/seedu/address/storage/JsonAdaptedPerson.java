@@ -70,8 +70,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        if (source.getMedicalCondition().value != null) {
-            medicalCondition = source.getMedicalCondition().value;
+        if (source.getMedicalCondition().getValue() != null) {
+            medicalCondition = source.getMedicalCondition().getValue();
         }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

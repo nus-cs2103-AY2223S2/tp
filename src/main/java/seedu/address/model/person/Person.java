@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -40,7 +39,11 @@ public class Person {
         this.medicalCondition = new MedicalCondition("");
     }
 
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, MedicalCondition medicalCondition) {
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  MedicalCondition medicalCondition) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
