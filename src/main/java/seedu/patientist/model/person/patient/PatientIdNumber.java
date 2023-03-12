@@ -1,14 +1,33 @@
 package seedu.patientist.model.person.patient;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.patientist.commons.util.AppUtil.checkArgument;
+
 /**
  * Object representing the ID number of a patient. ID numbers are automatically capitalised when they are created.
  */
 public class PatientIdNumber {
+    public static final String MESSAGE_CONSTRAINTS =
+            "PID should be of the format: letter followed by 5 digits and end with a letter.";
+
+    /*
+     * First character must be a letter.
+     * Following 5 characters must be digits.
+     * Last character must be a letter.
+     */
+    public static final String VALIDATION_REGEX = "^[\\p{Alpha}]{1}[\\d]{5}[\\p{Alpha}]{1}$";
+
     private final String idNumber;
 
     //TODO: include error checking for invalid ID numbers
     public PatientIdNumber(String idNumber) {
+        requireNonNull(idNumber);
+        checkArgument(isValidPid(idNumber), MESSAGE_CONSTRAINTS);
         this.idNumber = idNumber.toUpperCase();
+    }
+
+    public static boolean isValidPid(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public String getIdNumber() {

@@ -1,12 +1,10 @@
 package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.*;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -15,8 +13,10 @@ import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
-import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.patient.PatientIdNumber;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -31,22 +31,26 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PatientIdNumber idNumber = ParserUtil.parsePID(argMultimap.getValue(PREFIX_ID).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = new HashSet<>(Arrays.asList(new Tag("Patient")));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        return new AddCommand(person);
+        Patient patient = new Patient(idNumber, name, phone, email, address, tagList);
+
+        return new AddCommand(patient);
     }
 
     /**
