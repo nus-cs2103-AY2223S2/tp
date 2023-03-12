@@ -148,7 +148,7 @@ public class ParserUtil {
     public static DepartmentName parseDepartmentName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!DepartmentName.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new DepartmentName(trimmedName);

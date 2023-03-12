@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -135,6 +136,11 @@ public class ModelManager implements Model {
     }
 
     //=========== Department-Level Operations ==========================================================================
+
+    @Override
+    public Department getDepartment(DepartmentName name) {
+        return sudoHr.getDepartment(name);
+    }
 
     @Override
     public boolean hasDepartment(Department department) {

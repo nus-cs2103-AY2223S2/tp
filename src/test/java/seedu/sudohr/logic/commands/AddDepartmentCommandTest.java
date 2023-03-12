@@ -21,6 +21,7 @@ import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
@@ -149,6 +150,11 @@ public class AddDepartmentCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Department getDepartment(DepartmentName name) {
             throw new AssertionError("This method should not be called.");
         }
 

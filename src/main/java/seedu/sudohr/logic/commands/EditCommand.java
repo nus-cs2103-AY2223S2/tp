@@ -29,7 +29,7 @@ import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the sudohr book.
+ * Edits the details of an existing person inside SudoHR.
  */
 public class EditCommand extends Command {
 
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the sudohr book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SudoHR.";
     // TODO DUPLICATED IDENTITY FIELDS
 
     private final Index index;
