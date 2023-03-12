@@ -14,7 +14,8 @@ import seedu.patientist.model.person.UniquePersonList;
  */
 public class Patientist implements ReadOnlyPatientist {
 
-    private final UniquePersonList persons;
+    private final UniquePersonList patients;
+    //TODO: this should eventually hold a list of wards, which in turn hold 2 UniquePersonList, for patients and staff
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +25,13 @@ public class Patientist implements ReadOnlyPatientist {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        patients = new UniquePersonList();
     }
 
     public Patientist() {}
 
     /**
-     * Creates an Patientist using the Persons in the {@code toBeCopied}
+     * Creates a Patientist using the Persons in the {@code toBeCopied}
      */
     public Patientist(ReadOnlyPatientist toBeCopied) {
         this();
@@ -43,8 +44,8 @@ public class Patientist implements ReadOnlyPatientist {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPatients(List<Person> patients) {
+        this.patients.setPersons(patients);
     }
 
     /**
@@ -53,7 +54,7 @@ public class Patientist implements ReadOnlyPatientist {
     public void resetData(ReadOnlyPatientist newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPatients(newData.getPersonList());
     }
 
     //// person-level operations
@@ -63,7 +64,7 @@ public class Patientist implements ReadOnlyPatientist {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        return patients.contains(person);
     }
 
     /**
@@ -71,7 +72,7 @@ public class Patientist implements ReadOnlyPatientist {
      * The person must not already exist in the patientist book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        patients.add(p);
     }
 
     /**
@@ -82,7 +83,7 @@ public class Patientist implements ReadOnlyPatientist {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        patients.setPerson(target, editedPerson);
     }
 
     /**
@@ -90,31 +91,31 @@ public class Patientist implements ReadOnlyPatientist {
      * {@code key} must exist in the patientist book.
      */
     public void removePerson(Person key) {
-        persons.remove(key);
+        patients.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return patients.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return patients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Patientist // instanceof handles nulls
-                && persons.equals(((Patientist) other).persons));
+                && patients.equals(((Patientist) other).patients));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return patients.hashCode();
     }
 }

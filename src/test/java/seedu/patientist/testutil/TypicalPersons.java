@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code Patientist} with all the typical persons.
      */
-    public static Patientist getTypicalAddressBook() {
+    public static Patientist getTypicalPatientist() {
         Patientist ab = new Patientist();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

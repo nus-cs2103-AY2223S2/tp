@@ -2,7 +2,7 @@ package seedu.patientist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
 
 import java.nio.file.Path;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonPatientistStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonPatientistStorageTest} class.
          */
-        Patientist original = getTypicalAddressBook();
+        Patientist original = getTypicalPatientist();
         storageManager.savePatientist(original);
         ReadOnlyPatientist retrieved = storageManager.readPatientist().get();
         assertEquals(original, new Patientist(retrieved));
