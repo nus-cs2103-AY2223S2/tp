@@ -19,6 +19,7 @@ import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.parser.MeetType;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,13 +83,13 @@ public class EduMateParser {
             return new SortCommandParser().parse(arguments);
 
         case MeetCommand.EAT_COMMAND_WORD:
-            return new MeetCommandParser(MeetCommandParser.MeetupType.EAT).parse(arguments);
+            return new MeetCommandParser(MeetType.EAT).parse(arguments);
 
         case MeetCommand.STUDY_COMMAND_WORD:
-            return new MeetCommandParser(MeetCommandParser.MeetupType.STUDY).parse(arguments);
+            return new MeetCommandParser(MeetType.STUDY).parse(arguments);
 
         case MeetCommand.MEET_COMMAND_WORD:
-            return new MeetCommandParser(MeetCommandParser.MeetupType.MEET).parse(arguments);
+            return new MeetCommandParser(MeetType.MEET).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

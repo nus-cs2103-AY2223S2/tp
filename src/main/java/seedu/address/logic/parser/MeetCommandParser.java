@@ -22,10 +22,10 @@ public class MeetCommandParser implements Parser<MeetCommand> {
 
     /**
      * Constructs a {@code MeetCommandParser} with the correct data loaded.
-     * @param meetupType The type of meetup we are interested in.
+     * @param meetType The type of meetup we are interested in.
      */
-    public MeetCommandParser(MeetupType meetupType) {
-        switch (meetupType) {
+    public MeetCommandParser(MeetType meetType) {
+        switch (meetType) {
         case EAT:
             locationHashSet = LocationUtil.EAT_LOCATIONS;
             break;
@@ -54,15 +54,5 @@ public class MeetCommandParser implements Parser<MeetCommand> {
         Set<Index> indices =
                 ParserUtil.parseIndices(indexArray);
         return new MeetCommand(indices, locationHashSet);
-    }
-
-    /**
-     * The types of meetups possible.
-     * EAT: Places to eat.
-     * STUDY: Places to study.
-     * MEET: Places to either eat or study (combined).
-     */
-    public enum MeetupType {
-        EAT, STUDY, MEET
     }
 }

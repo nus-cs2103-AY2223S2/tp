@@ -16,11 +16,11 @@ import seedu.address.model.location.LocationUtil;
 public class MeetCommandParserTest {
 
     private static final MeetCommandParser MEET_COMMAND_PARSER =
-            new MeetCommandParser(MeetCommandParser.MeetupType.MEET);
+            new MeetCommandParser(MeetType.MEET);
     private static final MeetCommandParser EAT_COMMAND_PARSER =
-            new MeetCommandParser(MeetCommandParser.MeetupType.EAT);
+            new MeetCommandParser(MeetType.EAT);
     private static final MeetCommandParser STUDY_COMMAND_PARSER =
-            new MeetCommandParser(MeetCommandParser.MeetupType.STUDY);
+            new MeetCommandParser(MeetType.STUDY);
     private static final List<MeetCommandParser> COMMAND_PARSER_LIST =
             List.of(MEET_COMMAND_PARSER, EAT_COMMAND_PARSER, STUDY_COMMAND_PARSER);
 
