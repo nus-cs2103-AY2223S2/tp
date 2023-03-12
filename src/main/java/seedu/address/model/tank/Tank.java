@@ -5,12 +5,17 @@ import java.util.Objects;
 import seedu.address.model.AddressBook;
 
 /**
- *  Represents a Tank of the user that contains fish
+ *  Represents a Tank of the user that contains fish.
  */
 public class Tank {
     private final TankName name;
     private final AddressBook fishList;
 
+    /**
+     * Creates a Tank.
+     * @param tankName Name of tank.
+     * @param fishList Fish in tank.
+     */
     public Tank(TankName tankName, AddressBook fishList) {
         this.name = tankName;
         this.fishList = fishList;
