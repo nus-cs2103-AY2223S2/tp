@@ -13,11 +13,11 @@ import static trackr.testutil.TypicalPersons.AMY;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.CommandResult;

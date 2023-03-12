@@ -15,7 +15,7 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="3">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
@@ -28,8 +28,10 @@
                 </Label>
                 <Label fx:id="taskName" styleClass="cell_big_label" text="\$taskName" />
             </HBox>
-            <Label fx:id="taskDeadline" styleClass="cell_small_label" text="\$taskDeadline" />
-            <Label fx:id="taskStatus" styleClass="cell_small_label" text="\$taskStatus" />
+            <HBox fx:id="taskField" alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="taskDeadline" styleClass="cell_small_label" text="\$taskDeadline" />
+                <Label fx:id="taskStatus" styleClass="cell_small_label" text="\$taskStatus" />
+            </HBox>
         </VBox>
         <rowConstraints>
             <RowConstraints />
