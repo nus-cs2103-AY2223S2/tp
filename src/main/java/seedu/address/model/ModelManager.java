@@ -36,12 +36,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyMasterDeck deck, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(deck, userPrefs);
+    public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(masterDeck, userPrefs);
 
-        logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + masterDeck + " and user prefs " + userPrefs);
 
-        this.masterDeck = new MasterDeck(deck);
+        this.masterDeck = new MasterDeck(masterDeck);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCards = new FilteredList<>(this.masterDeck.getCardList());
         filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
@@ -50,6 +50,8 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new MasterDeck(), new UserPrefs());
     }
+
+
 
     //=========== UserPrefs ==================================================================================
 

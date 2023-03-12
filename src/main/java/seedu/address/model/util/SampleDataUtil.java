@@ -40,11 +40,12 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyMasterDeck getSampleAddressBook() {
-        MasterDeck sampleAb = new MasterDeck();
+        MasterDeck sampleMasterDeck = new MasterDeck();
         for (Card sampleCard : getSamplePersons()) {
-            sampleAb.addCard(sampleCard);
+            sampleMasterDeck.addCard(sampleCard);
         }
-        return sampleAb;
+        sampleMasterDeck.initDecks();
+        return sampleMasterDeck;
     }
 
     /**
