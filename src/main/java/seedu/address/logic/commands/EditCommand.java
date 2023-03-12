@@ -229,13 +229,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<EventTag> tags) {
-            if (tags == null) {
-                this.tags = null;
-            } else if (tags.isEmpty()) {
-                this.tags = new HashSet<>();
-            } else {
-                this.tags = null;
-            }
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -259,6 +253,7 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Index>> getEventTags() {
+            System.out.println(eventIndexTags);
             return (eventIndexTags != null) ? Optional.of(eventIndexTags) : Optional.empty();
         }
 
@@ -277,12 +272,14 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
+            System.out.println(getEventTags().equals(e.getEventTags()));
+
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getEventTags().equals(e.getEventTags());
+                    && getTags().equals(e.getTags());
+                   // && getEventTags().equals(e.getEventTags());
         }
     }
 }
