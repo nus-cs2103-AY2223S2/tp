@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's meetings in the address book.

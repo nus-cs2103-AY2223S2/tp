@@ -2,15 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,6 +124,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String meeting} into a {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if start time given is after the end time given
+     */
     public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
@@ -131,6 +141,10 @@ public class ParserUtil {
         return new Meeting(start, end);
     }
 
+    /**
+     * Parses {@code String dateTime} into a pair of
+     * {@code LocalDateTime} objects
+     */
     private static LocalDateTime[] parseDateTime(String dateTime) {
         String[] dateTimeStrings = dateTime.split(" ");
         String[] dateString = dateTimeStrings[0].split("-");
