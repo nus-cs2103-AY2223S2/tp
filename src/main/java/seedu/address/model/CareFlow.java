@@ -4,8 +4,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.drug.Drug;
+import seedu.address.model.hospital.Hospital;
 import seedu.address.model.person.Patient;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 
 /**
@@ -16,10 +18,12 @@ public class CareFlow {
 
     private final PatientRecord patientRecord;
     private final DrugInventory drugInventory;
+    private final HospitalRecord hospitalRecord;
 
     {
         patientRecord = new PatientRecord();
         drugInventory = new DrugInventory();
+        hospitalRecord = new HospitalRecord();
     }
 
 
@@ -33,10 +37,12 @@ public class CareFlow {
      * @param toBeCopiedP the patient records
      * @param toBeCopiedD the drug inventory
      */
-    public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD) {
+    public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD,
+                    ReadOnlyHospitalRecords toBeCopiedH) {
         this();
         resetPatientData(toBeCopiedP);
         resetDrugData(toBeCopiedD);
+        resetHospitalData(toBeCopiedH);
     }
 
     public ReadOnlyPatientRecord getPatientRecord() {
@@ -45,6 +51,10 @@ public class CareFlow {
 
     public ReadOnlyDrugInventory getDrugInventory() {
         return drugInventory;
+    }
+
+    public ReadOnlyHospitalRecords getHospitalRecords() {
+        return hospitalRecord;
     }
     //// list overwrite operations
 
@@ -55,6 +65,8 @@ public class CareFlow {
     public void setDrugs(List<Drug> drugs) {
         drugInventory.setDrugs(drugs);
     }
+
+    public void setHospitals(List<Hospital> hospitals) {hospitalRecord.setHospitals(hospitals);}
 
     /**
      * Resets the existing data of CareFlow patient record with {@code newData}.
@@ -68,6 +80,10 @@ public class CareFlow {
      */
     public void resetDrugData(ReadOnlyDrugInventory newData) {
         setDrugs(newData.getDrugList());
+    }
+
+    public void resetHospitalData(ReadOnlyHospitalRecords newData) {
+        setHospitals(newData.getHospitalList());
     }
 
     /**
@@ -98,6 +114,10 @@ public class CareFlow {
      */
     public void addDrug(Drug d) {
         drugInventory.addDrug(d);
+    }
+
+    public void addHospital(Hospital h) {
+        hospitalRecord.addHospital(h);
     }
 
     /**
@@ -149,6 +169,10 @@ public class CareFlow {
 
     public ObservableList<Drug> getDrugList() {
         return drugInventory.getDrugList();
+    }
+
+    public ObservableList<Hospital> getHospitalList() {
+        return hospitalRecord.getHospitalList();
     }
 
     @Override
