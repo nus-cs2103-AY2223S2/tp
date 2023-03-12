@@ -7,7 +7,7 @@ import seedu.address.model.lecture.LectureName;
 /**
  * Tests that a {@code Module}'s {@code Code}, {@code LectureName} matches user's input.
  */
-public class ModuleLectureContainsKeywordsPredicate implements Predicate<Module> {
+public class ModuleLectureContainsKeywordsPredicate implements Predicate<ReadOnlyModule> {
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
 
@@ -22,9 +22,9 @@ public class ModuleLectureContainsKeywordsPredicate implements Predicate<Module>
     }
 
     @Override
-    public boolean test(Module module) {
+    public boolean test(ReadOnlyModule module) {
         return this.moduleCode.equals(module.getCode())
-            && module.getLectures().stream()
+            && module.getLectureList().stream()
                 .anyMatch(lecture -> lectureName.equals(lecture.getName()));
     }
 

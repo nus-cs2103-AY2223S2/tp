@@ -12,9 +12,9 @@ import seedu.address.model.module.Module;
  */
 public class TypicalModules {
 
-    public static final Module CS2105 = new ModuleBuilder().withCode("CS2105").build();
-    public static final Module CS2030 = new ModuleBuilder().withCode("CS2030").build();
-    public static final Module CS2040 = new ModuleBuilder().withCode("CS2040").build();
+    public static final Module CS2105 = new ModuleBuilder().withCode("CS2105").withName("network").build();
+    public static final Module CS2030 = new ModuleBuilder().withCode("CS2030").withName("pm2").build();
+    public static final Module CS2040 = new ModuleBuilder().withCode("CS2040").withName("dsa").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

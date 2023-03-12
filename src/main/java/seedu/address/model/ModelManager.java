@@ -28,8 +28,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<? extends ReadOnlyModule> filteredModules;
 
-    private final AddressBook addressBook; // TODO: Remove this
-    private final FilteredList<Person> filteredPersons; // TODO: Remove this
+    private AddressBook addressBook; // TODO: Remove this
+    private FilteredList<Person> filteredPersons; // TODO: Remove this
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with tracker: " + tracker + " and user prefs " + userPrefs);
 
-        this.tracker = new Tracker(); //TODO: assign this from constructor arguments
+        this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
     }
@@ -274,11 +274,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && tracker.equals(other.tracker)
-                && filteredModules.equals(other.filteredModules);
+        return tracker.equals(other.tracker)
+            && filteredModules.equals(other.filteredModules);
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Module}'s {@code Code} matches user's input.
  */
-public class ModuleContainsKeywordsPredicate implements Predicate<Module> {
+public class ModuleContainsKeywordsPredicate implements Predicate<ReadOnlyModule> {
     private final ModuleCode code;
 
     public ModuleContainsKeywordsPredicate(ModuleCode code) {
@@ -13,7 +13,7 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Module> {
     }
 
     @Override
-    public boolean test(Module module) {
+    public boolean test(ReadOnlyModule module) {
         return this.code.equals(module.getCode());
     }
 
