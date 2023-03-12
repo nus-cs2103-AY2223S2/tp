@@ -92,4 +92,33 @@ public class ViewCommandTest {
         assertEquals("No such name found!", result3.getFeedbackToUser());
     }
 
+    @Test
+    public void compare_commandEquality_true() {
+        ViewCommand command1 = new ViewCommand("Lisa Meitner", null);
+        ViewCommand command2 = new ViewCommand("Lisa Meitner", null);
+        assertEquals(command1, command2);
+        assertEquals(command1, command1);
+        assertEquals(command2, command2);
+    }
+
+    @Test
+    public void compare_commandInequality_false() {
+        ViewCommand command1 = new ViewCommand("Lisa Meitner", null);
+        ViewCommand command2 = new ViewCommand("Lisa Meitner", Index.fromZeroBased(1));
+        assertNotEquals(command1, command2);
+
+        ViewCommand command3 = new ViewCommand(null, Index.fromZeroBased(1));
+        ViewCommand command4 = new ViewCommand(null, null);
+        assertNotEquals(command3, command1);
+        assertNotEquals(command3, command2);
+        assertNotEquals(command3, command4);
+
+        ViewCommand command5 = new ViewCommand("Marie Curie", null);
+        ViewCommand command6 = new ViewCommand(null, Index.fromZeroBased(2));
+        assertNotEquals(command5, command1);
+        assertNotEquals(command5, command1);
+        assertNotEquals(command6, command2);
+        assertNotEquals(command6, command1);
+    }
+
 }
