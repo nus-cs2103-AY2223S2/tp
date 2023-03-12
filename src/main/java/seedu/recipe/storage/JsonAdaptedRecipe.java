@@ -1,6 +1,8 @@
 package seedu.recipe.storage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,21 +27,25 @@ class JsonAdaptedRecipe {
     private final String desc;
 
     // Data fields
-    private final Set<JsonAdaptedIngredient> ingredients = new HashSet<>();
-    private final Set<JsonAdaptedStep> steps = new HashSet<>();
+    private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
+    private final List<JsonAdaptedStep> steps = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
-    public JsonAdaptedRecipe(@JsonProperty("title") Title title,
-                             @JsonProperty("desc") Description desc,
-                             @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients,
-                             @JsonProperty("steps") Set<JsonAdaptedStep> steps) {
-        this.title = title.title;
-        this.desc = desc.description;
-        this.ingredients.addAll(ingredients);
-        this.steps.addAll(steps);
+    public JsonAdaptedRecipe(@JsonProperty("title") String title,
+                             @JsonProperty("desc") String desc,
+                             @JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients,
+                             @JsonProperty("steps") List<JsonAdaptedStep> steps) {
+        this.title = title;
+        this.desc = desc;
+        if (ingredients != null) {
+            this.ingredients.addAll(ingredients);
+        }
+        if (steps != null) {
+            this.steps.addAll(steps);
+        }
     }
 
     /**
@@ -50,10 +56,10 @@ class JsonAdaptedRecipe {
         desc = source.getDesc().description;
         ingredients.addAll(source.getIngredients().stream()
                       .map(JsonAdaptedIngredient::new)
-                      .collect(Collectors.toSet()));
+                      .collect(Collectors.toList()));
         steps.addAll(source.getSteps().stream()
                 .map(JsonAdaptedStep::new)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -62,11 +68,11 @@ class JsonAdaptedRecipe {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Recipe toModelType() throws IllegalValueException {
-        final Set<Ingredient> recipeIngredients = new HashSet<>();
+        final List<Ingredient> recipeIngredients = new ArrayList<>();
         for (JsonAdaptedIngredient ingredient : ingredients) {
             recipeIngredients.add(ingredient.toModelType());
         }
-        final Set<Step> recipeSteps = new HashSet<>();
+        final List<Step> recipeSteps = new ArrayList<>();
         for (JsonAdaptedStep step : steps) {
             recipeSteps.add(step.toModelType());
         }
@@ -87,7 +93,9 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDesc = new Description(desc);
-        return new Recipe(modelTitle, modelDesc, recipeIngredients, recipeSteps);
+        final Set<Ingredient> modelIngredients = new HashSet<>(recipeIngredients);
+        final Set<Step> modelSteps = new HashSet<>(recipeSteps);
+        return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps);
     }
 
 }

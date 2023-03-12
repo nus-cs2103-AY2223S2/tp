@@ -23,13 +23,16 @@ public class Title {
     /**
      * Constructs a {@code Title}.
      *
-     * @param title A valid title.
+     * @param inputTitle A valid title.
      */
-    public Title(String title) {
-        requireNonNull(title);
-        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
-        this.title = title;
+    public Title(String inputTitle) {
+        requireNonNull(inputTitle);
+        checkArgument(isValidTitle(inputTitle), MESSAGE_CONSTRAINTS);
+        title = inputTitle;
     }
+
+
+
 
     /**
      * Returns true if a given string is a valid title.
