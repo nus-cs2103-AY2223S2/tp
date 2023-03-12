@@ -17,7 +17,7 @@ public class InternshipCardTest extends GuiUnitTest {
     @Test
     public void create_internshipCard_success() {
         //@@author eugenetangkj-reused
-        //Reused from the following link for testing of creation of internship card in GUI testing
+        //Reused with modifications from the following link for testing of creation of internship card in GUI testing
         // https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/ui/InternshipCardTest.java
         Internship internship = new InternshipBuilder().build();
         InternshipCard internshipCard = new InternshipCard(internship, 1);
