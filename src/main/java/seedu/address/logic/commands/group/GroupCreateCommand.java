@@ -2,7 +2,6 @@ package seedu.address.logic.commands.group;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
