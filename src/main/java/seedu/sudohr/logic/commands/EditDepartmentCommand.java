@@ -11,6 +11,9 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 
+/**
+ * Edits the details of an existing department inside SudoHR.
+ */
 public class EditDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "edep";
 

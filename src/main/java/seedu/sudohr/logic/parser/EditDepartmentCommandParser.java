@@ -1,14 +1,16 @@
 package seedu.sudohr.logic.parser;
 
-import seedu.sudohr.logic.commands.EditCommand;
+import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
+
 import seedu.sudohr.logic.commands.EditDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.parser.CliSyntax.*;
-
+/**
+ * Parses input arguments and creates a new EditDepartmentCommand object
+ */
 public class EditDepartmentCommandParser implements Parser<EditDepartmentCommand> {
 
     /**

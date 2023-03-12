@@ -13,7 +13,6 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.person.Person;
 
 /**

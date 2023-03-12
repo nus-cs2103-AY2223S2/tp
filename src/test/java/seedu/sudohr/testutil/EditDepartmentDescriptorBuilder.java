@@ -22,9 +22,9 @@ public class EditDepartmentDescriptorBuilder {
     /**
      * Returns an {@code EditDepartmentDescriptor} with fields containing {@code Department}'s details
      */
-    public EditDepartmentDescriptorBuilder(Department Department) {
+    public EditDepartmentDescriptorBuilder(Department department) {
         descriptor = new EditDepartmentCommand.EditDepartmentDescriptor();
-        descriptor.setName(Department.getName());
+        descriptor.setName(department.getName());
     }
 
     /**

@@ -2,10 +2,15 @@ package seedu.sudohr.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
-import static seedu.sudohr.testutil.TypicalDepartmentNames.*;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.sudohr.logic.commands.CommandTestUtil.DESC_DEPARTMENT_ENGINEERING;
+import static seedu.sudohr.logic.commands.CommandTestUtil.DESC_DEPARTMENT_HUMAN_RESOURCES;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_DEPARTMENT_NAME_ENGINEERING;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_DEPARTMENT_NAME_HUMAN_RESOURCES;
+import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_SECOND;
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_THIRD;
 import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
@@ -80,11 +85,15 @@ public class EditDepartmentCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditDepartmentCommand standardCommand =
+                new EditDepartmentCommand(new DepartmentName(VALID_DEPARTMENT_NAME_HUMAN_RESOURCES),
+                DESC_DEPARTMENT_ENGINEERING);
 
         // same values -> returns true
-        EditCommand.EditPersonDescriptor copyDescriptor = new EditCommand.EditPersonDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditDepartmentCommand.EditDepartmentDescriptor copyDescriptor =
+                new EditDepartmentCommand.EditDepartmentDescriptor(DESC_DEPARTMENT_ENGINEERING);
+        EditDepartmentCommand commandWithSameValues =
+                new EditDepartmentCommand(new DepartmentName(VALID_DEPARTMENT_NAME_HUMAN_RESOURCES), copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -97,10 +106,12 @@ public class EditDepartmentCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditDepartmentCommand(
+                new DepartmentName(VALID_DEPARTMENT_NAME_ENGINEERING), DESC_DEPARTMENT_ENGINEERING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditDepartmentCommand(
+                new DepartmentName(VALID_DEPARTMENT_NAME_HUMAN_RESOURCES), DESC_DEPARTMENT_HUMAN_RESOURCES)));
     }
 
 }

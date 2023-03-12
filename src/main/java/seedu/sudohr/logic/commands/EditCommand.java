@@ -29,7 +29,7 @@ import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the sudohr book.
+ * Edits the details of an existing person inside SudoHR.
  */
 public class EditCommand extends Command {
 
