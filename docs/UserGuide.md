@@ -78,7 +78,7 @@ Format: `help`
 
 Adds a customer to the current list.
 
-Format: `addc ind/ent n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ind - Individuals
@@ -86,8 +86,8 @@ ent - Enterprise
 </div>
 
 Examples:
-* `add ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
+* `addc ct/ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
 
 ### Listing all customers : `listc`
 
@@ -109,22 +109,72 @@ Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in the address book.
 * `findc Betsy` followed by `delete 1` deletes the 1st person in the results of the `findc` command.
 
-### Editing a person : `edit`
+### Setting reward points for a customer : `setpoints`
 
-Edits an existing person in the address book.
+Sets a customer's reward points.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `setpoints INDEX POINTS`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Sets the points of the customer at the specified `INDEX` to `POINTS`.
+* Customers by default, have 0 points initially.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The points refers to the reward points of the customer
+* The points **must be a positive integer** 1, 2, 3, ​​…
+
+Examples:
+* `listc` followed by `setpoints 2 100` sets the 2nd customer points as 100.
+* `findc Betsy` followed by `setpoints 1 300` sets the 1st customer points as 300 in the results of the `findc` command.
+
+### Adding points for a customer / Removing points from a customer : `addpoints`
+
+Edits a customer's reward points by adding or removing from it.
+
+Format: `addpoints INDEX +/-POINTS`
+
+* Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
+* If the points subtracted is greater than what the user has, the command will not be executed
+* If + or - is not explictly stated, the command will default to an addition of `POINTS`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
+* The points refers to how much you wish to add or subtract the reward points of the customer
+* The points **must be a positive integer** 1, 2, 3, ​​…
+
+Examples:
+* `listc` followed by `addpoints 2 100` adds 100 reward points to the 2nd customer.
+* `findc Betsy` followed by `addpoints 1 300` adds 300 reward poitns to the 1st customer in the results of the `findc` command.
+
+### Setting tiers for your reward system : `settier`
+
+Sets a tier for your reward system with a point threshold. Customers above the point threshold are automatically in this tier, and the tiers below it.
+
+Format: `settier TIER_NUM POINT_THRESHOLD`
+
+* There are 3 tiers by default, tiers 1, 2 and 3 will be initially set to 999997 999998 and 999999 respectively.
+* The points threshold of tiers must go in the following order, 1 < 2 < 3
+* The tier_num refers to the particular tier that you want to set the point_threshold
+* The tier_num **must be 1, 2 or 3**
+* The point_threshold refers to how much points you want a customer to accmulate before he is in the tier, tier_num
+* The points **must be a positive integer** 1, 2, 3, ​​…
+
+Examples:
+* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be in tier 1.
+* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold than tier 2. 
+
+### Editing a person : `editc`
+
+Edits an existing customer in the address book.
+
+Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+
+* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 

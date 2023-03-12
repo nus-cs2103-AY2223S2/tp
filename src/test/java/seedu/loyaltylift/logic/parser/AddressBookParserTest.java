@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,31 +13,33 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.logic.commands.AddCommand;
+import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
-import seedu.loyaltylift.logic.commands.DeleteCommand;
-import seedu.loyaltylift.logic.commands.EditCommand;
-import seedu.loyaltylift.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.logic.commands.ExitCommand;
-import seedu.loyaltylift.logic.commands.FindCommand;
+import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
-import seedu.loyaltylift.logic.commands.ListCommand;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.person.NameContainsKeywordsPredicate;
-import seedu.loyaltylift.model.person.Person;
-import seedu.loyaltylift.testutil.EditPersonDescriptorBuilder;
-import seedu.loyaltylift.testutil.PersonBuilder;
-import seedu.loyaltylift.testutil.PersonUtil;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.testutil.CustomerBuilder;
+import seedu.loyaltylift.testutil.CustomerUtil;
+import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_addc() throws Exception {
+        Customer customer = new CustomerBuilder().build();
+        AddCustomerCommand command =
+                (AddCustomerCommand) parser.parseCommand(CustomerUtil.getAddCustomerCommand(customer));
+        assertEquals(new AddCustomerCommand(customer), command);
     }
 
     @Test
@@ -47,19 +49,21 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    public void parseCommand_deletec() throws Exception {
+        DeleteCustomerCommand command = (DeleteCustomerCommand) parser.parseCommand(
+                DeleteCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
+        assertEquals(new DeleteCustomerCommand(INDEX_FIRST_CUSTOMER), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_editc() throws Exception {
+        Customer customer = new CustomerBuilder().build();
+        EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
+        System.out.println(EditCustomerCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+        EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(EditCustomerCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+        assertEquals(new EditCustomerCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
     }
 
     @Test
@@ -69,11 +73,11 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findc() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindCustomerCommand command = (FindCustomerCommand) parser.parseCommand(
+                FindCustomerCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCustomerCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -83,9 +87,16 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listc() throws Exception {
+        assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD) instanceof ListCustomerCommand);
+        assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " 3") instanceof ListCustomerCommand);
+    }
+
+    @Test
+    public void parseCommand_viewc() throws Exception {
+        ViewCustomerCommand command = (ViewCustomerCommand) parser.parseCommand(
+                ViewCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
+        assertEquals(new ViewCustomerCommand(INDEX_FIRST_CUSTOMER), command);
     }
 
     @Test

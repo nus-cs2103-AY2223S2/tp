@@ -1,14 +1,14 @@
 package seedu.loyaltylift.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalPersons.AMY;
+import static seedu.loyaltylift.testutil.TypicalCustomers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,20 +17,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.loyaltylift.logic.commands.AddCommand;
+import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.CommandResult;
-import seedu.loyaltylift.logic.commands.ListCommand;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.UserPrefs;
-import seedu.loyaltylift.model.person.Person;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.storage.JsonAddressBookStorage;
 import seedu.loyaltylift.storage.JsonUserPrefsStorage;
 import seedu.loyaltylift.storage.StorageManager;
-import seedu.loyaltylift.testutil.PersonBuilder;
+import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -58,14 +58,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "deletec 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCustomerCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCustomerCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,18 +79,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCustomerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addCustomer(expectedCustomer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCustomerList().remove(0));
     }
 
     /**

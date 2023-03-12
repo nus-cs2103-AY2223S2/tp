@@ -14,7 +14,8 @@ import seedu.loyaltylift.logic.parser.AddressBookParser;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
-import seedu.loyaltylift.model.person.Person;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.storage.Storage;
 
 /**
@@ -60,8 +61,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return model.getFilteredCustomerList();
+    }
+
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return model.getFilteredOrderList();
     }
 
     @Override

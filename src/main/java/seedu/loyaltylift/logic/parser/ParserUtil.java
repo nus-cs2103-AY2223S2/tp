@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.person.Address;
-import seedu.loyaltylift.model.person.Email;
-import seedu.loyaltylift.model.person.Name;
-import seedu.loyaltylift.model.person.Phone;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -120,5 +121,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String customerType} into a {@code CustomerType}.
+     */
+    public static CustomerType parseCustomerType(String customerType) throws ParseException {
+        requireNonNull(customerType);
+        CustomerType type;
+        try {
+            type = CustomerType.fromUserFriendlyString(customerType);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
+        }
+        return type;
     }
 }

@@ -1,7 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.loyaltylift.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

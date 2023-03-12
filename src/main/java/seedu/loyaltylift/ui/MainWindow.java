@@ -2,8 +2,11 @@ package seedu.loyaltylift.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -17,6 +20,10 @@ import seedu.loyaltylift.logic.Logic;
 import seedu.loyaltylift.logic.commands.CommandResult;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.ui.customer.CustomerInfo;
+import seedu.loyaltylift.ui.order.OrderInfo;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CustomerListPanel customerListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,7 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane orderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -53,6 +64,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox userCommandBox;
+
+    @FXML
+    private StackPane infoPane;
+
+    @FXML
+    private Label hintLabel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -70,6 +87,11 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        /* A bugfix to resolve blurry contents in a ScrollPane */
+        infoPane.getChildren().addListener((InvalidationListener) e ->
+                resetScrollPaneCacheProperty()
+        );
     }
 
     public Stage getPrimaryStage() {
@@ -114,8 +136,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(), this::showCustomerInfo);
+        customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), this::showOrderInfo);
+        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         userCommandBox.getChildren().add(commandBox.getRoot());
@@ -167,8 +192,24 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public CustomerListPanel getCustomerListPanel() {
+        return customerListPanel;
+    }
+
+    /**
+     * This recursive method aims to resolve the blurry contents in a ScrollPane. `ScrollPaneSkin` sets
+     * cache to true manually, ignoring the property set in the FXML file.
+     * Hence, this method aggressively attempts to reset the property.
+     */
+    private void resetScrollPaneCacheProperty() {
+        Platform.runLater(() -> {
+            StackPane stackPane = (StackPane) infoPane.lookup("ScrollPane .viewport");
+            if (stackPane == null) {
+                resetScrollPaneCacheProperty();
+                return;
+            }
+            stackPane.setCache(false);
+        });
     }
 
     /**
@@ -190,11 +231,37 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowCustomerSelection()) {
+                customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Handles the event where a CustomerCard is clicked and the customer info needs to be shown.
+     * @param customer The customer to be displayed on the information pane.
+     */
+    private void showCustomerInfo(Customer customer) {
+        infoPane.getChildren().clear();
+
+        CustomerInfo customerInfo = new CustomerInfo(customer);
+        infoPane.getChildren().add(customerInfo.getRoot());
+    }
+
+    /**
+     * Handles the event where a OrderCard is clicked and the customer info needs to be shown.
+     * @param order The order to be displayed on the information pane.
+     */
+    private void showOrderInfo(Order order) {
+        infoPane.getChildren().clear();
+
+        OrderInfo orderInfo = new OrderInfo(order);
+        infoPane.getChildren().add(orderInfo.getRoot());
     }
 }

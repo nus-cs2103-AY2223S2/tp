@@ -1,0 +1,9 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.nameHeader {
+    -fx-font-size: 35px;
+    -fx-text-fill: #4F46E5;
+    -fx-font-weight: bold;
+}
