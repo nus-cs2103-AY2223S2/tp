@@ -1,15 +1,16 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 import java.util.List;
 import java.util.Objects;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.UniqueMeetingList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -86,6 +87,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    public Person getPersonByName(Name personName) {
+        requireNonNull(personName);
+        return persons.getPersonByName(personName);
     }
 
     /**

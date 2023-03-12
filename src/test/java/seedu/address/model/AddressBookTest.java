@@ -1,32 +1,26 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_LOCATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalMeetings.MEETING_A;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalMeetings.MEETING_A;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 public class AddressBookTest {
 
@@ -82,6 +76,22 @@ public class AddressBookTest {
     }
 
     @Test
+    public void getPersonByName_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getPersonByName(null));
+    }
+
+    @Test
+    public void getPersonByName_personNotInAddressBook_returnsNull() {
+        assertNull(addressBook.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
+    public void getPersonByName_personInAddressBook_returnsPerson() {
+        addressBook.addPerson(ALICE);
+        assertEquals(ALICE, addressBook.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
@@ -128,6 +138,8 @@ public class AddressBookTest {
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getMeetingList().remove(0));
     }
+
+
 
     /**
      * A stub ReadOnlyAddressBook whose persons/meetings list can violate interface constraints.
