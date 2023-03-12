@@ -94,9 +94,6 @@ public interface Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
-    /** Returns an unmodifiable view of the filtered deck list */
-    ObservableList<Deck> getFilteredDeckList();
-
     void updateFilteredDeckList(Predicate<Deck> predicate);
 
     /** Returns the deck */
