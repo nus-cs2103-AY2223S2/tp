@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,8 +29,6 @@ public class AssignTaskCommand extends Command {
             + PREFIX_PERSON_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Assigned task to %s \n %s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task is already assigned.";
-    public static final String MESSAGE_INVALID_INDEX = "This task is not in the list.";
 
     private final Index toAssignTask;
     private final Index toAssignMember;
@@ -58,7 +57,11 @@ public class AssignTaskCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         if (!model.hasTaskIndex(toAssignTask)) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        if (!model.hasPersonIndex(toAssignMember)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
@@ -68,6 +71,14 @@ public class AssignTaskCommand extends Command {
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personString, taskString));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AssignTaskCommand // instanceof handles nulls
+                && toAssignTask.equals(((AssignTaskCommand) other).toAssignTask)
+                && toAssignMember.equals(((AssignTaskCommand) other).toAssignMember));
     }
 
 }

@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -18,6 +18,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 
 /**
@@ -32,14 +36,20 @@ public class AssignTaskCommandTest {
     public void execute_validTaskPersonIndex_success() throws Exception {
         Index taskToAssign = INDEX_FIRST_TASK;
         Index personToAssign = INDEX_SECOND_PERSON;
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+
+        model.addTask(validDeadlineTask);
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(taskToAssign, personToAssign);
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, taskToAssign, personToAssign);
+        Task task = model.getFilteredTaskList().get(taskToAssign.getZeroBased());
+        Person person = model.getFilteredPersonList().get(personToAssign.getZeroBased());
+        System.out.println(task.toString() + " " + person.toString());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.assignTask(taskToAssign, personToAssign);
-        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, person.getName().toString(), task.toString());
+
+        model.assignTask(Index.fromZeroBased(taskToAssign.getZeroBased()), personToAssign);
+        assertEquals(assignTaskCommand.execute(model).getFeedbackToUser(), expectedMessage);
     }
 
     @Test
@@ -55,6 +65,8 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
         Index taskToAssign = INDEX_FIRST_TASK;
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        model.addTask(validDeadlineTask);
         Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(taskToAssign, outOfBoundPersonIndex);
@@ -66,6 +78,8 @@ public class AssignTaskCommandTest {
     public void equals() {
         Index taskToAssign = INDEX_FIRST_TASK;
         Index personToAssign = INDEX_SECOND_PERSON;
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        model.addTask(validDeadlineTask);
 
         AssignTaskCommand assignFirstCommand = new AssignTaskCommand(taskToAssign, personToAssign);
         AssignTaskCommand assignSecondCommand = new AssignTaskCommand(taskToAssign, personToAssign);
