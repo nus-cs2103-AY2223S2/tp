@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersonsByName;
     private ObservableList<Person> persons;
 
     /**
@@ -37,6 +38,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        filteredPersonsByName = new FilteredList<>(this.addressBook.getPersonListByName());
         persons = FXCollections.observableArrayList(addressBook.getPersonList());
         filteredPersons = new FilteredList<>(persons);
     }
@@ -141,6 +144,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
         SortedList<Person> newSortedList = new SortedList<>(filteredPersons, new TimeComparator());
         persons.setAll(newSortedList);
+        
+    @Override
+    public void updateFilteredPersonListByName(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        persons.setAll(addressBook.getPersonList());
+        filteredPersons.setPredicate(predicate);
+        persons.setAll(filteredPersonsByName);
     }
 
     @Override

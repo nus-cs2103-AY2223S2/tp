@@ -90,4 +90,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the persons arranged by scheduled time */
     void updateScheduledList(Predicate<Person> predicate);
+
+    void updateFilteredPersonListByName(Predicate<Person> predicate);
+
 }

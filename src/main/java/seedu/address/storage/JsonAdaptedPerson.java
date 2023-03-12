@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private String medicalCondition;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private LocalDateTime time = null;
 
@@ -39,7 +41,24 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("time") String time) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("time") String time,
+                             @JsonProperty("MedicalCondition") String medicalCondition) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+        if (time != null) {
+            this.time = LocalDateTime.parse(time);
+        }
+        if (medicalCondition != null) {
+            this.medicalCondition = medicalCondition;
+        }
+    }
+    
+    public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -71,6 +90,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         if (source.hasTime()) {
             time = source.getTime();
+        if (source.getMedicalCondition().getValue() != null) {
+            medicalCondition = source.getMedicalCondition().getValue();
         }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -127,6 +148,11 @@ class JsonAdaptedPerson {
         } else {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time);
         }
+        if (medicalCondition != null) {
+            final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+        }
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
