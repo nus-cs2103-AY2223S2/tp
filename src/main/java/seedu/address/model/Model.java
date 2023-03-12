@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * The API of the Model component.
@@ -111,4 +112,8 @@ public interface Model {
     void selectDeck(Index idx);
 
     void unselectDeck();
+
+    void reviewDeck(Index idx);
+
+    Review getReview();
 }

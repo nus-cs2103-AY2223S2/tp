@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,6 +27,8 @@ public class ModelManager implements Model {
 
     private FilteredList<Deck> filteredDecks;
     private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
+    private Review currentReview = null;
+
     private FilteredList<Card> filteredCards;
 
     /**
@@ -197,4 +200,17 @@ public class ModelManager implements Model {
     public Deck getSelectedDeck() {
         return selectedDeck;
     }
+
+    @Override
+    public void reviewDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+        Deck deckToReview = filteredDecks.get(zeroBasesIdx);
+        currentReview = new Review(deckToReview);
+    };
+
+    @Override
+    public Review getReview() {
+        return currentReview;
+    };
+
 }
