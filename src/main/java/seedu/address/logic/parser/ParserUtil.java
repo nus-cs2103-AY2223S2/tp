@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -109,6 +113,42 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String eventName} into the correct format with no trailing space and
+     * check if the eventName is of valid format.
+     * @param eventName
+     * @return a String object containing the name of the isolated event.
+     * @throws ParseException if the given {@code eventName} is invalid.
+     */
+    public static String parseEventName(String eventName) throws ParseException {
+        requireNonNull(eventName);
+
+        String trimmedEventName = eventName.trim();
+        if (!IsolatedEvent.isValidEventName(eventName)) {
+            throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_EVENTNAME);
+        }
+        return trimmedEventName;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDateTime date} into the correct format.
+     * @param date of which the event start/end.
+     * @return LocalDateTime object containing the start/end date and time of the event.
+     * @throws ParseException if the given {@code String date} is in invalid format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+
+        LocalDateTime dueDate;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            dueDate = LocalDateTime.parse(date, formatter);
+        } catch (DateTimeException e) {
+            throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
+        }
+        return dueDate;
     }
 
     /**

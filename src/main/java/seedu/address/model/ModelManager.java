@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Group> filteredGroups;
+    private final FilteredList<Group> filteredGroups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -108,6 +109,9 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    public void addIsolatedEvent(Person person, IsolatedEvent event) {
+        addressBook.addIsolatedEvent(person, event);
+    }
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -163,6 +167,22 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Group List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return filteredGroups;
+    }
+
+    @Override
+    public void updateFilteredGroupList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        filteredGroups.setPredicate(predicate);
+    }
+
+>>>>>>> master
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

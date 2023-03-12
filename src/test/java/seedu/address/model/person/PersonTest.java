@@ -12,9 +12,13 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
@@ -92,6 +96,19 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void addIsolatedEvent() {
+        Person person = new PersonBuilder().build();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime start = LocalDateTime.parse("09/03/2023 14:00", formatter);
+        LocalDateTime end = LocalDateTime.parse("09/03/2023 15:00", formatter);
+        IsolatedEvent isolatedEvent = new IsolatedEvent("biking", start, end);
+
+        person.addIsolatedEvent(isolatedEvent);
+        assertTrue(person.getIsolatedEventList().contain(isolatedEvent));
     }
 
     @Test

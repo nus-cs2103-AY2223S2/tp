@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
@@ -26,6 +28,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final IsolatedEventList isolatedEventList = new IsolatedEventList();
     private Set<Group> groups = new HashSet<>();
 
     /**
@@ -80,6 +83,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void addIsolatedEvent(IsolatedEvent event) {
+        isolatedEventList.insert(event);
+    }
+
+    public IsolatedEventList getIsolatedEventList() {
+        return isolatedEventList;
     }
 
     /**
