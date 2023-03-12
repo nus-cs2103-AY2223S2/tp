@@ -116,4 +116,6 @@ public interface Model {
     void reviewDeck(Index idx);
 
     Review getReview();
+
+    void endReview();
 }

@@ -29,7 +29,7 @@ public class ModelManager implements Model {
 
     private FilteredList<Deck> filteredDecks;
     private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
-    private Review currentReview = null;
+    private Review currReview = null;
 
     private FilteredList<Card> filteredCards;
 
@@ -212,12 +212,17 @@ public class ModelManager implements Model {
         List<Card> cardList = new FilteredList<>(
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
-        currentReview = new Review(deckToReview, cardList);
+        currReview = new Review(deckToReview, cardList);
     };
 
     @Override
     public Review getReview() {
-        return currentReview;
+        return currReview;
     };
+
+    @Override
+    public void endReview() {
+        currReview = null;
+    }
 
 }

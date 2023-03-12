@@ -27,8 +27,8 @@ public class Review {
         requireNonNull(deck);
         this.deck = deck;
 
-        shuffle(cardList); //TODO write a shuffle based on user statistics
         this.cardList = cardList;
+//        shuffle(this.cardList); //TODO write a shuffle based on user statistics
     }
 
     public Deck getDeck() {
