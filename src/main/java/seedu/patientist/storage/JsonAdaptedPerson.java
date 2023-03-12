@@ -92,7 +92,7 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (! PatientIdNumber.isValidPid(id)) {
+        if (!PatientIdNumber.isValidPid(id)) {
             throw new IllegalValueException(PatientIdNumber.MESSAGE_CONSTRAINTS);
         }
         final PatientIdNumber modelPid = new PatientIdNumber(id);

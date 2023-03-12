@@ -1,7 +1,12 @@
 package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.patientist.logic.parser.CliSyntax.*;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,7 +21,6 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientIdNumber;
-import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -40,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        PatientIdNumber idNumber = ParserUtil.parsePID(argMultimap.getValue(PREFIX_ID).get());
+        PatientIdNumber idNumber = ParserUtil.parsePid(argMultimap.getValue(PREFIX_ID).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());

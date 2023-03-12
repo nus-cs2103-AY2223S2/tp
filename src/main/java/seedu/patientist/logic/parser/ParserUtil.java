@@ -59,7 +59,7 @@ public class ParserUtil {
      *
      * @throws ParseException id the given {@code pid} is invalid.
      */
-    public static PatientIdNumber parsePID(String pid) throws ParseException {
+    public static PatientIdNumber parsePid(String pid) throws ParseException {
         requireNonNull(pid);
         String trimmedPid = pid.trim();
         if (!PatientIdNumber.isValidPid(trimmedPid)) {

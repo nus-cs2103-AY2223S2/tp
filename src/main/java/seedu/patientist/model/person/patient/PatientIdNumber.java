@@ -26,6 +26,9 @@ public class PatientIdNumber {
         this.idNumber = idNumber.toUpperCase();
     }
 
+    /**
+     * Returns true if a given string is a valid patient id.
+     */
     public static boolean isValidPid(String test) {
         return test.matches(VALIDATION_REGEX);
     }
