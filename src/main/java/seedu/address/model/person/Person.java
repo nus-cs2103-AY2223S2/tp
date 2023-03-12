@@ -67,7 +67,9 @@ public class Person {
         return address;
     }
 
-    public LocalDateTime getTime() { return time; }
+    public LocalDateTime getTime() {
+        return time;
+    }
 
     /**
      * check if the person has scheduled time.

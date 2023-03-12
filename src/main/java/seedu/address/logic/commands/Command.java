@@ -1,6 +1,6 @@
-package seedu.address.model.util.commands;
+package seedu.address.logic.commands;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.util.commands.exceptions.CommandException;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.

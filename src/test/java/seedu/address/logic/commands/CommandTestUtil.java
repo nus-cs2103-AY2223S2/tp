@@ -14,14 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.commands.Command;
-import seedu.address.model.util.commands.CommandResult;
-import seedu.address.model.util.commands.EditCommand;
-import seedu.address.model.util.commands.exceptions.CommandException;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**

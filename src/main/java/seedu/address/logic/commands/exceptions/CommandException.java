@@ -1,4 +1,4 @@
-package seedu.address.model.util.commands.exceptions;
+package seedu.address.logic.commands.exceptions;
 
 /**
  * Represents an error which occurs during execution of a {@code Command}.
