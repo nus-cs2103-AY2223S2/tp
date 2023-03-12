@@ -11,7 +11,7 @@ import seedu.address.model.service.exception.PartNotFoundException;
 public class PartMap {
     private final Map<String, Part> map;
 
-    PartMap() {
+    public PartMap() {
         this.map = new HashMap<>();
     }
 

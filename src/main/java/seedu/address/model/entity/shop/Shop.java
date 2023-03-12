@@ -8,16 +8,23 @@ import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.exception.VehicleNotFoundException;
+import seedu.address.model.service.Appointment;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 
 /**
  * A Shop is an entity that usually buy sells things.
  */
 public abstract class Shop extends Entity {
-    private List<Customer> customers;
+    private final List<Customer> customers;
+    private final List<Appointment> appointments;
+    private final PartMap partMap;
 
     public Shop() {
         this.customers = new ArrayList<>();
+        this.appointments = new ArrayList<>();
+        this.partMap = new PartMap();
     }
 
     /**
@@ -32,8 +39,26 @@ public abstract class Shop extends Entity {
     /**
      * @return List of customers registered with the shop
      */
-    private List<Customer> getCustomers() {
+    public List<Customer> getCustomers() {
         return this.customers;
+    }
+
+    /**
+     * Get part map
+     *
+     * @return part map
+     */
+    public PartMap getPartMap() {
+        return this.partMap;
+    }
+
+    /**
+     * Get appointment list
+     *
+     * @return List of appointments
+     */
+    public List<Appointment> getAppointments() {
+        return this.appointments;
     }
 
     /**
@@ -59,7 +84,7 @@ public abstract class Shop extends Entity {
      * @param customerId Id of vehicle owner
      * @param vehicleId  Id of vehicle
      * @param service    Service to be added to vehicle
-     * @throws PersonNotFoundException If customer not registered with shop
+     * @throws PersonNotFoundException  If customer not registered with shop
      * @throws VehicleNotFoundException if customer does not have specific vehicle
      */
     public void addService(int customerId, int vehicleId, Service service)
@@ -78,5 +103,23 @@ public abstract class Shop extends Entity {
             throw new VehicleNotFoundException();
         }
         throw new PersonNotFoundException();
+    }
+
+    /**
+     * Adds part to the part map
+     *
+     * @param part Part to be added
+     */
+    public void addPart(Part part) {
+        this.partMap.addPart(part.getName(), part);
+    }
+
+    /**
+     * Adds appointment to the appointment list
+     *
+     * @param appointment Appointment to be added
+     */
+    public void addAppointment(Appointment appointment) {
+        this.getAppointments().add(appointment);
     }
 }
