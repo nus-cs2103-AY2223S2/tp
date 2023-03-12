@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.TankList;
-import seedu.address.model.tank.Tank;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.TankList;
+import seedu.address.model.tank.Tank;
 
 /**
  * A utility class containing a list of {@code Tank} objects to be used in tests.

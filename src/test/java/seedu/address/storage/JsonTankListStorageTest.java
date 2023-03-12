@@ -54,12 +54,12 @@ class JsonTankListStorageTest {
     }
 
     @Test
-    public void readTankList_invalidTank_TankList_throwDataConversionException() {
+    public void readTankList_invalidTankTankList_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTankList("invalidTankTanklist.json"));
     }
 
     @Test
-    public void readTankList_invalidAndValidTank_TankList_throwDataConversionException() {
+    public void readTankList_invalidAndValidTankTankList_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTankList("invalidAndValidTankTankList.json"));
     }
 
