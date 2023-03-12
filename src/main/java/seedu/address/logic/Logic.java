@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the Deck.
      *
-     * @see seedu.address.model.Model#getDeck()
+     * @see seedu.address.model.Model#getMasterDeck()
      */
     ReadOnlyMasterDeck getAddressBook();
 
