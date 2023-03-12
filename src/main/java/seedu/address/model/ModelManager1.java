@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,36 +20,36 @@ public class ModelManager1 implements Model1 {
     private static final Logger logger = LogsCenter.getLogger(ModelManager1.class);
 
     private final InternshipCatalogue internshipCatalogue;
-    private final UserPrefs userPrefs;
+    private final UserPrefs1 userPrefs;
     private final FilteredList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager1(ReadOnlyInternshipCatalogue internshipCatalogue, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager1(ReadOnlyInternshipCatalogue internshipCatalogue, ReadOnlyUserPrefs1 userPrefs) {
         requireAllNonNull(internshipCatalogue, userPrefs);
 
         logger.fine("Initializing with address book: " + internshipCatalogue + " and user prefs " + userPrefs);
 
         this.internshipCatalogue = new InternshipCatalogue(internshipCatalogue);
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.userPrefs = new UserPrefs1(userPrefs);
         filteredInternships = new FilteredList<>(this.internshipCatalogue.getInternshipList());
     }
 
     public ModelManager1() {
-        this(new InternshipCatalogue(), new UserPrefs());
+        this(new InternshipCatalogue(), new UserPrefs1());
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+    public void setUserPrefs(ReadOnlyUserPrefs1 userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
+    public ReadOnlyUserPrefs1 getUserPrefs() {
         return userPrefs;
     }
 
@@ -66,17 +65,17 @@ public class ModelManager1 implements Model1 {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getInternshipCatalogueFilePath() {
+        return userPrefs.getInternshipCatalogueFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setInternshipCatalogueFilePath(Path internshipCatalogueFilePath) {
+        requireNonNull(internshipCatalogueFilePath);
+        userPrefs.setInternshipCatalogueFilePath(internshipCatalogueFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Internship Catalogue ================================================================================
 
     @Override
     public void setInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue) {
@@ -112,11 +111,11 @@ public class ModelManager1 implements Model1 {
         internshipCatalogue.setInternship(target, editedInternship);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
+     * {@code versionedInternshipCatalogue}
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {

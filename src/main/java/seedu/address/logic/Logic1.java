@@ -35,9 +35,9 @@ public interface Logic1 {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' internship catalogue file path.
      */
-    Path getAddressBookFilePath();
+    Path getInternshipCatalogueFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

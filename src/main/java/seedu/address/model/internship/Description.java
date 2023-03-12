@@ -8,8 +8,17 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Description should only contain alphanumeric characters and spaces, and it should not be blank";
+
     public static final String EMPTY_MESSAGE = "No description available.";
     public final String descriptionMessage;
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     /**
      * Constructs a {@code Description}.
@@ -32,6 +41,13 @@ public class Description {
     @Override
     public String toString() {
         return isEmpty() ? EMPTY_MESSAGE : descriptionMessage;
+    }
+
+    /**
+     * Returns true if a given string is a valid Description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
