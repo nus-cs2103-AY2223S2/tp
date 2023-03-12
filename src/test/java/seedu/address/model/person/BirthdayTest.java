@@ -28,7 +28,7 @@ public class BirthdayTest {
         assertTrue(Birthday.isValidBirthday(validBirthday));
 
         Birthday bd = new Birthday(validBirthday);
-        assertTrue(bd.toString().equals("Jan 01 2000"));
+        assertTrue(bd.toString().equals("January 1, 2000"));
     }
 
 }
