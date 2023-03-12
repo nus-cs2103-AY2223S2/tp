@@ -16,40 +16,50 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Name name; //module name
+    private final Type type; // module type (tutorial, lecture, lab, assignment, project)
+    private final TimeSlot timeSlot; // timeslot (should be optional)
 
     // Data fields
-    private final Address address;
+    private final Address address; // venue
+
+    // private final Teacher teacher
+
+    private final Remark remark;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Type type, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, type, timeSlot, address, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.type = type;
+        this.timeSlot = timeSlot;
         this.address = address;
         this.tags.addAll(tags);
+        this.remark = remark;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Type getType() {
+        return type;
     }
 
-    public Email getEmail() {
-        return email;
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -70,7 +80,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName()) && otherPerson.getType().equals(getType());
     }
 
     /**
@@ -89,28 +99,31 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getType().equals(getType())
+                && otherPerson.getTimeSlot().equals(getTimeSlot())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRemark().equals(getRemark());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, type, timeSlot, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Type: ")
+                .append(getType())
+                .append("; TimeSlot: ")
+                .append(getTimeSlot())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
