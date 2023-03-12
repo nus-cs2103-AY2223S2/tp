@@ -10,7 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.exceptions.TutorialNotFoundException;
+import seedu.address.model.person.Person;
 
+/**
+ * A list of tutorial that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}.
+ * As such, adding and updating of tutorial uses Person#isSamePerson(Person) for equality to
+ * ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of a person uses Person#equals(Object) to ensure that the person with exactly the
+ * same fields will be removed.
+ * Supports a minimal set of list operations.
+ *
+ * @see Person#isSamePerson(Person)
+ */
 public class UniqueTutorialList implements Iterable<Tutorial> {
 
     private final ObservableList<Tutorial> internalList = FXCollections.observableArrayList();

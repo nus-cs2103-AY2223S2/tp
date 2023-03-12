@@ -4,10 +4,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Allows the TA to create a Tutorial event that usually occurs once a week.
@@ -129,13 +127,19 @@ public class Tutorial extends Event {
         super.removeNote(note);
     }
 
+    /**
+     * Checks for the same tutorial by comparing name and date
+     * @param otherTutorial
+     * @return
+     */
     public boolean isSameTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
             return true;
         }
 
         return otherTutorial != null
-                && otherTutorial.getName().equals(getName());
+                && otherTutorial.getName().equals(getName())
+                && otherTutorial.getDate().equals(getDate());
     }
 
     /**

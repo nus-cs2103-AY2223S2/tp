@@ -106,7 +106,8 @@ public interface Model {
     /**
      * Replaces the given tutorial {@code target} with {@code editedTutorial}.
      * {@code target} must exist in the address book.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another
+     * existing tutorial in the address book.
      */
     void setTutorial(Tutorial target, Tutorial editedTutorial);
 

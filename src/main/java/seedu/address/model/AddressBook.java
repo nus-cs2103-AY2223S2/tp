@@ -2,16 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Event;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.event.Tutorial;
+
 
 /**
  * Wraps all data at the address-book level
@@ -125,7 +123,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
      * {@code target} must exist in the address book.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing
+     * tutorial in the address book.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireNonNull(editedTutorial);
