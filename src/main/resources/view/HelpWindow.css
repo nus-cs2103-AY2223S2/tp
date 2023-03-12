@@ -1,5 +1,8 @@
 #copyButton, #helpMessage {
     -fx-text-fill: white;
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 12pt;
+    -fx-text-alignment: center;
 }
 
 #copyButton {
