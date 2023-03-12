@@ -7,8 +7,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StorageCount {
     public static final String MESSAGE_CONSTRAINTS =
-            "Storage Count should only contain positive integers, and it should be at least 1 digit long";
-    public static final String VALIDATION_REGEX = "[\\d][\\d]*";
+            "Storage Count should only contain positive integers,"
+                    + "it should be at least 1 digit long but no more than 7 digits";
+    public static final String VALIDATION_REGEX = "[\\d][\\d]{0,6}";
 
     private Integer count;
 
