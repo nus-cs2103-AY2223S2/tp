@@ -1,8 +1,5 @@
 package seedu.address.model.group;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 

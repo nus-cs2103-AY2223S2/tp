@@ -2,7 +2,6 @@ package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -61,6 +59,9 @@ public class UniqueGroupList implements Iterable<Group> {
         internalList.remove(toRemove);
     }
 
+    /**
+     * Returns true if the list contains an equivalent group as the given argument.
+     */
     public boolean contains(Group toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameGroup);
