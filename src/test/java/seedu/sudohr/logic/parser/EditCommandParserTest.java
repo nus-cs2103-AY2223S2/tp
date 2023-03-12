@@ -9,8 +9,8 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -111,8 +111,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + VALID_ID_AMY + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VALID_ID_AMY + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
