@@ -6,7 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Delivery's customer in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCustomer(String)}
+ * @deprecated merging with person
  */
+@Deprecated
 public class Customer {
 
     public static final String MESSAGE_CONSTRAINTS = "Customer can take any word, and it should not be blank";

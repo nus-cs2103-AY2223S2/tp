@@ -6,7 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Delivery's time in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
+ * @deprecated Refine and merge with jobs.DeliveryJob when timetable design is ready.
  */
+@Deprecated
 public class DeliveryTime {
 
     public static final String MESSAGE_CONSTRAINTS = "DeliveryTime can take any character, and it should not be blank";

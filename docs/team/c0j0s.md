@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Setup team repo and project dashboard.
 
 * **Enhancements to existing features**:
-  * 
+  *
 
 * **Documentation**:
   * User Guide:

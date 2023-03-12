@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -21,30 +22,41 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final DeliveryJobSystem deliveryJobSystem;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<DeliveryJob> filteredDeliveryJobs;
     private final ObservableList<Reminder> reminderList;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
+     *
+     * @param addressBook
+     * @param deliveryJobSystem
+     * @param userPrefs
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyDeliveryJobSystem deliveryJobSystem,
+            ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, deliveryJobSystem, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.deliveryJobSystem = new DeliveryJobSystem(deliveryJobSystem);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        reminderList = this.addressBook.getReminderList();
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        this.reminderList = this.addressBook.getReminderList();
     }
 
+    /**
+     * ModelManager.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new DeliveryJobSystem(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // UserPrefs ===================================================================
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
@@ -79,7 +91,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // AddressBook ===============================================================
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
@@ -115,10 +127,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors ==================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -132,6 +145,54 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    // DeliveryJob System =====================================================
+
+    @Override
+    public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
+        this.deliveryJobSystem.resetData(jobSystem);
+    }
+
+    @Override
+    public ReadOnlyDeliveryJobSystem getDeliveryJobSystem() {
+        return deliveryJobSystem;
+    }
+
+    @Override
+    public boolean hasDeliveryJob(DeliveryJob job) {
+        requireNonNull(job);
+        return deliveryJobSystem.hasDeliveryJob(job);
+    }
+
+    @Override
+    public void deleteDeliveryJob(DeliveryJob target) {
+        deliveryJobSystem.removeDeliveryJob(target);
+    }
+
+    @Override
+    public void addDeliveryJob(DeliveryJob job) {
+        deliveryJobSystem.addDeliveryJob(job);
+        updateFilteredDeliveryJobList(PREDICATE_SHOW_ALL_DELIVERY_JOBS);
+    }
+
+    @Override
+    public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
+        requireAllNonNull(target, editedJob);
+
+        deliveryJobSystem.setDeliveryJob(target, editedJob);
+    }
+
+    // =========== Filtered Delivery Job List Accessors ============
+
+    @Override
+    public ObservableList<DeliveryJob> getDeliveryJobList() {
+        return filteredDeliveryJobs;
+    }
+
+    @Override
+    public void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate) {
+        requireAllNonNull(predicate);
+        filteredDeliveryJobs.setPredicate(predicate);
+    }
     //=========== ReminderList Accessors =============================================================
 
     @Override
