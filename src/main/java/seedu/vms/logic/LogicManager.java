@@ -2,6 +2,11 @@ package seedu.vms.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableMap;
@@ -30,6 +35,11 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final VmsParser vmsParser;
 
+    private Consumer<List<CommandResult>> onExecutionComplete = results -> {};
+
+    private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
+    private volatile boolean isExecuting = false;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -39,28 +49,83 @@ public class LogicManager implements Logic {
         vmsParser = new VmsParser();
     }
 
-    @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
-        Command command = vmsParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+    @Override
+    public void queue(String commandText) {
+        commandQueue.add(commandText);
+        startNext();
+    }
+
+    private synchronized void startNext() {
+        if (isExecuting || commandQueue.isEmpty()) {
+            return;
+        }
+        isExecuting = true;
+        String commandText = commandQueue.poll();
+        new Thread(() -> parseCommand(commandText)).start();
+    }
+
+
+    private void parseCommand(String commandText) {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        try {
+            execute(vmsParser.parseCommand(commandText));
+        } catch (ParseException parseEx) {
+            completeExecution(List.of(new CommandResult(
+                    parseEx.getMessage(),
+                    CommandResult.State.ERROR)));
+        }
+    }
+
+
+    private void execute(Command command) {
+        ArrayList<CommandResult> results = new ArrayList<>();
+
+        try {
+            results.add(command.execute(model));
+        } catch (CommandException ex) {
+            results.add(new CommandResult(ex.getMessage(), CommandResult.State.ERROR));
+            completeExecution(results);
+            return;
+        }
 
         try {
             storage.savePatientManager(model.getPatientManager());
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
         }
 
         try {
             storage.saveVaxTypes(model.getVaxTypeManager());
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
         }
 
-        return commandResult;
+        completeExecution(results, command.getFollowUp());
     }
+
+
+    private void completeExecution(List<CommandResult> results) {
+        completeExecution(results, Optional.empty());
+    }
+
+
+    private void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
+        onExecutionComplete.accept(results);
+        if (followUp.isPresent()) {
+            new Thread(() -> execute(followUp.get())).start();
+            return;
+        }
+        isExecuting = false;
+        startNext();
+    }
+
+
+    @Override
+    public void setOnExecutionCompletion(Consumer<List<CommandResult>> onExecutionComplete) {
+        this.onExecutionComplete = onExecutionComplete;
+    }
+
 
     @Override
     public ReadOnlyPatientManager getPatientManager() {
