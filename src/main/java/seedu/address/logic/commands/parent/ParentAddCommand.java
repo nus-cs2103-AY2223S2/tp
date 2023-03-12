@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.parent;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
@@ -21,7 +22,7 @@ import seedu.address.model.person.parent.Parent;
 public class ParentAddCommand extends ParentCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = "parent CLASS_NAME (of student) " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = "parent CLASS_NAME(of student) " + COMMAND_WORD
             + ": Adds a parent to the address book. "
             + "Parameters: "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER (of student) "
@@ -32,6 +33,7 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_IMAGEPARENT + "IMAGE PARENT "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "]\n"
             + "Example: " + "parent 1A " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Niu "
@@ -39,7 +41,8 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_AGE + "30 "
             + PREFIX_IMAGEPARENT + "C:// "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "tanahcow@gmail.com ";
+            + PREFIX_EMAIL + "tanahcow@gmail.com "
+            + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)";
 
     public static final String MESSAGE_SUCCESS = "New parent added:";
 

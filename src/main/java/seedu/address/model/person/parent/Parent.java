@@ -113,8 +113,8 @@ public class Parent extends Person {
                 && otherParent.getPhone().equals(getPhone())
                 && otherParent.getEmail().equals(getEmail())
                 && otherParent.getAddress().equals(getAddress())
-                && otherParent.getTags().equals(getTags())
-                && otherParent.getChildren().equals(getChildren());
+                && otherParent.getTags().equals(getTags());
+                //&& otherParent.getChildren().equals(getChildren());
     }
 
     @Override
@@ -136,11 +136,13 @@ public class Parent extends Person {
                 .append(getRelationship())
                 .append(" of:");
 
+        /*
         List<Student> children = getChildren();
         for (Student child : children) {
             builder.append(" ")
                     .append(child);
         }
+         */
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.parent.ParentListPanel;
 import seedu.address.ui.student.StudentListPanel;
 
 /**
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
 
     private StudentListPanel studentListPanel;
+    private ParentListPanel parentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,9 +48,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
     @FXML
     private StackPane studentListPanelPlaceholder;
 
+    @FXML
+    private StackPane parentListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -121,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        parentListPanel = new ParentListPanel(logic.getFilteredParentList());
+        parentListPanelPlaceholder.getChildren().add(parentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
