@@ -17,6 +17,11 @@ public class SimpleTask extends Task {
         super(name, description, tags);
     }
 
+    @Override
+    public boolean isComingUp() {
+        return false;
+    }
+
     /**
      * Compares tasks to get their position in a sorted list.
      * If task is a SimpleTask instance, the task with lesser tags should be higher up on the list.

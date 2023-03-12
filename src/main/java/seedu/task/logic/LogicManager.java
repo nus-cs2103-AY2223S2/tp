@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Task> getAlertTaskList() {
+        return model.getAlertTaskList();
+    }
+
+    @Override
     public Path getTaskBookFilePath() {
         return model.getTaskBookFilePath();
     }
