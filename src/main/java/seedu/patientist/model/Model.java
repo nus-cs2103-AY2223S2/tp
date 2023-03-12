@@ -110,11 +110,16 @@ public interface Model {
     void addStaff(Staff staff, Ward ward);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the patientist book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist.
+     * Replaces target Patient with edited Patient.
+     * Target patient must exist in ward, edited patient must not already exist.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPatient(Patient target, Patient edited, Ward ward);
+
+    /**
+     * Replaces target Staff with edited Staff throughout whole Patientist.
+     * Target Staff must exist in ward, edited Staff must not already exist.
+     */
+    void setStaff(Staff target, Staff edited);
 
     /**
      * Returns true if a ward with the same name as {@code ward} exists in the patientist book

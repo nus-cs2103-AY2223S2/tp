@@ -99,15 +99,18 @@ public class Patientist implements ReadOnlyPatientist {
     }
 
     /**
-     * Replaces the given staff {@code target} with {@code edited}.
+     * Replaces the given staff {@code target} with {@code edited} throughout the whole patientist book.
      * {@code target} must exist in the patientist book.
      * {@code ward} must exist in the patientist book.
-     * The staff identity of {@code edited} must not be the same as another existing staff in the ward.
+     * The staff identity of {@code edited} must not be the same as another existing staff.
      */
-    public void setStaff(Staff target, Staff edited, Ward ward) {
-        requireAllNonNull(target, edited, ward);
-
-        ward.setStaff(target, edited);
+    public void setStaff(Staff target, Staff edited) {
+        requireAllNonNull(target, edited);
+        for (Ward ward : wards) {
+            if (ward.containsStaff(target)) {
+                ward.setStaff(target, edited);
+            }
+        }
     }
 
     /**
@@ -160,6 +163,30 @@ public class Patientist implements ReadOnlyPatientist {
      */
     public void removePatient(Patient key, Ward ward) {
         ward.deletePatient(key);
+    }
+
+    //// ward level methods
+
+    /**
+     * Returns true if this Patientist contains a ward with the same name as the target.
+     */
+    public boolean hasWard(Ward ward) {
+        return this.wards.contains(ward);
+    }
+
+    public void addWard(Ward ward) {
+        requireAllNonNull(ward);
+        wards.add(ward);
+    }
+
+    public void deleteWard(Ward ward) {
+        requireAllNonNull(ward);
+        wards.delete(ward);
+    }
+
+    public void setWard(Ward target, Ward edited) {
+        requireAllNonNull(target, edited);
+        wards.setWard(target, edited);
     }
 
     //// util methods

@@ -134,30 +134,35 @@ public class ModelManager implements Model {
 
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPatient(Patient target, Patient edited, Ward ward) {
+        requireAllNonNull(target, edited, ward);
+        patientist.setPatient(target, edited, ward);
+    }
 
-        patientist.setPerson(target, editedPerson);
+    @Override
+    public void setStaff(Staff target, Staff edited) {
+        requireAllNonNull(target, edited);
+        patientist.setStaff(target, edited);
     }
 
     @Override
     public boolean hasWard(Ward ward) {
-        //TODO
+        return patientist.hasWard(ward);
     }
 
     @Override
     public void addWard(Ward ward) {
-        //TODO
+        patientist.addWard(ward);
     }
 
     @Override
     public void deleteWard(Ward ward) {
-        //TODO
+        patientist.deleteWard(ward);
     }
 
     @Override
     public void setWard(Ward target, Ward editedWard) {
-
+        patientist.setWard(target, editedWard);
     }
 
     //=========== Filtered Person List Accessors =============================================================
