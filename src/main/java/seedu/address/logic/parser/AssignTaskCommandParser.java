@@ -32,9 +32,6 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
 
         Index taskIndex = ParserUtil.parseTaskIndex(argMultimap.getValue(PREFIX_TASK_INDEX).get());
         Index personIndex = ParserUtil.parsePersonIndex(argMultimap.getValue(PREFIX_PERSON_INDEX).get());
-
-        
-
         return new AssignTaskCommand(taskIndex, personIndex);
     }
 

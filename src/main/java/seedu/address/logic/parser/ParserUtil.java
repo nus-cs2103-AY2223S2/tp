@@ -158,7 +158,7 @@ public class ParserUtil {
      * Parses {@code String taskIndex} into a {@code Index}.
      *
      * @param taskIndex
-     * @return
+     * @return index of task
      * @throws ParseException
      */
     public static Index parseTaskIndex(String taskIndex) throws ParseException {
@@ -173,7 +173,7 @@ public class ParserUtil {
      * Parses {@code String personIndex} into a {@code Index}.
      *
      * @param personIndex
-     * @return
+     * @return index of person
      * @throws ParseException
      */
     public static Index parsePersonIndex(String personIndex) throws ParseException {
