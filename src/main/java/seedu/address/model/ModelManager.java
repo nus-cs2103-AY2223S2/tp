@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Recipe;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredRecipes = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
     }
 
     public ModelManager() {
@@ -88,27 +88,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Recipe recipe) {
+    public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
-        return addressBook.hasPerson(recipe);
+        return addressBook.hasRecipe(recipe);
     }
 
     @Override
-    public void deletePerson(Recipe target) {
-        addressBook.removePerson(target);
+    public void deleteRECIPE(Recipe target) {
+        addressBook.removeRecipe(target);
     }
 
     @Override
-    public void addPerson(Recipe recipe) {
-        addressBook.addPerson(recipe);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addRecipe(Recipe recipe) {
+        addressBook.addRecipe(recipe);
+        updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPE);
     }
 
     @Override
-    public void setPerson(Recipe target, Recipe editedRecipe) {
+    public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
 
-        addressBook.setPerson(target, editedRecipe);
+        addressBook.setRecipe(target, editedRecipe);
     }
 
     //=========== Filtered Recipe List Accessors =============================================================
@@ -118,12 +118,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Recipe> getFilteredPersonList() {
+    public ObservableList<Recipe> getFilteredRecipeList() {
         return filteredRecipes;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Recipe> predicate) {
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
     }

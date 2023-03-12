@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Recipe;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Recipe> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
      */
-    boolean hasPerson(Recipe recipe);
+    boolean hasRecipe(Recipe recipe);
 
     /**
      * Deletes the given recipe.
      * The recipe must exist in the address book.
      */
-    void deletePerson(Recipe target);
+    void deleteRECIPE(Recipe target);
 
     /**
      * Adds the given recipe.
      * {@code recipe} must not already exist in the address book.
      */
-    void addPerson(Recipe recipe);
+    void addRecipe(Recipe recipe);
 
     /**
      * Replaces the given recipe {@code target} with {@code editedRecipe}.
      * {@code target} must exist in the address book.
      * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
      */
-    void setPerson(Recipe target, Recipe editedRecipe);
+    void setRecipe(Recipe target, Recipe editedRecipe);
 
     /** Returns an unmodifiable view of the filtered recipe list */
-    ObservableList<Recipe> getFilteredPersonList();
+    ObservableList<Recipe> getFilteredRecipeList();
 
     /**
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Recipe> predicate);
+    void updateFilteredRecipeList(Predicate<Recipe> predicate);
 }

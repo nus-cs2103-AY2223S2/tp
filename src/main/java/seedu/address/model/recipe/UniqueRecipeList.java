@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,13 +8,13 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateRecipeException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
+import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A recipe is considered unique by comparing using {@code Recipe#isSamePerson(Recipe)}. As such, adding and updating of
- * persons uses Recipe#isSamePerson(Recipe) for equality so as to ensure that the recipe being added or updated is
+ * A list of recipes that enforces uniqueness between its elements and does not allow nulls.
+ * A recipe is considered unique by comparing using {@code Recipe#isSameRecipe(Recipe)}. As such, adding and updating of
+ * recipes uses Recipe#isSameRecipe(Recipe) for equality so as to ensure that the recipe being added or updated is
  * unique in terms of identity in the UniqueRecipeList. However, the removal of a recipe uses Recipe#equals(Object) so
  * as to ensure that the recipe with exactly the same fields will be removed.
  *
@@ -53,12 +53,12 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      * {@code target} must exist in the list.
      * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the list.
      */
-    public void setPerson(Recipe target, Recipe editedRecipe) {
+    public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new RecipeNotFoundException();
         }
 
         if (!target.isSameRecipe(editedRecipe) && contains(editedRecipe)) {
@@ -75,11 +75,11 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     public void remove(Recipe toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new RecipeNotFoundException();
         }
     }
 
-    public void setPersons(UniqueRecipeList replacement) {
+    public void setRecipes(UniqueRecipeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      * Replaces the contents of this list with {@code recipes}.
      * {@code recipes} must not contain duplicate recipes.
      */
-    public void setPersons(List<Recipe> recipes) {
+    public void setRecipes(List<Recipe> recipes) {
         requireAllNonNull(recipes);
-        if (!personsAreUnique(recipes)) {
+        if (!recipesAreUnique(recipes)) {
             throw new DuplicateRecipeException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     /**
      * Returns true if {@code recipes} contains only unique recipes.
      */
-    private boolean personsAreUnique(List<Recipe> recipes) {
+    private boolean recipesAreUnique(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size() - 1; i++) {
             for (int j = i + 1; j < recipes.size(); j++) {
                 if (recipes.get(i).isSameRecipe(recipes.get(j))) {

@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Recipe;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -24,7 +24,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Recipe} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Recipe recipe) {
-        addressBook.addPerson(recipe);
+        addressBook.addRecipe(recipe);
         return this;
     }
 

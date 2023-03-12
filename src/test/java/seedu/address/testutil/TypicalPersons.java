@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Recipe;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Recipe recipe : getTypicalPersons()) {
-            ab.addPerson(recipe);
+            ab.addRecipe(recipe);
         }
         return ab;
     }

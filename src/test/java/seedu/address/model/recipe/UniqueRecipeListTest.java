@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicateRecipeException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
+import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniqueRecipeListTest {
@@ -60,23 +60,23 @@ public class UniqueRecipeListTest {
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipe(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipe(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueRecipeList.setPerson(ALICE, ALICE));
+        assertThrows(RecipeNotFoundException.class, () -> uniqueRecipeList.setRecipe(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueRecipeList.add(ALICE);
-        uniqueRecipeList.setPerson(ALICE, ALICE);
+        uniqueRecipeList.setRecipe(ALICE, ALICE);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(ALICE);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
@@ -87,7 +87,7 @@ public class UniqueRecipeListTest {
         uniqueRecipeList.add(ALICE);
         Recipe editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueRecipeList.setPerson(ALICE, editedAlice);
+        uniqueRecipeList.setRecipe(ALICE, editedAlice);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(editedAlice);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
@@ -96,7 +96,7 @@ public class UniqueRecipeListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueRecipeList.add(ALICE);
-        uniqueRecipeList.setPerson(ALICE, BOB);
+        uniqueRecipeList.setRecipe(ALICE, BOB);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(BOB);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
@@ -106,7 +106,7 @@ public class UniqueRecipeListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueRecipeList.add(ALICE);
         uniqueRecipeList.add(BOB);
-        assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.setRecipe(ALICE, BOB));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UniqueRecipeListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueRecipeList.remove(ALICE));
+        assertThrows(RecipeNotFoundException.class, () -> uniqueRecipeList.remove(ALICE));
     }
 
     @Test
@@ -129,7 +129,7 @@ public class UniqueRecipeListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setPersons((UniqueRecipeList) null));
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipes((UniqueRecipeList) null));
     }
 
     @Test
@@ -137,20 +137,20 @@ public class UniqueRecipeListTest {
         uniqueRecipeList.add(ALICE);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(BOB);
-        uniqueRecipeList.setPersons(expectedUniqueRecipeList);
+        uniqueRecipeList.setRecipes(expectedUniqueRecipeList);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setPersons((List<Recipe>) null));
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.setRecipes((List<Recipe>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueRecipeList.add(ALICE);
         List<Recipe> recipeList = Collections.singletonList(BOB);
-        uniqueRecipeList.setPersons(recipeList);
+        uniqueRecipeList.setRecipes(recipeList);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(BOB);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
@@ -159,7 +159,7 @@ public class UniqueRecipeListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Recipe> listWithDuplicateRecipes = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.setPersons(listWithDuplicateRecipes));
+        assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.setRecipes(listWithDuplicateRecipes));
     }
 
     @Test

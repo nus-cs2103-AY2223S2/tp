@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.recipe;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -17,7 +17,7 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Ingredient ingredient;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Recipe(Name name, Ingredient ingredient, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, ingredient, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.ingredient = ingredient;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Recipe {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
-                && otherRecipe.getPhone().equals(getPhone())
+                && otherRecipe.getIngredient().equals(getIngredient())
                 && otherRecipe.getEmail().equals(getEmail())
                 && otherRecipe.getAddress().equals(getAddress())
                 && otherRecipe.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, ingredient, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Ingredient: ")
+                .append(getIngredient())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Recipe;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -33,7 +33,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label ingredient;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class PersonCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        phone.setText(recipe.getPhone().value);
+        ingredient.setText(recipe.getIngredient().value);
         address.setText(recipe.getAddress().value);
         email.setText(recipe.getEmail().value);
         recipe.getTags().stream()
