@@ -40,9 +40,9 @@ public class StudentDeleteCommand extends StudentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> Students = model.getFilteredStudentList();
+        List<Student> students = model.getFilteredStudentList();
 
-        for (Student student : Students) {
+        for (Student student : students) {
             if (student.getIndexNumber().equals(targetIndex)
                     && student.getStudentClass().equals(studentClass)) {
                 model.deleteStudent(student);
@@ -50,7 +50,7 @@ public class StudentDeleteCommand extends StudentCommand {
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Override

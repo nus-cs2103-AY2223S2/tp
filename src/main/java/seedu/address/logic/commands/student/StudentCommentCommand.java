@@ -64,7 +64,7 @@ public class StudentCommentCommand extends StudentCommand {
         for (int i = 0; i < lastShownList.size(); i++) {
             Student curr = lastShownList.get(i);
             if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(index)) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
             if (curr.getIndexNumber().equals(index) && curr.getStudentClass().equals(studentClass)) {
                 studentToEdit = curr;
