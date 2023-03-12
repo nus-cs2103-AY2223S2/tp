@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         greetingBar = new GreetingBar(logic.getFilteredPersonList());
         greetingBarPlaceholder.getChildren().add(greetingBar.getRoot());
 
-        personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
@@ -154,36 +154,9 @@ public class MainWindow extends UiPart<Stage> {
      * Filters the observable list into three columns.The first element goes to the left list,
      * the second element goes to the middle list, the third element goes to the right list,
      * the fourth element then goes back to the left list and so on.
-     * @param personList
+     * @param tutorialList
      * @return List of ObservableList
      */
-    List<ObservableList<Person>> filterPersonList(ObservableList<Person> personList) {
-        int skip = 3;
-        //Store all the filtered lists into a single list
-        List<ObservableList<Person>> filteredList = new ArrayList<>();
-
-        //If nothing to filter, return original list
-        if (personList.size() == 0) {
-            return filteredList;
-        }
-
-        int terminate = Math.min(personList.size(), 3);
-
-        //Filter according to which list it belongs
-        for (int j = 0; j < terminate; j++) {
-            int size = personList.size() - j;
-            int limit = size / skip + Math.min(size % skip, 1);
-
-            ObservableList<Person> subList = Stream.iterate(j, i -> i + skip)
-                    .limit(limit)
-                    .map(personList::get)
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-            filteredList.add(subList);
-        }
-        return filteredList;
-    }
-
     List<ObservableList<Tutorial>> filterTutorialList(ObservableList<Tutorial> tutorialList) {
         int skip = 3;
         //Store all the filtered lists into a single list
