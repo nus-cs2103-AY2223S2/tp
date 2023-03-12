@@ -2,9 +2,10 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
+import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
-import arb.model.AddressBook;
+import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
 
@@ -13,14 +14,19 @@ import arb.model.Model;
  */
 public class ClearClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String COMMAND_WORD = "clear-client";
+    public static final String MESSAGE_SUCCESS = "Client list has been cleared!";
 
 
     @Override
-    public CommandResult execute(Model model, ListType currentListBeingShown) {
+    public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+
+        if (currentListBeingShown != ListType.CLIENT) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
+        }
+
+        model.resetClientList();
         return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 }
