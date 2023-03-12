@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
-import seedu.address.model.deck.Deck;
 
 /**
  * The API of the Model component.
@@ -81,8 +80,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered card list */
     ObservableList<Card> getFilteredCardList();
 
-    /** Returns an unmodifiable view of the filtered deck list */
-    ObservableList<Deck> getFilteredDeckList();
+    //     /** Returns an unmodifiable view of the filtered deck list */
+    //     ObservableList<Deck> getFilteredDeckList();
 
     /**
      * Updates the filter of the filtered card list to filter by the given {@code predicate}.

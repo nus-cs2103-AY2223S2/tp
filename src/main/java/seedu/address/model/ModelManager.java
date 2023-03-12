@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
-import seedu.address.model.deck.Deck;
+//import seedu.address.model.deck.Deck;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -125,9 +125,9 @@ public class ModelManager implements Model {
         return filteredDecks;
     }
 
-    public ObservableList<seedu.address.model.deck.Deck> getFilteredDeckList() {
-        return null; // Placeholder
-    }
+    //    public ObservableList<seedu.address.model.deck.Deck> getFilteredDeckList() {
+    //        return null; // Placeholder
+    //    }
 
     @Override
     public void updateFilteredCardList(Predicate<Card> predicate) {
@@ -159,7 +159,7 @@ public class ModelManager implements Model {
     // Todo: Link getDeck() to GUI
     @Override
     public ReadOnlyDeck getSelectedDeck() {
-//        return this.deck;
+        return this.deck;
     }
 
     @Override
@@ -172,8 +172,8 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         // TODO: Modify this once PR is merged
-//        Deck selectedDeck = filteredDecks.get(zeroBasesIdx);
-//        selectedDeckName = selectedDeck.getName();
+        /* Deck selectedDeck = filteredDecks.get(zeroBasesIdx);
+        selectedDeckName = selectedDeck.getName(); */
     }
 
     @Override
