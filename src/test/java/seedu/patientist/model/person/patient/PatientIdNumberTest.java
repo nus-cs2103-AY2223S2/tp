@@ -1,6 +1,7 @@
 package seedu.patientist.model.person.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,15 @@ public class PatientIdNumberTest {
     public void equals_diffCase_true() {
         assertTrue(PID1_UPPER.equals(PID1_LOWER));
         assertTrue(PID2_LOWER.equals(PID2_UPPER));
+    }
+
+    @Test
+    public void constructor_invalidIdNumberInput() {
+        assertThrows(IllegalArgumentException.class, () -> new PatientIdNumber("Invalid as there are spaces"));
+    }
+
+    @Test
+    public void constructor_nullInput() {
+        assertThrows(NullPointerException.class, () -> new PatientIdNumber(null));
     }
 }

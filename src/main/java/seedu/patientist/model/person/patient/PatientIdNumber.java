@@ -1,14 +1,26 @@
 package seedu.patientist.model.person.patient;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.patientist.commons.util.AppUtil.checkArgument;
+
 /**
  * Object representing the ID number of a patient. ID numbers are automatically capitalised when they are created.
  */
 public class PatientIdNumber {
+
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "ID must be alphanumeric";
+
     private final String idNumber;
 
-    //TODO: include error checking for invalid ID numbers
     public PatientIdNumber(String idNumber) {
+        requireNonNull(idNumber);
+        checkArgument(isValidIdNumber(idNumber), MESSAGE_CONSTRAINTS);
         this.idNumber = idNumber.toUpperCase();
+    }
+
+    public boolean isValidIdNumber(String idNumber) {
+        return idNumber.matches(VALIDATION_REGEX);
     }
 
     public String getIdNumber() {
