@@ -1,10 +1,14 @@
 package seedu.loyaltylift.model.order;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents the possible values for an Order's Status.
  */
 public enum StatusValue {
     PENDING, PAID, SHIPPED, COMPLETED, CANCELLED;
+
+    public static final String MESSAGE_FAIL_CONVERSION = "Unrecognised status";
 
     /**
      * Returns a {@code StatusValue} based on the given string.
@@ -20,6 +24,26 @@ public enum StatusValue {
             }
         }
         return result;
+    }
+
+    public static StatusValue fromUserFriendlyString(String statusValueString) {
+        requireNonNull(statusValueString);
+
+        String uStatusValueString = statusValueString.toUpperCase();
+        switch (uStatusValueString) {
+            case "PENDING":
+                return StatusValue.PENDING;
+            case "PAID":
+                return StatusValue.PAID;
+            case "COMPLETED":
+                return StatusValue.COMPLETED;
+            case "SHIPPED":
+                return StatusValue.SHIPPED;
+            case "CANCELLED":
+                return StatusValue.CANCELLED;
+            default:
+                return valueOf(uStatusValueString);
+        }
     }
 
     @Override

@@ -14,6 +14,9 @@ import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.Status;
+import seedu.loyaltylift.model.order.StatusValue;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -22,7 +25,6 @@ import seedu.loyaltylift.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -34,6 +36,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String quantity} into an {@code Quantity} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified quantity is invalid (not positive integer).
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(Integer.parseInt(trimmedQuantity));
     }
 
     /**
@@ -135,5 +150,20 @@ public class ParserUtil {
             throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
         return type;
+    }
+    /**
+     * Parses {@code String status} into a {@code Status}.
+     */
+    public static Status parseStatus(String statusValueString) throws ParseException {
+        requireNonNull(statusValueString);
+        StatusValue statusValue;
+        Status status;
+        try {
+            statusValue = StatusValue.fromUserFriendlyString(statusValueString);
+            status = new Status(statusValue);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            throw new ParseException(StatusValue.MESSAGE_FAIL_CONVERSION);
+        }
+        return status;
     }
 }
