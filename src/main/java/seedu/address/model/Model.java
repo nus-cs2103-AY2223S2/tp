@@ -1,12 +1,13 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -77,6 +78,13 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Gets the Person matching the name from the address book.
+     * @param personName name of the person to be retrieved.
+     * @return the person with the given name.
+     */
+    Person getPersonByName(Name personName);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -85,6 +93,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in the meeting list.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Returns true if a meeting with the same identity/name as {@code meeting} exists in the address book.
+     */
+    boolean hasMeeting(Meeting meeting);
 
     /** Returns an unmodifiable view of the meetings list */
     ObservableList<Meeting> getMeetingsList();
