@@ -13,11 +13,11 @@ import javafx.collections.ObservableList;
 //TODO Deck exceptions
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A card is considered unique by comparing using {@code Card#isSamePerson(Card)}. As such, adding and updating of
- * persons uses Card#isSamePerson(Card) for equality so as to ensure that the card being added or updated is
- * unique in terms of identity in the UniqueCardList. However, the removal of a card uses Card#equals(Object) so
- * as to ensure that the card with exactly the same fields will be removed.
+ * A list of decks that enforces uniqueness between its elements and does not allow nulls.
+ * A deck is considered unique by comparing using {@code Deck#isSameDeck(Deck)}. As such, adding and updating of
+ * decks uses Deck#isSameDeck(Deck) for equality so as to ensure that the deck being added or updated is
+ * unique in terms of identity in the UniqueCardList. However, the removal of a deck uses Card#equals(Object) so
+ * as to ensure that the deck with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

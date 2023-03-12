@@ -23,6 +23,7 @@ public class ModelManager implements Model {
 
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
+
     private FilteredList<Deck> filteredDecks;
     private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
     private FilteredList<Card> filteredCards;
@@ -116,7 +117,7 @@ public class ModelManager implements Model {
         masterDeck.setCard(target, editedCard);
     }
 
-    //=========== Filtered Card List Accessors =============================================================
+    //=========== Filtered Card/Deck List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
@@ -125,6 +126,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Card> getFilteredCardList() {
         return filteredCards;
+    }
+
+    public ObservableList<Deck> getFilteredDeckList() {
+        return filteredDecks;
     }
 
     @Override
@@ -154,15 +159,6 @@ public class ModelManager implements Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECKS */
-    /**
-     * Returns an unmodifiable view of the list of {@code Deck} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Deck> getFilteredDeckList() {
-        return filteredDecks;
-    }
-
     @Override
     public void updateFilteredDeckList(Predicate<Deck> predicate) {
         requireNonNull(predicate);

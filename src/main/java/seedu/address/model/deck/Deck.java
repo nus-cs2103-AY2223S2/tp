@@ -8,6 +8,7 @@ import java.util.Objects;
  * A group of cards
  */
 public class Deck {
+
     public final String deckName;
 
     /**
@@ -26,7 +27,6 @@ public class Deck {
     public String getDeckName() {
         return this.deckName;
     }
-
 
     /**
      * Returns true if there is a deck of same name.
@@ -81,5 +81,4 @@ public class Deck {
         return builder.toString();
     }
      */
-
 }
