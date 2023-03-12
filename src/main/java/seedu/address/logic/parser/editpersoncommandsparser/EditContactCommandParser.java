@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.editpersoncommands;
+package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
 
