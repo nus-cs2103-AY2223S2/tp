@@ -3,8 +3,8 @@
     "windowWidth" : 835.0,
     "windowHeight" : 867.0,
     "windowCoordinates" : {
-      "x" : 2301,
-      "y" : 250
+      "x" : 845,
+      "y" : 183
     }
   },
   "patientRecordFilePath" : "data\\patientRecord.json",
