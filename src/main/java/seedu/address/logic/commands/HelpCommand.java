@@ -15,10 +15,10 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "New here? " +
             "Type 'help' into the command for more instructions.";
 
-    public static final String HELP_CATEGORIES = "Help categories available: \n" +
-            "help tutorial\n" +
-            "help lab\n" +
-            "help consultation";
+    public static final String HELP_CATEGORIES = "Help categories available: \n"
+            + "help tutorial\n"
+            + "help lab\n" 
+            + "help consultation";
 
     @Override
     public CommandResult execute(Model model) {
