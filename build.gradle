@@ -63,6 +63,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testImplementation('org.junit.platform:junit-platform-launcher:1.5.2')
 }
 
 shadowJar {
