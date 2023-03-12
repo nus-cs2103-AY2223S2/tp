@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
      * The constant MESSAGE_USAGE.
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the module identified by the module code\n"
+            + ": Deletes the module identified by the module code.\n"
             + "Parameters: {all} /m MODULE CODE\n"
             + "Example: " + COMMAND_WORD + " /m CS1101S";
 
