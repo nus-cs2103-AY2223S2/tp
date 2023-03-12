@@ -19,7 +19,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the sudohr book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to SudoHR. "
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
@@ -37,7 +37,10 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the sudohr book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SudoHR";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "There already exists someone with this email!";
+    public static final String MESSAGE_DUPLICATE_PHONE = "There already exists someone with this phone number!";
+
 
     private final Person toAdd;
 

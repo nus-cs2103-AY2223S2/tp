@@ -102,22 +102,45 @@ public class Person {
     }
 
     /**
-     * Returns true if there is a clash in any of the 3 identity fields:
-     * email, phone, id. Name is excluded since several people can share the same names.
-     * This warns the HR personnel of a possible human error in tagging of data.
+     * Returns true if a different person shares the same email.
      */
-    public boolean clashes(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
+    public boolean emailClashes(Person otherPerson) {
         if (!(otherPerson instanceof Person)) {
             return false;
         }
 
-        return otherPerson.getId().equals(getId())
-                || otherPerson.getPhone().equals(getPhone())
-                || otherPerson.getEmail().equals(getEmail());
+        if (isSamePerson(otherPerson)) {
+            return false;
+        }
+
+        return otherPerson.getEmail().equals(getEmail());
+    }
+
+    /**
+     * Returns true if a different person shares the same phone number.
+     */
+    public boolean phoneClashes(Person otherPerson) {
+        if (!(otherPerson instanceof Person)) {
+            return false;
+        }
+
+        if (isSamePerson(otherPerson)) {
+            return false;
+        }
+
+        return otherPerson.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Returns true if there is a clash in any of the two fields: email, phone.
+     * Name is excluded since several people can share the same names.
+     */
+    public boolean clashes(Person otherPerson) {
+        if (isSamePerson(otherPerson)) {
+            return false;
+        }
+
+        return emailClashes(otherPerson) || phoneClashes(otherPerson);
     }
 
     @Override
