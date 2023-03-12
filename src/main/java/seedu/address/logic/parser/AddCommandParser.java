@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Address;
@@ -19,8 +20,6 @@ import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tank.Tank;
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -46,8 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        // checks for tank input
-        Tank tank = ParserUtil.parseTank(argMultimap.getValue(PREFIX_TANK).get());
+        // checks for tank Index
+        Index tankIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TANK).get());
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Fish fish = new Fish(name, phone, email, address, tagList);
 
-        return new AddCommand(fish);
+        return new AddCommand(fish, Index.fromOneBased(1));
     }
 
     /**

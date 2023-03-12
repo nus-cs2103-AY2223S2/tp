@@ -160,13 +160,12 @@ public class ParserUtil {
      * Parses a {@code String} into an {@code Tank}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException If the given {@code description} is invalid.
+     *
+     * @throws ParseException If the given {@code tank} is invalid.
      */
     public static Tank parseTank(String tank) throws ParseException {
         requireNonNull(tank);
         String trimmedTank = tank.trim();
-        //
-
         if (!TankName.isValidTankName(trimmedTank)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }

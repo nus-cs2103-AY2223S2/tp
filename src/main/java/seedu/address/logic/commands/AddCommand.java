@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
@@ -40,13 +41,15 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book";
 
     private final Fish toAdd;
+    private final Index tankIndex;
 
     /**
      * Creates an AddCommand to add the specified {@code Fish}
      */
-    public AddCommand(Fish fish) {
+    public AddCommand(Fish fish, Index tankIndex) {
         requireNonNull(fish);
         toAdd = fish;
+        this.tankIndex = tankIndex;
     }
 
     @Override

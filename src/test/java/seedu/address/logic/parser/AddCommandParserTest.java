@@ -25,7 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalFishes.AMY;
@@ -33,6 +33,7 @@ import static seedu.address.testutil.TypicalFishes.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
@@ -51,29 +52,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TANK_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple tags - all accepted
         Fish expectedFishMultipleTags = new FishBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedFishMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedFishMultipleTags, Index.fromOneBased(1)));
     }
 
     @Test
@@ -81,7 +82,7 @@ public class AddCommandParserTest {
         // zero tags
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedFish));
+                new AddCommand(expectedFish, Index.fromOneBased(1)));
     }
 
     @Test
@@ -89,7 +90,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing tank prefix
-        assertParseFailure(parser, VALID_TANK_NAME + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, VALID_TANK_INDEX + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
 
         // missing name prefix
@@ -109,7 +110,7 @@ public class AddCommandParserTest {
                         + VALID_ADDRESS_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_TANK_NAME + VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
+        assertParseFailure(parser, VALID_TANK_INDEX + VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                         + VALID_ADDRESS_BOB, expectedMessage);
     }
 

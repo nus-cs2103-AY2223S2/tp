@@ -30,9 +30,8 @@ import seedu.address.testutil.EditFishDescriptorBuilder;
 public class CommandTestUtil {
 
     /* Tank additions*/
-    public static final String VALID_TANK_NAME = "valid";
-    public static final String TANK_DESC = " " + PREFIX_TANK + VALID_TANK_NAME;
-    public static final String INVALID_TANK_DESC = " " + PREFIX_TANK; // empty string not allowed for tanks
+    public static final String VALID_TANK_INDEX = "1";
+    public static final String TANK_DESC = " " + PREFIX_TANK + VALID_TANK_INDEX;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

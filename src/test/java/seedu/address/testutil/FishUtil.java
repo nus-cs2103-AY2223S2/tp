@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -31,7 +32,7 @@ public class FishUtil {
      */
     public static String getFishDetails(Fish fish) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TANK + "Random Tank" + " ");
+        sb.append(PREFIX_TANK + VALID_TANK_INDEX + " ");
         sb.append(PREFIX_NAME + fish.getName().fullName + " ");
         sb.append(PREFIX_PHONE + fish.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + fish.getEmail().value + " ");

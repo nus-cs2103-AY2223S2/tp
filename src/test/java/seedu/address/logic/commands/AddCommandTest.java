@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -31,7 +32,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullFish_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null, Index.fromOneBased(1)));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class AddCommandTest {
         ModelStubAcceptingFishAdded modelStub = new ModelStubAcceptingFishAdded();
         Fish validFish = new FishBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validFish).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validFish, Index.fromOneBased(1)).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFish), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFish), modelStub.fishesAdded);
@@ -48,7 +49,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateFish_throwsCommandException() {
         Fish validFish = new FishBuilder().build();
-        AddCommand addCommand = new AddCommand(validFish);
+        AddCommand addCommand = new AddCommand(validFish, Index.fromOneBased(1));
         ModelStub modelStub = new ModelStubWithFish(validFish);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
@@ -58,14 +59,14 @@ public class AddCommandTest {
     public void equals() {
         Fish alice = new FishBuilder().withName("Alice").build();
         Fish bob = new FishBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addAliceCommand = new AddCommand(alice, Index.fromOneBased(1));
+        AddCommand addBobCommand = new AddCommand(bob, Index.fromOneBased(1));
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice, Index.fromOneBased(1));
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

@@ -3,6 +3,7 @@ package seedu.address.model.tank;
 import java.util.Objects;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.fish.Fish;
 
 /**
  *  Represents a Tank of the user that contains fish.
@@ -27,6 +28,14 @@ public class Tank {
 
     public TankName getTankName() {
         return this.name;
+    }
+
+    /**
+     * Adds a fish to the TankList.
+     * @param fish fish to be added.
+     */
+    public void addFish(Fish fish) {
+        fishList.addFish(fish);
     }
 
     /**
