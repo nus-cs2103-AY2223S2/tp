@@ -24,7 +24,7 @@ public class BirthdayTest {
     }
 
     @Test
-    public void constructor_works() {
+    public void constructor_working_example() {
         String validBirthday = "01/01/2000";
         assertTrue(Birthday.isValidBirthday(validBirthday));
 

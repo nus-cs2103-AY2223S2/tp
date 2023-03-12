@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Birthday {
     public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$";
-    public final LocalDate value;
+    private final LocalDate value;
 
     /**
      * Constructs an {@code Birthday}.
@@ -37,7 +37,7 @@ public class Birthday {
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return value.format(DateTimeFormatter.ofPattern("MMMM d, yyyy"));
     }
 
     @Override
