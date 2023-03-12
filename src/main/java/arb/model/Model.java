@@ -56,6 +56,9 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Empties the project list. */
+    void resetProjectList();
+
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
