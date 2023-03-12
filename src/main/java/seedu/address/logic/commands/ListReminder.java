@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.ui.NotificationManager;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Lists all reminders as Notifications to the user.
+ */
 public class ListReminder extends Command {
 
     public static final String COMMAND_WORD = "list_reminder";

@@ -89,6 +89,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Reminder> reminderList = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -101,9 +102,7 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<Reminder> getReminderList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getReminderList'");
+            return reminderList;
         }
     }
-
 }

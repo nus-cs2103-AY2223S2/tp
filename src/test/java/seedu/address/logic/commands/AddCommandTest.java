@@ -199,20 +199,17 @@ public class AddCommandTest {
 
         @Override
         public void deleteReminder(int i) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteReminder'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addReminder(Reminder reminder) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addReminder'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Reminder> getReminderList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getReminderList'");
+            throw new AssertionError("This method should not be called.");
         }
     }
 
