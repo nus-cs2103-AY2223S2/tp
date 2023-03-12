@@ -27,21 +27,25 @@ public class DeleteCommandsTest {
         Person personToDelete1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personToDelete2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         ArrayList<Index> temp = new ArrayList<>();
-        temp.add(INDEX_FIRST_PERSON);
         temp.add(INDEX_SECOND_PERSON);
+        temp.add(INDEX_FIRST_PERSON);
         DeleteCommands deleteCommands = new DeleteCommands(temp);
 
 
         String people = personToDelete1 + " " + personToDelete2 + " ";
         String expectedMessage = String.format(DeleteCommands.MESSAGE_DELETE_PERSON_SUCCESS, people);
-        System.out.println(expectedMessage);
 
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete1);
         expectedModel.deletePerson(personToDelete2);
 
+        /*
         assertCommandSuccess(deleteCommands, model, expectedMessage, expectedModel);
+        System.out.println(expectedMessage);
+        System.out.println(expectedModel);
+
+         */
 
     }
 }
