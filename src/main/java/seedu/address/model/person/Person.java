@@ -99,14 +99,10 @@ public class Person {
      * Returns true if the person status can be rejected otherwise false.
      */
     public boolean rejectStatus() {
-        switch (this.status) {
-        case APPLIED:
-        case SHORTLISTED:
-        case ACCEPTED:
-            this.status = Status.REJECTED;
-            return true;
-        default:
+        if (this.status == status.REJECTED) {
             return false;
+        } else {
+            return true;
         }
     }
 
