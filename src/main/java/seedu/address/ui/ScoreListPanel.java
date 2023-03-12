@@ -11,7 +11,7 @@ import seedu.address.model.score.Score;
 import seedu.address.model.task.Task;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of scores.
  */
 
 public class ScoreListPanel extends UiPart<Region> {
@@ -22,7 +22,7 @@ public class ScoreListPanel extends UiPart<Region> {
     private ListView<Score> scoreListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      */
     public ScoreListPanel() {
         super(FXML);
@@ -31,7 +31,7 @@ public class ScoreListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Score} using a {@code ScoreCard}.
      */
     class ScoreListViewCell extends ListCell<Score> {
         @Override
