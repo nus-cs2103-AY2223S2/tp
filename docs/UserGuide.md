@@ -10,19 +10,18 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-  - [`help`](#viewing-help--help)
-  - [`add`](#adding-a-person--add)
-  - [`list`](#listing-all-persons--list)
-  - [`edit`](#editing-a-person--edit)
-  - [`find`](#locating-persons-by-name--find)
-  - [`delete`](#deleting-a-person--delete)
-  - [`clear`](#clearing-all-entries--clear)
-  - [`exit`](#exiting-the-program--exit)
-  - [Saving of data](#saving-the-data)
-  - [Editing of data](#editing-the-data-file)
-  - [Archiving of data](#archiving-data-files-coming-in-v20)
-  - [View meetings](#view-all-meetings-coming-in-v20)
-  - [Schedule meetings](#schedule-meetings-coming-soon)
+    - [`help`](#viewing-help--help)
+    - [`add`](#adding-a-person--add)
+    - [`list`](#listing-all-persons--list)
+    - [`edit`](#editing-a-person--edit)
+    - [`find`](#locating-persons-by-name--find)
+    - [`delete`](#deleting-a-person--delete)
+    - [`clear`](#clearing-all-entries--clear)
+    - [`exit`](#exiting-the-program--exit)
+    - [`listm`](#view-all-meetings--listm)
+    - [Saving of data](#saving-the-data)
+    - [Editing of data](#editing-the-data-file)
+    - [Archiving of data](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -43,15 +42,15 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -125,7 +124,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -191,8 +190,12 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 
 _Details coming soon ..._
 
-### View all meetings `[coming in v2.0]`
-_Details coming soon ..._
+### View all meetings: `listm`
+Lists all meetings in the output box.
+
+To be converted into a GUI in future.
+
+Format: `listm`
 
 ### Create meetings `[Coming Soon]`
 _Details coming soon ..._
