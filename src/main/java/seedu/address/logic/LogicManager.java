@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyDeck;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
 import seedu.address.storage.Storage;
 
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyDeck getAddressBook() {
+    public ReadOnlyMasterDeck getAddressBook() {
         return model.getDeck();
     }
 

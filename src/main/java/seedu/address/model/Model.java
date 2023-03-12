@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 
 /**
  * The API of the Model component.
@@ -14,6 +15,8 @@ import seedu.address.model.card.Card;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
+
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -48,10 +51,10 @@ public interface Model {
     /**
      * Replaces deck data with the data in {@code addressBook}.
      */
-    void setDeck(ReadOnlyDeck deck);
+    void setDeck(ReadOnlyMasterDeck deck);
 
     /** Returns the Deck */
-    ReadOnlyDeck getDeck();
+    ReadOnlyMasterDeck getDeck();
 
     /**
      * Returns true if a card with the same identity as {@code card} exists in the address book.
@@ -88,10 +91,20 @@ public interface Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
-    /** Returns the deck */
-    ReadOnlyDeck getSelectedDeck();
 
-    void createDeck();
+    void updateFilteredDeckList(Predicate<Deck> predicate);
+
+    /** Returns the deck */
+    ReadOnlyMasterDeck getSelectedDeck();
+
+    void addDeck(Deck deck);
+
+    /**
+     * Returns true if a deck with the same name as {@code deck} exists.
+     */
+    boolean hasDeck(Deck deck);
+
+    void removeDeck(Deck key);
 
     void selectDeck(Index idx);
 
