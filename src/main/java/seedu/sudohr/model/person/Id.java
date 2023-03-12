@@ -8,7 +8,8 @@ import static seedu.sudohr.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class Id {
-    public static final String MESSAGE_CONSTRAINTS = "IDs can take any non-zero (integral) values, and it should not be blank. "
+    public static final String MESSAGE_CONSTRAINTS =
+            "IDs can take any non-zero (integral) values, and it should not be blank. "
             + "Note that ID is a field for an employee's unique identification in the company";
 
     /*

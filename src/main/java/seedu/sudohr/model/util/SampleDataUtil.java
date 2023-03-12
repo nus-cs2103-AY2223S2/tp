@@ -57,16 +57,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
-    /**
-     * Returns a person set containing the list of strings given.
-     */
-    public static Set<Person> getEmployeeSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(s -> new Person(new Id("01"), new Name(s), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("friends"))
-                )
-                .collect(Collectors.toSet());
-    }
-
 }
