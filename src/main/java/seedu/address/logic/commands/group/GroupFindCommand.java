@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book who belongs to groups with name containing any of the argument keywords.
@@ -21,22 +21,19 @@ public class GroupFindCommand extends GroupCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " CS2101";
 
-    // TODO: Change name checking predicate here to that of Group
-    private final NameContainsKeywordsPredicate predicate;
+    private final GroupNameContainsKeywordsPredicate predicate;
 
-    public GroupFindCommand(NameContainsKeywordsPredicate predicate) {
+    public GroupFindCommand(GroupNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // TODO: Change UI list update
-        // model.updateFilteredPersonList(predicate);
+        model.updateFilteredGroupList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_GROUPS_LISTED_OVERVIEW,
-                        // TODO: Get group list instead
-                        model.getFilteredPersonList().size()));
+                        model.getFilteredGroupList().size()));
     }
 
     @Override

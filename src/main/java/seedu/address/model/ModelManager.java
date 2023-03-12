@@ -182,7 +182,6 @@ public class ModelManager implements Model {
         filteredGroups.setPredicate(predicate);
     }
 
->>>>>>> master
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

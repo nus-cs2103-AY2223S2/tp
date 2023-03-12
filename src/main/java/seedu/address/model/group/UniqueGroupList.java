@@ -3,13 +3,9 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.HashSet;
-=======
+
 import java.util.Iterator;
 import java.util.List;
->>>>>>> master
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -19,25 +15,14 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
-<<<<<<< HEAD
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
-=======
  * A group is considered unique by comparing using {@code Group#isSameGroup(Group)}. As such, adding and updating of
  * groups uses Group#isSameGroup(Group) for equality so as to ensure that the group being added or updated is
  * unique in terms of identity in the UniqueGroupList. However, the removal of a group uses Group#equals(Object) so
->>>>>>> master
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
-<<<<<<< HEAD
- * @see Person#isSamePerson(Person)
-=======
  * @see Group#isSameGroup(Group)
->>>>>>> master
  */
 public class UniqueGroupList implements Iterable<Group> {
 

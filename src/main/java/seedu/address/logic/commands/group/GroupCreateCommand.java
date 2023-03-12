@@ -16,11 +16,11 @@ public class GroupCreateCommand extends GroupCommand {
     public static final String SUB_COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
-            + ": Create a group in the address book. "
+            + " : Create a group in the address book. "
             + "Parameters: "
             + PREFIX_GROUP + "GROUP NAME\n"
             + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2103T ";
+            + PREFIX_GROUP + "CS2103T ";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists";

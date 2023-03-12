@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.group;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,14 +14,18 @@ public class GroupListCommand extends GroupCommand {
 
     public static final String SUB_COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all group";
+    public static final String MESSAGE_SUCCESS = "Listed all groups";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.
-        // TODO: REQUIRE grouplist, replace line below
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GroupListCommand); // instanceof handles nulls
     }
 }

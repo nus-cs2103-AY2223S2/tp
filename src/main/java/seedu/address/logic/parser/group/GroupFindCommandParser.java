@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.group.GroupFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new GroupFindCommand object
@@ -28,9 +28,7 @@ public class GroupFindCommandParser implements Parser<GroupFindCommand> {
 
         String[] nameKeywords = trimmedArguments.split("\\s+");
 
-        return new GroupFindCommand(
-                // TODO: Change to Group name predicate
-                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new GroupFindCommand(new GroupNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
