@@ -77,6 +77,7 @@ public class AddCommandParserTest {
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + RANK_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
         // multiple ranks - last rank accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + RANK_DESC_AMY + RANK_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));

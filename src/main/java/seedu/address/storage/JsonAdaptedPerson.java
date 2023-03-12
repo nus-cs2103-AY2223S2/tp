@@ -74,8 +74,8 @@ class JsonAdaptedPerson {
         company = source.getCompany().value;
         platoon = source.getPlatoon().value;
         tagged.addAll(source.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -156,7 +156,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank,
-            modelUnit, modelCompany, modelPlatoon, modelTags);
+                modelUnit, modelCompany, modelPlatoon, modelTags);
     }
 
 }
