@@ -28,8 +28,8 @@ public class DeleteCommand extends Command {
             + "\nOR\n"
             + COMMAND_WORD + ":  Deletes the the patient identified by the IC number.\n"
             + "Parameters: "
-            + PREFIX_IC + "TRADE NAME"
-            + "Example: " + COMMAND_WORD + " T1234567A ";
+            + PREFIX_IC + " IC\n"
+            + "Example: " + COMMAND_WORD + " -ic T1234567A";
 
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted patient: %1$s";
 

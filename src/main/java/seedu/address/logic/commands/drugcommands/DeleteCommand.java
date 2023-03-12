@@ -26,13 +26,13 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ":  Deletes the drug identified by the index number used in the displayed drug list.\n"
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX"
-            + "Example: " + COMMAND_WORD + " 2"
+            + PREFIX_INDEX + " INDEX\n"
+            + "Example: " + COMMAND_WORD + " -i 2"
             + "\nOR\n"
             + COMMAND_WORD + ":  Deletes the drug identified by its trade name.\n"
             + "Parameters: "
-            + PREFIX_TRADE_NAME + "TRADE NAME"
-            + "Example: " + COMMAND_WORD + " Panadol ";
+            + PREFIX_TRADE_NAME + " TRADE NAME\n"
+            + "Example: " + COMMAND_WORD + " -tn Panadol";
 
     private Index targetIndex;
     private TradeName targetTradeName;
