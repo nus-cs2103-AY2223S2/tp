@@ -312,8 +312,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 
-> addtask n/Finish report
-- Task added: Finish report
+> addtask s/Draft proposal c/Complete proposal by 1st March st/false
+- New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
 > listtask
 1. Finish report
