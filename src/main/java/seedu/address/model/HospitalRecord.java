@@ -1,13 +1,15 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.hospital.Hospital;
 import seedu.address.model.hospital.UniqueHospitalList;
 import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the Hospital Record level

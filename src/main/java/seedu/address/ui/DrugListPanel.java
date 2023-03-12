@@ -7,8 +7,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.drug.Drug;
-import seedu.address.model.person.Patient;
 
+/**
+ * Panel containing the list of drugs.
+ */
 public class DrugListPanel extends UiPart<Region> {
     private static final String FXML = "DrugListPanel.fxml";
 
@@ -33,6 +35,9 @@ public class DrugListPanel extends UiPart<Region> {
     @FXML
     private Label selectedStorageCount;
 
+    /**
+     * Creates a {@code DrugListPanel} with the given {@code ObservableList}.
+     */
     public DrugListPanel(ObservableList<Drug> drugList) {
         super(FXML);
         // DRUG LIST

@@ -206,7 +206,6 @@ public class CareFlowModelManager implements CareFlowModel {
     }
 
     /**
-     *
      * @return fixed set of Hospital Hotlines
      */
     @Override
