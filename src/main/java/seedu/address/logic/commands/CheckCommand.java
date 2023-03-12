@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -43,9 +44,9 @@ public class CheckCommand extends Command {
 
         Person personToCheck = personList.get(targetIndex.getZeroBased());
         model.checkPerson(personToCheck);
-        String[] nameKeywords = personToCheck.getName().fullName.split(" ");
+        String nameKeywords = personToCheck.getName().fullName;
 
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        model.updateFilteredPersonList(person -> person.getName().fullName.equals(nameKeywords));
         return new CommandResult(String.format(MESSAGE_CHECK_PERSON_SUCCESS, personToCheck));
     }
 
