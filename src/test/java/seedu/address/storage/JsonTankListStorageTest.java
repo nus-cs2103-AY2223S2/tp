@@ -55,7 +55,7 @@ class JsonTankListStorageTest {
 
     @Test
     public void readTankList_invalidTankTankList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTankList("invalidTankTanklist.json"));
+        assertThrows(DataConversionException.class, () -> readTankList("invalidTankTankList.json"));
     }
 
     @Test
