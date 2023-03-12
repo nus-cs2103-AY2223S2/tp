@@ -5,12 +5,27 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
  */
 public class RecurringEvent extends Event implements Comparable<RecurringEvent> {
+
+    public static final String VALIDATION_REGEX_EVENTNAME = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String[] VALIDATION_REGEX_DAYOFWEEK =
+        {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
+    public static final String MESSAGE_CONSTRAINTS_EVENTNAME =
+            "Event name should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_TIME =
+            "Time should be in the format: HH:mm";
+    public static final String MESSAGE_CONSTRAINTS_PERIOD =
+            "The end time should not be earlier than the start time";
+    public static final String MESSAGE_CONSTRAINTS_DAYOFWEEK =
+            "The day of the week should be either MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY";
+
+
 
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
@@ -23,11 +38,20 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
      * @param startTime is the starting time of the event
      * @param endTime is the ending time of the event
      */
-    public RecurringEvent(String eventName, String dayOfWeek, String startTime, String endTime) {
+    public RecurringEvent(String eventName, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
         super(eventName);
-        this.dayOfWeek = DayOfWeek.valueOf(dayOfWeek);
-        this.startTime = LocalTime.parse(startTime);
-        this.endTime = LocalTime.parse(endTime);
+
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public static boolean isValidEventName(String eventName) {
+        return eventName.matches(VALIDATION_REGEX_EVENTNAME);
+    }
+
+    public static boolean isValidDayOfWeek(String dayOfWeek) {
+        return Arrays.stream(VALIDATION_REGEX_DAYOFWEEK).anyMatch(dayOfWeek::equals);
     }
 
     /**
@@ -84,7 +108,6 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
     }
 
-
     /**
      * Returns a {@code boolean} that indicates if the {@code Event} occurs between the
      * given period.
@@ -131,5 +154,11 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         }
 
         return isDayBetweenPeriod && isTimeBetweenPeriod;
+    }
+
+    @Override
+    public String toString() {
+        return getEventName() + " on " + this.dayOfWeek.name() + " from " + startTime.toString() + " to "
+                + endTime.toString();
     }
 }

@@ -16,9 +16,13 @@ public class RecurringEventList {
     public String toString() {
         StringBuilder output = new StringBuilder();
         for (RecurringEvent re : recurringEvents) {
-            output.append(re).append("\n");
+            output.append(re.getEventName()).append("\n");
         }
         return output.toString();
+    }
+
+    public boolean contain(RecurringEvent event) {
+        return recurringEvents.contains(event);
     }
 
     /**

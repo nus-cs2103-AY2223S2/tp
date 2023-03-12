@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final RecurringEventList recurringEventList = new RecurringEventList();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +53,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public RecurringEventList getRecurringEventList() {
+        return recurringEventList;
     }
 
     /**
@@ -120,4 +127,7 @@ public class Person {
         return builder.toString();
     }
 
+    public void addRecurringEvent(RecurringEvent event) {
+        recurringEventList.insert(event);
+    }
 }
