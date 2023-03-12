@@ -32,6 +32,7 @@
       <Label fx:id="rate" styleClass="cell_small_label" text="\$rate" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="timing" styleClass="cell_small_label" text="\$timing" />
+      <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
       <Label fx:id="mark" styleClass="cell_small_label" text="\$mark" />
     </VBox>
       <rowConstraints>
