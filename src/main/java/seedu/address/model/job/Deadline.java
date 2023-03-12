@@ -1,9 +1,10 @@
 package seedu.address.model.job;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+
 
 /**
  * Represents a Dateline in the Tech track.
@@ -11,8 +12,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Deadline {
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    private static String messageConstraint = "";
     public final String deadline;
-    public static String messageConstraint = "";
 
     /**
      * Constructs a {@code deadline}.
@@ -21,7 +22,7 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), messageConstraint);
+        checkArgument(isValidDeadline(deadline), getMessageConstraint());
         this.deadline = deadline;
     }
 
@@ -32,14 +33,32 @@ public class Deadline {
         if (test.matches(VALIDATION_REGEX)) {
             LocalDate lDate = LocalDate.parse(test);
             if (lDate.isBefore(LocalDate.now())) {
-                messageConstraint = "Deadline should be older than the current date!";
+                setMessageConstraint("Deadline should be older than the current date!");
                 return false;
             }
             return true;
         } else {
-            messageConstraint = "Deadline should be in this format: {YYYY-MM-DD}";
+            setMessageConstraint("Deadline should be in this format: {YYYY-MM-DD}");
             return false;
         }
+    }
+
+    /**
+     * Sets the message constraint of deadline.
+     *
+     *  @param msg message constraint of the given deadline.
+     */
+    public static void setMessageConstraint(String msg) {
+        messageConstraint = msg;
+    }
+
+    /**
+     * Gets the message constraint of deadline.
+     *
+     * @return messageConstraint returns the message constraint of the given deadline.
+     */
+    public static String getMessageConstraint() {
+        return messageConstraint;
     }
 
     @Override

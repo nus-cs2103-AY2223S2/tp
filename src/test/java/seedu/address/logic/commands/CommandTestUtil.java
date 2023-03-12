@@ -64,8 +64,8 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE +
-            "2023-2A-20"; // Characters not allowed in deadline
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
+            + "2023-2A-20"; // Characters not allowed in deadline
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

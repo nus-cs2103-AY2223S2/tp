@@ -10,7 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.job.*;
+import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
+import seedu.address.model.job.Email;
+import seedu.address.model.job.Name;
+import seedu.address.model.job.Phone;
+import seedu.address.model.job.Role;
+import seedu.address.model.job.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -115,7 +121,7 @@ class JsonAdaptedRole {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.messageConstraint);
+            throw new IllegalValueException(Deadline.getMessageConstraint());
         }
         final Salary modelSalary = new Salary(salary);
         final Deadline modelDeadline = new Deadline(deadline);

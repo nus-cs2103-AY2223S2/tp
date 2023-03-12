@@ -6,7 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.job.*;
+import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
+import seedu.address.model.job.Email;
+import seedu.address.model.job.Name;
+import seedu.address.model.job.Phone;
+import seedu.address.model.job.Role;
+import seedu.address.model.job.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
