@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_KEYDATE;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_STATUS;
@@ -26,7 +26,7 @@ public class AddCommandNew extends CommandNew {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_REMARK + "REMARK "
-            + "[" + PREFIX_DATE + "DATE]...\n"
+            + "[" + PREFIX_KEYDATE + "DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Backend Developer "
             + PREFIX_COMPANY + "Shopee "

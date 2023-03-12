@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_KEYDATE;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntaxNew.PREFIX_STATUS;
@@ -36,7 +36,7 @@ public class AddCommandParserNew implements ParserNew<AddCommandNew> {
     public AddCommandNew parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL,
-                        PREFIX_STATUS, PREFIX_REMARK, PREFIX_DATE);
+                        PREFIX_STATUS, PREFIX_REMARK, PREFIX_KEYDATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,7 +48,7 @@ public class AddCommandParserNew implements ParserNew<AddCommandNew> {
         Email email = ParserUtilNew.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtilNew.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Remark remark = ParserUtilNew.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
-        Set<Date> dateList = ParserUtilNew.parseDates(argMultimap.getAllValues(PREFIX_DATE));
+        Set<Date> dateList = ParserUtilNew.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
 
         Opening opening = new Opening(position, company, email, status, remark, dateList);
 
