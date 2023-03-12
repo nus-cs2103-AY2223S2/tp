@@ -27,7 +27,7 @@ public class Person {
     private MedicalCondition medicalCondition;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, medical condition will be created without any tag
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
