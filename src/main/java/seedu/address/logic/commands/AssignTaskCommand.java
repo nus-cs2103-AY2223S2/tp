@@ -36,6 +36,8 @@ public class AssignTaskCommand extends Command {
 
     /**
      * Creates an AssignTaskCommand to add the specified {@code DeadlineTask}
+     * @param taskIndex
+     * @param memberIndex
      */
     public AssignTaskCommand(Index taskIndex, Index memberIndex) {
         requireNonNull(taskIndex);
@@ -44,6 +46,11 @@ public class AssignTaskCommand extends Command {
         this.toAssignMember = memberIndex;
     }
 
+    /**
+     * Executes the assign task command and returns the result message.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -57,16 +64,8 @@ public class AssignTaskCommand extends Command {
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
 
-        System.out.println("Assigning task " + taskToAssign.toString() + " to " + personToAssign.getName().toString() + "...");
-
         model.assignTask(toAssignTask, toAssignMember);
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToAssign.getName().toString(), taskToAssign.toString()));
     }
 
-    // @Override
-    // public boolean equals(Object other) {
-    //     return other == this // short circuit if same object
-    //             || (other instanceof DeadlineCommand // instanceof handles nulls
-    //             && toAdd.equals(((DeadlineCommand) other).toAdd));
-    // }
 }
