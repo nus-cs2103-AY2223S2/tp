@@ -79,5 +79,4 @@ public class NotificationManager {
                 .position(position);
         notificationBuilder.showConfirm();
     }
-
 }
