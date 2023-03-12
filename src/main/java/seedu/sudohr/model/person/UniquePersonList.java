@@ -65,11 +65,11 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        if (sharesEmail(toAdd)) {
-            throw new DuplicateEmailException();
-        }
         if (sharesPhoneNumber(toAdd)) {
             throw new DuplicatePhoneNumberException();
+        }
+        if (sharesEmail(toAdd)) {
+            throw new DuplicateEmailException();
         }
         internalList.add(toAdd);
     }
