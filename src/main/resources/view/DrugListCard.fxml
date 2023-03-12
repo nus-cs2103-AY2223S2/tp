@@ -9,7 +9,7 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="60" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
@@ -22,11 +22,6 @@
                 </Label>
                 <Label fx:id="tradeName" text="\$tradeName" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="activeIngredient" styleClass="cell_small_label" text="\$activeIngredient" wrapText="true"/>
-            <Label fx:id="direction" styleClass="cell_small_label" text="\$direction" wrapText="true" />
-            <Label fx:id="purposes" styleClass="cell_small_label" text="\$purposes" wrapText="true" />
-            <Label fx:id="sideEffects" styleClass="cell_small_label" text="\$sideEffects" wrapText="true" />
-            <Label fx:id="storageCount" styleClass="cell_small_label" text="\$storageCount" wrapText="true" />
         </VBox>
     </GridPane>
 </HBox>
