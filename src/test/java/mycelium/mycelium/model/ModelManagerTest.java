@@ -3,6 +3,7 @@ package mycelium.mycelium.model;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
 import static mycelium.mycelium.testutil.TypicalPersons.BENSON;
+import static mycelium.mycelium.testutil.TypicalPersons.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,10 +17,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.GuiSettings;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.testutil.AddressBookBuilder;
+import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
 public class ModelManagerTest {
@@ -95,6 +99,75 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
+    }
+
+    @Test
+    public void hasClient_clientNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasClient(WEST));
+    }
+
+    @Test
+    public void hasClient_clientInAddressBook_returnsTrue() {
+        modelManager.addClient(WEST);
+        assertTrue(modelManager.hasClient(WEST));
+    }
+
+    @Test
+    public void deleteClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteClient(null));
+    }
+
+    @Test
+    public void deleteClient_clientNotInAddressBook_nothingHappens() {
+        Client client = new ClientBuilder().build();
+        assertFalse(modelManager.hasClient(client));
+        modelManager.deleteClient(client);
+        assertFalse(modelManager.hasClient(client));
+    }
+
+    @Test
+    public void deleteClient_clientInAddressBook_success() {
+        Client client = new ClientBuilder().build();
+        modelManager.addClient(client);
+        modelManager.deleteClient(client);
+        assertFalse(modelManager.hasClient(client));
+    }
+
+    @Test
+    public void addClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addClient(null));
+    }
+
+    @Test
+    public void addClient_clientInAddressBook_throwsDuplicateClientException() {
+        Client client = new ClientBuilder().build();
+        modelManager.addClient(client);
+        assertThrows(DuplicateClientException.class, () -> modelManager.addClient(client));
+    }
+
+    @Test
+    public void addClient_clientWithSameIdentityFieldsInAddressBook_throwsDuplicateClientException() {
+        Client client = new ClientBuilder().build();
+        modelManager.addClient(client);
+        Client editedClient = new ClientBuilder(client).withEmail("John@gmail.com").build();
+        assertThrows(DuplicateClientException.class, () -> modelManager.addClient(editedClient));
+    }
+
+    @Test
+    public void addClient_clientNotInAddressBook_success() {
+        Client client = new ClientBuilder().build();
+        modelManager.addClient(client);
+        assertTrue(modelManager.hasClient(client));
+    }
+
+    @Test
+    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }
 
     @Test

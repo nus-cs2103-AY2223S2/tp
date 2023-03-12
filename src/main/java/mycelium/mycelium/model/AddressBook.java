@@ -57,21 +57,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-
-    /**
-     * Replaces the contents of the project list with {@code projects}.
-     * {@code projects} must not contain duplicate projects.
-     */
-    public void setProjects(List<Project> projects) {
-        this.projects.setItems(projects);
-    }
-
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setClients(List<Client> clients) {
         this.clients.setItems(clients);
+    }
+    /**
+     * Replaces the contents of the project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    public void setProjects(List<Project> projects) {
+        this.projects.setItems(projects);
     }
 
     /**

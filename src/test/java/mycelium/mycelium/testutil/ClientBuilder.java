@@ -14,7 +14,7 @@ import mycelium.mycelium.model.person.Phone;
 public class ClientBuilder {
 
     public static final String DEFAULT_NAME = "John Doe";
-    public static final String DEFAULT_EMAIL = "JohnDoe@gmail.com";
+    public static final String DEFAULT_EMAIL = "John@gmail.com";
     public static final String DEFAULT_YEAR_OF_BIRTH = "2023";
     public static final String DEFAULT_SOURCE = "whited.com";
     public static final String DEFAULT_MOBILE_NUMBER = "999";

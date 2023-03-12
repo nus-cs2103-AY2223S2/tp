@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
@@ -145,14 +146,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteClient(Client target) {
-        addressBook.removeClient(target);
+    public void deleteClient(Client client) {
+        try {
+            addressBook.removeClient(client);
+        } catch (ItemNotFoundException e) {
+            logger.warning(String.format(
+                    "Requested deletion for client with name %s not found in address book, ignoring...",
+                    client.getName()));
+        }
     }
 
     @Override
     public void addClient(Client client) {
-        addressBook.addClient(client);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        try {
+            addressBook.addClient(client);
+        } catch (DuplicateItemException e) {
+            throw new DuplicateClientException();
+        }
+        updateFilteredClientList(x -> true);
     }
 
     //=========== Filtered Client List Accessors =============================================================

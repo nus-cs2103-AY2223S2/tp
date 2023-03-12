@@ -1,7 +1,9 @@
 package mycelium.mycelium.model.client;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -35,5 +37,12 @@ public class YearOfBirthTest {
         // valid years
         assertTrue(YearOfBirth.isValidYearOfBirth("2004")); // exactly 4 numbers
         assertTrue(YearOfBirth.isValidYearOfBirth("1534"));
+    }
+
+    @Test
+    public void isCorrectString() {
+        YearOfBirth year = new YearOfBirth("2099");
+        assertEquals(year.toString(), "2099");
+        assertNotEquals(year.toString(), "0");
     }
 }
